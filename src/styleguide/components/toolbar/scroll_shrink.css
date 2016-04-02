@@ -1,0 +1,8 @@
+div.scroll-shrink {
+  height: 600px;
+  overflow-y: hidden; }
+  @media screen and (max-width: 600px) {
+    div.scroll-shrink {
+      height: 200px; } }
+
+/*# sourceMappingURL=scroll_shrink.css.map */

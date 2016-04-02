@@ -1,0 +1,12 @@
+
+.nl-input {
+  border: 0px;
+  border-bottom: 1px black dashed;
+  font-size: 24px;
+  background-color: #F5F5F5;
+}
+
+.nl-input:focus {
+  border-bottom: 1px blue dashed;
+  outline: none;
+}

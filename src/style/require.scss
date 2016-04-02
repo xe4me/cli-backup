@@ -1,0 +1,17 @@
+////////////////////////////////////////
+//                                    //
+//      DO NOT ADD ANY CSS HERE       //
+//                                    //
+////////////////////////////////////////
+
+// Pull in any global overrides.
+@import "./overrides";
+
+// Pull in the mandatory setup.
+@import "./mandatory";
+
+// Pull in the project setup.
+@import "./project";
+
+// Pull in the shame setup.
+// @import "node_modules/amp-styleguide-core/src/scss/shames";

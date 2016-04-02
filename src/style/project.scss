@@ -1,0 +1,21 @@
+////////////////////////////////////////
+////////////////////////////////////////
+//                                    //
+//      DO NOT ADD ANY CSS HERE       //
+//                                    //
+////////////////////////////////////////
+
+// Pull together the required layers of itcss.
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/icons";
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/animations";
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/forms";
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/headings";
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/hr";
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/images";
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/lists";
+@import "node_modules/amp-styleguide-core/src/scss/03_Base/page";
+
+// Pull together our objects.
+@import "node_modules/amp-styleguide-core/src/scss/04_Objects/boxes";
+@import "node_modules/amp-styleguide-core/src/scss/04_Objects/grids";
+@import "node_modules/amp-styleguide-core/src/scss/04_Objects/shapes";
