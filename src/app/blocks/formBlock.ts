@@ -1,6 +1,7 @@
 import {Control, ControlGroup} from 'angular2/common';
-import {Action} from '../forms/action';
-import {BlockLayout} from '../forms/formDefinition';
+import {Action} from '../actions/action';
+
+export enum BlockLayout {INLINE, PAGE};
 
 export class NamedControl {
   constructor (public name: string, public control: Control) {}
@@ -33,7 +34,7 @@ export abstract class FormBlock {
 
     // Must implement this method for FormBlock that deals with FormControls
     abstract constructFormControls (): void;
-    
+
     // Reference:   http://stackoverflow.com/questions/332422/how-do-i-get-the-name-of-an-objects-type-in-javascript
     // TODO:        There are limitations and will need to test browser compatibility
     public getName () {
