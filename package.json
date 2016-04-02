@@ -1,5 +1,5 @@
 {
-  "name": "Components",
+  "name": "amp-ddc-components",
   "version": "0.0.1",
   "description": "AMP digital dynamic data capture UI component library",
   "author": "Eric Kwok <eric_kwok@amp.com.au>",
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "amp-styleguide-core": "git+ssh://git@gitlab.np.ampaws.com.au:KWKECW/amp-styleguide-core.git",
-    "style": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/style.git#develop",
+    "amp-ddc-style": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/style.git#develop",
     "angular2": "2.0.0-beta.8",
     "es6-promise": "^3.1.2",
     "es6-shim": "^0.33.3",
