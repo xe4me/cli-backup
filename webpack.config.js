@@ -31,8 +31,7 @@ module.exports = helpers.validate({
   // our angular app
   entry: {
     'polyfills': './src/polyfills.ts',
-    'buybackform': './src/main.ts',
-    // 'styleguide': './src/styleguide/app.ts'
+    'styleguide': './src/styleguide/app.ts'
   },
 
   // Config for our build files

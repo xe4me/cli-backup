@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angul
 import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
 import {FormBlock, NamedControl} from "./formBlock";
 import {MdInputComponent} from '../components/my-md-input/my-md-input.component';
-import {Action} from '../forms/action';
+import {Action} from '../actions/action';
 
 @Component ({
   selector: 'multi-block',

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from 'angular2/core';
 import {Control, Validators, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-import {Action} from '../../forms/action';
+import {Action} from '../../actions/action/';
 
 @Component({
   selector: 'my-input',
