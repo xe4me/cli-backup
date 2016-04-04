@@ -1,7 +1,7 @@
 import {View, Component, AfterViewInit, ChangeDetectorRef} from 'angular2/core';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
 import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
-import {BOLRInitState} from '../../../../app/blocks/bolr/BOLRInitState';
+import {BOLRInitState} from '../../../../app/blocks/bolr/initState/BOLRInitState';
 
 @Component({selector: 'bolr-init-state-basic-usage'})
 @View({
