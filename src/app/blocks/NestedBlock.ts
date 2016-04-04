@@ -34,7 +34,7 @@ export class NestedBlock extends FormBlock {
     this.formControl = [new NamedControl(this.id, new Control())];
   }
 
-  public constructFormControls() {
+  public preBindControls() {
     this.formControl[0].name = this.id;
   }
 

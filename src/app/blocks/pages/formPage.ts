@@ -7,6 +7,9 @@ export class FormPage extends FormBlock {
   pageId: string;
   nextPageId: string;
   prevPageId: string;
+  routeName: string;    // TODO: This needs more thinking
+                        // Should it really be nextRouteName and prevRouteName?
+                        // Maybe, no routeName at all, as the entire form is a single component and just use the formDef ID?
   _router: Router;
 
   constructor () {
@@ -15,15 +18,19 @@ export class FormPage extends FormBlock {
   }
 
   // Noop but can be overriden by child class
-  public constructFormControls () {}
+  public preBindControls (_formBlockDef) {
+    if (_formBlockDef) {
+      this.routeName = _formBlockDef.page.routeName;
+    }
+  }
 
   next() {
-    this._router.navigate(['BuyBackFormDetails', {id: this.nextPageId}]);
+    this._router.navigate([this.routeName, {id: this.nextPageId}]);
     return false;
   }
 
   prev() {
-    this._router.navigate([this.prevPageId]);
+    this._router.navigate([this.routeName, {id: this.prevPageId}]);
     return false;
   }
 }

@@ -15,5 +15,5 @@ export class ContentBlock extends FormBlock {
   id:string = "DefaultContentId";
   label: string = "Default content label";
 
-  public constructFormControls() {}
+  public preBindControls() {}
 }

@@ -23,7 +23,7 @@ export abstract class FormBlock {
     public validation: Action;
 
     // Used by both nested formModel binding as well as dcl formModel binding
-    public bindAllFormControls(formModel: ControlGroup) {
+    public bindControls(formModel: ControlGroup) {
       // Called by BaseForm straight after each block is dcl generated
       if (formModel && this.formControl && this.formControl.length > 0) {
         this.formControl.map(function(namedControl) {
@@ -33,7 +33,7 @@ export abstract class FormBlock {
     }
 
     // Must implement this method for FormBlock that deals with FormControls
-    abstract constructFormControls (): void;
+    abstract preBindControls (_formBlockDef: any): void;
 
     // Reference:   http://stackoverflow.com/questions/332422/how-do-i-get-the-name-of-an-objects-type-in-javascript
     // TODO:        There are limitations and will need to test browser compatibility

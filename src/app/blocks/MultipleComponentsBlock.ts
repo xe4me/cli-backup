@@ -46,11 +46,9 @@ export class MultipleComponentsBlock extends FormBlock {
     this.formControl = [new NamedControl(this.payee.id, new Control()), new NamedControl(this.practice.id, new Control())];
   }
 
-  // TODO: Updating the name from formDef in a static fashion is an overhead!!! Fix this timing issue between Constructor/Template need vs FormDef driven data
-  public constructFormControls() {
+  public preBindControls() {
     this.formControl[0].name = this.payee.id;
     this.formControl[1].name = this.practice.id;
-
   }
 
   // visibilityRule: Action;
