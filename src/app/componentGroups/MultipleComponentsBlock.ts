@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
-import {FormBlock, NamedControl} from "./formBlock";
+import {FormBlock, NamedControl} from "../blocks/formBlock";
 import {MdInputComponent} from '../components/my-md-input/my-md-input.component';
 import {Action} from '../actions/action';
 

@@ -1,5 +1,45 @@
 [
   {
+    "name": "BOLRInitState",
+    "sources": [
+      "src/app/blocks/BOLRInitState.ts"
+    ],
+    "id": "BOLRInitState",
+    "examples": [
+      {
+        "template": "src/styleguide/components/componentGroups/bolrInitState/basic_usage.html",
+        "styles": "src/styleguide/components/componentGroups/bolrInitState/basic_usage.scss",
+        "source": "src/styleguide/components/componentGroups/bolrInitState/basic_usage.ts",
+        "galen": "src/styleguide/components/componentGroups/bolrInitState/my-md-input.test.spec",
+        "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
+        "component": "bolr-init-state-basic-usage",
+        "component_src_location": "componentGroups/bolrInitState/basic_usage",
+        "name": "Basic Usage"
+      }
+    ],
+    "readme": "<p>Custom Block for BOLR init state.</p>\n"
+  },
+  {
+    "name": "ContentBlock",
+    "sources": [
+      "src/app/blocks/ContentBlock.ts"
+    ],
+    "id": "ContentBlock",
+    "examples": [
+      {
+        "template": "src/styleguide/components/componentGroups/content/basic_usage.html",
+        "styles": "src/styleguide/components/componentGroups/content/basic_usage.scss",
+        "source": "src/styleguide/components/componentGroups/content/basic_usage.ts",
+        "galen": "src/styleguide/components/componentGroups/content/my-md-input.test.spec",
+        "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
+        "component": "content-block-basic-usage",
+        "component_src_location": "componentGroups/content/basic_usage",
+        "name": "Basic Usage"
+      }
+    ],
+    "readme": "<p>Static content block. Can you upgraded to pull content from AEM.</p>\n"
+  },
+  {
     "name": "MyTextInput",
     "sources": [
       "src/app/components/my-md-input/my-md-input.component.ts"

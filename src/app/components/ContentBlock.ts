@@ -1,4 +1,4 @@
-import {FormBlock} from "./formBlock";
+import {FormBlock} from "../blocks/formBlock";
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 
 @Component ({
@@ -7,7 +7,7 @@ import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angul
     <p id="id">{{label}}</p>
   `,
   // encapsulation: ViewEncapsulation.Emulated
-  inputs: ['content'],
+  inputs: ['id', 'label'],
 })
 export class ContentBlock extends FormBlock {
   static CLASS_NAME = "ContentBlock";
@@ -15,5 +15,5 @@ export class ContentBlock extends FormBlock {
   id:string = "DefaultContentId";
   label: string = "Default content label";
 
-  public preBindControls() {}
+  public preBindControls(_formBlockDef) {}
 }

@@ -1,12 +1,11 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
-import {FormBlock, NamedControl} from "./formBlock";
+import {FormBlock, NamedControl} from "../blocks/formBlock";
 import {MdInputComponent} from '../components/my-md-input/my-md-input.component';
-import {PlannerDetailsBlock} from './PlannerDetailsBlock';
 import {Action} from '../actions/action';
 
 @Component ({
-  selector: 'nested-block',
+  selector: 'planner-details-block',
   template: `
     <div id="id">
       <div data-automation-id="lbl_planner_details"><p>{{label}}</p></div>
@@ -15,30 +14,29 @@ import {Action} from '../actions/action';
           isRequired="true"
           valPattern="^([A-Za-z ])*$"
           valMaxLength="50">
+
       </my-md-input>
-      <div #nestedBlock></div>
     </div>
   `,
   // encapsulation: ViewEncapsulation.Emulated
-  inputs: ['payee'],
-  directives: [MdInputComponent, PlannerDetailsBlock]
+  inputs: ['payee','formModel'],
+  directives: [MdInputComponent]
 })
-export class NestedBlock extends FormBlock {
-  static CLASS_NAME = "NestedBlock";
+export class PlannerDetailsBlock extends FormBlock {
+  static CLASS_NAME = "PlannerDetailsBlock";
 
-  id: 'payeeId';
-  label: 'Payee Id';
+  id: 'defaultPayeeId';
+  label: 'Default Payee Id';
 
   constructor () {
     super();
     this.formControl = [new NamedControl(this.id, new Control())];
   }
 
-  public preBindControls() {
+  public preBindControls () {
     this.formControl[0].name = this.id;
   }
 
-
-  visibilityRule: Action;
+  // visibilityRule: Action;
 
 }

@@ -1,4 +1,4 @@
-import {FormBlock} from "../formBlock";
+import {FormBlock} from "../blocks/formBlock";
 import {Injector, Injectable, Inject, Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {RouteParams, Router, RouteRegistry} from 'angular2/router';
 
