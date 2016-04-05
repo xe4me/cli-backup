@@ -28,7 +28,20 @@ npm start
 go to [http://0.0.0.0:3001](http://0.0.0.0:3001) or [http://localhost:3001](http://localhost:3001) in your browser
 
 
+NOTE : 
+After running "npm start" If you came across "Strict Mode and Const" related npm errors , run bellow code to fix this : 
 
+1) Clear NPM's cache:
+
+sudo npm cache clean -f
+
+2) Install a little helper called 'n'
+
+sudo npm install -g n
+
+3) Install latest stable NodeJS version
+
+sudo n stable
 
 
 
