@@ -18,7 +18,7 @@ import {ThemeIDDirective} from "../../../directives/themeId.directive";
   `,
   // encapsulation: ViewEncapsulation.Emulated
   inputs: ['id', 'label'],
-  styles: [require('./BOLRInitState.scss')],
+  styles: [require('./BOLRInitState.scss').toString()],
   directives: [ThemeIDDirective]
 })
 export class BOLRInitState extends FormBlock {

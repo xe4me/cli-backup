@@ -20,7 +20,7 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
     <ng-content></ng-content>
   </md-input-container>
   `,
-  styles: [require('./my-md-input.scss')],
+  styles: [require('./my-md-input.scss').toString()],
   inputs: ['id', 'label','parentControl','placeholder','visibility','valMaxLength','valPattern','isRequired'],
   directives: [MATERIAL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
   encapsulation: ViewEncapsulation.Emulated

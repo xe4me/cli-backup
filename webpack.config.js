@@ -73,7 +73,7 @@ module.exports = helpers.validate({
       { test: /\.css$/,   loader: 'raw' },
 
       // Support for *.scss files - old config ('raw!postcss!sass') css?sourceMap&root=C:/ampdigital/digital-ddc-ui/!sass
-      { test: /\.scss$/, loader: 'raw!sass' },
+      { test: /\.scss$/, loader: 'css!sass' },
 
       // support for .html as raw text
       { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
