@@ -15,3 +15,6 @@
 
 // Pull in the shame setup.
 // @import "node_modules/amp-styleguide-core/src/scss/shames";
+
+// Provide a fully qualified location (sort of like a hook) for other project to reference this project as a vendor
+@import "src/style/overrides";

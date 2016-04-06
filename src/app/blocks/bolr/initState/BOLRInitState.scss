@@ -1,4 +1,4 @@
-@import "src/style/require";
+@import "../../../../style/require";
 
 $font-size:   $amp-base-font-size * 2 / 5 !default;
 
@@ -6,11 +6,12 @@ $font-size-medium: $font-size * 5;
 $font-size-small: $font-size * 4;
 $font-size-tiny: $font-size * 3;
 
+$amp-ddc-public-asset:      "/public/" !default;
+
 .bolrIS {
   background-color: $amp-colour-secondary-darkest;
   color: $amp-colour-white;
 
-  // TODO: This should be on the body of the page, no need to specify it on every single component.
   @include amp-family($amp-font-open-sans-regular);
   font-weight: 300;
   font-size: $font-size-medium;
@@ -22,19 +23,19 @@ $font-size-tiny: $font-size * 3;
 
   // Theme based style, using themeId.directive.ts
   &.AMPFP {
-    background-image: url("public/images/logo/ampfp.png");
+    background-image: url($amp-ddc-public-asset + "images/logo/ampfp.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
   }
 
   &.HILLROSS {
-    background-image: url("public/images/logo/hillross.png");
+    background-image: url($amp-ddc-public-asset + "images/logo/hillross.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
   }
 
   &.CHARTER {
-    background-image: url("public/images/logo/charter.png");
+    background-image: url($amp-ddc-public-asset + "public/images/logo/charter.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
   }

@@ -3,11 +3,11 @@
 // @import "node_modules/amp-styleguide-core/src/scss/01_Tools/functions/_decimal";
 // @import "node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family";
 
-$md-font-url: "node_modules/ng2-material/dist/";
-@import "node_modules/ng2-material/dist/font.scss";
+$md-font-url: "/node_modules/ng2-material/dist/";
+@import "~ng2-material/dist/font.scss";
 // @import "node_modules/ng2-material/source/core";
 
-@import "node_modules/ng2-material/source/core/style/variables";
+@import "~ng2-material/source/core/style/variables";
 
 // Override Variables
 // Override core/style/variables.scss
@@ -24,11 +24,11 @@ $font-size:   $amp-base-font-size;
 //$body-font-size-base:      rem(3.000) !default;
 // $caption-font-size-base:   rem(1.200) !default;
 
-@import "node_modules/ng2-material/source/core/style/mixins";
-@import "node_modules/ng2-material/source/core/style/structure";
-@import "node_modules/ng2-material/source/core/style/typography";
-@import "node_modules/ng2-material/source/core/style/layout";
-@import "node_modules/ng2-material/source/core/style/default-theme";
+@import "~ng2-material/source/core/style/mixins";
+@import "~ng2-material/source/core/style/structure";
+@import "~ng2-material/source/core/style/typography";
+@import "~ng2-material/source/core/style/layout";
+@import "~ng2-material/source/core/style/default-theme";
 
 // Custom amp-sky-blue-palettes
 $md-sky-blue : (
