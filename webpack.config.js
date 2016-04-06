@@ -55,7 +55,7 @@ module.exports = helpers.validate({
 
   module: {
     preLoaders: [
-      // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('ss') ] },
+      { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('ss') ] },
       // TODO(gdi2290): `exclude: [ helpers.root('node_modules/rxjs') ]` fixed with rxjs 5 beta.3 release
       { test: /\.js$/, loader: "source-map-loader", exclude: [ helpers.root('node_modules/rxjs') ] }
     ],
@@ -73,7 +73,7 @@ module.exports = helpers.validate({
       { test: /\.css$/,   loader: 'raw' },
 
       // Support for *.scss files - old config ('raw!postcss!sass') css?sourceMap&root=C:/ampdigital/digital-ddc-ui/!sass
-      { test: /\.scss$/,   loader: 'raw!sass' },
+      { test: /\.scss$/, loader: 'raw!sass' },
 
       // support for .html as raw text
       { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },

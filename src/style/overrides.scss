@@ -69,3 +69,5 @@ $amp-base-font-size:         15px  !default; // For DDC, this appears to be the 
 $amp-base-line-height:       ($amp-base-font-size * 1.5)  !default; // The styleguides base line height
 //$amp-base-font-size-ratio:   ($amp-base-font-size / $amp-base-browser-font-size);
 //$amp-base-line-height-ratio: ($amp-base-line-height / $amp-base-font-size);
+
+$amp-ddc-public-asset: '../../public/' !default;    // Expected to be over-written everywhere it is used. This provides a way for relative pathing to work for referencing projects
