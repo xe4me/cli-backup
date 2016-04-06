@@ -1,39 +1,39 @@
 [
   {
-    "name": "BOLRInitState",
+    "name": "BOLRIntrolBlock",
     "sources": [
-      "src/app/blocks/BOLRInitState.ts"
+      "src/app/blocks/bolr/initState/IntroBlock.component.ts"
     ],
-    "id": "BOLRInitState",
+    "id": "BOLRIntrolBlock",
     "examples": [
       {
-        "template": "src/styleguide/components/componentGroups/bolrInitState/basic_usage.html",
-        "styles": "src/styleguide/components/componentGroups/bolrInitState/basic_usage.scss",
-        "source": "src/styleguide/components/componentGroups/bolrInitState/basic_usage.ts",
-        "galen": "src/styleguide/components/componentGroups/bolrInitState/my-md-input.test.spec",
-        "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
-        "component": "bolr-init-state-basic-usage",
-        "component_src_location": "componentGroups/bolrInitState/basic_usage",
+        "template": "src/styleguide/blocks/bolr/intro/basic_usage.html",
+        "styles": "src/styleguide/blocks/bolr/intro/basic_usage.scss",
+        "source": "src/styleguide/blocks/bolr/intro/basic_usage.ts",
+        "galen": "src/styleguide/blocks/bolr/intro/IntroBlock.component.test.spec",
+        "jasmine": "src/styleguide/blocks/bolr/intro/IntroBlock.component.spec.ts",
+        "component": "bolr-intro-block-basic-usage",
+        "component_src_location": "blocks/bolr/intro/basic_usage",
         "name": "Basic Usage"
       }
     ],
-    "readme": "<p>Custom Block for BOLR init state.</p>\n"
+    "readme": "<p>Custom Block for BOLR Intro.</p>\n"
   },
   {
     "name": "ContentBlock",
     "sources": [
-      "src/app/blocks/ContentBlock.ts"
+      "src/app/components/ContentBlock.ts"
     ],
     "id": "ContentBlock",
     "examples": [
       {
-        "template": "src/styleguide/components/componentGroups/content/basic_usage.html",
-        "styles": "src/styleguide/components/componentGroups/content/basic_usage.scss",
-        "source": "src/styleguide/components/componentGroups/content/basic_usage.ts",
-        "galen": "src/styleguide/components/componentGroups/content/my-md-input.test.spec",
+        "template": "src/styleguide/components/content/basic_usage.html",
+        "styles": "src/styleguide/components/content/basic_usage.scss",
+        "source": "src/styleguide/components/content/basic_usage.ts",
+        "galen": "src/styleguide/components/content/my-md-input.test.spec",
         "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
         "component": "content-block-basic-usage",
-        "component_src_location": "componentGroups/content/basic_usage",
+        "component_src_location": "components/content/basic_usage",
         "name": "Basic Usage"
       }
     ],
@@ -53,7 +53,7 @@
         "galen": "src\\styleguide\\components\\my-md-input\\my-md-input.test.spec",
         "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
         "component": "my-md-input-basic-usage",
-        "component_src_location": "my-md-input/basic_usage",
+        "component_src_location": "components/my-md-input/basic_usage",
         "name": "Basic Usage"
       }
     ],
@@ -71,7 +71,7 @@
         "styles": "src\\styleguide\\components\\button\\basic_usage.scss",
         "source": "src\\styleguide\\components\\button\\basic_usage.ts",
         "component": "button-basic-usage",
-        "component_src_location": "button/basic_usage",
+        "component_src_location": "components/button/basic_usage",
         "name": "Basic Usage"
       }
     ],
@@ -89,7 +89,7 @@
         "styles": "src\\styleguide\\components\\card\\action_buttons.scss",
         "source": "src\\styleguide\\components\\card\\action_buttons.ts",
         "component": "card-action-buttons",
-        "component_src_location": "card/action_buttons",
+        "component_src_location": "components/card/action_buttons",
         "name": "Action Buttons"
       },
       {
@@ -97,7 +97,7 @@
         "styles": "src\\styleguide\\components\\card\\basic_usage.scss",
         "source": "src\\styleguide\\components\\card\\basic_usage.ts",
         "component": "card-basic-usage",
-        "component_src_location": "card/basic_usage",
+        "component_src_location": "components/card/basic_usage",
         "name": "Basic Usage"
       },
       {
@@ -105,7 +105,7 @@
         "styles": "src\\styleguide\\components\\card\\inline_actions.scss",
         "source": "src\\styleguide\\components\\card\\inline_actions.ts",
         "component": "card-inline-actions",
-        "component_src_location": "card/inline_actions",
+        "component_src_location": "components/card/inline_actions",
         "name": "Inline Actions"
       }
     ]
@@ -122,7 +122,7 @@
         "styles": "src\\styleguide\\components\\checkbox\\basic_usage.scss",
         "source": "src\\styleguide\\components\\checkbox\\basic_usage.ts",
         "component": "checkbox-basic-usage",
-        "component_src_location": "checkbox/basic_usage",
+        "component_src_location": "components/checkbox/basic_usage",
         "name": "Basic Usage"
       },
       {
@@ -130,7 +130,7 @@
         "styles": "src\\styleguide\\components\\checkbox\\syncing.scss",
         "source": "src\\styleguide\\components\\checkbox\\syncing.ts",
         "component": "checkbox-syncing",
-        "component_src_location": "checkbox/syncing",
+        "component_src_location": "components/checkbox/syncing",
         "name": "Syncing"
       }
     ]
@@ -151,7 +151,7 @@
         "styles": "src\\styleguide\\components\\dialog\\basic_usage.scss",
         "source": "src\\styleguide\\components\\dialog\\basic_usage.ts",
         "component": "dialog-basic-usage",
-        "component_src_location": "dialog/basic_usage",
+        "component_src_location": "components/dialog/basic_usage",
         "name": "Basic Usage"
       }
     ]
@@ -168,7 +168,7 @@
         "styles": "src\\styleguide\\components\\input\\basic_usage.scss",
         "source": "src\\styleguide\\components\\input\\basic_usage.ts",
         "component": "input-basic-usage",
-        "component_src_location": "input/basic_usage",
+        "component_src_location": "components/input/basic_usage",
         "name": "Basic Usage"
       },
       {
@@ -176,7 +176,7 @@
         "styles": "src\\styleguide\\components\\input\\form_builder.scss",
         "source": "src\\styleguide\\components\\input\\form_builder.ts",
         "component": "input-form-builder",
-        "component_src_location": "input/form_builder",
+        "component_src_location": "components/input/form_builder",
         "name": "Form Builder"
       }
     ]
@@ -193,7 +193,7 @@
         "styles": "src\\styleguide\\components\\list\\basic_usage.scss",
         "source": "src\\styleguide\\components\\list\\basic_usage.ts",
         "component": "list-basic-usage",
-        "component_src_location": "list/basic_usage",
+        "component_src_location": "components/list/basic_usage",
         "name": "Basic Usage"
       }
     ]
@@ -210,7 +210,7 @@
         "styles": "src\\styleguide\\components\\progress_circular\\basic_usage.scss",
         "source": "src\\styleguide\\components\\progress_circular\\basic_usage.ts",
         "component": "progress-circular-basic-usage",
-        "component_src_location": "progress_circular/basic_usage",
+        "component_src_location": "components/progress_circular/basic_usage",
         "name": "Basic Usage"
       }
     ]
@@ -227,7 +227,7 @@
         "styles": "src\\styleguide\\components\\progress_linear\\basic_usage.scss",
         "source": "src\\styleguide\\components\\progress_linear\\basic_usage.ts",
         "component": "progress-linear-basic-usage",
-        "component_src_location": "progress_linear/basic_usage",
+        "component_src_location": "components/progress_linear/basic_usage",
         "name": "Basic Usage"
       }
     ]
@@ -245,7 +245,7 @@
         "styles": "src\\styleguide\\components\\radio\\basic_usage.scss",
         "source": "src\\styleguide\\components\\radio\\basic_usage.ts",
         "component": "radio-basic-usage",
-        "component_src_location": "radio/basic_usage",
+        "component_src_location": "components/radio/basic_usage",
         "name": "Basic Usage"
       }
     ]
@@ -262,7 +262,7 @@
         "template": "src/styleguide/components/sidenav/basic_usage.html",
         "source": "src\\styleguide\\components\\sidenav\\basic_usage.ts",
         "component": "sidenav-basic-usage",
-        "component_src_location": "sidenav/basic_usage",
+        "component_src_location": "components/sidenav/basic_usage",
         "name": "Basic Usage"
       }
     ]
@@ -276,7 +276,7 @@
         "template": "src/styleguide/components/switch/basic_usage.html",
         "source": "src\\styleguide\\components\\switch\\basic_usage.ts",
         "component": "switch-basic-usage",
-        "component_src_location": "switch/basic_usage",
+        "component_src_location": "components/switch/basic_usage",
         "name": "Basic Usage"
       }
     ]
@@ -293,7 +293,7 @@
         "styles": "src\\styleguide\\components\\tabs\\dynamic_height.scss",
         "source": "src\\styleguide\\components\\tabs\\dynamic_height.ts",
         "component": "tabs-dynamic-height",
-        "component_src_location": "tabs/dynamic_height",
+        "component_src_location": "components/tabs/dynamic_height",
         "name": "Dynamic Height"
       },
       {
@@ -301,7 +301,7 @@
         "styles": "src\\styleguide\\components\\tabs\\dynamic_tabs.scss",
         "source": "src\\styleguide\\components\\tabs\\dynamic_tabs.ts",
         "component": "tabs-dynamic-tabs",
-        "component_src_location": "tabs/dynamic_tabs",
+        "component_src_location": "components/tabs/dynamic_tabs",
         "name": "Dynamic Tabs"
       }
     ]
@@ -318,7 +318,7 @@
         "styles": "src\\styleguide\\components\\toolbar\\basic_usage.scss",
         "source": "src\\styleguide\\components\\toolbar\\basic_usage.ts",
         "component": "toolbar-basic-usage",
-        "component_src_location": "toolbar/basic_usage",
+        "component_src_location": "components/toolbar/basic_usage",
         "name": "Basic Usage"
       },
       {
@@ -326,7 +326,7 @@
         "styles": "src\\styleguide\\components\\toolbar\\scroll_shrink.scss",
         "source": "src\\styleguide\\components\\toolbar\\scroll_shrink.ts",
         "component": "toolbar-scroll-shrink",
-        "component_src_location": "toolbar/scroll_shrink",
+        "component_src_location": "components/toolbar/scroll_shrink",
         "name": "Scroll Shrink"
       }
     ]
@@ -341,7 +341,7 @@
         "styles": "src\\styleguide\\components\\whiteframe\\basic_usage.scss",
         "source": "src\\styleguide\\components\\whiteframe\\basic_usage.ts",
         "component": "whiteframe-basic-usage",
-        "component_src_location": "whiteframe/basic_usage",
+        "component_src_location": "components/whiteframe/basic_usage",
         "name": "Basic Usage"
       }
     ]

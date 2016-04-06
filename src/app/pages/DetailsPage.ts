@@ -6,16 +6,10 @@ import {RouteParams, Router, RouteRegistry, CanDeactivate, ComponentInstruction}
   selector: 'details-page',
   template: `
     <div class="landing">
-      <p>Page details, with the frame and all</p>
       <div #nestedBlock></div>
       <button (click)="next()">OK</button>
     </div>
   `,
-  styles: [`
-    .landing {
-      border: 1px dotted green;
-    }
-  `]
   // encapsulation: ViewEncapsulation.Emulated
 })
 export class DetailsPage extends FormPage implements CanDeactivate {

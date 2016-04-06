@@ -10,7 +10,7 @@ console.log("MyMdInputBasicUsage file is loaded and intepreted");
 @Component({selector: 'my-md-input-basic-usage'})
 @View({
   templateUrl: 'src/styleguide/components/my-md-input/basic_usage.html',
-  styles: [require('./basic_usage.scss')],
+  styles: [require('./basic_usage.scss').toString()],
   directives: [MATERIAL_DIRECTIVES, FORM_DIRECTIVES, MdInputComponent, CORE_DIRECTIVES]
 })
 export default class MyMdInputBasicUsage implements AfterViewInit {

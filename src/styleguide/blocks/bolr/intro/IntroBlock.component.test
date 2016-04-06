@@ -1,10 +1,10 @@
 @@ set
     task    MyMdInput
-    url     http://localhost:3000/#/components/MyMdInput
+    url     http://localhost:3000/#/components/IntroBlockComponent
 
 @@ parameterized
     | subtask    | spec                                                      |
-    | All        | src/styleguide/components/my-md-input/my-md-input.test.spec    |
+    | All        | src/styleguide/blocks/bolr/intro/IntroBlock.component.test.spec    |
 
 @@ parameterized
     | browser    |

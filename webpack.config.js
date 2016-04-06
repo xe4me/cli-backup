@@ -70,7 +70,7 @@ module.exports = helpers.validate({
       { test: /\.json$/,  loader: 'json-loader' },
 
       // Support for CSS as raw text - old config ('raw-loader') - new ['style', 'css', 'resolve-url']
-      { test: /\.css$/,   loader: 'raw' },
+      { test: /\.css$/,   loader: 'css' },
 
       // Support for *.scss files - old config ('raw!postcss!sass') css?sourceMap&root=C:/ampdigital/digital-ddc-ui/!sass
       { test: /\.scss$/, loader: 'css!sass' },

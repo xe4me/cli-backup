@@ -103,7 +103,7 @@ export default class Example {
 
     var exampleInstance = this;
 
-    var waitForChunk = require('bundle!./components/' + this._model.component_src_location + "\.ts");
+    var waitForChunk = require('bundle!./' + this._model.component_src_location + "\.ts");
     // TODO: Make sure you try out          var load = require("bundle?lazy!./file.js");
 
     waitForChunk(function (file) {
