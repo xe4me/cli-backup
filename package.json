@@ -43,7 +43,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "amp-styleguide-core": "git+ssh://git@gitlab.np.ampaws.com.au:KWKECW/amp-styleguide-core.git",
+    "amp-styleguide-core": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/amp-styleguide-core.git",
     "amp-ddc-style": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/style.git#develop",
     "angular2": "2.0.0-beta.8",
     "bundle-loader": "^0.5.4",
