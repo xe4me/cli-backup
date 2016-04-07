@@ -17,7 +17,7 @@ import {Action} from '../../actions/action';
     </div>
   </span>
   `,
-  styles: [require('./my-input.scss')],
+  styles: [require('./my-input.scss').toString()],
   inputs: ['label','parentControl','placeholder','visibility']
 })
 export class MyInputComponent {

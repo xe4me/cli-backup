@@ -1,15 +1,15 @@
 import {View, Component, AfterViewInit, ChangeDetectorRef} from 'angular2/core';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
 import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
-import {ContentBlock} from '../../../../app/components/ContentBlock';
+import {ContentBlock} from '../../../app/components/ContentBlock';
 
 console.log("ContentBlock file is loaded and intepreted");
 
 
 @Component({selector: 'content-block-basic-usage'})
 @View({
-  templateUrl: 'src/styleguide/components/componentGroups/content/basic_usage.html',
-  styles: [require('./basic_usage.scss')],
+  templateUrl: 'src/styleguide/components/content/basic_usage.html',
+  styles: [require('./basic_usage.scss').toString()],
   directives: [ContentBlock]
 })
 export default class ContentBlockBasicUsage {//implements AfterViewInit {

@@ -8,7 +8,7 @@ export enum LICENSEE {AMPFP, HILLROSS, CHARTER};
 })
 // Meant for generic theming identity but only have License theme use case at the moment.
 export class ThemeIDDirective {
-    themeId: LICENSEE = LICENSEE.AMPFP;
+    themeId: LICENSEE = LICENSEE.CHARTER;
 
     constructor(el: ElementRef, renderer: Renderer) {
       // this.themeId = LICENSEE.HILLROSS;
