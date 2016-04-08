@@ -60,8 +60,8 @@
     },
     "amp-styleguide-core": {
       "version": "0.0.1",
-      "from": "git+ssh://git@gitlab.np.ampaws.com.au:KWKECW/amp-styleguide-core.git",
-      "resolved": "git+ssh://git@gitlab.np.ampaws.com.au:KWKECW/amp-styleguide-core.git#dad50ccefdac09a105f9a1799b644be7b43ef8b1"
+      "from": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/amp-styleguide-core.git",
+      "resolved": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/amp-styleguide-core.git#dad50ccefdac09a105f9a1799b644be7b43ef8b1"
     },
     "angular2": {
       "version": "2.0.0-beta.8",
