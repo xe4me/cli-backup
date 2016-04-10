@@ -13,7 +13,24 @@ $amp-ddc-public-asset:      '../../../../../public/';
 
 .bolr-intro {
   margin: 0px $amp-ddc-padding;
+  max-height: 1000px;
+  height: auto;
+  overflow: hidden;
+  transition: all 0.35s ease-in;
+
+  &.ng-enter-active {
+    height: 100%;
+    opacity: 1;
+  }
+
+  // ng-leave-active Doesn't work for some reason.
+  &.ng-leave-active, &.hidden{
+    max-height: 0px;
+    opacity: 0;
+  }
 }
+
+
 
 .bolr-intro-logo {
   min-height: $logo-height;

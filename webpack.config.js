@@ -6,6 +6,8 @@ var helpers = require('./helpers');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var path = require('path');
+
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 var HMR = process.argv.join('').indexOf('hot') > -1;
 
@@ -44,13 +46,11 @@ module.exports = helpers.validate({
   },
 
   resolve: {
-    root: helpers.root(),
+    root: [helpers.root(), path.join(__dirname, "node_modules")],
     extensions: ['', '.ts', '.async.ts', '.js', '.css', '.scss', '.html'],
-    // alias: {
-    //   materializecss: 'materialize-css/dist/css/materialize.css',
-    //   materialize: 'materialize-css/dist/js/materialize.js'
-    // }
-
+    alias: {
+        'angular2': path.resolve('node_modules/angular2')
+    }
   },
 
   module: {
