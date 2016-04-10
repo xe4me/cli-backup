@@ -3,7 +3,7 @@ import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular
 import {FormBlock, NamedControl} from "../blocks/formBlock";
 import {MdInputComponent} from '../components/my-md-input/my-md-input.component';
 import {PlannerDetailsBlock} from './PlannerDetailsBlock';
-import {Action} from '../actions/action';
+import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
 
 @Component ({
   selector: 'nested-block',

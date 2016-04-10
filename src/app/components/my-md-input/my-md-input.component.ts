@@ -1,6 +1,6 @@
 import {Component, Directive, Input, OnInit, ViewEncapsulation} from 'angular2/core';
 import {Control, Validators, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-import {Action} from '../../actions/action';
+import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
 
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set

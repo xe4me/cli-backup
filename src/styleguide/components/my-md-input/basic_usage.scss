@@ -13,13 +13,6 @@ $md-accent: md-palette($md-deep-orange, 500, 300, 700, $md-contrast-palettes);
 // ViewEncapsulation.Emulated is causing the problem here.
 // Each Component/Directive get unique _ngcontent attr Id, which all styles incorporated by them will get isolated to their element. The problem arises when you have
 // component encapsulated by another component but the style needs to go across the 2 components
-my-md-input {
-  div[md-messages] {
-    color: $amp-colour-alert-danger;
-    font-size: $amp-base-font-size;
-    line-height: $amp-base-font-size * 1.5;
-  }
-}
 
 .nl-form {
   // TODO: The following styles should be set on the body tag as they are not strictly form specific.

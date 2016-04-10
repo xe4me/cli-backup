@@ -1,7 +1,6 @@
 import {Control, ControlGroup} from 'angular2/common';
-import {Action} from '../actions/action';
-
-export enum BlockLayout {INLINE, PAGE};
+import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
+import {BlockLayout, FormDefinition} from "amp-ddc-ui-core/src/app/form/formDefinition";
 
 export class NamedControl {
   constructor (public name: string, public control: Control) {}
