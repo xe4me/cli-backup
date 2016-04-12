@@ -1,0 +1,12 @@
+$namespace                                      : $amp-namespace                      !default;
+
+.#{$namespace}color-primary-darkest,
+%#{$namespace}color-primary-darkest{
+  color: $amp-colour-secondary-darkest;
+}
+
+
+.#{$namespace}color-gray-darkest-most,
+%#{$namespace}color-gray-darkest-most{
+  color: $amp-colour-grey-darkest-most;
+}

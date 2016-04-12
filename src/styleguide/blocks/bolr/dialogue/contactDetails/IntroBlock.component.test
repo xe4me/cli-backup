@@ -1,0 +1,27 @@
+@@ set
+    task    MyMdInput
+    url     http://localhost:3000/#/components/ContactDetailsBlockComponent
+
+@@ parameterized
+    | subtask    | spec                                                      |
+    | All        | src/styleguide/blocks/bolr/diglogue/contactDetails/ContactDetailsBlock.component.test.spec    |
+
+@@ parameterized
+    | browser    |
+    | phantomjs  |
+
+@@ parameterized
+    | breakpoint | tags    | size        |
+    | Desk       | desk    | 1025x800    |
+    | Laptop     | laptop  | 1024x800    |
+    | Tablet     | tablet  | 767x800     |
+    | Palm       | palm    | 480x800     |
+    | Mobile     | mobile  | 320x800     |
+
+
+@@ groups ddc, my-md-input
+${task}: ${subtask} - ${breakpoint}
+    selenium ${browser} ${url} ${size}
+        wait 5s until gone "css: .ng-cloak"
+        wait 5s until exist "css: #firstname"
+        check ${spec} --include "${tags}"

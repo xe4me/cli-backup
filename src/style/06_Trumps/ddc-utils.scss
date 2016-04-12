@@ -1,0 +1,46 @@
+$namespace                                      : $amp-namespace                      !default;
+
+
+
+
+.#{$namespace}utils,
+%#{$namespace}utils{
+
+  &__position{
+    &--rel{
+      position:relative !important;
+    }
+    &--abs {
+      position: absolute !important;
+    }
+  }
+  &__align{
+    &--left{
+      text-align: left !important;
+    }
+    &--right{
+      text-align: right!important;
+    }
+    &--center{
+      text-align: center!important;
+    }
+  }
+  &__push{
+    &--left{
+      float: left !important;
+    }
+    &--right{
+      float: right!important;
+    }
+  }
+
+  &__weight{
+    &--600{
+      font-weight: 600 !important;
+    }
+    &--500{
+      font-weight: 500 !important;
+    }
+  }
+
+}

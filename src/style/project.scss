@@ -6,6 +6,7 @@
 ////////////////////////////////////////
 
 // Pull together the required layers of itcss.
+@import "node_modules/amp-styleguide-core/src/scss/06_Trumps/widths";
 @import "node_modules/amp-styleguide-core/src/scss/03_Base/icons";
 @import "node_modules/amp-styleguide-core/src/scss/03_Base/animations";
 @import "node_modules/amp-styleguide-core/src/scss/03_Base/forms";
@@ -28,3 +29,15 @@
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/utils-responsive";
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/widths";
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/widths-responsive";
+
+
+
+
+// Let's bring all the files that we've created for ddc ( got a better place to put these? , please do ).
+@import "00_Settings/ddc-defaults";
+@import "01_Components/ddc-headings";
+@import "01_Components/ddc-buttons";
+@import "01_Components/ddc-lines";
+@import "06_Trumps/ddc-utils";
+@import "02_Abstracts/ddc-colors";
+@import "02_Abstracts/ddc-font-sizes";
