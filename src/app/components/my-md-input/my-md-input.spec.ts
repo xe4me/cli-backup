@@ -20,7 +20,7 @@ describe('my-md-input directive', () => {
   @Component({
     template: `
       <form  #formModel='ngForm' class='nl-form' >
-        <my-md-input [id]=''firstname'' [label]=''Name'' [parentControl]='firstnameControl'
+        <my-md-input [id]="'firstname'" [label]="'Name'" [parentControl]='firstnameControl'
           isRequired='true'
           valPattern='^([A-Za-z ])*$'
           valMaxLength='50'>blah</my-md-input>
