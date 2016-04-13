@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core'
+import {Component} from 'angular2/core';
 import {AmpLinearProgressBarComponent} from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 @Component({
     selector: 'sticky-progress-header-block',
@@ -17,15 +17,16 @@ import {AmpLinearProgressBarComponent} from '../../../components/amp-linear-prog
                     </span>
                 </div>
             </div>
-            
+
             <div class="sticky__progress">
                 <amp-linear-progress-bar
                     [determinate]="determinate"
                     [value]="value"
                     >
-                </amp-linear-progress-bar>        
+                </amp-linear-progress-bar>
             </div>
         </div>
+
     `,
     directives: [AmpLinearProgressBarComponent],
     inputs: ['determinate', 'value'],
@@ -33,11 +34,11 @@ import {AmpLinearProgressBarComponent} from '../../../components/amp-linear-prog
 })
 
 export class StickyProgressHeaderBlockComponent {
-    private value:number;
-    private determinate:string;
+    private value: number;
+    private determinate: string;
 
     constructor() {
         this.value = 12;
-        this.determinate ='determinate';
+        this.determinate = 'determinate';
     }
 }

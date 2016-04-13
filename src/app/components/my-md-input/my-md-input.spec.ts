@@ -19,11 +19,11 @@ describe('my-md-input directive', () => {
   // Create a test component to test directives
   @Component({
     template: `
-      <form  #formModel="ngForm" class="nl-form" >
-        <my-md-input [id]="'firstname'" [label]="'Name'" [parentControl]="firstnameControl"
-          isRequired="true"
-          valPattern="^([A-Za-z ])*$"
-          valMaxLength="50">blah</my-md-input>
+      <form  #formModel='ngForm' class='nl-form' >
+        <my-md-input [id]=''firstname'' [label]=''Name'' [parentControl]='firstnameControl'
+          isRequired='true'
+          valPattern='^([A-Za-z ])*$'
+          valMaxLength='50'>blah</my-md-input>
       </form>
       `,
     directives: [ MdInputComponent ]
@@ -90,8 +90,8 @@ describe('my-md-input directive', () => {
 
         expect(compiledInput.componentInstance._validators.length).toBe(2);
         // expect(compiledInput.componentInstance._validators[0]).toBe(MdPatternValidator);
-        expect(compiledInput.componentInstance._validators[0].mdPattern).toBe("^([A-Za-z ])*$");
-        expect(compiledInput.componentInstance._validators[1].mdMaxLength).toBe("50");
+        expect(compiledInput.componentInstance._validators[0].mdPattern).toBe('^([A-Za-z ])*$');
+        expect(compiledInput.componentInstance._validators[1].mdMaxLength).toBe('50');
 
         // TODO: Work out the mandatory validator that got added to the Control but doesn't show up.
       });

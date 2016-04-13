@@ -18,6 +18,11 @@ require('zone.js/dist/zone-microtask.js');
 require('zone.js/dist/long-stack-trace-zone.js');
 require('zone.js/dist/jasmine-patch.js');
 
+require('ts-helper/decorate');
+require('ts-helper/metadata');
+
+// Custom library
+require('amp-ddc-ui-core/ui-core');
 
 var testing = require('angular2/testing');
 var browser = require('angular2/platform/testing/browser');

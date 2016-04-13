@@ -82,14 +82,18 @@ module.exports = helpers.validate({
   },
 
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
     // Code splitting for all ComponentsService
     new webpack.optimize.CommonsChunkPlugin(
       { name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }
     ),
 
     // static assets
-    new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' }, { from: 'node_modules/ng2-material/dist', to: 'node_modules/ng2-material/dist' } ]),
+    new CopyWebpackPlugin([
+        { from: 'src/assets', to: 'assets' },
+        { from: 'node_modules/ng2-material/dist', to: 'node_modules/ng2-material/dist' },
+        { from: 'public', to: 'public' }
+      ]),
     // generating html
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
     // replace

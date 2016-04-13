@@ -127,7 +127,7 @@ module.exports = helpers.validate({
   plugins: [
     new WebpackMd5Hash(),
     new DedupePlugin(),
-    new OccurenceOrderPlugin(true),
+    new OccurrenceOrderPlugin(true),
     new CommonsChunkPlugin({
       name: 'polyfills',
       filename: 'polyfills.[chunkhash].bundle.js',

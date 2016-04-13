@@ -1,7 +1,8 @@
-import {FormPage} from "./formPage";
+import {FormPage} from './formPage';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {RouteParams, Router, RouteRegistry, CanDeactivate, ComponentInstruction} from 'angular2/router';
 import {StickyProgressHeaderBlockComponent} from "../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component";
+
 
 @Component({
     selector: 'details-page',
@@ -26,6 +27,7 @@ import {StickyProgressHeaderBlockComponent} from "../../../src/app/blocks/bolr/s
             </div>
         </div>
       <button (click)="next()">OK</button>
+
     </div>
   `,
     directives: [StickyProgressHeaderBlockComponent],
@@ -33,7 +35,9 @@ import {StickyProgressHeaderBlockComponent} from "../../../src/app/blocks/bolr/s
     // encapsulation: ViewEncapsulation.Emulated
 })
 export class DetailsPage extends FormPage implements CanDeactivate {
-    static CLASS_NAME = "DetailsPage";
+
+    static CLASS_NAME = 'DetailsPage';
+
 
     constructor(public _router:Router) {
         super();
