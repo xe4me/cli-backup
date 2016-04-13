@@ -1,6 +1,6 @@
 import {Control, ControlGroup} from 'angular2/common';
 import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
-import {BlockLayout, FormDefinition} from "amp-ddc-ui-core/src/app/form/formDefinition";
+import {BlockLayout, FormDefinition} from 'amp-ddc-ui-core/src/app/form/formDefinition';
 
 export class NamedControl {
   constructor (public name: string, public control: Control) {}
@@ -8,7 +8,7 @@ export class NamedControl {
 
 export abstract class FormBlock {
     blockType: string;                // Concrete FormBlock implementation class name
-    path = "";                        // Physical path from src/app/blocks to the concrete FormBlock implementation class
+    path = '';                        // Physical path from src/app/blocks to the concrete FormBlock implementation class
     blockLayout: BlockLayout;         // INLINE or PAGE, top level FormBlock should always be PAGE
     formModel: ControlGroup;          // Overall form control
     formControl: NamedControl[];      // Individual form control element (i.e. input) binded to a string name. This basically is to gives FormDef JSON control
@@ -39,7 +39,7 @@ export abstract class FormBlock {
     public getName () {
        var funcNameRegex = /function (.{1,})\(/;
        var results = (funcNameRegex).exec((this).constructor.toString());
-       return (results && results.length > 1) ? results[1] : "";
+       return (results && results.length > 1) ? results[1] : '';
     };
 
 }

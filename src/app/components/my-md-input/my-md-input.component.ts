@@ -1,7 +1,7 @@
 import {Component, Directive, Input, OnInit, ViewEncapsulation} from 'angular2/core';
 import {Control, Validators, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
-import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
+import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
 @Component({
@@ -29,17 +29,17 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
 })
 
 export class MdInputComponent {
-    private _id:string;
-    private label:string;
-    private parentControl:Control;
-    private placeholder:string;
-    private visibility:Action;
+    private _id: string;
+    private label: string;
+    private parentControl: Control;
+    private placeholder: string;
+    private visibility: Action;
 
-    set id(id:string) {
+    set id(id: string) {
         this._id = id;
     }
 
-    set isRequired(val:string) {
+    set isRequired(val: string) {
         if (val === 'true') {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) : Function API
             this.parentControl.validator = Validators.required;

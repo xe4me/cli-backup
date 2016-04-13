@@ -1,5 +1,5 @@
 import {View, Component, ChangeDetectorRef} from 'angular2/core';
-import {StickyProgressHeaderBlockComponent} from "src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component";
+import {StickyProgressHeaderBlockComponent} from '../../../../app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
 
 
 @Component({selector: 'sticky-progress-header-block-basic-usage'})

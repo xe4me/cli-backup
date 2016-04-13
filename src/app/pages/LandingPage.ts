@@ -1,15 +1,15 @@
-import {FormPage} from "./formPage";
+import {FormPage} from './formPage';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {RouteParams, Router, RouteRegistry} from 'angular2/router';
 
 @Component ({
   selector: 'landing-page',
   template: `
-    <div class="landing">
+    <div class='landing'>
       <p>Welcome</p>
       <div #nestedBlock></div>
-      <a href="/confirmation">Testing Confirmation link</a>
-      <button (click)="next()">OK</button>
+      <a href='/confirmation'>Testing Confirmation link</a>
+      <button (click)='next()'>OK</button>
     </div>
   `,
   styles: [`
@@ -20,7 +20,7 @@ import {RouteParams, Router, RouteRegistry} from 'angular2/router';
   // encapsulation: ViewEncapsulation.Emulated
 })
 export class LandingPage extends FormPage {
-  static CLASS_NAME = "LandingPage";
+  static CLASS_NAME = 'LandingPage';
 
   constructor (public _router: Router) {
     super();
