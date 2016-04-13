@@ -1,0 +1,61 @@
+$namespace                                      :$ddc-namespace                      !default;
+
+
+// Font Families
+$heading-intro-font-family                      :$amp-font-open-sans-semibold        !default;
+
+
+
+
+
+// Colors
+$heading-intro-color                                      :$amp-colour-secondary-darkest        !default;
+$heading-contxtual-label-color                            :$amp-colour-grey-darkest-most        !default;
+
+
+
+
+
+// Line Heights :
+$heading-intro-line-height                                :1.8em;
+$heading-contxtual-label-line-height                      :1.8em;
+
+
+
+
+
+// Font Weights:
+$heading-intro-font-weight                                :600;
+$heading-contxtual-label-font-weight                      :300;
+
+
+
+
+.#{$namespace}heading,
+%#{$namespace}heading {
+  color: inherit;
+  margin-bottom: 0;
+}
+
+.#{$namespace}heading-intro,
+%#{$namespace}heading-intro{
+  @extend %#{$namespace}font-size-medium;
+  @include amp-family($heading-intro-font-family);
+
+  color                   : $heading-intro-color;
+  font-weight             : $heading-intro-font-weight;
+  line-height             : $heading-intro-line-height;
+}
+
+.#{$namespace}heading-contxtual-label,
+%#{$namespace}heading-contxtual-label{
+  @extend %#{$namespace}font-size-medium;
+  @include amp-family($heading-intro-font-family);
+
+  color                   : $heading-contxtual-label-color;
+  font-weight             : $heading-contxtual-label-font-weight;
+  line-height             : $heading-contxtual-label-line-height;
+  vertical-align          : sub;
+}
+
+

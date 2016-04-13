@@ -20,6 +20,67 @@
     "readme": "<p>Custom Block for BOLR Intro.</p>\n"
   },
   {
+    "name": "AmpLinearProgressBarComponent",
+    "sources": [
+      "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
+    ],
+    "id": "AmpLinearProgressBarComponent",
+    "examples": [
+      {
+        "template": "src/styleguide/components/amp-linear-progress-bar/basic_usage.html",
+        "styles": "src/styleguide/components/amp-linear-progress-bar/basic_usage.scss",
+        "source": "src/styleguide/components/amp-linear-progress-bar/basic_usage.ts",
+        "galen": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.test.spec",
+        "jasmine": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.spec.ts",
+        "component": "amp-linear-progress-bar-basic-usage",
+        "component_src_location": "components/amp-linear-progress-bar/basic_usage",
+        "name": "Amp Linear Progress Bar Basic Usage"
+      }
+    ],
+    "readme": "<p>To see a progress bar look and feel.</p>\n"
+  },
+  {
+    "name": "ContactDetailsBlock",
+    "sources": [
+      "src/app/blocks/bolr/dialogueState/contactDetails/ContactDetailsBlock.component.ts"
+    ],
+    "id": "ContactDetailsBlock",
+    "examples": [
+      {
+        "template": "src/styleguide/blocks/bolr/dialogue/contactDetails/basic_usage.html",
+        "styles": "src/styleguide/blocks/bolr/dialogue/contactDetails/basic_usage.scss",
+        "source": "src/styleguide/blocks/bolr/dialogue/contactDetails/basic_usage.ts",
+        "galen": "src/styleguide/blocks/bolr/dialogue/contactDetails/ContactDetailsBlock.component.test.spec",
+        "jasmine": "src/styleguide/blocks/bolr/dialogue/contactDetails/ContactDetailsBlock.component.spec.ts",
+        "component": "bolr-contact-details-block-basic-usage",
+        "component_src_location": "blocks/bolr/dialogue/contactDetails/basic_usage",
+        "name": "Contact Details Block Basic Usage"
+      }
+    ],
+    "readme": "<p>Custom Block for Contact Details.</p>\n"
+  },
+
+  {
+    "name": "StickyProgressHeaderBlockComponent",
+    "sources": [
+      "src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component.ts"
+    ],
+    "id": "StickyProgressHeaderBlockComponent",
+    "examples": [
+      {
+        "template": "src/styleguide/blocks/bolr/sticky-progress-header/basic_usage.html",
+        "styles": "src/styleguide/blocks/bolr/sticky-progress-header/basic_usage.scss",
+        "source": "src/styleguide/blocks/bolr/sticky-progress-header/basic_usage.ts",
+        "galen": "src/styleguide/blocks/bolr/sticky-progress-header/sticky-progress-header-block.component.test.spec",
+        "jasmine": "src/styleguide/blocks/bolr/sticky-progress-header/sticky-progress-header-block.component.spec.ts",
+        "component": "sticky-progress-header-block-basic-usage",
+        "component_src_location": "blocks/bolr/sticky-progress-header/basic_usage",
+        "name": "Sticky Progress HeaderBlock Basic Usage"
+      }
+    ],
+    "readme": "<p>Custom Block for Contact Details.</p>\n"
+  },
+  {
     "name": "ContentBlock",
     "sources": [
       "src/app/components/ContentBlock.ts"

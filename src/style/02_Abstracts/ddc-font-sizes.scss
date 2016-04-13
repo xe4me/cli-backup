@@ -1,0 +1,25 @@
+$namespace                                      : $ddc-namespace                      !default;
+$font-size-med                               : $font-size-medium;
+$font-size-sma                                : $font-size-small;
+$font-size-tin                                 : $font-size-tiny;
+
+
+.#{$namespace}font-size-medium,
+%#{$namespace}font-size-medium {
+  font-size: $font-size-med;
+}
+
+.#{$namespace}font-size-small,
+%#{$namespace}font-size-small {
+  font-size: $font-size-sma;
+}
+
+.#{$namespace}font-size-tiny,
+%#{$namespace}font-size-tiny {
+  font-size: $font-size-tin;
+}
+
+
+
+
+

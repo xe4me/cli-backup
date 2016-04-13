@@ -32,66 +32,66 @@ $font-size:   $amp-base-font-size;
 
 // Custom amp-sky-blue-palettes
 $md-sky-blue : (
-  50: $amp-colour-grey-dark,
-  100: $amp-colour-grey-dark,
-  200: $amp-colour-grey-dark,
-  300: $amp-colour-grey-dark,
-  400: $amp-colour-grey-dark,
-  500: $amp-colour-grey-dark,
-  600: $amp-colour-grey-dark,
-  700: $amp-colour-grey-dark,
-  800: $amp-colour-grey-dark,
-  900: $amp-colour-grey-dark,
-  A100: $amp-colour-grey-dark,
-  A200: $amp-colour-grey-dark,
-  A400: $amp-colour-grey-dark,
-  A700: $amp-colour-grey-dark,
+        50: $amp-colour-grey-dark,
+        100: $amp-colour-grey-dark,
+        200: $amp-colour-grey-dark,
+        300: $amp-colour-grey-dark,
+        400: $amp-colour-grey-dark,
+        500: $amp-colour-grey-dark,
+        600: $amp-colour-grey-dark,
+        700: $amp-colour-grey-dark,
+        800: $amp-colour-grey-dark,
+        900: $amp-colour-grey-dark,
+        A100: $amp-colour-grey-dark,
+        A200: $amp-colour-grey-dark,
+        A400: $amp-colour-grey-dark,
+        A700: $amp-colour-grey-dark,
 );
 
 $md-sky-blue-palettes: (
-  $md-sky-blue: (
-    50: $amp-colour-grey-dark,
-    100: $amp-colour-grey-dark,
-    200: $amp-colour-grey-dark,
-    300: $amp-colour-grey-dark,
-    400: $amp-colour-grey-dark,
-    500: $amp-colour-grey-dark,
-    600: $amp-colour-grey-dark,
-    700: $amp-colour-grey-dark,
-    800: $amp-colour-grey-dark,
-    900: $amp-colour-grey-dark,
-    A100: $amp-colour-grey-dark,
-    A200: $amp-colour-grey-dark,
-    A400: $amp-colour-grey-dark,
-    A700: $amp-colour-grey-dark,
-  )
+        $md-sky-blue: (
+                50: $amp-colour-grey-dark,
+                100: $amp-colour-grey-dark,
+                200: $amp-colour-grey-dark,
+                300: $amp-colour-grey-dark,
+                400: $amp-colour-grey-dark,
+                500: $amp-colour-grey-dark,
+                600: $amp-colour-grey-dark,
+                700: $amp-colour-grey-dark,
+                800: $amp-colour-grey-dark,
+                900: $amp-colour-grey-dark,
+                A100: $amp-colour-grey-dark,
+                A200: $amp-colour-grey-dark,
+                A400: $amp-colour-grey-dark,
+                A700: $amp-colour-grey-dark,
+        )
 );
 
 // Custom foreground colors
 $md-grep-darkest-theme : (
-  divider: $amp-colour-grey-dark,
-  dividers: $amp-colour-grey-dark,
-  disabled: $amp-colour-grey-dark,
-  disabled-text: $amp-colour-grey-dark,
-  hint-text: $amp-colour-grey-dark,
-  secondary-text: $amp-colour-grey-dark,
-  icon: $amp-colour-grey-dark,
-  icons: $amp-colour-grey-dark,
-  text: $amp-colour-grey-dark
+        divider: $amp-colour-grey-dark,
+        dividers: $amp-colour-grey-dark,
+        disabled: $amp-colour-grey-dark,
+        disabled-text: $amp-colour-grey-dark,
+        hint-text: $amp-colour-grey-dark,
+        secondary-text: $amp-colour-grey-dark,
+        icon: $amp-colour-grey-dark,
+        icons: $amp-colour-grey-dark,
+        text: $amp-colour-grey-dark
 );
 
 $md-grep-darkest-theme-palettes: (
-  $md-grep-darkest-theme : (
-    divider: $amp-colour-grey-dark,
-    dividers: $amp-colour-grey-dark,
-    disabled: $amp-colour-grey-dark,
-    disabled-text: $amp-colour-grey-dark,
-    hint-text: $amp-colour-grey-dark,
-    secondary-text: $amp-colour-grey-dark,
-    icon: $amp-colour-grey-dark,
-    icons: $amp-colour-grey-dark,
-    text: $amp-colour-grey-dark
-  )
+        $md-grep-darkest-theme : (
+                divider: $amp-colour-grey-dark,
+                dividers: $amp-colour-grey-dark,
+                disabled: $amp-colour-grey-dark,
+                disabled-text: $amp-colour-grey-dark,
+                hint-text: $amp-colour-grey-dark,
+                secondary-text: $amp-colour-grey-dark,
+                icon: $amp-colour-grey-dark,
+                icons: $amp-colour-grey-dark,
+                text: $amp-colour-grey-dark
+        )
 );
 
 $md-primary: md-palette(map_get($md-sky-blue-palettes, $md-sky-blue), 500, 100, 700, $md-sky-blue-palettes);
@@ -149,7 +149,7 @@ md-input-container {
     cursor: pointer;
     max-width: 400px;
     padding-bottom: $input-padding-bottom !important;
-    height: $input-height;
+    height: $input-height*1.1;
     color: $amp-colour-sky-blue;
     @include amp-family($amp-font-open-sans-regular);
     font-weight: 300;
