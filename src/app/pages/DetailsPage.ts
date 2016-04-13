@@ -1,19 +1,19 @@
-import {FormPage} from "./formPage";
+import {FormPage} from './formPage';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {RouteParams, Router, RouteRegistry, CanDeactivate, ComponentInstruction} from 'angular2/router';
 
 @Component ({
   selector: 'details-page',
   template: `
-    <div class="landing">
+    <div class='landing'>
       <div #nestedBlock></div>
-      <button (click)="next()">OK</button>
+      <button (click)='next()'>OK</button>
     </div>
   `,
   // encapsulation: ViewEncapsulation.Emulated
 })
 export class DetailsPage extends FormPage implements CanDeactivate {
-  static CLASS_NAME = "DetailsPage";
+  static CLASS_NAME = 'DetailsPage';
 
   constructor (public _router: Router) {
     super();

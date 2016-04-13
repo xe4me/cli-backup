@@ -1,4 +1,4 @@
-import {FormBlock} from "../blocks/formBlock";
+import {FormBlock} from '../blocks/formBlock';
 import {Injector, Injectable, Inject, Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {RouteParams, Router, RouteRegistry} from 'angular2/router';
 
@@ -14,7 +14,7 @@ export class FormPage extends FormBlock {
 
   constructor () {
     super();
-    this.path = "pages/";
+    this.path = 'pages/';
   }
 
   // Noop but can be overriden by child class

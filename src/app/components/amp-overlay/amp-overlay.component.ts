@@ -10,6 +10,6 @@ import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
   inputs: ['active']
 })
 export class AmpOverlayComponent {
-  private active:boolean;
+  private active: boolean;
 
 }

@@ -1,13 +1,13 @@
-@import "../../../style/require";
-// @import "node_modules/amp-styleguide-core/src/scss/00_Settings/theme";
-// @import "node_modules/amp-styleguide-core/src/scss/01_Tools/functions/_decimal";
-// @import "node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family";
+@import '../../../style/require';
+// @import 'node_modules/amp-styleguide-core/src/scss/00_Settings/theme';
+// @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/functions/_decimal';
+// @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family';
 
-$md-font-url: "/node_modules/ng2-material/dist/";
-@import "~ng2-material/dist/font.scss";
-// @import "node_modules/ng2-material/source/core";
+$md-font-url: '/node_modules/ng2-material/dist/';
+@import '~ng2-material/dist/font.scss';
+// @import 'node_modules/ng2-material/source/core';
 
-@import "~ng2-material/source/core/style/variables";
+@import '~ng2-material/source/core/style/variables';
 
 // Override Variables
 // Override core/style/variables.scss
@@ -24,11 +24,11 @@ $font-size:   $amp-base-font-size;
 //$body-font-size-base:      rem(3.000) !default;
 // $caption-font-size-base:   rem(1.200) !default;
 
-@import "~ng2-material/source/core/style/mixins";
-@import "~ng2-material/source/core/style/structure";
-@import "~ng2-material/source/core/style/typography";
-@import "~ng2-material/source/core/style/layout";
-@import "~ng2-material/source/core/style/default-theme";
+@import '~ng2-material/source/core/style/mixins';
+@import '~ng2-material/source/core/style/structure';
+@import '~ng2-material/source/core/style/typography';
+@import '~ng2-material/source/core/style/layout';
+@import '~ng2-material/source/core/style/default-theme';
 
 // Custom amp-sky-blue-palettes
 $md-sky-blue : (
@@ -127,10 +127,10 @@ $icon-float-focused-top: -8px !default;
 
 // Custom md-input variables
 $input-padding-bottom: 15px !default;
-$input-height: $input-line-height * 1.5;  // Don't like Materialize CSS rule "height: $input-line-height + ($input-padding-top * 2);"
+$input-height: $input-line-height * 1.5;  // Don't like Materialize CSS rule 'height: $input-line-height + ($input-padding-top * 2);'
 
 // TODO: Not sure if I need all Material design component or just the input component...test this out in future
-@import "node_modules/ng2-material/source/components";
+@import 'node_modules/ng2-material/source/components';
 
 @function pt2px($pt) {
   @return decimal-round($pt * 1.3333, 2) + px;

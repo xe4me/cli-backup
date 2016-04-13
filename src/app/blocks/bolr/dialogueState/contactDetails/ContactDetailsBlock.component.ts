@@ -13,7 +13,7 @@ import {InputWithLabelGroupComponent} from '../../../../componentGroups/input-wi
         <amp-overlay [active]="isComponentBlocked"></amp-overlay>
         <h3 class="heading heading-intro">First name, please confirm your details are correct.
 If not, simply update them below.</h3>
-        
+
         <!--Contact Number-->
         <input-with-label-group
             [contxtualLabel]="contact.contxtualLabel"
@@ -23,9 +23,9 @@ If not, simply update them below.</h3>
             [parentControl]="formControl[0].control"
             isRequired="true"
             valMaxLength="15"
-            [valPattern]="contact.regex">    
+            [valPattern]="contact.regex">
         </input-with-label-group>
-            
+
         <!--Email-->
          <input-with-label-group
             [contxtualLabel]="email.contxtualLabel"
@@ -37,14 +37,14 @@ If not, simply update them below.</h3>
             [valPattern]="email.regex"
          >
         </input-with-label-group>
-      
+
         <div class="alert alert-danger">
           Message
         </div>
         <button (click)="goNext()" class="btn btn--secondary btn-ok">
             OK
         </button>
-        
+
     </div>
   `,
     directives: [AmpOverlayComponent, InputWithLabelGroupComponent],
@@ -53,11 +53,11 @@ If not, simply update them below.</h3>
 export class ContactDetailsBlockComponent extends FormBlock {
     static CLASS_NAME = 'ContactDetailsBlockComponent';
 
-    public contact = {id: '', label: '', contxtualLabel: '', regex: '' , data:''};
+    public contact = {id: '', label: '', contxtualLabel: '', regex: '' , data: ''};
     public email = {id: '', label: '', contxtualLabel: '', regex: ''};
 
 
-    isComponentBlocked:boolean = false;
+    isComponentBlocked: boolean = false;
 
     goNext() {
         alert('Going Next');
@@ -70,13 +70,13 @@ export class ContactDetailsBlockComponent extends FormBlock {
             label: 'Contact numbers',
             contxtualLabel: 'Contxtual numbers',
             regex: '^([0-9])*$',
-            data:'5345345435'
+            data: '5345345435'
         };
         this.email = {
             id: 'emailId',
             label: 'Email',
             contxtualLabel: 'Contxtual help',
-            regex: "^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)"
+            regex: '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)'
         };
         this.formControl = [new NamedControl(this.contact.id, new Control()), new NamedControl(this.email.id, new Control())];
     }

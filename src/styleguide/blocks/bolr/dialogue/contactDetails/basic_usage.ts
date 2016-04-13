@@ -1,5 +1,5 @@
 import {View, Component, ChangeDetectorRef} from 'angular2/core';
-import {ContactDetailsBlockComponent} from 'src/app/blocks/bolr/dialogueState/contactDetails/ContactDetailsBlock.component';
+import {ContactDetailsBlockComponent} from '../../../../../app/blocks/bolr/dialogueState/contactDetails/ContactDetailsBlock.component';
 
 
 @Component({selector: 'bolr-contact-details-block-basic-usage'})
