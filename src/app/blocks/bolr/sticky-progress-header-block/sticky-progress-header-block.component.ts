@@ -27,7 +27,6 @@ import {AmpLinearProgressBarComponent} from '../../../components/amp-linear-prog
             </div>
         </div>
 
-
     `,
     directives: [AmpLinearProgressBarComponent],
     inputs: ['determinate', 'value'],
