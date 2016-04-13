@@ -34,10 +34,18 @@
 
 
 // Let's bring all the files that we've created for ddc ( got a better place to put these? , please do ).
+// Defaults : all the general variables like sizes and ...
 @import "00_Settings/ddc-defaults";
+
+
+//Components :
 @import "01_Components/ddc-headings";
 @import "01_Components/ddc-buttons";
 @import "01_Components/ddc-lines";
+@import "01_Components/ddc-icons";
+
+
+
 @import "06_Trumps/ddc-utils";
 @import "02_Abstracts/ddc-colors";
 @import "02_Abstracts/ddc-font-sizes";
