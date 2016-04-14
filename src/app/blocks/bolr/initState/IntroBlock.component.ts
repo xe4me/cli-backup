@@ -42,7 +42,8 @@ export class IntroBlockComponent extends FormBlock {
 
   // SAM - State representation of Model
   public isCurrentBlockActive() {
-      return this.formModelService.getModel().currentBlockID.index === this._id.index;
+      return this.formModelService.getModel().currentBlockID.index === this._id.index ||
+                this.formModelService.getModel().currentBlockID.index < this._id.index;
   }
 
   // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
