@@ -9,7 +9,7 @@ import {RouteParams, Router, RouteRegistry, CanDeactivate, ComponentInstruction}
     template: `
     <div class="landing">
         <div #nestedBlock></div>
-      <button (click)="next()">OK</button>
+      <!--<button (click)="next()">OK</button>-->
 
     </div>
   `,

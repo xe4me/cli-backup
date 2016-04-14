@@ -27,5 +27,4 @@ export class InputWithLabelGroupComponent {
     private parentControl: Control;
     private pattern: string;
     private required: boolean;
-
 }

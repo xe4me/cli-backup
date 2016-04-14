@@ -1,18 +1,17 @@
 @import '../../../../style/require';
 
-$font-size:   $amp-base-font-size * 2 / 5 !default;
+$font-size: $amp-base-font-size * 2 / 5 !default;
 
-$logo-height:    80px !default;
+$logo-height: 80px !default;
 
-
-$amp-ddc-public-asset:      '../../../../../public/';
+$amp-ddc-public-asset: '../../../../../public/';
 
 .bolr-intro {
   margin: 0px $amp-ddc-padding * 2;
   max-height: 1000px;
   height: auto;
   overflow: hidden;
-  transition: all 0.35s ease-in;
+  transition: max-height 1.1s, opacity 0.45s, ease-out;
 
   &.ng-enter-active {
     height: 100%;
@@ -20,7 +19,7 @@ $amp-ddc-public-asset:      '../../../../../public/';
   }
 
   // ng-leave-active Doesn't work for some reason.
-  &.ng-leave-active, &.hidden{
+  &.ng-leave-active, &.hidden {
     max-height: 0px;
     opacity: 0;
   }
@@ -80,14 +79,17 @@ $amp-ddc-public-asset:      '../../../../../public/';
 }
 
 .mb1 {
-    margin-bottom: $amp-ddc-padding;
+  margin-bottom: $amp-ddc-padding;
 }
+
 .mb2 {
-    margin-bottom: $amp-ddc-padding * 2;
+  margin-bottom: $amp-ddc-padding * 2;
 }
+
 .mb3 {
-    margin-bottom: $amp-ddc-padding * 3;
+  margin-bottom: $amp-ddc-padding * 3;
 }
+
 .mb4 {
-    margin-bottom: $amp-ddc-padding * 4;
+  margin-bottom: $amp-ddc-padding * 4;
 }
