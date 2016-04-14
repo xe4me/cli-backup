@@ -7,8 +7,8 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 @Component({
     selector: 'my-md-input',
     template: `
-    <md-input-container [ngClass]="{'md-input-has-placeholder' : placeholder}" flex-gt-sm="" *ngIf="!visibility || visibility.invoke()">
-        <label *ngIf="label" [attr.for]="_id">{{label}}</label>
+    <md-input-container [class.md-input-has-value]="parentControl.value" [ngClass]="{'md-input-has-placeholder' : placeholder}" flex-gt-sm="" *ngIf="!visibility || visibility.invoke()">
+        <label *ngIf="label && !parentControl.value" [attr.for]="_id">{{label}}</label>
         <input
             class="md-input"
             md-input
@@ -29,17 +29,19 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 })
 
 export class MdInputComponent {
-    private _id: string;
-    private label: string;
-    private parentControl: Control;
-    private placeholder: string;
-    private visibility: Action;
+    private _id:string;
+    private label:string;
+    private parentControl:Control;
+    private placeholder:string;
+    private visibility:Action;
+    private model:any;
 
-    set id(id: string) {
+    set id(id:string) {
         this._id = id;
     }
 
-    set isRequired(val: string) {
+    set isRequired(val:string) {
+
         if (val === 'true') {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) : Function API
             this.parentControl.validator = Validators.required;

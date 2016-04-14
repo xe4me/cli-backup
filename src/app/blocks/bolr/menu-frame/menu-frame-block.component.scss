@@ -2,32 +2,82 @@
 
 $header-font-family: $amp-font-open-sans-regular;
 
-.menu {
-
-  &--left {
-    padding-left: 60px;
-    @include amp-family($header-font-family);
-    @extend %#{$namespace}font-size-tiny;
-    @extend %#{$namespace}color-gray-darkest-most;
-    width: 18%;
-    float: left;
-    &--title {
-      font-weight: 700;
-      @extend %#{$namespace}color-primary-darkest;
-    }
-    &--hr {
-      margin: 46px 0;
-    }
-    &--save {
-
-    }
-    &--download {
-
-    }
+@-webkit-keyframes opacity-transition{
+  0% {
+    opacity: 0;
   }
-  &--right {
-    width: 82%;
-    float: left
+  100% {
+    opacity: 1;
   }
+}
 
+.animate-hard-rule {
+  -webkit-animation: opacity-transition 1.6s;
+  animation: opacity-transition 1.6s;
+}
+.animate-progress-bar {
+  -webkit-animation: opacity-transition 3.5s;
+  animation: opacity-transition 3.5s;
+}
+
+.animate-transition {
+  display: block;
+  -webkit-transition: all 2.5s ease-in;
+  -moz-transition: all 2.5s ease-in;
+  -ms-transition: all 2.5s ease-in;
+  -o-transition: all 2.5s ease-in;
+  transition: all 2.5s ease-in;
+}
+
+.hidden {
+  opacity: 0;
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu-frame {
+
+  &__divider {
+    margin: 25px 0 65px 0;
+  }
+  .menu {
+    &--left {
+
+      padding-left: 5%;
+      padding-right: 5%;
+      @include amp-family($header-font-family);
+      @extend %#{$namespace}font-size-tiny;
+      @extend %#{$namespace}color-gray-darkest-most;
+      width: 20%;
+      float: left;
+      &--title {
+        font-weight: 700;
+        @extend %#{$namespace}color-primary-darkest;
+      }
+      &--hr {
+        margin: 46px 0;
+      }
+      &--save {
+
+      }
+      &--download {
+
+      }
+    }
+    &--right {
+      width: 80%;
+      float: left
+    }
+
+  }
 }
