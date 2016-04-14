@@ -59,7 +59,8 @@ export class MenuFrameBlockComponent extends FormBlock {
     }
 
     public isIntroActive() {
-        return this.formModelService.getModel().currentBlock === IntroBlockComponent.CLASS_NAME;
+        //return this.formModelService.getModel().currentBlockID.index === this._id.index;
+        return true;
     }
 
     preBindControls(_formBlockDef:any):void {

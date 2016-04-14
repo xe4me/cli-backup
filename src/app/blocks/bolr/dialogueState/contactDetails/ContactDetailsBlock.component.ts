@@ -82,7 +82,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
     public isCurrentBlockActive() {
-        return this.formModelService.getModel().currentBlock === ContactDetailsBlockComponent.CLASS_NAME;
+        //return this.formModelService.getModel().currentBlockID.index === this._id.index;
+        return false;
     }
 
 
