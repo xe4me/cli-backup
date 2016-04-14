@@ -1,12 +1,13 @@
 import {Control, ControlGroup} from 'angular2/common';
-import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
-import {BlockLayout, FormDefinition} from 'amp-ddc-ui-core/src/app/form/formDefinition';
+import {BlockLayout, FormDefinition, BlockID, Action} from 'amp-ddc-ui-core/ui-core';
 
 export class NamedControl {
   constructor (public name: string, public control: Control) {}
 }
 
+
 export abstract class FormBlock {
+    _id: BlockID;                      // Auto-Generated id based on the flatten index of the formDefinition blocks array of the current page (i.e {page: ABC, index: 2})
     blockType: string;                // Concrete FormBlock implementation class name
     path = '';                        // Physical path from src/app/blocks to the concrete FormBlock implementation class
     blockLayout: BlockLayout;         // INLINE or PAGE, top level FormBlock should always be PAGE
