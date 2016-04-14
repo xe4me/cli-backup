@@ -2,7 +2,7 @@ import {FormBlock} from '../../formBlock';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone } from 'angular2/core';
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
 import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.service';
-console.log('invoked IntroBlockComponent');
+
 @Component ({
   selector: 'bolr-intro-block',
   template: `
@@ -19,7 +19,7 @@ console.log('invoked IntroBlockComponent');
           You're about to request to exercise your buyer of last resort facility.
         </p>
         <p class='bolr-intro-main__notes mb3'>We just need a few details from you to complete this request, it will only take 3 minutes, let's get started.</p>
-        <button class='btn btn--secondary btn--kilo' (click)='ok()'>
+        <button class='btn btn--secondary btn--kilo' (click)='ok()' data-automation-id="btn_bolr-intro-block">
             OK
         </button>
       </div>
@@ -42,14 +42,19 @@ export class IntroBlockComponent extends FormBlock {
 
   // SAM - State representation of Model
   public isCurrentBlockActive() {
-      return this.formModelService.getModel().currentBlockID.index === this._id.index;
+      if (this._id) {
+          return this.formModelService.getModel().currentBlockID.index === this._id.index ||
+                    this.formModelService.getModel().currentBlockID.index < this._id.index;
+      }
+      return true;
   }
 
   // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
   public ok() {
       // SAM - Action present data to Model
       this.formModelService.present({
-         action: 'next'
+         action: 'next',
+         blockId: this._id
       });
   }
 

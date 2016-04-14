@@ -4,9 +4,6 @@ import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular
 import {MdInputComponent} from '../../../app/components/my-md-input/my-md-input.component';
 import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
 
-console.log("MyMdInputBasicUsage file is loaded and intepreted");
-
-
 @Component({selector: 'my-md-input-basic-usage'})
 @View({
   templateUrl: 'src/styleguide/components/my-md-input/basic_usage.html',
