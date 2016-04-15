@@ -1,6 +1,6 @@
 @@ set
-    task    MyMdInput
-    url     http://localhost:3000/#/components/IntroBlockComponent
+    task    bolr-intro-block
+    url     http://localhost:3001/#/components/BOLRIntrolBlock
 
 @@ parameterized
     | subtask    | spec                                                      |
@@ -19,9 +19,9 @@
     | Mobile     | mobile  | 320x800     |
 
 
-@@ groups ddc, my-md-input
+@@ groups ddc, bolr-intro-block
 ${task}: ${subtask} - ${breakpoint}
     selenium ${browser} ${url} ${size}
         wait 5s until gone "css: .ng-cloak"
-        wait 5s until exist "css: #firstname"
+        wait 5s until exist "css: .bolr-intro"
         check ${spec} --include "${tags}"

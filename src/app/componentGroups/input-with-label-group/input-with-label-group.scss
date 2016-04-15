@@ -1,6 +1,18 @@
 @import '../../../style/require';
 
-my-md-input{
+$summary-state-color: $amp-colour-sky-blue;
+$summary-state-font-family: $amp-font-open-sans-regular;
+$summary-state-font-size: 300;
+my-md-input {
   margin-left: 10px;
+}
+
+.summary-state {
+  @include amp-family($summary-state-font-family);
+  @extend %#{$namespace}amp-colour-sky-blue;
+  @extend %#{$namespace}font-size-medium;
+  font-weight: $summary-state-font-size;
+  vertical-align: bottom;
+  line-height: 38px;
 }
 

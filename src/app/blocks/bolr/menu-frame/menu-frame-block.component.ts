@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {FormBlock} from '../../formBlock';
 import {StickyProgressHeaderBlockComponent} from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
-import {IntroBlockComponent} from '../../../../../src/app/blocks/bolr/initState/IntroBlock.component';
 import {FormModelService} from "../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service";
 
 @Component({
@@ -51,15 +50,12 @@ export class MenuFrameBlockComponent extends FormBlock {
         super();
     }
 
-    public ok() {
-        // SAM - Action present data to Model
-        this.formModelService.present({
-            action: 'next'
-        });
-    }
-
     public isIntroActive() {
-        //return this.formModelService.getModel().currentBlockID.index === this._id.index;
+        if (this._id) {
+            return this.formModelService.getModel().currentBlockID.index === this._id.index ||
+                this.formModelService.getModel().currentBlockID.index < this._id.index;
+        }
+
         return true;
     }
 

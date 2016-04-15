@@ -5,6 +5,11 @@ $namespace                                      : $amp-namespace                
   color: $amp-colour-secondary-darkest;
 }
 
+.#{$namespace}amp-colour-sky-blue,
+%#{$namespace}amp-colour-sky-blue{
+  color: $amp-colour-sky-blue;
+}
+
 
 .#{$namespace}color-gray-darkest-most,
 %#{$namespace}color-gray-darkest-most{

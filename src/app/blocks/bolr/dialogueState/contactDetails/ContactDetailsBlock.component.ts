@@ -16,6 +16,7 @@ If not, simply update them below.</h3>
 
         <!--Contact Number-->
         <input-with-label-group
+            [isInSummaryState]="isInSummaryState"
             [contxtualLabel]="contact.contxtualLabel"
             [id]="contact.id"
             [label]="contact.label"
@@ -27,6 +28,7 @@ If not, simply update them below.</h3>
         
         <!--Email-->
          <input-with-label-group
+            [isInSummaryState]="isInSummaryState"
             [contxtualLabel]="email.contxtualLabel"
             [id]="email.id"
             [label]="email.label"
@@ -40,7 +42,7 @@ If not, simply update them below.</h3>
         <!--<div class="alert alert-danger">-->
           <!--Message-->
         <!--</div>-->
-        <button (click)="goNext()" class="btn btn--secondary btn-ok">
+        <button (click)="go()" class="btn btn--secondary btn-ok">
             OK
         </button>
 
@@ -55,10 +57,16 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
     public contact = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
     public email = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
+    private isInSummaryState:boolean = false;
 
-
-    goNext() {
-        alert('Going Next');
+    
+    public ok() {
+        this.isInSummaryState = true;
+        // SAM - Action present data to Model
+        this.formModelService.present({
+            action: 'next',
+            blockId: this._id
+        });
     }
 
     constructor(public formModelService:FormModelService) {
@@ -82,8 +90,12 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
     public isCurrentBlockActive() {
-        //return this.formModelService.getModel().currentBlockID.index === this._id.index;
-        return false;
+        if (this._id) {
+            return this.formModelService.getModel().currentBlockID.index === this._id.index ||
+                this.formModelService.getModel().currentBlockID.index < this._id.index;
+        }
+
+        return true;
     }
 
 
