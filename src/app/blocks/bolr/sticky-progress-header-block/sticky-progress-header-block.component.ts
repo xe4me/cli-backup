@@ -6,7 +6,7 @@ import {AmpLinearProgressBarComponent} from '../../../components/amp-linear-prog
         <div class="sticky">
             <div class="sticky__header">
                 <div class="sticky__header--left">
-                    <span>Request to exercise buyer of last resort (BOLR)</span><span class="line-vertical-text-wrap line-vertical-text-wrap-gray "></span><span class="utils__weight--500">20%</span>
+                    <span>Request to exercise buyer of last resort (BOLR)</span><span class="line-vertical-text-wrap line-vertical-text-wrap-gray "></span><span class="utils__weight--700">20%</span>
                 </div>
                 <div class="sticky__header--right">
                     <span class="sticky__header--right--chat">

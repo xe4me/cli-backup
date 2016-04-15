@@ -1,11 +1,10 @@
 import {FormBlock} from '../../formBlock';
-import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone } from 'angular2/core';
+import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
-import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.service';
-
-@Component ({
-  selector: 'bolr-intro-block',
-  template: `
+import {FormModelService} from '../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
+@Component({
+    selector: 'bolr-intro-block',
+    template: `
     <div class='ng-animate bolr-intro' [class.hidden]='!isCurrentBlockActive()'>
       <div class='bolr-intro-logo mb4' ampLicenseeThemeID></div>
       <div class='bolr-intro-main'>
@@ -25,39 +24,42 @@ import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.servi
       </div>
     </div>
   `,
-  // encapsulation: ViewEncapsulation.Emulated
-  inputs: ['id', 'label'],
-  styles: [require('./IntroBlock.component.scss').toString()],
-  directives: [ThemeIDDirective ],
+    // encapsulation: ViewEncapsulation.Emulated
+    inputs: ['id', 'label'],
+    styles: [require('./IntroBlock.component.scss').toString()],
+    directives: [ThemeIDDirective],
 })
 export class IntroBlockComponent extends FormBlock {
-  static CLASS_NAME = 'IntroBlockComponent';
+    static CLASS_NAME = 'IntroBlockComponent';
 
-  id: string = 'DefaultContentId';
-  label: string = 'Default content label';
+    id:string = 'DefaultContentId';
+    label:string = 'Default content label';
 
-  constructor(public formModelService: FormModelService) {
-      super();
-  }
+    constructor(public formModelService:FormModelService) {
+        super();
+    }
 
-  // SAM - State representation of Model
-  public isCurrentBlockActive() {
-      if (this._id) {
-          return this.formModelService.getModel().currentBlockID.index === this._id.index ||
-                    this.formModelService.getModel().currentBlockID.index < this._id.index;
-      }
-      return true;
-  }
+    // SAM - State representation of Model
+    public isCurrentBlockActive() {
 
-  // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
-  public ok() {
-      // SAM - Action present data to Model
-      this.formModelService.present({
-         action: 'next',
-         blockId: this._id
-      });
-  }
+        if (this._id) {
+            return this.formModelService.getModel().currentBlockID.index === this._id.index ||
+                this.formModelService.getModel().currentBlockID.index < this._id.index;
+        }
 
-  public preBindControls(_formBlockDef) {}
+        return true;
+    }
+
+    // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
+    public ok() {
+        // SAM - Action present data to Model
+        this.formModelService.present({
+            action: 'next',
+            blockId: this._id
+        });
+    }
+
+    public preBindControls(_formBlockDef) {
+    }
 
 }
