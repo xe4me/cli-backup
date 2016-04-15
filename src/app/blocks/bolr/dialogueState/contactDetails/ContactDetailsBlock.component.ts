@@ -3,7 +3,7 @@ import {Control} from 'angular2/common';
 import {FormBlock, NamedControl} from '../../../formBlock';
 import {AmpOverlayComponent} from '../../../../components/amp-overlay/amp-overlay.component';
 import {InputWithLabelGroupComponent} from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
-import {FormModelService} from '../../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
+import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.service';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {FormBlock} from '../../formBlock';
 import {StickyProgressHeaderBlockComponent} from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
-import {FormModelService} from '../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
+import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.service';
 
 @Component({
 

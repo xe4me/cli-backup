@@ -1,7 +1,8 @@
 import {FormBlock} from '../../formBlock';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
-import {FormModelService} from '../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
+import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.service';
+
 @Component({
     selector: 'bolr-intro-block',
     template: `
