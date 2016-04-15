@@ -77,19 +77,3 @@ $amp-ddc-public-asset: '../../../../../public/';
   @include amp-family($amp-font-open-sans-semibold);
   font-size: $font-size-tiny;
 }
-
-.mb1 {
-  margin-bottom: $amp-ddc-padding;
-}
-
-.mb2 {
-  margin-bottom: $amp-ddc-padding * 2;
-}
-
-.mb3 {
-  margin-bottom: $amp-ddc-padding * 3;
-}
-
-.mb4 {
-  margin-bottom: $amp-ddc-padding * 4;
-}

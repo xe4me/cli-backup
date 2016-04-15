@@ -1,6 +1,21 @@
 $namespace                                      : $amp-namespace                      !default;
 
-
+.#{$namespace}mb1,
+%#{$namespace}mb1{
+    margin-bottom: $amp-ddc-padding;
+}
+.#{$namespace}mb2,
+%#{$namespace}mb2{
+    margin-bottom: $amp-ddc-padding * 2;
+}
+.#{$namespace}mb3,
+%#{$namespace}mb3{
+    margin-bottom: $amp-ddc-padding * 3;
+}
+.#{$namespace}mb4,
+%#{$namespace}mb4{
+    margin-bottom: $amp-ddc-padding * 4;
+}
 
 
 .#{$namespace}utils,
