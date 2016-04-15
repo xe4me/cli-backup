@@ -32,10 +32,10 @@ import {FormModelService} from '../../../../../node_modules/amp-ddc-ui-core/src/
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
 
-    id:string = 'DefaultContentId';
-    label:string = 'Default content label';
+    id: string = 'DefaultContentId';
+    label: string = 'Default content label';
 
-    constructor(public formModelService:FormModelService) {
+    constructor(public formModelService: FormModelService) {
         super();
     }
 

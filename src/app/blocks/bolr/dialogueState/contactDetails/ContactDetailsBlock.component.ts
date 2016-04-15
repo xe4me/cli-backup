@@ -25,7 +25,7 @@ If not, simply update them below.</h3>
             valMaxLength="15"
             [valPattern]="contact.regex">
         </input-with-label-group>
-        
+
         <!--Email-->
          <input-with-label-group
             [isInSummaryState]="isInSummaryState"
@@ -38,7 +38,7 @@ If not, simply update them below.</h3>
             [valPattern]="email.regex"
          >
         </input-with-label-group>
-        
+
         <!--<div class="alert alert-danger">-->
           <!--Message-->
         <!--</div>-->
@@ -57,9 +57,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
     public contact = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
     public email = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
-    private isInSummaryState:boolean = false;
+    private isInSummaryState: boolean = false;
 
-    
     public ok() {
         this.isInSummaryState = true;
         // SAM - Action present data to Model
@@ -69,8 +68,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         });
     }
 
-    constructor(public formModelService:FormModelService) {
-        super();
+    constructor(public formModelService: FormModelService) {
+        super ();
 
         this.contact = {
             id: 'contactId',
@@ -110,8 +109,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
 
-    ngOnInit():any {
-        console.log("ngOnInit: Calling getContactDetails");
+    ngOnInit(): any {
+        // console.log("ngOnInit: Calling getContactDetails");
         this
             .formModelService
             .getContactDetails()
