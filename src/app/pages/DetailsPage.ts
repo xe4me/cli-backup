@@ -21,11 +21,11 @@ export class DetailsPage extends FormPage implements CanDeactivate {
     static CLASS_NAME = 'DetailsPage';
 
 
-    constructor(public _router:Router) {
+    constructor(public _router: Router) {
         super();
     }
 
-    routerCanDeactivate(next:ComponentInstruction, prev:ComponentInstruction):any {
+    routerCanDeactivate(next: ComponentInstruction, prev: ComponentInstruction): any {
         return false;
     }
 }

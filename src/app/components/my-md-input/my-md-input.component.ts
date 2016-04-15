@@ -29,18 +29,18 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 })
 
 export class MdInputComponent {
-    private _id:string;
-    private label:string;
-    private parentControl:Control;
-    private placeholder:string;
-    private visibility:Action;
-    private model:any;
+    private _id: string;
+    private label: string;
+    private parentControl: Control;
+    private placeholder: string;
+    private visibility: Action;
+    private model: any;
 
-    set id(id:string) {
+    set id(id: string) {
         this._id = id;
     }
 
-    set isRequired(val:string) {
+    set isRequired(val: string) {
 
         if (val === 'true') {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) : Function API

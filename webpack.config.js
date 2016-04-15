@@ -57,7 +57,7 @@ module.exports = helpers.validate({
     preLoaders: [
       { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('ss') ] },
       // TODO(gdi2290): `exclude: [ helpers.root('node_modules/rxjs') ]` fixed with rxjs 5 beta.3 release
-      { test: /\.js$/, loader: "source-map-loader", exclude: [ helpers.root('node_modules/rxjs') ] }
+      { test: /\.js$/, loader: "source-map-loader", exclude: [ helpers.root('node_modules/rxjs'), helpers.root('node_modules/ng2-material') ] }
     ],
     loaders: [
       // Support for .ts files.

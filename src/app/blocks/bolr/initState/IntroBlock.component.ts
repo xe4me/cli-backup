@@ -1,7 +1,8 @@
 import {FormBlock} from '../../formBlock';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
-import {FormModelService} from '../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
+import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.service';
+
 @Component({
     selector: 'bolr-intro-block',
     template: `
@@ -32,10 +33,10 @@ import {FormModelService} from '../../../../../node_modules/amp-ddc-ui-core/src/
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
 
-    id:string = 'DefaultContentId';
-    label:string = 'Default content label';
+    id: string = 'DefaultContentId';
+    label: string = 'Default content label';
 
-    constructor(public formModelService:FormModelService) {
+    constructor(public formModelService: FormModelService) {
         super();
     }
 

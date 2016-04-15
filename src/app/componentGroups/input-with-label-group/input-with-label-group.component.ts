@@ -24,10 +24,10 @@ import {MdInputComponent} from '../../components/my-md-input/my-md-input.compone
 
 
 export class InputWithLabelGroupComponent {
-    private id:string;
-    private label:string;
-    private parentControl:Control;
-    private pattern:string;
-    private required:boolean;
-    private isInSummaryState:boolean;
+    private id: string;
+    private label: string;
+    private parentControl: Control;
+    private pattern: string;
+    private required: boolean;
+    private isInSummaryState: boolean;
 }
