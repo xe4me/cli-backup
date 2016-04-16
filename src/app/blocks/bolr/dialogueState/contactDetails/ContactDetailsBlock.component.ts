@@ -1,15 +1,14 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, ElementRef} from 'angular2/core';
 import {Control} from 'angular2/common';
 import {FormBlock, NamedControl} from '../../../formBlock';
 import {AmpOverlayComponent} from '../../../../components/amp-overlay/amp-overlay.component';
 import {InputWithLabelGroupComponent} from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
 import {FormModelService} from '../../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
-
-
+import {ScrollService} from '../../../../../../node_modules/amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 @Component({
     selector: 'contact-details-block',
     template: `
-    <div  id="contact-details-block" class="contact-details-block">
+    <div id="contact-details-block" class="contact-details-block">
         <amp-overlay [active]="!isCurrentBlockActive()"></amp-overlay>
         <h3 class="heading heading-intro">First name, please confirm your details are correct.
 If not, simply update them below.</h3>
@@ -42,7 +41,7 @@ If not, simply update them below.</h3>
         <!--<div class="alert alert-danger">-->
           <!--Message-->
         <!--</div>-->
-        <button (click)="go()" class="btn btn--secondary btn-ok">
+        <button (click)="ok()" class="btn btn--secondary btn-ok">
             OK
         </button>
 
@@ -50,27 +49,33 @@ If not, simply update them below.</h3>
   `,
     directives: [AmpOverlayComponent, InputWithLabelGroupComponent],
     styles: [require('./ContactDetailsBlock.component.scss').toString()],
+    providers: [ScrollService]
 })
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
-    static CLASS_NAME = 'ContactDetailsBlockComponent';
+    static CLASS_NAME:string = 'ContactDetailsBlockComponent';
 
     public contact = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
     public email = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
     private isInSummaryState:boolean = false;
 
-    
+
     public ok() {
-        this.isInSummaryState = true;
-        // SAM - Action present data to Model
-        this.formModelService.present({
-            action: 'next',
-            blockId: this._id
-        });
+
+        // this.isInSummaryState = true;
+        // // SAM - Action present data to Model
+        // this.formModelService.present({
+        //     action: 'next',
+        //     blockId: this._id
+        // });
     }
 
-    constructor(public formModelService:FormModelService) {
+    constructor(el:ElementRef, public formModelService:FormModelService, scrollService:ScrollService) {
         super();
+        scrollService.$scrolled.subscribe(function (message) {
+            scrollService.amIVisible(el, ContactDetailsBlockComponent.CLASS_NAME);
+        });
+
 
         this.contact = {
             id: 'contactId',
@@ -90,12 +95,11 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
     public isCurrentBlockActive() {
-        if (this._id) {
-            return this.formModelService.getModel().currentBlockID.index === this._id.index ||
-                this.formModelService.getModel().currentBlockID.index < this._id.index;
-        }
+        console.log('this.formControl form ContactDetailsBlock' , this.formControl)
+        if (this.formModel) {
 
-        return true;
+            return this.formModel.controls['introIsPassed'].valid;
+        }
     }
 
 
@@ -105,13 +109,10 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
         this.formControl[0].control.updateValue(this.contact.data);
         this.formControl[1].control.updateValue(this.email.data);
-
-
     }
 
 
     ngOnInit():any {
-        console.log("ngOnInit: Calling getContactDetails");
         this
             .formModelService
             .getContactDetails()

@@ -27,12 +27,19 @@ export abstract class FormBlock {
 
     // Used by both nested formModel binding as well as dcl formModel binding
     public bindControls(formModel:ControlGroup) {
+        // If form model is already assigned , why do we need to call bellow function again ?   ?? 
+        if (this.formModel) {
+            // if we have it don't do it again
+            return;
+        }
         // Called by BaseForm straight after each block is dcl generated
         if (formModel && this.formControl && this.formControl.length > 0) {
             this.formControl.map(function (namedControl) {
                 this.addControl(namedControl.name, namedControl.control);
             }, formModel);
+            this.formModel = formModel;
         }
+
     }
 
     // Must implement this method for FormBlock that deals with FormControls
