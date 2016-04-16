@@ -10,24 +10,24 @@ import {FormModelService} from "amp-ddc-ui-core/ui-core";
     template: `
         <div class="menu-frame">
              <sticky-progress-header-block
-                    class="sticky-progressbar animate-progress-bar"
+                    class='sticky-progressbar animate-progress-bar'
                     [class.hidden]='!introHasPassed'
-                    determinate="determinate"
-                    value="67">
+                    determinate='determinate'
+                    value='67'>
 
              </sticky-progress-header-block> 
-             <div [class.hidden]='introHasPassed' class="animate-hard-rule hr--solid menu-frame__divider"></div>
-             <div class="menu grid__item ">
+             <div [class.hidden]='introHasPassed' class='animate-hard-rule hr--solid menu-frame__divider'></div>
+             <div class='menu grid__item '>
                 <div 
                     [class.invisible]='!introHasPassed'  
-                    class="animate-transition menu--left">
-                    <div class="menu--left--title">You request details</div>
-                    <div class="menu--left--hr hr--solid"></div>
-                    <div class="menu--left--save"><span class="icon icon--time"></span> Save for later</div>
-                    <div class="menu--left--download"><span class="icon icon--time"></span>  Download a copy</div>
-                    <div class="menu--left--download">CurrentClass : {{formModelService.getModel().currentBlockClassName}}</div> 
+                    class='animate-transition menu--left'>
+                    <div class='menu--left--title'>You request details</div>
+                    <div class='menu--left--hr hr--solid'></div>
+                    <div class='menu--left--save'><span class='icon icon--time'></span> Save for later</div>
+                    <div class='menu--left--download'><span class='icon icon--time'></span>  Download a copy</div>
+                    <div class='menu--left--download'>CurrentClass : {{formModelService.getModel().currentBlockClassName}}</div> 
                 </div>
-                <div class="menu--right utils__position--rel">
+                <div class='menu--right utils__position--rel'>
                     <!-- Dynamic form blocks driven from the Form Definition -->
                     <div #nestedBlock></div>
                 </div>
@@ -43,9 +43,9 @@ export class MenuFrameBlockComponent extends FormBlock {
 
     static CLASS_NAME = 'MenuFrameBlockComponent';
 
-    constructor(private formModelService: FormModelService) {
+    constructor(private formModelService:FormModelService) {
         super();
-        
+
         /*
          * IMPORTANT TODO :
          * Looks like this block cannot have access to formModel unless it has it's own formControls
@@ -55,11 +55,13 @@ export class MenuFrameBlockComponent extends FormBlock {
 
 
     private get introHasPassed() {
-        return this.formModel.controls['introIsPassed'].valid;
+        if( this.formModel &&  this.formModel.controls['introIsPassed']){
+            return this.formModel.controls['introIsPassed'].valid;
+        }
     }
 
 
-    preBindControls(_formBlockDef: any): void {
+    preBindControls(_formBlockDef:any):void {
 
     }
 

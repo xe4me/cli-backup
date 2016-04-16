@@ -2,7 +2,7 @@ import {FormBlock, NamedControl} from '../../formBlock';
 import {Component, ElementRef, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
 import {FormModelService} from "amp-ddc-ui-core/ui-core";
-import {ScrollService} from '../../../../../node_modules/amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 import {Control} from 'angular2/common';
 
 @Component({
@@ -44,15 +44,11 @@ export class IntroBlockComponent extends FormBlock {
     label: string = 'Default content label';
 
 
-    constructor(el:ElementRef, public formModelService:FormModelService, scrollService:ScrollService) {
+    constructor(private el:ElementRef, private formModelService:FormModelService, private scrollService:ScrollService) {
 
         super();
-        scrollService.$scrolled.subscribe(function (message) {
-            scrollService.amIVisible(el, IntroBlockComponent.CLASS_NAME);
-        });
-
+        scrollService.$scrolled.subscribe(message =>scrollService.amIVisible(el, IntroBlockComponent.CLASS_NAME));
         this.formControl = [new NamedControl('introIsPassed', new Control())];
-        this.formControl[0].name = 'introIsPassed';
     }
 
 
@@ -69,6 +65,7 @@ export class IntroBlockComponent extends FormBlock {
 
 
     public preBindControls(_formBlockDef) {
+        this.formControl[0].name = 'introIsPassed';
     }
 
 }

@@ -75,11 +75,11 @@ export class PartnershipManagerBlockComponent extends FormBlock {
 
   // SAM - State representation of Model
   public isCurrentBlockActive() {
-      if (this._id) {
-          return this.formModelService.getModel().currentBlockID.index === this._id.index ||
-                    this.formModelService.getModel().currentBlockID.index < this._id.index;
-      }
-      return true;
+      // if (this._id) {
+      //     return this.formModelService.getModel().currentBlockID.index === this._id.index ||
+      //               this.formModelService.getModel().currentBlockID.index < this._id.index;
+      // }
+      // return true;
   }
 
   // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
