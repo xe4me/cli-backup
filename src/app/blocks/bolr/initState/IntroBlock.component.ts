@@ -8,11 +8,7 @@ import {Control} from 'angular2/common';
 @Component({
     selector: 'bolr-intro-block',
     template: `
-    <div class='ng-animate bolr-intro' [class.hidden]='formControl[0].control.valid'>
-        <input
-            required
-            [ngFormControl]="formControl[0].control"
-            type="hidden" name="">
+    <div class='ng-animate bolr-intro bolr-right-padding' [class.hidden]="!formModel.controls['introIsNotPassed']">
         <div class='bolr-intro-logo mb4' ampLicenseeThemeID></div>
         <div class='bolr-intro-main'>
             <div class='bolr-intro-main__title practice-title mb3'>
@@ -24,15 +20,14 @@ import {Control} from 'angular2/common';
                 Hi {{formModelService.getModel().context.practicePrincipal_firstName}},<br/>
                 You're about to request to exercise your buyer of last resort facility.
             </p>
-            <p class='bolr-intro-main__notes mb3'>We just need a few details from you to complete this request, it will only take 3 minutes, let's get started.</p>
-            <button class='btn btn--secondary btn--kilo' (click)='ok()' data-automation-id="btn_bolr-intro-block">
+            <p class='bolr-intro-main__notes'>We just need a few details from you to complete this request, it will only take 3 minutes, let's get started.</p>
+            <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id="btn_bolr-intro-block">
                 OK
             </button>
         </div>    
     </div>
   `,
     // encapsulation: ViewEncapsulation.Emulated
-    inputs: ['id', 'label'],
     styles: [require('./IntroBlock.component.scss').toString()],
     directives: [ThemeIDDirective],
     providers: [ScrollService]
@@ -40,23 +35,22 @@ import {Control} from 'angular2/common';
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
 
-    id: string = 'DefaultContentId';
-    label: string = 'Default content label';
-
 
     constructor(private el:ElementRef, private formModelService:FormModelService, private scrollService:ScrollService) {
-
         super();
         scrollService.$scrolled.subscribe(message =>scrollService.amIVisible(el, IntroBlockComponent.CLASS_NAME));
-        this.formControl = [new NamedControl('introIsPassed', new Control())];
+        // Created a formControl just as a flag , if user clicks on OK button , we'll remove this controll
+        // And in other part of the application we're listening to this , if control is removed , means user has clicked on
+        // OK , this way , we clear the formModel from unwanted controls and won't create a flag, nice huh ?
+        this.formControl = [new NamedControl('introIsNotPassed', new Control())];
     }
 
 
     // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
     public ok() {
         // SAM - Action present data to Model
-        this.formControl[0].control.updateValue(true);
-
+        // Lets remove the control as I explained above
+        this.formModel.removeControl('introIsNotPassed');
         this.formModelService.present({
             action: 'next',
             blockId: this._id
@@ -65,7 +59,7 @@ export class IntroBlockComponent extends FormBlock {
 
 
     public preBindControls(_formBlockDef) {
-        this.formControl[0].name = 'introIsPassed';
+
     }
 
 }

@@ -1,83 +1,82 @@
 @import '../../../../style/require';
 
 $header-font-family: $amp-font-open-sans-regular;
+$menu-left-width: 20%;
+$menu-right-width: 80%;
+$left-menu-right-and-left-padding: 60px;
 
-@-webkit-keyframes opacity-transition{
-  0% {
+.hidden{
+  display: none;
+}
+
+.frame {
+
+  .content {
+    padding-top: $sticky-menu-margin-bottom;
+  }
+  .sticky-progressbar {
+    z-index: 100;
+    width: 100%;
+    display: block;
+    transition: opacity 1s , height 1s, cubic-bezier(0.3, 0.06, 0.91, 0.45);
     opacity: 0;
+    height: 0 ;
   }
-  100% {
-    opacity: 1;
+
+  &--sticky {
+    .content {
+      //padding-top: $sticky-menu-height + $sticky-menu-margin-bottom !important;
+    }
+    .menu--left {
+      opacity: 1;
+      position: fixed;
+    }
+    .menu--right {
+      margin-left: $menu-left-width;
+    }
+    .sticky-progressbar {
+      position: fixed;
+      top: 0;
+      opacity: 1;
+      height: $sticky-menu-height !important;
+    }
+    .frame__divider {
+      transition: opacity .4s, ease-in-out;
+      opacity: 0;
+      margin-bottom: 0;
+    }
   }
-}
-
-.animate-hard-rule {
-  -webkit-animation: opacity-transition 1.6s;
-  animation: opacity-transition 1.6s;
-}
-.animate-progress-bar {
-  -webkit-animation: opacity-transition 3.5s;
-  animation: opacity-transition 3.5s;
-}
-
-.animate-transition {
-  display: block;
-  -webkit-transition: all 2.5s ease-in;
-  -moz-transition: all 2.5s ease-in;
-  -ms-transition: all 2.5s ease-in;
-  -o-transition: all 2.5s ease-in;
-  transition: all 2.5s ease-in;
-}
-
-.hidden {
-  opacity: 0;
-  display: none !important;
-}
-
-.invisible {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.show {
-  display: block;
-  visibility: visible;
-  opacity: 1;
-}
-
-.menu-frame {
 
   &__divider {
-    margin: 25px 0 65px 0;
+    margin-top: ($sticky-menu-height - 1);
   }
-  .menu {
-    &--left {
 
-      padding-left: 5%;
-      padding-right: 5%;
-      @include amp-family($header-font-family);
-      @extend %#{$namespace}font-size-tiny;
-      @extend %#{$namespace}color-gray-darkest-most;
-      width: 20%;
-      float: left;
-      &--title {
-        font-weight: 700;
-        @extend %#{$namespace}color-primary-darkest;
-      }
-      &--hr {
-        margin: 46px 0;
-      }
-      &--save {
+}
 
-      }
-      &--download {
+.menu {
 
-      }
+  &--left {
+    opacity: 0;
+    transition: opacity 1.3s  ease-in-out;
+    padding-left: $left-menu-right-and-left-padding;
+    padding-right: $left-menu-right-and-left-padding;
+    @include amp-family($header-font-family);
+    @extend %#{$namespace}font-size-tiny;
+    @extend %#{$namespace}color-gray-darkest-most;
+    width: $menu-left-width;
+    float: left;
+    &--title {
+      font-weight: 700;
+      @extend %#{$namespace}color-primary-darkest;
     }
-    &--right {
-      width: 80%;
-      float: left
+    &--hr {
+      margin: 46px 0;
     }
-
   }
+  &--right {
+
+    width: $menu-right-width;
+    float: left
+  }
+
 }

@@ -1,9 +1,10 @@
 import {FormBlock, NamedControl} from '../../formBlock';
-import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone } from 'angular2/core';
+import {Component , ElementRef, ViewEncapsulation, OnInit, AfterViewInit, NgZone } from 'angular2/core';
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
 import {FormModelService} from 'amp-ddc-ui-core/src/app/services/formModel.service';
 import {Control} from 'angular2/common';
 import {MdInputComponent} from '../../../components/my-md-input/my-md-input.component.ts';
+import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 
 @Component ({
   selector: 'partnership-manager-block',
@@ -19,9 +20,9 @@ import {MdInputComponent} from '../../../components/my-md-input/my-md-input.comp
             [id]="partnershipMgr.firstName.id"
             [label]="partnershipMgr.firstName.label"
             [parentControl]="formControl[0].control"
-            [isRequired]="true"
+            isRequired="true"
             [valPattern]="partnershipMgr.firstName.regex"
-            [valMaxLength]="100">
+            valMaxLength="100">
         </my-md-input>
 
         <!-- Last name -->
@@ -29,9 +30,9 @@ import {MdInputComponent} from '../../../components/my-md-input/my-md-input.comp
             [id]="partnershipMgr.lastName.id"
             [label]="partnershipMgr.lastName.label"
             [parentControl]="formControl[1].control"
-            [isRequired]="true"
+            isRequired="true"
             [valPattern]="partnershipMgr.lastName.regex"
-            [valMaxLength]="100">
+            valMaxLength="100">
         </my-md-input>
 
         <div class="alert alert-danger">
@@ -40,6 +41,7 @@ import {MdInputComponent} from '../../../components/my-md-input/my-md-input.comp
         <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id="btn_partnership-manager-block">
             OK
         </button>
+        <div class='hr-block-divider'></div>
     </div>
   `,
   // encapsulation: ViewEncapsulation.Emulated
@@ -63,14 +65,14 @@ export class PartnershipManagerBlockComponent extends FormBlock {
       }
   };
 
-  constructor(public formModelService: FormModelService) {
+  constructor(public formModelService: FormModelService , private scrollService:ScrollService , private el:ElementRef) {
       super();
 
       this.formControl = [
           new NamedControl(this.partnershipMgr.firstName.id, new Control()),
           new NamedControl(this.partnershipMgr.lastName.id, new Control())
       ];
-
+      scrollService.$scrolled.subscribe(message =>scrollService.amIVisible(el, PartnershipManagerBlockComponent.CLASS_NAME));
   }
 
   // SAM - State representation of Model
@@ -84,6 +86,7 @@ export class PartnershipManagerBlockComponent extends FormBlock {
 
   // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
   public ok() {
+      this.scrollService.scrollMeOut(this.el);
       // SAM - Action present data to Model
       this.formModelService.present({
          action: 'next',

@@ -6,9 +6,9 @@ import {AmpLinearProgressBarComponent} from '../../../components/amp-linear-prog
         <div class="sticky">
             <div class="sticky__header">
                 <div class="sticky__header--left">
-                    <span>Request to exercise buyer of last resort (BOLR)</span><span class="line-vertical-text-wrap line-vertical-text-wrap-gray "></span><span class="utils__weight--700">20%</span>
+                    <span>Request to exercise buyer of last resort (BOLR)</span><span class="line-vertical-text-wrap line-vertical-text-wrap-gray "></span><span class="utils__weight--700">{{value}}%</span>
                 </div>
-                <div class="sticky__header--right">
+                <div class="sticky__header--right bolr-right-padding">
                     <span class="sticky__header--right--chat">
                         <span aria-hidden="true" class="icon icon--chat"></span> Chat now
                     </span>
@@ -38,7 +38,5 @@ export class StickyProgressHeaderBlockComponent {
     private determinate: string;
 
     constructor() {
-        this.value = 12;
-        this.determinate = 'determinate';
     }
 }

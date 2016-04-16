@@ -1,18 +1,18 @@
-$namespace                                      :$ddc-namespace                      !default;
+$namespace: $ddc-namespace !default;
 
-$btn-ok-color                                   :$amp-colour-white;
-$btn-ok-background-color                        :$amp-colour-primary;
-$btn-ok-border-color                            :$amp-colour-primary;
-$btn-ok-hover-color                             :$amp-colour-white;
-$btn-ok-hover-background-color                  :$amp-colour-primary-light;
-$btn-ok-hover-border-color                      :$amp-colour-white;
-
+$btn-ok-color: $amp-colour-white;
+$btn-ok-background-color: $amp-colour-primary;
+$btn-ok-border-color: $amp-colour-primary;
+$btn-ok-hover-color: $amp-colour-white;
+$btn-ok-hover-background-color: $amp-colour-primary-light;
+$btn-ok-hover-border-color: $amp-colour-white;
 
 .#{$namespace}btn-ok,
-%#{$namespace}btn-ok{
+%#{$namespace}btn-ok {
   // Reason for creating a new class and extending btn--kilo wich is living in amp-styleguide-core
   // is that we already have this class working fine , except the font does not look right
   // so I'm extending the old one and I'm adding our custom font size specific to DDC to it
   @extend %#{$namespace}font-size-small;
   @extend %#{$namespace}btn--kilo;
+  margin-top: 45px;
 }

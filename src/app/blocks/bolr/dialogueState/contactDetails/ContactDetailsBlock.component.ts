@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from 'angular2/core';
+import {Component, OnInit, ElementRef,ChangeDetectorRef} from 'angular2/core';
 import {Control} from 'angular2/common';
 import {FormBlock, NamedControl} from '../../../formBlock';
 import {AmpOverlayComponent} from '../../../../components/amp-overlay/amp-overlay.component';
@@ -46,13 +46,11 @@ If not, simply update them below.</h3>
         <button (click)="ok()" class="btn btn--secondary btn-ok">
             OK
         </button>
-
+        <div class='hr-block-divider'></div>
     </div>
   `,
     directives: [AmpOverlayComponent, InputWithLabelGroupComponent],
-    styles: [require('./ContactDetailsBlock.component.scss').toString()],
-    providers: [ScrollService],
-    inputs: ['contactDetails']
+    styles: [require('./ContactDetailsBlock.component.scss').toString()]
 })
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
@@ -64,14 +62,14 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
             label: 'Default Phone Label',
             contxtualLabel: 'Default Phone Contextual Label',
             regex: '^([0-9])*$',
-            data: this.formModelService.getModel().contactDetails.phone
+            value:null
         },
         email: {
             id: 'emailId',
             label: 'Default Email Label',
-            data: this.formModelService.getModel().contactDetails.email,
             contxtualLabel: 'Default Email Contextual Label',
-            regex: '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)'
+            regex: '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)',
+            value:null
         }
     }
 
@@ -80,6 +78,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
     public ok() {
 
+        this.scrollService.scrollMeOut(this.el);
         // this.isInSummaryState = true;
         // // SAM - Action present data to Model
         // this.formModelService.present({
@@ -89,11 +88,9 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
 
-    constructor(el:ElementRef, public formModelService:FormModelService, scrollService:ScrollService) {
+    constructor(private el:ElementRef, private formModelService:FormModelService, private scrollService:ScrollService) {
         super();
-        scrollService.$scrolled.subscribe(function (message) {
-            scrollService.amIVisible(el, ContactDetailsBlockComponent.CLASS_NAME);
-        });
+        scrollService.$scrolled.subscribe(message =>scrollService.amIVisible(el, ContactDetailsBlockComponent.CLASS_NAME));
         this.formControl = [
             new NamedControl(this.contactDetails.phone.id, new Control()),
             new NamedControl(this.contactDetails.email.id, new Control())
@@ -101,15 +98,18 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
     public isCurrentBlockActive() {
-        return this.formModel.controls['introIsPassed'].valid;
+        if (this.formModel && this.formModel.controls['introIsNotPassed']) {
+            return false;
+        }
+        return true;
     }
 
 
     public preBindControls(_formBlockDef) {
         this.formControl[0].name = this.contactDetails.phone.id;
         this.formControl[1].name = this.contactDetails.email.id;
-        //this.formControl[0].control.updateValue(this.contactDetails.phone.data);
-        //this.formControl[1].control.updateValue(this.contactDetails.email.data);
+        this.formControl[0].control.updateValue(this.contactDetails.phone.value);
+        this.formControl[1].control.updateValue(this.contactDetails.email.value);
     }
 
 
@@ -123,6 +123,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
                     this.formModelService.present(
                         {action: 'setContactDetails', contactDetails: data}
                     );
+                    //this.formControl[0].control.updateValue('0402095291');
+                    //this.formControl[1].control.updateValue('smilad@gmail.com');
                     this.formControl[0].control.updateValue(this.formModelService.getModel().contactDetails.phone);
                     this.formControl[1].control.updateValue(this.formModelService.getModel().contactDetails.email);
                 },

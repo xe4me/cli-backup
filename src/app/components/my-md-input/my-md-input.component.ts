@@ -11,7 +11,6 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
         <label *ngIf="label && !parentControl.value" [attr.for]="_id">{{label}}</label>
         <input
             class="md-input"
-            md-input
             mdMaxLength="{{valMaxLength}}"
             mdPattern="{{valPattern}}"
             [attr.name]="_id"

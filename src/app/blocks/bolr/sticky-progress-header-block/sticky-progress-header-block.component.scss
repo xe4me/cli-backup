@@ -3,6 +3,11 @@
 $header-font-family: $amp-font-open-sans-regular;
 
 .sticky {
+  width: 100%;
+  height: $sticky-menu-height;
+  overflow: hidden;
+  background-color: white;
+  z-index: 99999999;
   > div {
     display: inline-block;
     vertical-align: top;

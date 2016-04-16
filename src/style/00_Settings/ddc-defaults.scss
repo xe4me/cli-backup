@@ -1,7 +1,15 @@
-$ddc-namespace                                  : $amp-namespace                      !default;
-$font-size-medium                               : 24px;
-$font-size-small                                : 18px;
-$font-size-tiny                                 : 14px;
-$icon-margin-right                              : 14px;
-$amp-ddc-padding                                : 20px !default;
+$ddc-namespace: $amp-namespace !default;
+$font-size-medium: 24px;
+$font-size-small: 18px;
+$font-size-tiny: 14px;
+$icon-margin-right: 14px;
+$amp-ddc-padding: 20px !default;
+$sticky-menu-height: 88px;
+$sticky-menu-margin-bottom: 40px;
 
+.bolr-right-padding{
+  padding-right: 16%;
+}
+.bolr-left-margin{
+  margin-left: 20%;
+}
