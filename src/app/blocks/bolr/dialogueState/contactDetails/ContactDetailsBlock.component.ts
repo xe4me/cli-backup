@@ -3,8 +3,10 @@ import {Control} from 'angular2/common';
 import {FormBlock, NamedControl} from '../../../formBlock';
 import {AmpOverlayComponent} from '../../../../components/amp-overlay/amp-overlay.component';
 import {InputWithLabelGroupComponent} from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
-import {FormModelService} from '../../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
-import {ScrollService} from '../../../../../../node_modules/amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import {FormModelService} from "amp-ddc-ui-core/ui-core";
+
+
 @Component({
     selector: 'contact-details-block',
     template: `
@@ -24,7 +26,7 @@ If not, simply update them below.</h3>
             valMaxLength="15"
             [valPattern]="contact.regex">
         </input-with-label-group>
-        
+
         <!--Email-->
          <input-with-label-group
             [isInSummaryState]="isInSummaryState"
@@ -37,7 +39,7 @@ If not, simply update them below.</h3>
             [valPattern]="email.regex"
          >
         </input-with-label-group>
-        
+
         <!--<div class="alert alert-danger">-->
           <!--Message-->
         <!--</div>-->
@@ -57,7 +59,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
     public contact = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
     public email = {id: '', label: '', contxtualLabel: '', regex: '', data: ''};
-    private isInSummaryState:boolean = false;
+    private isInSummaryState: boolean = false;
 
 
     public ok() {
@@ -70,11 +72,13 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         // });
     }
 
+
     constructor(el:ElementRef, public formModelService:FormModelService, scrollService:ScrollService) {
         super();
         scrollService.$scrolled.subscribe(function (message) {
             scrollService.amIVisible(el, ContactDetailsBlockComponent.CLASS_NAME);
         });
+
 
 
         this.contact = {
@@ -112,7 +116,9 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
 
+
     ngOnInit():any {
+
         this
             .formModelService
             .getContactDetails()

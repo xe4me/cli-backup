@@ -59,7 +59,26 @@
     ],
     "readme": "<p>Custom Block for Contact Details.</p>\n"
   },
-
+  {
+    "name": "BOLRPartnershipManagerBlock",
+    "sources": [
+      "src/app/blocks/bolr/partnership-manager/partnership-manager.component.ts"
+    ],
+    "id": "BOLRPartnershipManagerBlock",
+    "examples": [
+      {
+        "template": "src/styleguide/blocks/bolr/partnership-manager/basic_usage.html",
+        "styles": "src/styleguide/blocks/bolr/partnership-manager/basic_usage.scss",
+        "source": "src/styleguide/blocks/bolr/partnership-manager/basic_usage.ts",
+        "galen": "src/styleguide/blocks/bolr/partnership-manager/partnership-manager.component.test.spec",
+        "jasmine": "src/styleguide/blocks/bolr/partnership-manager/partnership-manager.component.spec.ts",
+        "component": "partnership-manager-block-basic-usage",
+        "component_src_location": "blocks/bolr/partnership-manager/basic_usage",
+        "name": "Basic Usage"
+      }
+    ],
+    "readme": "<p>Custom Block for BOLR Partnership Manager.</p>\n"
+  },
   {
     "name": "StickyProgressHeaderBlockComponent",
     "sources": [

@@ -2,18 +2,19 @@ import {Component} from 'angular2/core';
 import {Control} from 'angular2/common';
 import {FormBlock, NamedControl} from '../../formBlock';
 import {StickyProgressHeaderBlockComponent} from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
-import {FormModelService} from "../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service";
-import {IntroBlockComponent} from "../../../../../src/app/blocks/bolr/initState/IntroBlock.component";
+import {FormModelService} from "amp-ddc-ui-core/ui-core";
+
 
 @Component({
     selector: 'menu-frame',
     template: `
         <div class="menu-frame">
-             <sticky-progress-header-block 
+             <sticky-progress-header-block
                     class="sticky-progressbar animate-progress-bar"
                     [class.hidden]='!introHasPassed'
                     determinate="determinate"
                     value="67">
+
              </sticky-progress-header-block> 
              <div [class.hidden]='introHasPassed' class="animate-hard-rule hr--solid menu-frame__divider"></div>
              <div class="menu grid__item ">
@@ -42,7 +43,7 @@ export class MenuFrameBlockComponent extends FormBlock {
 
     static CLASS_NAME = 'MenuFrameBlockComponent';
 
-    constructor(private formModelService:FormModelService) {
+    constructor(private formModelService: FormModelService) {
         super();
         
         /*
@@ -58,8 +59,7 @@ export class MenuFrameBlockComponent extends FormBlock {
     }
 
 
-    preBindControls() {
-
+    preBindControls(_formBlockDef: any): void {
 
     }
 

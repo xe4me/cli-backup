@@ -1,9 +1,10 @@
 import {FormBlock, NamedControl} from '../../formBlock';
 import {Component, ElementRef, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
-import {FormModelService} from '../../../../../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
+import {FormModelService} from "amp-ddc-ui-core/ui-core";
 import {ScrollService} from '../../../../../node_modules/amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 import {Control} from 'angular2/common';
+
 @Component({
     selector: 'bolr-intro-block',
     template: `
@@ -39,10 +40,12 @@ import {Control} from 'angular2/common';
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
 
-    id:string = 'DefaultContentId';
-    label:string = 'Default content label';
+    id: string = 'DefaultContentId';
+    label: string = 'Default content label';
+
 
     constructor(el:ElementRef, public formModelService:FormModelService, scrollService:ScrollService) {
+
         super();
         scrollService.$scrolled.subscribe(function (message) {
             scrollService.amIVisible(el, IntroBlockComponent.CLASS_NAME);
