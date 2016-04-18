@@ -37,7 +37,7 @@ If not, simply update them below.</h3>
         </input-with-label-group>
 
         
-        <div *ngIf='hasClickedOnOkButton' class='errors mt'>
+        <div *ngIf='hasClickedOnOkButton && !formModel.controls.contactDetails.valid' class='errors mt'>
             <div *ngIf='!formControl[0].control.valid'>
                 <div>
                     <span class='icon icon--close icon-errors'></span>Phone should no be empty
@@ -55,13 +55,13 @@ If not, simply update them below.</h3>
                 </div>
             </div>
         </div>
-    
+        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-ok'>
+            Change
+        </button>
         <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok'>
             OK
         </button>    
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change'>
-            Change
-        </button>
+        
         <div class='hr-block-divider'></div>
     </div>
   ` ,
