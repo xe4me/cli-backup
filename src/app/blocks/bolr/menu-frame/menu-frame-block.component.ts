@@ -21,7 +21,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         <div class='menu--left--hr hr--solid'></div>
                         <div class='menu--left--save'><span class='icon icon--time'></span> Save for later</div>
                         <div class='menu--left--download'><span class='icon icon--time'></span>  Download a copy</div>
-                        <!--<div>CurrentClass : {{formModelService.currentComponent}}</div>-->
+                        <div>{{formModelService.currentComponent}}</div>
                     </div>
                     <div class='menu--right bolr-right-padding utils__position--rel'>
                         <!-- Dynamic form blocks driven from the Form Definition -->

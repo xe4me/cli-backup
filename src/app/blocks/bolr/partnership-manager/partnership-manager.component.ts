@@ -54,6 +54,7 @@ import { AmpOverlayComponent } from '../../../components/amp-overlay/amp-overlay
                 </div>
             </div>
         </div>
+
         <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok'>
             OK
         </button>
