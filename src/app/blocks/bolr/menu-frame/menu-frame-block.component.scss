@@ -4,7 +4,10 @@ $header-font-family: $amp-font-open-sans-regular;
 $menu-left-width: 20%;
 $menu-right-width: 80%;
 $left-menu-right-and-left-padding: 60px;
-
+:host{
+  width: 100%;
+  display: block;
+}
 .hidden{
   display: none;
 }

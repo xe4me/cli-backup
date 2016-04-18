@@ -7,12 +7,16 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 @Component({
     selector: 'my-md-input',
     template: `
-    <md-input-container [class.md-input-has-value]="parentControl.value" [ngClass]="{'md-input-has-placeholder' : placeholder}" flex-gt-sm="" *ngIf="!visibility || visibility.invoke()">
+    <span *ngIf="isInSummaryState" class="summary-state">{{parentControl.value}}</span>
+    <md-input-container
+        [class.gone]='isInSummaryState'
+        [class.md-input-has-value]="parentControl.value" 
+        [ngClass]="{'md-input-has-placeholder' : placeholder}" 
+        flex-gt-sm="" >
         <label *ngIf="label && !parentControl.value" [attr.for]="_id">{{label}}</label>
         <input
             class="md-input"
-            mdMaxLength="{{valMaxLength}}"
-            mdPattern="{{valPattern}}"
+            [mdPattern]="valPattern"
             [attr.name]="_id"
             [attr.id]="_id"
             [attr.data-automation-id]="'text_' + _id"
@@ -22,7 +26,7 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
   </md-input-container>
   `,
     styles: [require('./my-md-input.scss').toString()],
-    inputs: ['id', 'label', 'parentControl', 'placeholder', 'visibility', 'valMaxLength', 'valPattern', 'isRequired'],
+    inputs: ['id','isInSummaryState' ,'label', 'parentControl', 'placeholder', 'visibility', 'valMaxLength', 'valPattern', 'isRequired'],
     directives: [MATERIAL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
     encapsulation: ViewEncapsulation.Emulated
 })
@@ -30,6 +34,7 @@ import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 export class MdInputComponent {
     private _id: string;
     private label: string;
+    private isInSummaryState: boolean;
     private parentControl: Control;
     private placeholder: string;
     private visibility: Action;

@@ -3,12 +3,11 @@ import {Component, ElementRef, ViewEncapsulation, OnInit, AfterViewInit, NgZone}
 import {ThemeIDDirective} from '../../../directives/themeId.directive';
 import {FormModelService} from "amp-ddc-ui-core/ui-core";
 import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
-import {Control} from 'angular2/common';
 
 @Component({
     selector: 'bolr-intro-block',
     template: `
-    <div class='ng-animate bolr-intro bolr-right-padding' [class.hidden]="!formModel.controls['introIsNotPassed']">
+    <div class='ng-animate bolr-intro bolr-right-padding' [class.hidden]="formModelService.getFlags().introIsDone">
         <div class='bolr-intro-logo mb4' ampLicenseeThemeID></div>
         <div class='bolr-intro-main'>
             <div class='bolr-intro-main__title practice-title mb3'>
@@ -20,7 +19,7 @@ import {Control} from 'angular2/common';
                 Hi {{formModelService.getModel().context.practicePrincipal_firstName}},<br/>
                 You're about to request to exercise your buyer of last resort facility.
             </p>
-            <p class='bolr-intro-main__notes'>We just need a few details from you to complete this request, it will only take 3 minutes, let's get started.</p>
+            <p class='bolr-intro-main__notes mb3'>We just need a few details from you to complete this request, it will only take 3 minutes, let's get started.</p>
             <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id="btn_bolr-intro-block">
                 OK
             </button>
@@ -29,8 +28,7 @@ import {Control} from 'angular2/common';
   `,
     // encapsulation: ViewEncapsulation.Emulated
     styles: [require('./IntroBlock.component.scss').toString()],
-    directives: [ThemeIDDirective],
-    providers: [ScrollService]
+    directives: [ThemeIDDirective]
 })
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
@@ -39,21 +37,15 @@ export class IntroBlockComponent extends FormBlock {
     constructor(private el:ElementRef, private formModelService:FormModelService, private scrollService:ScrollService) {
         super();
         scrollService.$scrolled.subscribe(message =>scrollService.amIVisible(el, IntroBlockComponent.CLASS_NAME));
-        // Created a formControl just as a flag , if user clicks on OK button , we'll remove this controll
-        // And in other part of the application we're listening to this , if control is removed , means user has clicked on
-        // OK , this way , we clear the formModel from unwanted controls and won't create a flag, nice huh ?
-        this.formControl = [new NamedControl('introIsNotPassed', new Control())];
     }
 
 
     // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
     public ok() {
-        // SAM - Action present data to Model
-        // Lets remove the control as I explained above
-        this.formModel.removeControl('introIsNotPassed');
         this.formModelService.present({
-            action: 'next',
-            blockId: this._id
+            action: 'setFlag',
+            flag: 'introIsDone',
+            flagValue:true
         });
     }
 
