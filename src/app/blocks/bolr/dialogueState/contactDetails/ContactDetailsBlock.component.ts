@@ -10,7 +10,7 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
     selector : 'contact-details-block' ,
     template : `
     <div id='contact-details-block' class='contact-details-block'>
-        <amp-overlay [active]=''!isCurrentBlockActive()'></amp-overlay>
+        <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>First name, please confirm your details are correct.
 If not, simply update them below.</h3>
         <!--Contact Number-->
