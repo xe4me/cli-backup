@@ -3,6 +3,18 @@
 // @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/functions/_decimal';
 // @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family';
 
+$summary-state-color: $amp-colour-sky-blue;
+$summary-state-font-family: $amp-font-open-sans-regular;
+$summary-state-font-weight: 300;
+.summary-state {
+  @include amp-family($summary-state-font-family);
+  @extend %#{$namespace}amp-colour-sky-blue;
+  font-weight: $summary-state-font-weight;
+  vertical-align: bottom;
+  line-height: 43px;
+  font-size: $ddc-input-field-font-size;
+}
+
 $md-font-url: '/node_modules/ng2-material/dist/';
 @import '~ng2-material/dist/font.scss';
 // @import 'node_modules/ng2-material/source/core';
@@ -12,7 +24,7 @@ $md-font-url: '/node_modules/ng2-material/dist/';
 // Override Variables
 // Override core/style/variables.scss
 // $font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif !default;
-$font-size:   $amp-base-font-size;
+$font-size: $amp-base-font-size;
 
 // $display-4-font-size-base: rem(11.20) !default;
 // $display-3-font-size-base: rem(5.600) !default;
@@ -31,7 +43,7 @@ $font-size:   $amp-base-font-size;
 @import '~ng2-material/source/core/style/default-theme';
 
 // Custom amp-sky-blue-palettes
-$md-sky-blue : (
+$md-sky-blue: (
         50: $amp-colour-grey-dark,
         100: $amp-colour-grey-dark,
         200: $amp-colour-grey-dark,
@@ -68,7 +80,7 @@ $md-sky-blue-palettes: (
 );
 
 // Custom foreground colors
-$md-grep-darkest-theme : (
+$md-grep-darkest-theme: (
         divider: $amp-colour-grey-dark,
         dividers: $amp-colour-grey-dark,
         disabled: $amp-colour-grey-dark,
@@ -95,13 +107,13 @@ $md-grep-darkest-theme-palettes: (
 );
 
 $md-primary: md-palette(map_get($md-sky-blue-palettes, $md-sky-blue), 500, 100, 700, $md-sky-blue-palettes);
-$md-foreground : md-palette(map_get($md-grep-darkest-theme-palettes, $md-grep-darkest-theme), 500, 100, 700, $md-grep-darkest-theme-palettes);
+$md-foreground: md-palette(map_get($md-grep-darkest-theme-palettes, $md-grep-darkest-theme), 500, 100, 700, $md-grep-darkest-theme-palettes);
 $md-accent: md-palette($md-deep-orange, 500, 300, 700, $md-contrast-palettes);
 
 // Overrides on existing components/input/input.scss
 $input-container-padding: 2px !default;
 
-$input-label-default-offset: $amp-base-font-size * 4 !default;          // 60 px
+$input-label-default-offset: $amp-base-font-size * 4 !default; // 60 px
 $input-label-default-scale: 0.5 !default;
 $input-label-float-offset: $amp-base-font-size * 1.66 !default;
 $input-label-float-scale: 0.5 !default;
@@ -127,7 +139,7 @@ $icon-float-focused-top: -8px !default;
 
 // Custom md-input variables
 $input-padding-bottom: 15px !default;
-$input-height: $input-line-height * 1.5;  // Don't like Materialize CSS rule 'height: $input-line-height + ($input-padding-top * 2);'
+$input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'height: $input-line-height + ($input-padding-top * 2);'
 
 // TODO: Not sure if I need all Material design component or just the input component...test this out in future
 @import 'node_modules/ng2-material/source/components';
@@ -138,12 +150,22 @@ $input-height: $input-line-height * 1.5;  // Don't like Materialize CSS rule 'he
 }
 
 md-input-container {
+
   display: inline-block;
   flex: none;
   cursor: pointer;
   height: $input-line-height * 1.5;
 
+  &.gone{
+    visibility: hidden;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  label:not(.md-container-ignore) {
+    bottom: 94% !important;
+  }
   .md-input {
+    margin-top: 9px !important;
     display: inline;
     flex: none;
     cursor: pointer;

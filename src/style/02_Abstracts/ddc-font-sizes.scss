@@ -2,11 +2,17 @@ $namespace                                      : $ddc-namespace                
 $font-size-med                               : $font-size-medium;
 $font-size-sma                                : $font-size-small;
 $font-size-tin                                 : $font-size-tiny;
+$font-size-lrg                                 : $font-size-large;
 
 
 .#{$namespace}font-size-medium,
 %#{$namespace}font-size-medium {
   font-size: $font-size-med;
+}
+
+.#{$namespace}font-size-large,
+%#{$namespace}font-size-large {
+  font-size: $font-size-lrg;
 }
 
 .#{$namespace}font-size-small,

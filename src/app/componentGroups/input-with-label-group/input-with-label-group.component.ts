@@ -5,17 +5,18 @@ import {MdInputComponent} from '../../components/my-md-input/my-md-input.compone
 @Component({
     selector: 'input-with-label-group',
     template: `
-        <label class="heading heading-contxtual-label" *ngIf="contxtualLabel" >{{contxtualLabel}}</label>
-        <span *ngIf="isInSummaryState" class="summary-state">{{parentControl.value}}</span>
-        <my-md-input
-            *ngIf="!isInSummaryState"
-            [id]="id"
-            [label]="label"
-            [parentControl]="parentControl"
-            [isRequired]="isRequired"
-            [valPattern]="valPattern"
-            [valMaxLength]="valMaxLength">
-        </my-md-input>
+        <div class="input-with-label-group">
+            <label class="heading heading-contxtual-label" *ngIf="contxtualLabel" >{{contxtualLabel}}</label>
+            <my-md-input
+                [isInSummaryState]='isInSummaryState'
+                [id]="id"
+                [label]="label"
+                [parentControl]="parentControl"
+                [isRequired]="isRequired"
+                [valPattern]="valPattern"
+                [valMaxLength]="valMaxLength">
+            </my-md-input>
+        </div>
         `,
     inputs: ['id', 'isInSummaryState', 'label', 'parentControl', 'isRequired', 'valPattern', 'valMaxLength', 'contxtualLabel'],
     directives: [MdInputComponent],

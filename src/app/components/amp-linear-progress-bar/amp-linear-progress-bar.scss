@@ -2,17 +2,18 @@
 @import "~ng2-material/source/core/style/default-theme";
 @import "~ng2-material/source/core/style/variables";
 
-$progress-linear-bar-height               : 9px !default;
-$progress-bar-forground-color             :$amp-colour-sky-blue;
-$progress-bar-background-color            :$amp-colour-grey-lightest;
-
+$progress-linear-bar-height: 9px !default;
+$progress-bar-forground-color: $amp-colour-sky-blue;
+$progress-bar-background-color: $amp-colour-grey-lightest;
 
 md-progress-linear {
-  &.amp-progressbar-sky-blue{
+  &.amp-progressbar-sky-blue {
     .md-progress-linear-container {
+      height: $progress-linear-bar-height;
       background-color: $progress-bar-background-color;
     }
     .md-progress-linear-bar {
+      height: $progress-linear-bar-height;
       background-color: $progress-bar-forground-color;
     }
   }

@@ -7,7 +7,7 @@ import {RouteParams, Router, RouteRegistry, CanDeactivate, ComponentInstruction}
 @Component({
     selector: 'details-page',
     template: `
-    <div class="landing">
+    <div class="Landing">
         <div #nestedBlock></div>
       <!--<button (click)="next()">OK</button>-->
 

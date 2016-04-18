@@ -1,0 +1,13 @@
+$namespace: $ddc-namespace !default;
+
+$errors-text-colors: $amp-colour-alert-danger;
+$errors-font-family: $amp-font-open-sans-regular;
+.errors {
+  @extend %#{$namespace}font-size-tiny;
+  @include amp-family($errors-font-family);
+  color: $errors-text-colors;
+  font-weight: 400;
+  display: block;
+  line-height: 25px;
+  margin-top: 5px;
+}
