@@ -15,3 +15,8 @@ $ddc-input-field-font-size:$font-size-large;
 .bolr-left-margin{
   margin-left: 20%;
 }
+
+// Just to check if this is the reason for the gray overal background
+html , body{
+  background-color: white !important;
+}
