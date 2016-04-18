@@ -18,6 +18,7 @@ import { AmpOverlayComponent } from '../../../components/amp-overlay/amp-overlay
 
         <!-- First name -->
         <my-md-input
+            class="pr- 1/3"
             [isInSummaryState]='isInSummaryState'
             [id]='partnershipMgr.firstName.id'
             [label]='partnershipMgr.firstName.label'
@@ -29,6 +30,7 @@ import { AmpOverlayComponent } from '../../../components/amp-overlay/amp-overlay
 
         <!-- Last name -->
         <my-md-input
+            class="pl-- 1/3"
             [isInSummaryState]='isInSummaryState'
             [id]='partnershipMgr.lastName.id'
             [label]='partnershipMgr.lastName.label'
@@ -37,7 +39,7 @@ import { AmpOverlayComponent } from '../../../components/amp-overlay/amp-overlay
             [valPattern]='partnershipMgr.lastName.regex'
             valMaxLength='100'>
         </my-md-input>
-
+    
         <div class='alert alert-danger'>
           Message
         </div>

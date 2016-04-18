@@ -2,11 +2,11 @@ import { Component , Directive , Input , OnInit , ViewEncapsulation } from 'angu
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
-
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
-@Component ( {
-                 selector : 'my-md-input' ,
-                 template : `
+@Component (
+    {
+        selector      : 'my-md-input' ,
+        template      : `
     <span *ngIf="isInSummaryState" class="summary-state">{{parentControl.value}}</span>
     <md-input-container
         [class.gone]='isInSummaryState'
@@ -25,12 +25,11 @@ import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
         <ng-content></ng-content>
   </md-input-container>
   ` ,
-                 styles : [ require ( './my-md-input.scss' ).toString () ] ,
-                 inputs : [ 'id' , 'isInSummaryState' , 'label' , 'parentControl' , 'placeholder' , 'visibility' , 'valMaxLength' , 'valPattern' , 'isRequired' ] ,
-                 directives : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
-                 encapsulation : ViewEncapsulation.Emulated
-             } )
-
+        styles        : [ require ( './my-md-input.scss' ).toString () ] ,
+        inputs        : [ 'id' , 'isInSummaryState' , 'label' , 'parentControl' , 'placeholder' , 'visibility' , 'valMaxLength' , 'valPattern' , 'isRequired' ] ,
+        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
+        encapsulation : ViewEncapsulation.Emulated
+    } )
 export class MdInputComponent {
     private _id : string;
     private label : string;
@@ -45,12 +44,10 @@ export class MdInputComponent {
     }
 
     set isRequired ( val : string ) {
-
         if ( val === 'true' ) {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) :
             // Function API
             this.parentControl.validator = Validators.required;
         }
     }
-
 }

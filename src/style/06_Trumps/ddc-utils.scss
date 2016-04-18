@@ -29,6 +29,17 @@ $namespace                                      : $amp-namespace                
       position: absolute !important;
     }
   }
+  &__display{
+    &--block{
+      display: block !important;
+    }
+    &--in-block{
+      display: inline-block !important;
+    }
+    &--inline{
+      display: inline !important;
+    }
+  }
   &__align{
     &--left{
       text-align: left !important;
