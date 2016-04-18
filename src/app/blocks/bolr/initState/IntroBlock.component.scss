@@ -34,22 +34,22 @@ $amp-ddc-public-asset: '../../../../../public/';
   width: 100%;
   margin-top: $amp-ddc-padding * 2;
 
-  background-position: left bottom, right bottom;
-  background-attachment: scroll, scroll;
-  background-repeat: no-repeat, no-repeat;
+  background-position: left bottom;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
   // background-size: 150px, 150px 80px;
   background-size: contain;
 
   &.AMPFP {
-    background-image: url($amp-ddc-public-asset + 'images/logo/logo-amp-dark.png'), url($amp-ddc-public-asset + 'images/logo/ampfp.png');
+    background-image: url($amp-ddc-public-asset + 'images/logo/AMPFP_logo.jpg');
   }
 
   &.HILLROSS {
-    background-image: url($amp-ddc-public-asset + 'images/logo/logo-amp-dark.png'), url($amp-ddc-public-asset + 'images/logo/hillross.png');
+    background-image: url($amp-ddc-public-asset + 'images/logo/Hillross_logo.jpg');
   }
 
   &.CHARTER {
-    background-image: url($amp-ddc-public-asset + 'images/logo/logo-amp-dark.png'), url($amp-ddc-public-asset + 'images/logo/charter.png');
+    background-image: url($amp-ddc-public-asset + 'images/logo/Charter_logo.jpg');
   }
 }
 
