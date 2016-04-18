@@ -5,10 +5,10 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 import { InputWithLabelGroupComponent } from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
 import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
-
-@Component ( {
-    selector : 'contact-details-block' ,
-    template : `
+@Component (
+    {
+        selector   : 'contact-details-block' ,
+        template   : `
     <div id='contact-details-block' class='contact-details-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>First name, please confirm your details are correct.
@@ -35,9 +35,9 @@ If not, simply update them below.</h3>
             [valPattern]='contactDetails.email.regex'
          >
         </input-with-label-group>
-
+      
         
-        <div *ngIf='hasClickedOnOkButton' class='errors mt'>
+        <div *ngIf='hasClickedOnOkButton && !formModel.controls.contactDetails.valid' class='errors mt'>
             <div *ngIf='!formControl[0].control.valid'>
                 <div>
                     <span class='icon icon--close icon-errors'></span>Phone should no be empty
@@ -55,47 +55,42 @@ If not, simply update them below.</h3>
                 </div>
             </div>
         </div>
-    
         <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok'>
             OK
-        </button>    
+        </button>
         <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change'>
             Change
         </button>
         <div class='hr-block-divider'></div>
     </div>
   ` ,
-    directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
-    styles : [ require ( './ContactDetailsBlock.component.scss' ).toString () ]
-} )
+        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
+        styles     : [ require ( './ContactDetailsBlock.component.scss' ).toString () ]
+    } )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
-
-    static CLASS_NAME : string = 'ContactDetailsBlockComponent';
-
-    private contactDetails = {
+    static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
+    private contactDetails                 = {
         phone : {
-            id : 'phoneId' ,
-            label : 'Default Phone Label' ,
+            id             : 'phoneId' ,
+            label          : 'Default Phone Label' ,
             contxtualLabel : 'Default Phone Contextual Label' ,
-            regex : '^([0-9])*$' ,
-            value : '00000000'
+            regex          : '^([0-9])*$' ,
+            value          : '00000000'
         } ,
         email : {
-            id : 'emailId' ,
-            label : 'Default Email Label' ,
+            id             : 'emailId' ,
+            label          : 'Default Email Label' ,
             contxtualLabel : 'Default Email Contextual Label' ,
-            regex : '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)' ,
-            value : 'smiladhi@gmail.com'
+            regex          : '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)' ,
+            value          : 'smiladhi@gmail.com'
         }
     };
-
-    private isInSummaryState : boolean = false;
+    private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
-
 
     public change () {
         this.hasClickedOnOkButton = false;
-        this.isInSummaryState = false;
+        this.isInSummaryState     = false;
     }
 
     public ok () {
@@ -105,8 +100,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut ( this.el );
         }
-
-
         // this.isInSummaryState = true;
         // // SAM - Action present data to Model
         // this.formModelService.present({
@@ -115,23 +108,19 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         // });
     }
 
-
     constructor ( private el : ElementRef , private formModelService : FormModelService , private scrollService : ScrollService ) {
         super ();
         scrollService.$scrolled.subscribe ( message => scrollService.amIVisible ( el , ContactDetailsBlockComponent.CLASS_NAME ) );
-        this.formControl = [
+        this.formControl          = [
             new NamedControl ( this.contactDetails.phone.id , new Control () ) ,
             new NamedControl ( this.contactDetails.email.id , new Control () )
         ];
         this.formControlGroupName = 'contactDetails';
-
-
     }
 
     public isCurrentBlockActive () {
         return this.formModelService.getFlags ().introIsDone;
     }
-
 
     public preBindControls ( _formBlockDef ) {
         this.formControl[ 0 ].name = this.contactDetails.phone.id;
@@ -140,14 +129,12 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         this.formControl[ 1 ].control.updateValue ( this.contactDetails.email.value );
     }
 
-
     ngOnInit () : any {
         this
             .formModelService
             .getContactDetails ()
             .subscribe (
                 data => {
-
                     this.formModelService.present (
                         { action : 'setContactDetails' , contactDetails : data }
                     );
@@ -166,8 +153,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         return undefined;
     }
 }
-
-
 /**
  * Created by xe4me on 7/04/2016.
  */

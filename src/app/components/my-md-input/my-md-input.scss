@@ -156,7 +156,7 @@ md-input-container {
   cursor: pointer;
   height: $input-line-height * 1.5;
 
-  &.gone{
+  &.gone {
     visibility: hidden;
     width: 0 !important;
     height: 0 !important;
@@ -165,7 +165,19 @@ md-input-container {
     bottom: 94% !important;
   }
   .md-input {
-    margin-top: 9px !important;
+    &[disabled] {
+      &.summary-state {
+        border-bottom: 1px solid transparent !important;
+        color: #00AAE0;
+        background-image: none;
+        cursor: default;
+        background-image: none;
+        &:hover {
+          border-bottom: 1px solid transparent !important
+        }
+      }
+    }
+    margin-top: 6px !important;
     display: inline;
     flex: none;
     cursor: pointer;
@@ -203,6 +215,6 @@ md-input-container {
   }
 }
 
-my-md-input{
+my-md-input {
   display: inline-block !important;
 }

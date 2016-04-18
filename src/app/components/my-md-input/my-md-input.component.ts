@@ -7,14 +7,14 @@ import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
     {
         selector      : 'my-md-input' ,
         template      : `
-    <span *ngIf="isInSummaryState" class="summary-state">{{parentControl.value}}</span>
     <md-input-container
-        [class.gone]='isInSummaryState'
         [class.md-input-has-value]="parentControl.value" 
         [ngClass]="{'md-input-has-placeholder' : placeholder}" 
         flex-gt-sm="" >
         <label *ngIf="label && !parentControl.value" [attr.for]="_id">{{label}}</label>
         <input
+            [class.summary-state]='isInSummaryState'
+            [disabled]='isInSummaryState'
             class="md-input"
             [mdPattern]="valPattern"
             [attr.name]="_id"
