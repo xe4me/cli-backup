@@ -1,13 +1,13 @@
-import {FormBlock, NamedControl} from '../../formBlock';
-import {Component, ElementRef, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
-import {ThemeIDDirective} from '../../../directives/themeId.directive';
-import {FormModelService} from "amp-ddc-ui-core/ui-core";
-import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import { FormBlock , NamedControl } from '../../formBlock';
+import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
+import { ThemeIDDirective } from '../../../directives/themeId.directive';
+import { FormModelService } from 'amp-ddc-ui-core/ui-core';
+import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 
-@Component({
-    selector: 'bolr-intro-block',
-    template: `
-    <div class='ng-animate bolr-intro bolr-right-padding' [class.hidden]="formModelService.getFlags().introIsDone">
+@Component ( {
+    selector : 'bolr-intro-block' ,
+    template : `
+    <div class='ng-animate bolr-intro bolr-right-padding' [class.hidden]='formModelService.getFlags().introIsDone'>
         <div class='bolr-intro-logo mb4' ampLicenseeThemeID></div>
         <div class='bolr-intro-main'>
             <div class='bolr-intro-main__title practice-title mb3'>
@@ -20,37 +20,37 @@ import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.serv
                 You're about to request to exercise your buyer of last resort facility.
             </p>
             <p class='bolr-intro-main__notes mb3'>We just need a few details from you to complete this request, it will only take 3 minutes, let's get started.</p>
-            <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id="btn_bolr-intro-block">
+            <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
             </button>
         </div>    
     </div>
-  `,
+  ` ,
     // encapsulation: ViewEncapsulation.Emulated
-    styles: [require('./IntroBlock.component.scss').toString()],
-    directives: [ThemeIDDirective]
-})
+    styles : [ require ( './IntroBlock.component.scss' ).toString () ] ,
+    directives : [ ThemeIDDirective ]
+} )
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
 
 
-    constructor(private el:ElementRef, private formModelService:FormModelService, private scrollService:ScrollService) {
-        super();
-        scrollService.$scrolled.subscribe(message =>scrollService.amIVisible(el, IntroBlockComponent.CLASS_NAME));
+    constructor ( private el : ElementRef , private formModelService : FormModelService , private scrollService : ScrollService ) {
+        super ();
+        scrollService.$scrolled.subscribe ( message => scrollService.amIVisible ( el , IntroBlockComponent.CLASS_NAME ) );
     }
 
 
     // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
-    public ok() {
-        this.formModelService.present({
-            action: 'setFlag',
-            flag: 'introIsDone',
-            flagValue:true
-        });
+    public ok () {
+        this.formModelService.present ( {
+            action : 'setFlag' ,
+            flag : 'introIsDone' ,
+            flagValue : true
+        } );
     }
 
 
-    public preBindControls(_formBlockDef) {
+    public preBindControls ( _formBlockDef ) {
 
     }
 

@@ -1,12 +1,12 @@
-import {Component, AfterViewChecked,ElementRef} from 'angular2/core';
-import {FormBlock} from '../../formBlock';
-import {StickyProgressHeaderBlockComponent} from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
-import {FormModelService} from 'amp-ddc-ui-core/ui-core';
-import {TimerWrapper} from "angular2/src/facade/async";
+import { Component , AfterViewChecked , ElementRef } from 'angular2/core';
+import { FormBlock } from '../../formBlock';
+import { StickyProgressHeaderBlockComponent } from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
+import { FormModelService } from 'amp-ddc-ui-core/ui-core';
+import { TimerWrapper } from 'angular2/src/facade/async';
 
-@Component({
-    selector: 'menu-frame',
-    template: `
+@Component ( {
+    selector : 'menu-frame' ,
+    template : `
         <div class='frame'>
              <sticky-progress-header-block
                     class='sticky-progressbar'
@@ -31,72 +31,70 @@ import {TimerWrapper} from "angular2/src/facade/async";
                 </div>
             </div>
         </div>
-    `,
-    styles: [require('./menu-frame-block.component.scss').toString()],
-    directives: [StickyProgressHeaderBlockComponent]
-})
-
+    ` ,
+    styles : [ require ( './menu-frame-block.component.scss' ).toString () ] ,
+    directives : [ StickyProgressHeaderBlockComponent ]
+} )
 
 export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked {
 
     static CLASS_NAME = 'MenuFrameBlockComponent';
-
     private calculatedProgress = 0;
-    private formControlLength:number;
-    private subscribedToFormModel:boolean = false;
-
-    constructor(private _el:ElementRef, private formModelService:FormModelService) {
-        super();
-    }
-
+    private formControlLength : number;
+    private subscribedToFormModel : boolean = false;
     private stickyAnimatedIntoView = false;
-    private introHasPassed() {
 
-        if (this.formModelService.getFlags().introIsDone) {
-            this.stickyAnimatedIntoView = true;
-            var that = this;
-
-            TimerWrapper.setTimeout(function () {
-                that._el.nativeElement.children[0].className += ' frame--sticky';
-            }, 1200)
+    ngAfterViewChecked () : any {
+        if ( ! this.subscribedToFormModel ) {
+            this.calculateProgress ();
         }
-    }
-
-    private calculateProgress() {
-        if (this.formModel) {
-            this.subscribedToFormModel = true;
-            var that = this;
-            this.formModel.valueChanges.subscribe(function (changes) {
-                if (that.formModel.controls) {
-                    let valids:number = 0;
-                    that.formControlLength = Object.keys(that.formModel.controls).length;
-                    Object.keys(that.formModel.controls).map(function (value, index) {
-                        if (that.formModel.controls[value]) {
-                            if (that.formModel.controls[value].valid) {
-
-                                valids++;
-                            }
-                        }
-                    })
-                    that.calculatedProgress = Math.floor((100 * valids / that.formControlLength));
-                }
-            })
-        }
-    }
-
-    ngAfterViewChecked():any {
-        if (!this.subscribedToFormModel) {
-            this.calculateProgress();
-        }
-        if (!this.stickyAnimatedIntoView) {
-            this.introHasPassed();
+        if ( ! this.stickyAnimatedIntoView ) {
+            this.introHasPassed ();
         }
         return undefined;
     }
 
-
-    preBindControls(_formBlockDef:any):void {
+    preBindControls ( _formBlockDef : any ) : void {
 
     }
+
+    private introHasPassed () {
+
+        if ( this.formModelService.getFlags ().introIsDone ) {
+            this.stickyAnimatedIntoView = true;
+            var that = this;
+
+            TimerWrapper.setTimeout ( function () {
+                that._el.nativeElement.children[ 0 ].className += ' frame--sticky';
+            } , 1200 );
+        }
+    }
+
+    private calculateProgress () {
+        if ( this.formModel ) {
+            this.subscribedToFormModel = true;
+            var that = this;
+            this.formModel.valueChanges.subscribe ( function ( changes ) {
+                if ( that.formModel.controls ) {
+                    let valids : number = 0;
+                    that.formControlLength = Object.keys ( that.formModel.controls ).length;
+                    Object.keys ( that.formModel.controls ).map ( function ( value , index ) {
+                        if ( that.formModel.controls[ value ] ) {
+                            if ( that.formModel.controls[ value ].valid ) {
+
+                                valids ++;
+                            }
+                        }
+                    } );
+                    that.calculatedProgress = Math.floor ( (100 * valids / that.formControlLength) );
+                }
+            } );
+        }
+    }
+
+    constructor ( private _el : ElementRef , private formModelService : FormModelService ) {
+        super ();
+    }
+
 
 }

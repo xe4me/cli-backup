@@ -1,111 +1,109 @@
-import {Component, OnInit, ElementRef, ChangeDetectorRef} from 'angular2/core';
-import {Control,ControlGroup} from 'angular2/common';
-import {FormBlock, NamedControl} from '../../../formBlock';
-import {AmpOverlayComponent} from '../../../../components/amp-overlay/amp-overlay.component';
-import {InputWithLabelGroupComponent} from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
-import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
-import {FormModelService} from "amp-ddc-ui-core/ui-core";
+import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/core';
+import { Control , ControlGroup } from 'angular2/common';
+import { FormBlock , NamedControl } from '../../../formBlock';
+import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { InputWithLabelGroupComponent } from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
+import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 
-
-
-@Component({
-    selector: 'contact-details-block',
-    template: `
-    <div id="contact-details-block" class="contact-details-block">
-        <amp-overlay [active]="!isCurrentBlockActive()"></amp-overlay>
-        <h3 class="heading heading-intro">First name, please confirm your details are correct.
+@Component ( {
+    selector : 'contact-details-block' ,
+    template : `
+    <div id='contact-details-block' class='contact-details-block'>
+        <amp-overlay [active]=''!isCurrentBlockActive()'></amp-overlay>
+        <h3 class='heading heading-intro'>First name, please confirm your details are correct.
 If not, simply update them below.</h3>
         <!--Contact Number-->
         <input-with-label-group
-            [isInSummaryState]="isInSummaryState"
-            [contxtualLabel]="contactDetails.phone.contxtualLabel"
-            [id]="contactDetails.phone.id"
-            [label]="contactDetails.phone.label"
-            [parentControl]="formControl[0].control"
-            isRequired="true"
-            [valPattern]="contactDetails.phone.regex">
+            [isInSummaryState]='isInSummaryState'
+            [contxtualLabel]='contactDetails.phone.contxtualLabel'
+            [id]='contactDetails.phone.id'
+            [label]='contactDetails.phone.label'
+            [parentControl]='formControl[0].control'
+            isRequired='true'
+            [valPattern]='contactDetails.phone.regex'>
         </input-with-label-group>
 
         <!--Email-->
          <input-with-label-group
-            [isInSummaryState]="isInSummaryState"
-            [contxtualLabel]="contactDetails.email.contxtualLabel"
-            [id]="contactDetails.email.id"
-            [label]="contactDetails.email.label"
-            [parentControl]="formControl[1].control"
-            isRequired="true"
-            [valPattern]="contactDetails.email.regex"
+            [isInSummaryState]='isInSummaryState'
+            [contxtualLabel]='contactDetails.email.contxtualLabel'
+            [id]='contactDetails.email.id'
+            [label]='contactDetails.email.label'
+            [parentControl]='formControl[1].control'
+            isRequired='true'
+            [valPattern]='contactDetails.email.regex'
          >
         </input-with-label-group>
 
         
-        <div *ngIf='hasClickedOnOkButton' class="errors mt">
+        <div *ngIf='hasClickedOnOkButton' class='errors mt'>
             <div *ngIf='!formControl[0].control.valid'>
                 <div>
-                    <span class="icon icon--close icon-errors"></span>Phone should no be empty
+                    <span class='icon icon--close icon-errors'></span>Phone should no be empty
                 </div>
                 <div>
-                    <span class="icon icon--close icon-errors"></span>Please enter a valid phone
+                    <span class='icon icon--close icon-errors'></span>Please enter a valid phone
                 </div>
             </div>
             <div *ngIf='!formControl[1].control.valid'>
                 <div>
-                    <span class="icon icon--close icon-errors"></span>Email should no be empty
+                    <span class='icon icon--close icon-errors'></span>Email should no be empty
                 </div>
                 <div>
-                    <span class="icon icon--close icon-errors"></span>Please enter a valid email
+                    <span class='icon icon--close icon-errors'></span>Please enter a valid email
                 </div>
             </div>
         </div>
     
-        <button *ngIf='!isInSummaryState' (click)="ok()" class="btn btn--secondary btn-ok">
+        <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok'>
             OK
         </button>    
-        <button *ngIf='isInSummaryState' (click)="change()" class="btn btn--secondary btn-change">
+        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change'>
             Change
         </button>
         <div class='hr-block-divider'></div>
     </div>
-  `,
-    directives: [AmpOverlayComponent, InputWithLabelGroupComponent],
-    styles: [require('./ContactDetailsBlock.component.scss').toString()]
-})
+  ` ,
+    directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
+    styles : [ require ( './ContactDetailsBlock.component.scss' ).toString () ]
+} )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
 
-    static CLASS_NAME:string = 'ContactDetailsBlockComponent';
+    static CLASS_NAME : string = 'ContactDetailsBlockComponent';
 
     private contactDetails = {
-        phone: {
-            id: 'phoneId',
-            label: 'Default Phone Label',
-            contxtualLabel: 'Default Phone Contextual Label',
-            regex: '^([0-9])*$',
-            value: '00000000'
-        },
-        email: {
-            id: 'emailId',
-            label: 'Default Email Label',
-            contxtualLabel: 'Default Email Contextual Label',
-            regex: '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)',
-            value: 'smiladhi@gmail.com'
+        phone : {
+            id : 'phoneId' ,
+            label : 'Default Phone Label' ,
+            contxtualLabel : 'Default Phone Contextual Label' ,
+            regex : '^([0-9])*$' ,
+            value : '00000000'
+        } ,
+        email : {
+            id : 'emailId' ,
+            label : 'Default Email Label' ,
+            contxtualLabel : 'Default Email Contextual Label' ,
+            regex : '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)' ,
+            value : 'smiladhi@gmail.com'
         }
-    }
+    };
 
-    private isInSummaryState:boolean = false;
-    private hasClickedOnOkButton:boolean = false;
+    private isInSummaryState : boolean = false;
+    private hasClickedOnOkButton : boolean = false;
 
 
-    public change() {
+    public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState = false;
     }
 
-    public ok() {
+    public ok () {
         this.hasClickedOnOkButton = true;
-        console.log('controller',this.formModel.controls[this.formControlGroupName]);
-        if (this.formModel.controls[this.formControlGroupName].valid) {
+        console.log ( 'controller' , this.formModel.controls[ this.formControlGroupName ] );
+        if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
-            this.scrollService.scrollMeOut(this.el);
+            this.scrollService.scrollMeOut ( this.el );
         }
 
 
@@ -118,54 +116,53 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
 
-    constructor(private el:ElementRef, private formModelService:FormModelService, private scrollService:ScrollService) {
-        super();
-        scrollService.$scrolled.subscribe(message =>scrollService.amIVisible(el, ContactDetailsBlockComponent.CLASS_NAME));
+    constructor ( private el : ElementRef , private formModelService : FormModelService , private scrollService : ScrollService ) {
+        super ();
+        scrollService.$scrolled.subscribe ( message => scrollService.amIVisible ( el , ContactDetailsBlockComponent.CLASS_NAME ) );
         this.formControl = [
-            new NamedControl(this.contactDetails.phone.id, new Control()),
-            new NamedControl(this.contactDetails.email.id, new Control())
+            new NamedControl ( this.contactDetails.phone.id , new Control () ) ,
+            new NamedControl ( this.contactDetails.email.id , new Control () )
         ];
-        this.formControlGroupName= 'contactDetails';
+        this.formControlGroupName = 'contactDetails';
 
 
     }
 
-    public isCurrentBlockActive() {
-        return this.formModelService.getFlags().introIsDone;
+    public isCurrentBlockActive () {
+        return this.formModelService.getFlags ().introIsDone;
     }
 
 
-
-    public preBindControls(_formBlockDef) {
-        this.formControl[0].name = this.contactDetails.phone.id;
-        this.formControl[1].name = this.contactDetails.email.id;
-        this.formControl[0].control.updateValue(this.contactDetails.phone.value);
-        this.formControl[1].control.updateValue(this.contactDetails.email.value);
+    public preBindControls ( _formBlockDef ) {
+        this.formControl[ 0 ].name = this.contactDetails.phone.id;
+        this.formControl[ 1 ].name = this.contactDetails.email.id;
+        this.formControl[ 0 ].control.updateValue ( this.contactDetails.phone.value );
+        this.formControl[ 1 ].control.updateValue ( this.contactDetails.email.value );
     }
 
 
-    ngOnInit():any {
+    ngOnInit () : any {
         this
             .formModelService
-            .getContactDetails()
-            .subscribe(
+            .getContactDetails ()
+            .subscribe (
                 data => {
 
-                    this.formModelService.present(
-                        {action: 'setContactDetails', contactDetails: data}
+                    this.formModelService.present (
+                        { action : 'setContactDetails' , contactDetails : data }
                     );
                     //this.formControl[0].control.updateValue('0402095291');
                     //this.formControl[1].control.updateValue('smilad@gmail.com');
-                    this.formControl[0].control.updateValue(this.formModelService.getModel().contactDetails.phone);
-                    this.formControl[1].control.updateValue(this.formModelService.getModel().contactDetails.email);
-                },
+                    this.formControl[ 0 ].control.updateValue ( this.formModelService.getModel ().contactDetails.phone );
+                    this.formControl[ 1 ].control.updateValue ( this.formModelService.getModel ().contactDetails.email );
+                } ,
                 error => {
-                    this.formControl[0].control.updateValue('0402095291');
-                    this.formControl[1].control.updateValue('smilad@gmail.com');
-                    this.formModelService.present(
-                        {action: 'error', errors: ['Failed to decode the context']}
+                    this.formControl[ 0 ].control.updateValue ( '0402095291' );
+                    this.formControl[ 1 ].control.updateValue ( 'smilad@gmail.com' );
+                    this.formModelService.present (
+                        { action : 'error' , errors : [ 'Failed to decode the context' ] }
                     );
-                });
+                } );
         return undefined;
     }
 }
