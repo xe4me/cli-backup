@@ -13,7 +13,7 @@ import { I18nSelectPipe } from 'angular2/common';
         <div class='bolr-intro-main'>
             <div class='bolr-intro-main__title practice-title mb3'>
                 <span class='mr'>{{formModelService.getModel().context.practiceName}}</span>
-                <span class='mr'>Payee ID: {{formModelService.getModel().context.payeeId}}</span>
+                <span class='mr'>Payee ID: {{formModelService.getModel().context.payeeID}}</span>
                 <span>Practice principal: {{formModelService.getModel().context.practicePrincipal_firstName + ' ' + formModelService.getModel().context.practicePrincipal_lastName }}</span>
             </div>
             <p  class='bolr-intro-main__body mb3'>
