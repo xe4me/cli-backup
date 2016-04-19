@@ -4,7 +4,7 @@ import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
 import { AmpFitWidthToText } from '../../directives/amp-fit-width-to-text.directive';
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
-@Component (
+@Component(
     {
         selector      : 'my-md-input' ,
         template      : `
@@ -27,9 +27,19 @@ import { AmpFitWidthToText } from '../../directives/amp-fit-width-to-text.direct
         <ng-content></ng-content>
   </md-input-container>
   ` ,
-        styles        : [ require ( './my-md-input.scss' ).toString () ] ,
-        inputs        : [ 'id' , 'isInSummaryState' , 'label' , 'parentControl' , 'placeholder' , 'visibility' , 'valMaxLength' , 'valPattern' , 'isRequired' ] ,
-        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ,AmpFitWidthToText] ,
+        styles        : [ require( './my-md-input.scss' ).toString() ] ,
+        inputs        : [
+            'id' ,
+            'isInSummaryState' ,
+            'label' ,
+            'parentControl' ,
+            'placeholder' ,
+            'visibility' ,
+            'valMaxLength' ,
+            'valPattern' ,
+            'isRequired'
+        ] ,
+        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated
     } )
 export class MdInputComponent {
@@ -41,11 +51,11 @@ export class MdInputComponent {
     private visibility : Action;
     private model : any;
 
-    set id ( id : string ) {
+    set id( id : string ) {
         this._id = id;
     }
 
-    set isRequired ( val : string ) {
+    set isRequired( val : string ) {
         if ( val === 'true' ) {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) :
             // Function API
