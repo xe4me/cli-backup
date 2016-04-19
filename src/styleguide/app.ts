@@ -20,6 +20,10 @@ import {VersionService} from "./services/version";
 import {SidenavService} from "ng2-material/components/sidenav/sidenav_service";
 import {Media} from "ng2-material/core/util/media";
 
+import { ScrollService,FormModelService } from "amp-ddc-ui-core/ui-core";
+import { BrowserDomAdapter } from "angular2/src/platform/browser/browser_adapter";
+
+
 /**
  * Describe an example that can be dynamically loaded.
  */
@@ -106,6 +110,7 @@ export class DemosApp implements OnDestroy {
 let appProviders = [
   HTTP_PROVIDERS, ROUTER_PROVIDERS, MATERIAL_PROVIDERS,
   ComponentsService, NavigationService, VersionService,
+  FormModelService,ScrollService,BrowserDomAdapter,Window,
   bind(LocationStrategy).toClass(HashLocationStrategy)
 ];
 

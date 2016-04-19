@@ -2,8 +2,9 @@ import { Component , Directive , Input , OnInit , ViewEncapsulation } from 'angu
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
+import { AmpFitWidthToText } from '../../directives/amp-fit-width-to-text.directive';
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
-@Component (
+@Component(
     {
         selector      : 'my-md-input' ,
         template      : `
@@ -12,8 +13,9 @@ import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
         [ngClass]="{'md-input-has-placeholder' : placeholder}" 
         flex-gt-sm="" >
         <label *ngIf="label && !parentControl.value" [attr.for]="_id">{{label}}</label>
+        <span class="summary-text" *ngIf="isInSummaryState">{{ parentControl.value }}</span>
         <input
-            [class.summary-state]='isInSummaryState'
+            [class.invisible]='isInSummaryState'
             [disabled]='isInSummaryState'
             class="md-input"
             [mdPattern]="valPattern"
@@ -25,9 +27,19 @@ import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
         <ng-content></ng-content>
   </md-input-container>
   ` ,
-        styles        : [ require ( './my-md-input.scss' ).toString () ] ,
-        inputs        : [ 'id' , 'isInSummaryState' , 'label' , 'parentControl' , 'placeholder' , 'visibility' , 'valMaxLength' , 'valPattern' , 'isRequired' ] ,
-        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
+        styles        : [ require( './my-md-input.scss' ).toString() ] ,
+        inputs        : [
+            'id' ,
+            'isInSummaryState' ,
+            'label' ,
+            'parentControl' ,
+            'placeholder' ,
+            'visibility' ,
+            'valMaxLength' ,
+            'valPattern' ,
+            'isRequired'
+        ] ,
+        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated
     } )
 export class MdInputComponent {
@@ -39,11 +51,11 @@ export class MdInputComponent {
     private visibility : Action;
     private model : any;
 
-    set id ( id : string ) {
+    set id( id : string ) {
         this._id = id;
     }
 
-    set isRequired ( val : string ) {
+    set isRequired( val : string ) {
         if ( val === 'true' ) {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) :
             // Function API
