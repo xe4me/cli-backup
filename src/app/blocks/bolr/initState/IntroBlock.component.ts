@@ -3,6 +3,7 @@ import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , N
 import { ThemeIDDirective } from '../../../directives/themeId.directive';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import { I18nSelectPipe } from 'angular2/common';
 
 @Component ( {
     selector : 'bolr-intro-block' ,
@@ -17,22 +18,31 @@ import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.se
             </div>
             <p  class='bolr-intro-main__body mb3'>
                 Hi {{formModelService.getModel().context.practicePrincipal_firstName}},<br/>
-                You're about to request to exercise your buyer of last resort facility.
+                You're about to request access to the {{ formModelService.getModel().context.licensee | i18nSelect: licenseeFormName}} facility.
             </p>
-            <p class='bolr-intro-main__notes mb3'>We just need a few details from you to complete this request, it will only take 3 minutes, let's get started.</p>
+            <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
             <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
             </button>
-        </div>    
+        </div>
     </div>
   ` ,
     // encapsulation: ViewEncapsulation.Emulated
     styles : [ require ( './IntroBlock.component.scss' ).toString () ] ,
-    directives : [ ThemeIDDirective ]
+    directives : [ ThemeIDDirective ],
+    pipes : [ I18nSelectPipe ]
 } )
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
 
+    licenseeFormName: any = {
+        LIC_AMPFP    : 'Buyer of last resort',
+        LIC_HILLROSS : 'Licensee / Enhanced buyback',
+        LIC_CHARTER  : 'Buy out option',
+        null         : 'Buyer of last resort'
+    };
+
+    // TODO: Update the title of the form based on the licensee @ViewChild
 
     constructor ( private el : ElementRef , private formModelService : FormModelService , private scrollService : ScrollService ) {
         super ();
