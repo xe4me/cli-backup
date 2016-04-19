@@ -3,9 +3,9 @@ import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { InputWithLabelGroupComponent } from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
-import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
-@Component (
+@Component(
     {
         selector   : 'contact-details-block' ,
         template   : `
@@ -65,7 +65,7 @@ If not, simply update them below.</h3>
     </div>
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
-        styles     : [ require ( './ContactDetailsBlock.component.scss' ).toString () ]
+        styles     : [ require( './ContactDetailsBlock.component.scss' ).toString() ]
     } )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
@@ -73,8 +73,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         phone : {
             id             : 'phoneId' ,
             label          : 'Default Phone Label' ,
-            contxtualLabel : 'Default Phone Contextual Label' ,
-            regex          : '^([0-9])*$' ,
+            contxtualLabel : 'Contact number' ,
+            regex          : '^([0-9 ])*$' ,
             value          : '00000000'
         } ,
         email : {
@@ -88,17 +88,17 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
 
-    public change () {
+    public change() {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
     }
 
-    public ok () {
+    public ok() {
         this.hasClickedOnOkButton = true;
-        console.log ( 'controller' , this.formModel.controls[ this.formControlGroupName ] );
+        console.log( 'controller' , this.formModel.controls[ this.formControlGroupName ] );
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
-            this.scrollService.scrollMeOut ( this.el );
+            this.scrollService.scrollMeOut( this.el );
         }
         // this.isInSummaryState = true;
         // // SAM - Action present data to Model
@@ -108,45 +108,42 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         // });
     }
 
-    constructor ( private el : ElementRef , private formModelService : FormModelService , private scrollService : ScrollService ) {
-        super ();
-        scrollService.$scrolled.subscribe ( message => scrollService.amIVisible ( el , ContactDetailsBlockComponent.CLASS_NAME ) );
-        this.formControl          = [
-            new NamedControl ( this.contactDetails.phone.id , new Control () ) ,
-            new NamedControl ( this.contactDetails.email.id , new Control () )
-        ];
+    constructor( private el : ElementRef , private formModelService : FormModelService , private scrollService : ScrollService ) {
+        super();
+        scrollService.$scrolled.subscribe( message => scrollService.amIVisible( el , ContactDetailsBlockComponent.CLASS_NAME ) );
+        this.formControl          = [ new NamedControl( this.contactDetails.phone.id , new Control() ) , new NamedControl( this.contactDetails.email.id , new Control() ) ];
         this.formControlGroupName = 'contactDetails';
     }
 
-    public isCurrentBlockActive () {
-        return this.formModelService.getFlags ().introIsDone;
+    public isCurrentBlockActive() {
+        return this.formModelService.getFlags().introIsDone;
     }
 
-    public preBindControls ( _formBlockDef ) {
+    public preBindControls( _formBlockDef ) {
         this.formControl[ 0 ].name = this.contactDetails.phone.id;
         this.formControl[ 1 ].name = this.contactDetails.email.id;
-        this.formControl[ 0 ].control.updateValue ( this.contactDetails.phone.value );
-        this.formControl[ 1 ].control.updateValue ( this.contactDetails.email.value );
+        this.formControl[ 0 ].control.updateValue( this.contactDetails.phone.value );
+        this.formControl[ 1 ].control.updateValue( this.contactDetails.email.value );
     }
 
-    ngOnInit () : any {
+    ngOnInit() : any {
         this
             .formModelService
-            .getContactDetails ()
-            .subscribe (
+            .getContactDetails()
+            .subscribe(
                 data => {
-                    this.formModelService.present (
+                    this.formModelService.present(
                         { action : 'setContactDetails' , contactDetails : data }
                     );
                     //this.formControl[0].control.updateValue('0402095291');
                     //this.formControl[1].control.updateValue('smilad@gmail.com');
-                    this.formControl[ 0 ].control.updateValue ( this.formModelService.getModel ().contactDetails.phone );
-                    this.formControl[ 1 ].control.updateValue ( this.formModelService.getModel ().contactDetails.email );
+                    this.formControl[ 0 ].control.updateValue( this.formModelService.getModel().contactDetails.phone );
+                    this.formControl[ 1 ].control.updateValue( this.formModelService.getModel().contactDetails.email );
                 } ,
                 error => {
-                    this.formControl[ 0 ].control.updateValue ( '0402095291' );
-                    this.formControl[ 1 ].control.updateValue ( 'smilad@gmail.com' );
-                    this.formModelService.present (
+                    this.formControl[ 0 ].control.updateValue( '0402095291' );
+                    this.formControl[ 1 ].control.updateValue( 'smilad@gmail.com' );
+                    this.formModelService.present(
                         { action : 'error' , errors : [ 'Failed to decode the context' ] }
                     );
                 } );

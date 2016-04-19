@@ -3,6 +3,10 @@
 // @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/functions/_decimal';
 // @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family';
 
+:host{
+  display: inline-block;
+
+}
 $summary-state-color: $amp-colour-sky-blue;
 $summary-state-font-family: $amp-font-open-sans-regular;
 $summary-state-font-weight: 300;
