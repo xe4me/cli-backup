@@ -18,6 +18,16 @@ $summary-state-font-weight: 300;
   line-height: 43px;
   font-size: $ddc-input-field-font-size;
 }
+.summary-text{
+  @include amp-family($summary-state-font-family);
+  @extend %#{$namespace}amp-colour-sky-blue;
+  font-weight: $summary-state-font-weight;
+  font-size: $ddc-input-field-font-size;
+  margin-left: 2px;
+}
+.invisible{
+  display: none !important;
+}
 
 $md-font-url: '/node_modules/ng2-material/dist/';
 @import '~ng2-material/dist/font.scss';

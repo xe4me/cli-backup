@@ -40,7 +40,7 @@ If not, simply update them below.</h3>
         <div *ngIf='hasClickedOnOkButton && !formModel.controls.contactDetails.valid' class='errors mt'>
             <div *ngIf='!formControl[0].control.valid'>
                 <div>
-                    <span class='icon icon--close icon-errors'></span>Phone should no be empty
+                    <span class='icon icon--close icon-errors'></span>Please enter work phone number.
                 </div>
                 <div>
                     <span class='icon icon--close icon-errors'></span>Please enter a valid phone
@@ -48,7 +48,7 @@ If not, simply update them below.</h3>
             </div>
             <div *ngIf='!formControl[1].control.valid'>
                 <div>
-                    <span class='icon icon--close icon-errors'></span>Email should no be empty
+                    <span class='icon icon--close icon-errors'></span>Please enter email address.
                 </div>
                 <div>
                     <span class='icon icon--close icon-errors'></span>Please enter a valid email
@@ -80,7 +80,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         email : {
             id             : 'emailId' ,
             label          : 'Default Email Label' ,
-            contxtualLabel : 'Default Email Contextual Label' ,
+            contxtualLabel : 'Email' ,
             regex          : '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)' ,
             value          : 'smiladhi@gmail.com'
         }
