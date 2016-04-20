@@ -1,0 +1,49 @@
+@import '../../../style/require';
+
+$amp-switch-width: 210px;
+$switch-background-color: $ddc-corporate-main-color;
+$amp-switch-font-family: $amp-font-open-sans-semibold;
+$amp-switch-font-color: white;
+$amp-switch-height: $ddc-buttons-height;
+$amp-switch-border-width: 2px;
+$amp-switch-font-size: $font-size-small;
+:host {
+  display: inline-block;
+}
+
+.amp-switch {
+  overflow: hidden;
+  input {
+    display: none;
+    &:checked {
+      & + label {
+        background-color: $ddc-corporate-main-color;
+        color: white;
+      }
+    }
+  }
+
+  label {
+    height: $amp-switch-height - (2*$amp-switch-border-width);
+    line-height: $amp-switch-height - (2*$amp-switch-border-width);
+    box-sizing: content-box;
+    float: left;
+    display: inline-block;
+    width: $amp-switch-width - (2*$amp-switch-border-width);
+    @include amp-family($amp-switch-font-family);
+    background-color: white;
+    color: $ddc-corporate-main-color;
+    font-size: $amp-switch-font-size;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: none;
+    @include transition(all 0.2s ease-in-out);
+    border: solid $ddc-corporate-main-color;;
+    border-width: $amp-switch-border-width;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
+

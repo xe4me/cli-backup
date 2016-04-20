@@ -1,5 +1,10 @@
 @import '../../../../../style/require';
-:host{
+
+:host {
   width: 100%;
   display: block;
+}
+
+amp-switch {
+  margin-top: 59px;
 }

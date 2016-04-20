@@ -1,0 +1,13 @@
+<form #formModel="ngForm" class="nl-form">
+    <amp-switch
+            [yesId]='switch.yes.id'
+            [radioName]='switch.radioName'
+            [yesLabel]='switch.yes.label'
+            [noId]='switch.no.id'
+            [noLabel]='switch.no.label'
+            [parentControl]="control">
+    </amp-switch>
+
+    <br><br>
+    Dynamic Valud : {{ control.value}}
+</form>

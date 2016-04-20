@@ -1,10 +1,10 @@
 @@ set
-    task    MyMdInput
-    url     http://localhost:3001/#/components/AmpLinearProgressBarComponent
+    task    AmpSwitch
+    url     http://localhost:3001/#/components/AmpSwitchComponent
 
 @@ parameterized
     | subtask    | spec                                                      |
-    | All        | src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.test.spec    |
+    | All        | src/styleguide/components/amp-switch/amp-switch.test.spec    |
 
 @@ parameterized
     | browser    |
@@ -18,5 +18,5 @@
 @@ groups ddc, my-md-input
 ${task}: ${subtask} - ${breakpoint}
     selenium ${browser} ${url} ${size}
-        wait 5s
+        wait 1s
         check ${spec} --include "${tags}"
