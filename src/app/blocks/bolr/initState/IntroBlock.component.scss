@@ -37,8 +37,9 @@ $amp-ddc-public-asset: '../../../../../public/';
   background-position: left bottom;
   background-attachment: scroll;
   background-repeat: no-repeat;
+  // Note: We were going to dynamically resize it for them but no specific requirement/dimension provided.
   // background-size: 150px, 150px 80px;
-  background-size: contain;
+  // background-size: contain;
 
   &.LIC_AMPFP {
     background-image: url($amp-ddc-public-asset + 'images/logo/AMPFP_logo.jpg');
