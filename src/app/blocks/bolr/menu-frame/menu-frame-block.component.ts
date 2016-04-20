@@ -3,10 +3,9 @@ import { FormBlock } from '../../formBlock';
 import { StickyProgressHeaderBlockComponent } from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from 'angular2/src/facade/async';
-
-@Component ( {
-    selector : 'menu-frame' ,
-    template : `
+@Component( {
+                selector   : 'menu-frame' ,
+                template   : `
         <div class='frame'>
              <sticky-progress-header-block
                     class='sticky-progressbar'
@@ -19,9 +18,12 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     <div class='menu--left'>
                         <div class='menu--left--title'>You request details</div>
                         <div class='menu--left--hr hr--solid'></div>
-                        <div class='menu--left--save'><span class='icon icon--time'></span> Save for later</div>
                         <div class='menu--left--download'><span class='icon icon--time'></span>  Download a copy</div>
-                        <div>{{formModelService.currentComponent}}</div>
+                        <!--
+                        NOTE : 
+                        Make sure to remove bellow in prod mode !!!!!!!!
+                        -->
+                        <div>{{formModelService.currentComponent.replace('BlockComponent','')}}</div>
                     </div>
                     <div class='menu--right bolr-right-padding utils__position--rel'>
                         <!-- Dynamic form blocks driven from the Form Definition -->
@@ -32,39 +34,34 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             </div>
         </div>
     ` ,
-    styles : [ require ( './menu-frame-block.component.scss' ).toString () ] ,
-    directives : [ StickyProgressHeaderBlockComponent ]
-} )
-
+                styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
+                directives : [ StickyProgressHeaderBlockComponent ]
+            } )
 export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked {
-
-    static CLASS_NAME = 'MenuFrameBlockComponent';
-    private calculatedProgress = 0;
+    static CLASS_NAME                       = 'MenuFrameBlockComponent';
+    private calculatedProgress              = 0;
     private formControlLength : number;
     private subscribedToFormModel : boolean = false;
-    private stickyAnimatedIntoView = false;
+    private stickyAnimatedIntoView          = false;
 
     ngAfterViewChecked () : any {
         if ( ! this.subscribedToFormModel ) {
-            this.calculateProgress ();
+            this.calculateProgress();
         }
         if ( ! this.stickyAnimatedIntoView ) {
-            this.introHasPassed ();
+            this.introHasPassed();
         }
         return undefined;
     }
 
     preBindControls ( _formBlockDef : any ) : void {
-
     }
 
     private introHasPassed () {
-
-        if ( this.formModelService.getFlags ().introIsDone ) {
+        if ( this.formModelService.getFlags().introIsDone ) {
             this.stickyAnimatedIntoView = true;
-            var that = this;
-
-            TimerWrapper.setTimeout ( function () {
+            var that                    = this;
+            TimerWrapper.setTimeout( function() {
                 that._el.nativeElement.children[ 0 ].className += ' frame--sticky';
             } , 1200 );
         }
@@ -73,28 +70,25 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
     private calculateProgress () {
         if ( this.formModel ) {
             this.subscribedToFormModel = true;
-            var that = this;
-            this.formModel.valueChanges.subscribe ( function ( changes ) {
+            var that                   = this;
+            this.formModel.valueChanges.subscribe( function( changes ) {
                 if ( that.formModel.controls ) {
-                    let valids : number = 0;
-                    that.formControlLength = Object.keys ( that.formModel.controls ).length;
-                    Object.keys ( that.formModel.controls ).map ( function ( value , index ) {
+                    let valids : number    = 0;
+                    that.formControlLength = Object.keys( that.formModel.controls ).length;
+                    Object.keys( that.formModel.controls ).map( function( value , index ) {
                         if ( that.formModel.controls[ value ] ) {
                             if ( that.formModel.controls[ value ].valid ) {
-
                                 valids ++;
                             }
                         }
                     } );
-                    that.calculatedProgress = Math.floor ( (100 * valids / that.formControlLength) );
+                    that.calculatedProgress = Math.floor( (100 * valids / that.formControlLength) );
                 }
             } );
         }
     }
 
     constructor ( private _el : ElementRef , private formModelService : FormModelService ) {
-        super ();
+        super();
     }
-
-
 }
