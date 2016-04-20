@@ -1,6 +1,6 @@
 import { Component } from 'angular2/core';
 import { Control } from 'angular2/src/common/forms/model';
-import { FORM_DIRECTIVES } from "angular2/src/common/forms/directives";
+import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
 import { Directive , Renderer , ElementRef , Self , forwardRef , Provider } from 'angular2/core';
 import { NG_VALUE_ACCESSOR , ControlValueAccessor } from 'angular2/common';
 import { CONST_EXPR } from 'angular2/src/facade/lang';
@@ -22,7 +22,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
     }
 
     writeValue ( value : any ) : void {
-        this._renderer.setElementProperty( this._elementRef , 'checked' , value == this._elementRef.nativeElement.value );
+        this._renderer.setElementProperty( this._elementRef , 'checked' , value === this._elementRef.nativeElement.value );
     }
 
     registerOnChange ( fn : ( _ : any ) => {} ) : void {
@@ -45,7 +45,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                 [attr.id]='yesId'
                 [attr.name]='radioName'
                 [ngFormControl]='parentControl'
-                value="true"
+                value='true'
                 />
           <label [attr.for]='yesId'>{{ yesLabel }}</label>
           <input
@@ -56,7 +56,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                 [attr.id]='noId'
                 [attr.name]='radioName'
                 [ngFormControl]='parentControl'
-                value="false"
+                value='false'
                 />
           <label [attr.for]='noId'>{{ noLabel }}</label>
     </div>

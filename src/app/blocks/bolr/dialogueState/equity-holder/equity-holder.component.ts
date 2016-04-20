@@ -1,6 +1,5 @@
 import { FormBlock , NamedControl } from '../../../formBlock';
-import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
-import { ThemeIDDirective } from '../../../../directives/themeId.directive';
+import { Component , ElementRef} from 'angular2/core';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
@@ -26,10 +25,10 @@ import { AmpSwitchComponent } from '../../../../components/amp-switch/amp-switch
                             </amp-switch>
                         </div>
                        
-                        <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok'>
+                        <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok btn-ok-margin-top'>
                             OK
                         </button>
-                            <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change'>
+                            <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
                             Change
                         </button>
                         <div class='hr-block-divider'></div>

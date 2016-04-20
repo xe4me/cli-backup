@@ -14,14 +14,13 @@ $btn-change-background-color: transparent;
 %#{$namespace}btn-ok {
   @extend %#{$namespace}font-size-small;
   @extend %#{$namespace}btn--kilo;
-  margin-top: 34.5px;
-  height:$ddc-buttons-height;
+  height: $ddc-buttons-height;
 }
+
 
 .#{$namespace}btn-change,
 %#{$namespace}btn-change {
   @extend %#{$namespace}font-size-small;
   @extend %#{$namespace}btn--hotel;
-  height:$ddc-buttons-height;
-  margin-top: 34.5px;
+  height: $ddc-buttons-height;
 }
