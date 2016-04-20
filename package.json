@@ -33,6 +33,7 @@
     "e2e:live": "protractor --elementExplorer",
     "test": "karma start",
     "test:ui": "runGalen",
+    "test:ui-unix": "galen test ./src/styleguide/ --htmlreport report --recursive",
     "ci": "npm run e2e && npm run test",
     "docs": "typedoc --options typedoc.json --exclude **/*.spec.ts ./src/",
     "start": "npm run server",
