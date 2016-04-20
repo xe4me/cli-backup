@@ -1,11 +1,11 @@
-import { FormBlock , NamedControl } from '../../formBlock';
+import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
-import { ThemeIDDirective } from '../../../directives/themeId.directive';
+import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { Control } from 'angular2/common';
-import { MdInputComponent } from '../../../components/my-md-input/my-md-input.component.ts';
+import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
 import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
-import { AmpOverlayComponent } from '../../../components/amp-overlay/amp-overlay.component';
+import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 @Component( {
                 selector : 'partnership-manager-block' , template : `
     <div class='partnership-manager-block' [class.hidden]='!isCurrentBlockActive()'>
