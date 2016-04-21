@@ -1,7 +1,7 @@
 import { Control , ControlGroup } from 'angular2/common';
 import { BlockLayout , FormDefinition , BlockID , Action } from 'amp-ddc-ui-core/ui-core';
 export class NamedControl {
-    constructor ( public name : string , public control : Control ) {
+    constructor ( public name : string , public control : any ) {
     }
 }
 export abstract class FormBlock {

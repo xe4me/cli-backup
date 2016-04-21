@@ -32,7 +32,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
             <!-- Last name -->
             <my-md-input
                 [ngClass]="{'1/3' : !isInSummaryState}"
-                class='pl-- 1/3'
+                class='pl--'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.lastName.id'
                 [label]='partnershipMgr.lastName.label'
@@ -55,7 +55,8 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
             </div>
         </div>
 
-        <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok btn-ok-margin-top'>
+        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary 
+        btn-ok btn-ok-margin-top'>
             OK
         </button>
         <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
@@ -107,6 +108,10 @@ export class PartnershipManagerBlockComponent extends FormBlock {
         if ( this.formModel && this.formModel.controls[ 'contactDetails' ] ) {
             return this.formModel.controls[ 'contactDetails' ].valid && this.formModelService.getFlags().introIsDone;
         }
+    }
+
+    private get canGoNext () {
+        return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
     constructor ( private formModelService : FormModelService ,

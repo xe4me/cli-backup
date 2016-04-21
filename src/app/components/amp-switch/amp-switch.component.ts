@@ -1,7 +1,14 @@
-import { Component } from 'angular2/core';
 import { Control } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
-import { Directive , Renderer , ElementRef , Self , forwardRef , Provider } from 'angular2/core';
+import {
+    Component ,
+    EventEmitter ,
+    Directive ,
+    Renderer ,
+    ElementRef ,
+    forwardRef ,
+    Provider
+} from 'angular2/core';
 import { NG_VALUE_ACCESSOR , ControlValueAccessor } from 'angular2/common';
 import { CONST_EXPR } from 'angular2/src/facade/lang';
 const RADIO_VALUE_ACCESSOR = CONST_EXPR( new Provider(
@@ -18,7 +25,6 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
     };
 
     constructor ( private _renderer : Renderer , private _elementRef : ElementRef ) {
-        console.log( 'this._elementRef.nativeElement.value' , this._elementRef.nativeElement.value );
     }
 
     writeValue ( value : any ) : void {
@@ -36,35 +42,38 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
 @Component( {
                 selector   : 'amp-switch' ,
                 template   : `
-    <div class='amp-switch'>
-          <input
-                [disabled]='disabled'
-                [required]='required'
-                [attr.data-automation-id]='"radio_" + yesId'
-                type='radio'
-                [attr.id]='yesId'
-                [attr.name]='radioName'
-                [ngFormControl]='parentControl'
-                value='true'
-                />
-          <label [attr.for]='yesId'>{{ yesLabel }}</label>
-          <input
-                [disabled]='disabled'
-                [required]='required'
-                [attr.data-automation-id]='"radio_" + noId'
-                type='radio'
-                [attr.id]='noId'
-                [attr.name]='radioName'
-                [ngFormControl]='parentControl'
-                value='false'
-                />
-          <label [attr.for]='noId'>{{ noLabel }}</label>
-    </div>
+                <div class='amp-switch'>
+                      <input
+                            #input1
+                            [disabled]='disabled'
+                            [required]='required'
+                            [attr.data-automation-id]='"radio_" + yesId'
+                            type='radio'
+                            [attr.id]='yesId'
+                            [attr.name]='name'
+                            [ngFormControl]='parentControl'
+                            value='true'
+                            />
+                      <label (click)="clicked.emit(input1.value)" [attr.for]='yesId'>{{ yesLabel }}
+                      </label>
+                      <input
+                            #input2
+                            [disabled]='disabled'
+                            [required]='required'
+                            [attr.data-automation-id]='"radio_" + noId'
+                            type='radio'
+                            [attr.id]='noId'
+                            [attr.name]='name'
+                            [ngFormControl]='parentControl'
+                            value='false'
+                            />
+                      <label (click)="clicked.emit(input2.value)" [attr.for]='noId'>{{ noLabel }}</label>
+                </div>
                 ` ,
                 inputs     : [
                     'required' ,
                     'disabled' ,
-                    'radioName' ,
+                    'name' ,
                     'yesLabel' ,
                     'yesId' ,
                     'noLabel' ,
@@ -72,15 +81,17 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                     'parentControl'
                 ] ,
                 styles     : [ require( './amp-switch.scss' ).toString() ] ,
-                directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ]
+                directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
+                outputs    : [ 'clicked' ]
             } )
 export class AmpSwitchComponent {
     private yesId : string;
     private yesLabel : string;
-    private radioName : string;
+    private name : string;
     private parentControl : Control;
     private noId : string;
     private noLabel : string;
+    private clicked = new EventEmitter();
 
     constructor () {
     }
