@@ -35,7 +35,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     private _id: string;
     private label: string;
     private parentControl: Control;
-    private placeholder: string;
+    private placeholder: string = '';
     private visibility: Action;
     private model: any;
 
@@ -56,7 +56,11 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     ngAfterViewInit () {
       // Binding Google Places Address api to google_places_ac input field
       var input : any = document.getElementById('PracticeAddress');
-      var autocomplete = new google.maps.places.Autocomplete(input, {});
+      var options = {
+        //   types: [],
+          componentRestrictions: {country: 'au'}
+      };
+      var autocomplete = new google.maps.places.Autocomplete(input, options);
 
       google.maps.event.addListener(autocomplete, 'place_changed', () => {
         this.zone.run(() => {
