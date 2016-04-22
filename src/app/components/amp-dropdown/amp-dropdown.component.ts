@@ -1,9 +1,9 @@
 import { Component , EventEmitter , Output } from 'angular2/core';
-import { Control } from "angular2/src/common/forms/model";
+import { Control } from 'angular2/src/common/forms/model';
 @Component( {
                 selector : 'amp-dropdown' ,
                 template : `
-                   <select [ngFormControl]="parentControl" #sel (change)='select.emit(sel.value)' name='holdersCount' 
+                   <select [ngFormControl]='parentControl' #sel (change)='select.emit(sel.value)' name='holdersCount' 
                    id='holdersCount'>
                         <option selected value=''></option>
                         <option value='1'>1</option>

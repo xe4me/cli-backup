@@ -89,7 +89,7 @@ import { Validators } from "angular2/src/common/forms/validators";
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
                 inputs     : [ 'switch' ] ,
-                styles     : [ require( './equity-holder.component.scss' ).toString() ] ,
+                styles     : [ require( './EquityHolderBlock.component.scss' ).toString() ] ,
                 directives : [
                     MdInputComponent ,
                     AmpOverlayComponent ,

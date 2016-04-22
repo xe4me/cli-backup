@@ -145,14 +145,10 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
                     this.formModelService.present(
                         { action : 'setContactDetails' , contactDetails : data }
                     );
-                    //this.formControl[0].control.updateValue('0402095291');
-                    //this.formControl[1].control.updateValue('smilad@gmail.com');
                     this.formControl[ 0 ].control.updateValue( this.formModelService.getModel().contactDetails.phone );
                     this.formControl[ 1 ].control.updateValue( this.formModelService.getModel().contactDetails.email );
                 } ,
                 error => {
-                    this.formControl[ 0 ].control.updateValue( '0402095291' );
-                    this.formControl[ 1 ].control.updateValue( 'smilad@gmail.com' );
                     this.formModelService.present(
                         { action : 'error' , errors : [ 'Failed to decode the context' ] }
                     );
