@@ -32,7 +32,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
             <!-- Last name -->
             <my-md-input
                 [ngClass]="{'1/3' : !isInSummaryState}"
-                class='pl-- 1/3'
+                class='pl--'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.lastName.id'
                 [label]='partnershipMgr.lastName.label'
@@ -55,10 +55,11 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
             </div>
         </div>
 
-        <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok'>
+        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary 
+        btn-ok btn-ok-margin-top'>
             OK
         </button>
-            <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change'>
+        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
         </button>
         <div class='hr-block-divider'></div>
@@ -81,12 +82,12 @@ export class PartnershipManagerBlockComponent extends FormBlock {
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
 
-    public change() {
+    public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
     }
 
-    public ok() {
+    public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
@@ -98,20 +99,24 @@ export class PartnershipManagerBlockComponent extends FormBlock {
         }
     }
 
-    public preBindControls( _formBlockDef ) {
+    public preBindControls ( _formBlockDef ) {
         this.formControl[ 0 ].name = this.partnershipMgr.firstName.id;
         this.formControl[ 1 ].name = this.partnershipMgr.lastName.id;
     }
 
-    private isCurrentBlockActive() {
+    private isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'contactDetails' ] ) {
             return this.formModel.controls[ 'contactDetails' ].valid && this.formModelService.getFlags().introIsDone;
         }
     }
 
-    constructor( private formModelService : FormModelService ,
-                 private scrollService : ScrollService ,
-                 private el : ElementRef ) {
+    private get canGoNext () {
+        return this.formModel.controls[ this.formControlGroupName ].valid;
+    }
+
+    constructor ( private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef ) {
         super();
         this.formControl = [
             new NamedControl( this.partnershipMgr.firstName.id , new Control() ) ,

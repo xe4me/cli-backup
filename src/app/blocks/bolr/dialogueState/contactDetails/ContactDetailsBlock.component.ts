@@ -55,10 +55,11 @@ If not, simply update them below.</h3>
                 </div>
             </div>
         </div>
-        <button *ngIf='!isInSummaryState' (click)='ok()' class='btn btn--secondary btn-ok'>
+        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn 
+        btn--secondary btn-ok btn-ok-margin-top'>
             OK
         </button>
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change'>
+        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
         </button>
         <div class='hr-block-divider'></div>
@@ -88,14 +89,13 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
 
-    public change() {
+    public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
     }
 
-    public ok() {
+    public ok () {
         this.hasClickedOnOkButton = true;
-        console.log( 'controller' , this.formModel.controls[ this.formControlGroupName ] );
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut( this.el );
@@ -108,25 +108,35 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         // });
     }
 
-    constructor( private el : ElementRef , private formModelService : FormModelService , private scrollService : ScrollService ) {
+    private get canGoNext () {
+        return this.formModel.controls[ this.formControlGroupName ].valid;
+    }
+
+    constructor ( private el : ElementRef ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ) {
         super();
-        scrollService.$scrolled.subscribe( message => scrollService.amIVisible( el , ContactDetailsBlockComponent.CLASS_NAME ) );
-        this.formControl          = [ new NamedControl( this.contactDetails.phone.id , new Control() ) , new NamedControl( this.contactDetails.email.id , new Control() ) ];
+        scrollService.$scrolled.subscribe(
+            message => scrollService.amIVisible( el , ContactDetailsBlockComponent.CLASS_NAME ) );
+        this.formControl          = [
+            new NamedControl( this.contactDetails.phone.id , new Control() ) ,
+            new NamedControl( this.contactDetails.email.id , new Control() )
+        ];
         this.formControlGroupName = 'contactDetails';
     }
 
-    public isCurrentBlockActive() {
+    public isCurrentBlockActive () {
         return this.formModelService.getFlags().introIsDone;
     }
 
-    public preBindControls( _formBlockDef ) {
+    public preBindControls ( _formBlockDef ) {
         this.formControl[ 0 ].name = this.contactDetails.phone.id;
         this.formControl[ 1 ].name = this.contactDetails.email.id;
         this.formControl[ 0 ].control.updateValue( this.contactDetails.phone.value );
         this.formControl[ 1 ].control.updateValue( this.contactDetails.email.value );
     }
 
-    ngOnInit() : any {
+    ngOnInit () : any {
         this
             .formModelService
             .getContactDetails()
@@ -135,14 +145,10 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
                     this.formModelService.present(
                         { action : 'setContactDetails' , contactDetails : data }
                     );
-                    //this.formControl[0].control.updateValue('0402095291');
-                    //this.formControl[1].control.updateValue('smilad@gmail.com');
                     this.formControl[ 0 ].control.updateValue( this.formModelService.getModel().contactDetails.phone );
                     this.formControl[ 1 ].control.updateValue( this.formModelService.getModel().contactDetails.email );
                 } ,
                 error => {
-                    this.formControl[ 0 ].control.updateValue( '0402095291' );
-                    this.formControl[ 1 ].control.updateValue( 'smilad@gmail.com' );
                     this.formModelService.present(
                         { action : 'error' , errors : [ 'Failed to decode the context' ] }
                     );

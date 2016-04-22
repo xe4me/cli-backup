@@ -6,7 +6,7 @@ $btn-ok-border-color: $amp-colour-primary;
 $btn-ok-hover-color: $amp-colour-white;
 $btn-ok-hover-background-color: $amp-colour-primary-light;
 $btn-ok-hover-border-color: $amp-colour-white;
-
+$btn-ok-disabled-background-color: #cbd2dc;
 $btn-change-border-color: $amp-colour-primary;
 $btn-change-background-color: transparent;
 
@@ -14,12 +14,18 @@ $btn-change-background-color: transparent;
 %#{$namespace}btn-ok {
   @extend %#{$namespace}font-size-small;
   @extend %#{$namespace}btn--kilo;
-  margin-top: 34.5px;
+  height: $ddc-buttons-height;
+  &[disabled] {
+    background-color: $btn-ok-disabled-background-color !important;
+    border-color: #FFFFFF;
+    cursor: default;
+  }
 }
 
 .#{$namespace}btn-change,
 %#{$namespace}btn-change {
   @extend %#{$namespace}font-size-small;
   @extend %#{$namespace}btn--hotel;
-  margin-top: 34.5px;
+  height: $ddc-buttons-height;
 }
+

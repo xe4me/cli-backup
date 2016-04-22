@@ -100,6 +100,26 @@
     "readme": "<p>Custom Block for Contact Details.</p>\n"
   },
   {
+    "name": "AmpSwitchComponent",
+    "sources": [
+      "src/app/components/amp-switch/amp-switch.component.ts"
+    ],
+    "id": "AmpSwitchComponent",
+    "examples": [
+      {
+        "template": "src/styleguide/components/amp-switch/basic_usage.html",
+        "styles": "src/styleguide/components/amp-switch/basic_usage.scss",
+        "source": "src/styleguide/components/amp-switch/basic_usage.ts",
+        "galen": "src/styleguide/components/amp-switch/amp-switch.test.spec",
+        "jasmine": "src/styleguide/components/amp-switch/amp-switch.spec.ts",
+        "component": "amp-switch-block-basic-usage",
+        "component_src_location": "components/amp-switch/basic_usage",
+        "name": "Amp Switch Basic Usage"
+      }
+    ],
+    "readme": "<p>Custom Block for AmpSwitchComponent.</p>\n"
+  },
+  {
     "name": "ContentBlock",
     "sources": [
       "src/app/components/ContentBlock.ts"

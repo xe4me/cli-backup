@@ -16,7 +16,7 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 
             <div class='sticky__progress'>
                 <amp-linear-progress-bar
-                    [determinate]='determinate'
+                    [determinate]='indeterminate'
                     [value]='value'
                     >
                 </amp-linear-progress-bar>
