@@ -39,6 +39,8 @@
 
 
 //Components :
+@import "07_Shame/ddc-mixins";
+
 @import "01_Components/ddc-headings";
 @import "01_Components/ddc-buttons";
 @import "01_Components/ddc-lines";
@@ -51,4 +53,3 @@
 @import "06_Trumps/ddc-utils";
 @import "02_Abstracts/ddc-colors";
 @import "02_Abstracts/ddc-font-sizes";
-@import "07_Shame/ddc-mixins";
