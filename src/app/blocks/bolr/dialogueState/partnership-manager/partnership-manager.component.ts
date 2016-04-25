@@ -1,13 +1,11 @@
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
-import { ThemeIDDirective } from '../../../../directives/themeId.directive';
-import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 @Component( {
-                selector : 'partnership-manager-block' , template : `
+    selector       : 'partnership-manager-block' , template : `
     <div class='partnership-manager-block' [class.hidden]='!isCurrentBlockActive()'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Who is your partnership manager?</h3>
@@ -65,11 +63,11 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
         <div class='hr-block-divider'></div>
     </div>
   ` , // encapsulation: ViewEncapsulation.Emulated
-                inputs   : [ 'partnershipMgr' ] , styles : [
+    inputs         : [ 'partnershipMgr' ] , styles : [
         require( './partnership-manager.component.scss' )
             .toString()
-    ] , directives       : [ MdInputComponent , AmpOverlayComponent ]
-            } )
+    ] , directives : [ MdInputComponent , AmpOverlayComponent ]
+} )
 export class PartnershipManagerBlockComponent extends FormBlock {
     static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
     private partnershipMgr                 = {
@@ -92,10 +90,11 @@ export class PartnershipManagerBlockComponent extends FormBlock {
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut( this.el );
+            this.progressObserver.onProgress();
             // SAM - Action present data to Model
             this.formModelService.present( {
-                                               action : 'next' , blockId : this._id
-                                           } );
+                action : 'next' , blockId : this._id
+            } );
         }
     }
 
@@ -114,7 +113,8 @@ export class PartnershipManagerBlockComponent extends FormBlock {
         return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
-    constructor ( private formModelService : FormModelService ,
+    constructor ( private progressObserver : ProgressObserver ,
+                  private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();

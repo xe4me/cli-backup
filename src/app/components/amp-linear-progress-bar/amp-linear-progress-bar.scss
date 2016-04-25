@@ -9,10 +9,12 @@ $progress-bar-background-color: $amp-colour-grey-lightest;
 md-progress-linear {
   &.amp-progressbar-sky-blue {
     .md-progress-linear-container {
+      transition: all 1s linear;
       height: $progress-linear-bar-height;
       background-color: $progress-bar-background-color;
     }
     .md-progress-linear-bar.md-progress-linear-bar2 {
+      transition: all 1s linear;
       height: $progress-linear-bar-height;
       background-color: $progress-bar-forground-color;
     }
