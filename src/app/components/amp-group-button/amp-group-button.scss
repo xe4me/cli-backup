@@ -1,0 +1,64 @@
+@import '../../../style/require';
+
+$amp-switch-width: 210px;
+$switch-background-color: $ddc-corporate-main-color;
+$amp-switch-font-family: $amp-font-open-sans-semibold;
+$amp-switch-font-color: white;
+$amp-switch-height: $ddc-buttons-height;
+$amp-switch-border-width: 2px;
+$amp-switch-font-size: $font-size-small;
+:host {
+  display: inline-block;
+}
+
+.amp-group-button {
+  margin: 0;
+  padding: 0;
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  overflow: hidden;
+  input {
+    display: none;
+    &:checked {
+      & + label {
+        background-color: $ddc-corporate-main-color;
+        color: white;
+      }
+    }
+  }
+  span {
+    &:nth-child(n+1) label {
+      border-left: none;
+    }
+    &:first-child label {
+      border-left: solid $ddc-corporate-main-color $amp-switch-border-width;;
+    }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: table-cell;
+    label {
+      &:hover {
+        cursor: pointer;
+      }
+      height: $amp-switch-height - (2*$amp-switch-border-width);
+      line-height: $amp-switch-height - (4*$amp-switch-border-width);
+      box-sizing: border-box;
+      display: inline-block;
+      width: 100%;
+      @include amp-family($amp-switch-font-family);
+      background-color: white;
+      color: $ddc-corporate-main-color;
+      font-size: $amp-switch-font-size;
+      font-weight: 600;
+      text-align: center;
+      text-shadow: none;
+      @include transition(all 0.2s ease-in-out);
+      border: solid $ddc-corporate-main-color $amp-switch-border-width;;
+
+    }
+  }
+}
+

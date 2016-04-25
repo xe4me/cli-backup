@@ -11,7 +11,8 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
         template   : `
     <div id='contact-details-block' class='contact-details-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-        <h3 class='heading heading-intro'>First name, please confirm your details are correct.
+        <h3 class='heading heading-intro'>{{ formModelService.getModel().context.practicePrincipal_firstName }}, please 
+        confirm your details are correct.
 If not, simply update them below.</h3>
         <!--Contact Number-->
         <input-with-label-group
@@ -145,8 +146,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
                     this.formModelService.present(
                         { action : 'setContactDetails' , contactDetails : data }
                     );
-                    this.formControl[ 0 ].control.updateValue( this.formModelService.getModel().contactDetails.phone );
-                    this.formControl[ 1 ].control.updateValue( this.formModelService.getModel().contactDetails.email );
+                    this.formControl[ 0 ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
+                    this.formControl[ 1 ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
                 } ,
                 error => {
                     this.formModelService.present(

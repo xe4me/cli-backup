@@ -8,42 +8,37 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 import { AmpSwitchComponent } from '../../../../components/amp-switch/amp-switch.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
-import { AmpDropdownComponent } from '../../../../components/amp-dropdown/amp-dropdown.component';
-import { Validators } from "angular2/src/common/forms/validators";
+import { Validators } from 'angular2/src/common/forms/validators';
+import { AmpDropdownComponent } from '../../../../components/amp-group-button/amp-group-button.component';
 @Component( {
-                selector   : 'equity-holder-block' ,
-                template   : `
+    selector   : 'equity-holder-block' ,
+    template   : `
             <div class='equity-holder-block'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are there other equity holders in your practice?</h3>
-                <div class='grid__item'>
-                    <amp-switch
-                        (clicked)="onSwitchChanged($event)"
-                        required='true'
-                        [yesId]='switch.yes.id'
-                        [hasHolders]='switch.hasHolders'
-                        [yesLabel]='switch.yes.label'
+                <div class='grid__item mb-60 mt-60'>
+                    <amp-group-button
+                        class='grid__item 4/9'
+                        (select)='onSwitchChanged($event)'
+                        [buttons]='hasHoldersButtons'
                         [parentControl]='formControl[0].control'
-                        [noId]='switch.no.id'
-                        [noLabel]='switch.no.label'
-                        [name]='switch.hasHolders'
+                        [groupName]='switch.hasHolders'   
                         >
-                    </amp-switch>
+                    </amp-group-button>
                 </div>
-                <section *ngIf='formControl[0].control.value==="true"' >
+                <section *ngIf='formControl[0].control.value==="YES"' >
                     <h3 class='heading heading-intro'>How many?</h3>
-                    <div class='grid__item'>
-                        <label class='heading heading-contxtual-label'>
-                            There are 
-                                <amp-dropdown
-                                    [parentControl]='formControl[1].control'
-                                    (select)='onDropdownSelect($event)'>
-                                </amp-dropdown>
-                            other equity holders
-                        </label>
+                    <div class='grid__item mb-60 mt-60'>
+                        <amp-group-button
+                            (select)='onHoldersCountGroupButtonSelect($event)'
+                            [buttons]='buttons'
+                            [parentControl]='formControl[1].control'
+                            [groupName]='switch.holdersCount'   
+                            >
+                        </amp-group-button>
                     </div>
                 </section>
-                <section *ngIf='formControl[0].control.value==="true" && formControl[1].control.value!==null'>
+                <section *ngIf='formControl[0].control.value==="YES" && formControl[1].control.value!==null'>
                     <h3 class='heading heading-intro'>What are their names?</h3>
                     <div class='grid__item 1/1'>
                         <div class='grid__item'  *ngFor='#item of dynamicControlGroup.controls; #i = index'>
@@ -77,6 +72,7 @@ import { Validators } from "angular2/src/common/forms/validators";
                         </div>
                     </div>
                 </section>
+                
                 <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
                 class='btn btn--secondary 
                 btn-ok btn-ok-margin-top'>
@@ -88,48 +84,24 @@ import { Validators } from "angular2/src/common/forms/validators";
                 <div class='hr-block-divider'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
-                inputs     : [ 'switch' ] ,
-                styles     : [ require( './EquityHolderBlock.component.scss' ).toString() ] ,
-                directives : [
-                    MdInputComponent ,
-                    AmpOverlayComponent ,
-                    AmpSwitchComponent ,
-                    FORM_DIRECTIVES ,
-                    AmpDropdownComponent
-                ]
-            } )
+    inputs     : [ 'switch' ] ,
+    styles     : [ require( './EquityHolderBlock.component.scss' ).toString() ] ,
+    directives : [
+        MdInputComponent ,
+        AmpOverlayComponent ,
+        AmpSwitchComponent ,
+        FORM_DIRECTIVES ,
+        AmpDropdownComponent
+    ]
+} )
 export class EquityHolderBlockComponent extends FormBlock {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private dynamicControlGroup : ControlArray;
-
-    private onDropdownSelect ( value ) {
-        console.log( 'value ' , value );
-        const current = this.dynamicControlGroup.length;
-        if ( value > current ) {
-            value = value - current;
-            this.addInput( value );
-        } else if ( value < current ) {
-            this.refreshInput( value );
-        }
-    }
-
-    private onSwitchChanged ( value ) {
-        if ( value === 'false' ) {
-            console.log( 'onSwitchChanged is false' , value );
-            this.formControl[ 1 ].control.updateValue( null );
-            this.clearHoldersControlArray()
-        }
-    }
-
-    private clearHoldersControlArray () {
-        for ( let i = 0 ; i < this.dynamicControlGroup.length ; i ++ ) {
-            this.dynamicControlGroup.removeAt( i );
-        }
-    }
-
-    private switch = {
+    private buttons                        = [ 1 , 2 , 3 , 4 , 5 ];
+    private hasHoldersButtons              = [ 'YES' , 'NO' ];
+    private switch                         = {
         yes          : {
             id    : 'yesId' ,
             label : 'YES' ,
@@ -164,6 +136,31 @@ export class EquityHolderBlockComponent extends FormBlock {
         this.formControl[ 2 ].name = this.switch.holders;
     }
 
+    private onHoldersCountGroupButtonSelect ( value ) {
+        const current = this.dynamicControlGroup.length;
+        if ( value > current ) {
+            value = value - current;
+            this.addInput( value );
+        } else if ( value < current ) {
+            this.refreshInput( value );
+        }
+    }
+
+    private onSwitchChanged ( value ) {
+        if ( value === 'NO' ) {
+            this.clearHoldersControlArray();
+            this.formControl[ 1 ].control.updateValue( '0' );
+        } else {
+            this.formControl[ 1 ].control.updateValue( '' );
+        }
+    }
+
+    private clearHoldersControlArray () {
+        while ( this.dynamicControlGroup.length ) {
+            this.dynamicControlGroup.removeAt( 0 );
+        }
+    }
+
     private addInput ( count ) {
         for ( let i = 0 ; i < count ; i ++ ) {
             const item = new ControlGroup( {
@@ -176,14 +173,8 @@ export class EquityHolderBlockComponent extends FormBlock {
     }
 
     private refreshInput ( count ) {
-        this.dynamicControlGroup = new ControlArray( [] );
-        for ( let i = 0 ; i < count ; i ++ ) {
-            const item = new ControlGroup( {
-                firstName : new Control( '' ) ,
-                lastName  : new Control( '' ) ,
-            } );
-            this.dynamicControlGroup.push( item );
-        }
+        this.clearHoldersControlArray();
+        this.addInput( count );
     }
 
     private get canGoNext () {
@@ -191,10 +182,10 @@ export class EquityHolderBlockComponent extends FormBlock {
     }
 
     private isCurrentBlockActive () {
-        //if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-        if ( this.formModel ) {
+        if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
             return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().introIsDone;
         }
+        return false;
     }
 
     constructor ( private formModelService : FormModelService ,
@@ -204,7 +195,7 @@ export class EquityHolderBlockComponent extends FormBlock {
         this.dynamicControlGroup = new ControlArray( [] );
         this.formControl         = [
             new NamedControl( this.switch.hasHolders , new Control() ) ,
-            new NamedControl( this.switch.holdersCount , new Control( null ) ) ,
+            new NamedControl( this.switch.holdersCount , new Control( null , Validators.required ) ) ,
             new NamedControl( this.switch.holders , this.dynamicControlGroup )
         ];
         console.log( 'this.formControl' , this.formControl );
