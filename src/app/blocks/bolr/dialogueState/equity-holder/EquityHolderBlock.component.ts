@@ -1,9 +1,8 @@
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
-import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
+import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AmpSwitchComponent } from '../../../../components/amp-switch/amp-switch.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
@@ -127,6 +126,7 @@ export class EquityHolderBlockComponent extends FormBlock {
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut( this.el );
+            this.progressObserver.onProgress();
         }
     }
 
@@ -167,7 +167,6 @@ export class EquityHolderBlockComponent extends FormBlock {
                 firstName : new Control( '' , Validators.required ) ,
                 lastName  : new Control( '' , Validators.required ) ,
             } );
-            console.log( 'Adding input ' , item );
             this.dynamicControlGroup.push( item );
         }
     }
@@ -188,7 +187,8 @@ export class EquityHolderBlockComponent extends FormBlock {
         return false;
     }
 
-    constructor ( private formModelService : FormModelService ,
+    constructor ( private progressObserver : ProgressObserver ,
+                  private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
@@ -198,7 +198,6 @@ export class EquityHolderBlockComponent extends FormBlock {
             new NamedControl( this.switch.holdersCount , new Control( null , Validators.required ) ) ,
             new NamedControl( this.switch.holders , this.dynamicControlGroup )
         ];
-        console.log( 'this.formControl' , this.formControl );
         scrollService.$scrolled.subscribe(
             message => scrollService.amIVisible( el , EquityHolderBlockComponent.CLASS_NAME ) );
         this.formControlGroupName = 'equityHolders';

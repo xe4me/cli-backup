@@ -2,10 +2,11 @@ import { Component , AfterViewChecked , ElementRef } from 'angular2/core';
 import { FormBlock } from '../../formBlock';
 import { StickyProgressHeaderBlockComponent } from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
+import { ProgressObserver } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
-                selector   : 'menu-frame' ,
-                template   : `
+    selector   : 'menu-frame' ,
+    template   : `
         <div class='frame'>
              <sticky-progress-header-block
                     class='sticky-progressbar'
@@ -34,20 +35,16 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             </div>
         </div>
     ` ,
-                styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
-                directives : [ StickyProgressHeaderBlockComponent ]
-            } )
+    styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
+    directives : [ StickyProgressHeaderBlockComponent ]
+} )
 export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked {
-    static CLASS_NAME                       = 'MenuFrameBlockComponent';
-    private calculatedProgress              = 0;
+    static CLASS_NAME              = 'MenuFrameBlockComponent';
+    private calculatedProgress     = 0;
     private formControlLength : number;
-    private subscribedToFormModel : boolean = false;
-    private stickyAnimatedIntoView          = false;
+    private stickyAnimatedIntoView = false;
 
     ngAfterViewChecked () : any {
-        if ( ! this.subscribedToFormModel ) {
-            this.calculateProgress();
-        }
         if ( ! this.stickyAnimatedIntoView ) {
             this.introHasPassed();
         }
@@ -69,26 +66,26 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
 
     private calculateProgress () {
         if ( this.formModel ) {
-            this.subscribedToFormModel = true;
-            var that                   = this;
-            this.formModel.valueChanges.subscribe( function( changes ) {
-                if ( that.formModel.controls ) {
-                    let valids : number    = 0;
-                    that.formControlLength = Object.keys( that.formModel.controls ).length;
-                    Object.keys( that.formModel.controls ).map( function( value , index ) {
-                        if ( that.formModel.controls[ value ] ) {
-                            if ( that.formModel.controls[ value ].valid ) {
-                                valids ++;
-                            }
+            var that = this;
+            if ( that.formModel.controls ) {
+                let valids : number    = 0;
+                that.formControlLength = Object.keys( that.formModel.controls ).length;
+                Object.keys( that.formModel.controls ).map( function( value , index ) {
+                    if ( that.formModel.controls[ value ] ) {
+                        if ( that.formModel.controls[ value ].valid ) {
+                            valids ++;
                         }
-                    } );
-                    that.calculatedProgress = Math.floor( (100 * valids / that.formControlLength) );
-                }
-            } );
+                    }
+                } );
+                that.calculatedProgress = Math.floor( (100 * valids / that.formControlLength) );
+            }
         }
     }
 
-    constructor ( private _el : ElementRef , private formModelService : FormModelService ) {
+    constructor ( private progressObserver : ProgressObserver ,
+                  private _el : ElementRef ,
+                  private formModelService : FormModelService ) {
         super();
+        progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress() );
     }
 }

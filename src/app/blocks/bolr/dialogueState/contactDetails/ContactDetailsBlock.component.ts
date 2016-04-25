@@ -3,8 +3,7 @@ import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { InputWithLabelGroupComponent } from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { FormModelService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
 @Component(
     {
         selector   : 'contact-details-block' ,
@@ -100,6 +99,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut( this.el );
+            this.progressObserver.onProgress();
         }
         // this.isInSummaryState = true;
         // // SAM - Action present data to Model
@@ -113,7 +113,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
         return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
-    constructor ( private el : ElementRef ,
+    constructor ( private progressObserver : ProgressObserver ,
+                  private el : ElementRef ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ) {
         super();
