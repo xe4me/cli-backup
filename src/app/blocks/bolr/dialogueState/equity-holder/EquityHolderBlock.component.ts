@@ -37,7 +37,7 @@ import { AmpDropdownComponent } from '../../../../components/amp-group-button/am
                         </amp-group-button>
                     </div>
                 </section>
-                <section *ngIf='formControl[0].control.value==="YES" && formControl[1].control.value!==null'>
+                <section *ngIf='formControl[0].control.value==="YES" && formControl[1].control.value>=1'>
                     <h3 class='heading heading-intro'>What are their names?</h3>
                     <div class='grid__item 1/1'>
                         <div class='grid__item'  *ngFor='#item of dynamicControlGroup.controls; #i = index'>

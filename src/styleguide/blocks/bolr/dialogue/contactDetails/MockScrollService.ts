@@ -1,34 +1,34 @@
 import { Injectable , EventEmitter }     from 'angular2/core';
-import { MockFormModelService } from "./MockFormModelService";
+import { MockFormModelService } from './MockFormModelService';
 @Injectable()
 export class MockScrollService {
     public $scrolled : EventEmitter<string>;
 
-    public onScroll() {
+    public onScroll () {
         this.$scrolled.emit( 'scrolling' );
     }
 
-    constructor( private formModelService : MockFormModelService ) {
+    constructor ( private formModelService : MockFormModelService ) {
         this.$scrolled = new EventEmitter();
     }
 
-    public scrollMeOut() {
+    public scrollMeOut () {
         return 'You\'re now out of view';
     }
 
-    get scrollTop() : number {
+    get scrollTop () : number {
         return window.pageYOffset || document.documentElement.scrollTop;
     }
 
-    public amIVisible( CLASS_NAME : string ) {
+    public amIVisible ( CLASS_NAME : string ) {
         var isInView = true;
-        if(isInView){
-            this.formModelService.setCurrentBlock(CLASS_NAME);
+        if ( isInView ) {
+            this.formModelService.setCurrentBlock( CLASS_NAME );
         }
         return true;
     }
 
-    private smoothScroll( element , options ) {
+    private smoothScroll ( element , options ) {
         options               = options || {};
         // Options
         var duration          = options.duration || 800 , offset = options.offset || 0 , easing = options.easing || 'easeInOutQuart' , callbackBefore = options.callbackBefore || function() {
@@ -56,7 +56,7 @@ export class MockScrollService {
          * @see http://archive.oreilly.com/pub/a/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html
          */
         var getEasingPattern  = function( type , time ) {
-            switch( type ) {
+            switch ( type ) {
                 case 'easeInQuad':
                     return time * time; // accelerating from zero velocity
                 case 'easeOutQuad':
@@ -94,7 +94,7 @@ export class MockScrollService {
                 do {
                     location += element.offsetTop;
                     element = element.offsetParent;
-                } while( element );
+                } while ( element );
             }
             location = Math.max( location - offset , 0 );
             return location;
@@ -146,7 +146,7 @@ export class MockScrollService {
         } , 0 );
     };
 
-    private  isElementInViewport( el ) {
+    private  isElementInViewport ( el ) {
         var rect = el.getBoundingClientRect();
         return (
             rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */

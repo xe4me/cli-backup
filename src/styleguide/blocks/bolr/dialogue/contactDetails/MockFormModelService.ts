@@ -21,7 +21,7 @@ export class MockFormModelService {
         }
     };
 
-    getContext() : Observable<string> {
+    getContext () : Observable<string> {
         return Observable.create(
             function( observer ) {
                 observer.onNext(
@@ -39,7 +39,7 @@ export class MockFormModelService {
             } );
     }
 
-    getContactDetails() : Observable<string> {
+    getContactDetails () : Observable<string> {
         return Observable.create(
             function( observer ) {
                 observer.onNext(
@@ -54,23 +54,23 @@ export class MockFormModelService {
             } );
     }
 
-    getFlags() {
+    getFlags () {
         return this.model.flags;
     }
 
-    present( data ) {
+    present ( data ) {
         this.model.currentBlockID = new BlockID( null , 1 );
     }
 
-    public get currentComponent() {
+    public get currentComponent () {
         return this.model.currentBlockClassName;
     }
 
-    public setCurrentBlock( class_name : string ) {
+    public setCurrentBlock ( class_name : string ) {
         this.model.currentBlockClassName = class_name;
     }
 
-    getModel() {
+    getModel () {
         return this.model;
     }
 }

@@ -5,9 +5,7 @@ import { Component , provide , ElementRef } from 'angular2/core';
 import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/dialogueState/contactDetails/ContactDetailsBlock.component';
 import { MockFormModelService } from './MockFormModelService';
 import { MockScrollService } from './MockScrollService';
-import { FormModelService , BlockID , ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { BrowserDomAdapter } from 'angular2/src/platform/browser/browser_adapter';
-import { AnimationBuilder } from "angular2/src/animate/animation_builder";
+import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
 describe( 'ContactDetailsBlockComponent isCurrentBlockActive' , () => {
     beforeEachProviders( () => {
         return [
@@ -15,15 +13,16 @@ describe( 'ContactDetailsBlockComponent isCurrentBlockActive' , () => {
             provide( MockFormModelService , { useClass : MockFormModelService } ) ,
             provide( ElementRef , { useClass : ElementRef } ) ,
             provide( ScrollService , { useClass : MockScrollService } ) ,
+            provide( ProgressObserver , { useClass : ProgressObserver } ) ,
             provide( MockScrollService , { useClass : MockScrollService } ) ,
             provide( Window , { useValue : window } )
         ];
     } );
     it( 'Should return false if user hasn\'t clicked on ok in intro block ' , inject( [
-        ElementRef , FormModelService , ScrollService
-    ] , ( el , formModelService , scrollService ) => {
+        ProgressObserver , ElementRef , FormModelService , ScrollService
+    ] , ( progressObserver , el , formModelService , scrollService ) => {
         let mockFormModelService         = new MockFormModelService();
-        let contactDetailsBlockComponent = new ContactDetailsBlockComponent( el , formModelService , scrollService );
+        let contactDetailsBlockComponent = new ContactDetailsBlockComponent( progressObserver , el , formModelService , scrollService );
         expect( contactDetailsBlockComponent.isCurrentBlockActive() ).toBeFalsy();
     } ) );
     it( 'Should subscribes to scroll service and when window is scrolling should update CurrentBlockClassName in' + ' the modelService accordingly ' , inject( [
@@ -37,7 +36,7 @@ describe( 'ContactDetailsBlockComponent isCurrentBlockActive' , () => {
             expect( result ).toEqual( 'scrolling' );
             expect( scrollService.amIVisible( BLOCK_NAME ) ).toBeTruthy();
             expect( mockFormModelService.currentComponent ).toEqual( BLOCK_NAME );
-        } )
+        } );
         scrollService.onScroll();
     } ) );
 } );
