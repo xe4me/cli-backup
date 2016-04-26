@@ -20,11 +20,6 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         <div class='menu--left--title'>You request details</div>
                         <div class='menu--left--hr hr--solid'></div>
                         <div class='menu--left--download'><span class='icon icon--time'></span>  Download a copy</div>
-                        <!--
-                        NOTE : 
-                        Make sure to remove bellow in prod mode !!!!!!!!
-                        -->
-                        <div>{{formModelService.currentComponent.replace('BlockComponent','')}}</div>
                     </div>
                     <div class='menu--right bolr-right-padding utils__position--rel'>
                         <!-- Dynamic form blocks driven from the Form Definition -->

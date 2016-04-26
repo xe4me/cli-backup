@@ -54,7 +54,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                                 [ngFormControl]='parentControl'
                                 [value]='button'
                                 />
-                          <label (click)="onSelect(button)" [attr.for]='button'>{{ button }}
+                          <label (click)='onSelect(button)' [attr.for]='button'>{{ button }}
                           </label>
                     </span>
                 </div>
@@ -77,7 +77,7 @@ export class AmpDropdownComponent {
     private groupName : string;
 
     private onSelect ( value ) {
-        this.select.emit( value + "" );
+        this.select.emit( value + '' );
     }
 }
 

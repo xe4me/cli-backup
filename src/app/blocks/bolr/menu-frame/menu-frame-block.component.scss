@@ -60,7 +60,7 @@ $left-menu-right-and-left-padding: 60px;
 
   &--left {
     opacity: 0;
-    transition: opacity 1.3s  ease-in-out;
+    transition: opacity 2.5s  ease-in-out;
     padding-left: $left-menu-right-and-left-padding;
     padding-right: $left-menu-right-and-left-padding;
     @include amp-family($header-font-family);
