@@ -8,7 +8,10 @@ import { AmpSwitchComponent } from '../../../../components/amp-switch/amp-switch
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
 import { Validators } from 'angular2/src/common/forms/validators';
-import { AmpDropdownComponent } from '../../../../components/amp-group-button/amp-group-button.component';
+import { AmpGroupButtonComponent } from '../../../../components/amp-group-button/amp-group-button.component';
+import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
+import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-slide.directive';
+import { TemplateRef } from "angular2/src/core/linker/template_ref";
 @Component( {
     selector   : 'equity-holder-block' ,
     template   : `
@@ -17,6 +20,7 @@ import { AmpDropdownComponent } from '../../../../components/amp-group-button/am
                 <h3 class='heading heading-intro'>Are there other equity holders in your practice?</h3>
                 <div class='grid__item mb-60 mt-60'>
                     <amp-group-button
+                        scrollOutOn='YES'
                         class='grid__item 4/9'
                         (select)='onSwitchChanged($event)'
                         [buttons]='hasHoldersButtons'
@@ -24,11 +28,14 @@ import { AmpDropdownComponent } from '../../../../components/amp-group-button/am
                         [groupName]='switch.hasHolders'   
                         >
                     </amp-group-button>
+                    
                 </div>
-                <section *ngIf='formControl[0].control.value==="YES"' >
+                <!--*ngIf='formControl[0].control.value==="YES"' -->
+                <section [collapse]='formControl[0].control.value!=="YES"'>
                     <h3 class='heading heading-intro'>How many?</h3>
                     <div class='grid__item mb-60 mt-60'>
                         <amp-group-button
+                            scrollOutUnless='null'
                             (select)='onHoldersCountGroupButtonSelect($event)'
                             [buttons]='buttons'
                             [parentControl]='formControl[1].control'
@@ -37,7 +44,7 @@ import { AmpDropdownComponent } from '../../../../components/amp-group-button/am
                         </amp-group-button>
                     </div>
                 </section>
-                <section *ngIf='formControl[0].control.value==="YES" && formControl[1].control.value>=1'>
+                <section [collapse]='formControl[0].control.value !== "YES" || formControl[1].control.value < 1'>
                     <h3 class='heading heading-intro'>What are their names?</h3>
                     <div class='grid__item 1/1'>
                         <div class='grid__item'  *ngFor='#item of dynamicControlGroup.controls; #i = index'>
@@ -70,8 +77,7 @@ import { AmpDropdownComponent } from '../../../../components/amp-group-button/am
                             </span> 
                         </div>
                     </div>
-                </section>
-                
+                </section>          
                 <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
                 class='btn btn--secondary 
                 btn-ok btn-ok-margin-top'>
@@ -90,8 +96,11 @@ import { AmpDropdownComponent } from '../../../../components/amp-group-button/am
         AmpOverlayComponent ,
         AmpSwitchComponent ,
         FORM_DIRECTIVES ,
-        AmpDropdownComponent
-    ]
+        AmpGroupButtonComponent ,
+        AmpCollapseDirective ,
+        AmpSlideDirective
+    ] ,
+    providers  : [ TemplateRef ]
 } )
 export class EquityHolderBlockComponent extends FormBlock {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';
@@ -149,8 +158,10 @@ export class EquityHolderBlockComponent extends FormBlock {
     private onSwitchChanged ( value ) {
         if ( value === 'NO' ) {
             this.clearHoldersControlArray();
+            this.buttons = [];
             this.formControl[ 1 ].control.updateValue( '0' );
         } else {
+            this.buttons = [ 1 , 2 , 3 , 4 , 5 ];
             this.formControl[ 1 ].control.updateValue( '' );
         }
     }

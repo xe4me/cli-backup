@@ -11,13 +11,15 @@ import { Control } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
 import { NG_VALUE_ACCESSOR , ControlValueAccessor } from 'angular2/common';
 import { CONST_EXPR } from 'angular2/src/facade/lang';
+import { ChangeDetectionStrategy } from "angular2/src/core/change_detection/constants";
+import { ScrollService } from "amp-ddc-ui-core/ui-core";
 const RADIO_VALUE_ACCESSOR = CONST_EXPR( new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } ) );
 @Directive( {
-                selector : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
-                host     : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
-                bindings : [ RADIO_VALUE_ACCESSOR ]
-            } )
+    selector : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
+    host     : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
+    bindings : [ RADIO_VALUE_ACCESSOR ]
+} )
 export class RadioControlValueAccessors implements ControlValueAccessor {
     onChange  = ( _ ) => {
     };
@@ -40,11 +42,12 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
     }
 }
 @Component( {
-                selector   : 'amp-group-button' ,
-                template   : `
+    selector   : 'amp-group-button' ,
+    template   : `
                 <div class='amp-group-button'>
                     <span *ngFor='#button of buttons'>
                           <input
+                                
                                 [disabled]='disabled'
                                 [required]='required'
                                 [attr.data-automation-id]='"radio_button_" + button'
@@ -59,25 +62,38 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                     </span>
                 </div>
                 ` ,
-                inputs     : [
-                    'required' ,
-                    'disabled' ,
-                    'parentControl' ,
-                    'buttons' ,
-                    'groupName'
-                ] ,
-                styles     : [ require( './amp-group-button.scss' ).toString() ] ,
-                directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
-                outputs    : [ 'select' ]
-            } )
-export class AmpDropdownComponent {
+    inputs     : [
+        'required' ,
+        'scrollOutUnless' ,
+        'scrollOutOn' ,
+        'disabled' ,
+        'parentControl' ,
+        'buttons' ,
+        'groupName'
+    ] ,
+    styles     : [ require( './amp-group-button.scss' ).toString() ] ,
+    directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
+    outputs    : [ 'select' ]
+} )
+export class AmpGroupButtonComponent {
     private parentControl : Control;
     private select = new EventEmitter<string>();
     private buttons;
+    private scrollOutUnless : any;
+    private scrollOutOn : any;
     private groupName : string;
+
+    constructor ( private elem : ElementRef ,
+                  private scrollService : ScrollService ) {
+    }
 
     private onSelect ( value ) {
         this.select.emit( value + '' );
+        if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
+            this.scrollService.scrollMeOut( this.elem )
+        } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
+            this.scrollService.scrollMeOut( this.elem )
+        }
     }
 }
 

@@ -4,7 +4,6 @@
 //      DO NOT ADD ANY CSS HERE       //
 //                                    //
 ////////////////////////////////////////
-
 // Pull together the required layers of itcss.
 @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/widths";
 @import "node_modules/amp-styleguide-core/src/scss/03_Base/icons";
@@ -15,41 +14,32 @@
 @import "node_modules/amp-styleguide-core/src/scss/03_Base/images";
 @import "node_modules/amp-styleguide-core/src/scss/03_Base/lists";
 @import "node_modules/amp-styleguide-core/src/scss/03_Base/page";
-
 // Pull together our objects.
 @import "node_modules/amp-styleguide-core/src/scss/04_Objects/boxes";
 @import "node_modules/amp-styleguide-core/src/scss/04_Objects/grids";
 @import "node_modules/amp-styleguide-core/src/scss/04_Objects/shapes";
-
 @import "node_modules/amp-styleguide-core/src/scss/05_Components/buttons";
-
 @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/spacing";
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/spacing-responsive";
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/utils";
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/utils-responsive";
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/widths";
 // @import "node_modules/amp-styleguide-core/src/scss/06_Trumps/widths-responsive";
-
-
-
-
 // Let's bring all the files that we've created for ddc ( got a better place to put these? , please do ).
 // Defaults : all the general variables like sizes and ...
 @import "00_Settings/ddc-defaults";
-
-
 //Components :
 @import "07_Shame/ddc-mixins";
-
 @import "01_Components/ddc-headings";
 @import "01_Components/ddc-buttons";
 @import "01_Components/ddc-lines";
 @import "01_Components/ddc-icons";
 @import "01_Components/ddc-errors";
-
 //Generic stuff here :
 @import "02_Generic/ddc-shared";
-
 @import "06_Trumps/ddc-utils";
 @import "02_Abstracts/ddc-colors";
 @import "02_Abstracts/ddc-font-sizes";
+//Import all the needed Animations :
+@import "08_Animations/collapse";
+@import "08_Animations/slide";
