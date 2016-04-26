@@ -16,8 +16,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
     
             <!-- First name -->
             <my-md-input
-                class='pr-'
-                [ngClass]="{'1/3' : !isInSummaryState}" 
+                class='1/3'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.firstName.id'
                 [label]='partnershipMgr.firstName.label'
@@ -29,8 +28,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
     
             <!-- Last name -->
             <my-md-input
-                [ngClass]="{'1/3' : !isInSummaryState}"
-                class='pl--'
+                class='1/3'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.lastName.id'
                 [label]='partnershipMgr.lastName.label'
@@ -69,7 +67,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
     ] , directives : [ MdInputComponent , AmpOverlayComponent ]
 } )
 export class PartnershipManagerBlockComponent extends FormBlock {
-    static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
+    static CLASS_NAME = 'PartnershipManagerBlockComponent';
     private partnershipMgr                 = {
         firstName    : {
             id : 'default_fn' , label : 'First name' , regex : ''

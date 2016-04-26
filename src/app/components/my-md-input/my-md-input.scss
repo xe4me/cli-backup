@@ -3,10 +3,12 @@
 // @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/functions/_decimal';
 // @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family';
 
-:host{
+:host {
   display: inline-block;
-
+  width: 400px;
+  @include transition(all .6s ease-in-out);
 }
+
 $summary-state-color: $amp-colour-sky-blue;
 $summary-state-font-family: $amp-font-open-sans-regular;
 $summary-state-font-weight: 300;
@@ -18,14 +20,16 @@ $summary-state-font-weight: 300;
   line-height: 43px;
   font-size: $ddc-input-field-font-size;
 }
-.summary-text{
+
+.summary-text {
   @include amp-family($summary-state-font-family);
   @extend %#{$namespace}amp-colour-sky-blue;
   font-weight: $summary-state-font-weight;
   font-size: $ddc-input-field-font-size;
   margin-left: 2px;
 }
-.invisible{
+
+.invisible {
   display: none !important;
 }
 
@@ -164,7 +168,6 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
 }
 
 md-input-container {
-
   display: inline-block;
   flex: none;
   cursor: pointer;
@@ -179,6 +182,8 @@ md-input-container {
     bottom: 94% !important;
   }
   .md-input {
+    @include transition(all .3s ease-in-out);
+    font-size: $ddc-input-field-font-size;
     &[disabled] {
       &.summary-state {
         border-bottom: 1px solid transparent !important;
@@ -191,11 +196,11 @@ md-input-container {
         }
       }
     }
-    margin-top: 6px !important;
+    margin-top: 7.5px !important;
     display: inline;
     flex: none;
     cursor: pointer;
-    max-width: 400px;
+    max-width: 600px;
     padding-bottom: $input-padding-bottom !important;
     height: $input-height*1.1;
     color: $amp-colour-sky-blue;
@@ -217,6 +222,7 @@ md-input-container {
   }
 
   label {
+    min-width: 300px;
     @include amp-family($amp-font-open-sans-semibold);
     color: $amp-colour-grey-darkest;
   }
@@ -230,5 +236,6 @@ md-input-container {
 }
 
 my-md-input {
+  @include transition(all 0.5s ease-in-out);
   display: inline-block !important;
 }
