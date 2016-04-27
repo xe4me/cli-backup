@@ -17,7 +17,8 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
     template   : `
             <div class='equity-holder-block'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-                <h3 class='heading heading-intro mb-20'>Does the practice have additional equity holders?</h3>
+                <h3 [ngClass]='{"mb-20":isInSummaryState}' class='heading heading-intro'>Does the practice have additional equity 
+                holders?</h3>
                 <section *ngIf='!isInSummaryState'>
                     
                     <div  class='grid__item mb-60 mt-60'>
@@ -60,20 +61,18 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                     class='heading heading-intro'>What are their names?</h3>
                     <h3 *ngIf='dynamicControlGroup.controls.length===1 && !isInSummaryState' 
                     class='heading heading-intro'>What is their name?</h3>
-                    <div class='grid__item 1/1'><!--
-                        --><div class="grid__item" *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
+                    <div class='grid__item 1/1'>
+                        <div class="grid__item" *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
-                            heading-contxtual-label'>Their names are
-                            </label><!--
+                            heading-contxtual-label'>Their names are&nbsp;</label><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
-                            heading-contxtual-label'>Their name is
-                             </label><!--
-                             --><span class='1/6 heading heading-contxtual-label' *ngIf=' 
+                            heading-contxtual-label'>Their name is&nbsp;</label><!--
+                            --><span class='1/6 heading heading-contxtual-label' *ngIf='
                             dynamicControlGroup.controls.length > 1 '>
-                                <span *ngIf=' i < ( dynamicControlGroup.controls.length - 1 ) && i >0 '> , </span> 
-                                <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '> and </span>
-                            </span><!-- 
-                            --><my-md-input
+                                <span *ngIf=' i < ( dynamicControlGroup.controls.length - 1 ) && i >0 '>,</span> 
+                                <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '>and</span>
+                            </span><!--
+                                --><my-md-input
                                 [isInSummaryState]='isInSummaryState'
                                 id='firstname_{{ i }}'
                                 isRequired='true'

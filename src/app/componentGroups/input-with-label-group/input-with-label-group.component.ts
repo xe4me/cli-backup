@@ -7,6 +7,7 @@ import {MdInputComponent} from '../../components/my-md-input/my-md-input.compone
     template: `
         <div class="input-with-label-group">
             <label class="heading heading-contxtual-label" *ngIf="contxtualLabel" >{{contxtualLabel}}</label><!--
+            -->&nbsp;<!--
             --><my-md-input
                 class='1/3'
                 [isInSummaryState]='isInSummaryState'

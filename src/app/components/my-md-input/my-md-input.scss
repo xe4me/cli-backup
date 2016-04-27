@@ -170,11 +170,11 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
 
 md-input-container {
 
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 13px;
+  padding-left: 13px;
   &.summary {
     @include transition(padding .2s linear !important);
-    transition-delay: 1s !important;
+    transition-delay: 1.2s !important;
     padding-right: 0 !important;
     padding-left: 0 !important;
   }
@@ -193,7 +193,7 @@ md-input-container {
     height: 0 !important;
   }
   label:not(.md-container-ignore) {
-    bottom: 94% !important;
+    bottom: 101% !important;
   }
   .md-input {
     padding: 0 !important;
@@ -235,10 +235,10 @@ md-input-container {
 
   label {
 
-    padding-left: 40px !important;
+    padding-left: 26px !important;
     &.summary {
       @include transition(padding .2s linear !important);
-      transition-delay: 1s !important;
+      transition-delay: 1.2s !important;
       padding-left: 0 !important;
     }
     @include transition(padding .7s linear);

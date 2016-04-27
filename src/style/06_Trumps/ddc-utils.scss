@@ -100,6 +100,11 @@ $namespace: $amp-namespace !default;
   padding-top: $amp-ddc-padding * 4;
 }
 
+.#{$namespace}mr-label-input,
+%#{$namespace}mr-label-input {
+  margin-right: 7px;
+}
+
 .#{$namespace}utils,
 %#{$namespace}utils {
 

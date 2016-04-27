@@ -12,8 +12,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 
         <div class='grid__item'>
             <!--Partnership Manager name-->
-            <label class='heading heading-contxtual-label mb3' >My partnership manager is</label><!--
-            --><my-md-input
+            <label class='heading heading-contxtual-label mb3' >My partnership manager is</label>&nbsp;<my-md-input
                 class='1/3'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.firstName.id'

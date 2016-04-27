@@ -24,6 +24,7 @@ import { start } from "repl";
          [ngClass]='{"summary" : isInSummaryState}'
         *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
         --><input
+            (blur)='parentControl.updateValue(parentControl.value.trim())' 
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
@@ -119,7 +120,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
                     width : this.inputWidth + 'px'
                 } )
                 .setToStyles( {
-                    width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth + 7 + 'px'
+                    width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth + 5 + 'px'
                 } )
                 .setDelay( 1200 )
                 .setDuration( 200 )
