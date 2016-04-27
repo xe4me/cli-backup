@@ -17,17 +17,17 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
     template   : `
             <div class='equity-holder-block'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-                <h3 class='heading heading-intro'>Are there other equity holders in your practice?</h3>
+                <h3 class='heading heading-intro'>Does the practice have additional equity holders?</h3>
                 <section *ngIf='!isInSummaryState'>
                     
                     <div  class='grid__item mb-60 mt-60'>
                         <amp-group-button
-                            scrollOutOn='YES'
+                            scrollOutOn='true'
                             class='grid__item 4/9'
                             (select)='onSwitchChanged($event)'
-                            [buttons]='hasHoldersButtons'
+                            [buttons]='hasHoldersButtons.buttons'
                             [parentControl]='formControl[0].control'
-                            [groupName]='switch.hasHolders'   
+                            [groupName]='hasHoldersButtons.groupName'   
                             >
                         </amp-group-button>
                         
@@ -42,30 +42,31 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                 </section>
                 
                 <!--*ngIf='formControl[0].control.value==="YES"' -->
-                <section [collapse]='formControl[0].control.value!=="YES" || isInSummaryState'>
+                <section [collapse]='formControl[0].control.value!=="true" || isInSummaryState'>
                     <h3 class='heading heading-intro'>How many?</h3>
                     <div class='grid__item mb-60 mt-60'>
                         <amp-group-button
                             scrollOutUnless='null'
                             (select)='onHoldersCountGroupButtonSelect($event)'
-                            [buttons]='buttons'
+                            [buttons]='holdersCountButtons.buttons'
                             [parentControl]='formControl[1].control'
-                            [groupName]='switch.holdersCount'   
+                            [groupName]='holdersCountButtons.groupName'   
                             >
                         </amp-group-button>
                     </div>
                 </section>
-                <section [collapse]='formControl[0].control.value !== "YES" || formControl[1].control.value < 1'>
-                    <h3 *ngIf='!isInSummaryState' class='heading heading-intro'>What are their names?</h3>
+                <section [collapse]='formControl[0].control.value !== "true" || formControl[1].control.value < 1'>
+                    <h3 *ngIf='dynamicControlGroup.controls.length>1 && !isInSummaryState' 
+                    class='heading heading-intro'>What are their names?</h3>
+                    <h3 *ngIf='dynamicControlGroup.controls.length===1 && !isInSummaryState' 
+                    class='heading heading-intro'>What is their name?</h3>
                     <div class='grid__item 1/1'>
-                        <div class="grid__item" *ngFor='#item of dynamicControlGroup.controls;
-                         #i = 
-                        index'>
+                        <div class="grid__item" *ngFor='#item of dynamicControlGroup.controls ; #i = index'>
                             <label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
                             heading-contxtual-label'>Their names are
                             </label>
-                            <label *ngIf=' i === 0 && dynamicControlGroup.controls.length==1' class='1/6 heading 
-                            heading-contxtual-label'>Their names is
+                            <label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
+                            heading-contxtual-label'>Their name is
                              </label>
                              <span class='1/6 heading heading-contxtual-label' *ngIf=' 
                             dynamicControlGroup.controls.length > 1 '>
@@ -94,7 +95,7 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                             </my-md-input>
                         </div>
                     </div>
-                </section>          
+                </section> 
                 <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
                 class='btn btn--secondary 
                 btn-ok btn-ok-margin-top'>
@@ -124,22 +125,46 @@ export class EquityHolderBlockComponent extends FormBlock {
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private dynamicControlGroup : ControlArray;
-    private buttons                        = [ 1 , 2 , 3 , 4 , 5 ];
-    private hasHoldersButtons              = [ 'YES' , 'NO' ];
-    private switch                         = {
-        yes          : {
-            id    : 'yesId' ,
-            label : 'YES' ,
-            value : 'true'
-        } ,
-        no           : {
-            id    : 'noId' ,
-            label : 'NO' ,
-            value : 'false'
-        } ,
-        hasHolders   : 'hasHolders' ,
-        holdersCount : 'holdersCount' ,
-        holders      : 'holders'
+    private hasHoldersButtons              = {
+        buttons   : [
+            {
+                id    : 'yesId' ,
+                value : 'true' ,
+                label : 'YES'
+            } ,
+            {
+                id    : 'noId' ,
+                value : 'false' ,
+                label : 'NO'
+            }
+        ] ,
+        groupName : 'hasHolders'
+    };
+    private holdersCountButtons            = {
+        buttons   : [
+            {
+                id    : '1' ,
+                value : '1' ,
+                label : '1'
+            } , {
+                id    : '2' ,
+                value : '2' ,
+                label : '2'
+            } , {
+                id    : '3' ,
+                value : '3' ,
+                label : '3'
+            } , {
+                id    : '4' ,
+                value : '4' ,
+                label : '4'
+            } , {
+                id    : '5' ,
+                value : '5' ,
+                label : '5'
+            } ,
+        ] ,
+        groupName : 'holdersCount'
     };
 
     public change () {
@@ -157,9 +182,9 @@ export class EquityHolderBlockComponent extends FormBlock {
     }
 
     public preBindControls ( _formBlockDef ) {
-        this.formControl[ 0 ].name = this.switch.hasHolders;
-        this.formControl[ 1 ].name = this.switch.holdersCount;
-        this.formControl[ 2 ].name = this.switch.holders;
+        this.formControl[ 0 ].name = this.hasHoldersButtons.groupName;
+        this.formControl[ 1 ].name = this.holdersCountButtons.groupName;
+        this.formControl[ 2 ].name = 'holders';
     }
 
     private onHoldersCountGroupButtonSelect ( value ) {
@@ -173,12 +198,10 @@ export class EquityHolderBlockComponent extends FormBlock {
     }
 
     private onSwitchChanged ( value ) {
-        if ( value === 'NO' ) {
+        if ( value === 'false' ) {
             this.clearHoldersControlArray();
-            this.buttons = [];
             this.formControl[ 1 ].control.updateValue( '0' );
         } else {
-            this.buttons = [ 1 , 2 , 3 , 4 , 5 ];
             this.formControl[ 1 ].control.updateValue( '' );
         }
     }
@@ -209,10 +232,10 @@ export class EquityHolderBlockComponent extends FormBlock {
     }
 
     private isCurrentBlockActive () {
-        // if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-        //     return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().introIsDone;
-        // }
-        return true;
+        if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
+            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().introIsDone;
+        }
+        return false;
     }
 
     constructor ( private progressObserver : ProgressObserver ,
@@ -222,9 +245,9 @@ export class EquityHolderBlockComponent extends FormBlock {
         super();
         this.dynamicControlGroup = new ControlArray( [] );
         this.formControl         = [
-            new NamedControl( this.switch.hasHolders , new Control() ) ,
-            new NamedControl( this.switch.holdersCount , new Control( null , Validators.required ) ) ,
-            new NamedControl( this.switch.holders , this.dynamicControlGroup )
+            new NamedControl( this.hasHoldersButtons.groupName , new Control() ) ,
+            new NamedControl( this.holdersCountButtons.groupName , new Control( null , Validators.required ) ) ,
+            new NamedControl( 'holders' , this.dynamicControlGroup )
         ];
         scrollService.$scrolled.subscribe(
             message => scrollService.amIVisible( el , EquityHolderBlockComponent.CLASS_NAME ) );

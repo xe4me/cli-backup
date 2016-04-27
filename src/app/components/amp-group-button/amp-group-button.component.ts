@@ -13,6 +13,7 @@ import { NG_VALUE_ACCESSOR , ControlValueAccessor } from 'angular2/common';
 import { CONST_EXPR } from 'angular2/src/facade/lang';
 import { ChangeDetectionStrategy } from "angular2/src/core/change_detection/constants";
 import { ScrollService } from "amp-ddc-ui-core/ui-core";
+import { OnChanges , AfterViewInit } from "experience/node_modules/angular2/src/core/linker/interfaces";
 const RADIO_VALUE_ACCESSOR = CONST_EXPR( new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } ) );
 @Directive( {
@@ -47,17 +48,17 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                 <div class='amp-group-button'>
                     <span *ngFor='#button of buttons'>
                           <input
-                                
                                 [disabled]='disabled'
                                 [required]='required'
-                                [attr.data-automation-id]='"radio_button_" + button'
+                                [attr.data-automation-id]='"radio_button_" + button.id'
                                 type='radio'
-                                [attr.id]='button'
+                                [attr.id]='button.id'
                                 [attr.name]='groupName'
                                 [ngFormControl]='parentControl'
-                                [value]='button'
+                                [value]='button.value'
+                                [checked]='parentControl.value===button.value'
                                 />
-                          <label (click)='onSelect(button)' [attr.for]='button'>{{ button }}
+                          <label (click)='onSelect(button.value)' [attr.for]='button.id'>{{ button.label }}
                           </label>
                     </span>
                 </div>

@@ -28,6 +28,8 @@ import { start } from "repl";
             [mdPattern]='valPattern'
             [attr.name]='_id'
             [attr.id]='_id'
+            [attr.maxlength]='valMaxLength'
+            [mdMaxLength]='valMaxLength'
             [attr.data-automation-id]='"text_" + _id'
             [ngFormControl]='parentControl'
             [attr.placeholder]='placeholder'/>

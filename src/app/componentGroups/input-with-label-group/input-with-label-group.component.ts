@@ -8,6 +8,7 @@ import {MdInputComponent} from '../../components/my-md-input/my-md-input.compone
         <div class="input-with-label-group">
             <label class="heading heading-contxtual-label" *ngIf="contxtualLabel" >{{contxtualLabel}}</label>
             <my-md-input
+                class='1/3'
                 [isInSummaryState]='isInSummaryState'
                 [id]="id"
                 [label]="label"
@@ -31,4 +32,5 @@ export class InputWithLabelGroupComponent {
     private pattern: string;
     private required: boolean;
     private isInSummaryState: boolean;
+    private valMaxLength: number;
 }
