@@ -12,10 +12,8 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 
         <div class='grid__item'>
             <!--Partnership Manager name-->
-            <label class='heading heading-contxtual-label mb3' >My partnership manager is </label>
-    
-            <!-- First name -->
-            <my-md-input
+            <label class='heading heading-contxtual-label mb3' >My partnership manager is</label><!--
+            --><my-md-input
                 class='1/3'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.firstName.id'
@@ -24,10 +22,8 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                 isRequired='true'
                 [valPattern]='partnershipMgr.firstName.regex'
                 valMaxLength='100'>
-            </my-md-input>
-    
-            <!-- Last name -->
-            <my-md-input
+            </my-md-input><!--
+            --><my-md-input
                 class='1/3'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.lastName.id'
@@ -67,7 +63,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
     ] , directives : [ MdInputComponent , AmpOverlayComponent ]
 } )
 export class PartnershipManagerBlockComponent extends FormBlock {
-    static CLASS_NAME = 'PartnershipManagerBlockComponent';
+    static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
     private partnershipMgr                 = {
         firstName    : {
             id : 'default_fn' , label : 'First name' , regex : ''
@@ -85,6 +81,7 @@ export class PartnershipManagerBlockComponent extends FormBlock {
 
     public ok () {
         this.hasClickedOnOkButton = true;
+        this.isInSummaryState = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut( this.el );

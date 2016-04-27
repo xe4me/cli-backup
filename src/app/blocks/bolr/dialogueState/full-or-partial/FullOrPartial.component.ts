@@ -57,7 +57,6 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                 <div class='hr-block-divider'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
-    inputs     : [ 'switch' ] ,
     styles     : [ require( './FullOrPartial.component.scss' ).toString() ] ,
     directives : [ AmpGroupButtonComponent , AmpCollapseDirective ] ,
     providers  : [ TemplateRef ]

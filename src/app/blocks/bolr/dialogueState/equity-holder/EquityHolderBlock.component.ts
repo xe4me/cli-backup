@@ -17,7 +17,7 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
     template   : `
             <div class='equity-holder-block'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-                <h3 class='heading heading-intro'>Does the practice have additional equity holders?</h3>
+                <h3 class='heading heading-intro mb-20'>Does the practice have additional equity holders?</h3>
                 <section *ngIf='!isInSummaryState'>
                     
                     <div  class='grid__item mb-60 mt-60'>
@@ -60,20 +60,20 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                     class='heading heading-intro'>What are their names?</h3>
                     <h3 *ngIf='dynamicControlGroup.controls.length===1 && !isInSummaryState' 
                     class='heading heading-intro'>What is their name?</h3>
-                    <div class='grid__item 1/1'>
-                        <div class="grid__item" *ngFor='#item of dynamicControlGroup.controls ; #i = index'>
-                            <label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
+                    <div class='grid__item 1/1'><!--
+                        --><div class="grid__item" *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
+                            --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
                             heading-contxtual-label'>Their names are
-                            </label>
-                            <label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
+                            </label><!--
+                            --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
                             heading-contxtual-label'>Their name is
-                             </label>
-                             <span class='1/6 heading heading-contxtual-label' *ngIf=' 
+                             </label><!--
+                             --><span class='1/6 heading heading-contxtual-label' *ngIf=' 
                             dynamicControlGroup.controls.length > 1 '>
                                 <span *ngIf=' i < ( dynamicControlGroup.controls.length - 1 ) && i >0 '> , </span> 
                                 <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '> and </span>
-                            </span> 
-                            <my-md-input
+                            </span><!-- 
+                            --><my-md-input
                                 [isInSummaryState]='isInSummaryState'
                                 id='firstname_{{ i }}'
                                 isRequired='true'
@@ -82,8 +82,8 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                                 label='First name'
                                 [parentControl]='item.controls.firstName'
                                 isRequired='true'>
-                            </my-md-input>
-                            <my-md-input
+                            </my-md-input><!--
+                            --><my-md-input
                                 [isInSummaryState]='isInSummaryState'
                                 id='lastname_{{ i }}'
                                 isRequired='true'
@@ -92,8 +92,8 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                                 label='Last name'
                                 [parentControl]='item.controls.lastName'
                                 isRequired='true'>
-                            </my-md-input>
-                        </div>
+                            </my-md-input><!--
+                        --></div>
                     </div>
                 </section> 
                 <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
@@ -107,7 +107,6 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                 <div class='hr-block-divider'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
-    inputs     : [ 'switch' ] ,
     styles     : [ require( './EquityHolderBlock.component.scss' ).toString() ] ,
     directives : [
         MdInputComponent ,

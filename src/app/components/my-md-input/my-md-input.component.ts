@@ -8,20 +8,22 @@ import { CssAnimationBuilder } from 'angular2/src/animate/css_animation_builder'
 import { ElementRef } from 'angular2/src/core/linker/element_ref';
 import { EventEmitter } from "angular2/src/facade/async";
 import { OnChanges } from "angular2/src/core/linker/interfaces";
-import { SimpleChange } from "experience/node_modules/angular2/src/core/change_detection/change_detection_util";
-import { AfterViewInit } from "experience/node_modules/angular2/src/core/linker/interfaces";
+import { SimpleChange } from "angular2/src/core/change_detection/change_detection_util";
+import { AfterViewInit } from "angular2/src/core/linker/interfaces";
 import { start } from "repl";
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
 @Component(
     {
         selector      : 'my-md-input' ,
         template      : `
-    <md-input-container
+    <md-input-container 
         [class.md-input-has-value]='parentControl.value' 
-        [ngClass]='{"md-input-has-placeholder" : placeholder}' 
+        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}' 
         flex-gt-sm='' >
-        <label *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label>
-        <input
+        <label
+         [ngClass]='{"summary" : isInSummaryState}'
+        *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
+        --><input
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
@@ -33,7 +35,7 @@ import { start } from "repl";
             [attr.data-automation-id]='"text_" + _id'
             [ngFormControl]='parentControl'
             [attr.placeholder]='placeholder'/>
-            <span class='summary-text' style="visibility: hidden">{{ parentControl.value }}
+            <span class='summary-text'>{{ parentControl.value }}
             </span>
         <ng-content></ng-content>
   </md-input-container>
@@ -63,24 +65,27 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private placeholder : string;
     private visibility : Action;
     private _animation : CssAnimationBuilder;
-    private model : any;
     private onAdjustWidth : EventEmitter<string>;
     private hostClassesRemove;
+    private tempClassNames;
 
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
+        console.log( 'inputWidth' , this.inputWidth );
         if ( this.inputWidth == 0 ) {
             this.inputWidth = 300;
         }
-        this.initiateInputWidth();
-        this.el.nativeElement.className = '';
+        this.tempClassNames               = this.el.nativeElement.className;
+        this.el.nativeElement.className   = '';
+        this.el.nativeElement.style.width = this.inputWidth + 'px';
         return undefined;
     }
 
-    ngOnChanges ( changes : {isInSummaryState : SimpleChange} ) : any {
+    ngOnChanges ( changes ) : any {
         if ( changes.hasOwnProperty( 'isInSummaryState' ) ) {
+            console.log( 'initial Onchange' , changes );
             if ( changes.isInSummaryState.currentValue === true ) {
-                this.adjustInputWidth();
+                this.shrink();
             } else {
                 this.initiateInputWidth();
             }
@@ -105,15 +110,16 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         }
     }
 
-    private adjustInputWidth () {
+    private shrink () {
         if ( this.parentControl.value && this.parentControl.value.trim() != '' ) {
+            //this.el.nativeElement.className = '';
             this
                 ._animation
                 .setFromStyles( {
                     width : this.inputWidth + 'px'
                 } )
                 .setToStyles( {
-                    width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth+10 + 'px'
+                    width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth + 7 + 'px'
                 } )
                 .setDelay( 1200 )
                 .setDuration( 200 )
@@ -122,7 +128,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     }
 
     private initiateInputWidth () {
-        this
+        let a = this
             ._animation
             .setFromStyles( {
                 width : this.el.nativeElement.offsetWidth
@@ -133,5 +139,8 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             .setDelay( 0 )
             .setDuration( 700 )
             .start( this.el.nativeElement );
+        a.onComplete( ()=> {
+            //this.el.nativeElement.className = this.tempClassNames;
+        } );
     }
 }

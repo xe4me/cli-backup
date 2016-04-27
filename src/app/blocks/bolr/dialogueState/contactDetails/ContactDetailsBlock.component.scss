@@ -1,13 +1,13 @@
-@import '../../../../../style/require';
-:host{
+:host {
   width: 100%;
- display: block;
+  display: block;
 }
-.contact-details-block{
+
+.contact-details-block {
   position: relative;
 
-  input-with-label-group{
-    display:block;
+  input-with-label-group {
+    display: block;
   }
 }
 

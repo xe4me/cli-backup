@@ -5,7 +5,8 @@
 
 :host {
   display: inline-block;
-  width: 400px;
+  box-sizing: content-box;
+  padding-right: 0 !important;
 }
 
 $summary-state-color: $amp-colour-sky-blue;
@@ -25,7 +26,8 @@ $summary-state-font-weight: 300;
   @extend %#{$namespace}amp-colour-sky-blue;
   font-weight: $summary-state-font-weight;
   font-size: $ddc-input-field-font-size;
-  margin-left: 2px;
+  white-space: nowrap;
+  visibility: hidden;
 }
 
 .invisible {
@@ -167,12 +169,24 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
 }
 
 md-input-container {
-  box-sizing: content-box ;
+
+  padding-right: 20px;
+  padding-left: 20px;
+  &.summary {
+    @include transition(padding .2s linear !important);
+    transition-delay: 1s !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  @include transition(padding .7s linear);
+  transition-delay: 0s;
+
+  box-sizing: content-box;
   display: inline-block;
   flex: none;
   cursor: pointer;
   height: $input-line-height * 1.5;
-  max-width: 400px;
+  width: 100%;
   &.gone {
     visibility: hidden;
     width: 0 !important;
@@ -182,7 +196,7 @@ md-input-container {
     bottom: 94% !important;
   }
   .md-input {
-
+    padding: 0 !important;
     font-size: $ddc-input-field-font-size;
     &[disabled] {
       &.summary-state {
@@ -196,12 +210,10 @@ md-input-container {
         }
       }
     }
-    margin-top: 8.5px !important;
+    margin-top: 2.7px !important;
     display: inline;
     flex: none;
     cursor: pointer;
-    max-width: 600px;
-    padding-bottom: $input-padding-bottom !important;
     height: $input-height*1.1;
     color: $amp-colour-sky-blue;
     @include amp-family($amp-font-open-sans-regular);
@@ -222,7 +234,17 @@ md-input-container {
   }
 
   label {
-    min-width: 300px;
+
+    padding-left: 40px !important;
+    &.summary {
+      @include transition(padding .2s linear !important);
+      transition-delay: 1s !important;
+      padding-left: 0 !important;
+    }
+    @include transition(padding .7s linear);
+    transition-delay: 0s;
+
+    min-width: 350px;
     @include amp-family($amp-font-open-sans-semibold);
     color: $amp-colour-grey-darkest;
   }
@@ -235,7 +257,3 @@ md-input-container {
   }
 }
 
-my-md-input {
-
-  display: inline-block !important;
-}
