@@ -6,7 +6,6 @@
 :host {
   display: inline-block;
   width: 400px;
-  @include transition(all .6s ease-in-out);
 }
 
 $summary-state-color: $amp-colour-sky-blue;
@@ -168,11 +167,12 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
 }
 
 md-input-container {
+  box-sizing: content-box ;
   display: inline-block;
   flex: none;
   cursor: pointer;
   height: $input-line-height * 1.5;
-
+  max-width: 400px;
   &.gone {
     visibility: hidden;
     width: 0 !important;
@@ -182,7 +182,7 @@ md-input-container {
     bottom: 94% !important;
   }
   .md-input {
-    @include transition(all .3s ease-in-out);
+
     font-size: $ddc-input-field-font-size;
     &[disabled] {
       &.summary-state {
@@ -196,7 +196,7 @@ md-input-container {
         }
       }
     }
-    margin-top: 7.5px !important;
+    margin-top: 8.5px !important;
     display: inline;
     flex: none;
     cursor: pointer;
@@ -236,6 +236,6 @@ md-input-container {
 }
 
 my-md-input {
-  @include transition(all 0.5s ease-in-out);
+
   display: inline-block !important;
 }

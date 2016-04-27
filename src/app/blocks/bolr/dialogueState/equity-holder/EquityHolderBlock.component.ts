@@ -18,20 +18,31 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
             <div class='equity-holder-block'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are there other equity holders in your practice?</h3>
-                <div class='grid__item mb-60 mt-60'>
-                    <amp-group-button
-                        scrollOutOn='YES'
-                        class='grid__item 4/9'
-                        (select)='onSwitchChanged($event)'
-                        [buttons]='hasHoldersButtons'
-                        [parentControl]='formControl[0].control'
-                        [groupName]='switch.hasHolders'   
-                        >
-                    </amp-group-button>
+                <section *ngIf='!isInSummaryState'>
                     
-                </div>
+                    <div  class='grid__item mb-60 mt-60'>
+                        <amp-group-button
+                            scrollOutOn='YES'
+                            class='grid__item 4/9'
+                            (select)='onSwitchChanged($event)'
+                            [buttons]='hasHoldersButtons'
+                            [parentControl]='formControl[0].control'
+                            [groupName]='switch.hasHolders'   
+                            >
+                        </amp-group-button>
+                        
+                    </div>
+                </section>
+                
+                <section *ngIf='isInSummaryState'>
+                    <label class='heading heading-contxtual-label'>There are <span class='summary-state'>{{ dynamicControlGroup.controls.length }}
+                    </span> other equity holders 
+                    </label>
+                   
+                </section>
+                
                 <!--*ngIf='formControl[0].control.value==="YES"' -->
-                <section [collapse]='formControl[0].control.value!=="YES"'>
+                <section [collapse]='formControl[0].control.value!=="YES" || isInSummaryState'>
                     <h3 class='heading heading-intro'>How many?</h3>
                     <div class='grid__item mb-60 mt-60'>
                         <amp-group-button
@@ -45,17 +56,28 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                     </div>
                 </section>
                 <section [collapse]='formControl[0].control.value !== "YES" || formControl[1].control.value < 1'>
-                    <h3 class='heading heading-intro'>What are their names?</h3>
+                    <h3 *ngIf='!isInSummaryState' class='heading heading-intro'>What are their names?</h3>
                     <div class='grid__item 1/1'>
-                        <div class='grid__item'  *ngFor='#item of dynamicControlGroup.controls; #i = index'>
-                            <label *ngIf=' i === 0 ' class='1/5 heading heading-contxtual-label'>Their names are
+                        <div class="grid__item" *ngFor='#item of dynamicControlGroup.controls;
+                         #i = 
+                        index'>
+                            <label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
+                            heading-contxtual-label'>Their names are
+                            </label>
+                            <label *ngIf=' i === 0 && dynamicControlGroup.controls.length==1' class='1/6 heading 
+                            heading-contxtual-label'>Their names is
                              </label>
+                             <span class='1/6 heading heading-contxtual-label' *ngIf=' 
+                            dynamicControlGroup.controls.length > 1 '>
+                                <span *ngIf=' i < ( dynamicControlGroup.controls.length - 1 ) && i >0 '> , </span> 
+                                <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '> and </span>
+                            </span> 
                             <my-md-input
                                 [isInSummaryState]='isInSummaryState'
                                 id='firstname_{{ i }}'
                                 isRequired='true'
                                 valMaxLength='100'
-                                class='grid__item 1/4 pl--'
+                                class='1/3 '
                                 label='First name'
                                 [parentControl]='item.controls.firstName'
                                 isRequired='true'>
@@ -65,16 +87,11 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                                 id='lastname_{{ i }}'
                                 isRequired='true'
                                 valMaxLength='100'
-                                class='grid__item 1/4 pr--'
+                                class='1/3'
                                 label='Last name'
                                 [parentControl]='item.controls.lastName'
                                 isRequired='true'>
                             </my-md-input>
-                            <span class='1/5 heading heading-contxtual-label' *ngIf=' 
-                            dynamicControlGroup.controls.length > 1 '>
-                                <span *ngIf=' i < ( dynamicControlGroup.controls.length - 2 ) '>,</span> 
-                                <span *ngIf=' i === ( dynamicControlGroup.controls.length - 2 ) '>and</span>
-                            </span> 
                         </div>
                     </div>
                 </section>          
@@ -192,10 +209,10 @@ export class EquityHolderBlockComponent extends FormBlock {
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().introIsDone;
-        }
-        return false;
+        // if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
+        //     return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().introIsDone;
+        // }
+        return true;
     }
 
     constructor ( private progressObserver : ProgressObserver ,
