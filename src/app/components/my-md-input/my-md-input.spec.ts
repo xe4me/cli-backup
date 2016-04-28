@@ -75,7 +75,7 @@ describe('my-md-input directive', () => {
       });
   }));
 
-  it('should have 1 validators', injectAsync([TestComponentBuilder], (tcb) => {
+  it('should have 2 validators', injectAsync([TestComponentBuilder], (tcb) => {
     return tcb.createAsync(TestComponent).then((fixture: any) => {
         fixture.detectChanges();
 
@@ -87,11 +87,11 @@ describe('my-md-input directive', () => {
         let compiledInput = compiledMdInputContainer.children[1];
 
         // TODO: Change the number of validators back to 2 Milad.
-        expect(compiledInput.componentInstance._validators.length).toBe(1);
+        expect(compiledInput.componentInstance._validators.length).toBe(2);
         // expect(compiledInput.componentInstance._validators[0]).toBe(MdPatternValidator);
         expect(compiledInput.componentInstance._validators[0].mdPattern).toBe('^([A-Za-z ])*$');
         // TODO: Fix the MaxLength validator in my-md-input by Milad
-        // expect(compiledInput.componentInstance._validators[1].mdMaxLength).toBe('50');
+        expect(compiledInput.componentInstance._validators[1].mdMaxLength).toBe('50');
 
         // TODO: Work out the mandatory validator that got added to the Control but doesn't show up.
       });
