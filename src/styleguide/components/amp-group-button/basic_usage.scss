@@ -1,0 +1,11 @@
+@import "../../../style/require";
+
+.nl-form {
+  text-align: center;
+  font-size: $amp-base-font-size * 2;
+  line-height: $amp-base-font-size * 2 * 1.5;
+  #group-buttons{
+    width: 40%;
+    margin: 50px auto;
+  }
+}

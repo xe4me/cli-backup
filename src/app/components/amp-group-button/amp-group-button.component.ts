@@ -58,8 +58,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                                 [value]='button.value'
                                 [checked]='parentControl.value===button.value'
                                 />
-                          <label (click)='onSelect(button.value)' [attr.for]='button.id'>{{ button.label }}
-                          </label>
+                          <label (click)='onSelect(button.value)' [attr.for]='button.id'>{{ button.label }}</label>
                     </span>
                 </div>
                 ` ,

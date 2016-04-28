@@ -1,0 +1,29 @@
+<form #formModel="ngForm" class="nl-form">
+    <h4 [style.color]='color'>this is binded to onButtonSelect , i.e on click event , and that event is changing the
+        color</h4>
+    <div id="group-buttons">
+        <amp-group-button
+                scrollOutOn='full'
+                class="1/5"
+                (select)='onButtonClick($event)'
+                [buttons]='fullOrPartialButtons.buttons'
+                [parentControl]='control'
+                [groupName]='fullOrPartialButtons.fullOrPartial'
+        >
+        </amp-group-button>
+    </div>
+
+    <button (click)='control.updateValue("partial")'>Change To Partial</button>
+    <button (click)='control.updateValue("full")'>Change To Full</button>
+
+    <div>
+        Value : {{ control.value}}
+    </div>
+
+    <p>
+        Just to demonestrate scroll event on the button click
+        Just to demonestrate scroll event on the button click Just to demonestrate scroll event on the button click
+        Just to demonestrate scroll event on the button click Just to demonestrate scroll event on the button click
+    </p>
+
+</form>
