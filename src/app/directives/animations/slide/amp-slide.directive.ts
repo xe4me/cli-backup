@@ -16,7 +16,7 @@ export class AmpSlideDirective implements OnChanges {
     ngOnChanges ( changes ) {
         if ( changes.slide ) {
             if ( this.slide ) {
-                this.hide()
+                this.hide();
             } else {
                 this.show();
             }
@@ -35,7 +35,7 @@ export class AmpSlideDirective implements OnChanges {
                 top     : '100px' ,
                 opacity : '0'
             } )
-            .start( this._element.nativeElement )
+            .start( this._element.nativeElement );
     }
 
     show () : void {
@@ -50,6 +50,6 @@ export class AmpSlideDirective implements OnChanges {
                 top     : '0px' ,
                 opacity : '1'
             } )
-            .start( this._element.nativeElement )
+            .start( this._element.nativeElement );
     }
 }

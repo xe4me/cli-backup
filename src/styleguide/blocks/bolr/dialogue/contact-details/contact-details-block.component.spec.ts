@@ -2,10 +2,10 @@ import {
     it , inject , injectAsync , describe , beforeEachProviders , TestComponentBuilder
 } from 'angular2/testing';
 import { Component , provide , ElementRef } from 'angular2/core';
-import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/dialogueState/contactDetails/ContactDetailsBlock.component';
-import { MockFormModelService } from './MockFormModelService';
-import { MockScrollService } from './MockScrollService';
-import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/dialogue-state/contact-details/contact-details-block.component.ts';
+import { MockFormModelService } from './mock-form-mode.service';
+import { MockScrollService } from './mock-scroll.service';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 describe( 'ContactDetailsBlockComponent isCurrentBlockActive' , () => {
     beforeEachProviders( () => {
         return [
@@ -13,13 +13,13 @@ describe( 'ContactDetailsBlockComponent isCurrentBlockActive' , () => {
             provide( MockFormModelService , { useClass : MockFormModelService } ) ,
             provide( ElementRef , { useClass : ElementRef } ) ,
             provide( ScrollService , { useClass : MockScrollService } ) ,
-            provide( ProgressObserver , { useClass : ProgressObserver } ) ,
+            provide( ProgressObserverService , { useClass : ProgressObserverService } ) ,
             provide( MockScrollService , { useClass : MockScrollService } ) ,
             provide( Window , { useValue : window } )
         ];
     } );
     it( 'Should return false if user hasn\'t clicked on ok in intro block ' , inject( [
-        ProgressObserver , ElementRef , FormModelService , ScrollService
+        ProgressObserverService , ElementRef , FormModelService , ScrollService
     ] , ( progressObserver , el , formModelService , scrollService ) => {
         let mockFormModelService         = new MockFormModelService();
         let contactDetailsBlockComponent = new ContactDetailsBlockComponent( progressObserver , el , formModelService , scrollService );

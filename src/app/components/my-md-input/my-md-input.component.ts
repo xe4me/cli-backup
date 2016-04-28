@@ -6,11 +6,9 @@ import { AmpFitWidthToText } from '../../directives/amp-fit-width-to-text.direct
 import { AnimationBuilder } from 'angular2/src/animate/animation_builder';
 import { CssAnimationBuilder } from 'angular2/src/animate/css_animation_builder';
 import { ElementRef } from 'angular2/src/core/linker/element_ref';
-import { EventEmitter } from "angular2/src/facade/async";
-import { OnChanges } from "angular2/src/core/linker/interfaces";
-import { SimpleChange } from "angular2/src/core/change_detection/change_detection_util";
-import { AfterViewInit } from "angular2/src/core/linker/interfaces";
-import { start } from "repl";
+import { EventEmitter } from 'angular2/src/facade/async';
+import { OnChanges } from 'angular2/src/core/linker/interfaces';
+import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
 @Component(
     {
@@ -73,7 +71,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
         console.log( 'inputWidth' , this.inputWidth );
-        if ( this.inputWidth == 0 ) {
+        if ( this.inputWidth === 0 ) {
             this.inputWidth = 300;
         }
         this.tempClassNames               = this.el.nativeElement.className;
@@ -112,7 +110,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     }
 
     private shrink () {
-        if ( this.parentControl.value && this.parentControl.value.trim() != '' ) {
+        if ( this.parentControl.value && this.parentControl.value.trim() !== '' ) {
             //this.el.nativeElement.className = '';
             this
                 ._animation
@@ -140,7 +138,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             .setDelay( 0 )
             .setDuration( 700 )
             .start( this.el.nativeElement );
-        a.onComplete( ()=> {
+        a.onComplete( () => {
             //this.el.nativeElement.className = this.tempClassNames;
         } );
     }

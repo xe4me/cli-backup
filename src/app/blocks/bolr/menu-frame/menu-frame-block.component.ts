@@ -2,7 +2,7 @@ import { Component , AfterViewChecked , ElementRef } from 'angular2/core';
 import { FormBlock } from '../../formBlock';
 import { StickyProgressHeaderBlockComponent } from '../../../../../src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
-import { ProgressObserver } from 'amp-ddc-ui-core/ui-core';
+import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'menu-frame' ,
@@ -77,7 +77,7 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
         }
     }
 
-    constructor ( private progressObserver : ProgressObserver ,
+    constructor ( private progressObserver : ProgressObserverService ,
                   private _el : ElementRef ,
                   private formModelService : FormModelService ) {
         super();

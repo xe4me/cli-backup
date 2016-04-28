@@ -2,8 +2,10 @@ import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/co
 import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
-import { InputWithLabelGroupComponent } from '../../../../componentGroups/input-with-label-group/input-with-label-group.component';
-import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
+
+
 @Component(
     {
         selector   : 'contact-details-block' ,
@@ -68,7 +70,7 @@ If not, simply update them below.</h3>
     </div>
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
-        styles     : [ require( './ContactDetailsBlock.component.scss' ).toString() ]
+        styles     : [ require( './contact-details-block.component.scss' ).toString() ]
     } )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
@@ -112,10 +114,13 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     }
 
     private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
+        if ( this.formModel ) {
+            return this.formModel.controls[ this.formControlGroupName ].valid;
+        }
+        return false;
     }
 
-    constructor ( private progressObserver : ProgressObserver ,
+    constructor ( private progressObserver : ProgressObserverService ,
                   private el : ElementRef ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ) {

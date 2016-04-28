@@ -11,7 +11,7 @@ import { BaseRequestOptions , Http , HTTP_PROVIDERS , XHRBackend } from 'angular
 import { MockBackend } from 'angular2/http/testing';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
 // Load the implementations that should be tested
-import { IntroBlockComponent } from '../../../../app/blocks/bolr/initState/IntroBlock.component';
+import { IntroBlockComponent } from '../../../../app/blocks/bolr/init-state/intro-block.component.ts';
 import { MockFormModelService } from './basic_usage';
 import { FormModelService , BlockID } from 'amp-ddc-ui-core/ui-core';
 describe( 'IntroBlockComponent isCurrentBlockActive' , () => {

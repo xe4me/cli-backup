@@ -2,7 +2,7 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 @Component( {
     selector       : 'partnership-manager-block' , template : `
@@ -107,7 +107,7 @@ export class PartnershipManagerBlockComponent extends FormBlock {
         return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
-    constructor ( private progressObserver : ProgressObserver ,
+    constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {

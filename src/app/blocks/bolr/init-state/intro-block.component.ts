@@ -27,7 +27,7 @@ import { I18nSelectPipe } from 'angular2/common';
     </div>
   ` ,
                 // encapsulation: ViewEncapsulation.Emulated
-                styles     : [ require( './IntroBlock.component.scss' ).toString() ] ,
+                styles     : [ require( './intro-block.component.scss' ).toString() ] ,
                 directives : [ ThemeIDDirective ] ,
                 pipes      : [ I18nSelectPipe ]
             } )

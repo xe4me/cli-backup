@@ -11,9 +11,9 @@ import { Control } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
 import { NG_VALUE_ACCESSOR , ControlValueAccessor } from 'angular2/common';
 import { CONST_EXPR } from 'angular2/src/facade/lang';
-import { ChangeDetectionStrategy } from "angular2/src/core/change_detection/constants";
-import { ScrollService } from "amp-ddc-ui-core/ui-core";
-import { OnChanges , AfterViewInit } from "angular2/src/core/linker/interfaces";
+import { ChangeDetectionStrategy } from 'angular2/src/core/change_detection/constants';
+import { ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { OnChanges , AfterViewInit } from 'angular2/src/core/linker/interfaces';
 const RADIO_VALUE_ACCESSOR = CONST_EXPR( new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } ) );
 @Directive( {
@@ -90,9 +90,9 @@ export class AmpGroupButtonComponent {
     private onSelect ( value ) {
         this.select.emit( value + '' );
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
-            this.scrollService.scrollMeOut( this.elem )
+            this.scrollService.scrollMeOut( this.elem );
         } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
-            this.scrollService.scrollMeOut( this.elem )
+            this.scrollService.scrollMeOut( this.elem );
         }
     }
 }

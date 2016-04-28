@@ -19,7 +19,7 @@ export class AmpCollapseDirective implements OnChanges {
                    .removeClass( 'collapse' )
                    .removeClass( 'in' )
                    .removeClass( 'fit' )
-                   .addAnimationClass( 'collapsing' )
+                   .addAnimationClass( 'collapsing' );
     }
 
     constructor ( animationBuilder : AnimationBuilder , private _element : ElementRef ) {
@@ -29,7 +29,7 @@ export class AmpCollapseDirective implements OnChanges {
     ngOnChanges ( changes ) {
         if ( changes.collapse ) {
             if ( this.collapse ) {
-                this.hide()
+                this.hide();
             } else {
                 this.show();
             }
@@ -62,7 +62,7 @@ export class AmpCollapseDirective implements OnChanges {
                     a.removeClasses( [ 'in' ] ); // rapid change will leave in
                     a.addClasses( [ 'collapse' ] );
                 } );
-            } )
+            } );
     }
 
     show () : void {

@@ -3,12 +3,8 @@
  */
 import * as ngCore from 'angular2/core';
 import * as browser from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {BrowserDomAdapter, enableDebugTools} from 'angular2/platform/browser';
-import {ScrollService} from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
-import {FormModelService} from '../node_modules/amp-ddc-ui-core/src/app/services/formModel.service';
-
+import { ROUTER_PROVIDERS , LocationStrategy , HashLocationStrategy } from 'angular2/router';
+import { HTTP_PROVIDERS } from 'angular2/http';
 // Add all operators to Observable
 import 'rxjs/Rx';
 /*

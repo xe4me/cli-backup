@@ -5,12 +5,12 @@ import {
     beforeEachProviders ,
     TestComponentBuilder
 } from 'angular2/testing';
-import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
-import { AmpGroupButtonComponent } from "./amp-group-button.component";
-import { MockScrollService } from '../../../styleguide/blocks/bolr/dialogue/contactDetails/MockScrollService';
-import { MockFormModelService } from '../../../styleguide/blocks/bolr/dialogue/contactDetails/MockFormModelService';
+import { AmpGroupButtonComponent } from './amp-group-button.component';
+import { MockScrollService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-scroll.service';
+import { MockFormModelService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-form-mode.service';
 describe( 'amp-group-button directive' , () => {
     beforeEachProviders( () => {
         return [
@@ -18,7 +18,7 @@ describe( 'amp-group-button directive' , () => {
             provide( MockFormModelService , { useClass : MockFormModelService } ) ,
             provide( ElementRef , { useClass : ElementRef } ) ,
             provide( ScrollService , { useClass : MockScrollService } ) ,
-            provide( ProgressObserver , { useClass : ProgressObserver } ) ,
+            provide( ProgressObserverService , { useClass : ProgressObserverService } ) ,
             provide( MockScrollService , { useClass : MockScrollService } ) ,
             provide( Window , { useValue : window } )
         ];
@@ -28,7 +28,7 @@ describe( 'amp-group-button directive' , () => {
       <form  #formModel='ngForm' class='nl-form' >
         <amp-group-button
                 scrollOutOn='full'
-                class="1/5"
+                class='1/5'
                 (select)='onButtonClick($event)'
                 [buttons]='fullOrPartialButtons.buttons'
                 [parentControl]='control'
@@ -56,20 +56,15 @@ describe( 'amp-group-button directive' , () => {
             ] ,
             fullOrPartial : 'fullOrPartial'
         };
-        private color                = 'red';
 
         private onButtonClick () {
-            if ( this.color === 'red' ) {
-                this.color = 'blue';
-            } else {
-                this.color = 'red';
-            }
+            console.log( 'Clicked' );
         }
     }
     it( 'Should contain 2 radio input field  with proper data-automation-id and name attributes ' ,
         injectAsync( [
             TestComponentBuilder ,
-            ProgressObserver ,
+            ProgressObserverService ,
             ElementRef ,
             FormModelService ,
             ScrollService
@@ -90,7 +85,7 @@ describe( 'amp-group-button directive' , () => {
     it( 'Should contain 2 label field with proper text ' ,
         injectAsync( [
             TestComponentBuilder ,
-            ProgressObserver ,
+            ProgressObserverService ,
             ElementRef ,
             FormModelService ,
             ScrollService
@@ -109,7 +104,7 @@ describe( 'amp-group-button directive' , () => {
     it( 'Should update component control value to full after clicking on Full button' ,
         injectAsync( [
             TestComponentBuilder ,
-            ProgressObserver ,
+            ProgressObserverService ,
             ElementRef ,
             FormModelService ,
             ScrollService
@@ -130,7 +125,7 @@ describe( 'amp-group-button directive' , () => {
     it( 'Should make the Full button checked after the Component programmatically updated its control value' ,
         injectAsync( [
             TestComponentBuilder ,
-            ProgressObserver ,
+            ProgressObserverService ,
             ElementRef ,
             FormModelService ,
             ScrollService
@@ -151,7 +146,7 @@ describe( 'amp-group-button directive' , () => {
     it( 'Should make all the inputs unchecked ' ,
         injectAsync( [
             TestComponentBuilder ,
-            ProgressObserver ,
+            ProgressObserverService ,
             ElementRef ,
             FormModelService ,
             ScrollService

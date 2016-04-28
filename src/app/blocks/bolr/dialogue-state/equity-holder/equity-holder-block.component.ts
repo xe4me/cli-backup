@@ -2,16 +2,15 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { FormModelService , ProgressObserver , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
-import { AmpSwitchComponent } from '../../../../components/amp-switch/amp-switch.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
 import { Validators } from 'angular2/src/common/forms/validators';
 import { AmpGroupButtonComponent } from '../../../../components/amp-group-button/amp-group-button.component';
 import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-slide.directive';
-import { TemplateRef } from "angular2/src/core/linker/template_ref";
+import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 @Component( {
     selector   : 'equity-holder-block' ,
     template   : `
@@ -106,11 +105,10 @@ import { TemplateRef } from "angular2/src/core/linker/template_ref";
                 <div class='hr-block-divider'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
-    styles     : [ require( './EquityHolderBlock.component.scss' ).toString() ] ,
+    styles     : [ require( './equity-holder-block.component.scss' ).toString() ] ,
     directives : [
         MdInputComponent ,
         AmpOverlayComponent ,
-        AmpSwitchComponent ,
         FORM_DIRECTIVES ,
         AmpGroupButtonComponent ,
         AmpCollapseDirective ,
@@ -236,7 +234,7 @@ export class EquityHolderBlockComponent extends FormBlock {
         return false;
     }
 
-    constructor ( private progressObserver : ProgressObserver ,
+    constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
