@@ -7,9 +7,9 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { Control } from 'angular2/src/common/forms/model';
 import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-slide.directive';
-import { AmpOverlayComponent } from "../../../../components/amp-overlay/amp-overlay.component";
+import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { Validators } from "angular2/src/common/forms/validators";
+import { Validators } from 'angular2/src/common/forms/validators';
 @Component( {
     selector   : 'practice-association' ,
     template   : `
@@ -248,21 +248,6 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
         textFieldName : 'exceptionalCircumstances'
     };
 
-    private preselectedAssociationValues () {
-        return [ 'fewer_than_five_years' ];
-    }
-
-    private isInArray ( value , array ) {
-        return array.indexOf( value.trim() ) > - 1;
-    }
-
-    private onlyHasOneOption () {
-        if ( this.formControl[ 0 ].control.value && this.formControl[ 0 ].control.value !== '' ) {
-            return this.isInArray( this.formControl[ 0 ].control.value , this.preselectedAssociationValues() );
-        }
-        return false;
-    }
-
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PracticeAssociationComponent.CLASS_NAME );
@@ -293,6 +278,21 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
         this.formControl[ 0 ].name = this.associationLengthRadios.groupName;
         this.formControl[ 1 ].name = this.exerciseDateRadios.groupName;
         this.formControl[ 2 ].name = this.exerciseDateRadios.textFieldName;
+    }
+
+    private preselectedAssociationValues () {
+        return [ 'fewer_than_five_years' ];
+    }
+
+    private isInArray ( value , array ) {
+        return array.indexOf( value.trim() ) > - 1;
+    }
+
+    private onlyHasOneOption () {
+        if ( this.formControl[ 0 ].control.value && this.formControl[ 0 ].control.value !== '' ) {
+            return this.isInArray( this.formControl[ 0 ].control.value , this.preselectedAssociationValues() );
+        }
+        return false;
     }
 
     private getLicenseeOptions () {

@@ -7,7 +7,7 @@ import { AmpCollapseDirective } from '../../../../directives/animations/collapse
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
-import { AmpOverlayComponent } from "../../../../components/amp-overlay/amp-overlay.component";
+import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 @Component( {
     selector   : 'full-or-partial-block' ,
     template   : `
@@ -32,7 +32,7 @@ import { AmpOverlayComponent } from "../../../../components/amp-overlay/amp-over
                     I'm requesting a <span class='summary-state'>{{ formControl[0].control.value }}</span>
                 </div>
                 <section class='mt-10'  [collapse]='formControl[0].control.value!=="Full"'>
-                    <div class="grid__item mb-15 heading heading-contxtual-label">
+                    <div class='grid__item mb-15 heading heading-contxtual-label'>
                         <span *ngFor='#item of formModelService.advisers ; #i = index'>
                             <span *ngIf='formModelService.advisers.length > 1 '>
                                 <span *ngIf=' i < ( formModelService.advisers.length - 1 ) && i >0 '> , </span> 
