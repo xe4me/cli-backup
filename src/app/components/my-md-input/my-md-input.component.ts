@@ -21,8 +21,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         <label
          [ngClass]='{"summary" : isInSummaryState}'
         *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
-        --><input
-            (blur)='parentControl.updateValue(parentControl.value?.trim())' 
+        --><input 
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
