@@ -15,10 +15,6 @@ declare var google: any;
         valMaxLength='{{valMaxLength}}'
         (input)='showManualAddrOpt()'>
     </my-md-input>
-    <div class='errors mt' *ngIf='!addrPredictions'>
-        <span class='icon icon--close icon-errors'></span>We are unable to find your address. Try again or tell us your address line by line <a href='' (click)='showManualAddrForm()'>here</a> instead.
-    </div>
-
     `,
     styles: [require('./amp-google-address.component.scss').toString()],
     inputs: ['id', 'label', 'parentControl', 'placeholder', 'visibility', 'valMaxLength', 'valPattern', 'isRequired'],
@@ -69,17 +65,12 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
                     componentRestrictions: {country: 'au'}
                 },
                 (predictions, status) => {
-                    if (status == google.maps.places.PlacesServiceStatus.OK ||
-                        status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK ||
+                        status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
                             this.addrPredictions = predictions;
                             this._cd.detectChanges();
                     }
                 });
             }
-    }
-
-    showManualAddrForm() {
-        console.log("Close Google and open Manual entry option");
-        return false;
     }
 }
