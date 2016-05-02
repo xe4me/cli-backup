@@ -20,6 +20,26 @@ $namespace: $amp-namespace !default;
   margin-bottom: $amp-ddc-padding * 4;
 }
 
+.#{$namespace}mb-10,
+%#{$namespace}mb-10 {
+  margin-bottom: $amp-ddc-padding/2;
+}
+
+.#{$namespace}mt-10,
+%#{$namespace}mt-10 {
+  margin-top: $amp-ddc-padding/2;
+}
+
+.#{$namespace}mb-15,
+%#{$namespace}mb-15 {
+  margin-bottom: $amp-ddc-padding - 5;
+}
+
+.#{$namespace}mt-15,
+%#{$namespace}mt-15 {
+  margin-top: $amp-ddc-padding - 5;
+}
+
 .#{$namespace}mb-20,
 %#{$namespace}mb-20 {
   margin-bottom: $amp-ddc-padding;
@@ -30,6 +50,36 @@ $namespace: $amp-namespace !default;
   margin-top: $amp-ddc-padding;
 }
 
+.#{$namespace}mb-25,
+%#{$namespace}mb-25 {
+  margin-bottom: $amp-ddc-padding+5;
+}
+
+.#{$namespace}mt-25,
+%#{$namespace}mt-25 {
+  margin-top: $amp-ddc-padding+5;
+}
+
+.#{$namespace}mb-30,
+%#{$namespace}mb-30 {
+  margin-bottom: $amp-ddc-padding*1.5;
+}
+
+.#{$namespace}mt-30,
+%#{$namespace}mt-30 {
+  margin-top: $amp-ddc-padding *1.5;
+}
+
+.#{$namespace}mb-35,
+%#{$namespace}mb-35 {
+  margin-bottom: ($amp-ddc-padding * 1.5) + 5;
+}
+
+.#{$namespace}mt-35,
+%#{$namespace}mt-35 {
+  margin-top: ($amp-ddc-padding * 1.5) + 5;
+}
+
 .#{$namespace}mb-40,
 %#{$namespace}mb-40 {
   margin-bottom: $amp-ddc-padding * 2;
@@ -38,6 +88,26 @@ $namespace: $amp-namespace !default;
 .#{$namespace}mt-40,
 %#{$namespace}mt-40 {
   margin-top: $amp-ddc-padding * 2;
+}
+
+.#{$namespace}mb-45,
+%#{$namespace}mb-45 {
+  margin-bottom: ($amp-ddc-padding * 2 )+5;
+}
+
+.#{$namespace}mt-45,
+%#{$namespace}mt-45 {
+  margin-top: ($amp-ddc-padding * 2)+5;
+}
+
+.#{$namespace}mb-50,
+%#{$namespace}mb-50 {
+  margin-bottom: ($amp-ddc-padding * 2 )+10;
+}
+
+.#{$namespace}mt-50,
+%#{$namespace}mt-50 {
+  margin-top: ($amp-ddc-padding * 2)+10;
 }
 
 .#{$namespace}mb-60,

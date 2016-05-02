@@ -5,14 +5,17 @@ import { FormModelService , ProgressObserverService , ScrollService } from 'amp-
 import { AmpGroupButtonComponent } from '../../../../components/amp-group-button/amp-group-button.component';
 import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
+import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { TimerWrapper } from 'angular2/src/facade/async';
+import { AmpOverlayComponent } from "../../../../components/amp-overlay/amp-overlay.component";
 @Component( {
     selector   : 'full-or-partial-block' ,
     template   : `
             <div class='full-or-partial-block'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
-                <section>
-                    <div  class='grid__item mb-60 mt-60'>
+                <section [collapse]='isInSummaryState===true'>
+                    <div  class='grid__item mb-30 mt-45'>
                         <amp-group-button
                             scrollOutOn='null'
                             class='grid__item 4/9'
@@ -25,10 +28,11 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                         
                     </div>
                 </section>
-                <section  [collapse]='formControl[0].control.value!=="full"'>
-                    <div class="grid__item mb-20 heading heading-contxtual-label">
-                        Please be aware that 
-                         
+                <div [collapse]='isInSummaryState!==true' class='heading heading-contxtual-label mt-30 mb-10'>
+                    I'm requesting a <span class='summary-state'>{{ formControl[0].control.value }}</span>
+                </div>
+                <section class='mt-10'  [collapse]='formControl[0].control.value!=="Full"'>
+                    <div class="grid__item mb-15 heading heading-contxtual-label">
                         <span *ngFor='#item of formModelService.advisers ; #i = index'>
                             <span *ngIf='formModelService.advisers.length > 1 '>
                                 <span *ngIf=' i < ( formModelService.advisers.length - 1 ) && i >0 '> , </span> 
@@ -39,6 +43,7 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                         will have their clients transferred to AMP.
                     </div>
                 </section>
+                
                 <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
                 class='btn btn--secondary 
                 btn-ok btn-ok-margin-top'>
@@ -51,28 +56,35 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './full-or-partial.component.scss' ).toString() ] ,
-    directives : [ AmpGroupButtonComponent , AmpCollapseDirective ] ,
+    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective ] ,
     providers  : [ TemplateRef ]
 } )
-export class FullOrPartialComponent extends FormBlock {
+export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'FullOrPartialComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private fullOrPartialButtons           = {
-        buttons       : [
+        buttons   : [
             {
                 id    : 'fullId' ,
-                value : 'full' ,
+                value : 'Full' ,
                 label : 'Full sale'
             } ,
             {
                 id    : 'partialId' ,
-                value : 'partial' ,
+                value : 'Partial' ,
                 label : 'Partial sale'
             }
         ] ,
-        fullOrPartial : 'fullOrPartial'
+        groupName : 'fullOrPartial'
     };
+
+    ngAfterViewInit () : any {
+        this.formModel.valueChanges.subscribe( ( changes ) => {
+            this.scrollService.amIVisible( this.el , FullOrPartialComponent.CLASS_NAME );
+        } );
+        return undefined;
+    }
 
     ngOnInit () : any {
         this
@@ -101,13 +113,20 @@ export class FullOrPartialComponent extends FormBlock {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
-            this.scrollService.scrollMeOut( this.el );
+            TimerWrapper.setTimeout( () => {
+                this.scrollService.scrollMeOut( this.el );
+            } , 500 );
             this.progressObserver.onProgress();
+            this.formModelService.present( {
+                action    : 'setFlag' ,
+                flag      : 'fullOrPartialIsDone' ,
+                flagValue : true
+            } );
         }
     }
 
     public preBindControls ( _formBlockDef ) {
-        this.formControl[ 0 ].name = this.fullOrPartialButtons.fullOrPartial;
+        this.formControl[ 0 ].name = this.fullOrPartialButtons.groupName;
     }
 
     private get canGoNext () {
@@ -116,13 +135,13 @@ export class FullOrPartialComponent extends FormBlock {
 
     private isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'equityHolders' ] ) {
-            return this.formModel.controls[ 'equityHolders' ].valid && this.formModelService.getFlags().introIsDone;
+            return this.formModel.controls[ 'equityHolders' ].valid && this.formModelService.getFlags().equityHoldersIsDone;
         }
         return false;
     }
 
     private onSwitchChanged ( value ) {
-        if ( value === 'full' ) {
+        if ( value === 'Full' ) {
         }
     }
 
@@ -131,11 +150,9 @@ export class FullOrPartialComponent extends FormBlock {
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
-        this.formControl = [
-            new NamedControl( this.fullOrPartialButtons.fullOrPartial , new Control() ) ,
+        this.formControl          = [
+            new NamedControl( this.fullOrPartialButtons.groupName , new Control() ) ,
         ];
-        scrollService.$scrolled.subscribe(
-            message => scrollService.amIVisible( el , FullOrPartialComponent.CLASS_NAME ) );
         this.formControlGroupName = 'fullOrPartial';
     }
 }

@@ -1,0 +1,109 @@
+@import '../../../style/require';
+
+:host {
+  display: block;
+}
+
+$radio-width: 30px !default;
+$radio-height: $radio-width !default;
+$radio-text-margin: 40px !default;
+$radio-top-left: 12px !default;
+$radio-margin: 0;
+
+.amp-radio-button-group {
+  line-height: 45px;
+  @extend %#{$namespace}font-size-medium;
+  display: block;
+  margin: $radio-margin;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  &:nth-child(n+2) {
+    margin-top: 23px;
+  }
+  input {
+    display: none;
+  }
+  .container {
+    box-sizing: border-box;
+    position: absolute;
+
+    display: inline-block;
+    width: $radio-width;
+    height: $radio-width;
+    cursor: pointer;
+    @include rtl(left, 0, auto);
+    @include rtl(right, auto, 0);
+    &:hover {
+      .off {
+        border-color: rgba($amp-colour-sky-blue, 0.87);
+      }
+    }
+  }
+
+  .label {
+    line-height: 45px;
+    margin-top: -10px;
+    display: inline-block;
+    vertical-align: top;
+
+    position: relative;
+
+    white-space: normal;
+    //  pointer-events: none;  ???
+    width: auto;
+    @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
+    @include rtl(margin-right, 0, $radio-text-margin + $radio-width);
+  }
+
+  .root {
+    line-height: 1;
+    display: block;
+    cursor: pointer;
+  }
+
+}
+
+.off {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $radio-width;
+  height: $radio-width;
+  border: solid 2px;
+  border-radius: 50%;
+  transition: border-color ease 0.28s;
+}
+
+.on {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $radio-width;
+  height: $radio-width;
+  border-radius: 50%;
+  transition: transform ease 0.28s;
+  transform: scale(0);
+
+  .checked & {
+    transform: scale(0.5);
+  }
+}
+
+.off {
+
+  border-color: rgba(0, 0, 0, 0.54);
+}
+
+.on {
+
+  background-color: rgba($amp-colour-sky-blue, 0.87);
+}
+
+.checked .off {
+
+  border-color: rgba($amp-colour-sky-blue, 0.87);
+}
+

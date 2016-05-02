@@ -9,6 +9,8 @@ import { CssAnimationBuilder } from 'angular2/src/animate/css_animation_builder'
     }
 } )
 export class AmpCollapseDirective implements OnChanges {
+    @Input() showDelay : number;
+    @Input() hideDelay : number;
     @Input() duration : number = 500;
     @Input() collapse : boolean;
     private _animation : CssAnimationBuilder;
@@ -23,7 +25,8 @@ export class AmpCollapseDirective implements OnChanges {
     }
 
     constructor ( animationBuilder : AnimationBuilder , private _element : ElementRef ) {
-        this._animation = animationBuilder.css();
+        this._animation                                            = animationBuilder.css();
+        this._element.nativeElement.style.transitionTimingFunction = 'ease-in';
     }
 
     ngOnChanges ( changes ) {
@@ -48,6 +51,7 @@ export class AmpCollapseDirective implements OnChanges {
             .start( this._element.nativeElement )
             .onComplete( () => {
                 this._baseSequence
+                    .setDelay( this.hideDelay || 0 )
                     .setFromStyles( {
                         opacity  : '1' ,
                         height   : this._element.nativeElement.scrollHeight + 'px' ,
@@ -69,6 +73,7 @@ export class AmpCollapseDirective implements OnChanges {
         this._animation
             .setDuration( 0 )
             .addClass( 'in' )
+
             .start( this._element.nativeElement )
             .onComplete( () => {
                 let a = this._baseSequence
@@ -76,6 +81,7 @@ export class AmpCollapseDirective implements OnChanges {
                                 opacity : '0' ,
                                 height  : '0'
                             } )
+                            .setDelay( this.showDelay || 0 )
                             .setToStyles( {
                                 opacity : '1' ,
                                 height  : this._element.nativeElement.scrollHeight + 'px'
