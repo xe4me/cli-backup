@@ -17,7 +17,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
              <div class='content'>
                  <div class='menu grid__item '>
                     <div class='menu--left'>
-                        <div class='menu--left--title'>You request details</div>
+                        <div class='menu--left--title'>Your request details</div>
                         <div class='menu--left--hr hr--solid'></div>
                         <div class='menu--left--download'><span class='icon icon--time'></span>  Download a copy</div>
                         <!--<div class='menu&#45;&#45;left&#45;&#45;download'><span class='icon icon&#45;&#45;time'></span>  {{ formModelService.currentComponent}}</div>-->
