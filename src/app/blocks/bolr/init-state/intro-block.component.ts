@@ -8,7 +8,7 @@ import { I18nSelectPipe } from 'angular2/common';
     selector   : 'bolr-intro-block' ,
     template   : `
     <div class='ng-animate bolr-intro bolr-right-padding' [class.hidden]='formModelService.getFlags().introIsDone'>
-        <div class='bolr-intro-logo mb4' ampLicenseeThemeID></div>
+        <div class='bolr-intro-logo mb-60' ampLicenseeThemeID></div>
         <div class='bolr-intro-main'>
             <div class='bolr-intro-main__title practice-title mb3'>
                 <span class='mr'>{{formModelService.getModel().context.practiceName}}</span>

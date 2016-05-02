@@ -2,14 +2,15 @@
 
 $font-size: $amp-base-font-size * 2 / 5 !default;
 
-$logo-height: 80px !default;
+$logo-height: 40px !default;
 
 $amp-ddc-public-asset: '../../../../../public/';
 
-:host{
+:host {
   width: 100%;
   display: block;
 }
+
 .bolr-intro {
   margin: 0px $amp-ddc-padding * 2;
   max-height: 1000px;
@@ -55,10 +56,10 @@ $amp-ddc-public-asset: '../../../../../public/';
 }
 
 .bolr-intro-main {
-  margin: $amp-ddc-padding *2;
+  //margin: $amp-ddc-padding *2;
 
   @include media-query('lap-and-up') {
-    margin-left: $amp-ddc-padding * 7 * 2;
+    margin-left: 20.9%;
   }
 
   .btn {
