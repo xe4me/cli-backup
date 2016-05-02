@@ -14,10 +14,16 @@ $md-accent: md-palette($md-deep-orange, 500, 300, 700, $md-contrast-palettes);
 // Each Component/Directive get unique _ngcontent attr Id, which all styles incorporated by them will get isolated to their element. The problem arises when you have
 // component encapsulated by another component but the style needs to go across the 2 components
 
+.ddc-light-font-family {
+    @include amp-family($amp-font-open-sans-regular);
+    font-weight: 300;
+}
+
 .nl-form {
-  // TODO: The following styles should be set on the body tag as they are not strictly form specific.
-  text-align : center;
-  font-size: $amp-base-font-size * 2;
-  line-height: $amp-base-font-size * 2 * 1.5;
+    // TODO: The following styles should be set on the body tag as they are not strictly form specific.
+    text-align : center;
+    font-size: $amp-base-font-size * 2;
+    line-height: $amp-base-font-size * 2 * 1.5;
+    @extend .ddc-light-font-family;
 
 }

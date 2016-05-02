@@ -14,15 +14,15 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
     {
         selector      : 'my-md-input' ,
         template      : `
-    <md-input-container 
-        [class.md-input-has-value]='parentControl.value' 
-        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}' 
+    <md-input-container
+        [class.md-input-has-value]='parentControl.value'
+        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}'
         flex-gt-sm='' >
         <label
          [ngClass]='{"summary" : isInSummaryState}'
         *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
         --><input
-            (blur)='parentControl.updateValue(parentControl.value.trim())' 
+            (blur)='parentControl.updateValue(parentControl.value?.trim())' 
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
