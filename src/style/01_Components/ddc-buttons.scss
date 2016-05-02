@@ -13,6 +13,7 @@ $buttons-transition-time: 300ms;
 
 .#{$namespace}btn-ok,
 %#{$namespace}btn-ok {
+  width: 125px;
   @extend %#{$namespace}font-size-small;
   @extend %#{$namespace}btn--kilo;
   @include transition(all $buttons-transition-time ease-in-out);
@@ -27,6 +28,7 @@ $buttons-transition-time: 300ms;
 
 .#{$namespace}btn-change,
 %#{$namespace}btn-change {
+  width: 125px;
   @extend %#{$namespace}font-size-small;
   @extend %#{$namespace}btn--hotel;
   @include transition(all $buttons-transition-time ease-in-out);
