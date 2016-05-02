@@ -195,6 +195,12 @@ md-input-container {
   label:not(.md-container-ignore) {
     bottom: 101% !important;
   }
+  &.md-input-focused {
+    .md-input.ng-invalid.ng-dirty {
+      color: #000;
+      border-bottom: 1px solid #ccd2d9 !important;
+    }
+  }
   .md-input {
     padding: 0 !important;
     font-size: $ddc-input-field-font-size;
@@ -218,10 +224,15 @@ md-input-container {
     color: $amp-colour-sky-blue;
     @include amp-family($amp-font-open-sans-regular);
     font-weight: 300;
+    //&.ng-invalid.ng-dirty {
+    //  padding-bottom: 0; // Increase border width by 1px, decrease padding by 1
+    //  border-width: 0 !important;
+    //}
 
     &.ng-invalid:not(.ng-pristine) {
       color: $amp-colour-alert-danger;
       border-color: $amp-colour-alert-danger;
+
     }
 
     &:hover:not(.ng-invalid), &:hover.ng-pristine {
