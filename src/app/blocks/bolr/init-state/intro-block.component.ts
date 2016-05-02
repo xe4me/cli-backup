@@ -5,8 +5,8 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 import { I18nSelectPipe } from 'angular2/common';
 @Component( {
-                selector   : 'bolr-intro-block' ,
-                template   : `
+    selector   : 'bolr-intro-block' ,
+    template   : `
     <div class='ng-animate bolr-intro bolr-right-padding' [class.hidden]='formModelService.getFlags().introIsDone'>
         <div class='bolr-intro-logo mb4' ampLicenseeThemeID></div>
         <div class='bolr-intro-main'>
@@ -26,38 +26,33 @@ import { I18nSelectPipe } from 'angular2/common';
         </div>
     </div>
   ` ,
-                // encapsulation: ViewEncapsulation.Emulated
-                styles     : [ require( './intro-block.component.scss' ).toString() ] ,
-                directives : [ ThemeIDDirective ] ,
-                pipes      : [ I18nSelectPipe ]
-            } )
+    // encapsulation: ViewEncapsulation.Emulated
+    styles     : [ require( './intro-block.component.scss' ).toString() ] ,
+    directives : [ ThemeIDDirective ] ,
+    pipes      : [ I18nSelectPipe ]
+} )
 export class IntroBlockComponent extends FormBlock {
-    static CLASS_NAME = 'IntroBlockComponent';
-    licenseeFormName : any = {
-        LIC_AMPFP    : 'Buyer of last resort' ,
-        LIC_HILLROSS : 'Licensee / Enhanced buyback' ,
-        LIC_CHARTER  : 'Buy out option' ,
-        null         : 'Buyer of last resort'
-    };
+    static CLASS_NAME             = 'IntroBlockComponent';
+           licenseeFormName : any = {
+               LIC_AMPFP    : 'Buyer of last resort' ,
+               LIC_HILLROSS : 'Licensee / Enhanced buyback' ,
+               LIC_CHARTER  : 'Buy out option' ,
+               null         : 'Buyer of last resort'
+           };
     // TODO: Update the title of the form based on the licensee @ViewChild
     constructor ( private el : ElementRef ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ) {
         super();
-        scrollService.$scrolled.subscribe( message => scrollService.amIVisible( el , IntroBlockComponent.CLASS_NAME ) );
     }
 
     // TODO: Move this to the parent FormBlock class, as this should be common to all FormBlock components
     public ok () {
         this.formModelService.present( {
-                                           action    : 'setFlag' ,
-                                           flag      : 'introIsDone' ,
-                                           flagValue : true
-                                       } );
-        // Calling on Scroll here to tell apllication that an scroll has happened , because after hiding intro block
-        // we're not scrolling actually , we're just hiding the first block and no scroll will happen ,
-        // so we will fire it manually , we're using setTimeout because it takes ~1s for the intro to hide!
-        setTimeout( () => (this.scrollService.onScroll()) , 1000 );
+            action    : 'setFlag' ,
+            flag      : 'introIsDone' ,
+            flagValue : true
+        } );
     }
 
     public preBindControls ( _formBlockDef ) {

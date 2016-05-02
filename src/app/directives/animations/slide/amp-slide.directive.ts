@@ -26,29 +26,33 @@ export class AmpSlideDirective implements OnChanges {
     hide () : void {
         this._animation
             .setDuration( this.duration )
-            .addClass( 'slide' )
+
             .setFromStyles( {
-                top     : '0px' ,
-                opacity : '1'
+                transform : 'translateY(0)' ,
+                opacity   : '1'
             } )
             .setToStyles( {
-                top     : '100px' ,
-                opacity : '0'
+                transform : 'translateY(200px)' ,
+                opacity   : '0'
             } )
             .start( this._element.nativeElement );
     }
 
     show () : void {
         this._animation
-            .addClass( 'slide' )
+
             .setDuration( this.duration )
             .setFromStyles( {
-                top     : '100px' ,
-                opacity : '0'
+                'will-change' : 'transform' ,
+
+                transform     : 'translateY(200px)' ,
+                opacity       : '0'
             } )
             .setToStyles( {
-                top     : '0px' ,
-                opacity : '1'
+                'will-change' : '' ,
+
+                transform     : 'translateY(0)' ,
+                opacity       : '1'
             } )
             .start( this._element.nativeElement );
     }

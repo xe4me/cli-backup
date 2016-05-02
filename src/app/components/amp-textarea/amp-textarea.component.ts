@@ -12,7 +12,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
 @Component(
     {
-        selector      : 'my-md-input' ,
+        selector      : 'amp-textarea' ,
         template      : `
     <md-input-container 
         [class.md-input-has-value]='parentControl.value' 
@@ -21,8 +21,11 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         <label
          [ngClass]='{"summary" : isInSummaryState}'
         *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
-        --><input
-            (keyup)='onEnterClick($event)'
+        --><textarea
+            (keydown)='adjustHeight($event.target)'
+            (paste)='adjustHeight($event.target)'
+            (blur)='adjustHeight($event.target)'
+            (keyup)='adjustHeight($event.target);onEnterClick($event)'
             (blur)='trimValue()' 
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
@@ -34,13 +37,15 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             [mdMaxLength]='valMaxLength'
             [attr.data-automation-id]='"text_" + _id'
             [ngFormControl]='parentControl'
-            [attr.placeholder]='placeholder'/>
+            [attr.placeholder]='placeholder'>
+            
+            </textarea>
             <span class='summary-text'>{{ parentControl.value }}
             </span>
         <ng-content></ng-content>
   </md-input-container>
   ` ,
-        styles        : [ require( './my-md-input.scss' ).toString() ] ,
+        styles        : [ require( './amp-textarea.scss' ).toString() ] ,
         inputs        : [
             'id' ,
             'isInSummaryState' ,
@@ -54,11 +59,9 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'hostClassesRemove'
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
-        encapsulation : ViewEncapsulation.Emulated ,
-        outputs       : [ 'onEnter' ]
+        encapsulation : ViewEncapsulation.Emulated
     } )
-export class MdInputComponent implements OnChanges, AfterViewInit {
-    private inputWidth : number;
+export class AmpTextareaComponent implements AfterViewInit {
     private _id : string;
     private label : string;
     private isInSummaryState : boolean;
@@ -68,29 +71,32 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private _animation : CssAnimationBuilder;
     private onAdjustWidth : EventEmitter<string>;
     private hostClassesRemove;
-    private tempClassNames;
+    private initialHeight : number;
     private onEnter : EventEmitter<string>;
 
     ngAfterViewInit () : any {
-        this.inputWidth = this.el.nativeElement.offsetWidth;
-        if ( this.inputWidth === 0 ) {
-            this.inputWidth = 300;
+        this.initialHeight = this.el.nativeElement.style.height;
+        if ( this.initialHeight === 0 ) {
+            this.initialHeight = this.el.nativeElement.scrollHeight;
         }
-        this.tempClassNames               = this.el.nativeElement.className;
-        this.el.nativeElement.className   = '';
-        this.el.nativeElement.style.width = this.inputWidth + 'px';
         return undefined;
     }
 
-    ngOnChanges ( changes ) : any {
-        if ( changes.hasOwnProperty( 'isInSummaryState' ) ) {
-            if ( changes.isInSummaryState.currentValue === true ) {
-                this.shrink();
-            } else {
-                this.initiateInputWidth();
-            }
+    private adjustHeight ( element ) {
+        if ( this.parentControl.value && this.parentControl.value.trim() === '' ) {
+            element.style.height               = this.initialHeight;
+            this.el.nativeElement.style.height = this.initialHeight;
+        } else {
+            element.style.height               = '1px';
+            element.style.height               = (25 + element.scrollHeight) + 'px';
+            this.el.nativeElement.style.height = (25 + element.scrollHeight) + 'px';
         }
-        return undefined;
+    }
+
+    private onEnterClick ( event ) {
+        if ( event.keyCode === 13 ) {
+            this.onEnter.emit( 'enter' );
+        }
     }
 
     constructor ( private el : ElementRef , private animationBuilder : AnimationBuilder ) {
@@ -111,45 +117,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         }
     }
 
-    private onEnterClick ( event ) {
-        if ( event.keyCode === 13 ) {
-            this.onEnter.emit( 'enter' );
-        }
-    }
-
-    private shrink () {
-        if ( this.parentControl.value && this.parentControl.value.trim() !== '' ) {
-            //this.el.nativeElement.className = '';
-            this
-                ._animation
-                .setFromStyles( {
-                    width : this.inputWidth + 'px'
-                } )
-                .setToStyles( {
-                    width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth + 5 + 'px'
-                } )
-                .setDelay( 1200 )
-                .setDuration( 200 )
-                .start( this.el.nativeElement );
-        }
-    }
     private  trimValue () {
         return this.parentControl.value ? this.parentControl.updateValue( this.parentControl.value.trim() ) : '';
-    }
-    private initiateInputWidth () {
-        let a = this
-            ._animation
-            .setFromStyles( {
-                width : this.el.nativeElement.offsetWidth
-            } )
-            .setToStyles( {
-                width : this.inputWidth + 'px'
-            } )
-            .setDelay( 0 )
-            .setDuration( 700 )
-            .start( this.el.nativeElement );
-        a.onComplete( () => {
-            //this.el.nativeElement.className = this.tempClassNames;
-        } );
     }
 }

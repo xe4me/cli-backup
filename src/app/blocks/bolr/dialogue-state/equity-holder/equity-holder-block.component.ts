@@ -2,7 +2,7 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
@@ -11,6 +11,8 @@ import { AmpGroupButtonComponent } from '../../../../components/amp-group-button
 import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-slide.directive';
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
+import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'equity-holder-block' ,
     template   : `
@@ -18,11 +20,18 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 [ngClass]='{"mb-20":isInSummaryState}' class='heading heading-intro'>Does the practice have additional equity 
                 holders?</h3>
-                <section *ngIf='!isInSummaryState'>
+                <div *ngIf='isInSummaryState' class='heading heading-contxtual-label mt-30 mb-20'>
+                    <span class='summary-state'>{{ formControl[0].control.value }}</span>
+                </div>
+                <div [collapse]='isInSummaryState' class='heading heading-contxtual-label mt-30'>
+                    For a practice to access the {{ licensee }} facility, all equity holders in that practice must exercise {{ licensee }}.
+                </div>
+                
+                <section [collapse]='isInSummaryState'>
                     
-                    <div  class='grid__item mb-60 mt-60'>
+                    <div  class='grid__item mb-25 mt-45'>
                         <amp-group-button
-                            scrollOutOn='true'
+                            scrollOutOn='Yes'
                             class='grid__item 4/9'
                             (select)='onSwitchChanged($event)'
                             [buttons]='hasHoldersButtons.buttons'
@@ -33,18 +42,10 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                         
                     </div>
                 </section>
-                
-                <section *ngIf='isInSummaryState'>
-                    <label class='heading heading-contxtual-label'>There are <span class='summary-state'>{{ dynamicControlGroup.controls.length }}
-                    </span> other equity holders 
-                    </label>
-                   
-                </section>
-                
-                <!--*ngIf='formControl[0].control.value==="YES"' -->
-                <section [collapse]='formControl[0].control.value!=="true" || isInSummaryState'>
-                    <h3 class='heading heading-intro'>How many?</h3>
-                    <div class='grid__item mb-60 mt-60'>
+             
+                <section [collapse]='formControl[0].control.value!=="Yes" || isInSummaryState'>
+                    <h3 class='heading heading-intro mt-15'>How many?</h3>
+                    <div class='grid__item mb-15 mt-45'>
                         <amp-group-button
                             scrollOutUnless='null'
                             (select)='onHoldersCountGroupButtonSelect($event)'
@@ -55,13 +56,22 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                         </amp-group-button>
                     </div>
                 </section>
-                <section [collapse]='formControl[0].control.value !== "true" || formControl[1].control.value < 1'>
-                    <h3 *ngIf='dynamicControlGroup.controls.length>1 && !isInSummaryState' 
-                    class='heading heading-intro'>What are their names?</h3>
-                    <h3 *ngIf='dynamicControlGroup.controls.length===1 && !isInSummaryState' 
-                    class='heading heading-intro'>What is their name?</h3>
+                <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="No"'>
+                    <h3 class='heading heading-intro mt-10 mb-30'>How many?</h3>
+                    <div>
+                        <span class='summary-state'>{{ dynamicControlGroup.controls.length }}</span>
+                    </div> 
+                </section>
+                
+                
+                <section  [collapse]='formControl[0].control.value !== "Yes" || 
+                formControl[1].control.value < 1'>
+                    <h3 *ngIf='dynamicControlGroup.controls.length>1' 
+                    class='heading heading-intro mt-15 mb-15'>What are their names?</h3>
+                    <h3 *ngIf='dynamicControlGroup.controls.length===1' 
+                    class='heading heading-intro mt-15 mb-15'>What is their name?</h3>
                     <div class='grid__item 1/1'>
-                        <div class="grid__item" *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
+                        <div class='grid__item' *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
                             heading-contxtual-label'>Their names are&nbsp;</label><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
@@ -72,6 +82,7 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                                 <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '>and</span>
                             </span><!--
                                 --><my-md-input
+                                (onEnter)='ok()'
                                 [isInSummaryState]='isInSummaryState'
                                 id='firstname_{{ i }}'
                                 isRequired='true'
@@ -79,9 +90,10 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                                 class='1/3 '
                                 label='First name'
                                 [parentControl]='item.controls.firstName'
-                                isRequired='true'>
+                                >
                             </my-md-input><!--
                             --><my-md-input
+                                (onEnter)='ok()'
                                 [isInSummaryState]='isInSummaryState'
                                 id='lastname_{{ i }}'
                                 isRequired='true'
@@ -89,19 +101,21 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
                                 class='1/3'
                                 label='Last name'
                                 [parentControl]='item.controls.lastName'
-                                isRequired='true'>
+                                >
                             </my-md-input><!--
                         --></div>
                     </div>
                 </section> 
-                <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
-                class='btn btn--secondary 
-                btn-ok btn-ok-margin-top'>
-                    OK
-                </button>
-                    <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
-                    Change
-                </button>
+                <section>
+                    <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
+                        class='btn btn--secondary 
+                        btn-ok btn-ok-margin-top'>
+                        OK
+                    </button>
+                        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+                        Change
+                    </button>
+                </section>
                 <div class='hr-block-divider'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
@@ -116,7 +130,7 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
     ] ,
     providers  : [ TemplateRef ]
 } )
-export class EquityHolderBlockComponent extends FormBlock {
+export class EquityHolderBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -125,12 +139,12 @@ export class EquityHolderBlockComponent extends FormBlock {
         buttons   : [
             {
                 id    : 'yesId' ,
-                value : 'true' ,
+                value : 'Yes' ,
                 label : 'YES'
             } ,
             {
                 id    : 'noId' ,
-                value : 'false' ,
+                value : 'No' ,
                 label : 'NO'
             }
         ] ,
@@ -163,6 +177,13 @@ export class EquityHolderBlockComponent extends FormBlock {
         groupName : 'holdersCount'
     };
 
+    ngAfterViewInit () : any {
+        this.formModel.valueChanges.subscribe( ( changes ) => {
+            this.scrollService.amIVisible( this.el , EquityHolderBlockComponent.CLASS_NAME );
+        } );
+        return undefined;
+    }
+
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
@@ -172,8 +193,15 @@ export class EquityHolderBlockComponent extends FormBlock {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
-            this.scrollService.scrollMeOut( this.el );
+            TimerWrapper.setTimeout( () => {
+                this.scrollService.scrollMeOut( this.el , 'easeOutQuart' , 10 );
+            } , 500 );
             this.progressObserver.onProgress();
+            this.formModelService.present( {
+                action    : 'setFlag' ,
+                flag      : 'equityHoldersIsDone' ,
+                flagValue : true
+            } );
         }
     }
 
@@ -193,12 +221,18 @@ export class EquityHolderBlockComponent extends FormBlock {
         }
     }
 
+    private get licensee () {
+        return Licensees.getLicensee( this.formModelService.context.licensee );
+    }
+
     private onSwitchChanged ( value ) {
-        if ( value === 'false' ) {
+        if ( value === 'No' ) {
             this.clearHoldersControlArray();
             this.formControl[ 1 ].control.updateValue( '0' );
         } else {
-            this.formControl[ 1 ].control.updateValue( '' );
+            if ( this.dynamicControlGroup.length === 0 ) {
+                this.formControl[ 1 ].control.updateValue( '' );
+            }
         }
     }
 
@@ -229,7 +263,7 @@ export class EquityHolderBlockComponent extends FormBlock {
 
     private isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().introIsDone;
+            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().partnershipIsDone;
         }
         return false;
     }
@@ -239,14 +273,12 @@ export class EquityHolderBlockComponent extends FormBlock {
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
-        this.dynamicControlGroup = new ControlArray( [] );
-        this.formControl         = [
+        this.dynamicControlGroup  = new ControlArray( [] );
+        this.formControl          = [
             new NamedControl( this.hasHoldersButtons.groupName , new Control() ) ,
             new NamedControl( this.holdersCountButtons.groupName , new Control( null , Validators.required ) ) ,
             new NamedControl( 'holders' , this.dynamicControlGroup )
         ];
-        scrollService.$scrolled.subscribe(
-            message => scrollService.amIVisible( el , EquityHolderBlockComponent.CLASS_NAME ) );
         this.formControlGroupName = 'equityHolders';
     }
 }

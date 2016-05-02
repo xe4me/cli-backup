@@ -4,11 +4,12 @@ $header-font-family: $amp-font-open-sans-regular;
 $menu-left-width: 20%;
 $menu-right-width: 80%;
 $left-menu-right-and-left-padding: 60px;
-:host{
+:host {
   width: 100%;
   display: block;
 }
-.hidden{
+
+.hidden {
   display: none;
 }
 
@@ -21,9 +22,9 @@ $left-menu-right-and-left-padding: 60px;
     z-index: 100;
     width: 100%;
     display: block;
-    transition: opacity 1s , height 1s, cubic-bezier(0.3, 0.06, 0.91, 0.45);
+    transition: opacity 1s, height 1s, cubic-bezier(0.3, 0.06, 0.91, 0.45);
     opacity: 0;
-    height: 0 ;
+    height: 0;
   }
 
   &--sticky {
@@ -60,7 +61,10 @@ $left-menu-right-and-left-padding: 60px;
 
   &--left {
     opacity: 0;
-    transition: opacity 2.5s  ease-in-out;
+    @include transition(opacity .35s ease-out);
+
+    transition-delay: 0.5s;
+
     padding-left: $left-menu-right-and-left-padding;
     padding-right: $left-menu-right-and-left-padding;
     @include amp-family($header-font-family);

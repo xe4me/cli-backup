@@ -4,8 +4,8 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
-
-
+import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { TimerWrapper } from 'angular2/src/facade/async';
 @Component(
     {
         selector   : 'contact-details-block' ,
@@ -17,6 +17,7 @@ import { FormModelService , ProgressObserverService , ScrollService } from 'amp-
 If not, simply update them below.</h3>
         <!--Contact Number-->
         <input-with-label-group
+            (onEnter)='ok()'
             [isInSummaryState]='isInSummaryState'
             [contxtualLabel]='contactDetails.phone.contxtualLabel'
             [id]='contactDetails.phone.id'
@@ -29,6 +30,7 @@ If not, simply update them below.</h3>
 
         <!--Email-->
          <input-with-label-group
+            (onEnter)='ok()'
             [isInSummaryState]='isInSummaryState'
             [contxtualLabel]='contactDetails.email.contxtualLabel'
             [id]='contactDetails.email.id'
@@ -39,25 +41,8 @@ If not, simply update them below.</h3>
             [valPattern]='contactDetails.email.regex'
          >
         </input-with-label-group>
-      
-        
-        <div *ngIf='hasClickedOnOkButton && !formModel.controls.contactDetails.valid' class='errors mt'>
-            <div *ngIf='!formControl[0].control.valid'>
-                <div>
-                    <span class='icon icon--close icon-errors'></span>Please enter work phone number.
-                </div>
-                <div>
-                    <span class='icon icon--close icon-errors'></span>Please enter a valid phone
-                </div>
-            </div>
-            <div *ngIf='!formControl[1].control.valid'>
-                <div>
-                    <span class='icon icon--close icon-errors'></span>Please enter email address.
-                </div>
-                <div>
-                    <span class='icon icon--close icon-errors'></span>Please enter a valid email
-                </div>
-            </div>
+        <div *ngIf='hasClickedOnOkButton && !formModel.controls.contactDetails.valid' class='errors mt-20 mb-20'>
+            <span class='icon icon--close icon-errors'></span>Please answer this question.
         </div>
         <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn 
         btn--secondary btn-ok btn-ok-margin-top'>
@@ -72,7 +57,7 @@ If not, simply update them below.</h3>
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
         styles     : [ require( './contact-details-block.component.scss' ).toString() ]
     } )
-export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
+export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
     private contactDetails                 = {
         phone : {
@@ -92,47 +77,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
     };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
-
-    public change () {
-        this.hasClickedOnOkButton = false;
-        this.isInSummaryState     = false;
-    }
-
-    public ok () {
-        this.hasClickedOnOkButton = true;
-        if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
-            this.isInSummaryState = true;
-            this.scrollService.scrollMeOut( this.el );
-            this.progressObserver.onProgress();
-        }
-        // this.isInSummaryState = true;
-        // // SAM - Action present data to Model
-        // this.formModelService.present({
-        //     action: 'next',
-        //     blockId: this._id
-        // });
-    }
-
-    private get canGoNext () {
-        if ( this.formModel ) {
-            return this.formModel.controls[ this.formControlGroupName ].valid;
-        }
-        return false;
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private el : ElementRef ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
-        super();
-        scrollService.$scrolled.subscribe(
-            message => scrollService.amIVisible( el , ContactDetailsBlockComponent.CLASS_NAME ) );
-        this.formControl          = [
-            new NamedControl( this.contactDetails.phone.id , new Control() ) ,
-            new NamedControl( this.contactDetails.email.id , new Control() )
-        ];
-        this.formControlGroupName = 'contactDetails';
-    }
 
     public isCurrentBlockActive () {
         return this.formModelService.getFlags().introIsDone;
@@ -163,6 +107,53 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit {
                     );
                 } );
         return undefined;
+    }
+
+    ngAfterViewInit () : any {
+        this.formModel.valueChanges.subscribe( ( changes ) => {
+            this.scrollService.amIVisible( this.el , ContactDetailsBlockComponent.CLASS_NAME );
+        } );
+        return undefined;
+    }
+
+    public change () {
+        this.hasClickedOnOkButton = false;
+        this.isInSummaryState     = false;
+    }
+
+    public ok () {
+        this.hasClickedOnOkButton = true;
+        if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
+            TimerWrapper.setTimeout( () => {
+                this.isInSummaryState = true;
+            } , 1200 );
+            this.scrollService.scrollMeOut( this.el );
+            this.progressObserver.onProgress();
+            this.formModelService.present( {
+                action    : 'setFlag' ,
+                flag      : 'contactDetailsIsDone' ,
+                flagValue : true
+            } );
+        }
+    }
+
+    private get canGoNext () {
+        if ( this.formModel ) {
+            return this.formModel.controls[ this.formControlGroupName ].valid;
+        }
+        return false;
+    }
+
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private el : ElementRef ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ) {
+        super();
+        this.formControl          = [
+            new NamedControl( this.contactDetails.phone.id , new Control() ) ,
+            new NamedControl( this.contactDetails.email.id , new Control() )
+        ];
+        this.formControlGroupName = 'contactDetails';
     }
 }
 /**

@@ -4,6 +4,7 @@ import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector       : 'partnership-manager-block' , template : `
     <div class='partnership-manager-block' [class.hidden]='!isCurrentBlockActive()'>
@@ -14,6 +15,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
             <!--Partnership Manager name-->
             <label class='heading heading-contxtual-label mb3' >My partnership manager is</label>&nbsp;<my-md-input
                 class='1/3'
+                (onEnter)='ok()'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.firstName.id'
                 [label]='partnershipMgr.firstName.label'
@@ -24,6 +26,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
             </my-md-input><!--
             --><my-md-input
                 class='1/3'
+                (onEnter)='ok()'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.lastName.id'
                 [label]='partnershipMgr.lastName.label'
@@ -33,17 +36,8 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                 valMaxLength='100'>
             </my-md-input>
         </div>
-        <div *ngIf='hasClickedOnOkButton && !formModel.controls.partnership.valid' class='errors mt'>
-            <div *ngIf='!formControl[0].control.valid'>
-                <div>
-                    <span class='icon icon--close icon-errors'></span>Firstname should no be empty
-                </div>
-            </div>
-            <div *ngIf='!formControl[1].control.valid'>
-                <div>
-                    <span class='icon icon--close icon-errors'></span>Lastname should no be empty
-                </div>
-            </div>
+        <div *ngIf='hasClickedOnOkButton && !formModel.controls.partnership.valid' class='errors mt mb-20'>
+            <span class='icon icon--close icon-errors'></span>Please answer this question
         </div>
 
         <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary 
@@ -61,7 +55,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
             .toString()
     ] , directives : [ MdInputComponent , AmpOverlayComponent ]
 } )
-export class PartnershipManagerBlockComponent extends FormBlock {
+export class PartnershipManagerBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
     private partnershipMgr                 = {
         firstName    : {
@@ -73,6 +67,13 @@ export class PartnershipManagerBlockComponent extends FormBlock {
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
 
+    ngAfterViewInit () : any {
+        this.formModel.valueChanges.subscribe( ( changes ) => {
+            this.scrollService.amIVisible( this.el , PartnershipManagerBlockComponent.CLASS_NAME );
+        } );
+        return undefined;
+    }
+
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
@@ -80,14 +81,16 @@ export class PartnershipManagerBlockComponent extends FormBlock {
 
     public ok () {
         this.hasClickedOnOkButton = true;
-        this.isInSummaryState = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
-            this.isInSummaryState = true;
+            TimerWrapper.setTimeout( () => {
+                this.isInSummaryState = true;
+            } , 1200 );
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
-            // SAM - Action present data to Model
             this.formModelService.present( {
-                action : 'next' , blockId : this._id
+                action    : 'setFlag' ,
+                flag      : 'partnershipIsDone' ,
+                flagValue : true
             } );
         }
     }
@@ -99,7 +102,7 @@ export class PartnershipManagerBlockComponent extends FormBlock {
 
     private isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'contactDetails' ] ) {
-            return this.formModel.controls[ 'contactDetails' ].valid && this.formModelService.getFlags().introIsDone;
+            return this.formModel.controls[ 'contactDetails' ].valid && this.formModelService.getFlags().contactDetailsIsDone;
         }
     }
 
@@ -112,12 +115,10 @@ export class PartnershipManagerBlockComponent extends FormBlock {
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
-        this.formControl = [
+        this.formControl          = [
             new NamedControl( this.partnershipMgr.firstName.id , new Control() ) ,
             new NamedControl( this.partnershipMgr.lastName.id , new Control() )
         ];
-        scrollService.$scrolled.subscribe(
-            message => scrollService.amIVisible( el , PartnershipManagerBlockComponent.CLASS_NAME ) );
         this.formControlGroupName = 'partnership';
     }
 }
