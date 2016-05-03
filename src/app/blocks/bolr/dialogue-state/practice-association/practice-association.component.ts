@@ -334,7 +334,8 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
     }
 
     private get licensee () {
-        return Licensees.getLicensee( this.formModelService.context.licensee );
+        //return Licensees.getLicensee( this.formModelService.context.licensee );
+        return this.formModelService.context.licensee;
     }
 
     private onAssociationLengthSelect ( value ) {
