@@ -25,6 +25,7 @@ If not, simply update them below.</h3>
             [parentControl]='formControl[0].control'
             isRequired='true'
             valMaxLength='15'
+            showLabel='false'
             [valPattern]='contactDetails.phone.regex'>
         </input-with-label-group>
 
@@ -38,6 +39,7 @@ If not, simply update them below.</h3>
             [parentControl]='formControl[1].control'
             isRequired='true'
             valMaxLength='50'
+            showLabel='false'
             [valPattern]='contactDetails.email.regex'
          >
         </input-with-label-group>

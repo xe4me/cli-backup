@@ -20,7 +20,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         flex-gt-sm='' >
         <label
          [ngClass]='{"summary" : isInSummaryState}'
-        *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
+        *ngIf='!isInSummaryState && showLabel===true' [attr.for]='_id'>{{label}}</label><!--
         --><input
             (keyup)='onEnterClick($event)'
             (blur)='trimValue()' 
@@ -51,7 +51,8 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'valMaxLength' ,
             'valPattern' ,
             'isRequired' ,
-            'hostClassesRemove'
+            'hostClassesRemove' ,
+            'showLabel'
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated ,
@@ -62,6 +63,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private _id : string;
     private label : string;
     private isInSummaryState : boolean;
+    private showLabel : boolean = true;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;

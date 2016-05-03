@@ -5,19 +5,20 @@ import { EventEmitter } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'input-with-label-group' ,
     template   : `
-        <div class="input-with-label-group">
-            <label class="heading heading-contxtual-label" *ngIf="contxtualLabel" >{{contxtualLabel}}</label><!--
+        <div class='input-with-label-group'>
+            <label class='heading heading-contxtual-label' *ngIf='contxtualLabel' >{{contxtualLabel}}</label><!--
             -->&nbsp;<!--
             --><my-md-input
                 (onEnter)='onEnter.emit("enter")'
                 class='1/3'
                 [isInSummaryState]='isInSummaryState'
-                [id]="id"
-                [label]="label"
-                [parentControl]="parentControl"
-                [isRequired]="isRequired"
-                [valPattern]="valPattern"
-                [valMaxLength]="valMaxLength">
+                [id]='id'
+                [label]='label'
+                [showLabel]='showLabel'
+                [parentControl]='parentControl'
+                [isRequired]='isRequired'
+                [valPattern]='valPattern'
+                [valMaxLength]='valMaxLength'>
             </my-md-input>
         </div>
         ` ,
@@ -29,7 +30,8 @@ import { EventEmitter } from 'angular2/src/facade/async';
         'isRequired' ,
         'valPattern' ,
         'valMaxLength' ,
-        'contxtualLabel'
+        'contxtualLabel' ,
+        'showLabel'
     ] ,
     directives : [ MdInputComponent ] ,
     styles     : [ require( './input-with-label-group.scss' ).toString() ] ,
@@ -42,6 +44,7 @@ export class InputWithLabelGroupComponent {
     private pattern : string;
     private required : boolean;
     private isInSummaryState : boolean;
+    private showLabel : boolean;
     private valMaxLength : number;
     private onEnter : EventEmitter < string >;
 
