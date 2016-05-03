@@ -1,0 +1,53 @@
+<form #formModel='ngForm' class='nl-form'>
+
+    <div class='title'>When we have only one item , we can force the group to auto select it</div>
+    <div id='single-radio-group' class='group-buttons'>
+        <amp-radio-button-group
+                [autoSelectOnOne]='autoSelectOnOne'
+                required='true'
+                scrollOutOn='null'
+                class='grid__item 1/1'
+                (select)='onOneRadioButtonSelect($event)'
+                [buttons]='radiosOneOption.buttons'
+                [parentControl]='oneOptionControl'
+                [groupName]='radiosOneOption.groupName'>
+        </amp-radio-button-group>
+        <div class='control-value'>
+            Control value : {{ oneOptionControl.value}}
+        </div>
+    </div>
+    <hr>
+    <h5 class='title'>When we have multiple options</h5>
+    <div class='group-buttons'>
+
+        <amp-radio-button-group
+                required='true'
+                scrollOutOn='null'
+                class='grid__item 1/1'
+                (select)='onMultipleRadioButtonSelect($event)'
+                [buttons]='radiosMultipleOptions.buttons'
+                [parentControl]='multipleOptionControl'
+                [groupName]='radiosMultipleOptions.groupName'
+        >
+        </amp-radio-button-group>
+        <br>
+        <br>
+        <button class='btn btn-ok btn-full btn--secondary' (click)='multipleOptionControl.updateValue("five_years2")'>
+            Select 'At least five
+            years'
+        </button>
+        <br>
+        <button class='btn btn-ok btn-full btn--secondary'
+                (click)='multipleOptionControl.updateValue("fewer_than_five_years")'>Select'Fewer than five years'
+        </button>
+        <div class='control-value'>
+            Control value : {{ multipleOptionControl.value}}
+        </div>
+    </div>
+
+    <div class='title' [style.color]='color'>This is binded to onRadioButtonSelect , i.e on click event , and that event
+        is changing
+        the
+        color
+    </div>
+</form>

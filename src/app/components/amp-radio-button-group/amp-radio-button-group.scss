@@ -42,6 +42,7 @@ $radio-margin: 0;
   }
 
   .label {
+
     line-height: 45px;
     margin-top: -10px;
     display: inline-block;
@@ -57,6 +58,7 @@ $radio-margin: 0;
   }
 
   .root {
+    text-align: left;
     line-height: 1;
     display: block;
     cursor: pointer;

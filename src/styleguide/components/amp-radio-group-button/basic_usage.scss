@@ -1,0 +1,20 @@
+@import "../../../style/require";
+
+.nl-form {
+  text-align: center;
+  font-size: $amp-base-font-size * 2;
+  line-height: $amp-base-font-size * 2 * 1.5;
+  padding: 20px;
+  .group-buttons {
+    width: 60%;
+    margin: 30px auto;
+  }
+  .title {
+    text-align: left;
+    font-size: 16px;
+  }
+  .control-value{
+    text-align: left;
+    font-size: 16px;
+  }
+}

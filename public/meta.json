@@ -120,6 +120,26 @@
         "readme": "<p>Custom Block for AmpGroupButtonComponent.</p>\n"
     },
     {
+        "name": "Amp Radio Group Button Component",
+        "sources": [
+            "src/app/components/amp-radio-group-button/amp-radio-group-button.component.ts"
+        ],
+        "id": "AmpRadioGroupButtonComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-radio-group-button/basic_usage.html",
+                "styles": "src/styleguide/components/amp-radio-group-button/basic_usage.scss",
+                "source": "src/styleguide/components/amp-radio-group-button/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-radio-group-button/amp-radio-group-button.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-radio-group-button/amp-radio-group-button.component.spec.ts",
+                "component": "amp-radio-group-button-block-basic-usage",
+                "component_src_location": "components/amp-radio-group-button/basic_usage",
+                "name": "Amp Group Button Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpRadioGroupButtonComponent.</p>\n"
+    },
+    {
         "name": "ContentBlock",
         "sources": [
             "src/app/components/ContentBlock.ts"

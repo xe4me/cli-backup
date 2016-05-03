@@ -77,11 +77,11 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
 } )
 export class AmpGroupButtonComponent {
     private parentControl : Control;
-    private select = new EventEmitter<string>();
-    private buttons;
-    private scrollOutUnless : any;
-    private scrollOutOn : any;
+    private buttons : Array;
+    private scrollOutUnless : string;
+    private scrollOutOn : string;
     private groupName : string;
+    private select = new EventEmitter<string>();
 
     constructor ( private elem : ElementRef ,
                   private scrollService : ScrollService ) {
