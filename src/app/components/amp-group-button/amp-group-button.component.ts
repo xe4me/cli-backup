@@ -77,7 +77,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
 } )
 export class AmpGroupButtonComponent {
     private parentControl : Control;
-    private buttons : Array;
+    private buttons;
     private scrollOutUnless : string;
     private scrollOutOn : string;
     private groupName : string;
