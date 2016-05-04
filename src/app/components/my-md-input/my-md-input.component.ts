@@ -23,7 +23,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         *ngIf='!isInSummaryState && showLabel===true' [attr.for]='_id'>{{label}}</label><!--
         --><input
             (keyup)='onEnterClick($event)'
-            (blur)='trimValue()' 
+            (blur)='trimValue()'
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
@@ -106,7 +106,9 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     }
 
     set isRequired ( val : string ) {
-        if ( val === 'true' ) {
+        if (!this.parentControl) {
+            console.error('Unable to set the required validator on this component[' + this._id + '] because the parentControl has not been initialised.');
+        } else if ( val === 'true') {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) :
             // Function API
             this.parentControl.validator = Validators.required;
