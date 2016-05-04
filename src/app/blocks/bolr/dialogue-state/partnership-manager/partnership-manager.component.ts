@@ -40,7 +40,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             <span class='icon icon--close icon-errors'></span>Please answer this question
         </div>
 
-        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary 
+        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary
         btn-ok btn-ok-margin-top'>
             OK
         </button>
@@ -101,8 +101,8 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'contactDetails' ] ) {
-            return this.formModel.controls[ 'contactDetails' ].valid && this.formModelService.getFlags().contactDetailsIsDone;
+        if ( this.formModel && this.formModel.controls[ 'address' ] ) {
+            return this.formModel.controls[ 'address' ].valid && this.formModelService.getFlags().addressIsDone;
         }
     }
 
