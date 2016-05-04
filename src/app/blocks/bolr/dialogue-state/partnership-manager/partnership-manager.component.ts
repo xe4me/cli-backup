@@ -6,14 +6,16 @@ import { FormModelService , ProgressObserverService , ScrollService } from 'amp-
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
-    selector       : 'partnership-manager-block' , template : `
+    selector       : 'partnership-manager-block' ,
+    template       : `
     <div class='partnership-manager-block' [class.hidden]='!isCurrentBlockActive()'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Who is your partnership manager?</h3>
 
         <div class='grid__item'>
             <!--Partnership Manager name-->
-            <label class='heading heading-contxtual-label mb3' >My partnership manager is</label>&nbsp;<my-md-input
+            <label class='heading heading-contxtual-label mb3' >My partnership manager is</label><!--
+            -->&nbsp;<my-md-input
                 class='1/3'
                 (onEnter)='ok()'
                 [isInSummaryState]='isInSummaryState'
@@ -22,7 +24,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 [parentControl]='formControl[0].control'
                 isRequired='true'
                 [valPattern]='partnershipMgr.firstName.regex'
-                valMaxLength='100'>
+                valMaxLength='50'>
             </my-md-input><!--
             --><my-md-input
                 class='1/3'
@@ -33,10 +35,12 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 [parentControl]='formControl[1].control'
                 isRequired='true'
                 [valPattern]='partnershipMgr.lastName.regex'
-                valMaxLength='100'>
+                valMaxLength='50'>
             </my-md-input>
         </div>
-        <div *ngIf='hasClickedOnOkButton && !formModel.controls.partnership.valid' class='errors mt mb-20'>
+        <div *ngIf='(formControl[0].control.touched && formControl[1].control.touched ) && 
+        !formModel.controls.partnership.valid' class='errors mt 
+        mb-15'>
             <span class='icon icon--close icon-errors'></span>Please answer this question
         </div>
 
