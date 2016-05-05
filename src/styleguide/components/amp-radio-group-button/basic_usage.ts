@@ -3,13 +3,19 @@ import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpRadioButtonGroupComponent } from "../../../app/components/amp-radio-button-group/amp-radio-button-group.component";
+import { OnInit } from "experience/node_modules/angular2/src/core/linker/interfaces";
 @Component( { selector : 'amp-radio-group-button-block-basic-usage' } )
 @View( {
     templateUrl : 'src/styleguide/components/amp-radio-group-button/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
     directives  : [ MATERIAL_DIRECTIVES , FORM_DIRECTIVES , AmpRadioButtonGroupComponent , CORE_DIRECTIVES ]
 } )
-export default class AmpRadioGroupButtonComponentBasicUsage {
+export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {
+    ngAfterViewInit () : any {
+        this.oneOptionControl.updateValue( 'five_years' );
+        return undefined;
+    }
+
     oneOptionControl : Control        = new Control();
     multipleOptionControl : Control   = new Control();
     public radiosOneOption            = {

@@ -85,18 +85,22 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
 } )
 export class AmpRadioButtonGroupComponent {
     private parentControl : Control;
-    private select = new EventEmitter<string>();
+    private select                 = new EventEmitter<string>();
     private buttons;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private groupName : string;
+    private previousValue : string = null;
 
     constructor ( private elem : ElementRef ,
                   private scrollService : ScrollService ) {
     }
 
     private onSelect ( value ) {
-        this.select.emit( value + '' );
+        if ( this.previousValue !== value ) {
+            this.previousValue = value;
+            this.select.emit( value + '' );
+        }
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
             this.scrollService.scrollMeOut( this.elem );
         } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
