@@ -36,7 +36,7 @@ import { MdInputComponent } from '../../../../components/my-md-input/my-md-input
             [postcodeCtrl]='postcodeCtrl'>
         </amp-google-address-group>
 
-        <div *ngIf='hasClickedOnOkButton && !formModel.controls.address.valid' class='errors mt'>
+        <div *ngIf='hasClickedOnOkButton && (!formModel.controls.address.valid || !googleAddressCtrl.valid)' class='errors mt'>
             <div *ngIf='!formControl[0].control.valid'>
                 <div>
                     <span class='icon icon--close icon-errors'></span>Please answer this question
@@ -92,8 +92,8 @@ export class PracticeAddressBlockComponent extends FormBlock {
                 postcode     : {
                     id    : 'postcode' ,
                     label : 'Postcode' ,
-                    regex : '^[0-9]{4}$' ,
-                    max   : 4
+                    regex : '^[0-9]{4-10}$' ,
+                    max   : 10
                 }
             };
     private isInSummaryState : boolean     = false;
