@@ -86,7 +86,7 @@ export class PracticeAddressBlockComponent extends FormBlock {
                 state        : {
                     id    : 'state' ,
                     label : 'State' ,
-                    regex : '^(ACT|NSW|QLD|VIC|TAS|NT|WA)$' ,
+                    regex : '^(ACT|NSW|QLD|VIC|TAS|NT|WA|SA)$' ,
                     max   : 3
                 } ,
                 postcode     : {
@@ -113,7 +113,8 @@ export class PracticeAddressBlockComponent extends FormBlock {
     public ok () {
         this.hasClickedOnOkButton = true;
         this.isInSummaryState     = true;
-        if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
+        if ( this.formModel.controls[ this.formControlGroupName ].valid ||
+             this.googleAddressCtrl.valid) {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
@@ -140,7 +141,8 @@ export class PracticeAddressBlockComponent extends FormBlock {
     }
 
     private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
+        return this.formModel.controls[ this.formControlGroupName ].valid ||
+             this.googleAddressCtrl.valid;
     }
 
     constructor ( private progressObserver : ProgressObserverService ,
