@@ -9,8 +9,8 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
             <div class="sticky__header">
                 <div class='sticky__header--left'>
                     <span>Request to exercise {{ licenseeName }} </span>
-                    <span class='line-vertical-text-wrap line-vertical-text-wrap-gray '></span>
-                    <span class='utils__weight--700'>{{value}}</span>
+                    <!--<span class='line-vertical-text-wrap line-vertical-text-wrap-gray '></span>-->
+                    <!--<span class='utils__weight&#45;&#45;700'>{{value}}</span>-->
                 </div>
             </div>
 
