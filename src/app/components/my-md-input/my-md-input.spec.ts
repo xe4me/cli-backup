@@ -75,7 +75,7 @@ describe('my-md-input directive', () => {
       });
   }));
 
-  it('should have 2 validators', injectAsync([TestComponentBuilder], (tcb) => {
+  it('should have 3 validators', injectAsync([TestComponentBuilder], (tcb) => {
     return tcb.createAsync(TestComponent).then((fixture: any) => {
         fixture.detectChanges();
 
@@ -86,8 +86,8 @@ describe('my-md-input directive', () => {
         let compiledLabel = compiledMdInputContainer.children[0];
         let compiledInput = compiledMdInputContainer.children[1];
 
-        // TODO: Change the number of validators back to 2 Milad.
-        expect(compiledInput.componentInstance._validators.length).toBe(2);
+        // TODO: Change the number of validators back to 3 Milad.
+        expect(compiledInput.componentInstance._validators.length).toBe(3);
         // expect(compiledInput.componentInstance._validators[0]).toBe(MdPatternValidator);
         expect(compiledInput.componentInstance._validators[0].mdPattern).toBe('^([A-Za-z ])*$');
         // TODO: Fix the MaxLength validator in my-md-input by Milad

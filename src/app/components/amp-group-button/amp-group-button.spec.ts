@@ -58,7 +58,6 @@ describe( 'amp-group-button directive' , () => {
         };
 
         private onButtonClick () {
-            console.log( 'Clicked' );
         }
     }
     it( 'Should contain 2 radio input field  with proper data-automation-id and name attributes ' ,
