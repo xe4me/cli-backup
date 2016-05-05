@@ -108,9 +108,7 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'address' ] ) {
-            return this.formModel.controls[ 'address' ].valid && this.formModelService.getFlags('addressIsDone');
-        }
+        return this.formModelService.getFlags( 'addressIsDone' );
     }
 
     private get canGoNext () {
