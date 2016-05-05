@@ -62,14 +62,12 @@ import { ControlGroup } from 'angular2/src/common/forms/model';
                 <section  *ngIf='getControl( exerciseDateRadios.groupName ).value==="later_than" || 
                 getControl( associationLengthRadios.groupName ).value==="fewer_than_five_years" '>
                         <amp-textarea
-                            (onEnter)='ok()'
                             class='1/1'
                             [isInSummaryState]='isInSummaryState'
                             [id]='exerciseDateRadios.textFieldName'
                             label='Exceptional circumstances'
                             [parentControl]='getControl(exerciseDateRadios.textFieldName)'
-                            valMaxLength='400'
-                            >
+                            valMaxLength='400'>
                         </amp-textarea> 
                 </section>
                 

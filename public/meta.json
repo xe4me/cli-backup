@@ -180,6 +180,26 @@
         "readme": "<p>AMP google address input search box</p>\n"
     },
     {
+        "name": "Amp Textarea",
+        "sources": [
+            "src/app/components/amp-textarea/amp-textarea.component.ts"
+        ],
+        "id": "AmpTextarea",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-textarea/basic_usage.html",
+                "styles": "src/styleguide/components/amp-textarea/basic_usage.scss",
+                "source": "src/styleguide/components/amp-textarea/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-textarea/amp-textarea.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-textarea/amp-textarea.component.spec.ts",
+                "component": "amp-textarea-basic-usage",
+                "component_src_location": "components/amp-textarea/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP Textarea basic usage</p>\n"
+    },
+    {
         "name": "MyTextInput",
         "sources": [
             "src/app/components/my-md-input/my-md-input.component.ts"

@@ -18,15 +18,16 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         [class.md-input-has-value]='parentControl.value' 
         [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}' 
         flex-gt-sm='' >
+        <!--(paste)='adjustHeight($event.target)'
+            (blur)='adjustHeight($event.target)'
+            (blur)='trimValue()'-->
         <label
          [ngClass]='{"summary" : isInSummaryState}'
         *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
         --><textarea
-            (keydown)='adjustHeight($event.target)'
-            (paste)='adjustHeight($event.target)'
-            (blur)='adjustHeight($event.target)'
+            #textarea
             (keyup)='adjustHeight($event.target)'
-            (blur)='trimValue()' 
+             
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
@@ -35,13 +36,15 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             [attr.id]='_id'
             [attr.maxlength]='valMaxLength'
             [mdMaxLength]='valMaxLength'
-            [attr.data-automation-id]='"text_" + _id'
+            [attr.data-automation-id]='"textarea_" + _id'
             [ngFormControl]='parentControl'
             [attr.placeholder]='placeholder'>
             
             </textarea>
-            <span class='summary-text'>{{ parentControl.value }}
-            </span>
+            <span 
+            [class.error]='valMaxLength==textarea.value.length' class='char-left'
+             *ngIf='valMaxLength && valMaxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ valMaxLength }}</span>
+            <span class='summary-text'>{{ parentControl.value }}</span>
         <ng-content></ng-content>
   </md-input-container>
   ` ,
@@ -71,24 +74,25 @@ export class AmpTextareaComponent implements AfterViewInit {
     private _animation : CssAnimationBuilder;
     private onAdjustWidth : EventEmitter<string>;
     private hostClassesRemove;
-    private initialHeight : number;
+    private initialComponentHeight : number;
+    private initialTextareaHeight : number;
 
     ngAfterViewInit () : any {
-        this.initialHeight = this.el.nativeElement.style.height;
-        if ( this.initialHeight === 0 ) {
-            this.initialHeight = this.el.nativeElement.scrollHeight;
-        }
+        let textarea                = this.el.nativeElement.querySelector( 'textarea' );
+        this.initialTextareaHeight  = textarea.style.height || textarea.scrollHeight;
+        this.initialComponentHeight = this.initialTextareaHeight + 4;
+        this.adjustHeight( textarea );
         return undefined;
     }
 
     private adjustHeight ( element ) {
-        if ( this.parentControl.value && this.parentControl.value.trim() === '' ) {
-            element.style.height               = this.initialHeight;
-            this.el.nativeElement.style.height = this.initialHeight;
+        if ( this.parentControl.value === null || this.parentControl.value.trim() === '' ) {
+            element.style.height               = this.initialTextareaHeight + 'px';
+            this.el.nativeElement.style.height = this.initialComponentHeight + 'px';
         } else {
             element.style.height               = '1px';
-            element.style.height               = (25 + element.scrollHeight) + 'px';
-            this.el.nativeElement.style.height = (25 + element.scrollHeight) + 'px';
+            element.style.height               = (4 + element.scrollHeight) + 'px';
+            this.el.nativeElement.style.height = (4 + element.scrollHeight) + 'px';
         }
     }
 

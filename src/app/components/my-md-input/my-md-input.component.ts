@@ -31,7 +31,9 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             [attr.name]='_id'
             [attr.id]='_id'
             [attr.maxlength]='valMaxLength'
+            [attr.minlength]='valMinLength'
             [mdMaxLength]='valMaxLength'
+            [mdMin]='valMinLength'
             [attr.data-automation-id]='"text_" + _id'
             [ngFormControl]='parentControl'
             [attr.placeholder]='placeholder'/>
@@ -49,6 +51,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'placeholder' ,
             'visibility' ,
             'valMaxLength' ,
+            'valMinLength' ,
             'valPattern' ,
             'isRequired' ,
             'hostClassesRemove' ,
@@ -60,10 +63,12 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
     } )
 export class MdInputComponent implements OnChanges, AfterViewInit {
     private inputWidth : number;
+    private valMinLength : number = - 1;
+    private valMaxLength : number = 10000;
     private _id : string;
     private label : string;
     private isInSummaryState : boolean;
-    private showLabel : boolean = true;
+    private showLabel : boolean   = true;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
@@ -106,9 +111,9 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     }
 
     set isRequired ( val : string ) {
-        if (!this.parentControl) {
-            console.error('Unable to set the required validator on this component[' + this._id + '] because the parentControl has not been initialised.');
-        } else if ( val === 'true') {
+        if ( ! this.parentControl ) {
+            console.error( 'Unable to set the required validator on this component[' + this._id + '] because the parentControl has not been initialised.' );
+        } else if ( val === 'true' ) {
             // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) :
             // Function API
             this.parentControl.validator = Validators.required;

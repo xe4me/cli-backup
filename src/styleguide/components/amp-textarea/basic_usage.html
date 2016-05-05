@@ -1,0 +1,17 @@
+<form #formModel="ngForm" class="nl-form">
+    <br><br>
+    <div style='text-align: left ; padding: 20px;'>
+        <!-- Start copy from here -->
+        <amp-textarea
+                [isInSummaryState]='isInSummaryState'
+                id='a-text-area'
+                label='A label '
+                [parentControl]='control'
+                valMaxLength='500'>
+        </amp-textarea>
+        <!-- End copy at here -->
+        <br><br>
+        <button (click)='isInSummaryState=!isInSummaryState'>Toggle summary mode</button>
+    </div>
+</form>
+
