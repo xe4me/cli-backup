@@ -16,8 +16,16 @@ export class MockFormModelService {
             email : 'sample@gmail.com' ,
             phone : '12121212'
         } ,
+        advisers              : [] ,
         flags                 : {
-            introIsDone : false
+            introIsDone                  : false ,
+            contactDetailsIsDone         : false ,
+            partnershipIsDone            : false ,
+            equityHoldersIsDone          : false ,
+            fullOrPartialIsDone          : false ,
+            practiceAssociationIsDone    : false ,
+            isOveralOverlayActive        : false ,
+            practiceAssociationIsVisible : false
         }
     };
 
@@ -54,8 +62,8 @@ export class MockFormModelService {
             } );
     }
 
-    getFlags () {
-        return this.model.flags;
+    getFlags ( flag ) {
+        return this.model.flags[ flag ];
     }
 
     present ( data ) {

@@ -10,9 +10,9 @@ import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-s
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { Validators } from 'angular2/src/common/forms/validators';
-import { ControlGroup } from "angular2/src/common/forms/model";
+import { ControlGroup } from 'angular2/src/common/forms/model';
 @Component( {
-    selector   : 'practice-association' ,
+    selector   : 'practice-association-block' ,
     template   : `
             <div *ngIf='componentIsVisible' class='practice-association'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
@@ -406,7 +406,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
         super();
         this.formControl          = [];
         this.formControlGroupName = 'practiceAssociation';
-        this.formModelService.$flags.subscribe( ( changes )=> {
+        this.formModelService.$flags.subscribe( ( changes ) => {
             if ( changes.hasOwnProperty( 'practiceAssociationIsVisible' ) ) {
                 this.componentIsVisible = changes[ 'practiceAssociationIsVisible' ];
                 if ( changes[ 'practiceAssociationIsVisible' ] === true ) {
