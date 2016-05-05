@@ -23,7 +23,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             [label]='contactDetails.phone.label'
             [parentControl]='formControl[0].control'
             isRequired='true'
-            valMaxLength='20'
+            [valMaxLength]='contactDetails.phone.maxLength'
+            [valMinLength]='contactDetails.phone.minLength'
             showLabel='false'
             [valPattern]='contactDetails.phone.regex'>
         </input-with-label-group>
@@ -37,20 +38,38 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             [label]='contactDetails.email.label'
             [parentControl]='formControl[1].control'
             isRequired='true'
-            valMaxLength='50'
+            [valMaxLength]='contactDetails.email.maxLength'
+            [valMinLength]='contactDetails.email.minLength'
             showLabel='false'
             [valPattern]='contactDetails.email.regex'
          >
         </input-with-label-group>
         
-        <div *ngIf='!formModel.controls.contactDetails.valid' class='errors mt-20 mb-15'>
-            <div *ngIf='!formControl[0].control.valid && formControl[0].control.touched'>
-                <span class='icon icon--close icon-errors'></span>Please enter a valid contact number.
+        <div *ngIf='(formControl[0].control.touched || 
+        formControl[1].control.touched) && !formModel.controls.contactDetails.valid' class='errors mt-20 mb-15'>
+            <div class='error-item' *ngIf='!formControl[0].control.valid && formControl[0].control.touched'>
+                <div *ngIf='formControl[ 0 ].control.errors.required' >
+                    <span class='icon icon--close icon-errors'></span>Contact number is a required field.
+                </div>
+                <div *ngIf='formControl[ 0 ].control.errors.mdMaxLength || 
+                formControl[ 0 ].control.errors.mdMinLength || formControl[ 0 ].control.errors.mdPattern'>
+                    <span class='icon icon--close icon-errors'></span>The contact number must contain a minimum of 8 
+                    characters. Only numeric and area code characters are allowed.
+                </div>
             </div>
-            <div *ngIf='!formControl[1].control.valid && formControl[1].control.touched'>
-                <span class='icon icon--close icon-errors'></span>Please enter a valid email.
+            
+            <div  *ngIf='!formControl[1].control.valid && formControl[1].control.touched'>
+                <div *ngIf='formControl[ 1 ].control.errors.mdPattern || formControl[ 1 ].control.errors.mdMaxLength' 
+                class='error-item'>
+                    <span class='icon icon--close icon-errors'></span>The email is not valid.
+                </div>
+                <div *ngIf='formControl[ 1 ].control.errors.required'
+                 class='error-item'>
+                    <span class='icon icon--close icon-errors'></span>Email is a required field.
+                </div>
             </div>
         </div>
+        
         <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn 
         btn--secondary btn-ok btn-ok-margin-top'>
             OK
@@ -71,22 +90,26 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             id             : 'phoneId' ,
             label          : 'Default Phone Label' ,
             contxtualLabel : 'Contact number' ,
-            regex          : '^([0-9 ])*$' ,
-            value          : '00000000'
+            regex          : '^([\s()+-]*\d){6,}$' ,
+            value          : '00000000' ,
+            maxLength      : 20 ,
+            minLength      : 8
         } ,
         email : {
             id             : 'emailId' ,
             label          : 'Default Email Label' ,
             contxtualLabel : 'Email' ,
-            regex          : '^[A-Za-z0-9._%-+.!#$%&\'*+\/=?^_`{|}~-]+@[A-Za-z0-9._%-+](?:[A-Za-z0-9._%-+]{0,61}[A-Za-z0-9._%-+])?(?:\.[A-Za-z0-9._%-+](?:[A-Za-z0-9._%-+]{0,61}[A-Za-z0-9._%-+])?)' ,
-            value          : 'smiladhi@gmail.com'
+            regex          : '^[_a-zA-Z0-9-+=\'#$]+(\.[_a-zA-Z0-9-+=\'#$]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$' ,
+            value          : 'smiladhi@gmail.com' ,
+            maxLength      : 50 ,
+            minLength      : 0
         }
     };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
 
     public isCurrentBlockActive () {
-        return this.formModelService.getFlags('introIsDone');
+        return this.formModelService.getFlags( 'introIsDone' );
     }
 
     public preBindControls ( _formBlockDef ) {
