@@ -10,17 +10,18 @@ import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-s
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { Validators } from 'angular2/src/common/forms/validators';
+import { ControlGroup } from "angular2/src/common/forms/model";
 @Component( {
     selector   : 'practice-association' ,
     template   : `
-            <div *ngIf='formModel.value.fullOrPartial.fullOrPartial==="Full"' class='practice-association'>
+            <div *ngIf='componentIsVisible' class='practice-association'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
                 <section class='mb-30'>
                     <h3 class='heading heading-intro mb-30'>How long has your practice been with {{ licensee }}?</h3>
                     <div class='heading heading-contxtual-label'>
                         At the time of my requested exercise date, my practice will have been with {{ licensee }} for 
                         <span *ngIf='isInSummaryState' class='summary-state'>{{ 
-                        getAssociationPracticeLabel(formControl[0].control.value) }}
+                        getAssociationPracticeLabel(getControl( associationLengthRadios.groupName ).value) }}
                         </span>
                     </div>
                      <amp-radio-button-group
@@ -30,18 +31,18 @@ import { Validators } from 'angular2/src/common/forms/validators';
                             class='grid__item 1/1 mt-40'
                             (select)='onAssociationLengthSelect($event)'
                             [buttons]='getLicenseeOptions()'
-                            [parentControl]='formControl[0].control'
+                            [parentControl]='getControl(associationLengthRadios.groupName)'
                             [groupName]='associationLengthRadios.groupName'   
                             >
                         </amp-radio-button-group>
                 </section>
                 
-                <div [class.mb-35]='formControl[1].control.value!=="later_than"' *ngIf='isInSummaryState' 
+                <div [class.mb-35]='getControl( exerciseDateRadios.groupName ).value!=="later_than"' *ngIf='isInSummaryState' 
                 class='heading heading-contxtual-label'>
                     <h3 class='heading heading-intro  mb-30'>And your requested exercise date?</h3>
-                        <span class='summary-state'>{{ getExerciseLengthLabel(formControl[1].control.value) }}</span>
+                        <span class='summary-state'>{{ getExerciseLengthLabel(getControl( exerciseDateRadios.groupName ).value) }}</span>
                 </div>
-                <div *ngIf='!onlyHasOneOption() && formControl[0].control.value!==null'>
+                <div *ngIf='!onlyHasOneOption() && getControl( associationLengthRadios.groupName ).value!==null'>
                     <section *ngIf='!isInSummaryState' class='mb-30' >
                         <h3 class='heading heading-intro  mb-40'>And your requested exercise date?</h3>
                          <amp-radio-button-group
@@ -51,21 +52,22 @@ import { Validators } from 'angular2/src/common/forms/validators';
                                 class='grid__item 1/1'
                                 (select)='onExerciseDateSelect($event)'
                                 [buttons]='getExerciseDateOptions()'
-                                [parentControl]='formControl[1].control'
+                                [parentControl]='getControl(exerciseDateRadios.groupName)'
                                 [groupName]='exerciseDateRadios.groupName'   
                                 >
                             </amp-radio-button-group>
                     </section>
                 </div>
                 
-                <section  [collapse]='formControl[1].control.value!=="later_than"'>
+                <section  *ngIf='getControl( exerciseDateRadios.groupName ).value==="later_than" || 
+                getControl( associationLengthRadios.groupName ).value==="fewer_than_five_years" '>
                         <amp-textarea
                             (onEnter)='ok()'
                             class='1/1'
                             [isInSummaryState]='isInSummaryState'
                             [id]='exerciseDateRadios.textFieldName'
                             label='Exceptional circumstances'
-                            [parentControl]='formControl[2].control'
+                            [parentControl]='getControl(exerciseDateRadios.textFieldName)'
                             valMaxLength='400'
                             >
                         </amp-textarea> 
@@ -74,17 +76,16 @@ import { Validators } from 'angular2/src/common/forms/validators';
                 
                 <div *ngIf='hasClickedOnOkButton && !formModel.controls.practiceAssociation.valid' class='errors 
                 mt'>
-                    <div *ngIf='!formControl[0].control.valid'>
+                    <div *ngIf='!getControl( associationLengthRadios.groupName ).valid'>
                         <div>
                             <span class='icon icon--close icon-errors'></span>Please answer this question.
                         </div>
                     </div>
                 </div>
                 <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
-               <button [class.mt-60]='formControl[1].control.value==="later_than"' class='btn btn-ok 
-               btn--secondary mt-10' 
-               *ngIf='!isInSummaryState' (click)='ok()' 
-               [disabled]='!canGoNext'  >
+               <button [class.mt-60]='getControl( exerciseDateRadios.groupName ).value==="later_than"' class='btn btn-ok 
+               btn--secondary mt-10' *ngIf='!isInSummaryState' (click)='ok()' 
+               [disabled]='!controlGroup.valid'  >
                     OK
                 </button>
                 <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10'>
@@ -105,10 +106,13 @@ import { Validators } from 'angular2/src/common/forms/validators';
 } )
 export class PracticeAssociationComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'PracticeAssociationComponent';
+    private VALID                          = true;
+    private INVALID                        = false;
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
+    private componentIsVisible : boolean   = false;
     private associationLengthRadios        = {
-        buttons   : {
+        buttons          : {
             LIC_AMPFP    : [
                 {
                     id    : 'at_least_fifteen' ,
@@ -150,12 +154,14 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                     label : 'Fewer than five years (subject to exceptional circumstances)'
                 }
             ]
+        } ,
+        groupName        : 'associationLength' ,
+        getButtonOptions : function( licensee ) {
+            return this.buttons[ licensee ] || [];
         }
-        ,
-        groupName : 'associationLength'
     };
     private exerciseDateRadios             = {
-        buttons       : {
+        buttons          : {
             LIC_AMPFP    : {
                 at_least_fifteen                            : [
                     {
@@ -244,8 +250,14 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                 ]
             }
         } ,
-        groupName     : 'exerciseDate' ,
-        textFieldName : 'exceptionalCircumstances'
+        groupName        : 'exerciseDate' ,
+        textFieldName    : 'exceptionalCircumstances' ,
+        getButtons       : function( licensee ) {
+            return this.buttons[ licensee ] || {};
+        } ,
+        getButtonOptions : function( licensee , optionGroupName ) {
+            return this.getButtons( licensee )[ optionGroupName ] || [];
+        }
     };
 
     ngAfterViewInit () : any {
@@ -262,7 +274,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
 
     public ok () {
         this.hasClickedOnOkButton = true;
-        if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
+        if ( this.controlGroup.valid ) {
             this.isInSummaryState = true;
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
@@ -275,9 +287,28 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
     }
 
     public preBindControls ( _formBlockDef ) {
-        this.formControl[ 0 ].name = this.associationLengthRadios.groupName;
-        this.formControl[ 1 ].name = this.exerciseDateRadios.groupName;
-        this.formControl[ 2 ].name = this.exerciseDateRadios.textFieldName;
+    }
+
+    private createControls () {
+        let controlGroup = new ControlGroup( {} );
+        controlGroup.addControl( this.associationLengthRadios.groupName , new Control( null , Validators.required ) );
+        controlGroup.addControl( this.exerciseDateRadios.textFieldName , new Control( null ) );
+        controlGroup.addControl( this.exerciseDateRadios.groupName , new Control( null , Validators.required ) );
+        this.formModel.addControl( this.formControlGroupName , controlGroup );
+    }
+
+    private getControl ( controlName ) : Control {
+        return <Control>this.controlGroup.controls[ controlName ];
+    }
+
+    private get controlGroup () : ControlGroup {
+        return < ControlGroup >this.formModel.controls[ this.formControlGroupName ];
+    }
+
+    private removeControls () {
+        if ( this.formModel.contains( this.formControlGroupName ) ) {
+            this.formModel.removeControl( this.formControlGroupName );
+        }
     }
 
     private preselectedAssociationValues () {
@@ -289,17 +320,14 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
     }
 
     private onlyHasOneOption () {
-        if ( this.formControl[ 0 ].control.value && this.formControl[ 0 ].control.value !== '' ) {
-            return this.isInArray( this.formControl[ 0 ].control.value , this.preselectedAssociationValues() );
+        if ( this.getControl( this.associationLengthRadios.groupName ).value && this.getControl( this.associationLengthRadios.groupName ).value !== '' ) {
+            return this.isInArray( this.getControl( this.associationLengthRadios.groupName ).value , this.preselectedAssociationValues() );
         }
         return false;
     }
 
     private getLicenseeOptions () {
-        if ( this.associationLengthRadios.buttons.hasOwnProperty( this.formModelService.context.licensee ) ) {
-            return this.associationLengthRadios.buttons[ this.formModelService.context.licensee ];
-        }
-        return [];
+        return this.associationLengthRadios.getButtonOptions( this.formModelService.context.licensee );
     }
 
     private getExerciseLengthLabel ( value ) {
@@ -325,12 +353,9 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
     }
 
     private getExerciseDateOptions () {
-        if ( this.exerciseDateRadios.buttons.hasOwnProperty( this.formModelService.context.licensee ) ) {
-            if ( this.exerciseDateRadios.buttons[ this.formModelService.context.licensee ].hasOwnProperty( this.formControl[ 0 ].control.value ) ) {
-                return this.exerciseDateRadios.buttons[ this.formModelService.context.licensee ][ this.formControl[ 0 ].control.value ];
-            }
-        }
-        return [];
+        let licensee        = this.formModelService.context.licensee;
+        let optionGroupName = this.getControl( this.associationLengthRadios.groupName ).value;
+        return this.exerciseDateRadios.getButtonOptions( licensee , optionGroupName );
     }
 
     private get licensee () {
@@ -338,35 +363,40 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
         return this.formModelService.context.licensee;
     }
 
+    private markTextAreaAsValidity ( isValid ) {
+        if ( isValid ) {
+            this.getControl( this.exerciseDateRadios.textFieldName ).setErrors( null );
+        } else {
+            this.getControl( this.exerciseDateRadios.textFieldName ).setErrors( { required : true } );
+        }
+        this.controlGroup.updateValueAndValidity();
+    }
+
     private onAssociationLengthSelect ( value ) {
-        this.formControl[ 1 ].control.updateValue( null );
-        this.formControl[ 2 ].control.updateValue( null );
-        this.formControl[ 2 ].control.setErrors( null );
+        this.getControl( this.exerciseDateRadios.groupName ).updateValue( null );
+        this.getControl( this.exerciseDateRadios.textFieldName ).validator = null;
+        this.getControl( this.exerciseDateRadios.textFieldName ).setErrors( null );
+        this.getControl( this.exerciseDateRadios.textFieldName ).updateValue( null );
         if ( value === 'fewer_than_five_years' ) {
-            this.formControl[ 1 ].control.updateValue( 'later_than' );
-            this.formControl[ 2 ].control.setErrors( 'required' );
-            this.formControl[ 2 ].control.validator = Validators.required;
+            this.getControl( this.exerciseDateRadios.groupName ).updateValue( 'later_than' );
+            this.getControl( this.exerciseDateRadios.textFieldName ).validator = Validators.required;
+            this.getControl( this.exerciseDateRadios.textFieldName ).setErrors( { required : true } );
         }
     }
 
     private onExerciseDateSelect ( value ) {
         if ( value === 'later_than' ) {
-            this.formControl[ 2 ].control.setErrors( 'required' );
-            this.formControl[ 2 ].control.validator = Validators.required;
+            this.getControl( this.exerciseDateRadios.textFieldName ).validator = Validators.required;
+            this.getControl( this.exerciseDateRadios.textFieldName ).setErrors( { required : true } );
         } else {
-            this.formControl[ 2 ].control.setErrors( null );
+            this.getControl( this.exerciseDateRadios.textFieldName ).validator = null;
+            this.getControl( this.exerciseDateRadios.textFieldName ).setErrors( null );
+            this.getControl( this.exerciseDateRadios.textFieldName ).updateValue( null );
         }
-    }
-
-    private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'fullOrPartial' ] ) {
-            return this.formModel.controls[ 'fullOrPartial' ].valid && this.formModelService.getFlags().fullOrPartialIsDone;
-        }
-        return false;
+        return this.formModelService.getFlags( 'fullOrPartialIsDone' );
     }
 
     constructor ( private progressObserver : ProgressObserverService ,
@@ -374,12 +404,18 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
-        this.formControl          = [
-            new NamedControl( this.associationLengthRadios.groupName , new Control( null , Validators.required ) ) ,
-            new NamedControl( this.exerciseDateRadios.groupName , new Control( null , Validators.required ) ) ,
-            new NamedControl( this.exerciseDateRadios.textFieldName , new Control( null , Validators.required ) )
-        ];
+        this.formControl          = [];
         this.formControlGroupName = 'practiceAssociation';
+        this.formModelService.$flags.subscribe( ( changes )=> {
+            if ( changes.hasOwnProperty( 'practiceAssociationIsVisible' ) ) {
+                this.componentIsVisible = changes[ 'practiceAssociationIsVisible' ];
+                if ( changes[ 'practiceAssociationIsVisible' ] === true ) {
+                    this.createControls();
+                } else {
+                    this.removeControls();
+                }
+            }
+        } );
     }
 }
 

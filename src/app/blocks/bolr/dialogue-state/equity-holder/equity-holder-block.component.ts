@@ -86,7 +86,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                 [isInSummaryState]='isInSummaryState'
                                 id='firstname_{{ i }}'
                                 isRequired='true'
-                                valMaxLength='100'
+                                valMaxLength='50'
                                 class='1/3 '
                                 label='First name'
                                 [parentControl]='item.controls.firstName'
@@ -97,7 +97,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                 [isInSummaryState]='isInSummaryState'
                                 id='lastname_{{ i }}'
                                 isRequired='true'
-                                valMaxLength='100'
+                                valMaxLength='50'
                                 class='1/3'
                                 label='Last name'
                                 [parentControl]='item.controls.lastName'
@@ -263,7 +263,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
 
     private isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags().partnershipIsDone;
+            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags('partnershipIsDone');
         }
         return false;
     }

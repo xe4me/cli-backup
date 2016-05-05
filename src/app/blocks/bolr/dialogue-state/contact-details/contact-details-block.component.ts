@@ -86,7 +86,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
     private hasClickedOnOkButton : boolean = false;
 
     public isCurrentBlockActive () {
-        return this.formModelService.getFlags().introIsDone;
+        return this.formModelService.getFlags('introIsDone');
     }
 
     public preBindControls ( _formBlockDef ) {

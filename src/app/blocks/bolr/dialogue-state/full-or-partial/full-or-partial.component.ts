@@ -107,6 +107,11 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'fullOrPartialIsDone' ,
+            flagValue : false
+        } );
     }
 
     public ok () {
@@ -135,14 +140,17 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
 
     private isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'equityHolders' ] ) {
-            return this.formModel.controls[ 'equityHolders' ].valid && this.formModelService.getFlags().equityHoldersIsDone;
+            return this.formModel.controls[ 'equityHolders' ].valid && this.formModelService.getFlags( 'equityHoldersIsDone' );
         }
         return false;
     }
 
     private onSwitchChanged ( value ) {
-        if ( value === 'Full' ) {
-        }
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'practiceAssociationIsVisible' ,
+            flagValue : value === 'Full'
+        } );
     }
 
     constructor ( private progressObserver : ProgressObserverService ,

@@ -25,7 +25,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             (keydown)='adjustHeight($event.target)'
             (paste)='adjustHeight($event.target)'
             (blur)='adjustHeight($event.target)'
-            (keyup)='adjustHeight($event.target);onEnterClick($event)'
+            (keyup)='adjustHeight($event.target)'
             (blur)='trimValue()' 
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
@@ -72,7 +72,6 @@ export class AmpTextareaComponent implements AfterViewInit {
     private onAdjustWidth : EventEmitter<string>;
     private hostClassesRemove;
     private initialHeight : number;
-    private onEnter : EventEmitter<string>;
 
     ngAfterViewInit () : any {
         this.initialHeight = this.el.nativeElement.style.height;
@@ -93,16 +92,9 @@ export class AmpTextareaComponent implements AfterViewInit {
         }
     }
 
-    private onEnterClick ( event ) {
-        if ( event.keyCode === 13 ) {
-            this.onEnter.emit( 'enter' );
-        }
-    }
-
     constructor ( private el : ElementRef , private animationBuilder : AnimationBuilder ) {
         this._animation    = animationBuilder.css();
         this.onAdjustWidth = new EventEmitter();
-        this.onEnter       = new EventEmitter();
     }
 
     set id ( id : string ) {
