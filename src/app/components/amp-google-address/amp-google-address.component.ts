@@ -11,7 +11,6 @@ declare var google: any;
     template: `
     <my-md-input [id]='id' [label]='label' [parentControl]='parentControl' [placeholder]='placeholder'
         [isInSummaryState]='isInSummaryState'
-        isRequired='true'
         valPattern='{{valPattern}}'
         valMaxLength='{{valMaxLength}}'
         (input)='showManualAddrOpt()'>

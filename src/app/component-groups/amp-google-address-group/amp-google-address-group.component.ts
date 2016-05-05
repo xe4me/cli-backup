@@ -1,6 +1,6 @@
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone, ViewChild } from 'angular2/core';
-import { Control } from 'angular2/common';
+import { Control, Validators } from 'angular2/common';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component.ts';
@@ -119,8 +119,22 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     private stateCtrl: Control;
     private postcodeCtrl: Control;
 
+    // Need to binding this validator into a specific context
+    validateGoogleAddress(c: Control) {
+        if (this.addressComponent && this.addressComponent.addrPlace) {
+            return null;
+        } else {
+            return {
+                validateGoogleAddress: {
+                    valid: false
+                }
+            };
+        }
+    }
+
     ngAfterViewInit() {
         var _self = this;
+        this.googleAddressCtrl.validator = Validators.compose([Validators.required, this.validateGoogleAddress.bind(this)]);
         this.googleAddressCtrl.valueChanges
                 .debounceTime(400)
                 .distinctUntilChanged()
@@ -131,6 +145,15 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
                     function (err) {  },
                     function ()    {  }
                 ).subscribe();
+
+        this.stateCtrl.valueChanges
+                .debounceTime(400)
+                .distinctUntilChanged()
+                .subscribe( function (value) {
+                    if (value) {
+                        _self.stateCtrl.updateValue((<string>value).toUpperCase());
+                    }
+                });
     }
 
     updateAddressFields(googleAddress, _self) {
