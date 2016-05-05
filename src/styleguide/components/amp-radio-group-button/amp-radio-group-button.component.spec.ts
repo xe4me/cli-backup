@@ -21,7 +21,7 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
             provide( ProgressObserverService , { useClass : ProgressObserverService } ) ,
             provide( MockScrollService , { useClass : MockScrollService } ) ,
             provide( Window , { useValue : window } )
-        ]
+        ];
     } );
     @Component( {
         template   : `
@@ -267,9 +267,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
             FormModelService ,
             ScrollService
         ] , ( tcb , progressObserver , el , formModelService , scrollService ) => {
-            function hasClass ( elem , klass ) {
-                return (" " + elem.className + " " ).indexOf( " " + klass + " " ) > - 1;
-            }
+
 
             return tcb
                 .createAsync( AmpRadioGroupButtonTest )
@@ -286,7 +284,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
                     fixture.detectChanges();
                     expect( Component.oneOptionControl.value ).toBe( 'five_years' );
                     expect( input.checked ).toBeTruthy();
-                    expect( (" " + label.className + " ").indexOf( " checked " ) ).toBeGreaterThan( - 1 );
+                    expect( (' ' + label.className + ' ').indexOf( ' checked ' ) ).toBeGreaterThan( - 1 );
                 } );
         } ) );
     it( 'Should have one label field with the correct text' ,
@@ -297,9 +295,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
             FormModelService ,
             ScrollService
         ] , ( tcb , progressObserver , el , formModelService , scrollService ) => {
-            function hasClass ( elem , klass ) {
-                return (" " + elem.className + " " ).indexOf( " " + klass + " " ) > - 1;
-            }
+
 
             return tcb
                 .createAsync( AmpRadioGroupButtonTest )

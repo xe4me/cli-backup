@@ -58,7 +58,7 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
     }
 
     private introHasPassed () {
-        if ( this.formModelService.getFlags().introIsDone ) {
+        if ( this.formModelService.getFlags('introIsDone') ) {
             this.stickyAnimatedIntoView = true;
             var that                    = this;
             TimerWrapper.setTimeout( function() {
@@ -71,16 +71,20 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
         if ( this.formModel ) {
             var that = this;
             if ( that.formModel.controls ) {
-                let valids : number    = 0;
-                that.formControlLength = Object.keys( that.formModel.controls ).length;
+                let valids : number = 0;
+                console.log( 'valids' , valids );
+                console.log( 'that.formModel' , that.formModel );
+                let formControlLength = Object.keys( that.formModel.controls ).length;
+                console.log( 'formControlLength' , formControlLength );
                 Object.keys( that.formModel.controls ).map( function( value , index ) {
-                    if ( that.formModel.controls[ value ] ) {
-                        if ( that.formModel.controls[ value ].valid ) {
-                            valids ++;
-                        }
+                    console.log( 'IsHidden' , that.formModel.controls[ value ].getError( 'isHidden' ) );
+                    if ( that.formModel.controls[ value ].valid || that.formModel.controls[ value ].getError( 'isHidden' ) === true ) {
+                        valids ++;
+                        console.log( 'updated valids' , valids );
+                        console.log( 'updated value' , value );
                     }
                 } );
-                that.calculatedProgress = Math.floor( (100 * valids / that.formControlLength) );
+                that.calculatedProgress = Math.floor( (100 * valids / formControlLength) );
             }
         }
     }

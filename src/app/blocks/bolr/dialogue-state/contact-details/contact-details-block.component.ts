@@ -13,8 +13,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     <div id='contact-details-block' class='contact-details-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>{{ formModelService.getModel().context.practicePrincipal_firstName }}, please 
-        confirm your details are correct.
-If not, simply update them below.</h3>
+        confirm your details are correct.If not, simply update them below.</h3>
         <!--Contact Number-->
         <input-with-label-group
             (onEnter)='ok()'
@@ -24,7 +23,7 @@ If not, simply update them below.</h3>
             [label]='contactDetails.phone.label'
             [parentControl]='formControl[0].control'
             isRequired='true'
-            valMaxLength='15'
+            valMaxLength='20'
             showLabel='false'
             [valPattern]='contactDetails.phone.regex'>
         </input-with-label-group>
@@ -43,8 +42,14 @@ If not, simply update them below.</h3>
             [valPattern]='contactDetails.email.regex'
          >
         </input-with-label-group>
-        <div *ngIf='hasClickedOnOkButton && !formModel.controls.contactDetails.valid' class='errors mt-20 mb-20'>
-            <span class='icon icon--close icon-errors'></span>Please answer this question.
+        
+        <div *ngIf='!formModel.controls.contactDetails.valid' class='errors mt-20 mb-15'>
+            <div *ngIf='!formControl[0].control.valid && formControl[0].control.touched'>
+                <span class='icon icon--close icon-errors'></span>Please enter a valid contact number.
+            </div>
+            <div *ngIf='!formControl[1].control.valid && formControl[1].control.touched'>
+                <span class='icon icon--close icon-errors'></span>Please enter a valid email.
+            </div>
         </div>
         <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn 
         btn--secondary btn-ok btn-ok-margin-top'>
@@ -73,7 +78,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             id             : 'emailId' ,
             label          : 'Default Email Label' ,
             contxtualLabel : 'Email' ,
-            regex          : '^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)' ,
+            regex          : '^[A-Za-z0-9._%-+.!#$%&\'*+\/=?^_`{|}~-]+@[A-Za-z0-9._%-+](?:[A-Za-z0-9._%-+]{0,61}[A-Za-z0-9._%-+])?(?:\.[A-Za-z0-9._%-+](?:[A-Za-z0-9._%-+]{0,61}[A-Za-z0-9._%-+])?)' ,
             value          : 'smiladhi@gmail.com'
         }
     };
@@ -81,7 +86,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
     private hasClickedOnOkButton : boolean = false;
 
     public isCurrentBlockActive () {
-        return this.formModelService.getFlags().introIsDone;
+        return this.formModelService.getFlags('introIsDone');
     }
 
     public preBindControls ( _formBlockDef ) {
