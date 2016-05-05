@@ -10,4 +10,10 @@ $errors-font-family: $amp-font-open-sans-regular;
   display: block;
   line-height: 25px;
   margin-top: 5px;
+  .error-item {
+    margin-bottom: 20px;
+  }
+  .error-item:last-child {
+    margin-bottom: 0;
+  }
 }

@@ -38,10 +38,13 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 valMaxLength='50'>
             </my-md-input>
         </div>
-        <div *ngIf='(formControl[0].control.touched && formControl[1].control.touched ) && 
-        !formModel.controls.partnership.valid' class='errors mt 
-        mb-15'>
-            <span class='icon icon--close icon-errors'></span>Please answer this question
+        <div *ngIf='!formModel.controls.partnership.valid' class='errors mt mb-15'>
+            <div class='error-item' *ngIf='formControl[0].control.touched && !formControl[0].control.valid'>
+                <span class='icon icon--close icon-errors'></span>First name is a required field.
+            </div>
+            <div class='error-item' *ngIf='formControl[1].control.touched && !formControl[1].control.valid'>
+                <span class='icon icon--close icon-errors'></span>Last name is a required field.
+            </div>
         </div>
 
         <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary
