@@ -8,10 +8,13 @@ import { EventEmitter } from 'angular2/src/facade/async';
         <div class='input-with-label-group'>
             <label class='heading heading-contxtual-label' *ngIf='contxtualLabel' >{{contxtualLabel}}</label><!--
             -->&nbsp;<!--
+            
             --><my-md-input
                 (onEnter)='onEnter.emit("enter")'
                 class='1/3'
                 [isInSummaryState]='isInSummaryState'
+                [tolowerCase]='tolowerCase'
+                [toupperCase]='toupperCase'
                 [id]='id'
                 [label]='label'
                 [showLabel]='showLabel'
@@ -31,7 +34,9 @@ import { EventEmitter } from 'angular2/src/facade/async';
         'valPattern' ,
         'valMaxLength' ,
         'contxtualLabel' ,
-        'showLabel'
+        'showLabel' ,
+        'tolowerCase' ,
+        'toupperCase'
     ] ,
     directives : [ MdInputComponent ] ,
     styles     : [ require( './input-with-label-group.scss' ).toString() ] ,
@@ -47,6 +52,8 @@ export class InputWithLabelGroupComponent {
     private showLabel : boolean;
     private valMaxLength : number;
     private onEnter : EventEmitter < string >;
+    private tolowerCase : boolean = false;
+    private toupperCase : boolean = false;
 
     constructor () {
         this.onEnter = new EventEmitter();

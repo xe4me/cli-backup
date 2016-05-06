@@ -55,7 +55,9 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'valPattern' ,
             'isRequired' ,
             'hostClassesRemove' ,
-            'showLabel'
+            'showLabel' ,
+            'tolowerCase' ,
+            'toupperCase'
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated ,
@@ -69,6 +71,8 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private label : string;
     private isInSummaryState : boolean;
     private showLabel : boolean   = true;
+    private tolowerCase : boolean = false;
+    private toupperCase : boolean = false;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
@@ -77,6 +81,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private hostClassesRemove;
     private tempClassNames;
     private onEnter : EventEmitter<string>;
+    private onBlur : EventEmitter<string>;
 
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
@@ -143,8 +148,14 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         }
     }
 
-    private  trimValue () {
-        return this.parentControl.value ? this.parentControl.updateValue( this.parentControl.value.trim() ) : '';
+    private trimValue () {
+        console.log( 'trimming ' );
+        console.log( 'this.tolowerCase' , this.tolowerCase );
+        if ( this.parentControl.value ) {
+            this.parentControl.updateValue( this.parentControl.value.trim() );
+            this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
+            this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
+        }
     }
 
     private initiateInputWidth () {
