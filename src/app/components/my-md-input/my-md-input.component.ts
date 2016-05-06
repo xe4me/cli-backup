@@ -149,8 +149,6 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     }
 
     private trimValue () {
-        console.log( 'trimming ' );
-        console.log( 'this.tolowerCase' , this.tolowerCase );
         if ( this.parentControl.value ) {
             this.parentControl.updateValue( this.parentControl.value.trim() );
             this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';

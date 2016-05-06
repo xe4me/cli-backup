@@ -44,6 +44,12 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                     </div>
                 </section>
                 
+                <section class='mt-10'  [collapse]='formControl[0].control.value!=="Partial"'>
+                    <div class='grid__item mb-15 heading heading-contxtual-label'>
+                        My head of financial planning has approved my partial sale.
+                    </div>
+                </section>
+                
                 <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
                 class='btn btn--secondary 
                 btn-ok btn-ok-margin-top'>
@@ -150,6 +156,11 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
             action    : 'setFlag' ,
             flag      : 'practiceAssociationIsVisible' ,
             flagValue : value === 'Full'
+        } );
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'saleReasonIsVisible' ,
+            flagValue : value === 'Partial'
         } );
     }
 

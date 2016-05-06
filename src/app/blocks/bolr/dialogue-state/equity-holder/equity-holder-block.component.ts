@@ -150,8 +150,8 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
             } ,
             {
                 id    : 'noId' ,
-                value : 'NO' ,
-                label : 'NO'
+                value : 'No' ,
+                label : 'No'
             }
         ] ,
         groupName : 'hasHolders'
