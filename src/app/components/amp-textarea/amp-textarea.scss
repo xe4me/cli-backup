@@ -4,10 +4,11 @@
 // @import 'node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family';
 
 :host {
-  display: inline-block;
+  display: block;
   box-sizing: content-box;
   padding-right: 0 !important;
   width: 100%;
+  overflow: hidden;
 }
 
 $summary-state-color: $amp-colour-sky-blue;
