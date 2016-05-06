@@ -31,7 +31,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     
                     <div  class='grid__item mb-25 mt-45'>
                         <amp-group-button
-                            scrollOutOn='Yes'
+                            scrollOutOn='YES'
                             class='grid__item 4/9'
                             (select)='onSwitchChanged($event)'
                             [buttons]='hasHoldersButtons.buttons'
@@ -43,7 +43,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     </div>
                 </section>
              
-                <section [collapse]='formControl[0].control.value!=="Yes" || isInSummaryState'>
+                <section [collapse]='formControl[0].control.value!=="YES" || isInSummaryState'>
                     <h3 class='heading heading-intro mt-15'>How many?</h3>
                     <div class='grid__item mb-15 mt-45'>
                         <amp-group-button
@@ -56,7 +56,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         </amp-group-button>
                     </div>
                 </section>
-                <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="No"'>
+                <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="NO"'>
                     <h3 class='heading heading-intro mt-10 mb-30'>How many?</h3>
                     <div>
                         <span class='summary-state'>{{ dynamicControlGroup.controls.length }}</span>
@@ -64,7 +64,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 </section>
                 
                 
-                <section  [collapse]='formControl[0].control.value !== "Yes" || 
+                <section  [collapse]='formControl[0].control.value !== "YES" || 
                 formControl[1].control.value < 1'>
                     <h3 *ngIf='dynamicControlGroup.controls.length>1' 
                     class='heading heading-intro mt-15 mb-15'>What are their names?</h3>
@@ -139,13 +139,13 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         buttons   : [
             {
                 id    : 'yesId' ,
-                value : 'Yes' ,
-                label : 'Yes'
+                value : 'YES' ,
+                label : 'YES'
             } ,
             {
                 id    : 'noId' ,
-                value : 'No' ,
-                label : 'No'
+                value : 'NO' ,
+                label : 'NO'
             }
         ] ,
         groupName : 'hasHolders'
@@ -226,7 +226,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private onSwitchChanged ( value ) {
-        if ( value === 'No' ) {
+        if ( value === 'NO' ) {
             this.clearHoldersControlArray();
             this.formControl[ 1 ].control.updateValue( '0' );
         } else {

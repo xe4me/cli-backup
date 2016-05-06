@@ -38,7 +38,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 valMaxLength='50'>
             </my-md-input>
         </div>
-        <div *ngIf='!formModel.controls.partnership.valid' class='errors mt mb-15'>
+        <div *ngIf='(formControl[0].control.touched &&  !formControl[0].control.valid) 
+        ||(formControl[1].control.touched &&  !formControl[1].control.valid) ' class='errors mt mb-15'>
             <div class='error-item' *ngIf='formControl[0].control.touched && !formControl[0].control.valid'>
                 <span class='icon icon--close icon-errors'></span>First name is a required field.
             </div>

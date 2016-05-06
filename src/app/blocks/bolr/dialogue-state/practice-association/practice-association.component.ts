@@ -67,26 +67,26 @@ import { ControlGroup } from 'angular2/src/common/forms/model';
                             [id]='exerciseDateRadios.textFieldName'
                             label='Exceptional circumstances'
                             [parentControl]='getControl(exerciseDateRadios.textFieldName)'
-                            valMaxLength='400'>
+                            valMaxLength='500'>
                         </amp-textarea> 
                 </section>
                 
                 
-                <div *ngIf='hasClickedOnOkButton && !formModel.controls.practiceAssociation.valid' class='errors 
-                mt'>
-                    <div *ngIf='!getControl( associationLengthRadios.groupName ).valid'>
-                        <div>
-                            <span class='icon icon--close icon-errors'></span>Please answer this question.
-                        </div>
-                    </div>
-                </div>
+                <!--<div *ngIf='(hasClickedOnOkButton || getControl(exerciseDateRadios.textFieldName).touched) && -->
+                <!--!getControl(exerciseDateRadios.textFieldName).valid' class='errors mt-40'>-->
+                    <!--<div *ngIf='!getControl(exerciseDateRadios.textFieldName).valid'>-->
+                        <!--<div>-->
+                            <!--<span class='icon icon&#45;&#45;close icon-errors'></span>This is a required field.-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
-               <button [class.mt-60]='getControl( exerciseDateRadios.groupName ).value==="later_than"' class='btn btn-ok 
+               <button class='btn btn-ok 
                btn--secondary mt-10' *ngIf='!isInSummaryState' (click)='ok()' 
                [disabled]='!controlGroup.valid'  >
                     OK
                 </button>
-                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10'>
+                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
                     Change
                 </button>
                 <div class='hr-block-divider'></div>

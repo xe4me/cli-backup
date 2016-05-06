@@ -27,7 +27,6 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         --><textarea
             #textarea
             (keyup)='adjustHeight($event.target)'
-             
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
@@ -76,11 +75,14 @@ export class AmpTextareaComponent implements AfterViewInit {
     private hostClassesRemove;
     private initialComponentHeight : number;
     private initialTextareaHeight : number;
+    private componentHeightOffset : number;
 
     ngAfterViewInit () : any {
+        let componentHeight         = this.el.nativeElement.scrollHeight;
         let textarea                = this.el.nativeElement.querySelector( 'textarea' );
         this.initialTextareaHeight  = textarea.style.height || textarea.scrollHeight;
-        this.initialComponentHeight = this.initialTextareaHeight + 4;
+        this.componentHeightOffset  = componentHeight - (this.initialTextareaHeight + 4);
+        this.initialComponentHeight = this.initialTextareaHeight + this.componentHeightOffset;
         this.adjustHeight( textarea );
         return undefined;
     }
@@ -92,7 +94,7 @@ export class AmpTextareaComponent implements AfterViewInit {
         } else {
             element.style.height               = '1px';
             element.style.height               = (4 + element.scrollHeight) + 'px';
-            this.el.nativeElement.style.height = (4 + element.scrollHeight) + 'px';
+            this.el.nativeElement.style.height = (this.componentHeightOffset + element.scrollHeight) + 'px';
         }
     }
 
