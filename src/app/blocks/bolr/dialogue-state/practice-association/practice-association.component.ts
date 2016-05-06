@@ -72,14 +72,14 @@ import { ControlGroup } from 'angular2/src/common/forms/model';
                 </section>
                 
                 
-                <!--<div *ngIf='(hasClickedOnOkButton || getControl(exerciseDateRadios.textFieldName).touched) && -->
-                <!--!getControl(exerciseDateRadios.textFieldName).valid' class='errors mt-40'>-->
-                    <!--<div *ngIf='!getControl(exerciseDateRadios.textFieldName).valid'>-->
-                        <!--<div>-->
-                            <!--<span class='icon icon&#45;&#45;close icon-errors'></span>This is a required field.-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div *ngIf='(hasClickedOnOkButton || getControl(exerciseDateRadios.textFieldName).touched) && 
+                !getControl(exerciseDateRadios.textFieldName).valid' class='errors mb-40'>
+                    <div *ngIf='!getControl(exerciseDateRadios.textFieldName).valid'>
+                        <div>
+                            <span class='icon icon--close icon-errors'></span>This is a required field.
+                        </div>
+                    </div>
+                </div>
                 <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
                <button class='btn btn-ok 
                btn--secondary mt-10' *ngIf='!isInSummaryState' (click)='ok()' 
