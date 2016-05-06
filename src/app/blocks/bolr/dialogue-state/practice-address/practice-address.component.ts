@@ -22,7 +22,7 @@ import { MdInputComponent } from '../../../../components/my-md-input/my-md-input
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Your practice address?</h3>
 
-        <amp-google-address-group
+        <amp-google-address-group #ampGoogleAddressGroup
             [isInSummaryState]='isInSummaryState'
             [googleAddress]='practiceAddress.autocomplete'
             [address]='practiceAddress.address'
@@ -36,13 +36,47 @@ import { MdInputComponent } from '../../../../components/my-md-input/my-md-input
             [postcodeCtrl]='postcodeCtrl'>
         </amp-google-address-group>
 
-        <div *ngIf='hasClickedOnOkButton && (!formModel.controls.address.valid || !googleAddressCtrl.valid)' class='errors mt'>
-            <div *ngIf='!formControl[0].control.valid'>
+        <div *ngIf="!googleAddressCtrl.valid || !formModel.controls.address.valid" class='errors mt'>
+            <div *ngIf='!googleAddressCtrl.valid && googleAddressCtrl.touched && !ampGoogleAddressGroup.showManualAddrEntry && ampGoogleAddressGroup.addressComponent.addrPredictions'>
                 <div>
-                    <span class='icon icon--close icon-errors'></span>Please answer this question
+                    <span class='icon icon--close icon-errors'></span>Address is a required field.
+                </div>
+            </div>
+            <div *ngIf='!addressCtrl.valid && addressCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf="addressCtrl.errors.required">
+                    <span class='icon icon--close icon-errors'></span>Street address is a required field.
+                </div>
+                <div *ngIf="addressCtrl.errors.mdPattern && addressCtrl.dirty">
+                    <span class='icon icon--close icon-errors'></span>Street address must be at least 5 characters long.
+                </div>
+            </div>
+            <div *ngIf='!suburbCtrl.valid && suburbCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf="suburbCtrl.errors.required">
+                    <span class='icon icon--close icon-errors'></span>Suburb is a required field.
+                </div>
+                <div *ngIf="suburbCtrl.errors.mdPattern && suburbCtrl.dirty">
+                    <span class='icon icon--close icon-errors'></span>Suburb must be at least 3 characters long.
+                </div>
+            </div>
+            <div *ngIf='!stateCtrl.valid && stateCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf="stateCtrl.errors.required">
+                    <span class='icon icon--close icon-errors'></span>State is a required field.
+                </div>
+                <div *ngIf="stateCtrl.errors.mdPattern && stateCtrl.dirty">
+                    <span class='icon icon--close icon-errors'></span>Please enter a valid state.
+                </div>
+            </div>
+            <div *ngIf='!postcodeCtrl.valid && postcodeCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf="postcodeCtrl.errors.required">
+                    <span class='icon icon--close icon-errors'></span>Postcode is a required field.
+                </div>
+                <div *ngIf="postcodeCtrl.errors.mdPattern && postcodeCtrl.dirty">
+                    <span class='icon icon--close icon-errors'></span>Postcode must be at least 4 numeric characters long.
                 </div>
             </div>
         </div>
+
+
 
         <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary
         btn-ok btn-ok-margin-top'>
@@ -74,13 +108,13 @@ export class PracticeAddressBlockComponent extends FormBlock {
                 address      : {
                     id    : 'address' ,
                     label : 'Address' ,
-                    regex : '' ,
+                    regex : '^.{5,200}$' ,
                     max   : 200
                 } ,
                 suburb       : {
                     id    : 'suburb' ,
                     label : 'Suburb' ,
-                    regex : '' ,
+                    regex : '^.{3,100}$' ,
                     max   : 100
                 } ,
                 state        : {
