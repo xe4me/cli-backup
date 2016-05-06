@@ -92,7 +92,7 @@ export class PracticeAddressBlockComponent extends FormBlock {
                 postcode     : {
                     id    : 'postcode' ,
                     label : 'Postcode' ,
-                    regex : '^[0-9]{4-10}$' ,
+                    regex : '^[0-9]{4,10}$' ,
                     max   : 10
                 }
             };

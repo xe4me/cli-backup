@@ -157,12 +157,25 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     }
 
     updateAddressFields(googleAddress, _self) {
+        // Push the google address into the 4 address fields, also remove validation
         if (googleAddress && googleAddress.address_components) {
+            // Disable the validators, as google is providing the address
+            FormModelService.disableValidators(_self.addressCtrl);
+            FormModelService.disableValidators(_self.suburbCtrl);
+            FormModelService.disableValidators(_self.stateCtrl);
+            FormModelService.disableValidators(_self.postcodeCtrl);
+
             _self.addressCtrl.updateValue(AMPGoogleAddressComponent.getAddressComponent(['street_number', 'route'], true, googleAddress.address_components));
             _self.suburbCtrl.updateValue(AMPGoogleAddressComponent.getAddressComponent(['locality', 'sublocality'], true, googleAddress.address_components));
             _self.stateCtrl.updateValue(AMPGoogleAddressComponent.getAddressComponent(['administrative_area_level_1'], true, googleAddress.address_components));
             _self.postcodeCtrl.updateValue(AMPGoogleAddressComponent.getAddressComponent(['postal_code'], true, googleAddress.address_components));
         } else {
+            // Enable the validators, as we are doing manual entry
+            FormModelService.enableValidators(_self.addressCtrl);
+            FormModelService.enableValidators(_self.suburbCtrl);
+            FormModelService.enableValidators(_self.stateCtrl);
+            FormModelService.enableValidators(_self.postcodeCtrl);
+
             // clear out the results
             _self.addressCtrl.updateValue(null);
             _self.suburbCtrl.updateValue(null);
