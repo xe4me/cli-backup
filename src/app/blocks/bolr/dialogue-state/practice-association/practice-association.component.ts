@@ -193,8 +193,8 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                 ] ,
                 fewer_than_four_years                       : [
                     {
-                        id    : 'ninety_months' ,
-                        value : 'ninety_months' ,
+                        id    : 'ninety_days' ,
+                        value : 'ninety_days' ,
                         label : 'At least 90 days from today’s date. Buyer of last resort will only apply to' +
                         ' policies originally acquired through a practice start-up offer (PSO).'
                     } ,

@@ -61,7 +61,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated ,
-        outputs       : [ 'onEnter' ]
+        outputs       : [ 'onEnter' , 'onBlur' ]
     } )
 export class MdInputComponent implements OnChanges, AfterViewInit {
     private inputWidth : number;
@@ -109,6 +109,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         this._animation    = animationBuilder.css();
         this.onAdjustWidth = new EventEmitter();
         this.onEnter       = new EventEmitter();
+        this.onBlur        = new EventEmitter();
     }
 
     set id ( id : string ) {
@@ -154,6 +155,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
             this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
         }
+        this.onBlur.emit( 'blured' );
     }
 
     private initiateInputWidth () {

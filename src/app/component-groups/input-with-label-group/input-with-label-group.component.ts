@@ -11,6 +11,7 @@ import { EventEmitter } from 'angular2/src/facade/async';
             
             --><my-md-input
                 (onEnter)='onEnter.emit("enter")'
+                (onBlur)='onBlur.emit("blured")'
                 class='1/3'
                 [isInSummaryState]='isInSummaryState'
                 [tolowerCase]='tolowerCase'
@@ -40,7 +41,7 @@ import { EventEmitter } from 'angular2/src/facade/async';
     ] ,
     directives : [ MdInputComponent ] ,
     styles     : [ require( './input-with-label-group.scss' ).toString() ] ,
-    outputs    : [ 'onEnter' ]
+    outputs    : [ 'onEnter' , 'onBlur' ]
 } )
 export class InputWithLabelGroupComponent {
     private id : string;
@@ -52,10 +53,12 @@ export class InputWithLabelGroupComponent {
     private showLabel : boolean;
     private valMaxLength : number;
     private onEnter : EventEmitter < string >;
+    private onBlur : EventEmitter < string >;
     private tolowerCase : boolean = false;
     private toupperCase : boolean = false;
 
     constructor () {
         this.onEnter = new EventEmitter();
+        this.onBlur  = new EventEmitter();
     }
 }
