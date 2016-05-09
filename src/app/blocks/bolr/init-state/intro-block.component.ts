@@ -34,9 +34,9 @@ import { I18nSelectPipe } from 'angular2/common';
 export class IntroBlockComponent extends FormBlock {
     static CLASS_NAME             = 'IntroBlockComponent';
            licenseeFormName : any = {
-               LIC_AMPFP    : 'Buyer of last resort' ,
-               LIC_HILLROSS : 'Licensee / Enhanced buyback' ,
-               LIC_CHARTER  : 'Buy out option' ,
+               DEA_AMPFP    : 'Buyer of last resort' ,
+               DEA_HILLROSS : 'Licensee / Enhanced buyback' ,
+               DEA_CHARTER  : 'Buy out option' ,
                null         : 'Buyer of last resort'
            };
     // TODO: Update the title of the form based on the licensee @ViewChild

@@ -111,7 +111,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
     private componentIsVisible : boolean   = false;
     private associationLengthRadios        = {
         buttons          : {
-            LIC_AMPFP    : [
+            DEA_AMPFP    : [
                 {
                     id    : 'at_least_fifteen' ,
                     value : 'at_least_fifteen' ,
@@ -128,7 +128,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                     label : 'Fewer than four years.'
                 }
             ] ,
-            LIC_HILLROSS : [
+            DEA_HILLROSS : [
                 {
                     id    : 'at_least_five_years' ,
                     value : 'at_least_five_years' ,
@@ -140,7 +140,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                     label : 'Fewer than five years (subject to exceptional circumstances)'
                 }
             ] ,
-            LIC_CHARTER  : [
+            DEA_CHARTER  : [
                 {
                     id    : 'at_least_five_years' ,
                     value : 'at_least_five_years' ,
@@ -160,7 +160,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
     };
     private exerciseDateRadios             = {
         buttons          : {
-            LIC_AMPFP    : {
+            DEA_AMPFP    : {
                 at_least_fifteen                            : [
                     {
                         id    : 'six_months' ,
@@ -205,7 +205,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                     }
                 ]
             } ,
-            LIC_HILLROSS : {
+            DEA_HILLROSS : {
                 at_least_five_years   : [
                     {
                         id    : 'eighteen_month' ,
@@ -226,7 +226,7 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                     }
                 ]
             } ,
-            LIC_CHARTER  : {
+            DEA_CHARTER  : {
                 at_least_five_years   : [
                     {
                         id    : 'six_month' ,

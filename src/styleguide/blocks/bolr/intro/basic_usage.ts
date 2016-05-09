@@ -10,7 +10,7 @@ export class MockFormModelService {
         errors         : [] ,
         currentBlockID : new BlockID( null , 0 ) ,         // Defaults to the first block on the current page
         context        : {
-            licensee                    : 'LIC_CHARTER' ,
+            licensee                    : 'DEA_CHARTER' ,
             practicePrincipalFirstName : 'Darren' ,
             practicePrincipalLastName  : 'Mink' ,
             payeeId                     : 'BCABB-F' ,
@@ -21,7 +21,7 @@ export class MockFormModelService {
     getContext () : Observable<string> {
         return Observable.create( function( observer ) {
             observer.onNext( {
-                licensee                    : 'LIC_CHARTER' ,
+                licensee                    : 'DEA_CHARTER' ,
                 practicePrincipalFirstName : 'Darren' ,
                 practicePrincipalLastName  : 'Mink' ,
                 payeeId                     : 'BCABB-F' ,
