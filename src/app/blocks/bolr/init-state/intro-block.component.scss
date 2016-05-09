@@ -42,15 +42,15 @@ $amp-ddc-public-asset: '../../../../../src/assets/';
   // background-size: 150px, 150px 80px;
   // background-size: contain;
 
-  &.LIC_AMPFP {
+  &.DEA_AMPFP {
     background-image: url($amp-ddc-public-asset + 'images/logo/AMPFP_logo.jpg');
   }
 
-  &.LIC_HILLROSS {
+  &.DEA_HILLROSS {
     background-image: url($amp-ddc-public-asset + 'images/logo/Hillross_logo.jpg');
   }
 
-  &.LIC_CHARTER {
+  &.DEA_CHARTER {
     background-image: url($amp-ddc-public-asset + 'images/logo/Charter_logo.jpg');
   }
 }

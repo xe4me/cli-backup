@@ -32,9 +32,9 @@ export class StickyProgressHeaderBlockComponent {
     private value : number;
     private determinate : string;
     private licenseeFormName : any = {
-        LIC_AMPFP    : 'Buyer of last resort' ,
-        LIC_HILLROSS : 'Licensee / Enhanced buyback' ,
-        LIC_CHARTER  : 'Buy out option' ,
+        DEA_AMPFP    : 'Buyer of last resort' ,
+        DEA_HILLROSS : 'Licensee / Enhanced buyback' ,
+        DEA_CHARTER  : 'Buy out option' ,
         null         : 'Buyer of last resort'
     };
 
