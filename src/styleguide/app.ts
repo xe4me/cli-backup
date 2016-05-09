@@ -71,7 +71,7 @@ export class DemosApp implements OnDestroy {
             this.fullPage = mql.matches;
             this.appRef.tick();
         } );
-        http.get( 'public/version.json' )
+        http.get( 'src/assets/version.json' )
             .subscribe( ( res : Response ) => {
                 this.version = res.json().version;
             } );

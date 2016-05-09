@@ -18,15 +18,15 @@ export default class RadioBasicUsage {
   };
 
   avatarData: any[] = [{
-    id: 'public/images/avatars/avatar1.svg',
+    id: 'src/assets/images/avatars/avatar1.svg',
     title: 'avatar 1',
     value: 'avatar-1'
   }, {
-    id: 'public/images/avatars/avatar2.svg',
+    id: 'src/assets/images/avatars/avatar2.svg',
     title: 'avatar 2',
     value: 'avatar-2'
   }, {
-    id: 'public/images/avatars/avatar3.svg',
+    id: 'src/assets/images/avatars/avatar3.svg',
     title: 'avatar 3',
     value: 'avatar-3'
   }];

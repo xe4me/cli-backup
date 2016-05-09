@@ -16,7 +16,7 @@ interface ITodo {
 })
 export default class ToolbarScrollShrink {
   title: string = 'My App Title';
-  imagePath: string = 'public/images/avatars/avatar5.svg';
+  imagePath: string = 'src/assets/images/avatars/avatar5.svg';
   todos: ITodo[] = [];
 
   constructor() {
