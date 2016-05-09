@@ -3,7 +3,7 @@ import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
-import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService , AmpDateService } from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component(
@@ -12,8 +12,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         template   : `
     <div id='exercise-date-block' class='exercise-date-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-        <h3 class='heading heading-intro'>Please select an exercise date {{ timeFrame }} months from today's date
-        .</h3>
+        <h3 class='heading heading-intro'>Please select an exercise date {{ timeFrame }} today's date.</h3>
         
         
        <div class='heading heading-contxtual-label mt-30'>
@@ -63,8 +62,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
         styles     : [ require( './exercise-date-block.component.scss' ).toString() ]
     } )
-export class RequestDateBlockComponent extends FormBlock implements AfterViewInit {
-    static CLASS_NAME : string             = 'RequestDateBlockComponent';
+export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit {
+    static CLASS_NAME : string             = 'ExerciseDateBlockComponent';
     private requestDate                    = {
         id             : 'requestDateId' ,
         label          : 'My requested date is' ,
@@ -74,13 +73,32 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
         maxLength      : 10 ,
         minLength      : 10
     };
+    private TIMEFRAMES                     = {
+        six_months     : 'six months from' ,
+        later_than     : 'later than' ,
+        twelve_months  : '12 months from' ,
+        ninety_days    : '90 days from' ,
+        three_month    : 'three months from' ,
+        eighteen_month : '18 months from'
+    };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private dateErrorMessage               = null;
     private dateFormat                     = 'dd/MM/yyyy';
+    private ampDateService : AmpDateService;
+    private defaultExerciseDateOption      = 'three_month';
 
     public isCurrentBlockActive () {
-        return this.formModelService.getFlags( 'fullOrPartialIsDone' );
+        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
+            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
+                this.formModelService.getFlags( 'practiceAssociationIsDone' );
+        }
+        if ( this.formModel && this.formModel.controls[ 'saleReason' ] ) {
+            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
+                this.formModelService.getFlags( 'saleReasonIsDone' );
+        } else {
+            return this.formModelService.getFlags( 'fullOrPartialIsDone' );
+        }
     }
 
     public preBindControls ( _formBlockDef ) {
@@ -89,7 +107,7 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
 
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
-            this.scrollService.amIVisible( this.el , RequestDateBlockComponent.CLASS_NAME );
+            this.scrollService.amIVisible( this.el , ExerciseDateBlockComponent.CLASS_NAME );
         } );
         return undefined;
     }
@@ -126,8 +144,12 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
     private get timeFrame () {
         if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
             if ( this.controlGroup( 'practiceAssociation' ).controls[ 'exerciseDate' ].value != null ) {
-                return this.associtationExerciseDateValue;
+                return this.TIMEFRAMES[ this.associtationExerciseDateValue ];
+            } else {
+                return this.TIMEFRAMES[ this.defaultExerciseDateOption ];
             }
+        } else {
+            return this.TIMEFRAMES[ this.defaultExerciseDateOption ];
         }
     }
 
@@ -172,52 +194,6 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
         }
     }
 
-    private get today () {
-        let today    = new Date();
-        let dd       = today.getDate();
-        let mm       = today.getMonth() + 1; //January is 0!
-        let yyyy     = today.getFullYear();
-        let DD : any = dd , MM : any = mm , YYYY : any = yyyy;
-        if ( dd < 10 ) {
-            DD = '0' + dd;
-        }
-        if ( mm < 10 ) {
-            MM = '0' + mm;
-        }
-        return DD + '/' + MM + '/' + YYYY;
-    }
-
-    private getDatesDiff ( fromDate , toDate ) {
-        var date1    = this.stringToDate( fromDate , this.dateFormat , '/' );
-        var date2    = this.stringToDate( toDate , this.dateFormat , '/' );
-        //var timeDiff = Math.abs( date2.getTime() - date1.getTime() );
-        var timeDiff = date2.getTime() - date1.getTime();
-        return Math.ceil( timeDiff / (1000 * 3600 * 24) );
-    }
-
-    private stringToDate ( _date , _format , _delimiter ) : any {
-        if ( _date === null ) {
-            return null;
-        }
-        var formatLowerCase = _format.toLowerCase();
-        var formatItems     = formatLowerCase.split( _delimiter );
-        var dateItems       = _date.split( _delimiter );
-        if ( dateItems.length < 3 ) {
-            return false;
-        }
-        for ( var i = 0 ; i < dateItems.length ; i ++ ) {
-            if ( isNaN( dateItems[ i ] ) ) {
-                return false;
-            }
-        }
-        var monthIndex = formatItems.indexOf( 'mm' );
-        var dayIndex   = formatItems.indexOf( 'dd' );
-        var yearIndex  = formatItems.indexOf( 'yyyy' );
-        var month      = parseInt( dateItems[ monthIndex ] );
-        month -= 1;
-        return new Date( <number>dateItems[ yearIndex ] , <number>month , <number>dateItems[ dayIndex ] );
-    }
-
     private showError ( errorMessage ) {
         this.dateErrorMessage = errorMessage;
     }
@@ -227,16 +203,11 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private validateDate () {
-        console.log( 'this.formControl[ 0 ].control' , this.formControl[ 0 ].control );
         let enteredDate = this.formControl[ 0 ].control.value;
-        console.log( 'Validation :enteredDate' , enteredDate );
-        let datesDiff = this.getDatesDiff( this.today , enteredDate );
-        console.log( 'Validation :datesDiff' , datesDiff );
+        let datesDiff   = this.ampDateService.getDatesDiff( this.ampDateService.today , enteredDate );
         if ( this.controlGroup( 'fullOrPartial' ).controls[ 'fullOrPartial' ].value === 'Full' ) {
-            console.log( 'its full ' );
             this.validateDateField( datesDiff , this.associtationExerciseDateValue );
         } else {
-            console.log( 'its partial ' );
             this.validateDateField( datesDiff , 'three_month' );
         }
     }
@@ -253,10 +224,12 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ) {
         super();
-        this.formControl          = [
+        this.formControl               = [
             new NamedControl( this.requestDate.id , new Control() )
         ];
-        this.formControlGroupName = 'exerciseDate';
+        this.formControlGroupName      = 'exerciseDate';
+        this.ampDateService            = new AmpDateService();
+        this.ampDateService.dateFormat = this.dateFormat;
     }
 }
 /**
