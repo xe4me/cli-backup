@@ -26,7 +26,7 @@ export class IndexPage implements OnInit {
 
   ngOnInit(): any {
 
-    this.http.get('public/version.json')
+    this.http.get('src/assets/version.json')
       .subscribe((res: Response) => {
         this.angularVersion = res.json().angular2;
       });

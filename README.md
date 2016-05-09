@@ -1,11 +1,14 @@
 # AMP Digital dynamic data capture UI components library
 
 This repo contains all build blocks for DDC experience (forms).
-To see the actual form experience that makes use of the components in this repo, please go to [DDC experience repo | https://github.com/ampdigital/digital-ddc-experience]
+To see the actual form experience that makes use of the components in this repo, please go to [DDC experience repo | https://gitlab.ccoe.ampaws.com.au/DDC/experience]
 
-### Dependency
+### AMP Dependency
+[ui-core | https://gitlab.ccoe.ampaws.com.au/DDC/ui-core]
+[amp-styleguide-core | https://gitlab.ccoe.ampaws.com.au/DDC/amp-styleguide-core.git]
 
 ### TODO
+1, Get this repo into Jenkins and obtain a DNS entry to host this library
 
 
 ### Quick start
@@ -14,22 +17,24 @@ To see the actual form experience that makes use of the components in this repo,
 ```bash
 # clone our repo
 # --depth 1 removes all but one .git commit history
-git clone https://github.com/ampdigital/digital-ddc-components.git
+git clone git@gitlab.ccoe.ampaws.com.au:DDC/components.git
 
 # change directory to our repo
-cd digital-ddc-components
+cd components
 
 # install the repo with npm
 npm install
 
 # start the server
 npm start
+
+# please refer to [Global installs under Getting Started](#getting-started) if this is your first webpack, karma, protractor, typings, or typescript project.
 ```
 go to [http://0.0.0.0:3001](http://0.0.0.0:3001) or [http://localhost:3001](http://localhost:3001) in your browser
 
 
-NOTE : 
-After running "npm start" If you came across "Strict Mode and Const" related npm errors , run bellow code to fix this : 
+NOTE :
+After running "npm start" If you came across "Strict Mode and Const" related npm errors , run bellow code to fix this :
 
 1) Clear NPM's cache:
 
@@ -42,20 +47,6 @@ sudo npm install -g n
 3) Install latest stable NodeJS version
 
 sudo n stable
-
-
-
-
-
-
-
-
-
-
-
-# Below needs to be modified
-
-
 
 
 # Table of Contents
@@ -71,32 +62,49 @@ sudo n stable
 * [Support, Questions, or Feedback](#support-questions-or-feedback)
 * [License](#license)
 
-
 ## File Structure
 We use the component approach in our starter. This is the new standard for developing Angular apps and a great way to ensure maintainable code by encapsulation of our behavior logic. A component is basically a self contained app usually in a single file or a folder with each concern as a file: style, template, specs, e2e, and component class. Here's how it looks:
 ```
-digital-ddc-ui/
+components/
  ├──src/                       * our source files that will be compiled to javascript
- |   ├──main.ts                * our entry file for our browser environment
+ |   ├──main.ts                * our entry file for our browser environment, this will bootstrap the
+ |   |                           styleguide DEMO app, which demonstrate all of our reusable components.
  │   │
  |   ├──index.html             * Index.html: where we generate our index page
  │   │
  |   ├──polyfills.ts           * our polyfills file
  │   │
- │   ├──app/                   * WebApp: folder
- │   │   ├──app.spec.ts        * a simple test of components in app.ts
- │   │   ├──app.e2e.ts        * a simple end-to-end test for /
+ │   ├──app/                   * WebApp: folder (sub-components follows the same structure)
+ │   │   ├──readme             * README on design of this component (inc. UX, UI, etc..)
+ │   │   ├──app.scss           * SASS specific to this component only
  │   │   └──app.ts             * App.ts: a simple version of our App component components
  │   │
  │   ├──assets/                * static assets are served here
  │   │   ├──icon/              * our list of icons from www.favicon-generator.org
+ |   |   ├──images/            * static images that isn't from AEM
  │   │   ├──service-worker.js  * ignore this. Web App service worker that's not complete yet
  │   │   ├──robots.txt         * for search engines to crawl your website
  │   │   └──human.txt          * for humans to know who the developers are
  │   │
- │   ├──style/                 * SASS files that are global to the entire site
+ │   ├──style/                 * SASS files that are global to the entire site, following
+ |   |                           the [inuitcss | https://github.com/inuitcss] conventions.
+ |   |                           AMP-styleguide-core is the parent styles project, which defines the
+ |   |                           foundation of styling aspects like themes, breakpoints, fonts, spacings,
+ |   |                           mixins, etc...
  │   │
  │   └──styleguide/            * Styleguide demo site to show case all components
+ │       ├──blocks/            * reusable blocks, can contain custom blocks for testing purposes
+ │       ├──componentGroups/   * reusable component groups, please refers to DDC team site for design
+ |       |                       guidelines and description of what is a block, componentGroup and
+ |       |                       components. [DDC confluence |
+ |       |                 https://teamtools.amp.com.au/confluence/display/DDC/Dynamic+design+guidelines]
+ │       └──components/               * reusabled components
+ │             ├──basic_usage.html    * standard html that typically used to invoke demo component
+ │             ├──basic_usage.scss    * any extra CSS required to demo the component
+ │             ├──basic_usage.ts      * provide assistance in demo component, mocking, initializing, etc.
+ │             ├──component.test      * Galen test
+ │             ├──component.test.spec * Galen test specification
+ │             └──component.spec.ts   * Jasmine test
  │
  ├──spec-bundle.js             * ignore this magic that sets up our angular 2 testing environment
  ├──karma.config.js            * karma config for our unit tests
@@ -116,6 +124,7 @@ digital-ddc-ui/
 What you need to run this app:
 * `node` and `npm` (`brew install node`)
 * Ensure you're running the latest versions Node `v4.1.x`+ and NPM `2.14.x`+
+* Ensure you have [Galen Framework](http://galenframework.com/) installed (version `v2.2.0`+)
 
 Once you have those, you should install these globals with `npm install --global`:
 * `webpack` (`npm install --global webpack`)
@@ -139,9 +148,11 @@ After you have installed all dependencies you can now run the app. Run `npm run 
 ```bash
 # development
 npm run server
-# production
-npm run build:prod
-npm run server:prod
+# or
+npm start
+# production - DO NOT RUN for this repo. Please refer to experience for Production deployables
+#npm run build:prod
+#npm run server:prod
 ```
 
 ## Other commands
@@ -150,8 +161,8 @@ npm run server:prod
 ```bash
 # development
 npm run build:dev
-# production
-npm run build:prod
+# production - DO NOT RUN for this repo. Please refer to experience for Production deployables
+#npm run build:prod
 ```
 
 ### watch and build files

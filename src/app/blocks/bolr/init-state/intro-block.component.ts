@@ -13,10 +13,10 @@ import { I18nSelectPipe } from 'angular2/common';
             <div class='bolr-intro-main__title practice-title mb3'>
                 <span class='mr'>{{formModelService.getModel().context.practiceName}}</span>
                 <span class='mr'>Practice ID: {{formModelService.getModel().context.payeeID}}</span>
-                <span>Practice principal: {{formModelService.getModel().context.practicePrincipal_firstName + ' ' + formModelService.getModel().context.practicePrincipal_lastName }}</span>
+                <span>Practice principal: {{formModelService.getModel().context.practicePrincipalFirstName + ' ' + formModelService.getModel().context.practicePrincipalLastName }}</span>
             </div>
             <p  class='bolr-intro-main__body mb3'>
-                Hi {{formModelService.getModel().context.practicePrincipal_firstName}},<br/>
+                Hi {{formModelService.getModel().context.practicePrincipalFirstName}},<br/>
                 You're about to request access to the {{ formModelService.getModel().context.licensee | i18nSelect: licenseeFormName}} facility.
             </p>
             <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>

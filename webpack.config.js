@@ -90,9 +90,8 @@ module.exports = helpers.validate({
 
     // static assets
     new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' },
-        { from: 'node_modules/ng2-material/dist', to: 'node_modules/ng2-material/dist' },
-        { from: 'public', to: 'public' }
+        { from: 'src/assets', to: 'ddc/public' },
+        { from: 'node_modules/ng2-material/dist', to: 'node_modules/ng2-material/dist' }
       ]),
     // generating html
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
@@ -110,16 +109,31 @@ module.exports = helpers.validate({
   tslint: {
     emitErrors: false,
     failOnHint: false,
-    resourcePath: 'src',
+    resourcePath: 'src'
   },
 
   // our Webpack Development Server config
   devServer: {
     port: metadata.port,
     host: metadata.host,
-    // contentBase: 'src/',
+    contentBase: '.',
+    // publicPath: '/assets',
     historyApiFallback: true,
-    watchOptions: { aggregateTimeout: 300, poll: 1000 }
+    watchOptions: { aggregateTimeout: 300, poll: 1000 },
+    proxy: {
+        '/ddc/public/*': {
+            target: 'http://localhost:3001',
+            rewrite: function (req) {
+                req.url = req.url.replace(/^\/ddc\/public/, '/src/assets');
+            }
+        },
+        '*/ddc/public/*': {
+            target: 'http://localhost:3001',
+            rewrite: function (req) {
+                req.url = req.url.replace(/\/ddc\/public/, '/src/assets');
+            }
+        }
+    }
   },
   // we need this due to problems with es6-shim
   node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
