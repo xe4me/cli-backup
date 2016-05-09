@@ -31,7 +31,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     
                     <div  class='grid__item mb-25 mt-45'>
                         <amp-group-button
-                            scrollOutOn='YES'
+                            scrollOutOn='Yes'
                             class='grid__item 4/9'
                             (select)='onSwitchChanged($event)'
                             [buttons]='hasHoldersButtons.buttons'
@@ -43,7 +43,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     </div>
                 </section>
              
-                <section [collapse]='formControl[0].control.value!=="YES" || isInSummaryState'>
+                <section [collapse]='formControl[0].control.value!=="Yes" || isInSummaryState'>
                     <h3 class='heading heading-intro mt-15'>How many?</h3>
                     <div class='grid__item mb-15 mt-45'>
                         <amp-group-button
@@ -56,7 +56,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         </amp-group-button>
                     </div>
                 </section>
-                <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="NO"'>
+                <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="No"'>
                     <h3 class='heading heading-intro mt-10 mb-30'>How many?</h3>
                     <div>
                         <span class='summary-state'>{{ dynamicControlGroup.controls.length }}</span>
@@ -64,7 +64,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 </section>
                 
                 
-                <section  [collapse]='formControl[0].control.value !== "YES" || 
+                <section  [collapse]='formControl[0].control.value !== "Yes" || 
                 formControl[1].control.value < 1'>
                     <h3 *ngIf='dynamicControlGroup.controls.length>1' 
                     class='heading heading-intro mt-15 mb-15'>What are their names?</h3>
@@ -73,15 +73,14 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     <div class='grid__item 1/1'>
                         <div class='grid__item' *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
-                            heading-contxtual-label'>Their names are&nbsp;</label><!--
+                                    heading-contxtual-label'>Their names are&nbsp;</label><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
-                            heading-contxtual-label'>Their name is&nbsp;</label><!--
+                                    heading-contxtual-label'>Their name is&nbsp;</label><!--
                             --><span class='1/6 heading heading-contxtual-label' *ngIf='
-                            dynamicControlGroup.controls.length > 1 '>
-                                <span *ngIf=' i < ( dynamicControlGroup.controls.length - 1 ) && i >0 '>,</span> 
-                                <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '>and</span>
-                            </span><!--
-                                --><my-md-input
+                                    dynamicControlGroup.controls.length > 1 '> 
+                                    <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '>and</span>
+                                </span><!--
+                            --><my-md-input
                                 (onEnter)='ok()'
                                 [isInSummaryState]='isInSummaryState'
                                 id='firstname_{{ i }}'
@@ -91,21 +90,28 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                 label='First name'
                                 [parentControl]='item.controls.firstName'
                                 >
-                            </my-md-input><!--
-                            --><my-md-input
-                                (onEnter)='ok()'
-                                [isInSummaryState]='isInSummaryState'
-                                id='lastname_{{ i }}'
-                                isRequired='true'
-                                valMaxLength='50'
-                                class='1/3'
-                                label='Last name'
-                                [parentControl]='item.controls.lastName'
-                                >
-                            </my-md-input><!--
+                                </my-md-input><!--
+                             --><my-md-input
+                                    (onEnter)='ok()'
+                                    [isInSummaryState]='isInSummaryState'
+                                    id='lastname_{{ i }}'
+                                    isRequired='true'
+                                    valMaxLength='50'
+                                    class='1/3'
+                                    label='Last name'
+                                    [parentControl]='item.controls.lastName' >
+                                </my-md-input><!--
+                            --><span class='1/6 heading heading-contxtual-label' *ngIf='
+                                    dynamicControlGroup.controls.length > 2 '>
+                                    <span *ngIf=' i < ( dynamicControlGroup.controls.length - 2 ) '>,</span> 
+                                </span><!--
+                            --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading 
+                            heading-contxtual-label input-dot'>.</span><!--
                         --></div>
+                        
                     </div>
-                </section> 
+                </section>
+                 
                 <section>
                     <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
                         class='btn btn--secondary 
@@ -139,13 +145,13 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         buttons   : [
             {
                 id    : 'yesId' ,
-                value : 'YES' ,
-                label : 'YES'
+                value : 'Yes' ,
+                label : 'Yes'
             } ,
             {
                 id    : 'noId' ,
-                value : 'NO' ,
-                label : 'NO'
+                value : 'No' ,
+                label : 'No'
             }
         ] ,
         groupName : 'hasHolders'
@@ -226,7 +232,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private onSwitchChanged ( value ) {
-        if ( value === 'NO' ) {
+        if ( value === 'No' ) {
             this.clearHoldersControlArray();
             this.formControl[ 1 ].control.updateValue( '0' );
         } else {

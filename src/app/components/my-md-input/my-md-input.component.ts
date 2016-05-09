@@ -55,11 +55,13 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'valPattern' ,
             'isRequired' ,
             'hostClassesRemove' ,
-            'showLabel'
+            'showLabel' ,
+            'tolowerCase' ,
+            'toupperCase'
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated ,
-        outputs       : [ 'onEnter' ]
+        outputs       : [ 'onEnter' , 'onBlur' ]
     } )
 export class MdInputComponent implements OnChanges, AfterViewInit {
     private inputWidth : number;
@@ -69,6 +71,8 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private label : string;
     private isInSummaryState : boolean;
     private showLabel : boolean   = true;
+    private tolowerCase : boolean = false;
+    private toupperCase : boolean = false;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
@@ -77,6 +81,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private hostClassesRemove;
     private tempClassNames;
     private onEnter : EventEmitter<string>;
+    private onBlur : EventEmitter<string>;
 
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
@@ -104,6 +109,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         this._animation    = animationBuilder.css();
         this.onAdjustWidth = new EventEmitter();
         this.onEnter       = new EventEmitter();
+        this.onBlur        = new EventEmitter();
     }
 
     set id ( id : string ) {
@@ -143,8 +149,14 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         }
     }
 
-    private  trimValue () {
-        return this.parentControl.value ? this.parentControl.updateValue( this.parentControl.value.trim() ) : '';
+    private trimValue () {
+        let notUsabel;
+        if ( this.parentControl.value ) {
+            this.parentControl.updateValue( this.parentControl.value.trim() );
+            notUsabel = this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
+            notUsabel = this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
+        }
+        this.onBlur.emit( 'blured' );
     }
 
     private initiateInputWidth () {

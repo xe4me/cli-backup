@@ -31,6 +31,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 
         <!--Email-->
          <input-with-label-group
+            [tolowerCase]='contactDetails.email.toLowerCase'
             (onEnter)='ok()'
             [isInSummaryState]='isInSummaryState'
             [contxtualLabel]='contactDetails.email.contxtualLabel'
@@ -102,7 +103,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             regex          : '^[_a-zA-Z0-9-+=\'#$]+(\.[_a-zA-Z0-9-+=\'#$]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$' ,
             value          : 'smiladhi@gmail.com' ,
             maxLength      : 50 ,
-            minLength      : 0
+            minLength      : 0 ,
+            toLowerCase    : 'true'
         }
     };
     private isInSummaryState : boolean     = false;

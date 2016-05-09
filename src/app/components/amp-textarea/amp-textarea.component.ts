@@ -20,13 +20,15 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         flex-gt-sm='' >
         <!--(paste)='adjustHeight($event.target)'
             (blur)='adjustHeight($event.target)'
-            (blur)='trimValue()'-->
+            '-->
         <label
          [ngClass]='{"summary" : isInSummaryState}'
         *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
         --><textarea
             #textarea
             (keyup)='adjustHeight($event.target)'
+            (blur)='adjustHeight($event.target)'
+            (blur)='trimValue()'
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
             class='md-input'
