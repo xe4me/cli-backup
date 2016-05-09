@@ -90,9 +90,9 @@ export class AmpGroupButtonComponent {
     private onSelect ( value ) {
         this.select.emit( value + '' );
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
-            this.scrollService.scrollMeOut( this.elem );
+            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
         } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
-            this.scrollService.scrollMeOut( this.elem );
+            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
         }
     }
 }

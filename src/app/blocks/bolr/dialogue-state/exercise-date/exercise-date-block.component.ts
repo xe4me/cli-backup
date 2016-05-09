@@ -50,7 +50,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             </div>
         </div>
         
-        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn 
+        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext || dateErrorMessage!==null' class='btn 
         btn--secondary btn-ok btn-ok-margin-top'>
             OK
         </button>
@@ -69,7 +69,7 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
         id             : 'requestDateId' ,
         label          : 'My requested date is' ,
         contxtualLabel : 'My requested date is' ,
-        regex          : '/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/' ,
+        regex          : '^(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\\d\\d$' ,
         value          : '' ,
         maxLength      : 10 ,
         minLength      : 10
@@ -77,22 +77,7 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private dateErrorMessage               = null;
-
-    private controlGroup ( name ) : ControlGroup {
-        return < ControlGroup >this.formModel.controls[ name ];
-    }
-
-    private get associtationExerciseDateValue () {
-        return this.controlGroup( 'practiceAssociation' ).controls[ 'exerciseDate' ].value;
-    };
-
-    private get timeFrame () {
-        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
-            if ( this.controlGroup( 'practiceAssociation' ).controls[ 'exerciseDate' ].value != null ) {
-                return this.associtationExerciseDateValue;
-            }
-        }
-    }
+    private dateFormat                     = 'dd/MM/yyyy';
 
     public isCurrentBlockActive () {
         return this.formModelService.getFlags( 'fullOrPartialIsDone' );
@@ -127,6 +112,22 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
                 flag      : 'exerciseDateIsDone' ,
                 flagValue : true
             } );
+        }
+    }
+
+    private controlGroup ( name ) : ControlGroup {
+        return < ControlGroup >this.formModel.controls[ name ];
+    }
+
+    private get associtationExerciseDateValue () {
+        return this.controlGroup( 'practiceAssociation' ).controls[ 'exerciseDate' ].value;
+    };
+
+    private get timeFrame () {
+        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
+            if ( this.controlGroup( 'practiceAssociation' ).controls[ 'exerciseDate' ].value != null ) {
+                return this.associtationExerciseDateValue;
+            }
         }
     }
 
@@ -172,29 +173,29 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private get today () {
-        let today = new Date();
-        let dd    = today.getDate();
-        let mm    = today.getMonth() + 1; //January is 0!
-        let yyyy  = today.getFullYear();
+        let today    = new Date();
+        let dd       = today.getDate();
+        let mm       = today.getMonth() + 1; //January is 0!
+        let yyyy     = today.getFullYear();
+        let DD : any = dd , MM : any = mm , YYYY : any = yyyy;
         if ( dd < 10 ) {
-            dd = '0' + dd
+            DD = '0' + dd;
         }
         if ( mm < 10 ) {
-            mm = '0' + mm
+            MM = '0' + mm;
         }
-        return dd + '/' + mm + '/' + yyyy;
+        return DD + '/' + MM + '/' + YYYY;
     }
 
     private getDatesDiff ( fromDate , toDate ) {
-        console.log( 'GEtting diffs fromDate , toDate' , fromDate , toDate );
-        var date1    = this.stringToDate( fromDate , "dd/MM/yyyy" , "/" );
-        var date2    = this.stringToDate( toDate , "dd/MM/yyyy" , "/" );
+        var date1    = this.stringToDate( fromDate , this.dateFormat , '/' );
+        var date2    = this.stringToDate( toDate , this.dateFormat , '/' );
         //var timeDiff = Math.abs( date2.getTime() - date1.getTime() );
         var timeDiff = date2.getTime() - date1.getTime();
         return Math.ceil( timeDiff / (1000 * 3600 * 24) );
     }
 
-    private stringToDate ( _date , _format , _delimiter ) {
+    private stringToDate ( _date , _format , _delimiter ) : any {
         if ( _date === null ) {
             return null;
         }
@@ -209,9 +210,9 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
                 return false;
             }
         }
-        var monthIndex = formatItems.indexOf( "mm" );
-        var dayIndex   = formatItems.indexOf( "dd" );
-        var yearIndex  = formatItems.indexOf( "yyyy" );
+        var monthIndex = formatItems.indexOf( 'mm' );
+        var dayIndex   = formatItems.indexOf( 'dd' );
+        var yearIndex  = formatItems.indexOf( 'yyyy' );
         var month      = parseInt( dateItems[ monthIndex ] );
         month -= 1;
         return new Date( <number>dateItems[ yearIndex ] , <number>month , <number>dateItems[ dayIndex ] );
@@ -226,6 +227,7 @@ export class RequestDateBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private validateDate () {
+        console.log( 'this.formControl[ 0 ].control' , this.formControl[ 0 ].control );
         let enteredDate = this.formControl[ 0 ].control.value;
         console.log( 'Validation :enteredDate' , enteredDate );
         let datesDiff = this.getDatesDiff( this.today , enteredDate );

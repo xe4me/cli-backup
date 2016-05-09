@@ -21,11 +21,9 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         <div class='menu--left--hr hr--solid'></div>
                         <div class='menu--left--download'><span class='icon icon--acrobat'></span>  Download a copy</div>
                         <!--<div class='menu&#45;&#45;left&#45;&#45;download'><span class='icon icon&#45;&#45;time'></span>  {{ formModelService.currentComponent}}</div>-->
-                        <!--<button (click)='updateLicensee("LIC_HILLROSS")'>LIC_HILLROSS</button>-->
-                        <!--<button (click)='updateLicensee("LIC_AMPFP")'>LIC_AMPFP</button>-->
-                        <!--<button (click)='updateLicensee("LIC_CHARTER")'>LIC_CHARTER</button>-->
+                       
                     </div>
-                    <div class='menu--right bolr-right-padding utils__position--rel'>
+                    <div id='scroll-root' class='menu--right bolr-right-padding utils__position--rel'>
                         <!-- Dynamic form blocks driven from the Form Definition -->
                         <div #nestedBlock></div>
                     </div>

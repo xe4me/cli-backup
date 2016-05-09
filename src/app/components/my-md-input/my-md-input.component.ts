@@ -150,10 +150,11 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     }
 
     private trimValue () {
+        let notUsabel;
         if ( this.parentControl.value ) {
             this.parentControl.updateValue( this.parentControl.value.trim() );
-            this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
-            this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
+            notUsabel = this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
+            notUsabel = this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( 'blured' );
     }

@@ -18,7 +18,7 @@ import { MdInputComponent } from '../../../../components/my-md-input/my-md-input
 @Component( {
     selector   : 'practice-address-block' ,
     template   : `
-    <div class='practice-address-block' [class.hidden]='!isCurrentBlockActive()'>
+    <div class='practice-address-block' id='practice-address-block' [class.hidden]='!isCurrentBlockActive()'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Your practice address?</h3>
 

@@ -44,7 +44,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                     </div>
                 </section>
                 
-                <section class='mt-10'  [collapse]='formControl[0].control.value!=="Partial"'>
+                <section  [collapse]='formControl[0].control.value!=="Partial"'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>
                         My head of financial planning has approved my partial sale.
                     </div>
