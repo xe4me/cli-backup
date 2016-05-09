@@ -11,8 +11,8 @@ export class MockFormModelService {
         currentBlockID : new BlockID( null , 0 ) ,         // Defaults to the first block on the current page
         context        : {
             licensee                    : 'LIC_CHARTER' ,
-            practicePrincipal_firstName : 'Darren' ,
-            practicePrincipal_lastName  : 'Mink' ,
+            practicePrincipalFirstName : 'Darren' ,
+            practicePrincipalLastName  : 'Mink' ,
             payeeId                     : 'BCABB-F' ,
             practiceName                : 'Pinnancle Financial pty ltd'
         }
@@ -22,8 +22,8 @@ export class MockFormModelService {
         return Observable.create( function( observer ) {
             observer.onNext( {
                 licensee                    : 'LIC_CHARTER' ,
-                practicePrincipal_firstName : 'Darren' ,
-                practicePrincipal_lastName  : 'Mink' ,
+                practicePrincipalFirstName : 'Darren' ,
+                practicePrincipalLastName  : 'Mink' ,
                 payeeId                     : 'BCABB-F' ,
                 practiceName                : 'Pinnancle Financial pty ltd'
             } );
