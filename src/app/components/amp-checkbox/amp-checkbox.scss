@@ -1,173 +1,102 @@
 @import '../../../style/require';
-@import '~ng2-material/source/core/style/variables';
-@import '~ng2-material/source/core/style/shadows';
-@import '~ng2-material/source/core/style/mixins';
-@import '~ng2-material/source/core/style/default-theme';
 
-$checkbox-width: 30px !default;
-$checkbox-height: $checkbox-width !default;
-$checkbox-top-left: 12px;
-$checkbox-text-margin: 10px !default;
-$checkbox-border-color: $ddc-corporate-main-color;
+$radio-width: 30px !default;
+$radio-height: $radio-width !default;
+$radio-text-margin: 40px !default;
+$radio-top-left: 12px !default;
+$radio-margin: 0;
+
 :host {
-
-  box-sizing: border-box;
   display: block;
-  //margin: 15px;
+  line-height: 45px;
+  @extend %#{$namespace}font-size-medium;
+  display: block;
+  margin: $radio-margin;
   white-space: nowrap;
   cursor: pointer;
-  outline: none;
-  user-select: none;
   position: relative;
-  .amp-checkbox-container {
-    //position: absolute;
-    //top: 50%;
-    //transform: translateY(-50%);
-    float: left;
-    display: inline-block;
-    width: $checkbox-width;
-    height: $checkbox-height;
-    @include rtl(left, 0, auto);
-    @include rtl(right, auto, 0);
+  &:nth-child(n+2) {
+    margin-top: 23px;
+  }
+  input {
+    display: none;
+    &:checked {
+      + label {
 
-    &:after {
-      content: '';
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      bottom: -10px;
-      left: -10px;
+        .on {
+          transform: scale(1) rotate(45deg);
+        }
+      }
     }
+  }
 
-    .md-ripple-container {
-
+  label {
+    text-align: left;
+    line-height: 1;
+    display: block;
+    cursor: pointer;
+    .container {
+      box-sizing: border-box;
       position: absolute;
-      display: block;
-      width: auto;
-      height: auto;
-      left: -15px;
-      top: -15px;
-      right: -15px;
-      bottom: -15px;
-    }
-    // Checkbox is not checked.
-    .amp-checkbox-icon {
-      //position: absolute;
-      //top: 0;
-      //left: 0;
-      width: $checkbox-width;
-      height: $checkbox-height;
-      border: 2px solid #cccccc;
-      border-radius: 4px;
-      &:after {
-        @include transition(all 0.2s ease-in-out);
-        transform: rotate(45deg);
+
+      display: inline-block;
+      width: $radio-width;
+      height: $radio-width;
+      cursor: pointer;
+      @include rtl(left, 0, auto);
+      @include rtl(right, auto, 0);
+      &:hover {
+        .off {
+          border-color: rgba($amp-colour-sky-blue, 0.87);
+        }
+      }
+      .off {
+        border-radius: 5px;
+        box-sizing: border-box;
         position: absolute;
-        left: 9px;
-        top: 3px;
-        display: table;
-        width: 12px;
-        height: 18px;
-        content: ' ';
+        top: 0;
+        left: 0;
+        width: $radio-width;
+        height: $radio-width;
+        border: solid 2px;
+        transition: border-color ease 0.28s;
+        border-color: #cccccc;
+      }
+
+      .on {
+
+        box-sizing: border-box;
+        position: absolute;
+        top: 2px;
+        left: 10px;
+        width: 10px;
+        height: 20px;
+        transition: transform ease 0.28s;
+        transform: scale(0) rotate(-20deg);
         border: 2px solid;
-        border-color: white;
+        border-color: rgba($amp-colour-sky-blue, 0.87);
         border-top: 0;
         border-left: 0;
-      }
-    }
-  }
-
-  .amp-checkbox-label {
-    margin-top: -7px;
-    border: 1px dotted transparent;
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    white-space: normal;
-    pointer-events: none;
-    user-select: text;
-    @include rtl(margin-left, $checkbox-width - 1, 0);
-    @include rtl(margin-right, 0, $checkbox-width - 1);
-  }
-  &.md-align-top-left .amp-checkbox-container {
-    top: $checkbox-top-left;
-  }
-
-  &:last-of-type {
-    @include rtl(margin-left, inherit, 0);
-    @include rtl(margin-right, 0, inherit);
-  }
-
-
-  // Checkbox is disabled.
-  &[disabled] {
-    cursor: no-drop;
-    .amp-checkbox-icon {
-      border-color: md-color($md-foreground, disabled);
-    }
-
-    .amp-checkbox-label {
-      color: md-color($md-foreground, disabled);
-    }
-
-    &[aria-checked="true"] .amp-checkbox-icon {
-      background-color: md-color($md-foreground, disabled);
-    }
-  }
-
-  // Checkbox is checked.
-  &[aria-checked="true"] {
-
-
-    .amp-checkbox-icon {
-      background-color: white;
-
-      &:after {
-        border-color: $checkbox-border-color;
 
       }
     }
+    .content {
+      line-height: 45px;
+      margin-top: -7px;
+      display: inline-block;
+      vertical-align: top;
 
-  }
+      position: relative;
 
-  &:not([disabled]) {
-    //&.md-primary {
-    //  .md-ripple {
-    //    color: md-color($md-primary, 600);
-    //  }
-    //  &[aria-checked="true"] .md-ripple {
-    //    color: md-color($md-background, 600);
-    //  }
-    //
-    //  .amp-checkbox-icon {
-    //    border-color: md-color($md-foreground, icon);
-    //  }
-    //  &[aria-checked="true"] .amp-checkbox-icon {
-    //    background-color: md-color($md-primary, 0.87);
-    //  }
-    //
-    //  &[aria-checked="true"] .amp-checkbox-icon:after {
-    //    border-color: md-color($md-background, 200);
-    //  }
-    //}
-
-    /*&.md-warn {
-      .md-ripple {
-        color: md-color($md-warn, 600);
-      }
-
-      .amp-checkbox-icon {
-        border-color: md-color($md-foreground, icon);
-      }
-      &[aria-checked="true"] .amp-checkbox-icon {
-        background-color: md-color($md-warn, 0.87);
-      }
-
-      &[aria-checked="true"] .amp-checkbox-icon:after {
-        border-color: md-color($md-background, 200);
-      }
-    }*/
+      white-space: normal;
+      //  pointer-events: none;  ???
+      width: auto;
+      @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
+      @include rtl(margin-right, 0, $radio-text-margin + $radio-width);
+    }
   }
 
 }
+
+
 

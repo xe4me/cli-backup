@@ -6,7 +6,7 @@ import { InputWithLabelGroupComponent } from '../../../../component-groups/input
 import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
-import { AmpCheckboxComponent } from "../../../../components/amp-checkbox/amp-checkbox.component";
+import { AmpCheckboxComponent } from '../../../../components/amp-checkbox/amp-checkbox.component';
 @Component(
     {
         selector   : 'acknowledge-block' ,
@@ -14,14 +14,20 @@ import { AmpCheckboxComponent } from "../../../../components/amp-checkbox/amp-ch
     <div id='acknowledge-block' class='acknowledge-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro mb-35'>Your acknowledgement</h3>
-        value : {{ formControl[0].control.value }}
-        <amp-checkbox [parentControl]='formControl[0].control'>
+        <amp-checkbox 
+            [parentControl]='formControl[0].control'
+            required='true'
+            scrollOutOn='null'
+            [id]='acknowledge.id'
+            [value]='"yes"'
+            (select)='onAcknowledgeSelect($event)'
+            >
             <div class='heading heading-contxtual-label'>
                 I agree to {{ licensee }} advertising my practice's register internally, and for {{ licensee }}  to seek out 
                 practices that 
                 may be interested in becoming the servicing practice for some or all of the register.
                 Please note, this may potentially result in some or all of the practice's register being purchased and transferred before the exercise date.
-            </div>
+            </div>    
         </amp-checkbox>
         
        
@@ -62,10 +68,6 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
         return undefined;
     }
 
-    private get licensee () {
-        return Licensees.getLicensee( this.formModelService.context.licensee );
-    }
-
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
@@ -85,6 +87,15 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
                 flagValue : true
             } );
         }
+    }
+
+    private onAcknowledgeSelect ( value ) {
+        console.log( 'value' , value );
+        console.log( 'formModel' , this.formModel.controls[ this.formControlGroupName ] );
+    }
+
+    private get licensee () {
+        return Licensees.getLicensee( this.formModelService.context.licensee );
     }
 
     private get canGoNext () {

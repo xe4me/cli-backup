@@ -151,8 +151,8 @@ describe( 'amp-textarea component , multiple items usage' , () => {
                     expect( CharacterCountElement ).toBeDefined();
                     Component.textarea.maxLenght = 0;
                     fixture.detectChanges();
-                    let CharacterCountElement = Element.querySelector( '.char-left' );
-                    expect( CharacterCountElement ).toBeNull();
+                    let CharacterCountElementAfter = Element.querySelector( '.char-left' );
+                    expect( CharacterCountElementAfter ).toBeNull();
                 } );
         } )
     );
