@@ -4,8 +4,8 @@ This repo contains all build blocks for DDC experience (forms).
 To see the actual form experience that makes use of the components in this repo, please go to [DDC experience repo | https://gitlab.ccoe.ampaws.com.au/DDC/experience]
 
 ### AMP Dependency
-[ui-core | https://gitlab.ccoe.ampaws.com.au/DDC/ui-core]
-[amp-styleguide-core | https://gitlab.ccoe.ampaws.com.au/DDC/amp-styleguide-core.git]
+# [ui-core](https://gitlab.ccoe.ampaws.com.au/DDC/ui-core)
+# [amp-styleguide-core](https://gitlab.ccoe.ampaws.com.au/DDC/amp-styleguide-core.git)
 
 ### TODO
 1, Get this repo into Jenkins and obtain a DNS entry to host this library
