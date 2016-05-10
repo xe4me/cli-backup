@@ -12,7 +12,7 @@ var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 var HMR = process.argv.join('').indexOf('hot') > -1;
 
 var metadata = {
-  title: 'Digital DDC component library',
+  title: 'Buy back form',
   baseUrl: '/',
   host: 'localhost',
   port: 3001,
