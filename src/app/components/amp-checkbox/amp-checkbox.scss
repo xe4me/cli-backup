@@ -1,17 +1,16 @@
 @import '../../../style/require';
 
-$radio-width: 30px !default;
-$radio-height: $radio-width !default;
-$radio-text-margin: 40px !default;
-$radio-top-left: 12px !default;
-$radio-margin: 0;
+$checkbox-width: 30px !default;
+$checkbox-height: $checkbox-width !default;
+$checkbox-text-margin: 40px !default;
+$checkbox-top-left: 12px !default;
+$checkbox-margin: 0;
 
 :host {
   display: block;
   line-height: 45px;
   @extend %#{$namespace}font-size-medium;
-  display: block;
-  margin: $radio-margin;
+  margin: $checkbox-margin;
   white-space: nowrap;
   cursor: pointer;
   position: relative;
@@ -22,9 +21,15 @@ $radio-margin: 0;
     display: none;
     &:checked {
       + label {
-
         .on {
           transform: scale(1) rotate(45deg);
+        }
+      }
+    }
+    &:not([disabled]) + label {
+      &:hover {
+        .off {
+          border-color: rgba($amp-colour-sky-blue, 0.87);
         }
       }
     }
@@ -38,26 +43,33 @@ $radio-margin: 0;
     .container {
       box-sizing: border-box;
       position: absolute;
+      opacity: 1;
+      visibility: visible;
+      @include transition(all .7s ease-in-out);
+      transition-delay: 0s;
+      &.hidden {
+
+        opacity: 0;
+        visibility: hidden;
+        @include transition(all .2s ease-in-out !important);
+        transition-delay: 1.2s !important;
+      }
 
       display: inline-block;
-      width: $radio-width;
-      height: $radio-width;
+      width: $checkbox-width;
+      height: $checkbox-width;
       cursor: pointer;
       @include rtl(left, 0, auto);
       @include rtl(right, auto, 0);
-      &:hover {
-        .off {
-          border-color: rgba($amp-colour-sky-blue, 0.87);
-        }
-      }
+
       .off {
         border-radius: 5px;
         box-sizing: border-box;
         position: absolute;
         top: 0;
         left: 0;
-        width: $radio-width;
-        height: $radio-width;
+        width: $checkbox-width;
+        height: $checkbox-width;
         border: solid 2px;
         transition: border-color ease 0.28s;
         border-color: #cccccc;
@@ -81,22 +93,27 @@ $radio-margin: 0;
       }
     }
     .content {
+      @include transition(margin .7s ease-in-out);
+      transition-delay: 0s;
       line-height: 45px;
       margin-top: -7px;
       display: inline-block;
       vertical-align: top;
-
       position: relative;
-
       white-space: normal;
-      //  pointer-events: none;  ???
       width: auto;
-      @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
-      @include rtl(margin-right, 0, $radio-text-margin + $radio-width);
+      @include rtl(margin-left, $checkbox-text-margin + $checkbox-width, 0);
+      @include rtl(margin-right, 0, $checkbox-text-margin + $checkbox-width);
+      &.summary-state {
+        @include transition(margin .2s ease-in-out !important);
+        transition-delay: 1.2s !important;
+        @include rtl(margin-left, 0, 0);
+        @include rtl(margin-right, 0, 0);
+      }
     }
   }
-
 }
+
 
 
 
