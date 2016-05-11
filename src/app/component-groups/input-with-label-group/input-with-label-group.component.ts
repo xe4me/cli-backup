@@ -8,7 +8,6 @@ import { EventEmitter } from 'angular2/src/facade/async';
         <div class='input-with-label-group'>
             <label class='heading heading-contxtual-label' *ngIf='contxtualLabel' >{{contxtualLabel}}</label><!--
             -->&nbsp;<!--
-            
             --><my-md-input
                 (onEnter)='onEnter.emit("enter")'
                 (onBlur)='onBlur.emit("blured")'

@@ -20,7 +20,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         flex-gt-sm='' >
         <label
          [ngClass]='{"summary" : isInSummaryState}'
-        *ngIf='!isInSummaryState && showLabel===true' [attr.for]='_id'>{{label}}</label><!--
+        *ngIf='!isInSummaryState && showLabel!=="false"' [attr.for]='_id'>{{label}}</label><!--
         --><input
             (keyup)='onEnterClick($event)'
             (blur)='trimValue()'

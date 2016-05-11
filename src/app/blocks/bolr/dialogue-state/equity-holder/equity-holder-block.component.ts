@@ -23,13 +23,13 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 <div *ngIf='isInSummaryState' class='heading heading-contxtual-label mt-30 mb-20'>
                     <span class='summary-state'>{{ formControl[0].control.value }}</span>
                 </div>
-                <div [collapse]='isInSummaryState' class='heading heading-contxtual-label mt-30'>
+                <div [collapse]='isInSummaryState' class='heading heading-micro-intro mt-35'>
                     For a practice to access the {{ licensee }} facility, all equity holders in that practice must exercise {{ licensee }}.
                 </div>
                 
                 <section [collapse]='isInSummaryState'>
                     
-                    <div  class='grid__item mb-25 mt-45'>
+                    <div  class='grid__item mb-25 mt-50'>
                         <amp-group-button
                             scrollOutOn='Yes'
                             class='grid__item 4/9'

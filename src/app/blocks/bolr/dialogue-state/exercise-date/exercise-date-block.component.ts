@@ -15,7 +15,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <h3 class='heading heading-intro'>Please select an exercise date {{ timeFrame }} today's date.</h3>
         
         
-       <div class='heading heading-contxtual-label mt-30'>
+       <div class='heading heading-micro-intro mt-35 mb-10'>
             This is a requested date only. AMP will provide a confirmed exercise date once this form has been submitted and reviewed. Adjustments to the requested date may be required, subject to practice tenure and/or processing blackout periods.
         </div>
         <input-with-label-group
@@ -29,7 +29,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             isRequired='true'
             [valMaxLength]='requestDate.maxLength'
             [valMinLength]='requestDate.minLength'
-            showLabel='false'
+            showLabel='true'
             [valPattern]='requestDate.regex'>
         </input-with-label-group>
         
@@ -66,7 +66,7 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     static CLASS_NAME : string             = 'ExerciseDateBlockComponent';
     private requestDate                    = {
         id             : 'requestDateId' ,
-        label          : 'My requested date is' ,
+        label          : 'DD/MM/YYYY' ,
         contxtualLabel : 'My requested date is' ,
         regex          : '^(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\\d\\d$' ,
         value          : '' ,
