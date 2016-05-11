@@ -31,6 +31,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 
         <!--Email-->
          <input-with-label-group
+            [width]='"1/2"'
             [tolowerCase]='contactDetails.email.toLowerCase'
             (onEnter)='ok()'
             [isInSummaryState]='isInSummaryState'

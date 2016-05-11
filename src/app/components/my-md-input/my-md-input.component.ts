@@ -9,6 +9,7 @@ import { ElementRef } from 'angular2/src/core/linker/element_ref';
 import { EventEmitter } from 'angular2/src/facade/async';
 import { OnChanges } from 'angular2/src/core/linker/interfaces';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { isPresent } from "angular2/src/facade/lang";
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
 @Component(
     {
@@ -57,7 +58,8 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'hostClassesRemove' ,
             'showLabel' ,
             'tolowerCase' ,
-            'toupperCase'
+            'toupperCase' ,
+            'autoFocus'
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated ,
@@ -126,6 +128,14 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         }
     }
 
+    // set autoFocus ( value : boolean ) {
+    //     if ( this.isTrue( value ) && this.el ) {
+    //         let input = this.el.nativeElement.querySelector( 'input' );
+    //         console.log( "this.el.nativeElement.querySelector('input')[0]" , this.el.nativeElement.querySelector( 'input' ) );
+    //         input.focus();
+    //     }
+    // }
+
     private onEnterClick ( event ) {
         if ( event.keyCode === 13 ) {
             this.onEnter.emit( 'enter' );
@@ -157,6 +167,10 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             notUsabel = this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( 'blured' );
+    }
+
+    private isTrue ( value ) {
+        return isPresent( value ) && (value === true || value === "true" || false);
     }
 
     private initiateInputWidth () {
