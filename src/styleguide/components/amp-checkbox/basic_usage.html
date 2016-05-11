@@ -1,0 +1,41 @@
+<form #formModel='ngForm' class='nl-form'>
+    <div style='padding: 50px 100px; text-align:left'>
+        <amp-checkbox
+                [isInSummaryState]='isInSummaryState'
+                [parentControl]='control'
+                [required]='acknowledge.required'
+                [checked]='acknowledge.checked'
+                [disabled]='acknowledge.disabled'
+                [scrollOutOn]='acknowledge.scrollOutOn'
+                [id]='acknowledge.id'
+                (select)='onAcknowledgeSelect($event)'>
+            <div class='heading heading-contxtual-label'>
+                I agree to advertising my practice's register internally, and for to seek out
+                practices that
+                may be interested in becoming the servicing practice for some or all of the register.
+            </div>
+        </amp-checkbox>
+
+
+        <br>
+        <div style='; text-align:left; background-color: lightblue'>
+            value : {{ control.value }}
+        </div>
+
+        <div style='; text-align:left ; background-color: lightgrey'>
+            Control is valid : {{ control.valid }}
+        </div>
+        <p>Note that if the control is requried and is not checked it should be invalid , but if is not required and not
+            checked , should be valid
+        </p>
+
+        <button (click)='isInSummaryState=!isInSummaryState'>Toggle Summary mode {{ isInSummaryState }}</button>
+        <br>
+        <button (click)='acknowledge.checked=!acknowledge.checked'>Toggle Checked {{ acknowledge.checked}}</button>
+        <br>
+        <button (click)='acknowledge.disabled=!acknowledge.disabled'>Toggle Disabled {{ acknowledge.disabled }}</button>
+        <br>
+        <button (click)='acknowledge.required=!acknowledge.required'>Toggle Required {{ acknowledge.required }}</button>
+        <br>
+    </div>
+</form>

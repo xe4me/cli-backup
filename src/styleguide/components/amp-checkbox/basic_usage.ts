@@ -1,0 +1,36 @@
+import { View , Component , AfterViewInit , ChangeDetectorRef } from 'angular2/core';
+import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
+import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
+import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
+import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
+@Component( { selector : 'amp-checkbox-basic-usage' } )
+@View( {
+    templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,
+    styles      : [ require( './basic_usage.scss' ).toString() ] ,
+    directives  : [ MATERIAL_DIRECTIVES , FORM_DIRECTIVES , AmpCheckboxComponent , CORE_DIRECTIVES ]
+} )
+export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
+    control : Control = new Control();
+    isInSummaryState  = false;
+
+    constructor ( private _cd : ChangeDetectorRef ) {
+    }
+
+    ngAfterViewInit () {
+
+        // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
+        this._cd.detectChanges();
+    }
+
+    private acknowledge = {
+        id          : 'acknowledge' ,
+        disabled    : false ,
+        required    : true ,
+        checked     : false ,
+        scrollOutOn : null
+    };
+
+    private onAcknowledgeSelect ( value ) {
+        console.log( 'onAcknowledgeSelect value' , value );
+    }
+}
