@@ -138,7 +138,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
     }
 
     private isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === "true" || false);
+        return isPresent( value ) && (value === true || value === 'true' || false);
     }
 
     private updateValitators () {

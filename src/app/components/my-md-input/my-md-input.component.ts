@@ -9,7 +9,7 @@ import { ElementRef } from 'angular2/src/core/linker/element_ref';
 import { EventEmitter } from 'angular2/src/facade/async';
 import { OnChanges } from 'angular2/src/core/linker/interfaces';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { isPresent } from "angular2/src/facade/lang";
+import { isPresent } from 'angular2/src/facade/lang';
 // TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
 @Component(
     {
@@ -135,7 +135,6 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     //         input.focus();
     //     }
     // }
-
     private onEnterClick ( event ) {
         if ( event.keyCode === 13 ) {
             this.onEnter.emit( 'enter' );
@@ -170,7 +169,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     }
 
     private isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === "true" || false);
+        return isPresent( value ) && (value === true || value === 'true' || false);
     }
 
     private initiateInputWidth () {
