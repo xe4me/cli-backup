@@ -1,15 +1,16 @@
 <form #formModel='ngForm' class='nl-form'>
 
-    <h5 class='title'>Option can be preselected from it's parent control</h5>
+    <h5 class='title'>Can be set to autoSelectOnOne </h5>
     <div id='single-radio-group' class='group-buttons'>
         <amp-radio-button-group
-                required='true'
                 scrollOutOn='null'
                 class='grid__item 1/1'
                 (select)='onOneRadioButtonSelect($event)'
                 [buttons]='radiosOneOption.buttons'
                 [parentControl]='oneOptionControl'
+                [autoSelectOnOne]='"true"'
                 [groupName]='radiosOneOption.groupName'>
+            >
         </amp-radio-button-group>
         <div class='control-value'>
             Control value : {{ oneOptionControl.value}}
@@ -20,20 +21,34 @@
     <div class='group-buttons'>
 
         <amp-radio-button-group
-                required='true'
+                [required]='radiosMultipleOptions.required'
+                [disabled]='radiosMultipleOptions.disabled'
                 scrollOutOn='null'
                 class='grid__item 1/1'
                 (select)='onMultipleRadioButtonSelect($event)'
                 [buttons]='radiosMultipleOptions.buttons'
                 [parentControl]='multipleOptionControl'
                 [groupName]='radiosMultipleOptions.groupName'
+
         >
         </amp-radio-button-group>
+        <p style='text-align: left'>
+            Control validity : {{ multipleOptionControl.valid }}<br>
+            Control required? : {{ radiosMultipleOptions.required }}
+            <button (click)='radiosMultipleOptions.required = ! radiosMultipleOptions.required'>Toggle</button>
+            <br>
+            Disabled ? : {{ radiosMultipleOptions.disabled }}
+            <button (click)='radiosMultipleOptions.disabled = ! radiosMultipleOptions.disabled'>Toggle</button>
+            <br>
+        </p>
         <br>
         <br>
         <button class='btn btn-ok btn-full btn--secondary' (click)='multipleOptionControl.updateValue("five_years2")'>
-            Select 'At least five
-            years'
+            Select 'At least five years'
+        </button>
+        <br>
+        <button class='btn btn-ok btn-full btn--secondary' (click)='addToMultipleOptions()'>
+            Add +
         </button>
         <br>
         <button class='btn btn-ok btn-full btn--secondary'

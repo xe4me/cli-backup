@@ -10,22 +10,29 @@ export class MockFormModelService {
         errors         : [] ,
         currentBlockID : new BlockID( null , 0 ) ,         // Defaults to the first block on the current page
         context        : {
-            licensee                    : 'DEA_CHARTER' ,
+            licensee                   : 'DEA_CHARTER' ,
             practicePrincipalFirstName : 'Darren' ,
             practicePrincipalLastName  : 'Mink' ,
-            payeeId                     : 'BCABB-F' ,
-            practiceName                : 'Pinnancle Financial pty ltd'
+            payeeId                    : 'BCABB-F' ,
+            practiceName               : 'Pinnancle Financial pty ltd'
+        } ,
+        flags          : {
+            introIsDone : false
         }
     };
+
+    getFlags ( flag ) {
+        return this.model.flags[ flag ];
+    }
 
     getContext () : Observable<string> {
         return Observable.create( function( observer ) {
             observer.onNext( {
-                licensee                    : 'DEA_CHARTER' ,
+                licensee                   : 'DEA_CHARTER' ,
                 practicePrincipalFirstName : 'Darren' ,
                 practicePrincipalLastName  : 'Mink' ,
-                payeeId                     : 'BCABB-F' ,
-                practiceName                : 'Pinnancle Financial pty ltd'
+                payeeId                    : 'BCABB-F' ,
+                practiceName               : 'Pinnancle Financial pty ltd'
             } );
             observer.onCompleted();
             return function() {

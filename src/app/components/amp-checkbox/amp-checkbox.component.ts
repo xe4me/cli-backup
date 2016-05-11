@@ -60,14 +60,14 @@ export class AmpCheckboxComponent implements AfterViewInit {
     private _disabled : boolean            = false;
     private _checked : boolean             = false;
     private _required : boolean            = false;
-    private isInSummaryState : boolean     = false;
     private _tabindex : number;
+    private isInSummaryState : boolean     = false;
     private parentControl : Control;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private id : string;
-    private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
     private checkboxValue : boolean        = false;
+    private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
 
     constructor ( private elem : ElementRef ,
                   private scrollService : ScrollService ) {
@@ -78,12 +78,12 @@ export class AmpCheckboxComponent implements AfterViewInit {
         return undefined;
     }
 
-    set tabindex ( value : number ) {
-        this._tabindex = this.parseTabIndexAttribute( value );
-    }
-
     parseTabIndexAttribute ( attr : any ) : number {
         return isPresent( attr ) ? NumberWrapper.parseInt( attr , 10 ) : 0;
+    }
+
+    set tabindex ( value : number ) {
+        this._tabindex = this.parseTabIndexAttribute( value );
     }
 
     get tabindex () : number {

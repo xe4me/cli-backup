@@ -3,7 +3,7 @@ import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpRadioButtonGroupComponent } from "../../../app/components/amp-radio-button-group/amp-radio-button-group.component";
-import { OnInit } from "experience/node_modules/angular2/src/core/linker/interfaces";
+import { OnInit } from "angular2/src/core/linker/interfaces";
 @Component( { selector : 'amp-radio-group-button-block-basic-usage' } )
 @View( {
     templateUrl : 'src/styleguide/components/amp-radio-group-button/basic_usage.html' ,
@@ -12,7 +12,6 @@ import { OnInit } from "experience/node_modules/angular2/src/core/linker/interfa
 } )
 export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {
     ngAfterViewInit () : any {
-        this.oneOptionControl.updateValue( 'five_years' );
         return undefined;
     }
 
@@ -51,10 +50,24 @@ export default class AmpRadioGroupButtonComponentBasicUsage implements AfterView
                 label : 'How amazing this radio button is '
             }
         ] ,
-        groupName : 'amazingRadioButtonGroupName'
+        groupName : 'amazingRadioButtonGroupName' ,
+        required  : true ,
+        disabled  : false
     };
     private autoSelectOnOne : boolean = true;
     private color                     = 'red';
+
+    private addToMultipleOptions () {
+        this.radiosMultipleOptions.buttons.push( {
+            id    : 'random_value' + this.radiosMultipleOptions.buttons.length ,
+            value : 'random_value' + this.radiosMultipleOptions.buttons.length ,
+            label : 'This is the random option number ' + this.radiosMultipleOptions.buttons.length
+        } )
+    }
+
+    private toggleRequired () {
+        this.radiosMultipleOptions.required = ! this.radiosMultipleOptions.required
+    }
 
     private onOneRadioButtonSelect () {
         if ( this.color === 'red' ) {
@@ -72,6 +85,12 @@ export default class AmpRadioGroupButtonComponentBasicUsage implements AfterView
         }
     }
 
-    constructor () {
+    constructor ( private _cd : ChangeDetectorRef ) {
+    }
+
+    ngAfterViewInit () {
+
+        // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
+        this._cd.detectChanges();
     }
 }
