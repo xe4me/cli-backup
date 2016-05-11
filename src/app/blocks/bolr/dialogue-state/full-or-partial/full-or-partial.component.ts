@@ -29,7 +29,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                     </div>
                 </section>
                 <div [collapse]='isInSummaryState!==true' class='heading heading-contxtual-label mt-30 mb-10'>
-                    <span class='summary-state'>{{ formControl[0].control.value }}</span>
+                    <span class='summary-state'>{{ formControl[0].control.value }} sale</span> 
                 </div>
                 <section class='mt-10'  [collapse]='formControl[0].control.value!=="Full"'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>

@@ -15,27 +15,28 @@ import { AmpCheckboxComponent } from '../../../../components/amp-checkbox/amp-ch
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro mb-35'>Your acknowledgement</h3>
         <amp-checkbox 
+            [isInSummaryState]='isInSummaryState'
             [parentControl]='formControl[0].control'
-            required='true'
-            scrollOutOn='null'
+            [required]='acknowledge.required'
+            [scrollOutOn]='acknowledge.scrollOutOn'
             [id]='acknowledge.id'
-            [value]='"yes"'
             (select)='onAcknowledgeSelect($event)'
             >
             <div class='heading heading-contxtual-label'>
                 I agree to {{ licensee }} advertising my practice's register internally, and for {{ licensee }}  to seek out 
                 practices that 
                 may be interested in becoming the servicing practice for some or all of the register.
-                Please note, this may potentially result in some or all of the practice's register being purchased and transferred before the exercise date.
             </div>    
         </amp-checkbox>
-        
        
+        <div class='heading heading-micro-intro mt-35'>
+            Please note, this may potentially result in some or all of the practice's register being purchased and transferred before the exercise date.
+        </div>
         <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn btn--secondary btn-ok 
-        mt-45'>
+        mt-50'>
             OK
         </button>
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-45'>
+        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-50'>
             Change
         </button>
         <div class='hr-block-divider'></div>
@@ -49,12 +50,15 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private acknowledge                    = {
-        id : 'acknowledge'
+        id          : 'acknowledge' ,
+        disabled    : false ,
+        required    : true ,
+        checked     : true ,
+        scrollOutOn : null
     };
 
     public isCurrentBlockActive () {
-        //return this.formModelService.getFlags( 'introIsDone' );
-        return true;
+        return this.formModelService.getFlags( 'exerciseDateIsDone' );
     }
 
     public preBindControls ( _formBlockDef ) {
@@ -76,8 +80,8 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
+            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.isInSummaryState = true;
             } , 1200 );
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
@@ -90,8 +94,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log( 'value' , value );
-        console.log( 'formModel' , this.formModel.controls[ this.formControlGroupName ] );
+        console.log( 'onAcknowledgeSelect value' , value );
     }
 
     private get licensee () {

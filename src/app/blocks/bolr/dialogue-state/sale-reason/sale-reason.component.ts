@@ -16,7 +16,7 @@ import { ControlGroup } from 'angular2/src/common/forms/model';
     template   : `
             <div *ngIf='componentIsVisible' class='sale-reason'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
-                <h3 class='heading heading-intro mb-5'>What are your sale reason?</h3>
+                <h3 class='heading heading-intro mb-5'>What are the reasons for your sale?</h3>
                 <section>
                     <amp-textarea
                         class='1/1'
@@ -55,7 +55,7 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
     private componentIsVisible : boolean   = false;
     private saleReason                     = {
         id          : 'saleReason' ,
-        label       : 'Sale reason' ,
+        label       : '' ,
         maxLength   : 500 ,
         errorMesage : 'Please enter your reasons.' ,
         controlName : 'saleReason'
