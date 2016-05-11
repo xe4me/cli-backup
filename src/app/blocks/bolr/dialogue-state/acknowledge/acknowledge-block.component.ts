@@ -53,7 +53,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
         id          : 'acknowledge' ,
         disabled    : false ,
         required    : true ,
-        checked     : true ,
+        checked     : false ,
         scrollOutOn : null
     };
 
