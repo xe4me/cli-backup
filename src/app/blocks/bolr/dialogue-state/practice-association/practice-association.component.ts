@@ -229,8 +229,8 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
             DEA_CHARTER  : {
                 at_least_five_years   : [
                     {
-                        id    : 'six_month' ,
-                        value : 'six_month' ,
+                        id    : 'six_months' ,
+                        value : 'six_months' ,
                         label : 'At least six months from today’s date.'
                     } ,
                     {
