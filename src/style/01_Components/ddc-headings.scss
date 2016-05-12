@@ -56,4 +56,13 @@ $heading-micro-intro-font-weight: 600;
   vertical-align: sub;
 }
 
-
+.#{$namespace}comma-summary-state,
+%#{$namespace}comma-summary-state {
+  margin-left: -5px;
+  color: $amp-colour-sky-blue;
+  @extend %#{$namespace}font-size-medium;
+  @include amp-family($heading-intro-font-family);
+  font-weight: $heading-contxtual-label-font-weight;
+  line-height: $heading-contxtual-label-line-height;
+  vertical-align: sub;
+}

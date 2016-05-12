@@ -2,19 +2,14 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import {
     Component ,
-    ElementRef ,
-    ViewEncapsulation ,
-    OnInit ,
-    AfterViewInit ,
-    NgZone ,
-    ViewChild
+    ElementRef
 } from 'angular2/core';
 import { Control } from 'angular2/common';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AMPGoogleAddressComponentGroup } from '../../../../component-groups/amp-google-address-group/amp-google-address-group.component.ts';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component';
+import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'practice-address-block' ,
     template   : `
@@ -36,58 +31,71 @@ import { MdInputComponent } from '../../../../components/my-md-input/my-md-input
             [postcodeCtrl]='postcodeCtrl'>
         </amp-google-address-group>
 
-        <div *ngIf="!googleAddressCtrl.valid || !formModel.controls.address.valid" class='errors mt'>
-            <div *ngIf='!googleAddressCtrl.valid && googleAddressCtrl.touched && !ampGoogleAddressGroup.showManualAddrEntry && ampGoogleAddressGroup.addressComponent.addrPredictions'>
-                <div>
-                    <span class='icon icon--close icon-errors'></span>Address is a required field.
-                </div>
+        
+        <div class='errors mt-25 mb-15' *ngIf='!googleAddressCtrl.valid && googleAddressCtrl.touched && 
+        !ampGoogleAddressGroup.showManualAddrEntry && ampGoogleAddressGroup.addressComponent.addrPredictions'>
+            <div >
+                <span class='icon icon--close icon-errors'></span>Address is a required field.
             </div>
-            <div *ngIf='!addressCtrl.valid && addressCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
-                <div *ngIf="addressCtrl.errors.required">
+        </div>
+    
+        
+        
+      <div *ngIf='
+      !formModel.controls.address.valid  
+      && ( 
+      ( suburbCtrl.touched && !suburbCtrl.valid ) || 
+      ( addressCtrl.touched && !addressCtrl.valid ) || 
+      ( stateCtrl.touched && !stateCtrl.valid ) ||
+      ( postcodeCtrl.touched && !postcodeCtrl.valid ) 
+      )'
+      class='errors 
+      mt-25 mb-15'>
+            <div class='error-item' *ngIf='!addressCtrl.valid && addressCtrl.touched && 
+            ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf='addressCtrl.errors.required'>
                     <span class='icon icon--close icon-errors'></span>Street address is a required field.
                 </div>
-                <div *ngIf="addressCtrl.errors.mdPattern && addressCtrl.dirty">
+                <div *ngIf='addressCtrl.errors.mdPattern && addressCtrl.dirty'>
                     <span class='icon icon--close icon-errors'></span>Street address must be at least 5 characters long.
                 </div>
             </div>
-            <div *ngIf='!suburbCtrl.valid && suburbCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
-                <div *ngIf="suburbCtrl.errors.required">
+            <div class='error-item' *ngIf='!suburbCtrl.valid && suburbCtrl.touched && 
+            ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf='suburbCtrl.errors.required'>
                     <span class='icon icon--close icon-errors'></span>Suburb is a required field.
                 </div>
-                <div *ngIf="suburbCtrl.errors.mdPattern && suburbCtrl.dirty">
+                <div *ngIf='suburbCtrl.errors.mdPattern && suburbCtrl.dirty'>
                     <span class='icon icon--close icon-errors'></span>Suburb must be at least 3 characters long.
                 </div>
             </div>
-            <div *ngIf='!stateCtrl.valid && stateCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
-                <div *ngIf="stateCtrl.errors.required">
+            <div class='error-item' *ngIf='!stateCtrl.valid && stateCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf='stateCtrl.errors.required'>
                     <span class='icon icon--close icon-errors'></span>State is a required field.
                 </div>
-                <div *ngIf="stateCtrl.errors.mdPattern && stateCtrl.dirty">
+                <div *ngIf='stateCtrl.errors.mdPattern && stateCtrl.dirty'>
                     <span class='icon icon--close icon-errors'></span>Please enter a valid state.
                 </div>
             </div>
-            <div *ngIf='!postcodeCtrl.valid && postcodeCtrl.touched && ampGoogleAddressGroup.showManualAddrEntry'>
-                <div *ngIf="postcodeCtrl.errors.required">
+            <div class='error-item' *ngIf='!postcodeCtrl.valid && postcodeCtrl.touched && 
+            ampGoogleAddressGroup.showManualAddrEntry'>
+                <div *ngIf='postcodeCtrl.errors.required'>
                     <span class='icon icon--close icon-errors'></span>Postcode is a required field.
                 </div>
-                <div *ngIf="postcodeCtrl.errors.mdPattern && postcodeCtrl.dirty">
+                <div *ngIf='postcodeCtrl.errors.mdPattern && postcodeCtrl.dirty'>
                     <span class='icon icon--close icon-errors'></span>Postcode must be at least 4 numeric characters long.
                 </div>
             </div>
         </div>
 
-
-
-        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary
-        btn-ok btn-ok-margin-top'>
+        <button *ngIf='!isInSummaryState' 
+        (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary btn-ok mt-35'>
             OK
         </button>
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-35'>
             Change
         </button>
         <div class='hr-block-divider'></div>
-
-
     </div>
     ` , // encapsulation: ViewEncapsulation.Emulated
     inputs     : [ 'practiceAddress' ] ,
@@ -95,41 +103,41 @@ import { MdInputComponent } from '../../../../components/my-md-input/my-md-input
     directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent ]
 } )
 export class PracticeAddressBlockComponent extends FormBlock {
-    static CLASS_NAME = 'PracticeAddressBlockComponent';
+    static CLASS_NAME                      = 'PracticeAddressBlockComponent';
     private practiceAddress                =
-            {
-                autocomplete : {
-                    id          : 'autoCompleteAddress' ,
-                    label       : '' ,
-                    regex       : '' ,
-                    placeholder : '' ,
-                    max         : 500
-                } ,
-                address      : {
-                    id    : 'address' ,
-                    label : 'Address' ,
-                    regex : '^.{5,200}$' ,
-                    max   : 200
-                } ,
-                suburb       : {
-                    id    : 'suburb' ,
-                    label : 'Suburb' ,
-                    regex : '^.{3,100}$' ,
-                    max   : 100
-                } ,
-                state        : {
-                    id    : 'state' ,
-                    label : 'State' ,
-                    regex : '^(ACT|NSW|QLD|VIC|TAS|NT|WA|SA)$' ,
-                    max   : 3
-                } ,
-                postcode     : {
-                    id    : 'postcode' ,
-                    label : 'Postcode' ,
-                    regex : '^[0-9]{4,10}$' ,
-                    max   : 10
-                }
-            };
+           {
+               autocomplete : {
+                   id          : 'autoCompleteAddress' ,
+                   label       : '' ,
+                   regex       : '' ,
+                   placeholder : '' ,
+                   max         : 500
+               } ,
+               address      : {
+                   id    : 'address' ,
+                   label : 'Address' ,
+                   regex : '^.{5,200}$' ,
+                   max   : 200
+               } ,
+               suburb       : {
+                   id    : 'suburb' ,
+                   label : 'Suburb' ,
+                   regex : '^.{3,100}$' ,
+                   max   : 100
+               } ,
+               state        : {
+                   id    : 'state' ,
+                   label : 'State' ,
+                   regex : '^(ACT|NSW|QLD|VIC|TAS|NT|WA|SA)$' ,
+                   max   : 3
+               } ,
+               postcode     : {
+                   id    : 'postcode' ,
+                   label : 'Postcode' ,
+                   regex : '^[0-9]{4,10}$' ,
+                   max   : 10
+               }
+           };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private showManualAddrEntry : boolean  = false;
@@ -146,10 +154,11 @@ export class PracticeAddressBlockComponent extends FormBlock {
 
     public ok () {
         this.hasClickedOnOkButton = true;
-        this.isInSummaryState     = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ||
-             this.googleAddressCtrl.valid) {
-            this.isInSummaryState = true;
+            this.googleAddressCtrl.valid ) {
+            TimerWrapper.setTimeout( () => {
+                this.isInSummaryState = true;
+            } , 1200 );
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
             // SAM - Action present data to Model
@@ -176,7 +185,7 @@ export class PracticeAddressBlockComponent extends FormBlock {
 
     private get canGoNext () {
         return this.formModel.controls[ this.formControlGroupName ].valid ||
-             this.googleAddressCtrl.valid;
+            this.googleAddressCtrl.valid;
     }
 
     constructor ( private progressObserver : ProgressObserverService ,

@@ -17,10 +17,10 @@ import { isPresent } from 'angular2/src/facade/lang';
         template      : `
     <md-input-container
         [class.md-input-has-value]='parentControl.value'
-        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}'
-        flex-gt-sm='' >
-        <label
-         [ngClass]='{"summary" : isInSummaryState}'
+        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState , "noPadding": noPadding }'
+        flex-gt-sm='' ><!--
+        --><label
+         [ngClass]='{"summary" : isInSummaryState, "noPadding": noPadding} '
         *ngIf='!isInSummaryState && showLabel!=="false"' [attr.for]='_id'>{{label}}</label><!--
         --><input
             (keyup)='onEnterClick($event)'
@@ -37,11 +37,9 @@ import { isPresent } from 'angular2/src/facade/lang';
             [mdMin]='valMinLength'
             [attr.data-automation-id]='"text_" + _id'
             [ngFormControl]='parentControl'
-            [attr.placeholder]='placeholder'/>
-            <span class='summary-text'>{{ parentControl.value }}
-            </span>
-        <ng-content></ng-content>
-  </md-input-container>
+            [attr.placeholder]='placeholder'/><!--
+            --><span class='summary-text'>{{ parentControl.value }}</span><!--
+  --></md-input-container>
   ` ,
         styles        : [ require( './my-md-input.scss' ).toString() ] ,
         inputs        : [
@@ -59,7 +57,8 @@ import { isPresent } from 'angular2/src/facade/lang';
             'showLabel' ,
             'tolowerCase' ,
             'toupperCase' ,
-            'autoFocus'
+            'autoFocus' ,
+            'noPadding'
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
         encapsulation : ViewEncapsulation.Emulated ,
