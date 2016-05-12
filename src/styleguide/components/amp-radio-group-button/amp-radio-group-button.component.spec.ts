@@ -28,6 +28,7 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
             <form  #formModel='ngForm' class='nl-form' >
                 <div id='multiple-radio-group' class='group-buttons'>
                     <amp-radio-button-group
+                        [autoSelectOnOne]='"true"'
                         required='true'
                         scrollOutOn='null'
                         class='grid__item 1/1'
@@ -49,17 +50,7 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
         multipleOptionControl : Control    = new Control();
         private selectEventFiredOnClick    = false;
         private onRadioButtonSelectedValue = null;
-        public radiosOneOption             = {
-            buttons   : [
-                {
-                    id    : 'five_years' ,
-                    value : 'five_years' ,
-                    label : 'At least five years'
-                }
-            ] ,
-            groupName : 'practiceAssociation'
-        };
-        public radiosMultipleOptions       = {
+        public radiosMultipleOptions      = {
             buttons   : [
                 {
                     id    : 'five_years2' ,
@@ -84,8 +75,8 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
             ] ,
             groupName : 'amazingRadioButtonGroupName'
         };
-        private autoSelectOnOne : boolean  = true;
-        private color                      = 'red';
+        private autoSelectOnOne : boolean = true;
+        private color                     = 'red';
 
         private onOneRadioButtonSelect () {
             if ( this.color === 'red' ) {
@@ -104,6 +95,16 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
             }
             this.selectEventFiredOnClick = true;
         }
+        public radiosOneOption             = {
+            buttons   : [
+                {
+                    id    : 'five_years' ,
+                    value : 'five_years' ,
+                    label : 'At least five years'
+                }
+            ] ,
+            groupName : 'practiceAssociation'
+        };
     }
     it( 'Should contain 4 radio input fields with proper data-automation-id and name attributes ' ,
         injectAsync( [
@@ -188,7 +189,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
             provide( ProgressObserverService , { useClass : ProgressObserverService } ) ,
             provide( MockScrollService , { useClass : MockScrollService } ) ,
             provide( Window , { useValue : window } )
-        ]
+        ];
     } );
     @Component( {
         template   : `
@@ -259,7 +260,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
                 } );
         } )
     );
-    it( 'Should be able to select an option from parent component and the input and label should be in checked mode' ,
+    it( 'Should be able to preselect if there is only one option and autoSelectOnOne attr is set to true' ,
         injectAsync( [
             TestComponentBuilder ,
             ProgressObserverService ,
@@ -267,8 +268,6 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
             FormModelService ,
             ScrollService
         ] , ( tcb , progressObserver , el , formModelService , scrollService ) => {
-
-
             return tcb
                 .createAsync( AmpRadioGroupButtonTest )
                 .then( ( fixture : any ) => {
@@ -279,9 +278,6 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
                     let singleRadioGroup        = Element.querySelector( '#single-radio-group' );
                     let label                   = singleRadioGroup.querySelectorAll( 'label' )[ 0 ];
                     let input                   = singleRadioGroup.querySelectorAll( 'input' )[ 0 ];
-                    expect( Component.oneOptionControl.value ).toBeNull();
-                    Component.oneOptionControl.updateValue( 'five_years' );
-                    fixture.detectChanges();
                     expect( Component.oneOptionControl.value ).toBe( 'five_years' );
                     expect( input.checked ).toBeTruthy();
                     expect( (' ' + label.className + ' ').indexOf( ' checked ' ) ).toBeGreaterThan( - 1 );
@@ -295,8 +291,6 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
             FormModelService ,
             ScrollService
         ] , ( tcb , progressObserver , el , formModelService , scrollService ) => {
-
-
             return tcb
                 .createAsync( AmpRadioGroupButtonTest )
                 .then( ( fixture : any ) => {

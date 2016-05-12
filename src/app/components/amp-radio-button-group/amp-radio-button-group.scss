@@ -23,6 +23,28 @@ $radio-margin: 0;
   }
   input {
     display: none;
+    &:not([disabled]) + label {
+      .container {
+        &:hover {
+          .off {
+            border-color: rgba($amp-colour-sky-blue, 0.87);
+          }
+        }
+      }
+    }
+    &[disabled] + label {
+      .container {
+        .off {
+          border-color: rgba(0, 0, 0, 0.54);
+        }
+        .checked .off {
+          border-color: rgba(0, 0, 0, 0.54);
+        }
+        .on {
+          background-color: rgba(0, 0, 0, 0.54);
+        }
+      }
+    }
   }
   .container {
     box-sizing: border-box;
@@ -34,11 +56,6 @@ $radio-margin: 0;
     cursor: pointer;
     @include rtl(left, 0, auto);
     @include rtl(right, auto, 0);
-    &:hover {
-      .off {
-        border-color: rgba($amp-colour-sky-blue, 0.87);
-      }
-    }
   }
 
   .label {
@@ -75,7 +92,7 @@ $radio-margin: 0;
   height: $radio-width;
   border: solid 2px;
   border-radius: 50%;
-  transition: border-color ease 0.28s;
+  @include transition(border-color ease 0.28s);
 }
 
 .on {
@@ -86,7 +103,7 @@ $radio-margin: 0;
   width: $radio-width;
   height: $radio-width;
   border-radius: 50%;
-  transition: transform ease 0.28s;
+  @include transition(transform ease 0.28s);
   transform: scale(0);
 
   .checked & {

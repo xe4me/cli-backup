@@ -8,6 +8,7 @@ import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { NumberWrapper } from 'angular2/src/facade/lang';
 import { isPresent } from 'angular2/src/facade/lang';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
 export class KeyCodes {
     static ESCAPE : number;
     static SPACE : number;
@@ -60,30 +61,32 @@ export class AmpCheckboxComponent implements AfterViewInit {
     private _disabled : boolean            = false;
     private _checked : boolean             = false;
     private _required : boolean            = false;
-    private isInSummaryState : boolean     = false;
     private _tabindex : number;
+    private isInSummaryState : boolean     = false;
     private parentControl : Control;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private id : string;
-    private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
     private checkboxValue : boolean        = false;
+    private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
 
-    constructor ( private elem : ElementRef ,
+    constructor ( private _cd : ChangeDetectorRef ,
+                  private elem : ElementRef ,
                   private scrollService : ScrollService ) {
     }
 
     ngAfterViewInit () : any {
         this.updateValitators();
+        this._cd.detectChanges();
         return undefined;
-    }
-
-    set tabindex ( value : number ) {
-        this._tabindex = this.parseTabIndexAttribute( value );
     }
 
     parseTabIndexAttribute ( attr : any ) : number {
         return isPresent( attr ) ? NumberWrapper.parseInt( attr , 10 ) : 0;
+    }
+
+    set tabindex ( value : number ) {
+        this._tabindex = this.parseTabIndexAttribute( value );
     }
 
     get tabindex () : number {
