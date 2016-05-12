@@ -23,7 +23,6 @@ describe( 'ContactDetailsBlockComponent isCurrentBlockActive' , () => {
     ] , ( progressObserver , el , formModelService , scrollService ) => {
         let mockFormModelService         = new MockFormModelService();
         let contactDetailsBlockComponent = new ContactDetailsBlockComponent( progressObserver , el , formModelService , scrollService );
-        console.log("contactDetailsBlockComponent.isCurrentBlockActive()",contactDetailsBlockComponent.isCurrentBlockActive());
         expect( contactDetailsBlockComponent.isCurrentBlockActive() ).toBeFalsy();
     } ) );
     it( 'Should subscribes to scroll service and when window is scrolling should update CurrentBlockClassName in' + ' the modelService accordingly ' , inject( [

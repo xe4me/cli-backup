@@ -11,7 +11,7 @@ import { Control } from 'angular2/common';
 import { AmpTextareaComponent } from '../../../app/components/amp-textarea/amp-textarea.component';
 import { MockScrollService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-scroll.service';
 import { MockFormModelService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-form-mode.service';
-describe( 'amp-textarea component , multiple items usage' , () => {
+describe( 'amp-textarea component' , () => {
     beforeEachProviders( () => {
         return [
             provide( FormModelService , { useClass : MockFormModelService } ) ,
@@ -49,7 +49,7 @@ describe( 'amp-textarea component , multiple items usage' , () => {
             maxLenght        : 5 ,
             isInSummaryState : false ,
             control          : new Control()
-        }
+        };
 
         private toggleIsInSummaryState () {
             this.textarea.isInSummaryState = ! this.textarea.isInSummaryState;

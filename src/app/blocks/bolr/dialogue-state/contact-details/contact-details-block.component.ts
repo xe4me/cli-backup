@@ -13,7 +13,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     <div id='contact-details-block' class='contact-details-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>{{ formModelService.getModel().context.practicePrincipalFirstName }}, please 
-        confirm your details are correct.If not, simply update them below.</h3>
+        confirm your details are correct. <br> If not, simply update them below.</h3>
         <!--Contact Number-->
         <input-with-label-group
             (onEnter)='ok()'

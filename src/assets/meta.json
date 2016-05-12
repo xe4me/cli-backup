@@ -124,7 +124,7 @@
         "sources": [
             "src/app/components/amp-checkbox/amp-checkbox.component.ts"
         ],
-        "id": "AmpGroupButtonComponent",
+        "id": "AmpCheckboxComponent",
         "examples": [
             {
                 "template": "src/styleguide/components/amp-checkbox/basic_usage.html",
