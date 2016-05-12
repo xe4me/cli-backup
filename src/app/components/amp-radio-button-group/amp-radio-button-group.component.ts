@@ -13,12 +13,10 @@ import { NG_VALUE_ACCESSOR , ControlValueAccessor } from 'angular2/common';
 import { CONST_EXPR } from 'angular2/src/facade/lang';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Validators } from 'angular2/src/common/forms/validators';
-import { isPresent } from "angular2/src/facade/lang";
-import { NumberWrapper } from "angular2/src/facade/lang";
-import { AfterViewInit } from "angular2/src/core/linker/interfaces";
-import { ChangeDetectorRef } from "angular2/src/core/change_detection/change_detector_ref";
-import { ChangeDetectionStrategy } from "angular2/src/core/change_detection/constants";
-import { OnChanges } from "angular2/src/core/linker/interfaces";
+import { isPresent } from 'angular2/src/facade/lang';
+import { NumberWrapper } from 'angular2/src/facade/lang';
+import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
 const RADIO_VALUE_ACCESSOR = CONST_EXPR( new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } ) );
 @Directive( {
@@ -120,13 +118,14 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit {
     }
 
     private set autoSelectOnOne ( select : boolean ) {
-        if ( this.isTrue( select ) && this.parentControl ) {
+        if ( this.isTrue( select ) && this.parentControl && this.buttons.length === 1 ) {
             this.parentControl.updateValue( this.buttons[ 0 ].value );
         }
     }
 
     ngAfterViewInit () : any {
         this.updateValitators();
+        this.changeDetector.detectChanges();
         return undefined;
     }
 

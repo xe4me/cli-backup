@@ -8,6 +8,7 @@ import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { NumberWrapper } from 'angular2/src/facade/lang';
 import { isPresent } from 'angular2/src/facade/lang';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
 export class KeyCodes {
     static ESCAPE : number;
     static SPACE : number;
@@ -69,12 +70,14 @@ export class AmpCheckboxComponent implements AfterViewInit {
     private checkboxValue : boolean        = false;
     private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
 
-    constructor ( private elem : ElementRef ,
+    constructor ( private _cd : ChangeDetectorRef ,
+                  private elem : ElementRef ,
                   private scrollService : ScrollService ) {
     }
 
     ngAfterViewInit () : any {
         this.updateValitators();
+        this._cd.detectChanges();
         return undefined;
     }
 
