@@ -123,10 +123,10 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
-            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.scrollService.scrollMeOut( this.el );
-            } , 500 );
+                this.isInSummaryState = true;
+            } , 1200 );
+            this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

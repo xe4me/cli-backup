@@ -11,6 +11,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { Validators } from 'angular2/src/common/forms/validators';
 import { ControlGroup } from 'angular2/src/common/forms/model';
+import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'practice-association-block' ,
     template   : `
@@ -104,8 +105,6 @@ import { ControlGroup } from 'angular2/src/common/forms/model';
 } )
 export class PracticeAssociationComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'PracticeAssociationComponent';
-    private VALID                          = true;
-    private INVALID                        = false;
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private componentIsVisible : boolean   = false;
@@ -268,12 +267,15 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
+        this.undoneTheBlock();
     }
 
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.controlGroup.valid ) {
-            this.isInSummaryState = true;
+            TimerWrapper.setTimeout( () => {
+                this.isInSummaryState = true;
+            } , 1200 );
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
             this.formModelService.present( {
@@ -412,8 +414,28 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
                 } else {
                     this.removeControls();
                 }
+                return;
+            }
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
+                this.resetBlock();
             }
         } );
     }
+
+    private resetBlock () {
+        this.undoneTheBlock();
+        this.removeControls();
+        this.isInSummaryState     = false;
+        this.hasClickedOnOkButton = false;
+    }
+
+    private undoneTheBlock () {
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'practiceAssociationIsDone' ,
+            flagValue : false
+        } );
+    }
 }
+
 

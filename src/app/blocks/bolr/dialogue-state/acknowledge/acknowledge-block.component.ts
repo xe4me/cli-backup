@@ -80,8 +80,8 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
-            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
+                this.isInSummaryState = true;
             } , 1200 );
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
