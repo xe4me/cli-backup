@@ -96,8 +96,7 @@ components/
  │       ├──blocks/            * reusable blocks, can contain custom blocks for testing purposes
  │       ├──componentGroups/   * reusable component groups, please refers to DDC team site for design
  |       |                       guidelines and description of what is a block, componentGroup and
- |       |                       components. [DDC confluence |
- |       |                 https://teamtools.amp.com.au/confluence/display/DDC/Dynamic+design+guidelines]
+ |       |                       components. [DDC confluence](https://teamtools.amp.com.au/confluence/display/DDC/Dynamic+design+guidelines)
  │       └──components/               * reusabled components
  │             ├──basic_usage.html    * standard html that typically used to invoke demo component
  │             ├──basic_usage.scss    * any extra CSS required to demo the component
