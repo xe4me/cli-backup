@@ -7,8 +7,8 @@
     | All        | src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec    |
 
 @@ parameterized
-    | browser    |
-    | phantomjs  |
+    | browser       |
+    | chrome        |
 
 @@ parameterized
     | breakpoint | tags    | size        |
@@ -21,3 +21,5 @@
 
 @@ groups ddc, amp-checkbox
 ${task}: ${subtask} - ${breakpoint}
+    selenium ${browser} ${url} ${size}
+            check ${spec} --include "${tags}"

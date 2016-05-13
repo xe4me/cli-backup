@@ -1,16 +1,14 @@
-import { FormBlock , NamedControl } from '../../../formBlock';
+import { FormBlock } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
-import { AmpRadioButtonGroupComponent } from '../../../../components/amp-radio-button-group/amp-radio-button-group.component';
 import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-textarea.component';
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { Control } from 'angular2/src/common/forms/model';
-import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
-import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-slide.directive';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { Validators } from 'angular2/src/common/forms/validators';
 import { ControlGroup } from 'angular2/src/common/forms/model';
+import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'sale-reason-block' ,
     template   : `
@@ -57,7 +55,6 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
         id          : 'saleReason' ,
         label       : '' ,
         maxLength   : 500 ,
-        errorMesage : 'Please enter your reasons.' ,
         controlName : 'saleReason'
     };
 
@@ -71,12 +68,15 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
+        this.undoneTheBlock();
     }
 
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.controlGroup.valid ) {
-            this.isInSummaryState = true;
+            TimerWrapper.setTimeout( () => {
+                this.isInSummaryState = true;
+            } , 1200 );
             this.scrollService.scrollMeOut( this.el );
             this.progressObserver.onProgress();
             this.formModelService.present( {
@@ -89,6 +89,14 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
 
     public preBindControls ( _formBlockDef ) {
     }
+
+    private undoneTheBlock () {
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'saleReasonIsDone' ,
+            flagValue : false
+        } );
+    };
 
     private createControls () {
         if ( ! this.formModel.contains( this.formControlGroupName ) ) {
@@ -120,6 +128,14 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
         return this.formModelService.getFlags( 'fullOrPartialIsDone' );
     }
 
+    private resetBlock () {
+        this.removeControls();
+        this.createControls();
+        this.undoneTheBlock();
+        this.isInSummaryState     = false;
+        this.hasClickedOnOkButton = false;
+    }
+
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
@@ -135,6 +151,9 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
                 } else {
                     this.removeControls();
                 }
+            }
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
+                this.resetBlock();
             }
         } );
     }

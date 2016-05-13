@@ -96,9 +96,8 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         if ( this.formModel && this.formModel.controls[ 'saleReason' ] ) {
             return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
                 this.formModelService.getFlags( 'saleReasonIsDone' );
-        } else {
-            return this.formModelService.getFlags( 'fullOrPartialIsDone' );
         }
+        return false;
     }
 
     public preBindControls ( _formBlockDef ) {
@@ -230,9 +229,29 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         this.formControlGroupName      = 'exerciseDate';
         this.ampDateService            = new AmpDateService();
         this.ampDateService.dateFormat = this.dateFormat;
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
+                this.resetBlock();
+                return;
+            }
+            if ( changes.hasOwnProperty( 'practiceAssociationIsDone' ) && (changes[ 'practiceAssociationIsDone' ] === false ) ) {
+                this.resetBlock();
+            }
+        } );
+    }
+
+    private resetBlock () {
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'exerciseDateIsDone' ,
+            flagValue : false
+        } );
+        this.formControl[ 0 ].control.updateValue( '' );
+        this.formControl[ 0 ].control._touched  = false;
+        this.formControl[ 0 ].control._dirty    = false;
+        this.formControl[ 0 ].control._pristine = true;
+        this.formControl[ 0 ].control.updateValueAndValidity( { onlySelf : false , emitParent : true } );
+        this.isInSummaryState     = false;
+        this.hasClickedOnOkButton = false;
     }
 }
-/**
- * Created by xe4me on 7/04/2016.
- */
-

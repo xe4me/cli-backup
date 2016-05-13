@@ -27,7 +27,7 @@ export class KeyCodes {
                 [attr.id]='id'
                 [attr.name]='id'
                 [ngFormControl]='parentControl'/>
-          <label (click)='onSelect($event)' [attr.for]='id'>
+            <label (click)='onSelect($event)' [attr.for]='id'>
                 <div [class.hidden]='isInSummaryState' class="container">
                     <div class="off"></div>
                     <div class="on"></div>
@@ -35,7 +35,7 @@ export class KeyCodes {
                 <div [class.summary-state]='isInSummaryState' class="content">
                     <ng-content></ng-content>
                 </div>
-          </label>             
+            </label>             
         ` ,
         host       : {
             '[attr.aria-checked]'  : 'checked' ,

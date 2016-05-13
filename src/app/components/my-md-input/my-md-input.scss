@@ -172,6 +172,11 @@ md-input-container {
 
   padding-right: 13px;
   padding-left: 13px;
+
+  &.noPadding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
   &.summary {
     @include transition(padding .2s linear !important);
     transition-delay: 1.2s !important;
@@ -247,6 +252,9 @@ md-input-container {
   label {
 
     padding-left: 26px !important;
+    &.noPadding {
+      padding-left: 0 !important;
+    }
     &.summary {
       @include transition(padding .2s linear !important);
       transition-delay: 1.2s !important;

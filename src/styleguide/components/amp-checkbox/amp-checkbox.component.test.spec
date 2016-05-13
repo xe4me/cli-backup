@@ -1,11 +1,12 @@
 @objects
 
-    textInput                     css [data-automation-id="text_firstname"]
+    checkboxBox                     css .off
+    checkboxTick                    css .on
 
 = Text Input base =
     @on *
-        = TextInput only has bottom border width solid =
-        textInput:
-            css border-width is "0px 0px 1px"
-            css border-style is "solid"
-            css border-color is "rgb(204, 210, 217)"
+        = Check box has 30px width and height and border color of #cccccc =
+        checkboxBox:
+            css width           is      "30px"
+            css height          is      "30px"
+            css border-color    is      "rgb(204, 204, 204)"

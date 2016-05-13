@@ -13,8 +13,8 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
         <div class='google-address' [ngClass]='{hide: showManualAddrEntry}'>
             <div class='grid__item'>
                 <!--Practice address-->
-                <label class='heading heading-contxtual-label mb3' >Address</label>&nbsp;
-                <amp-google-address #ampGoogleAddress
+                <label class='heading heading-contxtual-label mb3' >Address</label><!--
+             --><amp-google-address #ampGoogleAddress
                     class='1/1'
                     [isInSummaryState]='isInSummaryState'
                     [id]='googleAddress.id'
@@ -26,13 +26,14 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                 </amp-google-address>
             </div>
 
-            <div class='errors mt' *ngIf='!ampGoogleAddress.addrPredictions'>
+            <div class='errors mt-25 mb-15' *ngIf='!ampGoogleAddress.addrPredictions'>
                 <span class='icon icon--close icon-errors'></span>We are unable to find your address. Try again or tell us your address line by line <a href='' (click)='showManualAddrForm()'>here</a> instead.
             </div>
         </div>
-        <div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'>
-            <my-md-input
+        <div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'><!--
+            --><my-md-input
                 class='1/1'
+                noPadding='true'
                 [isInSummaryState]='isInSummaryState'
                 [id]='address.id'
                 [label]='address.label'
@@ -40,8 +41,9 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                 isRequired='true'
                 [valPattern]='address.regex'
                 [valMaxLength]='address.max'>
-            </my-md-input>
-            <my-md-input
+            </my-md-input><!--
+            --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
+            --><my-md-input    
                 class='1/1'
                 [isInSummaryState]='isInSummaryState'
                 [id]='suburb.id'
@@ -50,8 +52,10 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                 isRequired='true'
                 [valPattern]='suburb.regex'
                 [valMaxLength]='suburb.max'>
-            </my-md-input>
-            <my-md-input
+            </my-md-input><!--
+            --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
+            --><my-md-input
+                noPadding='true'
                 class='1/1'
                 [isInSummaryState]='isInSummaryState'
                 [id]='state.id'
@@ -60,8 +64,10 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                 isRequired='true'
                 [valPattern]='state.regex'
                 [valMaxLength]='state.max'>
-            </my-md-input>
-            <my-md-input
+            </my-md-input><!--
+            --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
+            --><my-md-input
+                noPadding='true'
                 class='1/1'
                 [isInSummaryState]='isInSummaryState'
                 [id]='postcode.id'
@@ -70,7 +76,8 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                 isRequired='true'
                 [valPattern]='postcode.regex'
                 [valMaxLength]='postcode.max'>
-            </my-md-input>
+            </my-md-input><!--
+            --><span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
 
         </div>
     ` , // encapsulation: ViewEncapsulation.Emulated
