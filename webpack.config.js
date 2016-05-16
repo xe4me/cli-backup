@@ -33,7 +33,8 @@ module.exports = helpers.validate({
   // our angular app
   entry: {
     'polyfills': './src/polyfills.ts',
-    'styleguide': './src/styleguide/app.ts'
+    'styleguide': './src/styleguide/app.ts',
+    'shims': './shims/shims_for_IE'         // Following https://github.com/rangle/angular2-redux-starter/pull/81/files approach
   },
 
   // Config for our build files
