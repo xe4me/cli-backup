@@ -75,6 +75,18 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef ) {
+        super();
+        this.formControl          = [
+            new NamedControl( this.partnershipMgr.firstName.id , new Control() ) ,
+            new NamedControl( this.partnershipMgr.lastName.id , new Control() )
+        ];
+        this.formControlGroupName = 'partnership';
+    }
+
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PartnershipManagerBlockComponent.CLASS_NAME );
@@ -114,17 +126,5 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
 
     private get canGoNext () {
         return this.formModel.controls[ this.formControlGroupName ].valid;
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ,
-                  private el : ElementRef ) {
-        super();
-        this.formControl          = [
-            new NamedControl( this.partnershipMgr.firstName.id , new Control() ) ,
-            new NamedControl( this.partnershipMgr.lastName.id , new Control() )
-        ];
-        this.formControlGroupName = 'partnership';
     }
 }

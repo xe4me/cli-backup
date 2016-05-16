@@ -85,6 +85,17 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
         groupName : 'fullOrPartial'
     };
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef ) {
+        super();
+        this.formControl          = [
+            new NamedControl( this.fullOrPartialButtons.groupName , new Control() ) ,
+        ];
+        this.formControlGroupName = 'fullOrPartial';
+    }
+
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , FullOrPartialComponent.CLASS_NAME );
@@ -162,16 +173,5 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
             flag      : 'saleReasonIsVisible' ,
             flagValue : value === 'Partial'
         } );
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ,
-                  private el : ElementRef ) {
-        super();
-        this.formControl          = [
-            new NamedControl( this.fullOrPartialButtons.groupName , new Control() ) ,
-        ];
-        this.formControlGroupName = 'fullOrPartial';
     }
 }

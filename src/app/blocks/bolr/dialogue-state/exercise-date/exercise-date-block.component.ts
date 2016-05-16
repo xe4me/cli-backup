@@ -88,6 +88,35 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     private ampDateService : AmpDateService;
     private defaultExerciseDateOption      = 'three_month';
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private el : ElementRef ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ) {
+        super();
+        this.formControl               = [
+            new NamedControl( this.requestDate.id , new Control() )
+        ];
+        this.formControlGroupName      = 'exerciseDate';
+        this.ampDateService            = new AmpDateService();
+        this.ampDateService.dateFormat = this.dateFormat;
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
+                this.resetBlock();
+                return;
+            }
+            if ( changes.hasOwnProperty( 'practiceAssociationIsDone' ) && (changes[ 'practiceAssociationIsDone' ] === false ) ) {
+                this.resetBlock();
+            }
+        } );
+    }
+
+    ngAfterViewInit () : any {
+        this.formModel.valueChanges.subscribe( ( changes ) => {
+            this.scrollService.amIVisible( this.el , ExerciseDateBlockComponent.CLASS_NAME );
+        } );
+        return undefined;
+    }
+
     public isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
             return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
@@ -102,13 +131,6 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
 
     public preBindControls ( _formBlockDef ) {
         this.formControl[ 0 ].name = this.requestDate.id;
-    }
-
-    ngAfterViewInit () : any {
-        this.formModel.valueChanges.subscribe( ( changes ) => {
-            this.scrollService.amIVisible( this.el , ExerciseDateBlockComponent.CLASS_NAME );
-        } );
-        return undefined;
     }
 
     public change () {
@@ -216,28 +238,6 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
             return this.formModel.controls[ this.formControlGroupName ].valid;
         }
         return false;
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private el : ElementRef ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
-        super();
-        this.formControl               = [
-            new NamedControl( this.requestDate.id , new Control() )
-        ];
-        this.formControlGroupName      = 'exerciseDate';
-        this.ampDateService            = new AmpDateService();
-        this.ampDateService.dateFormat = this.dateFormat;
-        this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
-                this.resetBlock();
-                return;
-            }
-            if ( changes.hasOwnProperty( 'practiceAssociationIsDone' ) && (changes[ 'practiceAssociationIsDone' ] === false ) ) {
-                this.resetBlock();
-            }
-        } );
     }
 
     private resetBlock () {

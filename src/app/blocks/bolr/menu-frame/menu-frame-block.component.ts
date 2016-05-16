@@ -43,6 +43,13 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
     private formControlLength : number;
     private stickyAnimatedIntoView = false;
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private _el : ElementRef ,
+                  private formModelService : FormModelService ) {
+        super();
+        progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress() );
+    }
+
     ngAfterViewChecked () : any {
         if ( ! this.stickyAnimatedIntoView ) {
             this.introHasPassed();
@@ -81,12 +88,5 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
                 that.calculatedProgress = Math.floor( (100 * valids / formControlLength) );
             }
         }
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private _el : ElementRef ,
-                  private formModelService : FormModelService ) {
-        super();
-        progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress() );
     }
 }

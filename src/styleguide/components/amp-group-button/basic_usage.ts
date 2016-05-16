@@ -2,7 +2,7 @@ import { View , Component , AfterViewInit , ChangeDetectorRef } from 'angular2/c
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { AmpGroupButtonComponent } from "../../../app/components/amp-group-button/amp-group-button.component";
+import { AmpGroupButtonComponent } from '../../../app/components/amp-group-button/amp-group-button.component';
 @Component( { selector : 'amp-group-button-block-basic-usage' } )
 @View( {
     templateUrl : 'src/styleguide/components/amp-group-button/basic_usage.html' ,
@@ -26,8 +26,10 @@ export default class AmpGroupButtonComponentBasicUsage {
         ] ,
         fullOrPartial : 'fullOrPartial'
     };
-
     private color                = 'red';
+
+    constructor () {
+    }
 
     private onButtonClick () {
         if ( this.color === 'red' ) {
@@ -35,8 +37,5 @@ export default class AmpGroupButtonComponentBasicUsage {
         } else {
             this.color = 'red';
         }
-    }
-
-    constructor () {
     }
 }

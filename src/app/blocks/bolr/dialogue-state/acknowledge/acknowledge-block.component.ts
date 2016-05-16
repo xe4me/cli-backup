@@ -57,12 +57,13 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
         scrollOutOn : null
     };
 
-    public isCurrentBlockActive () {
-        return this.formModelService.getFlags( 'exerciseDateIsDone' );
-    }
-
-    public preBindControls ( _formBlockDef ) {
-        this.formControl[ 0 ].name = this.acknowledge.id;
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private el : ElementRef ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ) {
+        super();
+        this.formControl          = [ new NamedControl( this.acknowledge.id , new Control() ) ];
+        this.formControlGroupName = 'acknowledge';
     }
 
     ngAfterViewInit () : any {
@@ -70,6 +71,14 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
             this.scrollService.amIVisible( this.el , AcknowledgeBlockComponent.CLASS_NAME );
         } );
         return undefined;
+    }
+
+    public isCurrentBlockActive () {
+        return this.formModelService.getFlags( 'exerciseDateIsDone' );
+    }
+
+    public preBindControls ( _formBlockDef ) {
+        this.formControl[ 0 ].name = this.acknowledge.id;
     }
 
     public change () {
@@ -106,15 +115,6 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
             return this.formModel.controls[ this.formControlGroupName ].valid;
         }
         return false;
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private el : ElementRef ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
-        super();
-        this.formControl          = [ new NamedControl( this.acknowledge.id , new Control() ) ];
-        this.formControlGroupName = 'acknowledge';
     }
 }
 /**

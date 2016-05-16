@@ -89,6 +89,11 @@ export class AmpTextareaComponent implements AfterViewInit {
         return undefined;
     }
 
+    constructor ( private el : ElementRef , private animationBuilder : AnimationBuilder ) {
+        this._animation    = animationBuilder.css();
+        this.onAdjustWidth = new EventEmitter();
+    }
+
     private adjustHeight ( element ) {
         if ( this.parentControl.value === null || this.parentControl.value.trim() === '' ) {
             element.style.height               = this.initialTextareaHeight + 'px';
@@ -98,11 +103,6 @@ export class AmpTextareaComponent implements AfterViewInit {
             element.style.height               = (4 + element.scrollHeight) + 'px';
             this.el.nativeElement.style.height = (this.componentHeightOffset + element.scrollHeight) + 'px';
         }
-    }
-
-    constructor ( private el : ElementRef , private animationBuilder : AnimationBuilder ) {
-        this._animation    = animationBuilder.css();
-        this.onAdjustWidth = new EventEmitter();
     }
 
     set id ( id : string ) {

@@ -183,6 +183,20 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         groupName : 'holdersCount'
     };
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef ) {
+        super();
+        this.dynamicControlGroup  = new ControlArray( [] );
+        this.formControl          = [
+            new NamedControl( this.hasHoldersButtons.groupName , new Control() ) ,
+            new NamedControl( this.holdersCountButtons.groupName , new Control( null , Validators.required ) ) ,
+            new NamedControl( 'holders' , this.dynamicControlGroup )
+        ];
+        this.formControlGroupName = 'equityHolders';
+    }
+
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , EquityHolderBlockComponent.CLASS_NAME );
@@ -269,22 +283,8 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
 
     private isCurrentBlockActive () {
         if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags('partnershipIsDone');
+            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags( 'partnershipIsDone' );
         }
         return false;
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ,
-                  private el : ElementRef ) {
-        super();
-        this.dynamicControlGroup  = new ControlArray( [] );
-        this.formControl          = [
-            new NamedControl( this.hasHoldersButtons.groupName , new Control() ) ,
-            new NamedControl( this.holdersCountButtons.groupName , new Control( null , Validators.required ) ) ,
-            new NamedControl( 'holders' , this.dynamicControlGroup )
-        ];
-        this.formControlGroupName = 'equityHolders';
     }
 }

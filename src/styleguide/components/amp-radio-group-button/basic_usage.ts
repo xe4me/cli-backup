@@ -2,8 +2,7 @@ import { View , Component , AfterViewInit , ChangeDetectorRef } from 'angular2/c
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { AmpRadioButtonGroupComponent } from "../../../app/components/amp-radio-button-group/amp-radio-button-group.component";
-import { OnInit } from "angular2/src/core/linker/interfaces";
+import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 @Component( { selector : 'amp-radio-group-button-block-basic-usage' } )
 @View( {
     templateUrl : 'src/styleguide/components/amp-radio-group-button/basic_usage.html' ,
@@ -11,10 +10,6 @@ import { OnInit } from "angular2/src/core/linker/interfaces";
     directives  : [ MATERIAL_DIRECTIVES , FORM_DIRECTIVES , AmpRadioButtonGroupComponent , CORE_DIRECTIVES ]
 } )
 export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {
-    ngAfterViewInit () : any {
-        return undefined;
-    }
-
     oneOptionControl : Control        = new Control();
     multipleOptionControl : Control   = new Control();
     public radiosOneOption            = {
@@ -57,16 +52,25 @@ export default class AmpRadioGroupButtonComponentBasicUsage implements AfterView
     private autoSelectOnOne : boolean = true;
     private color                     = 'red';
 
+    constructor ( private _cd : ChangeDetectorRef ) {
+    }
+
+    ngAfterViewInit () {
+
+        // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
+        this._cd.detectChanges();
+    }
+
     private addToMultipleOptions () {
         this.radiosMultipleOptions.buttons.push( {
             id    : 'random_value' + this.radiosMultipleOptions.buttons.length ,
             value : 'random_value' + this.radiosMultipleOptions.buttons.length ,
             label : 'This is the random option number ' + this.radiosMultipleOptions.buttons.length
-        } )
+        } );
     }
 
     private toggleRequired () {
-        this.radiosMultipleOptions.required = ! this.radiosMultipleOptions.required
+        this.radiosMultipleOptions.required = ! this.radiosMultipleOptions.required;
     }
 
     private onOneRadioButtonSelect () {
@@ -83,14 +87,5 @@ export default class AmpRadioGroupButtonComponentBasicUsage implements AfterView
         } else {
             this.color = 'red';
         }
-    }
-
-    constructor ( private _cd : ChangeDetectorRef ) {
-    }
-
-    ngAfterViewInit () {
-
-        // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
-        this._cd.detectChanges();
     }
 }

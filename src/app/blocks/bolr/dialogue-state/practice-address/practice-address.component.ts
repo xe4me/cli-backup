@@ -147,6 +147,22 @@ export class PracticeAddressBlockComponent extends FormBlock {
     private stateCtrl : Control            = new Control();
     private postcodeCtrl : Control         = new Control();
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef ) {
+        super();
+        this.formControl = [
+            new NamedControl( this.practiceAddress.address.id , this.addressCtrl ) ,
+            new NamedControl( this.practiceAddress.suburb.id , this.suburbCtrl ) ,
+            new NamedControl( this.practiceAddress.state.id , this.stateCtrl ) ,
+            new NamedControl( this.practiceAddress.postcode.id , this.postcodeCtrl )
+        ];
+        scrollService.$scrolled.subscribe(
+            message => scrollService.amIVisible( el , PracticeAddressBlockComponent.CLASS_NAME ) );
+        this.formControlGroupName = 'address';
+    }
+
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
@@ -186,21 +202,5 @@ export class PracticeAddressBlockComponent extends FormBlock {
     private get canGoNext () {
         return this.formModel.controls[ this.formControlGroupName ].valid ||
             this.googleAddressCtrl.valid;
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ,
-                  private el : ElementRef ) {
-        super();
-        this.formControl = [
-            new NamedControl( this.practiceAddress.address.id , this.addressCtrl ) ,
-            new NamedControl( this.practiceAddress.suburb.id , this.suburbCtrl ) ,
-            new NamedControl( this.practiceAddress.state.id , this.stateCtrl ) ,
-            new NamedControl( this.practiceAddress.postcode.id , this.postcodeCtrl )
-        ];
-        scrollService.$scrolled.subscribe(
-            message => scrollService.amIVisible( el , PracticeAddressBlockComponent.CLASS_NAME ) );
-        this.formControlGroupName = 'address';
     }
 }

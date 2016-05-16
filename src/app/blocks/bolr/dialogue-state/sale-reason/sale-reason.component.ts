@@ -58,6 +58,28 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
         controlName : 'saleReason'
     };
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef ) {
+        super();
+        this.formControl          = [];
+        this.formControlGroupName = 'saleReason';
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'saleReasonIsVisible' ) ) {
+                this.componentIsVisible = changes[ 'saleReasonIsVisible' ];
+                if ( changes[ 'saleReasonIsVisible' ] === true ) {
+                    this.createControls();
+                } else {
+                    this.removeControls();
+                }
+            }
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
+                this.resetBlock();
+            }
+        } );
+    }
+
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , SaleReasonComponent.CLASS_NAME );
@@ -134,28 +156,6 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
         this.undoneTheBlock();
         this.isInSummaryState     = false;
         this.hasClickedOnOkButton = false;
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ,
-                  private el : ElementRef ) {
-        super();
-        this.formControl          = [];
-        this.formControlGroupName = 'saleReason';
-        this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'saleReasonIsVisible' ) ) {
-                this.componentIsVisible = changes[ 'saleReasonIsVisible' ];
-                if ( changes[ 'saleReasonIsVisible' ] === true ) {
-                    this.createControls();
-                } else {
-                    this.removeControls();
-                }
-            }
-            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
-                this.resetBlock();
-            }
-        } );
     }
 }
 

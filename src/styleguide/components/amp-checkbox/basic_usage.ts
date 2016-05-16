@@ -10,8 +10,15 @@ import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
     directives  : [ MATERIAL_DIRECTIVES , FORM_DIRECTIVES , AmpCheckboxComponent , CORE_DIRECTIVES ]
 } )
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
-    control : Control = new Control();
-    isInSummaryState  = false;
+    control : Control   = new Control();
+    isInSummaryState    = false;
+    private acknowledge = {
+        id          : 'acknowledge' ,
+        disabled    : false ,
+        required    : true ,
+        checked     : false ,
+        scrollOutOn : null
+    };
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -21,14 +28,6 @@ export default class AMPGoogleAddressComponentBasicUsage implements AfterViewIni
         // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
         this._cd.detectChanges();
     }
-
-    private acknowledge = {
-        id          : 'acknowledge' ,
-        disabled    : false ,
-        required    : true ,
-        checked     : false ,
-        scrollOutOn : null
-    };
 
     private onAcknowledgeSelect ( value ) {
         console.log( 'onAcknowledgeSelect value' , value );

@@ -46,11 +46,19 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
         directives : [ AmpRadioButtonGroupComponent ]
     } )
     class AmpRadioGroupButtonTest {
-        oneOptionControl : Control         = new Control();
-        multipleOptionControl : Control    = new Control();
-        private selectEventFiredOnClick    = false;
-        private onRadioButtonSelectedValue = null;
-        public radiosMultipleOptions      = {
+        oneOptionControl : Control      = new Control();
+        multipleOptionControl : Control = new Control();
+        public radiosOneOption          = {
+            buttons   : [
+                {
+                    id    : 'five_years' ,
+                    value : 'five_years' ,
+                    label : 'At least five years'
+                }
+            ] ,
+            groupName : 'practiceAssociation'
+        };
+        public radiosMultipleOptions       = {
             buttons   : [
                 {
                     id    : 'five_years2' ,
@@ -75,8 +83,10 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
             ] ,
             groupName : 'amazingRadioButtonGroupName'
         };
-        private autoSelectOnOne : boolean = true;
-        private color                     = 'red';
+        private selectEventFiredOnClick    = false;
+        private onRadioButtonSelectedValue = null;
+        private autoSelectOnOne : boolean  = true;
+        private color                      = 'red';
 
         private onOneRadioButtonSelect () {
             if ( this.color === 'red' ) {
@@ -95,16 +105,6 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
             }
             this.selectEventFiredOnClick = true;
         }
-        public radiosOneOption             = {
-            buttons   : [
-                {
-                    id    : 'five_years' ,
-                    value : 'five_years' ,
-                    label : 'At least five years'
-                }
-            ] ,
-            groupName : 'practiceAssociation'
-        };
     }
     it( 'Should contain 4 radio input fields with proper data-automation-id and name attributes ' ,
         injectAsync( [

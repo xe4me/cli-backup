@@ -257,6 +257,29 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
         }
     };
 
+    constructor ( private progressObserver : ProgressObserverService ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef ) {
+        super();
+        this.formControl          = [];
+        this.formControlGroupName = 'practiceAssociation';
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'practiceAssociationIsVisible' ) ) {
+                this.componentIsVisible = changes[ 'practiceAssociationIsVisible' ];
+                if ( changes[ 'practiceAssociationIsVisible' ] === true ) {
+                    this.createControls();
+                } else {
+                    this.removeControls();
+                }
+                return;
+            }
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
+                this.resetBlock();
+            }
+        } );
+    }
+
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PracticeAssociationComponent.CLASS_NAME );
@@ -397,29 +420,6 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
 
     private isCurrentBlockActive () {
         return this.formModelService.getFlags( 'fullOrPartialIsDone' );
-    }
-
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ,
-                  private el : ElementRef ) {
-        super();
-        this.formControl          = [];
-        this.formControlGroupName = 'practiceAssociation';
-        this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'practiceAssociationIsVisible' ) ) {
-                this.componentIsVisible = changes[ 'practiceAssociationIsVisible' ];
-                if ( changes[ 'practiceAssociationIsVisible' ] === true ) {
-                    this.createControls();
-                } else {
-                    this.removeControls();
-                }
-                return;
-            }
-            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
-                this.resetBlock();
-            }
-        } );
     }
 
     private resetBlock () {
