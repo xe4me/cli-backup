@@ -61,7 +61,7 @@ module.exports = helpers.validate({
     ],
     loaders: [
       // Support for .ts files.
-      { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
+      { test: /\.ts$/, loader: 'ts-loader'},
 
       // copy those assets to output
       {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: 'file?name=[path][name].[ext]?[hash]'},
