@@ -131,7 +131,7 @@
                 "styles": "src/styleguide/components/amp-checkbox/basic_usage.scss",
                 "source": "src/styleguide/components/amp-checkbox/basic_usage.ts",
                 "galen": "src/styleguide/components/amp-checkbox/amp-checkbox.test.spec",
-                "jasmine": "src/styleguide/components/amp-checkbox/amp-checkbox.ts",
+                "jasmine": "src/styleguide/components/amp-checkbox/amp-checkbox.spec.ts",
                 "component": "amp-checkbox-block-basic-usage",
                 "component_src_location": "components/amp-checkbox/basic_usage",
                 "name": "Amp Checkbox Basic Usage"
@@ -151,7 +151,7 @@
                 "styles": "src/styleguide/components/amp-radio-group-button/basic_usage.scss",
                 "source": "src/styleguide/components/amp-radio-group-button/basic_usage.ts",
                 "galen": "src/styleguide/components/amp-radio-group-button/amp-radio-group-button.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-radio-group-button/amp-radio-group-button.component.ts",
+                "jasmine": "src/styleguide/components/amp-radio-group-button/amp-radio-group-button.component.spec.ts",
                 "component": "amp-radio-group-button-block-basic-usage",
                 "component_src_location": "components/amp-radio-group-button/basic_usage",
                 "name": "Amp Group Button Basic Usage"
@@ -211,7 +211,7 @@
                 "styles": "src/styleguide/components/amp-textarea/basic_usage.scss",
                 "source": "src/styleguide/components/amp-textarea/basic_usage.ts",
                 "galen": "src/styleguide/components/amp-textarea/amp-textarea.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-textarea/amp-textarea.component.ts",
+                "jasmine": "src/styleguide/components/amp-textarea/amp-textarea.component.spec.ts",
                 "component": "amp-textarea-basic-usage",
                 "component_src_location": "components/amp-textarea/basic_usage",
                 "name": "Basic Usage"
