@@ -8,6 +8,7 @@ import { Control } from 'angular2/src/common/forms/model';
 import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../directives/animations/slide/amp-slide.directive';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { Validators } from 'angular2/src/common/forms/validators';
 import { ControlGroup } from 'angular2/src/common/forms/model';
@@ -16,12 +17,12 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     selector   : 'practice-association-block' ,
     template   : `
             <div *ngIf='componentIsVisible' class='practice-association'>
-                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
+                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <section class='mb-30'>
                     <h3 class='heading heading-intro mb-30'>How long has your practice been with {{ licensee }}?</h3>
                     <div class='heading heading-contxtual-label'>
-                        At the time of my requested exercise date, my practice will have been with {{ licensee }} for 
-                        <span *ngIf='isInSummaryState' class='summary-state'>{{ 
+                        At the time of my requested exercise date, my practice will have been with {{ licensee }} for
+                        <span *ngIf='isInSummaryState' class='summary-state'>{{
                         getAssociationPracticeLabel(getControl( associationLengthRadios.groupName ).value) }}
                         </span>
                     </div>
@@ -33,12 +34,12 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                             (select)='onAssociationLengthSelect($event)'
                             [buttons]='getLicenseeOptions()'
                             [parentControl]='getControl(associationLengthRadios.groupName)'
-                            [groupName]='associationLengthRadios.groupName'   
+                            [groupName]='associationLengthRadios.groupName'
                             >
                         </amp-radio-button-group>
                 </section>
-                
-                <div [class.mb-35]='getControl( exerciseDateRadios.groupName ).value!=="later_than"' *ngIf='isInSummaryState' 
+
+                <div [class.mb-35]='getControl( exerciseDateRadios.groupName ).value!=="later_than"' *ngIf='isInSummaryState'
                 class='heading heading-contxtual-label'>
                     <h3 class='heading heading-intro  mb-30'>And your requested exercise date?</h3>
                         <span class='summary-state'>{{ getExerciseLengthLabel(getControl( exerciseDateRadios.groupName ).value) }}</span>
@@ -54,13 +55,13 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                 (select)='onExerciseDateSelect($event)'
                                 [buttons]='getExerciseDateOptions()'
                                 [parentControl]='getControl(exerciseDateRadios.groupName)'
-                                [groupName]='exerciseDateRadios.groupName'   
+                                [groupName]='exerciseDateRadios.groupName'
                                 >
                             </amp-radio-button-group>
                     </section>
                 </div>
-                
-                <section  *ngIf='getControl( exerciseDateRadios.groupName ).value==="later_than" || 
+
+                <section  *ngIf='getControl( exerciseDateRadios.groupName ).value==="later_than" ||
                 getControl( associationLengthRadios.groupName ).value==="fewer_than_five_years" '>
                         <amp-textarea
                             class='1/1'
@@ -69,11 +70,11 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                             label='Exceptional circumstances'
                             [parentControl]='getControl(exerciseDateRadios.textFieldName)'
                             valMaxLength='500'>
-                        </amp-textarea> 
+                        </amp-textarea>
                 </section>
-                
-                
-                <div *ngIf='(hasClickedOnOkButton || getControl(exerciseDateRadios.textFieldName).touched) && 
+
+
+                <div *ngIf='(hasClickedOnOkButton || getControl(exerciseDateRadios.textFieldName).touched) &&
                 !getControl(exerciseDateRadios.textFieldName).valid' class='errors mb-40'>
                     <div *ngIf='!getControl(exerciseDateRadios.textFieldName).valid'>
                         <div>
@@ -82,14 +83,14 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     </div>
                 </div>
                 <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
-               <button class='btn btn-ok 
-               btn--secondary mt-10' *ngIf='!isInSummaryState' (click)='ok()' 
+               <amp-button class='btn btn-ok
+               btn--secondary mt-10' *ngIf='!isInSummaryState' (click)='ok()'
                [disabled]='!controlGroup.valid'  >
                     OK
-                </button>
-                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
+                </amp-button>
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
                     Change
-                </button>
+                </amp-button>
                 <div class='hr-block-divider'></div>
             </div>
           ` ,
@@ -99,7 +100,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         AmpRadioButtonGroupComponent ,
         AmpTextareaComponent ,
         AmpCollapseDirective ,
-        AmpSlideDirective
+        AmpSlideDirective ,
+        AmpButton
     ] ,
     providers  : [ TemplateRef ]
 } )
@@ -437,5 +439,3 @@ export class PracticeAssociationComponent extends FormBlock implements AfterView
         } );
     }
 }
-
-

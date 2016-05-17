@@ -4,6 +4,7 @@ import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
 import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
 import { Validators } from 'angular2/src/common/forms/validators';
@@ -18,7 +19,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     template   : `
             <div class='equity-holder-block'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-                <h3 [ngClass]='{"mb-20":isInSummaryState}' class='heading heading-intro'>Does the practice have additional equity 
+                <h3 [ngClass]='{"mb-20":isInSummaryState}' class='heading heading-intro'>Does the practice have additional equity
                 holders?</h3>
                 <div *ngIf='isInSummaryState' class='heading heading-contxtual-label mt-30 mb-20'>
                     <span class='summary-state'>{{ formControl[0].control.value }}</span>
@@ -26,9 +27,9 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 <div [collapse]='isInSummaryState' class='heading heading-micro-intro mt-35'>
                     For a practice to access the {{ licensee }} facility, all equity holders in that practice must exercise {{ licensee }}.
                 </div>
-                
+
                 <section [collapse]='isInSummaryState'>
-                    
+
                     <div  class='grid__item mb-25 mt-50'>
                         <amp-group-button
                             scrollOutOn='Yes'
@@ -36,13 +37,13 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                             (select)='onSwitchChanged($event)'
                             [buttons]='hasHoldersButtons.buttons'
                             [parentControl]='formControl[0].control'
-                            [groupName]='hasHoldersButtons.groupName'   
+                            [groupName]='hasHoldersButtons.groupName'
                             >
-                        </amp-group-button>
-                        
+                        </amp-group-amp-button>
+
                     </div>
                 </section>
-             
+
                 <section [collapse]='formControl[0].control.value!=="Yes" || isInSummaryState'>
                     <h3 class='heading heading-intro mt-15'>How many?</h3>
                     <div class='grid__item mb-15 mt-45'>
@@ -51,33 +52,33 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                             (select)='onHoldersCountGroupButtonSelect($event)'
                             [buttons]='holdersCountButtons.buttons'
                             [parentControl]='formControl[1].control'
-                            [groupName]='holdersCountButtons.groupName'   
+                            [groupName]='holdersCountButtons.groupName'
                             >
-                        </amp-group-button>
+                        </amp-group-amp-button>
                     </div>
                 </section>
                 <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="No"'>
                     <h3 class='heading heading-intro mt-10 mb-30'>How many?</h3>
                     <div>
                         <span class='summary-state'>{{ dynamicControlGroup.controls.length }}</span>
-                    </div> 
+                    </div>
                 </section>
-                
-                
-                <section  [collapse]='formControl[0].control.value !== "Yes" || 
+
+
+                <section  [collapse]='formControl[0].control.value !== "Yes" ||
                 formControl[1].control.value < 1'>
-                    <h3 *ngIf='dynamicControlGroup.controls.length>1' 
+                    <h3 *ngIf='dynamicControlGroup.controls.length>1'
                     class='heading heading-intro mt-15 mb-15'>What are their names?</h3>
-                    <h3 *ngIf='dynamicControlGroup.controls.length===1' 
+                    <h3 *ngIf='dynamicControlGroup.controls.length===1'
                     class='heading heading-intro mt-15 mb-15'>What is their name?</h3>
                     <div class='grid__item 1/1'>
                         <div class='grid__item' *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
-                            --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading 
+                            --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading
                                     heading-contxtual-label'>Their names are&nbsp;</label><!--
-                            --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
+                            --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading
                                     heading-contxtual-label'>Their name is&nbsp;</label><!--
                             --><span class='1/6 heading heading-contxtual-label' *ngIf='
-                                    dynamicControlGroup.controls.length > 1 '> 
+                                    dynamicControlGroup.controls.length > 1 '>
                                     <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '>and</span>
                                 </span><!--
                             --><my-md-input
@@ -103,24 +104,24 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                 </my-md-input><!--
                             --><span class='1/6 heading heading-contxtual-label' *ngIf='
                                     dynamicControlGroup.controls.length > 2 '>
-                                    <span *ngIf=' i < ( dynamicControlGroup.controls.length - 2 ) '>,</span> 
+                                    <span *ngIf=' i < ( dynamicControlGroup.controls.length - 2 ) '>,</span>
                                 </span><!--
-                            --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading 
+                            --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading
                             heading-contxtual-label input-dot'>.</span><!--
                         --></div>
-                        
+
                     </div>
                 </section>
-                 
+
                 <section>
-                    <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
-                        class='btn btn--secondary 
+                    <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'
+                        class='btn btn--secondary
                         btn-ok btn-ok-margin-top'>
                         OK
-                    </button>
-                        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+                    </amp-button>
+                        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
                         Change
-                    </button>
+                    </amp-button>
                 </section>
                 <div class='hr-block-divider'></div>
             </div>
@@ -132,7 +133,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         FORM_DIRECTIVES ,
         AmpGroupButtonComponent ,
         AmpCollapseDirective ,
-        AmpSlideDirective
+        AmpSlideDirective,
+        AmpButton
     ] ,
     providers  : [ TemplateRef ]
 } )

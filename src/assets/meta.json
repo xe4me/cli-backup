@@ -100,6 +100,26 @@
         "readme": "<p>Custom Block for Contact Details.</p>\n"
     },
     {
+        "name": "Amp Button Component",
+        "sources": [
+            "src/app/components/amp-button/amp-button.component.ts"
+        ],
+        "id": "AmpButtonComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-button/basic_usage.html",
+                "styles": "src/styleguide/components/amp-button/basic_usage.scss",
+                "source": "src/styleguide/components/amp-button/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-button/amp-button.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-button/amp-button.component.spec.ts",
+                "component": "amp-button-basic-usage",
+                "component_src_location": "components/amp-button/basic_usage",
+                "name": "Amp Button Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpButtonComponent.</p>\n"
+    },
+    {
         "name": "Amp Group Button Component",
         "sources": [
             "src/app/components/amp-group-button/amp-group-button.component.ts"

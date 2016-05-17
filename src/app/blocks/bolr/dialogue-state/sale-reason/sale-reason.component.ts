@@ -5,6 +5,7 @@ import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-te
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { Control } from 'angular2/src/common/forms/model';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { Validators } from 'angular2/src/common/forms/validators';
 import { ControlGroup } from 'angular2/src/common/forms/model';
@@ -13,7 +14,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     selector   : 'sale-reason-block' ,
     template   : `
             <div *ngIf='componentIsVisible' class='sale-reason'>
-                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
+                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro mb-5'>What are the reasons for your sale?</h3>
                 <section>
                     <amp-textarea
@@ -23,26 +24,27 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         [label]='saleReason.label'
                         [parentControl]='getSaleReasonControl()'
                         [valMaxLength]='saleReason.maxLength'>
-                    </amp-textarea> 
+                    </amp-textarea>
                 </section>
                 <div *ngIf='(hasClickedOnOkButton || getSaleReasonControl().touched) &&!getSaleReasonControl().valid' class='errors mb-40'>
                      <span class='icon icon--close icon-errors'></span>Please enter your reasons.
                 </div>
-                
-               <button [disabled]='!getSaleReasonControl().valid' class='btn btn-ok btn--secondary mt-10' 
+
+               <amp-button [disabled]='!getSaleReasonControl().valid' class='btn btn-ok btn--secondary mt-10'
                *ngIf='!isInSummaryState' (click)='ok()'>
                     OK
-                </button>
-                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
+                </amp-button>
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
                     Change
-                </button>
+                </amp-button>
                 <div class='hr-block-divider'></div>
             </div>
           ` ,
     styles     : [ require( './sale-reason.component.scss' ).toString() ] ,
     directives : [
         AmpOverlayComponent ,
-        AmpTextareaComponent
+        AmpTextareaComponent ,
+        AmpButton
     ] ,
     providers  : [ TemplateRef ]
 } )
@@ -158,4 +160,3 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
         this.hasClickedOnOkButton = false;
     }
 }
-

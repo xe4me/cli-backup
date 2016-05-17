@@ -8,6 +8,7 @@ import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'full-or-partial-block' ,
     template   : `
@@ -22,20 +23,20 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                             (select)='onSwitchChanged($event)'
                             [buttons]='fullOrPartialButtons.buttons'
                             [parentControl]='formControl[0].control'
-                            [groupName]='fullOrPartialButtons.fullOrPartial'   
+                            [groupName]='fullOrPartialButtons.fullOrPartial'
                             >
-                        </amp-group-button>
-                        
+                        </amp-group-amp-button>
+
                     </div>
                 </section>
                 <div [collapse]='isInSummaryState!==true' class='heading heading-contxtual-label mt-30 mb-10'>
-                    <span class='summary-state'>{{ formControl[0].control.value }} sale</span> 
+                    <span class='summary-state'>{{ formControl[0].control.value }} sale</span>
                 </div>
                 <section class='mt-10'  [collapse]='formControl[0].control.value!=="Full"'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>
                         <span *ngFor='#item of formModelService.advisers ; #i = index'>
                             <span *ngIf='formModelService.advisers.length > 1 '>
-                                <span *ngIf=' i < ( formModelService.advisers.length - 1 ) && i >0 '> , </span> 
+                                <span *ngIf=' i < ( formModelService.advisers.length - 1 ) && i >0 '> , </span>
                                 <span *ngIf=' i === ( formModelService.advisers.length - 1 ) '> and </span>
                             </span>
                             {{ item.adviserName }} ({{ item.adviserId }})
@@ -43,26 +44,26 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                         will have their clients transferred to AMP.
                     </div>
                 </section>
-                
+
                 <section  [collapse]='formControl[0].control.value!=="Partial"'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>
                         My head of financial planning has approved my partial sale.
                     </div>
                 </section>
-                
-                <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'  
-                class='btn btn--secondary 
+
+                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'
+                class='btn btn--secondary
                 btn-ok btn-ok-margin-top'>
                     OK
-                </button>
-                    <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+                </amp-button>
+                    <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
                     Change
-                </button>
+                </amp-button>
                 <div class='hr-block-divider'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './full-or-partial.component.scss' ).toString() ] ,
-    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective ] ,
+    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective, AmpButton ] ,
     providers  : [ TemplateRef ]
 } )
 export class FullOrPartialComponent extends FormBlock implements AfterViewInit {

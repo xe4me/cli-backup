@@ -4,6 +4,7 @@ import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector       : 'partnership-manager-block' ,
@@ -38,7 +39,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 valMaxLength='50'>
             </my-md-input>
         </div>
-        <div *ngIf='(formControl[0].control.touched &&  !formControl[0].control.valid) 
+        <div *ngIf='(formControl[0].control.touched &&  !formControl[0].control.valid)
         ||(formControl[1].control.touched &&  !formControl[1].control.valid) ' class='errors mt mb-15'>
             <div class='error-item' *ngIf='formControl[0].control.touched && !formControl[0].control.valid'>
                 <span class='icon icon--close icon-errors'></span>First name is a required field.
@@ -48,20 +49,19 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             </div>
         </div>
 
-        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary
+        <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary
         btn-ok btn-ok-margin-top'>
             OK
-        </button>
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+        </amp-button>
+        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
-        </button>
+        </amp-button>
         <div class='hr-block-divider'></div>
     </div>
   ` , // encapsulation: ViewEncapsulation.Emulated
-    inputs         : [ 'partnershipMgr' ] , styles : [
-        require( './partnership-manager.component.scss' )
-            .toString()
-    ] , directives : [ MdInputComponent , AmpOverlayComponent ]
+    inputs         : [ 'partnershipMgr' ] ,
+    styles         : [ require( './partnership-manager.component.scss' ).toString() ] ,
+    directives     : [ MdInputComponent , AmpOverlayComponent, AmpButton ]
 } )
 export class PartnershipManagerBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
