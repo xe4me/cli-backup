@@ -14,7 +14,7 @@ var HMR = process.argv.join('').indexOf('hot') > -1;
 var metadata = {
   title: 'Buy back form',
   baseUrl: '/',
-  host: 'localhost',
+  host: '0.0.0.0',
   port: 3001,
   ENV: ENV,
   HMR: HMR
@@ -123,13 +123,13 @@ module.exports = helpers.validate({
     watchOptions: { aggregateTimeout: 300, poll: 1000 },
     proxy: {
         '/ddc/public/*': {
-            target: 'http://localhost:3001',
+            target: 'http://0.0.0.0:3001',
             rewrite: function (req) {
                 req.url = req.url.replace(/^\/ddc\/public/, '/src/assets');
             }
         },
         '*/ddc/public/*': {
-            target: 'http://localhost:3001',
+            target: 'http://0.0.0.0:3001',
             rewrite: function (req) {
                 req.url = req.url.replace(/\/ddc\/public/, '/src/assets');
             }
