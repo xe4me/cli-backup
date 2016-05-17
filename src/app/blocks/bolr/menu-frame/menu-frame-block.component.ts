@@ -4,7 +4,7 @@ import { StickyProgressHeaderBlockComponent } from '../../../../../src/app/block
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from 'angular2/src/facade/async';
-import { AmpButton } from '../../../../components/amp-button/amp-button.component';
+import { AmpButton } from '../../../components/amp-button/amp-button.component';
 
 @Component( {
     selector   : 'menu-frame' ,
