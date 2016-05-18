@@ -46,8 +46,4 @@ $line-vertical-color-gray: $amp-colour-grey-darkest-most;
 .#{$namespace}hr-block-divider,
 %#{$namespace}hr-block-divider {
   @extend %#{$namespace}hr--solid;
-  margin-top: 80px;
-  margin-bottom: 60px;
 }
-
-
