@@ -58,15 +58,15 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                     <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
                     Change
                 </button>
-                <div class='hr-block-divider'></div>
+                <div class='hr-block-divider mt-80 mb-60'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
-    styles     : [ require( './full-or-partial.component.scss' ).toString() ] ,
+    styles     : [ require( './full-or-partial-block.component.scss' ).toString() ] ,
     directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective ] ,
     providers  : [ TemplateRef ]
 } )
-export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
-    static CLASS_NAME                      = 'FullOrPartialComponent';
+export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit {
+    static CLASS_NAME                      = 'FullOrPartialBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private fullOrPartialButtons           = {
@@ -98,7 +98,7 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
 
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
-            this.scrollService.amIVisible( this.el , FullOrPartialComponent.CLASS_NAME );
+            this.scrollService.amIVisible( this.el , FullOrPartialBlockComponent.CLASS_NAME );
         } );
         return undefined;
     }

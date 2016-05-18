@@ -2,7 +2,7 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
@@ -76,10 +76,6 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                     heading-contxtual-label'>Their names are&nbsp;</label><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading 
                                     heading-contxtual-label'>Their name is&nbsp;</label><!--
-                            --><span class='1/6 heading heading-contxtual-label' *ngIf='
-                                    dynamicControlGroup.controls.length > 1 '> 
-                                    <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '>and</span>
-                                </span><!--
                             --><my-md-input
                                 (onEnter)='ok()'
                                 [isInSummaryState]='isInSummaryState'
@@ -105,6 +101,10 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                     dynamicControlGroup.controls.length > 2 '>
                                     <span *ngIf=' i < ( dynamicControlGroup.controls.length - 2 ) '>,</span> 
                                 </span><!--
+                                --><span class='1/6 heading heading-contxtual-label' *ngIf='
+                                    dynamicControlGroup.controls.length > 1 '> 
+                                    <span *ngIf=' i === ( dynamicControlGroup.controls.length - 2 ) '>and</span>
+                                </span><!--
                             --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading 
                             heading-contxtual-label input-dot'>.</span><!--
                         --></div>
@@ -122,7 +122,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         Change
                     </button>
                 </section>
-                <div class='hr-block-divider'></div>
+                <div class='hr-block-divider mt-80 mb-60'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './equity-holder-block.component.scss' ).toString() ] ,
@@ -242,7 +242,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private get licensee () {
-        return Licensees.getLicensee( this.formModelService.context.licensee );
+        return LicenseesAbstract.getLicensee( this.formModelService.context.licensee );
     }
 
     private onSwitchChanged ( value ) {

@@ -1,0 +1,88 @@
+@import '../../../../style/require';
+
+$review-background-color: #f5f5f5; //$amp-colour-grey-semiwhite , put this if we're going to require the amp-style-gu
+$review-margin-left: 20%; // $bolr-left-margin;
+$review-margin-right: 16%; // $bolr-right-padding;
+$review-title-font-size: 14px; // $font-size-tiny
+$review-value-font-size: 14px; // $font-size-tiny
+$review-button-font-size: 14px; // $font-size-tiny
+$review-value-font-family: $amp-font-open-sans-regular;
+$review-title-font-family: $amp-font-open-sans-semibold;
+$items-border-color: $amp-colour-grey-lightest;
+$itmes-line-height: 25px;
+$items-padding: 22px;
+$bolr-padding: 40px;
+//$sticky-top-height: 229px;
+:host {
+  overflow: hidden;
+  position: relative;
+
+  width: 100%;
+  display: block;
+  background-color: $review-background-color;
+  .review {
+    padding-left: $review-margin-left;
+
+    &--sections {
+      &__left {
+      }
+      &__right {
+        font-size: $review-button-font-size;
+        margin-left: 80px;
+      }
+    }
+
+    &--item {
+      line-height: $itmes-line-height;
+      &:first-child {
+        padding-bottom: $items-padding;
+      }
+      &:nth-child(n+2) {
+        border-top: 1px solid $items-border-color;
+        padding: $items-padding 0;
+      }
+      &:last-child {
+        padding-bottom: 0;
+      }
+      &__title {
+
+        @include amp-family($review-title-font-family);
+        font-color: #000;
+        font-size: $review-title-font-size;
+        font-weight: 600;
+        span {
+          vertical-align: top;
+          display: inline-block;
+          line-height: $itmes-line-height;
+        }
+      }
+      &__value {
+        padding: 0 $bolr-padding;
+        @include amp-family($review-value-font-family);
+        font-size: $review-value-font-size;
+        > span {
+          line-height: $itmes-line-height;
+          display: block;
+        }
+        div {
+          line-height: $itmes-line-height;
+          span {
+            line-height: $itmes-line-height;
+          }
+        }
+      }
+      &__button {
+        vertical-align: middle;
+        text-align: right;
+
+        button {
+          vertical-align: top !important;
+          line-height: 20px !important;
+        }
+      }
+
+    }
+  }
+
+}
+

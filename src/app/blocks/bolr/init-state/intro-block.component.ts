@@ -20,7 +20,7 @@ import { I18nSelectPipe } from 'angular2/common';
                 You're about to request access to the {{ formModelService.getModel().context.licensee | i18nSelect: licenseeFormName}} facility.
             </p>
             <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
-            <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
+            <button class='btn btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
             </button>
         </div>

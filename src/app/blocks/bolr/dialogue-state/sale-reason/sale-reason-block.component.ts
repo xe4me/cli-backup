@@ -1,6 +1,6 @@
 import { FormBlock } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
-import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-textarea.component';
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { Control } from 'angular2/src/common/forms/model';
@@ -36,18 +36,18 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
                     Change
                 </button>
-                <div class='hr-block-divider'></div>
+                <div class='hr-block-divider mt-80 mb-60'></div>
             </div>
           ` ,
-    styles     : [ require( './sale-reason.component.scss' ).toString() ] ,
+    styles     : [ require( './sale-reason-block.component.scss' ).toString() ] ,
     directives : [
         AmpOverlayComponent ,
         AmpTextareaComponent
     ] ,
     providers  : [ TemplateRef ]
 } )
-export class SaleReasonComponent extends FormBlock implements AfterViewInit {
-    static CLASS_NAME                      = 'SaleReasonComponent';
+export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit {
+    static CLASS_NAME                      = 'SaleReasonBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private componentIsVisible : boolean   = false;
@@ -82,7 +82,7 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
 
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
-            this.scrollService.amIVisible( this.el , SaleReasonComponent.CLASS_NAME );
+            this.scrollService.amIVisible( this.el , SaleReasonBlockComponent.CLASS_NAME );
         } );
         return undefined;
     }

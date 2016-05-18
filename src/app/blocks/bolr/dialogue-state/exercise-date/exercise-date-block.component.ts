@@ -3,7 +3,13 @@ import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
-import { FormModelService , ProgressObserverService , ScrollService , AmpDateService } from 'amp-ddc-ui-core/ui-core';
+import {
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService ,
+    AmpDateService ,
+    TimeframesAbstract
+} from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component(
@@ -56,7 +62,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
         </button>
-        <div class='hr-block-divider'></div>
+        <div class='hr-block-divider mt-80 mb-60'></div>
     </div>
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
@@ -72,14 +78,6 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         value          : '' ,
         maxLength      : 10 ,
         minLength      : 10
-    };
-    private TIMEFRAMES                     = {
-        six_months     : 'six months from' ,
-        later_than     : 'later than' ,
-        twelve_months  : '12 months from' ,
-        ninety_days    : '90 days from' ,
-        three_month    : 'three months from' ,
-        eighteen_month : '18 months from'
     };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -165,12 +163,12 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     private get timeFrame () {
         if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
             if ( this.controlGroup( 'practiceAssociation' ).controls[ 'exerciseDate' ].value != null ) {
-                return this.TIMEFRAMES[ this.associtationExerciseDateValue ];
+                return TimeframesAbstract.getTimeFrame( this.associtationExerciseDateValue );
             } else {
-                return this.TIMEFRAMES[ this.defaultExerciseDateOption ];
+                return TimeframesAbstract.getTimeFrame( this.defaultExerciseDateOption );
             }
         } else {
-            return this.TIMEFRAMES[ this.defaultExerciseDateOption ];
+            return TimeframesAbstract.getTimeFrame( this.defaultExerciseDateOption );
         }
     }
 

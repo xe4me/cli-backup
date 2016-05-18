@@ -6,18 +6,20 @@ $font-size-small: 18px;
 $font-size-tiny: 14px;
 $icon-margin-right: 4px;
 $amp-ddc-padding: 20px !default;
-$sticky-menu-height: 83px;
+$sticky-menu-height: 80px;
 $sticky-menu-margin-bottom: 58px;
 $input-group-height: 75px;
 $ddc-input-field-font-size: $font-size-medium;
 $icons-font-size: 23px;
 $ddc-buttons-height: 57px;
+$bolr-right-padding: 16%;
+$bolr-left-margin: 20%;
 .bolr-right-padding {
-  padding-right: 16%;
+  padding-right: $bolr-right-padding;
 }
 
 .bolr-left-margin {
-  margin-left: 20%;
+  margin-left: $bolr-left-margin;
 }
 
 // Just to check if this is the reason for the gray overal background

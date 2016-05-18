@@ -95,7 +95,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-35'>
             Change
         </button>
-        <div class='hr-block-divider'></div>
+        <div class='hr-block-divider mt-80 mb-60'></div>
     </div>
     ` , // encapsulation: ViewEncapsulation.Emulated
     inputs     : [ 'practiceAddress' ] ,
