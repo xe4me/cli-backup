@@ -9,6 +9,7 @@ import {
   Host,
   AfterContentInit,
 } from 'angular2/core';
+import * as browser from 'angular2/platform/browser';
 
 @Component({
   selector: 'amp-button',
@@ -29,16 +30,16 @@ export class AmpButton implements AfterContentInit {
     @Input() disabled;
     @Input('class') _class: string;
     dataAutomationId: string;
+    domAdatper: browser.BrowserDomAdapter;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer) {
         renderer.setElementAttribute(elementRef.nativeElement, 'class', null);
+        this.domAdatper = new browser.BrowserDomAdapter();
     }
 
     ngAfterContentInit() {
-        // Note** Do not copy this example, look at @ViewChild/ren or @ContentChild/ren or template equivalent.
-        // This is a hack!
-        let parentComponentName = this.elementRef.nativeElement.parentElement.localName;
-        let contentStr = this.elementRef.nativeElement.innerText;
+        let parentComponentName = this.domAdatper.parentElement(this.elementRef.nativeElement).localName;
+        let contentStr = this.domAdatper.getText(this.elementRef.nativeElement);
         this.dataAutomationId = 'btn-' + (contentStr ? contentStr.replace(/\s+/g, '') : '');
         if (parentComponentName) {
             this.dataAutomationId += '_' + parentComponentName;
