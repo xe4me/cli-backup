@@ -8,7 +8,7 @@ var helpers = require('./helpers');
 var webpack = require('webpack');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin = require('webpack/lib/DefinePlugin');
-var OccurenceOrderPlugin = require('webpack/lib/optimize/OccurenceOrderPlugin');
+var OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
@@ -88,10 +88,7 @@ module.exports = helpers.validate({
             'removeComments': true,
             'noEmitHelpers': true,
           }
-        },
-        exclude: [
-          /\.(spec|e2e)\.ts$/
-        ]
+        }
       },
 
       // Support for *.json files.
@@ -135,14 +132,8 @@ module.exports = helpers.validate({
     }),
     // static assets
     new CopyWebpackPlugin([
-      {
-        from: 'src/assets',
-        to: 'assets'
-      },
-      {
-        from: 'node_modules/ng2-material/dist',
-        to: 'node_modules/ng2-material/dist'
-      }
+      { from: 'src/assets', to: 'assets' },
+      { from: 'node_modules/ng2-material/dist', to: 'node_modules/ng2-material/dist' }
     ]),
     // generating html
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
@@ -183,7 +174,6 @@ module.exports = helpers.validate({
     }),
    // include uglify in production
     new CompressionPlugin({
-      algorithm: helpers.gzipMaxLevel,
       regExp: /\.css$|\.html$|\.js$|\.map$/,
       threshold: 2 * 1024
     })
@@ -195,13 +185,13 @@ module.exports = helpers.validate({
     resourcePath: 'src',
   },
 
-  htmlLoader: {
-    minimize: true,
-    removeAttributeQuotes: false,
-    caseSensitive: true,
-    customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
-    customAttrAssign: [ /\)?\]?=/ ]
-  },
+  // htmlLoader: {
+  //   minimize: true,
+  //   removeAttributeQuotes: false,
+  //   caseSensitive: true,
+  //   customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
+  //   customAttrAssign: [ /\)?\]?=/ ]
+  // },
   // don't use devServer for production
 
   // we need this due to problems with es6-shim

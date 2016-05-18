@@ -1,0 +1,9 @@
+<amp-button *ngIf='true' (click)='clickMethod(1)' class='btn btn--secondary btn-ok btn-ok-margin-top'>
+    OK
+</amp-button>
+<amp-button *ngIf='true' (click)='clickMethod(2)' [disabled]='true' class='btn btn--secondary btn-ok btn-ok-margin-top'>
+    OK disabled
+</amp-button>
+<amp-button *ngIf='false' (click)='clickMethod(3)' class='btn btn--secondary btn-change btn-ok-margin-top'>
+    Change hidden/removed
+</amp-button>

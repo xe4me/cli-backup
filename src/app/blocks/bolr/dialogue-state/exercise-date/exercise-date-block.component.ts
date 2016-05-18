@@ -2,6 +2,7 @@ import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/co
 import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
 import { FormModelService , ProgressObserverService , ScrollService , AmpDateService } from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
@@ -13,8 +14,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     <div id='exercise-date-block' class='exercise-date-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Please select an exercise date {{ timeFrame }} today's date.</h3>
-        
-        
+
+
        <div class='heading heading-micro-intro mt-35 mb-10'>
             This is a requested date only. AMP will provide a confirmed exercise date once this form has been submitted and reviewed. Adjustments to the requested date may be required, subject to practice tenure and/or processing blackout periods.
         </div>
@@ -32,7 +33,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             showLabel='true'
             [valPattern]='requestDate.regex'>
         </input-with-label-group>
-        
+
         <div *ngIf='formControl[0].control.touched && !formModel.controls.exerciseDate.valid' class='errors mt-20 mb-15'>
             <div class='error-item'>
                 <div *ngIf='formControl[ 0 ].control.errors.required' >
@@ -48,18 +49,18 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                   <span class='icon icon--close icon-errors'></span>{{ dateErrorMessage }}
             </div>
         </div>
-        
-        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext || dateErrorMessage!==null' class='btn 
+
+        <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext || dateErrorMessage!==null' class='btn
         btn--secondary btn-ok btn-ok-margin-top'>
             OK
-        </button>
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+        </amp-button>
+        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
-        </button>
+        </amp-button>
         <div class='hr-block-divider'></div>
     </div>
   ` ,
-        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
+        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent, AmpButton ] ,
         styles     : [ require( './exercise-date-block.component.scss' ).toString() ]
     } )
 export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit {

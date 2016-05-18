@@ -4,6 +4,7 @@ import { ThemeIDDirective } from '../../../directives/themeId.directive';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 import { I18nSelectPipe } from 'angular2/common';
+import { AmpButton } from '../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'bolr-intro-block' ,
     template   : `
@@ -20,15 +21,15 @@ import { I18nSelectPipe } from 'angular2/common';
                 You're about to request access to the {{ formModelService.getModel().context.licensee | i18nSelect: licenseeFormName}} facility.
             </p>
             <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
-            <button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
+            <amp-button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
-            </button>
+            </amp-button>
         </div>
     </div>
   ` ,
     // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './intro-block.component.scss' ).toString() ] ,
-    directives : [ ThemeIDDirective ] ,
+    directives : [ ThemeIDDirective, AmpButton ] ,
     pipes      : [ I18nSelectPipe ]
 } )
 export class IntroBlockComponent extends FormBlock {

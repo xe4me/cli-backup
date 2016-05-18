@@ -7,6 +7,7 @@ import {
 import { Control } from 'angular2/common';
 import 'rxjs/add/operator/do';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { AMPGoogleAddressComponentGroup } from '../../../../component-groups/amp-google-address-group/amp-google-address-group.component.ts';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component';
 import { TimerWrapper } from 'angular2/src/facade/async';
@@ -31,27 +32,27 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             [postcodeCtrl]='postcodeCtrl'>
         </amp-google-address-group>
 
-        
-        <div class='errors mt-25 mb-15' *ngIf='!googleAddressCtrl.valid && googleAddressCtrl.touched && 
+
+        <div class='errors mt-25 mb-15' *ngIf='!googleAddressCtrl.valid && googleAddressCtrl.touched &&
         !ampGoogleAddressGroup.showManualAddrEntry && ampGoogleAddressGroup.addressComponent.addrPredictions'>
             <div >
                 <span class='icon icon--close icon-errors'></span>Address is a required field.
             </div>
         </div>
-    
-        
-        
+
+
+
       <div *ngIf='
-      !formModel.controls.address.valid  
-      && ( 
-      ( suburbCtrl.touched && !suburbCtrl.valid ) || 
-      ( addressCtrl.touched && !addressCtrl.valid ) || 
+      !formModel.controls.address.valid
+      && (
+      ( suburbCtrl.touched && !suburbCtrl.valid ) ||
+      ( addressCtrl.touched && !addressCtrl.valid ) ||
       ( stateCtrl.touched && !stateCtrl.valid ) ||
-      ( postcodeCtrl.touched && !postcodeCtrl.valid ) 
+      ( postcodeCtrl.touched && !postcodeCtrl.valid )
       )'
-      class='errors 
+      class='errors
       mt-25 mb-15'>
-            <div class='error-item' *ngIf='!addressCtrl.valid && addressCtrl.touched && 
+            <div class='error-item' *ngIf='!addressCtrl.valid && addressCtrl.touched &&
             ampGoogleAddressGroup.showManualAddrEntry'>
                 <div *ngIf='addressCtrl.errors.required'>
                     <span class='icon icon--close icon-errors'></span>Street address is a required field.
@@ -60,7 +61,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     <span class='icon icon--close icon-errors'></span>Street address must be at least 5 characters long.
                 </div>
             </div>
-            <div class='error-item' *ngIf='!suburbCtrl.valid && suburbCtrl.touched && 
+            <div class='error-item' *ngIf='!suburbCtrl.valid && suburbCtrl.touched &&
             ampGoogleAddressGroup.showManualAddrEntry'>
                 <div *ngIf='suburbCtrl.errors.required'>
                     <span class='icon icon--close icon-errors'></span>Suburb is a required field.
@@ -77,7 +78,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     <span class='icon icon--close icon-errors'></span>Please enter a valid state.
                 </div>
             </div>
-            <div class='error-item' *ngIf='!postcodeCtrl.valid && postcodeCtrl.touched && 
+            <div class='error-item' *ngIf='!postcodeCtrl.valid && postcodeCtrl.touched &&
             ampGoogleAddressGroup.showManualAddrEntry'>
                 <div *ngIf='postcodeCtrl.errors.required'>
                     <span class='icon icon--close icon-errors'></span>Postcode is a required field.
@@ -88,19 +89,19 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             </div>
         </div>
 
-        <button *ngIf='!isInSummaryState' 
+        <amp-button *ngIf='!isInSummaryState'
         (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary btn-ok mt-35'>
             OK
-        </button>
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-35'>
+        </amp-button>
+        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-35'>
             Change
-        </button>
+        </amp-button>
         <div class='hr-block-divider'></div>
     </div>
     ` , // encapsulation: ViewEncapsulation.Emulated
     inputs     : [ 'practiceAddress' ] ,
     styles     : [ require( './practice-address.component.scss' ).toString() ] ,
-    directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent ]
+    directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent, AmpButton ]
 } )
 export class PracticeAddressBlockComponent extends FormBlock {
     static CLASS_NAME                      = 'PracticeAddressBlockComponent';

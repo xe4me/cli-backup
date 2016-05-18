@@ -4,6 +4,8 @@ import { StickyProgressHeaderBlockComponent } from '../../../../../src/app/block
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from 'angular2/src/facade/async';
+import { AmpButton } from '../../../components/amp-button/amp-button.component';
+
 @Component( {
     selector   : 'menu-frame' ,
     template   : `
@@ -12,7 +14,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     class='sticky-progressbar'
                     determinate='determinate'
                     [value]='calculatedProgress'>
-             </sticky-progress-header-block> 
+             </sticky-progress-header-block>
              <div class='hr--solid frame__divider'></div>
              <div class='content'>
                  <div class='menu grid__item '>
@@ -21,21 +23,21 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         <div class='menu--left--hr hr--solid'></div>
                         <div class='menu--left--download'><span class='icon icon--acrobat'></span>Download a copy</div>
                         <!--<div class='menu&#45;&#45;left&#45;&#45;download'><span class='icon icon&#45;&#45;time'></span>  {{ formModelService.currentComponent}}</div>-->
-                       <!--<button (click)='updateLicensee("DEA_HILLROSS")'>DEA_HILLROSS</button>-->
-                        <!--<button (click)='updateLicensee("DEA_AMPFP")'>DEA_AMPFP</button>-->
-                        <!--<button (click)='updateLicensee("DEA_CHARTER")'>DEA_CHARTER</button>-->
+                       <!--<amp-button (click)='updateLicensee("DEA_HILLROSS")'>DEA_HILLROSS</amp-button>-->
+                        <!--<amp-button (click)='updateLicensee("DEA_AMPFP")'>DEA_AMPFP</amp-button>-->
+                        <!--<amp-button (click)='updateLicensee("DEA_CHARTER")'>DEA_CHARTER</amp-button>-->
                     </div>
                     <div id='scroll-root' class='menu--right bolr-right-padding utils__position--rel'>
                         <!-- Dynamic form blocks driven from the Form Definition -->
                         <div #nestedBlock></div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     ` ,
     styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
-    directives : [ StickyProgressHeaderBlockComponent ]
+    directives : [ StickyProgressHeaderBlockComponent, AmpButton ]
 } )
 export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked {
     static CLASS_NAME              = 'MenuFrameBlockComponent';

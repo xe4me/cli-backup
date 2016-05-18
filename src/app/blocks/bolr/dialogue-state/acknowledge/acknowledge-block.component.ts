@@ -2,6 +2,7 @@ import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/co
 import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
 import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
@@ -14,7 +15,7 @@ import { AmpCheckboxComponent } from '../../../../components/amp-checkbox/amp-ch
     <div id='acknowledge-block' class='acknowledge-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro mb-35'>Your acknowledgement</h3>
-        <amp-checkbox 
+        <amp-checkbox
             [isInSummaryState]='isInSummaryState'
             [parentControl]='formControl[0].control'
             [required]='acknowledge.required'
@@ -23,26 +24,26 @@ import { AmpCheckboxComponent } from '../../../../components/amp-checkbox/amp-ch
             (select)='onAcknowledgeSelect($event)'
             >
             <div class='heading heading-contxtual-label'>
-                I agree to {{ licensee }} advertising my practice's register internally, and for {{ licensee }}  to seek out 
-                practices that 
+                I agree to {{ licensee }} advertising my practice's register internally, and for {{ licensee }}  to seek out
+                practices that
                 may be interested in becoming the servicing practice for some or all of the register.
-            </div>    
+            </div>
         </amp-checkbox>
-       
+
         <div class='heading heading-micro-intro mt-35'>
             Please note, this may potentially result in some or all of the practice's register being purchased and transferred before the exercise date.
         </div>
-        <button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn btn--secondary btn-ok 
+        <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn btn--secondary btn-ok
         mt-50'>
             OK
-        </button>
-        <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-50'>
+        </amp-button>
+        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-50'>
             Change
-        </button>
+        </amp-button>
         <div class='hr-block-divider'></div>
     </div>
   ` ,
-        directives : [ AmpOverlayComponent , AmpCheckboxComponent ] ,
+        directives : [ AmpOverlayComponent , AmpCheckboxComponent, AmpButton ] ,
         styles     : [ require( './acknowledge-block.component.scss' ).toString() ]
     } )
 export class AcknowledgeBlockComponent extends FormBlock implements AfterViewInit {
