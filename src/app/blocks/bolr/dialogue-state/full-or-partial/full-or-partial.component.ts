@@ -25,7 +25,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                             [parentControl]='formControl[0].control'
                             [groupName]='fullOrPartialButtons.fullOrPartial'
                             >
-                        </amp-group-amp-button>
+                        </amp-group-button>
 
                     </div>
                 </section>

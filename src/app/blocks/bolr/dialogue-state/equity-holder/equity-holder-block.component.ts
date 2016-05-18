@@ -39,7 +39,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                             [parentControl]='formControl[0].control'
                             [groupName]='hasHoldersButtons.groupName'
                             >
-                        </amp-group-amp-button>
+                        </amp-group-button>
 
                     </div>
                 </section>
@@ -54,7 +54,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                             [parentControl]='formControl[1].control'
                             [groupName]='holdersCountButtons.groupName'
                             >
-                        </amp-group-amp-button>
+                        </amp-group-button>
                     </div>
                 </section>
                 <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="No"'>
