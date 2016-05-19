@@ -22,7 +22,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'practice-association-block' ,
     template   : `
-            <div *ngIf='componentIsVisible' class='practice-association'>
+            <div *ngIf='componentIsVisible' class='practice-association mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
                 <section class='mb-30'>
                     <h3 class='heading heading-intro mb-30'>How long has your practice been with {{ licensee }}?</h3>
@@ -97,7 +97,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
                     Change
                 </button>
-                <div class='hr-block-divider mt-80 mb-60'></div>
+                <div class='hr-block-divider mt-80'></div>
             </div>
           ` ,
     styles     : [ require( './practice-association-block.component.scss' ).toString() ] ,

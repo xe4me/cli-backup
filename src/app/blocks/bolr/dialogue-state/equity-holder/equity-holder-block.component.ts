@@ -2,7 +2,12 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { FormModelService , ProgressObserverService , ScrollService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
+import {
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService ,
+    LicenseesAbstract
+} from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
 import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
@@ -16,7 +21,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'equity-holder-block' ,
     template   : `
-            <div class='equity-holder-block'>
+            <div class='equity-holder-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 [ngClass]='{"mb-20":isInSummaryState}' class='heading heading-intro'>Does the practice have additional equity 
                 holders?</h3>
@@ -122,7 +127,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         Change
                     </button>
                 </section>
-                <div class='hr-block-divider mt-80 mb-60'></div>
+                <div class='hr-block-divider mt-80'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './equity-holder-block.component.scss' ).toString() ] ,
@@ -194,7 +199,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
             new NamedControl( this.holdersCountButtons.groupName , new Control( null , Validators.required ) ) ,
             new NamedControl( 'holders' , this.dynamicControlGroup )
         ];
-        this.formControlGroupName = 'equityHolders';
+        this.formControlGroupName = 'equityHolder';
     }
 
     ngAfterViewInit () : any {
@@ -214,7 +219,8 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
             this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.scrollService.scrollMeOut( this.el , 'easeOutQuart' , 10 );
+                //this.scrollService.scrollMeOut( this.el , 'easeOutQuart' , 10 );
+                this.scrollService.scrollToNextUndoneBlock( this.formModel );
             } , 500 );
             this.progressObserver.onProgress();
             this.formModelService.present( {
@@ -282,9 +288,6 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags( 'partnershipIsDone' );
-        }
-        return false;
+        return this.formModelService.getFlags( 'partnershipIsDone' );
     }
 }

@@ -11,7 +11,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 @Component( {
     selector   : 'full-or-partial-block' ,
     template   : `
-            <div class='full-or-partial-block'>
+            <div class='full-or-partial-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
                 <section [collapse]='isInSummaryState===true'>
@@ -58,7 +58,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
                     <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
                     Change
                 </button>
-                <div class='hr-block-divider mt-80 mb-60'></div>
+                <div class='hr-block-divider mt-80'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './full-or-partial-block.component.scss' ).toString() ] ,
@@ -137,7 +137,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
@@ -156,10 +156,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'equityHolders' ] ) {
-            return this.formModel.controls[ 'equityHolders' ].valid && this.formModelService.getFlags( 'equityHoldersIsDone' );
-        }
-        return false;
+        return this.formModelService.getFlags( 'equityHoldersIsDone' );
     }
 
     private onSwitchChanged ( value ) {

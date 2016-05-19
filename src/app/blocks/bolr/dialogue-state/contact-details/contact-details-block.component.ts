@@ -79,7 +79,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
         </button>
-        <div class='hr-block-divider mt-80 mb-60'></div>
+        <div class='hr-block-divider mt-80'></div>
     </div>
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,
@@ -160,7 +160,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

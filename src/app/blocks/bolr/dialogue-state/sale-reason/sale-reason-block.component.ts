@@ -12,7 +12,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'sale-reason-block' ,
     template   : `
-            <div *ngIf='componentIsVisible' class='sale-reason'>
+            <div *ngIf='componentIsVisible' class='sale-reason mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
                 <h3 class='heading heading-intro mb-5'>What are the reasons for your sale?</h3>
                 <section>
@@ -36,7 +36,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
                     Change
                 </button>
-                <div class='hr-block-divider mt-80 mb-60'></div>
+                <div class='hr-block-divider mt-80'></div>
             </div>
           ` ,
     styles     : [ require( './sale-reason-block.component.scss' ).toString() ] ,
@@ -99,7 +99,7 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

@@ -15,7 +15,7 @@ import { AmpCheckboxComponent } from '../../../../components/amp-checkbox/amp-ch
     {
         selector   : 'acknowledge-block' ,
         template   : `
-    <div id='acknowledge-block' class='acknowledge-block'>
+    <div id='acknowledge-block' class='acknowledge-block mt-60'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro mb-35'>Your acknowledgement</h3>
         <amp-checkbox 
@@ -96,7 +96,8 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el , 'easeInQuad' , 70 );
+            //this.scrollService.scrollMeOut( this.el , 'easeInQuad' , 70 );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
@@ -107,7 +108,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log( 'onAcknowledgeSelect value' , value );
+        //console.log( 'onAcknowledgeSelect value' , value );
     }
 
     private get licensee () {

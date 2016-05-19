@@ -10,10 +10,11 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 import { AMPGoogleAddressComponentGroup } from '../../../../component-groups/amp-google-address-group/amp-google-address-group.component.ts';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component';
 import { TimerWrapper } from 'angular2/src/facade/async';
+import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 @Component( {
     selector   : 'practice-address-block' ,
     template   : `
-    <div class='practice-address-block' id='practice-address-block' [class.hidden]='!isCurrentBlockActive()'>
+    <div class='practice-address-block mt-60' id='practice-address-block' [class.hidden]='!isCurrentBlockActive()'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Your practice address?</h3>
 
@@ -42,7 +43,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         
         
       <div *ngIf='
-      !formModel.controls.address.valid  
+      !formModel.controls.practiceAddress.valid  
       && ( 
       ( suburbCtrl.touched && !suburbCtrl.valid ) || 
       ( addressCtrl.touched && !addressCtrl.valid ) || 
@@ -95,14 +96,14 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-35'>
             Change
         </button>
-        <div class='hr-block-divider mt-80 mb-60'></div>
+        <div class='hr-block-divider mt-80'></div>
     </div>
     ` , // encapsulation: ViewEncapsulation.Emulated
     inputs     : [ 'practiceAddress' ] ,
     styles     : [ require( './practice-address.component.scss' ).toString() ] ,
     directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent ]
 } )
-export class PracticeAddressBlockComponent extends FormBlock {
+export class PracticeAddressBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'PracticeAddressBlockComponent';
     private practiceAddress                =
            {
@@ -147,20 +148,25 @@ export class PracticeAddressBlockComponent extends FormBlock {
     private stateCtrl : Control            = new Control();
     private postcodeCtrl : Control         = new Control();
 
+    ngAfterViewInit () : any {
+        this.formModel.valueChanges.subscribe( ( changes ) => {
+            this.scrollService.amIVisible( this.el , PracticeAddressBlockComponent.CLASS_NAME );
+        } );
+        return undefined;
+    }
+
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
-        this.formControl = [
+        this.formControl          = [
             new NamedControl( this.practiceAddress.address.id , this.addressCtrl ) ,
             new NamedControl( this.practiceAddress.suburb.id , this.suburbCtrl ) ,
             new NamedControl( this.practiceAddress.state.id , this.stateCtrl ) ,
             new NamedControl( this.practiceAddress.postcode.id , this.postcodeCtrl )
         ];
-        scrollService.$scrolled.subscribe(
-            message => scrollService.amIVisible( el , PracticeAddressBlockComponent.CLASS_NAME ) );
-        this.formControlGroupName = 'address';
+        this.formControlGroupName = 'practiceAddress';
     }
 
     public change () {
@@ -175,7 +181,7 @@ export class PracticeAddressBlockComponent extends FormBlock {
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             // SAM - Action present data to Model
             this.formModelService.present( {

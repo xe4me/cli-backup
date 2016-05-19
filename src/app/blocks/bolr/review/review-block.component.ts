@@ -229,7 +229,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     private scrollTo ( componentName : string ) {
-        this.scrollService.scrollToComponentName( componentName );
+        this.scrollService.scrollToComponentByClassName( componentName );
     }
 
     private submit () {
@@ -319,11 +319,11 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     private get equityHoldersBlock () {
-        return this.getBlockValue( 'equityHolders' );
+        return this.getBlockValue( 'equityHolder' );
     }
 
     private get partnershipBlock () {
-        return this.getBlockValue( 'partnership' );
+        return this.getBlockValue( 'partnershipManager' );
     }
 
     private get practiceAssociationBlock () {
@@ -339,7 +339,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     private get addressBlock () {
-        return this.getBlockValue( 'address' );
+        return this.getBlockValue( 'practiceAddress' );
     }
 
     private get partnershipFirstName () {
