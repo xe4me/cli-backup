@@ -217,11 +217,10 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
-            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                //this.scrollService.scrollMeOut( this.el , 'easeOutQuart' , 10 );
-                this.scrollService.scrollToNextUndoneBlock( this.formModel );
-            } , 500 );
+                this.isInSummaryState = true;
+            } , 1200 );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

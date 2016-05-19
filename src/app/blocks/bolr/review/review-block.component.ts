@@ -27,9 +27,9 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
             <div *ngIf='formIsFullyValid' class='review grid__item'>
                 <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
-                <div class="review--sections">
+                <div class='review--sections'>
                     <section class='review--sections__left grid__item 2/4'>
-                        <div class="review--item grid__item 1/1 mb-25">
+                        <div class='review--item grid__item 1/1 mb-25'>
                             <div class='heading heading-contxtual-label'>
                                 <span>{{practiceName}}</span>
                             </div> 
@@ -39,68 +39,68 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                                 --><div class='grid__item 1/2'>Practice principal: {{practicePrincipal}}</div>
                             </div>    
                         </div>
-                        <div class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Contact details</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ email }}</span>
                                 <span>{{ phone }}</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changeContactDetailsBlock()'>change
                                 </button>         
                             </div>    
                         </div>
                         
-                        <div class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Partnership manager</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ partnershipFirstName }}</span>
                                 <span>{{ partnershipLastName }}</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changePartnershipBlock()'>change
                                 </button>                 
                             </div>    
                         </div>
                         
-                        <div class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Practice address</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ practiceAddress }}</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changePracticeAddressBlock()'>change
                                 </button>                 
                             </div>    
                         </div>
-                        <div class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Other equity holders in the practice</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
-                                <span *ngIf='!hasEquityHolders'>
-                                    None
-                                </span>
-                                <span *ngIf='hasEquityHolders' *ngFor='#item of equityHoldersList'>
+                        --><div class='review--item__value grid__item 6/10' *ngIf='!hasEquityHolders' >
+                                    <span>None</span>
+                            </div><!--
+                            --><div class='review--item__value grid__item 6/10' *ngIf='hasEquityHolders' >
+                                <span *ngFor='#item of equityHoldersList'>
                                     {{item.firstName}} {{item.lastName}}
                                 </span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changeEquityHolderBlock()'>change
                                 </button>                 
                             </div>    
                         </div>
-                        <div class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Full or Partial {{ licenseeText }}</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <div *ngIf='isFullSale'>
                                     <span>Full sale</span>
                                     <span *ngFor='#item of advisers ; #i = index'>
@@ -113,58 +113,58 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                                 </div>
                                 <span *ngIf='isPartialSale'>Partial sale - My head of financial planning has approved my sale.</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changeFullOrPartialBlock()'>change
                                 </button>                 
                             </div>    
                         </div>
-                        <div *ngIf='isFullSale' class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div *ngIf='isFullSale' class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Practice tenure and amount of notice being provided</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ exerciseLengthText }}</span>
                                 <span *ngIf='hasExceptionalCircumstances'>{{ exceptionalCircumstances }}</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changePracticeAssociationBlock()'>change
                                 </button>                 
                             </div>    
                         </div>
-                        <div *ngIf='isPartialSale' class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div *ngIf='isPartialSale' class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Reasons for sale</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ saleReason }}</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changeSaleReasonBlock()'>change</button>
                                                  
                             </div>    
                         </div>
-                        <div class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Requested exercise date</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ exerciseDate }}</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changeExerciseDateBlock()'>change
                                 </button>                 
                             </div>    
                         </div>
-                        <div class="review--item grid__item 1/1">
-                            <div class="review--item__title grid__item 3/10">
+                        <div class='review--item grid__item 1/1'>
+                            <div class='review--item__title grid__item 3/10'>
                                 <span>Acknowledgement</span>
                             </div><!--    
-                        --><div class="review--item__value grid__item 6/10">
+                        --><div class='review--item__value grid__item 6/10'>
                                 <span>I agree to {{ licenseeText }} advertising my practice's register internally, and 
                                 for {{ licenseeText }}  to seek out 
 practices that may be interested in becoming the servicing practice for some or all of the register.</span>
                             </div><!--
-                         --><div class="review--item__button grid__item 1/10">
+                         --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changeAcknowledgeBlock()'>change
                                 </button>                 
                             </div>    
@@ -387,7 +387,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     private get hasEquityHolders () {
-        return this.equityHoldersBlock.hasHolders === true;
+        return this.equityHoldersBlock.hasHolders === 'Yes' && this.equityHoldersList.length > 0;
     }
 
     private get licenseeText () {
