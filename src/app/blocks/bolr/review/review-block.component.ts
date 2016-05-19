@@ -24,7 +24,8 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
 @Component( {
     selector   : 'review-block' ,
     template   : `
-            <div *ngIf='formIsFullyValid' class='review grid__item'>
+<!--*ngIf='formIsFullyValid' -->
+            <div class='review grid__item'>
                 <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class='review--sections'>
@@ -111,7 +112,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                                         {{ item.adviserName }} ({{ item.adviserId }})
                                     </span>
                                 </div>
-                                <span *ngIf='isPartialSale'>Partial sale - My head of financial planning has approved my sale.</span>
+                                <span *ngIf='isPartialSale'>Partial sale</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
                                 <button class='btn btn-change-anchor' (click)='changeFullOrPartialBlock()'>change
@@ -192,7 +193,7 @@ practices that may be interested in becoming the servicing practice for some or 
 } )
 export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME        = 'ReviewBlockComponent';
-    private formIsFullyValid = false;
+    private formIsFullyValid = true;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
