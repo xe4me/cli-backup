@@ -24,7 +24,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
 @Component( {
     selector   : 'review-block' ,
     template   : `
-            <div *ngIf='formIsFullyValid' id='review-block' class='review-block grid__item'>
+            <div *ngIf='formIsFullyValid' id='review-block' class='review grid__item'>
                 <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class='review--sections'>
@@ -102,7 +102,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                             </div><!--    
                         --><div class='review--item__value grid__item 6/10'>
                                 <div *ngIf='isFullSale'>
-                                    <span>Full sale</span>
+                                    <span>Full sale - </span>
                                     <span *ngFor='#item of advisers ; #i = index'>
                                         <span *ngIf='advisers.length > 1 '>
                                             <span *ngIf=' i < ( advisers.length - 1 ) && i >0 '> , </span> 

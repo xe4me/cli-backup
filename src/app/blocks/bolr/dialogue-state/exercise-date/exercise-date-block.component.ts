@@ -116,13 +116,14 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     }
 
     public isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
-            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
-                this.formModelService.getFlags( 'practiceAssociationIsDone' );
-        }
         if ( this.formModel && this.formModel.controls[ 'saleReason' ] ) {
             return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
                 this.formModelService.getFlags( 'saleReasonIsDone' );
+        }
+        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
+            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
+                this.formModelService.getFlags( 'practiceAssociationIsDone' ) &&
+                this.formModelService.getFlags( 'practiceAssociationIsVisible' );
         }
         return false;
     }
