@@ -24,8 +24,8 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
 @Component( {
     selector   : 'review-block' ,
     template   : `
-            <div class='review grid__item'>
-                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
+            <div *ngIf='formIsFullyValid' class='review grid__item'>
+                <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class="review--sections">
                     <section class='review--sections__left grid__item 2/4'>
@@ -191,10 +191,8 @@ practices that may be interested in becoming the servicing practice for some or 
     providers  : [ TemplateRef ]
 } )
 export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
-    static CLASS_NAME                      = 'ReviewBlockComponent';
-    private isInSummaryState : boolean     = false;
-    private hasClickedOnOkButton : boolean = false;
-    private defaultExerciseDateOption      = 'three_month';
+    static CLASS_NAME        = 'ReviewBlockComponent';
+    private formIsFullyValid = false;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -211,6 +209,12 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ReviewBlockComponent.CLASS_NAME );
+            this.formIsFullyValid = this.formModel.valid && this.formModelService.getFlags( 'acknowledgeIsDone' );
+        } );
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'acknowledgeIsDone' ) ) {
+                this.formIsFullyValid = this.formModel.valid && changes[ 'acknowledgeIsDone' ];
+            }
         } );
         return undefined;
     }
@@ -224,8 +228,8 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
         return this.formModel.value[ blockGroupName ] || {};
     }
 
-    private scrollTo ( componentId : string ) {
-        this.scrollService.scrollToComponent( componentId );
+    private scrollTo ( componentName : string ) {
+        this.scrollService.scrollToComponentName( componentName );
     }
 
     private submit () {
@@ -404,11 +408,6 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
 
     private get practiceAddress () {
         return this.formModelService.getFlags( 'addressIsDone' ) === true ? this.addressBlock.address + ', ' + this.addressBlock.suburb + ', ' + this.addressBlock.state + ', ' + this.addressBlock.postcode + '.' : '';
-    }
-
-    private isCurrentBlockActive () {
-        //return this.formModelService.getFlags( 'fullOrPartialIsDone' );
-        return true;
     }
 }
 
