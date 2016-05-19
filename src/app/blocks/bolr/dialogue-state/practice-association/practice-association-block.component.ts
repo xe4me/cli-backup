@@ -22,7 +22,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'practice-association-block' ,
     template   : `
-            <div *ngIf='componentIsVisible' class='practice-association mt-60'>
+            <div id='practice-association-block' *ngIf='componentIsVisible' class='practice-association-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
                 <section class='mb-30'>
                     <h3 class='heading heading-intro mb-30'>How long has your practice been with {{ licensee }}?</h3>

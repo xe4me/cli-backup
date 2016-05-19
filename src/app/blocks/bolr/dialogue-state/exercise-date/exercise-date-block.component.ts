@@ -16,7 +16,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     {
         selector   : 'exercise-date-block' ,
         template   : `
-    <div id='exercise-date-block' class='exercise-date-block mt-60'>
+    <div id='exercise-date-block' class='exercise-date-block mt-60 '>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Please select an exercise date {{ timeFrame }} today's date.</h3>
         

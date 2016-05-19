@@ -79,7 +79,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
         </button>
-        <div class='hr-block-divider mt-80'></div>
+        <div class='hr-block-divider mt-80 '></div>
     </div>
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent ] ,

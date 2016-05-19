@@ -8,7 +8,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector       : 'partnership-manager-block' ,
     template       : `
-    <div class='partnership-manager-block mt-60' [class.hidden]='!isCurrentBlockActive()'>
+    <div id='partnership-manager-block' class='partnership-manager-block mt-60' [class.hidden]='!isCurrentBlockActive()'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Who is your partnership manager?</h3>
 

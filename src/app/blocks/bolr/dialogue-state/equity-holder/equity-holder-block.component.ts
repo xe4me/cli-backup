@@ -21,7 +21,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'equity-holder-block' ,
     template   : `
-            <div class='equity-holder-block mt-60'>
+            <div id='equity-holder-block'   class='equity-holder-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 [ngClass]='{"mb-20":isInSummaryState}' class='heading heading-intro'>Does the practice have additional equity 
                 holders?</h3>

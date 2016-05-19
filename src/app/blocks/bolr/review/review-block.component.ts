@@ -24,8 +24,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
 @Component( {
     selector   : 'review-block' ,
     template   : `
-<!--*ngIf='formIsFullyValid' -->
-            <div class='review grid__item'>
+            <div *ngIf='formIsFullyValid' id='review-block' class='review-block grid__item'>
                 <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class='review--sections'>

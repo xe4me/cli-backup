@@ -11,7 +11,7 @@ import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-over
 @Component( {
     selector   : 'full-or-partial-block' ,
     template   : `
-            <div class='full-or-partial-block mt-60'>
+            <div id='full-or-partial-block' class='full-or-partial-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
                 <section [collapse]='isInSummaryState===true'>
