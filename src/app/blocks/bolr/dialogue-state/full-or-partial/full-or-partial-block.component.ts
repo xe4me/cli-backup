@@ -9,6 +9,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
+import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-textarea.component';
 @Component( {
     selector   : 'full-or-partial-block' ,
     template   : `
@@ -47,22 +48,29 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                     <div class='grid__item mb-15 mt-15 heading heading-intro'>
                         Please specify if there are any advisers in your practice that should be added or removed from the above list.
                     </div>
-                    
+                    <amp-textarea
+                        class='1/1'
+                        [isInSummaryState]='isInSummaryState'
+                        [id]='impactedAdvisersDetails.id'
+                        [parentControl]='formControl[1].control'
+                        [valMaxLength]='impactedAdvisersDetails.maxLength'>
+                    </amp-textarea>
                 </section>
-
-                
-                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn
-                btn-ok btn-ok-margin-top'>
+                <amp-button [class.btn-ok-margin-top]='formControl[0].control.value!=="Full"' 
+                *ngIf='!isInSummaryState' (click)='ok()' 
+                [disabled]="!canGoNext"  class='btn
+                btn-ok '>
                     OK
                 </amp-button>
-                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn-ok-margin-top'>
+                <amp-button [class.btn-ok-margin-top]='formControl[0].control.value!=="Full"' *ngIf='isInSummaryState' 
+                (click)='change()' class='btn btn-change btn-ok-margin-top'>
                     Change
                 </amp-button>
                 <div class='hr-block-divider mt-80'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './full-or-partial-block.component.scss' ).toString() ] ,
-    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective ] ,
+    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective , AmpTextareaComponent ] ,
     providers  : [ TemplateRef ]
 } )
 export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit {
@@ -84,6 +92,10 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         ] ,
         groupName : 'fullOrPartial'
     };
+    private impactedAdvisersDetails        = {
+        id        : 'impactedAdvisersDetails' ,
+        maxLength : 500
+    };
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -92,6 +104,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         super();
         this.formControl          = [
             new NamedControl( this.fullOrPartialButtons.groupName , new Control() ) ,
+            new NamedControl( this.impactedAdvisersDetails.id , new Control() ) ,
         ];
         this.formControlGroupName = 'fullOrPartial';
     }
@@ -154,6 +167,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
 
     public preBindControls ( _formBlockDef ) {
         this.formControl[ 0 ].name = this.fullOrPartialButtons.groupName;
+        this.formControl[ 1 ].name = this.impactedAdvisersDetails.id;
     }
 
     private get canGoNext () {

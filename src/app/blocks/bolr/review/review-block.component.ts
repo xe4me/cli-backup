@@ -112,6 +112,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                                     </span>
                                     will be impacted by this decision.
                                 </div>
+                                <span *ngIf='isFullSale'>{{ impactedAdvisersDetails }}</span>
                                 <span *ngIf='isPartialSale'>Partial sale</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
@@ -279,6 +280,10 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
         return this.practiceAssociationBlock[ AssociationLengthAbstract.groupName ];
     }
 
+    private get impactedAdvisersDetails () {
+        return this.fullOrPartialBlock.impactedAdvisersDetails;
+    }
+
     private get exerciseDateValue () {
         return this.practiceAssociationBlock[ ExerciseDateAbstract.groupName ];
     }
@@ -394,6 +399,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     private get licensee () {
         return LicenseesAbstract.getLicensee( this.formModelService.licensee );
     }
+
     private get licenseeBuybackFacility () {
         return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
     }
