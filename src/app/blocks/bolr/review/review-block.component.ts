@@ -98,7 +98,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                         </div>
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
-                                <span>Full or Partial {{ licenseeText }}</span>
+                                <span>Full or Partial {{ licenseeBuybackFacility }}</span>
                             </div><!--    
                         --><div class='review--item__value grid__item 6/10'>
                                 <div *ngIf='isFullSale'>
@@ -160,8 +160,8 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                                 <span>Acknowledgement</span>
                             </div><!--    
                         --><div class='review--item__value grid__item 6/10'>
-                                <span>I agree to {{ licenseeText }} advertising my practice's register internally, and 
-                                for {{ licenseeText }}  to seek out 
+                                <span>I agree to {{ licensee }} advertising my practice's register internally, and 
+                                for {{ licensee }}  to seek out 
 practices that may be interested in becoming the servicing practice for some or all of the register.</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
@@ -371,7 +371,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     private get exerciseDateOptions () {
-        return ExerciseDateAbstract.getOptionsByLicensee( this.licensee , this.associationLengthValue );
+        return ExerciseDateAbstract.getOptionsByLicensee( this.formModelService.context.licensee , this.associationLengthValue );
     }
 
     private get exerciseLengthText () {
@@ -390,12 +390,11 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
         return this.equityHoldersBlock.hasHolders === 'Yes' && this.equityHoldersList.length > 0;
     }
 
-    private get licenseeText () {
-        return LicenseesAbstract.getLicensee( this.licensee );
-    }
-
     private get licensee () {
-        return this.formModelService.context.licensee;
+        return LicenseesAbstract.getLicensee( this.formModelService.licensee );
+    }
+    private get licenseeBuybackFacility () {
+        return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
     }
 
     private get isFullSale () {

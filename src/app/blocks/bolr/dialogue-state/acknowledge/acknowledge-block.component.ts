@@ -37,11 +37,11 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
         <div class='heading heading-micro-intro mt-35'>
             Please note, this may potentially result in some or all of the practice's register being purchased and transferred before the exercise date.
         </div>
-        <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn btn--secondary btn-ok
+        <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn btn-ok
         mt-50'>
             OK
         </amp-button>
-        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-50'>
+        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-50'>
             Change
         </amp-button>
         <div class='hr-block-divider mt-80'></div>
@@ -113,7 +113,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private get licensee () {
-        return LicenseesAbstract.getLicensee( this.formModelService.context.licensee );
+        return LicenseesAbstract.getLicensee( this.formModelService.licensee );
     }
 
     private get canGoNext () {

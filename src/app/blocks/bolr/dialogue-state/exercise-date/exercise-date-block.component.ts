@@ -57,10 +57,10 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         </div>
 
         <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext || dateErrorMessage!==null' class='btn
-        btn--secondary btn-ok btn-ok-margin-top'>
+        btn-ok btn-ok-margin-top'>
             OK
         </amp-button>
-        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn-ok-margin-top'>
             Change
         </amp-button>
         <div class='hr-block-divider mt-80'></div>

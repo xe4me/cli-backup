@@ -91,10 +91,10 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
         </div>
 
         <amp-button *ngIf='!isInSummaryState'
-        (click)='ok()' [disabled]="!canGoNext"  class='btn btn--secondary btn-ok mt-35'>
+        (click)='ok()' [disabled]="!canGoNext"  class='btn btn-ok mt-35'>
             OK
         </amp-button>
-        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-35'>
+        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-35'>
             Change
 
         </amp-button>

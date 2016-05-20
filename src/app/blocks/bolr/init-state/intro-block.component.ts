@@ -21,7 +21,7 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                 You're about to request access to the {{ formModelService.getModel().context.licensee | i18nSelect: licenseeFormName}} facility.
             </p>
             <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
-            <amp-button class='btn btn--secondary btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
+            <amp-button class='btn btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
             </amp-button>
         </div>

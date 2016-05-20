@@ -30,7 +30,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     <span class='summary-state'>{{ formControl[0].control.value }}</span>
                 </div>
                 <div [collapse]='isInSummaryState' class='heading heading-micro-intro mt-35'>
-                    For a practice to access the {{ licensee }} facility, all equity holders in that practice must exercise {{ licensee }}.
+                    For a practice to access the {{ licenseeBuybackFacility }} facility, all equity holders in that practice must exercise {{ licenseeBuybackFacility }}.
                 </div>
 
                 <section [collapse]='isInSummaryState'>
@@ -119,11 +119,10 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 
                 <section>
                     <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'
-                        class='btn btn--secondary
-                        btn-ok btn-ok-margin-top'>
+                        class='btn btn-ok btn-ok-margin-top'>
                         OK
                     </amp-button>
-                        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+                        <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn-ok-margin-top'>
                         Change
                     </amp-button>
                 </section>
@@ -237,6 +236,10 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         this.formControl[ 2 ].name = 'holders';
     }
 
+    private get licenseeBuybackFacility () {
+        return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
+    }
+
     private onHoldersCountGroupButtonSelect ( value ) {
         const current = this.dynamicControlGroup.length;
         if ( value > current ) {
@@ -245,10 +248,6 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         } else if ( value < current ) {
             this.refreshInput( value );
         }
-    }
-
-    private get licensee () {
-        return LicenseesAbstract.getLicensee( this.formModelService.context.licensee );
     }
 
     private onSwitchChanged ( value ) {

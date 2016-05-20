@@ -30,11 +30,11 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                      <span class='icon icon--close icon-errors'></span>Please enter your reasons.
                 </div>
 
-               <amp-button [disabled]='!getSaleReasonControl().valid' class='btn btn-ok btn--secondary mt-10'
+               <amp-button [disabled]='!getSaleReasonControl().valid' class='btn btn-ok mt-10'
                *ngIf='!isInSummaryState' (click)='ok()'>
                     OK
                 </amp-button>
-                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10 '>
                     Change
 
                 </amp-button>

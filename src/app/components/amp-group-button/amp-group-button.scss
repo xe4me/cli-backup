@@ -47,14 +47,11 @@ $active-background-color: $amp-colour-primary;
       }
       &:hover, &:focus {
         &:not([disabled]) {
-          color: #fff;
-          background-color: $hover-background-color;
-        }
-      }
-      &:active {
-        &:not([disabled]) {
-          color: #fff;
-          background-color: $active-background-color;
+          /*
+            @TODO : needs to be fixed :
+            hover with border is not working smoothly
+          */
+          //border: solid $ddc-corporate-main-color ($amp-switch-border-width * 2);
         }
       }
       height: $amp-switch-height - (2*$amp-switch-border-width);

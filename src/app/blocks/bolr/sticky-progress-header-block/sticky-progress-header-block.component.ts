@@ -1,6 +1,6 @@
 import { Component } from 'angular2/core';
 import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
-import { FormModelService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 @Component(
     {
         selector   : 'sticky-progress-header-block' ,
@@ -8,7 +8,7 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
         <div class='sticky'>
             <div class="sticky__header">
                 <div class='sticky__header--left'>
-                    <span>Request to exercise {{ licenseeName }} </span>
+                    <span>Request to exercise {{ licenseeBuybackFacility }} </span>
                     <!--<span class='line-vertical-text-wrap line-vertical-text-wrap-gray '></span>-->
                     <!--<span class='utils__weight&#45;&#45;700'>{{value}}</span>-->
                 </div>
@@ -31,15 +31,9 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 export class StickyProgressHeaderBlockComponent {
     private value : number;
     private determinate : string;
-    private licenseeFormName : any = {
-        DEA_AMPFP    : 'Buyer of last resort' ,
-        DEA_HILLROSS : 'Licensee / Enhanced buyback' ,
-        DEA_CHARTER  : 'Buy out option' ,
-        null         : 'Buyer of last resort'
-    };
 
-    private get licenseeName () {
-        return this.licenseeFormName[ this.formModelService.getModel().context.licensee ];
+    private get licenseeBuybackFacility () {
+        return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
     }
 
     constructor ( private formModelService : FormModelService ) {

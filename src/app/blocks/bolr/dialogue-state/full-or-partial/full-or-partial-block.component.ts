@@ -50,14 +50,12 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                         My head of financial planning has approved my partial sale.
                     </div>
                 </section>
-
-                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext'
-                class='btn btn--secondary
+                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn
                 btn-ok btn-ok-margin-top'>
                     OK
                 </amp-button>
-                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
-                Change
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn-ok-margin-top'>
+                    Change
                 </amp-button>
                 <div class='hr-block-divider mt-80'></div>
             </div>

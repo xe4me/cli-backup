@@ -90,11 +90,11 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
                 </div>
                 <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
                <button class='btn btn-ok 
-               btn--secondary mt-10' *ngIf='!isInSummaryState' (click)='ok()' 
+               mt-10' *ngIf='!isInSummaryState' (click)='ok()' 
                [disabled]='!controlGroup.valid'  >
                     OK
                 </button>
-                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
+                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10 '>
                     Change
                 </button>
                 <div class='hr-block-divider mt-80'></div>
@@ -224,15 +224,15 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     }
 
     private getAssociationPracticeLabel ( value ) {
-        return AssociationLengthAbstract.getLabel( this.licensee , value );
+        return AssociationLengthAbstract.getLabel( this.formModelService.licensee , value );
     }
 
     private get associationLengthOptions () {
-        return AssociationLengthAbstract.getOptionsByLicensee( this.licensee );
+        return AssociationLengthAbstract.getOptionsByLicensee( this.formModelService.licensee );
     }
 
     private get exerciseDateOptions () {
-        return ExerciseDateAbstract.getOptionsByLicensee( this.licensee , this.getControl( this.associationLengthRadiosGroupName ).value );
+        return ExerciseDateAbstract.getOptionsByLicensee( this.formModelService.licensee , this.getControl( this.associationLengthRadiosGroupName ).value );
     }
 
     private get controlGroup () : ControlGroup {
@@ -240,7 +240,7 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     }
 
     private get licensee () {
-        return this.formModelService.context.licensee;
+        return LicenseesAbstract.getLicensee( this.formModelService.licensee );
     }
 
     private get associationLengthRadiosGroupName () {
