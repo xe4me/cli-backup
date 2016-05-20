@@ -110,6 +110,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                                         </span>
                                         {{ item.adviserName }} ({{ item.adviserId }})
                                     </span>
+                                    will be impacted by this decision.
                                 </div>
                                 <span *ngIf='isPartialSale'>Partial sale</span>
                             </div><!--

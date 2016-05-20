@@ -41,15 +41,16 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                             </span>
                             {{ item.adviserName }} ({{ item.adviserId }})
                         </span>
-                        will have their clients transferred to AMP.
+                        will be impacted by this decision.
                     </div>
+                    
+                    <div class='grid__item mb-15 mt-15 heading heading-intro'>
+                        Please specify if there are any advisers in your practice that should be added or removed from the above list.
+                    </div>
+                    
                 </section>
 
-                <section  [collapse]='formControl[0].control.value!=="Partial"'>
-                    <div class='grid__item mb-15 heading heading-contxtual-label'>
-                        My head of financial planning has approved my partial sale.
-                    </div>
-                </section>
+                
                 <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn
                 btn-ok btn-ok-margin-top'>
                     OK
