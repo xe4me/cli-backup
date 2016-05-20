@@ -20,8 +20,8 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                  <div class='menu grid__item '>
                     <div class='menu--left'>
                         <div class='menu--left--title'>Your request details</div>
-                        <div class='menu--left--hr hr--solid'></div>
-                        <div class='menu--left--download'><span class='icon icon--acrobat'></span>Download a copy</div>
+                        <!--<div class='menu&#45;&#45;left&#45;&#45;hr hr&#45;&#45;solid'></div>-->
+                        <!--<div class='menu&#45;&#45;left&#45;&#45;download'><span class='icon icon&#45;&#45;acrobat'></span>Download a copy</div>-->
                         <!--<div class='menu&#45;&#45;left&#45;&#45;download'><span class='icon icon&#45;&#45;time'></span>  {{ formModelService.currentComponent}}</div>-->
                        <!--<amp-button (click)='updateLicensee("DEA_HILLROSS")'>DEA_HILLROSS</amp-button>-->
                         <!--<amp-button (click)='updateLicensee("DEA_AMPFP")'>DEA_AMPFP</amp-button>-->

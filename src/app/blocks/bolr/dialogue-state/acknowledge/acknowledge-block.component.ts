@@ -16,7 +16,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
     {
         selector   : 'acknowledge-block' ,
         template   : `
-    <div id='acknowledge-block' class='acknowledge-block mt-60'>
+    <div id='acknowledge-block' class='acknowledge-block mt-60 mb-80'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro mb-35'>Your acknowledgement</h3>
         <amp-checkbox
@@ -44,7 +44,6 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
         <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-50'>
             Change
         </amp-button>
-        <div class='hr-block-divider mt-80'></div>
     </div>
   ` ,
         directives : [ AmpOverlayComponent , AmpCheckboxComponent , AmpButton ] ,
@@ -74,6 +73,11 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , AcknowledgeBlockComponent.CLASS_NAME );
+        } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
         } );
         return undefined;
     }

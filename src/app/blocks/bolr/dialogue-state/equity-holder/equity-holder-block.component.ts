@@ -206,6 +206,11 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , EquityHolderBlockComponent.CLASS_NAME );
         } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
+        } );
         return undefined;
     }
 

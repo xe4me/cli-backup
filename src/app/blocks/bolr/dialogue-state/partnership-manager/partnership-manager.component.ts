@@ -91,6 +91,11 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PartnershipManagerBlockComponent.CLASS_NAME );
         } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
+        } );
         return undefined;
     }
 

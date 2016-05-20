@@ -2,7 +2,6 @@ import { View , Component , AfterViewInit , ChangeDetectorRef } from 'angular2/c
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 @Component( { selector : 'amp-checkbox-basic-usage' } )
 @View( {
     templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,

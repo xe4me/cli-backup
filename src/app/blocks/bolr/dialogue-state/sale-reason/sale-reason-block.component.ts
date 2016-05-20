@@ -15,7 +15,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     template   : `
             <div id='sale-reason-block' *ngIf='componentIsVisible' class='sale-reason-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
-                <h3 class='heading heading-intro mb-5'>What are the reasons for your sale?</h3>
+                <h3 class='heading heading-intro mb-5'>What is the rationale for your sale?</h3>
                 <section>
                     <amp-textarea
                         class='1/1'
@@ -26,17 +26,16 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         [valMaxLength]='saleReason.maxLength'>
                     </amp-textarea>
                 </section>
-                <div *ngIf='(hasClickedOnOkButton || getSaleReasonControl().touched) &&!getSaleReasonControl().valid' class='errors mb-40'>
+                <div class='errors mb-40' *ngIf='(hasClickedOnOkButton || getSaleReasonControl().touched) 
+                &&!getSaleReasonControl().valid' >
                      <span class='icon icon--close icon-errors'></span>Please enter your reasons.
                 </div>
-
                <amp-button [disabled]='!getSaleReasonControl().valid' class='btn btn-ok mt-10'
                *ngIf='!isInSummaryState' (click)='ok()'>
                     OK
                 </amp-button>
-                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10 '>
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change'>
                     Change
-
                 </amp-button>
                 <div class='hr-block-divider mt-80'></div>
             </div>
@@ -86,6 +85,11 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , SaleReasonBlockComponent.CLASS_NAME );
+        } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
         } );
         return undefined;
     }

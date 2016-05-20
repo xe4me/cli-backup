@@ -145,6 +145,11 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PracticeAssociationBlockComponent.CLASS_NAME );
         } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
+        } );
         this.createControls();
         return undefined;
     }

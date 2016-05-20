@@ -83,7 +83,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <div class='hr-block-divider mt-80 '></div>
     </div>
   ` ,
-        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent, AmpButton ] ,
+        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent , AmpButton ] ,
         styles     : [ require( './contact-details-block.component.scss' ).toString() ]
     } )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit {
@@ -146,6 +146,11 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ContactDetailsBlockComponent.CLASS_NAME );
+        } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
         } );
         return undefined;
     }

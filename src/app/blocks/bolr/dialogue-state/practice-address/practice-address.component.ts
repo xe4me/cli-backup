@@ -154,6 +154,11 @@ export class PracticeAddressBlockComponent extends FormBlock implements AfterVie
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PracticeAddressBlockComponent.CLASS_NAME );
         } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
+        } );
         return undefined;
     }
 

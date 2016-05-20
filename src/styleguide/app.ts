@@ -22,6 +22,7 @@ import { SidenavService } from 'ng2-material/components/sidenav/sidenav_service'
 import { Media } from 'ng2-material/core/util/media';
 import { ScrollService , FormModelService , AmpHttpService , ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { BrowserDomAdapter } from 'angular2/src/platform/browser/browser_adapter';
+import { Renderer } from 'angular2/src/core/render/api';
 /**
  * Describe an example that can be dynamically loaded.
  */
@@ -96,6 +97,7 @@ export class DemosApp implements OnDestroy {
 let appProviders = [
     HTTP_PROVIDERS , ROUTER_PROVIDERS , MATERIAL_PROVIDERS ,
     ComponentsService , NavigationService , VersionService ,
+    Renderer ,
     FormModelService , ScrollService , BrowserDomAdapter , AmpHttpService , ProgressObserverService ,
     bind( LocationStrategy ).toClass( HashLocationStrategy ) ,
     ngCore.provide( Window , { useValue : window } )

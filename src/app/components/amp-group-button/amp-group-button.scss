@@ -11,6 +11,9 @@ $hover-background-color: $amp-colour-secondary;
 $active-background-color: $amp-colour-primary;
 :host {
   display: inline-block;
+  &:hover {
+    margin-top: -1px;
+  }
 }
 
 .amp-group-button {
@@ -30,7 +33,7 @@ $active-background-color: $amp-colour-primary;
       }
     }
   }
-  span {
+  > span {
     &:nth-child(n+1) label {
       border-left: none;
     }
@@ -41,6 +44,7 @@ $active-background-color: $amp-colour-primary;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: table-cell;
+
     label {
       &:hover {
         cursor: pointer;
@@ -51,7 +55,8 @@ $active-background-color: $amp-colour-primary;
             @TODO : needs to be fixed :
             hover with border is not working smoothly
           */
-          //border: solid $ddc-corporate-main-color ($amp-switch-border-width * 2);
+          border: solid $ddc-corporate-main-color ($amp-switch-border-width * 2);
+          height: $amp-switch-height - (2*$amp-switch-border-width) +1;
         }
       }
       height: $amp-switch-height - (2*$amp-switch-border-width);
@@ -66,10 +71,11 @@ $active-background-color: $amp-colour-primary;
       font-weight: 600;
       text-align: center;
       text-shadow: none;
-      @include transition(all 0.2s ease-in-out);
+      //@include transition(all 0.2s ease-in-out);
       border: solid $ddc-corporate-main-color $amp-switch-border-width;;
 
     }
   }
+
 }
 

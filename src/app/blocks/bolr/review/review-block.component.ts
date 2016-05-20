@@ -24,7 +24,7 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
 @Component( {
     selector   : 'review-block' ,
     template   : `
-            <div *ngIf='formIsFullyValid' id='review-block' class='review grid__item'>
+            <div *ngIf='formIsFullyValid' id='review-block' class='review grid__item mb-80'>
                 <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class='review--sections'>
@@ -110,7 +110,9 @@ import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue
                                         </span>
                                         {{ item.adviserName }} ({{ item.adviserId }})
                                     </span>
+                                    will be impacted by this decision.
                                 </div>
+                                <span *ngIf='isFullSale'>{{ impactedAdvisersDetails }}</span>
                                 <span *ngIf='isPartialSale'>Partial sale</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
@@ -278,6 +280,10 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
         return this.practiceAssociationBlock[ AssociationLengthAbstract.groupName ];
     }
 
+    private get impactedAdvisersDetails () {
+        return this.fullOrPartialBlock.impactedAdvisersDetails;
+    }
+
     private get exerciseDateValue () {
         return this.practiceAssociationBlock[ ExerciseDateAbstract.groupName ];
     }
@@ -393,6 +399,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     private get licensee () {
         return LicenseesAbstract.getLicensee( this.formModelService.licensee );
     }
+
     private get licenseeBuybackFacility () {
         return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
     }

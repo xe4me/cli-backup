@@ -66,7 +66,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <div class='hr-block-divider mt-80'></div>
     </div>
   ` ,
-        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent, AmpButton ] ,
+        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent , AmpButton ] ,
         styles     : [ require( './exercise-date-block.component.scss' ).toString() ]
     } )
 export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit {
@@ -112,6 +112,11 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ExerciseDateBlockComponent.CLASS_NAME );
+        } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
         } );
         return undefined;
     }
