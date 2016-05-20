@@ -1,6 +1,6 @@
 import { FormBlock } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
-import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-textarea.component';
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { Control } from 'angular2/src/common/forms/model';
@@ -13,8 +13,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'sale-reason-block' ,
     template   : `
-            <div *ngIf='componentIsVisible' class='sale-reason'>
-                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
+            <div id='sale-reason-block' *ngIf='componentIsVisible' class='sale-reason-block mt-60'>
+                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
                 <h3 class='heading heading-intro mb-5'>What are the reasons for your sale?</h3>
                 <section>
                     <amp-textarea
@@ -36,11 +36,12 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 </amp-button>
                 <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change btn--secondary mt-10 '>
                     Change
+
                 </amp-button>
-                <div class='hr-block-divider'></div>
+                <div class='hr-block-divider mt-80'></div>
             </div>
           ` ,
-    styles     : [ require( './sale-reason.component.scss' ).toString() ] ,
+    styles     : [ require( './sale-reason-block.component.scss' ).toString() ] ,
     directives : [
         AmpOverlayComponent ,
         AmpTextareaComponent ,
@@ -48,8 +49,8 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     ] ,
     providers  : [ TemplateRef ]
 } )
-export class SaleReasonComponent extends FormBlock implements AfterViewInit {
-    static CLASS_NAME                      = 'SaleReasonComponent';
+export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit {
+    static CLASS_NAME                      = 'SaleReasonBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private componentIsVisible : boolean   = false;
@@ -84,7 +85,7 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
 
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
-            this.scrollService.amIVisible( this.el , SaleReasonComponent.CLASS_NAME );
+            this.scrollService.amIVisible( this.el , SaleReasonBlockComponent.CLASS_NAME );
         } );
         return undefined;
     }
@@ -101,7 +102,7 @@ export class SaleReasonComponent extends FormBlock implements AfterViewInit {
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

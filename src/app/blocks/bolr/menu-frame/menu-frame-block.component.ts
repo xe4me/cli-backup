@@ -69,9 +69,8 @@ export class MenuFrameBlockComponent extends FormBlock implements AfterViewCheck
     private introHasPassed () {
         if ( this.formModelService.getFlags( 'introIsDone' ) ) {
             this.stickyAnimatedIntoView = true;
-            var that                    = this;
-            TimerWrapper.setTimeout( function() {
-                that._el.nativeElement.children[ 0 ].className += ' frame--sticky';
+            TimerWrapper.setTimeout( () => {
+                this._el.nativeElement.children[ 0 ].className += ' frame--sticky';
             } , 1200 );
         }
     }

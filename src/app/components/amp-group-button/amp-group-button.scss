@@ -7,6 +7,8 @@ $amp-switch-font-color: white;
 $amp-switch-height: $ddc-buttons-height;
 $amp-switch-border-width: 1px;
 $amp-switch-font-size: $font-size-small;
+$hover-background-color: $amp-colour-secondary;
+$active-background-color: $amp-colour-primary;
 :host {
   display: inline-block;
 }
@@ -42,6 +44,18 @@ $amp-switch-font-size: $font-size-small;
     label {
       &:hover {
         cursor: pointer;
+      }
+      &:hover, &:focus {
+        &:not([disabled]) {
+          color: #fff;
+          background-color: $hover-background-color;
+        }
+      }
+      &:active {
+        &:not([disabled]) {
+          color: #fff;
+          background-color: $active-background-color;
+        }
       }
       height: $amp-switch-height - (2*$amp-switch-border-width);
       line-height: $amp-switch-height - (4*$amp-switch-border-width);

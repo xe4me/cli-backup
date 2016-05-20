@@ -9,7 +9,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector       : 'partnership-manager-block' ,
     template       : `
-    <div class='partnership-manager-block' [class.hidden]='!isCurrentBlockActive()'>
+    <div id='partnership-manager-block' class='partnership-manager-block mt-60' [class.hidden]='!isCurrentBlockActive()'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Who is your partnership manager?</h3>
 
@@ -55,8 +55,9 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         </amp-button>
         <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
+
         </amp-button>
-        <div class='hr-block-divider'></div>
+        <div class='hr-block-divider mt-80'></div>
     </div>
   ` , // encapsulation: ViewEncapsulation.Emulated
     inputs         : [ 'partnershipMgr' ] ,
@@ -84,7 +85,7 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
             new NamedControl( this.partnershipMgr.firstName.id , new Control() ) ,
             new NamedControl( this.partnershipMgr.lastName.id , new Control() )
         ];
-        this.formControlGroupName = 'partnership';
+        this.formControlGroupName = 'partnershipManager';
     }
 
     ngAfterViewInit () : any {
@@ -105,7 +106,7 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

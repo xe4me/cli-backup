@@ -2,17 +2,21 @@ import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/co
 import { Control , ControlGroup } from 'angular2/common';
 import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
-import { AmpButton } from '../../../../components/amp-button/amp-button.component';
-import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
-import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
+import {
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService ,
+    LicenseesAbstract
+} from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
 import { AmpCheckboxComponent } from '../../../../components/amp-checkbox/amp-checkbox.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 @Component(
     {
         selector   : 'acknowledge-block' ,
         template   : `
-    <div id='acknowledge-block' class='acknowledge-block'>
+    <div id='acknowledge-block' class='acknowledge-block mt-60'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro mb-35'>Your acknowledgement</h3>
         <amp-checkbox
@@ -40,10 +44,10 @@ import { AmpCheckboxComponent } from '../../../../components/amp-checkbox/amp-ch
         <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change mt-50'>
             Change
         </amp-button>
-        <div class='hr-block-divider'></div>
+        <div class='hr-block-divider mt-80'></div>
     </div>
   ` ,
-        directives : [ AmpOverlayComponent , AmpCheckboxComponent, AmpButton ] ,
+        directives : [ AmpOverlayComponent , AmpCheckboxComponent , AmpButton ] ,
         styles     : [ require( './acknowledge-block.component.scss' ).toString() ]
     } )
 export class AcknowledgeBlockComponent extends FormBlock implements AfterViewInit {
@@ -93,7 +97,8 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            //this.scrollService.scrollMeOut( this.el , 'easeInQuad' , 70 );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
@@ -108,7 +113,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private get licensee () {
-        return Licensees.getLicensee( this.formModelService.context.licensee );
+        return LicenseesAbstract.getLicensee( this.formModelService.context.licensee );
     }
 
     private get canGoNext () {

@@ -2,7 +2,6 @@ import { Component , Directive , Input , OnInit , ViewEncapsulation } from 'angu
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
-import { AmpFitWidthToText } from '../../directives/amp-fit-width-to-text.directive';
 import { AnimationBuilder } from 'angular2/src/animate/animation_builder';
 import { CssAnimationBuilder } from 'angular2/src/animate/css_animation_builder';
 import { ElementRef } from 'angular2/src/core/linker/element_ref';
@@ -62,7 +61,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'isRequired' ,
             'hostClassesRemove'
         ] ,
-        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES , AmpFitWidthToText ] ,
+        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated
     } )
 export class AmpTextareaComponent implements AfterViewInit {

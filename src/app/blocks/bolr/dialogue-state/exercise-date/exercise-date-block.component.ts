@@ -4,14 +4,20 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
-import { FormModelService , ProgressObserverService , ScrollService , AmpDateService } from 'amp-ddc-ui-core/ui-core';
+import {
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService ,
+    AmpDateService ,
+    TimeframesAbstract
+} from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component(
     {
         selector   : 'exercise-date-block' ,
         template   : `
-    <div id='exercise-date-block' class='exercise-date-block'>
+    <div id='exercise-date-block' class='exercise-date-block mt-60 '>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Please select an exercise date {{ timeFrame }} today's date.</h3>
 
@@ -57,7 +63,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
             Change
         </amp-button>
-        <div class='hr-block-divider'></div>
+        <div class='hr-block-divider mt-80'></div>
     </div>
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent, AmpButton ] ,
@@ -73,14 +79,6 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         value          : '' ,
         maxLength      : 10 ,
         minLength      : 10
-    };
-    private TIMEFRAMES                     = {
-        six_months     : 'six months from' ,
-        later_than     : 'later than' ,
-        twelve_months  : '12 months from' ,
-        ninety_days    : '90 days from' ,
-        three_month    : 'three months from' ,
-        eighteen_month : '18 months from'
     };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -119,13 +117,14 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     }
 
     public isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
-            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
-                this.formModelService.getFlags( 'practiceAssociationIsDone' );
-        }
         if ( this.formModel && this.formModel.controls[ 'saleReason' ] ) {
             return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
                 this.formModelService.getFlags( 'saleReasonIsDone' );
+        }
+        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
+            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
+                this.formModelService.getFlags( 'practiceAssociationIsDone' ) &&
+                this.formModelService.getFlags( 'practiceAssociationIsVisible' );
         }
         return false;
     }
@@ -145,7 +144,7 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
@@ -166,12 +165,12 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     private get timeFrame () {
         if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
             if ( this.controlGroup( 'practiceAssociation' ).controls[ 'exerciseDate' ].value != null ) {
-                return this.TIMEFRAMES[ this.associtationExerciseDateValue ];
+                return TimeframesAbstract.getTimeFrame( this.associtationExerciseDateValue );
             } else {
-                return this.TIMEFRAMES[ this.defaultExerciseDateOption ];
+                return TimeframesAbstract.getTimeFrame( this.defaultExerciseDateOption );
             }
         } else {
-            return this.TIMEFRAMES[ this.defaultExerciseDateOption ];
+            return TimeframesAbstract.getTimeFrame( this.defaultExerciseDateOption );
         }
     }
 

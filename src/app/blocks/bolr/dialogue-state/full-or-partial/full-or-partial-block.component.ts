@@ -12,7 +12,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
 @Component( {
     selector   : 'full-or-partial-block' ,
     template   : `
-            <div class='full-or-partial-block'>
+            <div id='full-or-partial-block' class='full-or-partial-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
                 <section [collapse]='isInSummaryState===true'>
@@ -56,18 +56,18 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                 btn-ok btn-ok-margin-top'>
                     OK
                 </amp-button>
-                    <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
-                    Change
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn--secondary btn-change btn-ok-margin-top'>
+                Change
                 </amp-button>
-                <div class='hr-block-divider'></div>
+                <div class='hr-block-divider mt-80'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
-    styles     : [ require( './full-or-partial.component.scss' ).toString() ] ,
-    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective, AmpButton ] ,
+    styles     : [ require( './full-or-partial-block.component.scss' ).toString() ] ,
+    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective ] ,
     providers  : [ TemplateRef ]
 } )
-export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
-    static CLASS_NAME                      = 'FullOrPartialComponent';
+export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit {
+    static CLASS_NAME                      = 'FullOrPartialBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private fullOrPartialButtons           = {
@@ -99,7 +99,7 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
 
     ngAfterViewInit () : any {
         this.formModel.valueChanges.subscribe( ( changes ) => {
-            this.scrollService.amIVisible( this.el , FullOrPartialComponent.CLASS_NAME );
+            this.scrollService.amIVisible( this.el , FullOrPartialBlockComponent.CLASS_NAME );
         } );
         return undefined;
     }
@@ -138,7 +138,7 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
@@ -157,10 +157,7 @@ export class FullOrPartialComponent extends FormBlock implements AfterViewInit {
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'equityHolders' ] ) {
-            return this.formModel.controls[ 'equityHolders' ].valid && this.formModelService.getFlags( 'equityHoldersIsDone' );
-        }
-        return false;
+        return this.formModelService.getFlags( 'equityHoldersIsDone' );
     }
 
     private onSwitchChanged ( value ) {

@@ -2,7 +2,12 @@ import { FormBlock , NamedControl } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../components/my-md-input/my-md-input.component.ts';
-import { FormModelService , ProgressObserverService , ScrollService , Licensees } from 'amp-ddc-ui-core/ui-core';
+import {
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService ,
+    LicenseesAbstract
+} from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
@@ -17,7 +22,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'equity-holder-block' ,
     template   : `
-            <div class='equity-holder-block'>
+            <div id='equity-holder-block'   class='equity-holder-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 [ngClass]='{"mb-20":isInSummaryState}' class='heading heading-intro'>Does the practice have additional equity
                 holders?</h3>
@@ -106,7 +111,11 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                     dynamicControlGroup.controls.length > 2 '>
                                     <span *ngIf=' i < ( dynamicControlGroup.controls.length - 2 ) '>,</span>
                                 </span><!--
-                            --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading
+                                --><span class='1/6 heading heading-contxtual-label' *ngIf='
+                                    dynamicControlGroup.controls.length > 1 '> 
+                                    <span *ngIf=' i === ( dynamicControlGroup.controls.length - 2 ) '>and</span>
+                                </span><!--
+                            --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading 
                             heading-contxtual-label input-dot'>.</span><!--
                         --></div>
 
@@ -123,7 +132,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         Change
                     </amp-button>
                 </section>
-                <div class='hr-block-divider'></div>
+                <div class='hr-block-divider mt-80'></div>
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './equity-holder-block.component.scss' ).toString() ] ,
@@ -196,7 +205,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
             new NamedControl( this.holdersCountButtons.groupName , new Control( null , Validators.required ) ) ,
             new NamedControl( 'holders' , this.dynamicControlGroup )
         ];
-        this.formControlGroupName = 'equityHolders';
+        this.formControlGroupName = 'equityHolder';
     }
 
     ngAfterViewInit () : any {
@@ -214,10 +223,10 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
-            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.scrollService.scrollMeOut( this.el , 'easeOutQuart' , 10 );
-            } , 500 );
+                this.isInSummaryState = true;
+            } , 1200 );
+            this.scrollService.scrollToNextUndoneBlock( this.formModel );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
@@ -244,7 +253,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private get licensee () {
-        return Licensees.getLicensee( this.formModelService.context.licensee );
+        return LicenseesAbstract.getLicensee( this.formModelService.context.licensee );
     }
 
     private onSwitchChanged ( value ) {
@@ -284,9 +293,6 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'partnership' ] ) {
-            return this.formModel.controls[ 'partnership' ].valid && this.formModelService.getFlags( 'partnershipIsDone' );
-        }
-        return false;
+        return this.formModelService.getFlags( 'partnershipIsDone' );
     }
 }
