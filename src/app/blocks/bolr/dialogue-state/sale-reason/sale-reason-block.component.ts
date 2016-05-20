@@ -87,6 +87,11 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , SaleReasonBlockComponent.CLASS_NAME );
         } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
+        } );
         return undefined;
     }
 

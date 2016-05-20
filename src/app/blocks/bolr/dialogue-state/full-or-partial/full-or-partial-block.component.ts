@@ -99,6 +99,11 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , FullOrPartialBlockComponent.CLASS_NAME );
         } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
+        } );
         return undefined;
     }
 
