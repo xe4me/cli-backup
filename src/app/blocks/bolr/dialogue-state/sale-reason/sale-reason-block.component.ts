@@ -99,10 +99,10 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.controlGroup.valid ) {
+            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.isInSummaryState = true;
-            } , 1200 );
-            this.scrollService.scrollToNextUndoneBlock( this.formModel );
+                this.scrollService.scrollToNextUndoneBlock( this.formModel );
+            } , 600 );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

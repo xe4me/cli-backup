@@ -135,10 +135,10 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
+            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.isInSummaryState = true;
-            } , 1200 );
-            this.scrollService.scrollToNextUndoneBlock( this.formModel );
+                this.scrollService.scrollToNextUndoneBlock( this.formModel );
+            } , 600 );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

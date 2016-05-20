@@ -158,10 +158,10 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.controlGroup.valid ) {
+            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.isInSummaryState = true;
-            } , 1200 );
-            this.scrollService.scrollMeOut( this.el );
+                this.scrollService.scrollToNextUndoneBlock( this.formModel );
+            } , 600 );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,

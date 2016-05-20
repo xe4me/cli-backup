@@ -82,10 +82,6 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                     heading-contxtual-label'>Their names are&nbsp;</label><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading
                                     heading-contxtual-label'>Their name is&nbsp;</label><!--
-                            --><span class='1/6 heading heading-contxtual-label' *ngIf='
-                                    dynamicControlGroup.controls.length > 1 '>
-                                    <span *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) '>and</span>
-                                </span><!--
                             --><my-md-input
                                 (onEnter)='ok()'
                                 [isInSummaryState]='isInSummaryState'
@@ -94,8 +90,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                 valMaxLength='50'
                                 class='1/3 '
                                 label='First name'
-                                [parentControl]='item.controls.firstName'
-                                >
+                                [parentControl]='item.controls.firstName'>
                                 </my-md-input><!--
                              --><my-md-input
                                     (onEnter)='ok()'
@@ -142,7 +137,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         FORM_DIRECTIVES ,
         AmpGroupButtonComponent ,
         AmpCollapseDirective ,
-        AmpSlideDirective,
+        AmpSlideDirective ,
         AmpButton
     ] ,
     providers  : [ TemplateRef ]
@@ -223,10 +218,10 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     public ok () {
         this.hasClickedOnOkButton = true;
         if ( this.formModel.controls[ this.formControlGroupName ].valid ) {
+            this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
-                this.isInSummaryState = true;
-            } , 1200 );
-            this.scrollService.scrollToNextUndoneBlock( this.formModel );
+                this.scrollService.scrollToNextUndoneBlock( this.formModel );
+            } , 700 );
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
