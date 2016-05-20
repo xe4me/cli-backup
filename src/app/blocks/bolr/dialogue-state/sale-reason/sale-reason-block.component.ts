@@ -26,17 +26,16 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         [valMaxLength]='saleReason.maxLength'>
                     </amp-textarea>
                 </section>
-                <div *ngIf='(hasClickedOnOkButton || getSaleReasonControl().touched) &&!getSaleReasonControl().valid' class='errors mb-40'>
+                <div class='errors mb-40' *ngIf='(hasClickedOnOkButton || getSaleReasonControl().touched) 
+                &&!getSaleReasonControl().valid' >
                      <span class='icon icon--close icon-errors'></span>Please enter your reasons.
                 </div>
-
                <amp-button [disabled]='!getSaleReasonControl().valid' class='btn btn-ok mt-10'
                *ngIf='!isInSummaryState' (click)='ok()'>
                     OK
                 </amp-button>
-                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10 '>
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change'>
                     Change
-
                 </amp-button>
                 <div class='hr-block-divider mt-80'></div>
             </div>

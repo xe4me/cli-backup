@@ -16,29 +16,28 @@ import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-te
             <div id='full-or-partial-block' class='full-or-partial-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
-                <section [collapse]='isInSummaryState===true'>
+                <section [collapse]='isInSummaryState'>
                     <div  class='grid__item mb-30 mt-45'>
                         <amp-group-button
                             scrollOutOn='null'
                             class='grid__item 4/9'
                             (select)='onSwitchChanged($event)'
                             [buttons]='fullOrPartialButtons.buttons'
-                            [parentControl]='formControl[0].control'
-                            [groupName]='fullOrPartialButtons.fullOrPartial'
+                            [parentControl]='fullOrPartialControl'
+                            [groupName]='fullOrPartialButtons.groupName'
                             >
                         </amp-group-button>
-
                     </div>
                 </section>
-                <div [collapse]='isInSummaryState!==true' class='heading heading-contxtual-label mt-30 mb-10'>
-                    <span class='summary-state'>{{ formControl[0].control.value }} sale</span>
+                <div [collapse]='!isInSummaryState' class='heading heading-contxtual-label mt-30 mb-10'>
+                    <span class='summary-state'>{{ fullOrPartialControl.value }} sale</span>
                 </div>
-                <section class='mt-10'  [collapse]='formControl[0].control.value!=="Full"'>
+                <section class='mt-10'  [collapse]='!isFullSelected'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>
-                        <span *ngFor='#item of formModelService.advisers ; #i = index'>
-                            <span *ngIf='formModelService.advisers.length > 1 '>
-                                <span *ngIf=' i < ( formModelService.advisers.length - 1 ) && i >0 '> , </span>
-                                <span *ngIf=' i === ( formModelService.advisers.length - 1 ) '> and </span>
+                        <span *ngFor='#item of advisers ; #i = index'>
+                            <span *ngIf='advisers.length > 1 '>
+                                <span *ngIf=' i < ( advisers.length - 1 ) && i >0 '> , </span>
+                                <span *ngIf=' i === ( advisers.length - 1 ) '> and </span>
                             </span>
                             {{ item.adviserName }} ({{ item.adviserId }})
                         </span>
@@ -56,13 +55,12 @@ import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-te
                         [valMaxLength]='impactedAdvisersDetails.maxLength'>
                     </amp-textarea>
                 </section>
-                <amp-button [class.btn-ok-margin-top]='formControl[0].control.value!=="Full"' 
-                *ngIf='!isInSummaryState' (click)='ok()' 
+                <amp-button [class.btn-ok-margin-top]='!isFullSelected' *ngIf='!isInSummaryState' (click)='ok()' 
                 [disabled]="!canGoNext"  class='btn
                 btn-ok '>
                     OK
                 </amp-button>
-                <amp-button [class.btn-ok-margin-top]='formControl[0].control.value!=="Full"' *ngIf='isInSummaryState' 
+                <amp-button [class.btn-ok-margin-top]='!isFullSelected' *ngIf='isInSummaryState' 
                 (click)='change()' class='btn btn-change btn-ok-margin-top'>
                     Change
                 </amp-button>
@@ -70,8 +68,7 @@ import { AmpTextareaComponent } from '../../../../components/amp-textarea/amp-te
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './full-or-partial-block.component.scss' ).toString() ] ,
-    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective , AmpTextareaComponent ] ,
-    providers  : [ TemplateRef ]
+    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective , AmpTextareaComponent ]
 } )
 export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'FullOrPartialBlockComponent';
@@ -174,8 +171,24 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
+    private get isFullSelected () {
+        return this.formControl[ 0 ].control.value === this.fullOrPartialButtons.buttons[ 0 ].value;
+    }
+
+    private get advisers () {
+        return this.formModelService.advisers;
+    }
+
+    private get isPartialSelected () {
+        return this.formControl[ 0 ].control.value === this.fullOrPartialButtons.buttons[ 1 ].value;
+    }
+
     private isCurrentBlockActive () {
         return this.formModelService.getFlags( 'equityHoldersIsDone' );
+    }
+
+    private get fullOrPartialControl () {
+        return this.formControl[ 0 ].control;
     }
 
     private onSwitchChanged ( value ) {
