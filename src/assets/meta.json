@@ -150,8 +150,8 @@
                 "template": "src/styleguide/components/amp-checkbox/basic_usage.html",
                 "styles": "src/styleguide/components/amp-checkbox/basic_usage.scss",
                 "source": "src/styleguide/components/amp-checkbox/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-checkbox/amp-checkbox.test.spec",
-                "jasmine": "src/styleguide/components/amp-checkbox/amp-checkbox.spec.ts",
+                "galen": "src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-checkbox/amp-checkbox.component.spec.ts",
                 "component": "amp-checkbox-block-basic-usage",
                 "component_src_location": "components/amp-checkbox/basic_usage",
                 "name": "Amp Checkbox Basic Usage"
