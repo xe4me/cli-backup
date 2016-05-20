@@ -15,7 +15,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     template   : `
             <div id='sale-reason-block' *ngIf='componentIsVisible' class='sale-reason-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
-                <h3 class='heading heading-intro mb-5'>What are the reasons for your sale?</h3>
+                <h3 class='heading heading-intro mb-5'>What is the rationale for your sale?</h3>
                 <section>
                     <amp-textarea
                         class='1/1'
