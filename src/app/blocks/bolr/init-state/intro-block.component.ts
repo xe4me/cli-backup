@@ -2,7 +2,6 @@ import { FormBlock , NamedControl } from '../../formBlock';
 import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
 import { ThemeIDDirective } from '../../../directives/themeId.directive';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
-import { ScrollService } from 'amp-ddc-ui-core/src/app/services/scroll/scroll.service';
 import { I18nSelectPipe } from 'angular2/common';
 import { AmpButton } from '../../../components/amp-button/amp-button.component';
 @Component( {
@@ -29,7 +28,7 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
   ` ,
     // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './intro-block.component.scss' ).toString() ] ,
-    directives : [ ThemeIDDirective, AmpButton ] ,
+    directives : [ ThemeIDDirective , AmpButton ] ,
     pipes      : [ I18nSelectPipe ]
 } )
 export class IntroBlockComponent extends FormBlock {
@@ -41,9 +40,7 @@ export class IntroBlockComponent extends FormBlock {
                null         : 'Buyer of last resort'
            };
     // TODO: Update the title of the form based on the licensee @ViewChild
-    constructor ( private el : ElementRef ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
+    constructor ( private formModelService : FormModelService ) {
         super();
     }
 

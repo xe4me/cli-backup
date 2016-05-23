@@ -1,5 +1,5 @@
 import { FormBlock } from '../../formBlock';
-import { Component , ElementRef } from 'angular2/core';
+import { Component , ElementRef , AfterViewInit } from 'angular2/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -8,9 +8,7 @@ import {
     AssociationLengthAbstract ,
     ExerciseDateAbstract
 } from 'amp-ddc-ui-core/ui-core';
-import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { AmpOverlayComponent } from '../../../components/amp-overlay/amp-overlay.component';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { AmpStickyOnScrollDirective } from '../../../directives/amp-sticky-on-scroll.directive';
 import { ContactDetailsBlockComponent } from '../../../blocks/bolr/dialogue-state/contact-details/contact-details-block.component';
 import { SaleReasonBlockComponent } from '../../../blocks/bolr/dialogue-state/sale-reason/sale-reason-block.component';
@@ -21,10 +19,11 @@ import { FullOrPartialBlockComponent } from '../../../blocks/bolr/dialogue-state
 import { ExerciseDateBlockComponent } from '../../../blocks/bolr/dialogue-state/exercise-date/exercise-date-block.component';
 import { PracticeAddressBlockComponent } from '../../../blocks/bolr/dialogue-state/practice-address/practice-address.component';
 import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue-state/practice-association/practice-association-block.component';
+import { Router } from 'angular2/router';
 @Component( {
     selector   : 'review-block' ,
     template   : `
-            <div *ngIf='formIsFullyValid' id='review-block' class='review grid__item mb-80'>
+            <div id='review-block' class='review grid__item mb-80'>
                 <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class='review--sections'>
@@ -174,12 +173,13 @@ practices that may be interested in becoming the servicing practice for some or 
                     </section><!--
                  --><section class='review--sections__right grid__item 1/4' [sticky-on-scroll]='shouldStick' >
                         <div class='mb-30 mt-25'>
-                            <button class='btn btn-submit btn-review ' (click)='submit()'>
+                            <button class='btn btn-submit btn-review' type='button' (click)='submit($event)'>
                                 Submit <span class='icon icon--chevron-right'></span>
                             </button>
                         </div>
                         <div>
-                            <button class='btn btn-change btn-review' (click)='download()'>Download a copy</button>
+                            <button class='btn btn-change btn-review' type='button' (click)='download()'>Download a 
+                            copy</button>
                         </div>
                     </section>
                 </div>
@@ -189,8 +189,7 @@ practices that may be interested in becoming the servicing practice for some or 
     directives : [
         AmpOverlayComponent ,
         AmpStickyOnScrollDirective
-    ] ,
-    providers  : [ TemplateRef ]
+    ]
 } )
 export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME        = 'ReviewBlockComponent';
@@ -199,6 +198,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
+                  private router : Router ,
                   private el : ElementRef ) {
         super();
         this.formControl          = [];
@@ -234,7 +234,8 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
         this.scrollService.scrollToComponentByClassName( componentName );
     }
 
-    private submit () {
+    private submit ( event ) {
+        this.goToConfirmationPage( event );
     }
 
     private download () {
@@ -414,6 +415,10 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
 
     private get practiceAddress () {
         return this.formModelService.getFlags( 'addressIsDone' ) === true ? this.addressBlock.address + ', ' + this.addressBlock.suburb + ', ' + this.addressBlock.state + ', ' + this.addressBlock.postcode + '.' : '';
+    }
+
+    private goToConfirmationPage ( event ) {
+        this.router.navigate( [ '/BuyBackFormComponent' , { id : 'receipt' } ] );
     }
 }
 
