@@ -1,6 +1,6 @@
 import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/core';
 import { Control , ControlGroup } from 'angular2/common';
-import { FormBlock , NamedControl } from '../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { InputWithLabelGroupComponent } from '../../../../component-groups/input-with-label-group/input-with-label-group.component';
@@ -84,9 +84,10 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     </div>
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent , AmpButton ] ,
-        styles     : [ require( './contact-details-block.component.scss' ).toString() ]
+        styles     : [ require( './contact-details-block.component.scss' ).toString() ],
+        providers  : [ provideParent(ContactDetailsBlockComponent) ]
     } )
-export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit {
+export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit, FormBlock {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
     private contactDetails                 = {
         phone : {

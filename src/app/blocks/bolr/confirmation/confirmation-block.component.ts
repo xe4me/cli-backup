@@ -1,4 +1,4 @@
-import { FormBlock } from '../../formBlock';
+import { FormBlock, provideParent } from '../../formBlock';
 import { Component , ElementRef  , ViewEncapsulation } from 'angular2/core';
 import { ThemeIDDirective } from '../../../directives/themeId.directive';
 import {
@@ -33,9 +33,10 @@ import {
           ` ,
     styles        : [ require( './confirmation-block.component.scss' ).toString() ] ,
     directives    : [ ThemeIDDirective ] ,
-    encapsulation : ViewEncapsulation.None
+    encapsulation : ViewEncapsulation.None,
+    providers  : [ provideParent(ConfirmationBlockComponent) ]
 } )
-export class ConfirmationBlockComponent extends FormBlock {
+export class ConfirmationBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME = 'ConfirmationBlockComponent';
 
     constructor ( private progressObserver : ProgressObserverService ,
@@ -60,4 +61,3 @@ export class ConfirmationBlockComponent extends FormBlock {
         return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
     }
 }
-

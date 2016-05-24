@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl } from '../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import {
     FormModelService ,
@@ -24,12 +24,12 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
     selector   : 'practice-association-block' ,
     template   : `
             <div id='practice-association-block' *ngIf='componentIsVisible' class='practice-association-n mt-60'>
-                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
+                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <section class='mb-30'>
                     <h3 class='heading heading-intro mb-30'>How long has your practice been with {{ licensee }}?</h3>
                     <div class='heading heading-contxtual-label'>
-                        At the time of my requested exercise date, my practice will have been with {{ licensee }} for 
-                        <span *ngIf='isInSummaryState' class='summary-state'>{{ 
+                        At the time of my requested exercise date, my practice will have been with {{ licensee }} for
+                        <span *ngIf='isInSummaryState' class='summary-state'>{{
                         getAssociationPracticeLabel(getControl( associationLengthRadiosGroupName ).value) }}
                         </span>
                     </div>
@@ -41,12 +41,12 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
                             (select)='onAssociationLengthSelect($event)'
                             [buttons]='associationLengthOptions'
                             [parentControl]='getControl(associationLengthRadiosGroupName)'
-                            [groupName]='associationLengthRadiosGroupName'   
+                            [groupName]='associationLengthRadiosGroupName'
                             >
                         </amp-radio-button-group>
                 </section>
-                
-                <div [class.mb-35]='getControl( exerciseDateRadiosGroupName ).value!=="later_than"' *ngIf='isInSummaryState' 
+
+                <div [class.mb-35]='getControl( exerciseDateRadiosGroupName ).value!=="later_than"' *ngIf='isInSummaryState'
                 class='heading heading-contxtual-label'>
                     <h3 class='heading heading-intro  mb-30'>And your requested exercise date?</h3>
                         <span class='summary-state'>{{ getExerciseLengthLabel(getControl( exerciseDateRadiosGroupName ).value) }}</span>
@@ -62,12 +62,12 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
                                 (select)='onExerciseDateSelect($event)'
                                 [buttons]='exerciseDateOptions'
                                 [parentControl]='getControl(exerciseDateRadiosGroupName)'
-                                [groupName]='exerciseDateRadiosGroupName'   
+                                [groupName]='exerciseDateRadiosGroupName'
                                 >
                             </amp-radio-button-group>
                     </section>
                 </div>
-                
+
                 <section  *ngIf='showExpCircumstances'>
                         <amp-textarea
                             class='1/1'
@@ -77,10 +77,10 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
                             label='Exceptional circumstances'
                             [parentControl]='getControl(exerciseDateRadiosTextFieldName)'
                             valMaxLength='500'>
-                        </amp-textarea> 
+                        </amp-textarea>
                 </section>
-                
-                
+
+
                 <div *ngIf='showRequiredError' class='errors mb-40'>
                     <div *ngIf='!getControl(exerciseDateRadiosTextFieldName).valid'>
                         <div>
@@ -89,8 +89,8 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
                     </div>
                 </div>
                 <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
-               <button class='btn btn-ok 
-               mt-10' *ngIf='!isInSummaryState' (click)='ok()' 
+               <button class='btn btn-ok
+               mt-10' *ngIf='!isInSummaryState' (click)='ok()'
                [disabled]='!controlGroup.valid'  >
                     OK
                 </button>
@@ -108,9 +108,9 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
         AmpCollapseDirective ,
         AmpSlideDirective
     ] ,
-    providers  : [ TemplateRef ]
+    providers  : [ TemplateRef , provideParent(PracticeAssociationBlockComponent) ]
 } )
-export class PracticeAssociationBlockComponent extends FormBlock implements AfterViewInit {
+export class PracticeAssociationBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'PracticeAssociationBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -326,5 +326,3 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
         } );
     }
 }
-
-
