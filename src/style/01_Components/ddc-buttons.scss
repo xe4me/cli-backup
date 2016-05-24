@@ -20,9 +20,9 @@ $btn-change-border-color: $amp-colour-primary;
 $btn-change-background-color: transparent;
 
 // btn change-anchor
-$btn-change-anchor-hover-background-color: $amp-colour-secondary-darkest;
-$btn-change-anchor-active-background-color: $amp-colour-primary;
-$btn-change-anchor-color: $amp-colour-secondary;
+$btn-anchor-hover-background-color: $amp-colour-secondary-darkest;
+$btn-anchor-active-background-color: $amp-colour-primary;
+$btn-anchor-color: $amp-colour-secondary;
 
 // btn-submit
 $btn-submit-background-color: $amp-colour-secondary;
@@ -123,21 +123,21 @@ $btn-review-default-width: 238px;
   }
 }
 
-.#{$namespace}btn-change-anchor,
-%#{$namespace}btn-change-anchor {
+.#{$namespace}btn-anchor,
+%#{$namespace}btn-anchor {
   @include transition(color $buttons-transition-time ease-in-out);
   @extend %#{$namespace}font-size-tiny;
   vertical-align: initial !important;
   padding: 0 !important;
-  color: $btn-change-anchor-color;
+  color: $btn-anchor-color;
   &:hover, &:focus {
     &:not([disabled]) {
-      color: $btn-change-anchor-hover-background-color;
+      color: $btn-anchor-hover-background-color;
     }
   }
   &:active {
     &:not([disabled]) {
-      color: $btn-change-anchor-active-background-color;
+      color: $btn-anchor-active-background-color;
     }
   }
 }

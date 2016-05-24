@@ -230,7 +230,10 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
 
     private validateDate () {
         let enteredDate = this.formControl[ 0 ].control.value;
-        let datesDiff   = this.ampDateService.getDatesDiff( this.ampDateService.today , enteredDate );
+        if ( enteredDate === null || enteredDate.trim().length === 0 ) {
+            return;
+        }
+        let datesDiff = this.ampDateService.getDatesDiff( this.ampDateService.today , enteredDate );
         if ( this.controlGroup( 'fullOrPartial' ).controls[ 'fullOrPartial' ].value === 'Full' ) {
             this.validateDateField( datesDiff , this.associtationExerciseDateValue );
         } else {
