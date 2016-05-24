@@ -1,0 +1,44 @@
+@import '../../../../style/require';
+
+$font-size: $amp-base-font-size * 2 / 5 !default;
+
+$logo-height: $ddc-log-height !default;
+$btn-download-width: 240px;
+$amp-ddc-public-asset: '../../../../../src/assets/';
+
+:host {
+  width: 100%;
+  display: block;
+}
+
+.confirmation-block {
+  margin: 0 $amp-ddc-padding * 2;
+  max-height: 1000px;
+  height: auto;
+  overflow: hidden;
+
+  &--logo {
+    min-height: $logo-height;
+    width: 100%;
+    margin-top: $amp-ddc-padding * 2;
+    background-position: left bottom;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    &.DEA_AMPFP {
+      background-image: url($amp-ddc-public-asset + 'images/logo/AMPFP_logo.jpg');
+    }
+
+    &.DEA_HILLROSS {
+      background-image: url($amp-ddc-public-asset + 'images/logo/Hillross_logo.jpg');
+    }
+
+    &.DEA_CHARTER {
+      background-image: url($amp-ddc-public-asset + 'images/logo/Charter_logo.jpg');
+    }
+  }
+
+  .btn {
+    width: $btn-download-width;
+  }
+
+}
