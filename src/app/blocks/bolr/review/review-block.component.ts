@@ -47,8 +47,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <span>{{ phone }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeContactDetailsBlock()'>change
-                                </button>         
+                                <amp-button class='btn btn-change-anchor' (click)='changeContactDetailsBlock()'>
+                                    change
+                                </amp-button>         
                             </div>    
                         </div>
                         
@@ -61,8 +62,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <span>{{ partnershipLastName }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changePartnershipBlock()'>change
-                                </button>                 
+                                <amp-button class='btn btn-change-anchor' (click)='changePartnershipBlock()'>
+                                    change
+                                </amp-button>
                             </div>    
                         </div>
                         
@@ -74,8 +76,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <span>{{ practiceAddress }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changePracticeAddressBlock()'>change
-                                </button>                 
+                                <amp-button class='btn btn-change-anchor' (click)='changePracticeAddressBlock()'>
+                                    change
+                                </amp-button>                 
                             </div>    
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -91,8 +94,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 </span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeEquityHolderBlock()'>change
-                                </button>                 
+                                <amp-button class='btn btn-change-anchor' (click)='changeEquityHolderBlock()'>
+                                    change
+                                </amp-button>                 
                             </div>    
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -115,8 +119,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <span *ngIf='isPartialSale'>Partial sale</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeFullOrPartialBlock()'>change
-                                </button>                 
+                                <amp-button class='btn btn-change-anchor' (click)='changeFullOrPartialBlock()'>
+                                    change
+                                </amp-button>                 
                             </div>    
                         </div>
                         <div *ngIf='isFullSale' class='review--item grid__item 1/1'>
@@ -128,8 +133,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <span *ngIf='hasExceptionalCircumstances'>{{ exceptionalCircumstances }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changePracticeAssociationBlock()'>change
-                                </button>                 
+                                <amp-button class='btn btn-change-anchor' (click)='changePracticeAssociationBlock()'>
+                                    change
+                                </amp-button>                 
                             </div>    
                         </div>
                         <div *ngIf='isPartialSale' class='review--item grid__item 1/1'>
@@ -140,8 +146,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <span>{{ saleReason }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeSaleReasonBlock()'>change</button>
-                                                 
+                                <amp-button class='btn btn-change-anchor' (click)='changeSaleReasonBlock()'>
+                                    change
+                                </amp-button>                 
                             </div>    
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -152,8 +159,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <span>{{ exerciseDate }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeExerciseDateBlock()'>change
-                                </button>                 
+                                <amp-button class='btn btn-change-anchor' (click)='changeExerciseDateBlock()'>
+                                    change
+                                </amp-button>                 
                             </div>    
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -166,8 +174,9 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
 practices that may be interested in becoming the servicing practice for some or all of the register.</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeAcknowledgeBlock()'>change
-                                </button>                 
+                                <amp-button class='btn btn-change-anchor' (click)='changeAcknowledgeBlock()'>
+                                    change
+                                </amp-button>                 
                             </div>    
                         </div>
                     </section><!--
