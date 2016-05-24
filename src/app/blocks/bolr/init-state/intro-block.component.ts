@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl } from '../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../formBlock';
 import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
 import { ThemeIDDirective } from '../../../directives/themeId.directive';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
@@ -29,9 +29,10 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
     // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './intro-block.component.scss' ).toString() ] ,
     directives : [ ThemeIDDirective , AmpButton ] ,
-    pipes      : [ I18nSelectPipe ]
+    pipes      : [ I18nSelectPipe ] ,
+    providers  : [ provideParent(IntroBlockComponent) ]
 } )
-export class IntroBlockComponent extends FormBlock {
+export class IntroBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME             = 'IntroBlockComponent';
            licenseeFormName : any = {
                DEA_AMPFP    : 'Buyer of last resort' ,

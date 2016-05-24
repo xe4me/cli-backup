@@ -1,6 +1,6 @@
 import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/core';
 import { Control , ControlGroup } from 'angular2/common';
-import { FormBlock , NamedControl } from '../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../formBlock';
 import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
 import {
     FormModelService ,
@@ -47,9 +47,10 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
     </div>
   ` ,
         directives : [ AmpOverlayComponent , AmpCheckboxComponent , AmpButton ] ,
-        styles     : [ require( './acknowledge-block.component.scss' ).toString() ]
+        styles     : [ require( './acknowledge-block.component.scss' ).toString() ],
+        providers  : [ provideParent(AcknowledgeBlockComponent) ]
     } )
-export class AcknowledgeBlockComponent extends FormBlock implements AfterViewInit {
+export class AcknowledgeBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME : string             = 'AcknowledgeBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;

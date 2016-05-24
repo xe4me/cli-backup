@@ -1,4 +1,4 @@
-import { FormBlock } from '../../formBlock';
+import { FormBlock, provideParent } from '../../formBlock';
 import { Component , ElementRef , AfterViewInit } from 'angular2/core';
 import {
     FormModelService ,
@@ -31,17 +31,17 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                         <div class='review--item grid__item 1/1 mb-25'>
                             <div class='heading heading-contxtual-label'>
                                 <span>{{practiceName}}</span>
-                            </div> 
-                            <div class='heading heading-contxtual-label'> 
+                            </div>
+                            <div class='heading heading-contxtual-label'>
                                 <div class='grid__item 1/2'>Practice ID: {{payeeID}}
                                 </div><!--
                                 --><div class='grid__item 1/2'>Practice principal: {{practicePrincipal}}</div>
-                            </div>    
+                            </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Contact details</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ email }}</span>
                                 <span>{{ phone }}</span>
@@ -49,14 +49,14 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changeContactDetailsBlock()'>
                                     change
-                                </amp-button>         
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
-                        
+
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Partnership manager</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ partnershipFirstName }}</span>
                                 <span>{{ partnershipLastName }}</span>
@@ -65,26 +65,26 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                                 <amp-button class='btn btn-change-anchor' (click)='changePartnershipBlock()'>
                                     change
                                 </amp-button>
-                            </div>    
+                            </div>
                         </div>
-                        
+
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Practice address</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ practiceAddress }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changePracticeAddressBlock()'>
                                     change
-                                </amp-button>                 
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Other equity holders in the practice</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10' *ngIf='!hasEquityHolders' >
                                     <span>None</span>
                             </div><!--
@@ -96,19 +96,19 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changeEquityHolderBlock()'>
                                     change
-                                </amp-button>                 
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Full or Partial {{ licenseeBuybackFacility }}</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
                                 <div *ngIf='isFullSale'>
                                     <span>Full sale - </span>
                                     <span *ngFor='#item of advisers ; #i = index'>
                                         <span *ngIf='advisers.length > 1 '>
-                                            <span *ngIf=' i < ( advisers.length - 1 ) && i >0 '> , </span> 
+                                            <span *ngIf=' i < ( advisers.length - 1 ) && i >0 '> , </span>
                                             <span *ngIf=' i === ( advisers.length - 1 ) '> and </span>
                                         </span>
                                         {{ item.adviserName }} ({{ item.adviserId }})
@@ -121,13 +121,13 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changeFullOrPartialBlock()'>
                                     change
-                                </amp-button>                 
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
                         <div *ngIf='isFullSale' class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Practice tenure and amount of notice being provided</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ exerciseLengthText }}</span>
                                 <span *ngIf='hasExceptionalCircumstances'>{{ exceptionalCircumstances }}</span>
@@ -135,57 +135,57 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changePracticeAssociationBlock()'>
                                     change
-                                </amp-button>                 
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
                         <div *ngIf='isPartialSale' class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Reasons for sale</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ saleReason }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changeSaleReasonBlock()'>
                                     change
-                                </amp-button>                 
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Requested exercise date</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
                                 <span>{{ exerciseDate }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changeExerciseDateBlock()'>
                                     change
-                                </amp-button>                 
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
                             <div class='review--item__title grid__item 3/10'>
                                 <span>Acknowledgement</span>
-                            </div><!--    
+                            </div><!--
                         --><div class='review--item__value grid__item 6/10'>
-                                <span>I agree to {{ licensee }} advertising my practice's register internally, and 
-                                for {{ licensee }}  to seek out 
+                                <span>I agree to {{ licensee }} advertising my practice's register internally, and
+                                for {{ licensee }}  to seek out
 practices that may be interested in becoming the servicing practice for some or all of the register.</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-change-anchor' (click)='changeAcknowledgeBlock()'>
                                     change
-                                </amp-button>                 
-                            </div>    
+                                </amp-button>
+                            </div>
                         </div>
                     </section><!--
                  --><section class='review--sections__right grid__item 1/4' [sticky-on-scroll]='shouldStick' >
                         <div class='mb-30 mt-25'>
-                            <amp-button (click)='submit($event)' [disabled]='isImpersonated' class='btn btn-submit 
+                            <amp-button (click)='submit($event)' [disabled]='isImpersonated' class='btn btn-submit
                             btn-review'>
                                 Submit <span class='icon icon--chevron-right'></span>
-                            </amp-button>    
+                            </amp-button>
                         </div>
                         <div>
                             <amp-button (click)='download($event)'class='btn btn-change btn-review'>
@@ -201,9 +201,10 @@ practices that may be interested in becoming the servicing practice for some or 
         AmpOverlayComponent ,
         AmpStickyOnScrollDirective ,
         AmpButton
-    ]
+    ],
+    providers  : [ provideParent(ReviewBlockComponent) ]
 } )
-export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
+export class ReviewBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME        = 'ReviewBlockComponent';
     private formIsFullyValid = false;
 
@@ -438,4 +439,3 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
         this.router.navigate( [ '/BuyBackFormComponent' , { id : 'receipt' } ] );
     }
 }
-
