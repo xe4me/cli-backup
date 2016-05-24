@@ -18,6 +18,7 @@ import * as browser from 'angular2/platform/browser';
   selector: 'amp-button',
   template: `
     <button
+        type='button'
         (click)='click'
         [disabled]='disabled'
         [class]='_class'

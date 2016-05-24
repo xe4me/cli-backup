@@ -20,11 +20,11 @@ import { ExerciseDateBlockComponent } from '../../../blocks/bolr/dialogue-state/
 import { PracticeAddressBlockComponent } from '../../../blocks/bolr/dialogue-state/practice-address/practice-address.component';
 import { PracticeAssociationBlockComponent } from '../../../blocks/bolr/dialogue-state/practice-association/practice-association-block.component';
 import { Router } from 'angular2/router';
+import { AmpButton } from '../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'review-block' ,
     template   : `
-            <div id='review-block' class='review grid__item mb-80'>
-                <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
+            <div *ngIf='formIsFullyValid' id='review-block' class='review grid__item mb-80'>
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class='review--sections'>
                     <section class='review--sections__left grid__item 2/4'>
@@ -47,8 +47,9 @@ import { Router } from 'angular2/router';
                                 <span>{{ phone }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeContactDetailsBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changeContactDetailsBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
 
@@ -61,8 +62,9 @@ import { Router } from 'angular2/router';
                                 <span>{{ partnershipLastName }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changePartnershipBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changePartnershipBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
 
@@ -74,8 +76,9 @@ import { Router } from 'angular2/router';
                                 <span>{{ practiceAddress }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changePracticeAddressBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changePracticeAddressBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -91,8 +94,9 @@ import { Router } from 'angular2/router';
                                 </span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeEquityHolderBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changeEquityHolderBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -115,8 +119,9 @@ import { Router } from 'angular2/router';
                                 <span *ngIf='isPartialSale'>Partial sale</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeFullOrPartialBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changeFullOrPartialBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
                         <div *ngIf='isFullSale' class='review--item grid__item 1/1'>
@@ -128,8 +133,9 @@ import { Router } from 'angular2/router';
                                 <span *ngIf='hasExceptionalCircumstances'>{{ exceptionalCircumstances }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changePracticeAssociationBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changePracticeAssociationBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
                         <div *ngIf='isPartialSale' class='review--item grid__item 1/1'>
@@ -140,8 +146,9 @@ import { Router } from 'angular2/router';
                                 <span>{{ saleReason }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeSaleReasonBlock()'>change</button>
-
+                                <amp-button class='btn btn-change-anchor' (click)='changeSaleReasonBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -152,8 +159,9 @@ import { Router } from 'angular2/router';
                                 <span>{{ exerciseDate }}</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeExerciseDateBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changeExerciseDateBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -166,20 +174,23 @@ import { Router } from 'angular2/router';
 practices that may be interested in becoming the servicing practice for some or all of the register.</span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
-                                <button class='btn btn-change-anchor' (click)='changeAcknowledgeBlock()'>change
-                                </button>
+                                <amp-button class='btn btn-change-anchor' (click)='changeAcknowledgeBlock()'>
+                                    change
+                                </amp-button>
                             </div>
                         </div>
                     </section><!--
                  --><section class='review--sections__right grid__item 1/4' [sticky-on-scroll]='shouldStick' >
                         <div class='mb-30 mt-25'>
-                            <button class='btn btn-submit btn-review' type='button' (click)='submit($event)'>
+                            <amp-button (click)='submit($event)' [disabled]='isImpersonated' class='btn btn-submit
+                            btn-review'>
                                 Submit <span class='icon icon--chevron-right'></span>
-                            </button>
+                            </amp-button>
                         </div>
                         <div>
-                            <button class='btn btn-change btn-review' type='button' (click)='download()'>Download a
-                            copy</button>
+                            <amp-button (click)='download($event)'class='btn btn-change btn-review'>
+                                Download a copy
+                            </amp-button>
                         </div>
                     </section>
                 </div>
@@ -188,13 +199,14 @@ practices that may be interested in becoming the servicing practice for some or 
     styles     : [ require( './review-block.component.scss' ).toString() ] ,
     directives : [
         AmpOverlayComponent ,
-        AmpStickyOnScrollDirective
+        AmpStickyOnScrollDirective ,
+        AmpButton
     ],
     providers  : [ provideParent(ReviewBlockComponent) ]
 } )
 export class ReviewBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME        = 'ReviewBlockComponent';
-    private formIsFullyValid = true;
+    private formIsFullyValid = false;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -240,6 +252,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
     }
 
     private download () {
+        alert('Downloading the form ....');
     }
 
     private changeContactDetailsBlock () {
@@ -412,6 +425,10 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
 
     private get isPartialSale () {
         return this.fullOrPartialBlock.fullOrPartial === 'Partial';
+    }
+
+    private get isImpersonated () {
+        return this.formModelService.context.impersonatedUser !== null;
     }
 
     private get practiceAddress () {

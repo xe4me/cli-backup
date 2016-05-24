@@ -20,7 +20,7 @@ $header-font-family: $amp-font-open-sans-regular;
     box-sizing: border-box;
   }
   &__header {
-    margin-top: 13px;
+    margin-top: 20px;
     margin-bottom: 4px;
     padding: 0 45px;
     @include amp-family($header-font-family);
