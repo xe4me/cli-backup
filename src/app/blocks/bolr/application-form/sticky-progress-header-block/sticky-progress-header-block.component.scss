@@ -3,6 +3,11 @@
 $amp-ddc-public-asset: '../../../../../../src/assets/';
 $header-font-family: $amp-font-open-sans-regular;
 $sticky-background-color: $amp-colour-primary;
+$icon-color: $amp-colour-secondary-dark;
+$icon-hover-color: $amp-colour-secondary-darkest;
+$icon-active-color: $amp-colour-primary;
+$icons-transition-time: $ddc-buttons-and-icons-transition-time;
+
 :host {
   width: 100%;
   display: block;
@@ -57,12 +62,29 @@ $sticky-background-color: $amp-colour-primary;
       display: inline-block;
       float: left;
       width: 40%;
-
-      &--chat {
+      > span {
         vertical-align: sub;
+        cursor: pointer;
+        .icon {
+          color: $icon-color;
+          @include transition(color $icons-transition-time ease-in-out);
+        }
+        &:hover, &:focus {
+          .icon {
+            color: $icon-hover-color;
+          }
+        }
+        &:active {
+          &:not([disabled]) {
+            .icon {
+              color: $icon-active-color;
+            }
+          }
+        }
+      }
+      &--chat {
       }
       &--call {
-        vertical-align: sub;
         margin-left: 45px;
       }
 

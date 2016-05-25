@@ -1,5 +1,5 @@
 $namespace: $ddc-namespace !default;
-$buttons-transition-time: 300ms;
+$buttons-transition-time: $ddc-buttons-and-icons-transition-time;
 
 // btn-ok
 $btn-ok-color: $amp-colour-white;
