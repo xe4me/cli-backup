@@ -13,7 +13,7 @@ export class AmpDefaultRouterComponent implements OnInit {
      * */
     ngOnInit () : any {
         // Initially we're redirecting the request to the / (which is generally the details page)
-        this.router.navigate( [ 'BuyBackFormComponent' , { id : '' } ] );
+        this.router.navigate( [ 'ApplicationFormComponent' , { id : '' } ] );
         return undefined;
     }
 

@@ -1,8 +1,8 @@
-import { FormBlock } from '../../formBlock';
+import { FormBlock } from '../../../formBlock';
 import { Component , ElementRef , DynamicComponentLoader } from 'angular2/core';
-import { ThemeIDDirective } from '../../../directives/themeId.directive';
+import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
-import { AmpButton } from '../../../components/amp-button/amp-button.component';
+import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'bolr-intro-block' ,
     template   : `
@@ -16,9 +16,10 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
             </div>
             <p  class='bolr-intro-main__body mb3'>
                 Hi {{ practicePrincipalFirstName }}<br/>
-                You're about to request access to the {{ licenseeBuybackFacility }} facility.
+                You're about to complete your application and deed of undertaking for full {{ licenseeBuybackFacility
+                 }}.
             </p>
-            <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
+            <p class='bolr-intro-main__notes mb3'>We need a few details, this will take some time to complete, but you can save and continue at any time.</p>
             <amp-button class='btn btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
             </amp-button>            

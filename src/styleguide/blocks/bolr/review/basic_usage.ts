@@ -63,7 +63,7 @@ export class MockFormModelService {
 export default class BOLRReviewBlockBasicUsage implements OnInit {
     @ViewChild( ReviewBlockComponent )
     private _reviewBlockComponent : ReviewBlockComponent;
-    
+
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 

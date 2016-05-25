@@ -48,12 +48,12 @@ export class ConfirmationBlockComponent extends FormBlock {
     preBindControls ( _formBlockDef ) {
     }
 
-    private get licensee () {
-        return LicenseesAbstract.getLicensee( this.formModelService.licensee );
-    }
-
     private download () {
         alert( 'Begin downloading the form ...' );
+    }
+
+    private get licensee () {
+        return LicenseesAbstract.getLicensee( this.formModelService.licensee );
     }
 
     private get licenseeBuybackFacility () {

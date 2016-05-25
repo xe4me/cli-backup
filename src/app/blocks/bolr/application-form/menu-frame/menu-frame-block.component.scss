@@ -1,0 +1,89 @@
+@import '../../../../../style/require';
+
+$header-font-family: $amp-font-open-sans-regular;
+$menu-left-width: 20%;
+$menu-right-width: 80%;
+$left-menu-right-and-left-padding: 60px;
+:host {
+  width: 100%;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.frame {
+
+  .content {
+    padding-top: $sticky-menu-margin-bottom;
+  }
+  .sticky-progressbar {
+    z-index: 100;
+    width: 100%;
+    display: block;
+    transition: opacity 1s, height 1s, cubic-bezier(0.3, 0.06, 0.91, 0.45);
+    opacity: 0;
+    height: 0;
+  }
+
+  &--sticky {
+    .content {
+      //padding-top: $sticky-menu-height + $sticky-menu-margin-bottom !important;
+    }
+    .menu--left {
+      opacity: 1;
+      position: fixed;
+    }
+    .menu--right {
+      margin-left: $menu-left-width;
+    }
+    .sticky-progressbar {
+      position: fixed;
+      top: 0;
+      opacity: 1;
+      height: $sticky-menu-height !important;
+    }
+    .frame__divider {
+      transition: opacity .4s, ease-in-out;
+      opacity: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__divider {
+    margin-top: ($sticky-menu-height - 3);
+  }
+
+}
+
+.menu {
+
+  &--left {
+    opacity: 0;
+    @include transition(opacity .35s ease-out);
+
+    transition-delay: 0.5s;
+
+    padding-left: $left-menu-right-and-left-padding;
+    padding-right: $left-menu-right-and-left-padding;
+    @include amp-family($header-font-family);
+    @extend %#{$namespace}font-size-tiny;
+    @extend %#{$namespace}color-gray-darkest-most;
+    width: $menu-left-width;
+    float: left;
+    &--title {
+      font-weight: 700;
+      @extend %#{$namespace}color-primary-darkest;
+    }
+    &--hr {
+      margin: 46px 0;
+    }
+  }
+  &--right {
+
+    width: $menu-right-width;
+    float: left
+  }
+
+}
