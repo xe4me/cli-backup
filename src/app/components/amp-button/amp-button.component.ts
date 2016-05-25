@@ -38,13 +38,13 @@ export class AmpButton implements AfterContentInit {
 
     constructor(private elementRef: ElementRef, private renderer: Renderer, @SkipSelf() @Optional() public parent: FormBlock) {
         renderer.setElementAttribute(elementRef.nativeElement, 'class', null);
+    }
+
+    ngAfterContentInit() {
         this.domAdatper = new browser.BrowserDomAdapter();
         let contentStr = this.domAdatper.getText(this.elementRef.nativeElement);
 
         this.dataAutomationId = 'btn-' + (contentStr ? contentStr.replace(/\s+/g, '') : '');
-    }
-
-    ngAfterContentInit() {
         if (parent) {
             this.dataAutomationId += '_' + this.parent.blockType;
         }
