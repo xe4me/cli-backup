@@ -21,7 +21,8 @@ import { EventEmitter } from 'angular2/src/facade/async';
                 [parentControl]='parentControl'
                 [isRequired]='isRequired'
                 [valPattern]='valPattern'
-                [valMaxLength]='valMaxLength'>
+                [valMaxLength]='valMaxLength'
+                [valMinLength]='valMinLength'>
             </my-md-input>
         </div>
         ` ,
@@ -33,10 +34,11 @@ import { EventEmitter } from 'angular2/src/facade/async';
         'isRequired' ,
         'valPattern' ,
         'valMaxLength' ,
+        'valMinLength' ,
         'contxtualLabel' ,
         'showLabel' ,
         'tolowerCase' ,
-        'toupperCase',
+        'toupperCase' ,
         'width'
     ] ,
     directives : [ MdInputComponent ] ,
@@ -52,6 +54,7 @@ export class InputWithLabelGroupComponent {
     private isInSummaryState : boolean;
     private showLabel : boolean;
     private valMaxLength : number;
+    private valMinLength : number;
     private width : string        = '1/3';
     private onEnter : EventEmitter < string >;
     private onBlur : EventEmitter < string >;

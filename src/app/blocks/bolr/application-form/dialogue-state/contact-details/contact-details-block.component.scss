@@ -1,0 +1,16 @@
+
+:host {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-details-block {
+  position: relative;
+
+  input-with-label-group {
+    display: block;
+  }
+}
+
