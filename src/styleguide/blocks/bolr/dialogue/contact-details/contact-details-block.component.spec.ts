@@ -2,7 +2,7 @@ import {
     it , inject , injectAsync , describe , beforeEachProviders , TestComponentBuilder
 } from 'angular2/testing';
 import { Component , provide , ElementRef } from 'angular2/core';
-import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/dialogue-state/contact-details/contact-details-block.component.ts';
+import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/notification-form/dialogue-state/contact-details/contact-details-block.component.ts';
 import { MockFormModelService } from './mock-form-mode.service';
 import { MockScrollService } from './mock-scroll.service';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';

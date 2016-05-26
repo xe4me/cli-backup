@@ -1,5 +1,5 @@
 import { View , Component , ChangeDetectorRef } from 'angular2/core';
-import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/dialogue-state/contact-details/contact-details-block.component.ts';
+import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/notification-form/dialogue-state/contact-details/contact-details-block.component.ts';
 import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 @Component( {
     selector  : 'bolr-contact-details-block-basic-usage' ,

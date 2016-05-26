@@ -1,7 +1,7 @@
 import { View , Component , OnInit , ChangeDetectorRef , provide , ViewChild } from 'angular2/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
-import { IntroBlockComponent } from '../../../../app/blocks/bolr/init-state/intro-block.component.ts';
+import { IntroBlockComponent } from '../../../../app/blocks/bolr/notification-form/init-state/intro-block.component.ts';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { Observable }     from 'rxjs/Observable';
 import { BlockID } from 'amp-ddc-ui-core/ui-core';

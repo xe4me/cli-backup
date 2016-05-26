@@ -12,18 +12,20 @@
         >
         </amp-group-button>
     </div>
+    <section>
+        <div class='content'>
+            <amp-button (click)='control.updateValue("partial")' class='btn btn-ok'>
+                Partial
+            </amp-button>
+            <amp-button (click)='control.updateValue("full")' class='btn btn-ok'>
+                Full
+            </amp-button>
+        </div>
+    </section>
 
-    <button (click)='control.updateValue("partial")'>Change To Partial</button>
-    <button (click)='control.updateValue("full")'>Change To Full</button>
-
-    <div>
+    <div class="title">
         Value : {{ control.value}}
     </div>
-
-    <p>
-        Just to demonestrate scroll event on the button click
-        Just to demonestrate scroll event on the button click Just to demonestrate scroll event on the button click
-        Just to demonestrate scroll event on the button click Just to demonestrate scroll event on the button click
-    </p>
-
 </form>
+
+

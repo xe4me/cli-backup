@@ -38,12 +38,12 @@ export abstract class FormBlock {
         if ( instance.formControlGroupName ) {
             // Called by BaseForm straight after each block is dcl generated
             if ( formModel && this.formControl && this.formControl.length > 0 ) {
-                let tempControlGroup = new ControlGroup ( {} );
-                this.formControl.map (
-                    function ( namedControl ) {
-                        tempControlGroup.addControl ( namedControl.name , namedControl.control );
+                let tempControlGroup = new ControlGroup( {} );
+                this.formControl.map(
+                    function( namedControl ) {
+                        tempControlGroup.addControl( namedControl.name , namedControl.control );
                     } , formModel );
-                formModel.addControl ( instance.formControlGroupName , tempControlGroup );
+                formModel.addControl( instance.formControlGroupName , tempControlGroup );
             }
         }
         this.formModel = formModel;
@@ -56,7 +56,15 @@ export abstract class FormBlock {
     // TODO:        There are limitations and will need to test browser compatibility
     public getName () {
         var funcNameRegex = /function (.{1,})\(/;
-        var results       = (funcNameRegex).exec ( (this).constructor.toString () );
+        var results       = (funcNameRegex).exec( (this).constructor.toString() );
         return (results && results.length > 1) ? results[ 1 ] : '';
     };
+
+    public getMyVisibleFlagString () {
+        return this.formControlGroupName + "IsVisible";
+    }
+
+    public getMyDoneFlagString () {
+        return this.formControlGroupName + "IsDone";
+    }
 }

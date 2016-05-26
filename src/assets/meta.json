@@ -1,6 +1,6 @@
 [
     {
-        "name": "BOLR Introl Block",
+        "name": "BOLR Intro Block",
         "sources": [
             "src/app/blocks/bolr/initState/IntroBlock.component.ts"
         ],

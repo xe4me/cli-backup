@@ -1,0 +1,15 @@
+:host {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.exercise-date-block {
+  position: relative;
+
+  input-with-label-group {
+    display: block;
+  }
+}
+

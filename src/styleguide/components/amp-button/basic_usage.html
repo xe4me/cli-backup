@@ -1,9 +1,68 @@
-<amp-button *ngIf='true' (click)='clickMethod(1)' class='btn btn--secondary btn-ok btn-ok-margin-top'>
-    OK
-</amp-button>
-<amp-button *ngIf='true' (click)='clickMethod(2)' [disabled]='true' class='btn btn--secondary btn-ok btn-ok-margin-top'>
-    OK disabled
-</amp-button>
-<amp-button *ngIf='false' (click)='clickMethod(3)' class='btn btn--secondary btn-change btn-ok-margin-top'>
-    Change hidden/removed
-</amp-button>
+<section>
+    <div class='title'>btn-change</div>
+    <div class='content'>
+        <amp-button *ngIf='true' (click)='clickMethod(1)' class='btn btn-change'>
+            Change
+        </amp-button>
+    </div>
+</section>
+<section>
+    <div class="title">btn-submit</div>
+    <div class='content'>
+        <amp-button (click)='alert()' class='btn btn-submit'>
+            Submit
+        </amp-button>
+    </div>
+</section>
+<section>
+    <div class="title">btn-submit with icon</div>
+    <div class='content'>
+        <amp-button (click)='alert()' class='btn btn-submit'>
+            Submit <span class='icon icon--chevron-right'></span>
+        </amp-button>
+    </div>
+</section>
+<section>
+    <div class="title">btn-ok</div>
+    <div class='content'>
+        <amp-button *ngIf='true' (click)='clickMethod(2)' class='btn btn-ok'>
+            OK
+        </amp-button>
+    </div>
+
+</section>
+<section>
+    <div class="title">btn-ok disabled</div>
+    <div class='content'>
+        <amp-button *ngIf='true' (click)='clickMethod(2)' [disabled]='true' class='btn btn-ok'>
+            OK
+        </amp-button>
+    </div>
+</section>
+
+<section>
+    <div class="title">btn-anchor</div>
+    <div class='content'>
+        <amp-button (click)='alert()' class='btn btn-anchor'>
+            Go to ...
+        </amp-button>
+    </div>
+</section>
+
+<section>
+    <div class="title">Change hidden/removed</div>
+    <div class='content'>
+        <amp-button *ngIf='false' (click)='clickMethod(3)' class='btn btn-change'>
+            Change hidden/removed
+        </amp-button>
+    </div>
+</section>
+<section>
+    <div class="title">Full width (Relative to the container)</div>
+    <div class='content'>
+        <amp-button class='btn btn-change btn-full'>
+            Full
+        </amp-button>
+    </div>
+</section>
+

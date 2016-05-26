@@ -1,5 +1,5 @@
 import { View , Component , OnInit , ChangeDetectorRef , provide , ViewChild } from 'angular2/core';
-import { PartnershipManagerBlockComponent } from '../../../../../app/blocks/bolr/dialogue-state/partnership-manager/partnership-manager.component';
+import { PartnershipManagerBlockComponent } from '../../../../../app/blocks/bolr/notification-form/dialogue-state/partnership-manager/partnership-manager.component';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 @Component( {
     selector : 'partnership-manager-block-basic-usage'
