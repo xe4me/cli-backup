@@ -250,25 +250,32 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
         this.scrollService.scrollToComponentByClassName( componentName );
     }
 
+    private goToReceiptPage () {
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'confirmationIsVisible' ,
+            flagValue : true
+        } );
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'dialogIsVisible' ,
+            flagValue : false
+        } );
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'reviewIsVisible' ,
+            flagValue : false
+        } );
+    }
+
     private submit ( event ) {
         this.formModelService
-            .saveForm( this.formModel )
-            .subscribe( () => {
-                this.formModelService.present( {
-                    action    : 'setFlag' ,
-                    flag      : 'confirmationIsVisible' ,
-                    flagValue : true
-                } );
-                this.formModelService.present( {
-                    action    : 'setFlag' ,
-                    flag      : 'dialogIsVisible' ,
-                    flagValue : false
-                } );
-                this.formModelService.present( {
-                    action    : 'setFlag' ,
-                    flag      : 'reviewIsVisible' ,
-                    flagValue : false
-                } );
+            .saveForm( this.formModel.value )
+            .subscribe( ( data ) => {
+                this.goToReceiptPage();
+            } , ( data ) => {
+                this.goToReceiptPage();
+                console.log( 'Errorrrr' , data );
             } );
         //this.goToConfirmationPage( event );
     }
