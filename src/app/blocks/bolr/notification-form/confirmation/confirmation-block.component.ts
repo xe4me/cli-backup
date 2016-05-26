@@ -18,12 +18,15 @@ import {
                         Thank you, your request has been submitted.
                     </div>
                     <h3 class='heading heading-intro mt-30'>Like more information?</h3>
-                    <div class='heading heading-micro-intro mt-35 mb-10'>
-                        You can find details about the impact of extending your notice period and/or withdrawing your notification in the
-                        {{ licensee }} {{ licenseeBuybackFacility }} policy terms.
+                    <div *ngIf='isAMPFPP' class='heading heading-micro-intro mt-35 mb-10'>
+                        You can find more details on extending your notice period and / or withdrawing your notification in the AMP Financial Planning Buyer of last resort policy
+                    </div>
+                    <div *ngIf='isHILLROSS' class='heading heading-micro-intro mt-35 mb-10'>
+                        You can find more details on extending your notice period and / or withdrawing your notification in the Hillross Buyback booklet.<br>
+                        If you have any questions, please speak to your partnership manager.
                     </div>
                     <div class='heading heading-micro-intro mb-10'>
-                        If you have any questions, please contact your partnership manager.
+                        If you have any questions, please speak to your partnership manager.
                     </div>
                     <amp-button (click)='download()' class='btn btn-submit mt-40'>
                         Download a copy
@@ -64,6 +67,14 @@ export class ConfirmationBlockComponent extends FormBlock implements OnInit {
 
     private download () {
         alert( 'Begin downloading the form ...' );
+    }
+
+    private get isAMPFPP () {
+        return this.formModelService.licensee === 'DEA_AMPFP';
+    }
+
+    private get isHILLROSS () {
+        return this.formModelService.licensee === 'DEA_HILLROSS';
     }
 
     private get licensee () {
