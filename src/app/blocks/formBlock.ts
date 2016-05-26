@@ -1,15 +1,13 @@
 import { Control , ControlGroup } from 'angular2/common';
-import { forwardRef, provide, Provider } from 'angular2/core';
+import { forwardRef , provide , Provider } from 'angular2/core';
 import { BlockLayout , FormDefinition , BlockID , Action } from 'amp-ddc-ui-core/ui-core';
 export class NamedControl {
     constructor ( public name : string , public control : any ) {
     }
 }
-
 export const provideParent =
-  (component: any, parentType?: any) =>
-    provide(parentType || FormBlock, { useExisting: forwardRef(() => component) });
-
+                 ( component : any , parentType? : any ) =>
+                     provide( parentType || FormBlock , { useExisting : forwardRef( () => component ) } );
 /**
  * This class is both a Abstract Class (i.e. Java like Abstract, property and method implementation that are common) and
  * a Class-Interface (https://angular.io/docs/ts/latest/cookbook/dependency-injection.html#!#class-interface)
@@ -61,10 +59,10 @@ export abstract class FormBlock {
     };
 
     public getMyVisibleFlagString () {
-        return this.formControlGroupName + "IsVisible";
+        return this.formControlGroupName + 'IsVisible';
     }
 
     public getMyDoneFlagString () {
-        return this.formControlGroupName + "IsDone";
+        return this.formControlGroupName + 'IsDone';
     }
 }

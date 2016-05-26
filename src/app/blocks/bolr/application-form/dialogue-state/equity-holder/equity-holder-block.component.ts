@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/app/blocks/bolr/dialogue-state/equity-holder/equity-holder-block.component.ts
-import { FormBlock , NamedControl, provideParent } from '../../../formBlock';
-=======
-import { FormBlock , NamedControl } from '../../../../formBlock';
->>>>>>> milad:src/app/blocks/bolr/application-form/dialogue-state/equity-holder/equity-holder-block.component.ts
+import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
@@ -143,7 +139,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         AmpSlideDirective ,
         AmpButton
     ] ,
-    providers  : [ TemplateRef , provideParent(EquityHolderBlockComponent) ]
+    providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ]
 } )
 export class EquityHolderBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';

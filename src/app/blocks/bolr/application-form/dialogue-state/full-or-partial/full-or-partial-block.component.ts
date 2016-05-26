@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/app/blocks/bolr/dialogue-state/full-or-partial/full-or-partial-block.component.ts
-import { FormBlock , NamedControl, provideParent } from '../../../formBlock';
-=======
-import { FormBlock , NamedControl } from '../../../../formBlock';
->>>>>>> milad:src/app/blocks/bolr/application-form/dialogue-state/full-or-partial/full-or-partial-block.component.ts
+import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
@@ -72,8 +68,8 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './full-or-partial-block.component.scss' ).toString() ] ,
-    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective , AmpTextareaComponent ],
-    providers  : [ provideParent(FullOrPartialBlockComponent) ]
+    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective , AmpTextareaComponent ] ,
+    providers  : [ provideParent( FullOrPartialBlockComponent ) ]
 } )
 export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'FullOrPartialBlockComponent';

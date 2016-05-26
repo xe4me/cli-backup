@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/app/blocks/bolr/dialogue-state/practice-address/practice-address.component.ts
-import { FormBlock , NamedControl, provideParent } from '../../../formBlock';
-=======
-import { FormBlock , NamedControl } from '../../../../formBlock';
->>>>>>> milad:src/app/blocks/bolr/application-form/dialogue-state/practice-address/practice-address.component.ts
+import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import {
     Component ,
@@ -108,7 +104,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
     inputs     : [ 'practiceAddress' ] ,
     styles     : [ require( './practice-address.component.scss' ).toString() ] ,
     directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent , AmpButton ] ,
-    providers  : [ provideParent(PracticeAddressBlockComponent) ]
+    providers  : [ provideParent( PracticeAddressBlockComponent ) ]
 } )
 export class PracticeAddressBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'PracticeAddressBlockComponent';

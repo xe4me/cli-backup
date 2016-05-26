@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/app/blocks/bolr/dialogue-state/sale-reason/sale-reason-block.component.ts
-import { FormBlock, provideParent } from '../../../formBlock';
-=======
-import { FormBlock } from '../../../../formBlock';
->>>>>>> milad:src/app/blocks/bolr/application-form/dialogue-state/sale-reason/sale-reason-block.component.ts
+import { FormBlock , provideParent } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
@@ -50,7 +46,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         AmpTextareaComponent ,
         AmpButton
     ] ,
-    providers  : [ TemplateRef , provideParent(SaleReasonBlockComponent)]
+    providers  : [ TemplateRef , provideParent( SaleReasonBlockComponent ) ]
 } )
 export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'SaleReasonBlockComponent';

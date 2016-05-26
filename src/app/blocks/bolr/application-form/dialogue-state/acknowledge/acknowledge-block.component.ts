@@ -1,12 +1,7 @@
 import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/core';
 import { Control , ControlGroup } from 'angular2/common';
-<<<<<<< HEAD:src/app/blocks/bolr/dialogue-state/acknowledge/acknowledge-block.component.ts
-import { FormBlock , NamedControl, provideParent } from '../../../formBlock';
-import { AmpOverlayComponent } from '../../../../components/amp-overlay/amp-overlay.component';
-=======
-import { FormBlock , NamedControl } from '../../../../formBlock';
+import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
->>>>>>> milad:src/app/blocks/bolr/application-form/dialogue-state/acknowledge/acknowledge-block.component.ts
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -52,8 +47,8 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
     </div>
   ` ,
         directives : [ AmpOverlayComponent , AmpCheckboxComponent , AmpButton ] ,
-        styles     : [ require( './acknowledge-block.component.scss' ).toString() ],
-        providers  : [ provideParent(AcknowledgeBlockComponent) ]
+        styles     : [ require( './acknowledge-block.component.scss' ).toString() ] ,
+        providers  : [ provideParent( AcknowledgeBlockComponent ) ]
     } )
 export class AcknowledgeBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME : string             = 'AcknowledgeBlockComponent';

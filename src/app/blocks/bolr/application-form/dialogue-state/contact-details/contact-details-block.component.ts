@@ -179,45 +179,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
     private hasClickedOnOkButton : boolean = false;
     private showPracticeNameInputs         = false;
 
-
-    private changeit () {
-        this.showPracticeNameInputs = ! this.showPracticeNameInputs;
-        this._cd.detectChanges();
-    }
-
-    private check () {
-        console.log( 'this.formModel' , this.formModel );
-    }
-
-    public isCurrentBlockActive () {
-        return this.formModelService.getFlags( 'introIsDone' );
-    }
-
-    public preBindControls ( _formBlockDef ) {
-        this.formControl[ Controls.FIRSTNAME ].name = this.contactDetails.firstName.id;
-        this.formControl[ Controls.LASTTNAME ].name = this.contactDetails.lastName.id;
-        this.formControl[ Controls.PHONE ].name     = this.contactDetails.phone.id;
-        this.formControl[ Controls.EMAIL ].name     = this.contactDetails.email.id;
-        this.formControl[ Controls.PHONE ].control.updateValue( this.contactDetails.phone.value );
-        this.formControl[ Controls.EMAIL ].control.updateValue( this.contactDetails.email.value );
-    }
-
-    private get firstNameControl () {
-        return this.formControl[ Controls.FIRSTNAME ].control;
-    }
-
-    private get lastNameControl () {
-        return this.formControl[ Controls.LASTTNAME ].control;
-    }
-
-    private get emailControl () {
-        return this.formControl[ Controls.EMAIL ].control;
-    }
-
-    private get phoneControl () {
-        return this.formControl[ Controls.PHONE ].control;
-    }
-
     ngOnInit () : any {
         this
             .formModelService
@@ -271,13 +232,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
         }
     }
 
-    private get canGoNext () {
-        if ( this.formModel ) {
-            return this.formModel.controls[ this.formControlGroupName ].valid;
-        }
-        return false;
-    }
-
     constructor ( private _cd : ChangeDetectorRef ,
                   private progressObserver : ProgressObserverService ,
                   private el : ElementRef ,
@@ -291,6 +245,51 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             new NamedControl( this.contactDetails.email.id , new Control() )
         ];
         this.formControlGroupName = 'contactDetails';
+    }
+
+    public isCurrentBlockActive () {
+        return this.formModelService.getFlags( 'introIsDone' );
+    }
+
+    public preBindControls ( _formBlockDef ) {
+        this.formControl[ Controls.FIRSTNAME ].name = this.contactDetails.firstName.id;
+        this.formControl[ Controls.LASTTNAME ].name = this.contactDetails.lastName.id;
+        this.formControl[ Controls.PHONE ].name     = this.contactDetails.phone.id;
+        this.formControl[ Controls.EMAIL ].name     = this.contactDetails.email.id;
+        this.formControl[ Controls.PHONE ].control.updateValue( this.contactDetails.phone.value );
+        this.formControl[ Controls.EMAIL ].control.updateValue( this.contactDetails.email.value );
+    }
+
+    private changeit () {
+        this.showPracticeNameInputs = ! this.showPracticeNameInputs;
+        this._cd.detectChanges();
+    }
+
+    private check () {
+        console.log( 'this.formModel' , this.formModel );
+    }
+
+    private get firstNameControl () {
+        return this.formControl[ Controls.FIRSTNAME ].control;
+    }
+
+    private get lastNameControl () {
+        return this.formControl[ Controls.LASTTNAME ].control;
+    }
+
+    private get emailControl () {
+        return this.formControl[ Controls.EMAIL ].control;
+    }
+
+    private get phoneControl () {
+        return this.formControl[ Controls.PHONE ].control;
+    }
+
+    private get canGoNext () {
+        if ( this.formModel ) {
+            return this.formModel.controls[ this.formControlGroupName ].valid;
+        }
+        return false;
     }
 
     private get doneFlag () {

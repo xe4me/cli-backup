@@ -257,7 +257,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
     private submit ( event ) {
         this.formModelService
             .saveForm( this.formModel )
-            .subscribe( ()=> {
+            .subscribe( () => {
                 this.formModelService.present( {
                     action    : 'setFlag' ,
                     flag      : 'confirmationIsVisible' ,
