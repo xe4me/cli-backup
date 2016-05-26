@@ -1,4 +1,4 @@
-import { FormPage } from './../formPage';
+import { FormPage } from './../../../formPage';
 import { Component } from 'angular2/core';
 import { Router , CanDeactivate , ComponentInstruction } from 'angular2/router';
 @Component( {
@@ -8,7 +8,7 @@ import { Router , CanDeactivate , ComponentInstruction } from 'angular2/router';
             <div #nestedBlock></div>
         </div>
     ` ,
-    styles   : [ require( './receipt-page.component' ).toString() ]
+    styles   : [ require( './receipt-page.component.ts' ).toString() ]
 } )
 export class ReceiptPageComponent extends FormPage implements CanDeactivate {
     static CLASS_NAME = 'ReceiptPageComponent';

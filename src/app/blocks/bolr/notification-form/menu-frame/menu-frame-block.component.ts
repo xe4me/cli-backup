@@ -5,11 +5,11 @@ import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from 'angular2/src/facade/async';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
-
+import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 @Component( {
     selector   : 'menu-frame' ,
     template   : `
-        <div class='frame'>
+        <div [collapse]='!dialogIsVisible' class='frame'>
              <sticky-progress-header-block
                     class='sticky-progressbar'
                     determinate='determinate'
@@ -37,19 +37,31 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
         </div>
     ` ,
     styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
-    directives : [ StickyProgressHeaderBlockComponent, AmpButton ]
+    directives : [ AmpCollapseDirective , StickyProgressHeaderBlockComponent , AmpButton ]
 } )
 export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked {
-    static CLASS_NAME              = 'MenuFrameBlockComponent';
-    private calculatedProgress     = 0;
-    private formControlLength : number;
+    static CLASS_NAME          = 'MenuFrameBlockComponent';
+    private calculatedProgress = 0;
     private stickyAnimatedIntoView = false;
+    private dialogIsVisible        = true;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private _el : ElementRef ,
                   private formModelService : FormModelService ) {
         super();
+        this.formControlGroupName = 'dialog';
         progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress() );
+    }
+
+    ngOnInit () : any {
+        let visibleFlag = this.getMyVisibleFlagString();
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( visibleFlag ) ) {
+                this.dialogIsVisible = changes[ visibleFlag ];
+                this.formModelService.$flags.unsubscribe();
+            }
+        } );
+        return undefined;
     }
 
     ngAfterViewChecked () : any {

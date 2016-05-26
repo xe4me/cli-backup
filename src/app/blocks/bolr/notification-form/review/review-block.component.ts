@@ -24,7 +24,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
 @Component( {
     selector   : 'review-block' ,
     template   : `
-            <div *ngIf='formIsFullyValid' id='review-block' class='review grid__item mb-80'>
+            <div *ngIf='reviewIsVisible' id='review-block' class='review grid__item mb-80'>
                 <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
                 <div class='review--sections'>
                     <section class='review--sections__left grid__item 2/4'>
@@ -182,7 +182,7 @@ practices that may be interested in becoming the servicing practice for some or 
                     </section><!--
                  --><section class='review--sections__right grid__item 1/4' [sticky-on-scroll]='shouldStick' >
                         <div class='mb-30 mt-25'>
-                            <amp-button (click)='submit($event)' [disabled]='isImpersonated' class='btn btn-submit 
+                            <amp-button (click)='submit($event)' [disabled]='isImpersonated || !formIsFullyValid' class='btn btn-submit 
                             btn-review'>
                                 Submit <span class='icon icon--chevron-right'></span>
                             </amp-button>    
@@ -206,6 +206,7 @@ practices that may be interested in becoming the servicing practice for some or 
 export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME        = 'ReviewBlockComponent';
     private formIsFullyValid = false;
+    private reviewIsVisible  = false;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -221,13 +222,15 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     ngAfterViewInit () : any {
+        let visibleFlag = this.getMyVisibleFlagString();
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ReviewBlockComponent.CLASS_NAME );
-            this.formIsFullyValid = this.formModel.valid && this.formModelService.getFlags( 'acknowledgeIsDone' );
+            this.formIsFullyValid = this.formModel.valid && this.formModelService.getFlags( visibleFlag );
         } );
         this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'acknowledgeIsDone' ) ) {
-                this.formIsFullyValid = this.formModel.valid && changes[ 'acknowledgeIsDone' ];
+            if ( changes.hasOwnProperty( visibleFlag ) ) {
+                this.reviewIsVisible  = changes[ visibleFlag ];
+                this.formIsFullyValid = this.formModel.valid && this.reviewIsVisible;
             }
         } );
         return undefined;
@@ -247,11 +250,30 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     private submit ( event ) {
-        this.goToConfirmationPage( event );
+        this.formModelService
+            .saveForm( this.formModel )
+            .subscribe( ()=> {
+                this.formModelService.present( {
+                    action    : 'setFlag' ,
+                    flag      : 'confirmationIsVisible' ,
+                    flagValue : true
+                } );
+                this.formModelService.present( {
+                    action    : 'setFlag' ,
+                    flag      : 'dialogIsVisible' ,
+                    flagValue : false
+                } );
+                this.formModelService.present( {
+                    action    : 'setFlag' ,
+                    flag      : 'reviewIsVisible' ,
+                    flagValue : false
+                } );
+            } );
+        //this.goToConfirmationPage( event );
     }
 
     private download () {
-        alert('Downloading the form ....');
+        alert( 'Downloading the form ....' );
     }
 
     private changeContactDetailsBlock () {
@@ -427,7 +449,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit {
     }
 
     private get isImpersonated () {
-        return this.formModelService.context.impersonatedUser !== null;
+        return this.formModelService.context.impersonatedUser;
     }
 
     private get practiceAddress () {

@@ -8,6 +8,7 @@ import { InputWithLabelGroupComponent } from '../../../../../component-groups/in
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
+import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 @Component(
     {
         selector   : 'contact-details-block' ,
@@ -19,7 +20,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         
         
         <!--Practice principal START-->
-        <div class='grid__item'>
+        <div [collapse]='!showPracticeNameInputs' class='grid__item'>
             <!--Partnership Manager name-->
             <label class='heading heading-contxtual-label mb3' >Name</label><!--
             -->&nbsp;<my-md-input
@@ -49,10 +50,10 @@ import { TimerWrapper } from 'angular2/src/facade/async';
          <div *ngIf='(firstNameControl.touched &&  !firstNameControl.valid)
         ||(lastNameControl.touched &&  !lastNameControl.valid) ' class='errors mt mb-15'>
             <div class='error-item' *ngIf='firstNameControl.touched && !firstNameControl.valid'>
-                <span class='icon icon--close icon-errors'></span>First name is a required field.
+                <span class='icon icon--close icon-errors'></span>{{ contactDetails.firstName.error }}
             </div>
             <div class='error-item' *ngIf='lastNameControl.touched && !lastNameControl.valid'>
-                <span class='icon icon--close icon-errors'></span>Last name is a required field.
+                <span class='icon icon--close icon-errors'></span>{{ contactDetails.lastName.error }}
             </div>
         </div>   
         <!--Contact Number-->
@@ -92,23 +93,22 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         emailControl.touched) && !formModel.controls.contactDetails.valid' class='errors mt-20 mb-15'>
             <div class='error-item' *ngIf='!phoneControl.valid && phoneControl.touched'>
                 <div *ngIf='phoneControl.errors.required' >
-                    <span class='icon icon--close icon-errors'></span>Contact number is a required field.
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.phone.requiredError }}
                 </div>
                 <div *ngIf='phoneControl.errors.mdMaxLength ||
                 phoneControl.errors.mdMinLength || phoneControl.errors.mdPattern'>
-                    <span class='icon icon--close icon-errors'></span>The contact number must contain a minimum of 8
-                    characters. Only numeric and area code characters are allowed.
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.phone.invalidError }}
                 </div>
             </div>
 
             <div  *ngIf='!emailControl.valid && emailControl.touched'>
                 <div *ngIf='emailControl.errors.mdPattern || emailControl.errors.mdMaxLength'
                 class='error-item'>
-                    <span class='icon icon--close icon-errors'></span>The email is not valid.
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.email.invalidError }}
                 </div>
                 <div *ngIf='emailControl.errors.required'
                  class='error-item'>
-                    <span class='icon icon--close icon-errors'></span>Email is a required field.
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.email.requiredError }}
                 </div>
             </div>
         </div>
@@ -124,7 +124,13 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <div class='hr-block-divider mt-80 '></div>
     </div>
   ` ,
-        directives : [ MdInputComponent , AmpOverlayComponent , InputWithLabelGroupComponent , AmpButton ] ,
+        directives : [
+            AmpCollapseDirective ,
+            MdInputComponent ,
+            AmpOverlayComponent ,
+            InputWithLabelGroupComponent ,
+            AmpButton
+        ] ,
         styles     : [ require( './contact-details-block.component.scss' ).toString() ]
     } )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit {
@@ -148,10 +154,13 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             id             : 'phoneId' ,
             label          : 'Default Phone Label' ,
             contxtualLabel : 'Contact number' ,
-            regex          : '^([\s()+-]*\d){6,}$' ,
+            regex          : '^([\\s()+-]*\\d){6,}$' ,
             value          : '00000000' ,
             maxLength      : 20 ,
-            minLength      : 8
+            minLength      : 8 ,
+            requiredError  : 'Contact number is a required field.' ,
+            invalidError   : 'The contact number must contain a minimum of 8 characters. Only numeric and area code' +
+            ' characters are allowed.'
         } ,
         email     : {
             id             : 'emailId' ,
@@ -161,12 +170,15 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             value          : 'smiladhi@gmail.com' ,
             maxLength      : 50 ,
             minLength      : 0 ,
-            toLowerCase    : 'true'
+            toLowerCase    : 'true' ,
+            invalidError   : 'The email is not valid.' ,
+            requiredError  : 'Email is a required field.'
         }
     };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private showPracticeNameInputs         = false;
+
 
     private changeit () {
         this.showPracticeNameInputs = ! this.showPracticeNameInputs;

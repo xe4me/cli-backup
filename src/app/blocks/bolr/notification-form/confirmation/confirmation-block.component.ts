@@ -1,5 +1,5 @@
 import { FormBlock } from '../../../formBlock';
-import { Component , ElementRef  , ViewEncapsulation } from 'angular2/core';
+import { Component , OnInit , ElementRef , ViewEncapsulation } from 'angular2/core';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import {
     FormModelService ,
@@ -10,7 +10,7 @@ import {
 @Component( {
     selector      : 'confirmation-block' ,
     template      : `
-            <div class='confirmation-block' id='confirmation-block'>
+            <div *ngIf='showConfirmationBlock' class='confirmation-block mb-80' id='confirmation-block'>
                 <div class='confirmation-block--logo mb-60' ampLicenseeThemeID></div>
                 <div class='grid__item 1/6'></div>
                 <section class='grid__item 2/3'>
@@ -35,14 +35,27 @@ import {
     directives    : [ ThemeIDDirective ] ,
     encapsulation : ViewEncapsulation.None
 } )
-export class ConfirmationBlockComponent extends FormBlock {
-    static CLASS_NAME = 'ConfirmationBlockComponent';
+export class ConfirmationBlockComponent extends FormBlock implements OnInit {
+    static CLASS_NAME             = 'ConfirmationBlockComponent';
+    private showConfirmationBlock = false;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
+        this.formControlGroupName = 'confirmation';
+    }
+
+    ngOnInit () : any {
+        let visibleFlag = this.getMyVisibleFlagString();
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes[ visibleFlag ] ) {
+                this.showConfirmationBlock = true;
+                this.formModelService.$flags.unsubscribe();
+            }
+        } );
+        return undefined;
     }
 
     preBindControls ( _formBlockDef ) {

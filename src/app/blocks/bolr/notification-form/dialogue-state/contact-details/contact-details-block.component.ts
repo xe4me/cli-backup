@@ -129,9 +129,10 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             .getContactDetails()
             .subscribe(
                 data => {
-                    this.formModelService.present(
-                        { action : 'setContactDetails' , contactDetails : data }
-                    );
+                    this.formModelService.present( {
+                        action         : 'setContactDetails' ,
+                        contactDetails : data
+                    } );
                     this.formControl[ 0 ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
                     this.formControl[ 1 ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
                 } ,

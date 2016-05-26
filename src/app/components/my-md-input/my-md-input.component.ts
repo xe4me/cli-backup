@@ -156,7 +156,6 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     // set autoFocus ( value : boolean ) {
     //     if ( this.isTrue( value ) && this.el ) {
     //         let input = this.el.nativeElement.querySelector( 'input' );
-    //         console.log( "this.el.nativeElement.querySelector('input')[0]" , this.el.nativeElement.querySelector( 'input' ) );
     //         input.focus();
     //     }
     // }
@@ -224,7 +223,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
                 }
             }
             return null;
-        }
+        };
     }
 
     private maxLengthValidation ( valMaxLength ) {
@@ -238,7 +237,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
                 };
             }
             return null;
-        }
+        };
     }
 
     private minLengthValidation ( valMinLength ) {
@@ -252,7 +251,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
                 };
             }
             return null;
-        }
+        };
     }
 
     private patternValidator ( pattern ) {
@@ -266,7 +265,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
                 };
             }
             return null;
-        }
+        };
     }
 
     private updateValitators () {

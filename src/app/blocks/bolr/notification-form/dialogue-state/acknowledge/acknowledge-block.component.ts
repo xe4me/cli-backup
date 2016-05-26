@@ -109,6 +109,11 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
                 flag      : 'acknowledgeIsDone' ,
                 flagValue : true
             } );
+            this.formModelService.present( {
+                action    : 'setFlag' ,
+                flag      : 'reviewIsVisible' ,
+                flagValue : true
+            } );
         }
     }
 
