@@ -182,11 +182,7 @@ practices that may be interested in becoming the servicing practice for some or 
                     </section><!--
                  --><section class='review--sections__right grid__item 1/4' [sticky-on-scroll]='shouldStick' >
                         <div class='mb-30 mt-25'>
-<<<<<<< HEAD:src/app/blocks/bolr/review/review-block.component.ts
-                            <amp-button (click)='submit($event)' [disabled]='isImpersonated' class='btn btn-submit
-=======
                             <amp-button (click)='submit($event)' [disabled]='isImpersonated || !formIsFullyValid' class='btn btn-submit 
->>>>>>> milad:src/app/blocks/bolr/notification-form/review/review-block.component.ts
                             btn-review'>
                                 Submit <span class='icon icon--chevron-right'></span>
                             </amp-button>
