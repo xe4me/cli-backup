@@ -15,7 +15,7 @@ import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Validators } from 'angular2/src/common/forms/validators';
 import { isPresent } from 'angular2/src/facade/lang';
 import { NumberWrapper } from 'angular2/src/facade/lang';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { AfterViewInit , OnDestroy } from 'angular2/src/core/linker/interfaces';
 import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
 const RADIO_VALUE_ACCESSOR = CONST_EXPR( new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } ) );
@@ -61,7 +61,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                />
               <label 
                     [class.checked]="parentControl.value===button.value" 
-                    (click)='onSelect($event , button.value)' 
+                    (click)='onSelect($event , button.value , true)' 
                     [attr.for]='button.id' class="root">
                     <div class="container">
                         <div class="off"></div>
@@ -85,18 +85,16 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
         'selected'
     ] ,
     host       : {
-        '[attr.aria-disabled]' : 'disabled' ,
-        '[tabindex]'           : 'tabindex' ,
+        '[attr.aria-disabled]' : 'disabled'
     } ,
     styles     : [ require( './amp-radio-button-group.scss' ).toString() ] ,
     directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
     outputs    : [ 'select' ]
 } )
-export class AmpRadioButtonGroupComponent implements AfterViewInit {
-    private _selected : string     = null;
-    private _disabled : boolean    = false;
-    private _required : boolean    = false;
-    private _tabindex : number;
+export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
+    private _selected : string  = null;
+    private _disabled : boolean = false;
+    private _required : boolean = false;
     private parentControl : Control;
     private select                 = new EventEmitter<string>();
     private buttons;
@@ -123,25 +121,22 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit {
         }
     }
 
+    ngOnDestroy () : any {
+        this.parentControl.validator = null;
+        this.parentControl.updateValueAndValidity( {
+            onlySelf  : false ,
+            emitEvent : true
+        } );
+        return undefined;
+    }
+
     ngAfterViewInit () : any {
         this.parentControl.valueChanges.subscribe( ( changes ) => {
-            this.onSelect( null , changes )
+            this.onSelect( null , changes , false )
         } )
         this.updateValitators();
         this.changeDetector.detectChanges();
         return undefined;
-    }
-
-    parseTabIndexAttribute ( attr : any ) : number {
-        return isPresent( attr ) ? NumberWrapper.parseInt( attr , 10 ) : 0;
-    }
-
-    set tabindex ( value : number ) {
-        this._tabindex = this.parseTabIndexAttribute( value );
-    }
-
-    get tabindex () : number {
-        return this._tabindex;
     }
 
     get disabled () {
@@ -161,7 +156,7 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit {
         this.updateValitators();
     }
 
-    private onSelect ( $event , value ) {
+    private onSelect ( $event , value , shouldScroll ) {
         if ( this.disabled === true ) {
             if ( $event !== null ) {
                 $event.stopPropagation();
@@ -171,6 +166,9 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit {
         if ( this.previousValue !== value ) {
             this.previousValue = value;
             this.select.emit( value + '' );
+        }
+        if ( ! shouldScroll ) {
+            return;
         }
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );

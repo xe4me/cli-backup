@@ -1,4 +1,4 @@
-import { FormBlock } from '../../../../formBlock';
+import { FormBlock , NamedControl } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
@@ -7,13 +7,11 @@ import { Control } from 'angular2/src/common/forms/model';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { Validators } from 'angular2/src/common/forms/validators';
-import { ControlGroup } from 'angular2/src/common/forms/model';
 import { TimerWrapper } from 'angular2/src/facade/async';
 @Component( {
     selector   : 'sale-reason-block' ,
     template   : `
-            <div id='sale-reason-block' *ngIf='componentIsVisible' class='sale-reason-block mt-60'>
+            <div id='sale-reason-block' *ngIf='saleReasonIsVisible' class='sale-reason-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
                 <h3 class='heading heading-intro mb-5'>What is the rationale for your sale?</h3>
                 <section>
@@ -22,15 +20,16 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         [isInSummaryState]='isInSummaryState'
                         [id]='saleReason.id'
                         [label]='saleReason.label'
-                        [parentControl]='getSaleReasonControl()'
+                        [isRequired]='isSaleReasonRequired'
+                        [parentControl]='salesReasonControl'
                         [valMaxLength]='saleReason.maxLength'>
                     </amp-textarea>
                 </section>
-                <div class='errors mb-40' *ngIf='(hasClickedOnOkButton || getSaleReasonControl().touched) 
-                &&!getSaleReasonControl().valid' >
+                <div class='errors mb-40' *ngIf='(hasClickedOnOkButton || salesReasonControl.touched) 
+                &&!salesReasonControl.valid' >
                      <span class='icon icon--close icon-errors'></span>Please enter your reasons.
                 </div>
-               <amp-button [disabled]='!getSaleReasonControl().valid' class='btn btn-ok mt-10'
+               <amp-button [disabled]='!salesReasonControl.valid' class='btn btn-ok mt-10'
                *ngIf='!isInSummaryState' (click)='ok()'>
                     OK
                 </amp-button>
@@ -52,7 +51,8 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
     static CLASS_NAME                      = 'SaleReasonBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
-    private componentIsVisible : boolean   = false;
+    private saleReasonIsVisible : boolean  = false;
+    private isSaleReasonRequired : boolean = false;
     private saleReason                     = {
         id          : 'saleReason' ,
         label       : '' ,
@@ -65,21 +65,10 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
                   private scrollService : ScrollService ,
                   private el : ElementRef ) {
         super();
-        this.formControl          = [];
+        this.formControl          = [
+            new NamedControl( this.saleReason.controlName , new Control() )
+        ];
         this.formControlGroupName = 'saleReason';
-        this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'saleReasonIsVisible' ) ) {
-                this.componentIsVisible = changes[ 'saleReasonIsVisible' ];
-                if ( changes[ 'saleReasonIsVisible' ] === true ) {
-                    this.createControls();
-                } else {
-                    this.removeControls();
-                }
-            }
-            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
-                this.resetBlock();
-            }
-        } );
     }
 
     ngAfterViewInit () : any {
@@ -89,6 +78,18 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
         this.scrollService.$scrolled.subscribe( ( changes ) => {
             if ( changes === this.formControlGroupName ) {
                 this.isInSummaryState = false;
+            }
+        } );
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'saleReasonIsVisible' ) ) {
+                this.saleReasonIsVisible = changes[ 'saleReasonIsVisible' ];
+                this.resetBlock();
+                if ( changes[ 'saleReasonIsVisible' ] === true ) {
+                    this.markAsRequired();
+                } else {
+                    this.markAsNotRequired();
+                }
+                return;
             }
         } );
         return undefined;
@@ -102,7 +103,7 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
 
     public ok () {
         this.hasClickedOnOkButton = true;
-        if ( this.controlGroup.valid ) {
+        if ( this.salesReasonControl.valid ) {
             this.isInSummaryState = true;
             TimerWrapper.setTimeout( () => {
                 this.scrollService.scrollToNextUndoneBlock( this.formModel );
@@ -117,6 +118,23 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
     }
 
     public preBindControls ( _formBlockDef ) {
+        this.formControl[ 0 ].name = this.saleReason.controlName;
+    }
+
+    private get salesReasonControl () {
+        return this.formControl[ 0 ].control;
+    }
+
+    private isCurrentBlockActive () {
+        return this.saleReasonIsVisible;
+    }
+
+    private markAsRequired () {
+        this.isSaleReasonRequired = true;
+    }
+
+    private markAsNotRequired () {
+        this.isSaleReasonRequired = false;
     }
 
     private undoneTheBlock () {
@@ -127,40 +145,17 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
         } );
     };
 
-    private createControls () {
-        if ( ! this.formModel.contains( this.formControlGroupName ) ) {
-            let controlGroup = new ControlGroup( {} );
-            controlGroup.addControl( this.saleReason.controlName , new Control( null , Validators.required ) );
-            this.formModel.addControl( this.formControlGroupName , controlGroup );
-        }
-    }
-
-    private getControl ( controlName ) : Control {
-        return <Control>this.controlGroup.controls[ controlName ];
-    }
-
-    private get controlGroup () : ControlGroup {
-        return < ControlGroup >this.formModel.controls[ this.formControlGroupName ];
-    }
-
-    private removeControls () {
-        if ( this.formModel.contains( this.formControlGroupName ) ) {
-            this.formModel.removeControl( this.formControlGroupName );
-        }
-    }
-
-    private getSaleReasonControl () {
-        return this.getControl( this.saleReason.controlName );
-    }
-
-    private isCurrentBlockActive () {
-        return this.formModelService.getFlags( 'fullOrPartialIsDone' );
+    private resetSalesReasonControl () {
+        this.salesReasonControl.updateValue( null );
+        this.salesReasonControl._touched  = false;
+        this.salesReasonControl._dirty    = false;
+        this.salesReasonControl._pristine = true;
+        this.salesReasonControl.updateValueAndValidity( { onlySelf : false , emitParent : true } );
     }
 
     private resetBlock () {
-        this.removeControls();
-        this.createControls();
         this.undoneTheBlock();
+        this.resetSalesReasonControl();
         this.isInSummaryState     = false;
         this.hasClickedOnOkButton = false;
     }

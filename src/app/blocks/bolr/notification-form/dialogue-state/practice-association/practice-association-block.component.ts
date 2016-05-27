@@ -20,6 +20,7 @@ import { Validators } from 'angular2/src/common/forms/validators';
 import { ControlGroup } from 'angular2/src/common/forms/model';
 import { TimerWrapper } from 'angular2/src/facade/async';
 import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
+import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'practice-association-block' ,
     template   : `
@@ -27,18 +28,17 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <section class='mb-30'>
                     <h3 class='heading heading-intro mb-30'>How long has your practice been with {{ licensee }}?</h3>
-                    <div class='heading heading-contxtual-label'>
+                    <div [class.mb-40]='!isInSummaryState' class='heading heading-contxtual-label'>
                         At the time of my requested exercise date, my practice will have been with {{ licensee }} for
                         <span *ngIf='isInSummaryState' class='summary-state'>{{
                         getAssociationPracticeLabel(associationLengthControl.value) }}
                         </span>
                     </div>
-                    <button (click)="check();">Check</button>
                      <amp-radio-button-group
-                            *ngIf='!isInSummaryState'
+                            [collapse]='isInSummaryState'
                             [required]='isAssociationRequired'
-                            scrollOutOn='null'
-                            class='grid__item 1/1 mt-40'
+                            scrollOutUnless='null'
+                            class='grid__item 1/1'
                             (select)='onAssociationLengthSelect($event)'
                             [buttons]='associationLengthOptions'
                             [parentControl]='associationLengthControl'
@@ -88,27 +88,26 @@ import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_det
                         </div>
                     </div>
                 </div>
-                <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
-               <button class='btn btn-ok
-               mt-10' *ngIf='!isInSummaryState' (click)='ok()'
-               [disabled]='!controlGroup.valid'  >
+                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!controlGroup.valid' class='btn 
+                btn-ok mt-10'>
                     OK
-                </button>
-                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10 '>
+                </amp-button>
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10'>
                     Change
-                </button>
+                </amp-button>
                 <div class='hr-block-divider mt-80'></div>
             </div>
           ` ,
     styles     : [ require( './practice-association-block.component.scss' ).toString() ] ,
     directives : [
+        AmpButton ,
         AmpOverlayComponent ,
         AmpRadioButtonGroupComponent ,
         AmpTextareaComponent ,
         AmpCollapseDirective ,
         AmpSlideDirective
     ] ,
-    providers  : [ AmpCollapseDirective , TemplateRef , provideParent( PracticeAssociationBlockComponent ) ]
+    providers : [ TemplateRef , provideParent( PracticeAssociationBlockComponent ) ]
 } )
 export class PracticeAssociationBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                              = 'PracticeAssociationBlockComponent';
@@ -269,7 +268,7 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     private onAssociationLengthSelect ( value ) {
         this.isExpCircumstancesRequired = false;
         this.exerciseDateControl.updateValue( null );
-        this.excCirControl.updateValue( null );
+        this.resetExcCirControl();
         if ( value === 'fewer_than_five_years' ) {
             this.isExpCircumstancesRequired = true;
             this.exerciseDateControl.updateValue( 'later_than' );
@@ -277,12 +276,9 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
         this.changeDetector.detectChanges();
     }
 
-    private resetExcCirControl(){
-
-    }
     private onExerciseDateSelect ( value ) {
         this.isExpCircumstancesRequired = false;
-        this.excCirControl.updateValue( null );
+        this.resetExcCirControl();
         if ( value === 'later_than' ) {
             this.isExpCircumstancesRequired = true;
         }
@@ -310,8 +306,16 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
         this.isInSummaryState     = false;
         this.hasClickedOnOkButton = false;
         this.exerciseDateControl.updateValue( null );
-        this.excCirControl.updateValue( null );
+        this.resetExcCirControl();
         this.associationLengthControl.updateValue( null );
+    }
+
+    private resetExcCirControl () {
+        this.excCirControl.updateValue( null );
+        this.excCirControl._touched  = false;
+        this.excCirControl._dirty    = false;
+        this.excCirControl._pristine = true;
+        this.excCirControl.updateValueAndValidity( { onlySelf : false , emitParent : true } );
     }
 
     private undoneTheBlock () {

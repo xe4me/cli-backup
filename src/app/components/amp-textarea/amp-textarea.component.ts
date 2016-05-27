@@ -6,7 +6,7 @@ import { AnimationBuilder } from 'angular2/src/animate/animation_builder';
 import { CssAnimationBuilder } from 'angular2/src/animate/css_animation_builder';
 import { ElementRef } from 'angular2/src/core/linker/element_ref';
 import { EventEmitter } from 'angular2/src/facade/async';
-import { OnChanges } from 'angular2/src/core/linker/interfaces';
+import { OnChanges , OnDestroy } from 'angular2/src/core/linker/interfaces';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import {
     RequiredValidator ,
@@ -67,7 +67,7 @@ import { isPresent } from 'angular2/src/facade/lang';
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated
     } )
-export class AmpTextareaComponent implements AfterViewInit {
+export class AmpTextareaComponent implements AfterViewInit,OnDestroy {
     private _id : string;
     private label : string;
     private isInSummaryState : boolean;
@@ -83,6 +83,15 @@ export class AmpTextareaComponent implements AfterViewInit {
     private _valMinLength : number;
     private _valMaxLength : number;
     private _required : boolean = false;
+
+    ngOnDestroy () : any {
+        this.parentControl.validator = null;
+        this.parentControl.updateValueAndValidity( {
+            onlySelf  : false ,
+            emitEvent : true
+        } );
+        return undefined;
+    }
 
     ngAfterViewInit () : any {
         let componentHeight         = this.el.nativeElement.scrollHeight;

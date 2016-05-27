@@ -32,7 +32,6 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                 <div [collapse]='isInSummaryState' class='heading heading-micro-intro mt-35'>
                     For a practice to access the {{ licenseeBuybackFacility }} facility, all equity holders in that practice must exercise {{ licenseeBuybackFacility }}.
                 </div>
-
                 <section [collapse]='isInSummaryState'>
 
                     <div  class='grid__item mb-25 mt-50'>
@@ -40,6 +39,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                             scrollOutOn='Yes'
                             class='grid__item 4/9'
                             (select)='onSwitchChanged($event)'
+                            [required]='isHoldersButtonRequired'
                             [buttons]='hasHoldersButtons.buttons'
                             [parentControl]='formControl[0].control'
                             [groupName]='hasHoldersButtons.groupName'
@@ -54,6 +54,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                     <div class='grid__item mb-15 mt-45'>
                         <amp-group-button
                             scrollOutUnless='null'
+                            [required]='isHoldersCountRequired'
                             (select)='onHoldersCountGroupButtonSelect($event)'
                             [buttons]='holdersCountButtons.buttons'
                             [parentControl]='formControl[1].control'
@@ -146,6 +147,8 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private dynamicControlGroup : ControlArray;
+    private isHoldersButtonRequired        = true;
+    private isHoldersCountRequired         = false;
     private hasHoldersButtons              = {
         buttons   : [
             {
@@ -258,8 +261,10 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     private onSwitchChanged ( value ) {
         if ( value === 'No' ) {
             this.clearHoldersControlArray();
+            this.isHoldersCountRequired = false;
             this.formControl[ 1 ].control.updateValue( '0' );
         } else {
+            this.isHoldersCountRequired = true;
             if ( this.dynamicControlGroup.length === 0 ) {
                 this.formControl[ 1 ].control.updateValue( '' );
             }

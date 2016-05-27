@@ -19,11 +19,10 @@ import {
                     </div>
                     <h3 class='heading heading-intro mt-30'>Like more information?</h3>
                     <div *ngIf='isAMPFPP' class='heading heading-micro-intro mt-35 mb-10'>
-                        You can find more details on extending your notice period and / or withdrawing your notification in the AMP Financial Planning Buyer of last resort policy
+                        You can find more details on extending your notice period and / or withdrawing your notification in the AMP Financial Planning Buyer of last resort policy.
                     </div>
                     <div *ngIf='isHILLROSS' class='heading heading-micro-intro mt-35 mb-10'>
-                        You can find more details on extending your notice period and / or withdrawing your notification in the Hillross Buyback booklet.<br>
-                        If you have any questions, please speak to your partnership manager.
+                        You can find more details on extending your notice period and / or withdrawing your notification in the Hillross Buyback booklet.
                     </div>
                     <div class='heading heading-micro-intro mb-10'>
                         If you have any questions, please speak to your partnership manager.

@@ -14,13 +14,14 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
     selector   : 'full-or-partial-block' ,
     template   : `
             <div id='full-or-partial-block' class='full-or-partial-block mt-60'>
-                <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
+                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
                 <section [collapse]='isInSummaryState'>
                     <div  class='grid__item mb-30 mt-45'>
                         <amp-group-button
                             scrollOutOn='null'
                             class='grid__item 4/9'
+                            [required]='isFullOrPartialControlRequired'
                             (select)='onSwitchChanged($event)'
                             [buttons]='fullOrPartialButtons.buttons'
                             [parentControl]='fullOrPartialControl'
@@ -48,20 +49,20 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                         Please specify if there are any advisers in your practice that should be added or removed from the above list.
                     </div>
                     <amp-textarea
+                        [collapse]='collapseImpactedAdvisersControl'
                         class='1/1'
                         [isInSummaryState]='isInSummaryState'
                         [id]='impactedAdvisersDetails.id'
-                        [parentControl]='formControl[1].control'
+                        [parentControl]='impactedAdvisersControl'
                         [isRequired]='isImpactedAdvisersRequired'
                         [valMaxLength]='impactedAdvisersDetails.maxLength'>
                     </amp-textarea>
                 </section>
-                <amp-button [class.btn-ok-margin-top]='!isFullSelected' *ngIf='!isInSummaryState' (click)='ok()' 
-                [disabled]="!canGoNext"  class='btn
-                btn-ok '>
+                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn-ok 
+                btn-ok-margin-top'>
                     OK
                 </amp-button>
-                <amp-button [class.btn-ok-margin-top]='!isFullSelected' *ngIf='isInSummaryState' 
+                <amp-button *ngIf='isInSummaryState' 
                 (click)='change()' class='btn btn-change btn-ok-margin-top'>
                     Change
                 </amp-button>
@@ -69,12 +70,19 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
             </div>
           ` , // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './full-or-partial-block.component.scss' ).toString() ] ,
-    directives : [ AmpOverlayComponent , AmpGroupButtonComponent , AmpCollapseDirective , AmpTextareaComponent ]
+    directives : [
+        AmpButton ,
+        AmpOverlayComponent ,
+        AmpGroupButtonComponent ,
+        AmpCollapseDirective ,
+        AmpTextareaComponent
+    ]
 } )
 export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME                      = 'FullOrPartialBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
+    private isFullOrPartialControlRequired = true;
     private fullOrPartialButtons           = {
         buttons   : [
             {
@@ -94,7 +102,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         id        : 'impactedAdvisersDetails' ,
         maxLength : 500
     };
-    private isImpactedAdvisersRequired = false;
+    private isImpactedAdvisersRequired     = false;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -169,12 +177,16 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         this.formControl[ 1 ].name = this.impactedAdvisersDetails.id;
     }
 
+    private get collapseImpactedAdvisersControl () {
+        return this.hasClickedOnOkButton && ! this.impactedAdvisersControl.value;
+    }
+
     private get canGoNext () {
         return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
     private get isFullSelected () {
-        return this.formControl[ 0 ].control.value === this.fullOrPartialButtons.buttons[ 0 ].value;
+        return this.fullOrPartialControl.value === this.fullOrPartialButtons.buttons[ 0 ].value;
     }
 
     private get advisers () {
@@ -182,7 +194,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
     }
 
     private get isPartialSelected () {
-        return this.formControl[ 0 ].control.value === this.fullOrPartialButtons.buttons[ 1 ].value;
+        return this.fullOrPartialControl.value === this.fullOrPartialButtons.buttons[ 1 ].value;
     }
 
     private isCurrentBlockActive () {
@@ -193,7 +205,15 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         return this.formControl[ 0 ].control;
     }
 
+    private get impactedAdvisersControl () {
+        return this.formControl[ 1 ].control;
+    }
+
     private onSwitchChanged ( value ) {
+        this.hasClickedOnOkButton = false;
+        if ( value === 'Partial' ) {
+            this.impactedAdvisersControl.updateValue( null );
+        }
         this.formModelService.present( {
             action    : 'setFlag' ,
             flag      : 'practiceAssociationIsVisible' ,

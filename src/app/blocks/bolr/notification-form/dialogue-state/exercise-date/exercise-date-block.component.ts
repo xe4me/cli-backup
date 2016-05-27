@@ -113,7 +113,7 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
             }
         } );
         this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) || changes.hasOwnProperty( 'practiceAssociationIsDone' ) ) {
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) || changes.hasOwnProperty( 'practiceAssociationIsDone' ) || changes.hasOwnProperty( 'saleReasonIsDone' ) ) {
                 this.resetBlock();
                 return;
             }
@@ -245,7 +245,6 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private resetBlock () {
-        console.log( 'resetting the exercise date block ' );
         this.formModelService.present( {
             action    : 'setFlag' ,
             flag      : 'exerciseDateIsDone' ,
@@ -258,6 +257,5 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         this.dateControl.updateValueAndValidity( { onlySelf : false , emitParent : true } );
         this.isInSummaryState     = false;
         this.hasClickedOnOkButton = false;
-        console.log( 'resetting the exercise date block control : ' , this.dateControl );
     }
 }
