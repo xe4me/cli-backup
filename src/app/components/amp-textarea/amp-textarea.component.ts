@@ -1,4 +1,4 @@
-import { Component , Directive , Input , OnInit , ViewEncapsulation } from 'angular2/core';
+import { Component , Directive , Input , OnInit , ViewEncapsulation , ChangeDetectorRef } from 'angular2/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
@@ -8,7 +8,13 @@ import { ElementRef } from 'angular2/src/core/linker/element_ref';
 import { EventEmitter } from 'angular2/src/facade/async';
 import { OnChanges } from 'angular2/src/core/linker/interfaces';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-// TODO: Work out how to disable mdMaxLength and mdPattern when they are not set
+import {
+    RequiredValidator ,
+    MinLengthValidator ,
+    PatterValidator ,
+    MaxLengthValidator
+} from "../../components/my-md-input/my-md-input.component";
+import { isPresent } from 'angular2/src/facade/lang';
 @Component(
     {
         selector      : 'amp-textarea' ,
@@ -24,22 +30,19 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
          [ngClass]='{"summary" : isInSummaryState}'
         *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
         --><textarea
-            #textarea
-            (keyup)='adjustHeight($event.target)'
-            (blur)='adjustHeight($event.target)'
-            (blur)='trimValue()'
-            [class.summary-state]='isInSummaryState'
-            [disabled]='isInSummaryState'
-            class='md-input'
-            [mdPattern]='valPattern'
-            [attr.name]='_id'
-            [attr.id]='_id'
-            [attr.maxlength]='valMaxLength'
-            [mdMaxLength]='valMaxLength'
-            [attr.data-automation-id]='"textarea_" + _id'
-            [ngFormControl]='parentControl'
-            [attr.placeholder]='placeholder'>
-            
+                #textarea
+                (keyup)='adjustHeight($event.target)'
+                (blur)='adjustHeight($event.target)'
+                (blur)='trimValue()'
+                [class.summary-state]='isInSummaryState'
+                [disabled]='isInSummaryState'
+                class='md-input'
+                [attr.name]='_id'
+                [attr.id]='_id'
+                [attr.maxlength]='valMaxLength'
+                [attr.data-automation-id]='"textarea_" + _id'
+                [ngFormControl]='parentControl'
+                [attr.placeholder]='placeholder'>
             </textarea>
             <span 
             [class.error]='valMaxLength==textarea.value.length' class='char-left'
@@ -57,7 +60,7 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
             'placeholder' ,
             'visibility' ,
             'valMaxLength' ,
-            'valPattern' ,
+            'valMinLength' ,
             'isRequired' ,
             'hostClassesRemove'
         ] ,
@@ -77,6 +80,9 @@ export class AmpTextareaComponent implements AfterViewInit {
     private initialComponentHeight : number;
     private initialTextareaHeight : number;
     private componentHeightOffset : number;
+    private _valMinLength : number;
+    private _valMaxLength : number;
+    private _required : boolean = false;
 
     ngAfterViewInit () : any {
         let componentHeight         = this.el.nativeElement.scrollHeight;
@@ -85,10 +91,14 @@ export class AmpTextareaComponent implements AfterViewInit {
         this.componentHeightOffset  = componentHeight - (this.initialTextareaHeight + 4);
         this.initialComponentHeight = this.initialTextareaHeight + this.componentHeightOffset;
         this.adjustHeight( textarea );
+        this.updateValitators();
+        this._cd.detectChanges();
         return undefined;
     }
 
-    constructor ( private el : ElementRef , private animationBuilder : AnimationBuilder ) {
+    constructor ( private _cd : ChangeDetectorRef ,
+                  private el : ElementRef ,
+                  private animationBuilder : AnimationBuilder ) {
         this._animation    = animationBuilder.css();
         this.onAdjustWidth = new EventEmitter();
     }
@@ -108,15 +118,49 @@ export class AmpTextareaComponent implements AfterViewInit {
         this._id = id;
     }
 
-    set isRequired ( val : string ) {
-        if ( val === 'true' ) {
-            // Note that you can compose an Array of validators via the Validators.compose(validators: Function[]) :
-            // Function API
-            this.parentControl.validator = Validators.required;
-        }
+    get isRequired () {
+        return this._required;
+    }
+
+    set isRequired ( value : boolean ) {
+        this._required = this.isTrue( value );
+        this.updateValitators();
+    }
+
+    get valMinLength () {
+        return this._valMinLength;
+    }
+
+    set valMinLength ( value : number ) {
+        this._valMinLength = value;
+        this.updateValitators();
+    }
+
+    get valMaxLength () {
+        return this._valMaxLength;
+    }
+
+    set valMaxLength ( value : number ) {
+        this._valMaxLength = value;
+        this.updateValitators();
     }
 
     private  trimValue () {
         return this.parentControl.value ? this.parentControl.updateValue( this.parentControl.value.trim() ) : '';
+    }
+
+    private updateValitators () {
+        if ( this.parentControl ) {
+            this.parentControl.validator = Validators.compose( [
+                RequiredValidator.requiredValidation( this._required ) ,
+                MinLengthValidator.minLengthValidation( this._valMinLength ) ,
+                MaxLengthValidator.maxLengthValidation( this._valMaxLength )
+            ] );
+            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        }
+    }
+
+    private isTrue ( value ) {
+        return isPresent( value ) && (value === true || value === 'true' || false);
     }
 }

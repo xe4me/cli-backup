@@ -14,7 +14,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
     selector   : 'full-or-partial-block' ,
     template   : `
             <div id='full-or-partial-block' class='full-or-partial-block mt-60'>
-                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
+                <!--<amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>-->
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
                 <section [collapse]='isInSummaryState'>
                     <div  class='grid__item mb-30 mt-45'>
@@ -52,6 +52,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                         [isInSummaryState]='isInSummaryState'
                         [id]='impactedAdvisersDetails.id'
                         [parentControl]='formControl[1].control'
+                        [isRequired]='isImpactedAdvisersRequired'
                         [valMaxLength]='impactedAdvisersDetails.maxLength'>
                     </amp-textarea>
                 </section>
@@ -93,6 +94,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         id        : 'impactedAdvisersDetails' ,
         maxLength : 500
     };
+    private isImpactedAdvisersRequired = false;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -201,6 +203,11 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
             action    : 'setFlag' ,
             flag      : 'saleReasonIsVisible' ,
             flagValue : value === 'Partial'
+        } );
+        this.formModelService.present( {
+            action    : 'setFlag' ,
+            flag      : 'fullOrPartialIsDone' ,
+            flagValue : false
         } );
     }
 }

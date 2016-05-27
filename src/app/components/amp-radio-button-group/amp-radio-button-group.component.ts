@@ -124,6 +124,9 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit {
     }
 
     ngAfterViewInit () : any {
+        this.parentControl.valueChanges.subscribe( ( changes ) => {
+            this.onSelect( null , changes )
+        } )
         this.updateValitators();
         this.changeDetector.detectChanges();
         return undefined;
@@ -160,7 +163,9 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit {
 
     private onSelect ( $event , value ) {
         if ( this.disabled === true ) {
-            $event.stopPropagation();
+            if ( $event !== null ) {
+                $event.stopPropagation();
+            }
             return;
         }
         if ( this.previousValue !== value ) {

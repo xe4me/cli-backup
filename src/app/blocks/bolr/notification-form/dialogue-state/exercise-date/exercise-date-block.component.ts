@@ -27,25 +27,26 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         </div>
         <input-with-label-group
             (onBlur)='validateDate()'
+            (onKeyup)='validateDate()'
             (onEnter)='ok()'
             [isInSummaryState]='isInSummaryState'
-            [contxtualLabel]='requestDate.contxtualLabel'
-            [id]='requestDate.id'
-            [label]='requestDate.label'
-            [parentControl]='formControl[0].control'
+            [contxtualLabel]='dateField.contxtualLabel'
+            [id]='dateField.id'
+            [label]='dateField.label'
+            [parentControl]='dateControl'
             isRequired='true'
-            [valMaxLength]='requestDate.maxLength'
-            [valMinLength]='requestDate.minLength'
+            [valMaxLength]='dateField.maxLength'
+            [valMinLength]='dateField.minLength'
             showLabel='true'
-            [valPattern]='requestDate.regex'>
+            [valPattern]='dateField.regex'>
         </input-with-label-group>
 
-        <div *ngIf='formControl[0].control.touched && !formModel.controls.exerciseDate.valid' class='errors mt-20 mb-15'>
+        <div *ngIf='dateControl.touched && !formModel.controls.exerciseDate.valid' class='errors mt-20 mb-15'>
             <div class='error-item'>
-                <div *ngIf='formControl[ 0 ].control.errors.required' >
+                <div *ngIf='dateControl.errors.required' >
                     <span class='icon icon--close icon-errors'></span>Date is a required field.
                 </div>
-                <div *ngIf='formControl[ 0 ].control.errors.mdPattern'>
+                <div *ngIf='dateControl.errors.mdPattern'>
                     <span class='icon icon--close icon-errors'></span>The date should be in the format DD/MM/YYYY.
                 </div>
             </div>
@@ -68,12 +69,13 @@ import { TimerWrapper } from 'angular2/src/facade/async';
   ` ,
         directives : [ AmpOverlayComponent , InputWithLabelGroupComponent , AmpButton ] ,
         styles     : [ require( './exercise-date-block.component.scss' ).toString() ] ,
-        providers  : [ provideParent( ExerciseDateBlockComponent ) ]
+        providers  : [ provideParent( ExerciseDateBlockComponent ) ] ,
+        inputs     : [ 'dateField' ]
     } )
-export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit {
     static CLASS_NAME : string             = 'ExerciseDateBlockComponent';
-    private requestDate                    = {
-        id             : 'requestDateId' ,
+    private dateField                      = {
+        id             : 'exerciseDate' ,
         label          : 'DD/MM/YYYY' ,
         contxtualLabel : 'My requested date is' ,
         regex          : '^(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\\d\\d$' ,
@@ -84,7 +86,7 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private dateErrorMessage               = null;
-    private dateFormat                     = 'dd/MM/yyyy';
+    private dateFormat                     = 'dd/mm/yyyy';
     private ampDateService : AmpDateService;
     private defaultExerciseDateOption      = 'three_month';
 
@@ -94,20 +96,11 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
                   private scrollService : ScrollService ) {
         super();
         this.formControl               = [
-            new NamedControl( this.requestDate.id , new Control() )
+            new NamedControl( this.dateField.id , new Control() )
         ];
         this.formControlGroupName      = 'exerciseDate';
         this.ampDateService            = new AmpDateService();
         this.ampDateService.dateFormat = this.dateFormat;
-        this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) && (changes[ 'fullOrPartialIsDone' ] === false ) ) {
-                this.resetBlock();
-                return;
-            }
-            if ( changes.hasOwnProperty( 'practiceAssociationIsDone' ) && (changes[ 'practiceAssociationIsDone' ] === false ) ) {
-                this.resetBlock();
-            }
-        } );
     }
 
     ngAfterViewInit () : any {
@@ -119,24 +112,21 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
                 this.isInSummaryState = false;
             }
         } );
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'fullOrPartialIsDone' ) || changes.hasOwnProperty( 'practiceAssociationIsDone' ) ) {
+                this.resetBlock();
+                return;
+            }
+        } );
         return undefined;
     }
 
     public isCurrentBlockActive () {
-        if ( this.formModel && this.formModel.controls[ 'saleReason' ] ) {
-            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
-                this.formModelService.getFlags( 'saleReasonIsDone' );
-        }
-        if ( this.formModel && this.formModel.controls[ 'practiceAssociation' ] ) {
-            return this.formModelService.getFlags( 'fullOrPartialIsDone' ) &&
-                this.formModelService.getFlags( 'practiceAssociationIsDone' ) &&
-                this.formModelService.getFlags( 'practiceAssociationIsVisible' );
-        }
-        return false;
+        return this.formModelService.getFlags( 'saleReasonIsDone' ) || this.formModelService.getFlags( 'practiceAssociationIsDone' );
     }
 
     public preBindControls ( _formBlockDef ) {
-        this.formControl[ 0 ].name = this.requestDate.id;
+        this.formControl[ 0 ].name = this.dateField.id;
     }
 
     public change () {
@@ -229,12 +219,17 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         this.dateErrorMessage = null;
     }
 
+    private get dateControl () {
+        return this.formControl[ 0 ].control;
+    }
+
     private validateDate () {
-        let enteredDate = this.formControl[ 0 ].control.value;
-        if ( enteredDate === null || enteredDate.trim().length === 0 ) {
+        if ( ! this.dateControl.valid ) {
+            this.hideError();
             return;
         }
-        let datesDiff = this.ampDateService.getDatesDiff( this.ampDateService.today , enteredDate );
+        let enteredDate = this.dateControl.value;
+        let datesDiff   = this.ampDateService.getDatesDiff( this.ampDateService.today , enteredDate );
         if ( this.controlGroup( 'fullOrPartial' ).controls[ 'fullOrPartial' ].value === 'Full' ) {
             this.validateDateField( datesDiff , this.associtationExerciseDateValue );
         } else {
@@ -250,17 +245,19 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
     }
 
     private resetBlock () {
+        console.log( 'resetting the exercise date block ' );
         this.formModelService.present( {
             action    : 'setFlag' ,
             flag      : 'exerciseDateIsDone' ,
             flagValue : false
         } );
-        this.formControl[ 0 ].control.updateValue( '' );
-        this.formControl[ 0 ].control._touched  = false;
-        this.formControl[ 0 ].control._dirty    = false;
-        this.formControl[ 0 ].control._pristine = true;
-        this.formControl[ 0 ].control.updateValueAndValidity( { onlySelf : false , emitParent : true } );
+        this.dateControl.updateValue( '' );
+        this.dateControl._touched  = false;
+        this.dateControl._dirty    = false;
+        this.dateControl._pristine = true;
+        this.dateControl.updateValueAndValidity( { onlySelf : false , emitParent : true } );
         this.isInSummaryState     = false;
         this.hasClickedOnOkButton = false;
+        console.log( 'resetting the exercise date block control : ' , this.dateControl );
     }
 }

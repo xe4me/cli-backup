@@ -6,12 +6,16 @@
                 [isInSummaryState]='isInSummaryState'
                 id='a-text-area'
                 label='A label '
+                [isRequired]='isTextAreaRequired'
                 [parentControl]='control'
                 valMaxLength='500'>
         </amp-textarea>
         <!-- End copy at here -->
         <br><br>
+        validity : {{ control.valid }}
+        <br>
         <button (click)='isInSummaryState=!isInSummaryState'>Toggle summary mode</button>
+        <button (click)='isInSummaryState=!isInSummaryState'>Toggle Required</button>
     </div>
 </form>
 

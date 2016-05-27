@@ -305,7 +305,7 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     }
 
     private isCurrentBlockActive () {
-        return this.formModelService.getFlags( 'fullOrPartialIsDone' );
+        return this.practiceAssociationIsVisible;
     }
 
     private resetBlock () {

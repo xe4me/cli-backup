@@ -28,7 +28,7 @@ import { isPresent } from 'angular2/src/facade/lang';
          [ngClass]='{"summary" : isInSummaryState, "noPadding": noPadding} '
         *ngIf='!isInSummaryState && showLabel!=="false"' [attr.for]='_id'>{{label}}</label><!--
         --><input
-            (keyup)='onEnterClick($event)'
+            (keyup)='onKeyupEvent($event)'
             (blur)='trimValue()'
             [class.summary-state]='isInSummaryState'
             [disabled]='isInSummaryState'
@@ -65,29 +65,30 @@ import { isPresent } from 'angular2/src/facade/lang';
         ] ,
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated ,
-        outputs       : [ 'onEnter' , 'onBlur' ]
+        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ]
     } )
 export class MdInputComponent implements OnChanges, AfterViewInit {
     private inputWidth : number;
     private _id : string;
+    private _animation : CssAnimationBuilder;
+    private _valMinLength : number;
+    private _valMaxLength : number;
+    private _required : boolean   = false;
     private label : string;
     private isInSummaryState : boolean;
     private showLabel : boolean   = true;
     private tolowerCase : boolean = false;
     private toupperCase : boolean = false;
     private parentControl : Control;
-    private _required : boolean   = false;
     private placeholder : string;
     private visibility : Action;
-    private _animation : CssAnimationBuilder;
     private onAdjustWidth : EventEmitter<string>;
     private hostClassesRemove;
     private tempClassNames;
     private valPattern : string;
     private onEnter : EventEmitter<string>;
     private onBlur : EventEmitter<string>;
-    private _valMinLength : number;
-    private _valMaxLength : number;
+    private onKeyup : EventEmitter<Event>;
 
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
@@ -120,6 +121,7 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         this.onAdjustWidth = new EventEmitter();
         this.onEnter       = new EventEmitter();
         this.onBlur        = new EventEmitter();
+        this.onKeyup       = new EventEmitter();
     }
 
     get isRequired () {
@@ -213,7 +215,25 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         } );
     }
 
-    private requiredValidation ( isRequired ) {
+    private onKeyupEvent ( $event ) {
+        this.onEnterClick( $event );
+        this.onKeyup.emit( $event );
+    }
+
+    private updateValitators () {
+        if ( this.parentControl ) {
+            this.parentControl.validator = Validators.compose( [
+                RequiredValidator.requiredValidation( this._required ) ,
+                MinLengthValidator.minLengthValidation( this._valMinLength ) ,
+                MaxLengthValidator.maxLengthValidation( this._valMaxLength ) ,
+                PatterValidator.patternValidator( this.valPattern )
+            ] );
+            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        }
+    }
+}
+export class RequiredValidator {
+    public static requiredValidation ( isRequired ) {
         return ( c ) => {
             if ( isRequired ) {
                 if ( ! c.value || c.value.length === 0 ) {
@@ -225,8 +245,9 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             return null;
         };
     }
-
-    private maxLengthValidation ( valMaxLength ) {
+}
+export class MaxLengthValidator {
+    public static maxLengthValidation ( valMaxLength ) {
         return ( c ) => {
             if ( valMaxLength ) {
                 if ( ! c.value || c.value.length <= valMaxLength ) {
@@ -239,8 +260,9 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             return null;
         };
     }
-
-    private minLengthValidation ( valMinLength ) {
+}
+export class MinLengthValidator {
+    public static minLengthValidation ( valMinLength ) {
         return ( c ) => {
             if ( valMinLength ) {
                 if ( ! c.value || c.value.length >= valMinLength ) {
@@ -253,8 +275,9 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             return null;
         };
     }
-
-    private patternValidator ( pattern ) {
+}
+export class PatterValidator {
+    public static patternValidator ( pattern ) {
         return ( c ) => {
             if ( pattern ) {
                 if ( ! c.value || new RegExp( pattern ).test( c.value ) ) {
@@ -267,17 +290,4 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
             return null;
         };
     }
-
-    private updateValitators () {
-        if ( this.parentControl ) {
-            this.parentControl.validator = Validators.compose( [
-                this.requiredValidation( this._required ) ,
-                this.minLengthValidation( this._valMinLength ) ,
-                this.maxLengthValidation( this._valMaxLength ) ,
-                this.patternValidator( this.valPattern )
-            ] );
-            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
-        }
-    }
 }
-
