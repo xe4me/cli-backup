@@ -305,7 +305,7 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     }
 
     private isCurrentBlockActive () {
-        return this.practiceAssociationIsVisible;
+        return this.componentIsVisible;
     }
 
     private resetBlock () {
