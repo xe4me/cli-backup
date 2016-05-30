@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
@@ -108,10 +108,10 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                                     <span *ngIf=' i < ( dynamicControlGroup.controls.length - 2 ) '>,</span>
                                 </span><!--
                                 --><span class='1/6 heading heading-contxtual-label' *ngIf='
-                                    dynamicControlGroup.controls.length > 1 '> 
+                                    dynamicControlGroup.controls.length > 1 '>
                                     <span *ngIf=' i === ( dynamicControlGroup.controls.length - 2 ) '>and</span>
                                 </span><!--
-                            --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading 
+                            --><span  *ngIf=' i === ( dynamicControlGroup.controls.length - 1 ) ' class='1/6 heading
                             heading-contxtual-label input-dot'>.</span><!--
                         --></div>
 
@@ -140,9 +140,9 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         AmpSlideDirective ,
         AmpButton
     ] ,
-    providers  : [ TemplateRef ]
+    providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ]
 } )
-export class EquityHolderBlockComponent extends FormBlock implements AfterViewInit {
+export class EquityHolderBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;

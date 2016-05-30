@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import {
     Component ,
@@ -44,10 +44,10 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 
 
       <div *ngIf='
-      !formModel.controls.practiceAddress.valid  
-      && ( 
-      ( suburbCtrl.touched && !suburbCtrl.valid ) || 
-      ( addressCtrl.touched && !addressCtrl.valid ) || 
+      !formModel.controls.practiceAddress.valid
+      && (
+      ( suburbCtrl.touched && !suburbCtrl.valid ) ||
+      ( addressCtrl.touched && !addressCtrl.valid ) ||
       ( stateCtrl.touched && !stateCtrl.valid ) ||
       ( postcodeCtrl.touched && !postcodeCtrl.valid )
       )'
@@ -103,9 +103,10 @@ import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
     ` , // encapsulation: ViewEncapsulation.Emulated
     inputs     : [ 'practiceAddress' ] ,
     styles     : [ require( './practice-address.component.scss' ).toString() ] ,
-    directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent , AmpButton ]
+    directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent , AmpButton ],
+    providers  : [ provideParent( PracticeAddressBlockComponent ) ]
 } )
-export class PracticeAddressBlockComponent extends FormBlock implements AfterViewInit {
+export class PracticeAddressBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'PracticeAddressBlockComponent';
     private practiceAddress                =
            {

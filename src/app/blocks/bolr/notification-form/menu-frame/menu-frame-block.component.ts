@@ -40,7 +40,7 @@ import { AmpCollapseDirective } from '../../../../directives/animations/collapse
     directives : [ AmpCollapseDirective , StickyProgressHeaderBlockComponent , AmpButton ] ,
     providers  : [ provideParent( MenuFrameBlockComponent ) ]
 } )
-export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked {
+export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked, FormBlock {
     static CLASS_NAME              = 'MenuFrameBlockComponent';
     private calculatedProgress     = 0;
     private stickyAnimatedIntoView = false;

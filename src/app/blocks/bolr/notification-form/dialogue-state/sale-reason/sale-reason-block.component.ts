@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
@@ -12,7 +12,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
     selector   : 'sale-reason-block' ,
     template   : `
             <div id='sale-reason-block' *ngIf='saleReasonIsVisible' class='sale-reason-block mt-60'>
-                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>                
+                <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro mb-5'>What is the rationale for your sale?</h3>
                 <section>
                     <amp-textarea
@@ -25,7 +25,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
                         [valMaxLength]='saleReason.maxLength'>
                     </amp-textarea>
                 </section>
-                <div class='errors mb-40' *ngIf='(hasClickedOnOkButton || salesReasonControl.touched) 
+                <div class='errors mb-40' *ngIf='(hasClickedOnOkButton || salesReasonControl.touched)
                 &&!salesReasonControl.valid' >
                      <span class='icon icon--close icon-errors'></span>Please enter your reasons.
                 </div>
@@ -45,9 +45,9 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         AmpTextareaComponent ,
         AmpButton
     ] ,
-    providers  : [ TemplateRef ]
+    providers  : [ TemplateRef , provideParent( SaleReasonBlockComponent ) ]
 } )
-export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit {
+export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'SaleReasonBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;

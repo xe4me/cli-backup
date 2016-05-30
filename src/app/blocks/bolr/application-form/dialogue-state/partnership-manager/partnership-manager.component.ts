@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
@@ -61,9 +61,10 @@ import { TimerWrapper } from 'angular2/src/facade/async';
   ` , // encapsulation: ViewEncapsulation.Emulated
     inputs         : [ 'partnershipMgr' ] ,
     styles         : [ require( './partnership-manager.component.scss' ).toString() ] ,
-    directives     : [ MdInputComponent , AmpOverlayComponent, AmpButton ]
+    directives     : [ MdInputComponent , AmpOverlayComponent, AmpButton ],
+    providers      : [ provideParent( PartnershipManagerBlockComponent ) ]
 } )
-export class PartnershipManagerBlockComponent extends FormBlock implements AfterViewInit {
+export class PartnershipManagerBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
     private partnershipMgr                 = {
         firstName    : {

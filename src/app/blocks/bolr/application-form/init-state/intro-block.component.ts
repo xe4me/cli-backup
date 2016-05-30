@@ -1,4 +1,4 @@
-import { FormBlock } from '../../../formBlock';
+import { FormBlock, provideParent } from '../../../formBlock';
 import { Component , ElementRef , DynamicComponentLoader } from 'angular2/core';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
@@ -22,15 +22,16 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
             <p class='bolr-intro-main__notes mb3'>We need a few details, this will take some time to complete, but you can save and continue at any time.</p>
             <amp-button class='btn btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
-            </amp-button>            
+            </amp-button>
         </div>
     </div>
   ` ,
     // encapsulation: ViewEncapsulation.Emulated
     styles     : [ require( './intro-block.component.scss' ).toString() ] ,
-    directives : [ ThemeIDDirective , AmpButton ]
+    directives : [ ThemeIDDirective , AmpButton ],
+    providers  : [ provideParent( IntroBlockComponent ) ]
 } )
-export class IntroBlockComponent extends FormBlock {
+export class IntroBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME = 'IntroBlockComponent';
 
     constructor ( private loader : DynamicComponentLoader ,

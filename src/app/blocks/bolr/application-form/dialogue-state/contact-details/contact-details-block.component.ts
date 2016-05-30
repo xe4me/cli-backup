@@ -1,6 +1,6 @@
 import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/core';
 import { Control , ControlGroup } from 'angular2/common';
-import { FormBlock , NamedControl } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
@@ -17,8 +17,8 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>{{ formModelService.getModel().context.practicePrincipalFirstName }}, please
         confirm your details are correct. <br> If not, simply update them below.</h3>
-        
-        
+
+
         <!--Practice principal START-->
         <div [collapse]='!showPracticeNameInputs' class='grid__item'>
             <!--Partnership Manager name-->
@@ -55,7 +55,7 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
             <div class='error-item' *ngIf='lastNameControl.touched && !lastNameControl.valid'>
                 <span class='icon icon--close icon-errors'></span>{{ contactDetails.lastName.error }}
             </div>
-        </div>   
+        </div>
         <!--Contact Number-->
         <input-with-label-group
             (onEnter)='ok()'
@@ -131,9 +131,10 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
             InputWithLabelGroupComponent ,
             AmpButton
         ] ,
-        styles     : [ require( './contact-details-block.component.scss' ).toString() ]
+        styles     : [ require( './contact-details-block.component.scss' ).toString() ],
+        providers  : [ provideParent( ContactDetailsBlockComponent ) ]
     } )
-export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit {
+export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit, FormBlock {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
     private contactDetails                 = {
         firstName : {

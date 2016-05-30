@@ -1,5 +1,5 @@
 import { Component , AfterViewChecked , ElementRef } from 'angular2/core';
-import { FormBlock } from '../../../formBlock';
+import { FormBlock, provideParent } from '../../../formBlock';
 import { StickyProgressHeaderBlockComponent } from '../../../../../../src/app/blocks/bolr/application-form/sticky-progress-header-block/sticky-progress-header-block.component';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
@@ -30,9 +30,10 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
         </div>
     ` ,
     styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
-    directives : [ StickyProgressHeaderBlockComponent , AmpButton ]
+    directives : [ StickyProgressHeaderBlockComponent , AmpButton ],
+    providers  : [ provideParent( MenuFrameBlockComponent ) ]
 } )
-export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked {
+export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked, FormBlock {
     static CLASS_NAME              = 'MenuFrameBlockComponent';
     private calculatedProgress     = 0;
     private formControlLength : number;

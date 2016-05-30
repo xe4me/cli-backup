@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
 import { Control } from 'angular2/common';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
@@ -44,7 +44,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                         </span>
                         will be impacted by this decision.
                     </div>
-                    
+
                     <div class='grid__item mb-15 mt-15 heading heading-intro'>
                         Please specify if there are any advisers in your practice that should be added or removed from the above list.
                     </div>
@@ -58,11 +58,11 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                         [valMaxLength]='impactedAdvisersDetails.maxLength'>
                     </amp-textarea>
                 </section>
-                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn-ok 
+                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]="!canGoNext"  class='btn btn-ok
                 btn-ok-margin-top'>
                     OK
                 </amp-button>
-                <amp-button *ngIf='isInSummaryState' 
+                <amp-button *ngIf='isInSummaryState'
                 (click)='change()' class='btn btn-change btn-ok-margin-top'>
                     Change
                 </amp-button>
@@ -76,9 +76,10 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
         AmpGroupButtonComponent ,
         AmpCollapseDirective ,
         AmpTextareaComponent
-    ]
+    ],
+    providers     : [ provideParent( FullOrPartialBlockComponent ) ]
 } )
-export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit {
+export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME                      = 'FullOrPartialBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;

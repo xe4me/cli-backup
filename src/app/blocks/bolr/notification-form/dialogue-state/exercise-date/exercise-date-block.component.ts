@@ -72,7 +72,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         providers  : [ provideParent( ExerciseDateBlockComponent ) ] ,
         inputs     : [ 'dateField' ]
     } )
-export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit {
+export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
     static CLASS_NAME : string             = 'ExerciseDateBlockComponent';
     private dateField                      = {
         id             : 'exerciseDate' ,

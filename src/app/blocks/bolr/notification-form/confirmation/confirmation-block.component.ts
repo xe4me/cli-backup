@@ -38,7 +38,7 @@ import {
     encapsulation : ViewEncapsulation.None ,
     providers     : [ provideParent( ConfirmationBlockComponent ) ]
 } )
-export class ConfirmationBlockComponent extends FormBlock implements OnInit {
+export class ConfirmationBlockComponent extends FormBlock implements OnInit, FormBlock {
     static CLASS_NAME             = 'ConfirmationBlockComponent';
     private showConfirmationBlock = false;
 
