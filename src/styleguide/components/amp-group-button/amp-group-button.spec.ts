@@ -96,8 +96,8 @@ describe( 'amp-group-button directive' , () => {
                     const Element = fixture.nativeElement;
                     let Labels    = Element.querySelectorAll( 'label' );
                     expect( Labels.length ).toBe( 2 );
-                    expect( Labels[ '0' ].innerHTML ).toBe( 'Full sale' );
-                    expect( Labels[ '1' ].innerHTML ).toBe( 'Partial sale' );
+                    expect( Labels[ '0' ].innerHTML.trim() ).toBe( 'Full sale' );
+                    expect( Labels[ '1' ].innerHTML.trim() ).toBe( 'Partial sale' );
                 } );
         } ) );
     it( 'Should update component control value to full after clicking on Full button' ,
