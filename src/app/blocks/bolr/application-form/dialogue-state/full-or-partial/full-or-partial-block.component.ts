@@ -39,7 +39,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                                 <span *ngIf=' i < ( advisers.length - 1 ) && i >0 '> , </span>
                                 <span *ngIf=' i === ( advisers.length - 1 ) '> and </span>
                             </span>
-                            {{ item.adviserName }} ({{ item.adviserId }})
+                            {{ item.firstName }} {{ item.lastName }} ({{ item.ownernum }})
                         </span>
                         will be impacted by this decision.
                     </div>
@@ -119,22 +119,22 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         return undefined;
     }
 
-    ngOnInit () : any {
-        this
-            .formModelService
-            .getAdvisers()
-            .subscribe(
-                data => {
-                    this.formModelService.present(
-                        { action : 'setAdvisers' , advisers : data }
-                    );
-                } ,
-                error => {
-                    this.formModelService.present(
-                        { action : 'error' , errors : [ 'Failed to decode the context' ] }
-                    );
-                } );
-        return undefined;
+    loadAdvisers () {
+        if (!this.advisers || !this.advisers.length) {
+            this.formModelService
+                .getAdvisers()
+                .subscribe(
+                    data => {
+                        this.formModelService.present(
+                            { action : 'setAdvisers' , advisers : data }
+                        );
+                    } ,
+                    error => {
+                        this.formModelService.present(
+                            { action : 'error' , errors : [ 'Failed to decode the context' ] }
+                        );
+                    } );
+        }
     }
 
     public change () {
@@ -193,6 +193,10 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
     }
 
     private onSwitchChanged ( value ) {
+        if (value === 'Full') {
+            this.loadAdvisers();
+        }
+
         this.formModelService.present( {
             action    : 'setFlag' ,
             flag      : 'practiceAssociationIsVisible' ,
