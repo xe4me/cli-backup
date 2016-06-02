@@ -349,7 +349,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
     }
 
     private get exerciseDate () {
-        return this.exerciseDateBlock.requestDateId;
+        return this.exerciseDateBlock.exerciseDate;
     }
 
     private get equityHoldersList () {

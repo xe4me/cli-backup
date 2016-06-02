@@ -215,6 +215,6 @@ export class PracticeAddressBlockComponent extends FormBlock implements AfterVie
 
     private get canGoNext () {
         return this.formModel.controls[ this.formControlGroupName ].valid ||
-            this.googleAddressCtrl.valid;
+            (this.googleAddressCtrl.valid && !this.googleAddressCtrl.pristine);
     }
 }
