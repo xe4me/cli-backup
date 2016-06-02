@@ -27,7 +27,7 @@ import {
                     <div class='heading heading-micro-intro mb-10'>
                         If you have any questions, please speak to your partnership manager.
                     </div>
-                    <amp-button (click)='download()' class='btn btn-submit mt-40'>
+                    <amp-button (click)='download()' class='btn btn-submit btn-download mt-40'>
                         Download a copy
                     </amp-button>
                 </section>

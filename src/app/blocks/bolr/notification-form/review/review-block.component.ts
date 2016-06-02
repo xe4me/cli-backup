@@ -182,13 +182,13 @@ practices that may be interested in becoming the servicing practice for some or 
                     </section><!--
                  --><section class='review--sections__right grid__item 1/4' [sticky-on-scroll]='shouldStick' >
                         <div class='mb-30 mt-25'>
-                            <amp-button (click)='submit($event)' [disabled]='isImpersonated || !formIsFullyValid' class='btn btn-submit 
+                            <amp-button (click)='submit($event)' [disabled]='isImpersonated || !formIsFullyValid' class='btn btn-submit
                             btn-review'>
                                 Submit <span class='icon icon--chevron-right'></span>
                             </amp-button>
                         </div>
                         <div>
-                            <amp-button (click)='download($event)'class='btn btn-change btn-review'>
+                            <amp-button (click)='download($event)'class='btn btn-change btn-review btn-download'>
                                 Download a copy
                             </amp-button>
                         </div>
