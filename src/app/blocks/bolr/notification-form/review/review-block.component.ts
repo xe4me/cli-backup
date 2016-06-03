@@ -111,7 +111,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                                             <span *ngIf=' i < ( advisers.length - 1 ) && i >0 '> , </span>
                                             <span *ngIf=' i === ( advisers.length - 1 ) '> and </span>
                                         </span>
-                                        {{ item.adviserName }} ({{ item.adviserId }})
+                                        {{ item.firstName }} {{ item.lastName }} ({{ item.ownernum }})
                                     </span>
                                     will be impacted by this decision.
                                 </div>
