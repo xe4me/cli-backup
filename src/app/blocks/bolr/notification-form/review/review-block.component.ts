@@ -192,6 +192,16 @@ practices that may be interested in becoming the servicing practice for some or 
                                 Download a copy
                             </amp-button>
                         </div>
+                        <div *ngIf='submissionError' class='errors mt-20 mb-15'>
+                            <div class='error-item'>
+                                <div *ngIf='!submissionError.error.save || !submissionError.error.save._id'>
+                                    <span class='icon icon--close icon-errors'></span>Oops! Your request did not make it into the system. Please try again!
+                                </div>
+                                <div *ngIf='submissionError.error.save._id && submissionError.error.err'>
+                                    <span class='icon icon--close icon-errors'></span>Your request to terminate bussiness with AMP is denied.
+                                </div>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -208,6 +218,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
     static CLASS_NAME        = 'ReviewBlockComponent';
     private formIsFullyValid = false;
     private reviewIsVisible  = false;
+    private submissionError = null;
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -269,12 +280,14 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
     }
 
     private submit ( event ) {
+        this.submissionError = null;
         this.formModelService
             .saveForm( this.formModel.value )
             .subscribe( ( data ) => {
                 this.goToReceiptPage();
             } , ( data ) => {
-                this.goToReceiptPage();
+                this.submissionError = data.json();
+                // this.goToReceiptPage();
                 console.log( 'Errorrrr' , data );
             } );
         //this.goToConfirmationPage( event );
