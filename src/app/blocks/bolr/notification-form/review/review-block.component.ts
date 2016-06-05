@@ -284,7 +284,13 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
         this.formModelService
             .saveForm( this.formModel.value )
             .subscribe( ( data ) => {
+                this.formModelService.present( {
+                    action    : 'submitted' ,
+                    data      : data
+                } );
+
                 this.goToReceiptPage();
+
             } , ( data ) => {
                 this.submissionError = data.json();
                 // this.goToReceiptPage();
