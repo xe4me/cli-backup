@@ -187,17 +187,17 @@ practices that may be interested in becoming the servicing practice for some or 
                                 Submit <span class='icon icon--chevron-right'></span>
                             </amp-button>
                         </div>
-                        <div>
+                        <!--<div>
                             <amp-button (click)='download($event)'class='btn btn-change btn-review btn-download'>
                                 Download a copy
                             </amp-button>
-                        </div>
+                        </div>-->
                         <div *ngIf='submissionError' class='errors mt-20 mb-15'>
                             <div class='error-item'>
-                                <div *ngIf='!submissionError.error.save || !submissionError.error.save._id'>
+                                <div *ngIf='!submissionError.error || !submissionError.error.save || !submissionError.error.save._id'>
                                     <span class='icon icon--close icon-errors'></span>Oops! Your request did not make it into the system. Please try again!
                                 </div>
-                                <div *ngIf='submissionError.error.save._id && submissionError.error.err'>
+                                <div *ngIf='submissionError.error && (submissionError.error.save._id && submissionError.error.err)'>
                                     <span class='icon icon--close icon-errors'></span>Your request to terminate bussiness with AMP is denied.
                                 </div>
                             </div>

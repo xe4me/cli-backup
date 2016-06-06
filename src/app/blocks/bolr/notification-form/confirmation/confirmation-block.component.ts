@@ -65,7 +65,7 @@ export class ConfirmationBlockComponent extends FormBlock implements OnInit, For
     }
 
     private download () {
-        alert( 'Begin downloading the form ...' );
+        window.location.href=this.formModelService.generatePDFUrl();
     }
 
     private get isAMPFPP () {
