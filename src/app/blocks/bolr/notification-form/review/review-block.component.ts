@@ -25,7 +25,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
     selector   : 'review-block' ,
     template   : `
             <div *ngIf='reviewIsVisible' id='review-block' class='review grid__item mb-80'>
-                <h3 class='heading heading-intro mt-60 mb-30'>Summary of your request details</h3>
+                <h3 class='heading heading-intro mt-60 mb-30'>Review your request details</h3>
                 <div class='review--sections'>
                     <section class='review--sections__left grid__item 2/4'>
                         <div class='review--item grid__item 1/1 mb-25'>
@@ -198,9 +198,6 @@ practices that may be interested in becoming the servicing practice for some or 
                                 <div *ngIf='!submissionError.error || !submissionError.error.save || !submissionError.error.save._id'>
                                     <span class='icon icon--close icon-errors'></span>A system error has occurred. Please try again.
                                 </div>
-                                <div *ngIf='submissionError.error && (submissionError.error.save._id && submissionError.error.err)'>
-                                    <span class='icon icon--close icon-errors'></span>A system error has occurred. Please try again or contact your local friendly woolworth staff.
-                                </div>
                             </div>
                         </div>
                     </section>
@@ -293,11 +290,13 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
                 this.goToReceiptPage();
 
             } , ( data ) => {
-                this.submissionError = data.json();
-                // this.goToReceiptPage();
-                console.log( 'Errorrrr' , data );
+                // **07/06/2017 - Take user to receiptPage even on error, except for mongo save error.
+                if (data.error.save._id) {
+                    this.goToReceiptPage();
+                } else {
+                    this.submissionError = data.json();
+                }
             } );
-        //this.goToConfirmationPage( event );
     }
 
     private download () {

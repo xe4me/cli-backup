@@ -184,16 +184,32 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
     private showPracticeNameInputs         = false;
 
     ngOnInit () : any {
-        this
-            .formModelService
-            .getContactDetails()
+        this.formModelService
+            .getContactDetails()    // Get Profile for the Practice using the ActingAsUser
             .subscribe(
-                data => {
-                    this.formModelService.present(
-                        { action : 'setContactDetails' , contactDetails : data }
-                    );
-                    this.formControl[ Controls.PHONE ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
-                    this.formControl[ Controls.EMAIL ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
+                contactData => {
+                    // Check for the specified officer and Get Profile
+                    this.formModelService
+                        .getAdvisers()
+                        .subscribe(
+                            adviserList => {
+                                this.formModelService.present(
+                                    { action : 'setAdvisers' , advisers : adviserList }
+                                );
+
+                                this.formModelService.present(
+                                    { action : 'setContactDetails' , contactDetails : contactData }
+                                );
+
+                                this.formControl[ Controls.PHONE ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
+                                this.formControl[ Controls.EMAIL ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
+                            } ,
+                            error => {
+                                this.formModelService.present(
+                                    { action : 'error' , errors : [ 'Failed to decode the context' ] }
+                                );
+                            } );
+
                 } ,
                 error => {
                     this.formModelService.present(

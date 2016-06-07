@@ -129,24 +129,6 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         return undefined;
     }
 
-    ngOnInit () : any {
-        this
-            .formModelService
-            .getAdvisers()
-            .subscribe(
-                data => {
-                    this.formModelService.present(
-                        { action : 'setAdvisers' , advisers : data }
-                    );
-                } ,
-                error => {
-                    this.formModelService.present(
-                        { action : 'error' , errors : [ 'Failed to decode the context' ] }
-                    );
-                } );
-        return undefined;
-    }
-
     public change () {
         this.hasClickedOnOkButton = false;
         this.isInSummaryState     = false;
