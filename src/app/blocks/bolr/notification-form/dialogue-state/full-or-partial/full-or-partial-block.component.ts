@@ -35,13 +35,13 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                 </div>
                 <section class='mt-10'  [collapse]='!isFullSelected'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>
-                        <span *ngFor='#item of advisers ; #i = index'>
-                            <span *ngIf='advisers.length > 1 '>
-                                <span *ngIf=' i < ( advisers.length - 1 ) && i >0 '> , </span>
+                        <span *ngFor='#item of advisers ; #i = index'><!--
+                         --><span *ngIf='advisers.length > 1 '><!--
+                           --><span *ngIf=' i < ( advisers.length - 1 ) && i >0 '>, </span>
                                 <span *ngIf=' i === ( advisers.length - 1 ) '> and </span>
-                            </span>
-                            {{ item.firstName }} {{ item.lastName }} ({{ item.ownernum }})
-                        </span>
+                             </span>
+                            {{ item.firstName }} {{ item.lastName }} ({{ item.ownernum }})<!--
+                        --></span>
                         will be impacted by this decision.
                     </div>
 

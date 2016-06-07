@@ -73,7 +73,7 @@ export class ConfirmationBlockComponent extends FormBlock implements OnInit, For
     }
 
     private get isAMPFPP () {
-        return this.formModelService.licensee === 'DEA_AMPFP';
+        return (this.formModelService.licensee === 'DEA_AMPFP' || this.formModelService.licensee === 'DEA_ASSURED');
     }
 
     private get isHILLROSS () {

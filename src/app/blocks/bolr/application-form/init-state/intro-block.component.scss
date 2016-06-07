@@ -46,6 +46,10 @@ $amp-ddc-public-asset: '../../../../../../src/assets/';
     background-image: url($amp-ddc-public-asset + 'images/logo/AMPFP_logo.jpg');
   }
 
+  &.DEA_ASSURED {
+    background-image: url($amp-ddc-public-asset + 'images/logo/AMPFP_logo.jpg');
+  }
+
   &.DEA_HILLROSS {
     background-image: url($amp-ddc-public-asset + 'images/logo/Hillross_logo.jpg');
   }

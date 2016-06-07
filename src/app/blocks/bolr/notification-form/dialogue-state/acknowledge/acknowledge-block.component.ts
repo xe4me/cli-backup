@@ -119,7 +119,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log( 'onAcknowledgeSelect value' , value );
+        // console.log( 'onAcknowledgeSelect value' , value );
     }
 
     private get licensee () {

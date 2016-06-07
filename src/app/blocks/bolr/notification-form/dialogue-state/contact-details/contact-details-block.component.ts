@@ -1,20 +1,55 @@
 import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/core';
 import { Control , ControlGroup } from 'angular2/common';
-import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
+import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import { InputWithLabelGroupComponent } from '../../../../../component-groups/input-with-label-group/input-with-label-group.component';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
+import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 @Component(
     {
         selector   : 'contact-details-block' ,
         template   : `
     <div id='contact-details-block' class='contact-details-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-        <h3 class='heading heading-intro'>{{ formModelService.getModel().context.practicePrincipalFirstName }}, please
+        <h3 class='heading heading-intro' *ngIf="!showPracticeNameInputs">{{ formModelService.getModel().context.practicePrincipalFirstName }}, please
         confirm your details are correct. <br> If not, simply update them below.</h3>
+
+        <h3 class='heading heading-intro' *ngIf="showPracticeNameInputs">Please
+        confirm your details are correct. <br> If not, simply update them below.</h3>
+
+
+        <!--Practice principal START-->
+        <div [collapse]='!showPracticeNameInputs' class='grid__item'>
+            <!--Partnership Manager name-->
+            <label class='heading heading-contxtual-label mb3' >Name</label><!--
+            -->&nbsp;<my-md-input
+                class='1/3'
+                (onEnter)='ok()'
+                [isInSummaryState]='isInSummaryState'
+                [id]='contactDetails.firstName.id'
+                [label]='contactDetails.firstName.label'
+                [parentControl]='firstNameControl'
+                [isRequired]='showPracticeNameInputs'
+                [valPattern]='contactDetails.firstName.regex'
+                [valMaxLength]='contactDetails.firstName.maxLength'>
+            </my-md-input><!--
+            --><my-md-input
+                class='1/3'
+                (onEnter)='ok()'
+                [isInSummaryState]='isInSummaryState'
+                [id]='contactDetails.lastName.id'
+                [label]='contactDetails.lastName.label'
+                [parentControl]='lastNameControl'
+                [isRequired]='showPracticeNameInputs'
+                [valPattern]='contactDetails.lastName.regex'
+                [valMaxLength]='contactDetails.firstName.maxLength'>
+            </my-md-input>
+        </div>
+        <!--Practice principal END-->
         <!--Contact Number-->
         <input-with-label-group
             (onEnter)='ok()'
@@ -22,7 +57,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             [contxtualLabel]='contactDetails.phone.contxtualLabel'
             [id]='contactDetails.phone.id'
             [label]='contactDetails.phone.label'
-            [parentControl]='formControl[0].control'
+            [parentControl]='phoneControl'
             isRequired='true'
             [valMaxLength]='contactDetails.phone.maxLength'
             [valMinLength]='contactDetails.phone.minLength'
@@ -39,7 +74,7 @@ import { TimerWrapper } from 'angular2/src/facade/async';
             [contxtualLabel]='contactDetails.email.contxtualLabel'
             [id]='contactDetails.email.id'
             [label]='contactDetails.email.label'
-            [parentControl]='formControl[1].control'
+            [parentControl]='emailControl'
             isRequired='true'
             [valMaxLength]='contactDetails.email.maxLength'
             [valMinLength]='contactDetails.email.minLength'
@@ -48,31 +83,40 @@ import { TimerWrapper } from 'angular2/src/facade/async';
          >
         </input-with-label-group>
 
-        <div *ngIf='(formControl[0].control.touched ||
-        formControl[1].control.touched) && !formModel.controls.contactDetails.valid' class='errors mt-20 mb-15'>
-            <div class='error-item' *ngIf='!formControl[0].control.valid && formControl[0].control.touched'>
-                <div *ngIf='formControl[ 0 ].control.errors.required' >
-                    <span class='icon icon--close icon-errors'></span>Contact number is a required field.
+        <div *ngIf='(phoneControl.touched ||
+        emailControl.touched) && !formModel.controls.contactDetails.valid' class='errors mt-20 mb-15'>
+
+           <div class='error-item' *ngIf='firstNameControl.touched && !firstNameControl.valid'>
+               <span class='icon icon--close icon-errors'></span>{{ contactDetails.firstName.error }}
+           </div>
+           <div class='error-item' *ngIf='lastNameControl.touched && !lastNameControl.valid'>
+               <span class='icon icon--close icon-errors'></span>{{ contactDetails.lastName.error }}
+           </div>
+
+
+
+
+            <div class='error-item' *ngIf='!phoneControl.valid && phoneControl.touched'>
+                <div *ngIf='phoneControl.errors.required' >
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.phone.requiredError }}
                 </div>
-                <div *ngIf='formControl[ 0 ].control.errors.mdMaxLength ||
-                formControl[ 0 ].control.errors.mdMinLength || formControl[ 0 ].control.errors.mdPattern'>
-                    <span class='icon icon--close icon-errors'></span>The contact number must contain a minimum of 8
-                    characters. Only numeric and area code characters are allowed.
+                <div *ngIf='phoneControl.errors.mdMaxLength ||
+                phoneControl.errors.mdMinLength || phoneControl.errors.mdPattern'>
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.phone.invalidError }}
                 </div>
             </div>
 
-            <div  *ngIf='!formControl[1].control.valid && formControl[1].control.touched'>
-                <div *ngIf='formControl[ 1 ].control.errors.mdPattern || formControl[ 1 ].control.errors.mdMaxLength'
+            <div  *ngIf='!emailControl.valid && emailControl.touched'>
+                <div *ngIf='emailControl.errors.mdPattern || emailControl.errors.mdMaxLength'
                 class='error-item'>
-                    <span class='icon icon--close icon-errors'></span>The email is not valid.
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.email.invalidError }}
                 </div>
-                <div *ngIf='formControl[ 1 ].control.errors.required'
+                <div *ngIf='emailControl.errors.required'
                  class='error-item'>
-                    <span class='icon icon--close icon-errors'></span>Email is a required field.
+                    <span class='icon icon--close icon-errors'></span>{{ contactDetails.email.requiredError }}
                 </div>
             </div>
         </div>
-
         <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext' class='btn
          btn-ok btn-ok-margin-top'>
             OK
@@ -83,23 +127,46 @@ import { TimerWrapper } from 'angular2/src/facade/async';
         <div class='hr-block-divider mt-80 '></div>
     </div>
   ` ,
-        directives : [ AmpOverlayComponent , InputWithLabelGroupComponent , AmpButton ] ,
-        styles     : [ require( './contact-details-block.component.scss' ).toString() ] ,
+        directives : [
+            AmpCollapseDirective ,
+            MdInputComponent ,
+            AmpOverlayComponent ,
+            InputWithLabelGroupComponent ,
+            AmpButton
+        ] ,
+        styles     : [ require( './contact-details-block.component.scss' ).toString() ],
         providers  : [ provideParent( ContactDetailsBlockComponent ) ]
     } )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit, FormBlock {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
     private contactDetails                 = {
-        phone : {
+        firstName : {
+            id        : 'practicePrincipalFirstName' ,
+            label     : 'First name' ,
+            regex     : '' ,
+            maxLength : 50 ,
+            error     : 'First name is a required field.'
+        } ,
+        lastName  : {
+            id        : 'practicePrincipalLastName' ,
+            label     : 'Last name' ,
+            regex     : '' ,
+            maxLength : 50 ,
+            error     : 'Last name is a required field.'
+        } ,
+        phone     : {
             id             : 'phoneId' ,
             label          : 'Default Phone Label' ,
             contxtualLabel : 'Contact number' ,
-            regex          : '^([\s()+-]*\d){6,}$' ,
+            regex          : '^([\\s()+-]*\\d){6,}$' ,
             value          : '00000000' ,
             maxLength      : 20 ,
-            minLength      : 8
+            minLength      : 8 ,
+            requiredError  : 'Contact number is a required field.' ,
+            invalidError   : 'The contact number must contain a minimum of 8 characters. Only numeric and area code' +
+            ' characters are allowed.'
         } ,
-        email : {
+        email     : {
             id             : 'emailId' ,
             label          : 'Default Email Label' ,
             contxtualLabel : 'Email' ,
@@ -107,22 +174,14 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             value          : 'smiladhi@gmail.com' ,
             maxLength      : 50 ,
             minLength      : 0 ,
-            toLowerCase    : 'true'
+            toLowerCase    : 'true' ,
+            invalidError   : 'The email is not valid.' ,
+            requiredError  : 'Email is a required field.'
         }
     };
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
-
-    public isCurrentBlockActive () {
-        return this.formModelService.getFlags( 'introIsDone' );
-    }
-
-    public preBindControls ( _formBlockDef ) {
-        this.formControl[ 0 ].name = this.contactDetails.phone.id;
-        this.formControl[ 1 ].name = this.contactDetails.email.id;
-        this.formControl[ 0 ].control.updateValue( this.contactDetails.phone.value );
-        this.formControl[ 1 ].control.updateValue( this.contactDetails.email.value );
-    }
+    private showPracticeNameInputs         = false;
 
     ngOnInit () : any {
         this
@@ -130,18 +189,19 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             .getContactDetails()
             .subscribe(
                 data => {
-                    this.formModelService.present( {
-                        action         : 'setContactDetails' ,
-                        contactDetails : data
-                    } );
-                    this.formControl[ 0 ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
-                    this.formControl[ 1 ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
+                    this.formModelService.present(
+                        { action : 'setContactDetails' , contactDetails : data }
+                    );
+                    this.formControl[ Controls.PHONE ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
+                    this.formControl[ Controls.EMAIL ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
                 } ,
                 error => {
                     this.formModelService.present(
                         { action : 'error' , errors : [ 'Failed to decode the context' ] }
                     );
                 } );
+
+        this.showPracticeNameInputs = (!this.formModelService.model.context.practicePrincipalFirstName || !this.formModelService.model.context.practicePrincipalLastName);
         return undefined;
     }
 
@@ -172,10 +232,59 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
             this.progressObserver.onProgress();
             this.formModelService.present( {
                 action    : 'setFlag' ,
-                flag      : 'contactDetailsIsDone' ,
+                flag      : this.doneFlag ,
                 flagValue : true
             } );
         }
+    }
+
+    constructor ( private _cd : ChangeDetectorRef ,
+                  private progressObserver : ProgressObserverService ,
+                  private el : ElementRef ,
+                  private formModelService : FormModelService ,
+                  private scrollService : ScrollService ) {
+        super();
+        this.formControl          = [
+            new NamedControl( this.contactDetails.firstName.id , new Control() ) ,
+            new NamedControl( this.contactDetails.lastName.id , new Control() ) ,
+            new NamedControl( this.contactDetails.phone.id , new Control() ) ,
+            new NamedControl( this.contactDetails.email.id , new Control() )
+        ];
+        this.formControlGroupName = 'contactDetails';
+    }
+
+    public isCurrentBlockActive () {
+        return this.formModelService.getFlags( 'introIsDone' );
+    }
+
+    public preBindControls ( _formBlockDef ) {
+        this.formControl[ Controls.FIRSTNAME ].name = this.contactDetails.firstName.id;
+        this.formControl[ Controls.LASTTNAME ].name = this.contactDetails.lastName.id;
+        this.formControl[ Controls.PHONE ].name     = this.contactDetails.phone.id;
+        this.formControl[ Controls.EMAIL ].name     = this.contactDetails.email.id;
+        this.formControl[ Controls.PHONE ].control.updateValue( this.contactDetails.phone.value );
+        this.formControl[ Controls.EMAIL ].control.updateValue( this.contactDetails.email.value );
+    }
+
+    private changeit () {
+        this.showPracticeNameInputs = ! this.showPracticeNameInputs;
+        this._cd.detectChanges();
+    }
+
+    private get firstNameControl () {
+        return this.formControl[ Controls.FIRSTNAME ].control;
+    }
+
+    private get lastNameControl () {
+        return this.formControl[ Controls.LASTTNAME ].control;
+    }
+
+    private get emailControl () {
+        return this.formControl[ Controls.EMAIL ].control;
+    }
+
+    private get phoneControl () {
+        return this.formControl[ Controls.PHONE ].control;
     }
 
     private get canGoNext () {
@@ -185,18 +294,13 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
         return false;
     }
 
-    constructor ( private progressObserver : ProgressObserverService ,
-                  private el : ElementRef ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
-        super();
-        this.formControl          = [
-            new NamedControl( this.contactDetails.phone.id , new Control() ) ,
-            new NamedControl( this.contactDetails.email.id , new Control() )
-        ];
-        this.formControlGroupName = 'contactDetails';
+    private get doneFlag () {
+        return this.formControlGroupName + 'IsDone';
     }
 }
-/**
- * Created by xe4me on 7/04/2016.
- */
+export abstract class Controls {
+    static FIRSTNAME = 0;
+    static LASTTNAME = 1;
+    static PHONE     = 2;
+    static EMAIL     = 3;
+}

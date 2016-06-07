@@ -12,10 +12,10 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
             <div class='bolr-intro-main__title practice-title mb3'>
                 <span class='mr'>{{ practiceName }}</span>
                 <span class='mr'>Practice ID: {{ payeeID }}</span>
-                <span>Practice principal: {{ practicePrincipal }}</span>
+                <span *ngIf="practicePrincipal">Practice principal: {{ practicePrincipal }}</span>
             </div>
             <p  class='bolr-intro-main__body mb3'>
-                Hi {{ practicePrincipalFirstName }}<br/>
+                <span *ngIf="practicePrincipal">Hi {{ practicePrincipalFirstName }}<br/></span>
                 You're about to request access to the {{ licenseeBuybackFacility }} facility.
             </p>
             <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
@@ -75,6 +75,9 @@ export class IntroBlockComponent extends FormBlock implements FormBlock {
     }
 
     private get practicePrincipal () {
-        return this.practicePrincipalFirstName + ' ' + this.practicePrincipalLastName;
+        if (this.context.practicePrincipalLastName && this.context.practicePrincipalFirstName) {
+            return this.practicePrincipalFirstName + ' ' + this.practicePrincipalLastName;
+        }
+        return null;
     }
 }

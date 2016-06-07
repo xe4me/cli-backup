@@ -1,7 +1,7 @@
 import {
     it , inject , injectAsync , describe , beforeEachProviders , TestComponentBuilder
 } from 'angular2/testing';
-import { Component , provide , ElementRef } from 'angular2/core';
+import { Component , provide , ElementRef, ChangeDetectorRef } from 'angular2/core';
 import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/notification-form/dialogue-state/contact-details/contact-details-block.component.ts';
 import { MockFormModelService } from './mock-form-mode.service';
 import { MockScrollService } from './mock-scroll.service';
@@ -15,14 +15,15 @@ describe( 'ContactDetailsBlockComponent isCurrentBlockActive' , () => {
             provide( ScrollService , { useClass : MockScrollService } ) ,
             provide( ProgressObserverService , { useClass : ProgressObserverService } ) ,
             provide( MockScrollService , { useClass : MockScrollService } ) ,
-            provide( Window , { useValue : window } )
+            provide( Window , { useValue : window } ),
+            provide( ChangeDetectorRef, { useValue : ChangeDetectorRef })
         ];
     } );
     it( 'Should return false if user hasn\'t clicked on ok in intro block ' , inject( [
-        ProgressObserverService , ElementRef , FormModelService , ScrollService
-    ] , ( progressObserver , el , formModelService , scrollService ) => {
+        ProgressObserverService , ElementRef , FormModelService , ScrollService, ChangeDetectorRef
+    ] , ( progressObserver , el , formModelService , scrollService , cd ) => {
         let mockFormModelService         = new MockFormModelService();
-        let contactDetailsBlockComponent = new ContactDetailsBlockComponent( progressObserver , el , formModelService , scrollService );
+        let contactDetailsBlockComponent = new ContactDetailsBlockComponent( cd, progressObserver , el , formModelService , scrollService );
         expect( contactDetailsBlockComponent.isCurrentBlockActive() ).toBeFalsy();
     } ) );
     it( 'Should subscribes to scroll service and when window is scrolling should update CurrentBlockClassName in' + ' the modelService accordingly ' , inject( [

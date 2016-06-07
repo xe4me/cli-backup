@@ -35,7 +35,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                             <div class='heading heading-contxtual-label'>
                                 <div class='grid__item 1/2'>Practice ID: {{payeeID}}
                                 </div><!--
-                                --><div class='grid__item 1/2'>Practice principal: {{practicePrincipal}}</div>
+                                --><div class='grid__item 1/2' *ngIf='practicePrincipal'>Practice principal: {{practicePrincipal}}</div>
                             </div>
                         </div>
                         <div class='review--item grid__item 1/1'>
@@ -43,6 +43,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                                 <span>Contact details</span>
                             </div><!--
                         --><div class='review--item__value grid__item 6/10'>
+                                <span *ngIf='practicePrincipalContactName'>{{ practicePrincipalContactName }}</span>
                                 <span>{{ email }}</span>
                                 <span>{{ phone }}</span>
                             </div><!--
@@ -195,10 +196,10 @@ practices that may be interested in becoming the servicing practice for some or 
                         <div *ngIf='submissionError' class='errors mt-20 mb-15'>
                             <div class='error-item'>
                                 <div *ngIf='!submissionError.error || !submissionError.error.save || !submissionError.error.save._id'>
-                                    <span class='icon icon--close icon-errors'></span>Oops! Your request did not make it into the system. Please try again!
+                                    <span class='icon icon--close icon-errors'></span>A system error has occurred. Please try again.
                                 </div>
                                 <div *ngIf='submissionError.error && (submissionError.error.save._id && submissionError.error.err)'>
-                                    <span class='icon icon--close icon-errors'></span>Your request to terminate bussiness with AMP is denied.
+                                    <span class='icon icon--close icon-errors'></span>A system error has occurred. Please try again or contact your local friendly woolworth staff.
                                 </div>
                             </div>
                         </div>
@@ -419,6 +420,13 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
         return this.partnershipBlock.lastName;
     }
 
+    private get practicePrincipalContactName () {
+        if (this.contactDetailsBlock.practicePrincipalFirstName || this.contactDetailsBlock.practicePrincipalLastName) {
+            return this.contactDetailsBlock.practicePrincipalFirstName + " " + this.contactDetailsBlock.practicePrincipalLastName;
+        }
+        return null;
+    }
+
     private get email () {
         return this.contactDetailsBlock.emailId;
     }
@@ -436,7 +444,10 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
     }
 
     private get practicePrincipal () {
-        return this.practicePrincipalFirstName + ' ' + this.practicePrincipalLastName;
+        if (this.formModelServiceModel.context.practicePrincipalLastName && this.formModelServiceModel.context.practicePrincipalFirstName) {
+                return this.practicePrincipalFirstName + ' ' + this.practicePrincipalLastName;
+        }
+        return null;
     }
 
     private get exerciseDateOptions () {

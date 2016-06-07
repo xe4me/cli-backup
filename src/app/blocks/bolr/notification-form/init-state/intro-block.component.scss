@@ -53,6 +53,10 @@ $amp-ddc-public-asset: '../../../../../../src/assets/';
   &.DEA_CHARTER {
     background-image: url($amp-ddc-public-asset + 'images/logo/Charter_logo.jpg');
   }
+
+  &.DEA_ASSURED {
+    background-image: url($amp-ddc-public-asset + 'images/logo/AMPFP_logo.jpg');
+  }
 }
 
 .bolr-intro-main {
