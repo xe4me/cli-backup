@@ -64,11 +64,55 @@ export class ConfirmationBlockComponent extends FormBlock implements OnInit, For
     preBindControls ( _formBlockDef ) {
     }
 
-    private download () {
+    isIE(): boolean {
+        return (window.navigator.userAgent.indexOf('MSIE ') > -1) ||
+                (window.navigator.userAgent.indexOf('Trident/') > -1) ||
+                (window.navigator.userAgent.indexOf('Edge/') > -1) ;
+    }
+
+    b64toBlob(b64Data, contentType) {
+        contentType = contentType || '';
+        var sliceSize = 512;
+        b64Data = b64Data.replace(/^[^,]+,/, '');
+        b64Data = b64Data.replace(/\s/g, '');
+        var byteCharacters = window.atob(b64Data);
+        var byteArrays = [];
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+    }
+
+    wrapInDataURI(base64Data) : string {
+        return 'data:application/pdf;base64,' + base64Data;
+    }
+
+    download () {
         if (this.formModelService.generatePDFUrl()) {
-            window.location.href=this.formModelService.generatePDFUrl();
+            this.formModelService
+                .generatePDF()
+                .subscribe(base64PDF => {
+                    // Technical challenge: PDF reside in a APIGW protected URL that requires header "apiKey Bearer blahblah"
+                    // Data URI will work for most browsers http://caniuse.com/#feat=datauri, except for the dreaded IE11
+                    if (this.isIE()) {
+                        window.navigator.msSaveBlob(this.b64toBlob(base64PDF, 'application/pdf'), 'Buyback notification.pdf');
+                    } else {
+                        window.open(this.wrapInDataURI(base64PDF), '_blank');
+                    }
+                });
         } else {
-            console.log("Failed to obtain PDF Url", this.formModelService.generatePDFUrl());
+            console.log('Failed to obtain PDF Url', this.formModelService.generatePDFUrl());
         }
     }
 
