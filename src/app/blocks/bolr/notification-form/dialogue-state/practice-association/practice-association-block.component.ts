@@ -52,8 +52,8 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
                     <h3 class='heading heading-intro  mb-30'>And your requested exercise date?</h3>
                         <span class='summary-state'>{{ getExerciseLengthLabel(exerciseDateControl.value) }}</span>
                 </div>
-                <div [collapse]='!showExerciseDate'>
-                    <section [collapse]='isInSummaryState' class='mb-30' >
+                <div [collapse]='!showExerciseDate || isInSummaryState'>
+                    <section class='mb-30' >
                         <h3 class='heading heading-intro  mb-40'>And your requested exercise date?</h3>
                          <amp-radio-button-group
                                 autoSelectOnOne='true'
@@ -80,7 +80,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
                             valMaxLength='500'>
                         </amp-textarea>
                 </section>
-               
+
                 <div *ngIf='showRequiredError' class='errors mb-40'>
                     <div *ngIf='!excCirControl.valid'>
                         <div>
@@ -88,7 +88,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
                         </div>
                     </div>
                 </div>
-                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!controlGroup.valid' class='btn 
+                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!controlGroup.valid' class='btn
                 btn-ok mt-10'>
                     OK
                 </amp-button>

@@ -49,7 +49,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                         Please specify if there are any advisers in your practice that should be added or removed from the above list.
                     </div>
                     <amp-textarea
-                        [collapse]='collapseImpactedAdvisersControl'
+                        *ngIf='!collapseImpactedAdvisersControl'
                         class='1/1'
                         [isInSummaryState]='isInSummaryState'
                         [id]='impactedAdvisersDetails.id'
