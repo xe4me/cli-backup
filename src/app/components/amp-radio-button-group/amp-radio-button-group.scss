@@ -9,10 +9,15 @@ $radio-height: $radio-width !default;
 $radio-text-margin: 40px !default;
 $radio-top-left: 12px !default;
 $radio-margin: 0;
+$radio-font-weight: 300 !default;
 
 .amp-radio-button-group {
   line-height: 45px;
   @extend %#{$namespace}font-size-medium;
+  @include amp-family($amp-font-open-sans-semibold);
+
+  font-weight: $radio-font-weight;
+
   display: block;
   margin: $radio-margin;
   white-space: nowrap;
@@ -125,4 +130,3 @@ $radio-margin: 0;
 
   border-color: rgba($amp-colour-sky-blue, 0.87);
 }
-
