@@ -293,6 +293,10 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
                 var dataBody = data.json();
                 // **07/06/2017 - Take user to receiptPage even on error, except for mongo save error.
                 if (dataBody && dataBody.error && dataBody.error.save && dataBody.error.save._id) {
+                    this.formModelService.present( {
+                        action: 'failedSubmission',
+                        data: dataBody
+                    })
                     this.goToReceiptPage();
                 } else {
                     this.submissionError = data.json();
