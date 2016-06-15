@@ -13,15 +13,15 @@ import {
     MinLengthValidator ,
     PatterValidator ,
     MaxLengthValidator
-} from "../../components/my-md-input/my-md-input.component";
+} from '../../components/my-md-input/my-md-input.component';
 import { isPresent } from 'angular2/src/facade/lang';
 @Component(
     {
         selector      : 'amp-textarea' ,
         template      : `
-    <md-input-container 
-        [class.md-input-has-value]='parentControl.value' 
-        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}' 
+    <md-input-container
+        [class.md-input-has-value]='parentControl.value'
+        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}'
         flex-gt-sm='' >
         <!--(paste)='adjustHeight($event.target)'
             (blur)='adjustHeight($event.target)'
@@ -44,7 +44,7 @@ import { isPresent } from 'angular2/src/facade/lang';
                 [ngFormControl]='parentControl'
                 [attr.placeholder]='placeholder'>
             </textarea>
-            <span 
+            <span
             [class.error]='valMaxLength==textarea.value.length' class='char-left'
              *ngIf='valMaxLength && valMaxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ valMaxLength }}</span>
             <span class='summary-text'>{{ parentControl.value }}</span>
@@ -67,7 +67,7 @@ import { isPresent } from 'angular2/src/facade/lang';
         directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated
     } )
-export class AmpTextareaComponent implements AfterViewInit,OnDestroy {
+export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
     private _id : string;
     private label : string;
     private isInSummaryState : boolean;

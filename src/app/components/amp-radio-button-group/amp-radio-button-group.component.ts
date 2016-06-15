@@ -59,9 +59,9 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                     [value]='button.value'
                     [checked]='parentControl.value===button.value'
                />
-              <label 
-                    [class.checked]="parentControl.value===button.value" 
-                    (click)='onSelect($event , button.value , true)' 
+              <label
+                    [class.checked]="parentControl.value===button.value"
+                    (click)='onSelect($event , button.value , true)'
                     [attr.for]='button.id' class="root">
                     <div class="container">
                         <div class="off"></div>
@@ -132,8 +132,8 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () : any {
         this.parentControl.valueChanges.subscribe( ( changes ) => {
-            this.onSelect( null , changes , false )
-        } )
+            this.onSelect( null , changes , false );
+        } );
         this.updateValitators();
         this.changeDetector.detectChanges();
         return undefined;
@@ -188,5 +188,3 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
         }
     }
 }
-
-

@@ -296,7 +296,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
                     this.formModelService.present( {
                         action: 'failedSubmission',
                         data: dataBody
-                    })
+                    });
                     this.goToReceiptPage();
                 } else {
                     this.submissionError = data.json();
@@ -426,7 +426,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
 
     private get practicePrincipalContactName () {
         if (this.contactDetailsBlock.practicePrincipalFirstName || this.contactDetailsBlock.practicePrincipalLastName) {
-            return this.contactDetailsBlock.practicePrincipalFirstName + " " + this.contactDetailsBlock.practicePrincipalLastName;
+            return this.contactDetailsBlock.practicePrincipalFirstName + ' ' + this.contactDetailsBlock.practicePrincipalLastName;
         }
         return null;
     }

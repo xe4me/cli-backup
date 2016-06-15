@@ -118,9 +118,6 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     private isExerciseDateRequired                 = true;
     private isExpCircumstancesRequired             = true;
 
-    private check () {
-    }
-
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
@@ -324,5 +321,8 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
             flag      : 'practiceAssociationIsDone' ,
             flagValue : false
         } );
+    }
+
+    private check () {
     }
 }
