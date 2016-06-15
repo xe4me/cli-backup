@@ -15,7 +15,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                 <span *ngIf="practicePrincipal">Practice principal: {{ practicePrincipal }}</span>
             </div>
             <p  class='bolr-intro-main__body mb3'>
-                <span *ngIf="practicePrincipal">Hi {{ practicePrincipalFirstName }}<br/></span>
+                <span *ngIf="practicePrincipal">Hi {{ practicePrincipalFirstName }},<br/></span>
                 You're about to request access to the {{ licenseeBuybackFacility }} facility.
             </p>
             <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
