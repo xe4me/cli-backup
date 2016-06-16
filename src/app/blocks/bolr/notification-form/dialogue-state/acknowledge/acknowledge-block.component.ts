@@ -35,7 +35,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
         </amp-checkbox>
 
         <div class='heading heading-micro-intro mt-35'>
-            Please note, this may potentially result in some or all of the practice's register being purchased and transferred before the exercise date.
+            Please note, this may potentially result in some or all of the practice's register being purchased and transferred to another practice before the exercise date.
         </div>
         <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn btn-ok
         mt-50'>

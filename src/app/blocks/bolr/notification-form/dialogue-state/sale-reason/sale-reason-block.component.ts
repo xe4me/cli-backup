@@ -1,6 +1,6 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { Component , ElementRef } from 'angular2/core';
-import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService, LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
 import { TemplateRef } from 'angular2/src/core/linker/template_ref';
 import { Control } from 'angular2/src/common/forms/model';
@@ -8,12 +8,16 @@ import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-o
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
 import { TimerWrapper } from 'angular2/src/facade/async';
+
+
 @Component( {
     selector   : 'sale-reason-block' ,
     template   : `
             <div id='sale-reason-block' *ngIf='saleReasonIsVisible' class='sale-reason-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-                <h3 class='heading heading-intro mb-5'>What is the rationale for your sale?</h3>
+                <h3 class='heading heading-intro mb-5'>Your business case has been submitted to your regional office.
+                    Approval from your region's head of financial planning has been provided and is based on the following
+                    compelling rationale to support the partial {{ licenseeBuybackFacility }} request:</h3>
                 <section>
                     <amp-textarea
                         class='1/1'
@@ -119,6 +123,10 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
 
     public preBindControls ( _formBlockDef ) {
         this.formControl[ 0 ].name = this.saleReason.controlName;
+    }
+
+    private get licenseeBuybackFacility () {
+        return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
     }
 
     private get salesReasonControl () {
