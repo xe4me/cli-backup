@@ -1,7 +1,7 @@
 {
   "name": "amp-ddc-components",
   "version": "0.0.1",
-  "description": "AMP digital dynamic data capture UI component library ",
+  "description": "AMP digital dynamic data capture UI component library",
   "author": "Eric Kwok <eric_kwok@amp.com.au>",
   "homepage": "https://gitlab.ccoe.ampaws.com.au/ddc/components",
   "license": "PROPRIETARY",
