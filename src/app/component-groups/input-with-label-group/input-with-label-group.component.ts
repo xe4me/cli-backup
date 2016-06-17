@@ -57,9 +57,9 @@ export class InputWithLabelGroupComponent {
     private valMaxLength : number;
     private valMinLength : number;
     private width : string        = '1/3';
-    private onEnter : EventEmitter < string >;
-    private onBlur : EventEmitter < string >;
-    private onKeyup : EventEmitter < string >;
+    private onEnter : EventEmitter<any>;
+    private onBlur : EventEmitter<any>;
+    private onKeyup : EventEmitter<any>;
     private tolowerCase : boolean = false;
     private toupperCase : boolean = false;
 
