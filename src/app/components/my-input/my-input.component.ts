@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from 'angular2/core';
-import {Control, Validators, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {Component, Input, OnInit} from '@angular/core';
+import {Control, Validators, CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
 import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
 
 @Component({

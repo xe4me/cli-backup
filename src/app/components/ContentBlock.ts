@@ -1,5 +1,5 @@
 import {FormBlock} from '../blocks/formBlock';
-import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from 'angular2/core';
+import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from '@angular/core';
 
 @Component ({
   selector: 'content-block',

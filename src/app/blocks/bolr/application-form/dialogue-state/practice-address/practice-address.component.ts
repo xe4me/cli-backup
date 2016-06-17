@@ -3,15 +3,15 @@ import { FormModelService , ProgressObserverService , ScrollService } from 'amp-
 import {
     Component ,
     ElementRef
-} from 'angular2/core';
-import { Control } from 'angular2/common';
+} from '@angular/core';
+import { Control } from '@angular/common';
 import 'rxjs/add/operator/do';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 import { AMPGoogleAddressComponentGroup } from '../../../../../component-groups/amp-google-address-group/amp-google-address-group.component.ts';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component';
-import { TimerWrapper } from 'angular2/src/facade/async';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { TimerWrapper } from '@angular/core/src/facade/async';
+import { AfterViewInit } from '@angular/core';
 @Component( {
     selector   : 'practice-address-block' ,
     template   : `

@@ -1,11 +1,11 @@
-import { View , Component , OnInit , ChangeDetectorRef , provide , ViewChild } from 'angular2/core';
+import { View , Component , OnInit , ChangeDetectorRef , provide , ViewChild } from '@angular/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
+import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { ReviewBlockComponent } from '../../../../app/blocks/bolr/notification-form/review/review-block.component.ts';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { Observable }     from 'rxjs/Observable';
 import { BlockID } from 'amp-ddc-ui-core/ui-core';
-import { ControlGroup } from 'angular2/src/common/forms/model';
+import { ControlGroup } from '@angular/common';
 export class MockFormModelService {
     private model = {
         errors         : [] ,

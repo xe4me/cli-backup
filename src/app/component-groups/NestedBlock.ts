@@ -1,5 +1,5 @@
-import { Component , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
+import { Component , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from '@angular/core';
+import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { FormBlock , NamedControl } from '../blocks/formBlock';
 import { MdInputComponent } from '../components/my-md-input/my-md-input.component';
 import { PlannerDetailsBlock } from './PlannerDetailsBlock';

@@ -7,8 +7,8 @@ import {
     NgZone ,
     AfterViewInit ,
     ChangeDetectorRef
-} from 'angular2/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
+} from '@angular/core';
+import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { FormBlock , NamedControl } from '../../blocks/formBlock';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MdInputComponent } from '../../components/my-md-input/my-md-input.component';

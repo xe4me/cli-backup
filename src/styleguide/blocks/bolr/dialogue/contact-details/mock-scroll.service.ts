@@ -1,4 +1,4 @@
-import { Injectable , EventEmitter }     from 'angular2/core';
+import { Injectable , EventEmitter }     from '@angular/core';
 import { MockFormModelService } from './mock-form-mode.service';
 @Injectable()
 export class MockScrollService {

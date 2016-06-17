@@ -1,20 +1,18 @@
-import { Component , Directive , Input , OnInit , ViewEncapsulation , ChangeDetectorRef } from 'angular2/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
+import { Component , Directive , Input , OnInit , ViewEncapsulation , ChangeDetectorRef } from '@angular/core';
+import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
-import { AnimationBuilder } from 'angular2/src/animate/animation_builder';
-import { CssAnimationBuilder } from 'angular2/src/animate/css_animation_builder';
-import { ElementRef } from 'angular2/src/core/linker/element_ref';
-import { EventEmitter } from 'angular2/src/facade/async';
-import { OnChanges , OnDestroy } from 'angular2/src/core/linker/interfaces';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
+import { MD_INPUT_DIRECTIVES,  } from '@angular2-material/input';
+import { ElementRef } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { OnChanges , OnDestroy } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
 import {
     RequiredValidator ,
     MinLengthValidator ,
     PatterValidator ,
     MaxLengthValidator
 } from '../../components/my-md-input/my-md-input.component';
-import { isPresent } from 'angular2/src/facade/lang';
+import { isPresent } from '@angular/core/src/facade/lang';
 @Component(
     {
         selector      : 'amp-textarea' ,
@@ -64,7 +62,7 @@ import { isPresent } from 'angular2/src/facade/lang';
             'isRequired' ,
             'hostClassesRemove'
         ] ,
-        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
+        directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated
     } )
 export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
@@ -74,8 +72,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
-    private _animation : CssAnimationBuilder;
-    private onAdjustWidth : EventEmitter<string>;
+    private onAdjustWidth : EventEmitter<any>;
     private hostClassesRemove;
     private initialComponentHeight : number;
     private initialTextareaHeight : number;
@@ -106,9 +103,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
     }
 
     constructor ( private _cd : ChangeDetectorRef ,
-                  private el : ElementRef ,
-                  private animationBuilder : AnimationBuilder ) {
-        this._animation    = animationBuilder.css();
+                  private el : ElementRef ) {
         this.onAdjustWidth = new EventEmitter();
     }
 

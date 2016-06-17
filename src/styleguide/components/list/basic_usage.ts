@@ -1,4 +1,4 @@
-import { View , Component } from 'angular2/core';
+import { View , Component } from '@angular/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 let imagePath = 'src/assets/images/avatars/avatar11.svg';
 @Component( { selector : 'list-basic-usage' } )

@@ -1,4 +1,4 @@
-import { View , Component } from 'angular2/core';
+import { View , Component } from '@angular/core';
 import { AmpLinearProgressBarComponent } from '../../../app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 @Component( { selector : 'amp-linear-progress-bar-basic-usage' } )
 @View( {

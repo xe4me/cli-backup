@@ -1,5 +1,5 @@
-import { Component , OnInit , ElementRef , ChangeDetectorRef } from 'angular2/core';
-import { Control , ControlGroup } from 'angular2/common';
+import { Component , OnInit , ElementRef , ChangeDetectorRef } from '@angular/core';
+import { Control , ControlGroup } from '@angular/common';
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import {
@@ -8,8 +8,8 @@ import {
     ScrollService ,
     LicenseesAbstract
 } from 'amp-ddc-ui-core/ui-core';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { AfterViewInit } from '@angular/core';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpCheckboxComponent } from '../../../../../components/amp-checkbox/amp-checkbox.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 @Component(

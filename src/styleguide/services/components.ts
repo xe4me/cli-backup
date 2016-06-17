@@ -1,6 +1,6 @@
-import { Injectable } from 'angular2/core';
-import { Http } from 'angular2/http';
-import { Response } from 'angular2/http';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Response } from '@angular/http';
 export interface IComponentExample {
     component : string;
     name : string;

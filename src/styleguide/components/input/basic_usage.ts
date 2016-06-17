@@ -1,6 +1,6 @@
-import { View , Component } from 'angular2/core';
+import { View , Component } from '@angular/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
-import { FORM_DIRECTIVES , Validators } from 'angular2/common';
+import { FORM_DIRECTIVES , Validators } from '@angular/common';
 @Component( { selector : 'input-basic-usage' } )
 @View( {
     templateUrl : 'src/styleguide/components/input/basic_usage.html' ,

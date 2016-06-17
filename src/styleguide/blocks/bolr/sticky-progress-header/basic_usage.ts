@@ -1,4 +1,4 @@
-import { View , Component , ChangeDetectorRef } from 'angular2/core';
+import { View , Component , ChangeDetectorRef } from '@angular/core';
 import { StickyProgressHeaderBlockComponent } from '../../../../app/blocks/bolr/notification-form/sticky-progress-header-block/sticky-progress-header-block.component';
 @Component( { selector : 'sticky-progress-header-block-basic-usage' } )
 @View( {

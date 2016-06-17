@@ -1,5 +1,5 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from 'angular2/core';
+import { Component , ElementRef } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -10,16 +10,16 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpRadioButtonGroupComponent } from '../../../../../components/amp-radio-button-group/amp-radio-button-group.component';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
-import { TemplateRef } from 'angular2/src/core/linker/template_ref';
-import { Control } from 'angular2/src/common/forms/model';
+import { TemplateRef } from '@angular/core';
+import { Control } from '@angular/common';
 import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { Validators } from 'angular2/src/common/forms/validators';
-import { ControlGroup } from 'angular2/src/common/forms/model';
-import { TimerWrapper } from 'angular2/src/facade/async';
-import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
+import { AfterViewInit } from '@angular/core';
+import { Validators } from '@angular/common';
+import { ControlGroup } from '@angular/common';
+import { TimerWrapper } from '@angular/core/src/facade/async';
+import { ChangeDetectorRef } from '@angular/core';
 @Component( {
     selector   : 'practice-association-block' ,
     template   : `

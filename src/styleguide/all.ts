@@ -1,7 +1,7 @@
 // TODO(jd): auto generate import/exports for examples during the grunt site-meta task.
 
 
-import {CONST_EXPR, Type} from 'angular2/src/facade/lang';
+import {CONST_EXPR, Type} from '@angular/core';
 
 // import CardBasicUsage from './components/card/basic_usage';
 // import CardInlineActions from './components/card/inline_actions';

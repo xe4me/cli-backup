@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
 
 @Component({

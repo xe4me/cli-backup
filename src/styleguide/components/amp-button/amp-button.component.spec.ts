@@ -4,10 +4,10 @@ import {
     describe ,
     beforeEachProviders ,
     TestComponentBuilder
-} from 'angular2/testing';
+} from '@angular/core/testing';
 import { FormModelService  } from 'amp-ddc-ui-core/ui-core';
-import { Component , provide , ElementRef } from 'angular2/core';
-import { Control } from 'angular2/common';
+import { Component , provide , ElementRef } from '@angular/core';
+import { Control } from '@angular/common';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { MockFormModelService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-form-mode.service';
 describe( 'amp-button component test' , () => {

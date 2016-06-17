@@ -1,4 +1,4 @@
-import {View, Component} from 'angular2/core';
+import {View, Component} from '@angular/core';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
 
 @Component({selector: 'checkbox-basic-usage'})

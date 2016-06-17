@@ -1,4 +1,4 @@
-import { View , Component , OnInit , ChangeDetectorRef , provide , ViewChild } from 'angular2/core';
+import { View , Component , OnInit , ChangeDetectorRef , provide , ViewChild } from '@angular/core';
 import { PartnershipManagerBlockComponent } from '../../../../../app/blocks/bolr/notification-form/dialogue-state/partnership-manager/partnership-manager.component';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 @Component( {

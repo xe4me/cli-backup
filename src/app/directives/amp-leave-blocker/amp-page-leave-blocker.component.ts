@@ -1,8 +1,8 @@
-// import { Directive , ElementRef , Input , Renderer } from 'angular2/core';
-// import { AfterViewInit , OnDestroy , OnChanges } from 'angular2/src/core/linker/interfaces';
-// import { NgZone } from 'angular2/src/core/zone/ng_zone';
-// import { DomEventsPlugin } from 'angular2/src/platform/dom/events/dom_events';
-// import { EventManager } from 'angular2/src/platform/dom/events/event_manager';
+// import { Directive , ElementRef , Input , Renderer } from '@angular/core';
+// import { AfterViewInit , OnDestroy , OnChanges } from '@angular/core';
+// import { NgZone } from '@angular/core';
+// import { DomEventsPlugin } from '@angular/platform-browser';
+// import { EventManager } from '@angular/platform-browser';
 // @Directive( {
 //     selector : '[page-leave-blocker]'
 // } )

@@ -1,6 +1,6 @@
 import { FormPage } from './../../../formPage';
-import { Component , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
-import { RouteParams , Router , RouteRegistry , CanDeactivate , ComponentInstruction } from 'angular2/router';
+import { Component , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from '@angular/core';
+import { RouteParams , Router , RouteRegistry , CanDeactivate , ComponentInstruction } from '@angular/router-deprecated';
 @Component( {
     selector : 'details-page' ,
     template : `

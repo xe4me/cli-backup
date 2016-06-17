@@ -1,6 +1,6 @@
-import { Component , View , enableProdMode , bind , Input , OnDestroy , ApplicationRef } from 'angular2/core';
-import { bootstrap } from 'angular2/platform/browser';
-import * as ngCore from 'angular2/core';
+import { Component , View , enableProdMode , bind , Input , OnDestroy , ApplicationRef } from '@angular/core';
+import { bootstrap } from '@angular/platform-browser';
+import * as ngCore from '@angular/core';
 import {
     ROUTER_PROVIDERS ,
     ROUTER_DIRECTIVES ,
@@ -8,11 +8,11 @@ import {
     HashLocationStrategy ,
     LocationStrategy ,
     Router
-} from 'angular2/router';
+} from '@angular/router-deprecated';
 import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
 import { DEMO_DIRECTIVES } from './all';
 import Example from './example';
-import { Http , Response , HTTP_PROVIDERS } from 'angular2/http';
+import { Http , Response , HTTP_PROVIDERS } from '@angular/http';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
 import { ComponentsService , IComponentMeta } from './services/components';
@@ -21,8 +21,8 @@ import { VersionService } from './services/version';
 import { SidenavService } from 'ng2-material/components/sidenav/sidenav_service';
 import { Media } from 'ng2-material/core/util/media';
 import { ScrollService , FormModelService , AmpHttpService , ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
-import { BrowserDomAdapter } from 'angular2/src/platform/browser/browser_adapter';
-import { Renderer } from 'angular2/src/core/render/api';
+import { BrowserDomAdapter } from '@angular/platform-browser';
+import { Renderer } from '@angular/core';
 /**
  * Describe an example that can be dynamically loaded.
  */

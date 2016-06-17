@@ -1,6 +1,6 @@
 import { FormBlock , provideParent } from '../../../formBlock';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
-import { Component , OnInit , ElementRef , ViewEncapsulation } from 'angular2/core';
+import { Component , OnInit , ElementRef , ViewEncapsulation } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,

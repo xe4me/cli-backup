@@ -8,8 +8,8 @@ import {
     OnInit ,
     AfterViewInit ,
     NgZone
-} from 'angular2/core';
-import { RouteParams , Router , RouteRegistry } from 'angular2/router';
+} from '@angular/core';
+import { RouteParams , Router , RouteRegistry } from '@angular/router-deprecated';
 @Injectable()
 export class FormPage extends FormBlock {
     pageId : string;

@@ -1,7 +1,7 @@
-import { Component , OnInit } from 'angular2/core';
+import { Component , OnInit } from '@angular/core';
 import {
     Router
-} from 'angular2/router';
+} from '@angular/router-deprecated';
 @Component( {
     selector : 'default-router' ,
     template : ``

@@ -1,5 +1,5 @@
-import { Control , ControlGroup } from 'angular2/common';
-import { forwardRef , provide , Provider } from 'angular2/core';
+import { Control , ControlGroup } from '@angular/common';
+import { forwardRef , provide , Provider } from '@angular/core';
 import { BlockLayout , FormDefinition , BlockID , Action } from 'amp-ddc-ui-core/ui-core';
 export class NamedControl {
     constructor ( public name : string , public control : any ) {

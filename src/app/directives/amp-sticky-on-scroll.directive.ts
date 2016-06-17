@@ -1,11 +1,13 @@
-import { Directive , ElementRef , Input , Renderer } from 'angular2/core';
-import { AfterViewInit , OnDestroy } from 'angular2/src/core/linker/interfaces';
-import { Ruler } from 'angular2/src/platform/browser/ruler';
-import * as browser from 'angular2/platform/browser';
-import { ChangeDetectionStrategy } from 'angular2/src/core/change_detection/constants';
-import { NgZone } from 'angular2/src/core/zone/ng_zone';
-import { DomEventsPlugin } from 'angular2/src/platform/dom/events/dom_events';
-import { EventManager } from 'angular2/src/platform/dom/events/event_manager';
+import { Directive , ElementRef , Input , Renderer } from '@angular/core';
+import { AfterViewInit , OnDestroy } from '@angular/core';
+import { Ruler } from '../util/Ruler';
+// import * as browser from '@angular/platform-browser';
+import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
+
+import { ChangeDetectionStrategy } from '@angular/core';
+import { NgZone } from '@angular/core';
+import { DomEventsPlugin } from '@angular/platform-browser';
+import { EventManager } from '@angular/platform-browser';
 @Directive( {
     selector : '[sticky-on-scroll]'
 } )
@@ -34,7 +36,7 @@ export class AmpStickyOnScrollDirective implements AfterViewInit {
     constructor ( private zone : NgZone ,
                   private el : ElementRef ,
                   private renderer : Renderer ) {
-        this.domAdapter = new browser.BrowserDomAdapter();
+        this.domAdapter = new BrowserDomAdapter();
         this.ruler      = new Ruler( this.domAdapter );
     }
 

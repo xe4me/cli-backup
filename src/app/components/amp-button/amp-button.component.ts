@@ -10,9 +10,10 @@ import {
     AfterContentInit ,
     Optional ,
     SkipSelf
-} from 'angular2/core';
+} from '@angular/core';
 import { FormBlock } from '../../blocks/formBlock';
-import * as browser from 'angular2/platform/browser';
+// import * as browser from '@angular/platform-browser';
+import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Component( {
     selector        : 'amp-button' ,
     template        : `
@@ -33,7 +34,7 @@ export class AmpButton implements AfterContentInit {
     @Input() disabled;
     @Input( 'class' ) _class : string;
              dataAutomationId : string;
-             domAdatper : browser.BrowserDomAdapter;
+             domAdatper : BrowserDomAdapter;
 
     constructor ( private elementRef : ElementRef ,
                   private renderer : Renderer ,
@@ -42,7 +43,7 @@ export class AmpButton implements AfterContentInit {
     }
 
     ngAfterContentInit () {
-        this.domAdatper = new browser.BrowserDomAdapter();
+        this.domAdatper = new BrowserDomAdapter();
         let contentStr  = this.domAdatper.getText( this.elementRef.nativeElement );
         this.dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g , '' ) : '');
         if ( this.parent ) {

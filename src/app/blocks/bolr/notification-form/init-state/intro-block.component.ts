@@ -1,5 +1,5 @@
 import { FormBlock, provideParent } from '../../../formBlock';
-import { Component , ElementRef , DynamicComponentLoader } from 'angular2/core';
+import { Component , ElementRef , DynamicComponentLoader } from '@angular/core';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';

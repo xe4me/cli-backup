@@ -1,7 +1,7 @@
-import { Component } from 'angular2/core';
-import { Control } from 'angular2/common';
+import { Component } from '@angular/core';
+import { Control } from '@angular/common';
 import { MdInputComponent } from '../../components/my-md-input/my-md-input.component.ts';
-import { EventEmitter } from 'angular2/src/facade/async';
+import { EventEmitter } from '@angular/core';
 @Component( {
     selector   : 'input-with-label-group' ,
     template   : `

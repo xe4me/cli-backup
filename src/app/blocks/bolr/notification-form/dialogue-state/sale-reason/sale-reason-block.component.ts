@@ -1,13 +1,13 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from 'angular2/core';
+import { Component , ElementRef } from '@angular/core';
 import { FormModelService , ProgressObserverService , ScrollService, LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
-import { TemplateRef } from 'angular2/src/core/linker/template_ref';
-import { Control } from 'angular2/src/common/forms/model';
+import { TemplateRef } from '@angular/core';
+import { Control } from '@angular/common';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { AfterViewInit } from '@angular/core';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 
 
 @Component( {

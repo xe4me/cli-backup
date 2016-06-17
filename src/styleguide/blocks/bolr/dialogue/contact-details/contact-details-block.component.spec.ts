@@ -1,7 +1,7 @@
 import {
     it , inject , injectAsync , describe , beforeEachProviders , TestComponentBuilder
-} from 'angular2/testing';
-import { Component , provide , ElementRef, ChangeDetectorRef } from 'angular2/core';
+} from '@angular/core/testing';
+import { Component , provide , ElementRef, ChangeDetectorRef } from '@angular/core';
 import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/notification-form/dialogue-state/contact-details/contact-details-block.component.ts';
 import { MockFormModelService } from './mock-form-mode.service';
 import { MockScrollService } from './mock-scroll.service';

@@ -5,11 +5,11 @@ import {
     describe ,
     beforeEachProviders ,
     TestComponentBuilder
-} from 'angular2/testing';
-import { Component , provide } from 'angular2/core';
-import { BaseRequestOptions , Http } from 'angular2/http';
-import { MockBackend } from 'angular2/http/testing';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
+} from '@angular/core/testing';
+import { Component , provide } from '@angular/core';
+import { BaseRequestOptions , Http } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 // Load the implementations that should be tested
 import { AMPGoogleAddressComponent } from '../../../app/components/amp-google-address/amp-google-address.component';
 describe( 'amp-google-address getAddressComponent' , () => {

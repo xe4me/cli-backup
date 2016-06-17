@@ -1,16 +1,16 @@
-import {Component, ViewEncapsulation} from 'angular2/core';
-import {MdProgressLinear} from 'ng2-material/all';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {MdProgressBar} from '@angular2-material/progress-bar';
 
 @Component({
     selector: 'amp-linear-progress-bar',
     template: `
-        <md-progress-linear class="amp-progressbar-sky-blue"
+        <md-progress-bar class="amp-progressbar-sky-blue"
         [mode]="determinate"
         [value]="value">
-        </md-progress-linear>
+        </md-progress-bar>
     `,
     inputs: ['value', 'determinate'],
-    directives: [MdProgressLinear],
+    directives: [MdProgressBar],
     styles: [require('./amp-linear-progress-bar.scss').toString()],
     encapsulation: ViewEncapsulation.None
 })

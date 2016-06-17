@@ -1,8 +1,8 @@
-import { Component , View , Input } from 'angular2/core';
-import { ViewEncapsulation } from 'angular2/core';
-import { AfterContentInit } from 'angular2/core';
-import { DOM } from 'angular2/src/platform/dom/dom_adapter';
-import { ElementRef } from 'angular2/core';
+import { Component , View , Input } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
+import { AfterContentInit } from '@angular/core';
+import { DOM } from '@angular/platform-browser';
+import { ElementRef } from '@angular/core';
 declare var hljs : any;
 @Component( {
     selector   : 'highlight' ,

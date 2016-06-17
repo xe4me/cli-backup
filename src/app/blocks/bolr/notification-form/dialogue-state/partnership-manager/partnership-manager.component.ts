@@ -1,11 +1,11 @@
 import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
-import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from 'angular2/core';
-import { Control } from 'angular2/common';
+import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from '@angular/core';
+import { Control } from '@angular/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 @Component( {
     selector   : 'partnership-manager-block' ,
     template   : `

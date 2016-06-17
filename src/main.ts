@@ -1,12 +1,15 @@
 /*
  * Providers provided by Angular
  */
-import * as ngCore from 'angular2/core';
-import * as browser from 'angular2/platform/browser';
-import { ROUTER_PROVIDERS , LocationStrategy , HashLocationStrategy } from 'angular2/router';
-import { HTTP_PROVIDERS } from 'angular2/http';
+import * as ngCore from '@angular/core';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import * as browser from '@angular/platform-browser';
+import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { FORM_PROVIDERS, LocationStrategy , HashLocationStrategy } from '@angular/common';
+import { HTTP_PROVIDERS } from '@angular/http';
 // Add all operators to Observable
 import 'rxjs/Rx';
+
 /*
  * App Environment Providers
  * providers that only live in certain environment
@@ -14,7 +17,7 @@ import 'rxjs/Rx';
 const ENV_PROVIDERS = [];
 if ( 'production' === process.env.ENV ) {
     ngCore.enableProdMode();
-    ENV_PROVIDERS.push( browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE );
+    // ENV_PROVIDERS.push( browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE );
 } else {
     ENV_PROVIDERS.push( browser.ELEMENT_PROBE_PROVIDERS );
 }
@@ -22,17 +25,20 @@ if ( 'production' === process.env.ENV ) {
  * App Component
  * our top level component that holds all of our components
  */
-import { DemosApp } from './styleguide/app';
+import { DummyApp } from './dummyApp';
+// import { DemosApp } from './styleguide/app';
 // import {BuyBackFormComponent} from './app/forms/derby/buybackform.component';
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
 export function main () {
-    return browser.bootstrap( DemosApp , [
+    return bootstrap( //DemosApp , [
+                      DummyApp, [
                       ...ENV_PROVIDERS ,
                       ...HTTP_PROVIDERS ,
                       ...ROUTER_PROVIDERS ,
+                      ...FORM_PROVIDERS,
                       ngCore.provide( Window , { useValue : window } )
                   ] )
                   .catch( err => console.error( err ) );

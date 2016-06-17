@@ -1,4 +1,4 @@
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 import { AmpLinearProgressBarComponent } from '../../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 @Component(

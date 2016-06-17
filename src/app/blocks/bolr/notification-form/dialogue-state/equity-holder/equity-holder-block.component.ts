@@ -1,6 +1,6 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from 'angular2/core';
-import { Control } from 'angular2/common';
+import { Component , ElementRef } from '@angular/core';
+import { Control } from '@angular/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import {
     FormModelService ,
@@ -10,15 +10,15 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
-import { ControlArray , ControlGroup } from 'angular2/src/common/forms/model';
-import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
-import { Validators } from 'angular2/src/common/forms/validators';
+import { ControlArray , ControlGroup } from '@angular/common';
+import { FORM_DIRECTIVES } from '@angular/common';
+import { Validators } from '@angular/common';
 import { AmpGroupButtonComponent } from '../../../../../components/amp-group-button/amp-group-button.component';
 import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
-import { TemplateRef } from 'angular2/src/core/linker/template_ref';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { TemplateRef } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 @Component( {
     selector   : 'equity-holder-block' ,
     template   : `

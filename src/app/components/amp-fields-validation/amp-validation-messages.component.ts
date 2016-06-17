@@ -1,9 +1,9 @@
-import { Component , Host } from 'angular2/core';
+import { Component , Host } from '@angular/core';
 import { ValidationService } from 'amp-ddc-ui-core/ui-core';
-import { Control } from 'angular2/src/common/forms/model';
-import { ControlGroup } from 'angular2/src/common/forms/model';
-import { ControlArray } from 'angular2/src/common/forms/model';
-import { ChangeDetectionStrategy } from 'angular2/src/core/change_detection/constants';
+import { Control } from '@angular/common';
+import { ControlGroup } from '@angular/common';
+import { ControlArray } from '@angular/common';
+import { ChangeDetectionStrategy } from '@angular/core';
 @Component (
     {
         selector : 'validation-messages' ,

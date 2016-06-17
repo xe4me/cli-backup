@@ -6,21 +6,21 @@ import {
     Input ,
     OnInit ,
     ViewEncapsulation ,
-    ChangeDetectorRef
-} from 'angular2/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
+    ChangeDetectorRef,
+    animate, state, style, transition, trigger,
+} from '@angular/core';
+import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { MATERIAL_DIRECTIVES , MATERIAL_PROVIDERS } from 'ng2-material/all';
-import { AnimationBuilder } from 'angular2/src/animate/animation_builder';
-import { CssAnimationBuilder } from 'angular2/src/animate/css_animation_builder';
-import { EventEmitter } from 'angular2/src/facade/async';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { isPresent } from 'angular2/src/facade/lang';
+import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
+import { EventEmitter } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { isPresent } from '@angular/core/src/facade/lang';
 @Component(
     {
         selector      : 'my-md-input' ,
         template      : `
     <md-input-container
+        @toggleInputState='isInSummaryState'
         [class.md-input-has-value]='parentControl.value'
         [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState , "noPadding": noPadding }'
         flex-gt-sm='' >
@@ -63,14 +63,29 @@ import { isPresent } from 'angular2/src/facade/lang';
             'autoFocus' ,
             'noPadding'
         ] ,
-        directives    : [ MATERIAL_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
+        directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated ,
-        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ]
+        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ],
+        animations: [
+            // this here is our animation trigger that
+            // will contain our state change animations.
+            trigger('toggleInputState', [
+                // the styles defined for the `on` and `off`
+                // states declared below are persisted on the
+                // element once the animation completes.
+                state('true', style({ width: '385px' })),
+                state('false', style({ width: '405px' })),
+                // this here is our animation that kicks off when
+                // this state change jump is true
+                transition('expand <=> collapse', [
+                  animate("200ms 1.2s ease-out")
+                ])
+            ])
+        ],
     } )
-export class MdInputComponent implements OnChanges, AfterViewInit {
+export class MdInputComponent implements AfterViewInit {
     private inputWidth : number;
     private _id : string;
-    private _animation : CssAnimationBuilder;
     private _valMinLength : number;
     private _valMaxLength : number;
     private _required : boolean   = false;
@@ -82,12 +97,12 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
-    private onAdjustWidth : EventEmitter<string>;
+    private onAdjustWidth : EventEmitter<any>;
     private hostClassesRemove;
     private tempClassNames;
     private valPattern : string;
-    private onEnter : EventEmitter<string>;
-    private onBlur : EventEmitter<string>;
+    private onEnter : EventEmitter<any>;
+    private onBlur : EventEmitter<any>;
     private onKeyup : EventEmitter<Event>;
 
     ngAfterViewInit () : any {
@@ -103,21 +118,19 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         return undefined;
     }
 
-    ngOnChanges ( changes ) : any {
-        if ( changes.hasOwnProperty( 'isInSummaryState' ) ) {
-            if ( changes.isInSummaryState.currentValue === true ) {
-                this.shrink();
-            } else {
-                this.initiateInputWidth();
-            }
-        }
-        return undefined;
-    }
+    // ngOnChanges ( changes ) : any {
+    //     if ( changes.hasOwnProperty( 'isInSummaryState' ) ) {
+    //         if ( changes.isInSummaryState.currentValue === true ) {
+    //             this.shrink();
+    //         } else {
+    //             this.initiateInputWidth();
+    //         }
+    //     }
+    //     return undefined;
+    // }
 
     constructor ( private _cd : ChangeDetectorRef ,
-                  private el : ElementRef ,
-                  private animationBuilder : AnimationBuilder ) {
-        this._animation    = animationBuilder.css();
+                  private el : ElementRef ) {
         this.onAdjustWidth = new EventEmitter();
         this.onEnter       = new EventEmitter();
         this.onBlur        = new EventEmitter();
@@ -167,22 +180,22 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         }
     }
 
-    private shrink () {
-        if ( this.parentControl.value && this.parentControl.value.trim() !== '' ) {
-            //this.el.nativeElement.className = '';
-            this
-                ._animation
-                .setFromStyles( {
-                    width : this.inputWidth + 'px'
-                } )
-                .setToStyles( {
-                    width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth + 5 + 'px'
-                } )
-                .setDelay( 1200 )
-                .setDuration( 200 )
-                .start( this.el.nativeElement );
-        }
-    }
+    // private shrink () {
+    //     if ( this.parentControl.value && this.parentControl.value.trim() !== '' ) {
+    //         //this.el.nativeElement.className = '';
+    //         this
+    //             ._animation
+    //             .setFromStyles( {
+    //                 width : this.inputWidth + 'px'
+    //             } )
+    //             .setToStyles( {
+    //                 width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth + 5 + 'px'
+    //             } )
+    //             .setDelay( 1200 )
+    //             .setDuration( 200 )
+    //             .start( this.el.nativeElement );
+    //     }
+    // }
 
     private trimValue () {
         let notUsabel;
@@ -198,22 +211,22 @@ export class MdInputComponent implements OnChanges, AfterViewInit {
         return isPresent( value ) && (value === true || value === 'true' || false);
     }
 
-    private initiateInputWidth () {
-        let a = this
-            ._animation
-            .setFromStyles( {
-                width : this.el.nativeElement.offsetWidth
-            } )
-            .setToStyles( {
-                width : this.inputWidth + 'px'
-            } )
-            .setDelay( 0 )
-            .setDuration( 700 )
-            .start( this.el.nativeElement );
-        a.onComplete( () => {
-            //this.el.nativeElement.className = this.tempClassNames;
-        } );
-    }
+    // private initiateInputWidth () {
+    //     let a = this
+    //         ._animation
+    //         .setFromStyles( {
+    //             width : this.el.nativeElement.offsetWidth
+    //         } )
+    //         .setToStyles( {
+    //             width : this.inputWidth + 'px'
+    //         } )
+    //         .setDelay( 0 )
+    //         .setDuration( 700 )
+    //         .start( this.el.nativeElement );
+    //     a.onComplete( () => {
+    //         //this.el.nativeElement.className = this.tempClassNames;
+    //     } );
+    // }
 
     private onKeyupEvent ( $event ) {
         this.onEnterClick( $event );

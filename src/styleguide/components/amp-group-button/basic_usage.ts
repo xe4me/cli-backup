@@ -1,6 +1,6 @@
-import { View , Component , AfterViewInit , ChangeDetectorRef } from 'angular2/core';
+import { View , Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from 'angular2/common';
+import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpGroupButtonComponent } from '../../../app/components/amp-group-button/amp-group-button.component';
 @Component( { selector : 'amp-group-button-block-basic-usage' } )

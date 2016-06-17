@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, Renderer} from 'angular2/core';
+import {Directive, ElementRef, Input, Renderer} from '@angular/core';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 
 // export enum LICENSEE {AMPFP, HILLROSS, CHARTER};

@@ -1,13 +1,13 @@
-import { Component , OnInit } from 'angular2/core';
-import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { Component , OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ComponentsService , IComponentMeta } from '../services/components';
 import { NavigationService } from '../services/navigation';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
-import { DOM } from 'angular2/src/platform/dom/dom_adapter';
+import { DOM } from '@angular/platform-browser';
 import { Highlight } from '../highlight';
 import { SidenavService } from 'ng2-material/components/sidenav/sidenav_service';
-import { TimerWrapper } from 'angular2/src/facade/async';
-import { Http , Response } from 'angular2/http';
+import { TimerWrapper } from '@angular/core';
+import { Http , Response } from '@angular/http';
 @Component( {
     templateUrl : 'src/styleguide/routes/index.html' ,
     directives  : [ ROUTER_DIRECTIVES , Highlight , MATERIAL_DIRECTIVES ]

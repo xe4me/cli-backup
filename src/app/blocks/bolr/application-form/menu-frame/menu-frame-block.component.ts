@@ -1,9 +1,9 @@
-import { Component , AfterViewChecked , ElementRef } from 'angular2/core';
+import { Component , AfterViewChecked , ElementRef } from '@angular/core';
 import { FormBlock, provideParent } from '../../../formBlock';
 import { StickyProgressHeaderBlockComponent } from '../../../../../../src/app/blocks/bolr/application-form/sticky-progress-header-block/sticky-progress-header-block.component';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
 import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'menu-frame' ,

@@ -1,4 +1,4 @@
-import { View , Component , ChangeDetectorRef } from 'angular2/core';
+import { View , Component , ChangeDetectorRef } from '@angular/core';
 import { ContactDetailsBlockComponent } from '../../../../../app/blocks/bolr/notification-form/dialogue-state/contact-details/contact-details-block.component.ts';
 import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 @Component( {

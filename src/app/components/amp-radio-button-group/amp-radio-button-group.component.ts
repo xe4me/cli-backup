@@ -6,23 +6,22 @@ import {
     ElementRef ,
     forwardRef ,
     Provider
-} from 'angular2/core';
-import { Control } from 'angular2/src/common/forms/model';
-import { FORM_DIRECTIVES } from 'angular2/src/common/forms/directives';
-import { NG_VALUE_ACCESSOR , ControlValueAccessor } from 'angular2/common';
-import { CONST_EXPR } from 'angular2/src/facade/lang';
+} from '@angular/core';
+import { Control } from '@angular/common';
+import { FORM_DIRECTIVES } from '@angular/common';
+import { NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { Validators } from 'angular2/src/common/forms/validators';
-import { isPresent } from 'angular2/src/facade/lang';
-import { NumberWrapper } from 'angular2/src/facade/lang';
-import { AfterViewInit , OnDestroy } from 'angular2/src/core/linker/interfaces';
-import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
-const RADIO_VALUE_ACCESSOR = CONST_EXPR( new Provider(
-    NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } ) );
+import { Validators } from '@angular/common';
+import { isPresent } from '@angular/core/src/facade/lang';
+import { NumberWrapper } from '@angular/core/src/facade/lang';
+import { AfterViewInit , OnDestroy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+const RADIO_VALUE_ACCESSOR = new Provider(
+    NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
     selector : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
     host     : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
-    bindings : [ RADIO_VALUE_ACCESSOR ]
+    providers : [ RADIO_VALUE_ACCESSOR ]
 } )
 export class RadioControlValueAccessors implements ControlValueAccessor {
     onChange  = ( _ ) => {
@@ -96,7 +95,7 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
     private _disabled : boolean = false;
     private _required : boolean = false;
     private parentControl : Control;
-    private select                 = new EventEmitter<string>();
+    private select                 = new EventEmitter<any>();
     private buttons;
     private scrollOutUnless : any;
     private scrollOutOn : any;

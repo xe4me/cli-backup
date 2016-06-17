@@ -1,12 +1,12 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from 'angular2/core';
-import { Control } from 'angular2/common';
+import { Component , ElementRef } from '@angular/core';
+import { Control } from '@angular/common';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpGroupButtonComponent } from '../../../../../components/amp-group-button/amp-group-button.component';
 import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
-import { TemplateRef } from 'angular2/src/core/linker/template_ref';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { TemplateRef } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';

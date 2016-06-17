@@ -1,8 +1,11 @@
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone, ViewChild } from 'angular2/core';
-import { Control, Validators } from 'angular2/common';
+import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone, ViewChild } from '@angular/core';
+import { Control, Validators } from '@angular/common';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+
 import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component.ts';
 import { MdInputComponent } from '../../components/my-md-input/my-md-input.component';
 
@@ -43,7 +46,7 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                 [valMaxLength]='address.max'>
             </my-md-input><!--
             --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
-            --><my-md-input    
+            --><my-md-input
                 class='1/1'
                 [isInSummaryState]='isInSummaryState'
                 [id]='suburb.id'

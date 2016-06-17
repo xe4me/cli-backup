@@ -1,15 +1,15 @@
 import { FormBlock , provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from 'angular2/core';
+import { Component , ElementRef } from '@angular/core';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
-import { TemplateRef } from 'angular2/src/core/linker/template_ref';
-import { Control } from 'angular2/src/common/forms/model';
+import { TemplateRef } from '@angular/core';
+import { Control } from '@angular/common';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { Validators } from 'angular2/src/common/forms/validators';
-import { ControlGroup } from 'angular2/src/common/forms/model';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { AfterViewInit } from '@angular/core';
+import { Validators } from '@angular/common';
+import { ControlGroup } from '@angular/common';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 @Component( {
     selector   : 'sale-reason-block' ,
     template   : `

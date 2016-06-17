@@ -1,16 +1,16 @@
-import { Component } from 'angular2/core';
-import { RouteConfig , RouterOutlet } from 'angular2/router';
-import { RouteParams } from 'angular2/router';
-import { Router } from 'angular2/router';
-import { OnInit } from 'angular2/core';
+import { Component } from '@angular/core';
+import { RouteConfig , RouterOutlet } from '@angular/router-deprecated';
+import { RouteParams } from '@angular/router-deprecated';
+import { Router } from '@angular/router-deprecated';
+import { OnInit } from '@angular/core';
 import { ComponentsService , IComponentMeta } from '../services/components';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 import Example from '../example';
-import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { NavigationService } from '../services/navigation';
-import { DOM } from 'angular2/src/platform/dom/dom_adapter';
+import { DOM } from '@angular/platform-browser';
 import { SidenavService } from 'ng2-material/components/sidenav/sidenav_service';
-import { TimerWrapper } from 'angular2/src/facade/async';
+import { TimerWrapper } from '@angular/core';
 @Component( {
     selector   : 'component-page' ,
     template   : `

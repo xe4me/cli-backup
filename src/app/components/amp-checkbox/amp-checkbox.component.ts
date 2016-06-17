@@ -2,13 +2,13 @@ import {
     Component ,
     ElementRef ,
     EventEmitter ,
-} from 'angular2/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from 'angular2/common';
+} from '@angular/core';
+import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { NumberWrapper } from 'angular2/src/facade/lang';
-import { isPresent } from 'angular2/src/facade/lang';
-import { AfterViewInit } from 'angular2/src/core/linker/interfaces';
-import { ChangeDetectorRef } from 'angular2/src/core/change_detection/change_detector_ref';
+import { NumberWrapper } from '@angular/core/src/facade/lang';
+import { isPresent } from '@angular/core/src/facade/lang';
+import { AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 export class KeyCodes {
     static ESCAPE : number;
     static SPACE : number;
@@ -35,7 +35,7 @@ export class KeyCodes {
                 <div [class.summary-state]='isInSummaryState' class="content">
                     <ng-content></ng-content>
                 </div>
-            </label>             
+            </label>
         ` ,
         host       : {
             '[attr.aria-checked]'  : 'checked' ,

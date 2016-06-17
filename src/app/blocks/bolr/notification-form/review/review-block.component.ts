@@ -1,5 +1,5 @@
 import { FormBlock , provideParent } from '../../../formBlock';
-import { Component , ElementRef , AfterViewInit } from 'angular2/core';
+import { Component , ElementRef , AfterViewInit } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -19,7 +19,7 @@ import { FullOrPartialBlockComponent } from '../dialogue-state/full-or-partial/f
 import { ExerciseDateBlockComponent } from '../dialogue-state/exercise-date/exercise-date-block.component';
 import { PracticeAddressBlockComponent } from '../dialogue-state/practice-address/practice-address.component';
 import { PracticeAssociationBlockComponent } from '../dialogue-state/practice-association/practice-association-block.component';
-import { Router } from 'angular2/router';
+import { Router } from '@angular/router-deprecated';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'review-block' ,
