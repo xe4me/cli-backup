@@ -103,7 +103,7 @@ export class MdInputComponent implements AfterViewInit {
     private valPattern : string;
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;
-    private onKeyup : EventEmitter<Event>;
+    private onKeyup : EventEmitter<any>;
 
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
