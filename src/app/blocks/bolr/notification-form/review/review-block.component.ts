@@ -1,5 +1,5 @@
 import { FormBlock , provideParent } from '../../../formBlock';
-import { Component , ElementRef , AfterViewInit } from '@angular/core';
+import { Component , ElementRef , AfterViewInit, ViewContainerRef } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -222,7 +222,8 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
                   private router : Router ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [];
         this.formControlGroupName = 'review';

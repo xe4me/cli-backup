@@ -29,7 +29,8 @@ import { AmpCollapseDirective } from '../../../../directives/animations/collapse
                     </div>
                     <div id='scroll-root' class='menu--right bolr-right-padding utils__position--rel'>
                         <!-- Dynamic form blocks driven from the Form Definition -->
-                        <div #nestedBlock></div>
+                        <div [attr.id]='blocksAnchorId'></div>
+                        <div id="MenuFrameBlockComponent_blocks"></div>
                     </div>
 
                 </div>

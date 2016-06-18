@@ -1,6 +1,6 @@
 import { FormBlock , provideParent } from '../../../formBlock';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
-import { Component , OnInit , ElementRef , ViewEncapsulation } from '@angular/core';
+import { Component , OnInit , ElementRef , ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -45,7 +45,8 @@ export class ConfirmationBlockComponent extends FormBlock implements OnInit, For
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControlGroupName = 'confirmation';
     }

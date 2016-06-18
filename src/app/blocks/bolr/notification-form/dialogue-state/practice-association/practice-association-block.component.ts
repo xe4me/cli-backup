@@ -1,5 +1,5 @@
 import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from '@angular/core';
+import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -122,7 +122,8 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
                   private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.associationLengthRadiosGroupName , new Control( null ) ) ,

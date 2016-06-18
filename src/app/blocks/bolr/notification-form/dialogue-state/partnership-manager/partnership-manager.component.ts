@@ -1,5 +1,5 @@
 import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
-import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from '@angular/core';
+import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone, ViewContainerRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
@@ -79,7 +79,8 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.partnershipMgr.firstName.id , new Control() ) ,

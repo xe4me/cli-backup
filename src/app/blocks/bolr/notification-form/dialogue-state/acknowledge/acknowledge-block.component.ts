@@ -1,4 +1,4 @@
-import { Component , OnInit , ElementRef , ChangeDetectorRef } from '@angular/core';
+import { Component , OnInit , ElementRef , ChangeDetectorRef, ViewContainerRef } from '@angular/core';
 import { Control , ControlGroup } from '@angular/common';
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
@@ -65,7 +65,8 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     constructor ( private progressObserver : ProgressObserverService ,
                   private el : ElementRef ,
                   private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
+                  private scrollService : ScrollService,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [ new NamedControl( this.acknowledge.id , new Control() ) ];
         this.formControlGroupName = 'acknowledge';

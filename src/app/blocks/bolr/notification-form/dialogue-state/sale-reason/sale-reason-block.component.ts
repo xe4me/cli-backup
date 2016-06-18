@@ -1,5 +1,5 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from '@angular/core';
+import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import { FormModelService , ProgressObserverService , ScrollService, LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
 import { TemplateRef } from '@angular/core';
@@ -67,7 +67,8 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.saleReason.controlName , new Control() )

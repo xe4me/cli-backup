@@ -1,5 +1,5 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from '@angular/core';
+import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpGroupButtonComponent } from '../../../../../components/amp-group-button/amp-group-button.component';
@@ -108,7 +108,8 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.fullOrPartialButtons.groupName , new Control() ) ,

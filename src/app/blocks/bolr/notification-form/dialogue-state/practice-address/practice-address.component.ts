@@ -11,7 +11,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
 import { AMPGoogleAddressComponentGroup } from '../../../../../component-groups/amp-google-address-group/amp-google-address-group.component.ts';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component';
 import { TimerWrapper } from '@angular/core/src/facade/async';
-import { AfterViewInit } from '@angular/core';
+import { AfterViewInit, ViewContainerRef } from '@angular/core';
 @Component( {
     selector   : 'practice-address-block' ,
     template   : `
@@ -166,7 +166,8 @@ export class PracticeAddressBlockComponent extends FormBlock implements AfterVie
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.practiceAddress.address.id , this.addressCtrl ) ,

@@ -31,6 +31,11 @@ export abstract class FormBlock {
     public options : Array<string>;
     public visibility : Action;
     public validation : Action;
+
+    public get blocksAnchorId () {
+        return this.blockType + "_blocks";
+    }
+
     // Used by both nested formModel binding as well as dcl formModel binding
     public bindControls ( formModel : ControlGroup , instance : any ) {
         if ( instance.formControlGroupName ) {

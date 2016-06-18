@@ -5,10 +5,7 @@ import { RouteParams , Router , RouteRegistry , CanDeactivate , ComponentInstruc
     selector : 'details-page' ,
     template : `
     <div class="Landing">
-    
-        <div #nestedBlock></div>
-      <!--<button (click)="next()">OK</button>-->
-
+        <div id="DetailsPage_blocks"></div>
     </div>
   ` ,
     styles   : [ require( './details-page.scss' ).toString() ] ,

@@ -1,5 +1,5 @@
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from '@angular/core';
+import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import {
@@ -194,7 +194,8 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.dynamicControlGroup  = new ControlArray( [] );
         this.formControl          = [

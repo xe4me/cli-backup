@@ -1,5 +1,5 @@
 import { FormBlock, provideParent } from '../../../formBlock';
-import { Component , ElementRef , DynamicComponentLoader } from '@angular/core';
+import { Component , ElementRef , DynamicComponentLoader, ViewContainerRef } from '@angular/core';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
@@ -35,7 +35,8 @@ export class IntroBlockComponent extends FormBlock implements FormBlock {
 
     constructor ( private loader : DynamicComponentLoader ,
                   private elementRef : ElementRef ,
-                  private formModelService : FormModelService ) {
+                  private formModelService : FormModelService,
+                  public _viewContainerRef: ViewContainerRef) {
         super();
     }
 
