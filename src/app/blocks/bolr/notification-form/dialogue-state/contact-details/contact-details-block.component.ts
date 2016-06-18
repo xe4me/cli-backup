@@ -6,9 +6,8 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import { InputWithLabelGroupComponent } from '../../../../../component-groups/input-with-label-group/input-with-label-group.component';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { AfterViewInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
-import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 @Component(
     {
         selector   : 'contact-details-block' ,
@@ -23,7 +22,7 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
 
 
         <!--Practice principal START-->
-        <div [collapse]='!showPracticeNameInputs' class='grid__item'>
+        <div @openClose='!showPracticeNameInputs ? "collapsed" : "expanded"' class='grid__item'>
             <!--Partnership Manager name-->
             <label class='heading heading-contxtual-label mb3' >Name</label><!--
             -->&nbsp;<my-md-input
@@ -128,14 +127,21 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
     </div>
   ` ,
         directives : [
-            AmpCollapseDirective ,
             MdInputComponent ,
             AmpOverlayComponent ,
             InputWithLabelGroupComponent ,
             AmpButton
         ] ,
         styles     : [ require( './contact-details-block.component.scss' ).toString() ],
-        providers  : [ provideParent( ContactDetailsBlockComponent ) ]
+        providers  : [ provideParent( ContactDetailsBlockComponent ) ],
+        animations: [trigger(
+          'openClose',
+          [
+            state('collapsed, void', style({height: '0px', opacity: '0'})),
+            state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+            transition(
+                'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+          ])]
     } )
 export class ContactDetailsBlockComponent extends FormBlock implements OnInit, FormBlock {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';

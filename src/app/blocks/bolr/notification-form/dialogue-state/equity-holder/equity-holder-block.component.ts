@@ -14,10 +14,9 @@ import { ControlArray , ControlGroup } from '@angular/common';
 import { FORM_DIRECTIVES } from '@angular/common';
 import { Validators } from '@angular/common';
 import { AmpGroupButtonComponent } from '../../../../../components/amp-group-button/amp-group-button.component';
-import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
 import { TemplateRef } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 @Component( {
     selector   : 'equity-holder-block' ,
@@ -29,10 +28,10 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 <div *ngIf='isInSummaryState' class='heading heading-contxtual-label mt-30 mb-20'>
                     <span class='summary-state'>{{ formControl[0].control.value }}</span>
                 </div>
-                <div [collapse]='isInSummaryState' class='heading heading-micro-intro mt-35'>
+                <div @openClose='isInSummaryState ? "collapsed" : "expanded"' class='heading heading-micro-intro mt-35'>
                     For a practice to access the {{ licenseeBuybackFacility }} facility, all equity holders in that practice must exercise {{ licenseeBuybackFacility }}.
                 </div>
-                <section [collapse]='isInSummaryState'>
+                <section @openClose='isInSummaryState ? "collapsed" : "expanded"'>
 
                     <div  class='grid__item mb-25 mt-50'>
                         <amp-group-button
@@ -49,7 +48,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                     </div>
                 </section>
 
-                <section [collapse]='formControl[0].control.value!=="Yes" || isInSummaryState'>
+                <section @openClose='(formControl[0].control.value!=="Yes" || isInSummaryState) ? "collapsed" : "expanded"'>
                     <h3 class='heading heading-intro mt-15'>How many?</h3>
                     <div class='grid__item mb-15 mt-45'>
                         <amp-group-button
@@ -63,7 +62,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                         </amp-group-button>
                     </div>
                 </section>
-                <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="No"'>
+                <section class='mb-15' @openClose='(!isInSummaryState || formControl[0].control.value==="No") ? "collapsed" : "expanded"'>
                     <h3 class='heading heading-intro mt-10 mb-30'>How many?</h3>
                     <div>
                         <span class='summary-state'>{{ dynamicControlGroup.controls.length }}</span>
@@ -71,8 +70,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 </section>
 
 
-                <section  [collapse]='formControl[0].control.value !== "Yes" ||
-                formControl[1].control.value < 1'>
+                <section @openClose='(formControl[0].control.value !== "Yes" || formControl[1].control.value < 1) ? "collapsed" : "expanded"'>
                     <h3 *ngIf='dynamicControlGroup.controls.length>1'
                     class='heading heading-intro mt-15 mb-15'>What are their names?</h3>
                     <h3 *ngIf='dynamicControlGroup.controls.length===1'
@@ -136,11 +134,18 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
         AmpOverlayComponent ,
         FORM_DIRECTIVES ,
         AmpGroupButtonComponent ,
-        AmpCollapseDirective ,
         AmpSlideDirective ,
         AmpButton
     ] ,
-    providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ]
+    providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ],
+    animations: [trigger(
+      'openClose',
+      [
+        state('collapsed, void', style({height: '0px', opacity: '0'})),
+        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+        transition(
+            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+      ])]
 } )
 export class EquityHolderBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';

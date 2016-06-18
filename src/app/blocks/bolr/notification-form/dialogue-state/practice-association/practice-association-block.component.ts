@@ -10,7 +10,7 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpRadioButtonGroupComponent } from '../../../../../components/amp-radio-button-group/amp-radio-button-group.component';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
-import { TemplateRef } from '@angular/core';
+import { TemplateRef, animate, state, style, transition, trigger } from '@angular/core';
 import { Control } from '@angular/common';
 import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
@@ -34,7 +34,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
                         </span>
                     </div>
                      <amp-radio-button-group
-                            [collapse]='isInSummaryState'
+                            @openClose='isInSummaryState ? "collapsed" : "expanded"'
                             [required]='isAssociationRequired'
                             scrollOutUnless='null'
                             class='grid__item 1/1'
@@ -51,7 +51,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
                     <h3 class='heading heading-intro  mb-30'>And your requested exercise date?</h3>
                         <span class='summary-state'>{{ getExerciseLengthLabel(exerciseDateControl.value) }}</span>
                 </div>
-                <div [collapse]='!showExerciseDate || isInSummaryState'>
+                <div @openClose='(!showExerciseDate || isInSummaryState) ? "collapsed" : "expanded"'>
                     <section class='mb-30' >
                         <h3 class='heading heading-intro  mb-40'>And your requested exercise date?</h3>
                          <amp-radio-button-group
@@ -68,7 +68,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
                     </section>
                 </div>
 
-                <section  [collapse]='!showExpCircumstances'>
+                <section  @openClose='!showExpCircumstances ? "collapsed" : "expanded"'>
                         <amp-textarea
                             class='1/1'
                             [isRequired]='isExpCircumstancesRequired'
@@ -103,10 +103,17 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
         AmpOverlayComponent ,
         AmpRadioButtonGroupComponent ,
         AmpTextareaComponent ,
-        AmpCollapseDirective ,
         AmpSlideDirective
     ] ,
-    providers : [ TemplateRef , provideParent( PracticeAssociationBlockComponent ) ]
+    providers : [ TemplateRef , provideParent( PracticeAssociationBlockComponent ) ],
+    animations: [trigger(
+      'openClose',
+      [
+        state('collapsed, void', style({height: '0px', opacity: '0'})),
+        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+        transition(
+            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+      ])]
 } )
 export class PracticeAssociationBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                              = 'PracticeAssociationBlockComponent';

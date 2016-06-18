@@ -3,9 +3,8 @@ import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpGroupButtonComponent } from '../../../../../components/amp-group-button/amp-group-button.component';
-import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 import { TemplateRef } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
@@ -16,7 +15,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
             <div id='full-or-partial-block' class='full-or-partial-block mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <h3 class='heading heading-intro'>Are you requesting a full or partial sale?</h3>
-                <section [collapse]='isInSummaryState'>
+                <section @openClose='isInSummaryState ? "collapsed" : "expanded"'>
                     <div  class='grid__item mb-30 mt-45'>
                         <amp-group-button
                             scrollOutOn='null'
@@ -30,10 +29,10 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                         </amp-group-button>
                     </div>
                 </section>
-                <div [collapse]='!isInSummaryState' class='heading heading-contxtual-label mt-30 mb-10'>
+                <div @openClose='!isInSummaryState ? "collapsed" : "expanded"' class='heading heading-contxtual-label mt-30 mb-10'>
                     <span class='summary-state'>{{ fullOrPartialControl.value }} sale</span>
                 </div>
-                <section class='mt-10'  [collapse]='!isFullSelected'>
+                <section class='mt-10'  @openClose='!isFullSelected ? "collapsed" : "expanded"'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>
                         <span *ngFor='let item of advisers ; let i = index'><!--
                          --><span *ngIf='advisers.length > 1 '><!--
@@ -74,10 +73,17 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
         AmpButton ,
         AmpOverlayComponent ,
         AmpGroupButtonComponent ,
-        AmpCollapseDirective ,
         AmpTextareaComponent
     ],
-    providers     : [ provideParent( FullOrPartialBlockComponent ) ]
+    providers     : [ provideParent( FullOrPartialBlockComponent ) ],
+    animations: [trigger(
+      'openClose',
+      [
+        state('collapsed, void', style({height: '0px', opacity: '0'})),
+        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+        transition(
+            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+      ])]
 } )
 export class FullOrPartialBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                                = 'FullOrPartialBlockComponent';

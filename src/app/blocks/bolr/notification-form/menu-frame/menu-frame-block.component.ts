@@ -1,15 +1,14 @@
-import { Component , AfterViewChecked , ElementRef } from '@angular/core';
+import { Component , AfterViewChecked , ElementRef, animate, state, style, transition, trigger } from '@angular/core';
 import { FormBlock , provideParent } from '../../../formBlock';
 import { StickyProgressHeaderBlockComponent } from '../sticky-progress-header-block/sticky-progress-header-block.component';
-import { FormModelService } from 'amp-ddc-ui-core/ui-core';
-import { ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService, ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
 import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 @Component( {
     selector   : 'menu-frame' ,
     template   : `
-        <div [collapse]='!dialogIsVisible' class='frame'>
+        <div @openClose='!dialogIsVisible ? "collapsed" : "expanded"' class='frame'>
              <sticky-progress-header-block
                     class='sticky-progressbar'
                     determinate='determinate'
@@ -39,7 +38,15 @@ import { AmpCollapseDirective } from '../../../../directives/animations/collapse
     ` ,
     styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
     directives : [ AmpCollapseDirective , StickyProgressHeaderBlockComponent , AmpButton ] ,
-    providers  : [ provideParent( MenuFrameBlockComponent ) ]
+    providers  : [ provideParent( MenuFrameBlockComponent ) ],
+    animations: [trigger(
+      'openClose',
+      [
+        state('collapsed, void', style({height: '0px', opacity: '0'})),
+        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+        transition(
+            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+      ])]
 } )
 export class MenuFrameBlockComponent extends FormBlock implements AfterViewChecked, FormBlock {
     static CLASS_NAME              = 'MenuFrameBlockComponent';
