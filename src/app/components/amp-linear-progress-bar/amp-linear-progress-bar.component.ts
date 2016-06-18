@@ -4,7 +4,7 @@ import {MdProgressBar} from '@angular2-material/progress-bar';
 @Component({
     selector: 'amp-linear-progress-bar',
     template: `
-        <md-progress-bar class="amp-progressbar-sky-blue"
+        <md-progress-bar color="amp-progressbar-sky-blue"
         [mode]="determinate"
         [value]="value">
         </md-progress-bar>
