@@ -6,8 +6,7 @@ import {
     Input ,
     OnInit ,
     ViewEncapsulation ,
-    ChangeDetectorRef,
-    animate, state, style, transition, trigger,
+    ChangeDetectorRef
 } from '@angular/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
@@ -19,31 +18,20 @@ import { isPresent } from '@angular/core/src/facade/lang';
     {
         selector      : 'my-md-input' ,
         template      : `
-    <md-input-container
-        @toggleInputState='isInSummaryState'
-        [class.md-input-has-value]='parentControl.value'
-        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState , "noPadding": noPadding }'
-        flex-gt-sm='' >
-        <label
-         [ngClass]='{"summary" : isInSummaryState, "noPadding": noPadding} '
-        *ngIf='!isInSummaryState && showLabel!=="false"' [attr.for]='_id'>{{label}}</label><!--
-        --><input
-            (keyup)='onKeyupEvent($event)'
-            (blur)='trimValue()'
-            [class.summary-state]='isInSummaryState'
-            [disabled]='isInSummaryState'
-            class='md-input'
-            [attr.name]='_id'
-            [attr.id]='_id'
-            [attr.maxlength]='_valMaxLength'
-            [attr.minlength]='_valMinLength'
-            [attr.data-automation-id]='"text_" + _id'
-            [ngFormControl]='parentControl'
-            [attr.placeholder]='placeholder'/>
-            <span class='summary-text'>{{ parentControl.value }}</span>
-            <ng-content></ng-content>
-  </md-input-container>
-  ` ,
+            <md-input
+                (keyup)='onKeyupEvent($event)'
+                (blur)='trimValue()'
+                [disabled]='isInSummaryState'
+                class='md-input'
+                [aria-label]='_id'
+                [name]='_id'
+                [id]='_id'
+                [minLength]='_valMinLength'
+                [ngFormControl]='parentControl'
+                [maxLength]='_valMaxLength'
+                [placeholder]='placeholder'>
+            </md-input>
+          ` ,
         styles        : [ require( './my-md-input.scss' ).toString() ] ,
         inputs        : [
             'id' ,
@@ -64,24 +52,13 @@ import { isPresent } from '@angular/core/src/facade/lang';
             'noPadding'
         ] ,
         directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
-        encapsulation : ViewEncapsulation.Emulated ,
+        encapsulation : ViewEncapsulation.None ,
         outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ],
-        animations: [
-            // this here is our animation trigger that
-            // will contain our state change animations.
-            trigger('toggleInputState', [
-                // the styles defined for the `on` and `off`
-                // states declared below are persisted on the
-                // element once the animation completes.
-                state('true', style({ width: '385px' })),
-                state('false', style({ width: '405px' })),
-                // this here is our animation that kicks off when
-                // this state change jump is true
-                transition('expand <=> collapse', [
-                  animate("200ms 1.2s ease-out")
-                ])
-            ])
-        ],
+        host          : {
+                        '[class.md-input-has-value]'    : 'parentControl.value',
+                        '[class.summary]'               : 'isInSummaryState',
+                        '[class.noPadding]'             : 'noPadding',
+        }
     } )
 export class MdInputComponent implements AfterViewInit {
     private inputWidth : number;
@@ -115,6 +92,9 @@ export class MdInputComponent implements AfterViewInit {
         this.el.nativeElement.style.width = this.inputWidth + 'px';
         this.updateValitators();
         this._cd.detectChanges();
+
+        // TODO: Hack the data-automation-id into the final input dom element
+        console.log("data-automation-id is ", "text_" + this._id);
         return undefined;
     }
 

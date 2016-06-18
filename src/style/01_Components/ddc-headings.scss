@@ -43,7 +43,7 @@ $heading-micro-intro-font-weight: 600;
   color: $heading-contxtual-label-color;
   font-weight: $heading-contxtual-label-font-weight;
   line-height: $heading-contxtual-label-line-height;
-  vertical-align: sub;
+  vertical-align: text-bottom;
 }
 
 .#{$namespace}heading-micro-intro,

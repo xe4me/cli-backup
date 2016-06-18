@@ -18,6 +18,7 @@ declare var google : any;
     template      : `
     <my-md-input
         class='3/5'
+        [name]='id'
         [id]='id'
         [label]='label'
         [parentControl]='parentControl'
@@ -84,7 +85,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
 
     ngAfterViewInit () {
         // Binding Google Places Address api to google_places_ac input field
-        var input : any = document.getElementById( this.id );
+        var input : any = document.getElementById( this.id + "-input" );
         var options     = {
             types                 : [ 'address' ] ,
             componentRestrictions : { country : 'au' }

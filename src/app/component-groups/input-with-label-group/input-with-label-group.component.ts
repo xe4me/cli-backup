@@ -18,6 +18,7 @@ import { EventEmitter } from '@angular/core';
                 [toupperCase]='toupperCase'
                 [id]='id'
                 [label]='label'
+                [placeholder]='label'
                 [showLabel]='showLabel'
                 [parentControl]='parentControl'
                 [isRequired]='isRequired'

@@ -232,7 +232,7 @@ export class ReviewBlockComponent extends FormBlock implements FormBlock {
     preBindControls ( _formBlockDef ) {
     }
 
-    public postBindControl() : void {
+    public postBindControls() : void {
         let visibleFlag = this.getMyVisibleFlagString();
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ReviewBlockComponent.CLASS_NAME );
