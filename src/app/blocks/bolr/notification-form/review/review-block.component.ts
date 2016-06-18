@@ -1,5 +1,5 @@
 import { FormBlock , provideParent } from '../../../formBlock';
-import { Component , ElementRef , AfterViewInit, ViewContainerRef } from '@angular/core';
+import { Component , ElementRef , ViewContainerRef } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -90,7 +90,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                                     <span>None</span>
                             </div><!--
                             --><div class='review--item__value grid__item 6/10' *ngIf='hasEquityHolders' >
-                                <span *ngFor='#item of equityHoldersList'>
+                                <span *ngFor='let item of equityHoldersList'>
                                     {{item.firstName}} {{item.lastName}}
                                 </span>
                             </div><!--
@@ -107,7 +107,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                         --><div class='review--item__value grid__item 6/10'>
                                 <div *ngIf='isFullSale'>
                                     <span>Full sale - </span>
-                                    <span *ngFor='#item of advisers ; #i = index'><!--
+                                    <span *ngFor='let item of advisers ; let i = index'><!--
                                         --><span *ngIf='advisers.length > 1 '><!--
                                             --><span *ngIf=' i < ( advisers.length - 1 ) && i >0 '>, </span>
                                             <span *ngIf=' i === ( advisers.length - 1 ) '> and </span>
@@ -212,7 +212,7 @@ practices that may be interested in becoming the servicing practice for some or 
     ] ,
     providers  : [ provideParent( ReviewBlockComponent ) ]
 } )
-export class ReviewBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class ReviewBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME        = 'ReviewBlockComponent';
     private formIsFullyValid = false;
     private reviewIsVisible  = false;
@@ -232,7 +232,7 @@ export class ReviewBlockComponent extends FormBlock implements AfterViewInit, Fo
     preBindControls ( _formBlockDef ) {
     }
 
-    ngAfterViewInit () : any {
+    public postBindControl() : void {
         let visibleFlag = this.getMyVisibleFlagString();
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ReviewBlockComponent.CLASS_NAME );

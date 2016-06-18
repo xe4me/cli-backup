@@ -15,7 +15,6 @@ import { Control } from '@angular/common';
 import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
-import { AfterViewInit } from '@angular/core';
 import { Validators } from '@angular/common';
 import { ControlGroup } from '@angular/common';
 import { TimerWrapper } from '@angular/core/src/facade/async';
@@ -109,7 +108,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
     ] ,
     providers : [ TemplateRef , provideParent( PracticeAssociationBlockComponent ) ]
 } )
-export class PracticeAssociationBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class PracticeAssociationBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                              = 'PracticeAssociationBlockComponent';
     private isInSummaryState : boolean             = false;
     private hasClickedOnOkButton : boolean         = false;
@@ -133,7 +132,7 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
         this.formControlGroupName = 'practiceAssociation';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PracticeAssociationBlockComponent.CLASS_NAME );
         } );

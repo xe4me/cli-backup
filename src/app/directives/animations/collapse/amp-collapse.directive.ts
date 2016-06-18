@@ -40,6 +40,7 @@ export class AmpCollapseDirective implements OnChanges {
     }
 
     hide () : void {
+        // console.log("Collapse hide");
         // this._animation
         //     .setDuration( 0 )
         //     .setFromStyles( {
@@ -70,6 +71,8 @@ export class AmpCollapseDirective implements OnChanges {
     }
 
     show () : void {
+        // console.log("Collapse show");
+
         // this._animation
         //     .setDuration( 0 )
         //     .addClass( 'in' )

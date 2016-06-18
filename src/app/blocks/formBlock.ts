@@ -55,6 +55,11 @@ export abstract class FormBlock {
     // Must implement this method for FormBlock that deals with FormControls
     abstract preBindControls ( _formBlockDef : any ) : void;
 
+    // Hook for processing after the controls and model is available for block to use.
+    public postBindControls () : void {
+        return;
+    }
+
     // Reference:   http://stackoverflow.com/questions/332422/how-do-i-get-the-name-of-an-objects-type-in-javascript
     // TODO:        There are limitations and will need to test browser compatibility
     public getName () {
@@ -69,5 +74,9 @@ export abstract class FormBlock {
 
     public getMyDoneFlagString () {
         return this.formControlGroupName + 'IsDone';
+    }
+
+    public canGoNext () {
+        return this.formModel && this.formModel.controls[ this.formControlGroupName ].valid;
     }
 }

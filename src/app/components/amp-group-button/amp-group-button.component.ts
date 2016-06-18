@@ -52,7 +52,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
     selector   : 'amp-group-button' ,
     template   : `
                 <div class='amp-group-button'>
-                    <span *ngFor='#button of buttons'>
+                    <span *ngFor='let button of buttons'>
                           <input
                                 [disabled]='disabled'
                                 [attr.data-automation-id]='"radio_button_" + button.id'
@@ -131,6 +131,7 @@ export class AmpGroupButtonComponent {
     set required ( value ) {
         this._required = this.isTrue( value );
         this.updateValidators();
+        this.changeDetector.detectChanges();
     }
 
     private onSelect ( value , shouldScroll ) {

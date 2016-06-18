@@ -8,7 +8,6 @@ import {
     ScrollService ,
     LicenseesAbstract
 } from 'amp-ddc-ui-core/ui-core';
-import { AfterViewInit } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpCheckboxComponent } from '../../../../../components/amp-checkbox/amp-checkbox.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
@@ -50,7 +49,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
         styles     : [ require( './acknowledge-block.component.scss' ).toString() ],
         providers     : [ provideParent( AcknowledgeBlockComponent ) ]
     } )
-export class AcknowledgeBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class AcknowledgeBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME : string             = 'AcknowledgeBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -72,7 +71,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
         this.formControlGroupName = 'acknowledge';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControl() : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , AcknowledgeBlockComponent.CLASS_NAME );
         } );

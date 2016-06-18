@@ -35,7 +35,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
                 </div>
                 <section class='mt-10'  [collapse]='!isFullSelected'>
                     <div class='grid__item mb-15 heading heading-contxtual-label'>
-                        <span *ngFor='#item of advisers ; #i = index'><!--
+                        <span *ngFor='let item of advisers ; let i = index'><!--
                          --><span *ngIf='advisers.length > 1 '><!--
                            --><span *ngIf=' i < ( advisers.length - 1 ) && i >0 '>, </span>
                                 <span *ngIf=' i === ( advisers.length - 1 ) '> and </span>
@@ -79,11 +79,11 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
     ],
     providers     : [ provideParent( FullOrPartialBlockComponent ) ]
 } )
-export class FullOrPartialBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
-    static CLASS_NAME                      = 'FullOrPartialBlockComponent';
-    private isInSummaryState : boolean     = false;
-    private hasClickedOnOkButton : boolean = false;
-    private isFullOrPartialControlRequired = true;
+export class FullOrPartialBlockComponent extends FormBlock implements FormBlock {
+    static CLASS_NAME                                = 'FullOrPartialBlockComponent';
+    private isInSummaryState : boolean               = false;
+    private hasClickedOnOkButton : boolean           = false;
+    private isFullOrPartialControlRequired : boolean = true;
     private fullOrPartialButtons           = {
         buttons   : [
             {
@@ -118,7 +118,7 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         this.formControlGroupName = 'fullOrPartial';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , FullOrPartialBlockComponent.CLASS_NAME );
         } );
@@ -163,10 +163,6 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
 
     private get collapseImpactedAdvisersControl () {
         return this.hasClickedOnOkButton && ! this.impactedAdvisersControl.value;
-    }
-
-    private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
     private get isFullSelected () {

@@ -78,7 +78,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                     <h3 *ngIf='dynamicControlGroup.controls.length===1'
                     class='heading heading-intro mt-15 mb-15'>What is their name?</h3>
                     <div class='grid__item 1/1'>
-                        <div class='grid__item' *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
+                        <div class='grid__item' *ngFor='let item of dynamicControlGroup.controls ; let i = index'><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading
                                     heading-contxtual-label'>Their names are&nbsp;</label><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading
@@ -142,7 +142,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
     ] ,
     providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ]
 } )
-export class EquityHolderBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class EquityHolderBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -206,7 +206,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         this.formControlGroupName = 'equityHolder';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , EquityHolderBlockComponent.CLASS_NAME );
         } );
@@ -264,7 +264,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
             this.clearHoldersControlArray();
             this.isHoldersCountRequired = false;
             this.formControl[ 1 ].control.updateValue( '0' );
-        } else {
+        } else if (value === 'Yes') {
             this.isHoldersCountRequired = true;
             if ( this.dynamicControlGroup.length === 0 ) {
                 this.formControl[ 1 ].control.updateValue( '' );
@@ -291,10 +291,6 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     private refreshInput ( count ) {
         this.clearHoldersControlArray();
         this.addInput( count );
-    }
-
-    private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
     }
 
     private isCurrentBlockActive () {

@@ -47,7 +47,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
 @Component( {
     selector   : 'amp-radio-button-group' ,
     template   : `
-        <div  *ngFor='#button of buttons' class='amp-radio-button-group'>
+        <div  *ngFor='let button of buttons' class='amp-radio-button-group'>
               <input
                     [disabled]='disabled'
                     [attr.data-automation-id]='"radio_button_" + button.id'

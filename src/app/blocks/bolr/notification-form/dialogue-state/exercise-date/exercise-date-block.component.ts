@@ -11,7 +11,6 @@ import {
     AmpDateService ,
     TimeframesAbstract
 } from 'amp-ddc-ui-core/ui-core';
-import { AfterViewInit } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 @Component(
     {
@@ -72,7 +71,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
         providers  : [ provideParent( ExerciseDateBlockComponent ) ] ,
         inputs     : [ 'dateField' ]
     } )
-export class ExerciseDateBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class ExerciseDateBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME : string             = 'ExerciseDateBlockComponent';
     private dateField                      = {
         id             : 'exerciseDate' ,
@@ -104,7 +103,7 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         this.ampDateService.dateFormat = this.dateFormat;
     }
 
-    ngAfterViewInit () : any {
+    public postBindControl() : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ExerciseDateBlockComponent.CLASS_NAME );
         } );

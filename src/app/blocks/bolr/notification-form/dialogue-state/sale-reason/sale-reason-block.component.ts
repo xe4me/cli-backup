@@ -6,7 +6,6 @@ import { TemplateRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
-import { AfterViewInit } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 
 
@@ -51,7 +50,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
     ] ,
     providers  : [ TemplateRef , provideParent( SaleReasonBlockComponent ) ]
 } )
-export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class SaleReasonBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                      = 'SaleReasonBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -76,7 +75,7 @@ export class SaleReasonBlockComponent extends FormBlock implements AfterViewInit
         this.formControlGroupName = 'saleReason';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , SaleReasonBlockComponent.CLASS_NAME );
         } );

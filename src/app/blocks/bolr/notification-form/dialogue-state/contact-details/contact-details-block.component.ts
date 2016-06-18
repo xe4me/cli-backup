@@ -137,7 +137,7 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
         styles     : [ require( './contact-details-block.component.scss' ).toString() ],
         providers  : [ provideParent( ContactDetailsBlockComponent ) ]
     } )
-export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit, FormBlock {
+export class ContactDetailsBlockComponent extends FormBlock implements OnInit, FormBlock {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
     private contactDetails                 = {
         firstName : {
@@ -221,16 +221,16 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
         return undefined;
     }
 
-    ngAfterViewInit () : any {
-        // this.formModel.valueChanges.subscribe( ( changes ) => {
-        //     this.scrollService.amIVisible( this.el , ContactDetailsBlockComponent.CLASS_NAME );
-        // } );
-        // this.scrollService.$scrolled.subscribe( ( changes ) => {
-        //     if ( changes === this.formControlGroupName ) {
-        //         this.isInSummaryState = false;
-        //     }
-        // } );
-        return undefined;
+    public postBindControls () : void {
+        this.formModel.valueChanges.subscribe( ( changes ) => {
+            this.scrollService.amIVisible( this.el , ContactDetailsBlockComponent.CLASS_NAME );
+        } );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            if ( changes === this.formControlGroupName ) {
+                this.isInSummaryState = false;
+            }
+        } );
+        return;
     }
 
     public change () {
@@ -302,13 +302,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
 
     private get phoneControl () {
         return this.formControl[ Controls.PHONE ].control;
-    }
-
-    private get canGoNext () {
-        if ( this.formModel ) {
-            return this.formModel.controls[ this.formControlGroupName ].valid;
-        }
-        return false;
     }
 
     private get doneFlag () {

@@ -64,7 +64,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
     directives : [ MdInputComponent , AmpOverlayComponent , AmpButton ] ,
     providers  : [ provideParent( PartnershipManagerBlockComponent ) ]
 } )
-export class PartnershipManagerBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class PartnershipManagerBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
     private partnershipMgr                 = {
         firstName    : {
@@ -89,7 +89,7 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
         this.formControlGroupName = 'partnershipManager';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PartnershipManagerBlockComponent.CLASS_NAME );
         } );
@@ -132,6 +132,6 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
     }
 
     private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
+        return (this.formModel && this.formModel.controls[ this.formControlGroupName ].valid);
     }
 }
