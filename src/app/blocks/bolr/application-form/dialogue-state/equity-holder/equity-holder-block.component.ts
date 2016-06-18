@@ -287,10 +287,6 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         this.addInput( count );
     }
 
-    private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
-    }
-
     private isCurrentBlockActive () {
         return this.formModelService.getFlags( 'partnershipIsDone' );
     }

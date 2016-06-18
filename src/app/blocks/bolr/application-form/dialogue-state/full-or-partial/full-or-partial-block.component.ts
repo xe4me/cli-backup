@@ -168,10 +168,6 @@ export class FullOrPartialBlockComponent extends FormBlock implements AfterViewI
         this.formControl[ 1 ].name = this.impactedAdvisersDetails.id;
     }
 
-    private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
-    }
-
     private get isFullSelected () {
         return this.formControl[ 0 ].control.value === this.fullOrPartialButtons.buttons[ 0 ].value;
     }

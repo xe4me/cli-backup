@@ -121,12 +121,6 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
         return LicenseesAbstract.getLicensee( this.formModelService.licensee );
     }
 
-    private get canGoNext () {
-        if ( this.formModel ) {
-            return this.formModel.controls[ this.formControlGroupName ].valid;
-        }
-        return false;
-    }
 }
 /**
  * Created by xe4me on 7/04/2016.

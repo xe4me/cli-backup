@@ -242,13 +242,6 @@ export class ExerciseDateBlockComponent extends FormBlock implements AfterViewIn
         }
     }
 
-    private get canGoNext () {
-        if ( this.formModel ) {
-            return this.formModel.controls[ this.formControlGroupName ].valid;
-        }
-        return false;
-    }
-
     private resetBlock () {
         this.formModelService.present( {
             action    : 'setFlag' ,

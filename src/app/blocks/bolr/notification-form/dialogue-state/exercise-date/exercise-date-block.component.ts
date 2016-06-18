@@ -237,13 +237,6 @@ export class ExerciseDateBlockComponent extends FormBlock implements FormBlock {
         }
     }
 
-    private get canGoNext () {
-        if ( this.formModel ) {
-            return this.formModel.controls[ this.formControlGroupName ].valid;
-        }
-        return false;
-    }
-
     private resetBlock () {
         this.formModelService.present( {
             action    : 'setFlag' ,

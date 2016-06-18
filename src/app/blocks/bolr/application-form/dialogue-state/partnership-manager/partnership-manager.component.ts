@@ -130,7 +130,4 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
         return this.formModelService.getFlags( 'addressIsDone' );
     }
 
-    private get canGoNext () {
-        return this.formModel.controls[ this.formControlGroupName ].valid;
-    }
 }

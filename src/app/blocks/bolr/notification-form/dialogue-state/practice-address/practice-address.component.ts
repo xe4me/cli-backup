@@ -214,8 +214,4 @@ export class PracticeAddressBlockComponent extends FormBlock implements FormBloc
         }
     }
 
-    private canGoNext () {
-        return ((this.formModel && this.formModel.controls[ this.formControlGroupName ].valid) ||
-            (this.googleAddressCtrl.valid && !this.googleAddressCtrl.pristine);
-    }
 }

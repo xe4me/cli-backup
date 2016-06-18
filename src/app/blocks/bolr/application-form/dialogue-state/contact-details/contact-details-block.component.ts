@@ -286,13 +286,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
         return this.formControl[ Controls.PHONE ].control;
     }
 
-    private get canGoNext () {
-        if ( this.formModel ) {
-            return this.formModel.controls[ this.formControlGroupName ].valid;
-        }
-        return false;
-    }
-
     private get doneFlag () {
         return this.formControlGroupName + 'Done';
     }

@@ -130,8 +130,4 @@ export class PartnershipManagerBlockComponent extends FormBlock implements FormB
     private isCurrentBlockActive () {
         return this.formModelService.getFlags( 'addressIsDone' );
     }
-
-    private get canGoNext () {
-        return (this.formModel && this.formModel.controls[ this.formControlGroupName ].valid);
-    }
 }
