@@ -1,6 +1,6 @@
-import { Component , OnInit , ElementRef , ChangeDetectorRef } from '@angular/core';
+import { Component , OnInit , ElementRef , ChangeDetectorRef, ViewContainerRef } from '@angular/core';
 import { Control , ControlGroup } from '@angular/common';
-import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import {
     FormModelService ,
@@ -8,7 +8,6 @@ import {
     ScrollService ,
     LicenseesAbstract
 } from 'amp-ddc-ui-core/ui-core';
-import { AfterViewInit } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpCheckboxComponent } from '../../../../../components/amp-checkbox/amp-checkbox.component';
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
@@ -35,7 +34,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
         </amp-checkbox>
 
         <div class='heading heading-micro-intro mt-35'>
-            Please note, this may potentially result in some or all of the practice's register being purchased and transferred before the exercise date.
+            Please note, this may potentially result in some or all of the practice's register being purchased and transferred to another practice before the exercise date.
         </div>
         <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='! canGoNext' class='btn btn-ok
         mt-50'>
@@ -47,10 +46,10 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
     </div>
   ` ,
         directives : [ AmpOverlayComponent , AmpCheckboxComponent , AmpButton ] ,
-        styles     : [ require( './acknowledge-block.component.scss' ).toString() ] ,
-        providers  : [ provideParent( AcknowledgeBlockComponent ) ]
+        styles     : [ require( './acknowledge-block.component.scss' ).toString() ],
+        providers     : [ provideParent( AcknowledgeBlockComponent ) ]
     } )
-export class AcknowledgeBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class AcknowledgeBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME : string             = 'AcknowledgeBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
@@ -65,13 +64,14 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
     constructor ( private progressObserver : ProgressObserverService ,
                   private el : ElementRef ,
                   private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
+                  private scrollService : ScrollService,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [ new NamedControl( this.acknowledge.id , new Control() ) ];
         this.formControlGroupName = 'acknowledge';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControl() : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , AcknowledgeBlockComponent.CLASS_NAME );
         } );
@@ -110,11 +110,16 @@ export class AcknowledgeBlockComponent extends FormBlock implements AfterViewIni
                 flag      : 'acknowledgeIsDone' ,
                 flagValue : true
             } );
+            this.formModelService.present( {
+                action    : 'setFlag' ,
+                flag      : 'reviewIsVisible' ,
+                flagValue : true
+            } );
         }
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log( 'onAcknowledgeSelect value' , value );
+        // console.log( 'onAcknowledgeSelect value' , value );
     }
 
     private get licensee () {

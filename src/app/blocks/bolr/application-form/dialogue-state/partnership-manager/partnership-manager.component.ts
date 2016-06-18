@@ -1,5 +1,5 @@
-import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone } from '@angular/core';
+import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
+import { Component , ElementRef , ViewEncapsulation , OnInit , AfterViewInit , NgZone, ViewContainerRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
@@ -7,8 +7,8 @@ import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-o
 import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 @Component( {
-    selector       : 'partnership-manager-block' ,
-    template       : `
+    selector   : 'partnership-manager-block' ,
+    template   : `
     <div id='partnership-manager-block' class='partnership-manager-block mt-60' [class.hidden]='!isCurrentBlockActive()'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
         <h3 class='heading heading-intro'>Who is your partnership manager?</h3>
@@ -59,12 +59,12 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
         <div class='hr-block-divider mt-80'></div>
     </div>
   ` , // encapsulation: ViewEncapsulation.Emulated
-    inputs         : [ 'partnershipMgr' ] ,
-    styles         : [ require( './partnership-manager.component.scss' ).toString() ] ,
-    directives     : [ MdInputComponent , AmpOverlayComponent, AmpButton ],
-    providers      : [ provideParent( PartnershipManagerBlockComponent ) ]
+    inputs     : [ 'partnershipMgr' ] ,
+    styles     : [ require( './partnership-manager.component.scss' ).toString() ] ,
+    directives : [ MdInputComponent , AmpOverlayComponent , AmpButton ] ,
+    providers  : [ provideParent( PartnershipManagerBlockComponent ) ]
 } )
-export class PartnershipManagerBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class PartnershipManagerBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                      = 'PartnershipManagerBlockComponent';
     private partnershipMgr                 = {
         firstName    : {
@@ -79,7 +79,8 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.partnershipMgr.firstName.id , new Control() ) ,
@@ -88,7 +89,7 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
         this.formControlGroupName = 'partnershipManager';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PartnershipManagerBlockComponent.CLASS_NAME );
         } );
@@ -129,5 +130,4 @@ export class PartnershipManagerBlockComponent extends FormBlock implements After
     private isCurrentBlockActive () {
         return this.formModelService.getFlags( 'addressIsDone' );
     }
-
 }

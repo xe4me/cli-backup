@@ -1,4 +1,4 @@
-import { Component , OnInit , ElementRef , ChangeDetectorRef } from '@angular/core';
+import { Component , OnInit , ElementRef , ChangeDetectorRef, ViewContainerRef } from '@angular/core';
 import { Control , ControlGroup } from '@angular/common';
 import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
@@ -6,21 +6,23 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import { InputWithLabelGroupComponent } from '../../../../../component-groups/input-with-label-group/input-with-label-group.component';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { AfterViewInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
-import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
 @Component(
     {
         selector   : 'contact-details-block' ,
         template   : `
     <div id='contact-details-block' class='contact-details-block'>
         <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
-        <h3 class='heading heading-intro'>{{ formModelService.getModel().context.practicePrincipalFirstName }}, please
+        <h3 class='heading heading-intro' *ngIf="!showPracticeNameInputs">{{ formModelService.getModel().context.practicePrincipalFirstName }}, please
+        confirm your details are correct. <br> If not, simply update them below.</h3>
+
+        <h3 class='heading heading-intro' *ngIf="showPracticeNameInputs">Please
         confirm your details are correct. <br> If not, simply update them below.</h3>
 
 
         <!--Practice principal START-->
-        <div [collapse]='!showPracticeNameInputs' class='grid__item'>
+        <div @openClose='!showPracticeNameInputs ? "collapsed" : "expanded"' class='grid__item'>
             <!--Partnership Manager name-->
             <label class='heading heading-contxtual-label mb3' >Name</label><!--
             -->&nbsp;<my-md-input
@@ -47,15 +49,6 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
             </my-md-input>
         </div>
         <!--Practice principal END-->
-         <div *ngIf='(firstNameControl.touched &&  !firstNameControl.valid)
-        ||(lastNameControl.touched &&  !lastNameControl.valid) ' class='errors mt mb-15'>
-            <div class='error-item' *ngIf='firstNameControl.touched && !firstNameControl.valid'>
-                <span class='icon icon--close icon-errors'></span>{{ contactDetails.firstName.error }}
-            </div>
-            <div class='error-item' *ngIf='lastNameControl.touched && !lastNameControl.valid'>
-                <span class='icon icon--close icon-errors'></span>{{ contactDetails.lastName.error }}
-            </div>
-        </div>
         <!--Contact Number-->
         <input-with-label-group
             (onEnter)='ok()'
@@ -91,6 +84,17 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
 
         <div *ngIf='(phoneControl.touched ||
         emailControl.touched) && !formModel.controls.contactDetails.valid' class='errors mt-20 mb-15'>
+
+           <div class='error-item' *ngIf='firstNameControl.touched && !firstNameControl.valid'>
+               <span class='icon icon--close icon-errors'></span>{{ contactDetails.firstName.error }}
+           </div>
+           <div class='error-item' *ngIf='lastNameControl.touched && !lastNameControl.valid'>
+               <span class='icon icon--close icon-errors'></span>{{ contactDetails.lastName.error }}
+           </div>
+
+
+
+
             <div class='error-item' *ngIf='!phoneControl.valid && phoneControl.touched'>
                 <div *ngIf='phoneControl.errors.required' >
                     <span class='icon icon--close icon-errors'></span>{{ contactDetails.phone.requiredError }}
@@ -112,8 +116,6 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
                 </div>
             </div>
         </div>
-        <button (click)="changeit()">CHANGE it </button>
-        <button (click)="check()">Check</button>
         <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!canGoNext' class='btn
          btn-ok btn-ok-margin-top'>
             OK
@@ -125,27 +127,34 @@ import { AmpCollapseDirective } from '../../../../../directives/animations/colla
     </div>
   ` ,
         directives : [
-            AmpCollapseDirective ,
             MdInputComponent ,
             AmpOverlayComponent ,
             InputWithLabelGroupComponent ,
             AmpButton
         ] ,
         styles     : [ require( './contact-details-block.component.scss' ).toString() ],
-        providers  : [ provideParent( ContactDetailsBlockComponent ) ]
+        providers  : [ provideParent( ContactDetailsBlockComponent ) ],
+        animations: [trigger(
+          'openClose',
+          [
+            state('collapsed, void', style({height: '0px', opacity: '0'})),
+            state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+            transition(
+                'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+          ])]
     } )
-export class ContactDetailsBlockComponent extends FormBlock implements OnInit, AfterViewInit, FormBlock {
+export class ContactDetailsBlockComponent extends FormBlock implements OnInit, FormBlock {
     static CLASS_NAME : string             = 'ContactDetailsBlockComponent';
     private contactDetails                 = {
         firstName : {
-            id        : 'default_firstName' ,
+            id        : 'practicePrincipalFirstName' ,
             label     : 'First name' ,
             regex     : '' ,
             maxLength : 50 ,
             error     : 'First name is a required field.'
         } ,
         lastName  : {
-            id        : 'default_lastName' ,
+            id        : 'practicePrincipalLastName' ,
             label     : 'Last name' ,
             regex     : '' ,
             maxLength : 50 ,
@@ -181,26 +190,44 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
     private showPracticeNameInputs         = false;
 
     ngOnInit () : any {
-        this
-            .formModelService
-            .getContactDetails()
+        this.formModelService
+            .getContactDetails()    // Get Profile for the Practice using the ActingAsUser
             .subscribe(
-                data => {
-                    this.formModelService.present(
-                        { action : 'setContactDetails' , contactDetails : data }
-                    );
-                    this.formControl[ Controls.PHONE ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
-                    this.formControl[ Controls.EMAIL ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
+                contactData => {
+                    // Check for the specified officer and Get Profile
+                    this.formModelService
+                        .getAdvisers()
+                        .subscribe(
+                            adviserList => {
+                                this.formModelService.present(
+                                    { action : 'setAdvisers' , advisers : adviserList }
+                                );
+
+                                this.formModelService.present(
+                                    { action : 'setContactDetails' , contactDetails : contactData }
+                                );
+
+                                this.formControl[ Controls.PHONE ].control.updateValue( this.formModelService.getModel().contactDetails.workPhoneNumber );
+                                this.formControl[ Controls.EMAIL ].control.updateValue( this.formModelService.getModel().contactDetails.emailAddress );
+                            } ,
+                            error => {
+                                this.formModelService.present(
+                                    { action : 'error' , errors : [ 'Failed to decode the context' ] }
+                                );
+                            } );
+
                 } ,
                 error => {
                     this.formModelService.present(
                         { action : 'error' , errors : [ 'Failed to decode the context' ] }
                     );
                 } );
+
+        this.showPracticeNameInputs = (!this.formModelService.model.context.practicePrincipalFirstName || !this.formModelService.model.context.practicePrincipalLastName);
         return undefined;
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ContactDetailsBlockComponent.CLASS_NAME );
         } );
@@ -209,7 +236,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
                 this.isInSummaryState = false;
             }
         } );
-        return undefined;
+        return;
     }
 
     public change () {
@@ -237,7 +264,8 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
                   private progressObserver : ProgressObserverService ,
                   private el : ElementRef ,
                   private formModelService : FormModelService ,
-                  private scrollService : ScrollService ) {
+                  private scrollService : ScrollService,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.contactDetails.firstName.id , new Control() ) ,
@@ -266,10 +294,6 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
         this._cd.detectChanges();
     }
 
-    private check () {
-        console.log( 'this.formModel' , this.formModel );
-    }
-
     private get firstNameControl () {
         return this.formControl[ Controls.FIRSTNAME ].control;
     }
@@ -287,7 +311,7 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, A
     }
 
     private get doneFlag () {
-        return this.formControlGroupName + 'Done';
+        return this.formControlGroupName + 'IsDone';
     }
 }
 export abstract class Controls {

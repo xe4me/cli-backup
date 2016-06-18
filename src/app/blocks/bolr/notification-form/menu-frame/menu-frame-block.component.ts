@@ -4,7 +4,6 @@ import { StickyProgressHeaderBlockComponent } from '../sticky-progress-header-bl
 import { FormModelService, ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
-import { AmpCollapseDirective } from '../../../../directives/animations/collapse/amp-collapse.directive';
 @Component( {
     selector   : 'menu-frame' ,
     template   : `
@@ -37,7 +36,7 @@ import { AmpCollapseDirective } from '../../../../directives/animations/collapse
         </div>
     ` ,
     styles     : [ require( './menu-frame-block.component.scss' ).toString() ] ,
-    directives : [ AmpCollapseDirective , StickyProgressHeaderBlockComponent , AmpButton ] ,
+    directives : [ StickyProgressHeaderBlockComponent , AmpButton ] ,
     providers  : [ provideParent( MenuFrameBlockComponent ) ],
     animations: [trigger(
       'openClose',

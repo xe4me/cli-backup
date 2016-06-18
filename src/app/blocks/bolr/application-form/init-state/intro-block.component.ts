@@ -1,5 +1,5 @@
 import { FormBlock, provideParent } from '../../../formBlock';
-import { Component , ElementRef , DynamicComponentLoader } from '@angular/core';
+import { Component , ElementRef , DynamicComponentLoader, ViewContainerRef } from '@angular/core';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpButton } from '../../../../components/amp-button/amp-button.component';
@@ -12,14 +12,13 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
             <div class='bolr-intro-main__title practice-title mb3'>
                 <span class='mr'>{{ practiceName }}</span>
                 <span class='mr'>Practice ID: {{ payeeID }}</span>
-                <span>Practice principal: {{ practicePrincipal }}</span>
+                <span *ngIf="practicePrincipal">Practice principal: {{ practicePrincipal }}</span>
             </div>
             <p  class='bolr-intro-main__body mb3'>
-                Hi {{ practicePrincipalFirstName }}<br/>
-                You're about to complete your application and deed of undertaking for full {{ licenseeBuybackFacility
-                 }}.
+                <span *ngIf="practicePrincipal">Hi {{ practicePrincipalFirstName }},<br/></span>
+                You're about to request access to the {{ licenseeBuybackFacility }} facility.
             </p>
-            <p class='bolr-intro-main__notes mb3'>We need a few details, this will take some time to complete, but you can save and continue at any time.</p>
+            <p class='bolr-intro-main__notes mb3'>We just need a few details, it won't take long.</p>
             <amp-button class='btn btn-ok' (click)='ok()' data-automation-id='btn_bolr-intro-block'>
                 OK
             </amp-button>
@@ -36,7 +35,8 @@ export class IntroBlockComponent extends FormBlock implements FormBlock {
 
     constructor ( private loader : DynamicComponentLoader ,
                   private elementRef : ElementRef ,
-                  private formModelService : FormModelService ) {
+                  private formModelService : FormModelService,
+                  public _viewContainerRef: ViewContainerRef) {
         super();
     }
 
@@ -76,6 +76,9 @@ export class IntroBlockComponent extends FormBlock implements FormBlock {
     }
 
     private get practicePrincipal () {
-        return this.practicePrincipalFirstName + ' ' + this.practicePrincipalLastName;
+        if (this.context.practicePrincipalLastName && this.context.practicePrincipalFirstName) {
+            return this.practicePrincipalFirstName + ' ' + this.practicePrincipalLastName;
+        }
+        return null;
     }
 }

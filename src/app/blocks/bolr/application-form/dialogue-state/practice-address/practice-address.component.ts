@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import {
     Component ,
@@ -11,7 +11,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
 import { AMPGoogleAddressComponentGroup } from '../../../../../component-groups/amp-google-address-group/amp-google-address-group.component.ts';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component';
 import { TimerWrapper } from '@angular/core/src/facade/async';
-import { AfterViewInit } from '@angular/core';
+import { ViewContainerRef } from '@angular/core';
 @Component( {
     selector   : 'practice-address-block' ,
     template   : `
@@ -43,7 +43,7 @@ import { AfterViewInit } from '@angular/core';
 
 
 
-      <div *ngIf='
+      <div *ngIf='formModel &&
       !formModel.controls.practiceAddress.valid
       && (
       ( suburbCtrl.touched && !suburbCtrl.valid ) ||
@@ -103,10 +103,10 @@ import { AfterViewInit } from '@angular/core';
     ` , // encapsulation: ViewEncapsulation.Emulated
     inputs     : [ 'practiceAddress' ] ,
     styles     : [ require( './practice-address.component.scss' ).toString() ] ,
-    directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent , AmpButton ] ,
+    directives : [ AMPGoogleAddressComponentGroup , AmpOverlayComponent , MdInputComponent , AmpButton ],
     providers  : [ provideParent( PracticeAddressBlockComponent ) ]
 } )
-export class PracticeAddressBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class PracticeAddressBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                      = 'PracticeAddressBlockComponent';
     private practiceAddress                =
            {
@@ -151,7 +151,7 @@ export class PracticeAddressBlockComponent extends FormBlock implements AfterVie
     private stateCtrl : Control            = new Control();
     private postcodeCtrl : Control         = new Control();
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PracticeAddressBlockComponent.CLASS_NAME );
         } );
@@ -160,13 +160,14 @@ export class PracticeAddressBlockComponent extends FormBlock implements AfterVie
                 this.isInSummaryState = false;
             }
         } );
-        return undefined;
+        return;
     }
 
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.formControl          = [
             new NamedControl( this.practiceAddress.address.id , this.addressCtrl ) ,

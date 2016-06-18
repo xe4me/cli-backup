@@ -12,8 +12,6 @@ import { AmpRadioButtonGroupComponent } from '../../../../../components/amp-radi
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
 import { TemplateRef, animate, state, style, transition, trigger } from '@angular/core';
 import { Control } from '@angular/common';
-import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
-import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
 import { Validators } from '@angular/common';
 import { ControlGroup } from '@angular/common';
@@ -102,8 +100,7 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
         AmpButton ,
         AmpOverlayComponent ,
         AmpRadioButtonGroupComponent ,
-        AmpTextareaComponent ,
-        AmpSlideDirective
+        AmpTextareaComponent
     ] ,
     providers : [ TemplateRef , provideParent( PracticeAssociationBlockComponent ) ],
     animations: [trigger(

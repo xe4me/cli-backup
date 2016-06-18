@@ -1,5 +1,5 @@
-import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from '@angular/core';
+import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
+import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { MdInputComponent } from '../../../../../components/my-md-input/my-md-input.component.ts';
 import {
@@ -14,10 +14,8 @@ import { ControlArray , ControlGroup } from '@angular/common';
 import { FORM_DIRECTIVES } from '@angular/common';
 import { Validators } from '@angular/common';
 import { AmpGroupButtonComponent } from '../../../../../components/amp-group-button/amp-group-button.component';
-import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
-import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
 import { TemplateRef } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 @Component( {
     selector   : 'equity-holder-block' ,
@@ -29,17 +27,17 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 <div *ngIf='isInSummaryState' class='heading heading-contxtual-label mt-30 mb-20'>
                     <span class='summary-state'>{{ formControl[0].control.value }}</span>
                 </div>
-                <div [collapse]='isInSummaryState' class='heading heading-micro-intro mt-35'>
+                <div @openClose='isInSummaryState ? "collapsed" : "expanded"' class='heading heading-micro-intro mt-35'>
                     For a practice to access the {{ licenseeBuybackFacility }} facility, all equity holders in that practice must exercise {{ licenseeBuybackFacility }}.
                 </div>
-
-                <section [collapse]='isInSummaryState'>
+                <section @openClose='isInSummaryState ? "collapsed" : "expanded"'>
 
                     <div  class='grid__item mb-25 mt-50'>
                         <amp-group-button
                             scrollOutOn='Yes'
                             class='grid__item 4/9'
                             (select)='onSwitchChanged($event)'
+                            [required]='isHoldersButtonRequired'
                             [buttons]='hasHoldersButtons.buttons'
                             [parentControl]='formControl[0].control'
                             [groupName]='hasHoldersButtons.groupName'
@@ -49,11 +47,12 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                     </div>
                 </section>
 
-                <section [collapse]='formControl[0].control.value!=="Yes" || isInSummaryState'>
+                <section @openClose='(formControl[0].control.value!=="Yes" || isInSummaryState) ? "collapsed" : "expanded"'>
                     <h3 class='heading heading-intro mt-15'>How many?</h3>
                     <div class='grid__item mb-15 mt-45'>
                         <amp-group-button
                             scrollOutUnless='null'
+                            [required]='isHoldersCountRequired'
                             (select)='onHoldersCountGroupButtonSelect($event)'
                             [buttons]='holdersCountButtons.buttons'
                             [parentControl]='formControl[1].control'
@@ -62,7 +61,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                         </amp-group-button>
                     </div>
                 </section>
-                <section class='mb-15' [collapse]='!isInSummaryState || formControl[0].control.value==="No"'>
+                <section class='mb-15' @openClose='(!isInSummaryState || formControl[0].control.value==="No") ? "collapsed" : "expanded"'>
                     <h3 class='heading heading-intro mt-10 mb-30'>How many?</h3>
                     <div>
                         <span class='summary-state'>{{ dynamicControlGroup.controls.length }}</span>
@@ -70,14 +69,13 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 </section>
 
 
-                <section  [collapse]='formControl[0].control.value !== "Yes" ||
-                formControl[1].control.value < 1'>
+                <section @openClose='(formControl[0].control.value !== "Yes" || formControl[1].control.value < 1) ? "collapsed" : "expanded"'>
                     <h3 *ngIf='dynamicControlGroup.controls.length>1'
                     class='heading heading-intro mt-15 mb-15'>What are their names?</h3>
                     <h3 *ngIf='dynamicControlGroup.controls.length===1'
                     class='heading heading-intro mt-15 mb-15'>What is their name?</h3>
                     <div class='grid__item 1/1'>
-                        <div class='grid__item' *ngFor='#item of dynamicControlGroup.controls ; #i = index'><!--
+                        <div class='grid__item' *ngFor='let item of dynamicControlGroup.controls ; let i = index'><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length>1' class='1/6 heading
                                     heading-contxtual-label'>Their names are&nbsp;</label><!--
                             --><label *ngIf=' i === 0 && dynamicControlGroup.controls.length===1' class='1/6 heading
@@ -135,17 +133,25 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
         AmpOverlayComponent ,
         FORM_DIRECTIVES ,
         AmpGroupButtonComponent ,
-        AmpCollapseDirective ,
-        AmpSlideDirective ,
         AmpButton
     ] ,
-    providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ]
+    providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ],
+    animations: [trigger(
+      'openClose',
+      [
+        state('collapsed, void', style({height: '0px', opacity: '0'})),
+        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+        transition(
+            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+      ])]
 } )
-export class EquityHolderBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
+export class EquityHolderBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME                      = 'EquityHolderBlockComponent';
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private dynamicControlGroup : ControlArray;
+    private isHoldersButtonRequired        = true;
+    private isHoldersCountRequired         = false;
     private hasHoldersButtons              = {
         buttons   : [
             {
@@ -191,7 +197,8 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     constructor ( private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
         this.dynamicControlGroup  = new ControlArray( [] );
         this.formControl          = [
@@ -202,7 +209,7 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
         this.formControlGroupName = 'equityHolder';
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , EquityHolderBlockComponent.CLASS_NAME );
         } );
@@ -258,8 +265,10 @@ export class EquityHolderBlockComponent extends FormBlock implements AfterViewIn
     private onSwitchChanged ( value ) {
         if ( value === 'No' ) {
             this.clearHoldersControlArray();
+            this.isHoldersCountRequired = false;
             this.formControl[ 1 ].control.updateValue( '0' );
-        } else {
+        } else if (value === 'Yes') {
+            this.isHoldersCountRequired = true;
             if ( this.dynamicControlGroup.length === 0 ) {
                 this.formControl[ 1 ].control.updateValue( '' );
             }

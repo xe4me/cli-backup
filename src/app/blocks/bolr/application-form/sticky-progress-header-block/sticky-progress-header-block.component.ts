@@ -8,18 +8,9 @@ import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
         <div class='sticky'>
             <div class="sticky__header">
                 <div class='sticky__header--left'>
-                    <div class='amp-logo'></div>
-                    <div>Request to access the  {{ licenseeBuybackFacility }} facility</div>
+                    <span>Request to access the  {{ licenseeBuybackFacility }} facility</span>
                     <!--<span class='line-vertical-text-wrap line-vertical-text-wrap-gray '></span>-->
                     <!--<span class='utils__weight&#45;&#45;700'>{{value}}</span>-->
-                </div>
-                <div class="sticky__header--right bolr-right-padding">
-                    <span (click)='chat()' class="sticky__header--right--chat">
-                        <span aria-hidden="true" class="icon icon--chat"></span> Chat now
-                    </span>
-                    <span (click)='call()' class="sticky__header--right--call">
-                        <span aria-hidden="true" class="icon icon--phone"></span> 1300 158 587
-                    </span>
                 </div>
             </div>
 
@@ -41,16 +32,10 @@ export class StickyProgressHeaderBlockComponent {
     private value : number;
     private determinate : string;
 
-    constructor ( private formModelService : FormModelService ) {
-    }
-
     private get licenseeBuybackFacility () {
         return LicenseesAbstract.getLicenseeBuybackFacility( this.formModelService.licensee );
     }
 
-    private chat () {
-    }
-
-    private call () {
+    constructor ( private formModelService : FormModelService ) {
     }
 }

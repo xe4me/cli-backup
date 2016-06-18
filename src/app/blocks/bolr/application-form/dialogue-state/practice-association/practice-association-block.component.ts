@@ -1,5 +1,5 @@
-import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
-import { Component , ElementRef } from '@angular/core';
+import { FormBlock , NamedControl , provideParent } from '../../../../formBlock';
+import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import {
     FormModelService ,
     ProgressObserverService ,
@@ -10,49 +10,47 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpRadioButtonGroupComponent } from '../../../../../components/amp-radio-button-group/amp-radio-button-group.component';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';
-import { TemplateRef } from '@angular/core';
+import { TemplateRef, animate, state, style, transition, trigger } from '@angular/core';
 import { Control } from '@angular/common';
-import { AmpCollapseDirective } from '../../../../../directives/animations/collapse/amp-collapse.directive';
-import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
 import { AmpOverlayComponent } from '../../../../../components/amp-overlay/amp-overlay.component';
-import { AfterViewInit } from '@angular/core';
 import { Validators } from '@angular/common';
 import { ControlGroup } from '@angular/common';
 import { TimerWrapper } from '@angular/core/src/facade/async';
 import { ChangeDetectorRef } from '@angular/core';
+import { AmpButton } from '../../../../../components/amp-button/amp-button.component';
 @Component( {
     selector   : 'practice-association-block' ,
     template   : `
-            <div id='practice-association-block' *ngIf='componentIsVisible' class='practice-association-n mt-60'>
+            <div id='practice-association-block' *ngIf='practiceAssociationIsVisible' class='practice-association-n mt-60'>
                 <amp-overlay [active]='!isCurrentBlockActive()'></amp-overlay>
                 <section class='mb-30'>
                     <h3 class='heading heading-intro mb-30'>How long has your practice been with {{ licensee }}?</h3>
-                    <div class='heading heading-contxtual-label'>
+                    <div [class.mb-40]='!isInSummaryState' class='heading heading-contxtual-label'>
                         At the time of my requested exercise date, my practice will have been with {{ licensee }} for
                         <span *ngIf='isInSummaryState' class='summary-state'>{{
-                        getAssociationPracticeLabel(getControl( associationLengthRadiosGroupName ).value) }}
+                        getAssociationPracticeLabel(associationLengthControl.value) }}
                         </span>
                     </div>
                      <amp-radio-button-group
-                            *ngIf='!isInSummaryState'
+                            @openClose='isInSummaryState ? "collapsed" : "expanded"'
                             [required]='isAssociationRequired'
                             scrollOutUnless='null'
-                            class='grid__item 1/1 mt-40'
+                            class='grid__item 1/1'
                             (select)='onAssociationLengthSelect($event)'
                             [buttons]='associationLengthOptions'
-                            [parentControl]='getControl(associationLengthRadiosGroupName)'
+                            [parentControl]='associationLengthControl'
                             [groupName]='associationLengthRadiosGroupName'
                             >
                         </amp-radio-button-group>
                 </section>
 
-                <div [class.mb-35]='getControl( exerciseDateRadiosGroupName ).value!=="later_than"' *ngIf='isInSummaryState'
+                <div [class.mb-35]='exerciseDateControl.value!=="later_than"' *ngIf='isInSummaryState'
                 class='heading heading-contxtual-label'>
                     <h3 class='heading heading-intro  mb-30'>And your requested exercise date?</h3>
-                        <span class='summary-state'>{{ getExerciseLengthLabel(getControl( exerciseDateRadiosGroupName ).value) }}</span>
+                        <span class='summary-state'>{{ getExerciseLengthLabel(exerciseDateControl.value) }}</span>
                 </div>
-                <div *ngIf='showExerciseDate'>
-                    <section *ngIf='!isInSummaryState' class='mb-30' >
+                <div @openClose='(!showExerciseDate || isInSummaryState) ? "collapsed" : "expanded"'>
+                    <section class='mb-30' >
                         <h3 class='heading heading-intro  mb-40'>And your requested exercise date?</h3>
                          <amp-radio-button-group
                                 autoSelectOnOne='true'
@@ -61,87 +59,84 @@ import { ChangeDetectorRef } from '@angular/core';
                                 class='grid__item 1/1'
                                 (select)='onExerciseDateSelect($event)'
                                 [buttons]='exerciseDateOptions'
-                                [parentControl]='getControl(exerciseDateRadiosGroupName)'
+                                [parentControl]='exerciseDateControl'
                                 [groupName]='exerciseDateRadiosGroupName'
                                 >
                             </amp-radio-button-group>
                     </section>
                 </div>
 
-                <section  *ngIf='showExpCircumstances'>
+                <section  @openClose='!showExpCircumstances ? "collapsed" : "expanded"'>
                         <amp-textarea
                             class='1/1'
-                            [required]='isExpCircumstancesRequired'
+                            [isRequired]='isExpCircumstancesRequired'
                             [isInSummaryState]='isInSummaryState'
                             [id]='exerciseDateRadiosTextFieldName'
                             label='Exceptional circumstances'
-                            [parentControl]='getControl(exerciseDateRadiosTextFieldName)'
+                            [parentControl]='excCirControl'
                             valMaxLength='500'>
                         </amp-textarea>
                 </section>
 
-
                 <div *ngIf='showRequiredError' class='errors mb-40'>
-                    <div *ngIf='!getControl(exerciseDateRadiosTextFieldName).valid'>
+                    <div *ngIf='!excCirControl.valid'>
                         <div>
                             <span class='icon icon--close icon-errors'></span>This is a required field.
                         </div>
                     </div>
                 </div>
-                <!--<pre>{{ formModel.controls['practiceAssociation'].value | json }}</pre>-->
-               <button class='btn btn-ok
-               mt-10' *ngIf='!isInSummaryState' (click)='ok()'
-               [disabled]='!controlGroup.valid'  >
+                <amp-button *ngIf='!isInSummaryState' (click)='ok()' [disabled]='!controlGroup.valid' class='btn
+                btn-ok mt-10'>
                     OK
-                </button>
-                <button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10 '>
+                </amp-button>
+                <amp-button *ngIf='isInSummaryState' (click)='change()' class='btn btn-change mt-10'>
                     Change
-                </button>
+                </amp-button>
                 <div class='hr-block-divider mt-80'></div>
             </div>
           ` ,
     styles     : [ require( './practice-association-block.component.scss' ).toString() ] ,
     directives : [
+        AmpButton ,
         AmpOverlayComponent ,
         AmpRadioButtonGroupComponent ,
-        AmpTextareaComponent ,
-        AmpCollapseDirective ,
-        AmpSlideDirective
+        AmpTextareaComponent
     ] ,
-    providers  : [ TemplateRef , provideParent( PracticeAssociationBlockComponent ) ]
+    providers : [ TemplateRef , provideParent( PracticeAssociationBlockComponent ) ],
+    animations: [trigger(
+      'openClose',
+      [
+        state('collapsed, void', style({height: '0px', opacity: '0'})),
+        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+        transition(
+            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+      ])]
 } )
-export class PracticeAssociationBlockComponent extends FormBlock implements AfterViewInit, FormBlock {
-    static CLASS_NAME                      = 'PracticeAssociationBlockComponent';
-    private isInSummaryState : boolean     = false;
-    private hasClickedOnOkButton : boolean = false;
-    private componentIsVisible : boolean   = false;
-    private isAssociationRequired          = true;
-    private isExerciseDateRequired         = true;
-    private isExpCircumstancesRequired     = true;
+export class PracticeAssociationBlockComponent extends FormBlock implements FormBlock {
+    static CLASS_NAME                              = 'PracticeAssociationBlockComponent';
+    private isInSummaryState : boolean             = false;
+    private hasClickedOnOkButton : boolean         = false;
+    private practiceAssociationIsVisible : boolean = false;
+    private isAssociationRequired                  = true;
+    private isExerciseDateRequired                 = true;
+    private isExpCircumstancesRequired             = true;
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private progressObserver : ProgressObserverService ,
                   private formModelService : FormModelService ,
                   private scrollService : ScrollService ,
-                  private el : ElementRef ) {
+                  private el : ElementRef,
+                  public _viewContainerRef: ViewContainerRef ) {
         super();
-        this.formControl          = [];
+        this.formControl          = [
+            new NamedControl( this.associationLengthRadiosGroupName , new Control( null ) ) ,
+            new NamedControl( this.exerciseDateRadiosGroupName , new Control( null ) ) ,
+            new NamedControl( this.exerciseDateRadiosTextFieldName , new Control( null ) )
+        ];
         this.formControlGroupName = 'practiceAssociation';
-        this.formModelService.$flags.subscribe( ( changes ) => {
-            if ( changes.hasOwnProperty( 'practiceAssociationIsVisible' ) ) {
-                this.componentIsVisible = changes[ 'practiceAssociationIsVisible' ];
-                if ( changes[ 'practiceAssociationIsVisible' ] === true ) {
-                    this.resetBlock();
-                    //this.markAsRequired();
-                } else {
-                    this.markAsNotRequired();
-                }
-                return;
-            }
-        } );
     }
 
-    ngAfterViewInit () : any {
+    public postBindControls () : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , PracticeAssociationBlockComponent.CLASS_NAME );
         } );
@@ -150,7 +145,18 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
                 this.isInSummaryState = false;
             }
         } );
-        this.createControls();
+        this.formModelService.$flags.subscribe( ( changes ) => {
+            if ( changes.hasOwnProperty( 'practiceAssociationIsVisible' ) ) {
+                this.practiceAssociationIsVisible = changes[ 'practiceAssociationIsVisible' ];
+                this.resetBlock();
+                if ( changes[ 'practiceAssociationIsVisible' ] === true ) {
+                    this.markAsRequired();
+                } else {
+                    this.markAsNotRequired();
+                }
+                return;
+            }
+        } );
         return undefined;
     }
 
@@ -177,29 +183,17 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     }
 
     public preBindControls ( _formBlockDef ) {
-    }
-
-    private createControls () {
-        let controlGroup = new ControlGroup( {} );
-        controlGroup.addControl( this.associationLengthRadiosGroupName , new Control( null ) );
-        controlGroup.addControl( this.exerciseDateRadiosTextFieldName , new Control( null ) );
-        controlGroup.addControl( this.exerciseDateRadiosGroupName , new Control( null ) );
-        this.formModel.addControl( this.formControlGroupName , controlGroup );
-    }
-
-    private getControl ( controlName ) : Control {
-        if ( this.controlGroup ) {
-            return <Control>this.controlGroup.controls[ controlName ];
-        }
-        return undefined;
+        this.formControl[ 0 ].name = this.associationLengthRadiosGroupName;
+        this.formControl[ 1 ].name = this.exerciseDateRadiosGroupName;
+        this.formControl[ 2 ].name = this.exerciseDateRadiosTextFieldName;
     }
 
     private get showExerciseDate () {
-        return this.getControl( this.associationLengthRadiosGroupName ) && this.getControl( this.associationLengthRadiosGroupName ).value !== null && ! this.onlyHasOneOption();
+        return this.associationLengthControl && this.associationLengthControl.value !== null && ! this.onlyHasOneOption();
     }
 
     private get showRequiredError () {
-        return this.getControl( this.associationLengthRadiosGroupName ) && (this.hasClickedOnOkButton || this.getControl( this.exerciseDateRadiosTextFieldName ).touched) && ! this.getControl( this.exerciseDateRadiosTextFieldName ).valid;
+        return this.associationLengthControl && (this.hasClickedOnOkButton || this.exerciseDateControl.touched) && ! this.exerciseDateControl.valid;
     }
 
     private preselectedAssociationValues () {
@@ -211,15 +205,15 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     }
 
     private onlyHasOneOption () {
-        if ( this.getControl( this.associationLengthRadiosGroupName ) && this.getControl( this.associationLengthRadiosGroupName ).value !== '' ) {
-            return this.isInArray( this.getControl( this.associationLengthRadiosGroupName ).value , this.preselectedAssociationValues() );
+        if ( this.associationLengthControl && this.associationLengthControl.value !== '' ) {
+            return this.isInArray( this.associationLengthControl.value , this.preselectedAssociationValues() );
         }
         return false;
     }
 
     private get showExpCircumstances () {
-        if ( this.getControl( this.exerciseDateRadiosGroupName ) ) {
-            return this.getControl( this.exerciseDateRadiosGroupName ).value === 'later_than' || this.getControl( this.associationLengthRadiosGroupName ).value === 'fewer_than_five_years';
+        if ( this.exerciseDateControl ) {
+            return this.exerciseDateControl.value === 'later_than' || this.associationLengthControl.value === 'fewer_than_five_years';
         }
         return false;
     }
@@ -237,7 +231,7 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
     }
 
     private get exerciseDateOptions () {
-        return ExerciseDateAbstract.getOptionsByLicensee( this.formModelService.licensee , this.getControl( this.associationLengthRadiosGroupName ).value );
+        return ExerciseDateAbstract.getOptionsByLicensee( this.formModelService.licensee , this.associationLengthControl.value );
     }
 
     private get controlGroup () : ControlGroup {
@@ -260,62 +254,69 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
         return ExerciseDateAbstract.textFieldName;
     }
 
-    private markAsNotRequired () {
-        this.hasClickedOnOkButton   = false;
-        this.isAssociationRequired  = false;
-        this.isExerciseDateRequired = false;
-        this.markExpCirAsNotRequired();
+    private get excCirControl () {
+        return this.formControl[ 2 ].control;
     }
 
-    private markAsRequired () {
-        this.isAssociationRequired  = true;
-        this.isExerciseDateRequired = true;
-        this.markExpCirAsRequired();
+    private get exerciseDateControl () {
+        return this.formControl[ 1 ].control;
     }
 
-    private markExpCirAsRequired () {
-        this.isExpCircumstancesRequired                                   = true;
-        this.getControl( this.exerciseDateRadiosTextFieldName ).validator = Validators.required;
-        this.getControl( this.exerciseDateRadiosTextFieldName ).setErrors( { required : true } );
-    }
-
-    private markExpCirAsNotRequired () {
-        this.isExpCircumstancesRequired                                   = false;
-        this.getControl( this.exerciseDateRadiosTextFieldName ).validator = null;
-        this.getControl( this.exerciseDateRadiosTextFieldName ).setErrors( null );
+    private get associationLengthControl () {
+        return this.formControl[ 0 ].control;
     }
 
     private onAssociationLengthSelect ( value ) {
-        this.markExpCirAsNotRequired();
-        this.getControl( this.exerciseDateRadiosGroupName ).updateValue( null );
-        this.getControl( this.exerciseDateRadiosTextFieldName ).updateValue( null );
+        this.isExpCircumstancesRequired = false;
+        this.exerciseDateControl.updateValue( null );
+        this.resetExcCirControl();
         if ( value === 'fewer_than_five_years' ) {
-            this.markExpCirAsRequired();
-            this.getControl( this.exerciseDateRadiosGroupName ).updateValue( 'later_than' );
+            this.isExpCircumstancesRequired = true;
+            this.exerciseDateControl.updateValue( 'later_than' );
         }
         this.changeDetector.detectChanges();
     }
 
     private onExerciseDateSelect ( value ) {
-        this.markExpCirAsNotRequired();
-        this.getControl( this.exerciseDateRadiosTextFieldName ).updateValue( null );
+        this.isExpCircumstancesRequired = false;
+        this.resetExcCirControl();
         if ( value === 'later_than' ) {
-            this.markExpCirAsRequired();
+            this.isExpCircumstancesRequired = true;
         }
+        this.changeDetector.detectChanges();
     }
 
     private isCurrentBlockActive () {
-        return this.componentIsVisible;
+        return this.practiceAssociationIsVisible;
+    }
+
+    private markAsNotRequired () {
+        this.isAssociationRequired      = false;
+        this.isExerciseDateRequired     = false;
+        this.isExpCircumstancesRequired = false;
+    }
+
+    private markAsRequired () {
+        this.isAssociationRequired      = true;
+        this.isExerciseDateRequired     = true;
+        this.isExpCircumstancesRequired = true;
     }
 
     private resetBlock () {
         this.undoneTheBlock();
-        this.markAsRequired();
         this.isInSummaryState     = false;
         this.hasClickedOnOkButton = false;
-        this.getControl( this.exerciseDateRadiosGroupName ).updateValue( null );
-        this.getControl( this.exerciseDateRadiosTextFieldName ).updateValue( null );
-        this.getControl( this.associationLengthRadiosGroupName ).updateValue( null );
+        this.exerciseDateControl.updateValue( null );
+        this.resetExcCirControl();
+        this.associationLengthControl.updateValue( null );
+    }
+
+    private resetExcCirControl () {
+        this.excCirControl.updateValue( null );
+        this.excCirControl._touched  = false;
+        this.excCirControl._dirty    = false;
+        this.excCirControl._pristine = true;
+        this.excCirControl.updateValueAndValidity( { onlySelf : false , emitParent : true } );
     }
 
     private undoneTheBlock () {
@@ -324,5 +325,8 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Afte
             flag      : 'practiceAssociationIsDone' ,
             flagValue : false
         } );
+    }
+
+    private check () {
     }
 }

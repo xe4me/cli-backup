@@ -14,7 +14,6 @@ import { ControlArray , ControlGroup } from '@angular/common';
 import { FORM_DIRECTIVES } from '@angular/common';
 import { Validators } from '@angular/common';
 import { AmpGroupButtonComponent } from '../../../../../components/amp-group-button/amp-group-button.component';
-import { AmpSlideDirective } from '../../../../../directives/animations/slide/amp-slide.directive';
 import { TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
@@ -134,7 +133,6 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
         AmpOverlayComponent ,
         FORM_DIRECTIVES ,
         AmpGroupButtonComponent ,
-        AmpSlideDirective ,
         AmpButton
     ] ,
     providers  : [ TemplateRef , provideParent( EquityHolderBlockComponent ) ],
