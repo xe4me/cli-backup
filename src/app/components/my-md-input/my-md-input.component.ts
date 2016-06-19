@@ -8,7 +8,8 @@ import {
     ViewEncapsulation ,
     ChangeDetectorRef,
     AfterViewInit,
-    EventEmitter
+    EventEmitter,
+    Renderer
 } from '@angular/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
@@ -86,19 +87,29 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
     private onBlur : EventEmitter<any>;
     private onKeyup : EventEmitter<any>;
 
+    constructor ( private _cd : ChangeDetectorRef ,
+                  private el : ElementRef,
+                  private renderer : Renderer ) {
+        this.onAdjustWidth = new EventEmitter();
+        this.onEnter       = new EventEmitter();
+        this.onBlur        = new EventEmitter();
+        this.onKeyup       = new EventEmitter();
+    }
+
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
         if ( this.inputWidth === 0 ) {
             this.inputWidth = 300;
         }
         this.tempClassNames               = this.el.nativeElement.className;
-        this.el.nativeElement.className   = '';
-        this.el.nativeElement.style.width = this.inputWidth + 'px';
+        this.renderer.setElementAttribute(this.el.nativeElement, 'class', '');
+        this.renderer.setElementStyle(this.el.nativeElement, 'width', this.inputWidth + 'px');
         this.updateValitators();
         this._cd.detectChanges();
 
-        // TODO: Hack the data-automation-id into the final input dom element
-        console.log("data-automation-id is ", "text_" + this._id);
+        // Artifically inject the data-automation-id into the internals of @angular-material md-input
+        this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'data-automation-id', "text_" + this._id);
+        
         return undefined;
     }
 
@@ -111,14 +122,6 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
             }
         }
         return undefined;
-    }
-
-    constructor ( private _cd : ChangeDetectorRef ,
-                  private el : ElementRef ) {
-        this.onAdjustWidth = new EventEmitter();
-        this.onEnter       = new EventEmitter();
-        this.onBlur        = new EventEmitter();
-        this.onKeyup       = new EventEmitter();
     }
 
     get isRequired () {
@@ -165,11 +168,11 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
     }
 
     private initiateInputWidth () {
-        this.el.nativeElement.style.width = this.inputWidth + 'px';
+        this.renderer.setElementStyle(this.el.nativeElement, 'width', this.inputWidth + 'px');
     }
 
     private shrink () {
-        this.el.nativeElement.style.width = this.el.nativeElement.children[1].offsetWidth + 5 + "px";
+        this.renderer.setElementStyle(this.el.nativeElement, 'width', this.el.nativeElement.children[1].offsetWidth + 5  + 'px');
     }
 
     private trimValue () {

@@ -5,7 +5,7 @@ import { RouteParams , Router , RouteRegistry , CanDeactivate , ComponentInstruc
     selector : 'details-page' ,
     template : `
     <div class="Landing">
-        <div id="DetailsPage_blocks"></div>
+        <div [id]='blocksAnchorId'></div>
     </div>
   ` ,
     styles   : [ require( './details-page.scss' ).toString() ] ,

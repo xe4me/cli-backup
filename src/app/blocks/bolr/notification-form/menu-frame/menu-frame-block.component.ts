@@ -27,8 +27,7 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                     </div>
                     <div id='scroll-root' class='menu--right bolr-right-padding utils__position--rel'>
                         <!-- Dynamic form blocks driven from the Form Definition -->
-                        <div [attr.id]='blocksAnchorId'></div>
-                        <div id="MenuFrameBlockComponent_blocks"></div>
+                        <div [id]='blocksAnchorId'></div>
                     </div>
 
                 </div>
