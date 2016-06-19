@@ -19,6 +19,7 @@ import { isPresent } from '@angular/core/src/facade/lang';
         template      : `
     <md-input-container
         [class.md-input-has-value]='parentControl.value'
+        [class.md-input-focused]='hasFocus'
         [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}'
         flex-gt-sm='' >
         <!--(paste)='adjustHeight($event.target)'
@@ -32,6 +33,8 @@ import { isPresent } from '@angular/core/src/facade/lang';
                 (keyup)='adjustHeight($event.target)'
                 (blur)='adjustHeight($event.target)'
                 (blur)='trimValue()'
+                (blur)='setHasFocus(false)'
+                (focus)='setHasFocus(true)'
                 [class.summary-state]='isInSummaryState'
                 [disabled]='isInSummaryState'
                 class='md-input'
@@ -80,6 +83,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
     private _valMinLength : number;
     private _valMaxLength : number;
     private _required : boolean = false;
+    private hasFocus : boolean = false;
 
     ngOnDestroy () : any {
         this.parentControl.validator = null;
@@ -166,5 +170,9 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
 
     private isTrue ( value ) {
         return isPresent( value ) && (value === true || value === 'true' || false);
+    }
+
+    private setHasFocus ( value ) {
+        this.hasFocus = value;
     }
 }
