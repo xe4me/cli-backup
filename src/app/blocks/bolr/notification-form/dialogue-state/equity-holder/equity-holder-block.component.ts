@@ -87,7 +87,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                                 isRequired='true'
                                 valMaxLength='50'
                                 class='1/3 '
-                                label='First name'
+                                placeholder='First name'
                                 [parentControl]='item.controls.firstName'>
                                 </my-md-input><!--
                              --><my-md-input
@@ -97,7 +97,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                                     isRequired='true'
                                     valMaxLength='50'
                                     class='1/3'
-                                    label='Last name'
+                                    placeholder='Last name'
                                     [parentControl]='item.controls.lastName' >
                                 </my-md-input><!--
                             --><span class='1/6 heading heading-contxtual-label' *ngIf='
@@ -142,7 +142,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
         state('collapsed, void', style({height: '0px', opacity: '0', display: 'none'})),
         state('expanded', style({height: '*', opacity: '1', overflow: 'hidden', display: 'block'})),
         transition(
-            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+            'collapsed <=> expanded', [animate(200)])
       ])]
 } )
 export class EquityHolderBlockComponent extends FormBlock implements FormBlock {

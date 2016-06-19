@@ -82,7 +82,7 @@ import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp
         state('collapsed, void', style({height: '0px', opacity: '0'})),
         state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
         transition(
-            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+            'collapsed <=> expanded', [animate(200)])
       ])]
 } )
 export class FullOrPartialBlockComponent extends FormBlock implements FormBlock {

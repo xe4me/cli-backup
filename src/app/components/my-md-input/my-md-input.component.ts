@@ -6,19 +6,19 @@ import {
     Input ,
     OnInit ,
     ViewEncapsulation ,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    AfterViewInit,
+    EventEmitter
 } from '@angular/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { EventEmitter } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
 @Component(
     {
         selector      : 'my-md-input' ,
         template      : `
-            <md-input
+            <md-input #myMdInput
                 (keyup)='onKeyupEvent($event)'
                 (blur)='trimValue()'
                 [disabled]='isInSummaryState'
@@ -31,6 +31,10 @@ import { isPresent } from '@angular/core/src/facade/lang';
                 [maxLength]='_valMaxLength'
                 [placeholder]='placeholder'>
             </md-input>
+            <span
+                class='summary-text'
+                [innerHTML]='myMdInput.value'>
+            </span>
           ` ,
         styles        : [ require( './my-md-input.scss' ).toString() ] ,
         inputs        : [
@@ -55,19 +59,19 @@ import { isPresent } from '@angular/core/src/facade/lang';
         encapsulation : ViewEncapsulation.None ,
         outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ],
         host          : {
-                        '[class.md-input-has-value]'    : 'parentControl.value',
-                        '[class.summary]'               : 'isInSummaryState',
-                        '[class.noPadding]'             : 'noPadding',
-        }
-    } )
-export class MdInputComponent implements AfterViewInit {
+                            '[class.md-input-has-value]'    : 'parentControl.value',
+                            '[class.summary]'               : 'isInSummaryState',
+                            '[class.noPadding]'             : 'noPadding'
+                        }
+    })
+export class MdInputComponent implements AfterViewInit, OnChanges  {
     private inputWidth : number;
     private _id : string;
     private _valMinLength : number;
     private _valMaxLength : number;
     private _required : boolean   = false;
     private label : string;
-    private isInSummaryState : boolean;
+    private isInSummaryState : boolean = false;
     private showLabel : boolean   = true;
     private tolowerCase : boolean = false;
     private toupperCase : boolean = false;
@@ -98,16 +102,16 @@ export class MdInputComponent implements AfterViewInit {
         return undefined;
     }
 
-    // ngOnChanges ( changes ) : any {
-    //     if ( changes.hasOwnProperty( 'isInSummaryState' ) ) {
-    //         if ( changes.isInSummaryState.currentValue === true ) {
-    //             this.shrink();
-    //         } else {
-    //             this.initiateInputWidth();
-    //         }
-    //     }
-    //     return undefined;
-    // }
+    ngOnChanges ( changes ) : any {
+        if ( changes.hasOwnProperty( 'isInSummaryState' ) ) {
+            if ( changes.isInSummaryState.currentValue === true ) {
+                this.shrink();
+            } else {
+                this.initiateInputWidth();
+            }
+        }
+        return undefined;
+    }
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ) {
@@ -160,22 +164,13 @@ export class MdInputComponent implements AfterViewInit {
         }
     }
 
-    // private shrink () {
-    //     if ( this.parentControl.value && this.parentControl.value.trim() !== '' ) {
-    //         //this.el.nativeElement.className = '';
-    //         this
-    //             ._animation
-    //             .setFromStyles( {
-    //                 width : this.inputWidth + 'px'
-    //             } )
-    //             .setToStyles( {
-    //                 width : this.el.nativeElement.children[ 0 ].children[ 2 ].offsetWidth + 5 + 'px'
-    //             } )
-    //             .setDelay( 1200 )
-    //             .setDuration( 200 )
-    //             .start( this.el.nativeElement );
-    //     }
-    // }
+    private initiateInputWidth () {
+        this.el.nativeElement.style.width = this.inputWidth + 'px';
+    }
+
+    private shrink () {
+        this.el.nativeElement.style.width = this.el.nativeElement.children[1].offsetWidth + 5 + "px";
+    }
 
     private trimValue () {
         let notUsabel;
@@ -190,23 +185,6 @@ export class MdInputComponent implements AfterViewInit {
     private isTrue ( value ) {
         return isPresent( value ) && (value === true || value === 'true' || false);
     }
-
-    // private initiateInputWidth () {
-    //     let a = this
-    //         ._animation
-    //         .setFromStyles( {
-    //             width : this.el.nativeElement.offsetWidth
-    //         } )
-    //         .setToStyles( {
-    //             width : this.inputWidth + 'px'
-    //         } )
-    //         .setDelay( 0 )
-    //         .setDuration( 700 )
-    //         .start( this.el.nativeElement );
-    //     a.onComplete( () => {
-    //         //this.el.nativeElement.className = this.tempClassNames;
-    //     } );
-    // }
 
     private onKeyupEvent ( $event ) {
         this.onEnterClick( $event );

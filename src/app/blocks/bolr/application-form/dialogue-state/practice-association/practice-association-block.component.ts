@@ -106,10 +106,10 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
     animations: [trigger(
       'openClose',
       [
-        state('collapsed, void', style({height: '0px', opacity: '0'})),
-        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden'})),
+        state('collapsed, void', style({height: '0px', opacity: '0', display: 'none'})),
+        state('expanded', style({height: '*', opacity: '1', overflow: 'hidden', display: 'block'})),
         transition(
-            'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
+            'collapsed <=> expanded', [animate(200)])
       ])]
 } )
 export class PracticeAssociationBlockComponent extends FormBlock implements FormBlock {

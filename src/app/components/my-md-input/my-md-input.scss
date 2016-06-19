@@ -13,14 +13,16 @@ $summary-state-font-weight: 300;
 //   font-size: $ddc-input-field-font-size;
 // }
 //
-// .summary-text {
-//   @include amp-family($summary-state-font-family);
-//   @extend %#{$namespace}amp-colour-sky-blue;
-//   font-weight: $summary-state-font-weight;
-//   font-size: $ddc-input-field-font-size;
-//   white-space: nowrap;
-//   visibility: hidden;
-// }
+.summary-text {
+  @include amp-family($summary-state-font-family);
+  @extend %#{$namespace}amp-colour-sky-blue;
+  font-weight: $summary-state-font-weight;
+  font-size: $ddc-input-field-font-size;
+  white-space: nowrap;
+  visibility: hidden;
+  height: 1px;
+  position: absolute;
+}
 
 .invisible {
   display: none !important;
@@ -82,8 +84,14 @@ md-input {
         @include amp-family($amp-font-open-sans-regular);
         font-weight: 300;
 
+        width: 100%;
+        padding: 0px 13px;
+        box-sizing: border-box;
+
         div {
             &.md-input-wrapper {
+                position: relative;
+
                 .md-input-underline {
                     // position: absolute;
                     // height: 1px;
@@ -242,10 +250,24 @@ my-md-input {
     display: inline-block;
     box-sizing: content-box;
     padding-right: 0 !important;
-    &.summary{
-        md-input.md-input div.md-input-wrapper {
-            .md-input-underline {
-                display: none;
+
+    @include transition(width .2s linear !important);
+    transition-delay: 1s !important;
+
+    &.summary {
+        md-input.md-input {
+            @include transition(padding .2s linear !important);
+            transition-delay: 1s !important;
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+
+            div.md-input-wrapper {
+                .md-input-underline {
+                    display: none;
+                }
+                .md-input-placeholder {
+                    display: none;
+                }
             }
         }
     }

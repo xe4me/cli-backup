@@ -17,7 +17,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
             <!--Partnership Manager name-->
             <label class='heading heading-contxtual-label mb3' >My partnership manager is</label><!--
             -->&nbsp;<my-md-input
-                class='1/3'
+                class='1/4'
                 (onEnter)='ok()'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.firstName.id'
@@ -28,7 +28,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 valMaxLength='50'>
             </my-md-input><!--
             --><my-md-input
-                class='1/3'
+                class='1/4'
                 (onEnter)='ok()'
                 [isInSummaryState]='isInSummaryState'
                 [id]='partnershipMgr.lastName.id'
