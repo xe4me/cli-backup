@@ -16,7 +16,7 @@ $amp-ddc-public-asset: '../../../../../../src/assets/';
   max-height: 1000px;
   height: auto;
   overflow: hidden;
-  transition: max-height 1.1s, opacity 0.45s, ease-out;
+  transition: max-height 1.1s, opacity 0.45s ease-out;
 
   &.ng-enter-active {
     height: 100%;
