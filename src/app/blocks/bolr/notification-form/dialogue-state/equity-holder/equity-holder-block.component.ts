@@ -87,7 +87,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                                 isRequired='true'
                                 valMaxLength='50'
                                 class='1/3 '
-                                placeholder='First name'
+                                label='First name'
                                 [parentControl]='item.controls.firstName'>
                                 </my-md-input><!--
                              --><my-md-input
@@ -97,7 +97,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                                     isRequired='true'
                                     valMaxLength='50'
                                     class='1/3'
-                                    placeholder='Last name'
+                                    label='Last name'
                                     [parentControl]='item.controls.lastName' >
                                 </my-md-input><!--
                             --><span class='1/6 heading heading-contxtual-label' *ngIf='

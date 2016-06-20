@@ -30,7 +30,7 @@ import { isPresent } from '@angular/core/src/facade/lang';
                 [minLength]='_valMinLength'
                 [ngFormControl]='parentControl'
                 [maxLength]='_valMaxLength'
-                [placeholder]='placeholder'>
+                [placeholder]='label'>
             </md-input>
             <span
                 class='summary-text'
@@ -109,7 +109,10 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
 
         // Artifically inject the data-automation-id into the internals of @angular-material md-input
         this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'data-automation-id', "text_" + this._id);
-        
+
+        // Artifically inject the placeholder property into the input element of the md-input directive.
+        this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'placeholder', this.placeholder);
+
         return undefined;
     }
 

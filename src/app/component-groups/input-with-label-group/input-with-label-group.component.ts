@@ -18,7 +18,7 @@ import { EventEmitter } from '@angular/core';
                 [toupperCase]='toupperCase'
                 [id]='id'
                 [label]='label'
-                [placeholder]='label'
+                [placeholder]='placeholder'
                 [showLabel]='showLabel'
                 [parentControl]='parentControl'
                 [isRequired]='isRequired'
@@ -41,7 +41,8 @@ import { EventEmitter } from '@angular/core';
         'showLabel' ,
         'tolowerCase' ,
         'toupperCase' ,
-        'width'
+        'width',
+        'placeholder'
     ] ,
     directives : [ MdInputComponent ] ,
     styles     : [ require( './input-with-label-group.scss' ).toString() ] ,
