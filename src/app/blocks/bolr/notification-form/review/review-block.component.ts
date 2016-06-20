@@ -90,9 +90,13 @@ import { AmpButton } from '../../../../components/amp-button/amp-button.componen
                                     <span>None</span>
                             </div><!--
                             --><div class='review--item__value grid__item 6/10' *ngIf='hasEquityHolders' >
-                                <span *ngFor='let item of equityHoldersList'>
-                                    {{item.firstName}} {{item.lastName}}
-                                </span>
+                                <span *ngFor='let item of equityHoldersList; let i = index; let isLast = last'>
+                                    {{item.firstName}} {{item.lastName}}<!--
+                                    --><span *ngIf='equityHoldersList.length > 1 && !isLast'><!--
+                                        --><span *ngIf='i < equityHoldersList.length - 2'>,</span><!--
+                                        --><span *ngIf='i == equityHoldersList.length - 2'> and</span>
+                                    </span><!--
+                                --></span>
                             </div><!--
                          --><div class='review--item__button grid__item 1/10'>
                                 <amp-button class='btn btn-anchor' (click)='changeEquityHolderBlock()'>
