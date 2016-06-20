@@ -25,7 +25,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 [parentControl]='formControl[0].control'
                 isRequired='true'
                 [valPattern]='partnershipMgr.firstName.regex'
-                valMaxLength='50'>
+                valMaxLength='30'>
             </my-md-input><!--
             --><my-md-input
                 class='1/4'
@@ -36,7 +36,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 [parentControl]='formControl[1].control'
                 isRequired='true'
                 [valPattern]='partnershipMgr.lastName.regex'
-                valMaxLength='50'>
+                valMaxLength='20'>
             </my-md-input>
         </div>
         <div *ngIf='(formControl[0].control.touched &&  !formControl[0].control.valid)

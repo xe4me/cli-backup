@@ -85,7 +85,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                                 [isInSummaryState]='isInSummaryState'
                                 id='firstname_{{ i }}'
                                 isRequired='true'
-                                valMaxLength='50'
+                                valMaxLength='30'
                                 class='1/3 '
                                 label='First name'
                                 [parentControl]='item.controls.firstName'>
@@ -95,7 +95,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                                     [isInSummaryState]='isInSummaryState'
                                     id='lastname_{{ i }}'
                                     isRequired='true'
-                                    valMaxLength='50'
+                                    valMaxLength='20'
                                     class='1/3'
                                     label='Last name'
                                     [parentControl]='item.controls.lastName' >

@@ -148,14 +148,14 @@ export class ContactDetailsBlockComponent extends FormBlock implements OnInit, F
             id        : 'practicePrincipalFirstName' ,
             label     : 'First name' ,
             regex     : '' ,
-            maxLength : 50 ,
+            maxLength : 30 ,
             error     : 'First name is a required field.'
         } ,
         lastName  : {
             id        : 'practicePrincipalLastName' ,
             label     : 'Last name' ,
             regex     : '' ,
-            maxLength : 50 ,
+            maxLength : 20 ,
             error     : 'Last name is a required field.'
         } ,
         phone     : {
