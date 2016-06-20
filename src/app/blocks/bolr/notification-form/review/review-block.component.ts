@@ -262,19 +262,7 @@ export class ReviewBlockComponent extends FormBlock implements FormBlock {
 
     private goToReceiptPage () {
         this.formModelService.present( {
-            action    : 'setFlag' ,
-            flag      : 'confirmationIsVisible' ,
-            flagValue : true
-        } );
-        this.formModelService.present( {
-            action    : 'setFlag' ,
-            flag      : 'dialogIsVisible' ,
-            flagValue : false
-        } );
-        this.formModelService.present( {
-            action    : 'setFlag' ,
-            flag      : 'reviewIsVisible' ,
-            flagValue : false
+            action    : 'goToReceiptPage'
         } );
     }
 
