@@ -103,7 +103,7 @@ export class ExerciseDateBlockComponent extends FormBlock implements FormBlock {
         this.ampDateService.dateFormat = this.dateFormat;
     }
 
-    public postBindControl() : void {
+    public postBindControls() : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , ExerciseDateBlockComponent.CLASS_NAME );
         } );

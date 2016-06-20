@@ -71,7 +71,7 @@ export class AcknowledgeBlockComponent extends FormBlock implements FormBlock {
         this.formControlGroupName = 'acknowledge';
     }
 
-    public postBindControl() : void {
+    public postBindControls() : void {
         this.formModel.valueChanges.subscribe( ( changes ) => {
             this.scrollService.amIVisible( this.el , AcknowledgeBlockComponent.CLASS_NAME );
         } );
