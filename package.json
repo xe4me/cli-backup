@@ -87,7 +87,7 @@
     "@angular2-material/progress-bar": "^2.0.0-alpha.5",
 
     "amp-styleguide-core": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/amp-styleguide-core.git",
-    "amp-ddc-ui-core": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/ui-core.git#angular-rc"
+    "amp-ddc-ui-core": "git+ssh://git@gitlab.ccoe.ampaws.com.au:DDC/ui-core.git#develop"
   },
   "devDependencies": {
     "angular2-hmr": "~0.7.0",
