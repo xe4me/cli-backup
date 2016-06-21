@@ -79,9 +79,14 @@ import { AmpButton } from '../../../../../components/amp-button/amp-button.compo
                 </section>
 
                 <div *ngIf='showRequiredError' class='errors mb-40'>
-                    <div *ngIf='!excCirControl.valid'>
+                    <div *ngIf='!exerciseDateControl.valid'>
                         <div>
                             <span class='icon icon--close icon-errors'></span>This is a required field.
+                        </div>
+                    </div>
+                    <div *ngIf='!excCirControl.valid'>
+                        <div>
+                            <span class='icon icon--close icon-errors'></span>Please enter your exceptional circumstances.
                         </div>
                     </div>
                 </div>
@@ -193,7 +198,8 @@ export class PracticeAssociationBlockComponent extends FormBlock implements Form
     }
 
     private get showRequiredError () {
-        return this.associationLengthControl && (this.hasClickedOnOkButton || this.exerciseDateControl.touched) && ! this.exerciseDateControl.valid;
+        return (this.associationLengthControl && (this.hasClickedOnOkButton || this.exerciseDateControl.touched) && !this.exerciseDateControl.valid) ||
+                (this.showExpCircumstances && !this.excCirControl.valid && this.excCirControl.dirty) ;
     }
 
     private preselectedAssociationValues () {
