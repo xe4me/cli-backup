@@ -28,7 +28,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                     <span class='summary-state'>{{ formControl[0].control.value }}</span>
                 </div>
                 <div @openClose='isInSummaryState ? "collapsed" : "expanded"' class='heading heading-micro-intro mt-35'>
-                    For a practice to access the {{ licenseeBuybackFacility }} facility, all equity holders in that practice must exercise {{ licenseeBuybackFacility }}.
+                    For a practice to access the {{ licenseeBuybackFacility }} facility, all equity holders in that practice must acknowledge and consent to the practice exercising the {{ licenseeBuybackFacility }}.
                 </div>
                 <section @openClose='isInSummaryState ? "collapsed" : "expanded"'>
 
