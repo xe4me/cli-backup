@@ -76,7 +76,7 @@ export abstract class FormBlock {
         return this.formControlGroupName + 'IsDone';
     }
 
-    public canGoNext () {
+    public get canGoNext () {
         return this.formModel && this.formModel.controls[ this.formControlGroupName ].valid;
     }
 }
