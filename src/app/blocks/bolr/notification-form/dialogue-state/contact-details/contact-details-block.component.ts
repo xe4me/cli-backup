@@ -45,7 +45,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
                 [parentControl]='lastNameControl'
                 [isRequired]='showPracticeNameInputs'
                 [valPattern]='contactDetails.lastName.regex'
-                [valMaxLength]='contactDetails.firstName.maxLength'>
+                [valMaxLength]='contactDetails.lastName.maxLength'>
             </my-md-input>
         </div>
         <!--Practice principal END-->
