@@ -251,13 +251,13 @@ my-md-input {
     box-sizing: content-box;
     padding-right: 0 !important;
 
-    @include transition(width .2s linear !important);
-    transition-delay: 1s !important;
+    @include transition(width 0.3s linear !important);
+    transition-delay: 0.1s !important;
 
     &.summary {
         md-input.md-input {
-            @include transition(padding .2s linear !important);
-            transition-delay: 1s !important;
+            @include transition(padding 0.3s linear !important);
+            transition-delay: 0.5s !important;
             padding-right: 0 !important;
             padding-left: 0 !important;
 
