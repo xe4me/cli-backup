@@ -6,19 +6,17 @@ import { Router , CanDeactivate , ComponentInstruction } from '@angular/router-d
     selector : 'error-page' ,
     template : `
         <div class='error-page'>
-        <div class='error-page_logo'></div>
-
+            <div class='error-page_logo'></div>
             <div class='error-page_message'>
-                <h3>Sorry, something went wrong!</h3>
+                <h3>{{headline}}</h3>
                 <br>
                 {{message}}
             </div>
-
         </div>
     ` ,
     styles   : [ require( './error-page.component.scss' ).toString() ],
     directives: [ThemeIDDirective],
-    inputs:['message']
+    inputs:['headline', 'message']
 } )
 export class ErrorPageComponent extends FormPage implements CanDeactivate {
     static CLASS_NAME = 'ErrorPageComponent';

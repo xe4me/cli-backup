@@ -3,12 +3,10 @@
 $amp-ddc-public-asset: '../../../../src/assets/';
 $logo-height: 60px !default;
 
-
 .error-page_logo {
   min-height: $logo-height;
   width: 100%;
   margin-top: $amp-ddc-padding;
-
   background-position: left bottom;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -16,17 +14,14 @@ $logo-height: 60px !default;
 }
 
 .error-page_message {
-
-  vertical-align: middle;
-  text-align: center !important;
-
   @include amp-family($amp-font-open-sans-regular);
   font-weight: 300;
   font-size: $font-size-medium;
-
-  margin: 100px $amp-ddc-padding * 2;
-  max-height: 1000px;
-  height: auto;
-  overflow: hidden;
-  transition: max-height 1.1s, opacity 0.45s ease-out;
+  text-align: center !important;
+  position : absolute;    
+  width    : 50%;
+  min-height : 30%;
+  left     : 25%;
+  top      : 50%;
+  margin   : auto;
 }
