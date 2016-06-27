@@ -1,4 +1,4 @@
-import { FormBlock, provideParent } from '../../../formBlock';
+import { FormBlock, provideParent } from '../../../../formBlock';
 import { Component , ElementRef , DynamicComponentLoader, ViewContainerRef } from '@angular/core';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { FormModelService , LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';

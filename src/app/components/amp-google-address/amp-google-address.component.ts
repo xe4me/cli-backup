@@ -9,7 +9,7 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { FormBlock , NamedControl } from '../../blocks/formBlock';
+import { FormBlock , NamedControl } from '../../formBlock';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MdInputComponent } from '../../components/my-md-input/my-md-input.component';
 declare var google : any;

@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from '@angular/core';
 import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS} from '@angular/common';
-import {FormBlock, NamedControl} from '../blocks/formBlock';
+import {FormBlock, NamedControl} from '../formBlock';
 import {MdInputComponent} from '../components/my-md-input/my-md-input.component';
 import {Action} from 'amp-ddc-ui-core/src/app/actions/action';
 

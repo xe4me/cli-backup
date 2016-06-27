@@ -1,4 +1,4 @@
-import { FormBlock , provideParent } from '../../../formBlock';
+import { FormBlock , provideParent } from '../../../../formBlock';
 import { Component , ElementRef , ViewContainerRef } from '@angular/core';
 import {
     FormModelService ,

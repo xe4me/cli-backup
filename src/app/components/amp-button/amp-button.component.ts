@@ -11,7 +11,7 @@ import {
     Optional ,
     SkipSelf
 } from '@angular/core';
-import { FormBlock } from '../../blocks/formBlock';
+import { FormBlock } from '../../formBlock';
 // import * as browser from '@angular/platform-browser';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Component( {

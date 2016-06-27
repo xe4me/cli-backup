@@ -1,5 +1,5 @@
 import { Component , AfterViewChecked , ElementRef, animate, state, style, transition, trigger } from '@angular/core';
-import { FormBlock , provideParent } from '../../../formBlock';
+import { FormBlock , provideParent } from '../../../../formBlock';
 import { StickyProgressHeaderBlockComponent } from '../sticky-progress-header-block/sticky-progress-header-block.component';
 import { FormModelService, ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
