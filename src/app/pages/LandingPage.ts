@@ -1,4 +1,4 @@
-import {FormPage} from './formPage';
+import {FormPage} from '../formPage';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from '@angular/core';
 import {RouteParams, Router, RouteRegistry} from '@angular/router-deprecated';
 

@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../../formBlock';
 import { Component , ElementRef, ViewContainerRef } from '@angular/core';
 import { FormModelService , ProgressObserverService , ScrollService, LicenseesAbstract } from 'amp-ddc-ui-core/ui-core';
 import { AmpTextareaComponent } from '../../../../../components/amp-textarea/amp-textarea.component';

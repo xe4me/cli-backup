@@ -1,4 +1,4 @@
-import { FormPage } from '../formPage';
+import { FormPage } from '../../formPage';
 import { Component } from '@angular/core';
 import { ThemeIDDirective } from '../../directives/themeId.directive';
 import { Router , CanDeactivate , ComponentInstruction } from '@angular/router-deprecated';

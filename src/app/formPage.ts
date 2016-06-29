@@ -1,4 +1,4 @@
-import { FormBlock } from '../blocks/formBlock';
+import { FormBlock } from './formBlock';
 import {
     Injector ,
     Injectable ,

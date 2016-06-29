@@ -1,4 +1,4 @@
-import { FormBlock , provideParent } from '../../../formBlock';
+import { FormBlock , provideParent } from '../../../../formBlock';
 import { ThemeIDDirective } from '../../../../directives/themeId.directive';
 import { Component , OnInit , ElementRef , ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import {

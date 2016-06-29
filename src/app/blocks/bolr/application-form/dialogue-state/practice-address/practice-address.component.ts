@@ -1,4 +1,4 @@
-import { FormBlock , NamedControl, provideParent } from '../../../../formBlock';
+import { FormBlock , NamedControl, provideParent } from '../../../../../formBlock';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import {
     Component ,
