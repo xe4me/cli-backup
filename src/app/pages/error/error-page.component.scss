@@ -1,16 +1,16 @@
 @import '../../../style/require';
 
 $amp-ddc-public-asset: '../../../../src/assets/';
-$logo-height: 60px !default;
+$logo-height: 130px !default;
 
 .error-page_logo {
   min-height: $logo-height;
-  width: 100%;
   margin-top: $amp-ddc-padding;
-  background-position: left bottom;
+  background-position: left top;
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-image: url($amp-ddc-public-asset + 'images/logo/AMPLogo.png');
+  background-size: 20% ;
 }
 
 .error-page_message {
