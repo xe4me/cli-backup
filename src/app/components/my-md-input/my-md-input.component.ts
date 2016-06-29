@@ -108,7 +108,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
         this._cd.detectChanges();
 
         // Artifically inject the data-automation-id into the internals of @angular-material md-input
-        this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'data-automation-id', "text_" + this._id);
+        this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'data-automation-id', 'text_' + this._id);
 
         // Artifically inject the placeholder property into the input element of the md-input directive.
         this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'placeholder', this.placeholder);

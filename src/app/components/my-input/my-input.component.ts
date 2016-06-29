@@ -78,7 +78,7 @@ import { isPresent } from '@angular/core/src/facade/lang';
                 // this here is our animation that kicks off when
                 // this state change jump is true
                 transition('expand <=> collapse', [
-                  animate("200ms 1.2s ease-out")
+                  animate('200ms 1.2s ease-out')
                 ])
             ])
         ],

@@ -14,9 +14,9 @@ import { Router , CanDeactivate , ComponentInstruction } from '@angular/router-d
             </div>
         </div>
     ` ,
-    styles   : [ require( './error-page.component.scss' ).toString() ],
+    styles    : [ require( './error-page.component.scss' ).toString() ],
     directives: [ThemeIDDirective],
-    inputs:['headline', 'message']
+    inputs    : ['headline', 'message']
 } )
 export class ErrorPageComponent extends FormPage implements CanDeactivate {
     static CLASS_NAME = 'ErrorPageComponent';
