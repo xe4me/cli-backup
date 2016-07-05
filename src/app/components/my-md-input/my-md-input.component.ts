@@ -31,6 +31,9 @@ import { isPresent } from '@angular/core/src/facade/lang';
                 [ngFormControl]='parentControl'
                 [maxLength]='_valMaxLength'
                 [placeholder]='label'>
+
+                  <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
+
             </md-input>
             <span
                 class='summary-text'
@@ -54,7 +57,8 @@ import { isPresent } from '@angular/core/src/facade/lang';
             'tolowerCase' ,
             'toupperCase' ,
             'autoFocus' ,
-            'noPadding'
+            'noPadding',
+            'currency'
         ] ,
         directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.None ,
