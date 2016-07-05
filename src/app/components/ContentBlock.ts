@@ -1,4 +1,4 @@
-import {FormBlock} from '../blocks/formBlock';
+import {FormBlock} from '../formBlock';
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from '@angular/core';
 
 @Component ({
