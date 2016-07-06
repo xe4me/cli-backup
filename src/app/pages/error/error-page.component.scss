@@ -2,10 +2,12 @@
 
 $amp-ddc-public-asset: '../../../../src/assets/';
 $logo-height: 130px !default;
+$amp-ddc-padding: 40px;
 
 .error-page_logo {
   min-height: $logo-height;
   margin-top: $amp-ddc-padding;
+  margin-left: $amp-ddc-padding;
   background-position: left top;
   background-attachment: scroll;
   background-repeat: no-repeat;
