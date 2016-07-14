@@ -1,4 +1,4 @@
 // Old node_modules/amp-styleguide-core/src/scss/00_Settings/vendor does 3 import via the npm file_loader way
 //@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
-@import "src/style/07_Shame/_bootstrap_variables";
-@import "src/style/07_Shame/_mixins";
+@import "../../../src/style/07_Shame/_bootstrap_variables";
+@import "../../../src/style/07_Shame/_mixins";
