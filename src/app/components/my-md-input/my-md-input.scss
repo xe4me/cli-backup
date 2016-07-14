@@ -13,6 +13,23 @@ $summary-state-font-weight: 300;
 //   font-size: $ddc-input-field-font-size;
 // }
 //
+
+[primaryColor]{
+    md-input {
+        &.md-input {
+            div {
+                &.md-input-wrapper {
+                    .md-input-element {
+                        &:focus {
+                          color: $amp-colour-white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .summary-text {
   @include amp-family($summary-state-font-family);
   @extend %#{$namespace}amp-colour-sky-blue;
