@@ -70,7 +70,7 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
 @mixin my-md-input-placeholder-floating {
   visibility: visible;
   padding-bottom: 5px;
-  transform: translateY(-90%) scale(1);
+  transform: translateY(-90%) scale(0.8);
 
   .md-placeholder-required {
     color: $amp-colour-grey-darkest;
@@ -159,7 +159,7 @@ md-input {
                     top: 14px;
 
                     visibility: visible;
-                    font-size: 50%;
+                    font-size: 13px;
                     font-weight: 700;
                     pointer-events: none;  // We shouldn't catch mouse events (let them through).
                     color: $amp-colour-grey-darkest;
