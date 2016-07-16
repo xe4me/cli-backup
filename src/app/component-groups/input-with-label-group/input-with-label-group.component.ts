@@ -24,7 +24,9 @@ import { EventEmitter } from '@angular/core';
                 [isRequired]='isRequired'
                 [valPattern]='valPattern'
                 [valMaxLength]='valMaxLength'
-                [valMinLength]='valMinLength'>
+                [valMinLength]='valMinLength'
+                [valMinDate]='valMinDate'
+                [valMaxDate]='valMaxDate'>
             </my-md-input>
         </div>
         ` ,
@@ -36,12 +38,14 @@ import { EventEmitter } from '@angular/core';
         'isRequired' ,
         'valPattern' ,
         'valMaxLength' ,
+        'valMaxDate' ,
+        'valMinDate' ,
         'valMinLength' ,
         'contxtualLabel' ,
         'showLabel' ,
         'tolowerCase' ,
         'toupperCase' ,
-        'width',
+        'width' ,
         'placeholder'
     ] ,
     directives : [ MdInputComponent ] ,
@@ -58,6 +62,8 @@ export class InputWithLabelGroupComponent {
     private showLabel : boolean;
     private valMaxLength : number;
     private valMinLength : number;
+    private valMaxDate : string   = '1000000';
+    private valMinDate : string   = '-1000000';
     private width : string        = '1/3';
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;
