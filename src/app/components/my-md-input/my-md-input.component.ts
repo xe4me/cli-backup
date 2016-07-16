@@ -6,15 +6,16 @@ import {
     Input ,
     OnInit ,
     ViewEncapsulation ,
-    ChangeDetectorRef,
-    AfterViewInit,
-    EventEmitter,
+    ChangeDetectorRef ,
+    AfterViewInit ,
+    EventEmitter ,
     Renderer
 } from '@angular/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { isPresent } from '@angular/core/src/facade/lang';
+import { FormUtils } from "../../util/form-utils";
 @Component(
     {
         selector      : 'my-md-input' ,
@@ -51,35 +52,39 @@ import { isPresent } from '@angular/core/src/facade/lang';
             'valMaxLength' ,
             'valMinLength' ,
             'valPattern' ,
+            'valMaxDate' ,
+            'valMinDate' ,
             'isRequired' ,
             'hostClassesRemove' ,
             'showLabel' ,
             'tolowerCase' ,
             'toupperCase' ,
             'autoFocus' ,
-            'noPadding',
+            'noPadding' ,
             'currency'
         ] ,
         directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.None ,
-        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ],
+        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
         host          : {
-                            '[class.md-input-has-value]'    : 'parentControl.value',
-                            '[class.summary]'               : 'isInSummaryState',
-                            '[class.noPadding]'             : 'noPadding'
-                        }
-    })
-export class MdInputComponent implements AfterViewInit, OnChanges  {
+            '[class.md-input-has-value]' : 'parentControl.value' ,
+            '[class.summary]'            : 'isInSummaryState' ,
+            '[class.noPadding]'          : 'noPadding'
+        }
+    } )
+export class MdInputComponent implements AfterViewInit, OnChanges {
     private inputWidth : number;
     private _id : string;
     private _valMinLength : number;
     private _valMaxLength : number;
-    private _required : boolean   = false;
+    private _valMaxDate : string;
+    private _valMinDate : string;
+    private _required : boolean        = false;
     private label : string;
     private isInSummaryState : boolean = false;
-    private showLabel : boolean   = true;
-    private tolowerCase : boolean = false;
-    private toupperCase : boolean = false;
+    private showLabel : boolean        = true;
+    private tolowerCase : boolean      = false;
+    private toupperCase : boolean      = false;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
@@ -92,7 +97,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
     private onKeyup : EventEmitter<any>;
 
     constructor ( private _cd : ChangeDetectorRef ,
-                  private el : ElementRef,
+                  private el : ElementRef ,
                   private renderer : Renderer ) {
         this.onAdjustWidth = new EventEmitter();
         this.onEnter       = new EventEmitter();
@@ -105,18 +110,15 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
         if ( this.inputWidth === 0 ) {
             this.inputWidth = 300;
         }
-        this.tempClassNames               = this.el.nativeElement.className;
-        this.renderer.setElementAttribute(this.el.nativeElement, 'class', '');
-        this.renderer.setElementStyle(this.el.nativeElement, 'width', this.inputWidth + 'px');
+        this.tempClassNames = this.el.nativeElement.className;
+        this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
+        this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
         this.updateValitators();
         this._cd.detectChanges();
-
         // Artifically inject the data-automation-id into the internals of @angular-material md-input
-        this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'data-automation-id', 'text_' + this._id);
-
+        this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this._id );
         // Artifically inject the placeholder property into the input element of the md-input directive.
-        this.renderer.setElementAttribute(this.el.nativeElement.querySelector( 'input' ), 'placeholder', this.placeholder);
-
+        this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'placeholder' , this.placeholder );
         return undefined;
     }
 
@@ -158,6 +160,26 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
         this.updateValitators();
     }
 
+    get valMinDate () {
+        return this._valMinDate;
+    }
+
+    set valMinDate ( value : string ) {
+        value            = 'now' | 0;
+        this._valMinDate = value;
+        this.updateValitators();
+    }
+
+    get valMaxDate () {
+        return this._valMaxDate;
+    }
+
+    set valMaxDate ( value : string ) {
+        value            = 'now' | 0;
+        this._valMaxDate = value;
+        this.updateValitators();
+    }
+
     set id ( id : string ) {
         this._id = id;
     }
@@ -175,11 +197,11 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
     }
 
     private initiateInputWidth () {
-        this.renderer.setElementStyle(this.el.nativeElement, 'width', this.inputWidth + 'px');
+        this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
     }
 
     private shrink () {
-        this.renderer.setElementStyle(this.el.nativeElement, 'width', this.el.nativeElement.children[1].offsetWidth + 5  + 'px');
+        this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.el.nativeElement.children[ 1 ].offsetWidth + 5 + 'px' );
     }
 
     private trimValue () {
@@ -207,6 +229,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges  {
                 RequiredValidator.requiredValidation( this._required ) ,
                 MinLengthValidator.minLengthValidation( this._valMinLength ) ,
                 MaxLengthValidator.maxLengthValidation( this._valMaxLength ) ,
+                MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
+                MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
                 PatterValidator.patternValidator( this.valPattern )
             ] );
             this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
@@ -217,7 +241,7 @@ export class RequiredValidator {
     public static requiredValidation ( isRequired ) {
         return ( c ) => {
             if ( isRequired ) {
-                if ( ! c.value || c.value.length === 0 ) {
+                if ( !c.value || c.value.length === 0 ) {
                     return {
                         required : true
                     };
@@ -231,7 +255,7 @@ export class MaxLengthValidator {
     public static maxLengthValidation ( valMaxLength ) {
         return ( c ) => {
             if ( valMaxLength ) {
-                if ( ! c.value || c.value.length <= valMaxLength ) {
+                if ( !c.value || c.value.length <= valMaxLength ) {
                     return null;
                 }
                 return {
@@ -246,7 +270,7 @@ export class MinLengthValidator {
     public static minLengthValidation ( valMinLength ) {
         return ( c ) => {
             if ( valMinLength ) {
-                if ( ! c.value || c.value.length >= valMinLength ) {
+                if ( !c.value || c.value.length >= valMinLength ) {
                     return null;
                 }
                 return {
@@ -261,11 +285,43 @@ export class PatterValidator {
     public static patternValidator ( pattern ) {
         return ( c ) => {
             if ( pattern ) {
-                if ( ! c.value || new RegExp( pattern ).test( c.value ) ) {
+                if ( !c.value || new RegExp( pattern ).test( c.value ) ) {
                     return null;
                 }
                 return {
                     mdPattern : true
+                };
+            }
+            return null;
+        };
+    }
+}
+export class MaxDateValidator {
+    public static maxDateValidator ( pattern , datePattern ) {
+        return ( c ) => {
+            if ( pattern !== undefined ) {
+                let diff = FormUtils.getAgeDays( c.value );
+                if ( !c.value || !new RegExp( datePattern ).test( c.value ) || !diff || diff <= pattern ) {
+                    return null;
+                }
+                return {
+                    mdMaxDate : true
+                };
+            }
+            return null;
+        };
+    }
+}
+export class MinDateValidator {
+    public static minDateValidator ( pattern , datePattern ) {
+        return ( c ) => {
+            if ( pattern !== undefined ) {
+                let diff = FormUtils.getAgeDays( c.value );
+                if ( !c.value || !new RegExp( datePattern ).test( c.value ) || !diff || diff >= pattern ) {
+                    return null;
+                }
+                return {
+                    mdMinDate : true
                 };
             }
             return null;
