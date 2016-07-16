@@ -129,9 +129,11 @@ export class AmpGroupButtonComponent {
     }
 
     set required ( value ) {
-        this._required = this.isTrue( value );
-        this.updateValidators();
-        this.changeDetector.detectChanges();
+        setTimeout( ()=> {
+            this._required = this.isTrue( value );
+            this.updateValidators();
+            this.changeDetector.detectChanges();
+        } , 0 )
     }
 
     private onSelect ( value , shouldScroll ) {
