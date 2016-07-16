@@ -164,8 +164,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         return this._valMinDate;
     }
 
-    set valMinDate ( value : string ) {
-        value            = 'now' | 0;
+    set valMinDate ( value ) {
+        value            = (value === 'now' ? 0 : value);
         this._valMinDate = value;
         this.updateValitators();
     }
@@ -174,8 +174,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         return this._valMaxDate;
     }
 
-    set valMaxDate ( value : string ) {
-        value            = 'now' | 0;
+    set valMaxDate ( value ) {
+        value            = (value === 'now' ? 0 : value);
         this._valMaxDate = value;
         this.updateValitators();
     }
