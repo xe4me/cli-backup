@@ -6,61 +6,61 @@ import {
 } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
-import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicked-outside.directive'
+import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicked-outside.directive';
 
 @Component({
     selector   : 'amp-dropdown' ,
     template   : `    
         <div 
             #dropdownEl
-            class="amp-dropdown"
-            [class.amp-dropdown--has-selection]="hasSelection"
-            [class.amp-dropdown--animate]="animateSelection"
-            [clicked-outside]="hideOptions">
+            class='amp-dropdown'
+            [class.amp-dropdown--has-selection]='hasSelection'
+            [class.amp-dropdown--animate]='animateSelection'
+            [clicked-outside]='hideOptions'>
 
-            <label class="sr-only" [attr.for]="id">
+            <label class='sr-only' [attr.for]='id'>
                 {{ label }}
             </label>
             <select 
                 #selectEl
-                class="sr-only"
-                [attr.id]="id"
-                [ngFormControl]="parentControl"
-                (keydown)="onKeypressEvent($event)"
-                (change)="onChangeEvent()"
-                (focus)="onFocusEvent($event)"
-                [attr.disabled]="disabled ? 'disabled' : null">
+                class='sr-only'
+                [attr.id]='id'
+                [ngFormControl]='parentControl'
+                (keydown)='onKeypressEvent($event)'
+                (change)='onChangeEvent()'
+                (focus)='onFocusEvent($event)'
+                [attr.disabled]='disabled ? 'disabled' : null'>
 
-                <option value="" selected [attr.disabled]="currentOption > 0 ? 'disabled' : null"></option>
+                <option value='' selected [attr.disabled]='currentOption > 0 ? 'disabled' : null'></option>
 
-                <option *ngFor="let option of options"
-                    [value]="option.value">
+                <option *ngFor='let option of options'
+                    [value]='option.value'>
                     {{ option.label }}
                 </option>
                 
             </select>
 
-            <div class="amp-dropdown__select" (click)="toggleOptions()" aria-hidden="true">
-                <div class="amp-dropdown__label" aria-hidden="true">{{ label }}</div>
-                <span class="amp-dropdown__icon icon icon--chevron-down" aria-hidden="true"></span>
+            <div class='amp-dropdown__select' (click)='toggleOptions()' aria-hidden='true'>
+                <div class='amp-dropdown__label' aria-hidden='true'>{{ label }}</div>
+                <span class='amp-dropdown__icon icon icon--chevron-down' aria-hidden='true'></span>
 
-                <span class="amp-dropdown__select-value" aria-hidden="true">{{ selectedOption.label }}</span>&nbsp;
+                <span class='amp-dropdown__select-value' aria-hidden='true'>{{ selectedOption.label }}</span>&nbsp;
             </div>
             
             <div 
                 #optionsEl 
-                class="amp-dropdown__options amp-dropdown__options--{{ numOptions }}"
-                [class.hidden]="!optionsShown"
-                aria-hidden="true">
+                class='amp-dropdown__options amp-dropdown__options--{{ numOptions }}'
+                [class.hidden]='!optionsShown'
+                aria-hidden='true'>
                 
                 <div 
-                    *ngFor="let option of options" 
-                    class="amp-dropdown__option" 
-                    [class.amp-dropdown__option--active]="option.value == selectedOption.value"
-                    (click)="setSelectValue(option.value)"
-                    aria-hidden="true"
-                    tabindex="-1"
-                    [attr.data-option-val]="option.value">
+                    *ngFor='let option of options' 
+                    class='amp-dropdown__option' 
+                    [class.amp-dropdown__option--active]='option.value == selectedOption.value'
+                    (click)='setSelectValue(option.value)'
+                    aria-hidden='true'
+                    tabindex='-1'
+                    [attr.data-option-val]='option.value'>
 
                     {{ option.label }}
 
@@ -83,7 +83,11 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
 
 export class AmpDropdownComponent {
 
-    private id : string = 'amp-dropdown-' + Math.round(Math.random()*1e10);
+    @ViewChild('selectEl') selectEl;
+    @ViewChild('optionsEl') optionsEl;
+    @ViewChild('dropdownEl') dropDownEl;
+
+    private id : string = 'amp-dropdown-' + Math.round(Math.random() * 1e10);
     private label : string;
     private disabled : string;
     private options;
@@ -93,20 +97,15 @@ export class AmpDropdownComponent {
     private hasSelection: boolean = false;
     private animateSelection: boolean = false;
     private currentOption;
-    
+
     private selectedOption = {
         label: '',
         value: ''
     };
- 
+
     private selectElem;
-    @ViewChild('selectEl') selectEl;
-
     private dropdownElem;
-    @ViewChild('dropdownEl') dropDownEl;
-
     private optionsElem;
-    @ViewChild('optionsEl') optionsEl;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private elem : ElementRef) {
@@ -164,7 +163,7 @@ export class AmpDropdownComponent {
         }, 50);
     }
 
-    private hideOptions = ():void => {
+    private hideOptions = (): void => {
         this.optionsShown = false;
     }
 
@@ -178,7 +177,7 @@ export class AmpDropdownComponent {
 
     private onKeypressEvent ($event) {
 
-        switch($event.keyCode) {
+        switch ($event.keyCode) {
             // Enter key
             case 13:
                 $event.preventDefault();
@@ -193,7 +192,7 @@ export class AmpDropdownComponent {
             case 9:
                 this.hideOptions();
                 break;
-            default:            
+            default:
                 this.changeCurrentOption();
                 return;
         }
@@ -230,7 +229,7 @@ export class AmpDropdownComponent {
 
     private setSelectedOption(type) {
         this.currentOption = this.selectElem.selectedIndex;
-        
+
         if (this.currentOption > 0) {
 
             if (!this.animateSelection && type === 'change') {
@@ -242,14 +241,14 @@ export class AmpDropdownComponent {
             this.selectedOption = {
                 label: selected.text,
                 value: selected.value
-            }
+            };
 
             this.hasSelection = true;
         }
     }
 
-    private trigger (event, el) {        
-        var evObj = document.createEvent("HTMLEvents");
+    private trigger (event, el) {
+        var evObj = document.createEvent('HTMLEvents');
         evObj.initEvent(event, true, true);
         el.dispatchEvent(evObj);
     }
