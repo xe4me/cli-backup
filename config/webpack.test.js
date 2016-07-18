@@ -120,8 +120,7 @@ module.exports = {
             removeComments: true
 
           }
-        },
-        exclude: [/\.e2e\.ts$/]
+        }
       },
 
       /**
@@ -130,6 +129,8 @@ module.exports = {
        * See: https://github.com/webpack/json-loader
        */
       { test: /\.json$/, loader: 'json-loader', exclude: [helpers.root('src/index.html')] },
+      // copy those assets to output
+      {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: 'file?name=[path][name].[ext]?[hash]'},
 
       /**
        * Raw loader support for *.css files
@@ -138,6 +139,7 @@ module.exports = {
        * See: https://github.com/webpack/raw-loader
        */
       { test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
+      { test: /\.scss$/, loader: 'css!sass' },
 
       /**
        * Raw loader support for *.html

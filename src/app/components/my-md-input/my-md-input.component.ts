@@ -15,7 +15,7 @@ import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angul
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { FormUtils } from "../../util/form-utils";
+import { FormUtils } from '../../util/form-utils';
 @Component(
     {
         selector      : 'my-md-input' ,
@@ -164,7 +164,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         return this._valMinDate;
     }
 
-    set valMinDate ( value:any ) {
+    set valMinDate ( value: any ) {
         value            = (value === 'now' ? 0 : value);
         this._valMinDate = value;
         this.updateValitators();
@@ -174,7 +174,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         return this._valMaxDate;
     }
 
-    set valMaxDate ( value:any ) {
+    set valMaxDate ( value: any ) {
         value            = (value === 'now' ? 0 : value);
         this._valMaxDate = value;
         this.updateValitators();

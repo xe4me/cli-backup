@@ -3,20 +3,26 @@ import {
     injectAsync ,
     describe ,
     beforeEachProviders ,
-    TestComponentBuilder
+    expect
 } from '@angular/core/testing';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { AmpGroupButtonComponent } from '../../../../src/app/components/amp-group-button/amp-group-button.component';
 import { MockScrollService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-scroll.service';
 import { MockFormModelService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-form-mode.service';
+
+class MockElementRef implements ElementRef {
+  nativeElement = {};
+}
+
 describe( 'amp-group-button directive' , () => {
     beforeEachProviders( () => {
         return [
             provide( FormModelService , { useClass : MockFormModelService } ) ,
             provide( MockFormModelService , { useClass : MockFormModelService } ) ,
-            provide( ElementRef , { useClass : ElementRef } ) ,
+            provide( ElementRef , { useClass : MockElementRef } ) ,
             provide( ScrollService , { useClass : MockScrollService } ) ,
             provide( ProgressObserverService , { useClass : ProgressObserverService } ) ,
             provide( MockScrollService , { useClass : MockScrollService } ) ,

@@ -1,4 +1,4 @@
-import { ControlGroup } from "@angular/common";
+import { ControlGroup } from '@angular/common';
 export class FormUtils {
     public static getControlByName ( _parentGroup : ControlGroup , _controlName : string ) : any {
         return _parentGroup.controls[ _controlName ];
@@ -29,16 +29,16 @@ export class FormUtils {
                 return null;
             }
         }
-        let monthIndex = formatItems.indexOf( "mm" );
-        let dayIndex   = formatItems.indexOf( "dd" );
-        let yearIndex  = formatItems.indexOf( "yyyy" );
+        let monthIndex = formatItems.indexOf( 'mm' );
+        let dayIndex   = formatItems.indexOf( 'dd' );
+        let yearIndex  = formatItems.indexOf( 'yyyy' );
         let month      = parseInt( dateItems[ monthIndex ] ) - 1;
         return new Date( dateItems[ yearIndex ] , month , dateItems[ dayIndex ] );
     };
 
     public static getDatesDiff ( fromDate , toDate ) {
-        let date1    = this.stringToDate( fromDate , "dd/MM/yyyy" , "/" )
-        let date2    = this.stringToDate( toDate , "dd/MM/yyyy" , "/" );
+        let date1    = this.stringToDate( fromDate , 'dd/MM/yyyy' , '/' );
+        let date2    = this.stringToDate( toDate , 'dd/MM/yyyy' , '/' );
         let timeDiff = Math.abs( date2.getTime() - date1.getTime() );
         return Math.ceil( timeDiff / (1000 * 3600 * 24) );
     };
@@ -52,7 +52,7 @@ export class FormUtils {
 
     public static getAgeDays ( _todate ) {
         let date1 = new Date();
-        let date2 = this.stringToDate( _todate , "dd/MM/yyyy" , "/" );
+        let date2 = this.stringToDate( _todate , 'dd/MM/yyyy' , '/' );
         if ( !date2 ) {
             return null;
         }

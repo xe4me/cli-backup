@@ -2,8 +2,7 @@ import {
     it ,
     injectAsync ,
     describe ,
-    beforeEachProviders ,
-    TestComponentBuilder
+    beforeEachProviders
 } from '@angular/core/testing';
 import { FormModelService  } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';

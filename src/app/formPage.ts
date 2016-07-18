@@ -33,6 +33,7 @@ export class FormPage extends FormBlock {
     }
 
     next () {
+        console.log("Next has been invoked", this.routeName, this.nextPageId);
         this._router.navigate( [ this.routeName , { id : this.nextPageId } ] );
         return false;
     }

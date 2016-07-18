@@ -1,5 +1,4 @@
-import { View , Component , OnInit , ChangeDetectorRef , provide , ViewChild } from '@angular/core';
-import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
+import { Component , OnInit , ChangeDetectorRef , provide , ViewChild } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { IntroBlockComponent } from '../../../../app/blocks/bolr/notification-form/init-state/intro-block.component.ts';
 import { FormModelService } from 'amp-ddc-ui-core/ui-core';
@@ -51,9 +50,7 @@ export class MockFormModelService {
 }
 @Component( {
     selector  : 'bolr-intro-block-basic-usage' ,
-    providers : [ provide( FormModelService , { useClass : MockFormModelService } ) ]
-} )
-@View( {
+    providers : [ provide( FormModelService , { useClass : MockFormModelService } ) ],
     templateUrl : 'src/styleguide/blocks/bolr/intro/basic_usage.html' ,
     styles      : [ require( './basic_usage' ).toString() ] ,
     directives  : [ IntroBlockComponent ]
