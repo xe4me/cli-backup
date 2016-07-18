@@ -1,0 +1,1 @@
+export { AmpDropdownComponent } from './src/app/components/amp-dropdown/amp-dropdown.component';
