@@ -29,9 +29,9 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
                 (keydown)='onKeypressEvent($event)'
                 (change)='onChangeEvent()'
                 (focus)='onFocusEvent($event)'
-                [attr.disabled]='disabled ? 'disabled' : null'>
+                [attr.disabled]='disabled ? "disabled" : null'>
 
-                <option value='' selected [attr.disabled]='currentOption > 0 ? 'disabled' : null'></option>
+                <option value='' selected [attr.disabled]='currentOption > 0 ? "disabled" : null'></option>
 
                 <option *ngFor='let option of options'
                     [value]='option.value'>
