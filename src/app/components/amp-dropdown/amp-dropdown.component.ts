@@ -50,7 +50,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
             <div 
                 #optionsEl 
                 class='amp-dropdown__options amp-dropdown__options--{{ numOptions }}'
-                [class.hidden]='!optionsShown'
+                [class.amp-dropdown__options--hidden]='!optionsShown'
                 aria-hidden='true'>
                 
                 <div 
@@ -93,9 +93,10 @@ export class AmpDropdownComponent {
     private options;
     private parentControl : Control;
     private numOptions: number = 4;
-    private optionsShown: boolean = true;
+    private optionsShown: boolean = false;
     private hasSelection: boolean = false;
     private animateSelection: boolean = false;
+    private hasWidth: boolean = false;
     private currentOption;
 
     private selectedOption = {
@@ -115,19 +116,6 @@ export class AmpDropdownComponent {
         this.selectElem  = this.selectEl.nativeElement;
         this.dropdownElem  = this.dropDownEl.nativeElement;
         this.optionsElem  = this.optionsEl.nativeElement;
-
-        // Set correct width of 'select' from options
-        this.optionsElem.style.position = 'relative';
-        var width = this.optionsElem.offsetWidth;
-        var cssBackup = this.optionsElem.style.cssText;
-        this.optionsElem.style.border = '0px';
-        var borderWidth = width - this.optionsElem.offsetWidth;
-        this.optionsElem.style.cssText = cssBackup;
-
-        this.dropdownElem.style.width = this.optionsElem.offsetWidth + borderWidth + 'px';
-        this.optionsElem.style.position = '';
-
-        this.optionsShown = false;
 
         // Set default value        
         this.selectElem.selectedIndex = Math.max(0, this.selectElem.selectedIndex);
@@ -150,6 +138,13 @@ export class AmpDropdownComponent {
 
     private showOptions (showActive) {
         let activeOption = this.optionsElem.querySelectorAll('.amp-dropdown__option--active')[0];
+
+        if (!this.hasWidth) {
+            var width = this.optionsElem.offsetWidth;
+            this.dropdownElem.style.width = width + 'px';
+            this.optionsElem.style.position = 'absolute';
+            this.hasWidth = true;
+        }
 
         this.optionsShown = true;
 
