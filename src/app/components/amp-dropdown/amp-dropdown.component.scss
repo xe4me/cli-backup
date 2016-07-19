@@ -7,9 +7,10 @@ $amp-dropdown-select-height: 50px;
 $amp-dropdown-options-border-width: 2px;
 
 $amp-dropdown-number-options: 4;
+
 $amp-dropdown-option-border-width: 1px;
 $amp-dropdown-option-line-height: 1.5em;
-
+$amp-dropdown-option-min-height: 46px;
 $amp-dropdown-option-padding-top: 12px;
 $amp-dropdown-option-padding-bottom: $amp-dropdown-option-padding-top;
 $amp-dropdown-option-padding-right: 30px;
@@ -135,12 +136,10 @@ $amp-dropdown-option-padding-left: 20px;
         }
 
 
-        @for $i from 1 through 10 {   
-            $em: $amp-dropdown-option-line-height * $i;
-            $px: (($amp-dropdown-option-padding-top + $amp-dropdown-option-padding-bottom) * $i) + ($amp-dropdown-option-border-width * ($i - 1));
+        @for $i from 1 through 10 {
 
             &--#{$i} {
-                max-height: calc(#{$em} + #{$px});
+                max-height: ($amp-dropdown-option-min-height * $i) + ($amp-dropdown-option-border-width * ($i - 1)) + ($amp-dropdown-options-border-width * 2);
             }
         }
         
@@ -158,6 +157,7 @@ $amp-dropdown-option-padding-left: 20px;
     &__option {
         cursor: pointer;
         line-height: $amp-dropdown-option-line-height;
+        min-height: $amp-dropdown-option-min-height;
         padding: $amp-dropdown-option-padding-top $amp-dropdown-option-padding-right $amp-dropdown-option-padding-bottom $amp-dropdown-option-padding-left;
         width: auto;
 
