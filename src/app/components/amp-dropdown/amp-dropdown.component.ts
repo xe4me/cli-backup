@@ -207,7 +207,7 @@ export class AmpDropdownComponent {
         this.setSelectedOption('change');
 
         if (this.optionsShown && this.hasSelection) {
-            this.optionsElem.querySelectorAll('[data-option-val=' + this.selectedOption.value + ']')[0].focus();
+            this.optionsElem.querySelectorAll('[data-option-val="' + this.selectedOption.value + '"]')[0].focus();
             this.selectElem.focus();
         }
     }
