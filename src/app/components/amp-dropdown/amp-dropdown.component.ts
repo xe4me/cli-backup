@@ -142,7 +142,6 @@ export class AmpDropdownComponent {
         if (!this.hasWidth) {
             var width = this.optionsElem.offsetWidth;
             this.dropdownElem.style.width = width + 'px';
-            this.optionsElem.style.position = 'absolute';
             this.hasWidth = true;
         }
 
