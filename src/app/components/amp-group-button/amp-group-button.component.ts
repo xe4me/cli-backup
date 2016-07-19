@@ -54,6 +54,7 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                 <div class='amp-group-button'>
                     <span *ngFor='let button of buttons'>
                           <input
+                                class="sr-only"
                                 [disabled]='disabled'
                                 [attr.data-automation-id]='"radio_button_" + button.id'
                                 type='radio'
