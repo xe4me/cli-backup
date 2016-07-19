@@ -182,6 +182,10 @@ export class AmpDropdownComponent {
                 $event.preventDefault();
                 this.toggleOptions();
                 break;
+            // Escape key
+            case 27:
+                this.hideOptions();
+                break;
             // Tab key
             case 9:
                 this.hideOptions();
