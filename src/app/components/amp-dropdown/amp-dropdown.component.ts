@@ -1,11 +1,8 @@
 import {
     Component ,
-    ElementRef ,
-    EventEmitter ,
-    ViewChild,
-    ChangeDetectorRef
+    ViewChild
 } from '@angular/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { Control , Validators } from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { ClickedOutsideDirective, RequiredValidator } from 'amp-ddc-components';
 
@@ -79,7 +76,7 @@ import { ClickedOutsideDirective, RequiredValidator } from 'amp-ddc-components';
         'isRequired'
     ],
     styles     : [ require( './amp-dropdown.component.scss' ).toString() ] ,
-    directives : [ CORE_DIRECTIVES , FORM_DIRECTIVES, ClickedOutsideDirective ] ,
+    directives : [ ClickedOutsideDirective ] ,
     outputs    : [ 'select' ]
 })
 
@@ -110,10 +107,6 @@ export class AmpDropdownComponent {
     private selectElem;
     private dropdownElem;
     private optionsElem;
-
-    constructor ( private _cd : ChangeDetectorRef ,
-                  private elem : ElementRef) {
-    }
 
     ngAfterViewInit () : any {
         this.updateValitators();
