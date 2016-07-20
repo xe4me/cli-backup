@@ -176,6 +176,7 @@ md-input {
           color: $amp-colour-sky-blue;
           @include amp-family($amp-font-open-sans-regular);
           font-weight: 300;
+          text-overflow: ellipsis;
 
           &:focus {
             color: $amp-colour-black;
