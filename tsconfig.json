@@ -8,8 +8,8 @@
         "noEmitHelpers": true
     },
     "exclude": [
-        //    "node_modules",
-        //    "src/styleguide",
+        "node_modules",
+        "src/styleguide",
         "src/app/depricated-components",
         "src/dep-style"
     ],
