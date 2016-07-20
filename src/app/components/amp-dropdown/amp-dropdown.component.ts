@@ -2,14 +2,16 @@ import {
     Component ,
     ElementRef ,
     EventEmitter ,
-    ViewChild ,
+    ViewChild,
+    ChangeDetectorRef
 } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ChangeDetectorRef } from '@angular/core';
-import { ClickedOutsideDirective } from 'amp-ddc-components';
-@Component( {
+import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { isPresent } from '@angular/core/src/facade/lang';
+import { ClickedOutsideDirective, RequiredValidator } from 'amp-ddc-components';
+
+@Component({
     selector   : 'amp-dropdown' ,
-    template   : `    
+    template   : `
         <div 
             #dropdownEl
             class='amp-dropdown'
@@ -49,7 +51,7 @@ import { ClickedOutsideDirective } from 'amp-ddc-components';
             <div 
                 #optionsEl 
                 class='amp-dropdown__options amp-dropdown__options--{{ numOptions }}'
-                [class.hidden]='!optionsShown'
+                [class.amp-dropdown__options--hidden]='!optionsShown'
                 aria-hidden='true'>
                 
                 <div 
@@ -69,99 +71,121 @@ import { ClickedOutsideDirective } from 'amp-ddc-components';
     ` ,
     inputs     : [
         'id' ,
-        'label' ,
-        'options' ,
-        'parentControl' ,
-        'numOptions' ,
-        'disabled'
-    ] ,
+        'label',
+        'options',
+        'parentControl',
+        'numOptions',
+        'disabled',
+        'isRequired'
+    ],
     styles     : [ require( './amp-dropdown.component.scss' ).toString() ] ,
-    directives : [ CORE_DIRECTIVES , FORM_DIRECTIVES , ClickedOutsideDirective ] ,
+    directives : [ CORE_DIRECTIVES , FORM_DIRECTIVES, ClickedOutsideDirective ] ,
     outputs    : [ 'select' ]
-} )
+})
+
 export class AmpDropdownComponent {
-    @ViewChild( 'selectEl' ) selectEl;
-    @ViewChild( 'optionsEl' ) optionsEl;
-    @ViewChild( 'dropdownEl' ) dropDownEl;
-    private id : string                = 'amp-dropdown-' + Math.round( Math.random() * 1e10 );
+
+    @ViewChild('selectEl') selectEl;
+    @ViewChild('optionsEl') optionsEl;
+    @ViewChild('dropdownEl') dropDownEl;
+
+    private id : string = 'amp-dropdown-' + Math.round(Math.random() * 1e10);
     private label : string;
     private disabled : string;
     private options;
     private parentControl : Control;
-    private numOptions : number        = 4;
-    private optionsShown : boolean     = true;
-    private hasSelection : boolean     = false;
-    private animateSelection : boolean = false;
+    private numOptions: number = 4;
+    private optionsShown: boolean = false;
+    private hasSelection: boolean = false;
+    private animateSelection: boolean = false;
+    private hasWidth: boolean = false;
+    private _required: boolean = false;
     private currentOption;
+
     private selectedOption = {
-        label : '' ,
-        value : ''
+        label: '',
+        value: ''
     };
+
     private selectElem;
     private dropdownElem;
     private optionsElem;
 
     constructor ( private _cd : ChangeDetectorRef ,
-                  private elem : ElementRef ) {
+                  private elem : ElementRef) {
     }
 
     ngAfterViewInit () : any {
-        this.selectElem   = this.selectEl.nativeElement;
-        this.dropdownElem = this.dropDownEl.nativeElement;
+        this.updateValitators();
+
+        this.selectElem  = this.selectEl.nativeElement;
+        this.dropdownElem  = this.dropDownEl.nativeElement;
         this.optionsElem  = this.optionsEl.nativeElement;
-        // Set correct width of 'select' from options
-        this.optionsElem.style.position = 'relative';
-        var width                       = this.optionsElem.offsetWidth;
-        var cssBackup                   = this.optionsElem.style.cssText;
-        this.optionsElem.style.border   = '0px';
-        var borderWidth                 = width - this.optionsElem.offsetWidth;
-        this.optionsElem.style.cssText  = cssBackup;
-        this.dropdownElem.style.width   = this.optionsElem.offsetWidth + borderWidth + 'px';
-        this.optionsElem.style.position = '';
-        this.optionsShown = false;
-        // Set default value
-        this.selectElem.selectedIndex = Math.max( 0 , this.selectElem.selectedIndex );
-        this.setSelectedOption( 'initial' );
+
+        // Set default value        
+        this.selectElem.selectedIndex = Math.max(0, this.selectElem.selectedIndex);
+        this.setSelectedOption('initial');
+
         return undefined;
     }
 
+    get isRequired () {
+        return this._required;
+    }
+
+    set isRequired ( value : boolean ) {
+        this._required = this.isTrue( value );
+        this.updateValitators();
+    }
+
     private toggleOptions () {
-        if ( this.disabled ) {
+        if (this.disabled) {
             return false;
         }
-        if ( this.optionsShown ) {
+
+        if (this.optionsShown) {
             this.hideOptionsWithFocus();
         } else {
-            this.showOptions( true );
+            this.showOptions(true);
         }
     }
 
-    private showOptions ( showActive ) {
-        let activeOption = this.optionsElem.querySelectorAll( '.amp-dropdown__option--active' )[ 0 ];
+    private showOptions (showActive) {
+        let activeOption = this.optionsElem.querySelectorAll('.amp-dropdown__option--active')[0];
+
+        if (!this.hasWidth) {
+            var width = this.optionsElem.offsetWidth;
+            this.dropdownElem.style.width = width + 'px';
+            this.hasWidth = true;
+        }
+
         this.optionsShown = true;
-        if ( showActive && activeOption ) {
-            setTimeout( () => {
+
+        if (showActive && activeOption) {
+            setTimeout(() => {
                 activeOption.focus();
-            } );
+            });
         }
-        setTimeout( () => {
+        setTimeout(() => {
             this.selectElem.focus();
-        } , 50 );
+        }, 10);
     }
 
-    private hideOptions = () : void => {
+    private hideOptions = (): void => {
         this.optionsShown = false;
     }
 
     private hideOptionsWithFocus () {
         this.selectElem.focus();
-        setTimeout( () => {
+
+        setTimeout(() => {
             this.hideOptions();
-        } );
+        });
     }
 
-    private onKeypressEvent ( $event ) {
-        switch ( $event.keyCode ) {
+    private onKeypressEvent ($event) {
+
+        switch ($event.keyCode) {
             // Enter key
             case 13:
                 $event.preventDefault();
@@ -171,6 +195,10 @@ export class AmpDropdownComponent {
             case 32:
                 $event.preventDefault();
                 this.toggleOptions();
+                break;
+            // Escape key
+            case 27:
+                this.hideOptions();
                 break;
             // Tab key
             case 9:
@@ -182,52 +210,71 @@ export class AmpDropdownComponent {
         }
     }
 
-    private changeCurrentOption () {
+    private changeCurrentOption() {
         // Fix for firefox select change event not being fired 
         // each option change
-        if ( navigator.userAgent.toLowerCase().indexOf( 'firefox' ) > -1 ) {
-            setTimeout( () => {
+        if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+            setTimeout(() => {
                 this.onChangeEvent();
-            } );
+            });
         }
     }
 
     private onChangeEvent () {
-        this.setSelectedOption( 'change' );
-        if ( this.optionsShown && this.hasSelection ) {
-            this.optionsElem.querySelectorAll( '[data-option-val=' + this.selectedOption.value + ']' )[ 0 ].focus();
+        this.setSelectedOption('change');
+
+        if (this.optionsShown && this.hasSelection) {
+            this.optionsElem.querySelectorAll('[data-option-val=' + this.selectedOption.value + ']')[0].focus();
             this.selectElem.focus();
         }
     }
 
-    private onFocusEvent ( $event ) {
-        this.showOptions( false );
+    private onFocusEvent ($event) {
+        this.showOptions(false);
     }
 
-    private setSelectValue ( value ) {
+    private setSelectValue (value) {
         this.selectElem.value = value;
-        this.trigger( 'change' , this.selectElem );
+        this.trigger('change', this.selectElem);
         this.hideOptionsWithFocus();
     }
 
-    private setSelectedOption ( type ) {
+    private setSelectedOption(type) {
         this.currentOption = this.selectElem.selectedIndex;
-        if ( this.currentOption > 0 ) {
-            if ( !this.animateSelection && type === 'change' ) {
+
+        if (this.currentOption > 0) {
+
+            if (!this.animateSelection && type === 'change') {
                 this.animateSelection = true;
             }
-            let selected = this.selectElem.options[ this.currentOption ];
+
+            let selected = this.selectElem.options[this.currentOption];
+
             this.selectedOption = {
-                label : selected.text ,
-                value : selected.value
+                label: selected.text,
+                value: selected.value
             };
+
             this.hasSelection = true;
         }
     }
 
-    private trigger ( event , el ) {
-        var evObj = document.createEvent( 'HTMLEvents' );
-        evObj.initEvent( event , true , true );
-        el.dispatchEvent( evObj );
+    private trigger (event, el) {
+        var evObj = document.createEvent('HTMLEvents');
+        evObj.initEvent(event, true, true);
+        el.dispatchEvent(evObj);
+    }
+
+    private updateValitators () {
+        if ( this.parentControl ) {
+            this.parentControl.validator = Validators.compose( [
+                RequiredValidator.requiredValidation( this._required )
+            ] );
+            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        }
+    }
+
+    private isTrue ( value ) {
+        return isPresent( value ) && (value === true || value === 'true' || false);
     }
 }
