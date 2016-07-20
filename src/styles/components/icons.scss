@@ -1,0 +1,12 @@
+$default-icon-margin-right: $icon-margin-right;
+
+.icon {
+  vertical-align: middle;
+  font-size: $icons-font-size;
+  margin-right: $default-icon-margin-right;
+}
+
+.icon-errors {
+  color: red;
+}
+

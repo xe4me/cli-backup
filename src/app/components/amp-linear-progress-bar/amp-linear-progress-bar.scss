@@ -1,9 +1,8 @@
-@import '../../../style/require';
+@import '../../../styles/abstracts';
 
 $progress-linear-bar-height: 7px !default;
 $progress-bar-forground-color: $amp-colour-sky-blue;
 $progress-bar-background-color: $amp-colour-grey-lightest;
-
 
 md-progress-bar {
   &[color='amp-progressbar-sky-blue'] {
@@ -12,7 +11,7 @@ md-progress-bar {
     transition: all 1s linear;
 
     .md-progress-bar-background {
-    //   background: $md-buffer-bubbles-accent-url;
+      //   background: $md-buffer-bubbles-accent-url;
       background-repeat: repeat-x;
       background-size: 10px $progress-linear-bar-height;
     }

@@ -1,0 +1,36 @@
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn-ok-margin-top {
+  margin-top: 32px;
+}
+
+.summary-state {
+  @include amp-family($summary-state-font-family);
+  color: $amp-colour-sky-blue;
+  font-weight: $summary-state-font-weight;
+  vertical-align: bottom;
+  line-height: 43px;
+  font-size: $ddc-input-field-font-size;
+}
+
+.bolr-right-padding {
+  padding-right: $bolr-right-padding;
+}
+
+.bolr-left-margin {
+  margin-left: $bolr-left-margin;
+}
+
+// Just to check if this is the reason for the gray overal background
+html, body {
+  background-color: white !important;
+}
+

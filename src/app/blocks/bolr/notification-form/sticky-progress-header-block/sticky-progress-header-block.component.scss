@@ -1,4 +1,4 @@
-@import '../../../../../style/require';
+@import '../../../../../styles/abstracts';
 
 $header-font-family: $amp-font-open-sans-regular;
 :host{
@@ -25,7 +25,8 @@ $header-font-family: $amp-font-open-sans-regular;
     padding: 0 45px;
     @include amp-family($header-font-family);
     @extend %#{$namespace}font-size-tiny;
-    @extend %#{$namespace}color-gray-darkest-most;
+    color: $amp-colour-grey-darkest-most;
+
     &--left {
       display: inline-block;
       width: 60%;

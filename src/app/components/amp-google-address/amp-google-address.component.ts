@@ -1,17 +1,13 @@
 import {
     Component ,
-    Directive ,
-    Input ,
-    OnInit ,
     ViewEncapsulation ,
     NgZone ,
     AfterViewInit ,
     ChangeDetectorRef
 } from '@angular/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { FormBlock , NamedControl } from '../../formBlock';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { MdInputComponent } from '../../components/my-md-input/my-md-input.component';
+import { Control } from '@angular/common';
+import { Action } from 'amp-ddc-ui-core/ui-core';
+import { MdInputComponent } from 'amp-ddc-components';
 declare var google : any;
 @Component( {
     selector      : 'amp-google-address' ,
@@ -45,7 +41,7 @@ declare var google : any;
     encapsulation : ViewEncapsulation.Emulated
 } )
 export class AMPGoogleAddressComponent implements AfterViewInit {
-    static CLASS_NAME = 'AMPGoogleAddressComponent';
+    static CLASS_NAME            = 'AMPGoogleAddressComponent';
     public addrPredictions : any = {};
     public addrPlace : any       = {};
     private id : string;
@@ -69,7 +65,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
                                                                             addr_cur ,
                                                                             addr_index ,
                                                                             addr_arr ) {
-                        if ( addr_cur.types.indexOf( type_cur ) > - 1 ) {
+                        if ( addr_cur.types.indexOf( type_cur ) > -1 ) {
                             return (addr_prev + ' ' + (getShortName ? addr_cur.short_name : addr_cur.long_name)).trim();
                         } else {
                             return addr_prev;
@@ -85,8 +81,8 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
 
     ngAfterViewInit () {
         // Binding Google Places Address api to google_places_ac input field
-        var input : any = document.getElementById( this.id + '-input' );
-        var options     = {
+        var input : any   = document.getElementById( this.id + '-input' );
+        var options       = {
             types                 : [ 'address' ] ,
             componentRestrictions : { country : 'au' }
         };
@@ -94,7 +90,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
         this.autocomplete = new google.maps.places.Autocomplete( input , options );
         google.maps.event.addListener( this.autocomplete , 'place_changed' , () => {
             this.zone.run( () => {
-                if ( ! this.autocomplete.getPlace().formatted_address ) {
+                if ( !this.autocomplete.getPlace().formatted_address ) {
                     console.log( 'Google address returned an address without details!' , this.autocomplete.getPlace().name );
                 }
                 this.addrPlace = this.autocomplete.getPlace();

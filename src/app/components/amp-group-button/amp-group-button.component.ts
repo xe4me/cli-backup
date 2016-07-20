@@ -5,29 +5,23 @@ import {
     Renderer ,
     ElementRef ,
     forwardRef ,
+    ChangeDetectorRef ,
     Provider
 } from '@angular/core';
-import { Control } from '@angular/common';
-import { FORM_DIRECTIVES } from '@angular/common';
-import { NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
+import { Validators , FORM_DIRECTIVES , Control , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { ChangeDetectionStrategy } from '@angular/core';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { OnChanges , AfterViewInit , OnDestroy } from '@angular/core';
-import { Validators } from '@angular/common';
-import { ChangeDetectorRef } from '@angular/core';
 const RADIO_VALUE_ACCESSOR = new Provider( NG_VALUE_ACCESSOR ,
-    { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true });
-
+    { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
-    selector : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
-    host     : {
+    selector  : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
+    host      : {
         '(change)' : 'onChange($event.target.value)' ,
-        '(blur)' : 'onTouched()'
+        '(blur)'   : 'onTouched()'
     } ,
     providers : [ RADIO_VALUE_ACCESSOR ]
 } )
-export class RadioControlValueAccessors implements ControlValueAccessor {
+class RadioControlValueAccessors implements ControlValueAccessor {
     onChange  = ( _ ) => {
     };
     onTouched = () => {
@@ -54,7 +48,6 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
                 <div class='amp-group-button'>
                     <span *ngFor='let button of buttons'>
                           <input
-                                class="sr-only"
                                 [disabled]='disabled'
                                 [attr.data-automation-id]='"radio_button_" + button.id'
                                 type='radio'
@@ -139,7 +132,7 @@ export class AmpGroupButtonComponent {
 
     private onSelect ( value , shouldScroll ) {
         this.select.emit( value + '' );
-        if ( ! shouldScroll ) {
+        if ( !shouldScroll ) {
             return;
         }
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {

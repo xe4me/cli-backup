@@ -1,4 +1,4 @@
-@import '../../../style/require';
+@import '../../../styles/abstracts';
 
 $amp-switch-width: 210px;
 $switch-background-color: $ddc-corporate-main-color;
@@ -9,7 +9,6 @@ $amp-switch-border-width: 1px;
 $amp-switch-font-size: $font-size-small;
 $hover-background-color: $amp-colour-secondary;
 $active-background-color: $amp-colour-primary;
-
 :host {
   display: inline-block;
   &:hover {
@@ -25,23 +24,15 @@ $active-background-color: $amp-colour-primary;
   max-width: 100%;
   table-layout: fixed;
   overflow: hidden;
-
   input {
+    display: none;
     &:checked {
       & + label {
         background-color: $ddc-corporate-main-color;
         color: white;
       }
     }
-
-    &:focus {
-      & + label {
-        border: solid $ddc-corporate-main-color ($amp-switch-border-width * 2);
-        height: $amp-switch-height - (2 * $amp-switch-border-width) + 1;
-      }
-    }
   }
-
   > span {
     &:nth-child(n+1) label {
       border-left: none;
@@ -49,7 +40,6 @@ $active-background-color: $amp-colour-primary;
     &:first-child label {
       border-left: solid $ddc-corporate-main-color $amp-switch-border-width;;
     }
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -69,7 +59,6 @@ $active-background-color: $amp-colour-primary;
           height: $amp-switch-height - (2*$amp-switch-border-width) +1;
         }
       }
-
       height: $amp-switch-height - (2*$amp-switch-border-width);
       line-height: $amp-switch-height - (4*$amp-switch-border-width);
       box-sizing: border-box;
@@ -84,17 +73,9 @@ $active-background-color: $amp-colour-primary;
       text-shadow: none;
       //@include transition(all 0.2s ease-in-out);
       border: solid $ddc-corporate-main-color $amp-switch-border-width;;
+
     }
   }
+
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
-}

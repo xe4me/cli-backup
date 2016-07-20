@@ -1,19 +1,19 @@
 import {
     ElementRef ,
-    OnChanges ,
     Component ,
-    Directive ,
-    Input ,
-    OnInit ,
     ViewEncapsulation ,
-    ChangeDetectorRef,
-    animate, state, style, transition, trigger,
+    ChangeDetectorRef ,
+    animate ,
+    state ,
+    style ,
+    transition ,
+    trigger ,
+    AfterViewInit ,
+    EventEmitter
 } from '@angular/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { EventEmitter } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
 @Component(
     {
@@ -65,23 +65,23 @@ import { isPresent } from '@angular/core/src/facade/lang';
         ] ,
         directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated ,
-        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ],
-        animations: [
+        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
+        animations    : [
             // this here is our animation trigger that
             // will contain our state change animations.
-            trigger('toggleInputState', [
+            trigger( 'toggleInputState' , [
                 // the styles defined for the `on` and `off`
                 // states declared below are persisted on the
                 // element once the animation completes.
-                state('true', style({ width: '385px' })),
-                state('false', style({ width: '405px' })),
+                state( 'true' , style( { width : '385px' } ) ) ,
+                state( 'false' , style( { width : '405px' } ) ) ,
                 // this here is our animation that kicks off when
                 // this state change jump is true
-                transition('expand <=> collapse', [
-                  animate('200ms 1.2s ease-out')
-                ])
-            ])
-        ],
+                transition( 'expand <=> collapse' , [
+                    animate( '200ms 1.2s ease-out' )
+                ] )
+            ] )
+        ] ,
     } )
 export class MyInputComponent implements AfterViewInit {
     private inputWidth : number;
@@ -128,7 +128,6 @@ export class MyInputComponent implements AfterViewInit {
     //     }
     //     return undefined;
     // }
-
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ) {
         this.onAdjustWidth = new EventEmitter();
@@ -196,7 +195,6 @@ export class MyInputComponent implements AfterViewInit {
     //             .start( this.el.nativeElement );
     //     }
     // }
-
     private trimValue () {
         let notUsabel;
         if ( this.parentControl.value ) {
@@ -227,7 +225,6 @@ export class MyInputComponent implements AfterViewInit {
     //         //this.el.nativeElement.className = this.tempClassNames;
     //     } );
     // }
-
     private onKeyupEvent ( $event ) {
         this.onEnterClick( $event );
         this.onKeyup.emit( $event );
@@ -245,11 +242,11 @@ export class MyInputComponent implements AfterViewInit {
         }
     }
 }
-export class RequiredValidator {
+class RequiredValidator {
     public static requiredValidation ( isRequired ) {
         return ( c ) => {
             if ( isRequired ) {
-                if ( ! c.value || c.value.length === 0 ) {
+                if ( !c.value || c.value.length === 0 ) {
                     return {
                         required : true
                     };
@@ -259,11 +256,11 @@ export class RequiredValidator {
         };
     }
 }
-export class MaxLengthValidator {
+class MaxLengthValidator {
     public static maxLengthValidation ( valMaxLength ) {
         return ( c ) => {
             if ( valMaxLength ) {
-                if ( ! c.value || c.value.length <= valMaxLength ) {
+                if ( !c.value || c.value.length <= valMaxLength ) {
                     return null;
                 }
                 return {
@@ -274,11 +271,11 @@ export class MaxLengthValidator {
         };
     }
 }
-export class MinLengthValidator {
+class MinLengthValidator {
     public static minLengthValidation ( valMinLength ) {
         return ( c ) => {
             if ( valMinLength ) {
-                if ( ! c.value || c.value.length >= valMinLength ) {
+                if ( !c.value || c.value.length >= valMinLength ) {
                     return null;
                 }
                 return {
@@ -289,11 +286,11 @@ export class MinLengthValidator {
         };
     }
 }
-export class PatterValidator {
+class PatterValidator {
     public static patternValidator ( pattern ) {
         return ( c ) => {
             if ( pattern ) {
-                if ( ! c.value || new RegExp( pattern ).test( c.value ) ) {
+                if ( !c.value || new RegExp( pattern ).test( c.value ) ) {
                     return null;
                 }
                 return {

@@ -1,0 +1,76 @@
+// Font Families
+$heading-intro-font-family: $amp-font-open-sans-semibold !default;
+$heading-micro-intro-font-family: $amp-font-open-sans-semibold !default;
+
+// Colors
+$heading-intro-color: $amp-colour-secondary-darkest !default;
+$heading-contxtual-label-color: $amp-colour-grey-darkest-most !default;
+$heading-micro-intro-color: $amp-colour-grey-darkest-most !default;
+
+// Line Heights :
+$heading-intro-line-height: 40px;
+$heading-contxtual-label-line-height: 40px;
+$heading-micro-intro-line-height: 27px;
+
+// Font Weights:
+$heading-intro-font-weight: 600;
+$heading-contxtual-label-font-weight: 300;
+$heading-micro-intro-font-weight: 600;
+
+.#{$namespace}heading,
+%#{$namespace}heading {
+  color: inherit;
+  margin-bottom: 0;
+}
+
+.#{$namespace}heading-intro,
+%#{$namespace}heading-intro {
+  @extend %#{$namespace}font-size-medium;
+  @include amp-family($heading-intro-font-family);
+
+  color: $heading-intro-color;
+  font-weight: $heading-intro-font-weight;
+  line-height: $heading-intro-line-height;
+}
+
+.#{$namespace}heading-contxtual-label,
+%#{$namespace}heading-contxtual-label {
+  @extend %#{$namespace}font-size-medium;
+  @include amp-family($heading-intro-font-family);
+
+  color: $heading-contxtual-label-color;
+  font-weight: $heading-contxtual-label-font-weight;
+  line-height: $heading-contxtual-label-line-height;
+  vertical-align: text-bottom;
+}
+
+.#{$namespace}heading-micro-intro,
+%#{$namespace}heading-micro-intro {
+  @extend %#{$namespace}font-size-tiny;
+  @include amp-family($heading-micro-intro-font-family);
+  color: $heading-micro-intro-color;
+  font-weight: $heading-micro-intro-font-weight;
+  line-height: $heading-micro-intro-line-height;
+  vertical-align: sub;
+}
+
+.#{$namespace}heading-checkbox.#{$namespace}heading-checkbox,
+%#{$namespace}heading-checkbox {
+  @extend %#{$namespace}font-size-small;
+  @include amp-family($amp-font-open-sans-regular);
+  color: $amp-colour-grey-darkest-most;
+  font-weight: 400;
+  line-height: 30px;
+  vertical-align: sub;
+}
+
+.#{$namespace}comma-summary-state,
+%#{$namespace}comma-summary-state {
+  margin-left: -5px;
+  color: $amp-colour-sky-blue;
+  @extend %#{$namespace}font-size-medium;
+  @include amp-family($heading-intro-font-family);
+  font-weight: $heading-contxtual-label-font-weight;
+  line-height: $heading-contxtual-label-line-height;
+  vertical-align: sub;
+}

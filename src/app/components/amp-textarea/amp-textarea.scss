@@ -1,4 +1,4 @@
-@import '../../../style/require';
+@import '../../../styles/abstracts';
 
 :host {
   display: block;
@@ -13,7 +13,7 @@ $summary-state-font-family: $amp-font-open-sans-regular;
 $summary-state-font-weight: 300;
 .summary-state {
   @include amp-family($summary-state-font-family);
-  @extend %#{$namespace}amp-colour-sky-blue;
+  color: $amp-colour-sky-blue;
   font-weight: $summary-state-font-weight;
   vertical-align: bottom;
   line-height: 43px;
@@ -22,7 +22,7 @@ $summary-state-font-weight: 300;
 
 .summary-text {
   @include amp-family($summary-state-font-family);
-  @extend %#{$namespace}amp-colour-sky-blue;
+  color: $amp-colour-sky-blue;
   font-weight: $summary-state-font-weight;
   font-size: $ddc-input-field-font-size;
   white-space: nowrap;
@@ -146,7 +146,6 @@ $icon-float-focused-top: -8px !default;
 // Custom md-input variables
 $input-padding-bottom: 15px !default;
 $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'height: $input-line-height + ($input-padding-top * 2);'
-
 
 /********************************
  * Copied from ng2-material
@@ -522,91 +521,85 @@ md-input-container {
     border-color: $amp-colour-grey-dark;
     // text-shadow: md-color($md-foreground, shadow); // what is this?
   }
-//
-//   > md-icon {
-//     color: md-color($md-foreground, text);
-//   }
-//
-//   label,
-//   .md-placeholder {
-//     // text-shadow: md-color($md-foreground, shadow); // what is this?
-//     color: md-color($md-foreground, hint-text);
-//   }
-//
-//   div[md-messages] {
-//     color: md-color($md-warn, 500)
-//   }
-//
-//   &:not(.md-input-invalid) {
-//     &.md-input-has-value {
-//       label {
-//         color: md-color($md-foreground, secondary-text);
-//       }
-//     }
-//     &.md-input-focused {
-//       .md-input {
-//         border-color: md-color($md-primary, 500);
-//       }
-//       label {
-//         color: md-color($md-primary, 500);
-//       }
-//       md-icon {
-//         color: md-color($md-primary, 500);
-//       }
-//       &.md-accent {
-//         .md-input {
-//           border-color: md-color($md-accent, 500);
-//         }
-//         label {
-//           color: md-color($md-accent, 500);
-//         }
-//       }
-//       &.md-warn {
-//         .md-input {
-//           border-color: md-color($md-warn, 500);
-//         }
-//         label {
-//           color: md-color($md-warn, 500);
-//         }
-//       }
-//     }
-//   }
-//   &.md-input-invalid {
-//     .md-input {
-//       border-color: md-color($md-warn, 500);
-//     }
-//     label {
-//       color: md-color($md-warn, 500);
-//     }
-//     .md-char-counter {
-//       color: md-color($md-warn, 500);
-//     }
-//   }
-//   &.md-full-width {
-//     .md-input {
-//       border-color: transparent !important;
-//     }
-//   }
-//   .md-input {
-//     &[disabled],
-//     [disabled] & {
-//       border-bottom-color: transparent;
-//       color: md-color($md-foreground, disabled-text);
-//       background-image: linear-gradient(to right, md-color($md-foreground, divider) 0%, md-color($md-foreground, divider) 33%, transparent 0%);
-//       background-image: -ms-linear-gradient(left, transparent 0%, md-color($md-foreground, divider) 100%);
-//     }
-//   }
+  //
+  //   > md-icon {
+  //     color: md-color($md-foreground, text);
+  //   }
+  //
+  //   label,
+  //   .md-placeholder {
+  //     // text-shadow: md-color($md-foreground, shadow); // what is this?
+  //     color: md-color($md-foreground, hint-text);
+  //   }
+  //
+  //   div[md-messages] {
+  //     color: md-color($md-warn, 500)
+  //   }
+  //
+  //   &:not(.md-input-invalid) {
+  //     &.md-input-has-value {
+  //       label {
+  //         color: md-color($md-foreground, secondary-text);
+  //       }
+  //     }
+  //     &.md-input-focused {
+  //       .md-input {
+  //         border-color: md-color($md-primary, 500);
+  //       }
+  //       label {
+  //         color: md-color($md-primary, 500);
+  //       }
+  //       md-icon {
+  //         color: md-color($md-primary, 500);
+  //       }
+  //       &.md-accent {
+  //         .md-input {
+  //           border-color: md-color($md-accent, 500);
+  //         }
+  //         label {
+  //           color: md-color($md-accent, 500);
+  //         }
+  //       }
+  //       &.md-warn {
+  //         .md-input {
+  //           border-color: md-color($md-warn, 500);
+  //         }
+  //         label {
+  //           color: md-color($md-warn, 500);
+  //         }
+  //       }
+  //     }
+  //   }
+  //   &.md-input-invalid {
+  //     .md-input {
+  //       border-color: md-color($md-warn, 500);
+  //     }
+  //     label {
+  //       color: md-color($md-warn, 500);
+  //     }
+  //     .md-char-counter {
+  //       color: md-color($md-warn, 500);
+  //     }
+  //   }
+  //   &.md-full-width {
+  //     .md-input {
+  //       border-color: transparent !important;
+  //     }
+  //   }
+  //   .md-input {
+  //     &[disabled],
+  //     [disabled] & {
+  //       border-bottom-color: transparent;
+  //       color: md-color($md-foreground, disabled-text);
+  //       background-image: linear-gradient(to right, md-color($md-foreground, divider) 0%, md-color($md-foreground, divider) 33%, transparent 0%);
+  //       background-image: -ms-linear-gradient(left, transparent 0%, md-color($md-foreground, divider) 100%);
+  //     }
+  //   }
 }
 
 /********************************
  * END - Copied from ng2-material
  ********************************/
-
-
-
-
-
-
 
 @function pt2px($pt) {
   @return decimal-round($pt * 1.3333, 2) + px;

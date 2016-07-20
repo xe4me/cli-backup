@@ -1,0 +1,16 @@
+
+.errors {
+  @extend %#{$namespace}font-size-tiny;
+  @include amp-family($errors-font-family);
+  color: $errors-text-colors;
+  font-weight: 400;
+  display: block;
+  line-height: 25px;
+  margin-top: 5px;
+  .error-item {
+    margin-bottom: 20px;
+  }
+  .error-item:last-child {
+    margin-bottom: 0;
+  }
+}

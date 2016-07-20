@@ -1,4 +1,4 @@
-@import '../../../style/require';
+@import '../../../styles/abstracts';
 
 $summary-state-color: $amp-colour-sky-blue;
 $summary-state-font-family: $amp-font-open-sans-regular;
@@ -13,25 +13,25 @@ $summary-state-font-weight: 300;
 // }
 //
 
-[primaryColor]{
-    md-input {
-        &.md-input {
-            div {
-                &.md-input-wrapper {
-                    .md-input-element {
-                        &:focus {
-                          color: $amp-colour-white;
-                        }
-                    }
-                }
+[primaryColor] {
+  md-input {
+    &.md-input {
+      div {
+        &.md-input-wrapper {
+          .md-input-element {
+            &:focus {
+              color: $amp-colour-white;
             }
+          }
         }
+      }
     }
+  }
 }
 
 .summary-text {
   @include amp-family($summary-state-font-family);
-  @extend %#{$namespace}amp-colour-sky-blue;
+  color: $amp-colour-sky-blue;
   font-weight: $summary-state-font-weight;
   font-size: $ddc-input-field-font-size;
   white-space: nowrap;
@@ -77,7 +77,6 @@ $icon-float-focused-top: -8px !default;
 $input-padding-bottom: 15px !default;
 $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'height: $input-line-height + ($input-padding-top * 2);'
 
-
 @function pt2px($pt) {
   @return decimal-round($pt * 1.3333, 2) + px;
 
@@ -94,207 +93,206 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
 }
 
 md-input {
-    &.md-input {
-        cursor: pointer;
-        color: $amp-colour-sky-blue;
-        @include amp-family($amp-font-open-sans-regular);
-        font-weight: 300;
+  &.md-input {
+    cursor: pointer;
+    color: $amp-colour-sky-blue;
+    @include amp-family($amp-font-open-sans-regular);
+    font-weight: 300;
 
-        width: 100%;
-        padding: 0px 13px;
-        box-sizing: border-box;
+    width: 100%;
+    padding: 0px 13px;
+    box-sizing: border-box;
 
-        div {
-            &.md-input-wrapper {
-                position: relative;
+    div {
+      &.md-input-wrapper {
+        position: relative;
 
-                .md-input-underline {
-                    // position: absolute;
-                    // height: 1px;
-                    // width: 100%;
-                    // margin-top: 4px;
-                    border-top: 1px solid $amp-colour-grey-dark;
+        .md-input-underline {
+          // position: absolute;
+          // height: 1px;
+          // width: 100%;
+          // margin-top: 4px;
+          border-top: 1px solid $amp-colour-grey-dark;
 
-                    .md-input-ripple {
-                        &:hover {
-                            background-color: $amp-colour-sky-blue;
-                        }
-                        //   position: absolute;
-                        height: 1px;
-                        //   z-index: 1;
-                        background-color: $amp-colour-grey-dark;
-                        //   top: -1px;
-                        //   width: 100%;
-                        //   transform-origin: top;
-                        //   opacity: 0;
-                        //   transform: scaleY(0);
-                        //   transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
-                        //               opacity $swift-ease-out-duration $swift-ease-out-timing-function;
-
-                        &.md-accent {
-                            background-color: $amp-colour-grey-dark;
-                        }
-                        &.md-warn {
-                            background-color: $amp-colour-grey-dark;
-                        }
-                    }
-                }
-                .md-input-element {
-                    padding: 0 !important;
-                    font-size: $ddc-input-field-font-size;
-                    // &[disabled] {
-                    //     &.summary-state {
-                    //         border-bottom: 1px solid transparent !important;
-                    //         color: #00AAE0;
-                    //         background-image: none;
-                    //         cursor: default;
-                    //         background-image: none;
-                    //         &:hover {
-                    //           border-bottom: 1px solid transparent !important
-                    //         }
-                    //     }
-                    // }
-                    margin-top: 2.7px !important;
-                    display: inline;
-                    height: $input-height*1.1;
-                    flex: none;
-                    cursor: pointer;
-                    color: $amp-colour-sky-blue;
-                    @include amp-family($amp-font-open-sans-regular);
-                    font-weight: 300;
-
-                    &:focus {
-                      color: $amp-colour-black;
-                    }
-                }
-                .md-input-placeholder {
-                    // The placeholder is after the <input>, but needs to be aligned top-left of the
-                    // infix <div>.
-                    position: absolute;
-                    left: 0;
-                    top: 14px;
-
-                    visibility: visible;
-                    font-size: 13px;
-                    font-weight: 700;
-                    pointer-events: none;  // We shouldn't catch mouse events (let them through).
-                    color: $amp-colour-grey-darkest;
-                    // z-index: 1;
-                    //
-                    // // Put ellipsis text overflow.
-                    // width: 100%;
-                    // display: block;
-                    // white-space: nowrap;
-                    // text-overflow: ellipsis;
-                    // overflow-x: hidden;
-                    //
-                    // transform: translateY(0);
-                    // transform-origin: bottom left;
-                    // transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
-                    //           scale $swift-ease-out-duration $swift-ease-out-timing-function,
-                    //           color $swift-ease-out-duration $swift-ease-out-timing-function;
-
-                    &.md-empty {
-                        visibility: visible;
-                        cursor: text;
-                    }
-
-                    // Show the placeholder above the input when it's not empty, or focused.
-                    &.md-float:not(.md-empty), &.md-float.md-focused {
-                        @include my-md-input-placeholder-floating;
-                    }
-
-                    // :focus is applied to the input, but we apply md-focused to the other elements
-                    // that need to listen to it.
-                    &.md-focused {
-                        color: $amp-colour-grey-darkest;
-
-                        &.md-accent {
-                          color: $amp-colour-grey-darkest;
-                        }
-                        &.md-warn {
-                          color: $amp-colour-grey-darkest;
-                        }
-                    }
-                }
-
-    //
-    //   label {
-    //
-    //     padding-left: 26px !important;
-    //     &.noPadding {
-    //       padding-left: 0 !important;
-    //     }
-    //     &.summary {
-    //       @include transition(padding .2s linear !important);
-    //       transition-delay: 1.2s !important;
-    //       padding-left: 0 !important;
-    //     }
-    //     @include transition(padding .7s linear);
-    //     transition-delay: 0s;
-    //
-    //     min-width: 350px;
-    //     @include amp-family($amp-font-open-sans-semibold);
-    //     color: $amp-colour-grey-darkest;
-    //   }
-    //
-    //   &:not(.md-input-invalid).md-input-has-value, &:not(.md-input-invalid).md-input-focused, &.md-input-has-value {
-    //     label {
-    //       @include amp-family($amp-font-open-sans-semibold);
-    //       color: $amp-colour-grey-darkest;
-    //     }
-    //   }
-    // }
-    //
+          .md-input-ripple {
+            &:hover {
+              background-color: $amp-colour-sky-blue;
             }
+            //   position: absolute;
+            height: 1px;
+            //   z-index: 1;
+            background-color: $amp-colour-grey-dark;
+            //   top: -1px;
+            //   width: 100%;
+            //   transform-origin: top;
+            //   opacity: 0;
+            //   transform: scaleY(0);
+            //   transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
+            //               opacity $swift-ease-out-duration $swift-ease-out-timing-function;
+
+            &.md-accent {
+              background-color: $amp-colour-grey-dark;
+            }
+            &.md-warn {
+              background-color: $amp-colour-grey-dark;
+            }
+          }
         }
+        .md-input-element {
+          padding: 0 !important;
+          font-size: $ddc-input-field-font-size;
+          // &[disabled] {
+          //     &.summary-state {
+          //         border-bottom: 1px solid transparent !important;
+          //         color: #00AAE0;
+          //         background-image: none;
+          //         cursor: default;
+          //         background-image: none;
+          //         &:hover {
+          //           border-bottom: 1px solid transparent !important
+          //         }
+          //     }
+          // }
+          margin-top: 2.7px !important;
+          display: inline;
+          height: $input-height*1.1;
+          flex: none;
+          cursor: pointer;
+          color: $amp-colour-sky-blue;
+          @include amp-family($amp-font-open-sans-regular);
+          font-weight: 300;
+
+          &:focus {
+            color: $amp-colour-black;
+          }
+        }
+        .md-input-placeholder {
+          // The placeholder is after the <input>, but needs to be aligned top-left of the
+          // infix <div>.
+          position: absolute;
+          left: 0;
+          top: 14px;
+
+          visibility: visible;
+          font-size: 13px;
+          font-weight: 700;
+          pointer-events: none; // We shouldn't catch mouse events (let them through).
+          color: $amp-colour-grey-darkest;
+          // z-index: 1;
+          //
+          // // Put ellipsis text overflow.
+          // width: 100%;
+          // display: block;
+          // white-space: nowrap;
+          // text-overflow: ellipsis;
+          // overflow-x: hidden;
+          //
+          // transform: translateY(0);
+          // transform-origin: bottom left;
+          // transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
+          //           scale $swift-ease-out-duration $swift-ease-out-timing-function,
+          //           color $swift-ease-out-duration $swift-ease-out-timing-function;
+
+          &.md-empty {
+            visibility: visible;
+            cursor: text;
+          }
+
+          // Show the placeholder above the input when it's not empty, or focused.
+          &.md-float:not(.md-empty), &.md-float.md-focused {
+            @include my-md-input-placeholder-floating;
+          }
+
+          // :focus is applied to the input, but we apply md-focused to the other elements
+          // that need to listen to it.
+          &.md-focused {
+            color: $amp-colour-grey-darkest;
+
+            &.md-accent {
+              color: $amp-colour-grey-darkest;
+            }
+            &.md-warn {
+              color: $amp-colour-grey-darkest;
+            }
+          }
+        }
+
+        //
+        //   label {
+        //
+        //     padding-left: 26px !important;
+        //     &.noPadding {
+        //       padding-left: 0 !important;
+        //     }
+        //     &.summary {
+        //       @include transition(padding .2s linear !important);
+        //       transition-delay: 1.2s !important;
+        //       padding-left: 0 !important;
+        //     }
+        //     @include transition(padding .7s linear);
+        //     transition-delay: 0s;
+        //
+        //     min-width: 350px;
+        //     @include amp-family($amp-font-open-sans-semibold);
+        //     color: $amp-colour-grey-darkest;
+        //   }
+        //
+        //   &:not(.md-input-invalid).md-input-has-value, &:not(.md-input-invalid).md-input-focused, &.md-input-has-value {
+        //     label {
+        //       @include amp-family($amp-font-open-sans-semibold);
+        //       color: $amp-colour-grey-darkest;
+        //     }
+        //   }
+        // }
+        //
+      }
     }
+  }
 }
 
 // All about the hovering effects
 md-input.md-input div.md-input-wrapper {
-    .md-input-table:hover + .md-input-underline {
-        border-top: 1px solid $amp-colour-sky-blue;
-    }
-    .md-input-table:hover + .md-input-underline .md-input-ripple {
-        background-color: $amp-colour-sky-blue;
-    }
+  .md-input-table:hover + .md-input-underline {
+    border-top: 1px solid $amp-colour-sky-blue;
+  }
+  .md-input-table:hover + .md-input-underline .md-input-ripple {
+    background-color: $amp-colour-sky-blue;
+  }
 }
 
 // Summary state
 my-md-input {
-    display: inline-block;
-    box-sizing: content-box;
-    padding-right: 0 !important;
+  display: inline-block;
+  box-sizing: content-box;
+  padding-right: 0 !important;
 
-    @include transition(width 0.3s linear !important);
-    transition-delay: 0.1s !important;
+  @include transition(width 0.3s linear !important);
+  transition-delay: 0.1s !important;
 
-    &.summary {
-        md-input.md-input {
-            @include transition(padding 0.3s linear !important);
-            transition-delay: 0.5s !important;
-            padding-right: 0 !important;
-            padding-left: 0 !important;
+  &.summary {
+    md-input.md-input {
+      @include transition(padding 0.3s linear !important);
+      transition-delay: 0.5s !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
 
-            div.md-input-wrapper {
-                .md-input-underline {
-                    display: none;
-                }
-                .md-input-placeholder {
-                    display: none;
-                }
-            }
+      div.md-input-wrapper {
+        .md-input-underline {
+          display: none;
         }
+        .md-input-placeholder {
+          display: none;
+        }
+      }
     }
+  }
 }
-
 
 // Error state
 md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper {
-    .md-input-underline,
-    .md-input-element:not(:focus) {
-        color: $amp-colour-alert-danger;
-        border-color: $amp-colour-alert-danger;
-    }
+  .md-input-underline,
+  .md-input-element:not(:focus) {
+    color: $amp-colour-alert-danger;
+    border-color: $amp-colour-alert-danger;
+  }
 }

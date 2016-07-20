@@ -1,17 +1,20 @@
-import { Component , Directive , Input , OnInit , ViewEncapsulation , ChangeDetectorRef } from '@angular/core';
+import {
+    EventEmitter ,
+    ElementRef ,
+    AfterViewInit ,
+    OnDestroy ,
+    Component ,
+    ViewEncapsulation ,
+    ChangeDetectorRef
+} from '@angular/core';
 import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { MD_INPUT_DIRECTIVES,  } from '@angular2-material/input';
-import { ElementRef } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { OnChanges , OnDestroy } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
+import { MD_INPUT_DIRECTIVES , } from '@angular2-material/input';
 import {
     RequiredValidator ,
     MinLengthValidator ,
-    PatterValidator ,
     MaxLengthValidator
-} from '../../components/my-md-input/my-md-input.component';
+} from 'amp-ddc-components';
 import { isPresent } from '@angular/core/src/facade/lang';
 @Component(
     {
@@ -83,7 +86,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
     private _valMinLength : number;
     private _valMaxLength : number;
     private _required : boolean = false;
-    private hasFocus : boolean = false;
+    private hasFocus : boolean  = false;
 
     ngOnDestroy () : any {
         this.parentControl.validator = null;

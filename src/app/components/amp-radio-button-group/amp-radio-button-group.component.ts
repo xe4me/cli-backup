@@ -5,22 +5,18 @@ import {
     Renderer ,
     ElementRef ,
     forwardRef ,
-    Provider
+    Provider ,
+    ChangeDetectorRef ,
+    AfterViewInit , OnDestroy
 } from '@angular/core';
-import { Control } from '@angular/common';
-import { FORM_DIRECTIVES } from '@angular/common';
-import { NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
+import { Validators , Control , FORM_DIRECTIVES , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { Validators } from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { NumberWrapper } from '@angular/core/src/facade/lang';
-import { AfterViewInit , OnDestroy } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
 const RADIO_VALUE_ACCESSOR = new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
-    selector : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
-    host     : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
+    selector  : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
+    host      : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
     providers : [ RADIO_VALUE_ACCESSOR ]
 } )
 export class RadioControlValueAccessors implements ControlValueAccessor {
@@ -91,9 +87,9 @@ export class RadioControlValueAccessors implements ControlValueAccessor {
     outputs    : [ 'select' ]
 } )
 export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
-    private _selected : string  = null;
-    private _disabled : boolean = false;
-    private _required : boolean = false;
+    private _selected : string     = null;
+    private _disabled : boolean    = false;
+    private _required : boolean    = false;
     private parentControl : Control;
     private select                 = new EventEmitter<any>();
     private buttons;
@@ -166,7 +162,7 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
             this.previousValue = value;
             this.select.emit( value + '' );
         }
-        if ( ! shouldScroll ) {
+        if ( !shouldScroll ) {
             return;
         }
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {

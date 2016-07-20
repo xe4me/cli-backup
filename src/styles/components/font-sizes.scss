@@ -1,0 +1,19 @@
+
+.#{$namespace}font-size-medium {
+  @extend %#{$namespace}font-size-medium;
+}
+
+.#{$namespace}font-size-large {
+  @extend %#{$namespace}font-size-large;
+}
+
+.#{$namespace}font-size-small {
+  @extend %#{$namespace}font-size-small;
+}
+
+.#{$namespace}font-size-tiny {
+  @extend %#{$namespace}font-size-tiny;
+}
+
+
+

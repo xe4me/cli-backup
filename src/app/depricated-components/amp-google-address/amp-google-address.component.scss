@@ -1,0 +1,7 @@
+// Please add the /style/01_Components/ddc-google-address.scss to your base index.html as the google autocomplete drop down is injected outside of the component scope
+@import "../../../../src/style/require";
+
+.md-input {
+    @include amp-family($amp-font-open-sans-regular);
+    font-weight: 300;
+}

@@ -1,4 +1,4 @@
-@import '../../../../../style/require';
+@import '../../../../../styles/abstracts';
 
 $header-font-family: $amp-font-open-sans-regular;
 $menu-left-width: 20%;
@@ -69,12 +69,12 @@ $left-menu-right-and-left-padding: 60px;
     padding-right: $left-menu-right-and-left-padding;
     @include amp-family($header-font-family);
     @extend %#{$namespace}font-size-tiny;
-    @extend %#{$namespace}color-gray-darkest-most;
+    color: $amp-colour-grey-darkest-most;
     width: $menu-left-width;
     float: left;
     &--title {
       font-weight: 700;
-      @extend %#{$namespace}color-primary-darkest;
+      color: $amp-colour-primary-darkest;
     }
     &--hr {
       margin: 46px 0;
