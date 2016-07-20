@@ -146,3 +146,56 @@ $btn-review-default-width: 238px;
   }
 }
 
+
+.#{$namespace}btn-hollow,
+%#{$namespace}btn-hollow {
+  @extend %#{$namespace}font-size-small;
+  @include transition(color, background-color, $buttons-transition-time ease-in-out);
+  width: 125px;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: $btn-change-border-color;
+  height: $ddc-buttons-height;
+  color: $btn-change-border-color;
+  &:hover, &:focus {
+    &:not([disabled]) {
+      color: #fff;
+      background-color: $btn-change-hover-background-color;
+      border-color: $btn-change-hover-background-color;
+    }
+  }
+  &:active {
+    &:not([disabled]) {
+      color: #fff;
+      background-color: $btn-change-active-background-color;
+    }
+  }
+
+}
+
+
+.#{$namespace}btn-hollow-white,
+%#{$namespace}btn-hollow-white {
+  @extend %#{$namespace}font-size-small;
+  @include transition(color, background-color, $buttons-transition-time ease-in-out);
+  width: 125px;
+  background-color: #ffffff;
+  border: 2px solid !important;
+  border-color: $amp-colour-white;
+  height: $ddc-buttons-height;
+  color: $btn-change-border-color;
+  &:hover, &:focus {
+    &:not([disabled]) {
+      color: #fff;
+      background-color: $btn-change-hover-background-color;
+      border-color: $btn-change-hover-background-color;
+    }
+  }
+  &:active {
+    &:not([disabled]) {
+      color: #fff;
+      background-color: $btn-change-active-background-color;
+    }
+  }
+
+}
