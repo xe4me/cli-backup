@@ -50,11 +50,16 @@ $small-button-width: 80px;
   table-layout: fixed;
   overflow: hidden;
   input {
-    display: none;
+
     &:checked {
       & + label {
         background-color: $amp-colour-sky-blue;;
         color: white;
+      }
+    }
+    &:focus {
+      & + label {
+        @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
       }
     }
   }
@@ -71,7 +76,7 @@ $small-button-width: 80px;
     display: table-cell;
 
     label {
-        @include transition(all 300ms linear);
+      @include transition(all 300ms linear);
 
       height: $amp-switch-height - (2*$amp-switch-border-width);
       line-height: $amp-switch-height - (4*$amp-switch-border-width);
@@ -132,3 +137,22 @@ $small-button-width: 80px;
   }
 }
 
+.sr-only {
+
+  position: absolute;
+
+  width: 1px;
+
+  height: 1px;
+
+  padding: 0;
+
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+
+  border: 0;
+
+}
