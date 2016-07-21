@@ -69,8 +69,8 @@ export class InputWithLabelGroupComponent {
     private valMinLength : number;
     private valMaxDate : string   = '1000000';
     private valMinDate : string   = '-1000000';
-    private isActive : boolean         = true;
-    private tabindex : number          = 1;
+    private isActive : boolean    = true;
+    private tabindex : any        = null;
     private width : string        = '1/3';
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;

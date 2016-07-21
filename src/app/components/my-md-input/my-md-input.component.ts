@@ -94,7 +94,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private tolowerCase : boolean      = false;
     private toupperCase : boolean      = false;
     private isActive : boolean         = true;
-    private tabindex : number          = 1;
+    private tabindex : any             = null;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
