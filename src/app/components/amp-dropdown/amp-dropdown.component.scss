@@ -29,12 +29,18 @@ $amp-dropdown-option-padding-left: 20px;
     min-width: 140px;
     position: relative;
 
-    -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    &--summary-state {
+        min-width: auto;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
 
     * {
         box-sizing: border-box;
@@ -68,6 +74,11 @@ $amp-dropdown-option-padding-left: 20px;
             .amp-dropdown--animate & {
                 transition: opacity 0.4s 0.2s ease;
             }
+        }
+
+        .amp-dropdown--summary-state & {
+            border-color: transparent;
+            cursor: default;
         }
 
         .ng-invalid.ng-touched:not(:focus) + & {
@@ -112,6 +123,10 @@ $amp-dropdown-option-padding-left: 20px;
 
         .ng-invalid.ng-touched:not(:focus) + div > & {
             color: $amp-colour-alert-danger !important;
+        }
+
+        .amp-dropdown--summary-state & {
+            display: none;
         }
     }
 

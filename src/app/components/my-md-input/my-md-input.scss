@@ -313,8 +313,12 @@ my-md-input {
       transition-delay: 0.5s !important;
       padding-right: 0 !important;
       padding-left: 0 !important;
+      cursor: default;
 
       div.md-input-wrapper {
+        .md-input-element {
+          cursor: default;
+        }
         .md-input-underline {
           display: none;
         }

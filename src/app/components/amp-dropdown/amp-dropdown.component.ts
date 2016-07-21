@@ -22,6 +22,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
             class='amp-dropdown'
             [class.amp-dropdown--has-selection]='hasSelection'
             [class.amp-dropdown--animate]='animateSelection'
+            [class.amp-dropdown--summary-state]='isInSummaryState'
             [clicked-outside]='hideOptions'>
 
             <label class='sr-only' [attr.for]='id'>
@@ -35,7 +36,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
                 (keydown)='onKeypressEvent($event)'
                 (change)='onChangeEvent()'
                 (focus)='onFocusEvent($event)'
-                [attr.disabled]='disabled ? "disabled" : null'>
+                [attr.disabled]='(disabled || isInSummaryState) ? "disabled" : null'>
 
                 <option value='' selected [attr.disabled]='currentOption > 0 ? "disabled" : null'></option>
 
@@ -81,7 +82,8 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
         'parentControl',
         'numOptions',
         'disabled',
-        'isRequired'
+        'isRequired',
+        'isInSummaryState'
     ],
     styles     : [ require( './amp-dropdown.component.scss' ).toString() ] ,
     directives : [ ClickedOutsideDirective ] ,
@@ -105,6 +107,7 @@ export class AmpDropdownComponent {
     private animateSelection: boolean = false;
     private hasWidth: boolean = false;
     private _required: boolean = false;
+    private isInSummaryState: boolean = false;
     private currentOption;
 
     private selectedOption = {
@@ -140,7 +143,7 @@ export class AmpDropdownComponent {
     }
 
     private toggleOptions () {
-        if (this.disabled) {
+        if (this.disabled || this.isInSummaryState) {
             return false;
         }
 
