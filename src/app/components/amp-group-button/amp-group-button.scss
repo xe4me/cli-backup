@@ -1,18 +1,43 @@
 @import '../../../styles/abstracts';
 
-$amp-switch-width: 210px;
-$switch-background-color: $ddc-corporate-main-color;
+$switch-background-color: $amp-colour-sky-blue;
 $amp-switch-font-family: $amp-font-open-sans-semibold;
 $amp-switch-font-color: white;
-$amp-switch-height: $ddc-buttons-height;
+$amp-switch-height: 60px;
+$amp-switch-height-medium: 40px;
 $amp-switch-border-width: 1px;
 $amp-switch-font-size: $font-size-small;
 $hover-background-color: $amp-colour-secondary;
 $active-background-color: $amp-colour-primary;
+
+$small-button-width: 80px;
 :host {
   display: inline-block;
-  &:hover {
-    margin-top: -1px;
+  &[small] {
+    label {
+      height: ($amp-switch-height/2) - (2*$amp-switch-border-width) !important;
+      line-height: ($amp-switch-height/2) - (4*$amp-switch-border-width) !important;
+      font-size: 14px !important;
+      font-weight: 400 !important;;
+    }
+    .amp-group-button {
+      //width: 3* $small-button-width !important;
+      width: 100% !important;
+      margin: auto;
+    }
+  }
+  &[medium] {
+    label {
+      height: ($amp-switch-height-medium) - (2*$amp-switch-border-width) !important;
+      line-height: ($amp-switch-height-medium) - (4*$amp-switch-border-width) !important;
+      font-size: 14px !important;
+      font-weight: 400 !important;;
+    }
+    .amp-group-button {
+      //width: 3* $small-button-width !important;
+      width: 100% !important;
+      margin: auto;
+    }
   }
 }
 
@@ -28,7 +53,7 @@ $active-background-color: $amp-colour-primary;
     display: none;
     &:checked {
       & + label {
-        background-color: $ddc-corporate-main-color;
+        background-color: $amp-colour-sky-blue;;
         color: white;
       }
     }
@@ -38,7 +63,7 @@ $active-background-color: $amp-colour-primary;
       border-left: none;
     }
     &:first-child label {
-      border-left: solid $ddc-corporate-main-color $amp-switch-border-width;;
+      border-left: solid $amp-colour-sky-blue $amp-switch-border-width;;
     }
     overflow: hidden;
     text-overflow: ellipsis;
@@ -46,19 +71,8 @@ $active-background-color: $amp-colour-primary;
     display: table-cell;
 
     label {
-      &:hover {
-        cursor: pointer;
-      }
-      &:hover, &:focus {
-        &:not([disabled]) {
-          /*
-            @TODO : needs to be fixed :
-            hover with border is not working smoothly
-          */
-          border: solid $ddc-corporate-main-color ($amp-switch-border-width * 2);
-          height: $amp-switch-height - (2*$amp-switch-border-width) +1;
-        }
-      }
+        @include transition(all 300ms linear);
+
       height: $amp-switch-height - (2*$amp-switch-border-width);
       line-height: $amp-switch-height - (4*$amp-switch-border-width);
       box-sizing: border-box;
@@ -66,16 +80,55 @@ $active-background-color: $amp-colour-primary;
       width: 100%;
       @include amp-family($amp-switch-font-family);
       background-color: white;
-      color: $ddc-corporate-main-color;
+      color: $amp-colour-sky-blue;
       font-size: $amp-switch-font-size;
       font-weight: 600;
       text-align: center;
       text-shadow: none;
-      //@include transition(all 0.2s ease-in-out);
-      border: solid $ddc-corporate-main-color $amp-switch-border-width;;
-
+      border: solid $amp-colour-sky-blue $amp-switch-border-width;;
     }
   }
+}
 
+@include media-query(lap-and-up) {
+  .amp-group-button {
+    > span {
+      label {
+        &:hover {
+          cursor: pointer;
+          @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
+        }
+      }
+    }
+  }
+}
+
+@include media-query(palm) {
+  label {
+    height: 3em !important;
+    line-height: 3em !important;
+    font-size: $font-size-tin !important;;
+  }
+  :host {
+    &[small] {
+      .amp-group-button {
+        width: 80% !important;
+      }
+    }
+  }
+}
+
+@include media-small {
+  :host {
+    &[small] {
+      .amp-group-button {
+        span {
+          label {
+            font-size: 12px !important;
+          }
+        }
+      }
+    }
+  }
 }
 

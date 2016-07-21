@@ -17,7 +17,8 @@ import { FormUtils } from 'amp-ddc-components/src/app/util/form-utils';
     {
         selector      : 'my-md-input' ,
         template      : `
-            <md-input #myMdInput
+            <md-input 
+                #myMdInput
                 (keyup)='onKeyupEvent($event)'
                 (blur)='trimValue()'
                 [disabled]='isInSummaryState'
@@ -110,6 +111,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this.tempClassNames = this.el.nativeElement.className;
         this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
         this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
+        //this.el.nativeElement.className = this.tempClassNames;
         this.updateValitators();
         this._cd.detectChanges();
         // Artifically inject the data-automation-id into the internals of @angular-material md-input

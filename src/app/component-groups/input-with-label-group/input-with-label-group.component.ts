@@ -6,7 +6,8 @@ import { EventEmitter } from '@angular/core';
     selector   : 'input-with-label-group' ,
     template   : `
         <div class='input-with-label-group'>
-            <label class='heading heading-contxtual-label' *ngIf='contxtualLabel' >{{contxtualLabel}}</label><!--
+            <label class='heading heading-contxtual-label palm-hide' *ngIf='contxtualLabel' >{{contxtualLabel}}
+            </label><!--
             -->&nbsp;<!--
             --><my-md-input
                 (onEnter)='onEnter.emit("enter")'

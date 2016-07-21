@@ -29,8 +29,16 @@ $btn-submit-hover-background-color: $amp-colour-secondary-darkest;
 $btn-submit-active-background-color: $amp-colour-primary;
 
 $btn-review-default-width: 238px;
+@include media-query(palm) {
+  .btn {
+    line-height: 35px  !important;
+    font-size: $font-size-tin !important;;
+    height: 45px !important;
+  }
+}
+
 .btn {
-  line-height: 42px !important;
+  line-height: 42px;
   &.btn-full {
     width: 100% !important;
     display: block;

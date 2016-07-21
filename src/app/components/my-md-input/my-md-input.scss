@@ -12,35 +12,57 @@ $summary-state-font-weight: 300;
 //   font-size: $ddc-input-field-font-size;
 // }
 //
+@include media-query(palm) {
+  md-input {
+    &.md-input {
+      padding: 0 !important;
+      div {
+        &.md-input-wrapper {
+
+          input.md-input-element {
+            font-size: 18px;
+            height: 40px;
+            margin-top: 0 !important;
+          }
+          label.md-input-placeholder {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
 
 [primaryColor]{
-    md-input {
-        &.md-input {
-            div {
-                &.md-input-wrapper {
-                    .md-input-element {
-                        &:focus {
-                          color: $amp-colour-white;
-                        }
-                    }
-                    .md-input-placeholder {
-                          color: $amp-colour-white;
-                            &.md-focused {
-                                color: $amp-colour-white;
-
-                                &.md-accent {
-                                  color: $amp-colour-white;
-                                }
-                                &.md-warn {
-                                  color: $amp-colour-white;
-                                }
-                            }
-                          
-                    }
-                }
+  md-input {
+    &.md-input {
+      div {
+        &.md-input-wrapper {
+          .md-input-element {
+            &:focus {
+              color: $amp-colour-white;
             }
+          }
+          .md-input-placeholder {
+            color: $amp-colour-white;
+            &.md-focused {
+              color: $amp-colour-white;
+
+              &.md-accent {
+                color: $amp-colour-white;
+              }
+              &.md-warn {
+                color: $amp-colour-white;
+              }
+            }
+
+          }
         }
+      }
     }
+  }
 }
 
 
