@@ -19,7 +19,7 @@ const RADIO_VALUE_ACCESSOR = new Provider(
     host      : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
     providers : [ RADIO_VALUE_ACCESSOR ]
 } )
-export class RadioControlValueAccessors implements ControlValueAccessor {
+ class RadioControlValueAccessors implements ControlValueAccessor {
     onChange  = ( _ ) => {
     };
     onTouched = () => {
