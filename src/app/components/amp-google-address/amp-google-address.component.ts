@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Control } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/ui-core';
-import { MdInputComponent } from 'amp-ddc-components';
+import { MdInputComponent } from '../my-md-input/my-md-input.component';
 declare var google : any;
 @Component( {
     selector      : 'amp-google-address' ,

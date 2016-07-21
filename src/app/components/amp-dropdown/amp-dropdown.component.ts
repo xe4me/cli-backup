@@ -4,7 +4,15 @@ import {
 } from '@angular/core';
 import { Control , Validators } from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { ClickedOutsideDirective, RequiredValidator } from 'amp-ddc-components';
+import {
+    RequiredValidator ,
+    MinLengthValidator ,
+    MaxLengthValidator ,
+    MaxDateValidator ,
+    MinDateValidator ,
+    PatterValidator
+} from '../../util/validations';
+import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicked-outside.directive';
 
 @Component({
     selector   : 'amp-dropdown' ,

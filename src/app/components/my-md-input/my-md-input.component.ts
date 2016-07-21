@@ -19,7 +19,7 @@ import {
     MaxDateValidator ,
     MinDateValidator ,
     PatterValidator
-} from 'amp-ddc-components';
+} from '../../util/validations';
 @Component(
     {
         selector      : 'my-md-input' ,
