@@ -33,6 +33,7 @@ import {
                 [aria-label]='_id'
                 [name]='_id'
                 [id]='_id'
+                [tabIndex]='isActive?tabindex:-1'
                 [minLength]='_valMinLength'
                 [ngFormControl]='parentControl'
                 [maxLength]='_valMaxLength'
@@ -59,6 +60,8 @@ import {
             'valPattern' ,
             'valMaxDate' ,
             'valMinDate' ,
+            'tabindex' ,
+            'isActive' ,
             'isRequired' ,
             'hostClassesRemove' ,
             'showLabel' ,
@@ -90,6 +93,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private showLabel : boolean        = true;
     private tolowerCase : boolean      = false;
     private toupperCase : boolean      = false;
+    private isActive : boolean         = true;
+    private tabindex : number          = 1;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;

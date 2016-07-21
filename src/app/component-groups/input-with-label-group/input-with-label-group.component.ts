@@ -23,6 +23,8 @@ import { EventEmitter } from '@angular/core';
                 [showLabel]='showLabel'
                 [parentControl]='parentControl'
                 [isRequired]='isRequired'
+                [tabindex]='tabindex'
+                [isActive]='isActive'
                 [valPattern]='valPattern'
                 [valMaxLength]='valMaxLength'
                 [valMinLength]='valMinLength'
@@ -41,6 +43,8 @@ import { EventEmitter } from '@angular/core';
         'valMaxLength' ,
         'valMaxDate' ,
         'valMinDate' ,
+        'isActive' ,
+        'tabindex' ,
         'valMinLength' ,
         'contxtualLabel' ,
         'showLabel' ,
@@ -65,6 +69,8 @@ export class InputWithLabelGroupComponent {
     private valMinLength : number;
     private valMaxDate : string   = '1000000';
     private valMinDate : string   = '-1000000';
+    private isActive : boolean         = true;
+    private tabindex : number          = 1;
     private width : string        = '1/3';
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;
