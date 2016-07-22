@@ -95,6 +95,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private toupperCase : boolean      = false;
     private isActive : boolean         = true;
     private tabindex : any             = null;
+    private currency : string          = null;
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
@@ -212,7 +213,11 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     }
 
     private shrink () {
-        this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.el.nativeElement.children[ 1 ].offsetWidth + 5 + 'px' );
+        let offset = 5;
+        if( this.currency ) {
+            offset = 25;
+        }
+        this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.el.nativeElement.children[ 1 ].offsetWidth + offset + 'px' );
     }
 
     private trimValue () {
