@@ -132,7 +132,7 @@ $checkbox-margin: 0;
       &.summary-state {
         @include transition(margin .2s ease-in-out !important);
         transition-delay: 1.2s !important;
-        @include rtl(margin-left, 0, 0);
+        @include rtl(margin-left, 0 !important, 0);
         @include rtl(margin-right, 0, 0);
       }
     }
