@@ -15,7 +15,6 @@ export { ThemeIDDirective } from './src/app/directives/themeId.directive';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpButton } from './src/app/components/amp-button/amp-button.component';
-export { MyInputComponent } from './src/app/components/my-input/my-input.component';
 export { MdInputComponent } from './src/app/components/my-md-input/my-md-input.component';
 export { AmpCheckboxComponent } from './src/app/components/amp-checkbox/amp-checkbox.component';
 export { AmpDefaultRouterComponent } from './src/app/components/amp-default-router/amp-default-router.component';
