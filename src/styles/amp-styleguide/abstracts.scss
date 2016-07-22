@@ -1,18 +1,12 @@
 @import "./overrides";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/00_Settings/defaults";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/00_Settings/theme";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/00_Settings/responsive";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/extends/clearfix";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/extends/widths";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/functions/sizes";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/functions/_decimal";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/family";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/responsive";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/rhythm";
-@import "../../../../../node_modules/amp-styleguide-core/src/scss/01_Tools/mixins/opacity";
-
-
-
-
-
-
+@import "~amp-styleguide-core/src/scss/00_Settings/defaults";
+@import "~amp-styleguide-core/src/scss/00_Settings/theme";
+@import "~amp-styleguide-core/src/scss/00_Settings/responsive";
+@import "~amp-styleguide-core/src/scss/01_Tools/extends/clearfix";
+@import "~amp-styleguide-core/src/scss/01_Tools/extends/widths";
+@import "~amp-styleguide-core/src/scss/01_Tools/functions/sizes";
+@import "~amp-styleguide-core/src/scss/01_Tools/functions/_decimal";
+@import "~amp-styleguide-core/src/scss/01_Tools/mixins/family";
+@import "~amp-styleguide-core/src/scss/01_Tools/mixins/responsive";
+@import "~amp-styleguide-core/src/scss/01_Tools/mixins/rhythm";
+@import "~amp-styleguide-core/src/scss/01_Tools/mixins/opacity";

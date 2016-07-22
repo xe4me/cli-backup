@@ -214,7 +214,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     private shrink () {
         let offset = 5;
-        if( this.currency ) {
+        if ( this.currency ) {
             offset = 25;
         }
         this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.el.nativeElement.children[ 1 ].offsetWidth + offset + 'px' );

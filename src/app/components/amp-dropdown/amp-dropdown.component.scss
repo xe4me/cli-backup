@@ -14,6 +14,7 @@ $amp-dropdown-option-min-height: 46px;
 $amp-dropdown-option-padding-top: 12px;
 $amp-dropdown-option-padding-bottom: $amp-dropdown-option-padding-top;
 $amp-dropdown-option-padding-right: 30px;
+$amp-dropdown-option-padding-right-hidden: 4em;
 $amp-dropdown-option-padding-left: 20px;
 
 :host {
@@ -177,6 +178,11 @@ $amp-dropdown-option-padding-left: 20px;
             padding-right: 18px; // Scrollbar offset
             position: relative;
             visibility: hidden;
+
+            .amp-dropdown__option {
+                padding-right: $amp-dropdown-option-padding-right-hidden;
+                white-space: nowrap;
+            }
         }
     }
 
