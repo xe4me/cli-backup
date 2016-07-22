@@ -26,3 +26,4 @@ export { AmpRadioButtonGroupComponent } from './src/app/components/amp-radio-but
 export { AmpTextareaComponent } from './src/app/components/amp-textarea/amp-textarea.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
 export { InputWithLabelGroupComponent } from './src/app/component-groups/input-with-label-group/input-with-label-group.component';
+export { AmpBlockComponent } from './src/app/components/amp-block/amp-block.component';
