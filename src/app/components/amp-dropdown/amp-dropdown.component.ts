@@ -130,6 +130,17 @@ export class AmpDropdownComponent {
         this.selectElem.selectedIndex = Math.max(0, this.selectElem.selectedIndex);
         this.setSelectedOption('initial');
 
+        var forceRedraw = function(element){
+            element.style.display = 'none';
+            var trick = element.offsetHeight;
+            element.style.display = '';
+        };
+
+        // Redraw options to set correct width
+        this.optionsElem.style.visibility = 'visible';
+        forceRedraw(this.optionsElem.children[0]);
+        this.optionsElem.style.visibility = '';
+
         return undefined;
     }
 
