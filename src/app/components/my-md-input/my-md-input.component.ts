@@ -30,6 +30,7 @@ import {
                 (blur)='trimValue()'
                 [disabled]='isInSummaryState'
                 class='md-input'
+                [class.label-hidden]='labelHidden'
                 [aria-label]='_id'
                 [name]='_id'
                 [id]='_id'
@@ -69,7 +70,8 @@ import {
             'toupperCase' ,
             'autoFocus' ,
             'noPadding' ,
-            'currency'
+            'currency' ,
+            'labelHidden'
         ] ,
         directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.None ,
@@ -106,6 +108,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;
     private onKeyup : EventEmitter<any>;
+    private labelHidden : boolean      = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ,

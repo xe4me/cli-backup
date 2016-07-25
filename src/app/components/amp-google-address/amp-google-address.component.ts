@@ -17,6 +17,7 @@ declare var google : any;
         [name]='id'
         [id]='id'
         [label]='label'
+        [labelHidden]='labelHidden'
         [parentControl]='parentControl'
         [placeholder]='placeholder'
         [isInSummaryState]='isInSummaryState'
@@ -35,7 +36,8 @@ declare var google : any;
         'valMaxLength' ,
         'valPattern' ,
         'isRequired' ,
-        'isInSummaryState'
+        'isInSummaryState' ,
+        'labelHidden'
     ] ,
     directives    : [ MdInputComponent ] ,
     encapsulation : ViewEncapsulation.Emulated
@@ -52,6 +54,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     private model : any;
     private autocomplete : any;
     private isInSummaryState : boolean;
+    private labelHidden : boolean = false;
 
     static getAddressComponent ( types : Array<string> ,
                                  getShortName : boolean ,

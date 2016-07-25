@@ -22,6 +22,7 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                     [isInSummaryState]='isInSummaryState'
                     [id]='googleAddress.id'
                     [label]='googleAddress.label'
+                    [labelHidden]='labelHidden'
                     [parentControl]='googleAddressCtrl'
                     [placeholder]='googleAddress.placeholder'
                     [valPattern]='googleAddress.regex'
@@ -34,7 +35,7 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
             </div>
         </div>
         <div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'><!--
-            --><my-md-input
+         --><my-md-input
                 class='1/1'
                 noPadding='true'
                 [isInSummaryState]='isInSummaryState'
@@ -43,7 +44,8 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
                 [parentControl]='addressCtrl'
                 isRequired='true'
                 [valPattern]='address.regex'
-                [valMaxLength]='address.max'>
+                [valMaxLength]='address.max'
+                [valMinLength]='address.min'>
             </my-md-input><!--
             --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
             --><my-md-input
@@ -84,7 +86,7 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
 
         </div>
     ` , // encapsulation: ViewEncapsulation.Emulated
-    inputs : [ 'googleAddress', 'address', 'state', 'suburb', 'postcode', 'googleAddressCtrl', 'addressCtrl', 'suburbCtrl', 'stateCtrl', 'postcodeCtrl', 'isInSummaryState' ] ,
+    inputs : [ 'googleAddress', 'address', 'state', 'suburb', 'postcode', 'googleAddressCtrl', 'addressCtrl', 'suburbCtrl', 'stateCtrl', 'postcodeCtrl', 'isInSummaryState', 'labelHidden' ] ,
     styles : [ require( './amp-google-address-group.component.scss' ).toString() ] ,
     directives : [ AMPGoogleAddressComponent , MdInputComponent ]
 } )
@@ -123,6 +125,7 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private showManualAddrEntry: boolean   = false;
+    private labelHidden: boolean           = false;
     private googleAddressCtrl: Control;
     private addressCtrl: Control;
     private suburbCtrl: Control;
