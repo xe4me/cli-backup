@@ -48,7 +48,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
             </select>
 
             <div class='amp-dropdown__select' (click)='toggleOptions()' aria-hidden='true'>
-                <div class='amp-dropdown__label' aria-hidden='true'>{{ label }}</div>
+                <div class='amp-dropdown__label' aria-hidden='true' *ngIf='!labelHidden'>{{ label }}</div>
                 <span class='amp-dropdown__icon icon icon--chevron-down' aria-hidden='true'></span>
 
                 <span class='amp-dropdown__select-value' aria-hidden='true'>{{ selectedOption.label }}</span>&nbsp;
@@ -83,7 +83,8 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
         'numOptions',
         'disabled',
         'isRequired',
-        'isInSummaryState'
+        'isInSummaryState',
+        'labelHidden'
     ],
     styles     : [ require( './amp-dropdown.component.scss' ).toString() ] ,
     directives : [ ClickedOutsideDirective ] ,
@@ -108,6 +109,7 @@ export class AmpDropdownComponent {
     private hasWidth: boolean = false;
     private _required: boolean = false;
     private isInSummaryState: boolean = false;
+    private labelHidden: boolean = false;
     private currentOption;
 
     private selectedOption = {
@@ -126,9 +128,12 @@ export class AmpDropdownComponent {
         this.dropdownElem  = this.dropDownEl.nativeElement;
         this.optionsElem  = this.optionsEl.nativeElement;
 
-        // Set default value        
+        // Set default value
         this.selectElem.selectedIndex = Math.max(0, this.selectElem.selectedIndex);
-        this.setSelectedOption('initial');
+
+        setTimeout(() => {
+            this.setSelectedOption('initial');
+        });
 
         var forceRedraw = function(element){
             element.style.display = 'none';
@@ -140,6 +145,7 @@ export class AmpDropdownComponent {
         this.optionsElem.style.visibility = 'visible';
         forceRedraw(this.optionsElem.children[0]);
         this.optionsElem.style.visibility = '';
+
 
         return undefined;
     }
