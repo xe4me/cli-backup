@@ -8,7 +8,7 @@ import { EventEmitter } from '@angular/core';
         <div class='input-with-label-group'>
             <label class='heading heading-contxtual-label palm-hide' *ngIf='contxtualLabel' >{{contxtualLabel}}
             </label><!--
-            -->&nbsp;<!--
+            --><span class="palm-hide">&nbsp;</span><!--
             --><my-md-input
                 (onEnter)='onEnter.emit("enter")'
                 (onBlur)='onBlur.emit("blured")'
