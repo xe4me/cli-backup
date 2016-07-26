@@ -195,9 +195,11 @@ export class AmpDropdownComponent {
     private hideOptions = (): void => {
         this.optionsShown = false;
 
-        if (this.parentControl.touched) {
-            this.parentControl['hasOpened'] = true;
-        }
+        setTimeout(() => {
+            if (this.parentControl.touched) {
+                this.parentControl['hasOpened'] = true;
+            }
+        });
     }
 
     private hideOptionsWithFocus () {
