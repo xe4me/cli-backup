@@ -137,7 +137,6 @@ md-input {
     font-weight: 300;
 
     width: 100%;
-    padding: 0px 13px;
     box-sizing: border-box;
 
     div {
@@ -306,6 +305,11 @@ my-md-input {
 
   @include transition(width 0.3s linear !important);
   transition-delay: 0.1s !important;
+
+  & + &,
+  & + amp-dropdown {
+    margin-left: 26px;
+  }
 
   &.summary {
     md-input.md-input {
