@@ -62,8 +62,7 @@
 
      "postinstall": "npm run typings -- install",
 
-       "preversion": "npm test",
-     "version": "npm run build",
+     "version": "git add -A package.json",
        "postversion": "git push && git push --tags"
 
   },
