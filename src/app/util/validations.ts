@@ -1,4 +1,5 @@
-import { FormUtils } from 'amp-ddc-components/src/app/util/form-utils';
+import { FormUtils } from './form-utils';
+
 export class RequiredValidator {
     public static requiredValidation ( isRequired ) {
         return ( c ) => {
