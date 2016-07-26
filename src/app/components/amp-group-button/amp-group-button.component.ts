@@ -52,14 +52,14 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 [disabled]='disabled'
                                 [attr.data-automation-id]='"radio_button_" + button.id'
                                 type='radio'
-                                [attr.id]='button.id'
-                                [attr.name]='groupName'
+                                [attr.id]='button.id + index'
+                                [attr.name]='groupName + index'
                                 [ngFormControl]='parentControl'
                                 [value]='button.value'
                                 [checked]='parentControl.value===button.value'
                                 />
 
-                            <label (click)='onSelect(button.value , true)' [attr.for]='button.id'>{{ button.label }}
+                            <label (click)='onSelect(button.value , true)' [attr.for]='button.id + index'>{{ button.label }}
                             </label>
 
                     </span>
@@ -72,7 +72,8 @@ class RadioControlValueAccessors implements ControlValueAccessor {
         'disabled' ,
         'parentControl' ,
         'buttons' ,
-        'groupName'
+        'groupName',
+        'index'
     ] ,
     styles     : [ require( './amp-group-button.scss' ).toString() ] ,
     directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
@@ -87,6 +88,7 @@ export class AmpGroupButtonComponent {
     private scrollOutOn : string;
     private groupName : string;
     private select              = new EventEmitter<any>();
+    private index : string = '';
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
