@@ -1,6 +1,6 @@
 import { ElementRef , Renderer , Directive , EventEmitter , Input , AfterViewInit } from '@angular/core';
-import { KeyCodes } from "../../util/key-kodes.utils";
-import { BrowserDomAdapter } from "@angular/platform-browser/src/browser/browser_adapter";
+import { KeyCodes } from '../../util/key-kodes.utils';
+import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Directive( {
     selector : '[focuser]' ,
     host     : {
@@ -18,7 +18,7 @@ export class FocuserDirective implements AfterViewInit {
     private domAdapter : BrowserDomAdapter;
 
     ngAfterViewInit () : any {
-        this.parentEvent.subscribe( ()=> {
+        this.parentEvent.subscribe( () => {
             this._renderer.invokeElementMethod( this._el.nativeElement , 'focus' , [] );
             if ( this.hasList ) {
                 this.listElements = this.domAdapter.querySelectorAll( this._el.nativeElement , 'li' );
@@ -29,6 +29,10 @@ export class FocuserDirective implements AfterViewInit {
             }
         } );
         return undefined;
+    }
+
+    constructor ( private _el : ElementRef , private _renderer : Renderer ) {
+        this.domAdapter = new BrowserDomAdapter();
     }
 
     private onKeydown ( $event ) {
@@ -43,10 +47,6 @@ export class FocuserDirective implements AfterViewInit {
         } else {
             $event.preventDefault();
         }
-    }
-
-    constructor ( private _el : ElementRef , private _renderer : Renderer ) {
-        this.domAdapter = new BrowserDomAdapter();
     }
 
     private prev () {
