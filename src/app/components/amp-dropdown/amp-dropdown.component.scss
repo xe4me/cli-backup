@@ -123,7 +123,11 @@ $amp-dropdown-option-padding-left: 20px;
         z-index: 3;
 
         .ng-invalid.ng-touched:not(:focus) + div > & {
-            color: $amp-colour-alert-danger !important;
+            color: $amp-colour-alert-danger;
+        }
+
+        .amp-dropdown--is-open & {
+            color: #004983 !important;
         }
 
         .amp-dropdown--summary-state & {

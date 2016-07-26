@@ -23,6 +23,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
             [class.amp-dropdown--has-selection]='hasSelection'
             [class.amp-dropdown--animate]='animateSelection'
             [class.amp-dropdown--summary-state]='isInSummaryState'
+            [class.amp-dropdown--is-open]='optionsShown'
             [clicked-outside]='hideOptions'>
 
             <label class='sr-only' [attr.for]='id'>
@@ -146,7 +147,6 @@ export class AmpDropdownComponent {
         forceRedraw(this.optionsElem.children[0]);
         this.optionsElem.style.visibility = '';
 
-
         return undefined;
     }
 
@@ -194,6 +194,10 @@ export class AmpDropdownComponent {
 
     private hideOptions = (): void => {
         this.optionsShown = false;
+
+        if (this.parentControl.touched) {
+            this.parentControl['hasOpened'] = true;
+        }
     }
 
     private hideOptionsWithFocus () {
