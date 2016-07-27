@@ -2,7 +2,7 @@ import { Injectable , EventEmitter }     from '@angular/core';
 import { MockFormModelService } from './mock-form-mode.service';
 @Injectable()
 export class MockScrollService {
-    public $scrolled : EventEmitter<string>;
+    public $scrolled : EventEmitter<any>;
 
     public onScroll () {
         this.$scrolled.emit( 'scrolling' );
