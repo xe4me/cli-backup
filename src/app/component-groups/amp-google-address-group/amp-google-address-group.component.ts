@@ -11,83 +11,25 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
 
 
 @Component( {
-    selector : 'amp-google-address-group' ,
-    template : `
-        <div class='google-address' [ngClass]='{hide: showManualAddrEntry}'>
-            <div class='grid__item'>
-                <!--Practice address-->
-                <label class='heading heading-contxtual-label mb3' >Address</label><!--
-             --><amp-google-address #ampGoogleAddress
-                    class='1/1'
-                    [isInSummaryState]='isInSummaryState'
-                    [id]='googleAddress.id'
-                    [label]='googleAddress.label'
-                    [labelHidden]='labelHidden'
-                    [parentControl]='googleAddressCtrl'
-                    [placeholder]='googleAddress.placeholder'
-                    [valPattern]='googleAddress.regex'
-                    [valMaxLength]='googleAddress.max'>
-                </amp-google-address>
-            </div>
-
-            <div class='errors mt-25 mb-15' *ngIf='!ampGoogleAddress.addrPredictions'>
-                <span class='icon icon--close icon-errors'></span>We are unable to find your address. Try again or tell us your address line by line <a href='' (click)='showManualAddrForm()'>here</a> instead.
-            </div>
-        </div>
-        <div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'><!--
-         --><my-md-input
-                class='1/1'
-                noPadding='true'
-                [isInSummaryState]='isInSummaryState'
-                [id]='address.id'
-                [label]='address.label'
-                [parentControl]='addressCtrl'
-                isRequired='true'
-                [valPattern]='address.regex'
-                [valMaxLength]='address.max'
-                [valMinLength]='address.min'>
-            </my-md-input><!--
-            --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
-            --><my-md-input
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='suburb.id'
-                [label]='suburb.label'
-                [parentControl]='suburbCtrl'
-                isRequired='true'
-                [valPattern]='suburb.regex'
-                [valMaxLength]='suburb.max'>
-            </my-md-input><!--
-            --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
-            --><my-md-input
-                noPadding='true'
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='state.id'
-                [label]='state.label'
-                [parentControl]='stateCtrl'
-                isRequired='true'
-                [valPattern]='state.regex'
-                [valMaxLength]='state.max'>
-            </my-md-input><!--
-            --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
-            --><my-md-input
-                noPadding='true'
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='postcode.id'
-                [label]='postcode.label'
-                [parentControl]='postcodeCtrl'
-                isRequired='true'
-                [valPattern]='postcode.regex'
-                [valMaxLength]='postcode.max'>
-            </my-md-input><!--
-            --><span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
-
-        </div>
-    ` , // encapsulation: ViewEncapsulation.Emulated
-    inputs : [ 'googleAddress', 'address', 'state', 'suburb', 'postcode', 'googleAddressCtrl', 'addressCtrl', 'suburbCtrl', 'stateCtrl', 'postcodeCtrl', 'isInSummaryState', 'labelHidden' ] ,
-    styles : [ require( './amp-google-address-group.component.scss' ).toString() ] ,
+    selector   : 'amp-google-address-group' ,
+    template   :  require('./amp-google-address-group.component.html') ,
+    inputs     : [
+        'googleAddress',
+        'address',
+        'state',
+        'suburb',
+        'postcode',
+        'googleAddressCtrl',
+        'addressCtrl',
+        'suburbCtrl',
+        'stateCtrl',
+        'postcodeCtrl',
+        'isInSummaryState',
+        'isRequired',
+        'labelHidden',
+        'manualInputGridItemClass'
+    ] ,
+    styles     : [ require( './amp-google-address-group.component.scss' ).toString() ] ,
     directives : [ AMPGoogleAddressComponent , MdInputComponent ]
 } )
 export class AMPGoogleAddressComponentGroup implements AfterViewInit {
@@ -100,7 +42,12 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
                 label : '' ,
                 regex : '' ,
                 placeholder: '',
+                error : {
+                    invalid: 'Address is invalid.',
+                    required: 'Address is a required field.'
+                }
             };
+
     private address = {
                 id : 'address',
                 label: 'Address',
@@ -122,10 +69,12 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
                 regex: ''
             };
 
+    private isRequired : boolean           = false;
     private isInSummaryState : boolean     = false;
     private hasClickedOnOkButton : boolean = false;
     private showManualAddrEntry: boolean   = false;
     private labelHidden: boolean           = false;
+    private manualInputGridItemClass: string = 'u-width-auto';
     private googleAddressCtrl: Control;
     private addressCtrl: Control;
     private suburbCtrl: Control;
@@ -203,4 +152,15 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
         return false;
     }
 
+    private errorEmptyControl (control) {
+        return control.touched && control.dirty && !control.value && !control.valid;
+    }
+
+    private errorInvalidControl (control) {
+        return control.touched && control.dirty && control.value && !control.valid;
+    }
+
+    private manualInputGridItemClasses () {
+        return !this.isInSummaryState ? this.manualInputGridItemClass : 'u-width-auto';
+    }
 }
