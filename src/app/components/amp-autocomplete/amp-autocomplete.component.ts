@@ -13,7 +13,6 @@ import { RequestOptions , Headers , Http } from "@angular/http";
                     iconRight='search'
                     #input
                     tabindex="-1"
-                    (click)="open()"
                     (keydown)='onKeydown($event)'     
                     style="width: 100% !important;"
                     [autoFocus]="isActive"
@@ -42,7 +41,8 @@ import { RequestOptions , Headers , Http } from "@angular/http";
             </li>
         </ul>    
        </focuser>
-        <ul *ngIf="showNoResult" class="options">
+        <ul *ngIf="showNoResult" 
+        class="options">
             <li class="option" disabled >
                 <strong>No results found</strong>
             </li>
@@ -78,7 +78,7 @@ export class AmpAutocompleteComponent implements OnInit {
     private _optionsHidden            = true;
     private $onDownKey                = new EventEmitter<string>();
     private $inputFocus               = new EventEmitter<string>();
-    private minLengthTrigger : number = -1;
+    private minLengthTrigger : number = 0;
     private showNoResult              = false;
 
     ngOnInit () : any {

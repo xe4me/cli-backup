@@ -78,7 +78,7 @@ export class FocuserDirective implements AfterViewInit {
     private prev () {
         this.lastTabindex--;
         if ( this.lastTabindex === -1 ) {
-            this.onFocusOut();
+            this.onFocusOut(KeyCodes.UP);
             return;
         }
         this.setScrollTopAndFocus();
