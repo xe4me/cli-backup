@@ -153,11 +153,11 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     }
 
     private errorEmptyControl (control) {
-        return control.touched && control.dirty && !control.value && !control.valid;
+        return control.touched && !control.value && !control.valid;
     }
 
     private errorInvalidControl (control) {
-        return control.touched && control.dirty && control.value && !control.valid;
+        return control.touched && control.value && !control.valid;
     }
 
     private manualInputGridItemClasses () {
