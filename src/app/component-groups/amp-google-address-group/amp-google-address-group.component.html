@@ -1,0 +1,197 @@
+<div class='google-address' [ngClass]='{hide: showManualAddrEntry}'>
+
+    <div class='grid__item'>
+        <!--Practice address-->
+        <label class='heading heading-contxtual-label mb3'>Address</label><!--
+
+     --><amp-google-address #ampGoogleAddress
+            class='1/1'
+            [isInSummaryState]='isInSummaryState'
+            [id]='googleAddress.id'
+            [label]='googleAddress.label'
+            [labelHidden]='googleAddress.labelHidden'
+            [parentControl]='googleAddressCtrl'
+            [placeholder]='googleAddress.placeholder'
+            [valPattern]='googleAddress.regex'
+            [valMaxLength]='googleAddress.max'
+            [isRequired]='isRequired'>
+        </amp-google-address>
+    </div>
+
+    <div class='errors mt-25 mb-15' *ngIf='!ampGoogleAddress.addrPredictions'>
+        <span class='icon icon--close icon-errors'></span>We are unable to find your address. Try again or tell us your address line by line <a href='' (click)='showManualAddrForm()'>here</a> instead.
+    </div>
+
+    <div class='errors mt-25 mb-15' 
+        *ngIf='googleAddress.error &&
+                googleAddress.error.required &&
+                ampGoogleAddress.addrPredictions &&
+                errorEmptyControl(ampGoogleAddress.parentControl)'>
+
+        <span class='icon icon--close icon-errors'></span>
+        {{ googleAddress.error.required }}
+    </div>
+
+    <div class='errors mt-25 mb-15' 
+        *ngIf='googleAddress.error &&
+                googleAddress.error.invalid &&
+                ampGoogleAddress.addrPredictions &&
+                errorInvalidControl(ampGoogleAddress.parentControl)'>
+
+        <span class='icon icon--close icon-errors'></span>
+        {{ googleAddress.error.invalid }}
+    </div>
+</div>
+
+<div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'><!--
+
+ --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+        <my-md-input
+            #manualAddress
+            class='1/1'
+            noPadding='true'
+            [isInSummaryState]='isInSummaryState'
+            [id]='address.id'
+            [label]='address.label'
+            [parentControl]='addressCtrl'
+            [isRequired]='isRequired'
+            [valPattern]='address.regex'
+            [valMaxLength]='address.max'
+            [valMinLength]='address.min'>
+        </my-md-input>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    address.error &&
+                    address.error.required &&
+                    errorEmptyControl(manualAddress.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ address.error.required }}
+        </div>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    address.error &&
+                    address.error.invalid &&
+                    errorInvalidControl(manualAddress.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ address.error.invalid }}
+        </div>
+    </div><!--
+
+ --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
+
+ --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+        <my-md-input
+            #manualSuburb
+            class='1/1'
+            [isInSummaryState]='isInSummaryState'
+            [id]='suburb.id'
+            [label]='suburb.label'
+            [parentControl]='suburbCtrl'
+            [isRequired]='isRequired'
+            [valPattern]='suburb.regex'
+            [valMaxLength]='suburb.max'
+            [valMinLength]='suburb.min'>
+        </my-md-input>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    suburb.error &&
+                    suburb.error.required &&
+                    errorEmptyControl(manualSuburb.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ suburb.error.required }}
+        </div>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    suburb.error &&
+                    suburb.error.invalid &&
+                    errorInvalidControl(manualSuburb.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ suburb.error.invalid }}
+        </div>
+    </div><!--
+
+ --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
+
+ --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+        <my-md-input
+            #manualState
+            noPadding='true'
+            class='1/1'
+            [isInSummaryState]='isInSummaryState'
+            [id]='state.id'
+            [label]='state.label'
+            [parentControl]='stateCtrl'
+            [isRequired]='isRequired'
+            [valPattern]='state.regex'
+            [valMaxLength]='state.max'>
+        </my-md-input>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    state.error &&
+                    state.error.required &&
+                    errorEmptyControl(manualState.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ state.error.required }}
+        </div>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    state.error &&
+                    state.error.invalid &&
+                    errorInvalidControl(manualState.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ state.error.invalid }}
+        </div>
+    </div><!--
+
+    --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
+
+    --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+        <my-md-input
+            #manualPostcode
+            noPadding='true'
+            class='1/1'
+            [isInSummaryState]='isInSummaryState'
+            [id]='postcode.id'
+            [label]='postcode.label'
+            [parentControl]='postcodeCtrl'
+            [isRequired]='isRequired'
+            [valPattern]='postcode.regex'
+            [valMaxLength]='postcode.max'>
+        </my-md-input>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    postcode.error &&
+                    postcode.error.required &&
+                    errorEmptyControl(manualPostcode.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ postcode.error.required }}
+        </div>
+
+        <div class='errors mt-25 mb-15' 
+            *ngIf='!isInSummaryState &&
+                    postcode.error &&
+                    postcode.error.invalid &&
+                    errorInvalidControl(manualPostcode.parentControl)'>
+
+            <span class='icon icon--close icon-errors'></span>
+            {{ postcode.error.invalid }}
+        </div>
+    </div><!--
+
+    --><span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
+
+</div>
