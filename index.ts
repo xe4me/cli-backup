@@ -1,4 +1,4 @@
-// validators :
+// utils :
 export {
     RequiredValidator ,
     MinLengthValidator ,
@@ -7,10 +7,12 @@ export {
     MinDateValidator ,
     PatterValidator
 } from './src/app/util/validations'
+export { KeyCodes } from './src/app/util/key-kodes.utils'
 // directives
 export { ClickedOutsideDirective } from './src/app/directives/clicked-outside/clicked-outside.directive'
 export { AmpStickyOnScrollDirective } from './src/app/directives/amp-sticky-on-scroll.directive'
 export { ThemeIDDirective } from './src/app/directives/themeId.directive';
+export { FocuserDirective } from './src/app/directives/focuser/focuser.directive';
 // components
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';

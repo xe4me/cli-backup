@@ -84,7 +84,11 @@ module.exports = {
       'angular2/platform/browser': helpers.root('node_modules/@angular/platform-browser/index.js'),
       'angular2/router': helpers.root('node_modules/@angular/router-deprecated/index.js'),
       'angular2/http': helpers.root('node_modules/@angular/http/index.js'),
-      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js')
+      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js'),
+      'Styles': helpers.root('src/styles/'),
+      'AllStyles': helpers.root('src/styles/require.scss'),
+      'AbstractStyles': helpers.root('src/styles/abstracts.scss'),
+      'ComponentStyles': helpers.root('src/styles/components.scss')
     },
 
   },

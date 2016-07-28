@@ -41,8 +41,8 @@ import {
                 [placeholder]='label'>
 
                   <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
-
             </md-input>
+            <span *ngIf="iconRight" class="icon icon--{{ iconRight }} icon-right"></span>
             <span
                 class='summary-text'
                 [innerHTML]='myMdInput.value'>
@@ -62,6 +62,7 @@ import {
             'valMaxDate' ,
             'valMinDate' ,
             'tabindex' ,
+            'iconRight' ,
             'isActive' ,
             'isRequired' ,
             'hostClassesRemove' ,

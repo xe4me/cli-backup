@@ -11,20 +11,44 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
 export class FocuserDirective implements AfterViewInit {
     @Input( 'focuser' ) parentEvent : EventEmitter<string>;
     @Input( 'hasList' ) hasList : boolean;
-    private lastTabindex  = -1;
-    private focusOut      = new EventEmitter<string>();
+    @Input( 'focus-target' ) target : string;
+    private lastTabindex   = -1;
+    private focusOut       = new EventEmitter<string>();
     private listElements;
-    private liScrolHeight = 0;
+    private liScrollHeight = 0;
     private domAdapter : BrowserDomAdapter;
+    private inputElem;
 
     ngAfterViewInit () : any {
-        this.parentEvent.subscribe( () => {
-            this._renderer.invokeElementMethod( this._el.nativeElement , 'focus' , [] );
+        this.parentEvent.subscribe( ( keyCode ) => {
+            if ( this.target ) {
+                if ( !this.inputElem ) {
+                    this.inputElem = this.domAdapter.querySelector( this._el.nativeElement , this.target );
+                }
+                if ( this.inputElem ) {
+                    this._renderer.invokeElementMethod( this.inputElem , 'focus' , [] );
+                }
+            } else {
+                this._renderer.invokeElementMethod( this._el.nativeElement , 'focus' , [] );
+            }
             if ( this.hasList ) {
                 this.listElements = this.domAdapter.querySelectorAll( this._el.nativeElement , 'li' );
                 if ( this.listElements && this.listElements.length > 0 ) {
-                    this.liScrolHeight = this.domAdapter.getProperty( this.listElements[ 0 ] , 'scrollHeight' );
-                    this.next();
+                    this.liScrollHeight = this.domAdapter.getProperty( this.listElements[ 0 ] , 'scrollHeight' );
+                    let activeElem      = this.domAdapter.querySelector( this._el.nativeElement , 'li.active' );
+                    switch ( keyCode ) {
+                        case KeyCodes.DOWN:
+                            this.lastTabindex = this.getTabndexFromActiveElement( activeElem ) || -1;
+                            this.next();
+                            break;
+                        case KeyCodes.UP:
+                            this.lastTabindex = this.getTabndexFromActiveElement( activeElem ) || (this.listElements ? this.listElements.length : -1);
+                            this.prev();
+                            break;
+                        default:
+                            this.lastTabindex = -1;
+                            this.next();
+                    }
                 }
             }
         } );
@@ -40,7 +64,9 @@ export class FocuserDirective implements AfterViewInit {
             return;
         }
         let keyCode = $event.keyCode;
-        if ( keyCode === KeyCodes.DOWN ) {
+        if ( keyCode === KeyCodes.LEFT || keyCode === KeyCodes.BACKSPACE ) {
+            this.onFocusOut( keyCode );
+        } else if ( keyCode === KeyCodes.DOWN ) {
             this.next();
         } else if ( keyCode === KeyCodes.UP ) {
             this.prev();
@@ -60,18 +86,25 @@ export class FocuserDirective implements AfterViewInit {
 
     private next () {
         if ( this.lastTabindex === this.listElements.length - 1 ) {
-            return;
+            this.lastTabindex = 0;
+        }
+        if ( this.lastTabindex >= this.listElements.length ) {
+            this.lastTabindex = 0;
         }
         this.lastTabindex++;
         this.setScrollTopAndFocus();
     }
 
     private setScrollTopAndFocus () {
-        this._renderer.setElementProperty( this._el.nativeElement , 'scrollTop' , this.lastTabindex * this.liScrolHeight );
+        this._renderer.setElementProperty( this._el.nativeElement , 'scrollTop' , this.lastTabindex * this.liScrollHeight );
         this._renderer.invokeElementMethod( this.listElements[ this.lastTabindex ] , 'focus' , [] );
     }
 
-    private onFocusOut () {
-        this.focusOut.emit( 'focus out' );
+    private onFocusOut ( _keyCode ) {
+        this.focusOut.emit( _keyCode );
+    }
+
+    private getTabndexFromActiveElement ( activeElem ) {
+        return activeElem ? <number>activeElem.getAttribute( 'tabindex' ) - 1 : activeElem;
     }
 }

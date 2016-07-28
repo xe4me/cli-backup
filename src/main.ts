@@ -25,7 +25,7 @@ if ( 'production' === process.env.ENV ) {
  * App Component
  * our top level component that holds all of our components
  */
-import { DummyApp } from './dummyApp';
+import { StyleGuideApp } from './styleguide/app';
 // import { DemosApp } from './styleguide/app';
 // import {BuyBackFormComponent} from './app/forms/derby/buybackform.component';
 /*
@@ -34,7 +34,7 @@ import { DummyApp } from './dummyApp';
  */
 export function main () {
     return bootstrap( //DemosApp , [
-                      DummyApp, [
+                      StyleGuideApp, [
                       ...ENV_PROVIDERS ,
                       ...HTTP_PROVIDERS ,
                       ...ROUTER_PROVIDERS ,

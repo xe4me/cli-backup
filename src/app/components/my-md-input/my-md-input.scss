@@ -34,8 +34,7 @@ $summary-state-font-weight: 300;
 
 }
 
-
-[primaryColor]{
+[primaryColor] {
   md-input {
     &.md-input {
       div {
@@ -64,7 +63,6 @@ $summary-state-font-weight: 300;
     }
   }
 }
-
 
 .summary-text {
   @include amp-family($summary-state-font-family);
@@ -305,7 +303,16 @@ my-md-input {
 
   @include transition(width 0.3s linear !important);
   transition-delay: 0.1s !important;
-
+  &[iconright] {
+    md-input.md-input {
+      input.md-input-element {
+        padding-right: 30px !important;
+        &::-ms-clear {
+          display: none !important;
+        }
+      }
+    }
+  }
   & + &,
   & + amp-dropdown {
     margin-left: 26px;
@@ -354,4 +361,11 @@ md-input.label-hidden {
     clip: rect(0, 0, 0, 0) !important;
     border: 0 !important;
   }
+}
+
+.icon-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  @include transform(translateY(-50%));
 }

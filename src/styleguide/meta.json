@@ -1,0 +1,549 @@
+[
+    {
+        "name": "BOLR Intro Block",
+        "sources": [
+            "src/app/blocks/bolr/initState/IntroBlock.component.ts"
+        ],
+        "id": "BOLRIntrolBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/bolr/intro/basic_usage.html",
+                "styles": "src/styleguide/blocks/bolr/intro/basic_usage.scss",
+                "source": "src/styleguide/blocks/bolr/intro/basic_usage.ts",
+                "galen": "src/styleguide/blocks/bolr/intro/IntroBlock.component.test.spec",
+                "jasmine": "src/styleguide/blocks/bolr/intro/IntroBlock.component.spec.ts",
+                "component": "bolr-intro-block-basic-usage",
+                "component_src_location": "blocks/bolr/intro/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for BOLR Intro.</p>\n"
+    },
+    {
+        "name": "Amp Linear ProgressBar Component",
+        "sources": [
+            "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
+        ],
+        "id": "AmpLinearProgressBarComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-linear-progress-bar/basic_usage.html",
+                "styles": "src/styleguide/components/amp-linear-progress-bar/basic_usage.scss",
+                "source": "src/styleguide/components/amp-linear-progress-bar/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.test.spec",
+                "jasmine": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.spec.ts",
+                "component": "amp-linear-progress-bar-basic-usage",
+                "component_src_location": "components/amp-linear-progress-bar/basic_usage",
+                "name": "Amp Linear Progress Bar Basic Usage"
+            }
+        ],
+        "readme": "<p>To see a progress bar look and feel.</p>\n"
+    },
+    {
+        "name": "BOLR Contact Details Block",
+        "sources": [
+            "src/app/blocks/bolr/dialogue-state/contact-details/contact-details-block.component.ts"
+        ],
+        "id": "ContactDetailsBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/bolr/dialogue/contact-details/basic_usage.html",
+                "styles": "src/styleguide/blocks/bolr/dialogue/contact-details/basic_usage.scss",
+                "source": "src/styleguide/blocks/bolr/dialogue/contact-details/basic_usage.ts",
+                "galen": "src/styleguide/blocks/bolr/dialogue/contact-details/contact-details-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/bolr/dialogue/contact-details/contact-details-block.component.spec.ts",
+                "component": "bolr-contact-details-block-basic-usage",
+                "component_src_location": "blocks/bolr/dialogue/contact-details/basic_usage",
+                "name": "Contact Details Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for Contact Details.</p>\n"
+    },
+    {
+        "name": "BOLR Partnership Manager Block",
+        "sources": [
+            "src/app/blocks/bolr/dialogue-state/partnership-manager/partnership-manager.component.ts"
+        ],
+        "id": "BOLRPartnershipManagerBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/bolr/dialogue/partnership-manager/basic_usage.html",
+                "styles": "src/styleguide/blocks/bolr/dialogue/partnership-manager/basic_usage.scss",
+                "source": "src/styleguide/blocks/bolr/dialogue/partnership-manager/basic_usage.ts",
+                "galen": "src/styleguide/blocks/bolr/dialogue/partnership-manager/partnership-manager.component.test.spec",
+                "jasmine": "src/styleguide/blocks/bolr/dialogue/partnership-manager/partnership-manager.component.spec.ts",
+                "component": "partnership-manager-block-basic-usage",
+                "component_src_location": "blocks/bolr/dialogue/partnership-manager/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for BOLR Partnership Manager.</p>\n"
+    },
+    {
+        "name": "BOLR Sticky Progress Header Block",
+        "sources": [
+            "src/app/blocks/bolr/sticky-progress-header-block/sticky-progress-header-block.component.ts"
+        ],
+        "id": "StickyProgressHeaderBlockComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/bolr/sticky-progress-header/basic_usage.html",
+                "styles": "src/styleguide/blocks/bolr/sticky-progress-header/basic_usage.scss",
+                "source": "src/styleguide/blocks/bolr/sticky-progress-header/basic_usage.ts",
+                "galen": "src/styleguide/blocks/bolr/sticky-progress-header/sticky-progress-header-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/bolr/sticky-progress-header/sticky-progress-header-block.component.spec.ts",
+                "component": "sticky-progress-header-block-basic-usage",
+                "component_src_location": "blocks/bolr/sticky-progress-header/basic_usage",
+                "name": "Sticky Progress HeaderBlock Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for Contact Details.</p>\n"
+    },
+    {
+        "name": "Amp Button Component",
+        "sources": [
+            "src/app/components/amp-button/amp-button.component.ts"
+        ],
+        "id": "AmpButtonComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-button/basic_usage.html",
+                "styles": "src/styleguide/components/amp-button/basic_usage.scss",
+                "source": "src/styleguide/components/amp-button/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-button/amp-button.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-button/amp-button.component.spec.ts",
+                "component": "amp-button-basic-usage",
+                "component_src_location": "components/amp-button/basic_usage",
+                "name": "Amp Button Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpButtonComponent.</p>\n"
+    },
+    {
+        "name": "Amp Group Button Component",
+        "sources": [
+            "src/app/components/amp-group-button/amp-group-button.component.ts"
+        ],
+        "id": "AmpGroupButtonComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-group-button/basic_usage.html",
+                "styles": "src/styleguide/components/amp-group-button/basic_usage.scss",
+                "source": "src/styleguide/components/amp-group-button/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-group-button/amp-group-button.test.spec",
+                "jasmine": "src/styleguide/components/amp-group-button/amp-group-button.spec.ts",
+                "component": "amp-group-button-block-basic-usage",
+                "component_src_location": "components/amp-group-button/basic_usage",
+                "name": "Amp Group Button Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpGroupButtonComponent.</p>\n"
+    },
+    {
+        "name": "Amp Checkbox Component",
+        "sources": [
+            "src/app/components/amp-checkbox/amp-checkbox.component.ts"
+        ],
+        "id": "AmpCheckboxComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-checkbox/basic_usage.html",
+                "styles": "src/styleguide/components/amp-checkbox/basic_usage.scss",
+                "source": "src/styleguide/components/amp-checkbox/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-checkbox/amp-checkbox.component.spec.ts",
+                "component": "amp-checkbox-block-basic-usage",
+                "component_src_location": "components/amp-checkbox/basic_usage",
+                "name": "Amp Checkbox Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpCheckboxComponent.</p>\n"
+    },
+    {
+        "name": "Amp Radio Group Button Component",
+        "sources": [
+            "src/app/components/amp-radio-group-button/amp-radio-group-button.component.ts"
+        ],
+        "id": "AmpRadioGroupButtonComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-radio-group-button/basic_usage.html",
+                "styles": "src/styleguide/components/amp-radio-group-button/basic_usage.scss",
+                "source": "src/styleguide/components/amp-radio-group-button/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-radio-group-button/amp-radio-group-button.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-radio-group-button/amp-radio-group-button.component.spec.ts",
+                "component": "amp-radio-group-button-block-basic-usage",
+                "component_src_location": "components/amp-radio-group-button/basic_usage",
+                "name": "Amp Group Button Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpRadioGroupButtonComponent.</p>\n"
+    },
+    {
+        "name": "ContentBlock",
+        "sources": [
+            "src/app/components/ContentBlock.ts"
+        ],
+        "id": "ContentBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/components/content/basic_usage.html",
+                "styles": "src/styleguide/components/content/basic_usage.scss",
+                "source": "src/styleguide/components/content/basic_usage.ts",
+                "galen": "src/styleguide/components/content/my-md-input.test.spec",
+                "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
+                "component": "content-block-basic-usage",
+                "component_src_location": "components/content/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>Static content block. Can you upgraded to pull content from AEM.</p>\n"
+    },
+    {
+        "name": "AMPGoogleAddress",
+        "sources": [
+            "src/app/components/amp-google-address/amp-google-address.component.ts"
+        ],
+        "id": "AMPGoogleAddress",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-google-address/basic_usage.html",
+                "styles": "src/styleguide/components/amp-google-address/basic_usage.scss",
+                "source": "src/styleguide/components/amp-google-address/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-google-address/amp-google-address.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-google-address/amp-google-address.component.spec.ts",
+                "component": "amp-google-address-basic-usage",
+                "component_src_location": "components/amp-google-address/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP google address input search box</p>\n"
+    },
+    {
+        "name": "Amp Textarea",
+        "sources": [
+            "src/app/components/amp-textarea/amp-textarea.component.ts"
+        ],
+        "id": "AmpTextarea",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-textarea/basic_usage.html",
+                "styles": "src/styleguide/components/amp-textarea/basic_usage.scss",
+                "source": "src/styleguide/components/amp-textarea/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-textarea/amp-textarea.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-textarea/amp-textarea.component.spec.ts",
+                "component": "amp-textarea-basic-usage",
+                "component_src_location": "components/amp-textarea/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP Textarea basic usage</p>\n"
+    },
+    {
+        "name": "MyTextInput",
+        "sources": [
+            "src/app/components/my-md-input/my-md-input.component.ts"
+        ],
+        "id": "MyMdInput",
+        "examples": [
+            {
+                "template": "src/styleguide/components/my-md-input/basic_usage.html",
+                "styles": "src\\styleguide\\components\\my-md-input\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\my-md-input\\basic_usage.ts",
+                "galen": "src\\styleguide\\components\\my-md-input\\my-md-input.test.spec",
+                "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
+                "component": "my-md-input-basic-usage",
+                "component_src_location": "components/my-md-input/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name": "Button",
+        "sources": [
+            "ng2-material/components/button/button.ts"
+        ],
+        "id": "button",
+        "examples": [
+            {
+                "template": "src/styleguide/components/button/basic_usage.html",
+                "styles": "src\\styleguide\\components\\button\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\button\\basic_usage.ts",
+                "component": "button-basic-usage",
+                "component_src_location": "components/button/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>Buttons are great for clicking.</p>\n"
+    },
+    {
+        "name": "Card",
+        "sources": [
+            "ng2-material/components/card/card.ts"
+        ],
+        "id": "card",
+        "examples": [
+            {
+                "template": "src/styleguide/components/card/action_buttons.html",
+                "styles": "src\\styleguide\\components\\card\\action_buttons.scss",
+                "source": "src\\styleguide\\components\\card\\action_buttons.ts",
+                "component": "card-action-buttons",
+                "component_src_location": "components/card/action_buttons",
+                "name": "Action Buttons"
+            },
+            {
+                "template": "src/styleguide/components/card/basic_usage.html",
+                "styles": "src\\styleguide\\components\\card\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\card\\basic_usage.ts",
+                "component": "card-basic-usage",
+                "component_src_location": "components/card/basic_usage",
+                "name": "Basic Usage"
+            },
+            {
+                "template": "src/styleguide/components/card/inline_actions.html",
+                "styles": "src\\styleguide\\components\\card\\inline_actions.scss",
+                "source": "src\\styleguide\\components\\card\\inline_actions.ts",
+                "component": "card-inline-actions",
+                "component_src_location": "components/card/inline_actions",
+                "name": "Inline Actions"
+            }
+        ]
+    },
+    {
+        "name": "Checkbox",
+        "sources": [
+            "ng2-material/components/checkbox/checkbox.ts"
+        ],
+        "id": "checkbox",
+        "examples": [
+            {
+                "template": "src/styleguide/components/checkbox/basic_usage.html",
+                "styles": "src\\styleguide\\components\\checkbox\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\checkbox\\basic_usage.ts",
+                "component": "checkbox-basic-usage",
+                "component_src_location": "components/checkbox/basic_usage",
+                "name": "Basic Usage"
+            },
+            {
+                "template": "src/styleguide/components/checkbox/syncing.html",
+                "styles": "src\\styleguide\\components\\checkbox\\syncing.scss",
+                "source": "src\\styleguide\\components\\checkbox\\syncing.ts",
+                "component": "checkbox-syncing",
+                "component_src_location": "components/checkbox/syncing",
+                "name": "Syncing"
+            }
+        ]
+    },
+    {
+        "name": "Dialog",
+        "sources": [
+            "ng2-material/components/dialog/dialog_basic.ts",
+            "ng2-material/components/dialog/dialog_config.ts",
+            "ng2-material/components/dialog/dialog_container.ts",
+            "ng2-material/components/dialog/dialog_ref.ts",
+            "ng2-material/components/dialog/dialog.ts"
+        ],
+        "id": "dialog",
+        "examples": [
+            {
+                "template": "src/styleguide/components/dialog/basic_usage.html",
+                "styles": "src\\styleguide\\components\\dialog\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\dialog\\basic_usage.ts",
+                "component": "dialog-basic-usage",
+                "component_src_location": "components/dialog/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    },
+    {
+        "name": "Input",
+        "sources": [
+            "ng2-material/components/input/input.ts"
+        ],
+        "id": "input",
+        "examples": [
+            {
+                "template": "src/styleguide/components/input/basic_usage.html",
+                "styles": "src\\styleguide\\components\\input\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\input\\basic_usage.ts",
+                "component": "input-basic-usage",
+                "component_src_location": "components/input/basic_usage",
+                "name": "Basic Usage"
+            },
+            {
+                "template": "src/styleguide/components/input/form_builder.html",
+                "styles": "src\\styleguide\\components\\input\\form_builder.scss",
+                "source": "src\\styleguide\\components\\input\\form_builder.ts",
+                "component": "input-form-builder",
+                "component_src_location": "components/input/form_builder",
+                "name": "Form Builder"
+            }
+        ]
+    },
+    {
+        "name": "List",
+        "sources": [
+            "ng2-material/components/list/list.ts"
+        ],
+        "id": "list",
+        "examples": [
+            {
+                "template": "src/styleguide/components/list/basic_usage.html",
+                "styles": "src\\styleguide\\components\\list\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\list\\basic_usage.ts",
+                "component": "list-basic-usage",
+                "component_src_location": "components/list/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    },
+    {
+        "name": "Progress Circular",
+        "sources": [
+            "ng2-material/components/progress_circular/progress_circular.ts"
+        ],
+        "id": "progress-circular",
+        "examples": [
+            {
+                "template": "src/styleguide/components/progress_circular/basic_usage.html",
+                "styles": "src\\styleguide\\components\\progress_circular\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\progress_circular\\basic_usage.ts",
+                "component": "progress-circular-basic-usage",
+                "component_src_location": "components/progress_circular/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    },
+    {
+        "name": "Progress Linear",
+        "sources": [
+            "ng2-material/components/progress_linear/progress_linear.ts"
+        ],
+        "id": "progress-linear",
+        "examples": [
+            {
+                "template": "src/styleguide/components/progress_linear/basic_usage.html",
+                "styles": "src\\styleguide\\components\\progress_linear\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\progress_linear\\basic_usage.ts",
+                "component": "progress-linear-basic-usage",
+                "component_src_location": "components/progress_linear/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    },
+    {
+        "name": "Radio",
+        "sources": [
+            "ng2-material/components/radio/radio_button.ts",
+            "ng2-material/components/radio/radio_dispatcher.ts"
+        ],
+        "id": "radio",
+        "examples": [
+            {
+                "template": "src/styleguide/components/radio/basic_usage.html",
+                "styles": "src\\styleguide\\components\\radio\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\radio\\basic_usage.ts",
+                "component": "radio-basic-usage",
+                "component_src_location": "components/radio/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    },
+    {
+        "name": "Sidenav",
+        "sources": [
+            "ng2-material/components/sidenav/sidenav_service.ts",
+            "ng2-material/components/sidenav/sidenav.ts"
+        ],
+        "id": "sidenav",
+        "examples": [
+            {
+                "template": "src/styleguide/components/sidenav/basic_usage.html",
+                "source": "src\\styleguide\\components\\sidenav\\basic_usage.ts",
+                "component": "sidenav-basic-usage",
+                "component_src_location": "components/sidenav/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    },
+    {
+        "name": "Switch",
+        "sources": [],
+        "id": "switch",
+        "examples": [
+            {
+                "template": "src/styleguide/components/switch/basic_usage.html",
+                "source": "src\\styleguide\\components\\switch\\basic_usage.ts",
+                "component": "switch-basic-usage",
+                "component_src_location": "components/switch/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    },
+    {
+        "name": "Tabs",
+        "sources": [
+            "ng2-material/components/tabs/tabs.ts"
+        ],
+        "id": "tabs",
+        "examples": [
+            {
+                "template": "src/styleguide/components/tabs/dynamic_height.html",
+                "styles": "src\\styleguide\\components\\tabs\\dynamic_height.scss",
+                "source": "src\\styleguide\\components\\tabs\\dynamic_height.ts",
+                "component": "tabs-dynamic-height",
+                "component_src_location": "components/tabs/dynamic_height",
+                "name": "Dynamic Height"
+            },
+            {
+                "template": "src/styleguide/components/tabs/dynamic_tabs.html",
+                "styles": "src\\styleguide\\components\\tabs\\dynamic_tabs.scss",
+                "source": "src\\styleguide\\components\\tabs\\dynamic_tabs.ts",
+                "component": "tabs-dynamic-tabs",
+                "component_src_location": "components/tabs/dynamic_tabs",
+                "name": "Dynamic Tabs"
+            }
+        ]
+    },
+    {
+        "name": "Toolbar",
+        "sources": [
+            "ng2-material/components/toolbar/toolbar.ts"
+        ],
+        "id": "toolbar",
+        "examples": [
+            {
+                "template": "src/styleguide/components/toolbar/basic_usage.html",
+                "styles": "src\\styleguide\\components\\toolbar\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\toolbar\\basic_usage.ts",
+                "component": "toolbar-basic-usage",
+                "component_src_location": "components/toolbar/basic_usage",
+                "name": "Basic Usage"
+            },
+            {
+                "template": "src/styleguide/components/toolbar/scroll_shrink.html",
+                "styles": "src\\styleguide\\components\\toolbar\\scroll_shrink.scss",
+                "source": "src\\styleguide\\components\\toolbar\\scroll_shrink.ts",
+                "component": "toolbar-scroll-shrink",
+                "component_src_location": "components/toolbar/scroll_shrink",
+                "name": "Scroll Shrink"
+            }
+        ]
+    },
+    {
+        "name": "Whiteframe",
+        "sources": [],
+        "id": "whiteframe",
+        "examples": [
+            {
+                "template": "src/styleguide/components/whiteframe/basic_usage.html",
+                "styles": "src\\styleguide\\components\\whiteframe\\basic_usage.scss",
+                "source": "src\\styleguide\\components\\whiteframe\\basic_usage.ts",
+                "component": "whiteframe-basic-usage",
+                "component_src_location": "components/whiteframe/basic_usage",
+                "name": "Basic Usage"
+            }
+        ]
+    }
+]

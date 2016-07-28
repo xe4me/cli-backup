@@ -9,12 +9,6 @@ import { NumberWrapper } from '@angular/core/src/facade/lang';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
-export class KeyCodes {
-    static ESCAPE : number;
-    static SPACE : number;
-    static UP : number;
-    static DOWN : number;
-}
 @Component(
     {
         selector   : 'amp-checkbox' ,
@@ -125,7 +119,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
             $event.stopPropagation();
             return;
         }
-        this.checkboxValue = ! this.checkboxValue;
+        this.checkboxValue = !this.checkboxValue;
         this.select.emit( this.checkboxValue );
         if ( this.scrollOutUnless && this.checkboxValue !== this.scrollOutUnless ) {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
