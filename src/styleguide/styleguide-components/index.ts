@@ -1,1 +1,1 @@
-export { LeftNavigationComponent } from './left-navigation/left-navigation.component'
+export { LeftNavigationComponent } from './left-navigation/left-navigation.component';
