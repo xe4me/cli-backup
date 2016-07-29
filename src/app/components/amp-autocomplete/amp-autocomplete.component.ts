@@ -1,49 +1,55 @@
-import { Component , OnInit , EventEmitter , Pipe , PipeTransform } from '@angular/core';
+import {
+    QueryList ,
+    Component ,
+    ViewChildren ,
+    ContentChild ,
+    TemplateRef ,
+    OnInit
+} from '@angular/core';
 import { Control } from '@angular/common';
 import { Observable } from "rxjs/Rx";
 import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from "../../../../";
-import { RequestOptions , Headers , Http } from "@angular/http";
 @Component( {
-    selector   : 'amp-autocomplete' ,
+    selector   : 'amp-auto-complete' ,
+    queries    : {
+        itemTemplate : new ContentChild( TemplateRef )
+    } ,
     template   : `
-    <div [clicked-outside]="close" class="amp-autocomplete">
-        <div class='control'>
-            <focuser [focuser]="$inputFocus" focus-target="input">
-                <my-md-input
-                    iconRight='search'
-                    #input
-                    tabindex="-1"
-                    (keydown)='onKeydown($event)'     
-                    style="width: 100% !important;"
-                    [autoFocus]="isActive"
-                    [label]='"A label here"'
-                    [isActive]='isActive'
-                    [isInSummaryState]='isInSummaryState'
-                    [id]='"someId"'
-                    [parentControl]='queryControl'
-                    [isRequired]='isRequired'>
-                </my-md-input>
-            </focuser>
+    <div [clicked-outside]="close" class="amp-auto-complete">
+        <div class='amp-auto-complete-control'>
+            <my-md-input
+                focuser="input"
+                iconRight='search'
+                (keydown)='onKeydown($event)'     
+                [autoFocus]="isActive"
+                [label]='"A label here"'
+                [isActive]='isActive'
+                [isInSummaryState]='isInSummaryState'
+                [id]='"someId"'
+                [parentControl]='queryControl'
+                [isRequired]='isRequired'>
+            </my-md-input>
         </div>
-      <focuser [focuser]="$onDownKey" hasList="true" (focusOut)="onListFocusOut()" >
-        <ul tabindex="-1" class='options' [class.hidden]='(searchResult | async)?.length==0 || isOptionsHidden'  >
-            <li class='option' tabindex='-1'>
+      
+        <ul focuser='list' (focusOut)="onListFocusOut()"  tabindex="-1" class='amp-auto-complete-options' [class.amp-auto-complete-hidden]='(searchResult | async)?.length==0 || isOptionsHidden'  >
+            <li class='amp-auto-complete-option' tabindex='-1'>
                 <strong>{{ label }}</strong>
             </li>
             <li (keydown.enter)="selectOption(option)" 
                 (click)="selectOption(option)" 
                 *ngFor='let option of searchResult | async ; let i = index' 
-                class='option' 
-                [class.active]='option.id == selectedOption.id'
-                [attr.tabindex]="i+1" 
-                [attr.data-option-val]='option.id'>
-                {{ option.title }}
+                class='amp-auto-complete-option' 
+                [class.amp-auto-complete-active]='option.id == selectedOption.id'
+                [attr.tabindex]="i+1">
+                <template
+                    [ngTemplateOutlet]="itemTemplate"
+                    [ngOutletContext]="{ option: option, index: index }">
+                </template>
             </li>
         </ul>    
-       </focuser>
-        <ul *ngIf="showNoResult" 
-        class="options">
-            <li class="option" disabled >
+       
+        <ul *ngIf="showNoResult" class="amp-auto-complete-options">
+            <li class="amp-auto-complete-option" disabled >
                 <strong>No results found</strong>
             </li>
         </ul>
@@ -52,60 +58,47 @@ import { RequestOptions , Headers , Http } from "@angular/http";
     styles     : [ require( './amp-autocomplete.component.scss' ).toString() ] ,
     inputs     : [
         'id' ,
+        'queryServiceCall' , // This should return an observable to be consumed here
         'isInSummaryState' ,
         'label' ,
         'parentControl' ,
-        'apiUrl' ,
         'placeholder' ,
-        'minLengthTrigger' ,
-        'options' ,
-        'tabindex' ,
-        'isActive'
+        'lengthTrigger' ,
+        'options'
     ] ,
     directives : [ MdInputComponent , ClickedOutsideDirective , FocuserDirective ]
 } )
-export class AmpAutocompleteComponent implements OnInit {
+export class AmpAutoCompleteComponent implements OnInit {
+    @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
+    private QUERY_DEBOUNCE_TIME       = 200;
+    private NO_RESULT_DEBOUNCE_TIME   = 400;
+    private INPUT_FOCUSER             = 0;
+    private LIST_FOCUSER              = 1;
     private parentControl;
-    private apiUrl;
     private options                   = [];
-    private selectedOption : Item     = {
+    private selectedOption : Option     = {
         title : '' ,
         id    : ''
     };
-    private searchResult : Observable<Array<Item>>;
+    private searchResult : Observable<Array<Option>>;
     private _required : boolean       = false;
     private queryControl : Control;
     private _optionsHidden            = true;
-    private $onDownKey                = new EventEmitter<string>();
-    private $inputFocus               = new EventEmitter<string>();
-    private minLengthTrigger : number = 0;
+    private lengthTrigger : number = 0;
     private showNoResult              = false;
+    private queryServiceCall          = ( queryValue : string ) : Observable<any> => {
+        return new Observable<any>();
+    };
 
     ngOnInit () : any {
-        this.queryControl = this.parentControl || new Control();
+        this.parentControl = this.parentControl || new Control();
+        this.queryControl  = new Control();
         if ( this.options ) {
             this.initWithOptions();
-        } else if ( this.apiUrl ) {
+        } else if ( this.queryServiceCall ) {
             this.initWithApi()
         }
         return undefined;
-    }
-
-    public queryService ( queryValue : string ) : Observable<any> {
-        let headers = new Headers(
-            {
-                'Content-Type' : 'application/json;charset=UTF-8' ,
-            } );
-        let options = new RequestOptions( { headers : headers } );
-        return this.http
-                   .get( 'https://api-nio-ddc.digital-pilot.ampaws.com.au/ddc/secure/api/nio/occupations' , options )
-                   .map( res => {
-                       console.log( 'res' , res );
-                       return res.json().payload;
-                   } )
-    }
-
-    constructor ( private http : Http ) {
     }
 
     get isRequired () {
@@ -147,12 +140,13 @@ export class AmpAutocompleteComponent implements OnInit {
     private selectOption ( option ) {
         this.selectedOption = option;
         this.queryControl.updateValue( option.title );
+        this.parentControl.updateValue( JSON.stringify( option ) );
         this.close();
         this.focusInput();
     }
 
     private onDownKeyPressed ( _direction ) {
-        this.$onDownKey.emit( _direction );
+        this.focusers.toArray()[ this.LIST_FOCUSER ].focus( _direction );
     }
 
     private filter ( queryString : any ) : Observable<any> {
@@ -162,14 +156,14 @@ export class AmpAutocompleteComponent implements OnInit {
     }
 
     private focusInput () {
-        this.$inputFocus.emit( 'focus' );
+        this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( -1 );
     }
 
     private initWithOptions () {
         this.searchResult =
             this.queryControl
                 .valueChanges
-                .debounceTime( 200 )
+                .debounceTime( this.QUERY_DEBOUNCE_TIME )
                 .do( ( queryString )=> {
                     if ( queryString !== this.selectedOption.title ) {
                         this.open();
@@ -179,12 +173,12 @@ export class AmpAutocompleteComponent implements OnInit {
                 } )
                 .distinctUntilChanged()
                 .switchMap( ( queryString )=> {
-                    return queryString && queryString.length > this.minLengthTrigger ? this.filter( queryString ) : Observable.of( [] )
+                    return queryString && queryString.length > this.lengthTrigger ? this.filter( queryString ) : Observable.of( [] )
                 } );
         this.searchResult
-            .debounceTime( 400 )
+            .debounceTime( this.NO_RESULT_DEBOUNCE_TIME )
             .subscribe( ( result )=> {
-                this.showNoResult = result.length === 0 && this.queryControl.value && this.queryControl.value.length > this.minLengthTrigger;
+                this.showNoResult = result.length === 0 && this.queryControl.value && this.queryControl.value.length > this.lengthTrigger;
             } )
     }
 
@@ -192,12 +186,12 @@ export class AmpAutocompleteComponent implements OnInit {
         this.searchResult =
             this.queryControl
                 .valueChanges
-                .debounceTime( 300 )
+                .debounceTime( this.QUERY_DEBOUNCE_TIME )
                 .distinctUntilChanged()
-                .switchMap( queryString => this.queryService( queryString ) );
+                .switchMap( queryString => this.queryServiceCall( queryString ) );
     }
 }
-interface Item {
+interface Option {
     title;
     id;
 }

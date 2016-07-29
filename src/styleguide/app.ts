@@ -1,5 +1,5 @@
 import { Component , ViewEncapsulation } from '@angular/core';
-import { AmpAutocompleteComponent } from '../app/components/amp-autocomplete/amp-autocomplete.component';
+import { AmpAutoCompleteComponent } from '../app/components/amp-autocomplete/amp-autocomplete.component';
 import { LeftNavigationComponent } from './styleguide-components';
 @Component( {
     selector      : 'styleguide-app' ,
@@ -10,18 +10,25 @@ import { LeftNavigationComponent } from './styleguide-components';
                 <left-navigation [meta]="meta"></left-navigation>
             </div><!--
          --><div class="grid__item 5/6 pl styleguide-app--components">
-                <amp-autocomplete 
+                <amp-auto-complete 
                     class="1/4"
                     [options]="options"
+                    [isActive]="true"
+                    [isInSummaryState]="isInSum"
                     [label]='"Occupations"'>
-                </amp-autocomplete>
+                    <template let-option="option">
+                        {{ option.title }}
+                    </template>
+                </amp-auto-complete>
+                <button (click)="isInSum = !isInSum ">Change</button>
             </div>     
         </div>
     ` ,
-    directives    : [ AmpAutocompleteComponent , LeftNavigationComponent ] ,
+    directives    : [ AmpAutoCompleteComponent , LeftNavigationComponent ] ,
     encapsulation : ViewEncapsulation.None
 } )
 export class StyleGuideApp {
+    private isInSum  = false;
     private options = [
         {
             'id'       : 1 ,

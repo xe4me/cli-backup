@@ -42,7 +42,7 @@ import {
 
                   <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
             </md-input>
-            <span *ngIf="iconRight" class="icon icon--{{ iconRight }} icon-right"></span>
+            <span *ngIf="iconRight && !isInSummaryState" class="icon icon--{{ iconRight }} icon-right"></span>
             <span
                 class='summary-text'
                 [innerHTML]='myMdInput.value'>

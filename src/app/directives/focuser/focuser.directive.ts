@@ -8,10 +8,8 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
     } ,
     outputs  : [ 'focusOut' ]
 } )
-export class FocuserDirective implements AfterViewInit {
-    @Input( 'focuser' ) parentEvent : EventEmitter<string>;
-    @Input( 'hasList' ) hasList : boolean;
-    @Input( 'focus-target' ) target : string;
+export class FocuserDirective {
+    @Input( 'focuser' ) focuser : string;
     private lastTabindex   = -1;
     private focusOut       = new EventEmitter<string>();
     private listElements;
@@ -19,40 +17,37 @@ export class FocuserDirective implements AfterViewInit {
     private domAdapter : BrowserDomAdapter;
     private inputElem;
 
-    ngAfterViewInit () : any {
-        this.parentEvent.subscribe( ( keyCode ) => {
-            if ( this.target ) {
-                if ( !this.inputElem ) {
-                    this.inputElem = this.domAdapter.querySelector( this._el.nativeElement , this.target );
-                }
-                if ( this.inputElem ) {
-                    this._renderer.invokeElementMethod( this.inputElem , 'focus' , [] );
-                }
-            } else {
-                this._renderer.invokeElementMethod( this._el.nativeElement , 'focus' , [] );
+    focus ( keyCode : number ) {
+        if ( this.focuser ) {
+            if ( !this.inputElem ) {
+                this.inputElem = this.domAdapter.querySelector( this._el.nativeElement , this.focuser );
             }
-            if ( this.hasList ) {
-                this.listElements = this.domAdapter.querySelectorAll( this._el.nativeElement , 'li' );
-                if ( this.listElements && this.listElements.length > 0 ) {
-                    this.liScrollHeight = this.domAdapter.getProperty( this.listElements[ 0 ] , 'scrollHeight' );
-                    let activeElem      = this.domAdapter.querySelector( this._el.nativeElement , 'li.active' );
-                    switch ( keyCode ) {
-                        case KeyCodes.DOWN:
-                            this.lastTabindex = this.getTabndexFromActiveElement( activeElem ) || -1;
-                            this.next();
-                            break;
-                        case KeyCodes.UP:
-                            this.lastTabindex = this.getTabndexFromActiveElement( activeElem ) || (this.listElements ? this.listElements.length : -1);
-                            this.prev();
-                            break;
-                        default:
-                            this.lastTabindex = -1;
-                            this.next();
-                    }
+            if ( this.inputElem ) {
+                this._renderer.invokeElementMethod( this.inputElem , 'focus' , [] );
+            }
+        } else {
+            this._renderer.invokeElementMethod( this._el.nativeElement , 'focus' , [] );
+        }
+        if ( this.focuser === 'list' ) {
+            this.listElements = this.domAdapter.querySelectorAll( this._el.nativeElement , 'li' );
+            if ( this.listElements && this.listElements.length > 0 ) {
+                this.liScrollHeight = this.domAdapter.getProperty( this.listElements[ 0 ] , 'scrollHeight' );
+                let activeElem      = this.domAdapter.querySelector( this._el.nativeElement , 'li.active' );
+                switch ( keyCode ) {
+                    case KeyCodes.DOWN:
+                        this.lastTabindex = this.getTabndexFromActiveElement( activeElem ) || -1;
+                        this.next();
+                        break;
+                    case KeyCodes.UP:
+                        this.lastTabindex = this.getTabndexFromActiveElement( activeElem ) || (this.listElements ? this.listElements.length : -1);
+                        this.prev();
+                        break;
+                    default:
+                        this.lastTabindex = -1;
+                        this.next();
                 }
             }
-        } );
-        return undefined;
+        }
     }
 
     constructor ( private _el : ElementRef , private _renderer : Renderer ) {
@@ -60,7 +55,7 @@ export class FocuserDirective implements AfterViewInit {
     }
 
     private onKeydown ( $event ) {
-        if ( !this.hasList ) {
+        if ( this.focuser !== 'list' ) {
             return;
         }
         let keyCode = $event.keyCode;
@@ -78,7 +73,7 @@ export class FocuserDirective implements AfterViewInit {
     private prev () {
         this.lastTabindex--;
         if ( this.lastTabindex === -1 ) {
-            this.onFocusOut(KeyCodes.UP);
+            this.onFocusOut( KeyCodes.UP );
             return;
         }
         this.setScrollTopAndFocus();

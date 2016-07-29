@@ -32,26 +32,7 @@ $amp-dropdown-option-padding-left: 20px;
   position: relative;
 }
 
-.icon {
-  color: #004983;
-  font-size: 18px;
-  line-height: $amp-dropdown-select-height;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 3;
-
-  .ng-invalid.ng-touched:not(:focus) + div > & {
-    color: $amp-colour-alert-danger !important;
-  }
-
-  .amp-dropdown--summary-state & {
-    display: none;
-  }
-}
-
-.options {
+.amp-auto-complete-options {
   background: #fff;
   border: $amp-dropdown-options-border-width solid $amp-colour-sky-blue;
   font-size: 15px;
@@ -84,7 +65,7 @@ $amp-dropdown-option-padding-left: 20px;
 
   max-height: 400px;
 
-  &.hidden {
+  &.amp-auto-complete-hidden {
     border-top: 0;
     border-bottom: 0;
     height: 0;
@@ -93,14 +74,14 @@ $amp-dropdown-option-padding-left: 20px;
     position: relative;
     visibility: hidden;
 
-    .option {
+    .amp-auto-complete-option {
       padding-right: $amp-dropdown-option-padding-right-hidden;
       white-space: nowrap;
     }
   }
 }
 
-.option {
+.amp-auto-complete-option {
   &:not([disabled]) {
     cursor: pointer;
     @include hover-focus {
@@ -108,7 +89,7 @@ $amp-dropdown-option-padding-left: 20px;
       outline: none;
     }
   }
-  &.active {
+  &.amp-auto-complete-active {
     background: $amp-colour-secondary-lighter;
   }
   & + & {
