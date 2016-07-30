@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { Control } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
+import { isPresent } from '../../util/functions.utils'
 import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
 @Component( {
     selector   : 'amp-auto-complete' ,
@@ -20,6 +21,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
             <my-md-input
                 focuser="input"
                 iconRight='search'
+                (click)='open()'     
                 (keydown)='onKeydown($event)'     
                 [autoFocus]="isActive"
                 [label]='"A label here"'
@@ -30,8 +32,12 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 [isRequired]='isRequired'>
             </my-md-input>
         </div>
-      
-        <ul focuser='list' (focusOut)="onListFocusOut()"  tabindex="-1" class='amp-auto-complete-options' [class.amp-auto-complete-hidden]='(searchResult | async)?.length==0 || isOptionsHidden'  >
+        <ul
+            focuser='list'
+            (focusOut)="onListFocusOut()"
+            tabindex="-1"
+            class='amp-auto-complete-options'
+            [class.amp-auto-complete-hidden]='(searchResult | async)?.length==0 || isOptionsHidden'  >
             <li class='amp-auto-complete-option' tabindex='-1'>
                 <strong>{{ label }}</strong>
             </li>
@@ -47,7 +53,6 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 </template>
             </li>
         </ul>    
-       
         <ul *ngIf="showNoResult" class="amp-auto-complete-options">
             <li class="amp-auto-complete-option" disabled >
                 <strong>No results found</strong>
@@ -70,22 +75,23 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
 } )
 export class AmpAutoCompleteComponent implements OnInit {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
-    private QUERY_DEBOUNCE_TIME       = 200;
-    private NO_RESULT_DEBOUNCE_TIME   = 400;
-    private INPUT_FOCUSER             = 0;
-    private LIST_FOCUSER              = 1;
+    private QUERY_DEBOUNCE_TIME     = 0;
+    private NO_RESULT_DEBOUNCE_TIME = 0;
+    private INPUT_FOCUSER           = 0;
+    private LIST_FOCUSER            = 1;
+    private canViewAll              = true;
     private parentControl;
-    private options                   = [];
-    private selectedOption : Option     = {
+    private options                 = [];
+    private selectedOption : Option = {
         title : '' ,
         id    : ''
     };
     private searchResult : Observable<Array<Option>>;
-    private _required : boolean       = false;
+    private _required : boolean     = false;
     private queryControl : Control;
-    private _optionsHidden            = true;
-    private lengthTrigger : number = 0;
-    private showNoResult              = false;
+    private _optionsHidden          = true;
+    private lengthTrigger : number  = -1;
+    private showNoResult            = false;
 
     ngOnInit () : any {
         this.parentControl = this.parentControl || new Control();
@@ -106,16 +112,19 @@ export class AmpAutoCompleteComponent implements OnInit {
         this._required = value;
     }
 
-    private queryServiceCall          = ( queryValue : string ) : Observable<any> => {
+    private queryServiceCall = ( queryValue : string ) : Observable<any> => {
         return new Observable<any>();
     };
 
     private get isOptionsHidden () {
-        return this._optionsHidden || !this.queryControl.value;
+        return this._optionsHidden;
     }
 
     private close = () : void => {
-        this._optionsHidden = true;
+        setTimeout( ()=> {
+            this._optionsHidden = true;
+            this.showNoResult   = false;
+        } , 0 );
     };
 
     private open () {
@@ -152,7 +161,10 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private filter ( queryString : any ) : Observable<any> {
         return Observable.create( observer => {
-            observer.next( this.options.filter( item => item.title.indexOf( queryString ) !== -1 ) );
+            isPresent( queryString ) && queryString.length > 0 ?
+                observer.next(
+                    this.options.filter( item => item.title.toLowerCase().indexOf( queryString.toLowerCase() ) !== -1 )
+                ) : observer.next( this.options );
         } );
     }
 
@@ -164,17 +176,20 @@ export class AmpAutoCompleteComponent implements OnInit {
         this.searchResult =
             this.queryControl
                 .valueChanges
-                .debounceTime( this.QUERY_DEBOUNCE_TIME )
+                .distinctUntilChanged()
                 .do( ( queryString ) => {
-                    if ( queryString !== this.selectedOption.title ) {
+                    if ( isPresent( queryString ) && queryString !== this.selectedOption.title ) {
                         this.open();
                         this.showNoResult = false;
                     }
                     return queryString;
                 } )
-                .distinctUntilChanged()
                 .switchMap( ( queryString ) => {
-                    return queryString && queryString.length > this.lengthTrigger ? this.filter( queryString ) : Observable.of( [] );
+                    if ( this.canViewAll ) {
+                        return this.filter( queryString );
+                    } else {
+                        return queryString && queryString.length > this.lengthTrigger ? this.filter( queryString ) : Observable.of( [] );
+                    }
                 } );
         this.searchResult
             .debounceTime( this.NO_RESULT_DEBOUNCE_TIME )
@@ -188,7 +203,7 @@ export class AmpAutoCompleteComponent implements OnInit {
             this.queryControl
                 .valueChanges
                 .debounceTime( this.QUERY_DEBOUNCE_TIME )
-                .distinctUntilChanged()
+
                 .switchMap( queryString => this.queryServiceCall( queryString ) );
     }
 }

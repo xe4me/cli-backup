@@ -20,7 +20,7 @@ import { LeftNavigationComponent } from './styleguide-components';
                         {{ option.title }}
                     </template>
                 </amp-auto-complete>
-                <button (click)="isInSum = !isInSum ">Change</button>
+                <!--<button (click)="isInSum = !isInSum ">Change</button>-->
             </div>     
         </div>
     ` ,
