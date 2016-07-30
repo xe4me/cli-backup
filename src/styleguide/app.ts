@@ -1,35 +1,72 @@
-import { Component , ViewEncapsulation } from '@angular/core';
 import { AmpAutoCompleteComponent } from '../app/components/amp-autocomplete/amp-autocomplete.component';
 import { LeftNavigationComponent } from './styleguide-components';
+import {
+    ViewEncapsulation ,
+    Component ,
+    enableProdMode ,
+    bind ,
+    Input ,
+    OnDestroy ,
+    ApplicationRef
+} from '@angular/core';
+import {
+    ROUTER_PROVIDERS ,
+    ROUTER_DIRECTIVES ,
+    RouteConfig ,
+    Router
+} from '@angular/router-deprecated';
+import { Http , Response , HTTP_PROVIDERS } from '@angular/http';
+import { IndexPage } from './routes/index';
+import { ComponentPage } from './routes/component';
+import { ComponentsService , IComponentMeta } from './services/components';
+import { NavigationService } from './services/navigation';
+import { VersionService } from './services/version';
+import { Media } from 'ng2-material/core/util/media';
+import { ScrollService , FormModelService , AmpHttpService , ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+import { Renderer } from '@angular/core';
+export interface IExampleData {
+    template : string;
+    source : string;
+    styles : string;
+    component : string;
+    component_src_location : string;
+    name : string;
+    galen? : string;
+    jasmine? : string;
+}
+@RouteConfig( [
+    { path : '/' , name : 'Index' , component : IndexPage , useAsDefault : true } ,
+    { path : '/components/:id' , name : 'Component' , component : ComponentPage }
+] )
 @Component( {
     selector      : 'styleguide-app' ,
     styles        : [ require( './app.scss' ).toString() ] ,
     template      : `
         <div class="styleguide-app">
             <div class="grid__item 1/6 styleguide-app--menu">
-                <left-navigation [meta]="meta"></left-navigation>
+                <left-navigation [components]="components"></left-navigation>
             </div><!--
          --><div class="grid__item 5/6 pl styleguide-app--components">
-                <amp-auto-complete 
-                    class="1/4"
-                    [options]="options"
-                    [isActive]="true"
-                    [isInSummaryState]="isInSum"
-                    [label]='"Occupations"'>
-                    <template let-option="option">
-                        {{ option.title }}
-                    </template>
-                </amp-auto-complete>
-                <!--<button (click)="isInSum = !isInSum ">Change</button>-->
+                <router-outlet></router-outlet>
+                <!--<amp-auto-complete -->
+                    <!--class="1/4"-->
+                    <!--[options]="options"-->
+                    <!--[isActive]="true"-->
+                    <!--[isInSummaryState]="isInSum"-->
+                    <!--[label]='"Occupations"'>-->
+                    <!--<template let-option="option">-->
+                        <!--{{ option.title }}-->
+                    <!--</template>-->
+                <!--</amp-auto-complete>-->
             </div>     
         </div>
     ` ,
-    directives    : [ AmpAutoCompleteComponent , LeftNavigationComponent ] ,
+    directives    : [ AmpAutoCompleteComponent , LeftNavigationComponent , ROUTER_DIRECTIVES ] ,
+    providers     : [ NavigationService,ComponentsService ] ,
     encapsulation : ViewEncapsulation.None
 } )
 export class StyleGuideApp {
-    private isInSum  = false;
-    private options = [
+    private options                       = [
         {
             'id'       : 1 ,
             'title'    : 'Professional (medical)' ,
@@ -6439,5 +6476,17 @@ export class StyleGuideApp {
             'TPDClass' : 'A'
         }
     ];
-    private meta = require('./meta.json');
+    public site : string                  = 'AMP DDC';
+            version : string;
+            components : IComponentMeta[] = [];
+
+    constructor ( public navigation : NavigationService ,
+                  public router : Router ,
+                  private _components : ComponentsService ) {
+        this._components.getComponents()
+            .then( ( comps ) => {
+                console.log('comps',comps);
+                this.components = comps;
+            } );
+    }
 }
