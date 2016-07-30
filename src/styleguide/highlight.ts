@@ -4,11 +4,14 @@ declare var hljs : any;
     selector      : 'highlight' ,
     template      : `
             <pre>
-                <code style="float: left;" class='highlight' [innerHtml]='rendered || text'>
+                <code *ngIf="rendered || text"  class='highlight' [innerHtml]='rendered || text'>
+                    <ng-content></ng-content>
+                </code>
+                <code *ngIf="!rendered && !text"  class='highlight default'>
                     <ng-content></ng-content>
                 </code>
             </pre>` ,
-    styleUrls     : [ require( './highlight.scss' ).toString() ] ,
+    styles     : [ require( './highlight.scss' ).toString() ] ,
     encapsulation : ViewEncapsulation.None
 } )
 export class Highlight implements AfterContentInit {

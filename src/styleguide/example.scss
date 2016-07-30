@@ -3,7 +3,9 @@
 @import "../../node_modules/ng2-material/core/style/theme-functions";
 @import "../../node_modules/ng2-material/core/style/default-theme";
 
-example {
+:host {
+  display: block;
+  background-color: whitesmoke;
   md-example-view {
     display: block;
     background-color: white;

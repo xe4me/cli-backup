@@ -9,7 +9,7 @@ import { ExampleComponent } from '../example';
     selector   : 'component-page' ,
     template   : `
     <h1 class='examples-title'>Examples</h1>
-    <p class='examples-intro' *ngIf='value.readme' [innerHtml]='value.readme'></p>
+    <p class='examples-intro example-readme' *ngIf='value.readme' [innerHtml]='value.readme'></p>
     <example *ngFor='let example of value.examples' [model]='example'></example>
 ` ,
     directives : [ ExampleComponent , ROUTER_DIRECTIVES ]

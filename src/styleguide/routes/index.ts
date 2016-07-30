@@ -3,9 +3,10 @@ import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ComponentsService , IComponentMeta } from '../services/components';
 import { NavigationService } from '../services/navigation';
 import { Http } from '@angular/http';
+import { Highlight } from '../highlight';
 @Component( {
     templateUrl : 'src/styleguide/routes/index.html' ,
-    directives  : [ ROUTER_DIRECTIVES ]
+    directives  : [  Highlight ,ROUTER_DIRECTIVES ]
 } )
 export class IndexPage implements OnInit {
     public components : IComponentMeta[] = [];

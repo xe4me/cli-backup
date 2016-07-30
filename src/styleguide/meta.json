@@ -20,7 +20,7 @@
         "readme": "<p>Custom Block for BOLR Intro.</p>\n"
     },
     {
-        "name": "Amp Linear ProgressBar Component",
+        "name": "Amp Linear ProgressBar",
         "sources": [
             "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
         ],
@@ -100,7 +100,7 @@
         "readme": "<p>Custom Block for Contact Details.</p>\n"
     },
     {
-        "name": "Amp Button Component",
+        "name": "Amp Button",
         "sources": [
             "src/app/components/amp-button/amp-button.component.ts"
         ],
@@ -120,7 +120,7 @@
         "readme": "<p>Custom Block for AmpButtonComponent.</p>\n"
     },
     {
-        "name": "Amp Group Button Component",
+        "name": "Amp Group Button",
         "sources": [
             "src/app/components/amp-group-button/amp-group-button.component.ts"
         ],
@@ -140,7 +140,7 @@
         "readme": "<p>Custom Block for AmpGroupButtonComponent.</p>\n"
     },
     {
-        "name": "Amp Checkbox Component",
+        "name": "Amp Checkbox",
         "sources": [
             "src/app/components/amp-checkbox/amp-checkbox.component.ts"
         ],
@@ -160,7 +160,7 @@
         "readme": "<p>Custom Block for AmpCheckboxComponent.</p>\n"
     },
     {
-        "name": "Amp Radio Group Button Component",
+        "name": "Amp Radio Group Button",
         "sources": [
             "src/app/components/amp-radio-group-button/amp-radio-group-button.component.ts"
         ],
@@ -200,7 +200,7 @@
         "readme": "<p>Static content block. Can you upgraded to pull content from AEM.</p>\n"
     },
     {
-        "name": "AMPGoogleAddress",
+        "name": "Amp Google Address",
         "sources": [
             "src/app/components/amp-google-address/amp-google-address.component.ts"
         ],

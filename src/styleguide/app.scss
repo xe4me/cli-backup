@@ -42,10 +42,12 @@ $app-menu-width: 300px;
 
 $toolbar-hero-height: 170px;
 
-demos-app {
+styleguide-app {
   height: 100%;
   min-height: 100%;
-
+  .md-primary{
+    background-color:$amp-colour-secondary-darkest !important;
+  }
   .app-menu {
     border-right: 1px solid md-color($md-foreground, divider);
     md-list-item {
@@ -173,11 +175,12 @@ demos-app {
   }
 
   .examples {
-    padding: 80px $baseline-grid;
+
+    padding: 80px 30px;
     min-height: 640px;
 
     .examples-title {
-      color: md-color($md-primary);
+      color: $amp-colour-secondary-darkest;
       font-size: rem(3.4);
       font-weight: 400;
       line-height: rem(4);
@@ -191,11 +194,11 @@ demos-app {
       padding: 0 0 40px 0;
       a {
         text-decoration: none;
-        color: md-color($md-primary);
+        color: $amp-colour-secondary;
       }
     }
     .heading-list-toc {
-      border-left: 5px solid md-color($md-primary);
+      border-left: 5px solid $amp-colour-primary;
       padding-left: 20px;
       h1 {
         margin: 0;
@@ -203,7 +206,7 @@ demos-app {
         line-height: rem(1.6);
         padding-bottom: 12px;
         font-weight: 400;
-        color: #757575
+        color: $amp-colour-secondary-darkest;
       }
 
       ul {
@@ -217,7 +220,7 @@ demos-app {
         line-height: 40px;
         a {
           text-decoration: none;
-          color: md-color($md-primary);
+          color: $amp-colour-secondary;
         }
         &:last-child {
           line-height: 20px;

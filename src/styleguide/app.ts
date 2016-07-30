@@ -55,8 +55,8 @@ export interface IExampleData {
             <div class="grid__item 1/6 styleguide-app--menu">
                 <left-navigation [components]="components"></left-navigation>
             </div><!--
-         --><div class="grid__item 5/6 pl styleguide-app--components">
-                <router-outlet></router-outlet>
+         --><div class="examples grid__item 5/6 pl styleguide-app--components">
+                <router-outlet ></router-outlet>
                 <!--<amp-auto-complete -->
                     <!--class="1/4"-->
                     <!--[options]="options"-->
