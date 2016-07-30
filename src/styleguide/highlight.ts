@@ -4,7 +4,7 @@ declare var hljs : any;
     selector      : 'highlight' ,
     template      : `
             <pre>
-                <code class='highlight' [innerHtml]='rendered || text'>
+                <code style="float: left;" class='highlight' [innerHtml]='rendered || text'>
                     <ng-content></ng-content>
                 </code>
             </pre>` ,

@@ -2,31 +2,32 @@
     <div style="z-index:1">
         <section>
             <md-toolbar color="primary">
-                <div>
+                <md-toolbar-row>
                     <h3>{{ model?.name }}</h3>
                     <span style="flex: 1 1 auto;"></span>
-                    <button md-icon-button
+                    <button color="primary" md-raised-button md-icon-button
                             aria-label="View Source"
                             (click)="toggleSource()">
                         <!--<md-tooltip md-autohide>View Source</md-tooltip>-->
-                        <md-icon class="md-24">code</md-icon>
+                        <i class="material-icons">code</i>
                     </button>
-                </div>
+                </md-toolbar-row>
             </md-toolbar>
 
             <!-- Source views -->
             <md-tab-group *ngIf="!showExample">
                 <md-tab *ngFor="let file of orderedFiles">
                     <template md-tab-label>{{ file?.label }}</template>
-                    <template md-tab-content>
-                        <md-content>
-                            <highlight [text]="file.data" [type]="file.type"></highlight>
-                        </md-content>
-                    </template>
+                    <div>
+                        <template md-tab-content>
+                            <md-content>
+                                <highlight [text]="file.data" [type]="file.type"></highlight>
+                            </md-content>
+                        </template>
+                    </div>
+
                 </md-tab>
             </md-tab-group>
-
-
             <!-- Live Demos -->
             <div *ngIf="showExample" example></div>
         </section>
