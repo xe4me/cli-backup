@@ -25,7 +25,7 @@ export class ComponentsService {
 
     constructor ( http : Http ) {
         this._promise = new Promise<void>( ( resolve ) => {
-            http.get( 'src/assets/meta.json' )
+            http.get( 'src/styleguide/meta.json' )
                 .subscribe( ( res : Response ) => {
                     this.components = res.json();
                     resolve();

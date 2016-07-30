@@ -1,29 +1,27 @@
 import { AmpAutoCompleteComponent } from '../app/components/amp-autocomplete/amp-autocomplete.component';
 import { LeftNavigationComponent } from './styleguide-components';
+import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import {
     ViewEncapsulation ,
-    Component ,
-    enableProdMode ,
-    bind ,
-    Input ,
-    OnDestroy ,
-    ApplicationRef
+    Component
 } from '@angular/core';
 import {
-    ROUTER_PROVIDERS ,
+    FormModelService ,
+    ScrollService ,
+    ProgressObserverService ,
+    AmpHttpService ,
+    DynamicComponentLoaderFix
+} from 'amp-ddc-ui-core/ui-core';
+import {
     ROUTER_DIRECTIVES ,
     RouteConfig ,
     Router
 } from '@angular/router-deprecated';
-import { Http , Response , HTTP_PROVIDERS } from '@angular/http';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
 import { ComponentsService , IComponentMeta } from './services/components';
+import { MdIconRegistry } from '@angular2-material/icon/icon-registry';
 import { NavigationService } from './services/navigation';
-import { VersionService } from './services/version';
-import { Media } from 'ng2-material/core/util/media';
-import { ScrollService , FormModelService , AmpHttpService , ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
-import { Renderer } from '@angular/core';
 export interface IExampleData {
     template : string;
     source : string;
@@ -41,6 +39,17 @@ export interface IExampleData {
 @Component( {
     selector      : 'styleguide-app' ,
     styles        : [ require( './app.scss' ).toString() ] ,
+    providers     : [
+        FormModelService ,
+        ScrollService ,
+        ProgressObserverService ,
+        AmpHttpService ,
+        NavigationService ,
+        ComponentsService,
+        BrowserDomAdapter ,
+        DynamicComponentLoaderFix,
+        MdIconRegistry
+    ] ,
     template      : `
         <div class="styleguide-app">
             <div class="grid__item 1/6 styleguide-app--menu">
@@ -62,7 +71,6 @@ export interface IExampleData {
         </div>
     ` ,
     directives    : [ AmpAutoCompleteComponent , LeftNavigationComponent , ROUTER_DIRECTIVES ] ,
-    providers     : [ NavigationService,ComponentsService ] ,
     encapsulation : ViewEncapsulation.None
 } )
 export class StyleGuideApp {
@@ -6485,7 +6493,7 @@ export class StyleGuideApp {
                   private _components : ComponentsService ) {
         this._components.getComponents()
             .then( ( comps ) => {
-                console.log('comps',comps);
+                console.log( 'comps' , comps );
                 this.components = comps;
             } );
     }

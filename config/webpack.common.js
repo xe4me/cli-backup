@@ -69,7 +69,7 @@ module.exports = {
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
      */
-    extensions: ['', '.ts', '.js'],
+    extensions: ['', '.ts', '.js','.spec.ts'],
 
     // Make sure root is src
     root: helpers.root('src'),
@@ -150,6 +150,11 @@ module.exports = {
        */
       {
         test: /\.ts$/,
+        loader: 'awesome-typescript-loader',
+        exclude: [/\.(spec|e2e)\.ts$/]
+      },
+      {
+        test: /\.spec.ts$/,
         loader: 'awesome-typescript-loader',
         exclude: [/\.(spec|e2e)\.ts$/]
       },

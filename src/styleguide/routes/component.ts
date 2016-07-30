@@ -4,15 +4,15 @@ import { OnInit } from '@angular/core';
 import { ComponentsService , IComponentMeta } from '../services/components';
 import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { NavigationService } from '../services/navigation';
+import { ExampleComponent } from '../example';
 @Component( {
     selector   : 'component-page' ,
     template   : `
     <h1 class='examples-title'>Examples</h1>
-    {{ value | json }}
     <p class='examples-intro' *ngIf='value.readme' [innerHtml]='value.readme'></p>
-
-    <example *ngFor='#demo of value.examples' [model]='demo'></example>` ,
-    directives : [ ROUTER_DIRECTIVES ]
+    <example *ngFor='let example of value.examples' [model]='example'></example>
+` ,
+    directives : [ ExampleComponent , ROUTER_DIRECTIVES ]
 } )
 export class ComponentPage implements OnInit {
     public id : string;

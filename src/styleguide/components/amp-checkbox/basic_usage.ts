@@ -1,13 +1,19 @@
-import { View , Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
+import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
+import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { ScrollService } from 'amp-ddc-ui-core/ui-core'
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
-@Component( { selector : 'amp-checkbox-basic-usage' } )
-@View( {
+@Component( {
     templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,
+    providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ MATERIAL_DIRECTIVES , FORM_DIRECTIVES , AmpCheckboxComponent , CORE_DIRECTIVES ]
+    directives  : [
+        FORM_DIRECTIVES ,
+        AmpCheckboxComponent ,
+        CORE_DIRECTIVES
+    ] ,
+    selector    : 'amp-checkbox-basic-usage'
 } )
+
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
     control : Control   = new Control();
     isInSummaryState    = false;

@@ -1,11 +1,12 @@
-import { View , Component , ChangeDetectorRef } from '@angular/core';
+import { Component , ChangeDetectorRef } from '@angular/core';
 import { StickyProgressHeaderBlockComponent } from '../../../../app/blocks/bolr/notification-form/sticky-progress-header-block/sticky-progress-header-block.component';
-@Component( { selector : 'sticky-progress-header-block-basic-usage' } )
-@View( {
+@Component( {
+    selector    : 'sticky-progress-header-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/bolr/sticky-progress-header/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
     directives  : [ StickyProgressHeaderBlockComponent ]
 } )
+
 export default class StickyProgressHeaderBlockBasicUsage {//implements AfterViewInit {
     public determinateValue : number  = 30;
     public determinateValue2 : number = 30;
