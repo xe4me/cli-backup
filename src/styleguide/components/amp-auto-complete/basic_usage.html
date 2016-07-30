@@ -1,0 +1,33 @@
+<form #formModel='ngForm' class='nl-form'>
+    <div style='padding: 50px 100px; text-align:left'>
+        <amp-auto-complete
+                class="1/4"
+                [options]="options"
+                [parentControl]="control"
+                [required]="true"
+                [isActive]="true"
+                [isInSummaryState]="isInSummaryState"
+                [label]='"Occupations"'>
+            <template let-option="option">
+                {{ option.title }}
+            </template>
+        </amp-auto-complete>
+
+
+        <br>
+        <div style='; text-align:left; background-color: lightblue'>
+            value :
+            <highlight color-default>
+                {{ control.value }}
+            </highlight>
+        </div>
+
+        <div style='; text-align:left ; background-color: lightgrey'>
+            Control is valid : {{ control.valid }}
+        </div>
+
+        <button class="btn btn-ok" (click)='isInSummaryState=!isInSummaryState'>
+            Toggle Summary {{ isInSummaryState }}
+        </button>
+    </div>
+</form>

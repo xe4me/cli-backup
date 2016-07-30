@@ -102,7 +102,7 @@ export class ExampleComponent {
             this.addFile( model.template , 'html' , 'html' );
         }
         if ( model.styles ) {
-            this.addFile( model.styles , 'scss' , 'scss' );
+            this.addFile( model.styles , 'stylus' , 'scss' );
         }
         if ( model.source ) {
             this.addFile( model.source , 'typescript' , 'typescript' );

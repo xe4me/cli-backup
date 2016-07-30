@@ -120,6 +120,26 @@
         "readme": "<p>Custom Block for AmpButtonComponent.</p>\n"
     },
     {
+        "name": "Amp Auto Complete",
+        "sources": [
+            "src/app/components/amp-auto-complete/amp-auto-complete.component.ts"
+        ],
+        "id": "AmpAutoCompleteComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-auto-complete/basic_usage.html",
+                "styles": "src/styleguide/components/amp-auto-complete/basic_usage.scss",
+                "source": "src/styleguide/components/amp-auto-complete/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-auto-complete/amp-auto-complete.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-auto-complete/amp-auto-complete.component.spec.ts",
+                "component": "amp-auto-complete-basic-usage",
+                "component_src_location": "components/amp-auto-complete/basic_usage",
+                "name": "Amp Auto Comnplete Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpAutoCompleteComponent.</p>\n"
+    },
+    {
         "name": "Amp Group Button",
         "sources": [
             "src/app/components/amp-group-button/amp-group-button.component.ts"
