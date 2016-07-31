@@ -7,6 +7,14 @@ import { NavigationService } from '../services/navigation';
 import { ExampleComponent } from '../example';
 @Component( {
     selector   : 'component-page' ,
+    styles     : [
+        `
+        :host{
+            display: block;
+            padding: 40px 90px;
+        }
+    `
+    ] ,
     template   : `
     <h1 class='examples-title'>Examples</h1>
     <p class='examples-intro example-readme' *ngIf='value.readme' [innerHtml]='value.readme'></p>

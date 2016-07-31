@@ -2,7 +2,7 @@
 highlight {
   display: block;
   overflow-x: auto;
-  padding: 0;
+  padding: 0 !important;
   background: #0C2238;
   color: white;
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
@@ -150,7 +150,7 @@ pre {
 }
 
 pre > code.highlight {
-  padding: 16px;
+
   font-weight: 400;
   -webkit-user-select: initial;
   -moz-user-select: initial;
@@ -169,7 +169,7 @@ pre, code {
 pre > code.highlight {
   background-color: transparent;
   font-weight: 400;
-  padding: 16px;
+
 }
 
 code {

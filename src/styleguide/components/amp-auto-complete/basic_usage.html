@@ -4,6 +4,7 @@
                 class="1/4"
                 [options]="options"
                 [parentControl]="control"
+                (change)="onChange($event)"
                 [required]="true"
                 [isActive]="true"
                 [isInSummaryState]="isInSummaryState"
@@ -15,16 +16,21 @@
 
 
         <br>
-        <div style='; text-align:left; background-color: lightblue'>
+        <p>
             value :
             <highlight color-default>
                 {{ control.value }}
             </highlight>
-        </div>
-
-        <div style='; text-align:left ; background-color: lightgrey'>
+        </p>
+        <p>
+            on change selected option
+            <highlight color-default>
+                {{ selectedOption | json }}
+            </highlight>
+        </p>
+        <p>
             Control is valid : {{ control.valid }}
-        </div>
+        </p>
 
         <button class="btn btn-ok" (click)='isInSummaryState=!isInSummaryState'>
             Toggle Summary {{ isInSummaryState }}
