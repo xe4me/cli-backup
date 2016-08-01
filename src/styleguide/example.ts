@@ -3,7 +3,7 @@ import {
     Input ,
     ComponentResolver ,
     ChangeDetectorRef ,
-    ElementRef ,
+    NgZone ,
     ViewChild ,
     ViewContainerRef ,
     Directive ,
@@ -27,7 +27,7 @@ export interface ISourceFile {
     type : string;
     label : string;
 }
-@Directive( { selector : '[example]' } )
+@Directive( { selector : '[example-ref]' } )
 export class ExampleDirective {
     constructor ( private cd : ChangeDetectorRef ,
                   private viewContainer : ViewContainerRef ,
@@ -36,23 +36,19 @@ export class ExampleDirective {
 
     createComponent ( dialogComponent : { new() : any } ) : Promise<ComponentRef<any>> {
         this.viewContainer.clear();
-        let componentCreated = this.componentResolver
-                                   .resolveComponent( dialogComponent )
-                                   .then( ( componentFactory : ComponentFactory<any> ) => {
-                                       return this.viewContainer.createComponent( componentFactory );
-                                   } );
-        componentCreated.then( ( componentRef : ComponentRef<any> ) => {
-            this.cd.detectChanges();
-        } );
-        return componentCreated;
+        return this.componentResolver
+                   .resolveComponent( dialogComponent )
+                   .then( ( componentFactory : ComponentFactory<any> ) => {
+                       return this.viewContainer.createComponent( componentFactory );
+                   } );
     }
 }
 @Component( {
-    selector    : 'example' ,
-    inputs      : [ 'templateData' , 'stylesData' , 'sourceData' , 'showSource' , 'orderedFiles' ] ,
-    templateUrl : 'src/styleguide/example.html' ,
-    styles      : [ require( './example.scss' ).toString() ] ,
-    directives  : [
+    selector   : 'example' ,
+    inputs     : [ 'templateData' , 'stylesData' , 'sourceData' , 'showSource' , 'orderedFiles' ] ,
+    template   : require( './example.html' ) ,
+    styles     : [ require( './example.scss' ).toString() ] ,
+    directives : [
         MD_SIDENAV_DIRECTIVES ,
         MD_TABS_DIRECTIVES ,
         MD_LIST_DIRECTIVES ,
@@ -88,7 +84,7 @@ export class ExampleComponent {
 
     @ViewChild( ExampleDirective ) exampleDirective : ExampleDirective;
     //@Query( MdTabs ) public panes : QueryList<MdTabs> ,
-    constructor ( public http : Http , ) {
+    constructor ( public http : Http , public cd : ChangeDetectorRef , public zone : NgZone ) {
     }
 
     applyModel ( model : IComponentExample ) {
@@ -110,10 +106,13 @@ export class ExampleComponent {
         if ( model.jasmine ) {
             this.addFile( model.jasmine , 'typescript' , 'Jasmine' );
         }
-        var exampleInstance = this;
-        var waitForChunk    = require( 'bundle!./' + this._model.component_src_location + '\.ts' );
-        waitForChunk( function( file ) {
-            exampleInstance.exampleDirective.createComponent( file[ 'default' ] );
+        var waitForChunk = require( 'bundle!./' + this._model.component_src_location + '\.ts' );
+        waitForChunk( ( file ) => {
+            this.exampleDirective
+                .createComponent( file[ 'default' ] )
+                .then( ( componentRef : ComponentRef<any> )=> {
+                    componentRef.changeDetectorRef.detectChanges();
+                } )
         } );
     }
 

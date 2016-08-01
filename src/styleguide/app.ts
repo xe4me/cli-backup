@@ -71,17 +71,17 @@ export class StyleGuideApp {
                   private _componentsService : ComponentsService ) {
         this._componentsService.getComponents()
             .then( ( comps ) => {
-                console.log( 'comps' , comps );
+
                 this.components = comps;
             } );
         this._componentsService.gertComponentsGrouped()
             .then( ( componentsGrouped ) => {
-                console.log( 'componentsGrouped' , componentsGrouped );
+
                 this.componentsGrouped = componentsGrouped;
             } );
         this.tableContentsService.getContentsList()
             .then( ( contentTable ) => {
-                console.log( 'contentTable' , contentTable );
+
                 this.contentTable = contentTable;
             } );
     }

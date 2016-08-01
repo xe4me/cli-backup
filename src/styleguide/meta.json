@@ -21,6 +21,26 @@
         "readme": "<p>To see a progress bar look and feel.</p>\n"
     },
     {
+        "name": "Amp loading icon",
+        "sources": [
+            "src/app/components/amp-loading/amp-loading.component.ts"
+        ],
+            "id": "AmpLoadingComponentBasicUsage",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-loading/basic_usage.html",
+                "styles": "src/styleguide/components/amp-loading/basic_usage.scss",
+                "source": "src/styleguide/components/amp-loading/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-loading/amp-loading.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-loading/amp-loading.component.spec.ts",
+                "component": "amp-loading-basic-usage",
+                "component_src_location": "components/amp-loading/basic_usage",
+                "name": "Amp Loading Icon Basic Usage"
+            }
+        ],
+        "readme": "<p>A loading Icon</p>\n"
+    },
+    {
         "name": "BOLR Intro Block",
         "sources": [
             "src/app/blocks/bolr/initState/IntroBlock.component.ts"

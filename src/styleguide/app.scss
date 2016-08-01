@@ -1,22 +1,12 @@
 @import "../styles/require";
 @import "../styleguide/assets/font/font";
-@import '../../node_modules/ng2-material/all';
-@import "../../node_modules/ng2-material/core/style/variables";
-@import "../../node_modules/ng2-material/core/style/mixins";
-@import "../../node_modules/ng2-material/core/style/theme-functions";
-@import "../../node_modules/ng2-material/core/style/default-theme";
-
-@function md-color($color-map, $hue-key: default, $opacity: 1) {
-  // If hueKey is a number between zero and one, then it actually contains an
-  // opacity value, so recall this function with the default hue and that given opacity.
-  @if type-of($hue-key) == number and $hue-key >= 0 and $hue-key <= 1 {
-    @return md-color($color-map, default, $hue-key)
-  }
-
-  $color: map-get($color-map, $hue-key);
-  $opacity: if(opacity($color) < 1, opacity($color), $opacity);
-
-  @return rgba($color, $opacity);
+@import '../../node_modules/material2/src/core/style/core';
+@import "../../node_modules/material2/src/core/style/variables";
+@import "../../node_modules/material2/src/core/style/mixins";
+@import "../../node_modules/material2/src/core/style/theme-functions";
+@import "../../node_modules/material2/src/core/style/default-theme";
+.example-inside{
+  padding: 20px;
 }
 
 .icon--chevron-right {
@@ -54,61 +44,20 @@ styleguide-app {
     background-color: $amp-colour-secondary-darkest !important;
   }
   .app-menu {
-    border-right: 1px solid md-color($md-foreground, divider);
-    md-list-item {
-      font-size: $subheader-font-size;
-      font-weight: $subheader-font-weight;
-      cursor: pointer;
-      will-change: color;
-      transition: color $swift-ease-in-duration $swift-ease-in-timing-function;
-      &.md-active {
-        color: md-color($md-primary, 500);
-      }
-    }
-    md-toolbar {
-      background-color: transparent;
-      color: md-color($md-foreground, secondary-text);
-      border-bottom: 1px solid md-color($md-foreground, divider);
-
-      h1 {
-        font-weight: 500;
-        cursor: pointer;
-      }
-    }
+    border-right: 1px solid $amp-colour-primary;
   }
 
   .app-content {
-    background-color: md-color($md-background, 100);
+    background-color: $amp-colour-primary;
   }
 
-  md-content.examples {
-    background-color: transparent;
-    width: 800px;
-    @media screen and (min-width: $layout-breakpoint-lg - 1) {
-      width: $app-content-lg;
-    }
-    @media screen and (max-width: $layout-breakpoint-md) {
-      width: $app-content-md;
-    }
-    @media screen and (max-width: $layout-breakpoint-sm) {
-      width: $app-content-sm;
-    }
-  }
-
-  > md-toolbar {
-    font-family: $font-family;
-  }
   .fixed-toolbar, .shadow-toolbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: $z-index-toolbar;
-    .verbose-title {
-      @media screen and (max-width: $layout-breakpoint-sm) {
-        display: none;
-      }
-    }
+    z-index: 1;
+
   }
   &.push-menu {
     .fixed-toolbar {
@@ -116,63 +65,24 @@ styleguide-app {
     }
   }
 
-  md-toolbar.hero {
-    //@include md-hero-toolbar();
-    padding: 50px 16px 0;
-    h1 {
-      color: #fff;
-      font-size: 56px;
-      font-weight: 400;
-      line-height: 1.5;
-      margin: 0 auto;
-      overflow: visible;
-      width: 1160px;
-      white-space: nowrap;
-
-    }
-    @media screen and (min-width: $layout-breakpoint-md + 1) {
-      h1 {
-        width: $app-content-lg - 32px;
-      }
-    }
-    @media screen and (max-width: $layout-breakpoint-md) {
-      h1 {
-        width: $app-content-md - 32px;
-      }
-    }
-    @media screen and (max-width: $layout-breakpoint-sm) {
-      height: 128px;
-      padding-top: 72px;
-      //@include md-tall-toolbar();
-      h1 {
-        font-size: $title-font-size-base;
-        width: $app-content-sm - 80px;
-        margin-left: 0;
-      }
-    }
+  .seed-title {
+    padding-top: 80px;
   }
-
-  md-content {
+  .seed-intro {
     > section {
       > h1 {
         margin-top: rem(6);
         margin-bottom: rem(6);
         font-weight: 300;
-        color: md-color($md-primary, 900);
+        color: $amp-colour-primary;
       }
       > md-divider {
         margin-top: rem(6);
       }
       .card-media {
-        background-color: md-color($md-background);
+        background-color: $amp-colour-primary;
       }
     }
-  }
-
-  .seed-title {
-    padding-top: 80px;
-  }
-  .seed-intro {
     > div {
       padding: 10px 5px;
       margin-top: 20px;
@@ -257,33 +167,23 @@ styleguide-app {
   }
 
   footer {
-    background-color: md-color($md-primary);
+    background-color: $amp-colour-primary;
     width: 100%;
     .container {
       margin: auto;
       padding: 0 25px;
       width: 80%;
-      @media screen and (min-width: $layout-breakpoint-lg - 1) {
-        width: $app-content-lg;
-      }
-      @media screen and (max-width: $layout-breakpoint-md) {
-        width: $app-content-md;
-      }
-      @media screen and (max-width: $layout-breakpoint-sm) {
-        width: 100%;
-        margin: 0;
-      }
 
       a.previous, a.next {
-        font-family: $font-family;
-        color: md-color($md-primary, 50);
+        @include amp-family(open-sans-regular);
+        color: $amp-colour-primary;
         //@include md-medium-tall-toolbar();
         text-decoration: none;
         &:visited {
-          color: md-color($md-primary, 100);
+          color: $amp-colour-primary;
         }
         .label {
-          color: md-color($md-primary, 200);
+          color: $amp-colour-primary;
         }
         .name {
           font-weight: 500;
