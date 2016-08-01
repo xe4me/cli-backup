@@ -7,8 +7,8 @@ import {
     OnInit
 } from '@angular/core';
 import { Control } from '@angular/common';
-import { Observable } from "rxjs/Rx";
-import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from "../../../../";
+import { Observable } from 'rxjs/Rx';
+import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
 @Component( {
     selector   : 'amp-auto-complete' ,
     queries    : {
@@ -86,9 +86,6 @@ export class AmpAutoCompleteComponent implements OnInit {
     private _optionsHidden            = true;
     private lengthTrigger : number = 0;
     private showNoResult              = false;
-    private queryServiceCall          = ( queryValue : string ) : Observable<any> => {
-        return new Observable<any>();
-    };
 
     ngOnInit () : any {
         this.parentControl = this.parentControl || new Control();
@@ -96,7 +93,7 @@ export class AmpAutoCompleteComponent implements OnInit {
         if ( this.options ) {
             this.initWithOptions();
         } else if ( this.queryServiceCall ) {
-            this.initWithApi()
+            this.initWithApi();
         }
         return undefined;
     }
@@ -108,6 +105,10 @@ export class AmpAutoCompleteComponent implements OnInit {
     set isRequired ( value : boolean ) {
         this._required = value;
     }
+
+    private queryServiceCall          = ( queryValue : string ) : Observable<any> => {
+        return new Observable<any>();
+    };
 
     private get isOptionsHidden () {
         return this._optionsHidden || !this.queryControl.value;
@@ -164,7 +165,7 @@ export class AmpAutoCompleteComponent implements OnInit {
             this.queryControl
                 .valueChanges
                 .debounceTime( this.QUERY_DEBOUNCE_TIME )
-                .do( ( queryString )=> {
+                .do( ( queryString ) => {
                     if ( queryString !== this.selectedOption.title ) {
                         this.open();
                         this.showNoResult = false;
@@ -172,14 +173,14 @@ export class AmpAutoCompleteComponent implements OnInit {
                     return queryString;
                 } )
                 .distinctUntilChanged()
-                .switchMap( ( queryString )=> {
-                    return queryString && queryString.length > this.lengthTrigger ? this.filter( queryString ) : Observable.of( [] )
+                .switchMap( ( queryString ) => {
+                    return queryString && queryString.length > this.lengthTrigger ? this.filter( queryString ) : Observable.of( [] );
                 } );
         this.searchResult
             .debounceTime( this.NO_RESULT_DEBOUNCE_TIME )
-            .subscribe( ( result )=> {
+            .subscribe( ( result ) => {
                 this.showNoResult = result.length === 0 && this.queryControl.value && this.queryControl.value.length > this.lengthTrigger;
-            } )
+            } );
     }
 
     private initWithApi () {
