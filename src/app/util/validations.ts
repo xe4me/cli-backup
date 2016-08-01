@@ -1,5 +1,4 @@
-import { FormUtils } from './form-utils';
-
+import { FormUtils } from 'amp-ddc-components/src/app/util/form-utils';
 export class RequiredValidator {
     public static requiredValidation ( isRequired ) {
         return ( c ) => {
@@ -91,3 +90,24 @@ export class MinDateValidator {
         };
     }
 }
+export class MaxFloatValidator {
+  public static maxFloatValidator ( valMaxFloat ) {
+    return ( c ) => {
+      if ( valMaxFloat ) {
+        if ( !c.value || c.value.length > 0 ) {
+          if (c.value) {
+            let newVal = c.value;
+            let replaceValue = newVal.replace(/[^0-9\.]+/g,"");
+              if (replaceValue > valMaxFloat) {
+                return {
+                  mdMaxFloat : true
+                };
+              }
+          }
+        }
+      }
+      return null;
+    };
+  }
+}
+
