@@ -21,16 +21,19 @@
     <hr class="hr--solid">
     <h3 class="mt+ heading heading-intro">In a group</h3>
 
-    <input-with-label-group
-            [showLoading]="loading"
-            mode="indeterminate"
-            [id]="'firstname'"
-            [label]="'Name'"
-            [parentControl]="firstnameControl"
-            isRequired="true"
-            valMaxLength="50"
-            [parentControl]="firstnameControl">
-    </input-with-label-group>
+    <div class="grid__item 2/4">
+        <input-with-label-group
+                [showLoading]="loading"
+                mode="indeterminate"
+                [id]="'firstname'"
+                [label]="'Name'"
+                [parentControl]="firstnameControl"
+                isRequired="true"
+                valMaxLength="50"
+                [parentControl]="firstnameControl">
+        </input-with-label-group>
+    </div>
+    <br>
     <button class="btn btn-ok" (click)="setloading()">loading {{ loading }} %</button>
 
 

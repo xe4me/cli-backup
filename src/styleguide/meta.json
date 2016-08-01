@@ -221,26 +221,6 @@
         "readme": "<p>Custom Block for AmpRadioGroupButtonComponent.</p>\n"
     },
     {
-        "name": "ContentBlock",
-        "sources": [
-            "src/app/components/ContentBlock.ts"
-        ],
-        "id": "ContentBlock",
-        "examples": [
-            {
-                "template": "src/styleguide/components/content/basic_usage.html",
-                "styles": "src/styleguide/components/content/basic_usage.scss",
-                "source": "src/styleguide/components/content/basic_usage.ts",
-                "galen": "src/styleguide/components/content/my-md-input.test.spec",
-                "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
-                "component": "content-block-basic-usage",
-                "component_src_location": "components/content/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>Static content block. Can you upgraded to pull content from AEM.</p>\n"
-    },
-    {
         "name": "Amp Google Address",
         "sources": [
             "src/app/components/amp-google-address/amp-google-address.component.ts"
