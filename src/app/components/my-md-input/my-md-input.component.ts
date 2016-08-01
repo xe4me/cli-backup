@@ -18,13 +18,14 @@ import {
     MaxLengthValidator ,
     MaxDateValidator ,
     MinDateValidator ,
-    PatterValidator
+    PatterValidator,
+    MaxFloatValidator
 } from '../../util/validations';
 @Component(
     {
         selector      : 'my-md-input' ,
         template      : `
-            <md-input 
+            <md-input
                 #myMdInput
                 (keyup)='onKeyupEvent($event)'
                 (blur)='trimValue()'
@@ -38,11 +39,14 @@ import {
                 [minLength]='_valMinLength'
                 [ngFormControl]='parentControl'
                 [maxLength]='_valMaxLength'
-                [placeholder]='label'>
+                [placeholder]='label'
+                [maxFloat]='_valMaxFloat'
+                [minFloat]='_valMinFloat'
+                >
 
                   <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
+
             </md-input>
-            <span *ngIf="iconRight && !isInSummaryState" class="icon icon--{{ iconRight }} icon-right"></span>
             <span
                 class='summary-text'
                 [innerHTML]='myMdInput.value'>
@@ -61,8 +65,9 @@ import {
             'valPattern' ,
             'valMaxDate' ,
             'valMinDate' ,
+            'valMaxFloat' ,
+            'valMinFloat' ,
             'tabindex' ,
-            'iconRight' ,
             'isActive' ,
             'isRequired' ,
             'hostClassesRemove' ,
@@ -90,6 +95,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private _valMaxLength : number;
     private _valMaxDate : string;
     private _valMinDate : string;
+    private _valMaxFloat : number;
+    private _valMinFloat : number;
     private _required : boolean        = false;
     private label : string;
     private isInSummaryState : boolean = false;
@@ -196,6 +203,15 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this.updateValitators();
     }
 
+    get valMaxFloat () {
+      return this._valMaxFloat;
+    }
+
+    set valMaxFloat ( value : any ) {
+      this._valMaxFloat = value;
+      this.updateValitators();
+    }
+
     set id ( id : string ) {
         this._id = id;
     }
@@ -251,7 +267,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
                 MaxLengthValidator.maxLengthValidation( this._valMaxLength ) ,
                 MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
                 MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
-                PatterValidator.patternValidator( this.valPattern )
+                PatterValidator.patternValidator( this.valPattern ),
+                MaxFloatValidator.maxFloatValidator( this._valMaxFloat )
             ] );
             this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
         }

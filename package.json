@@ -1,6 +1,6 @@
 {
   "name": "amp-ddc-components",
-  "version": "1.0.9",
+  "version": "1.0.13",
   "description": "AMP digital dynamic data capture UI component library",
   "author": "Eric Kwok <eric_kwok@amp.com.au>",
   "homepage": "https://gitlab.ccoe.ampaws.com.au/ddc/components",
@@ -48,7 +48,6 @@
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
-    "postinstall": "npm run typings -- install",
     "version": "git add -A package.json",
     "postversion": "git push && git push --tags"
   },
