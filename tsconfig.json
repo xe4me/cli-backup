@@ -7,10 +7,10 @@
         "sourceMap": true,
         "noEmitHelpers": true
     },
-    "exclude": [
-        "node_modules",
-        "src/styleguide"
-    ],
+//    "exclude": [
+//        "node_modules",
+//        "src/styleguide"
+//    ],
     "awesomeTypescriptLoaderOptions": {
         "forkChecker": true
     },

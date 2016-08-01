@@ -5,12 +5,8 @@
 
 :host {
   display: block;
-  background-color: whitesmoke;
-  md-example-view {
-    display: block;
-    background-color: white;
-    @include md-stacking-context();
-  }
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
 }
 
 .demo-container {

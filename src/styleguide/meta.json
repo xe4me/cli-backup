@@ -1,24 +1,5 @@
 [
-    {
-        "name": "BOLR Intro Block",
-        "sources": [
-            "src/app/blocks/bolr/initState/IntroBlock.component.ts"
-        ],
-        "id": "BOLRIntrolBlock",
-        "examples": [
-            {
-                "template": "src/styleguide/blocks/bolr/intro/basic_usage.html",
-                "styles": "src/styleguide/blocks/bolr/intro/basic_usage.scss",
-                "source": "src/styleguide/blocks/bolr/intro/basic_usage.ts",
-                "galen": "src/styleguide/blocks/bolr/intro/IntroBlock.component.test.spec",
-                "jasmine": "src/styleguide/blocks/bolr/intro/IntroBlock.component.spec.ts",
-                "component": "bolr-intro-block-basic-usage",
-                "component_src_location": "blocks/bolr/intro/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>Custom Block for BOLR Intro.</p>\n"
-    },
+
     {
         "name": "Amp Linear ProgressBar",
         "sources": [
@@ -38,6 +19,26 @@
             }
         ],
         "readme": "<p>To see a progress bar look and feel.</p>\n"
+    },
+    {
+        "name": "BOLR Intro Block",
+        "sources": [
+            "src/app/blocks/bolr/initState/IntroBlock.component.ts"
+        ],
+        "id": "BOLRIntrolBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/bolr/intro/basic_usage.html",
+                "styles": "src/styleguide/blocks/bolr/intro/basic_usage.scss",
+                "source": "src/styleguide/blocks/bolr/intro/basic_usage.ts",
+                "galen": "src/styleguide/blocks/bolr/intro/IntroBlock.component.test.spec",
+                "jasmine": "src/styleguide/blocks/bolr/intro/IntroBlock.component.spec.ts",
+                "component": "bolr-intro-block-basic-usage",
+                "component_src_location": "blocks/bolr/intro/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for BOLR Intro.</p>\n"
     },
     {
         "name": "BOLR Contact Details Block",

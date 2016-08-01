@@ -18,7 +18,7 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_TABS_DIRECTIVES } from '@angular2-material/tabs';
 import { MdIcon } from '@angular2-material/icon/icon';
 import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
-import { IExampleData } from './app';
+import { IComponentExample } from './services/components';
 import { Http } from '@angular/http';
 import { Response } from '@angular/http';
 import { Highlight } from './highlight';
@@ -43,9 +43,6 @@ export class ExampleDirective {
                                    } );
         componentCreated.then( ( componentRef : ComponentRef<any> ) => {
             this.cd.detectChanges();
-            // dialogComponentRef.instance.close.subscribe(() => {
-            //     dialogComponentRef.destroy();
-            // });
         } );
         return componentCreated;
     }
@@ -72,16 +69,16 @@ export class ExampleComponent {
     public orderedFiles : ISourceFile[] = [];
     public showExample : boolean        = true;
     @Input() public selected : string   = 'html';
-    private _model : IExampleData       = null;
+    private _model : IComponentExample  = null;
     private _loaded : boolean           = false;
 
     @Input()
-    set model ( value : IExampleData ) {
+    set model ( value : IComponentExample ) {
         this._model = value;
         this.applyModel( value );
     }
 
-    get model () : IExampleData {
+    get model () : IComponentExample {
         return this._model;
     }
 
@@ -94,7 +91,7 @@ export class ExampleComponent {
     constructor ( public http : Http , ) {
     }
 
-    applyModel ( model : IExampleData ) {
+    applyModel ( model : IComponentExample ) {
         this.orderedFiles = [];
         this._loaded      = false;
         // Fetch template, styles, and source strings for display.
@@ -133,6 +130,6 @@ export class ExampleComponent {
     }
 
     toggleSource () {
-        this.showExample = !this.showExample;
+        this.showExample = ! this.showExample;
     }
 }

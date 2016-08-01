@@ -5,6 +5,7 @@
 @import "../../node_modules/ng2-material/core/style/mixins";
 @import "../../node_modules/ng2-material/core/style/theme-functions";
 @import "../../node_modules/ng2-material/core/style/default-theme";
+
 @function md-color($color-map, $hue-key: default, $opacity: 1) {
   // If hueKey is a number between zero and one, then it actually contains an
   // opacity value, so recall this function with the default hue and that given opacity.
@@ -16,6 +17,10 @@
   $opacity: if(opacity($color) < 1, opacity($color), $opacity);
 
   @return rgba($color, $opacity);
+}
+
+.icon--chevron-right {
+  font-size: 18px;
 }
 
 .styleguide-app {
@@ -45,8 +50,8 @@ $toolbar-hero-height: 170px;
 styleguide-app {
   height: 100%;
   min-height: 100%;
-  .md-primary{
-    background-color:$amp-colour-secondary-darkest !important;
+  .md-primary {
+    background-color: $amp-colour-secondary-darkest !important;
   }
   .app-menu {
     border-right: 1px solid md-color($md-foreground, divider);
@@ -168,9 +173,27 @@ styleguide-app {
     padding-top: 80px;
   }
   .seed-intro {
+    > div {
+      padding: 10px 5px;
+      margin-top: 20px;
+    }
+    h3 {
+      color: $amp-colour-secondary;
+      font-size: 20px;
+      margin: 5px 0;
+    }
+    p {
+      color: $amp-colour-grey-darkest;
+      padding: 10px;
+    }
+    .highlight {
+      line-height: 2.5 !important;
+
+    }
     highlight {
       border-radius: 2px;
-      margin: $baseline-grid * 4 0;
+      line-height: 0 !important;
+
     }
   }
 
@@ -217,8 +240,13 @@ styleguide-app {
         font-size: 20px;
         line-height: 40px;
         a {
+          cursor: pointer;
           text-decoration: none;
           color: $amp-colour-secondary;
+          @include transition(all 200ms linear);
+          &:hover {
+            font-weight: 500;
+          }
         }
         &:last-child {
           line-height: 20px;

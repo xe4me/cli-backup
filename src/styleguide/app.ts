@@ -1,9 +1,8 @@
-import { AmpAutoCompleteComponent } from '../app/components/amp-autocomplete/amp-autocomplete.component';
 import { LeftNavigationComponent } from './styleguide-components';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import {
     ViewEncapsulation ,
-    Component
+    Component , AfterViewInit
 } from '@angular/core';
 import {
     FormModelService ,
@@ -19,19 +18,10 @@ import {
 } from '@angular/router-deprecated';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
-import { ComponentsService , IComponentMeta } from './services/components';
+import { ComponentsService , IComponentMeta , IComponentGroupMeta } from './services/components';
 import { MdIconRegistry } from '@angular2-material/icon/icon-registry';
 import { NavigationService } from './services/navigation';
-export interface IExampleData {
-    template : string;
-    source : string;
-    styles : string;
-    component : string;
-    component_src_location : string;
-    name : string;
-    galen? : string;
-    jasmine? : string;
-}
+import { TableContentsService } from './services/content-table-service';
 @RouteConfig( [
     { path : '/' , name : 'Index' , component : IndexPage , useAsDefault : true } ,
     { path : '/components/:id' , name : 'Component' , component : ComponentPage }
@@ -41,6 +31,7 @@ export interface IExampleData {
     styles        : [ require( './app.scss' ).toString() ] ,
     providers     : [
         FormModelService ,
+        TableContentsService ,
         ScrollService ,
         ProgressObserverService ,
         AmpHttpService ,
@@ -53,28 +44,45 @@ export interface IExampleData {
     template      : `
         <div class="styleguide-app">
             <div class="grid__item 1/6 styleguide-app--menu">
-                <left-navigation [components]="components"></left-navigation>
+                <left-navigation 
+                    [contentTable]="contentTable"
+                    [components]="components" 
+                    [componentsGrouped]="componentsGrouped">    
+                </left-navigation>
             </div><!--
          --><div class="examples grid__item 5/6 pl styleguide-app--components">
                 <router-outlet ></router-outlet>
             </div>     
         </div>
     ` ,
-    directives    : [ AmpAutoCompleteComponent , LeftNavigationComponent , ROUTER_DIRECTIVES ] ,
+    directives    : [ LeftNavigationComponent , ROUTER_DIRECTIVES ] ,
     encapsulation : ViewEncapsulation.None
 } )
 export class StyleGuideApp {
-    public site : string                 = 'AMP DDC';
+    public site : string                             = 'AMP DDC';
            version : string;
-           components : IComponentMeta[] = [];
+           components : IComponentMeta[]             = [];
+    public componentsGrouped : IComponentGroupMeta[] = [];
+    private contentTable;
 
     constructor ( public navigation : NavigationService ,
                   public router : Router ,
-                  private _components : ComponentsService ) {
-        this._components.getComponents()
+                  public tableContentsService : TableContentsService ,
+                  private _componentsService : ComponentsService ) {
+        this._componentsService.getComponents()
             .then( ( comps ) => {
                 console.log( 'comps' , comps );
                 this.components = comps;
+            } );
+        this._componentsService.gertComponentsGrouped()
+            .then( ( componentsGrouped ) => {
+                console.log( 'componentsGrouped' , componentsGrouped );
+                this.componentsGrouped = componentsGrouped;
+            } );
+        this.tableContentsService.getContentsList()
+            .then( ( contentTable ) => {
+                console.log( 'contentTable' , contentTable );
+                this.contentTable = contentTable;
             } );
     }
 }
