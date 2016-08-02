@@ -1,0 +1,39 @@
+<form #formModel='ngForm' class='nl-form'>
+    <div style='padding: 50px 100px; text-align:left'>
+        <amp-auto-complete
+                class="1/4"
+                [options]="options"
+                [parentControl]="control"
+                (change)="onChange($event)"
+                [required]="true"
+                [isActive]="true"
+                [isInSummaryState]="isInSummaryState"
+                [label]='"Occupations"'>
+            <template let-option="option">
+                {{ option.title }}
+            </template>
+        </amp-auto-complete>
+
+
+        <br>
+        <p>
+            value :
+            <highlight color-default>
+                {{ control.value }}
+            </highlight>
+        </p>
+        <p>
+            on change selected option
+            <highlight color-default>
+                {{ selectedOption | json }}
+            </highlight>
+        </p>
+        <p>
+            Control is valid : {{ control.valid }}
+        </p>
+
+        <button class="btn btn-ok" (click)='isInSummaryState=!isInSummaryState'>
+            Toggle Summary {{ isInSummaryState }}
+        </button>
+    </div>
+</form>

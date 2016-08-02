@@ -1,14 +1,14 @@
-import { View , Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
+import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
-@Component( { selector : 'amp-radio-group-button-block-basic-usage' } )
-@View( {
+@Component( {
+    selector    : 'amp-radio-group-button-block-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-radio-group-button/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ MATERIAL_DIRECTIVES , FORM_DIRECTIVES , AmpRadioButtonGroupComponent , CORE_DIRECTIVES ]
+    directives  : [ FORM_DIRECTIVES , AmpRadioButtonGroupComponent , CORE_DIRECTIVES ]
 } )
+
 export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {
     oneOptionControl : Control        = new Control();
     multipleOptionControl : Control   = new Control();
@@ -70,7 +70,7 @@ export default class AmpRadioGroupButtonComponentBasicUsage implements AfterView
     }
 
     private toggleRequired () {
-        this.radiosMultipleOptions.required = ! this.radiosMultipleOptions.required;
+        this.radiosMultipleOptions.required = !this.radiosMultipleOptions.required;
     }
 
     private onOneRadioButtonSelect () {

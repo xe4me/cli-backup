@@ -1,14 +1,13 @@
-import { View , Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
+import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpGroupButtonComponent } from '../../../app/components/amp-group-button/amp-group-button.component';
-@Component( { selector : 'amp-group-button-block-basic-usage' } )
-@View( {
+@Component( {
+    selector    : 'amp-group-button-block-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-group-button/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ MATERIAL_DIRECTIVES , FORM_DIRECTIVES , AmpGroupButtonComponent , CORE_DIRECTIVES ]
+    directives  : [ FORM_DIRECTIVES , AmpGroupButtonComponent , CORE_DIRECTIVES ]
 } )
+
 export default class AmpGroupButtonComponentBasicUsage {
     control : Control            = new Control();
     private fullOrPartialButtons = {

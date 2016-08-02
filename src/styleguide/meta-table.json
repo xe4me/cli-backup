@@ -1,0 +1,48 @@
+{
+    "contents": [
+        {
+            "title": "AMP DDC",
+            "link": "#ddc"
+        },
+        {
+            "title": "File Structure",
+            "link": "#file-structure"
+        },
+        {
+            "title": "Getting Started",
+            "link": "#getting-started"
+        },
+        {
+            "title": "Dependencies",
+            "link": "#dependencies"
+        },
+        {
+            "title": "Installing",
+            "link": "#installing"
+        },
+        {
+            "title": "Running the app",
+            "link": "#running-the-app"
+        },
+        {
+            "title": "Server",
+            "link": "#server"
+        },
+        {
+            "title": "Other Commands",
+            "link": "#other-commands"
+        },
+        {
+            "title": "TypeScript",
+            "link": "#typescript"
+        },
+        {
+            "title": "Typings",
+            "link": "#typings"
+        },
+        {
+            "title": "Frequently asked questions",
+            "link": "#frequently-asked-questions"
+        }
+    ]
+}

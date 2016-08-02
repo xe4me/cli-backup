@@ -1,0 +1,12 @@
+@import '~AbstractStyles';
+:host{
+  position: relative;
+  display: block;
+  width: 100%;
+}
+amp-loading {
+  position: absolute;
+  top: 50%;
+  @include transform(translateY(-50%));
+  right: 10px;
+}

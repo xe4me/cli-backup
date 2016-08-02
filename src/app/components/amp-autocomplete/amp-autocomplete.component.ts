@@ -4,6 +4,7 @@ import {
     ViewChildren ,
     ContentChild ,
     TemplateRef ,
+    EventEmitter ,
     OnInit
 } from '@angular/core';
 import { Control } from '@angular/common';
@@ -71,10 +72,12 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'lengthTrigger' ,
         'options'
     ] ,
+    outputs    : [ 'change' ] ,
     directives : [ MdInputComponent , ClickedOutsideDirective , FocuserDirective ]
 } )
 export class AmpAutoCompleteComponent implements OnInit {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
+    private change                  = new EventEmitter<Option>();
     private QUERY_DEBOUNCE_TIME     = 0;
     private NO_RESULT_DEBOUNCE_TIME = 0;
     private INPUT_FOCUSER           = 0;
@@ -151,6 +154,7 @@ export class AmpAutoCompleteComponent implements OnInit {
         this.selectedOption = option;
         this.queryControl.updateValue( option.title );
         this.parentControl.updateValue( JSON.stringify( option ) );
+        this.change.emit( option );
         this.close();
         this.focusInput();
     }

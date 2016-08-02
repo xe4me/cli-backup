@@ -1,0 +1,40 @@
+<section class="example-inside">
+    <h3 class="heading heading-intro">Indeterminate loading </h3>
+
+    <h3 class="heading heading-contxtual-label">Can be small </h3>
+    <amp-loading mode="indeterminate" size="small"></amp-loading>
+
+    <h3 class="heading heading-contxtual-label">Can be medium </h3>
+    <amp-loading mode="indeterminate" size="medium"></amp-loading>
+
+    <h3 class="heading heading-contxtual-label">Can show and hide </h3>
+    <button class="btn btn-ok" (click)="setloadingAnother()">show loading {{ loadingAnother }}</button>
+    <amp-loading mode="indeterminate" [showLoading]="loadingAnother"></amp-loading>
+
+    <hr class="hr--solid">
+    <h3 class="mt+ heading heading-intro">Determinate loading </h3>
+    <amp-loading mode="determinate" [value]="value"></amp-loading>
+    <button class="btn btn-ok" (click)="increase()">increase {{ value }} %</button>
+    <button class="btn btn-ok" (click)="decrease()">decrease {{ value }} %</button>
+
+
+    <hr class="hr--solid">
+    <h3 class="mt+ heading heading-intro">In a group</h3>
+
+    <div class="grid__item 2/4">
+        <input-with-label-group
+                [showLoading]="loading"
+                mode="indeterminate"
+                [id]="'firstname'"
+                [label]="'Name'"
+                [parentControl]="firstnameControl"
+                isRequired="true"
+                valMaxLength="50"
+                [parentControl]="firstnameControl">
+        </input-with-label-group>
+    </div>
+    <br>
+    <button class="btn btn-ok" (click)="setloading()">loading {{ loading }} %</button>
+
+
+</section>

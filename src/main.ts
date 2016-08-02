@@ -5,11 +5,10 @@ import * as ngCore from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import * as browser from '@angular/platform-browser';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
-import { FORM_PROVIDERS, LocationStrategy , HashLocationStrategy } from '@angular/common';
+import { FORM_PROVIDERS , LocationStrategy , HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 // Add all operators to Observable
 import 'rxjs/Rx';
-
 /*
  * App Environment Providers
  * providers that only live in certain environment
@@ -34,14 +33,14 @@ import { StyleGuideApp } from './styleguide/app';
  */
 export function main () {
     return bootstrap( //DemosApp , [
-                      StyleGuideApp, [
-                      ...ENV_PROVIDERS ,
-                      ...HTTP_PROVIDERS ,
-                      ...ROUTER_PROVIDERS ,
-                      ...FORM_PROVIDERS,
-                      ngCore.provide( Window , { useValue : window } )
-                  ] )
-                  .catch( err => console.error( err ) );
+        StyleGuideApp , [
+            ...ENV_PROVIDERS ,
+            ...HTTP_PROVIDERS ,
+            ...ROUTER_PROVIDERS ,
+            ...FORM_PROVIDERS ,
+            ngCore.provide( Window , { useValue : window } )
+        ] )
+        .catch( err => console.error( err ) );
 }
 /*
  * Vendors

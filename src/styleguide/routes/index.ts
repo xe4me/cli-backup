@@ -2,42 +2,42 @@ import { Component , OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ComponentsService , IComponentMeta } from '../services/components';
 import { NavigationService } from '../services/navigation';
-import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
-import { DOM } from '@angular/platform-browser';
+import { TableContentsService } from '../services/content-table-service';
+import { Http } from '@angular/http';
 import { Highlight } from '../highlight';
-import { SidenavService } from 'ng2-material/components/sidenav/sidenav_service';
-import { TimerWrapper } from '@angular/core';
-import { Http , Response } from '@angular/http';
+import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 @Component( {
     templateUrl : 'src/styleguide/routes/index.html' ,
-    directives  : [ ROUTER_DIRECTIVES , Highlight , MATERIAL_DIRECTIVES ]
+    directives  : [ Highlight , ROUTER_DIRECTIVES ]
 } )
 export class IndexPage implements OnInit {
     public components : IComponentMeta[] = [];
     public angularVersion : string       = '';
+    private contentTable;
 
     constructor ( private _components : ComponentsService ,
-                  private _sidenav : SidenavService ,
                   public http : Http ,
+                  public tableContentsService : TableContentsService ,
+                  public scrollService : ScrollService ,
                   public navigation : NavigationService ) {
     }
 
     ngOnInit () : any {
-        this.http.get( 'src/assets/version.json' )
-            .subscribe( ( res : Response ) => {
-                this.angularVersion = res.json().angular2;
-            } );
-        TimerWrapper.setTimeout( () => {
-            this._sidenav.hide( 'menu' );
-        } , 0 );
+        // this.http.get( 'src/assets/version.json' )
+        //     .subscribe( ( res : Response ) => {
+        //         this.angularVersion = res.json().angular2;
+        //     } );
         this._components.getComponents()
             .then( ( comps ) => {
-                this.components = comps;
-                let title       = 'AMP Dynamic data capture styleguide';
-                DOM.setTitle( title );
+                this.components              = comps;
+                let title                    = 'AMP Dynamic data capture styleguide';
                 this.navigation.currentTitle = title;
                 this.navigation.prevLink     = this.navigation.componentLink( comps[ comps.length - 1 ] );
                 this.navigation.nextLink     = this.navigation.componentLink( comps[ 0 ] );
+            } );
+        this.tableContentsService.getContentsList()
+            .then( ( contentTable ) => {
+                this.contentTable = contentTable;
             } );
     }
 }
