@@ -151,12 +151,7 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'awesome-typescript-loader',
-        exclude: [/\.(spec|e2e)\.ts$/]
-      },
-      {
-        test: /\.spec.ts$/,
-        loader: 'awesome-typescript-loader',
-        exclude: [/\.(spec|e2e)\.ts$/]
+        exclude: [/\.(e2e)\.ts$/]
       },
 
       // copy those assets to output
