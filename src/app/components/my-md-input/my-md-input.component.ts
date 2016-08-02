@@ -47,7 +47,6 @@ import {
                   <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 
             </md-input>
-            iconRight {{ iconRight }}
                   <span *ngIf='iconRight' class="icon icon--search icon-right"></span>
             <span
                 class='summary-text'

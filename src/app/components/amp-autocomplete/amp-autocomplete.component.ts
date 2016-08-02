@@ -20,6 +20,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
     <div [clicked-outside]="close" class="amp-auto-complete">
         <div class='amp-auto-complete-control'>
             <my-md-input
+                style="width: 100% !important;"
                 focuser="input"
                 iconRight='search'
                 (click)='open()'     

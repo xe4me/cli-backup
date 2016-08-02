@@ -27,7 +27,9 @@ $amp-dropdown-option-padding-right-hidden: 4em;
 $amp-dropdown-option-padding-left: 20px;
 
 :host {
-
+  my-md-input{
+    width: 100% !important;
+  }
   display: block;
   position: relative;
 }
