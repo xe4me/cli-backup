@@ -27,7 +27,7 @@ $amp-dropdown-option-padding-right-hidden: 4em;
 $amp-dropdown-option-padding-left: 20px;
 
 :host {
-  z-index: 1;
+
   display: block;
   position: relative;
 }
@@ -42,7 +42,7 @@ $amp-dropdown-option-padding-left: 20px;
   overflow-y: auto;
   position: absolute;
   width: 100%;
-  z-index: 3;
+  z-index: 10;
 
   // IE Scrollbar
   scrollbar-base-color: $amp-colour-sky-blue;

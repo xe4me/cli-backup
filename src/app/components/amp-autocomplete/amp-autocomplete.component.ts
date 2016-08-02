@@ -25,7 +25,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 (click)='open()'     
                 (keydown)='onKeydown($event)'     
                 [autoFocus]="isActive"
-                [label]='"A label here"'
+                [label]='label'
                 [isActive]='isActive'
                 [isInSummaryState]='isInSummaryState'
                 [id]='"someId"'

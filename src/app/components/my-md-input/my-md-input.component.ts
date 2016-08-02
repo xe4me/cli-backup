@@ -18,7 +18,7 @@ import {
     MaxLengthValidator ,
     MaxDateValidator ,
     MinDateValidator ,
-    PatterValidator,
+    PatterValidator ,
     MaxFloatValidator
 } from '../../util/validations';
 @Component(
@@ -47,6 +47,8 @@ import {
                   <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 
             </md-input>
+            iconRight {{ iconRight }}
+                  <span *ngIf='iconRight' class="icon icon--search icon-right"></span>
             <span
                 class='summary-text'
                 [innerHTML]='myMdInput.value'>
@@ -77,6 +79,7 @@ import {
             'autoFocus' ,
             'noPadding' ,
             'currency' ,
+            'iconRight' ,
             'labelHidden'
         ] ,
         directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
@@ -103,6 +106,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private showLabel : boolean        = true;
     private tolowerCase : boolean      = false;
     private toupperCase : boolean      = false;
+    private iconRight : boolean        = false;
     private isActive : boolean         = true;
     private tabindex : any             = null;
     private currency : string          = null;
@@ -204,12 +208,12 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     }
 
     get valMaxFloat () {
-      return this._valMaxFloat;
+        return this._valMaxFloat;
     }
 
     set valMaxFloat ( value : any ) {
-      this._valMaxFloat = value;
-      this.updateValitators();
+        this._valMaxFloat = value;
+        this.updateValitators();
     }
 
     set id ( id : string ) {
@@ -267,7 +271,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
                 MaxLengthValidator.maxLengthValidation( this._valMaxLength ) ,
                 MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
                 MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
-                PatterValidator.patternValidator( this.valPattern ),
+                PatterValidator.patternValidator( this.valPattern ) ,
                 MaxFloatValidator.maxFloatValidator( this._valMaxFloat )
             ] );
             this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
