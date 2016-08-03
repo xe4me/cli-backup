@@ -41,8 +41,8 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
             tabindex="-1"
             class='amp-auto-complete-options'
             [class.amp-auto-complete-hidden]='(searchResult | async)?.length==0 || isOptionsHidden'  >
-            <li class='amp-auto-complete-option' tabindex='-1'>
-                <strong>{{ label }}</strong>
+            <li *ngIf="selectLabel" class='amp-auto-complete-option' tabindex='-1'>
+                <strong>{{ selectLabel }}</strong>
             </li>
             <li (keydown.enter)="selectOption(option)" 
                 (click)="selectOption(option)" 
@@ -71,6 +71,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'isInSummaryState' ,
         'selectControl' ,
         'isRequired' ,
+        'selectLabel' ,
         'label' ,
         'parentControl' ,
         'placeholder' ,
@@ -239,7 +240,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private resetSelectedOption () {
         this.selectedOption = null;
         if(this.selectControl)
-        this.selectControl.updateValue( null );
+            this.selectControl.updateValue( null );
     }
 }
 interface Option {
