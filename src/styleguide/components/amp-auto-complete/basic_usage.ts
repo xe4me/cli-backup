@@ -18,6 +18,7 @@ import { AmpAutoCompleteComponent } from "../../../app/components/amp-autocomple
 
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
     control : Control = new Control();
+    selectControl : Control = new Control();
     isInSummaryState  = false;
     private options   = [
         {

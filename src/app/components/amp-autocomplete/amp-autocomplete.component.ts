@@ -69,6 +69,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'id' ,
         'queryServiceCall' , // This should return an observable to be consumed here
         'isInSummaryState' ,
+        'selectControl' ,
         'isRequired' ,
         'label' ,
         'parentControl' ,
@@ -92,13 +93,16 @@ export class AmpAutoCompleteComponent implements OnInit {
     private searchResult : Observable<Array<Option>>;
     private _required : boolean     = false;
     private parentControl : Control;
+    private selectControl : Control;
     private _optionsHidden          = true;
     private lengthTrigger : number  = - 1;
     private showNoResult            = false;
+    private VALIDATION_DELAY        = 300;
 
     ngOnInit () : any {
         this.resetSelectedOption();
         this.parentControl = this.parentControl || new Control();
+        this.selectControl = this.selectControl || new Control();
         if ( this.options ) {
             this.initWithOptions();
         } else if ( this.queryServiceCall ) {
@@ -153,6 +157,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private selectOption ( option ) {
         this.selectedOption = option;
         this.parentControl.updateValue( option.title );
+        this.selectControl.updateValue( option );
         this.change.emit( option );
         this.close();
         this.focusInput();
@@ -176,21 +181,23 @@ export class AmpAutoCompleteComponent implements OnInit {
     }
 
     private onBlur ( $event ) {
-        if ( this.parentControl.value ){
-            if ( this.selectedOption === null ) {
-                let errors = Object.assign( {} , { invalid : true } , this.parentControl.errors || {} );
-                this.parentControl.setErrors( errors , {
-                    emitEvent : true
-                } );
-            } else {
-                if ( this.parentControl.errors && this.parentControl.errors.hasOwnProperty( 'invalid' ) ) {
-                    delete (<any>this.parentControl.errors).invalid;
+        setTimeout( ()=> {
+            if ( this.parentControl.value ) {
+                if ( this.selectedOption === null ) {
+                    let errors = Object.assign( {} , { invalid : true } , this.parentControl.errors || {} );
+                    this.parentControl.setErrors( errors , {
+                        emitEvent : true
+                    } );
+                } else {
+                    if ( this.parentControl.errors && this.parentControl.errors.hasOwnProperty( 'invalid' ) ) {
+                        delete (<any>this.parentControl.errors).invalid;
+                    }
+                    this.parentControl.setErrors( this.parentControl.errors , {
+                        emitEvent : true
+                    } );
                 }
-                this.parentControl.setErrors( this.parentControl.errors , {
-                    emitEvent : true
-                } );
             }
-        }
+        } , this.VALIDATION_DELAY )
     }
 
     private initWithOptions () {
@@ -231,6 +238,8 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private resetSelectedOption () {
         this.selectedOption = null;
+        if(this.selectControl)
+        this.selectControl.updateValue( null );
     }
 }
 interface Option {

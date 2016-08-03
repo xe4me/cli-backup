@@ -4,6 +4,7 @@
                 class="1/2"
                 [options]="options"
                 [parentControl]="control"
+                [selectControl]="selectControl"
                 (change)="onChange($event)"
                 [isRequired]="true"
                 [iconRight]="false"
@@ -14,7 +15,7 @@
                 {{ option.title }}
             </template>
         </amp-auto-complete>
-
+        Control errors
         <highlight color-default>
             {{ control.errors | json }}
         </highlight>
@@ -24,6 +25,11 @@
             value :
             <highlight color-default>
                 {{ control.value }}
+            </highlight>
+
+            selected value ( should be an object):
+            <highlight color-default>
+                {{ selectControl.value | json }}
             </highlight>
         </p>
         <p>
