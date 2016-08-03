@@ -56,6 +56,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 </template>
             </li>
         </ul>    
+        
         <ul *ngIf="showNoResult" class="amp-auto-complete-options">
             <li class="amp-auto-complete-option" disabled >
                 <strong>No results found</strong>
