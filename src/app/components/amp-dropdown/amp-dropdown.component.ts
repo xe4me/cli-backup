@@ -17,7 +17,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
 @Component({
     selector   : 'amp-dropdown' ,
     template   : `
-        <div 
+        <div
             #dropdownEl
             class='amp-dropdown'
             [class.amp-dropdown--has-selection]='hasSelection'
@@ -29,7 +29,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
             <label class='sr-only' [attr.for]='id'>
                 {{ label }}
             </label>
-            <select 
+            <select
                 #selectEl
                 class='sr-only'
                 [attr.id]='id'
@@ -41,11 +41,11 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
 
                 <option value='' selected [attr.disabled]='currentOption > 0 ? "disabled" : null'></option>
 
-                <option *ngFor='let option of options'
+                <option *ngFor='let option of options | slice:0:_limitTo; let i=index'
                     [value]='option.value'>
                     {{ option.label }}
                 </option>
-                
+
             </select>
 
             <div class='amp-dropdown__select' (click)='toggleOptions()' aria-hidden='true'>
@@ -54,16 +54,16 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
 
                 <span class='amp-dropdown__select-value' aria-hidden='true'>{{ selectedOption.label }}</span>&nbsp;
             </div>
-            
-            <div 
-                #optionsEl 
+
+            <div
+                #optionsEl
                 class='amp-dropdown__options amp-dropdown__options--{{ numOptions }}'
                 [class.amp-dropdown__options--hidden]='!optionsShown'
                 aria-hidden='true'>
-                
-                <div 
-                    *ngFor='let option of options' 
-                    class='amp-dropdown__option' 
+
+                <div
+                    *ngFor='let option of options | slice:0:_limitTo; let i=index'
+                    class='amp-dropdown__option'
                     [class.amp-dropdown__option--active]='option.value == selectedOption.value'
                     (click)='setSelectValue(option.value)'
                     aria-hidden='true'
@@ -85,7 +85,8 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
         'disabled',
         'isRequired',
         'isInSummaryState',
-        'labelHidden'
+        'labelHidden',
+        'limitTo'
     ],
     styles     : [ require( './amp-dropdown.component.scss' ).toString() ] ,
     directives : [ ClickedOutsideDirective ] ,
@@ -112,6 +113,7 @@ export class AmpDropdownComponent {
     private isInSummaryState: boolean = false;
     private labelHidden: boolean = false;
     private currentOption;
+    private _limitTo: number = 999;
 
     private selectedOption = {
         label: '',
@@ -157,6 +159,14 @@ export class AmpDropdownComponent {
     set isRequired ( value : boolean ) {
         this._required = this.isTrue( value );
         this.updateValitators();
+    }
+
+    get limitTo () {
+      return this._limitTo;
+    }
+
+    set limitTo ( value : any ) {
+      this._limitTo = value;
     }
 
     private toggleOptions () {
@@ -238,7 +248,7 @@ export class AmpDropdownComponent {
     }
 
     private changeCurrentOption() {
-        // Fix for firefox select change event not being fired 
+        // Fix for firefox select change event not being fired
         // each option change
         if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
             setTimeout(() => {
@@ -304,4 +314,6 @@ export class AmpDropdownComponent {
     private isTrue ( value ) {
         return isPresent( value ) && (value === true || value === 'true' || false);
     }
+
+
 }
