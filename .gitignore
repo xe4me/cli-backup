@@ -46,6 +46,8 @@ npm-debug.log
 /src/typings/tsd/
 /typings/
 /tsd_typings/
+# Do not incorporate typings configuration because it can be different based on end user
+.typingsrc
 
 # Dist #
 /dist
