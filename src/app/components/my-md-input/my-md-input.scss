@@ -307,7 +307,7 @@ my-md-input {
     .icon-right {
       position: absolute;
       right: 0;
-      top: 45%;
+      top: 50%;
       @include transform(translateY(-50%));
     }
     md-input.md-input {

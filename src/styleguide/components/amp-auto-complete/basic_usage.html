@@ -1,11 +1,11 @@
 <form #formModel='ngForm' class='nl-form'>
     <div style='padding: 50px 100px; text-align:left'>
         <amp-auto-complete
-                class="1/4"
+                class="1/3"
                 [options]="options"
                 [parentControl]="control"
                 (change)="onChange($event)"
-                [required]="true"
+                [isRequired]="true"
                 [iconRight]="false"
                 [isActive]="true"
                 [isInSummaryState]="isInSummaryState"
@@ -15,6 +15,9 @@
             </template>
         </amp-auto-complete>
 
+        <highlight color-default>
+            {{ control.errors | json }}
+        </highlight>
 
         <br>
         <p>

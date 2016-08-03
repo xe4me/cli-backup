@@ -27,8 +27,9 @@ import {
         template      : `
             <md-input
                 #myMdInput
+                (focus)='onFocused($event)'
                 (keyup)='onKeyupEvent($event)'
-                (blur)='trimValue()'
+                (blur)='trimValue($event)'
                 [disabled]='isInSummaryState'
                 class='md-input'
                 [class.label-hidden]='labelHidden'
@@ -118,6 +119,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private valPattern : string;
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;
+    private onFocus : EventEmitter<any>;
     private onKeyup : EventEmitter<any>;
     private labelHidden : boolean      = false;
 
@@ -127,6 +129,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this.onAdjustWidth = new EventEmitter();
         this.onEnter       = new EventEmitter();
         this.onBlur        = new EventEmitter();
+        this.onFocus       = new EventEmitter();
         this.onKeyup       = new EventEmitter();
     }
 
@@ -231,6 +234,10 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         }
     }
 
+    private onFocused ( event ) {
+        this.onFocus.emit( event );
+    }
+
     private initiateInputWidth () {
         this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
     }
@@ -243,14 +250,14 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.el.nativeElement.children[ 1 ].offsetWidth + offset + 'px' );
     }
 
-    private trimValue () {
+    private trimValue ( $event ) {
         let notUsabel;
         if ( this.parentControl.value ) {
             this.parentControl.updateValue( this.parentControl.value.trim() );
             notUsabel = this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
             notUsabel = this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
         }
-        this.onBlur.emit( 'blured' );
+        this.onBlur.emit( $event );
     }
 
     private isTrue ( value ) {

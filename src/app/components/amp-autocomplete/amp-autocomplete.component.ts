@@ -20,17 +20,18 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
     <div [clicked-outside]="close" class="amp-auto-complete">
         <div class='amp-auto-complete-control'>
             <my-md-input
-                style="width: 100% !important;"
                 focuser="input"
                 iconRight='search'
                 (click)='open()'     
+                (onFocus)='onFocus()'     
+                (onBlur)='onBlur()'     
                 (keydown)='onKeydown($event)'     
                 [autoFocus]="isActive"
                 [label]='label'
                 [isActive]='isActive'
                 [isInSummaryState]='isInSummaryState'
                 [id]='"someId"'
-                [parentControl]='queryControl'
+                [parentControl]='parentControl'
                 [isRequired]='isRequired'>
             </my-md-input>
         </div>
@@ -47,7 +48,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 (click)="selectOption(option)" 
                 *ngFor='let option of searchResult | async ; let i = index' 
                 class='amp-auto-complete-option' 
-                [class.amp-auto-complete-active]='option.id == selectedOption.id'
+                [class.amp-auto-complete-active]='option.id == selectedOption?.id'
                 [attr.tabindex]="i+1">
                 <template
                     [ngTemplateOutlet]="itemTemplate"
@@ -67,6 +68,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'id' ,
         'queryServiceCall' , // This should return an observable to be consumed here
         'isInSummaryState' ,
+        'isRequired' ,
         'label' ,
         'parentControl' ,
         'placeholder' ,
@@ -84,22 +86,18 @@ export class AmpAutoCompleteComponent implements OnInit {
     private INPUT_FOCUSER           = 0;
     private LIST_FOCUSER            = 1;
     private canViewAll              = true;
-    private parentControl;
     private options                 = [];
-    private selectedOption : Option = {
-        title : '' ,
-        id    : ''
-    };
+    private selectedOption : Option;
     private searchResult : Observable<Array<Option>>;
     private _required : boolean     = false;
-    private queryControl : Control;
+    private parentControl : Control;
     private _optionsHidden          = true;
-    private lengthTrigger : number  = -1;
+    private lengthTrigger : number  = - 1;
     private showNoResult            = false;
 
     ngOnInit () : any {
+        this.resetSelectedOption();
         this.parentControl = this.parentControl || new Control();
-        this.queryControl  = new Control();
         if ( this.options ) {
             this.initWithOptions();
         } else if ( this.queryServiceCall ) {
@@ -142,7 +140,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private onKeydown ( $event ) {
         let keyCode = $event.keyCode;
         if ( keyCode === KeyCodes.DOWN || keyCode === KeyCodes.UP ) {
-            if ( !this.isOptionsHidden ) {
+            if ( ! this.isOptionsHidden ) {
                 this.onDownKeyPressed( keyCode );
                 $event.preventDefault();
             } else {
@@ -153,8 +151,7 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private selectOption ( option ) {
         this.selectedOption = option;
-        this.queryControl.updateValue( option.title );
-        this.parentControl.updateValue( JSON.stringify( option ) );
+        this.parentControl.updateValue( option.title );
         this.change.emit( option );
         this.close();
         this.focusInput();
@@ -168,22 +165,41 @@ export class AmpAutoCompleteComponent implements OnInit {
         return Observable.create( observer => {
             isPresent( queryString ) && queryString.length > 0 ?
                 observer.next(
-                    this.options.filter( item => item.title.toLowerCase().indexOf( queryString.toLowerCase() ) !== -1 )
+                    this.options.filter( item => item.title.toLowerCase().indexOf( queryString.toLowerCase() ) !== - 1 )
                 ) : observer.next( this.options );
         } );
     }
 
     private focusInput () {
-        this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( -1 );
+        this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( - 1 );
+    }
+
+    private onBlur ( $event ) {
+        if ( this.parentControl.value ){
+            if ( this.selectedOption === null ) {
+                let errors = Object.assign( {} , { invalid : true } , this.parentControl.errors || {} );
+                this.parentControl.setErrors( errors , {
+                    emitEvent : true
+                } );
+            } else {
+                if ( this.parentControl.errors && this.parentControl.errors.hasOwnProperty( 'invalid' ) ) {
+                    delete (<any>this.parentControl.errors).invalid;
+                }
+                this.parentControl.setErrors( this.parentControl.errors , {
+                    emitEvent : true
+                } );
+            }
+        }
     }
 
     private initWithOptions () {
         this.searchResult =
-            this.queryControl
+            this.parentControl
                 .valueChanges
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
-                    if ( isPresent( queryString ) && queryString !== this.selectedOption.title ) {
+                    if ( isPresent( this.selectedOption ) && isPresent( queryString ) && queryString !== this.selectedOption.title ) {
+                        this.resetSelectedOption();
                         this.open();
                         this.showNoResult = false;
                     }
@@ -199,17 +215,21 @@ export class AmpAutoCompleteComponent implements OnInit {
         this.searchResult
             .debounceTime( this.NO_RESULT_DEBOUNCE_TIME )
             .subscribe( ( result ) => {
-                this.showNoResult = result.length === 0 && this.queryControl.value && this.queryControl.value.length > this.lengthTrigger;
+                this.showNoResult = result.length === 0 && this.parentControl.value && this.parentControl.value.length > this.lengthTrigger;
             } );
     }
 
     private initWithApi () {
         this.searchResult =
-            this.queryControl
+            this.parentControl
                 .valueChanges
                 .debounceTime( this.QUERY_DEBOUNCE_TIME )
 
                 .switchMap( queryString => this.queryServiceCall( queryString ) );
+    }
+
+    private resetSelectedOption () {
+        this.selectedOption = null;
     }
 }
 interface Option {
