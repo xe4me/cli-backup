@@ -37,18 +37,12 @@ import {
                 [name]='_id'
                 [id]='_id'
                 [tabIndex]='isActive?tabindex:-1'
-                [minLength]='_valMinLength'
+                [maxLength]='valMaxLength'
                 [ngFormControl]='parentControl'
-                [maxLength]='_valMaxLength'
-                [placeholder]='label'
-                [maxFloat]='_valMaxFloat'
-                [minFloat]='_valMinFloat'
-                >
-
+                [placeholder]='label'>
                   <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
-
             </md-input>
-                  <span *ngIf='iconRight && !isInSummaryState' class="icon icon--search icon-right"></span>
+            <span *ngIf='iconRight && !isInSummaryState' class="icon icon--search icon-right"></span>
             <span
                 class='summary-text'
                 [innerHTML]='myMdInput.value'>
@@ -75,6 +69,8 @@ import {
             'hostClassesRemove' ,
             'showLabel' ,
             'tolowerCase' ,
+            'idleTimeOut' ,
+            'validationDelay' ,
             'toupperCase' ,
             'autoFocus' ,
             'noPadding' ,
@@ -122,6 +118,10 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private onFocus : EventEmitter<any>;
     private onKeyup : EventEmitter<any>;
     private labelHidden : boolean      = false;
+    private validate;
+    private validationDelay            = 300;
+    private idleTimeOut                = 2000;
+    private idleTimeoutId;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ,
@@ -143,6 +143,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
         //this.el.nativeElement.className = this.tempClassNames;
         this.updateValitators();
+        this.addDelayedValidation();
         this._cd.detectChanges();
         // Artifically inject the data-automation-id into the internals of @angular-material md-input
         this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this._id );
@@ -235,6 +236,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     }
 
     private onFocused ( event ) {
+        this.markControlAsUntouched();
+        this.checkErrors();
         this.onFocus.emit( event );
     }
 
@@ -251,11 +254,14 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     }
 
     private trimValue ( $event ) {
-        let notUsabel;
+        setTimeout( ()=> {
+            this.checkErrors();
+        } );
+        let notUsable;
         if ( this.parentControl.value ) {
             this.parentControl.updateValue( this.parentControl.value.trim() );
-            notUsabel = this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
-            notUsabel = this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
+            notUsable = this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
+            notUsable = this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
     }
@@ -269,18 +275,47 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this.onKeyup.emit( $event );
     }
 
+    private addDelayedValidation () {
+        this.parentControl
+            .valueChanges
+            .debounceTime( this.validationDelay )
+            .distinctUntilChanged()
+            .subscribe( ( changes )=> {
+                this.resetIdleTimeOut();
+                this.checkErrors();
+            } );
+        this.checkErrors();
+    }
+
     private updateValitators () {
-        if ( this.parentControl ) {
-            this.parentControl.validator = Validators.compose( [
-                RequiredValidator.requiredValidation( this._required ) ,
-                MinLengthValidator.minLengthValidation( this._valMinLength ) ,
-                MaxLengthValidator.maxLengthValidation( this._valMaxLength ) ,
-                MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
-                MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
-                PatterValidator.patternValidator( this.valPattern ) ,
-                MaxFloatValidator.maxFloatValidator( this._valMaxFloat )
-            ] );
-            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        let validators = [
+            RequiredValidator.requiredValidation( this._required ) ,
+            MinLengthValidator.minLengthValidation( this._valMinLength ) ,
+            MaxLengthValidator.maxLengthValidation( this._valMaxLength ) ,
+            MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
+            MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
+            PatterValidator.patternValidator( this.valPattern ) ,
+            MaxFloatValidator.maxFloatValidator( this._valMaxFloat )
+        ];
+        this.validate  = Validators.compose( validators );
+    }
+
+    private resetIdleTimeOut () {
+        this.markControlAsUntouched();
+        if ( this.idleTimeoutId ) {
+            clearTimeout( this.idleTimeoutId );
         }
+        this.idleTimeoutId = setTimeout( ()=> {
+            this.parentControl.markAsTouched();
+        } , this.idleTimeOut );
+    }
+
+    private markControlAsUntouched () {
+        (<any>this.parentControl)._touched = false;
+    }
+
+    private checkErrors () {
+        this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
+        //this.parentControl.updateValueAndValidity({ emitEvent : true ,onlySelf:false});
     }
 }
