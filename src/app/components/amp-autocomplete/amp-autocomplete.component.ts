@@ -158,7 +158,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private selectOption ( option ) {
         this.selectedOption = option;
         this.parentControl.updateValue( option.title );
-        this.selectControl.updateValue( option );
+        this.selectControl.updateValue( JSON.stringify(option) );
         this.change.emit( option );
         this.close();
         this.focusInput();
