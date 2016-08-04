@@ -12,9 +12,14 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
 import { FullyDistinguishedNames, FormSections } from './form-sections';
 import * as moment from 'moment';
 
+export class NamedControl {
+    constructor ( public name : string , public control : any ) {
+    }
+}
 export const provideParent =
                  ( component : any , parentType? : any ) =>
                      provide( parentType || FormBlock , { useExisting : forwardRef( () => component ) } );
+
 /**
  * This class is both a Abstract Class (i.e. Java like Abstract, property and method implementation that are common) and
  * a Class-Interface (https://angular.io/docs/ts/latest/cookbook/dependency-injection.html#!#class-interface)
@@ -45,9 +50,11 @@ export abstract class FormBlock {
     private haveQuoteId            : boolean          = false;
 
 
-    constructor ( public controlService: UIControlService,
-                  protected progressObserver: ProgressObserverService ) {
+    constructor ( public controlService?: UIControlService,
+                  protected progressObserver?: ProgressObserverService ) {
 
+        // What about Application FormBlocks?
+        // TODO: Move this into the relevant blocks 
         const quoteControl: Control = this.controlService.getControl(FullyDistinguishedNames.QuoteDetails, 'identifier');
         this.haveQuoteId = quoteControl && quoteControl.value;
         this.isInSummaryState = this.haveQuoteId;
@@ -59,6 +66,19 @@ export abstract class FormBlock {
 
     // Used by both nested formModel binding as well as dcl formModel binding
     public bindControls ( formModel : ControlGroup , instance : any ) {
+        // TODO: Fix this, need to give control back to the FormDefinition json
+        // if ( instance.formControlGroupName ) {
+        //     // Called by BaseForm straight after each block is dcl generated
+        //     if ( formModel && this.formControl && this.formControl.length > 0 ) {
+        //         let tempControlGroup = new ControlGroup( {} );
+        //         this.formControl.map(
+        //             function( namedControl ) {
+        //                 tempControlGroup.addControl( namedControl.name , namedControl.control );
+        //             } , formModel );
+        //         formModel.addControl( instance.formControlGroupName , tempControlGroup );
+        //     }
+        // }
+        // this.formModel = formModel;
     }
 
     // Must implement this method for FormBlock that deals with FormControls
