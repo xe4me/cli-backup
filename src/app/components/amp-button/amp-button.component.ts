@@ -54,6 +54,8 @@ export class AmpButton implements AfterContentInit {
             if ( this.parent ) {
                 this._dataAutomationId += '_' + this.parent.blockType;
             }
+        } else {
+            this._dataAutomationId = this.dataAutomationId;
         }
     }
 }
