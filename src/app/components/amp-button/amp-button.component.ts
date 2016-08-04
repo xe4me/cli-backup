@@ -22,7 +22,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
         (click)='click'
         [disabled]='disabled'
         [class]='_class'
-        [attr.data-automation-id]='dataAutomationId'>
+        [attr.data-automation-id]='_dataAutomationId'>
         <ng-content></ng-content>
     </button>` ,
     styles          : [ require( './amp-button.component.scss' ).toString() ] ,
@@ -33,8 +33,11 @@ export class AmpButton implements AfterContentInit {
     @Input() click;
     @Input() disabled;
     @Input( 'class' ) _class : string;
-             dataAutomationId : string;
-             domAdatper : BrowserDomAdapter;
+    // Provides the ability to override the default/auto generation of the data-automation-id ***DO NOT USE THIS UNLESS ABSOLUTELY NECCESSARY***
+    // Normally this is provided via the FormBlock class-interface pattern https://angular.io/docs/ts/latest/cookbook/dependency-injection.html#!#class-interface
+    @Input( 'data-automation-id') dataAutomationId : string;
+    _dataAutomationId : string;
+    domAdatper : BrowserDomAdapter;
 
     constructor ( private elementRef : ElementRef ,
                   private renderer : Renderer ,
@@ -45,9 +48,12 @@ export class AmpButton implements AfterContentInit {
     ngAfterContentInit () {
         this.domAdatper = new BrowserDomAdapter();
         let contentStr  = this.domAdatper.getText( this.elementRef.nativeElement );
-        this.dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g , '' ) : '');
-        if ( this.parent ) {
-            this.dataAutomationId += '_' + this.parent.blockType;
+
+        if (!this.dataAutomationId || !this.dataAutomationId.length) {
+            this._dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g , '' ) : '');
+            if ( this.parent ) {
+                this._dataAutomationId += '_' + this.parent.blockType;
+            }
         }
     }
 }
