@@ -1,0 +1,10 @@
+Please view this file on the develop branch, on stable branches it's out of date.
+
+v 1.0.0 (released)
+  - Initial version
+  - Used by experience (bolr), experience-cwc, experience-mrp
+
+v 2.0.0 (unreleased)
+  - Revamped src/app/formBlock.ts
+  - Removed src/app/blocks/bolr
+  - Removed src/styleguide/blocks/bolr

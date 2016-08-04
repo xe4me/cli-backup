@@ -10,8 +10,8 @@ import { FormModelService , ProgressObserverService , ScrollService } from 'amp-
 import { Component , provide , ElementRef } from '@angular/core';
 import { Control } from '@angular/common';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
-import { MockScrollService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-scroll.service';
-import { MockFormModelService } from '../../../styleguide/blocks/bolr/dialogue/contact-details/mock-form-mode.service';
+import { MockScrollService } from '../../services/mock-scroll.service';
+import { MockFormModelService } from '../../services/mock-form-mode.service';
 
 class MockElementRef implements ElementRef {
   nativeElement = {};

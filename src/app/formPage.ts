@@ -10,6 +10,8 @@ import {
     NgZone
 } from '@angular/core';
 import { RouteParams , Router , RouteRegistry } from '@angular/router-deprecated';
+import { UIControlService, ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+
 @Injectable()
 export class FormPage extends FormBlock {
     pageId : string;
@@ -20,8 +22,9 @@ export class FormPage extends FormBlock {
                            // Maybe, no routeName at all, as the entire form is a single component and just use the formDef ID?
     _router : Router;
 
-    constructor () {
-        super();
+    constructor ( controlService?: UIControlService, 
+                    progressObserver?: ProgressObserverService) {
+        super(controlService, progressObserver);
         this.path = 'pages/';
     }
 
