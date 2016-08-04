@@ -106,6 +106,7 @@ export class AmpGroupButtonComponent {
 
     ngAfterViewInit () : any {
         this.parentControl.valueChanges.subscribe( ( changes ) => {
+            if(changes)
             this.onSelect( changes , false );
         } );
         this.updateValidators();
