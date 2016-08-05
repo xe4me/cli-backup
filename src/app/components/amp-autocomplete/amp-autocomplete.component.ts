@@ -30,7 +30,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 [label]='label'
                 [isActive]='isActive'
                 [isInSummaryState]='isInSummaryState'
-                [id]='"someId"'
+                [id]='id'
                 [parentControl]='parentControl'
                 [isRequired]='isRequired'>
             </my-md-input>
