@@ -67,12 +67,13 @@ export class FullyDistinguishedNames {
     public static CommissionSplit       = [FormSections.Quote, Blocks.CommissionSplit];
     public static ConsentAndDeclaration = [FormSections.Quote, Blocks.ConsentAndDeclaration];
     public static ReviewAndSubmit       = [FormSections.Application, Blocks.ReviewAndSubmit];
+    public static PolicyDetails         = [FormSections.Quote, Blocks.PolicyDetails];
 
     // Quote blocks
     public static QuoteLifeInsuredOneAll     = [FormSections.Quote, Applicants.LifeInsuredOne];
+    public static QuoteLifeInsuredTwoAll     = [FormSections.Quote, Applicants.LifeInsuredTwo];
 
     public static AddJointApplicant          = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.AddJointApplicant];
-    public static PolicyDetails              = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.PolicyDetails];
 
     public static QuoteLifeInsuredOneDetails = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.LifeInsuredDetails];
     public static QuoteLifeInsuredTwoDetails = [FormSections.Quote, Applicants.LifeInsuredTwo, Blocks.LifeInsuredDetails];
