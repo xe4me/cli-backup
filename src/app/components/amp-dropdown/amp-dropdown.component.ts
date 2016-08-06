@@ -149,6 +149,12 @@ export class AmpDropdownComponent {
         forceRedraw(this.optionsElem.children[0]);
         this.optionsElem.style.visibility = '';
 
+        this.parentControl.registerOnChange( (value) => {
+            if (this.selectElem.value !== value ) {
+                this.setSelectValue(value);
+            }
+        }
+
         return undefined;
     }
 
