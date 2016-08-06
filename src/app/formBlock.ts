@@ -27,13 +27,16 @@ export const provideParent =
 export abstract class FormBlock {
     _id : BlockID;                      // Auto-Generated id based on the flatten index of the formDefinition blocks
                                         // array of the current page (i.e {page: ABC, index: 2})
-    blockType : string;                // Concrete FormBlock implementation class name
-    path = '';                        // Physical path from src/app/blocks to the concrete FormBlock implementation
-                                      // class
-    blockLayout : BlockLayout;         // INLINE or PAGE, top level FormBlock should always be PAGE
-                                       // basically is to gives FormDef JSON control
-    blocks : FormBlock[];              // Dynamic array of FormBlock, could be a single contentblock or a deep nested
-                                       // multiple control element blocks, even a PAGE is just another formBlock
+
+    name : string;                      // Represent the current portion of the FullyQualifiedName in the Component Tree 
+
+    blockType : string;                 // Concrete FormBlock implementation class name.
+    path = '';                          // Physical path from src/app/blocks to the concrete FormBlock implementation
+                                        // class.
+    blockLayout : BlockLayout;          // INLINE or PAGE, top level FormBlock should always be PAGE
+                                        // basically is to gives FormDef JSON control.
+    blocks : FormBlock[];               // Dynamic array of FormBlock, could be a single contentblock or a deep nested
+                                        // multiple control element blocks, even a PAGE is just another formBlock.
     // Optional extras
     public placeholder : string;
     public errorMessage : string;
@@ -88,14 +91,6 @@ export abstract class FormBlock {
     public postBindControls () : void {
         return;
     }
-
-    // Reference:   http://stackoverflow.com/questions/332422/how-do-i-get-the-name-of-an-objects-type-in-javascript
-    // TODO:        There are limitations and will need to test browser compatibility
-    public getName () {
-        var funcNameRegex = /function (.{1,})\(/;
-        var results       = (funcNameRegex).exec( (this).constructor.toString() );
-        return (results && results.length > 1) ? results[ 1 ] : '';
-    };
 
     public getMyVisibleFlagString () {
         return this.getfullyDistinguishedName().join('_') + 'IsVisible';
