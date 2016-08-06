@@ -148,7 +148,7 @@ export abstract class FormBlock {
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollToNextUndoneBlock(this.controlService.getControlGroup(FullyDistinguishedNames.QuoteLifeInsuredOneAll));
+            this.scrollService.scrollToNextUndoneBlock(this.controlService, FullyDistinguishedNames);
             this.formModelService.present( {
                 action    : 'setFlag' ,
                 flag      : nextBlock + 'IsVisible',

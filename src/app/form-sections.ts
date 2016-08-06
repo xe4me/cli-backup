@@ -55,6 +55,8 @@ export class Blocks {
 
 // Each block has a FullyDistinguishedName that will determine the place of it's data in the model
 export class FullyDistinguishedNames {
+    private static separator : string   = '_';
+
     // Common blocks
     public static UserDetails           = [FormSections.User, Blocks.LoggedInUser];
     public static AdviserDetails        = [FormSections.User, Blocks.Adviser];
@@ -104,7 +106,11 @@ export class FullyDistinguishedNames {
     public static UnderwritingTwoDetails  = [FormSections.Application, Applicants.LifeInsuredTwo, Blocks.UnderwritingCallPreferences];
 
     public static toString(fdn: string[]) : string {
-        return fdn.join('_');
+        return fdn.join(FullyDistinguishedNames.separator);
+    }
+
+    public static fromString(fdnString: string) : string[] {
+        return fdnString.split(FullyDistinguishedNames.separator);
     }
 }
 
