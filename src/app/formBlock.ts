@@ -139,6 +139,14 @@ export abstract class FormBlock {
         return this.fullyDistinguishedName;
     }
 
+    protected getHtmlId ( local ) : string {
+        let htmlId = local;
+        if ( this.getfullyDistinguishedName() ) {
+            htmlId = FullyDistinguishedNames.toString(this.getfullyDistinguishedName()) + '_' + local;
+        }
+        return htmlId;
+    }
+
     protected next ( nextBlock ) {
         // console.log(nextBlock);
         this.hasClickedOnOkButton = true;
