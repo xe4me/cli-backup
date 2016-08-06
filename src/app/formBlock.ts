@@ -165,6 +165,13 @@ export abstract class FormBlock {
         }
     }
 
+    protected formatValue ( event , pipe ) {
+        const fdn = FullyDistinguishedNames.fromString(event.target.name);
+        let theControl = this.controlService.getControl(fdn.slice(0, fdn.length-1), fdn[fdn.length-1] );
+        const newValue = pipe.transform( pipe.parseValue( theControl.value ) , 0 , 3 , '' );
+        theControl.updateValue( newValue );
+    }
+
     public getLabel (array: Array<any>, value: string) {
         for (let i = 0; i < array.length; i++) {
             if (array[i].value === value) {
