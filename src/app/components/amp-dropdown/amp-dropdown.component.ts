@@ -153,7 +153,7 @@ export class AmpDropdownComponent {
             if (this.selectElem.value !== value ) {
                 this.setSelectValue(value);
             }
-        }
+        });
 
         return undefined;
     }
