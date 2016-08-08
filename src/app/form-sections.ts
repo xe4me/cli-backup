@@ -1,16 +1,16 @@
 /*** Tech debt from NIO **
  * All properties should come from FormDefinition json and defaulted if neccessary in the relevant blocks
- * 
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
+ *
  * DO NOT ADD
- *   unless you are experience-nio 
- * 
- * 
- * 
- * 
+ *   unless you are experience-nio
+ *
+ *
+ *
+ *
  */
 export class FormSections {
 
@@ -44,6 +44,8 @@ export class Blocks {
     public static UnderwritingCallPreferences = 'underwritingCallPreferences';
     public static CommissionSplit       = 'commissionSplit';
     public static ConsentAndDeclaration = 'consentAndDeclaration';
+    public static OutOfPocketCover      = 'outOfPocketCover';
+    public static ManageCommisions      = 'manageCommisions';
 
     public static AdviserAdmin          = 'adviserAdmin';
     public static ReviewAndSubmit       = 'reviewAndSubmit';
@@ -68,8 +70,11 @@ export class FullyDistinguishedNames {
     public static PaymentDetails        = [FormSections.Quote, Blocks.PaymentDetails];
     public static CommissionSplit       = [FormSections.Quote, Blocks.CommissionSplit];
     public static ConsentAndDeclaration = [FormSections.Quote, Blocks.ConsentAndDeclaration];
+    public static OutOfPocketCover      = [FormSections.Quote, Blocks.OutOfPocketCover];
+    public static ManageCommisions      = [FormSections.Quote, Blocks.ManageCommisions];
     public static ReviewAndSubmit       = [FormSections.Application, Blocks.ReviewAndSubmit];
     public static PolicyDetails         = [FormSections.Quote, Blocks.PolicyDetails];
+
 
     // Quote blocks
     public static QuoteLifeInsuredOneAll     = [FormSections.Quote, Applicants.LifeInsuredOne];
