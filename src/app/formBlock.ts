@@ -217,7 +217,7 @@ export abstract class FormBlock {
 
     protected validateDateField ( age , dateControl ) {
         this.hideError();
-        if ( (age > 0 && age < 18) || age > 59 ) {
+        if ( (age > 0 && age < 17) || age > 59 ) {
             dateControl.setErrors( { 'invalidAge' : true } );
             this.showError( 'The insured person is ineligible to apply for this product due to their age' );
             age = null;
