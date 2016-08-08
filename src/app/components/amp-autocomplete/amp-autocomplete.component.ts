@@ -22,8 +22,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
             <my-md-input
                 focuser="input"
                 iconRight='search'
-                (click)='open()'     
-                (onFocus)='onFocus()'     
+                (click)='open()'          
                 (onBlur)='onBlur()'     
                 (keydown)='onKeydown($event)'     
                 [autoFocus]="isActive"
@@ -90,6 +89,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private INPUT_FOCUSER           = 0;
     private LIST_FOCUSER            = 1;
     private canViewAll              = true;
+    private isInSummaryState              = false;
     private options                 = [];
     private selectedOption : Option;
     private searchResult : Observable<Array<Option>>;
@@ -99,7 +99,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private _optionsHidden          = true;
     private lengthTrigger : number  = - 1;
     private showNoResult            = false;
-    private VALIDATION_DELAY        = 300;
+    private VALIDATION_DELAY        = 0;
     private firstOpen               = true;
 
     ngOnInit () : any {
@@ -138,6 +138,9 @@ export class AmpAutoCompleteComponent implements OnInit {
     };
 
     private open () {
+        if ( this.isInSummaryState ) {
+            return;
+        }
         if ( this.firstOpen ) {
             setTimeout( ()=> {
                 this.parentControl.updateValue( '' );
@@ -216,7 +219,6 @@ export class AmpAutoCompleteComponent implements OnInit {
                 .valueChanges
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
-                    console.log( 'queryString' , queryString );
                     if ( isPresent( this.selectedOption ) && isPresent( queryString ) && queryString !== this.selectedOption.title ) {
                         this.resetSelectedOption();
                         this.open();

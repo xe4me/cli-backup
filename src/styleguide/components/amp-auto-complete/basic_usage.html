@@ -1,5 +1,9 @@
 <form #formModel='ngForm' class='nl-form'>
     <div style='padding: 50px 100px; text-align:left'>
+        Control errors
+        <highlight color-default>
+            {{ control.errors | json }}
+        </highlight>
         <amp-auto-complete
                 class="1/2"
                 [options]="options"
@@ -16,10 +20,7 @@
                 {{ option.title }}
             </template>
         </amp-auto-complete>
-        Control errors
-        <highlight color-default>
-            {{ control.errors | json }}
-        </highlight>
+
 
         <br>
         <p>
