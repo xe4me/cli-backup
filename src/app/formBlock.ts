@@ -58,6 +58,14 @@ export abstract class FormBlock {
         const quoteControl : Control = this.controlService.getControl( FullyDistinguishedNames.QuoteDetails , 'identifier' );
         this.haveQuoteId             = quoteControl && quoteControl.value;
         this.isInSummaryState        = this.haveQuoteId;
+
+        //Hack to show summary state in a proper way
+        if ( quoteControl && quoteControl.value ) {
+            TimerWrapper.setTimeout(() => {
+                this.isInSummaryState = false;
+                this.isInSummaryState = true;
+            }, 100);
+        }
     }
 
     public get blocksAnchorId () {
