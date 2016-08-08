@@ -1,53 +1,53 @@
 {
   "rules": {
-    "class-name": false,
+    "class-name": true,
     "curly": false,
-    "eofline": false,
+    "eofline": true,
     "indent": [
-      false,
+      true,
       "spaces"
     ],
     "max-line-length": [
-      false,
+      true,
       500
     ],
     "member-ordering": [
-      false,
+      true,
       "public-before-private",
       "static-before-instance",
       "variables-before-functions"
     ],
-    "no-arg": false,
-    "no-construct": false,
-    "no-duplicate-key": false,
-    "no-duplicate-variable": false,
+    "no-arg": true,
+    "no-construct": true,
+    "no-duplicate-key": true,
+    "no-duplicate-variable": true,
     "no-empty": false,
-    "no-eval": false,
-    "trailing-comma": false,
-    "no-trailing-whitespace": false,
-    "no-unused-expression": false,
+    "no-eval": true,
+    "trailing-comma": true,
+    "no-trailing-whitespace": true,
+    "no-unused-expression": true,
     "no-unused-variable": false,
-    "no-unreachable": false,
-    "no-use-before-declare": false,
+    "no-unreachable": true,
+    "no-use-before-declare": true,
     "one-line": [
-      false,
+      true,
       "check-open-brace",
       "check-catch",
       "check-else",
       "check-whitespace"
     ],
     "quotemark": [
-      false,
+      true,
       "single"
     ],
-    "semicolon": false,
+    "semicolon": true,
     "triple-equals": [
-      false,
+      true,
       "allow-null-check"
     ],
     "variable-name": false,
     "whitespace": [
-      false,
+      true,
       "check-branch",
       "check-decl",
       "check-operator",

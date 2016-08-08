@@ -44,6 +44,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
             <li *ngIf="selectLabel" class='amp-auto-complete-option' tabindex='-1'>
                 <strong>{{ selectLabel }}</strong>
             </li>
+            <!--*ngFor='let option of ((searchResult | async)===null?options:(searchResult | async)) ; let i = index'-->
             <li (keydown.enter)="selectOption(option)" 
                 (click)="selectOption(option)" 
                 *ngFor='let option of searchResult | async ; let i = index' 
@@ -99,6 +100,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private lengthTrigger : number  = - 1;
     private showNoResult            = false;
     private VALIDATION_DELAY        = 300;
+    private firstOpen               = true;
 
     ngOnInit () : any {
         this.resetSelectedOption();
@@ -132,10 +134,16 @@ export class AmpAutoCompleteComponent implements OnInit {
         setTimeout( ()=> {
             this._optionsHidden = true;
             this.showNoResult   = false;
-        } , 0 );
+        } );
     };
 
     private open () {
+        if ( this.firstOpen ) {
+            setTimeout( ()=> {
+                this.parentControl.updateValue( '' );
+            } );
+            this.firstOpen = false;
+        }
         this._optionsHidden = false;
     };
 
@@ -158,7 +166,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     private selectOption ( option ) {
         this.selectedOption = option;
         this.parentControl.updateValue( option.title );
-        this.selectControl.updateValue( JSON.stringify(option) );
+        this.selectControl.updateValue( JSON.stringify( option ) );
         this.change.emit( option );
         this.close();
         this.focusInput();
@@ -166,6 +174,7 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private onDownKeyPressed ( _direction ) {
         this.focusers.toArray()[ this.LIST_FOCUSER ].focus( _direction );
+        this.markInputAsUnDirty();
     }
 
     private filter ( queryString : any ) : Observable<any> {
@@ -207,6 +216,7 @@ export class AmpAutoCompleteComponent implements OnInit {
                 .valueChanges
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
+                    console.log( 'queryString' , queryString );
                     if ( isPresent( this.selectedOption ) && isPresent( queryString ) && queryString !== this.selectedOption.title ) {
                         this.resetSelectedOption();
                         this.open();
@@ -239,8 +249,18 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private resetSelectedOption () {
         this.selectedOption = null;
-        if(this.selectControl)
+        if ( this.selectControl )
             this.selectControl.updateValue( null );
+    }
+
+    private markInputAsUnDirty () {
+        setTimeout( ()=> {
+            (<any>this.parentControl)._dirty = false;
+            this.parentControl.updateValueAndValidity( {
+                onlySelf  : false ,
+                emitEvent : true
+            } );
+        } )
     }
 }
 interface Option {
