@@ -40,7 +40,7 @@ import {
                 [maxLength]='valMaxLength'
                 [ngFormControl]='parentControl'
                 [placeholder]='label'>
-                  <span *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
+                  <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
             </md-input>
             <span *ngIf='iconRight && !isInSummaryState' class="icon icon--search icon-right"></span>
             <span

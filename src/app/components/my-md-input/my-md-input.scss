@@ -126,7 +126,9 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
     color: $amp-colour-grey-darkest;
   }
 }
-
+.currency{
+  font-size: 26px;
+}
 md-input {
   &.md-input {
     cursor: pointer;
