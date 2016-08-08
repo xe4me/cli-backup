@@ -1,17 +1,18 @@
-import { Control , ControlArray, ControlGroup } from '@angular/common';
+import { Control , ControlArray , ControlGroup } from '@angular/common';
 import { forwardRef , provide , Provider } from '@angular/core';
-import { BlockLayout,
-         FormDefinition,
-         BlockID,
-         Action,
-         UIControlService,
-         FormModelService,
-         ProgressObserverService,
-         ScrollService } from 'amp-ddc-ui-core/ui-core';
+import {
+    BlockLayout ,
+    FormDefinition ,
+    BlockID ,
+    Action ,
+    UIControlService ,
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService
+} from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
-import { FullyDistinguishedNames, FormSections } from './form-sections';
+import { FullyDistinguishedNames , FormSections } from './form-sections';
 import * as moment from 'moment';
-
 export class NamedControl {
     constructor ( public name : string , public control : any ) {
     }
@@ -19,7 +20,6 @@ export class NamedControl {
 export const provideParent =
                  ( component : any , parentType? : any ) =>
                      provide( parentType || FormBlock , { useExisting : forwardRef( () => component ) } );
-
 /**
  * This class is both a Abstract Class (i.e. Java like Abstract, property and method implementation that are common) and
  * a Class-Interface (https://angular.io/docs/ts/latest/cookbook/dependency-injection.html#!#class-interface)
@@ -27,9 +27,7 @@ export const provideParent =
 export abstract class FormBlock {
     _id : BlockID;                      // Auto-Generated id based on the flatten index of the formDefinition blocks
                                         // array of the current page (i.e {page: ABC, index: 2})
-
-    name : string;                      // Represent the current portion of the FullyQualifiedName in the Component Tree 
-
+    name : string;                      // Represent the current portion of the FullyQualifiedName in the Component Tree
     blockType : string;                 // Concrete FormBlock implementation class name.
     path = '';                          // Physical path from src/app/blocks to the concrete FormBlock implementation
                                         // class.
@@ -43,24 +41,23 @@ export abstract class FormBlock {
     public options : Array<string>;
     public visibility : Action;
     public validation : Action;
-    protected isInSummaryState     : boolean          = false;
-    protected hasClickedOnOkButton : boolean          = false;
-    protected formModelService     : FormModelService = null;
-    protected scrollService        : ScrollService    = null;
-    protected fullyDistinguishedName: string[]        = null;
-    protected dateErrorMessage                        = null;
-    protected dateFormat           : string           = 'DD/MM/YYYY';
-    private haveQuoteId            : boolean          = false;
+    protected isInSummaryState : boolean          = false;
+    protected hasClickedOnOkButton : boolean      = false;
+    protected formModelService : FormModelService = null;
+    protected scrollService : ScrollService       = null;
+    protected fullyDistinguishedName : string[]   = null;
+    protected dateErrorMessage                    = null;
+    protected dateFormat : string                 = 'DD/MM/YYYY';
+    private haveQuoteId : boolean                 = false;
 
-
-    constructor ( public controlService?: UIControlService,
-                  protected progressObserver?: ProgressObserverService ) {
+    constructor ( public controlService? : UIControlService ,
+                  protected progressObserver? : ProgressObserverService ) {
 
         // What about Application FormBlocks?
         // TODO: Move this into the relevant blocks 
-        const quoteControl: Control = this.controlService.getControl(FullyDistinguishedNames.QuoteDetails, 'identifier');
-        this.haveQuoteId = quoteControl && quoteControl.value;
-        this.isInSummaryState = this.haveQuoteId;
+        const quoteControl : Control = this.controlService.getControl( FullyDistinguishedNames.QuoteDetails , 'identifier' );
+        this.haveQuoteId             = quoteControl && quoteControl.value;
+        this.isInSummaryState        = this.haveQuoteId;
     }
 
     public get blocksAnchorId () {
@@ -93,41 +90,39 @@ export abstract class FormBlock {
     }
 
     public getMyVisibleFlagString () {
-        return this.getfullyDistinguishedName().join('_') + 'IsVisible';
+        return this.getfullyDistinguishedName().join( '_' ) + 'IsVisible';
     }
 
     public getMyDoneFlagString () {
-        return this.getfullyDistinguishedName().join('_') + 'IsDone';
+        return this.getfullyDistinguishedName().join( '_' ) + 'IsDone';
     }
 
     public get canGoNext () {
-        return this.controlService.getControlGroup(this.getfullyDistinguishedName()).valid;
+        return this.controlService.getControlGroup( this.getfullyDistinguishedName() ).valid;
     }
 
-    public getControl(name: string, defaultValue?: string | number) : Control {
-        let exists = this.controlService.getControl(this.getfullyDistinguishedName(), name);
+    public getControl ( name : string , defaultValue? : string | number ) : Control {
+        let exists = this.controlService.getControl( this.getfullyDistinguishedName() , name );
         if ( ! exists ) {
-            exists = this.controlService.createControl(this.getfullyDistinguishedName(), name, defaultValue);
+            exists = this.controlService.createControl( this.getfullyDistinguishedName() , name , defaultValue );
         }
         return exists;
     }
 
-    public getControlArray(name: string) : ControlArray {
-        let exists = this.controlService.getControlArray(this.getfullyDistinguishedName(), name);
+    public getControlArray ( name : string ) : ControlArray {
+        let exists = this.controlService.getControlArray( this.getfullyDistinguishedName() , name );
         if ( ! exists ) {
-            exists = this.controlService.createControlArray(this.getfullyDistinguishedName(), name);
+            exists = this.controlService.createControlArray( this.getfullyDistinguishedName() , name );
         }
         return exists;
     }
 
-    public pushControltoControlArray(name: string, controls: Array<any>) {
-        var newGroup = new ControlGroup({});
-
-        controls.forEach(function(control) {
-            newGroup.addControl(control.id, new Control(control.default || ''));
-        });
-
-        this.getControlArray(name).push(newGroup);
+    public pushControltoControlArray ( name : string , controls : Array<any> ) {
+        var newGroup = new ControlGroup( {} );
+        controls.forEach( function( control ) {
+            newGroup.addControl( control.id , new Control( control.default || '' ) );
+        } );
+        this.getControlArray( name ).push( newGroup );
     }
 
     protected getfullyDistinguishedName () : string[] {
@@ -137,7 +132,7 @@ export abstract class FormBlock {
     protected getHtmlId ( local ) : string {
         let htmlId = local;
         if ( this.getfullyDistinguishedName() ) {
-            htmlId = FullyDistinguishedNames.toString(this.getfullyDistinguishedName()) + '_' + local;
+            htmlId = FullyDistinguishedNames.toString( this.getfullyDistinguishedName() ) + '_' + local;
         }
         return htmlId;
     }
@@ -145,50 +140,50 @@ export abstract class FormBlock {
     protected next ( nextBlock ) {
         // console.log(nextBlock);
         this.hasClickedOnOkButton = true;
-        if (this.controlService.getControlGroup(this.getfullyDistinguishedName()).valid) {
+        if ( this.controlService.getControlGroup( this.getfullyDistinguishedName() ).valid ) {
             this.isInSummaryState = true;
             this.progressObserver.onProgress();
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollToNextUndoneBlock(this.controlService, FullyDistinguishedNames);
+            this.scrollService.scrollToNextUndoneBlock( this.controlService , FullyDistinguishedNames );
             this.formModelService.present( {
                 action    : 'setFlag' ,
-                flag      : nextBlock + 'IsVisible',
+                flag      : nextBlock + 'IsVisible' ,
                 flagValue : true
             } );
         }
     }
 
     protected formatValue ( event , pipe ) {
-        const fdn = FullyDistinguishedNames.fromString(event.target.name);
-        let theControl = this.controlService.getControl(fdn.slice(0, fdn.length-1), fdn[fdn.length-1] );
+        const fdn      = FullyDistinguishedNames.fromString( event.target.name );
+        let theControl = this.controlService.getControl( fdn.slice( 0 , fdn.length - 1 ) , fdn[ fdn.length - 1 ] );
         const newValue = pipe.transform( pipe.parseValue( theControl.value ) , 0 , 3 , '' );
         theControl.updateValue( newValue );
     }
 
-    public getLabel (array: Array<any>, value: string) {
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].value === value) {
-                return array[i].label;
+    public getLabel ( array : Array<any> , value : string ) {
+        for ( let i = 0 ; i < array.length ; i ++ ) {
+            if ( array[ i ].value === value ) {
+                return array[ i ].label;
             }
         }
     }
 
-    public errorEmptyControl (control) {
-        return control.touched && !control.value && !control.valid;
+    public errorEmptyControl ( control ) {
+        return control.touched && ! control.value && ! control.valid;
     }
 
-    public errorInvalidControl (control) {
-        return control.touched && control.value && !control.valid;
+    public errorInvalidControl ( control ) {
+        return control.touched && control.value && ! control.valid;
     }
 
-    public errorUnselectedControl (control) {
-        return control.touched && control.hasOpened && !control.valid;
+    public errorUnselectedControl ( control ) {
+        return control.touched && control.hasOpened && ! control.valid;
     }
 
-    public errorUncheckedControl (control) {
-        return control.touched && !control.valid;
+    public errorUncheckedControl ( control ) {
+        return control.touched && ! control.valid;
     }
 
     protected tickDone () {
@@ -208,7 +203,7 @@ export abstract class FormBlock {
     }
 
     protected isCurrentBlockActive () {
-        const isCurrentBlockVisible : boolean = this.formModelService.getFlags(this.getMyVisibleFlagString());
+        const isCurrentBlockVisible : boolean = this.formModelService.getFlags( this.getMyVisibleFlagString() );
         return this.haveQuoteId || isCurrentBlockVisible;
     }
 
@@ -220,7 +215,7 @@ export abstract class FormBlock {
         this.dateErrorMessage = null;
     }
 
-    protected validateDateField ( age, dateControl ) {
+    protected validateDateField ( age , dateControl ) {
         this.hideError();
         if ( (age > 0 && age < 18) || age > 59 ) {
             dateControl.setErrors( { 'invalidAge' : true } );
@@ -234,7 +229,6 @@ export abstract class FormBlock {
         }
         return age;
     }
-
 
     protected validateDateControl ( dateControl ) {
         this.hideError();
@@ -255,11 +249,10 @@ export abstract class FormBlock {
     private resetBlock () {
         this.formModelService.present( {
             action    : 'setFlag' ,
-            flag      : this.getMyVisibleFlagString,
+            flag      : this.getMyVisibleFlagString ,
             flagValue : false
         } );
         this.isInSummaryState     = false;
         this.hasClickedOnOkButton = false;
     }
-
 }

@@ -62,6 +62,7 @@ export class ExampleDirective {
     ]
 } )
 export class ExampleComponent {
+    @ViewChild( ExampleDirective ) exampleDirective : ExampleDirective;
     public orderedFiles : ISourceFile[] = [];
     public showExample : boolean        = true;
     @Input() public selected : string   = 'html';
@@ -82,7 +83,6 @@ export class ExampleComponent {
         return this._loaded;
     }
 
-    @ViewChild( ExampleDirective ) exampleDirective : ExampleDirective;
     //@Query( MdTabs ) public panes : QueryList<MdTabs> ,
     constructor ( public http : Http , public cd : ChangeDetectorRef , public zone : NgZone ) {
     }
@@ -110,9 +110,9 @@ export class ExampleComponent {
         waitForChunk( ( file ) => {
             this.exampleDirective
                 .createComponent( file[ 'default' ] )
-                .then( ( componentRef : ComponentRef<any> )=> {
+                .then( ( componentRef : ComponentRef<any> ) => {
                     componentRef.changeDetectorRef.detectChanges();
-                } )
+                } );
         } );
     }
 
