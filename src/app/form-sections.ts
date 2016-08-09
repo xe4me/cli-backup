@@ -17,6 +17,7 @@ export class FormSections {
     public static User                  = 'User';
     public static Quote                 = 'Quote';
     public static Application           = 'Application';
+    public static Save                  = 'Save';
 }
 
 export class Applicants {
@@ -52,6 +53,7 @@ export class Blocks {
     public static NextSteps             = 'nextSteps';
 
     public static QuoteSummary          = 'quoteSummary';
+    public static SavePage              = 'savePage';
 
 }
 
@@ -93,6 +95,9 @@ export class FullyDistinguishedNames {
 
     public static PremiumOneDetails          = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.PremiumDetails];
     public static PremiumTwoDetails          = [FormSections.Quote, Applicants.LifeInsuredTwo, Blocks.PremiumDetails];
+
+    // Email block
+    public static SavePage                   = [FormSections.Save, Blocks.SavePage]
 
     // Application blocks
     public static ApplicationOneDetails   = [FormSections.Application, Applicants.LifeInsuredOne, Blocks.LifeInsuredDetails];
