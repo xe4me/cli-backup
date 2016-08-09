@@ -17,11 +17,13 @@ export class FormSections {
     public static User                  = 'User';
     public static Quote                 = 'Quote';
     public static Application           = 'Application';
+    public static Save                  = 'Save';
 }
 
 export class Applicants {
     public static LifeInsuredOne        = 'LifeInsuredOne';
     public static LifeInsuredTwo        = 'LifeInsuredTwo';
+
 }
 
 export class Blocks {
@@ -52,13 +54,13 @@ export class Blocks {
     public static NextSteps             = 'nextSteps';
 
     public static QuoteSummary          = 'quoteSummary';
+    public static SavePage              = 'savePage';
+
 
 }
 
 // Each block has a FullyDistinguishedName that will determine the place of it's data in the model
 export class FullyDistinguishedNames {
-
-
     // Common blocks
     public static UserDetails           = [FormSections.User, Blocks.LoggedInUser];
     public static AdviserDetails        = [FormSections.User, Blocks.Adviser];
@@ -74,7 +76,6 @@ export class FullyDistinguishedNames {
     public static ManageCommisions      = [FormSections.Quote, Blocks.ManageCommisions];
     public static ReviewAndSubmit       = [FormSections.Application, Blocks.ReviewAndSubmit];
     public static PolicyDetails         = [FormSections.Quote, Blocks.PolicyDetails];
-
 
     // Quote blocks
     public static QuoteLifeInsuredOneAll     = [FormSections.Quote, Applicants.LifeInsuredOne];
@@ -115,11 +116,12 @@ export class FullyDistinguishedNames {
 
     public static UnderwritingOneDetails  = [FormSections.Application, Applicants.LifeInsuredOne, Blocks.UnderwritingCallPreferences];
     public static UnderwritingTwoDetails  = [FormSections.Application, Applicants.LifeInsuredTwo, Blocks.UnderwritingCallPreferences];
+
+    public static SavePage                   = [FormSections.Save, Blocks.SavePage];
     private static separator : string   = '_';
     public static toString(fdn: string[]) : string {
         return fdn.join(FullyDistinguishedNames.separator);
     }
-
     public static fromString(fdnString: string) : string[] {
         return fdnString.split(FullyDistinguishedNames.separator);
     }
