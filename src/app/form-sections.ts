@@ -17,7 +17,6 @@ export class FormSections {
     public static User                  = 'User';
     public static Quote                 = 'Quote';
     public static Application           = 'Application';
-    public static Save                  = 'Save';
 }
 
 export class Applicants {
@@ -53,7 +52,6 @@ export class Blocks {
     public static NextSteps             = 'nextSteps';
 
     public static QuoteSummary          = 'quoteSummary';
-    public static SavePage              = 'savePage';
 
 }
 
@@ -93,11 +91,14 @@ export class FullyDistinguishedNames {
     public static PermanentCoverOneDetails   = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.PermanentCover];
     public static PermanentCoverTwoDetails   = [FormSections.Quote, Applicants.LifeInsuredTwo, Blocks.PermanentCover];
 
+    public static OutOfPocketOneDetails      = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.OutOfPocketCover];
+    public static OutOfPocketTwoDetails      = [FormSections.Quote, Applicants.LifeInsuredTwo, Blocks.OutOfPocketCover];
+
+    public static ManageCommisionsOneDetails = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.ManageCommisions];
+    public static ManageCommisionsTwoDetails = [FormSections.Quote, Applicants.LifeInsuredTwo, Blocks.ManageCommisions];
+
     public static PremiumOneDetails          = [FormSections.Quote, Applicants.LifeInsuredOne, Blocks.PremiumDetails];
     public static PremiumTwoDetails          = [FormSections.Quote, Applicants.LifeInsuredTwo, Blocks.PremiumDetails];
-
-    // Email block
-    public static SavePage                   = [FormSections.Save, Blocks.SavePage];
 
     // Application blocks
     public static ApplicationOneDetails   = [FormSections.Application, Applicants.LifeInsuredOne, Blocks.LifeInsuredDetails];
