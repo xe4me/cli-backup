@@ -97,7 +97,7 @@ export class FullyDistinguishedNames {
     public static PremiumTwoDetails          = [FormSections.Quote, Applicants.LifeInsuredTwo, Blocks.PremiumDetails];
 
     // Email block
-    public static SavePage                   = [FormSections.Save, Blocks.SavePage]
+    public static SavePage                   = [FormSections.Save, Blocks.SavePage];
 
     // Application blocks
     public static ApplicationOneDetails   = [FormSections.Application, Applicants.LifeInsuredOne, Blocks.LifeInsuredDetails];
