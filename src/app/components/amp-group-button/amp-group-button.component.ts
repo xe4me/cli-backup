@@ -66,13 +66,14 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                 </div>
                 ` ,
     inputs     : [
+        'defaultValue' ,
         'required' ,
         'scrollOutUnless' ,
         'scrollOutOn' ,
         'disabled' ,
         'parentControl' ,
         'buttons' ,
-        'groupName',
+        'groupName' ,
         'index'
     ] ,
     styles     : [ require( './amp-group-button.scss' ).toString() ] ,
@@ -87,8 +88,9 @@ export class AmpGroupButtonComponent {
     private scrollOutUnless : string;
     private scrollOutOn : string;
     private groupName : string;
+    private defaultValue : string;
     private select              = new EventEmitter<any>();
-    private index : string = '';
+    private index : string      = '';
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
@@ -106,9 +108,12 @@ export class AmpGroupButtonComponent {
 
     ngAfterViewInit () : any {
         this.parentControl.valueChanges.subscribe( ( changes ) => {
-            if(changes)
-            this.onSelect( changes , false );
+            if ( changes )
+                this.onSelect( changes , false );
         } );
+        if ( this.defaultValue ) {
+            this.parentControl.updateValue( this.defaultValue );
+        }
         this.updateValidators();
         this.changeDetector.detectChanges();
         return undefined;
@@ -136,7 +141,7 @@ export class AmpGroupButtonComponent {
 
     private onSelect ( value , shouldScroll ) {
         this.select.emit( value + '' );
-        if ( !shouldScroll ) {
+        if ( ! shouldScroll ) {
             return;
         }
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {

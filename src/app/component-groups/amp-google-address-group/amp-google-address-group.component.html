@@ -4,10 +4,11 @@
         <!--Practice address-->
         <label class='heading heading-contxtual-label mb3'>Address</label><!--
 
-     --><amp-google-address #ampGoogleAddress
+     --><amp-google-address
+            #ampGoogleAddress
             class='1/1'
             [isInSummaryState]='isInSummaryState'
-            [id]='googleAddress.id'
+            [id]='googleAddress.id+"_"+index'
             [label]='googleAddress.label'
             [labelHidden]='googleAddress.labelHidden'
             [parentControl]='googleAddressCtrl'

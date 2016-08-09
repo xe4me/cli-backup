@@ -14,6 +14,7 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
     selector   : 'amp-google-address-group' ,
     template   :  require('./amp-google-address-group.component.html') ,
     inputs     : [
+        'index',
         'googleAddress',
         'address',
         'state',
@@ -34,7 +35,7 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
 } )
 export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     static CLASS_NAME                      = 'AMPGoogleAddressComponentGroup';
-
+    private index = '';
     @ViewChild('ampGoogleAddress') addressComponent: AMPGoogleAddressComponent;
 
     private googleAddress = {
