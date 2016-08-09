@@ -28,6 +28,6 @@ export abstract class FormSection extends FormBlock {
     }
 
     public get blocksAnchorId () {
-        return this.CLASS_NAME + '_' + this.name + '_blocks';
+        return this.CLASS_NAME + (this.name ? '_' + this.name : '') + '_blocks';
     }
 }
