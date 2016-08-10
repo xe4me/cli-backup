@@ -52,6 +52,7 @@ import {
         inputs        : [
             'id' ,
             'defaultValue' ,
+            'customValidator' ,
             'disabled' ,
             'isInSummaryState' ,
             'label' ,
@@ -110,6 +111,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private tabindex : any             = null;
     private defaultValue : any         = null;
     private currency : string          = null;
+    private customValidator : Function = ()=>{};
     private parentControl : Control;
     private placeholder : string;
     private visibility : Action;
@@ -176,6 +178,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this._disabled = this.isTrue( value );
         this.updateValitators();
     }
+
     get isRequired () {
         return this._required;
     }
@@ -308,7 +311,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
             MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
             MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
             PatterValidator.patternValidator( this.valPattern ) ,
-            MaxFloatValidator.maxFloatValidator( this._valMaxFloat )
+            MaxFloatValidator.maxFloatValidator( this._valMaxFloat ),
+            this.customValidator()
         ];
         this.validate  = Validators.compose( validators );
     }
