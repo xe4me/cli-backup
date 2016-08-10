@@ -79,7 +79,7 @@ export class MinDateValidator {
         return ( c ) => {
             if ( pattern !== undefined ) {
                 let diff = FormUtils.getAgeDays( c.value );
-                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || ! diff || diff >= pattern ) {
+                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || diff === null || diff === undefined || diff >= pattern ) {
                     return null;
                 }
                 return {
