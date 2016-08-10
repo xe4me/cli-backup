@@ -1,6 +1,6 @@
 import {
     Component ,
-    ViewChild
+    ViewChild , EventEmitter
 } from '@angular/core';
 import { Control , Validators } from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
@@ -114,7 +114,7 @@ export class AmpDropdownComponent {
     private labelHidden: boolean = false;
     private currentOption;
     private _limitTo: number = 999;
-
+    private select = new EventEmitter();
     private selectedOption = {
         label: '',
         value: ''
@@ -168,11 +168,11 @@ export class AmpDropdownComponent {
     }
 
     get limitTo () {
-      return this._limitTo;
+        return this._limitTo;
     }
 
     set limitTo ( value : any ) {
-      this._limitTo = value;
+        this._limitTo = value;
     }
 
     private toggleOptions () {
@@ -270,6 +270,9 @@ export class AmpDropdownComponent {
             this.optionsElem.querySelectorAll('[data-option-val="' + this.selectedOption.value + '"]')[0].focus();
             this.selectElem.focus();
         }
+        setTimeout(()=>{
+            this.select.emit(this.parentControl.value);
+        },0)
     }
 
     private onFocusEvent ($event) {
