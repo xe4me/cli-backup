@@ -30,7 +30,7 @@ import {
                 (focus)='onFocused($event)'
                 (keyup)='onKeyupEvent($event)'
                 (blur)='trimValue($event)'
-                [disabled]='isInSummaryState'
+                [disabled]='isInSummaryState || disabled'
                 class='md-input'
                 [class.label-hidden]='labelHidden'
                 [aria-label]='_id'
@@ -51,6 +51,8 @@ import {
         styles        : [ require( './my-md-input.scss' ).toString() ] ,
         inputs        : [
             'id' ,
+            'defaultValue' ,
+            'disabled' ,
             'isInSummaryState' ,
             'label' ,
             'parentControl' ,
@@ -97,6 +99,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private _valMaxFloat : number;
     private _valMinFloat : number;
     private _required : boolean        = false;
+    private _disabled : boolean        = false;
     private label : string;
     private isInSummaryState : boolean = false;
     private showLabel : boolean        = true;
@@ -105,6 +108,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private iconRight : boolean        = false;
     private isActive : boolean         = true;
     private tabindex : any             = null;
+    private defaultValue : any         = null;
     private currency : string          = null;
     private parentControl : Control;
     private placeholder : string;
@@ -144,6 +148,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         //this.el.nativeElement.className = this.tempClassNames;
         this.updateValitators();
         this.addDelayedValidation();
+        this.setDefaultValue();
         this._cd.detectChanges();
         // Artifically inject the data-automation-id into the internals of @angular-material md-input
         this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this._id );
@@ -163,6 +168,14 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         return undefined;
     }
 
+    get disabled () {
+        return this._disabled;
+    }
+
+    set disabled ( value : boolean ) {
+        this._disabled = this.isTrue( value );
+        this.updateValitators();
+    }
     get isRequired () {
         return this._required;
     }
@@ -317,5 +330,11 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private checkErrors () {
         this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
         //this.parentControl.updateValueAndValidity({ emitEvent : true ,onlySelf:false});
+    }
+
+    private setDefaultValue () {
+        if ( this.defaultValue && this.parentControl ) {
+            this.parentControl.updateValue( this.defaultValue );
+        }
     }
 }
