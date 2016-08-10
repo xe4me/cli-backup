@@ -142,7 +142,9 @@ md-input {
     div {
       &.md-input-wrapper {
         position: relative;
-
+        .md-input-table:hover + .md-input-underline.md-disabled {
+          border-top: 1px solid $amp-colour-grey-dark;
+        }
         .md-input-underline {
           // position: absolute;
           // height: 1px;
