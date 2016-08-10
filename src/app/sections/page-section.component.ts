@@ -23,7 +23,7 @@ export class PageSectionComponent extends FormSection {
     public CLASS_NAME = 'PageSectionComponent';
 
     constructor (public _viewContainerRef: ViewContainerRef,
-                 public controlService: UIControlService, 
+                 public controlService: UIControlService,
                  public progressObserver: ProgressObserverService,
                  public formSectionService: FormSectionService,
                  public formModelService: FormModelService,
@@ -31,7 +31,7 @@ export class PageSectionComponent extends FormSection {
         super(_viewContainerRef, controlService, progressObserver);
         this.formModelService.dynamicFormLoaded.subscribe((isLoaded) => {
             this._cd.detectChanges();
-        })
+        });
     }
 
     isCurrentSection(): boolean {
