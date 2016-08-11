@@ -199,5 +199,25 @@
             }
         ],
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name": "Amp Dropdown",
+        "sources": [
+            "src/app/components/amp-dropdown/amp-dropdown.component.ts"
+        ],
+        "id": "AmpDropdownComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-dropdown/basic_usage.html",
+                "styles": "src/styleguide/components/amp-dropdown/basic_usage.scss",
+                "source": "src/styleguide/components/amp-dropdown/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-dropdown/amp-dropdown.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-dropdown/amp-dropdown.component.spec.ts",
+                "component": "amp-dropdown-block-basic-usage",
+                "component_src_location": "components/amp-dropdown/basic_usage",
+                "name": "Amp Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
     }
 ]
