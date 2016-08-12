@@ -7,10 +7,10 @@ import {
         selector      : 'amp-review-item' ,
         template      : `
           <div class="grid">
-            <div class="grid__item review--item__title 2/5">
+            <div class="grid__item amp-review-item__label 2/5">
               <span>{{label}}</span>
             </div><!--
-         --><div class="grid__item 2/5">
+         --><div class="grid__item 3/5 pl">
               <span>{{value}}</span>
               <span *ngIf="postfix">{{postfix}}</span>
             </div>

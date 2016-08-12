@@ -6,9 +6,9 @@ import {
     {
         selector      : 'amp-review-block' ,
         template      : `
-          <div class="grid review--section">
-            <div class="grid__item 1/2">
-              <h3>{{title}}</h3>
+          <div class="grid amp-review-block pv">
+            <div class="grid__item">
+              <h3 class="amp-review-block__title mb-10">{{title}}</h3>
             </div>
             <ng-content></ng-content>
           </div>

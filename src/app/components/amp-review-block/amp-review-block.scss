@@ -1,1 +1,16 @@
 @import '../../../styles/abstracts';
+
+:host {
+}
+
+$amp-review-font-size: $font-size-tiny;
+
+.amp-review-block {
+  border-bottom: 1px solid $amp-colour-grey-dark;
+  font-size: $amp-review-font-size;
+  line-height: $amp-review-font-size * 2;
+
+  &__title {
+    font-weight: bold;
+  }
+}
