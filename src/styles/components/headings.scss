@@ -32,7 +32,7 @@ $heading-micro-intro-font-weight: 600;
   font-weight: $heading-intro-font-weight;
   line-height: $heading-intro-line-height;
 
-  @include media-query(palm){
+  @include media-query(palm) {
     @extend %#{$namespace}font-size-small;
   }
 }
@@ -46,7 +46,7 @@ $heading-micro-intro-font-weight: 600;
   font-weight: $heading-contxtual-label-font-weight;
   line-height: $heading-contxtual-label-line-height;
   vertical-align: text-bottom;
-  @include media-query(palm){
+  @include media-query(palm) {
     @extend %#{$namespace}font-size-small;
   }
 }
@@ -69,10 +69,19 @@ $heading-micro-intro-font-weight: 600;
   font-weight: 400;
   line-height: 30px;
   vertical-align: sub;
-  @include media-query(palm){
+  @include media-query(palm) {
     @extend %#{$namespace}font-size-tiny;
     line-height: 25px;
   }
+}
+
+.#{$namespace}heading-note,
+%#{$namespace}heading-note {
+  @extend %#{$namespace}font-size-tiny;
+  @include amp-family($amp-font-open-sans-regular);
+  color: $amp-colour-grey-darker;
+  font-weight: 400;
+
 }
 
 .#{$namespace}comma-summary-state,
