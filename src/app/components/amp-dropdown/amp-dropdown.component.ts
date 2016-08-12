@@ -37,6 +37,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
                 (keydown)='onKeypressEvent($event)'
                 (change)='onChangeEvent()'
                 (focus)='onFocusEvent($event)'
+                [attr.data-automation-id]='"slt_" + id'
                 [attr.disabled]='(disabled || isInSummaryState) ? "disabled" : null'>
 
                 <option value='' selected [attr.disabled]='currentOption > 0 ? "disabled" : null'></option>
