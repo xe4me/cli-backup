@@ -103,7 +103,6 @@ export class AmpAutoCompleteComponent implements OnInit {
     private firstOpen               = true;
 
     ngOnInit () : any {
-        this.resetSelectedOption();
         this.parentControl = this.parentControl || new Control();
         this.selectControl = this.selectControl || new Control();
         if ( this.options ) {
