@@ -1,21 +1,17 @@
 <form #formModel="ngForm" class="nl-form">
-
+    isvalid {{ firstnameControl.valid }}
     <br/>
     <my-md-input
             [id]="'firstname'"
             [label]="'Name'"
             [parentControl]="firstnameControl"
             [isRequired]="true"
-            [valPattern]="'^([A-Za-z ])*$'"
-            [valMaxLength]="12"
+            [valPattern]="'^([0-9])*$'"
+            [valMaxLength]="'12'"
+            [valMinLength]="'4'"
             [currency]="'$'"
-            [valMinLength]="4"
     >
-
     </my-md-input>
-    <div class="errors">
-
-    </div>
     <div class='errors mt-25 mb-15' *ngIf="firstnameControl.touched && firstnameControl.errors">
         <div *ngIf="firstnameControl.errors.required">
             <span class='icon icon--close icon-errors' aria-hidden="true"></span>
@@ -39,18 +35,5 @@
         All errors
         <span>errors {{ firstnameControl.errors | json }}</span>
     </div>
-    <br/>
 
-    <!--<my-md-input-->
-    <!--[id]="'surname'"-->
-    <!--[label]="'Name'"-->
-    <!--[parentControl]="surnameControl"-->
-    <!--[placeholder]="'Creative design wasnt built for placeholder'"-->
-    <!--[visibility]="visibilityRule"-->
-
-    <!--isRequired="true"-->
-    <!--valPattern="^([A-Za-z ])*$"-->
-    <!--valMaxLength="50">-->
-
-    <!--</my-md-input>-->
 </form>

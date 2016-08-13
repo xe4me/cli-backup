@@ -129,7 +129,19 @@ $input-height: $input-line-height * 1.5; // Don't like Materialize CSS rule 'hei
 .currency{
   font-size: 26px;
 }
+md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-underline, md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-element:not(:focus){
+  color: #000 !important;
+  border-color: #000 !important;
+}
+md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-underline .md-input-ripple{
+  border-top:1px solid  red !important;
+}
+md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-underline, md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-element{
+  border-color: red !important;
+
+}
 md-input {
+
   &.md-input {
     cursor: pointer;
     color: $amp-colour-sky-blue;

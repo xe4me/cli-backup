@@ -91,6 +91,7 @@ import {
         }
     } )
 export class MdInputComponent implements AfterViewInit, OnChanges {
+    public parentControl : Control;
     private inputWidth : number;
     private _id : string;
     private _valMinLength : number;
@@ -111,8 +112,8 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private tabindex : any             = null;
     private defaultValue : any         = null;
     private currency : string          = null;
-    private customValidator : Function = ()=>{};
-    private parentControl : Control;
+    private customValidator : Function = ()=> {
+    };
     private placeholder : string;
     private visibility : Action;
     private onAdjustWidth : EventEmitter<any>;
@@ -125,7 +126,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private onKeyup : EventEmitter<any>;
     private labelHidden : boolean      = false;
     private validate;
-    private validationDelay            = 300;
+    private validationDelay            = 0;
     private idleTimeOut                = 2000;
     private idleTimeoutId;
 
@@ -254,6 +255,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private onFocused ( event ) {
         this.markControlAsUntouched();
         this.checkErrors();
+        this.resetIdleTimeOut();
         this.onFocus.emit( event );
     }
 
@@ -270,8 +272,9 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     }
 
     private trimValue ( $event ) {
+        this.checkErrors();
         setTimeout( ()=> {
-            this.checkErrors();
+            this.removeIdleAndMakeInUntouched();
         } );
         let notUsable;
         if ( this.parentControl.value ) {
@@ -292,14 +295,22 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     }
 
     private addDelayedValidation () {
-        this.parentControl
-            .valueChanges
-            .debounceTime( this.validationDelay )
-            .distinctUntilChanged()
-            .subscribe( ( changes )=> {
-                this.resetIdleTimeOut();
-                this.checkErrors();
-            } );
+        if ( this.validationDelay > 0 ) {
+            this.parentControl
+                .valueChanges
+                .debounceTime( this.validationDelay )
+                .subscribe( ( changes )=> {
+                    this.resetIdleTimeOut();
+                    this.checkErrors();
+                } );
+        } else {
+            this.parentControl
+                .valueChanges
+                .subscribe( ( changes )=> {
+                    this.resetIdleTimeOut();
+                    this.checkErrors();
+                } );
+        }
         this.checkErrors();
     }
 
@@ -311,7 +322,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
             MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
             MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
             PatterValidator.patternValidator( this.valPattern ) ,
-            MaxFloatValidator.maxFloatValidator( this._valMaxFloat ),
+            MaxFloatValidator.maxFloatValidator( this._valMaxFloat ) ,
             this.customValidator()
         ];
         this.validate  = Validators.compose( validators );
@@ -319,21 +330,24 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     private resetIdleTimeOut () {
         this.markControlAsUntouched();
-        if ( this.idleTimeoutId ) {
-            clearTimeout( this.idleTimeoutId );
-        }
+        clearTimeout( this.idleTimeoutId );
         this.idleTimeoutId = setTimeout( ()=> {
             this.parentControl.markAsTouched();
         } , this.idleTimeOut );
+    }
+
+    private removeIdleAndMakeInUntouched () {
+        clearTimeout( this.idleTimeoutId );
+        this.markControlAsUntouched();
+        this.parentControl.markAsTouched();
     }
 
     private markControlAsUntouched () {
         (<any>this.parentControl)._touched = false;
     }
 
-    private checkErrors () {
+    public checkErrors () {
         this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
-        //this.parentControl.updateValueAndValidity({ emitEvent : true ,onlySelf:false});
     }
 
     private setDefaultValue () {
