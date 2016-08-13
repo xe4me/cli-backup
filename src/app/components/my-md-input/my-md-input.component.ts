@@ -300,15 +300,19 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
                 .valueChanges
                 .debounceTime( this.validationDelay )
                 .subscribe( ( changes )=> {
-                    this.resetIdleTimeOut();
-                    this.checkErrors();
+                    if ( changes ) {
+                        this.resetIdleTimeOut();
+                        this.checkErrors();
+                    }
                 } );
         } else {
             this.parentControl
                 .valueChanges
                 .subscribe( ( changes )=> {
-                    this.resetIdleTimeOut();
-                    this.checkErrors();
+                    if ( changes ) {
+                        this.resetIdleTimeOut();
+                        this.checkErrors();
+                    }
                 } );
         }
         this.checkErrors();

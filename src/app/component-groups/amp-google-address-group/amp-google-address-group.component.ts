@@ -39,36 +39,36 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     @ViewChild('ampGoogleAddress') addressComponent: AMPGoogleAddressComponent;
 
     private googleAddress = {
-                id : 'googleAddress' ,
-                label : '' ,
-                regex : '' ,
-                placeholder: '',
-                error : {
-                    invalid: 'Address is invalid.',
-                    required: 'Address is a required field.'
-                }
-            };
+        id : 'googleAddress' ,
+        label : '' ,
+        regex : '' ,
+        placeholder: '',
+        error : {
+            invalid: 'Address is invalid.',
+            required: 'Address is a required field.'
+        }
+    };
 
     private address = {
-                id : 'address',
-                label: 'Address',
-                regex: ''
-            };
+        id : 'address',
+        label: 'Address',
+        regex: ''
+    };
     private suburb = {
-                id : 'suburb',
-                label: 'Suburb',
-                regex: ''
-            };
+        id : 'suburb',
+        label: 'Suburb',
+        regex: ''
+    };
     private state = {
-                id : 'state',
-                label: 'State',
-                regex: ''
-            };
+        id : 'state',
+        label: 'State',
+        regex: ''
+    };
     private postcode = {
-                id : 'postcode',
-                label: 'Postcode',
-                regex: ''
-            };
+        id : 'postcode',
+        label: 'Postcode',
+        regex: ''
+    };
 
     private isRequired : boolean           = false;
     private isInSummaryState : boolean     = false;
@@ -99,24 +99,23 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
         var _self = this;
         this.googleAddressCtrl.validator = Validators.compose([Validators.required, this.validateGoogleAddress.bind(this)]);
         this.googleAddressCtrl.valueChanges
-                .debounceTime(400)
-                .distinctUntilChanged()
-                .do(
-                    function (x)   {
-                        _self.updateAddressFields(_self.addressComponent.addrPlace, _self);
-                    },
-                    function (err) {  },
-                    function ()    {  }
-                ).subscribe();
+            .debounceTime(400)
+            .distinctUntilChanged()
+            .do(
+                function (x)   {
+                    _self.updateAddressFields(_self.addressComponent.addrPlace, _self);
+                },
+                function (err) {  },
+                function ()    {  }
+            ).subscribe();
 
         this.stateCtrl.valueChanges
-                .debounceTime(400)
-                .distinctUntilChanged()
-                .subscribe( function (value) {
-                    if (value) {
-                        _self.stateCtrl.updateValue((<string>value).toUpperCase());
-                    }
-                });
+            .distinctUntilChanged()
+            .subscribe( function (value) {
+                if (value) {
+                    _self.stateCtrl.updateValue((<string>value).toUpperCase());
+                }
+            });
     }
 
     updateAddressFields(googleAddress, _self) {
