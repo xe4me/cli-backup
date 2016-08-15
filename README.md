@@ -1,4 +1,4 @@
-# AMP Digital dynamic data capture UI components library 
+# AMP Digital dynamic data capture UI components library  
 
 This repo contains all build blocks for DDC experience (forms).
 To see the actual form experience that makes use of the components in this repo, please go to [DDC experience repo | https://gitlab.ccoe.ampaws.com.au/DDC/experience]
