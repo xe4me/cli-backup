@@ -218,5 +218,26 @@
             }
         ],
         "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
+    },
+    {
+        "name": "Amp Review Block",
+        "sources": [
+            "src/app/blocks/amp-review/amp-review-block/amp-review-block.component.ts",
+            "src/app/blocks/amp-review/amp-review-item/amp-review-item.component.ts"
+        ],
+        "id": "AmpReviewBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-review/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-review/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-review/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-review.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-review.component.spec.ts",
+                "component": "amp-review-basic-usage",
+                "component_src_location": "blocks/amp-review/basic_usage",
+                "name": "Amp Review Basic Usage"
+            }
+        ],
+        "readme": "<p>Block that contains item(s) for review</p>\n"
     }
 ]

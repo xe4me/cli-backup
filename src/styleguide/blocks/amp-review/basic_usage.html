@@ -1,0 +1,65 @@
+<section>
+    <h3>Review block with title</h3>
+    <amp-review-block [title]="'Title for the review block (optional)'">
+        <amp-review-item
+            [label]="'Item label'"
+            [value]="'Sample value'"
+        ></amp-review-item>
+        <amp-review-item
+                [label]="'Item with a null value'"
+                [value]="null"
+        ></amp-review-item>
+
+    </amp-review-block>
+
+    <amp-review-block [title]="'Review items can have a postfix'">
+        <amp-review-item
+                [label]="'Item with a postfix after the value'"
+                [value]="'Value'"
+                [postfix]="'Postfix'"
+        ></amp-review-item>
+        <amp-review-item
+                [label]="'Item with a postfix and a null value'"
+                [value]="null"
+                [postfix]="'Postfix'"
+        ></amp-review-item>
+    </amp-review-block>
+
+    <amp-review-block [title]="'A more realistic example'">
+        <amp-review-item
+            [label]="'Name'"
+            [value]="'Joe Bloggs'"
+        ></amp-review-item>
+
+        <amp-review-item
+            [label]="'Date of Birth'"
+            [value]="'10/06/1975'"
+        ></amp-review-item>
+
+        <amp-review-item
+            [label]="'Gender'"
+            [value]="'Male'"
+        ></amp-review-item>
+
+        <amp-review-item
+            [label]="'Smoked in the last 12 months?'"
+            [value]="'No'"
+        ></amp-review-item>
+
+        <amp-review-item
+            [label]="'Personal debt repayments'"
+            [value]="'$10,340'"
+            [postfix]="'Monthly'"
+        ></amp-review-item>
+    </amp-review-block>
+</section>
+
+<section>
+    <h3>Review block with NO title</h3>
+    <amp-review-block>
+        <amp-review-item
+                [label]="'Item label'"
+                [value]="'Sample value'"
+        ></amp-review-item>
+    </amp-review-block>
+</section>
