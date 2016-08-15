@@ -1,6 +1,6 @@
 <section>
-    <h3>Review block with title</h3>
-    <amp-review-block [title]="'Title for the review block (optional)'">
+    <h3>Review section with title</h3>
+    <amp-review-section [title]="'Title for the review section (optional)'">
         <amp-review-item
             [label]="'Item label'"
             [value]="'Sample value'"
@@ -10,9 +10,9 @@
                 [value]="null"
         ></amp-review-item>
 
-    </amp-review-block>
+    </amp-review-section>
 
-    <amp-review-block [title]="'Review items can have a postfix'">
+    <amp-review-section [title]="'Review items can have a postfix'">
         <amp-review-item
                 [label]="'Item with a postfix after the value'"
                 [value]="'Value'"
@@ -23,9 +23,9 @@
                 [value]="null"
                 [postfix]="'Postfix'"
         ></amp-review-item>
-    </amp-review-block>
+    </amp-review-section>
 
-    <amp-review-block [title]="'A more realistic example'">
+    <amp-review-section [title]="'A more realistic example'">
         <amp-review-item
             [label]="'Name'"
             [value]="'Joe Bloggs'"
@@ -51,15 +51,15 @@
             [value]="'$10,340'"
             [postfix]="'Monthly'"
         ></amp-review-item>
-    </amp-review-block>
+    </amp-review-section>
 </section>
 
 <section>
-    <h3>Review block with NO title</h3>
-    <amp-review-block>
+    <h3>Review section with NO title</h3>
+    <amp-review-section>
         <amp-review-item
                 [label]="'Item label'"
                 [value]="'Sample value'"
         ></amp-review-item>
-    </amp-review-block>
+    </amp-review-section>
 </section>

@@ -225,7 +225,7 @@
             "src/app/blocks/amp-review/amp-review-block/amp-review-block.component.ts",
             "src/app/blocks/amp-review/amp-review-item/amp-review-item.component.ts"
         ],
-        "id": "AmpReviewBlock",
+        "id": "AmpReview",
         "examples": [
             {
                 "template": "src/styleguide/blocks/amp-review/basic_usage.html",
