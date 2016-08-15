@@ -1,5 +1,4 @@
 [
-
     {
         "name": "Amp Linear ProgressBar",
         "sources": [
@@ -189,9 +188,9 @@
         "examples": [
             {
                 "template": "src/styleguide/components/my-md-input/basic_usage.html",
-                "styles": "src\\styleguide\\components\\my-md-input\\basic_usage.scss",
-                "source": "src\\styleguide\\components\\my-md-input\\basic_usage.ts",
-                "galen": "src\\styleguide\\components\\my-md-input\\my-md-input.test.spec",
+                "styles": "src/styleguide/components/my-md-input/basic_usage.scss",
+                "source": "src/styleguide/components/my-md-input/basic_usage.ts",
+                "galen": "src/styleguide/components/my-md-input/my-md-input.test.spec",
                 "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
                 "component": "my-md-input-basic-usage",
                 "component_src_location": "components/my-md-input/basic_usage",
