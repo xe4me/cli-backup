@@ -74,6 +74,7 @@ describe( 'amp-textarea component' , () => {
                 .then( ( fixture : any ) => {
                     fixture.detectChanges();
                     let Element         = fixture.nativeElement;
+                    // TODO: This variable should be renamed so that it is not the same as the test Class above (AmpTextAreaTest)
                     let AmpTextAreaTest = fixture.debugElement;
                     let Component       = AmpTextAreaTest.componentInstance;
                     let Textareas       = Element.querySelector( 'textarea' );
