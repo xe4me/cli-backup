@@ -14,12 +14,12 @@ describe( 'amp-review Section' , () => {
 
         @Component( {
             template   : `
-            <amp-review-section
-                [title]='reviewSection.title'
-            >
-                <div class="test-transcluded-content"></div>
-            </amp-review-section>
-        ` ,
+                <amp-review-section
+                    [title]='reviewSection.title'
+                >
+                    <div class="test-transcluded-content"></div>
+                </amp-review-section>
+            ` ,
             directives : [ AmpReviewSection ]
         } )
 
@@ -43,12 +43,12 @@ describe( 'amp-review Section' , () => {
                         let title = Element.querySelector( '.amp-review-section__title' );
 
                         expect( title ).toBeDefined();
-                        expect( title.textContent ).toContain( Component.reviewSection.title );
+                        expect( title.textContent.trim() ).toEqual( Component.reviewSection.title );
                     } );
             } )
         );
 
-        it( 'Should wrap any html that is placed inside of the element tags (ie transculded)' ,
+        it( 'Should wrap any html that is placed inside of the element tags (ie transcluded)' ,
             injectAsync( [
                 TestComponentBuilder
             ] , ( tcb ) => {
@@ -69,9 +69,9 @@ describe( 'amp-review Section' , () => {
 
         @Component( {
             template   : `
-            <amp-review-section
-            ></amp-review-section>
-        ` ,
+                <amp-review-section
+                ></amp-review-section>
+            ` ,
             directives : [ AmpReviewSection ]
         } )
 
