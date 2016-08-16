@@ -67,6 +67,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                 ` ,
     inputs     : [
         'defaultValue' ,
+        'keepControlOnDestroy' ,
         'required' ,
         'scrollOutUnless' ,
         'scrollOutOn' ,
@@ -85,6 +86,7 @@ export class AmpGroupButtonComponent {
     private _disabled : boolean = false;
     private _required : boolean = false;
     private buttons;
+    private keepControlOnDestroy = false;
     private scrollOutUnless : string;
     private scrollOutOn : string;
     private groupName : string;
@@ -98,11 +100,13 @@ export class AmpGroupButtonComponent {
     }
 
     ngOnDestroy () : any {
-        this.parentControl.validator = null;
-        this.parentControl.updateValueAndValidity( {
-            onlySelf  : false ,
-            emitEvent : true
-        } );
+        if(!this.keepControlOnDestroy){
+            this.parentControl.validator = null;
+            this.parentControl.updateValueAndValidity( {
+                onlySelf  : false ,
+                emitEvent : true
+            } );
+        }
         return undefined;
     }
 
