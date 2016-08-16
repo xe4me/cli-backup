@@ -47,7 +47,9 @@ module.exports = function(config) {
     },
 
     // Webpack please don't spam the console when running in karma!
-    webpackServer: { noInfo: true },
+    webpackServer: {
+      noInfo: true
+    },
 
     /*
      * test results reporter to use

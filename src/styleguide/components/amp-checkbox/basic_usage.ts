@@ -14,7 +14,7 @@ import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-c
     selector    : 'amp-checkbox-basic-usage'
 } )
 
-export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
+export default class AMPCheckboxComponentBasicUsage implements AfterViewInit {
     control : Control   = new Control();
     isInSummaryState    = false;
     private acknowledge = {
