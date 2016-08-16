@@ -9,19 +9,18 @@
                 [label]="'Item with a null value'"
                 [value]="null"
         ></amp-review-item>
-
     </amp-review-section>
 
-    <amp-review-section [title]="'Review items can have a postfix'">
+    <amp-review-section [title]="'Review items can have a frequency which will appear to the right of the value'">
         <amp-review-item
-                [label]="'Item with a postfix after the value'"
+                [label]="'Item with a frequency after the value'"
                 [value]="'Value'"
-                [postfix]="'Postfix'"
+                [frequency]="'Frequency'"
         ></amp-review-item>
         <amp-review-item
-                [label]="'Item with a postfix and a null value'"
+                [label]="'Item with a frequency and a null value'"
                 [value]="null"
-                [postfix]="'Postfix'"
+                [frequency]="'Frequency'"
         ></amp-review-item>
     </amp-review-section>
 
@@ -49,7 +48,7 @@
         <amp-review-item
             [label]="'Personal debt repayments'"
             [value]="'$10,340'"
-            [postfix]="'Monthly'"
+            [frequency]="'Monthly'"
         ></amp-review-item>
     </amp-review-section>
 </section>
