@@ -10,7 +10,7 @@ import { AmpReviewItem } from '../../../app/blocks/amp-review/amp-review-item/am
 
 describe( 'amp-review Item' , () => {
 
-    describe('Item with a label AND value BUT NO postfix', () => {
+    describe('Item with a label AND value BUT NO frequency', () => {
         @Component( {
             template   : `
                 <amp-review-item
@@ -49,13 +49,13 @@ describe( 'amp-review Item' , () => {
         );
     });
 
-    describe('Item with a label AND value AND postfix', () => {
+    describe('Item with a label AND value AND frequency', () => {
         @Component( {
             template   : `
                 <amp-review-item
                     [label]="reviewItem.label"
                     [value]="reviewItem.value"
-                    [postfix]="reviewItem.postfix"
+                    [frequency]="reviewItem.frequency"
                 ></amp-review-item>
             ` ,
             directives : [ AmpReviewItem ]
@@ -65,11 +65,11 @@ describe( 'amp-review Item' , () => {
             private reviewItem = {
                 label : 'A label',
                 value: 'A value',
-                postfix: 'Monthly'
+                frequency: 'Monthly'
             };
         }
 
-        it( 'Should display the label AND value WITH the postfix' ,
+        it( 'Should display the label AND value WITH the frequency' ,
             injectAsync( [
                 TestComponentBuilder
             ] , ( tcb ) => {
@@ -84,13 +84,13 @@ describe( 'amp-review Item' , () => {
                         let value = Element.querySelector( '.amp-review-item__value' );
 
                         expect( label.textContent.trim() ).toEqual( Component.reviewItem.label );
-                        expect( value.textContent.trim() ).toMatch( new RegExp(`^${Component.reviewItem.value}\\W*${Component.reviewItem.postfix}$`) );
+                        expect( value.textContent.trim() ).toMatch( new RegExp(`^${Component.reviewItem.value}\\W*${Component.reviewItem.frequency}$`) );
                     } );
             } )
         );
     });
 
-    describe('Item with a label but NO value OR postfix', () => {
+    describe('Item with a label but NO value OR frequency', () => {
         @Component( {
             template   : `
                 <amp-review-item
@@ -127,12 +127,12 @@ describe( 'amp-review Item' , () => {
         );
     });
 
-    describe('Item with a label AND postfix BUT NO value', () => {
+    describe('Item with a label AND frequency BUT NO value', () => {
         @Component( {
             template   : `
                 <amp-review-item
                     [label]="reviewItem.label"
-                    [postfix]="reviewItem.postfix"
+                    [frequency]="reviewItem.frequency"
                 ></amp-review-item>
             ` ,
             directives : [ AmpReviewItem ]
@@ -141,11 +141,11 @@ describe( 'amp-review Item' , () => {
         class AmpReviewItemTestWithValue {
             private reviewItem = {
                 label : 'A label',
-                postfix : 'Monthly'
+                frequency : 'Monthly'
             };
         }
 
-        it( 'Should display the label AND a dash (-) for the value BUT NOT display a postfix' ,
+        it( 'Should display the label AND a dash (-) for the value BUT NOT display a frequency' ,
             injectAsync( [
                 TestComponentBuilder
             ] , ( tcb ) => {
@@ -161,7 +161,7 @@ describe( 'amp-review Item' , () => {
 
                         expect( label.textContent.trim() ).toEqual( Component.reviewItem.label );
                         expect( value.textContent.trim() ).toEqual( '-' );
-                        expect( value.textContent.trim() ).not.toContain( Component.reviewItem.postfix );
+                        expect( value.textContent.trim() ).not.toContain( Component.reviewItem.frequency );
                     } );
             } )
         );

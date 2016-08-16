@@ -13,7 +13,7 @@ import {
          --><div class="amp-review-item__value grid__item 3/5 pl">
               <span *ngIf="value">
                 <span>{{value}}</span>
-                <span *ngIf="postfix">{{postfix}}</span>
+                <span *ngIf="frequency">{{frequency}}</span>
               </span>
               <span *ngIf="!value">-</span>
             </div>
@@ -23,7 +23,7 @@ import {
     inputs        : [
       'label' ,
       'value' ,
-      'postfix'
+      'frequency'
     ]
   } )
 
