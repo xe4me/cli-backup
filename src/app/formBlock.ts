@@ -46,6 +46,7 @@ export abstract class FormBlock {
     protected formModelService : FormModelService = null;
     protected scrollService : ScrollService       = null;
     protected fullyDistinguishedName : string[]   = null;
+    protected _fdn : string[]   = null;
     protected dateErrorMessage                    = null;
     protected dateFormat : string                 = 'DD/MM/YYYY';
     private haveQuoteId : boolean                 = false;
@@ -54,7 +55,7 @@ export abstract class FormBlock {
                   protected progressObserver? : ProgressObserverService ) {
 
         // What about Application FormBlocks?
-        // TODO: Move this into the relevant blocks 
+        // TODO: Move this into the relevant blocks
         const quoteControl : Control = this.controlService.getControl( FullyDistinguishedNames.QuoteDetails , 'identifier' );
         this.haveQuoteId             = quoteControl && quoteControl.value;
         this.isInSummaryState        = this.haveQuoteId;
@@ -134,7 +135,8 @@ export abstract class FormBlock {
     }
 
     protected getfullyDistinguishedName () : string[] {
-        return this.fullyDistinguishedName;
+        //return this.fullyDistinguishedName;
+        return this._fdn;
     }
 
     protected getHtmlId ( local ) : string {
