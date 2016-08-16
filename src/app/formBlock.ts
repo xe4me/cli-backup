@@ -46,7 +46,7 @@ export abstract class FormBlock {
     protected formModelService : FormModelService = null;
     protected scrollService : ScrollService       = null;
     protected fullyDistinguishedName : string[]   = null;
-    protected _fdn : string[]   = null;
+    protected _fdn : string[]                     = null;
     protected dateErrorMessage                    = null;
     protected dateFormat : string                 = 'DD/MM/YYYY';
     private haveQuoteId : boolean                 = false;
@@ -59,13 +59,12 @@ export abstract class FormBlock {
         const quoteControl : Control = this.controlService.getControl( FullyDistinguishedNames.QuoteDetails , 'identifier' );
         this.haveQuoteId             = quoteControl && quoteControl.value;
         this.isInSummaryState        = this.haveQuoteId;
-
         //Hack to show summary state in a proper way
         if ( quoteControl && quoteControl.value ) {
-            TimerWrapper.setTimeout(() => {
+            TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = false;
                 this.isInSummaryState = true;
-            }, 100);
+            } , 100 );
         }
     }
 
@@ -134,9 +133,17 @@ export abstract class FormBlock {
         this.getControlArray( name ).push( newGroup );
     }
 
+    /*
+     * TODO ; This should only be _fdn , but for  Quote , it wont work unfortunately
+     *
+     * */
     protected getfullyDistinguishedName () : string[] {
-        //return this.fullyDistinguishedName;
-        return this._fdn;
+        if ( this._fdn && this._fdn.length>0 ) {
+            return this._fdn
+        } else {
+            return this.fullyDistinguishedName;
+        }
+        //return this._fdn;
     }
 
     protected getHtmlId ( local ) : string {
