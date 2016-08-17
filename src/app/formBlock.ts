@@ -138,8 +138,8 @@ export abstract class FormBlock {
      *
      * */
     protected getfullyDistinguishedName () : string[] {
-        if ( this._fdn && this._fdn.length>0 ) {
-            return this._fdn
+        if ( this._fdn && this._fdn.length > 0 ) {
+            return this._fdn;
         } else {
             return this.fullyDistinguishedName;
         }
