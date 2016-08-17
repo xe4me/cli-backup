@@ -1,0 +1,10 @@
+@import '../../../../styles/abstracts';
+
+:host {
+}
+
+.amp-review-item {
+  &__label {
+    font-weight: bold;
+  }
+}

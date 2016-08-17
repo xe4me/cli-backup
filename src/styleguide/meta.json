@@ -1,5 +1,4 @@
 [
-
     {
         "name": "Amp Linear ProgressBar",
         "sources": [
@@ -189,9 +188,9 @@
         "examples": [
             {
                 "template": "src/styleguide/components/my-md-input/basic_usage.html",
-                "styles": "src\\styleguide\\components\\my-md-input\\basic_usage.scss",
-                "source": "src\\styleguide\\components\\my-md-input\\basic_usage.ts",
-                "galen": "src\\styleguide\\components\\my-md-input\\my-md-input.test.spec",
+                "styles": "src/styleguide/components/my-md-input/basic_usage.scss",
+                "source": "src/styleguide/components/my-md-input/basic_usage.ts",
+                "galen": "src/styleguide/components/my-md-input/my-md-input.test.spec",
                 "jasmine": "src/app/components/my-md-input/my-md-input.spec.ts",
                 "component": "my-md-input-basic-usage",
                 "component_src_location": "components/my-md-input/basic_usage",
@@ -219,5 +218,26 @@
             }
         ],
         "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
+    },
+    {
+        "name": "Amp Review Block",
+        "sources": [
+            "src/app/blocks/amp-review/amp-review-block/amp-review-block.component.ts",
+            "src/app/blocks/amp-review/amp-review-item/amp-review-item.component.ts"
+        ],
+        "id": "AmpReview",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-review/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-review/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-review/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-review.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-review.component.spec.ts",
+                "component": "amp-review-basic-usage",
+                "component_src_location": "blocks/amp-review/basic_usage",
+                "name": "Amp Review Basic Usage"
+            }
+        ],
+        "readme": "<p>Block that contains item(s) for review</p>\n"
     }
 ]

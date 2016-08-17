@@ -160,7 +160,7 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
                     expect( Component.multipleOptionControl.value ).toBe( Component.radiosMultipleOptions.buttons[ 0 ].value );
                 } );
         } ) );
-    it( 'Should emit a \"select\" event to it\'s parent after selecting one of the radio options ' ,
+    it( 'Should emit a "select" event to it\'s parent after selecting one of the radio options ' ,
         injectAsync( [
             TestComponentBuilder ,
             ProgressObserverService ,
