@@ -6,22 +6,22 @@ import {
 } from '@angular/core/testing';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { Component } from '@angular/core';
-import { AmpReviewItem } from '../../../app/blocks/amp-review/amp-review-item/amp-review-item.component';
+import { AmpReviewTotal } from '../../../app/blocks/amp-review/amp-review-total/amp-review-total.component';
 
-describe( 'amp-review Item' , () => {
+describe( 'amp-review Total' , () => {
 
-    describe('Item with a label AND value BUT NO frequency', () => {
+    describe('Total with a label AND value BUT NO frequency', () => {
         @Component( {
             template   : `
-                <amp-review-item
+                <amp-review-total
                     [label]="reviewItem.label"
                     [value]="reviewItem.value"
-                ></amp-review-item>
+                ></amp-review-total>
             ` ,
-            directives : [ AmpReviewItem ]
+            directives : [ AmpReviewTotal ]
         } )
 
-        class AmpReviewItemTest {
+        class AmpReviewTotalTest {
             private reviewItem = {
                 label : 'A label',
                 value: 'A value'
@@ -33,14 +33,14 @@ describe( 'amp-review Item' , () => {
                 TestComponentBuilder
             ] , ( tcb ) => {
                 return tcb
-                    .createAsync( AmpReviewItemTest )
+                    .createAsync( AmpReviewTotalTest )
                     .then( ( fixture : any ) => {
                         fixture.detectChanges();
                         let Element = fixture.nativeElement;
                         let AmpReviewSection = fixture.debugElement;
                         let Component = AmpReviewSection.componentInstance;
-                        let label = Element.querySelector( '.amp-review-item__label' );
-                        let value = Element.querySelector( '.amp-review-item__value' );
+                        let label = Element.querySelector( '.amp-review-total__label' );
+                        let value = Element.querySelector( '.amp-review-total__value' );
 
                         expect( label.textContent.trim() ).toEqual( Component.reviewItem.label );
                         expect( value.textContent.trim() ).toEqual( Component.reviewItem.value );
@@ -52,16 +52,16 @@ describe( 'amp-review Item' , () => {
     describe('Item with a label AND value AND frequency', () => {
         @Component( {
             template   : `
-                <amp-review-item
+                <amp-review-total
                     [label]="reviewItem.label"
                     [value]="reviewItem.value"
                     [frequency]="reviewItem.frequency"
-                ></amp-review-item>
+                ></amp-review-total>
             ` ,
-            directives : [ AmpReviewItem ]
+            directives : [ AmpReviewTotal ]
         } )
 
-        class AmpReviewItemTest {
+        class AmpReviewTotalTest {
             private reviewItem = {
                 label : 'A label',
                 value: 'A value',
@@ -74,14 +74,14 @@ describe( 'amp-review Item' , () => {
                 TestComponentBuilder
             ] , ( tcb ) => {
                 return tcb
-                    .createAsync( AmpReviewItemTest )
+                    .createAsync( AmpReviewTotalTest )
                     .then( ( fixture : any ) => {
                         fixture.detectChanges();
                         let Element = fixture.nativeElement;
                         let AmpReviewSection = fixture.debugElement;
                         let Component = AmpReviewSection.componentInstance;
-                        let label = Element.querySelector( '.amp-review-item__label' );
-                        let value = Element.querySelector( '.amp-review-item__value' );
+                        let label = Element.querySelector( '.amp-review-total__label' );
+                        let value = Element.querySelector( '.amp-review-total__value' );
 
                         expect( label.textContent.trim() ).toEqual( Component.reviewItem.label );
                         expect( value.textContent.trim() ).toMatch( new RegExp(`^${Component.reviewItem.value}\\W*${Component.reviewItem.frequency}$`) );
@@ -93,14 +93,14 @@ describe( 'amp-review Item' , () => {
     describe('Item with a label but NO value OR frequency', () => {
         @Component( {
             template   : `
-                <amp-review-item
+                <amp-review-total
                     [label]="reviewItem.label"
-                ></amp-review-item>
+                ></amp-review-total>
             ` ,
-            directives : [ AmpReviewItem ]
+            directives : [ AmpReviewTotal ]
         } )
 
-        class AmpReviewItemTest {
+        class AmpReviewTotalTest {
             private reviewItem = {
                 label : 'A label'
             };
@@ -111,14 +111,14 @@ describe( 'amp-review Item' , () => {
                 TestComponentBuilder
             ] , ( tcb ) => {
                 return tcb
-                    .createAsync( AmpReviewItemTest )
+                    .createAsync( AmpReviewTotalTest )
                     .then( ( fixture : any ) => {
                         fixture.detectChanges();
                         let Element = fixture.nativeElement;
                         let AmpReviewSection = fixture.debugElement;
                         let Component = AmpReviewSection.componentInstance;
-                        let label = Element.querySelector( '.amp-review-item__label' );
-                        let value = Element.querySelector( '.amp-review-item__value' );
+                        let label = Element.querySelector( '.amp-review-total__label' );
+                        let value = Element.querySelector( '.amp-review-total__value' );
 
                         expect( label.textContent.trim() ).toEqual( Component.reviewItem.label );
                         expect( value.textContent.trim() ).toEqual( '-' );
@@ -130,17 +130,17 @@ describe( 'amp-review Item' , () => {
     describe('Item with a label AND frequency BUT NO value', () => {
         @Component( {
             template   : `
-                <amp-review-item
+                <amp-review-total
                     [label]="reviewItem.label"
                     [frequency]="reviewItem.frequency"
-                ></amp-review-item>
+                ></amp-review-total>
             ` ,
-            directives : [ AmpReviewItem ]
+            directives : [ AmpReviewTotal ]
         } )
 
-        class AmpReviewItemTest {
+        class AmpReviewTotalTest {
             private reviewItem = {
-                label : 'A label',
+                label : 'Total',
                 frequency : 'Monthly'
             };
         }
@@ -150,14 +150,14 @@ describe( 'amp-review Item' , () => {
                 TestComponentBuilder
             ] , ( tcb ) => {
                 return tcb
-                    .createAsync( AmpReviewItemTest )
+                    .createAsync( AmpReviewTotalTest )
                     .then( ( fixture : any ) => {
                         fixture.detectChanges();
                         let Element = fixture.nativeElement;
                         let AmpReviewSection = fixture.debugElement;
                         let Component = AmpReviewSection.componentInstance;
-                        let label = Element.querySelector( '.amp-review-item__label' );
-                        let value = Element.querySelector( '.amp-review-item__value' );
+                        let label = Element.querySelector( '.amp-review-total__label' );
+                        let value = Element.querySelector( '.amp-review-total__value' );
 
                         expect( label.textContent.trim() ).toEqual( Component.reviewItem.label );
                         expect( value.textContent.trim() ).toEqual( '-' );
