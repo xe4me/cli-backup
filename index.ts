@@ -21,6 +21,9 @@ export { ClickedOutsideDirective } from './src/app/directives/clicked-outside/cl
 export { AmpStickyOnScrollDirective } from './src/app/directives/amp-sticky-on-scroll.directive';
 export { ThemeIDDirective } from './src/app/directives/themeId.directive';
 export { FocuserDirective } from './src/app/directives/focuser/focuser.directive';
+// blocks
+export { AmpReviewSection } from './src/app/blocks/amp-review/amp-review-section/amp-review-section.component';
+export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-review-item.component';
 // components
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
