@@ -8,9 +8,9 @@ import { ChildrenDirective } from "../children.directive";
     template: `
     <div class='section' [id]='label' [ngClass]='{"section__hide": !isCurrentSection()}'>
       <!--<div [id]='blocksAnchorId'></div>-->
-        <div *ngIf="isCurrentSection()">
+       
             <div [children]="_child_blocks" [fdn]="_fdn"></div>
-        </div>
+       
     </div>
   `,
     styles: [`
