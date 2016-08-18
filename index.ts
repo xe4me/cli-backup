@@ -24,6 +24,7 @@ export { FocuserDirective } from './src/app/directives/focuser/focuser.directive
 // blocks
 export { AmpReviewSection } from './src/app/blocks/amp-review/amp-review-section/amp-review-section.component';
 export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-review-item.component';
+export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp-review-total.component';
 // components
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';

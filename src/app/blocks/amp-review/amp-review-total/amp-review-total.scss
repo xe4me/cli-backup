@@ -1,0 +1,12 @@
+@import '../../../../styles/abstracts';
+
+:host {
+}
+
+$amp-review-total-font-size: $font-size-tiny;
+
+.amp-review-total {
+  font-weight: bold;
+  font-size: $amp-review-total-font-size;
+  line-height: $amp-review-total-font-size * 2;
+}

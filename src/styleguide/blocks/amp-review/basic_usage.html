@@ -6,25 +6,63 @@
             [value]="'Sample value'"
         ></amp-review-item>
         <amp-review-item
-                [label]="'Item with a null value'"
-                [value]="null"
+            [label]="'Item with a null value'"
+            [value]="null"
         ></amp-review-item>
     </amp-review-section>
 
     <amp-review-section [title]="'Review items can have a frequency which will appear to the right of the value'">
         <amp-review-item
-                [label]="'Item with a frequency after the value'"
-                [value]="'Value'"
-                [frequency]="'Frequency'"
+            [label]="'Item with a frequency after the value'"
+            [value]="'Value'"
+            [frequency]="'Frequency'"
         ></amp-review-item>
         <amp-review-item
-                [label]="'Item with a frequency and a null value'"
-                [value]="null"
-                [frequency]="'Frequency'"
+            [label]="'Item with a frequency and a null value'"
+            [value]="null"
+            [frequency]="'Frequency'"
         ></amp-review-item>
     </amp-review-section>
+</section>
 
-    <amp-review-section [title]="'A more realistic example'">
+<section>
+    <h3>Review section with NO title</h3>
+    <amp-review-section>
+        <amp-review-item
+            [label]="'Item label'"
+            [value]="'Sample value'"
+        ></amp-review-item>
+    </amp-review-section>
+</section>
+
+<section>
+    <h3>Review total</h3>
+    <amp-review-total
+        [label]="'Total'"
+        [value]="'Total value'"
+    ></amp-review-total>
+
+    <amp-review-total
+        [label]="'Total WITH a frequency'"
+        [value]="'Total value'"
+        [frequency]="'Frequency'"
+    ></amp-review-total>
+
+    <amp-review-total
+        [label]="'Total WITH null value'"
+        [value]="null"
+    ></amp-review-total>
+
+    <amp-review-total
+        [label]="'Total WITH null value AND a frequency'"
+        [value]="null"
+        [frequency]="'Frequency'"
+    ></amp-review-total>
+</section>
+
+<section>
+    <h3>A more realistic example</h3>
+    <amp-review-section [title]="'Applicant Details'">
         <amp-review-item
             [label]="'Name'"
             [value]="'Joe Bloggs'"
@@ -47,18 +85,15 @@
 
         <amp-review-item
             [label]="'Personal debt repayments'"
-            [value]="'$10,340'"
+            [value]="'$1,290'"
             [frequency]="'Monthly'"
         ></amp-review-item>
     </amp-review-section>
+    <amp-review-total
+        [label]="'Total policy premium'"
+        [value]="'$10,340'"
+        [frequency]="'Yearly'"
+    ></amp-review-total>
 </section>
 
-<section>
-    <h3>Review section with NO title</h3>
-    <amp-review-section>
-        <amp-review-item
-                [label]="'Item label'"
-                [value]="'Sample value'"
-        ></amp-review-item>
-    </amp-review-section>
-</section>
+
