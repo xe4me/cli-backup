@@ -27,7 +27,6 @@ export class ChildrenDirective implements OnChanges {
     private blocksCount                     = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
-    private requires = require; // this will prevent the npm build from complaining
     constructor ( private viewContainer : ViewContainerRef ,
                   private formSectionService : FormSectionService ,
                   private componentResolver : ComponentResolver ) {
@@ -85,11 +84,11 @@ export class ChildrenDirective implements OnChanges {
             var waitForChunk = null;
             if ( _blocks[ i ].commonBlock ) {
                 if ( _blocks[ i ].blockLayout ) {
-                    waitForChunk = this.requires( 'bundle!amp-ddc-components/src/app/' + _blocks[ i ].path + '\.ts' );
+                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + _blocks[ i ].path + '\.ts' );
                 } else {
                 }
             } else {
-                myChunk = this.requires( '../../../../src/app/' + _blocks[ i ].path + '\.ts' );
+                myChunk = require( '../../../../src/app/' + _blocks[ i ].path + '\.ts' );
             }
             if ( myChunk ) {
                 let type = null;
@@ -148,11 +147,11 @@ export class ChildrenDirective implements OnChanges {
             var waitForChunk = null;
             if ( this._blocks[ i ].commonBlock ) {
                 if ( this._blocks[ i ].blockLayout ) {
-                    waitForChunk = this.requires( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
+                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
                 } else {
                 }
             } else {
-                myChunk = this.requires( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
             }
             this.retrievedFiles[ i ] = null;
             if ( myChunk ) {
