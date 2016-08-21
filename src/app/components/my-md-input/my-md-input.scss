@@ -212,6 +212,7 @@ md-input {
           @include amp-family($amp-font-open-sans-regular);
           font-weight: 300;
           text-overflow: ellipsis;
+          min-width: 20px;
 
           &:focus {
             color: $amp-colour-black;
