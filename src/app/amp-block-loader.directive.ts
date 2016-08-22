@@ -18,15 +18,16 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
-@Directive( { selector : '[children]' } )
-export class ChildrenDirective implements OnChanges {
-    @Input( 'children' ) children;
+@Directive( { selector : '[amp-block-loader]' } )
+export class AmpBlockLoaderDirective implements OnChanges {
+    @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
     private _hasLoadedOnce                  = false;
     private blocksCount                     = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
+
     constructor ( private viewContainer : ViewContainerRef ,
                   private formSectionService : FormSectionService ,
                   private componentResolver : ComponentResolver ) {
@@ -36,11 +37,11 @@ export class ChildrenDirective implements OnChanges {
         if ( this._hasLoadedOnce === true ) {
             return;
         }
-        if ( changes.children ) {
+        if ( changes.blockLoader ) {
             if ( this.requireMethod === RequireMethod[ RequireMethod.ALL ] ) {
-                this.loadAll( changes.children.currentValue );
+                this.loadAll( changes.blockLoader.currentValue );
             } else {
-                this.load( changes.children.currentValue );
+                this.load( changes.blockLoader.currentValue );
             }
         }
         this._hasLoadedOnce = true;
@@ -128,7 +129,7 @@ export class ChildrenDirective implements OnChanges {
             Object.assign( _componentRef.instance , _blockDef.page );
         }
         if ( _blockDef.custom ) {
-            Object.assign( _componentRef.instance , { custom : _blockDef.custom } );
+            Object.assign( _componentRef.instance , _blockDef.custom );
         }
     }
 

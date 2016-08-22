@@ -20,11 +20,31 @@
         "readme": "<p>To see a progress bar look and feel.</p>\n"
     },
     {
+        "name": "Amp Block Loader",
+        "sources": [
+            "src/app/directives/amp-block-loader/amp-block-loader.component.ts"
+        ],
+        "id": "AmpBlockLoaderDirective",
+        "examples": [
+            {
+                "template": "src/styleguide/directives/amp-block-loader/basic_usage.html",
+                "styles": "src/styleguide/directives/amp-block-loader/basic_usage.scss",
+                "source": "src/styleguide/directives/amp-block-loader/basic_usage.ts",
+                "galen": "src/styleguide/directives/amp-block-loader/amp-block-loader.directive.test.spec",
+                "jasmine": "src/styleguide/directives/amp-block-loader/amp-block-loader.directive.spec.ts",
+                "component": "amp-block-loader-basic-usage",
+                "component_src_location": "directives/amp-block-loader/basic_usage",
+                "name": "Amp Block Loader basic usage"
+            }
+        ],
+        "readme": "<p>To load components dynamically</p>\n"
+    },
+    {
         "name": "Amp loading icon",
         "sources": [
             "src/app/components/amp-loading/amp-loading.component.ts"
         ],
-            "id": "AmpLoadingComponentBasicUsage",
+        "id": "AmpLoadingComponentBasicUsage",
         "examples": [
             {
                 "template": "src/styleguide/components/amp-loading/basic_usage.html",
