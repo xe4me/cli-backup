@@ -14,7 +14,7 @@ import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-c
     selector    : 'amp-checkbox-basic-usage'
 } )
 
-export default class AMPCheckboxComponentBasicUsage implements AfterViewInit {
+export default class AMPCheckboxComponentBasicUsage implements OnInit {
     control : Control   = new Control();
     isInSummaryState    = false;
     private acknowledge = {
@@ -28,10 +28,14 @@ export default class AMPCheckboxComponentBasicUsage implements AfterViewInit {
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 
-    ngAfterViewInit () {
+    ngOnInit () {
+    }
 
-        // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
-        this._cd.detectChanges();
+    private check () {
+        this.control.updateValue( ! this.control.value );
+    }
+
+    ngAfterViewInit () {
     }
 
     private onAcknowledgeSelect ( value ) {

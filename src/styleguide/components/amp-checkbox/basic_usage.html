@@ -1,5 +1,6 @@
 <form #formModel='ngForm' class='nl-form'>
     <div style='padding: 50px 100px; text-align:left'>
+        <button (click)="check()">Check / Uncheck</button>
         <amp-checkbox
                 [isInSummaryState]='isInSummaryState'
                 [parentControl]='control'

@@ -70,6 +70,10 @@ export class AmpCheckboxComponent implements AfterViewInit {
     }
 
     ngAfterViewInit () : any {
+        this.parentControl.valueChanges.subscribe( ( changes ) => {
+            this._checked      = this.isTrue( changes );
+            this.checkboxValue = this._checked;
+        } );
         this.updateValitators();
         this._cd.detectChanges();
         return undefined;
@@ -119,7 +123,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
             $event.stopPropagation();
             return;
         }
-        this.checkboxValue = !this.checkboxValue;
+        this.checkboxValue = ! this.checkboxValue;
         this.select.emit( this.checkboxValue );
         if ( this.scrollOutUnless && this.checkboxValue !== this.scrollOutUnless ) {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
