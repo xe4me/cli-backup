@@ -160,11 +160,13 @@ export abstract class FormBlock {
                 flag: nextBlock + 'IsVisible',
                 flagValue: true
             });
-            this.formModelService.present({
-                action: 'setFlag',
-                flag: FullyDistinguishedNames.toString(fdn) + 'IsVisible',
-                flagValue: true
-            });
+            if (fdn) {
+                this.formModelService.present({
+                    action: 'setFlag',
+                    flag: FullyDistinguishedNames.toString(fdn) + 'IsVisible',
+                    flagValue: true
+                });
+            }
         }
     }
 
