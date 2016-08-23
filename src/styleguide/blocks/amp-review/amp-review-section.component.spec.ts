@@ -10,12 +10,11 @@ import { AmpReviewSection } from '../../../app/blocks/amp-review/amp-review-sect
 
 describe( 'amp-review Section' , () => {
 
-    describe('Section WITH a title', () => {
-
+    describe('Section WITH a title AND content inside the tags', () => {
         @Component( {
             template   : `
                 <amp-review-section
-                    [title]='reviewSection.title'
+                    [title]="reviewSection.title"
                 >
                     <div class="test-transcluded-content"></div>
                 </amp-review-section>
@@ -87,6 +86,70 @@ describe( 'amp-review Section' , () => {
                         fixture.detectChanges();
                         let Element = fixture.nativeElement;
                         let title = Element.querySelector( '.amp-review-section__title' );
+
+                        expect( title ).toBeNull();
+                    } );
+            } )
+        );
+    } );
+
+    describe('Section WITH change link', () => {
+        @Component( {
+            template   : `
+                <amp-review-section
+                    [changeCallback]="reviewSection.changeCallback"
+                    [changeTarget]="reviewSection.changeTarget"
+                >
+                </amp-review-section>
+            ` ,
+            directives : [ AmpReviewSection ]
+        } )
+
+        class AmpReviewSectionTestWithChangeLink {
+            private reviewSection = {
+                changeCallback : 'changeCallback',
+                changeTarget : 'target-id'
+            };
+        }
+
+        it( 'Should display a change link' ,
+            injectAsync( [
+                TestComponentBuilder
+            ] , ( tcb ) => {
+                return tcb
+                    .createAsync( AmpReviewSectionTestWithChangeLink )
+                    .then( ( fixture : any ) => {
+                        fixture.detectChanges();
+                        let Element = fixture.nativeElement;
+                        let title = Element.querySelector( '.amp-review-section__change-link' );
+
+                        expect( title ).toBeDefined();
+                    } );
+            } )
+        );
+    } );
+
+    describe('Section WITHOUT change link', () => {
+        @Component( {
+            template   : `
+                <amp-review-section>
+                </amp-review-section>
+            ` ,
+            directives : [ AmpReviewSection ]
+        } )
+
+        class AmpReviewSectionTestWithChangeLink {}
+
+        it( 'Should NOT display a change link' ,
+            injectAsync( [
+                TestComponentBuilder
+            ] , ( tcb ) => {
+                return tcb
+                    .createAsync( AmpReviewSectionTestWithChangeLink )
+                    .then( ( fixture : any ) => {
+                        fixture.detectChanges();
+                        let Element = fixture.nativeElement;
+                        let title = Element.querySelector( '.amp-review-section__change-link' );
 
                         expect( title ).toBeNull();
                     } );
