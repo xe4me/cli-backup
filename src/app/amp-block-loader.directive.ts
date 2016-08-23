@@ -8,12 +8,6 @@ import {
     OnChanges
 } from '@angular/core';
 import {
-    FormModelService ,
-    ScrollService ,
-    ProgressObserverService ,
-    AmpHttpService ,
-    BaseForm ,
-    UIControlService ,
     FormSectionService
 } from 'amp-ddc-ui-core/ui-core';
 export enum BlockLayout { INLINE , PAGE , SECTION }
