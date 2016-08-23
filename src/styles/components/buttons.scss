@@ -8,7 +8,7 @@ $btn-ok-hover-background-color: $amp-colour-secondary-darkest;
 $btn-ok-hover-border-color: $amp-colour-white;
 $btn-ok-disabled-text-color: $disabled-text-color;
 $btn-ok-disabled-background-color: $disabled-background-color;
-$btn-ok-background-color: $amp-colour-primary;
+$btn-ok-background-color: $amp-colour-secondary;
 
 $btn-ok-active-background-color: $amp-colour-secondary;
 
@@ -51,7 +51,7 @@ $btn-review-default-width: 238px;
     background-color: $btn-ok-disabled-background-color !important;
     border-color: #FFFFFF;
     cursor: default;
-    color: #fff;
+    color: $btn-ok-disabled-text-color;
   }
 }
 
