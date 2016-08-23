@@ -72,12 +72,6 @@ export class AmpCheckboxComponent implements AfterViewInit {
     ngAfterViewInit () : any {
         this.updateValitators();
         this._cd.detectChanges();
-
-        if (this.parentControl && this.parentControl.value !== null) {
-            this._checked      = this.isTrue( this.parentControl.value );
-            this.checkboxValue = this._checked;
-        }
-
         return undefined;
     }
 
