@@ -11,7 +11,7 @@ import {
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
-import { FullyDistinguishedNames , FormSections } from './form-sections';
+import { FullyDistinguishedNames , FormSections } from '../form-sections';
 import * as moment from 'moment';
 export class NamedControl {
     constructor ( public name : string , public control : any ) {

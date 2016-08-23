@@ -6,6 +6,7 @@
 $amp-review-font-size: $font-size-tiny;
 
 .amp-review-section {
+  position: relative;
   border-bottom: 1px solid $amp-colour-grey-dark;
   font-size: $amp-review-font-size;
   line-height: $amp-review-font-size * 2;
@@ -13,5 +14,11 @@ $amp-review-font-size: $font-size-tiny;
 
   &__title {
     font-weight: bold;
+  }
+
+  &__change-link {
+    position: absolute;
+    right: 80px;
+    top: 16px;
   }
 }
