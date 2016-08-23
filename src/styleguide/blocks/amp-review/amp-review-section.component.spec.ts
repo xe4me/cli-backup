@@ -106,8 +106,9 @@ describe( 'amp-review Section' , () => {
         } )
 
         class AmpReviewSectionTestWithChangeLink {
+            private spyChangeCallback = jasmine.createSpy('spyChangeCallback');
             private reviewSection = {
-                changeCallback : 'changeCallback',
+                changeCallback : this.spyChangeCallback,
                 changeTarget : 'target-id'
             };
         }
@@ -121,9 +122,28 @@ describe( 'amp-review Section' , () => {
                     .then( ( fixture : any ) => {
                         fixture.detectChanges();
                         let Element = fixture.nativeElement;
-                        let title = Element.querySelector( '.amp-review-section__change-link' );
+                        let link = Element.querySelector( '.amp-review-section__change-link' );
 
-                        expect( title ).toBeDefined();
+                        expect( link ).toBeDefined();
+                    } );
+            } )
+        );
+
+        it( 'Should call the change callback with the callback target WHEN the link is clicked',
+            injectAsync( [
+                TestComponentBuilder
+            ] , ( tcb ) => {
+                return tcb
+                    .createAsync( AmpReviewSectionTestWithChangeLink )
+                    .then( ( fixture : any ) => {
+                        fixture.detectChanges();
+                        let Element = fixture.nativeElement;
+                        let AmpReviewSection = fixture.debugElement;
+                        let Component = AmpReviewSection.componentInstance;
+                        let button = Element.querySelector( '.amp-review-section__change-link button' );
+
+                        button.click();
+                        expect( Component.reviewSection.changeCallback ).toHaveBeenCalledWith(Component.reviewSection.changeTarget);
                     } );
             } )
         );
@@ -149,9 +169,9 @@ describe( 'amp-review Section' , () => {
                     .then( ( fixture : any ) => {
                         fixture.detectChanges();
                         let Element = fixture.nativeElement;
-                        let title = Element.querySelector( '.amp-review-section__change-link' );
+                        let link = Element.querySelector( '.amp-review-section__change-link' );
 
-                        expect( title ).toBeNull();
+                        expect( link ).toBeNull();
                     } );
             } )
         );
