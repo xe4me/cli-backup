@@ -4,12 +4,12 @@ import {
     Directive ,
     ComponentResolver ,
     ComponentRef ,
+    Output ,
+    EventEmitter ,
     ComponentFactory ,
     OnChanges
 } from '@angular/core';
-import {
-    FormSectionService
-} from 'amp-ddc-ui-core/ui-core';
+import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 @Directive( { selector : '[amp-block-loader]' } )
@@ -21,6 +21,7 @@ export class AmpBlockLoaderDirective implements OnChanges {
     private blocksCount                     = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
+    @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
 
     constructor ( private viewContainer : ViewContainerRef ,
                   private formSectionService : FormSectionService ,
@@ -49,6 +50,11 @@ export class AmpBlockLoaderDirective implements OnChanges {
                        return this.viewContainer.createComponent( componentFactory , _index );
                    } )
                    .then( ( componentRef : ComponentRef<any> ) => {
+                       if ( _index === (this._blocks.length - 1) ) {
+                           setTimeout( () => {
+                               this.loaded.emit( _index );
+                           } );
+                       }
                        componentRef.onDestroy( () => {
                        } );
                        this.copyFormBlockDefProperty( componentRef , _childDef );
@@ -65,38 +71,38 @@ export class AmpBlockLoaderDirective implements OnChanges {
     }
 
     private load ( formDef : any ) {
-        let _blocks = formDef.blocks;
-        if ( ! _blocks ) {
+        this._blocks = formDef.blocks;
+        if ( ! this._blocks ) {
             return;
         }
-        this.blocksCount = _blocks.length;
+        this.blocksCount = this._blocks.length;
         let _blockName   = formDef.name;
         if ( _blockName && this.fdn.indexOf( _blockName ) < 0 ) {
             this.fdn.push( _blockName );
         }
-        for ( let i = 0 ; i < _blocks.length ; i ++ ) {
+        for ( let i = 0 ; i < this._blocks.length ; i ++ ) {
             var myChunk      = null;
             var waitForChunk = null;
-            if ( _blocks[ i ].commonBlock ) {
-                if ( _blocks[ i ].blockLayout ) {
-                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + _blocks[ i ].path + '\.ts' );
+            if ( this._blocks[ i ].commonBlock ) {
+                if ( this._blocks[ i ].blockLayout ) {
+                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
                 } else {
                 }
             } else {
-                myChunk = require( '../../../../src/app/' + _blocks[ i ].path + '\.ts' );
+                myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
             }
             if ( myChunk ) {
                 let type = null;
                 if ( myChunk[ 'default' ] ) {
                     type = myChunk[ 'default' ];
                 } else {
-                    type = myChunk[ _blocks[ i ].blockType ];
+                    type = myChunk[ this._blocks[ i ].blockType ];
                 }
-                this.createComponent( type , i , _blocks[ i ] );
+                this.createComponent( type , i , this._blocks[ i ] );
             } else {
                 waitForChunk( ( file ) => {
                     Object.keys( file ).map( ( _file ) => {
-                        this.createComponent( file[ _file ] , i , _blocks[ i ] );
+                        this.createComponent( file[ _file ] , i , this._blocks[ i ] );
                     } );
                 } );
             }
@@ -183,9 +189,12 @@ export class AmpBlockLoaderDirective implements OnChanges {
     private createAllRecursively ( _index ) {
         this.createComponentRecursive( this.retrievedFiles[ _index ].file , _index , this.retrievedFiles[ _index ].blockDef )
             .then( ( componentRef : ComponentRef<any> ) => {
+                if ( _index === (this._blocks.length - 1) ) {
+                    setTimeout( () => {
+                        this.loaded.emit( _index );
+                    } );
+                }
                 this.copyFormBlockDefProperty( componentRef , this.retrievedFiles[ _index ].blockDef );
-                componentRef.onDestroy( () => {
-                } );
                 if ( (_index += 1) < this.blocksCount ) {
                     this.createAllRecursively( _index );
                 }
