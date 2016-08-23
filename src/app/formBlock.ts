@@ -163,12 +163,19 @@ export abstract class FormBlock {
             TimerWrapper.setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
-            this.scrollService.scrollToNextUndoneBlock( this.controlService , FullyDistinguishedNames );
-            this.formModelService.present( {
-                action    : 'setFlag' ,
-                flag      : nextBlock + 'IsVisible' ,
-                flagValue : true
-            } );
+            const fdn = this.scrollService.scrollToNextUndoneBlock(this.controlService, FullyDistinguishedNames);
+            this.formModelService.present({
+                action: 'setFlag',
+                flag: nextBlock + 'IsVisible',
+                flagValue: true
+            });
+            if (fdn) {
+                this.formModelService.present({
+                    action: 'setFlag',
+                    flag: FullyDistinguishedNames.toString(fdn) + 'IsVisible',
+                    flagValue: true
+                });
+            }
         }
     }
 
