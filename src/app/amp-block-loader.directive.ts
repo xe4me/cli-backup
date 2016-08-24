@@ -17,11 +17,12 @@ export class AmpBlockLoaderDirective implements OnChanges {
     @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
+    @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
     private _hasLoadedOnce                  = false;
     private blocksCount                     = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
-    @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
+
 
     constructor ( private viewContainer : ViewContainerRef ,
                   private formSectionService : FormSectionService ,
