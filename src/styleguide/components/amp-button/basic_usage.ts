@@ -2,7 +2,7 @@ import { Component , AfterViewInit , ChangeDetectorRef, provide } from '@angular
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { FormBlock, provideParent } from '../../../app/formBlock';
+import { FormBlock, provideParent } from '../../../app/blocks/formBlock';
 import { MockUIControlService } from '../../services/mock-ui-control.service';
 import { UIControlService, BlockID } from 'amp-ddc-ui-core/ui-core';
 
@@ -19,10 +19,10 @@ import { UIControlService, BlockID } from 'amp-ddc-ui-core/ui-core';
             </div>
         ` ,
         directives : [ AmpButton ],
-        providers  : [ 
+        providers  : [
             provideParent( SomeFormBlockComponent ),
             provide(UIControlService, { useClass: MockUIControlService })
-        ] 
+        ]
     } )
     class SomeFormBlockComponent extends FormBlock implements FormBlock {
         static CLASS_NAME : string      = 'SomeFormBlockComponent';

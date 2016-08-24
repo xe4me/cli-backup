@@ -10,12 +10,11 @@ import { AmpReviewSection } from '../../../app/blocks/amp-review/amp-review-sect
 
 describe( 'amp-review Section' , () => {
 
-    describe('Section WITH a title', () => {
-
+    describe('Section WITH a title AND content inside the tags', () => {
         @Component( {
             template   : `
                 <amp-review-section
-                    [title]='reviewSection.title'
+                    [title]="reviewSection.title"
                 >
                     <div class="test-transcluded-content"></div>
                 </amp-review-section>
@@ -89,6 +88,90 @@ describe( 'amp-review Section' , () => {
                         let title = Element.querySelector( '.amp-review-section__title' );
 
                         expect( title ).toBeNull();
+                    } );
+            } )
+        );
+    } );
+
+    describe('Section WITH change link', () => {
+        @Component( {
+            template   : `
+                <amp-review-section
+                    [changeCallback]="reviewSection.changeCallback"
+                    [changeTarget]="reviewSection.changeTarget"
+                >
+                </amp-review-section>
+            ` ,
+            directives : [ AmpReviewSection ]
+        } )
+
+        class AmpReviewSectionTestWithChangeLink {
+            private spyChangeCallback = jasmine.createSpy('spyChangeCallback');
+            private reviewSection = {
+                changeCallback : this.spyChangeCallback,
+                changeTarget : 'target-id'
+            };
+        }
+
+        it( 'Should display a change link' ,
+            injectAsync( [
+                TestComponentBuilder
+            ] , ( tcb ) => {
+                return tcb
+                    .createAsync( AmpReviewSectionTestWithChangeLink )
+                    .then( ( fixture : any ) => {
+                        fixture.detectChanges();
+                        let Element = fixture.nativeElement;
+                        let link = Element.querySelector( '.amp-review-section__change-link' );
+
+                        expect( link ).toBeDefined();
+                    } );
+            } )
+        );
+
+        it( 'Should call the change callback with the callback target WHEN the link is clicked',
+            injectAsync( [
+                TestComponentBuilder
+            ] , ( tcb ) => {
+                return tcb
+                    .createAsync( AmpReviewSectionTestWithChangeLink )
+                    .then( ( fixture : any ) => {
+                        fixture.detectChanges();
+                        let Element = fixture.nativeElement;
+                        let AmpReviewSection = fixture.debugElement;
+                        let Component = AmpReviewSection.componentInstance;
+                        let button = Element.querySelector( '.amp-review-section__change-link button' );
+
+                        button.click();
+                        expect( Component.reviewSection.changeCallback ).toHaveBeenCalledWith(Component.reviewSection.changeTarget);
+                    } );
+            } )
+        );
+    } );
+
+    describe('Section WITHOUT change link', () => {
+        @Component( {
+            template   : `
+                <amp-review-section>
+                </amp-review-section>
+            ` ,
+            directives : [ AmpReviewSection ]
+        } )
+
+        class AmpReviewSectionTestWithChangeLink {}
+
+        it( 'Should NOT display a change link' ,
+            injectAsync( [
+                TestComponentBuilder
+            ] , ( tcb ) => {
+                return tcb
+                    .createAsync( AmpReviewSectionTestWithChangeLink )
+                    .then( ( fixture : any ) => {
+                        fixture.detectChanges();
+                        let Element = fixture.nativeElement;
+                        let link = Element.querySelector( '.amp-review-section__change-link' );
+
+                        expect( link ).toBeNull();
                     } );
             } )
         );

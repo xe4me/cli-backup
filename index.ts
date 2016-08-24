@@ -8,7 +8,8 @@ export {
     PatterValidator
 } from './src/app/util/validations';
 export { KeyCodes } from './src/app/util/key-kodes.utils';
-export { FormBlock, provideParent } from './src/app/formBlock';
+export { FormBlock,
+         provideParent } from './src/app/blocks/formBlock';
 export { FormSection } from './src/app/formSection';
 export { FormPage } from './src/app/formPage';
 export { FormSections,
