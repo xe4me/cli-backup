@@ -36,6 +36,20 @@
 </section>
 
 <section>
+    <h3>Review section with Change link</h3>
+    <amp-review-section
+        [title]="'Applicant Details'"
+        [changeCallback]="callbackForChangeLink"
+        [changeTarget]="'id_or_url_that_will_be_passed_to_the_change_callback'"
+    >
+        <amp-review-item
+                [label]="'Item label'"
+                [value]="'Sample value'"
+        ></amp-review-item>
+    </amp-review-section>
+</section>
+
+<section>
     <h3>Review total</h3>
     <amp-review-total
         [label]="'Total'"
@@ -62,7 +76,11 @@
 
 <section>
     <h3>A more realistic example</h3>
-    <amp-review-section [title]="'Applicant Details'">
+    <amp-review-section
+        [title]="'Applicant Details'"
+        [changeCallback]="callbackForChangeLink"
+        [changeTarget]="'id_or_url_that_will_be_passed_to_the_change_callback'"
+    >
         <amp-review-item
             [label]="'Name'"
             [value]="'Joe Bloggs'"
