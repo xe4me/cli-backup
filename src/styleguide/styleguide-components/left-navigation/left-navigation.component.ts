@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Router } from '@angular/router-deprecated';
 import { AfterContentInit } from "../../../../../experience-nio/node_modules/@angular/core/src/metadata/lifecycle_hooks";
+import { ThemeService } from "../../services/theme";
 @Component( {
     selector   : 'left-navigation' ,
     template   : `
@@ -24,18 +25,27 @@ import { AfterContentInit } from "../../../../../experience-nio/node_modules/@an
                     {{ content.title }}
                 </div>
             </div>
-        <div *ngFor="let cpmGroup of componentsGrouped ; let i =index">
-                <div class="option-group" (click)="toggleAccordion(i)" [class.option-group--active]='activeAccordion===i'>
-                    <span [ngClass]="{'icon--chevron-down':activeAccordion===i,'icon--chevron-right':activeAccordion!==i}" class="icon "></span>{{ cpmGroup.type }}
+        <div class="theme grid">
+            <div *ngFor="let theme of themeService.themes ; let i = index" class="grid__item 1/2">
+                <div (click)="changeTheme(theme)" class="theme__item"
+                 [class.active]="theme.attr===themeService.theme.attr"
+                [ngStyle]="{'background-color':theme.color}">{{ theme.name }}
                 </div>
-                <div @openClose='activeAccordion===i?"expanded":"collapsed"' class="options">
-                    <div class="option" *ngFor="let cmp of cpmGroup.components" 
-                         (click)="navigate(['Component', {id: cmp.id}])" 
-                         [class.option--active]='activeComponentId===cmp.id'>
-                        {{ cmp.name }}
-                    </div>
-                </div>
+            </div>
         </div>
+        <div *ngFor="let cpmGroup of componentsGrouped ; let i =index">
+            <div class="option-group" (click)="toggleAccordion(i)" [class.option-group--active]='activeAccordion===i'>
+                <span [ngClass]="{'icon--chevron-down':activeAccordion===i,'icon--chevron-right':activeAccordion!==i}" class="icon "></span>{{ cpmGroup.type }}
+            </div>
+            <div @openClose='activeAccordion===i?"expanded":"collapsed"' class="options">
+                <div class="option" *ngFor="let cmp of cpmGroup.components" 
+                     (click)="navigate(['Component', {id: cmp.id}])" 
+                     [class.option--active]='activeComponentId===cmp.id'>
+                    {{ cmp.name }}
+                </div>
+            </div>
+        </div>
+        
     </div>
 ` ,
     inputs     : [ 'components' , 'componentsGrouped' , 'contentTable' ] ,
@@ -64,7 +74,8 @@ export class LeftNavigationComponent implements AfterContentInit {
         return undefined;
     }
 
-    constructor ( public router : Router , private location : Location ,private scrollService : ScrollService ) {
+    constructor ( private  themeService : ThemeService , public router : Router , private location : Location ,
+                  private scrollService : ScrollService ) {
     }
 
     navigate ( to : any ) {
@@ -79,4 +90,13 @@ export class LeftNavigationComponent implements AfterContentInit {
     private toggleAccordion ( index ) {
         this.activeAccordion = this.activeAccordion === index ? this.INDEX_ID : index;
     }
+
+    private changeTheme ( theme : Theme ) {
+        this.themeService.theme = theme;
+    }
+}
+export interface Theme {
+    name : string;
+    color : string;
+    attr : string;
 }

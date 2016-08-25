@@ -5,6 +5,7 @@
             {{ control.errors | json }}
         </highlight>
         <amp-auto-complete
+                [attr.theme]="themeService.theme.attr"
                 class="1/2"
                 style="TOOLS"
                 [options]="options"

@@ -2,6 +2,7 @@
     <div style='padding: 50px 100px; text-align:left'>
         <button (click)="check()">Check / Uncheck</button>
         <amp-checkbox
+                [attr.theme]="themeService.theme.attr"
                 [isInSummaryState]='isInSummaryState'
                 [parentControl]='control'
                 [required]='acknowledge.required'

@@ -2,7 +2,8 @@ import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core'
 import{ Highlight } from '../../highlight'
-import { AmpAutoCompleteComponent } from "../../../app/components/amp-autocomplete/amp-autocomplete.component";
+import { AmpAutoCompleteComponent } from '../../../app/components/amp-autocomplete/amp-autocomplete.component';
+import { ThemeService } from '../../services/theme';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-auto-complete/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -17,10 +18,10 @@ import { AmpAutoCompleteComponent } from "../../../app/components/amp-autocomple
 } )
 
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
-    control : Control = new Control();
+    control : Control       = new Control();
     selectControl : Control = new Control();
-    isInSummaryState  = false;
-    private options   = [
+    isInSummaryState        = false;
+    private options         = [
         {
             'id'       : 1 ,
             'title'    : 'Professional (medical)' ,
@@ -3209,10 +3210,12 @@ export default class AMPGoogleAddressComponentBasicUsage implements AfterViewIni
         }
     ];
     private selectedOption;
-    private onChange(option){
+
+    private onChange ( option ) {
         this.selectedOption = option;
     }
-    constructor ( private _cd : ChangeDetectorRef ) {
+
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     ngAfterViewInit () {

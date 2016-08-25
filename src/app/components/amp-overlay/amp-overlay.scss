@@ -1,3 +1,6 @@
+@import '../../../styles/abstracts';
+@import './themes/theme-form';
+@import './themes/theme-tools';
 div {
   &.amp-overlay {
     z-index: 9;
