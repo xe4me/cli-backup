@@ -1,4 +1,4 @@
-import { Component , AfterViewInit , ChangeDetectorRef , OnInit } from '@angular/core';
+import { Component , OnInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core'
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
