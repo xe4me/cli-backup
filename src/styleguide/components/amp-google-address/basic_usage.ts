@@ -1,6 +1,7 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { AMPGoogleAddressComponent } from '../../../app/components/amp-google-address/amp-google-address.component';
+import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-google-address-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-google-address/basic_usage.html' ,
@@ -11,7 +12,7 @@ import { AMPGoogleAddressComponent } from '../../../app/components/amp-google-ad
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
     addressControl : Control = new Control();
 
-    constructor ( private _cd : ChangeDetectorRef ) {
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     ngAfterViewInit () {

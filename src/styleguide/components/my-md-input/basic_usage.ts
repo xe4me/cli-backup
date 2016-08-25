@@ -2,6 +2,7 @@ import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { MdInputComponent } from '../../../app/components/my-md-input/my-md-input.component';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
+import { ThemeService } from '../../services/theme';
 @Component(
     {
         selector    : 'my-md-input-basic-usage' ,
@@ -15,7 +16,7 @@ export default class MyMdInputBasicUsage implements AfterViewInit {
     surnameControl : Control   = new Control();
     visibilityRule : Action;
 
-    constructor ( private _cd : ChangeDetectorRef ) {
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     ngAfterViewInit () {

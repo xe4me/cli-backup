@@ -22,6 +22,7 @@ import { IComponentExample } from './services/components';
 import { Http } from '@angular/http';
 import { Response } from '@angular/http';
 import { Highlight } from './highlight';
+import { ThemeService } from './services/theme';
 export interface ISourceFile {
     data : string;
     type : string;
@@ -84,7 +85,8 @@ export class ExampleComponent {
     }
 
     //@Query( MdTabs ) public panes : QueryList<MdTabs> ,
-    constructor ( public http : Http , public cd : ChangeDetectorRef , public zone : NgZone ) {
+    constructor ( public themeService : ThemeService , public http : Http , public cd : ChangeDetectorRef ,
+                  public zone : NgZone ) {
     }
 
     applyModel ( model : IComponentExample ) {

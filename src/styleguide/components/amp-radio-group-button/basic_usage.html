@@ -3,6 +3,7 @@
     <h5 class='title'>Can be set to autoSelectOnOne </h5>
     <div id='single-radio-group' class='group-buttons'>
         <amp-radio-button-group
+                [attr.theme]="themeService.theme.attr"
                 scrollOutOn='null'
                 class='grid__item 1/1'
                 (select)='onOneRadioButtonSelect($event)'
@@ -21,6 +22,7 @@
     <div class='group-buttons'>
 
         <amp-radio-button-group
+                [attr.theme]="themeService.theme.attr"
                 [required]='radiosMultipleOptions.required'
                 [disabled]='radiosMultipleOptions.disabled'
                 scrollOutOn='null'

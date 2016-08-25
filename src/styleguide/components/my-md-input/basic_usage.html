@@ -2,6 +2,7 @@
     isvalid {{ firstnameControl.valid }}
     <br/>
     <my-md-input
+            [attr.theme]="themeService.theme.attr"
             [id]="'firstname'"
             [label]="'Name'"
             [parentControl]="firstnameControl"

@@ -1,15 +1,21 @@
 <div>
-<form  #formModel="ngForm" class="nl-form" >
+    <form #formModel="ngForm" class="nl-form">
 
-    <h4>Uses Google <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Autocomplete API</a></h4>
-    <br />
-    <!-- Start copy from here -->
-    <amp-google-address [id]="'PracticeAddress'" [label]="'Type your address'" [parentControl]="addressControl" [placeholder]=""
-        isRequired="true"
-        valPattern="^.*$"
-        valMaxLength="500">
-    </amp-google-address>
-    <!-- End copy at here -->
+        <h4>Uses Google <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Autocomplete
+            API</a></h4>
+        <br/>
+        <!-- Start copy from here -->
+        <amp-google-address
+                [attr.theme]="themeService.theme.attr"
+                [id]="'PracticeAddress'"
+                [label]="'Type your address'"
+                [parentControl]="addressControl"
+                [placeholder]=""
+                isRequired="true"
+                valPattern="^.*$"
+                valMaxLength="500">
+        </amp-google-address>
+        <!-- End copy at here -->
 
-</form>
+    </form>
 </div>

@@ -1,7 +1,8 @@
-import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
+import { Component , AfterViewInit , ChangeDetectorRef , OnInit } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core'
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
+import { ThemeService } from '../../services/theme';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -25,7 +26,7 @@ export default class AMPCheckboxComponentBasicUsage implements OnInit {
         scrollOutOn : null
     };
 
-    constructor ( private _cd : ChangeDetectorRef ) {
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     ngOnInit () {
