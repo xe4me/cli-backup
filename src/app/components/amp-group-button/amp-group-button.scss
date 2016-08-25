@@ -1,5 +1,6 @@
 @import '../../../styles/abstracts';
-
+@import './themes/theme-form';
+@import './themes/theme-tools';
 $switch-background-color: $amp-colour-sky-blue;
 $amp-switch-font-family: $amp-font-open-sans-semibold;
 $amp-switch-font-color: white;

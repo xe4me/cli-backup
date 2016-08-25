@@ -3,6 +3,7 @@ import { Control } from '@angular/common';
 import { AmpLoadingComponent } from '../../../app/components/amp-loading/amp-loading.component';
 import { MdInputComponent } from '../../../app/components/my-md-input/my-md-input.component';
 import { InputWithLoadingGroupComponent } from '../../../app/component-groups/input-with-loading-group/input-with-loading-group.component';
+import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-loading-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-loading/basic_usage.html' ,
@@ -16,7 +17,7 @@ export default class AmpLoadingComponentBasicUsage {
     private loading        = true;
     private loadingAnother = true;
 
-    constructor ( private _cd : ChangeDetectorRef ) {
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     increase () {

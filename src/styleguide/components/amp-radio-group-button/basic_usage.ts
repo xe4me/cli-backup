@@ -2,6 +2,7 @@ import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
+import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-radio-group-button-block-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-radio-group-button/basic_usage.html' ,
@@ -52,7 +53,7 @@ export default class AmpRadioGroupButtonComponentBasicUsage implements AfterView
     private autoSelectOnOne : boolean = true;
     private color                     = 'red';
 
-    constructor ( private _cd : ChangeDetectorRef ) {
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     ngAfterViewInit () {
@@ -70,7 +71,7 @@ export default class AmpRadioGroupButtonComponentBasicUsage implements AfterView
     }
 
     private toggleRequired () {
-        this.radiosMultipleOptions.required = !this.radiosMultipleOptions.required;
+        this.radiosMultipleOptions.required = ! this.radiosMultipleOptions.required;
     }
 
     private onOneRadioButtonSelect () {

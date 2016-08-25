@@ -1,5 +1,6 @@
 @import '../../../styles/abstracts';
-
+@import './themes/theme-form';
+@import './themes/theme-tools';
 $progress-linear-bar-height: 7px !default;
 $progress-bar-forground-color: $amp-colour-sky-blue;
 $progress-bar-background-color: $amp-colour-grey-lightest;

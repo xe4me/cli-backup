@@ -1,5 +1,6 @@
 @import '../../../styles/abstracts';
-
+@import './themes/theme-form';
+@import './themes/theme-tools';
 $autoc-primary-theme: $amp-colour-primary;
 $autoc-line-height: 1;
 $autoc-border-box-font-familty: 'inherit';

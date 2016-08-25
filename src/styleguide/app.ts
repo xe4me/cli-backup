@@ -1,15 +1,11 @@
 import { LeftNavigationComponent } from './styleguide-components';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
-import {
-    ViewEncapsulation ,
-    Component , AfterViewInit
-} from '@angular/core';
+import { ViewEncapsulation , Component } from '@angular/core';
 import {
     FormModelService ,
     ScrollService ,
     ProgressObserverService ,
     AmpHttpService ,
-    DynamicComponentLoaderFix
 } from 'amp-ddc-ui-core/ui-core';
 import {
     ROUTER_DIRECTIVES ,
@@ -22,6 +18,7 @@ import { ComponentsService , IComponentMeta , IComponentGroupMeta } from './serv
 import { MdIconRegistry } from '@angular2-material/icon/icon-registry';
 import { NavigationService } from './services/navigation';
 import { TableContentsService } from './services/content-table-service';
+import { ThemeService } from './services/theme';
 @RouteConfig( [
     { path : '/' , name : 'Index' , component : IndexPage , useAsDefault : true } ,
     { path : '/components/:id' , name : 'Component' , component : ComponentPage }
@@ -38,7 +35,7 @@ import { TableContentsService } from './services/content-table-service';
         NavigationService ,
         ComponentsService ,
         BrowserDomAdapter ,
-        DynamicComponentLoaderFix ,
+        ThemeService ,
         MdIconRegistry
     ] ,
     template      : `
@@ -71,17 +68,14 @@ export class StyleGuideApp {
                   private _componentsService : ComponentsService ) {
         this._componentsService.getComponents()
             .then( ( comps ) => {
-
                 this.components = comps;
             } );
         this._componentsService.gertComponentsGrouped()
             .then( ( componentsGrouped ) => {
-
                 this.componentsGrouped = componentsGrouped;
             } );
         this.tableContentsService.getContentsList()
             .then( ( contentTable ) => {
-
                 this.contentTable = contentTable;
             } );
     }

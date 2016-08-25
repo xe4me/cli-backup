@@ -2,7 +2,7 @@
 
 :host {
   position: fixed;
-  width:16.6666666% !important;;
+  width: 16.6666666% !important;;
   display: block;
 
 }
@@ -100,4 +100,17 @@ $amp-dropdown-option-padding-left: 20px;
 
 .options {
   padding-left: 10px;
+}
+
+.theme {
+  &__item {
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    color:#fff;
+    &.active{
+      font-weight: 800;
+      text-decoration: underline;
+    }
+  }
 }
