@@ -1,5 +1,5 @@
 /*** Tech debt from NIO **
- * All properties should come from FormDefinition json and defaulted if neccessary in the relevant blocks
+ * All properties should come from FormDefinition json and defaulted if necessary in the relevant blocks
  *
  *
  *

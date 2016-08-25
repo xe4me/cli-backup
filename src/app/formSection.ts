@@ -1,17 +1,11 @@
-import { FormBlock } from './blocks/formBlock';
 import {
-    Injector ,
-    Injectable ,
-    Inject ,
-    Component ,
-    ViewEncapsulation ,
-    OnInit ,
-    AfterViewInit ,
-    NgZone ,
-    ViewContainerRef
-} from '@angular/core';
-import { RouteParams , Router , RouteRegistry } from '@angular/router-deprecated';
-import { UIControlService , ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+    Injectable,
+    ViewContainerRef } from '@angular/core';
+import {
+    UIControlService,
+    ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+import { FormBlock } from './blocks/formBlock';
+
 @Injectable()
 export abstract class FormSection extends FormBlock {
     CLASS_NAME : string;    // Populated by the implementation class
@@ -23,7 +17,7 @@ export abstract class FormSection extends FormBlock {
         super( controlService , progressObserver );
     }
 
-    // Noop but can be overriden by child class
+    // Noop but can be overridden by child class
     public preBindControls ( _formBlockDef ) {
     }
 
