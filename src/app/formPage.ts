@@ -1,16 +1,11 @@
-import { FormBlock } from './blocks/formBlock';
 import {
-    Injector ,
-    Injectable ,
-    Inject ,
-    Component ,
-    ViewEncapsulation ,
-    OnInit ,
-    AfterViewInit ,
-    NgZone
-} from '@angular/core';
-import { RouteParams , Router , RouteRegistry } from '@angular/router-deprecated';
-import { UIControlService , ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+    Injectable } from '@angular/core';
+import { Router } from '@angular/router-deprecated';
+import {
+    UIControlService,
+    ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+import { FormBlock } from './blocks/formBlock';
+
 @Injectable()
 export class FormPage extends FormBlock {
     pageId : string;
@@ -27,7 +22,7 @@ export class FormPage extends FormBlock {
         this.path = 'pages/';
     }
 
-    // Noop but can be overriden by child class
+    // Noop but can be overridden by child class
     public preBindControls ( _formBlockDef ) {
         if ( _formBlockDef ) {
             this.routeName = _formBlockDef.page.routeName;
