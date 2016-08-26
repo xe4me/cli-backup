@@ -8,3 +8,18 @@ v 2.0.0 (unreleased)
   - Revamped src/app/formBlock.ts
   - Removed src/app/blocks/bolr
   - Removed src/styleguide/blocks/bolr
+
+v 3.0.0
+  - Upgrade Angular RC2 to RC5
+    # package.json
+        Add the following in dependencies
+            "normalize.css": "^4.1.1",
+
+        Add the following in devDependencies
+            "bundle-loader": "^0.5.4",
+            "node-sass": "^3.7.0",
+            "sass-loader": "^3.2.0",
+            "karma-phantomjs-launcher": "^1.0.0",
+            "phantomjs-polyfill": "0.0.2",
+            "phantomjs-prebuilt": "^2.1.7",
+
