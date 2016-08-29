@@ -6,13 +6,13 @@ export class BasicUtils  {
 
    let currencyPipe : AmpCurrencyPipe = new AmpCurrencyPipe();
 
-    if ( !(typeof amount === 'string' || amount instanceof String) ) {
+    if ( (typeof amount !== 'string') ) {
       amount = amount.toString();
     }
-    return currencyPipe.transform(amount.toString(), 2, 3);
+    return currencyPipe.transform(amount, 2, 3);
   }
 
-  public static formatStringToNumber ( str ) : number {
+  public static formatStringToNumber ( str : any ) : number {
     if (str && str.indexOf(',') > -1) { //check if we have a comma, then remove it
       str = str.replace(/,/g , '');
     }
