@@ -1,5 +1,25 @@
 [
     {
+        "name": "Grid",
+        "sources": [
+            "src/app/layout/grid/grid.ts"
+        ],
+        "id": "Grid",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/grid/grid.html",
+                "styles": "src/styleguide/layout/grid/grid.scss",
+                "source": "src/styleguide/layout/grid/grid.ts",
+                "galen": "src/styleguide/layout/grid/grid.spec",
+                "jasmine": "src/styleguide/layout/grid/grid.spec.ts",
+                "component": "grid",
+                "component_src_location": "layout/grid/grid",
+                "name": "Grid"
+            }
+        ],
+        "readme": "<p>Examples of grid layouts</p>\n"
+    },
+    {
         "name": "Amp Linear ProgressBar",
         "sources": [
             "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
