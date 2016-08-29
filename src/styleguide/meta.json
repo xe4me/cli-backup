@@ -12,12 +12,12 @@
                 "source": "src/styleguide/layout/grid/grid.ts",
                 "galen": "src/styleguide/layout/grid/grid.spec",
                 "jasmine": "src/styleguide/layout/grid/grid.spec.ts",
-                "component": "amp-block-loader-basic-usage",
-                "component_src_location": "layout/amp-block-loader/basic_usage",
+                "component": "grid",
+                "component_src_location": "layout/grid/grid",
                 "name": "Grid"
             }
         ],
-        "readme": "<p>To load components dynamically</p>\n"
+        "readme": "<p>Examples of grid layouts</p>\n"
     },
     {
         "name": "Amp Linear ProgressBar",
