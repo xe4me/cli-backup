@@ -1,1 +1,13 @@
+@import "../../../styles/abstracts";
 
+.gridbox {
+    border-left: solid 6px $amp-colour-grey-light;
+    border-top: solid 6px $amp-colour-grey-light;
+    border-bottom: solid 6px $amp-colour-grey-light;
+    padding: 10px;
+    text-align: center;
+}
+
+.gridbox.last {
+    border-right: solid 6px $amp-colour-grey-light;
+}
