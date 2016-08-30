@@ -40,14 +40,14 @@ import { ThemeService } from './services/theme';
     ] ,
     template      : `
         <div class="styleguide-app">
-            <div class="grid__item 1/6 styleguide-app--menu">
+            <div class="grid__item 1/6 styleguide-app--menu palm-hide">
                 <left-navigation 
                     [contentTable]="contentTable"
                     [components]="components" 
                     [componentsGrouped]="componentsGrouped">    
                 </left-navigation>
             </div><!--
-         --><div class="examples grid__item 5/6 pl styleguide-app--components">
+         --><div class="examples grid__item 5/6 pl styleguide-app--components palm-p palm-1/1">
                 <router-outlet ></router-outlet>
             </div>     
         </div>
