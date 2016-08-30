@@ -4,13 +4,13 @@ import {
     state ,
     style ,
     transition ,
-    trigger
+    trigger,
+    AfterContentInit
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Router } from '@angular/router-deprecated';
-import { AfterContentInit } from "../../../../../experience-nio/node_modules/@angular/core/src/metadata/lifecycle_hooks";
-import { ThemeService } from "../../services/theme";
+import { ThemeService } from '../../services/theme';
 @Component( {
     selector   : 'left-navigation' ,
     template   : `

@@ -86,11 +86,20 @@ export class AmpBlockLoaderDirective implements OnChanges {
             var waitForChunk = null;
             if ( this._blocks[ i ].commonBlock ) {
                 if ( this._blocks[ i ].blockLayout ) {
-                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
+                    try {
+                        waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
+                    } catch (err) {
+                        console.log('Oops!! Trying to load components from node_modules but not components found.');
+                    }
                 } else {
                 }
             } else {
-                myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                try {
+                    myChunk  = require('../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                } catch (err) {
+                    console.log('Did not find the experience components, maybe we are not in an experience');
+                    myChunk = require('../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                }
             }
             if ( myChunk ) {
                 let type = null;
@@ -149,11 +158,20 @@ export class AmpBlockLoaderDirective implements OnChanges {
             var waitForChunk = null;
             if ( this._blocks[ i ].commonBlock ) {
                 if ( this._blocks[ i ].blockLayout ) {
-                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
+                    try {
+                        waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
+                    } catch (err) {
+                        console.log('Oops!! Trying to load components from node_modules but not components found.');
+                    }
                 } else {
                 }
             } else {
-                myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                try {
+                    myChunk  = require('../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                } catch (err) {
+                    console.log('Did not find the experience components, maybe we are not in an experience');
+                    myChunk = require('../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                }
             }
             this.retrievedFiles[ i ] = null;
             if ( myChunk ) {
