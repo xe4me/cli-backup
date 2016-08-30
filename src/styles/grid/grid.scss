@@ -27,6 +27,7 @@ Grid items are floated, they need a container that will make sure the floated it
 /**
     grid override - this grid is used for new DDC components and grids, fixes whitespace bug as well
 
+    - use this class when you do not want a nested grid, just for columns etc
 */
 #{$class-type}grid__item_floated {
     display:inline-block;
@@ -45,3 +46,11 @@ Grid items are floated, they need a container that will make sure the floated it
     }
 }
 
+#{$class-type}grid__container_inner {
+    display: table;
+    width:100%;
+}
+/*
+#{$class-type}grid__item_floated {
+    display: table-cell!important;
+}*/
