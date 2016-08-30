@@ -1,5 +1,5 @@
 import { Component , OnInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { ThemeService } from '../../services/theme';
@@ -7,16 +7,16 @@ import { ThemeService } from '../../services/theme';
     templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [
-        FORM_DIRECTIVES ,
-        AmpCheckboxComponent ,
-        CORE_DIRECTIVES
-    ] ,
+    // directives  : [
+    //     FORM_DIRECTIVES ,
+    //     AmpCheckboxComponent ,
+    //     CORE_DIRECTIVES
+    // ] ,
     selector    : 'amp-checkbox-basic-usage'
 } )
 
 export default class AMPCheckboxComponentBasicUsage implements OnInit {
-    control : Control   = new Control();
+    control : FormControl   = new FormControl();
     isInSummaryState    = false;
     private acknowledge = {
         id          : 'acknowledge' ,

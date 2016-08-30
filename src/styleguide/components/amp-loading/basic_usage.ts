@@ -1,5 +1,5 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
-import { Control } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { AmpLoadingComponent } from '../../../app/components/amp-loading/amp-loading.component';
 import { MdInputComponent } from '../../../app/components/my-md-input/my-md-input.component';
 import { InputWithLoadingGroupComponent } from '../../../app/component-groups/input-with-loading-group/input-with-loading-group.component';
@@ -13,7 +13,7 @@ import { ThemeService } from '../../services/theme';
 
 export default class AmpLoadingComponentBasicUsage {
     value                  = 20;
-    firstnameControl       = new Control();
+    firstnameControl       = new FormControl();
     private loading        = true;
     private loadingAnother = true;
 

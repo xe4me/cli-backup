@@ -8,7 +8,7 @@ import {
     EventEmitter ,
     Renderer
 } from '@angular/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { FormControl , Validators } from '@angular/forms';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { isPresent } from '@angular/core/src/facade/lang';
@@ -38,7 +38,7 @@ import {
                 [id]='_id'
                 [tabIndex]='isActive?tabindex:-1'
                 [maxLength]='valMaxLength'
-                [ngFormControl]='parentControl'
+                [formControl]='parentControl'
                 [placeholder]='label'>
                   <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
             </md-input>
@@ -81,7 +81,7 @@ import {
             'iconRight' ,
             'labelHidden'
         ] ,
-        directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
+        directives    : [ MD_INPUT_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.None ,
         outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
         host          : {
@@ -91,7 +91,7 @@ import {
         }
     } )
 export class MdInputComponent implements AfterViewInit, OnChanges {
-    public parentControl : Control;
+    public parentControl : FormControl;
     private inputWidth : number;
     private _id : string;
     private _valMinLength : number;
@@ -112,8 +112,6 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private tabindex : any             = null;
     private defaultValue : any         = null;
     private currency : string          = null;
-    private customValidator : Function = ()=> {
-    };
     private placeholder : string;
     private visibility : Action;
     private onAdjustWidth : EventEmitter<any>;
@@ -240,6 +238,13 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this._id = id;
     }
 
+    public checkErrors () {
+        this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
+    }
+
+    private customValidator : Function = () => {
+    };
+
     // set autoFocus ( value : boolean ) {
     //     if ( this.isTrue( value ) && this.el ) {
     //         let input = this.el.nativeElement.querySelector( 'input' );
@@ -273,7 +278,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     private trimValue ( $event ) {
         this.checkErrors();
-        setTimeout( ()=> {
+        setTimeout( () => {
             this.removeIdleAndMakeInUntouched();
         } );
         let notUsable;
@@ -299,7 +304,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
             this.parentControl
                 .valueChanges
                 .debounceTime( this.validationDelay )
-                .subscribe( ( changes )=> {
+                .subscribe( ( changes ) => {
                     if ( changes ) {
                         this.resetIdleTimeOut();
                         this.checkErrors();
@@ -308,7 +313,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         } else {
             this.parentControl
                 .valueChanges
-                .subscribe( ( changes )=> {
+                .subscribe( ( changes ) => {
                     if ( changes ) {
                         this.resetIdleTimeOut();
                         this.checkErrors();
@@ -335,7 +340,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private resetIdleTimeOut () {
         this.markControlAsUntouched();
         clearTimeout( this.idleTimeoutId );
-        this.idleTimeoutId = setTimeout( ()=> {
+        this.idleTimeoutId = setTimeout( () => {
             this.parentControl.markAsTouched();
         } , this.idleTimeOut );
     }
@@ -348,10 +353,6 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     private markControlAsUntouched () {
         (<any>this.parentControl)._touched = false;
-    }
-
-    public checkErrors () {
-        this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
     }
 
     private setDefaultValue () {

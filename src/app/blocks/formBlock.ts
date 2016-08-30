@@ -1,4 +1,5 @@
-import { Control , ControlArray , ControlGroup } from '@angular/common';
+import { FormControl , FormArray , FormGroup } from '@angular/forms';
+
 import { forwardRef , provide , Provider } from '@angular/core';
 import {
     BlockLayout ,
@@ -10,7 +11,6 @@ import {
     ProgressObserverService ,
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
-import { TimerWrapper } from '@angular/core/src/facade/async';
 import { FullyDistinguishedNames , FormSections } from '../form-sections';
 import * as moment from 'moment';
 export class NamedControl {
@@ -56,12 +56,12 @@ export abstract class FormBlock {
 
         // What about Application FormBlocks?
         // TODO: Move this into the relevant blocks
-        const quoteControl : Control = this.controlService.getControl( FullyDistinguishedNames.QuoteDetails , 'identifier' );
+        const quoteControl : FormControl = this.controlService.getControl( FullyDistinguishedNames.QuoteDetails , 'identifier' );
         this.haveQuoteId             = quoteControl && quoteControl.value;
         this.isInSummaryState        = this.haveQuoteId;
         //Hack to show summary state in a proper way
         if ( quoteControl && quoteControl.value ) {
-            TimerWrapper.setTimeout( () => {
+            setTimeout( () => {
                 this.isInSummaryState = false;
                 this.isInSummaryState = true;
             } , 100 );
@@ -73,7 +73,7 @@ export abstract class FormBlock {
     }
 
     // Used by both nested formModel binding as well as dcl formModel binding
-    public bindControls ( formModel : ControlGroup , instance : any ) {
+    public bindControls ( formModel : FormGroup , instance : any ) {
         // TODO: Fix this, need to give control back to the FormDefinition json
         // if ( instance.formControlGroupName ) {
         //     // Called by BaseForm straight after each block is dcl generated
@@ -109,7 +109,7 @@ export abstract class FormBlock {
         return this.controlService.getControlGroup( this.getfullyDistinguishedName() ).valid;
     }
 
-    public getControl ( name : string , defaultValue? : string | number ) : Control {
+    public getControl ( name : string , defaultValue? : string | number ) : FormControl {
         let exists = this.controlService.getControl( this.getfullyDistinguishedName() , name );
         if ( ! exists ) {
             exists = this.controlService.createControl( this.getfullyDistinguishedName() , name , defaultValue );
@@ -117,7 +117,7 @@ export abstract class FormBlock {
         return exists;
     }
 
-    public getControlArray ( name : string ) : ControlArray {
+    public getControlArray ( name : string ) : FormArray {
         let exists = this.controlService.getControlArray( this.getfullyDistinguishedName() , name );
         if ( ! exists ) {
             exists = this.controlService.createControlArray( this.getfullyDistinguishedName() , name );
@@ -126,9 +126,9 @@ export abstract class FormBlock {
     }
 
     public pushControltoControlArray ( name : string , controls : Array<any> ) {
-        var newGroup = new ControlGroup( {} );
+        var newGroup = new FormGroup( {} );
         controls.forEach( function( control ) {
-            newGroup.addControl( control.id , new Control( control.default || '' ) );
+            newGroup.addControl( control.id , new FormControl( control.default || '' ) );
         } );
         this.getControlArray( name ).push( newGroup );
     }
@@ -160,7 +160,7 @@ export abstract class FormBlock {
         if ( this.controlService.getControlGroup( this.getfullyDistinguishedName() ).valid ) {
             this.isInSummaryState = true;
             this.progressObserver.onProgress();
-            TimerWrapper.setTimeout( () => {
+            setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
             const fdn = this.scrollService.scrollToNextUndoneBlock(this.controlService, FullyDistinguishedNames);

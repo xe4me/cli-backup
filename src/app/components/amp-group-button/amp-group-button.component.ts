@@ -8,13 +8,13 @@ import {
     ChangeDetectorRef ,
     Provider
 } from '@angular/core';
-import { Validators , FORM_DIRECTIVES , Control , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
+import { Validators , FormControl , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 const RADIO_VALUE_ACCESSOR = new Provider( NG_VALUE_ACCESSOR ,
     { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
-    selector  : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
+    selector  : 'input[type=radio][ngControl],input[type=radio][formControl],input[type=radio][ngModel]' ,
     host      : {
         '(change)' : 'onChange($event.target.value)' ,
         '(blur)'   : 'onTouched()'
@@ -54,7 +54,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 type='radio'
                                 [attr.id]='button.id + index'
                                 [attr.name]='groupName + index'
-                                [ngFormControl]='parentControl'
+                                [formControl]='parentControl'
                                 [value]='button.value'
                                 [checked]='parentControl.value===button.value'
                                 />
@@ -78,11 +78,11 @@ class RadioControlValueAccessors implements ControlValueAccessor {
         'index'
     ] ,
     styles     : [ require( './amp-group-button.scss' ).toString() ] ,
-    directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
+    directives : [ RadioControlValueAccessors ] ,
     outputs    : [ 'select' ]
 } )
 export class AmpGroupButtonComponent {
-    private parentControl : Control;
+    private parentControl : FormControl;
     private _disabled : boolean = false;
     private _required : boolean = false;
     private buttons;
@@ -100,7 +100,7 @@ export class AmpGroupButtonComponent {
     }
 
     ngOnDestroy () : any {
-        if(!this.keepControlOnDestroy){
+        if (!this.keepControlOnDestroy) {
             this.parentControl.validator = null;
             this.parentControl.updateValueAndValidity( {
                 onlySelf  : false ,
