@@ -1,0 +1,47 @@
+
+
+/*------------------------------------*\
+    OVERRIDES FOR GRID SYSTEM
+\*------------------------------------*/
+
+/**
+For implementation, explanations and other information on this grid please see the amp-styleguide-code projects grid sass file
+*/
+
+$use-markup-fix:        true !default;
+$use-silent-classes:    false !default;
+$mobile-first:          true !default;
+$gutter:                0px !default;
+
+$class-type: if($use-silent-classes, unquote("%"), unquote("."));
+
+/**
+Grid items are floated, they need a container that will make sure the floated items are cleared,
+
+*/
+
+#{$class-type}grid__container {
+    display: table;
+}
+
+/**
+    grid override - this grid is used for new DDC components and grids, fixes whitespace bug as well
+
+*/
+#{$class-type}grid__item_floated {
+    display:inline-block;
+    float: left;
+    padding-left:$gutter;
+    vertical-align:top;
+    @if $mobile-first {
+        width:100%;
+    }
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    @if not $use-markup-fix {
+        letter-spacing:normal;
+        word-spacing:normal;
+    }
+}
+

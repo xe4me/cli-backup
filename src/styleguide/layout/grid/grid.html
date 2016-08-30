@@ -1,52 +1,52 @@
+
 <section class="section mh mv">
-    <p class="para">
-        AMP's grids are derived from intuit css. The grids, their implementation and their use have been enhanced somewhat to include a more comprehensive set of breakpoints
-    </p>
-</section>
-<section class="section mh mv">
+    <section class="section mv">
+        <p class="para">
+            AMP's grids are derived from intuit css. The grids, their implementation and their use have been enhanced somewhat to include a more comprehensive set of breakpoints
+        </p>
+    </section>
     <!-- Start 12 col grid -->
         <article class="section">
         <header class="header">
             <h2 class="mb-">Basic 12 column grid - full width, no breakpoint applied</h2>
         </header>
-        <div class="grid__item mb">
+        <div class="grid__container 1/1 mb">
           <div class="grid__item 1/12 mv">
             <p class="gridbox">1</p>
-        </div><!--
-         --><div class="grid__item 1/12 mv">
+        </div>
+         <div class="grid__item 1/12 mv">
             <p class="gridbox">2</p>
-        </div><!--
-         --><div class="grid__item 1/12 mv">
+        </div>
+         <div class="grid__item 1/12 mv">
             <p class="gridbox">3</p>
-        </div><!--
-         --><div class="grid__item 1/12 mv">
+        </div>
+         <div class="grid__item 1/12 mv">
             <p class="gridbox">4</p>
-        </div><!--
-        --><div class="grid__item 1/12 mv">
+        </div>
+        <div class="grid__item 1/12 mv">
             <p class="gridbox">5</p>
-        </div><!--
-        --><div class="grid__item 1/12 mv">
+        </div>
+        <div class="grid__item 1/12 mv">
             <p class="gridbox">6</p>
-        </div><!--
-        --><div class="grid__item 1/12 mv">
+        </div>
+        <div class="grid__item 1/12 mv">
             <p class="gridbox">7</p>
-        </div><!--
-        --><div class="grid__item 1/12 mv">
+        </div>
+        <div class="grid__item 1/12 mv">
             <p class="gridbox">8</p>
-        </div><!--
-         --><div class="grid__item 1/12 mv">
+        </div>
+         <div class="grid__item 1/12 mv">
             <p class="gridbox">9</p>
-        </div><!--
-        --><div class="grid__item 1/12 mv">
+        </div>
+        <div class="grid__item 1/12 mv">
             <p class="gridbox">10</p>
-        </div><!--
-        --><div class="grid__item 1/12 mv">
+        </div>
+        <div class="grid__item 1/12 mv">
             <p class="gridbox">11</p>
-        </div><!--
-         --><div class="grid__item 1/12 mv">
+        </div>
+         <div class="grid__item 1/12 mv">
             <p class="gridbox last">12</p>
-        </div><!--
-    --></div>
+        </div></div>
     </article>
     <!-- end 12 col grid -->
     <section class="section mv">
@@ -54,7 +54,14 @@
             AMP's grids use fractional increments. Take the following example which has 2 columns. Both columns stretch equal parts of the 12 column grid. To acheive this is as simple as applying a fraction to the element.
         </p>
         <p>
-            In this case we are using <strong> <div class=grid__item 6/12></strong>, simply, a column that spans 6 out of 12.
+            In this case we are using:
+            <highlight color-default>
+               <pre>
+                    <code class="highlight">
+                        <strong>&#60;div class=&#34;grid__item 6/12 mv&#34;&#62;</strong>
+                    </code>
+               </pre>
+            </highlight>, simply, a column that spans 6 out of 12.
         </p>
     </section>
     <!-- start 2 column grid -->
@@ -62,14 +69,14 @@
         <header class="header">
             <h2 class="mb-">Basic 2 column grid, full width, no breakpoint applied</h2>
         </header>
-        <div class="grid__item 1/1 mb">
+        <div class="grid__container 1/1 mb">
             <div class="grid__item 6/12 mv">
                 <p class="gridbox">1</p>
-            </div><!--
-         --><div class="grid__item 6/12 mv">
-            <p class="gridbox last">2</p>
-        </div><!--
-         --></div>
+            </div>
+             <div class="grid__item 6/12 mv">
+                <p class="gridbox last">2</p>
+            </div>
+         </div>
     </article>
     <!-- start 2 column grid -->
 </section>
