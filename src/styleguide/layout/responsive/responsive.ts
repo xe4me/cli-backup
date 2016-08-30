@@ -4,7 +4,7 @@ import{ Highlight } from '../../highlight'
 @Component( {
     selector    : 'grid' ,
     templateUrl : 'src/styleguide/layout/responsive/responsive.html' ,
-    styles      : [ require( './grid.scss' ).toString() ] ,
+    styles      : [ require( './responsive.scss' ).toString() ] ,
     directives  : []
 } )
 

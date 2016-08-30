@@ -37,7 +37,7 @@
                 "name": "Responsive"
             }
         ],
-        "readme": "<p>Examples of grid layouts</p>\n"
+        "readme": "<p>Notes about the responsive breakpoints</p>\n"
     },
     {
         "name": "Amp Linear ProgressBar",
