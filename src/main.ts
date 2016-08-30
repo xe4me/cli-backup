@@ -7,6 +7,8 @@ import * as browser from '@angular/platform-browser';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { FORM_PROVIDERS , LocationStrategy , HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
+
 // Add all operators to Observable
 import 'rxjs/Rx';
 /*
@@ -37,7 +39,8 @@ export function main () {
             ...ENV_PROVIDERS ,
             ...HTTP_PROVIDERS ,
             ...ROUTER_PROVIDERS ,
-            ...FORM_PROVIDERS ,
+            disableDeprecatedForms(),
+            provideForms(), // enable new forms module
             ngCore.provide( Window , { useValue : window } )
         ] )
         .catch( err => console.error( err ) );

@@ -85,12 +85,13 @@ export class AmpBlockLoaderDirective implements OnChanges {
             var myChunk      = null;
             var waitForChunk = null;
             if ( this._blocks[ i ].commonBlock ) {
-                if ( this._blocks[ i ].blockLayout ) {
-                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
-                } else {
-                }
+                // if ( this._blocks[ i ].blockLayout ) {
+                //     console.log('Its comming ','bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts');
+                //     waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
+                // } else {
+                // }
             } else {
-                myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                myChunk = require( '../../src/styleguide/' + this._blocks[ i ].path + '\.ts' );
             }
             if ( myChunk ) {
                 let type = null;
@@ -148,12 +149,12 @@ export class AmpBlockLoaderDirective implements OnChanges {
             var myChunk      = null;
             var waitForChunk = null;
             if ( this._blocks[ i ].commonBlock ) {
-                if ( this._blocks[ i ].blockLayout ) {
-                    waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
-                } else {
-                }
+                // if ( this._blocks[ i ].blockLayout ) {
+                //     waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
+                // } else {
+                // }
             } else {
-                myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                //myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
             }
             this.retrievedFiles[ i ] = null;
             if ( myChunk ) {

@@ -1,51 +1,46 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
-import { MdInputComponent , AmpFormBlockComponent } from 'AmpComponents';
-import { ThemeService } from "AmpStyleguide";
-import { Control } from "@angular/common";
+import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
+import { AmpGroupButtonComponent } from "../../../app/components/amp-group-button/amp-group-button.component";
+import { ThemeService } from "../../services/theme";
+import { FormBlock } from "../../../app/form-block";
+import {
+    Action ,
+    UIControlService ,
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService
+} from 'amp-ddc-ui-core/ui-core';
 @Component( {
-    selector   : 'sample-experience-block' ,
+    selector   : 'another-sample-experience-block' ,
     template   : `
-        <amp-form-block [context]="instance">
-            <my-md-input
-                    [attr.theme]="themeService.theme.attr"
-                    [id]="'firstname'"
-                    [label]="'Name'"
-                    [parentControl]="firstnameControl"
-                    [isRequired]="true"
-                    [valPattern]="'^([0-9])*$'"
-                    [valMaxLength]="'12'"
-                    [valMinLength]="'4'"
-                    [currency]="'$'">
-            </my-md-input>
-             <div class='errors mt-25 mb-15' *ngIf="firstnameControl.touched && firstnameControl.errors">
-                <div *ngIf="firstnameControl.errors.required">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    This field is required.
-                </div>
-                <div *ngIf="firstnameControl.errors.mdPattern">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    This field is not valid.
-                </div>
-                <div *ngIf="firstnameControl.errors.mdMaxLength">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    Error in max length.
-                </div>
-                <div *ngIf="firstnameControl.errors.mdMinLength">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    Error in min length.
-                </div>
-            </div>
+        <amp-form-block [context]="context">
+            <h1 class="heading heading-intro">Select your full or partial account</h1>
+            <br>
+            <!--<amp-group-button-->
+                <!--medium-->
+                <!--[attr.theme]="themeService.theme.attr"-->
+                <!--scrollOutOn='full'-->
+                <!--class="3/5"-->
+                <!--(select)='onButtonClick($event)'-->
+                <!--[buttons]='buttons'-->
+                <!--[parentControl]='fullOrPartialControl'-->
+                <!--[groupName]='fullOrPartial'-->
+                <!--&gt;-->
+            <!--</amp-group-button>-->
 
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , MdInputComponent ] ,
+    directives : [ AmpFormBlockComponent , AmpGroupButtonComponent ] ,
     providers  : [ ThemeService ]
 } )
-export class SampleExperienceBlock {
-    constructor ( private themeService : ThemeService ) {
+export class AnotherSampleExperienceBlock extends FormBlock {
+    constructor ( private themeService : ThemeService ,
+                  formModelService : FormModelService ,
+                  progressObserver : ProgressObserverService ) {
+        super( formModelService , progressObserver );
     }
 
-    private get instance () {
+    context () {
         return this;
     }
 }
