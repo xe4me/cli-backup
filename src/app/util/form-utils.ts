@@ -1,4 +1,5 @@
 import { ControlGroup } from '@angular/common';
+import * as moment from 'moment';
 export class FormUtils {
     public static getControlByName ( _parentGroup : ControlGroup , _controlName : string ) : any {
         return _parentGroup.controls[ _controlName ];
@@ -24,7 +25,7 @@ export class FormUtils {
         if ( dateItems.length < 3 ) {
             return null;
         }
-        for ( let i = 0 ; i < dateItems.length ; i++ ) {
+        for ( let i = 0 ; i < dateItems.length ; i ++ ) {
             if ( isNaN( dateItems[ i ] ) ) {
                 return null;
             }
@@ -53,10 +54,14 @@ export class FormUtils {
     public static getAgeDays ( _todate ) {
         let date1 = new Date();
         let date2 = this.stringToDate( _todate , 'dd/MM/yyyy' , '/' );
-        if ( !date2 ) {
+        if ( ! date2 ) {
             return null;
         }
         let timeDiff = date2.getTime() - date1.getTime();
         return Math.ceil( timeDiff / (1000 * 3600 * 24) );
+    }
+
+    public static isValidDate ( _date : string ) {
+        return moment( _date , 'DD/MM/YYYY' ).isValid();
     }
 }

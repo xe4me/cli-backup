@@ -16,6 +16,7 @@ import {
     RequiredValidator ,
     MinLengthValidator ,
     MaxLengthValidator ,
+    DateValidator ,
     MaxDateValidator ,
     MinDateValidator ,
     PatterValidator ,
@@ -65,6 +66,7 @@ import {
             'valMaxDate' ,
             'valMinDate' ,
             'valMaxFloat' ,
+            'valDate' ,
             'valMinFloat' ,
             'tabindex' ,
             'isActive' ,
@@ -100,6 +102,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private _valMinDate : string;
     private _valMaxFloat : number;
     private _valMinFloat : number;
+    private _valDate : boolean;
     private _required : boolean        = false;
     private _disabled : boolean        = false;
     private label : string;
@@ -195,6 +198,11 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     set valMinLength ( value : number ) {
         this._valMinLength = value;
+        this.updateValitators();
+    }
+
+    set valDate ( value : boolean ) {
+        this._valDate = value;
         this.updateValitators();
     }
 
@@ -327,6 +335,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
             MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
             PatterValidator.patternValidator( this.valPattern ) ,
             MaxFloatValidator.maxFloatValidator( this._valMaxFloat ) ,
+            DateValidator.dateValidator( this._valDate , this.valPattern ) ,
             this.customValidator()
         ];
         this.validate  = Validators.compose( validators );

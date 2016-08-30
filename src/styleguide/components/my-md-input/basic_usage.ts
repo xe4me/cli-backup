@@ -12,6 +12,7 @@ import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 export default class MyMdInputBasicUsage implements AfterViewInit {
     toggleFlag : boolean;
     firstnameControl : Control = new Control();
+    dateControl : Control = new Control();
     surnameControl : Control   = new Control();
     visibilityRule : Action;
 

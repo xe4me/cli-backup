@@ -1,28 +1,33 @@
 // utils
 export {
-    RequiredValidator,
-    MinLengthValidator,
-    MaxLengthValidator,
-    MaxDateValidator,
-    MinDateValidator,
+    RequiredValidator ,
+    MinLengthValidator ,
+    MaxLengthValidator ,
+    DateValidator ,
+    MaxDateValidator ,
+    MinDateValidator ,
     PatterValidator
 } from './src/app/util/validations';
 export { KeyCodes } from './src/app/util/key-kodes.utils';
 export { FormSection } from './src/app/formSection';
 export { FormPage } from './src/app/formPage';
-export { FormSections,
-         Applicants,
-         Blocks,
-         FullyDistinguishedNames,
-         FlowChart } from './src/app/form-sections';
+export {
+    FormSections ,
+    Applicants ,
+    Blocks ,
+    FullyDistinguishedNames ,
+    FlowChart
+} from './src/app/form-sections';
 // directives
 export { ClickedOutsideDirective } from './src/app/directives/clicked-outside/clicked-outside.directive';
 export { AmpStickyOnScrollDirective } from './src/app/directives/amp-sticky-on-scroll.directive';
 export { ThemeIDDirective } from './src/app/directives/themeId.directive';
 export { FocuserDirective } from './src/app/directives/focuser/focuser.directive';
 // blocks
-export { FormBlock,
-         provideParent } from './src/app/blocks/formBlock';
+export {
+    FormBlock ,
+    provideParent
+} from './src/app/blocks/formBlock';
 export { ChangeableFormBlock } from './src/app/blocks/changeableFormBlock';
 export { AmpReviewSection } from './src/app/blocks/amp-review/amp-review-section/amp-review-section.component';
 export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-review-item.component';
