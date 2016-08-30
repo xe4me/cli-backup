@@ -1,14 +1,7 @@
-import {
-    it ,
-    injectAsync ,
-    describe ,
-    beforeEachProviders ,
-    expect
-} from '@angular/core/testing';
-import { TestComponentBuilder } from '@angular/compiler/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';
-import { Control } from '@angular/common';
+import { FormControl, NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
@@ -18,72 +11,78 @@ class MockElementRef implements ElementRef {
 }
 
 describe( 'amp-dropdown component' , () => {
-    beforeEachProviders( () => {
-        return [
-            provide( FormModelService , { useClass : MockFormModelService } ) ,
-            provide( MockFormModelService , { useClass : MockFormModelService } ) ,
-            provide( ElementRef , { useClass : MockElementRef } ) ,
-            provide( ScrollService , { useClass : MockScrollService } ) ,
-            provide( ProgressObserverService , { useClass : ProgressObserverService } ) ,
-            provide( MockScrollService , { useClass : MockScrollService } ) ,
-            provide( Window , { useValue : window } )
-        ];
-    } );
-    @Component( {
-        template   : `
-            <form  #formModel='ngForm' class='nl-form' >
-                <amp-dropdown
-                        [isInSummaryState]='false'
-                        [id]='"Title"'
-                        [label]='"Title"'
-                        [labelHidden]='"HiddenLabel"'
-                        [options]='titleOptions'
-                        [parentControl]="control"
-                        [isRequired]="true">
-                </amp-dropdown>
-            </form>
-        ` ,
-        directives : [ AmpDropdownComponent ]
-    } )
-    class AmpdropdownTest {
-        control : Control = new Control();
-        isInSummaryState  = false;
-        clickedOnThedropdown;
-        private dropdown  = {
-            id          : 'anId' ,
-            disabled    : false ,
-            required    : true ,
-            checked     : false ,
-            scrollOutOn : null
-        };
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [ ReactiveFormsModule, FormsModule ],
+            declarations: [
+                AmpDropdownComponent,
+                AmpdropdownTest
+            ],
+            providers: [
+                { provide: FormModelService, useClass: MockFormModelService },
+                { provide: ElementRef, useClass: MockElementRef },
+                { provide: ScrollService, useClass: MockScrollService },
+                ProgressObserverService,
+                { provide: Window, useClass: window }
+            ]
+        });
 
-        private onAcknowledgeSelect ( value ) {
-            this.clickedOnThedropdown = value;
-        }
+        TestBed.compileComponents();
+    }));
+    it( 'Should contain 1 dropdown input field with proper data-automation-id and name attributes ' , () => {
+        let fixture: ComponentFixture<AmpdropdownTest> = TestBed.createComponent(AmpdropdownTest);
+        fixture.detectChanges();
+
+        let Element         = fixture.nativeElement;
+        let ampdropdownTest = fixture.debugElement;
+        let Component       = ampdropdownTest.componentInstance;
+        let dropdown        = Element.querySelector( 'select' );
+        let options         = dropdown.children;
+        expect( dropdown ).toBeDefined();
+        expect( dropdown.id ).toBe( 'Title' );
+        expect( dropdown.getAttribute( 'data-automation-id' ) ).toBe( 'slt_Title' );
+        expect( options ).toBeDefined();
+        expect( options.length ).toBe(6);
+        expect( options[0].value ).toEqual('');
+        expect( options[1].value ).toEqual('mr');
+        expect( options[2].value ).toEqual('mrs');
+        expect( options[3].value ).toEqual('miss');
+        expect( options[4].value ).toEqual('ms');
+        expect( options[5].value ).toEqual('dr');
+    });
+});
+
+@Component( {
+    template   : `
+        <form #formModel  class='nl-form' >
+            <amp-dropdown
+                    [attr.theme]='"forms"'
+                    [isInSummaryState]='false'
+                    [id]='"Title"'
+                    [label]='"Title"'
+                    [labelHidden]='"HiddenLabel"'
+                    [options]='titleOptions'
+                    [parentControl]="control"
+                    [isRequired]="true">
+            </amp-dropdown>
+        </form>
+    `
+})
+class AmpdropdownTest {
+    control : FormControl = new FormControl();
+    isInSummaryState  = false;
+    clickedOnThedropdown;
+    titleOptions      = [
+        { value : 'mr' , label : 'Mr' } ,
+        { value : 'mrs' , label : 'Mrs' } ,
+        { value : 'miss' , label : 'Miss' } ,
+        { value : 'ms' , label : 'Ms' } ,
+        { value : 'dr' , label : 'Dr' }
+    ];
+
+    private onAcknowledgeSelect ( value ) {
+        this.clickedOnThedropdown = value;
     }
-    // it( 'Should contain 1 dropdown input field with proper data-automation-id and name attributes ' ,
-    //     injectAsync( [
-    //         TestComponentBuilder ,
-    //         ProgressObserverService ,
-    //         ElementRef ,
-    //         FormModelService ,
-    //         ScrollService
-    //     ] , ( tcb , progressObserver , el , formModelService , scrollService ) => {
-    //         return tcb
-    //             .createAsync( AmpdropdownTest )
-    //             .then( ( fixture : any ) => {
-    //                 let Element         = fixture.nativeElement;
-    //                 let AmpdropdownTest = fixture.debugElement;
-    //                 let Component       = AmpdropdownTest.componentInstance;
-    //                 let dropdown        = Element.querySelector( 'input[type="dropdown"]' );
-    //                 let Labels          = Element.querySelector( 'label' );
-    //                 fixture.detectChanges();
-    //                 // expect( dropdown ).toBeDefined();
-    //                 // expect( dropdown.name ).toBe( Component.dropdown.id );
-    //                 // expect( dropdown.id ).toBe( Component.dropdown.id );
-    //                 // expect( dropdown.getAttribute( 'data-automation-id' ) ).toBe( 'dropdown_' + Component.dropdown.id );
-    //             } );
-    //     } )
-    // );
-} );
+};
+
 

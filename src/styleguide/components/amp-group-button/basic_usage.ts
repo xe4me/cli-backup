@@ -1,16 +1,15 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { AmpGroupButtonComponent } from '../../../app/components/amp-group-button/amp-group-button.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-group-button-block-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-group-button/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ FORM_DIRECTIVES , AmpGroupButtonComponent , CORE_DIRECTIVES ]
+    styles      : [ require( './basic_usage.scss' ).toString() ]
 } )
 
 export default class AmpGroupButtonComponentBasicUsage {
-    control : Control            = new Control();
+    control : FormControl            = new FormControl();
     private fullOrPartialButtons = {
         buttons       : [
             {
