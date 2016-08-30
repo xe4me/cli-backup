@@ -20,6 +20,26 @@
         "readme": "<p>Examples of grid layouts</p>\n"
     },
     {
+        "name": "Responsive",
+        "sources": [
+            "src/app/layout/responsive/responsive.ts"
+        ],
+        "id": "Responsive",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/responsive/responsive.html",
+                "styles": "src/styleguide/layout/responsive/responsive.scss",
+                "source": "src/styleguide/layout/responsive/responsive.ts",
+                "galen": "src/styleguide/layout/responsive/responsive.spec",
+                "jasmine": "src/styleguide/layout/responsive/responsive.spec.ts",
+                "component": "grid",
+                "component_src_location": "layout/responsive/responsive",
+                "name": "Responsive"
+            }
+        ],
+        "readme": "<p>Examples of grid layouts</p>\n"
+    },
+    {
         "name": "Amp Linear ProgressBar",
         "sources": [
             "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
