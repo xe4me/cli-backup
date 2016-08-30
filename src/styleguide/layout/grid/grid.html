@@ -60,7 +60,7 @@
             <highlight color-default>
                <pre class="pre">
                     <code class="highlight-override">
-                        <strong class="">&#60;div class=&#34;grid__item_floated 6/12&#34;&#62;</strong>
+                        <strong class="strong">&#60;div class=&#34;grid__item_floated 6/12&#34;&#62;</strong>
                     </code>
                </pre>
             </highlight>
@@ -85,35 +85,36 @@
     <!-- start 2 column grid with responsive break points-->
     <article class="section">
         <p class="para">
-            Building on the above example,
+            Building on the above example, we will adjust the grid to make it responsive.
+            The AMP css framework consists of multiple responsive breakpoints. In this example, we are changing the structure of our layout,
+            based on if its a tablet device or if its a laptop. To achieve this, we can use syntax like <em><strong>tablet-and-down-6/12</strong></em> or <em><strong>lap-and-up-1/1</strong></em>.
+        </p>
+        <p class="para mt">
+            <highlight color-default>
+               <pre class="pre">
+                    <code class="highlight-override">
+                        <strong class="strong">&#60;div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1&#62;</strong>
+                    </code>
+               </pre>
+            </highlight>
         </p>
         <header class="header mt">
             <h2 class="mb-">Nested 2 column grid, full width, with break points</h2>
         </header>
         <div class="grid__container 1/1 mb">
-            <div class="grid__item_floated 6/12 mv">
-                <div class="gridbox grid__container_inner">
-                    <div class="grid__item_floated 3/12 mv gridbox">
-
-                    </div>
-                    <div class="grid__item_floated 3/12 mv gridbox">
-
-                    </div>
-                    <div class="grid__item_floated 3/12 mv gridbox">
-
-                    </div>
-                    <div class="grid__item_floated 3/12 mv gridbox last">
-
-                    </div>
-                </div>
-            </div>
-            <div class="grid__item_floated 6/12 mv">
+            <div class="grid__item_floated 1/1 mv">
                 <div class="gridbox grid__container_inner last">
-                    <div class="grid__item_floated 4/12 mv gridbox">
-
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox sample-border">
+                        1
                     </div>
-                    <div class="grid__item_floated 4/12 mv gridbox last">
-
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox last">
+                        2
+                    </div>
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox sample-border">
+                        3
+                    </div>
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox last">
+                        4
                     </div>
                 </div>
             </div>
