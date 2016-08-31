@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component.ts';
+import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component';
 import { MdInputComponent } from '../../components/my-md-input/my-md-input.component';
 
 

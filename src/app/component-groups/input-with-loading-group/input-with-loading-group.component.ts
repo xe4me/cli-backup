@@ -1,6 +1,6 @@
 import { Component , Input } from '@angular/core';
 import { Control } from '@angular/common';
-import { MdInputComponent } from '../../components/my-md-input/my-md-input.component.ts';
+import { MdInputComponent } from '../../components/my-md-input/my-md-input.component';
 import { AmpLoadingComponent } from '../../components/amp-loading/amp-loading.component';
 import { EventEmitter } from '@angular/core';
 @Component( {
