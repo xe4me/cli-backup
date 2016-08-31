@@ -40,6 +40,26 @@
         "readme": "<p>Notes about the responsive breakpoints</p>\n"
     },
     {
+        "name": "Padding and Margins",
+        "sources": [
+            "src/app/layout/padding-margin/padding-margin.ts"
+        ],
+        "id": "PaddingandMargins",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/padding-margin/padding-margin.html",
+                "styles": "src/styleguide/layout/padding-margin/padding-margin.scss",
+                "source": "src/styleguide/layout/padding-margin/padding-margin.ts",
+                "galen": "src/styleguide/layout/padding-margin/padding-margin.spec",
+                "jasmine": "src/styleguide/layout/padding-margin/padding-margin.spec.ts",
+                "component": "grid",
+                "component_src_location": "layout/padding-margin/padding-margin",
+                "name": "Padding and Margins"
+            }
+        ],
+        "readme": "<p>Notes about helper classes for padding and margins</p>\n"
+    },
+    {
         "name": "Amp Linear ProgressBar",
         "sources": [
             "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
