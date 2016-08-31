@@ -74,6 +74,22 @@ export class MaxDateValidator {
         };
     }
 }
+export class DateValidator {
+    public static dateValidator ( pattern , datePattern ) {
+        return ( c ) => {
+            if ( pattern !== undefined ) {
+                let isValidDate = FormUtils.isValidDate( c.value );
+                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || isValidDate ) {
+                    return null;
+                }
+                return {
+                    mdInvalidDate : true
+                };
+            }
+            return null;
+        };
+    }
+}
 export class MinDateValidator {
     public static minDateValidator ( pattern , datePattern ) {
         return ( c ) => {

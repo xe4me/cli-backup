@@ -13,6 +13,7 @@ import { ThemeService } from '../../services/theme';
 export default class MyMdInputBasicUsage implements AfterViewInit {
     toggleFlag : boolean;
     firstnameControl : Control = new Control();
+    dateControl : Control = new Control();
     surnameControl : Control   = new Control();
     visibilityRule : Action;
 

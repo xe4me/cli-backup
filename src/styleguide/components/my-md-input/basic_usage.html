@@ -31,10 +31,26 @@
             Error in min length.
         </div>
     </div>
+    <hr>
+    <div class="grid__item">
+        <my-md-input
+            [id]="'date'"
+            [label]="'Date'"
+            [parentControl]="dateControl"
+            [isRequired]="true"
+            [valDate]="true">
+        </my-md-input>
+        <div class='errors mt-25 mb-15' *ngIf="dateControl.touched && dateControl.errors">
+            <div *ngIf="dateControl.errors.required">
+                <span class='icon icon--close icon-errors' aria-hidden="true"></span>
+                This field is required.
+            </div>
+            <div *ngIf="dateControl.errors.mdInvalidDate">
+                <span class='icon icon--close icon-errors' aria-hidden="true"></span>
+                Entered date is invalid
+            </div>
 
-    <div>
-        All errors
-        <span>errors {{ firstnameControl.errors | json }}</span>
+        </div>
+
     </div>
-
 </form>
