@@ -5,7 +5,9 @@ export class RequiredValidator {
             if ( isRequired ) {
                 if ( ! c.value || c.value.length === 0 ) {
                     return {
-                        required : true
+                        required : {
+                            text : c._ampErrors.required ? c._ampErrors.required : 'This field is required'
+                        }
                     };
                 }
             }
@@ -21,7 +23,10 @@ export class MaxLengthValidator {
                     return null;
                 }
                 return {
-                    mdMaxLength : true
+                    mdMaxLength : {
+                        text : c._ampErrors.maxLength ? c._ampErrors.maxLength : 'This field should not be more than' +
+                        ' ' + valMaxLength + ' characters.'
+                    }
                 };
             }
             return null;
@@ -36,7 +41,9 @@ export class MinLengthValidator {
                     return null;
                 }
                 return {
-                    mdMinLength : true
+                    mdMinLength : {
+                        text : c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should  be more than ' + valMinLength + ' characters.'
+                    }
                 };
             }
             return null;
@@ -51,7 +58,9 @@ export class PatterValidator {
                     return null;
                 }
                 return {
-                    mdPattern : true
+                    mdPattern : {
+                        text : c._ampErrors.pattern ? c._ampErrors.pattern : 'This field is not valid.'
+                    }
                 };
             }
             return null;
@@ -67,7 +76,27 @@ export class MaxDateValidator {
                     return null;
                 }
                 return {
-                    mdMaxDate : true
+                    mdMaxDate : {
+                        text : c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This field is not valid.'
+                    }
+                };
+            }
+            return null;
+        };
+    }
+}
+export class DateValidator {
+    public static dateValidator ( pattern , datePattern ) {
+        return ( c ) => {
+            if ( pattern !== undefined ) {
+                let isValidDate = FormUtils.isValidDate( c.value );
+                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || isValidDate ) {
+                    return null;
+                }
+                return {
+                    mdInvalidDate : {
+                        text : c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'This field is not valie.'
+                    }
                 };
             }
             return null;

@@ -1,6 +1,6 @@
 import { Component , OnInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core'
+import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
@@ -34,9 +34,6 @@ export default class AMPCheckboxComponentBasicUsage implements OnInit {
 
     private check () {
         this.control.updateValue( ! this.control.value );
-    }
-
-    ngAfterViewInit () {
     }
 
     private onAcknowledgeSelect ( value ) {

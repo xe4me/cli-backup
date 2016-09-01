@@ -7,8 +7,15 @@ import { AmpReviewTotal } from '../../../app/blocks/amp-review/amp-review-total/
     selector    : 'amp-review-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-review/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ AmpReviewSection, AmpReviewItem, AmpReviewTotal ]
+    directives  : [
+        AmpReviewSection,
+        AmpReviewItem,
+        AmpReviewTotal
+    ]
 } )
 
 export default class AMPReviewBasicUsage {
+    // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
+    private callbackForChangeLink = (target : string) => {
+    }
 }

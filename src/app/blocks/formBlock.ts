@@ -241,7 +241,7 @@ export abstract class FormBlock {
 
     protected validateDateField ( age , dateControl ) {
         this.hideError();
-        if ( (age > 0 && age < 17) || age > 59 ) {
+        if ( (age >= 0 && age < 17) || age > 59 ) {
             dateControl.setErrors( { 'invalidAge' : true } );
             this.showError( 'The insured person is ineligible to apply for this product due to their age' );
             age = null;
@@ -264,6 +264,11 @@ export abstract class FormBlock {
         if ( ! aMoment.isValid() ) {
             dateControl.setErrors( { 'invalidDate' : true } );
             this.showError( 'Invalid date entered' );
+            return;
+        }
+        if ( moment().isBefore( aMoment ) ) {
+            dateControl.setErrors( { 'dateInFuture' : true } );
+            this.showError( 'Date of birth cannot be a date in the future' );
             return;
         }
         let datesDiff = moment().diff( aMoment , 'years' );

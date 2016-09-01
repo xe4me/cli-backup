@@ -1,0 +1,135 @@
+<section class="section mh mv">
+
+    <section class="alert alert--danger alert--iconified mt" style="background:  #d60e1c;">
+        <i class="alert__icon icon icon--warning-outlined" style="color:white;"></i>
+
+        <p style="color:white;">This new grid has not been tested. Until then do not use it.</p>
+    </section>
+
+
+    <section class="section mv">
+        <p class="para">
+            AMP's grids are derived from intuit css. The grids, their implementation and their use have been enhanced
+            somewhat to include a more comprehensive set of breakpoints. Information on breakpoints can be found under the "Responsive" section.
+        </p>
+    </section>
+    <!-- Start 12 col grid -->
+    <article class="section">
+        <header class="header">
+            <h2 class="mb-">Basic 12 column grid - full width, no breakpoint applied</h2>
+        </header>
+        <div class="grid__container 1/1 mb">
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">1</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">2</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">3</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">4</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">5</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">6</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">7</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">8</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">9</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">10</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox">11</p>
+            </div>
+            <div class="grid__item_floated 1/12 mv">
+                <p class="gridbox last">12</p>
+            </div>
+        </div>
+    </article>
+    <!-- end 12 col grid -->
+    <section class="section mv">
+        <p class="para">
+            AMP's grids use fractional increments. Take the following example which has 2 columns. Both columns stretch
+            equal parts of the 12 column grid. To achieve this is as simple as applying a fraction to the element.
+
+            As a general guide you can use <em><strong>1/1, 1/2, 1/3, 1/4, 1/5</strong></em> all the way up to <em><strong>12</strong></em>.
+
+            In this case we are using:
+        </p>
+        <p class="para mt">
+            <highlight color-default>
+               <pre class="pre">
+                    <code class="highlight-override">
+                        <strong class="strong">&#60;div class=&#34;grid__item_floated 6/12&#34;&#62;</strong>
+                    </code>
+               </pre>
+            </highlight>
+        </p>
+        <p class="para">put simply, a column that spans 6 out of 12.</p>
+    </section>
+    <!-- start 2 column grid -->
+    <article class="section">
+        <header class="header">
+            <h2 class="mb-">Basic 2 column grid, full width, no breakpoint applied</h2>
+        </header>
+        <div class="grid__container 1/1 mb">
+            <div class="grid__item_floated 6/12 mv">
+                <p class="gridbox">1</p>
+            </div>
+            <div class="grid__item_floated 6/12 mv">
+                <p class="gridbox last">2</p>
+            </div>
+        </div>
+    </article>
+    <!-- end 2 column grid -->
+    <!-- start 1 column grid with responsive break points-->
+    <article class="section">
+        <p class="para">
+            Building on the above example, we will adjust the grid to make it responsive.
+            The AMP css framework consists of multiple responsive breakpoints. In this example, we are changing the structure of our layout,
+            based on if its a tablet device or if its a laptop. To achieve this, we can use syntax like <em><strong>tablet-and-down-6/12</strong></em> or <em><strong>lap-and-up-1/1</strong></em>.
+        </p>
+        <p class="para mt">
+            <highlight color-default>
+               <pre class="pre">
+                    <code class="highlight-override">
+                        <strong class="strong">&#60;div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1&#62;</strong>
+                    </code>
+               </pre>
+            </highlight>
+        </p>
+        <header class="header mt">
+            <h2 class="mb-">Nested 2 column grid, full width, with break points</h2>
+        </header>
+        <div class="grid__container 1/1 mb">
+            <div class="grid__item_floated 1/1 mv">
+                <div class="gridbox grid__container_inner last">
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox sample-border">
+                        1
+                    </div>
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox last">
+                        2
+                    </div>
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox sample-border">
+                        3
+                    </div>
+                    <div class="grid__item_floated tablet-and-down-6/12 lap-and-up-1/1 mv gridbox last">
+                        4
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <!-- end 1 column grid with responsive break points-->
+</section>
