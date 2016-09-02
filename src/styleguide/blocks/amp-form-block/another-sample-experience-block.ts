@@ -11,25 +11,26 @@ import {
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpGroupButtonsComponent } from "../../../app/components/amp-group-buttons/amp-group-buttons.component";
+import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-row.component";
 @Component( {
     selector   : 'another-sample-experience-block' ,
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
-            <h1 class="heading heading-intro mb">Select your full or partial account</h1>
-            <amp-group-buttons
-                [attr.theme]="themeService.theme.attr"
-                class="3/5"
-                (select)='onButtonClick($event)'
-                [buttons]='__custom.buttons'
-                [controlGroup]="__controlGroup"
-                [required]="true"
-                [isInSummaryState]="isInSummaryState"
-                [groupName]='__custom.fullOrPartial'
-                >
-            </amp-group-buttons>
+            <amp-form-row [attr.theme]="themeService.theme.attr">
+                <amp-group-buttons
+                    [attr.theme]="themeService.theme.attr"
+                    class="3/5"
+                    (select)='onButtonClick($event)'
+                    [buttons]='__custom.buttons'
+                    [controlGroup]="__controlGroup"
+                    [required]="true"
+                    [isInSummaryState]="isInSummaryState"
+                    [groupName]='__custom.fullOrPartial'>
+                </amp-group-buttons>
+            </amp-form-row>
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpGroupButtonsComponent ]
+    directives : [ AmpFormBlockComponent , AmpGroupButtonsComponent , AmpFormRowComponent ]
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
     constructor ( private themeService : ThemeService ,

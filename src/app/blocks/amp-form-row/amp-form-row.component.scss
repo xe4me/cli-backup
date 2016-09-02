@@ -10,9 +10,6 @@
     .hr-block-divider {
       margin-top : 80px;
     }
-    .heading-intro {
-      margin-bottom : 25px;
-    }
     @include media-query('palm') {
       padding-top : 30px;
       .hr-block-divider {
@@ -34,9 +31,10 @@
         }
       }
     }
+  }
+  &[theme='forms'] {
 
   }
-
 }
 
 
