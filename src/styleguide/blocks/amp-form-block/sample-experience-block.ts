@@ -17,7 +17,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [noError]="true">
             <amp-form-row [attr.theme]="themeService.theme.attr">
                 <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 form-row-label'>Name</label>
-                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr mt0">
+                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-input
                         [attr.theme]="themeService.theme.attr"
