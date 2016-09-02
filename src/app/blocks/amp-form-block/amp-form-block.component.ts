@@ -4,9 +4,9 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
     selector   : 'amp-form-block' ,
     template   : `
         <div class="FormBlocK" id='{{ context?.selectorName }}'>
-            <h2 class="heading heading-intro ">Let's get your information</h2>
+            <h2 class="heading heading-intro ">Life insured 1</h2>
              <amp-overlay [active]='!context?.isCurrentBlockActive()'></amp-overlay>
-             <ng-content></ng-content>    
+             <ng-content></ng-content>
              <div *ngIf="!noError">
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
              </div>

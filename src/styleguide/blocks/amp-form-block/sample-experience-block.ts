@@ -16,8 +16,10 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <div class="1/3">
-                <amp-input
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 heading-contxtual-label'>Name</label>
+                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr mt0">
+                    <label class='1/1 heading-contxtual-label sr-only'>What's your first name?</label>
+                    <amp-input
                         [attr.theme]="themeService.theme.attr"
                         [id]="'firstname'"
                         [label]="'First name '"
@@ -29,20 +31,20 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                         [valMinLength]="'4'">
                     </amp-input>
                 </div>
-            </amp-form-row>
-            <amp-form-row [attr.theme]="themeService.theme.attr"> 
-               <amp-input
-                    [attr.theme]="themeService.theme.attr"
-                    [id]="'lastname'"
-                    [label]="'Last name'"
-                    [controlGroup]="__controlGroup"
-                    [isInSummaryState]="isInSummaryState"
-                    [isRequired]="true"
-                    [errors]="__custom.lastname.errors"
-                    [valPattern]="__custom.lastname.regex"
-                    [valMaxLength]="__custom.lastname.maxLengh"
-                    [valMinLength]="'4'">
-            </amp-input>
+                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr">
+                    <label class='1/1 heading-contxtual-label sr-only'>What's your last name?</label>
+                    <amp-input
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'lastname'"
+                        [label]="'Last name '"
+                        [controlGroup]="__controlGroup"
+                        [isInSummaryState]="isInSummaryState"
+                        [isRequired]="true"
+                        [errors]="__custom.lastname.errors"
+                        [valMaxLength]="'12'"
+                        [valMinLength]="'4'">
+                    </amp-input>
+                </div>
             </amp-form-row>
         </amp-form-block>
     ` ,
