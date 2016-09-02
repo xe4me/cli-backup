@@ -101,7 +101,7 @@ export class AmpBlockLoaderDirective implements OnChanges {
                     myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 } catch ( err ) {
                     console.log( 'Did not find the experience components, maybe we are not in an experience' );
-                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../src/styleguide/' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             if ( myChunk ) {
@@ -177,7 +177,7 @@ export class AmpBlockLoaderDirective implements OnChanges {
                     myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 } catch ( err ) {
                     console.log( 'Did not find the experience components, maybe we are not in an experience' );
-                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../src/styleguide/' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             this.retrievedFiles[ i ] = null;

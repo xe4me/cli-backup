@@ -1,7 +1,6 @@
 import { Component , ChangeDetectorRef , ViewChild } from '@angular/core';
-import { Control , ControlGroup } from "@angular/common";
+import { Control , ControlGroup , FormBuilder } from "@angular/common";
 import { FormSectionService , UIControlService } from 'amp-ddc-ui-core/ui-core';
-import { ThemeService } from "../../services/theme";
 import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive";
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
@@ -22,16 +21,11 @@ export default class AmpFormBlockBasicUsage {
         custom      : { label : 'Beneficiaries' } ,
         blocks      : [
             {
-                name        : 'sampleExperienceBlock' ,
-                blockType   : 'SampleExperienceBlock' ,
+                name        : 'introBlockComponent' ,
+                blockType   : 'IntroBlockComponent' ,
                 blockLayout : 'INLINE' ,
                 commonBlock : false ,
-                path        : 'blocks/amp-form-block/sample-experience-block' ,
-                custom      : {
-                    firstnameControl : new Control() ,
-                    id               : 'FirstName' ,
-                    label            : 'First name'
-                }
+                path        : 'blocks/amp-form-block/intro/intro-block.component'
             } ,
             {
                 name        : 'anotherSampleExperienceBlock' ,
@@ -40,10 +34,9 @@ export default class AmpFormBlockBasicUsage {
                 commonBlock : false ,
                 path        : 'blocks/amp-form-block/another-sample-experience-block' ,
                 custom      : {
-                    fullOrPartialControl : new Control() ,
-                    id                   : 'FullOrPartial' ,
-                    label                : 'Full or partial' ,
-                    buttons              : [
+                    id            : 'FullOrPartial' ,
+                    label         : 'Full or partial' ,
+                    buttons       : [
                         {
                             id    : 'fullId' ,
                             value : 'full' ,
@@ -55,10 +48,62 @@ export default class AmpFormBlockBasicUsage {
                             label : 'Partial sale'
                         }
                     ] ,
-                    fullOrPartial        : 'fullOrPartial'
+                    fullOrPartial : 'fullOrPartial'
+                }
+            }
+            , {
+                name        : 'sampleExperienceBlock' ,
+                blockType   : 'SampleExperienceBlock' ,
+                blockLayout : 'INLINE' ,
+                commonBlock : false ,
+                path        : 'blocks/amp-form-block/sample-experience-block' ,
+                custom      : {
+                    firstname : {
+                        errors : {
+                            required : 'First name is a required thing :)'
+                        }
+                    } ,
+                    lastname  : {
+                        errors   : {
+                            required : 'Apparently even last name is a required thing :) , what a wonderful time to be'
+                        } ,
+                        regex    : '^([0-9])*$' ,
+                        maxLengh : 12
+                    }
                 }
             }
         ]
     };
-    @ViewChild( 'form' ) form;
+    private form : ControlGroup;
+
+    constructor ( private _builder : FormBuilder ) {
+        this.form = this._builder.group( {} );
+        //this.createMassiveBlocks();
+    }
+
+    private createMassiveBlocks () {
+        for ( let i = 0 ; i < 100 ; i ++ ) {
+            this.childBlocks.blocks.push( {
+                name        : 'sampleExperienceBlock' + i ,
+                blockType   : 'SampleExperienceBlock' ,
+                blockLayout : 'INLINE' ,
+                commonBlock : false ,
+                path        : 'blocks/amp-form-block/sample-experience-block' ,
+                custom      : {
+                    firstname : {
+                        errors : {
+                            required : 'First name is a required thing :)' + i
+                        }
+                    } ,
+                    lastname  : {
+                        errors   : {
+                            required : 'Apparently even last name is a required thing :) , what a wonderful time to be' + i
+                        } ,
+                        regex    : '^([0-9])*$' ,
+                        maxLengh : 12
+                    }
+                }
+            } )
+        }
+    }
 }

@@ -34,6 +34,8 @@ export { AmpReviewSection } from './src/app/blocks/amp-review/amp-review-section
 export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-review-item.component';
 export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp-review-total.component';
 // components
+export { AmpErrorComponent } from './src/app/components/amp-error/amp-error.component';
+export { AmpBlockComponent } from './src/app/components/amp-block/amp-block.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpButton } from './src/app/components/amp-button/amp-button.component';
@@ -48,5 +50,4 @@ export { AmpRadioButtonGroupComponent } from './src/app/components/amp-radio-but
 export { AmpTextareaComponent } from './src/app/components/amp-textarea/amp-textarea.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
 export { InputWithLabelGroupComponent } from './src/app/component-groups/input-with-label-group/input-with-label-group.component';
-export { AmpBlockComponent } from './src/app/components/amp-block/amp-block.component';
 

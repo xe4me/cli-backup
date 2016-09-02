@@ -22,15 +22,24 @@ export const provideParent =
  */
 export abstract class FormBlock {
     protected isInSummaryState : boolean     = false;
+    protected isActive : boolean             = true;
     protected hasClickedOnOkButton : boolean = false;
-    protected _fdn : string[]                = null;
     protected selectorName : string          = 'default-form-block-selector-name';
-    private controlGroup : ControlGroup;
+    protected visibleFlag : string           = 'defaultIsVisible';
+    protected doneFlag : string              = 'defaultIsDone';
+    protected noScroll                       = false;
+    protected __fdn : string[]               = null;
+    protected __form : ControlGroup;
+    protected __controlGroup : ControlGroup;
 
     constructor ( private formModelService : FormModelService ,
-                  private progressObserver : ProgressObserverService ) {
+                  private progressObserver : ProgressObserverService ,
+                  private scrollService : ScrollService ) {
         setTimeout( ()=> {
-            this.selectorName = arrayJoinByDash( this._fdn );
+            this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
+            this.visibleFlag  = this.selectorName + 'IsVisible';
+            this.doneFlag     = this.selectorName + 'IsDone';
+            this.subscribeToScrollEvents();
         } );
     }
 
@@ -40,17 +49,9 @@ export abstract class FormBlock {
 
     abstract context () : any;
 
-    public getMyVisibleFlagString () {
-        return this.selectorName + 'IsVisible';
-    }
-
-    public getMyDoneFlagString () {
-        return this.selectorName + 'IsDone';
-    }
-
     public get canGoNext () {
-        //return this.controlGroup.valid;
-        return true;
+        return this.__controlGroup.valid;
+        //return true;
     }
 
     protected onEdit () {
@@ -58,11 +59,25 @@ export abstract class FormBlock {
     }
 
     protected onNext ( nextBlock ) {
-        //this.scrollService.scrollToNextUndoneBlock( this.controlService , this._fdn );
+        this.scrollService.scrollToNextUndoneBlock( this.__form , this.__fdn );
         this.progressObserver.onProgress();
         TimerWrapper.setTimeout( () => {
             this.isInSummaryState = true;
         } , 1200 );
+    }
+
+    protected subscribeToScrollEvents () {
+        if ( this.noScroll ) {
+            return;
+        }
+        console.log( 'this.scrollService for ' + this.selectorName , this.scrollService );
+        this.scrollService.$scrolled.subscribe( ( changes ) => {
+            console.log( 'changes' , changes );
+            if ( changes === this.selectorName ) {
+                this.isInSummaryState = false;
+                this.isActive         = true;
+            }
+        } );
     }
 
     // protected next ( nextBlock ) {
@@ -92,7 +107,7 @@ export abstract class FormBlock {
     protected tickDone () {
         this.formModelService.present( {
             action    : 'setFlag' ,
-            flag      : this.getMyDoneFlagString ,
+            flag      : this.doneFlag ,
             flagValue : true
         } );
     }
@@ -100,19 +115,20 @@ export abstract class FormBlock {
     protected tickUnDone () {
         this.formModelService.present( {
             action    : 'setFlag' ,
-            flag      : this.getMyDoneFlagString ,
+            flag      : this.visibleFlag ,
             flagValue : false
         } );
     }
 
     protected isCurrentBlockActive () {
-        return this.formModelService.getFlags( this.getMyVisibleFlagString() );
+        //return this.formModelService.getFlags( this.visibleFlag );
+        return this.isActive;
     }
 
     private resetBlock () {
         this.formModelService.present( {
             action    : 'setFlag' ,
-            flag      : this.getMyVisibleFlagString ,
+            flag      : this.visibleFlag ,
             flagValue : false
         } );
         this.isInSummaryState     = false;

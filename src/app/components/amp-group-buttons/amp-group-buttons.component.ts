@@ -6,9 +6,12 @@ import {
     ElementRef ,
     forwardRef ,
     ChangeDetectorRef ,
-    Provider
+    Provider , OnInit
 } from '@angular/core';
-import { Validators , FORM_DIRECTIVES , Control , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
+import {
+    Validators , FORM_DIRECTIVES , Control , NG_VALUE_ACCESSOR , ControlValueAccessor ,
+    ControlGroup
+} from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 const RADIO_VALUE_ACCESSOR = new Provider( NG_VALUE_ACCESSOR ,
@@ -43,7 +46,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
     }
 }
 @Component( {
-    selector   : 'amp-group-button' ,
+    selector   : 'amp-group-buttons' ,
     template   : `
                 <div class='amp-group-button'>
                     <span *ngFor='let button of buttons'>
@@ -54,9 +57,9 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 type='radio'
                                 [attr.id]='button.id + index'
                                 [attr.name]='groupName + index'
-                                [ngFormControl]='parentControl'
+                                [ngFormControl]='control'
                                 [value]='button.value'
-                                [checked]='parentControl.value===button.value'
+                                [checked]='control.value===button.value'
                                 />
 
                             <label (click)='onSelect(button.value , true)' [attr.for]='button.id + index'>{{ button.label }}
@@ -72,37 +75,45 @@ class RadioControlValueAccessors implements ControlValueAccessor {
         'scrollOutUnless' ,
         'scrollOutOn' ,
         'disabled' ,
-        'parentControl' ,
+        'controlGroup' ,
         'buttons' ,
         'groupName' ,
         'index'
     ] ,
-    styles     : [ require( './amp-group-button.scss' ).toString() ] ,
+    styles     : [ require( './amp-group-buttons.scss' ).toString() ] ,
     directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
     outputs    : [ 'select' ]
 } )
-export class AmpGroupButtonComponent {
-    private parentControl : Control;
-    private _disabled : boolean = false;
-    private _required : boolean = false;
+export class AmpGroupButtonsComponent implements OnInit {
+    private control : Control    = new Control();
+    private controlGroup : ControlGroup;
+    private _disabled : boolean  = false;
+    private _required : boolean  = false;
     private buttons;
     private keepControlOnDestroy = false;
     private scrollOutUnless : string;
     private scrollOutOn : string;
     private groupName : string;
     private defaultValue : string;
-    private select              = new EventEmitter<any>();
-    private index : string      = '';
+    private select               = new EventEmitter<any>();
+    private index : string       = '';
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
                   private scrollService : ScrollService ) {
     }
 
+    ngOnInit () : any {
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( this.groupName , this.control );
+        }
+        return undefined;
+    }
+
     ngOnDestroy () : any {
-        if(!this.keepControlOnDestroy){
-            this.parentControl.validator = null;
-            this.parentControl.updateValueAndValidity( {
+        if ( ! this.keepControlOnDestroy ) {
+            this.control.validator = null;
+            this.control.updateValueAndValidity( {
                 onlySelf  : false ,
                 emitEvent : true
             } );
@@ -111,12 +122,12 @@ export class AmpGroupButtonComponent {
     }
 
     ngAfterViewInit () : any {
-        this.parentControl.valueChanges.subscribe( ( changes ) => {
+        this.control.valueChanges.subscribe( ( changes ) => {
             if ( changes )
                 this.onSelect( changes , false );
         } );
         if ( this.defaultValue ) {
-            this.parentControl.updateValue( this.defaultValue );
+            this.control.updateValue( this.defaultValue );
         }
         this.updateValidators();
         this.changeDetector.detectChanges();
@@ -160,9 +171,9 @@ export class AmpGroupButtonComponent {
     }
 
     private updateValidators () {
-        if ( this.parentControl ) {
-            this.parentControl.validator = this.isTrue( this.required ) ? Validators.required : null;
-            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        if ( this.control ) {
+            this.control.validator = this.isTrue( this.required ) ? Validators.required : null;
+            this.control.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
         }
     }
 }

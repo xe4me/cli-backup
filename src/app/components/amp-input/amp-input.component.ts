@@ -6,9 +6,9 @@ import {
     ChangeDetectorRef ,
     AfterViewInit ,
     EventEmitter ,
-    Renderer
+    Renderer , OnInit , ChangeDetectionStrategy
 } from '@angular/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES , ControlGroup } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { isPresent } from '@angular/core/src/facade/lang';
@@ -24,7 +24,7 @@ import {
 } from '../../util/validations';
 @Component(
     {
-        selector      : 'my-md-input' ,
+        selector      : 'amp-input' ,
         template      : `
             <md-input
                 #myMdInput
@@ -39,7 +39,7 @@ import {
                 [id]='_id'
                 [tabIndex]='isActive?tabindex:-1'
                 [maxLength]='valMaxLength'
-                [ngFormControl]='parentControl'
+                [ngFormControl]='control'
                 [placeholder]='label'>
                   <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
             </md-input>
@@ -49,15 +49,16 @@ import {
                 [innerHTML]='myMdInput.value'>
             </span>
           ` ,
-        styles        : [ require( './my-md-input.scss' ).toString() ] ,
+        styles        : [ require( './amp-input.scss' ).toString() ] ,
         inputs        : [
             'id' ,
             'defaultValue' ,
+            'errors' ,
             'customValidator' ,
             'disabled' ,
             'isInSummaryState' ,
             'label' ,
-            'parentControl' ,
+            'controlGroup' ,
             'placeholder' ,
             'visibility' ,
             'valMaxLength' ,
@@ -87,13 +88,28 @@ import {
         encapsulation : ViewEncapsulation.None ,
         outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
         host          : {
-            '[class.md-input-has-value]' : 'parentControl.value' ,
+            '[class.md-input-has-value]' : 'control.value' ,
             '[class.summary]'            : 'isInSummaryState' ,
             '[class.noPadding]'          : 'noPadding'
-        }
+        },
+        changeDetection:ChangeDetectionStrategy.OnPush
     } )
-export class MdInputComponent implements AfterViewInit, OnChanges {
-    public parentControl : Control;
+export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
+    public control : Control = new Control();
+    public errors            = {};
+
+    ngOnInit () : any {
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName , i )=> {
+            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( this._id , this.control );
+        }
+        return undefined;
+    }
+
+    public controlGroup : ControlGroup;
     private inputWidth : number;
     private _id : string;
     private _valMinLength : number;
@@ -285,10 +301,10 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
             this.removeIdleAndMakeInUntouched();
         } );
         let notUsable;
-        if ( this.parentControl.value ) {
-            this.parentControl.updateValue( this.parentControl.value.trim() );
-            notUsable = this.tolowerCase ? this.parentControl.updateValue( this.parentControl.value.toLowerCase() ) : '';
-            notUsable = this.toupperCase ? this.parentControl.updateValue( this.parentControl.value.toUpperCase() ) : '';
+        if ( this.control.value ) {
+            this.control.updateValue( this.control.value.trim() );
+            notUsable = this.tolowerCase ? this.control.updateValue( this.control.value.toLowerCase() ) : '';
+            notUsable = this.toupperCase ? this.control.updateValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
     }
@@ -304,7 +320,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     private addDelayedValidation () {
         if ( this.validationDelay > 0 ) {
-            this.parentControl
+            this.control
                 .valueChanges
                 .debounceTime( this.validationDelay )
                 .subscribe( ( changes )=> {
@@ -314,7 +330,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
                     }
                 } );
         } else {
-            this.parentControl
+            this.control
                 .valueChanges
                 .subscribe( ( changes )=> {
                     if ( changes ) {
@@ -345,27 +361,27 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         this.markControlAsUntouched();
         clearTimeout( this.idleTimeoutId );
         this.idleTimeoutId = setTimeout( ()=> {
-            this.parentControl.markAsTouched();
+            this.control.markAsTouched();
         } , this.idleTimeOut );
     }
 
     private removeIdleAndMakeInUntouched () {
         clearTimeout( this.idleTimeoutId );
         this.markControlAsUntouched();
-        this.parentControl.markAsTouched();
+        this.control.markAsTouched();
     }
 
     private markControlAsUntouched () {
-        (<any>this.parentControl)._touched = false;
+        (<any>this.control)._touched = false;
     }
 
     public checkErrors () {
-        this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
+        this.control.setErrors( this.validate( this.control ) , { emitEvent : true } );
     }
 
     private setDefaultValue () {
-        if ( this.defaultValue && this.parentControl ) {
-            this.parentControl.updateValue( this.defaultValue );
+        if ( this.defaultValue && this.control ) {
+            this.control.updateValue( this.defaultValue );
         }
     }
 }

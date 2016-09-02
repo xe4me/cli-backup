@@ -1,6 +1,5 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
-import { MdInputComponent } from "../../../app/components/my-md-input/my-md-input.component";
 import { ThemeService } from "../../services/theme";
 import { FormBlock } from "../../../app/form-block";
 import {
@@ -10,51 +9,46 @@ import {
     ProgressObserverService ,
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
+import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.component";
 @Component( {
     selector   : 'sample-experience-block' ,
     template   : `
-        <amp-form-block [context]="context">
+        <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
             <h1 class="heading heading-intro">What's your first name?</h1>
-            <!--<my-md-input-->
-                    <!--[attr.theme]="themeService.theme.attr"-->
-                    <!--[id]="'firstname'"-->
-                    <!--[label]="'Name'"-->
-                    <!--[parentControl]="firstnameControl"-->
-                    <!--[isRequired]="true"-->
-                    <!--[valPattern]="'^([0-9])*$'"-->
-                    <!--[valMaxLength]="'12'"-->
-                    <!--[valMinLength]="'4'"-->
-                    <!--[currency]="'$'">-->
-            <!--</my-md-input>-->
-             <div class='errors mt-25 mb-15' *ngIf="firstnameControl.touched && firstnameControl.errors">
-                <div *ngIf="firstnameControl.errors.required">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    This field is required.
-                </div>
-                <div *ngIf="firstnameControl.errors.mdPattern">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    This field is not valid.
-                </div>
-                <div *ngIf="firstnameControl.errors.mdMaxLength">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    Error in max length.
-                </div>
-                <div *ngIf="firstnameControl.errors.mdMinLength">
-                    <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                    Error in min length.
-                </div>
-            </div>
-
+            <amp-input
+                    [attr.theme]="themeService.theme.attr"
+                    [id]="'firstname'"
+                    [label]="'First name '"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState"
+                    [isRequired]="true"
+                    [errors]="__custom.firstname.errors"
+                    [valMaxLength]="'12'"
+                    [valMinLength]="'4'">
+            </amp-input>
+            <h1 class="heading heading-intro mt+">What's your age?</h1>
+            <amp-input
+                    [attr.theme]="themeService.theme.attr"
+                    [id]="'lastname'"
+                    [label]="'Last name'"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState"
+                    [isRequired]="true"
+                    [errors]="__custom.lastname.errors"
+                    [valPattern]="__custom.lastname.regex"
+                    [valMaxLength]="__custom.lastname.maxLengh"
+                    [valMinLength]="'4'">
+            </amp-input>
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , MdInputComponent ] ,
-    providers  : [ ThemeService ]
+    directives : [ AmpFormBlockComponent , AmpInputComponent ]
 } )
 export class SampleExperienceBlock extends FormBlock {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
+                  scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , progressObserver );
+        super( formModelService , progressObserver , scrollService );
     }
 
     context () {

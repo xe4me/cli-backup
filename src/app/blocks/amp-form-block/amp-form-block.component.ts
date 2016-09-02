@@ -1,9 +1,14 @@
 import { Component , Input , OnInit } from '@angular/core';
+import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../../";
 @Component( {
-    selector : 'amp-form-block' ,
-    template : `
-        <div id='{{ context?.selectorName }}' class='pt-60 palm-pt--' ngModelGroup="address">
-            <ng-content></ng-content>    
+    selector   : 'amp-form-block' ,
+    template   : `
+        <div class="FormBlocK" id='{{ context?.selectorName }}'>
+             <amp-overlay [active]='!context?.isCurrentBlockActive()'></amp-overlay>
+             <ng-content></ng-content>    
+             <div *ngIf="!noError">
+                <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
+             </div>
              <div class="block-buttons">
                  <amp-button
                     *ngIf='!context?.isInSummaryState'
@@ -18,12 +23,15 @@ import { Component , Input , OnInit } from '@angular/core';
                     Change
                 </amp-button>
             </div>
-            <div class='hr-block-divider mt-80  palm-mt'></div>
+            <div class='hr-block-divider'></div>
         </div>
-    `
+    ` ,
+    directives : [ AmpButton , AmpErrorComponent , AmpOverlayComponent ] ,
+    styles     : [ require( './amp-form-block.component.scss' ).toString() ]
 } )
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
+    @Input( 'noError' ) noError;
 
     ngOnInit () : any {
         if ( ! this.context ) {

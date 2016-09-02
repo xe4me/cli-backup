@@ -1,11 +1,9 @@
 import { Component , ChangeDetectorRef } from "@angular/core";
-import { BaseBlockComponent } from "../block-files";
-import {
-    FormModelService ,
-    AmpButton ,
-    AmpCheckboxComponent ,
-} from '../../app-files';
-import { ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { ThemeService } from "../../../services/theme";
+import { FormBlock } from "../../../../app/form-block";
+import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
+import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/amp-checkbox.component";
 @Component( {
     selector   : 'intro-block' ,
     directives : [ AmpCheckboxComponent , AmpButton ] ,
@@ -21,39 +19,22 @@ import { ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core
                         Weigh up the pros and cons when considering your personal circumstances and if you decide your employer’s AMP super plan is right for you, simply provide the information below we’ll work with your employer to set up your AMP account.  
                     </p>
                     <amp-button
-                        [disabled]='!canGoNext'
                         class='btn btn-ok btn-ok-white mt-60 ' 
-                        (click)='onNext()' 
-                        data-automation-id='btn_intro-block'>
+                        (click)='onNext()'>
                         OK
                     </amp-button>
                 </div>
             </div>
         </div>
     ` ,
-    inputs     : [
-        'form' ,
-        'isActive' ,
-        'scrollToNextUndone' ,
-        'isInSummaryState' ,
-        'extraCheck' ,
-        'scrollOnDone' ,
-        'customs'
-    ] ,
-    outputs    : [ 'next' , 'changes' ] ,
     styles     : [ require( './intro-block.component.scss' ).toString() ]
 } )
-export class IntroBlockComponent extends BaseBlockComponent {
-    customs = {
-        controls  : {} ,
-        groupName : 'intro'
-    };
-
-    constructor ( progressObserver : ProgressObserverService ,
+export class IntroBlockComponent extends FormBlock {
+    constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
-                  _cd : ChangeDetectorRef ,
-                  scrollService : ScrollService ) {
-        super( scrollService , _cd , formModelService , progressObserver );
-        this.init();
+                  scrollService : ScrollService ,
+                  progressObserver : ProgressObserverService ) {
+        super( formModelService , progressObserver , scrollService );
     }
+    context(){}
 }
