@@ -17,7 +17,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <amp-group-buttons
+               <!-- <amp-group-buttons
                     [attr.theme]="themeService.theme.attr"
                     class="3/5"
                     (select)='onButtonClick($event)'
@@ -26,7 +26,21 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                     [required]="true"
                     [isInSummaryState]="isInSummaryState"
                     [groupName]='__custom.fullOrPartial'>
-                </amp-group-buttons>
+                </amp-group-buttons>-->
+                 <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Scale</label>
+                    <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-6/12 mr mt0">
+                        <label class='1/1 sr-only'>What's your scale?</label>
+                         <amp-group-buttons
+                            [attr.theme]="themeService.theme.attr"
+                            (select)='onButtonClick($event)'
+                            [buttons]='__custom.buttons'
+                            [controlGroup]="__controlGroup"
+                            [required]="true"
+                            [isInSummaryState]="isInSummaryState"
+                            [groupName]='__custom.fullOrPartial'>
+                        </amp-group-buttons>
+                        <amp-error [controlGroup]="context?.__controlGroup" [controlId]="'firstname'"></amp-error>
+                    </div>
             </amp-form-row>
         </amp-form-block>
     ` ,
