@@ -16,9 +16,9 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 heading-contxtual-label'>Name</label>
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 form-row-label'>Name</label>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr mt0">
-                    <label class='1/1 heading-contxtual-label sr-only'>What's your first name?</label>
+                    <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-input
                         [attr.theme]="themeService.theme.attr"
                         [id]="'firstname'"
@@ -32,7 +32,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                     </amp-input>
                 </div>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr">
-                    <label class='1/1 heading-contxtual-label sr-only'>What's your last name?</label>
+                    <label class='1/1 sr-only'>What's your last name?</label>
                     <amp-input
                         [attr.theme]="themeService.theme.attr"
                         [id]="'lastname'"
