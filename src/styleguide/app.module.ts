@@ -19,8 +19,6 @@ import { AppState } from './app.service';
 // import { About } from './about';
 // import { NoContent } from './no-content';
 
-
-
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -44,7 +42,7 @@ const APP_PROVIDERS = [
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS,
+    APP_PROVIDERS
   ]
 })
 export class StyleGuideAppModule {

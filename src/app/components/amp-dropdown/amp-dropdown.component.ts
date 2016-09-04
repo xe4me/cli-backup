@@ -2,7 +2,6 @@ import {
     Component ,
     ViewChild , EventEmitter
 } from '@angular/core';
-import { FORM_DIRECTIVES } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import {
