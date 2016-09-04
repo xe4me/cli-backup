@@ -335,7 +335,7 @@
                 "jasmine": "src/styleguide/blocks/amp-form-block/amp-form-block.component.spec.ts",
                 "component": "amp-form-basic-usage",
                 "component_src_location": "blocks/amp-form-block/basic_usage",
-                "name": "Amp Review Basic Usage"
+                "name": "Amp Form Block Basic Usage"
             }
         ],
         "readme": "<p>Block that contains item(s) for review</p>\n"
