@@ -98,7 +98,7 @@ export class AmpBlockLoaderDirective implements OnChanges {
                 }
             } else {
                 try {
-                    myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 } catch ( err ) {
                     console.log( 'Did not find the experience components, maybe we are not in an experience' );
                     myChunk = require( '../../src/styleguide/' + this._blocks[ i ].path + '\.ts' );
@@ -127,13 +127,21 @@ export class AmpBlockLoaderDirective implements OnChanges {
     }
 
     private copyFormBlockDefProperty ( _componentRef : ComponentRef<any> , _blockDef ) {
-        let _fdn                             = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
+        let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
         _componentRef.instance.__child_blocks = _blockDef;
         _componentRef.instance.__form         = this.form;
         _componentRef.instance.__fdn          = _fdn;
         _blockDef.__fdn                       = _fdn;
-        _componentRef.instance.__controlGroup = new ControlGroup( {} );
-        _componentRef.instance.__form.addControl( _blockDef.name , _componentRef.instance.__controlGroup );
+        if ( _blockDef.name ) {
+            _componentRef.instance.__controlGroup = new ControlGroup( {} );
+            let _form = _componentRef.instance.__form;
+            for ( let i = 0 ; i < this.fdn.length ; i ++ ) {
+                if ( _form.controls[ this.fdn[ i ] ] ) {
+                    _form = _form.controls[ this.fdn[ i ] ];
+                }
+            }
+            _form.addControl( _blockDef.name , _componentRef.instance.__controlGroup );
+        }
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
             this.registerSection( _blockDef );
         }
@@ -141,7 +149,7 @@ export class AmpBlockLoaderDirective implements OnChanges {
         _componentRef.instance.__blockType   = _blockDef.blockType;
         _componentRef.instance.__blockLayout = _blockDef.blockLayout;
         _componentRef.instance.__name        = _blockDef.name;
-        _componentRef.instance.__id         = _blockDef._id;
+        _componentRef.instance.__id          = _blockDef._id;
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
             Object.assign( _componentRef.instance , _blockDef.page );
         }
@@ -174,7 +182,8 @@ export class AmpBlockLoaderDirective implements OnChanges {
                 }
             } else {
                 try {
-                    myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    console.log( 'Requireing ' , '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 } catch ( err ) {
                     console.log( 'Did not find the experience components, maybe we are not in an experience' );
                     myChunk = require( '../../src/styleguide/' + this._blocks[ i ].path + '\.ts' );

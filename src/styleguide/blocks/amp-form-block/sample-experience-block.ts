@@ -1,4 +1,4 @@
-import { Component , ChangeDetectorRef } from '@angular/core';
+import { Component , ChangeDetectorRef , ElementRef , OnInit } from '@angular/core';
 import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
 import { ThemeService } from "../../services/theme";
 import { FormBlock } from "../../../app/form-block";
@@ -15,9 +15,9 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
     selector   : 'sample-experience-block' ,
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
-            <amp-form-row [attr.theme]="themeService.theme.attr">
-                <div class="1/3">
-                <amp-input
+            <amp-form-row [attr.theme]="themeService.theme.attr" [title]="__custom.firstname.title">
+                <div class="grid__item_floated 1/3">
+                    <amp-input
                         [attr.theme]="themeService.theme.attr"
                         [id]="'firstname'"
                         [label]="'First name '"
@@ -29,31 +29,51 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                         [valMinLength]="'4'">
                     </amp-input>
                 </div>
+                <div class="grid__item_floated ml 1/3">
+                    <amp-input
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'lastname'"
+                        [label]="'Last name '"
+                        [controlGroup]="__controlGroup"
+                        [isInSummaryState]="isInSummaryState"
+                        [isRequired]="true"
+                        [errors]="__custom.lastname.errors"
+                        [valMaxLength]="'12'"
+                        [valMinLength]="'4'">
+                    </amp-input>
+                </div>
             </amp-form-row>
-            <amp-form-row [attr.theme]="themeService.theme.attr"> 
-               <amp-input
-                    [attr.theme]="themeService.theme.attr"
-                    [id]="'lastname'"
-                    [label]="'Last name'"
-                    [controlGroup]="__controlGroup"
-                    [isInSummaryState]="isInSummaryState"
-                    [isRequired]="true"
-                    [errors]="__custom.lastname.errors"
-                    [valPattern]="__custom.lastname.regex"
-                    [valMaxLength]="__custom.lastname.maxLengh"
-                    [valMinLength]="'4'">
-            </amp-input>
+            <amp-form-row [attr.theme]="themeService.theme.attr" [title]="__custom.age.title">
+                <div class="grid__item_floated 1/3">
+                   <amp-input
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'age'"
+                        [label]="'Your age '"
+                        [controlGroup]="__controlGroup"
+                        [isInSummaryState]="isInSummaryState"
+                        [isRequired]="true"
+                        [errors]="__custom.age.errors"
+                        [valPattern]="__custom.age.regex"
+                        [valMaxLength]="__custom.age.maxLengh">
+                    </amp-input>
+                </div>
             </amp-form-row>
         </amp-form-block>
     ` ,
     directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ]
 } )
-export class SampleExperienceBlock extends FormBlock {
+export class SampleExperienceBlock extends FormBlock implements OnInit{
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
+                  elementRef : ElementRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , progressObserver , scrollService );
+        super( formModelService , elementRef , progressObserver , scrollService );
+    }
+
+    ngOnInit () : any {
+        //console.log('this.form',this.__form.controls.InsuranceDetailsSection.controls.InsuranceDetailsSection.controls.);
+        return undefined;
     }
 
     context () {

@@ -39,15 +39,16 @@ import { ThemeService } from './services/theme';
         MdIconRegistry
     ] ,
     template      : `
+        <button (click)="hideNavigation=!hideNavigation">Slide</button>
         <div class="styleguide-app">
-            <div class="grid__item 1/6 styleguide-app--menu palm-hide">
+            <div class="grid__item 1/6 styleguide-app--menu palm-hide" [class.desk-hide]="hideNavigation">
                 <left-navigation 
                     [contentTable]="contentTable"
                     [components]="components" 
                     [componentsGrouped]="componentsGrouped">    
                 </left-navigation>
             </div><!--
-         --><div class="examples grid__item 5/6 pl styleguide-app--components palm-p palm-1/1">
+         --><div class="examples grid__item 5/6 pl styleguide-app--components palm-p palm-1/1" [ngClass]="{'desk-1/1':hideNavigation}">
                 <router-outlet ></router-outlet>
             </div>     
         </div>
@@ -61,6 +62,7 @@ export class StyleGuideApp {
            components : IComponentMeta[]             = [];
     public componentsGrouped : IComponentGroupMeta[] = [];
     private contentTable;
+    private hideNavigation                           = true;
 
     constructor ( public navigation : NavigationService ,
                   public router : Router ,

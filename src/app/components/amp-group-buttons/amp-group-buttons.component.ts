@@ -14,6 +14,9 @@ import {
 } from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
+import {
+    RequiredValidator
+} from '../../util/validations';
 const RADIO_VALUE_ACCESSOR = new Provider( NG_VALUE_ACCESSOR ,
     { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
@@ -69,6 +72,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                 </div>
                 ` ,
     inputs     : [
+        'errors' ,
         'defaultValue' ,
         'keepControlOnDestroy' ,
         'required' ,
@@ -85,7 +89,6 @@ class RadioControlValueAccessors implements ControlValueAccessor {
     outputs    : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent implements OnInit {
-    private control : Control    = new Control();
     private controlGroup : ControlGroup;
     private _disabled : boolean  = false;
     private _required : boolean  = false;
@@ -103,7 +106,14 @@ export class AmpGroupButtonsComponent implements OnInit {
                   private scrollService : ScrollService ) {
     }
 
+    public control : Control = new Control();
+    public errors            = {};
+
     ngOnInit () : any {
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName , i )=> {
+            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
         if ( this.controlGroup ) {
             this.controlGroup.addControl( this.groupName , this.control );
         }
@@ -172,7 +182,7 @@ export class AmpGroupButtonsComponent implements OnInit {
 
     private updateValidators () {
         if ( this.control ) {
-            this.control.validator = this.isTrue( this.required ) ? Validators.required : null;
+            this.control.validator = RequiredValidator.requiredValidation( this._required );
             this.control.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
         }
     }

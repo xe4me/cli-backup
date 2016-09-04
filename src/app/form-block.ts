@@ -1,5 +1,5 @@
 import { Control , ControlArray , ControlGroup } from '@angular/common';
-import { forwardRef , provide , Provider } from '@angular/core';
+import { forwardRef , provide , Provider , ElementRef } from '@angular/core';
 import {
     Action ,
     UIControlService ,
@@ -22,7 +22,7 @@ export const provideParent =
  */
 export abstract class FormBlock {
     protected isInSummaryState : boolean     = false;
-    protected isActive : boolean             = true;
+    protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
     protected visibleFlag : string           = 'defaultIsVisible';
@@ -33,6 +33,7 @@ export abstract class FormBlock {
     protected __controlGroup : ControlGroup;
 
     constructor ( private formModelService : FormModelService ,
+                  private elementRef : ElementRef ,
                   private progressObserver : ProgressObserverService ,
                   private scrollService : ScrollService ) {
         setTimeout( ()=> {
@@ -49,6 +50,12 @@ export abstract class FormBlock {
 
     abstract context () : any;
 
+    autoFocus () {
+        setTimeout( ()=> {
+            this.elementRef.nativeElement.getElementsByTagName( 'input' )[ 0 ].focus();
+        } , 100 )
+    }
+
     public get canGoNext () {
         return this.__controlGroup.valid;
         //return true;
@@ -59,7 +66,7 @@ export abstract class FormBlock {
     }
 
     protected onNext ( nextBlock ) {
-        this.scrollService.scrollToNextUndoneBlock( this.__form , this.__fdn );
+        this.scrollService.scrollToNextUndoneBlock( this.__form );
         this.progressObserver.onProgress();
         TimerWrapper.setTimeout( () => {
             this.isInSummaryState = true;
@@ -70,12 +77,11 @@ export abstract class FormBlock {
         if ( this.noScroll ) {
             return;
         }
-        console.log( 'this.scrollService for ' + this.selectorName , this.scrollService );
         this.scrollService.$scrolled.subscribe( ( changes ) => {
-            console.log( 'changes' , changes );
             if ( changes === this.selectorName ) {
                 this.isInSummaryState = false;
                 this.isActive         = true;
+                this.autoFocus();
             }
         } );
     }
@@ -121,7 +127,6 @@ export abstract class FormBlock {
     }
 
     protected isCurrentBlockActive () {
-        //return this.formModelService.getFlags( this.visibleFlag );
         return this.isActive;
     }
 

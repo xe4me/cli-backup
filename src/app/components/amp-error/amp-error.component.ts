@@ -6,8 +6,8 @@ import { ValuesPipe } from "../../pipes/values/values.pipe";
         template : `
         <div class='errors mt-25 mb-15'>
             <div *ngIf="!controlId">
-                <div *ngFor="let aControl of controlGroup.controls | values">
-                    <div *ngFor="let error of aControl.errors | values ; let i = index">
+                <div *ngFor="let aControl of controlGroup.controls | values" class="error-item">
+                    <div *ngFor="let error of aControl.errors | values ; let i = index" class="error-item ">
                         <div *ngIf="aControl.touched">
                             <span class='icon icon--close icon-errors' aria-hidden="true"></span>
                             {{ error.text }}
@@ -16,7 +16,7 @@ import { ValuesPipe } from "../../pipes/values/values.pipe";
                 </div>
             </div>
             <div *ngIf="controlId">
-                <div *ngFor="let error of controlGroup.controls[controlId].errors | values ; let i = index">
+                <div *ngFor="let error of controlGroup.controls[controlId].errors | values ; let i = index" class="error-item">
                     <div *ngIf="controlGroup.controls[controlId].touched">
                         <span class='icon icon--close icon-errors' aria-hidden="true"></span>
                         {{ error.text }}

@@ -21,7 +21,7 @@ import { AmpBlockLoaderDirective } from "../amp-block-loader.directive";
     <div class='section' [id]='label' [ngClass]='{"section__hide": !isCurrentSection()}'>
       <!--<div [id]='blocksAnchorId'></div>-->
        
-            <div [amp-block-loader]="_child_blocks" [fdn]="_fdn"></div>
+            <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form"></div>
        
     </div>
   ` ,
@@ -55,6 +55,7 @@ export class PageSectionComponent extends FormSection {
 
     isCurrentSection () : boolean {
         //return this.formSectionService.currentSection === this.fullyDistinguishedName;
-        return this.formSectionService.isCurrentSection( this._fdn );
+        //return this.formSectionService.isCurrentSection( this.__fdn );
+        return true;
     }
 }

@@ -1,4 +1,4 @@
-import { Component , ChangeDetectorRef } from "@angular/core";
+import { Component , ChangeDetectorRef , ElementRef } from "@angular/core";
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
@@ -33,8 +33,11 @@ export class IntroBlockComponent extends FormBlock {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   scrollService : ScrollService ,
+                  elementRef : ElementRef ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , progressObserver , scrollService );
+        super( formModelService , elementRef , progressObserver , scrollService );
     }
-    context(){}
+
+    context () {
+    }
 }

@@ -2,6 +2,7 @@ import { Component , ChangeDetectorRef , ViewChild } from '@angular/core';
 import { Control , ControlGroup , FormBuilder } from "@angular/common";
 import { FormSectionService , UIControlService } from 'amp-ddc-ui-core/ui-core';
 import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive";
+import { formDef } from '../amp-form-block/form-definition';
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-form-block/basic_usage.html' ,
@@ -10,70 +11,10 @@ import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive
     directives  : [ AmpBlockLoaderDirective ]
 } )
 
+
 export default class AmpFormBlockBasicUsage {
-    private fullyDistinguishedName = [ 'Application' ];
-    private childBlocks            = {
-        name        : 'AmpButtonComponentSection' ,
-        blockType   : 'PageSectionComponent' ,
-        blockLayout : 'SECTION' ,
-        commonBlock : true ,
-        path        : 'sections/page-section.component' ,
-        custom      : { label : 'Beneficiaries' } ,
-        blocks      : [
-            {
-                name        : 'introBlockComponent' ,
-                blockType   : 'IntroBlockComponent' ,
-                blockLayout : 'INLINE' ,
-                commonBlock : false ,
-                path        : 'blocks/amp-form-block/intro/intro-block.component'
-            } ,
-            {
-                name        : 'anotherSampleExperienceBlock' ,
-                blockType   : 'AnotherSampleExperienceBlock' ,
-                blockLayout : 'INLINE' ,
-                commonBlock : false ,
-                path        : 'blocks/amp-form-block/another-sample-experience-block' ,
-                custom      : {
-                    id            : 'FullOrPartial' ,
-                    label         : 'Full or partial' ,
-                    buttons       : [
-                        {
-                            id    : 'fullId' ,
-                            value : 'full' ,
-                            label : 'Full sale'
-                        } ,
-                        {
-                            id    : 'partialId' ,
-                            value : 'partial' ,
-                            label : 'Partial sale'
-                        }
-                    ] ,
-                    fullOrPartial : 'fullOrPartial'
-                }
-            }
-            , {
-                name        : 'sampleExperienceBlock' ,
-                blockType   : 'SampleExperienceBlock' ,
-                blockLayout : 'INLINE' ,
-                commonBlock : false ,
-                path        : 'blocks/amp-form-block/sample-experience-block' ,
-                custom      : {
-                    firstname : {
-                        errors : {
-                            required : 'First name is a required thing :)'
-                        }
-                    } ,
-                    lastname  : {
-                        errors   : {
-                            required : 'Apparently even last name is a required thing :) , what a wonderful time to be'
-                        } ,
-                        regex    : '^([0-9])*$' ,
-                        maxLengh : 12
-                    }
-                }
-            }
-        ]
-    };
+    private fullyDistinguishedName = [];
+    private childBlocks            = formDef;
     private form : ControlGroup;
 
     constructor ( private _builder : FormBuilder ) {
@@ -82,28 +23,72 @@ export default class AmpFormBlockBasicUsage {
     }
 
     private createMassiveBlocks () {
-        for ( let i = 0 ; i < 100 ; i ++ ) {
-            this.childBlocks.blocks.push( {
-                name        : 'sampleExperienceBlock' + i ,
-                blockType   : 'SampleExperienceBlock' ,
-                blockLayout : 'INLINE' ,
+        for ( let i = 0 ; i < 20 ; i ++ ) {
+            (<any>this.childBlocks).blocks[ 0 ].blocks[ 1 ].blocks.push( {
+                name        : 'InsuranceDetailsSection' + i ,
+                blockType   : 'PageSectionComponent' ,
+                blockLayout : 'SECTION' ,
                 commonBlock : false ,
-                path        : 'blocks/amp-form-block/sample-experience-block' ,
-                custom      : {
-                    firstname : {
-                        errors : {
-                            required : 'First name is a required thing :)' + i
+                path        : 'sections/page-section.component' ,
+                custom      : { label : 'Beneficiaries' } ,
+                blocks      : [
+                    {
+                        name        : 'anotherSampleExperienceBlock' + i ,
+                        blockType   : 'AnotherSampleExperienceBlock' ,
+                        blockLayout : 'INLINE' ,
+                        commonBlock : false ,
+                        path        : 'blocks/amp-form-block/another-sample-experience-block' ,
+                        custom      : {
+                            id            : 'FullOrPartial' + i ,
+                            blockTitle    : 'Which one , full or partial ? ' + i ,
+                            buttons       : [
+                                {
+                                    id    : 'fullId' + i ,
+                                    value : 'full' + i ,
+                                    label : 'Full sale' + i
+                                } ,
+                                {
+                                    id    : 'partialId' + i ,
+                                    value : 'partial' + i ,
+                                    label : 'Partial sale' + i
+                                }
+                            ] ,
+                            fullOrPartial : 'fullOrPartial' + i
                         }
-                    } ,
-                    lastname  : {
-                        errors   : {
-                            required : 'Apparently even last name is a required thing :) , what a wonderful time to be' + i
-                        } ,
-                        regex    : '^([0-9])*$' ,
-                        maxLengh : 12
                     }
-                }
+                    , {
+                        name        : 'sampleExperienceBlock' + i ,
+                        blockType   : 'SampleExperienceBlock' ,
+                        blockLayout : 'INLINE' ,
+                        commonBlock : false ,
+                        path        : 'blocks/amp-form-block/sample-experience-block' ,
+                        custom      : {
+                            blockTitle : 'Let\'s get your name, shall we ?' + i ,
+                            firstname  : {
+                                title  : "What's your first name?" + i ,
+                                errors : {
+                                    required : 'First name is a required thing :)' + i
+                                }
+                            } ,
+                            lastname   : {
+                                title  : "What's your last name?" + i ,
+                                errors : {
+                                    required : 'Last name is a required thing :)' + i
+                                }
+                            } ,
+                            age        : {
+                                title    : "What about your age?" + i ,
+                                errors   : {
+                                    required : 'Apparently even age is a required thing :) , what a wonderful time to be' + i
+                                } ,
+                                regex    : '^([0-9])*$' ,
+                                maxLengh : 3
+                            }
+                        }
+                    }
+                ]
             } )
         }
     }
 }
+/**/

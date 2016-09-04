@@ -1,7 +1,7 @@
 <div>
     <form ngFormControl="form" class='nl-form p+ palm-p--'>
-        <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form" [requireMethod]="'ALL'"></div>
+        <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form" ></div>
     </form>
 
-    <!--{{ form.value | json }}-->
+    <pre>{{ form.value | json }}</pre>
 </div>

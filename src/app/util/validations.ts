@@ -129,8 +129,9 @@ export class MaxFloatValidator {
                         let replaceValue = newVal.replace( /[^0-9\.]+/g , "" );
                         if ( replaceValue > valMaxFloat ) {
                             return {
-                                mdMaxFloat : true
-                            };
+                                text : c._ampErrors.maxFloat ? c._ampErrors.maxFloat : 'This amount should be more' +
+                                ' than' + valMaxFloat + ' .'
+                            }
                         }
                     }
                 }

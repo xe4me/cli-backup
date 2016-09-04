@@ -1,4 +1,4 @@
-import { Component , ChangeDetectorRef } from '@angular/core';
+import { Component , ChangeDetectorRef , ElementRef } from '@angular/core';
 import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
 import { AmpGroupButtonComponent } from "../../../app/components/amp-group-button/amp-group-button.component";
 import { ThemeService } from "../../services/theme";
@@ -36,8 +36,9 @@ export class AnotherSampleExperienceBlock extends FormBlock {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   scrollService : ScrollService ,
+                  elementRef : ElementRef ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , progressObserver , scrollService );
+        super( formModelService , elementRef , progressObserver , scrollService );
     }
 
     onButtonClick ( value ) {
