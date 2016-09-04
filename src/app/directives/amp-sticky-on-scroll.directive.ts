@@ -1,12 +1,13 @@
 import { Directive , ElementRef , Input , Renderer } from '@angular/core';
 import { AfterViewInit , OnDestroy } from '@angular/core';
-import { Ruler } from '../util/Ruler';
+// What is this for? Shouldn't it be in /src/app instead of styleguide?'
+import { Ruler } from '../../styleguide/util/Ruler';
 // import * as browser from '@angular/platform-browser';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { NgZone } from '@angular/core';
-import { DomEventsPlugin } from '@angular/platform-browser';
+import { DomEventsPlugin } from '@angular/platform-browser/src/dom/events/dom_events';
 import { EventManager } from '@angular/platform-browser';
 @Directive( {
     selector : '[sticky-on-scroll]'

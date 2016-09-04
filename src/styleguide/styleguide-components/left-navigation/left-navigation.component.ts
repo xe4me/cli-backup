@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector   : 'left-navigation' ,

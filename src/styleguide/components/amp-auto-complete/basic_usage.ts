@@ -1,7 +1,7 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core'
-import{ Highlight } from '../../highlight'
+import { ScrollService } from 'amp-ddc-ui-core/ui-core';
+import{ Highlight } from '../../highlight';
 import { AmpAutoCompleteComponent } from '../../../app/components/amp-autocomplete/amp-autocomplete.component';
 import { ThemeService } from '../../services/theme';
 @Component( {

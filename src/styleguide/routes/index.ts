@@ -1,5 +1,4 @@
 import { Component , OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ComponentsService , IComponentMeta } from '../services/components';
 import { NavigationService } from '../services/navigation';
 import { TableContentsService } from '../services/content-table-service';
@@ -8,7 +7,7 @@ import { Highlight } from '../highlight';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 @Component( {
     templateUrl : 'src/styleguide/routes/index.html' ,
-    directives  : [ Highlight , ROUTER_DIRECTIVES ]
+    directives  : [ Highlight ]
 } )
 export class IndexPage implements OnInit {
     public components : IComponentMeta[] = [];

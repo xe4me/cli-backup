@@ -9,20 +9,22 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
-// import { ROUTES } from './app.routes';
+import { ROUTES } from './app.routes';
 // App is our top level component
 import { StyleGuideApp } from './app.component';
 import { LeftNavigationComponent } from './styleguide-components';
-// import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
 // import { Home } from './home';
 // import { About } from './about';
 // import { NoContent } from './no-content';
 
+
+
 // Application wide providers
 const APP_PROVIDERS = [
-//   ...APP_RESOLVER_PROVIDERS,
-//   AppState
+  ...APP_RESOLVER_PROVIDERS,
+  AppState
 ];
 
 /**
@@ -42,7 +44,7 @@ const APP_PROVIDERS = [
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
   ]
 })
 export class StyleGuideAppModule {

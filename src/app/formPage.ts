@@ -1,6 +1,6 @@
 import {
     Injectable } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import {
     UIControlService,
     ProgressObserverService } from 'amp-ddc-ui-core/ui-core';

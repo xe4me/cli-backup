@@ -42,7 +42,7 @@ class SomeFormBlockComponent extends FormBlock implements FormBlock {
     selector    : 'amp-button-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-button/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ FORM_DIRECTIVES , AmpButton , CORE_DIRECTIVES , SomeFormBlockComponent ]
+    directives  : [ AmpButton , CORE_DIRECTIVES , SomeFormBlockComponent ]
 } )
 
 export default class AMPButtonComponentBasicUsage {

@@ -2,6 +2,7 @@ import {
     Component ,
     ViewChild , EventEmitter
 } from '@angular/core';
+import { FORM_DIRECTIVES } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import {
@@ -11,7 +12,7 @@ import {
     MaxDateValidator ,
     MinDateValidator ,
     PatterValidator
-} from '../../util/validations';
+} from '../../../styleguide/util/validations';
 import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicked-outside.directive';
 
 @Component({
