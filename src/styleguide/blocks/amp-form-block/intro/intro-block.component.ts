@@ -20,6 +20,7 @@ import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/am
                     </p>
                     <amp-primary-button
                         class='btn btn-ok'
+                        [attr.theme]="themeService.theme.attr"
                         (click)='onNext()'>
                         OK
                     </amp-primary-button>

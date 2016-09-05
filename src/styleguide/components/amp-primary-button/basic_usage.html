@@ -1,0 +1,29 @@
+<section>
+    <div class='title'>btn-change</div>
+    <div class='content'>
+        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' class='btn btn-change'>
+            Change
+        </amp-button>
+    </div>
+</section>
+
+<section>
+    <div class="title">btn-ok</div>
+    <div class='content'>
+        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' class='btn btn-ok'>
+            OK
+        </amp-button>
+    </div>
+
+</section>
+<section>
+    <div class="title">btn-ok disabled</div>
+    <div class='content'>
+        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' [disabled]='true' class='btn btn-ok'>
+            OK
+        </amp-button>
+    </div>
+</section>
+<section>
+    <some-form-block></some-form-block>
+</section>
