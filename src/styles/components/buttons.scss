@@ -54,34 +54,33 @@ $btn-review-default-width: 238px;
     color: $btn-ok-disabled-text-color;
   }
 }
+/*.#{$namespace}btn-ok,
+ %#{$namespace}btn-ok {
+     @extend %#{$namespace}font-size-small;
+     @include transition(background-color $buttons-transition-time ease-in-out);
+     width: 125px;
+     background-color: $btn-ok-background-color;
+     height: $ddc-buttons-height;
+     color: $btn-ok-color;
+     &:hover, &:focus {
+         &:not([disabled]) {
+             color: #fff;
+             background-color: $btn-ok-hover-background-color;
+         }
 
-.#{$namespace}btn-ok,
-%#{$namespace}btn-ok {
-  @extend %#{$namespace}font-size-small;
-  @include transition(background-color $buttons-transition-time ease-in-out);
-  width: 125px;
-  background-color: $btn-ok-background-color;
-  height: $ddc-buttons-height;
-  color: $btn-ok-color;
-  &:hover, &:focus {
-    &:not([disabled]) {
-      color: #fff;
-      background-color: $btn-ok-hover-background-color;
-    }
+     }
+     &:active {
+         &:not([disabled]) {
+             color: #fff;
+             background-color: $btn-ok-active-background-color;
+         }
+     }
+     &.btn-ok-white {
+         color: $amp-colour-primary;
+         background-color: #fff;;
 
-  }
-  &:active {
-    &:not([disabled]) {
-      color: #fff;
-      background-color: $btn-ok-active-background-color;
-    }
-  }
-  &.btn-ok-white {
-    color: $amp-colour-primary;
-    background-color: #fff;;
-
-  }
-}
+     }
+ }*/
 
 .#{$namespace}btn-change,
 %#{$namespace}btn-change {

@@ -1,0 +1,147 @@
+@import '../../../styles/abstracts';
+@import './themes/theme-tools';
+
+
+$buttons-transition-time: $ddc-buttons-and-icons-transition-time;
+$btn-ok-color: $amp-colour-white;
+$btn-ok-border-color: $amp-colour-primary;
+$btn-ok-hover-color: $amp-colour-white;
+$btn-ok-hover-background-color: $amp-colour-secondary-darkest;
+$btn-ok-hover-border-color: $amp-colour-white;
+$btn-ok-disabled-text-color: $disabled-text-color;
+$btn-ok-disabled-background-color: $disabled-background-color;
+$btn-ok-background-color: $amp-colour-secondary;
+$btn-ok-active-background-color: $amp-colour-secondary;
+
+
+:host {
+
+    $btn-ok-background-color: $btn-ok-background-color;
+    .#{$namespace}btn-ok,
+    %#{$namespace}btn-ok {
+        @extend %#{$namespace}font-size-small;
+        @include transition(background-color $buttons-transition-time ease-in-out);
+        width: 125px;
+        margin-top: 60px;
+        background-color: $btn-ok-background-color;
+        height: $ddc-buttons-height;
+        color: $btn-ok-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: #fff;
+                background-color: $btn-ok-hover-background-color;
+            }
+
+        }
+        &:active {
+            &:not([disabled]) {
+                color: #fff;
+                background-color: $btn-ok-active-background-color;
+            }
+        }
+        &.btn-ok-white {
+            color: $amp-colour-primary;
+            background-color: #fff;;
+
+        }
+    }
+
+    &[theme='tools'] {
+
+        $btn-ok-background-color: purple;
+        .#{$namespace}btn-ok,
+        %#{$namespace}btn-ok {
+            @extend %#{$namespace}font-size-small;
+            @include transition(background-color $buttons-transition-time ease-in-out);
+            width: 125px;
+            background-color: $btn-ok-background-color;
+            height: $ddc-buttons-height;
+            color: $btn-ok-color;
+            &:hover, &:focus {
+                &:not([disabled]) {
+                    color: #fff;
+                    background-color: $btn-ok-hover-background-color;
+                }
+
+            }
+            &:active {
+                &:not([disabled]) {
+                    color: #fff;
+                    background-color: $btn-ok-active-background-color;
+                }
+            }
+            &.btn-ok-white {
+                color: $amp-colour-primary;
+                background-color: #fff;;
+
+            }
+        }
+
+    }
+
+}
+
+  /*  [theme='tools'] {
+
+
+        .#{$namespace}btn-ok,
+        %#{$namespace}btn-ok {
+            @extend %#{$namespace}font-size-small;
+            @include transition(background-color $buttons-transition-time ease-in-out);
+            width: 125px;
+            background-color: red;
+            height: $ddc-buttons-height;
+            color: $btn-ok-color;
+            .btn-ok:hover, .btn-ok:focus {
+                .btn-ok:not([disabled]) {
+                    color: #fff;
+                    background-color: $btn-ok-hover-background-color;
+                }
+
+            }
+            .btn-ok:active {
+                .btn-ok:not([disabled]) {
+                    color: #fff;
+                    background-color: $btn-ok-active-background-color;
+                }
+            }
+            .btn-ok.btn-ok-white {
+                color: $amp-colour-primary;
+                background-color: #fff;;
+
+            }
+        }
+
+
+        !*  $btn-ok-background-color: red;
+          .#{$namespace}btn-ok,
+          %#{$namespace}btn-ok {
+              @extend %#{$namespace}font-size-small;
+              @include transition(background-color $buttons-transition-time ease-in-out);
+              width: 125px;
+              background-color: $btn-ok-background-color;
+              height: $ddc-buttons-height;
+              color: $btn-ok-color;
+              &:hover, &:focus {
+                  &:not([disabled]) {
+                      color: #fff;
+                      background-color: $btn-ok-hover-background-color;
+                  }
+
+              }
+              &:active {
+                  &:not([disabled]) {
+                      color: #fff;
+                      background-color: $btn-ok-active-background-color;
+                  }
+              }
+              &.btn-ok-white {
+                  color: $amp-colour-primary;
+                  background-color: #fff;;
+
+              }
+          }
+  *!
+
+    }
+*/
