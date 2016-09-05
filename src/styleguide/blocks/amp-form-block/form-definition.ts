@@ -101,7 +101,7 @@ export var formDef = {
                                     custom      : {
                                         blockTitle : 'This block has a repeating group !' ,
                                         age        : {
-                                            title : "What about your age?" ,
+                                            title    : "What about your age?" ,
                                             regex    : '^([0-9])*$' ,
                                             maxLengh : 3
                                         }
@@ -115,6 +115,4 @@ export var formDef = {
         }
     ]
 };
-(()=> {
-    console.log( 'Inside nodejs...................' );
-})();
+
