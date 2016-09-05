@@ -18,7 +18,7 @@ import { ThemeService } from '../../services/theme';
             <div class="option-group" (click)="navigate(['Index']);toggleAccordion(-1)" [class.option-group--active]='activeAccordion===INDEX_ID'>
                 <span class="icon icon--faqs "></span> Get started
             </div>
-            <div @openClose='activeAccordion===INDEX_ID?"expanded":"collapsed"' class="options">
+            <div [@openClose]='activeAccordion===INDEX_ID?"expanded":"collapsed"' class="options">
                 <div class="option" *ngFor="let content of contentTable" 
                      (click)="scrollService.scrollToComponentSelector(content.link)" 
                      [class.option--active]='activeComponentId===content.link'>
@@ -37,7 +37,7 @@ import { ThemeService } from '../../services/theme';
             <div class="option-group" (click)="toggleAccordion(i)" [class.option-group--active]='activeAccordion===i'>
                 <span [ngClass]="{'icon--chevron-down':activeAccordion===i,'icon--chevron-right':activeAccordion!==i}" class="icon "></span>{{ cpmGroup.type }}
             </div>
-            <div @openClose='activeAccordion===i?"expanded":"collapsed"' class="options">
+            <div [@openClose]='activeAccordion===i?"expanded":"collapsed"' class="options">
                 <div class="option" *ngFor="let cmp of cpmGroup.components" 
                      (click)="navigate(['Component', {id: cmp.id}])" 
                      [class.option--active]='activeComponentId===cmp.id'>
@@ -74,8 +74,10 @@ export class LeftNavigationComponent implements AfterContentInit {
         return undefined;
     }
 
-    constructor ( private  themeService : ThemeService , public router : Router , private location : Location ,
-                  private scrollService : ScrollService ) {
+    constructor (
+        private  themeService : ThemeService ,
+        public router : Router ,
+        private location : Location) {
     }
 
     navigate ( to : any ) {

@@ -1,4 +1,4 @@
-import { FormSection } from '../../app/formSection';
+import { FormSection } from '../formSection';
 import {
     Component ,
     ViewEncapsulation ,

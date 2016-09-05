@@ -1,7 +1,6 @@
 import { Directive , ElementRef , Input , Renderer } from '@angular/core';
 import { AfterViewInit , OnDestroy } from '@angular/core';
-// What is this for? Shouldn't it be in /src/app instead of styleguide?'
-import { Ruler } from '../../styleguide/util/Ruler';
+import { Ruler } from '../util/Ruler';
 // import * as browser from '@angular/platform-browser';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 

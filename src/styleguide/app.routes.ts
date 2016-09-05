@@ -10,8 +10,7 @@ import { ComponentPage } from './routes/component';
 
 
 export const ROUTES: Routes = [
-    { path : '/' ,               component : IndexPage },
-    { path : '/components/:id' , component : ComponentPage },
+    // { path : '/components/:id' , component : ComponentPage },
     { path : '**' ,              component : IndexPage }
 ];
 

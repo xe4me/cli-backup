@@ -15,6 +15,8 @@ import { StyleGuideApp } from './app.component';
 import { LeftNavigationComponent } from './styleguide-components';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
+import { IndexPage } from './routes/index';
+import { ComponentPage } from './routes/component';
 // import { Home } from './home';
 // import { About } from './about';
 // import { NoContent } from './no-content';
@@ -32,7 +34,9 @@ const APP_PROVIDERS = [
   bootstrap: [ StyleGuideApp ],
   declarations: [
     StyleGuideApp,
-    LeftNavigationComponent
+    LeftNavigationComponent,
+    IndexPage,
+    // ComponentPage
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -58,13 +62,13 @@ export class StyleGuideAppModule {
     // recreate elements
     var state = this.appState.state;
     store.state = state;
-    store.disposeOldHosts = createNewHosts(cmpLocation)
+    store.disposeOldHosts = createNewHosts(cmpLocation);
     // remove styles
     removeNgStyles();
   }
   hmrAfterDestroy(store) {
     // display new elements
-    store.disposeOldHosts()
+    store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
 }

@@ -11,7 +11,7 @@ import {
     MaxDateValidator ,
     MinDateValidator ,
     PatterValidator
-} from '../../../styleguide/util/validations';
+} from '../../util/validations';
 import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicked-outside.directive';
 
 @Component({

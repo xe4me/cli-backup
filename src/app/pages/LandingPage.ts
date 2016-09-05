@@ -1,6 +1,6 @@
-import {FormPage} from '../formPage';
-import {Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone} from '@angular/core';
-import {RouteParams, Router, RouteRegistry} from '@angular/router-deprecated';
+import { FormPage } from '../formPage';
+import { Component, ViewEncapsulation, OnInit, AfterViewInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component ({
   selector: 'landing-page',

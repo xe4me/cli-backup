@@ -73,7 +73,7 @@ module.exports = {
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
      */
-    extensions: ['', '.ts', '.js', '.json', '.spec.ts'],
+    extensions: ['', '.ts', '.js', '.json'],
 
     // Make sure root is src
     root: helpers.root('src'),
@@ -132,11 +132,11 @@ module.exports = {
           'angular2-template-loader',
           '@angularclass/hmr-loader'
         ],
-        exclude: [/\.(spec|e2e)\.ts$/]
+        exclude: [/\.(e2e)\.ts$/]
       },
 
       // copy those assets to output
-      {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: 'file?name=[path][name].[ext]?[hash]'},
+      { test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: 'file?name=[path][name].[ext]?[hash]' },
 
       /*
        * Json loader support for *.json files.
@@ -158,7 +158,10 @@ module.exports = {
         loaders: ['to-string-loader', 'css-loader']
       },
 
-      { test: /\.scss$/, loader: 'css!sass' },
+      {
+        test: /\.scss$/, 
+        loaders: ['css-loader', 'sass-loader']
+      },
 
       /* Raw loader support for *.html
        * Returns file content as string
