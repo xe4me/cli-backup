@@ -23,7 +23,7 @@ export class MaxLengthValidator {
                     return null;
                 }
                 return {
-                    mdMaxLength : {
+                    maxLength : {
                         text : c._ampErrors.maxLength ? c._ampErrors.maxLength : 'This field should not be more than' +
                         ' ' + valMaxLength + ' characters.'
                     }
@@ -41,7 +41,7 @@ export class MinLengthValidator {
                     return null;
                 }
                 return {
-                    mdMinLength : {
+                    minLength : {
                         text : c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should  be more than ' + valMinLength + ' characters.'
                     }
                 };
@@ -76,8 +76,9 @@ export class MaxDateValidator {
                     return null;
                 }
                 return {
-                    mdMaxDate : {
-                        text : c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This field is not valid.'
+                    maxDate : {
+                        text : c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This date should not be greater' +
+                        ' than ' + pattern + ' .'
                     }
                 };
             }
@@ -94,8 +95,8 @@ export class DateValidator {
                     return null;
                 }
                 return {
-                    mdInvalidDate : {
-                        text : c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'This field is not valie.'
+                    invalidDate : {
+                        text : c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'This date is not valid.'
                     }
                 };
             }
@@ -112,7 +113,10 @@ export class MinDateValidator {
                     return null;
                 }
                 return {
-                    mdMinDate : true
+                    minDate : {
+                        text : c._ampErrors.minDate ? c._ampErrors.minDate : 'This date should be greater' +
+                        ' than ' + pattern + ' .'
+                    }
                 };
             }
             return null;
@@ -129,8 +133,10 @@ export class MaxFloatValidator {
                         let replaceValue = newVal.replace( /[^0-9\.]+/g , "" );
                         if ( replaceValue > valMaxFloat ) {
                             return {
-                                text : c._ampErrors.maxFloat ? c._ampErrors.maxFloat : 'This amount should be more' +
-                                ' than' + valMaxFloat + ' .'
+                                maxFloat : {
+                                    text : c._ampErrors.maxFloat ? c._ampErrors.maxFloat : 'This amount should be more' +
+                                    ' than ' + valMaxFloat + ' .'
+                                }
                             }
                         }
                     }
