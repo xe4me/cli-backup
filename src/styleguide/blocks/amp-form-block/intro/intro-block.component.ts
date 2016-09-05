@@ -2,13 +2,13 @@ import { Component , ChangeDetectorRef , ElementRef } from "@angular/core";
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
-import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
+import { AmpPrimaryButton } from "../../../../app/components/amp-primary-button/amp-primary-button.component";
 import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/amp-checkbox.component";
 @Component( {
     selector   : 'intro-block' ,
-    directives : [ AmpCheckboxComponent , AmpButton ] ,
+    directives : [ AmpCheckboxComponent , AmpPrimaryButton ] ,
     template   : `
-        <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive' >
+        <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class='intro-logo mt-60 mb-60 palm-m'></div>
                 <div class="utils__align--center mb-60" >
                     <div class="grid__item 6/9 palm-8/9 mt-10 utils__align--left" >
@@ -16,13 +16,13 @@ import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/am
                         The choice is yours. Know the facts.
                     </h1>
                     <p class='mt-50'>
-                        Weigh up the pros and cons when considering your personal circumstances and if you decide your employer’s AMP super plan is right for you, simply provide the information below we’ll work with your employer to set up your AMP account.  
+                        Weigh up the pros and cons when considering your personal circumstances and if you decide your employer’s AMP super plan is right for you, simply provide the information below we’ll work with your employer to set up your AMP account.
                     </p>
-                    <amp-button
-                        class='btn btn-ok btn-ok-white mt-60 ' 
+                    <amp-primary-button
+                        class='btn btn-ok'
                         (click)='onNext()'>
                         OK
-                    </amp-button>
+                    </amp-primary-button>
                 </div>
             </div>
         </div>
