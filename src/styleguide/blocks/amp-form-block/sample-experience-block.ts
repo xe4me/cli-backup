@@ -28,6 +28,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                         [isRequired]="true"
                         [errors]="__custom.firstname.errors"
                         [valMaxLength]="'12'"
+                        [valMaxFloat]="'654654'"
                         [valMinLength]="'4'">
                     </amp-input>
                     <amp-error [controlGroup]="context?.__controlGroup" [controlId]="'firstname'"></amp-error>
@@ -77,7 +78,7 @@ export class SampleExperienceBlock extends FormBlock implements OnInit{
     }
 
     ngOnInit () : any {
-        //console.log('this.form',this.__form.controls.InsuranceDetailsSection.controls.InsuranceDetailsSection.controls.);
+        console.log('this.form',this.__form.controls.Application.controls.InsuranceDetailsSection.controls.anotherSampleExperienceBlock.value);
         return undefined;
     }
 

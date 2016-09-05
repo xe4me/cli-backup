@@ -27,7 +27,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                             [controlGroup]="__controlGroup"
                             [required]="true"
                             [isInSummaryState]="isInSummaryState"
-                            [groupName]='__custom.fullOrPartial'>
+                            [groupName]='__custom.id'>
                         </amp-group-buttons>
                         <amp-error [controlGroup]="context?.__controlGroup" [controlId]="'firstname'"></amp-error>
                     </div>

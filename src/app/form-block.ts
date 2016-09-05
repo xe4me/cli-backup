@@ -16,10 +16,6 @@ export class NamedControl {
 export const provideParent =
                  ( component : any , parentType? : any ) =>
                      provide( parentType || FormBlock , { useExisting : forwardRef( () => component ) } );
-/**
- * This class is both a Abstract Class (i.e. Java like Abstract, property and method implementation that are common) and
- * a Class-Interface (https://angular.io/docs/ts/latest/cookbook/dependency-injection.html#!#class-interface)
- */
 export abstract class FormBlock {
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
@@ -31,6 +27,8 @@ export abstract class FormBlock {
     protected __fdn : string[]               = null;
     protected __form : ControlGroup;
     protected __controlGroup : ControlGroup;
+
+    abstract context () : any;
 
     constructor ( private formModelService : FormModelService ,
                   private elementRef : ElementRef ,
@@ -44,33 +42,38 @@ export abstract class FormBlock {
         } );
     }
 
-    public updateSelectorName ( _customString : string|number ) {
+    updateSelectorName ( _customString : string|number ) {
         this.selectorName += '-' + _customString;
     }
 
-    abstract context () : any;
-
     autoFocus () {
+        /*
+         * TODO : This should be a directive or something else.
+         * */
         setTimeout( ()=> {
-            this.elementRef.nativeElement.getElementsByTagName( 'input' )[ 0 ].focus();
+            let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
+            if ( inputs && inputs.length > 0 ) {
+                inputs[ 0 ].focus();
+            }
         } , 100 )
     }
 
-    public get canGoNext () {
-        return this.__controlGroup.valid;
-        //return true;
-    }
-
-    protected onEdit () {
+    onEdit () {
         this.isInSummaryState = false;
     }
 
-    protected onNext ( nextBlock ) {
-        this.scrollService.scrollToNextUndoneBlock( this.__form );
-        this.progressObserver.onProgress();
-        TimerWrapper.setTimeout( () => {
-            this.isInSummaryState = true;
-        } , 1200 );
+    onNext () {
+        if ( this.canGoNext ) {
+            this.scrollService.scrollToNextUndoneBlock( this.__form );
+            this.progressObserver.onProgress();
+            TimerWrapper.setTimeout( () => {
+                this.isInSummaryState = true;
+            } , 1200 );
+        }
+    }
+
+    get canGoNext () {
+        return this.__controlGroup.valid;
     }
 
     protected subscribeToScrollEvents () {
@@ -136,7 +139,6 @@ export abstract class FormBlock {
             flag      : this.visibleFlag ,
             flagValue : false
         } );
-        this.isInSummaryState     = false;
-        this.hasClickedOnOkButton = false;
+        this.isInSummaryState = false;
     }
 }

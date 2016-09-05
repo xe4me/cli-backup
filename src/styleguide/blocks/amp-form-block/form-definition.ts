@@ -45,9 +45,9 @@ export var formDef = {
                                     commonBlock : false ,
                                     path        : 'blocks/amp-form-block/another-sample-experience-block' ,
                                     custom      : {
-                                        id            : 'FullOrPartial' ,
-                                        blockTitle    : 'Which one , full or partial ? ' ,
-                                        buttons       : [
+                                        id         : 'FullOrPartial' ,
+                                        blockTitle : 'Which one , full or partial ? ' ,
+                                        buttons    : [
                                             {
                                                 id    : 'fullId' ,
                                                 value : 'full' ,
@@ -58,11 +58,11 @@ export var formDef = {
                                                 value : 'partial' ,
                                                 label : 'Partial sale'
                                             }
-                                        ] ,
-                                        fullOrPartial : 'fullOrPartial'
+                                        ]
                                     }
                                 }
-                                , {
+                                ,
+                                {
                                     name        : 'sampleExperienceBlock' ,
                                     blockType   : 'SampleExperienceBlock' ,
                                     blockLayout : 'INLINE' ,
@@ -91,6 +91,21 @@ export var formDef = {
                                             maxLengh : 3
                                         }
                                     }
+                                } ,
+                                {
+                                    name        : 'sampleArrayExperienceBlock' ,
+                                    blockType   : 'SampleArrayExperienceBlock' ,
+                                    blockLayout : 'INLINE' ,
+                                    commonBlock : false ,
+                                    path        : 'blocks/amp-form-block/sample-array-experience-block' ,
+                                    custom      : {
+                                        blockTitle : 'This block has a repeating group !' ,
+                                        age        : {
+                                            title : "What about your age?" ,
+                                            regex    : '^([0-9])*$' ,
+                                            maxLengh : 3
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -100,7 +115,6 @@ export var formDef = {
         }
     ]
 };
-(()=>{
-
-    console.log('Inside nodejs...................');
+(()=> {
+    console.log( 'Inside nodejs...................' );
 })();
