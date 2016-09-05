@@ -1,0 +1,19 @@
+
+/**
+
+Base form row styles
+
+*/
+
+.heading-intro {
+    font-size: 24px;
+}
+
+.form__row {
+    margin-top: -20px;
+    .form-row-label {
+        color: $amp-colour-grey-darker;
+        font-size: 24px;
+        margin: 25px 0 10px;
+    }
+}

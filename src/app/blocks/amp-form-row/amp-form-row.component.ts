@@ -4,7 +4,7 @@ import { Component , Input } from '@angular/core';
     template : `
         <div class='form__row'>
             <div class="grid__container 1/1 palm-1/1 mb">
-                <label class='grid__item_floated 1/1 heading-contxtual-label'>{{ title }}</label>
+                <label class='grid__item_floated 1/1 form-row-label'>{{ title }}</label>
                <ng-content></ng-content>
              </div>
         </div>

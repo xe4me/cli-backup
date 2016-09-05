@@ -15,8 +15,10 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
     selector   : 'sample-experience-block' ,
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
-            <amp-form-row [attr.theme]="themeService.theme.attr" [title]="__custom.firstname.title">
-                <div class="grid__item_floated 1/3">
+            <amp-form-row [attr.theme]="themeService.theme.attr">
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 form-row-label'>Name</label>
+                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
+                    <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-input
                         [attr.theme]="themeService.theme.attr"
                         [id]="'firstname'"
@@ -28,8 +30,10 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                         [valMaxLength]="'12'"
                         [valMinLength]="'4'">
                     </amp-input>
+                    <amp-error [controlGroup]="context?.__controlGroup" [controlId]="'firstname'"></amp-error>
                 </div>
-                <div class="grid__item_floated ml 1/3">
+                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr">
+                    <label class='1/1 sr-only'>What's your last name?</label>
                     <amp-input
                         [attr.theme]="themeService.theme.attr"
                         [id]="'lastname'"
@@ -41,6 +45,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                         [valMaxLength]="'12'"
                         [valMinLength]="'4'">
                     </amp-input>
+                    <amp-error [controlGroup]="context?.__controlGroup" [controlId]="'lastname'"></amp-error>
                 </div>
             </amp-form-row>
             <amp-form-row [attr.theme]="themeService.theme.attr" [title]="__custom.age.title">
