@@ -4,31 +4,48 @@
 
 
 :host {
+    //btn-ok default style
 
     $btn-ok-background-color: $btn-ok-background-color;
-    .#{$namespace}btn-ok,
-    %#{$namespace}btn-ok {
-        @extend %#{$namespace}font-size-small;
-        @include transition(background-color $buttons-transition-time ease-in-out);
-        width: $btn-ok-margin-width;
-        margin-top: $btn-ok-margin-height;
-        background-color: $btn-ok-background-color;
-        height: $ddc-buttons-height;
-        color: $btn-ok-color;
-        &:hover, &:focus {
-            &:not([disabled]) {
-                color:$btn-ok-color;
-                background-color: $btn-ok-hover-background-color;
-            }
 
-        }
-        &:active {
-            &:not([disabled]) {
-                color: $btn-ok-color;
-                background-color: $btn-ok-active-background-color;
+        .#{$namespace}btn-ok,
+        %#{$namespace}btn-ok {
+            background-color: $btn-ok-background-color;
+            color: $btn-ok-color;
+            &:hover, &:focus {
+                &:not([disabled]) {
+                    color:$btn-ok-color;
+                    background-color: $btn-ok-hover-background-color;
+                }
+
+            }
+            &:active {
+                &:not([disabled]) {
+                    color: $btn-ok-color;
+                    background-color: $btn-ok-active-background-color;
+                }
             }
         }
-    }
+
+    //btn-ok default style
+
+     .#{$namespace}btn-change,
+     %#{$namespace}btn-change {
+       background-color: $amp-colour-white;
+       border: 2px solid $btn-change-border-color;
+       border-color: $btn-change-border-color;
+       &:hover, &:focus {
+         &:not([disabled]) {
+           background-color: $btn-change-hover-background-color;
+           border-color: $btn-change-hover-background-color;
+         }
+       }
+       &:active {
+         &:not([disabled]) {
+           background-color: $btn-change-active-background-color;
+         }
+       }
+     }
 
     &[theme='tools'] {
 

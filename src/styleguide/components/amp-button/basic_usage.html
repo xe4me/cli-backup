@@ -1,31 +1,64 @@
 
-<section>
-    <div class='title'>btn-ok</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-ok mt0'">
-            Ok
-        </amp-button>
-    </div>
-</section>
+<section class="sectioan mh mv">
 
-<section>
-    <div class='title'>btn-ok disabled</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' [disabled]='true' [class]="'btn btn-ok mt0'">
-            Ok
-        </amp-button>
+
+    <div class="section">
+        <h2 class="mb-">Primary buttons</h2>
     </div>
-</section>
-<section>
-<p class="para mt">
-    <highlight color-default>
-           <pre class="pre">
-                <code class="highlight-override">
-                    <strong class="strong">code here</strong>
-                </code>
-           </pre>
-    </highlight>
-</p>
+    <article class="article">
+        <div class='title'>btn-ok</div>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-ok mt0'">
+                Ok
+            </amp-button>
+        </div>
+    </article>
+
+    <article class="article">
+        <div class='title'>btn-ok disabled</div>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' [disabled]='true' [class]="'btn btn-ok mt0'">
+                Ok
+            </amp-button>
+        </div>
+    </article>
+    <article class="arti">
+    <p class="para mt">Sample implementation below:</p>
+    <p class="para">
+        <highlight color-default>
+               <pre class="pre">
+                    <code class="highlight-override">
+                        <strong class="strong">
+                            &#60;amp-button [attr.theme]="tools" [class]="'btn btn-ok'"&#62;
+                                Ok
+                            &#60;/amp-button&#62;
+                        </strong>
+                    </code>
+               </pre>
+        </highlight>
+    </p>
+    </article>
+
+    <article class="article">
+        <div class='title'>btn-change</div>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(3)' [class]="'btn btn-change mt0'">
+                Change
+            </amp-button>
+        </div>
+    </article>
+    <article class="article mt">
+        <h2 class="mb-">Secondary buttons</h2>
+    </article>
+    <article class="article">
+        <div class='title'>btn-secondary</div>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-ok mt0'">
+                Save for later
+            </amp-button>
+        </div>
+    </article>
+
 </section>
 
 <!--
