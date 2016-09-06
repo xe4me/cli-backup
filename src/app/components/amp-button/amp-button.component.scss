@@ -47,6 +47,28 @@
        }
      }
 
+    //btn-secondary
+
+    .#{$namespace}btn-secondary,
+    %#{$namespace}btn-secondary {
+        width: $btn-secondary-width;
+        background-color: $btn-secondary-background-color;
+        border: 2px solid;
+        border-color: $btn-secondary-border-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: $btn-secondary-text-color;
+                background-color: $btn-secondary-hover-background-color;
+                border-color: $btn-secondary-hover-border-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                background-color: $btn-change-active-background-color;
+            }
+        }
+    }
+
     &[theme='tools'] {
 
         $btn-ok-background-color: $btn-ok-tools-background-color;
