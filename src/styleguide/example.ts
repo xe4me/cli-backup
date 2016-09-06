@@ -11,11 +11,12 @@ import {
     ComponentRef ,
 } from '@angular/core';
 import { Dir } from '@angular2-material/core/rtl/dir';
+import { MD_RIPPLE_DIRECTIVES, PORTAL_DIRECTIVES } from '@angular2-material/core';
 import { MdButton } from '@angular2-material/button/button';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav/sidenav';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list/list';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
-import { MD_TABS_DIRECTIVES } from '@angular2-material/tabs';
+import { MD_TABS_DIRECTIVES, TABS_INTERNAL_DIRECTIVES } from '@angular2-material/tabs';
 import { MdIcon } from '@angular2-material/icon/icon';
 import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
 import { IComponentExample } from './services/components';
@@ -59,7 +60,10 @@ export class ExampleDirective {
         Highlight ,
         Dir ,
         MdButton ,
-        MdIcon
+        MdIcon,
+        MD_RIPPLE_DIRECTIVES,
+        TABS_INTERNAL_DIRECTIVES,
+        PORTAL_DIRECTIVES
     ]
 } )
 export class ExampleComponent {

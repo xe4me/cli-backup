@@ -39,7 +39,7 @@ import { ThemeService } from '../../services/theme';
             </div>
             <div [@openClose]='activeAccordion===i?"expanded":"collapsed"' class="options">
                 <div class="option" *ngFor="let cmp of cpmGroup.components" 
-                     (click)="navigate(['Component', {id: cmp.id}])" 
+                     (click)="navigate(['component', cmp.id])" 
                      [class.option--active]='activeComponentId===cmp.id'>
                     {{ cmp.name }}
                 </div>
