@@ -22,7 +22,7 @@
             </amp-button>
         </div>
     </article>
-    <article class="arti">
+    <article class="article">
     <p class="para mt">Sample implementation below:</p>
     <p class="para">
         <highlight color-default>
@@ -58,7 +58,49 @@
             </amp-button>
         </div>
     </article>
-
+    <article class="article">
+        <p class="para mt">Sample implementation below:</p>
+        <p class="para">
+            <highlight color-default>
+               <pre class="pre">
+                    <code class="highlight-override">
+                        <strong class="strong">
+                            &#60;amp-button [attr.theme]="tools" [class]="'btn btn-secondary'"&#62;
+                            Save for later
+                            &#60;/amp-button&#62;
+                        </strong>
+                    </code>
+               </pre>
+            </highlight>
+        </p>
+    </article>
+    <article class="article mt">
+        <h2 class="mb-">Submit buttons</h2>
+    </article>
+    <article class="article">
+        <div class='title'>btn-submit</div>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-submit mt0 mb'">
+                Submit <span class='icon icon&#45;&#45;chevron-right'></span>
+            </amp-button>
+        </div>
+    </article>
+    <article class="article">
+        <p class="para mt">Sample implementation below:</p>
+        <p class="para">
+            <highlight color-default>
+               <pre class="pre">
+                    <code class="highlight-override">
+                        <strong class="strong">
+                            &#60;amp-button [attr.theme]="tools" [class]="'btn btn-submit'"&#62;
+                            Submit
+                            &#60;/amp-button&#62;
+                        </strong>
+                    </code>
+               </pre>
+            </highlight>
+        </p>
+    </article>
 </section>
 
 <!--

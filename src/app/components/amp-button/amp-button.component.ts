@@ -20,6 +20,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
     template        : `
     <button
         type='button'
+        [attr.chevron]='_chevron'
         (click)='click'
         [disabled]='disabled'
         [class]='_class'
@@ -31,6 +32,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 export class AmpButton implements AfterContentInit {
+    @Input( 'chevron' ) _chevron : string;
     @Input() click;
     @Input() disabled;
     @Input( 'class' ) _class : string;
@@ -50,6 +52,19 @@ export class AmpButton implements AfterContentInit {
         this.domAdatper = new BrowserDomAdapter();
         let contentStr  = this.domAdatper.getText( this.elementRef.nativeElement );
 
+        /*console.log(contentStr);
+        console.log(this.elementRef);
+
+        if (this._chevron) {
+            switch ( this._chevron ) {
+                case'right':
+                    //this.elementRef.nativeElement.innerText = this.dataAutomationId;
+                    //console.log("outer");
+                    //console.log(this.elementRef.nativeElement.innerText);
+                    break;
+            }
+        }*/
+
         if (!this.dataAutomationId || !this.dataAutomationId.length) {
             this._dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g , '' ) : '');
             if ( this.parent ) {
@@ -58,5 +73,6 @@ export class AmpButton implements AfterContentInit {
         } else {
             this._dataAutomationId = this.dataAutomationId;
         }
+
     }
 }

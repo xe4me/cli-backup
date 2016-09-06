@@ -13,6 +13,7 @@ $buttons-transition-time: $ddc-buttons-and-icons-transition-time;
 $buttons-default-width: 128px;
 $buttons-default-height: 128px;
 $buttons-default-margin-top: 60px;
+$buttons-default-height: 42px;
 
 
 
@@ -43,6 +44,7 @@ $btn-anchor-active-background-color: $amp-colour-primary;
 $btn-anchor-color: $amp-colour-secondary;
 
 // btn-submit
+$btn-submit-width: 240px;
 $btn-submit-background-color: $amp-colour-secondary;
 $btn-submit-hover-background-color: $amp-colour-secondary-darkest;
 $btn-submit-active-background-color: $amp-colour-primary;
@@ -68,7 +70,7 @@ Button base class used by all
 */
 
 .btn {
-    line-height: 42px;
+    line-height: $buttons-default-height;
     width: $buttons-default-width;
     margin-top: $buttons-default-margin-top;
     @extend %#{$namespace}font-size-small;
@@ -85,5 +87,9 @@ Button base class used by all
         border-color: #FFFFFF;
         cursor: default;
         color: $btn-ok-disabled-text-color;
+    }
+    > .icon {
+        font-size: 18px;
+        padding-right:4px;
     }
 }

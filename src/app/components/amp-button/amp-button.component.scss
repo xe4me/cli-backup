@@ -72,6 +72,28 @@
         }
     }
 
+    //btn-submit
+
+    .#{$namespace}btn-submit,
+    %#{$namespace}btn-submit {
+        width: $btn-submit-width;
+        color: #fff;
+        background-color: $btn-submit-background-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: #fff;
+                background-color: $btn-submit-hover-background-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                color: #fff;
+                background-color: $btn-submit-active-background-color;
+            }
+        }
+    }
+
+
     &[theme='tools'] {
 
         $btn-ok-background-color: $btn-ok-tools-background-color;
