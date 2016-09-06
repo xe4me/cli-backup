@@ -1,4 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
+import { ThemeService } from "../../../styleguide/services/theme";
 import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../../";
 @Component( {
     selector   : 'amp-form-block' ,
@@ -6,7 +7,7 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
         <div class="FormBlocK" id='{{ context?.selectorName }}'>
              <amp-overlay [active]='!context?.isCurrentBlockActive()'></amp-overlay>
             <h2 class="heading heading-intro">{{ context?.__custom.blockTitle}}</h2>
-             <ng-content></ng-content>    
+             <ng-content></ng-content>
              <div *ngIf="!noError">
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
              </div>
