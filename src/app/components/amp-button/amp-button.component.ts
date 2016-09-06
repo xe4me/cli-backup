@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { FormBlock } from '../../blocks/formBlock';
 // import * as browser from '@angular/platform-browser';
+import { ThemeService } from "../../../styleguide/services/theme";
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Component( {
     selector        : 'amp-button' ,
@@ -26,7 +27,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
         <ng-content></ng-content>
     </button>` ,
     styles          : [ require( './amp-button.component.scss' ).toString() ] ,
-    encapsulation   : ViewEncapsulation.None ,
+    encapsulation   : ViewEncapsulation.Emulated ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 export class AmpButton implements AfterContentInit {
