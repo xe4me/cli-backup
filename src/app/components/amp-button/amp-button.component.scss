@@ -45,7 +45,7 @@
             }
             &:active {
                 &:not([disabled]) {
-                    background-color: $btn-ok-active-background-color;
+                    background-color: $btn-ok-tools-active-background-color;
                 }
             }
         }
