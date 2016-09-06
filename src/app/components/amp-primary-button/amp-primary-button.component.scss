@@ -48,8 +48,8 @@ $btn-ok-active-background-color: $amp-colour-secondary;
 
     &[theme='tools'] {
 
-        $btn-ok-background-color: purple;
-        .#{$namespace}btn-ok,
+        $btn-ok-background-color: $btn-ok-tools-background-color;
+        /*.#{$namespace}btn-ok,
         %#{$namespace}btn-ok {
             @extend %#{$namespace}font-size-small;
             @include transition(background-color $buttons-transition-time ease-in-out);
@@ -76,7 +76,7 @@ $btn-ok-active-background-color: $amp-colour-secondary;
 
             }
         }
-
+*/
     }
 
 }
