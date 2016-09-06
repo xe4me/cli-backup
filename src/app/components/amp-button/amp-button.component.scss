@@ -35,7 +35,6 @@
         $btn-ok-background-color: $btn-ok-tools-background-color;
         .#{$namespace}btn-ok,
         %#{$namespace}btn-ok {
-            @include transition(background-color $buttons-transition-time ease-in-out);
             background-color: $btn-ok-background-color;
             color: $btn-ok-color;
             &:hover, &:focus {

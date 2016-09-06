@@ -1,3 +1,14 @@
+
+<section>
+    <div class='title'>btn-ok</div>
+    <div class='content'>
+        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' class='btn btn-ok'>
+            Ok
+        </amp-button>
+    </div>
+</section>
+<!--
+
 <section>
     <div class='title'>btn-change</div>
     <div class='content'>
@@ -18,7 +29,7 @@
     <div class="title">btn-submit with icon</div>
     <div class='content'>
         <amp-button [attr.theme]="themeService.theme.attr" (click)='alert()' class='btn btn-submit'>
-            Submit <span class='icon icon--chevron-right'></span>
+            Submit <span class='icon icon&#45;&#45;chevron-right'></span>
         </amp-button>
     </div>
 </section>
@@ -76,3 +87,4 @@
 <section>
     <some-form-block></some-form-block>
 </section>
+-->
