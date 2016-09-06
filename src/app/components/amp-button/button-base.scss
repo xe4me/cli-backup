@@ -56,7 +56,11 @@ $btn-secondary-background-color: $amp-colour-white;
 
 $btn-secondary-hover-border-color: $amp-colour-secondary-darkest;
 $btn-secondary-hover-background-color: $amp-colour-secondary-darkest;
-$btn-secondary-text-color: $amp-colour-white;
+$btn-secondary-hover-text-color: $amp-colour-white;
+
+$btn-secondary-active-border-color: $amp-colour-primary;
+$btn-secondary-active-background-color: $amp-colour-primary;
+$btn-secondary-active-text-color: $amp-colour-white;
 
 /*
 Button base class used by all

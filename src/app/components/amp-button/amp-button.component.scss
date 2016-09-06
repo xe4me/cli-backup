@@ -57,14 +57,16 @@
         border-color: $btn-secondary-border-color;
         &:hover, &:focus {
             &:not([disabled]) {
-                color: $btn-secondary-text-color;
+                color: $btn-secondary-hover-text-color;
                 background-color: $btn-secondary-hover-background-color;
                 border-color: $btn-secondary-hover-border-color;
             }
         }
         &:active {
             &:not([disabled]) {
-                background-color: $btn-change-active-background-color;
+                color: $btn-secondary-active-text-color;
+                background-color: $btn-secondary-active-background-color;
+                border-color: $btn-secondary-active-border-color;
             }
         }
     }
