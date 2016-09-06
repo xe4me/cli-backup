@@ -6,6 +6,7 @@ import { FormBlock , provideParent } from '../../../app/blocks/formBlock';
 import { MockUIControlService } from '../../services/mock-ui-control.service';
 import { UIControlService , BlockID } from 'amp-ddc-ui-core/ui-core';
 import { ThemeService } from '../../services/theme';
+import{ Highlight } from '../../highlight'
 @Component( {
     selector   : 'some-form-block' ,
     template   : `

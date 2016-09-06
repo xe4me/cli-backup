@@ -1,3 +1,11 @@
+/*
+
+Button Base, base styles for all buttons, default values, white label if you will
+
+Do not modify this unless you know what you're doing
+*/
+
+
 $buttons-transition-time: $ddc-buttons-and-icons-transition-time;
 $btn-ok-color: $amp-colour-white;
 $btn-ok-border-color: $amp-colour-primary;
@@ -8,3 +16,25 @@ $btn-ok-disabled-text-color: $disabled-text-color;
 $btn-ok-disabled-background-color: $disabled-background-color;
 $btn-ok-background-color: $amp-colour-primary;
 $btn-ok-active-background-color: $amp-colour-secondary;
+$btn-review-default-width: 238px;
+
+/*
+Button base class used by all
+*/
+
+.btn {
+    line-height: 42px;
+    &.btn-full {
+        width: 100% !important;
+        display: block;
+    }
+    &.btn-review {
+        width: $btn-review-default-width;
+    }
+    &[disabled] {
+        background-color: $btn-ok-disabled-background-color !important;
+        border-color: #FFFFFF;
+        cursor: default;
+        color: $btn-ok-disabled-text-color;
+    }
+}
