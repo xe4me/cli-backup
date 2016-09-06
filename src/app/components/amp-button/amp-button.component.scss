@@ -36,6 +36,7 @@
        border-color: $btn-change-border-color;
        &:hover, &:focus {
          &:not([disabled]) {
+           color: $btn-change-hover-text-color;
            background-color: $btn-change-hover-background-color;
            border-color: $btn-change-hover-background-color;
          }
@@ -90,6 +91,30 @@
                 }
             }
         }
+
+        .#{$namespace}btn-secondary,
+        %#{$namespace}btn-secondary {
+            width: $btn-secondary-width;
+            background-color: $btn-secondary-tools-background-color;
+            border: 2px solid;
+            border-color: $btn-secondary-tools-border-color;
+            color: $btn-secondary-tools-text-color;
+            &:hover, &:focus {
+                &:not([disabled]) {
+                    color: $btn-secondary-tools-hover-text-color;
+                    background-color: $btn-secondary-tools-hover-background-color;
+                    border-color: $btn-secondary-tools-hover-border-color;
+                }
+            }
+            &:active {
+                &:not([disabled]) {
+                    color: $btn-secondary-tools-active-text-color;
+                    background-color: $btn-secondary-tools-active-background-color;
+                    border-color: $btn-secondary-tools-active-border-color;
+                }
+            }
+        }
+
     }
 
 }
