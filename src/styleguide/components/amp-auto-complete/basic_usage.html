@@ -1,4 +1,4 @@
-<form #formModel='ngForm' class='nl-form'>
+<form class='nl-form'>
     <div style='padding: 50px 100px; text-align:left'>
         Control errors
         <highlight color-default>
@@ -13,8 +13,7 @@
                 [selectControl]="selectControl"
                 (change)="onChange($event)"
                 [isRequired]="true"
-                [iconRight]="false"
-                [isActive]="true"
+                [isActive]="false"
                 [isInSummaryState]="isInSummaryState"
                 [label]='"Occupations"'
                 [selectLabel]='"selectLabel"'>

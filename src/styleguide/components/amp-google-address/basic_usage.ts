@@ -5,7 +5,8 @@ import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-google-address-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-google-address/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ] 
+    styles      : [ require( './basic_usage.scss' ).toString() ],
+    directives  : [ AMPGoogleAddressComponent ]
 } )
 
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {

@@ -46,4 +46,4 @@ v 3.0.0
             "phantomjs-polyfill": "0.0.2",
             "phantomjs-prebuilt": "^2.1.7",
     # Converted Control, ControlGroup, ControlArray, FormBuilder from @angular/common to @angular/forms
-    
+    # Outstanding items. 1, Existing issue with amp-block-loader console error. 2, amp group button and amp radio group button throws 'More than one custom value accessor matches from control with unspecified name attribute'

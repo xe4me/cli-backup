@@ -71,7 +71,7 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
         expect( Component.onRadioButtonSelectedValue ).toBeNull();
         Labels[ '1' ].click();
         fixture.detectChanges();
-        expect( Component.onRadioButtonSelectedValue ).toBeNull( Component.radiosMultipleOptions.buttons[ 1 ].value );
+        expect( Component.onRadioButtonSelectedValue ).toBe( Component.radiosMultipleOptions.buttons[ 1 ].value );
     } );
 } );
 describe( 'amp-radio-group-button component , single item usage' , () => {

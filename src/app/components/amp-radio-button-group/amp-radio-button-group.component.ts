@@ -15,7 +15,7 @@ import { isPresent } from '@angular/core/src/facade/lang';
 const RADIO_VALUE_ACCESSOR = new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
-    selector  : 'input[type=radio][ngControl],input[type=radio][formControl],input[type=radio][ngModel]' ,
+    selector  : 'input[type=radio][formControl],input[type=radio][ngModel]' ,
     host      : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
     providers : [ RADIO_VALUE_ACCESSOR ]
 } )
@@ -51,7 +51,7 @@ const RADIO_VALUE_ACCESSOR = new Provider(
                     [attr.id]='button.id'
                     [attr.name]='groupName'
                     [formControl]='parentControl'
-                    [value]='button.value'
+                    [attr.value]='button.value'
                     [checked]='parentControl.value===button.value'
                />
               <label

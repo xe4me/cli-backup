@@ -58,7 +58,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 [attr.id]='button.id + index'
                                 [attr.name]='groupName + index'
                                 [formControl]='parentControl'
-                                [value]='button.value'
+                                [attr.value]='button.value'
                                 [checked]='parentControl.value===button.value'
                                 />
 

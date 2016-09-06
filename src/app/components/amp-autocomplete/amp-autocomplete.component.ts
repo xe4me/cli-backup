@@ -7,9 +7,9 @@ import {
     EventEmitter ,
     OnInit
 } from '@angular/core';
-import { Control } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
-import { isPresent } from '../../util/functions.utils'
+import { isPresent } from '../../util/functions.utils';
 import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
 @Component( {
     selector   : 'amp-auto-complete' ,
@@ -39,7 +39,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
             (focusOut)="onListFocusOut()"
             tabindex="-1"
             class='amp-auto-complete-options'
-            [class.amp-auto-complete-hidden]='(searchResult | async)?.length==0 || isOptionsHidden'  >
+            [class.amp-auto-complete-hidden]='(searchResult | async)===null || isOptionsHidden'  >
             <li *ngIf="selectLabel" class='amp-auto-complete-option' tabindex='-1'>
                 <strong>{{ selectLabel }}</strong>
             </li>
@@ -76,7 +76,8 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'parentControl' ,
         'placeholder' ,
         'lengthTrigger' ,
-        'options'
+        'options',
+        'isActive'
     ] ,
     outputs    : [ 'change' ] ,
     directives : [ MdInputComponent , ClickedOutsideDirective , FocuserDirective ]
@@ -94,8 +95,8 @@ export class AmpAutoCompleteComponent implements OnInit {
     private selectedOption : Option;
     private searchResult : Observable<Array<Option>>;
     private _required : boolean     = false;
-    private parentControl : Control;
-    private selectControl : Control;
+    private parentControl : FormControl;
+    private selectControl : FormControl;
     private _optionsHidden          = true;
     private lengthTrigger : number  = - 1;
     private showNoResult            = false;
@@ -103,8 +104,8 @@ export class AmpAutoCompleteComponent implements OnInit {
     private firstOpen               = true;
 
     ngOnInit () : any {
-        this.parentControl = this.parentControl || new Control();
-        this.selectControl = this.selectControl || new Control();
+        this.parentControl = this.parentControl || new FormControl();
+        this.selectControl = this.selectControl || new FormControl();
         if ( this.options ) {
             this.initWithOptions();
         } else if ( this.queryServiceCall ) {
@@ -141,8 +142,8 @@ export class AmpAutoCompleteComponent implements OnInit {
             return;
         }
         if ( this.firstOpen ) {
-            setTimeout( ()=> {
-                this.parentControl.updateValue( '' );
+            setTimeout( () => {
+                this.parentControl.patchValue( '' );
             } );
             this.firstOpen = false;
         }
@@ -167,8 +168,8 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private selectOption ( option ) {
         this.selectedOption = option;
-        this.parentControl.updateValue( option.title );
-        this.selectControl.updateValue( JSON.stringify( option ) );
+        this.parentControl.patchValue( option.title );
+        this.selectControl.patchValue( JSON.stringify( option ) );
         this.change.emit( option );
         this.close();
         this.focusInput();
@@ -193,7 +194,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     }
 
     private onBlur ( $event ) {
-        setTimeout( ()=> {
+        setTimeout( () => {
             if ( this.parentControl.value ) {
                 if ( this.selectedOption === null ) {
                     let errors = Object.assign( {} , { invalid : true } , this.parentControl.errors || {} );
@@ -244,7 +245,6 @@ export class AmpAutoCompleteComponent implements OnInit {
             this.parentControl
                 .valueChanges
                 .debounceTime( this.QUERY_DEBOUNCE_TIME )
-
                 .switchMap( queryString => this.queryServiceCall( queryString ) );
     }
 

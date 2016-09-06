@@ -7,11 +7,7 @@ import { ThemeService } from '../../services/theme';
     templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    // directives  : [
-    //     FORM_DIRECTIVES ,
-    //     AmpCheckboxComponent ,
-    //     CORE_DIRECTIVES
-    // ] ,
+    directives  : [ AmpCheckboxComponent ] ,
     selector    : 'amp-checkbox-basic-usage'
 } )
 

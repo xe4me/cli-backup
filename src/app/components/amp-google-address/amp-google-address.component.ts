@@ -14,7 +14,6 @@ declare var google : any;
     template      : `
     <my-md-input
         class='3/5'
-        [name]='id'
         [id]='id'
         [label]='label'
         [labelHidden]='labelHidden'

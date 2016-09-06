@@ -7,11 +7,7 @@ import { ThemeService } from '../../services/theme';
     templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    // directives  : [
-    //     FORM_DIRECTIVES ,
-    //     AmpDropdownComponent ,
-    //     CORE_DIRECTIVES
-    // ] ,
+    directives  : [ AmpDropdownComponent ] ,
     selector    : 'amp-dropdown-basic-usage'
 } )
 

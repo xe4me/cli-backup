@@ -7,7 +7,8 @@ import { ThemeService } from '../../services/theme';
     {
         selector    : 'my-md-input-basic-usage' ,
         templateUrl : 'src/styleguide/components/my-md-input/basic_usage.html' ,
-        styles      : [ require( './basic_usage.scss' ).toString() ] 
+        styles      : [ require( './basic_usage.scss' ).toString() ],
+        directives  : [ MdInputComponent ]
     } )
 export default class MyMdInputBasicUsage implements AfterViewInit {
     toggleFlag : boolean;

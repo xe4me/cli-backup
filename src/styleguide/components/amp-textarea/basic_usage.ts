@@ -6,7 +6,8 @@ import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-textarea-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-textarea/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ] 
+    styles      : [ require( './basic_usage.scss' ).toString() ],
+    directives  : [ AmpTextareaComponent ]
 } )
 
 export default class AMPTextareaComponentBasicUsage {

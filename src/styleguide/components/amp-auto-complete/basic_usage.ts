@@ -1,5 +1,5 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import{ Highlight } from '../../highlight';
 import { AmpAutoCompleteComponent } from '../../../app/components/amp-autocomplete/amp-autocomplete.component';
@@ -9,17 +9,15 @@ import { ThemeService } from '../../services/theme';
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
     directives  : [
-        FORM_DIRECTIVES ,
         Highlight ,
-        AmpAutoCompleteComponent ,
-        CORE_DIRECTIVES
+        AmpAutoCompleteComponent
     ] ,
     selector    : 'amp-auto-complete-basic-usage'
 } )
 
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
-    control : Control       = new Control();
-    selectControl : Control = new Control();
+    control : FormControl       = new FormControl();
+    selectControl : FormControl = new FormControl();
     isInSummaryState        = false;
     private options         = [
         {
