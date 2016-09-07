@@ -10,16 +10,18 @@ const path = require('path');
  * Webpack Plugins
  */
 // problem with copy-webpack-plugin
-var CopyWebpackPlugin = (CopyWebpackPlugin = require('copy-webpack-plugin'), CopyWebpackPlugin.default || CopyWebpackPlugin);
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+const HtmlElementsPlugin = require('./html-elements-plugin');
 
 /*
  * Webpack Constants
  */
 const METADATA = {
   title: 'AMP Components library',
-  baseUrl: '/'
+  baseUrl: '/',
+  isDevServer: helpers.isWebpackDevServer()
 };
 
 /*
@@ -42,8 +44,10 @@ module.exports = {
    * You can pass false to disable it.
    *
    * See: http://webpack.github.io/docs/configuration.html#cache
-   * cache: false,
-   *
+   */
+   //cache: false,
+
+  /*
    * The entry point for the bundle
    * Our Angular.js app
    *
@@ -51,9 +55,9 @@ module.exports = {
    */
   entry: {
 
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'styleguide': './src/main.ts'
+    'polyfills': './src/polyfills.browser.ts',
+    'vendor':    './src/vendor.browser.ts',
+    'styleguide': './src/main.browser.ts'
 
   },
 
@@ -69,7 +73,7 @@ module.exports = {
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
      */
-    extensions: ['', '.ts', '.js','.spec.ts'],
+    extensions: ['', '.ts', '.js', '.json'],
 
     // Make sure root is src
     root: helpers.root('src'),
@@ -78,13 +82,6 @@ module.exports = {
     modulesDirectories: ['node_modules'],
 
     alias: {
-      'angular2/core': helpers.root('node_modules/@angular/core/index.js'),
-      'angular2/testing': helpers.root('node_modules/@angular/core/testing.js'),
-      '@angular/testing': helpers.root('node_modules/@angular/core/testing.js'),
-      'angular2/platform/browser': helpers.root('node_modules/@angular/platform-browser/index.js'),
-      'angular2/router': helpers.root('node_modules/@angular/router-deprecated/index.js'),
-      'angular2/http': helpers.root('node_modules/@angular/http/index.js'),
-      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js'),
       'Styles': helpers.root('src/styles/'),
       'AllStyles': helpers.root('src/styles/require.scss'),
       'AbstractStyles': helpers.root('src/styles/abstracts.scss'),
@@ -107,29 +104,7 @@ module.exports = {
      */
     preLoaders: [
 
-      /*
-       * Tslint loader support for *.ts files
-       *
-       * See: https://github.com/wbuchwalter/tslint-loader
-       */
-       // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('node_modules') ] },
 
-      /*
-       * Source map loader support for *.js files
-       * Extracts SourceMaps for source files that as added as sourceMappingURL comment.
-       *
-       * See: https://github.com/webpack/source-map-loader
-       */
-      {
-        test: /\.js$/,
-        loader: 'source-map-loader',
-        exclude: [
-          // these packages have problems with their sourcemaps
-          helpers.root('node_modules/rxjs'),
-          helpers.root('node_modules/@angular2-material'),
-          helpers.root('node_modules/@angular'),
-        ]
-      }
 
     ],
 
@@ -145,17 +120,23 @@ module.exports = {
 
       /*
        * Typescript loader support for .ts and Angular 2 async routes via .async.ts
+       * Replace templateUrl and stylesUrl with require()
        *
        * See: https://github.com/s-panferov/awesome-typescript-loader
+       * See: https://github.com/TheLarkInn/angular2-template-loader
        */
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
+        loaders: [
+          'awesome-typescript-loader',
+          'angular2-template-loader',
+          '@angularclass/hmr-loader'
+        ],
         exclude: [/\.(e2e)\.ts$/]
       },
 
       // copy those assets to output
-      {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: 'file?name=[path][name].[ext]?[hash]'},
+      { test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: 'file?name=[path][name].[ext]?[hash]' },
 
       /*
        * Json loader support for *.json files.
@@ -168,17 +149,19 @@ module.exports = {
       },
 
       /*
-       * Raw loader support for *.css files
+       * to string and css loader support for *.css files
        * Returns file content as string
        *
-       * See: https://github.com/webpack/raw-loader
        */
       {
         test: /\.css$/,
-        loader: 'css'
+        loaders: ['to-string-loader', 'css-loader']
       },
 
-      { test: /\.scss$/, loader: 'css!sass' },
+      {
+        test: /\.scss$/, 
+        loaders: ['css-loader', 'sass-loader']
+      },
 
       /* Raw loader support for *.html
        * Returns file content as string
@@ -218,7 +201,7 @@ module.exports = {
      * See: https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
      * See: https://github.com/webpack/docs/wiki/optimization#minimize
      */
-    new webpack.optimize.OccurrenceOrderPlugin(true),
+    new webpack.optimize.OccurenceOrderPlugin(true),
 
     /*
      * Plugin: CommonsChunkPlugin
@@ -256,7 +239,33 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       chunksSortMode: 'dependency'
-    })
+    }),
+
+    /*
+     * Plugin: HtmlHeadConfigPlugin
+     * Description: Generate html tags based on javascript maps.
+     *
+     * If a publicPath is set in the webpack output configuration, it will be automatically added to
+     * href attributes, you can disable that by adding a "=href": false property.
+     * You can also enable it to other attribute by settings "=attName": true.
+     *
+     * The configuration supplied is map between a location (key) and an element definition object (value)
+     * The location (key) is then exported to the template under then htmlElements property in webpack configuration.
+     *
+     * Example:
+     *  Adding this plugin configuration
+     *  new HtmlElementsPlugin({
+     *    headTags: { ... }
+     *  })
+     *
+     *  Means we can use it in the template like this:
+     *  <%= webpackConfig.htmlElements.headTags %>
+     *
+     * Dependencies: HtmlWebpackPlugin
+     */
+    new HtmlElementsPlugin({
+      headTags: require('./head-config.common')
+    }),
 
   ],
 
@@ -269,6 +278,7 @@ module.exports = {
   node: {
     global: 'window',
     crypto: 'empty',
+    process: true,
     module: false,
     clearImmediate: false,
     setImmediate: false

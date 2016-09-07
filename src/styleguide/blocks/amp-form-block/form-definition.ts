@@ -91,7 +91,8 @@ export var formDef = {
                                             maxLengh : 3
                                         }
                                     }
-                                } ,
+                                }
+                                ,
                                 {
                                     name        : 'sampleArrayExperienceBlock' ,
                                     blockType   : 'SampleArrayExperienceBlock' ,
@@ -106,7 +107,7 @@ export var formDef = {
                                             maxLengh : 3
                                         }
                                     }
-                                }
+                               }
                             ]
                         }
                     ]

@@ -1,8 +1,3 @@
-import {
-    it ,
-    describe ,
-    expect
-} from '@angular/core/testing';
 import { BasicUtils } from '../../../app/util/basic-utils';
 
 describe( 'Basic Util functions test' , () => {

@@ -14,13 +14,13 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
              <div class="block-buttons">
                  <amp-button
                     *ngIf='!context?.isInSummaryState'
-                    (click)='context?.onNext()'
+                    (click)='context.onNext()'
                     [disabled]='!context?.canGoNext' class='btn btn-ok btn-ok-margin-top palm-m0'>
                     OK
                 </amp-button>
                 <amp-button
                     *ngIf='context?.isInSummaryState'
-                    (click)='context?.onEdit()'
+                    (click)='context.onEdit()'
                     class='btn btn-change btn-ok-margin-top palm-m0'>
                     Change
                 </amp-button>

@@ -1,13 +1,13 @@
 import { Component , ChangeDetectorRef , ViewChild } from '@angular/core';
-import { Control , ControlGroup , FormBuilder } from "@angular/common";
-import { FormSectionService , UIControlService } from 'amp-ddc-ui-core/ui-core';
+import { FormSectionService  } from 'amp-ddc-ui-core/ui-core';
 import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive";
 import { formDef } from '../amp-form-block/form-definition';
+import { FormGroup , FormBuilder } from "@angular/forms";
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-form-block/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    providers   : [ FormSectionService , UIControlService ] ,
+    providers   : [ FormSectionService  ] ,
     directives  : [ AmpBlockLoaderDirective ]
 } )
 
@@ -15,7 +15,7 @@ import { formDef } from '../amp-form-block/form-definition';
 export default class AmpFormBlockBasicUsage {
     private fullyDistinguishedName = [];
     private childBlocks            = formDef;
-    private form : ControlGroup;
+    private form : FormGroup;
 
     constructor ( private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );

@@ -3,10 +3,9 @@ import { FormModelService , ProgressObserverService , ScrollService } from 'amp-
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
 import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
-import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/amp-checkbox.component";
 @Component( {
     selector   : 'intro-block' ,
-    directives : [ AmpCheckboxComponent , AmpButton ] ,
+    directives : [ AmpButton ] ,
     template   : `
         <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class='intro-logo mt-60 mb-60 palm-m'></div>

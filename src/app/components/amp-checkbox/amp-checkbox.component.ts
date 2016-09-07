@@ -3,7 +3,7 @@ import {
     ElementRef ,
     EventEmitter ,
 } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { NumberWrapper } from '@angular/core/src/facade/lang';
 import { isPresent } from '@angular/core/src/facade/lang';
@@ -20,7 +20,7 @@ import { ChangeDetectorRef } from '@angular/core';
                 [attr.data-automation-id]='"checkbox_" + id'
                 [attr.id]='id'
                 [attr.name]='id'
-                [ngFormControl]='parentControl'/>
+                [formControl]='parentControl'/>
             <label (click)='onSelect($event)' [attr.for]='id'>
                 <div [class.hidden]='isInSummaryState' class="container">
                     <div class="off"></div>
@@ -37,7 +37,6 @@ import { ChangeDetectorRef } from '@angular/core';
             '[tabindex]'           : 'tabindex' ,
         } ,
         styles     : [ require( './amp-checkbox.scss' ).toString() ] ,
-        directives : [ CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
         inputs     : [
             'required' ,
             'scrollOutUnless' ,
@@ -57,7 +56,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
     private _required : boolean            = false;
     private _tabindex : number;
     private isInSummaryState : boolean     = false;
-    private parentControl : Control;
+    private parentControl : FormControl;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private id : string;
@@ -132,7 +131,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
         }
     }
 
-    private requiredValidation ( c : Control ) {
+    private requiredValidation ( c : FormControl ) {
         return c.value === true ? null : {
             checkboxrequired : true
         };

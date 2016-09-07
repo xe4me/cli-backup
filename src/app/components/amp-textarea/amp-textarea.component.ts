@@ -7,7 +7,7 @@ import {
     ViewEncapsulation ,
     ChangeDetectorRef
 } from '@angular/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { FormControl , Validators } from '@angular/forms';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES , } from '@angular2-material/input';
 import {
@@ -48,7 +48,7 @@ import { isPresent } from '@angular/core/src/facade/lang';
                 [attr.id]='_id'
                 [attr.maxlength]='valMaxLength'
                 [attr.data-automation-id]='"textarea_" + _id'
-                [ngFormControl]='parentControl'
+                [formControl]='parentControl'
                 [attr.placeholder]='placeholder'>
             </textarea>
             <span
@@ -71,14 +71,14 @@ import { isPresent } from '@angular/core/src/facade/lang';
             'isRequired' ,
             'hostClassesRemove'
         ] ,
-        directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
+        directives    : [ MD_INPUT_DIRECTIVES ] ,
         encapsulation : ViewEncapsulation.Emulated
     } )
 export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
     private _id : string;
     private label : string;
     private isInSummaryState : boolean;
-    private parentControl : Control;
+    private parentControl : FormControl;
     private placeholder : string;
     private visibility : Action;
     private onAdjustWidth : EventEmitter<any>;

@@ -2,7 +2,7 @@ import {
     Component ,
     ViewChild , EventEmitter
 } from '@angular/core';
-import { Control , Validators } from '@angular/common';
+import { FormControl, Validators } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import {
     RequiredValidator ,
@@ -33,7 +33,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
                 #selectEl
                 class='sr-only'
                 [attr.id]='id'
-                [ngFormControl]='parentControl'
+                [formControl]='parentControl'
                 (keydown)='onKeypressEvent($event)'
                 (change)='onChangeEvent()'
                 (focus)='onFocusEvent($event)'
@@ -104,7 +104,7 @@ export class AmpDropdownComponent {
     private label : string;
     private disabled : string;
     private options;
-    private parentControl : Control;
+    private parentControl : FormControl;
     private numOptions: number = 4;
     private optionsShown: boolean = false;
     private hasSelection: boolean = false;
@@ -271,9 +271,9 @@ export class AmpDropdownComponent {
             this.optionsElem.querySelectorAll('[data-option-val="' + this.selectedOption.value + '"]')[0].focus();
             this.selectElem.focus();
         }
-        setTimeout(()=>{
+        setTimeout(() => {
             this.select.emit(this.parentControl.value);
-        },0)
+        }, 0);
     }
 
     private onFocusEvent ($event) {

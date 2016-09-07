@@ -23,9 +23,7 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
         styles        : [ require( './amp-review-section.scss' ).toString() ] ,
         directives    : [ AmpButton ],
         inputs        : [
-            'title',
-            'changeCallback',
-            'changeTarget'
+            'title'
         ]
     } )
 

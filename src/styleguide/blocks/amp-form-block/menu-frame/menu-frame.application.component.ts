@@ -10,17 +10,13 @@ import {
     trigger ,
     ChangeDetectorRef
 } from '@angular/core';
-import { ControlGroup } from '@angular/common';
 import { StickyProgressHeaderBlockComponent } from '../sticky-progress-header-block/sticky-progress-header-block.component';
 import {
     FormModelService ,
     FormSectionService ,
-    UIControlService ,
     ProgressObserverService ,
     AmpHttpService
 } from 'amp-ddc-ui-core/ui-core';
-import { TimerWrapper } from '@angular/core/src/facade/async';
-import { Router , RouteParams } from '@angular/router-deprecated';
 import { AmpBlockLoaderDirective } from "../../../../app/amp-block-loader.directive";
 import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
 @Component( {
@@ -50,8 +46,6 @@ export class MenuFrameApplicationBlockComponent {
     constructor ( private _el : ElementRef ,
                   private formModelService : FormModelService ,
                   private progressObserver : ProgressObserverService ,
-                  private router : Router ,
-                  private routeParams : RouteParams ,
                   public formSectionService : FormSectionService ,
                   private _cd : ChangeDetectorRef ) {
         this.progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress() );
@@ -73,10 +67,6 @@ export class MenuFrameApplicationBlockComponent {
     }
 
     onApplicationLoaded () {
-        if ( this.routeParams.params && this.routeParams.params[ 'section' ] ) {
-            let section = parseInt( this.routeParams.params[ 'section' ] ) - 1;
-            this.displaySection( this.sections[ section ] , section );
-        }
     }
 
     preBindControls ( _formBlockDef : any ) : void {
@@ -93,7 +83,7 @@ export class MenuFrameApplicationBlockComponent {
     private introHasPassed () {
         if ( this.formModelService.getFlags( 'introIsDone' ) ) {
             this.stickyAnimatedIntoView = true;
-            TimerWrapper.setTimeout( () => {
+            setTimeout( () => {
                 this._el.nativeElement.children[ 0 ].className += ' frame--sticky';
             } , 200 );
         }

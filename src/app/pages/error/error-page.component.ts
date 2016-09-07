@@ -1,7 +1,8 @@
 import { FormPage } from '../../formPage';
 import { Component } from '@angular/core';
 import { ThemeIDDirective } from '../../directives/themeId.directive';
-import { Router , CanDeactivate , ComponentInstruction } from '@angular/router-deprecated';
+import { Router , CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 @Component( {
     selector : 'error-page' ,
     template : `
@@ -18,7 +19,7 @@ import { Router , CanDeactivate , ComponentInstruction } from '@angular/router-d
     directives: [ThemeIDDirective],
     inputs    : ['headline', 'message']
 } )
-export class ErrorPageComponent extends FormPage implements CanDeactivate {
+export class ErrorPageComponent extends FormPage implements CanDeactivate<ErrorPageComponent> {
     static CLASS_NAME = 'ErrorPageComponent';
     public content    = {
         id    : 'DefaultContentId' ,
@@ -29,7 +30,7 @@ export class ErrorPageComponent extends FormPage implements CanDeactivate {
         super();
     }
 
-    routerCanDeactivate ( next : ComponentInstruction , prev : ComponentInstruction ) : any {
+    canDeactivate( component: ErrorPageComponent, route: ActivatedRouteSnapshot, state: RouterStateSnapshot ): Observable<boolean>|Promise<boolean>|boolean {
         return false;
     }
 }

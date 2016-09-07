@@ -9,13 +9,13 @@ import {
     ChangeDetectorRef ,
     AfterViewInit , OnDestroy
 } from '@angular/core';
-import { Validators , Control , FORM_DIRECTIVES , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/common';
+import { Validators , FormControl , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { isPresent } from '@angular/core/src/facade/lang';
 const RADIO_VALUE_ACCESSOR = new Provider(
     NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
-    selector  : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
+    selector  : 'input[type=radio][formControl],input[type=radio][ngModel]' ,
     host      : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
     providers : [ RADIO_VALUE_ACCESSOR ]
 } )
@@ -50,8 +50,8 @@ const RADIO_VALUE_ACCESSOR = new Provider(
                     type='radio'
                     [attr.id]='button.id'
                     [attr.name]='groupName'
-                    [ngFormControl]='parentControl'
-                    [value]='button.value'
+                    [formControl]='parentControl'
+                    [attr.value]='button.value'
                     [checked]='parentControl.value===button.value'
                />
               <label
@@ -83,14 +83,14 @@ const RADIO_VALUE_ACCESSOR = new Provider(
         '[attr.aria-disabled]' : 'disabled'
     } ,
     styles     : [ require( './amp-radio-button-group.scss' ).toString() ] ,
-    directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
+    directives : [ RadioControlValueAccessors ] ,
     outputs    : [ 'select' ]
 } )
 export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
     private _selected : string     = null;
     private _disabled : boolean    = false;
     private _required : boolean    = false;
-    private parentControl : Control;
+    private parentControl : FormControl;
     private select                 = new EventEmitter<any>();
     private buttons;
     private scrollOutUnless : any;

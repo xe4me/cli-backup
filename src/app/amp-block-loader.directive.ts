@@ -10,16 +10,15 @@ import {
     OnChanges
 } from '@angular/core';
 import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
-import { ControlGroup } from '@angular/common';
-import { arrayJoinByDash } from './util/functions.utils';
+import { FormGroup } from "@angular/forms";
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 @Directive( { selector : '[amp-block-loader]' } )
 export class AmpBlockLoaderDirective implements OnChanges {
     @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
-    //@Input( 'form' ) form : ControlGroup    = new ControlGroup( {} );
-    @Input( 'form' ) form : ControlGroup;
+    //@Input( 'form' ) form : FormGroup= new FormGroup( {} );
+    @Input( 'form' ) form : FormGroup;
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
     private _hasLoadedOnce                  = false;
@@ -133,8 +132,8 @@ export class AmpBlockLoaderDirective implements OnChanges {
         _componentRef.instance.__fdn          = _fdn;
         _blockDef.__fdn                       = _fdn;
         if ( _blockDef.name ) {
-            _componentRef.instance.__controlGroup = new ControlGroup( {} );
-            let _form = _componentRef.instance.__form;
+            _componentRef.instance.__controlGroup = new FormGroup( {} );
+            let _form                             = _componentRef.instance.__form;
             for ( let i = 0 ; i < this.fdn.length ; i ++ ) {
                 if ( _form.controls[ this.fdn[ i ] ] ) {
                     _form = _form.controls[ this.fdn[ i ] ];

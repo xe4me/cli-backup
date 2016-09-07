@@ -1,43 +1,12 @@
 import { LeftNavigationComponent } from './styleguide-components';
-import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ViewEncapsulation , Component } from '@angular/core';
-import {
-    FormModelService ,
-    ScrollService ,
-    ProgressObserverService ,
-    AmpHttpService ,
-} from 'amp-ddc-ui-core/ui-core';
-import {
-    ROUTER_DIRECTIVES ,
-    RouteConfig ,
-    Router
-} from '@angular/router-deprecated';
-import { IndexPage } from './routes/index';
-import { ComponentPage } from './routes/component';
-import { ComponentsService , IComponentMeta , IComponentGroupMeta } from './services/components';
-import { MdIconRegistry } from '@angular2-material/icon/icon-registry';
-import { NavigationService } from './services/navigation';
+
+import { ComponentsService, IComponentMeta, IComponentGroupMeta } from './services/components';
 import { TableContentsService } from './services/content-table-service';
-import { ThemeService } from './services/theme';
-@RouteConfig( [
-    { path : '/' , name : 'Index' , component : IndexPage , useAsDefault : true } ,
-    { path : '/components/:id' , name : 'Component' , component : ComponentPage }
-] )
+
 @Component( {
     selector      : 'styleguide-app' ,
     styles        : [ require( './app.scss' ).toString() ] ,
-    providers     : [
-        FormModelService ,
-        TableContentsService ,
-        ScrollService ,
-        ProgressObserverService ,
-        AmpHttpService ,
-        NavigationService ,
-        ComponentsService ,
-        BrowserDomAdapter ,
-        ThemeService ,
-        MdIconRegistry
-    ] ,
     template      : `
         <button (click)="hideNavigation=!hideNavigation">Slide</button>
         <div class="styleguide-app">
@@ -52,8 +21,7 @@ import { ThemeService } from './services/theme';
                 <router-outlet ></router-outlet>
             </div>     
         </div>
-    ` ,
-    directives    : [ LeftNavigationComponent , ROUTER_DIRECTIVES ] ,
+    `,
     encapsulation : ViewEncapsulation.None
 } )
 export class StyleGuideApp {
@@ -64,9 +32,7 @@ export class StyleGuideApp {
     private contentTable;
     private hideNavigation                           = true;
 
-    constructor ( public navigation : NavigationService ,
-                  public router : Router ,
-                  public tableContentsService : TableContentsService ,
+    constructor ( public tableContentsService : TableContentsService ,
                   private _componentsService : ComponentsService ) {
         this._componentsService.getComponents()
             .then( ( comps ) => {

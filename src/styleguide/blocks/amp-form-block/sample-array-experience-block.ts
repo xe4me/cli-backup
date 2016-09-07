@@ -4,14 +4,14 @@ import { ThemeService } from "../../services/theme";
 import { FormBlock } from "../../../app/form-block";
 import {
     Action ,
-    UIControlService ,
     FormModelService ,
     ProgressObserverService ,
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.component";
 import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-row.component";
-import { ControlArray , ControlGroup } from "@angular/common";
+import { FormArray , FormGroup } from "@angular/forms";
+
 @Component( {
     selector   : 'sample-array-experience-block' ,
     template   : `
@@ -39,7 +39,7 @@ import { ControlArray , ControlGroup } from "@angular/common";
     directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ]
 } )
 export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
-    private controlGroupArray : ControlArray = new ControlArray( [] );
+    private controlGroupArray : FormArray = new FormArray( [] );
 
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
@@ -61,7 +61,7 @@ export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
     }
 
     private addMore () {
-        let controlGroup = new ControlGroup( {} );
+        let controlGroup = new FormGroup( {} );
         this.controlGroupArray.push( controlGroup );
     }
 

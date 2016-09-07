@@ -1,16 +1,11 @@
-import {
-    it ,
-    inject ,
-    injectAsync ,
-    describe ,
-    beforeEachProviders
-} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component , provide } from '@angular/core';
 import { BaseRequestOptions , Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
+import { FormControl } from '@angular/forms';
 // Load the implementations that should be tested
 import { AMPGoogleAddressComponent } from '../../../app/components/amp-google-address/amp-google-address.component';
+
 describe( 'amp-google-address getAddressComponent' , () => {
     let google_address_result = {
         'address_components' : [

@@ -37,27 +37,18 @@ module.exports = {
    */
   resolve: {
 
-    /*
+    /**
      * An array of extensions that should be used to resolve modules.
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
      */
     extensions: ['', '.ts', '.js'],
 
-    // Make sure root is src
+    /**
+     * Make sure root is src
+     */
     root: helpers.root('src'),
-
-    // remove other default values
-    modulesDirectories: ['node_modules'],
-
     alias: {
-      'angular2/core': helpers.root('node_modules/@angular/core/index.js'),
-      'angular2/testing': helpers.root('node_modules/@angular/core/testing.js'),
-      '@angular/testing': helpers.root('node_modules/@angular/core/testing.js'),
-      'angular2/platform/browser': helpers.root('node_modules/@angular/platform-browser/index.js'),
-      'angular2/router': helpers.root('node_modules/@angular/router-deprecated/index.js'),
-      'angular2/http': helpers.root('node_modules/@angular/http/index.js'),
-      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js'),
       'amp-ddc-components': helpers.root('./')
     },
 
@@ -132,7 +123,8 @@ module.exports = {
             removeComments: true
 
           }
-        }
+        },
+        exclude: [/\.e2e\.ts$/]
       },
 
       /**
@@ -150,7 +142,7 @@ module.exports = {
        *
        * See: https://github.com/webpack/raw-loader
        */
-      { test: /\.css$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
+      { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'], exclude: [helpers.root('src/index.html')] },
       { test: /\.scss$/, loader: 'css!sass' },
 
       /**

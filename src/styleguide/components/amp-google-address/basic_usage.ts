@@ -1,16 +1,16 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { AMPGoogleAddressComponent } from '../../../app/components/amp-google-address/amp-google-address.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-google-address-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-google-address/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ FORM_DIRECTIVES , AMPGoogleAddressComponent , CORE_DIRECTIVES ]
+    styles      : [ require( './basic_usage.scss' ).toString() ],
+    directives  : [ AMPGoogleAddressComponent ]
 } )
 
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
-    addressControl : Control = new Control();
+    addressControl : FormControl = new FormControl();
 
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
