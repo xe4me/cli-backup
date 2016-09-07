@@ -1,4 +1,3 @@
-import {PromiseWrapper} from '@angular/core/src/facade/async';
 import {DomAdapter} from '@angular/platform-browser/src/dom/dom_adapter';
 import {ElementRef} from '@angular/core';
 
@@ -28,7 +27,8 @@ export class Ruler {
 
     // even if getBoundingClientRect is synchronous we use async API in preparation for further
     // changes
-    return PromiseWrapper.resolve(
-        new Rectangle(clntRect.left, clntRect.top, clntRect.width, clntRect.height));
+    return new Promise<Rectangle>(() => {
+        new Rectangle(clntRect.left, clntRect.top, clntRect.width, clntRect.height);
+    });
   }
 }

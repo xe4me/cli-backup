@@ -1,5 +1,5 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { MdInputComponent } from '../../../app/components/my-md-input/my-md-input.component';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { ThemeService } from '../../services/theme';
@@ -7,14 +7,14 @@ import { ThemeService } from '../../services/theme';
     {
         selector    : 'my-md-input-basic-usage' ,
         templateUrl : 'src/styleguide/components/my-md-input/basic_usage.html' ,
-        styles      : [ require( './basic_usage.scss' ).toString() ] ,
-        directives  : [ FORM_DIRECTIVES , MdInputComponent , CORE_DIRECTIVES ]
+        styles      : [ require( './basic_usage.scss' ).toString() ],
+        directives  : [ MdInputComponent ]
     } )
 export default class MyMdInputBasicUsage implements AfterViewInit {
     toggleFlag : boolean;
-    firstnameControl : Control = new Control();
-    dateControl : Control = new Control();
-    surnameControl : Control   = new Control();
+    dateControl : FormControl = new FormControl();
+    firstnameControl : FormControl = new FormControl();
+    surnameControl : FormControl   = new FormControl();
     visibilityRule : Action;
 
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {

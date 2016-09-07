@@ -278,9 +278,9 @@
                 this file for now. For example
 
                 ```typescript
-                declare module "my-module" {
+                declare module "my-module" {{ '{' }}
                 export function doesSomething(value: string): string;
-                }
+                {{ '}' }}
                 ```
 
 
@@ -328,7 +328,7 @@
                 permission for
                 webpack to build files to `./dist/`
                 * How to use `sass` for css?
-                * `loaders: ['raw-loader','sass-loader']` and `@Component({ styles: [ require('./filename.scss') ] })`
+                * `loaders: ['raw-loader','sass-loader']` and `@Component({{ '{' }} styles: [ require('./filename.scss') ] {{ '}' }})`
                 see issue
                 [#136](https://github.com/AngularClass/angular2-webpack-starter/issues/136)
                 * How do I test a Service?

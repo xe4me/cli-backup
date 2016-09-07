@@ -2,11 +2,10 @@ import { Component , ChangeDetectorRef , ElementRef } from "@angular/core";
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
-import { AmpPrimaryButton } from "../../../../app/components/amp-primary-button/amp-primary-button.component";
-import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/amp-checkbox.component";
+import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
 @Component( {
     selector   : 'intro-block' ,
-    directives : [ AmpCheckboxComponent , AmpPrimaryButton ] ,
+    directives : [ AmpButton ] ,
     template   : `
         <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class='intro-logo mt-60 mb-60 palm-m'></div>
@@ -18,12 +17,12 @@ import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/am
                     <p class='mt-50'>
                         Weigh up the pros and cons when considering your personal circumstances and if you decide your employer’s AMP super plan is right for you, simply provide the information below we’ll work with your employer to set up your AMP account.
                     </p>
-                    <amp-primary-button
+                    <amp-button
                         class='btn btn-ok'
                         [attr.theme]="themeService.theme.attr"
                         (click)='onNext()'>
                         OK
-                    </amp-primary-button>
+                    </amp-button>
                 </div>
             </div>
         </div>

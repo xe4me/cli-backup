@@ -7,7 +7,7 @@ export interface SearchState {
     loading : boolean;
     query : string;
 }
-const initialState : Map<SearchState> = {
+const initialState : Map<any , any> = {
     "Application" : {
         "introBlockComponent"     : {} ,
         "InsuranceDetailsSection" : {
@@ -22,8 +22,8 @@ export default function( state = initialState , action : Action ) : SearchState 
         case ModelActions.UPDATE_MODEL: {
             const query  = action.payload.query;
             const fdn    = action.payload.fdn;
-            let newState = JSON.parse(JSON.stringify(state)) ;
-            let path = newState;
+            let newState = JSON.parse( JSON.stringify( state ) );
+            let path     = newState;
             for ( let i = 0 ; i < (fdn.length - 1) ; i ++ ) {
                 path = path[ fdn[ i ] ];
             }

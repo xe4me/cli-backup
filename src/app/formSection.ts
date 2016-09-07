@@ -1,20 +1,19 @@
 import {
-    Injectable,
-    ViewContainerRef } from '@angular/core';
+    Injectable ,
+    ViewContainerRef
+} from '@angular/core';
 import {
-    UIControlService,
-    ProgressObserverService } from 'amp-ddc-ui-core/ui-core';
+    ProgressObserverService
+} from 'amp-ddc-ui-core/ui-core';
 import { FormBlock } from './blocks/formBlock';
-
 @Injectable()
 export abstract class FormSection extends FormBlock {
     CLASS_NAME : string;    // Populated by the implementation class
     public label : string;   // The displayed text that represents this Section, mostly used by the NavigationComponent.
     // ViewContainerRef is mandatory because for DynamicComponentLoader.loadNextToLocation the api requires this information
     constructor ( public _viewContainerRef : ViewContainerRef ,
-                  controlService? : UIControlService ,
                   progressObserver? : ProgressObserverService ) {
-        super( controlService , progressObserver );
+        super( progressObserver );
     }
 
     // Noop but can be overridden by child class

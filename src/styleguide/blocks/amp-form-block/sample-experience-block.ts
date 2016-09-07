@@ -4,7 +4,6 @@ import { ThemeService } from "../../services/theme";
 import { FormBlock } from "../../../app/form-block";
 import {
     Action ,
-    UIControlService ,
     FormModelService ,
     ProgressObserverService ,
     ScrollService
@@ -14,8 +13,8 @@ import { AmpRInputComponent } from "../../../app/r-component/amp-r-input/amp-r-i
 @Component( {
     selector   : 'sample-experience-block' ,
     template   : `
-        <amp-form-block [context]="context()">
-                
+        <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
+            <amp-form-row [attr.theme]="themeService.theme.attr">
                 <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 form-row-label'>Name</label>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
@@ -23,7 +22,7 @@ import { AmpRInputComponent } from "../../../app/r-component/amp-r-input/amp-r-i
                     </amp-r-input>
                     <!--<amp-error [controlGroup]="context?.__controlGroup" [controlId]="'firstname'"></amp-error>-->
                 </div>
-                   
+             </amp-form-row> 
         </amp-form-block>
     ` ,
     directives : [ AmpFormBlockComponent , AmpRInputComponent , AmpFormRowComponent ]

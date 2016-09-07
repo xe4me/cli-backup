@@ -5,7 +5,7 @@ import { Component , Output , OnInit , Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Store , provideStore } from '@ngrx/store';
-import { ModelActions } from '../../../styleguide/blocks/amp-form-block/actions/model.action'
+import { ModelActions , Payload } from '../../../styleguide/blocks/amp-form-block/actions/model.action'
 import { AmpInputComponent } from "../../components/amp-input/amp-input.component";
 @Component( {
     selector   : 'amp-r-input' ,
@@ -41,10 +41,10 @@ export class AmpRInputComponent implements OnInit {
     }
 
     updateModel ( query : string ) {
-        let payload = {
+        let payload : Payload = {
             query : query ,
             fdn   : this.fdn
-        }
+        };
         this.store.dispatch( this._modelActions.updateModel( payload ) );
     }
 }

@@ -1,5 +1,5 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core'
 import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { ThemeService } from '../../services/theme';
@@ -7,16 +7,12 @@ import { ThemeService } from '../../services/theme';
     templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [
-        FORM_DIRECTIVES ,
-        AmpDropdownComponent ,
-        CORE_DIRECTIVES
-    ] ,
+    directives  : [ AmpDropdownComponent ] ,
     selector    : 'amp-dropdown-basic-usage'
 } )
 
 export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
-    control : Control = new Control();
+    control : FormControl = new FormControl();
     isInSummaryState  = false;
     titleOptions      = [
         { value : 'mr' , label : 'Mr' } ,

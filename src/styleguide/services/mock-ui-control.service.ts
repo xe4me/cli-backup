@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Control, ControlArray, ControlGroup, FormBuilder } from '@angular/common';
+import { FormControl, FormArray, FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Injectable()
@@ -7,7 +7,7 @@ export class MockUIControlService {
 
     public logging: boolean = false;
 
-    private model: ControlGroup;
+    private model: FormGroup;
 
     constructor(private builder: FormBuilder) {
         this.model = builder.group({});
@@ -18,13 +18,13 @@ export class MockUIControlService {
 */
     public createControl(path : string[],
                          name: string,
-                         defaultValue?: string | number): Control {
+                         defaultValue?: string | number): FormControl {
 
         let ctrlgroup = this.createControlGroup(path);
         if (this.logging) { console.info('createControl:', path, name, defaultValue, ctrlgroup); }
         let newControl = null;
         if (!ctrlgroup.contains(name)) {
-            newControl = new Control(defaultValue);
+            newControl = new FormControl(defaultValue);
             ctrlgroup.addControl(name, newControl);
         } else {
             if (this.logging) { console.info('Control already exists:', name); }
@@ -33,7 +33,7 @@ export class MockUIControlService {
         return newControl;
     }
 
-    public getControl(path : string[], name: string ): Control {
+    public getControl(path : string[], name: string ): FormControl {
 
       return null;
     }
@@ -42,13 +42,13 @@ export class MockUIControlService {
     Control Group
 */
 
-    public getControlGroup(path? : string[]): ControlGroup {
+    public getControlGroup(path? : string[]): FormGroup {
         let root = this.model;
         if (path) {
             for (let i in path) {
-                const group = path[i]
-                if ( root.contains(group) ){
-                    root = <ControlGroup>root.controls[group];
+                const group = path[i];
+                if ( root.contains(group) ) {
+                    root = <FormGroup>root.controls[group];
                 } else {
                     if (this.logging) { console.info('ControlGroup doesn\'t exists:', group); }
                     return null;
@@ -58,15 +58,15 @@ export class MockUIControlService {
         return root;
     }
 
-    public createControlGroup(path : string[]): ControlGroup {
+    public createControlGroup(path : string[]): FormGroup {
         let root = this.model;
         for (let i in path) {
-            const group = path[i]
+            const group = path[i];
             let newRoot = null;
             if ( root.contains(group) ) {
                 newRoot = root.controls[group];
             } else {
-                newRoot = new ControlGroup({});
+                newRoot = new FormGroup({});
                 root.addControl(group, newRoot);
             }
             root = newRoot;
@@ -75,29 +75,12 @@ export class MockUIControlService {
     }
 
 
-/*
-    Control Array
-*/
-    private createControlGroupsFromArray(array?) {
-        let ret = []
-        if (array) {
-            for ( let i in array ) {
-                const obj = array[i];
-                let newGroup = new ControlGroup({});
-                for ( let key in obj ){
-                    newGroup.addControl(key, new Control(obj[key]));
-                }
-                ret.push(newGroup)
-            }
-        }
-        return ret;
-    }
 
-    public createControlArray(path: string[], name: string, defaultValues?): ControlArray {
+    public createControlArray(path: string[], name: string, defaultValues?): FormArray {
         let ctrlgroup = this.createControlGroup(path);
         let newControlArray = null;
         if (!ctrlgroup.contains(name)) {
-            newControlArray = new ControlArray( this.createControlGroupsFromArray(defaultValues) );
+            newControlArray = new FormArray( this.createControlGroupsFromArray(defaultValues) );
             ctrlgroup.addControl(name, newControlArray);
         } else {
             if (this.logging) { console.info('ControlArray already exists:', name); }
@@ -106,10 +89,10 @@ export class MockUIControlService {
         return newControlArray;
     }
 
-    public getControlArray(path: string[], name: string): ControlArray {
+    public getControlArray(path: string[], name: string): FormArray {
         let ctrlgroup = this.getControlGroup(path);
         if (ctrlgroup && ctrlgroup.contains(name)) {
-            return <ControlArray>ctrlgroup.controls[name];
+            return <FormArray>ctrlgroup.controls[name];
         }
         if (this.logging) { console.info('Control doesn\'t exists:', name); }
         return null;
@@ -130,7 +113,7 @@ export class MockUIControlService {
             path.splice(pathIndex);
             path[pathIndex]  = key;
             let currentModel = newModel[key];
-            const group      = path.slice(0,path.length-1);
+            const group      = path.slice(0, path.length - 1);
 
             if (currentModel instanceof Array) {
                 this.createControlArray(group, key, currentModel);
@@ -142,4 +125,23 @@ export class MockUIControlService {
         }
 
     }
+
+    /*
+    Control Array
+    */
+    private createControlGroupsFromArray(array?) {
+        let ret = [];
+        if (array) {
+            for ( let i in array ) {
+                const obj = array[i];
+                let newGroup = new FormGroup({});
+                for ( let key in obj ) {
+                    newGroup.addControl(key, new FormControl(obj[key]));
+                }
+                ret.push(newGroup);
+            }
+        }
+        return ret;
+    }
+
 }

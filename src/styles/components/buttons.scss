@@ -1,7 +1,7 @@
-$buttons-transition-time: $ddc-buttons-and-icons-transition-time;
+//$buttons-transition-time: $ddc-buttons-and-icons-transition-time;
 
 // btn-ok
-$btn-ok-color: $amp-colour-white;
+/*$btn-ok-color: $amp-colour-white;
 $btn-ok-border-color: $amp-colour-primary;
 $btn-ok-hover-color: $amp-colour-white;
 $btn-ok-hover-background-color: $amp-colour-secondary-darkest;
@@ -10,8 +10,8 @@ $btn-ok-disabled-text-color: $disabled-text-color;
 $btn-ok-disabled-background-color: $disabled-background-color;
 $btn-ok-background-color: $amp-colour-secondary;
 
-$btn-ok-active-background-color: $amp-colour-secondary;
-
+$btn-ok-active-background-color: $amp-colour-secondary;*/
+/*
 // btn-change
 $btn-change-hover-background-color: $amp-colour-secondary-darkest;
 $btn-change-active-background-color: $amp-colour-primary;
@@ -29,8 +29,8 @@ $btn-submit-background-color: $amp-colour-secondary;
 $btn-submit-hover-background-color: $amp-colour-secondary-darkest;
 $btn-submit-active-background-color: $amp-colour-primary;
 
-$btn-review-default-width: 238px;
-@include media-query(palm) {
+$btn-review-default-width: 238px;*/
+/*@include media-query(palm) {
   .btn {
     line-height: 35px !important;
     font-size: $font-size-tin !important;;
@@ -39,21 +39,21 @@ $btn-review-default-width: 238px;
 }
 
 .btn {
-  line-height: 42px;
-  &.btn-full {
-    width: 100% !important;
-    display: block;
-  }
-  &.btn-review {
-    width: $btn-review-default-width;
-  }
-  &[disabled] {
-    background-color: $btn-ok-disabled-background-color !important;
-    border-color: #FFFFFF;
-    cursor: default;
-    color: $btn-ok-disabled-text-color;
-  }
-}
+    line-height: 42px;
+    &.btn-full {
+        width: 100% !important;
+        display: block;
+    }
+    &.btn-review {
+        width: $btn-review-default-width;
+    }
+    &[disabled] {
+        background-color: $btn-ok-disabled-background-color !important;
+        border-color: #FFFFFF;
+        cursor: default;
+        color: $btn-ok-disabled-text-color;
+    }
+}*/
 /*.#{$namespace}btn-ok,
  %#{$namespace}btn-ok {
      @extend %#{$namespace}font-size-small;
@@ -81,7 +81,7 @@ $btn-review-default-width: 238px;
 
      }
  }*/
-
+/*
 .#{$namespace}btn-change,
 %#{$namespace}btn-change {
   @extend %#{$namespace}font-size-small;
@@ -106,7 +106,8 @@ $btn-review-default-width: 238px;
     }
   }
 
-}
+}*/
+/*
 
 .#{$namespace}btn-submit,
 %#{$namespace}btn-submit {
@@ -243,3 +244,4 @@ $btn-review-default-width: 238px;
   }
 
 }
+*/

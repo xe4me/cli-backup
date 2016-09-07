@@ -8,7 +8,6 @@ import {
     EventEmitter ,
     Renderer , OnInit , ChangeDetectionStrategy
 } from '@angular/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES , ControlGroup } from '@angular/common';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { isPresent } from '@angular/core/src/facade/lang';
@@ -22,10 +21,11 @@ import {
     PatterValidator ,
     MaxFloatValidator
 } from '../../util/validations';
+import { FormGroup , FormControl , Validators } from "@angular/forms";
 @Component(
     {
-        selector      : 'amp-input' ,
-        template      : `
+        selector        : 'amp-input' ,
+        template        : `
             <md-input
                 #myMdInput
                 (focus)='onFocused($event)'
@@ -39,7 +39,7 @@ import {
                 [id]='_id'
                 [tabIndex]='isActive?tabindex:-1'
                 [maxLength]='valMaxLength'
-                [ngFormControl]='control'
+                [formControl]='control'
                 [placeholder]='label'>
                   <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
             </md-input>
@@ -49,8 +49,8 @@ import {
                 [innerHTML]='myMdInput.value'>
             </span>
           ` ,
-        styles        : [ require( './amp-input.scss' ).toString() ] ,
-        inputs        : [
+        styles          : [ require( './amp-input.scss' ).toString() ] ,
+        inputs          : [
             'id' ,
             'defaultValue' ,
             'errors' ,
@@ -84,19 +84,19 @@ import {
             'iconRight' ,
             'labelHidden'
         ] ,
-        directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
-        encapsulation : ViewEncapsulation.None ,
-        outputs       : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
-        host          : {
+        directives      : [ MD_INPUT_DIRECTIVES ] ,
+        encapsulation   : ViewEncapsulation.None ,
+        outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
+        host            : {
             '[class.md-input-has-value]' : 'control.value' ,
             '[class.summary]'            : 'isInSummaryState' ,
             '[class.noPadding]'          : 'noPadding'
-        },
-        changeDetection:ChangeDetectionStrategy.OnPush
+        } ,
+        changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
-    public control : Control = new Control();
-    public errors            = {};
+    public control : FormControl = new FormControl();
+    public errors                = {};
 
     ngOnInit () : any {
         this.control[ '_ampErrors' ] = {};
@@ -109,7 +109,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         return undefined;
     }
 
-    public controlGroup : ControlGroup;
+    public controlGroup : FormGroup;
     private inputWidth : number;
     private _id : string;
     private _valMinLength : number;

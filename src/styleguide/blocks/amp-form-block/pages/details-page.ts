@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
-import { UIControlService } from 'amp-ddc-ui-core/ui-core';
 import { AmpBlockLoaderDirective } from "../../../../app/amp-block-loader.directive";
 @Component( {
     selector   : 'details-page' ,
@@ -14,8 +12,4 @@ import { AmpBlockLoaderDirective } from "../../../../app/amp-block-loader.direct
 } )
 export class DetailsPage {
     static CLASS_NAME = 'DetailsPage';
-
-    constructor ( public _router : Router ,
-                  public uiControlService : UIControlService ) {
-    }
 }

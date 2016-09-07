@@ -6,8 +6,17 @@
   padding: 20px 0;
 }
 
-section {
-  font-size: 16px;
-  font-weight: 400;
-  padding: 20px;
+.highlight-override {
+    text-align: left;
+    display: flex;
+    > .strong {
+        white-space: pre-line;
+    }
 }
+.pre {
+    display: inline;
+}
+.unordered-list {
+    list-style-type: none;
+}
+

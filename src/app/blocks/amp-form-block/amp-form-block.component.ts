@@ -1,4 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
+import { ThemeService } from "../../../styleguide/services/theme";
 import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../../";
 @Component( {
     selector   : 'amp-form-block' ,
@@ -6,20 +7,22 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
         <div class="FormBlocK" id='{{ context?.selectorName }}'>
              <amp-overlay [active]='!context?.isCurrentBlockActive()'></amp-overlay>
             <h2 class="heading heading-intro">{{ context?.__custom.blockTitle}}</h2>
-             <ng-content></ng-content>    
+             <ng-content></ng-content>
              <div *ngIf="!noError">
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
              </div>
              <div class="block-buttons">
                  <amp-button
                     *ngIf='!context?.isInSummaryState'
-                    (click)='context?.onNext()'
-                    [disabled]='!context?.canGoNext' class='btn btn-ok btn-ok-margin-top palm-m0'>
+                    [attr.theme]="theme"
+                    (click)='context.onNext()'
+                    [disabled]='!context?.canGoNext' class='btn btn-ok'>
                     OK
                 </amp-button>
                 <amp-button
                     *ngIf='context?.isInSummaryState'
-                    (click)='context?.onEdit()'
+                    [attr.theme]="theme"
+                    (click)='context.onEdit()'
                     class='btn btn-change btn-ok-margin-top palm-m0'>
                     Change
                 </amp-button>
@@ -33,6 +36,7 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
     @Input( 'noError' ) noError;
+    @Input( 'theme' ) theme;
 
     ngOnInit () : any {
         if ( ! this.context ) {

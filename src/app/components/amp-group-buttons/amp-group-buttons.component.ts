@@ -17,6 +17,7 @@ import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import {
     RequiredValidator
 } from '../../util/validations';
+import { FormGroup , FormControl } from "@angular/forms";
 const RADIO_VALUE_ACCESSOR = new Provider( NG_VALUE_ACCESSOR ,
     { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
 @Directive( {
@@ -60,7 +61,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 type='radio'
                                 [attr.id]='button.id + index'
                                 [attr.name]='groupName + index'
-                                [ngFormControl]='control'
+                                [formControl]='control'
                                 [value]='button.value'
                                 [checked]='control.value===button.value'
                                 />
@@ -74,6 +75,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
     inputs     : [
         'errors' ,
         'defaultValue' ,
+        'isInSummaryState' ,
         'keepControlOnDestroy' ,
         'required' ,
         'scrollOutUnless' ,
@@ -89,7 +91,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
     outputs    : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent implements OnInit {
-    private controlGroup : ControlGroup;
+    private controlGroup : FormGroup;
     private _disabled : boolean  = false;
     private _required : boolean  = false;
     private buttons;
@@ -106,7 +108,7 @@ export class AmpGroupButtonsComponent implements OnInit {
                   private scrollService : ScrollService ) {
     }
 
-    public control : Control = new Control();
+    public control : FormControl = new FormControl();
     public errors            = {};
 
     ngOnInit () : any {

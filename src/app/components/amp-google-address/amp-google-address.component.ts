@@ -5,7 +5,7 @@ import {
     AfterViewInit ,
     ChangeDetectorRef
 } from '@angular/core';
-import { Control } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { Action } from 'amp-ddc-ui-core/ui-core';
 import { MdInputComponent } from '../my-md-input/my-md-input.component';
 declare var google : any;
@@ -14,7 +14,6 @@ declare var google : any;
     template      : `
     <my-md-input
         class='3/5'
-        [name]='id'
         [id]='id'
         [label]='label'
         [labelHidden]='labelHidden'
@@ -48,7 +47,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     public addrPlace : any       = {};
     private id : string;
     private label : string;
-    private parentControl : Control;
+    private parentControl : FormControl;
     private placeholder : string = '';
     private visibility : Action;
     private model : any;

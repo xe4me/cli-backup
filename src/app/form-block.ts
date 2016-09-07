@@ -1,21 +1,12 @@
-import { Control , ControlArray , ControlGroup } from '@angular/common';
-import { forwardRef , provide , Provider , ElementRef } from '@angular/core';
+import { forwardRef , provide , ElementRef } from '@angular/core';
 import {
     Action ,
-    UIControlService ,
     FormModelService ,
     ProgressObserverService ,
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
-import { TimerWrapper } from '@angular/core/src/facade/async';
-import { arrayJoinByDash } from "./util/functions.utils";
-export class NamedControl {
-    constructor ( public name : string , public control : any ) {
-    }
-}
-export const provideParent =
-                 ( component : any , parentType? : any ) =>
-                     provide( parentType || FormBlock , { useExisting : forwardRef( () => component ) } );
+import { arrayJoinByDash } from './util/functions.utils';
+import { FormGroup } from "@angular/forms";
 export abstract class FormBlock {
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
@@ -25,8 +16,8 @@ export abstract class FormBlock {
     protected doneFlag : string              = 'defaultIsDone';
     protected noScroll                       = false;
     protected __fdn : string[]               = null;
-    protected __form : ControlGroup;
-    protected __controlGroup : ControlGroup;
+    protected __form : FormGroup;
+    protected __controlGroup : FormGroup;
 
     abstract context () : any;
 
@@ -34,7 +25,7 @@ export abstract class FormBlock {
                   private elementRef : ElementRef ,
                   private progressObserver : ProgressObserverService ,
                   private scrollService : ScrollService ) {
-        setTimeout( ()=> {
+        setTimeout( () => {
             this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
             this.visibleFlag  = this.selectorName + 'IsVisible';
             this.doneFlag     = this.selectorName + 'IsDone';
@@ -50,12 +41,12 @@ export abstract class FormBlock {
         /*
          * TODO : This should be a directive or something else.
          * */
-        setTimeout( ()=> {
+        setTimeout( () => {
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
             if ( inputs && inputs.length > 0 ) {
                 inputs[ 0 ].focus();
             }
-        } , 100 )
+        } , 100 );
     }
 
     onEdit () {
@@ -66,7 +57,7 @@ export abstract class FormBlock {
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
             this.progressObserver.onProgress();
-            TimerWrapper.setTimeout( () => {
+            setTimeout( () => {
                 this.isInSummaryState = true;
             } , 1200 );
         }
@@ -81,6 +72,7 @@ export abstract class FormBlock {
             return;
         }
         this.scrollService.$scrolled.subscribe( ( changes ) => {
+            console.log( 'changes' , changes );
             if ( changes === this.selectorName ) {
                 this.isInSummaryState = false;
                 this.isActive         = true;
@@ -92,7 +84,7 @@ export abstract class FormBlock {
     // protected next ( nextBlock ) {
     //     // console.log(nextBlock);
     //     this.hasClickedOnOkButton = true;
-    //     if ( this.controlService.getControlGroup( this._fdn ).valid ) {
+    //     if ( this.controlService.getFormGroup( this._fdn ).valid ) {
     //         this.isInSummaryState = true;
     //         this.progressObserver.onProgress();
     //         TimerWrapper.setTimeout( () => {
