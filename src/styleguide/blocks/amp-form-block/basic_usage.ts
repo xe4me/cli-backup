@@ -3,12 +3,14 @@ import { Control , ControlGroup , FormBuilder } from "@angular/common";
 import { FormSectionService , UIControlService } from 'amp-ddc-ui-core/ui-core';
 import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive";
 import { formDef } from '../amp-form-block/form-definition';
+import { Store , provideStore } from '@ngrx/store';
+import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-form-block/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
     providers   : [ FormSectionService , UIControlService ] ,
-    directives  : [ AmpBlockLoaderDirective ]
+    directives  : [ AmpBlockLoaderDirective , StoreLogMonitorComponent ]
 } )
 
 
@@ -17,9 +19,14 @@ export default class AmpFormBlockBasicUsage {
     private childBlocks            = formDef;
     private form : ControlGroup;
 
-    constructor ( private _builder : FormBuilder ) {
-        this.form = this._builder.group( {} );
+    constructor ( public store : Store<any> , private _builder : FormBuilder ) {
+        this.form  = this._builder.group( {} );
+        //this.model = this.store.select();
         //this.createMassiveBlocks();
+    }
+
+    updateModel () {
+        this.store.dispatch()
     }
 
     private createMassiveBlocks () {
@@ -91,4 +98,3 @@ export default class AmpFormBlockBasicUsage {
         }
     }
 }
-/**/

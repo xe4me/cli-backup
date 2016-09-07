@@ -7,8 +7,7 @@ import * as browser from '@angular/platform-browser';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { FORM_PROVIDERS , LocationStrategy , HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-
+import { disableDeprecatedForms , provideForms } from '@angular/forms';
 // Add all operators to Observable
 import 'rxjs/Rx';
 /*
@@ -27,6 +26,11 @@ if ( 'production' === process.env.ENV ) {
  * our top level component that holds all of our components
  */
 import { StyleGuideApp } from './styleguide/app';
+import { provideStore } from "@ngrx/store";
+import reducer from './styleguide/blocks/amp-form-block/reducers/search';
+import actions from './styleguide/blocks/amp-form-block/actions';
+import { instrumentStore } from '@ngrx/store-devtools';
+import { useLogMonitor } from '@ngrx/store-log-monitor';
 // import { DemosApp } from './styleguide/app';
 // import {BuyBackFormComponent} from './app/forms/derby/buybackform.component';
 /*
@@ -39,8 +43,16 @@ export function main () {
             ...ENV_PROVIDERS ,
             ...HTTP_PROVIDERS ,
             ...ROUTER_PROVIDERS ,
-            disableDeprecatedForms(),
-            provideForms(), // enable new forms module
+            instrumentStore( {
+                monitor : useLogMonitor( {
+                    position : 'right' ,
+                    visible  : true
+                } )
+            } ) ,
+            provideStore( reducer ) ,
+            actions ,
+            disableDeprecatedForms() ,
+            provideForms() , // enable new forms module
             ngCore.provide( Window , { useValue : window } )
         ] )
         .catch( err => console.error( err ) );

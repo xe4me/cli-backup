@@ -7,6 +7,7 @@ import {
     ProgressObserverService ,
     AmpHttpService ,
 } from 'amp-ddc-ui-core/ui-core';
+import { Store , provideStore } from '@ngrx/store';
 import {
     ROUTER_DIRECTIVES ,
     RouteConfig ,

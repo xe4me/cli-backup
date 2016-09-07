@@ -38,30 +38,30 @@ export var formDef = {
                             path        : 'sections/page-section.component' ,
                             custom      : { label : 'Beneficiaries' } ,
                             blocks      : [
-                                {
-                                    name        : 'anotherSampleExperienceBlock' ,
-                                    blockType   : 'AnotherSampleExperienceBlock' ,
-                                    blockLayout : 'INLINE' ,
-                                    commonBlock : false ,
-                                    path        : 'blocks/amp-form-block/another-sample-experience-block' ,
-                                    custom      : {
-                                        id         : 'FullOrPartial' ,
-                                        blockTitle : 'Which one , full or partial ? ' ,
-                                        buttons    : [
-                                            {
-                                                id    : 'fullId' ,
-                                                value : 'full' ,
-                                                label : 'Full sale'
-                                            } ,
-                                            {
-                                                id    : 'partialId' ,
-                                                value : 'partial' ,
-                                                label : 'Partial sale'
-                                            }
-                                        ]
-                                    }
-                                }
-                                ,
+                                // {
+                                //     name        : 'anotherSampleExperienceBlock' ,
+                                //     blockType   : 'AnotherSampleExperienceBlock' ,
+                                //     blockLayout : 'INLINE' ,
+                                //     commonBlock : false ,
+                                //     path        : 'blocks/amp-form-block/another-sample-experience-block' ,
+                                //     custom      : {
+                                //         id         : 'FullOrPartial' ,
+                                //         blockTitle : 'Which one , full or partial ? ' ,
+                                //         buttons    : [
+                                //             {
+                                //                 id    : 'fullId' ,
+                                //                 value : 'full' ,
+                                //                 label : 'Full sale'
+                                //             } ,
+                                //             {
+                                //                 id    : 'partialId' ,
+                                //                 value : 'partial' ,
+                                //                 label : 'Partial sale'
+                                //             }
+                                //         ]
+                                //     }
+                                // }
+                                //,
                                 {
                                     name        : 'sampleExperienceBlock' ,
                                     blockType   : 'SampleExperienceBlock' ,
@@ -92,21 +92,21 @@ export var formDef = {
                                         }
                                     }
                                 } ,
-                                {
-                                    name        : 'sampleArrayExperienceBlock' ,
-                                    blockType   : 'SampleArrayExperienceBlock' ,
-                                    blockLayout : 'INLINE' ,
-                                    commonBlock : false ,
-                                    path        : 'blocks/amp-form-block/sample-array-experience-block' ,
-                                    custom      : {
-                                        blockTitle : 'This block has a repeating group !' ,
-                                        age        : {
-                                            title    : "What about your age?" ,
-                                            regex    : '^([0-9])*$' ,
-                                            maxLengh : 3
-                                        }
-                                    }
-                                }
+                                // {
+                                //     name        : 'sampleArrayExperienceBlock' ,
+                                //     blockType   : 'SampleArrayExperienceBlock' ,
+                                //     blockLayout : 'INLINE' ,
+                                //     commonBlock : false ,
+                                //     path        : 'blocks/amp-form-block/sample-array-experience-block' ,
+                                //     custom      : {
+                                //         blockTitle : 'This block has a repeating group !' ,
+                                //         age        : {
+                                //             title    : "What about your age?" ,
+                                //             regex    : '^([0-9])*$' ,
+                                //             maxLengh : 3
+                                //         }
+                                //     }
+                                // }
                             ]
                         }
                     ]
