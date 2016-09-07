@@ -77,17 +77,17 @@
     .#{$namespace}btn-submit,
     %#{$namespace}btn-submit {
         width: $btn-submit-width;
-        color: #fff;
+        color: $btn-submit-text-color;
         background-color: $btn-submit-background-color;
         &:hover, &:focus {
             &:not([disabled]) {
-                color: #fff;
+                color: $btn-submit-text-color;
                 background-color: $btn-submit-hover-background-color;
             }
         }
         &:active {
             &:not([disabled]) {
-                color: #fff;
+                color: $btn-submit-text-color;
                 background-color: $btn-submit-active-background-color;
             }
         }

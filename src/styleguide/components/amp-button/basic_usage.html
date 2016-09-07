@@ -1,14 +1,26 @@
 
 <section class="sectioan mh mv">
 
-
+    <div class="section">
+        <h2 class="mb-">Amp Button</h2>
+    </div>
+    <article class="article">
+        <div class='title'>Available attributes</div>
+        <div class='content'>
+            <ul class="unordered-list mb">
+                <li>[class] = <em><strong>Type of button you would like</strong></em></li>
+                <li>[data-automation-id] = <em><strong>Important, this is mandatory</strong></em></li>
+                <li>[attr.theme] =  <em><strong>Used for themes</strong></em></li>
+            </ul>
+        </div>
+    </article>
     <div class="section">
         <h2 class="mb-">Primary buttons</h2>
     </div>
     <article class="article">
         <div class='title'>btn-ok</div>
         <div class='content'>
-            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-ok mt0'">
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-ok mt0'" [data-automation-id]='"abcd"'>
                 Ok
             </amp-button>
         </div>
@@ -17,7 +29,7 @@
     <article class="article">
         <div class='title'>btn-ok disabled</div>
         <div class='content'>
-            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' [disabled]='true' [class]="'btn btn-ok mt0'">
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' [disabled]='true' [class]="'btn btn-ok mt0'" [data-automation-id]='"abcd"'>
                 Ok
             </amp-button>
         </div>
@@ -42,7 +54,7 @@
     <article class="article">
         <div class='title'>btn-change</div>
         <div class='content'>
-            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(3)' [class]="'btn btn-change mt0'">
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(3)' [class]="'btn btn-change mt0'" [data-automation-id]='"abcd"'>
                 Change
             </amp-button>
         </div>
@@ -53,7 +65,7 @@
     <article class="article">
         <div class='title'>btn-secondary</div>
         <div class='content'>
-            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-secondary mt0 mb'">
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-secondary mt0 mb'" [data-automation-id]='"abcd"'>
                 Save for later
             </amp-button>
         </div>
@@ -80,7 +92,7 @@
     <article class="article">
         <div class='title'>btn-submit</div>
         <div class='content'>
-            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-submit mt0 mb'">
+            <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' [class]="'btn btn-submit mt0 mb'" [data-automation-id]='"abcd"'>
                 Submit <span class='icon icon&#45;&#45;chevron-right'></span>
             </amp-button>
         </div>
@@ -103,84 +115,3 @@
     </article>
 </section>
 
-<!--
-
-<section>
-    <div class='title'>btn-change</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(1)' class='btn btn-change'>
-            Change
-        </amp-button>
-    </div>
-</section>
-<section>
-    <div class="title">btn-submit</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" (click)='alert()' class='btn btn-submit'>
-            Submit
-        </amp-button>
-    </div>
-</section>
-<section>
-    <div class="title">btn-submit with icon</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" (click)='alert()' class='btn btn-submit'>
-            Submit <span class='icon icon&#45;&#45;chevron-right'></span>
-        </amp-button>
-    </div>
-</section>
-<section>
-    <div class="title">btn-ok</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' class='btn btn-ok'>
-            OK
-        </amp-button>
-    </div>
-
-</section>
-<section>
-    <div class="title">btn-ok disabled</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='true' (click)='clickMethod(2)' [disabled]='true' class='btn btn-ok'>
-            OK
-        </amp-button>
-    </div>
-</section>
-
-<section>
-    <div class="title">btn-anchor</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" (click)='alert()' class='btn btn-anchor'>
-            Go to ...
-        </amp-button>
-    </div>
-</section>
-
-<section>
-    <div class="title">Change hidden/removed</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" *ngIf='false' (click)='clickMethod(3)' class='btn btn-change'>
-            Change hidden/removed
-        </amp-button>
-    </div>
-</section>
-<section>
-    <div class="title">Full width (Relative to the container)</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" class='btn btn-change btn-full'>
-            Full
-        </amp-button>
-    </div>
-</section>
-<section>
-    <div class="title">Same as above but override the data-automation-id</div>
-    <div class='content'>
-        <amp-button [attr.theme]="themeService.theme.attr" class='btn btn-change btn-full' [data-automation-id]='"abcd"'>
-            Full
-        </amp-button>
-    </div>
-</section>
-<section>
-    <some-form-block></some-form-block>
-</section>
--->
