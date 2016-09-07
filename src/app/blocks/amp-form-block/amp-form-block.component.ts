@@ -12,7 +12,6 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
              </div>
              <div class="block-buttons">
-             ////{{theme}}
                  <amp-button
                     *ngIf='!context?.isInSummaryState'
                     [attr.theme]="theme"
