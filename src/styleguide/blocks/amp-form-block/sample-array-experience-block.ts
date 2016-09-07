@@ -15,7 +15,7 @@ import { FormArray , FormGroup } from "@angular/forms";
 @Component( {
     selector   : 'sample-array-experience-block' ,
     template   : `
-        <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr">
+        <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <div *ngFor="let group of controlGroupArray.controls ; let i = index;">
                 <amp-form-row [attr.theme]="themeService.theme.attr" [title]="__custom.age.title+' '+i">
                     <button (click)="remove(i)" class="btn btn-anchor">x</button>

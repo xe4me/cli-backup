@@ -12,6 +12,7 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
              </div>
              <div class="block-buttons">
+             ////{{theme}}
                  <amp-button
                     *ngIf='!context?.isInSummaryState'
                     (click)='context.onNext()'
@@ -34,6 +35,7 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
     @Input( 'noError' ) noError;
+    @Input( 'theme' ) theme;
 
     ngOnInit () : any {
         if ( ! this.context ) {
