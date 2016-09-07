@@ -15,12 +15,14 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
              ////{{theme}}
                  <amp-button
                     *ngIf='!context?.isInSummaryState'
+                    [attr.theme]="theme"
                     (click)='context.onNext()'
-                    [disabled]='!context?.canGoNext' class='btn btn-ok btn-ok-margin-top palm-m0'>
+                    [disabled]='!context?.canGoNext' class='btn btn-ok'>
                     OK
                 </amp-button>
                 <amp-button
                     *ngIf='context?.isInSummaryState'
+                    [attr.theme]="theme"
                     (click)='context.onEdit()'
                     class='btn btn-change btn-ok-margin-top palm-m0'>
                     Change
