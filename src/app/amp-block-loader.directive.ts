@@ -10,8 +10,8 @@ import {
     OnChanges
 } from '@angular/core';
 import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
-import { ControlGroup } from "@angular/common";
-import { arrayJoinByDash } from "./util/functions.utils";
+import { ControlGroup } from '@angular/common';
+import { arrayJoinByDash } from './util/functions.utils';
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 @Directive( { selector : '[amp-block-loader]' } )

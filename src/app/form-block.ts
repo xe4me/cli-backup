@@ -8,7 +8,7 @@ import {
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
 import { TimerWrapper } from '@angular/core/src/facade/async';
-import { arrayJoinByDash } from "./util/functions.utils";
+import { arrayJoinByDash } from './util/functions.utils';
 export class NamedControl {
     constructor ( public name : string , public control : any ) {
     }
@@ -34,7 +34,7 @@ export abstract class FormBlock {
                   private elementRef : ElementRef ,
                   private progressObserver : ProgressObserverService ,
                   private scrollService : ScrollService ) {
-        setTimeout( ()=> {
+        setTimeout( () => {
             this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
             this.visibleFlag  = this.selectorName + 'IsVisible';
             this.doneFlag     = this.selectorName + 'IsDone';
@@ -50,12 +50,12 @@ export abstract class FormBlock {
         /*
          * TODO : This should be a directive or something else.
          * */
-        setTimeout( ()=> {
+        setTimeout( () => {
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
             if ( inputs && inputs.length > 0 ) {
                 inputs[ 0 ].focus();
             }
-        } , 100 )
+        } , 100 );
     }
 
     onEdit () {
