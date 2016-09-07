@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormModelService, UIControlService, BlockID } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService, BlockID } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
@@ -213,16 +213,15 @@ class AmpButtonTest {
         <amp-button id='customDTMlabel' [data-automation-id]='"highest-priority"'>Custom DTM value</amp-button>
     ` ,
     directives : [ AmpButton ],
-    providers  : [ provideParent( SomeFormBlockComponent ),
-        provide(UIControlService, { useClass: MockUIControlService }) ]
+    providers  : [ provideParent( SomeFormBlockComponent )]
 } )
 class SomeFormBlockComponent extends FormBlock implements FormBlock {
     static CLASS_NAME : string      = 'SomeFormBlockComponent';
     public blockType = 'SomeFormBlockComponent';
     public _id = new BlockID('whatever', 1);
 
-    constructor (controlService : UIControlService) {
-        super(controlService);
+    constructor () {
+        super();
     }
 
     public preBindControls ( _formBlockDef ) {
