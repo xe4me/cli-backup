@@ -10,6 +10,7 @@ export {
 } from './src/app/util/validations';
 export { KeyCodes } from './src/app/util/key-kodes.utils';
 export { BasicUtils } from './src/app/util/basic-utils';
+export { FormUtils } from './src/app/util/form-utils';
 export { FormSection } from './src/app/formSection';
 export { FormPage } from './src/app/formPage';
 export {
