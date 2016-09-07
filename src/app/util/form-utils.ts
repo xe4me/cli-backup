@@ -45,10 +45,9 @@ export class FormUtils {
     };
 
     public static getAge ( birthday ) {
-        var birthdayDate = this.stringToDate( birthday , 'dd/MM/yyyy' , '/' );
-        var ageDifMs     = Date.now() - birthdayDate.getTime();
-        var ageDate      = new Date( ageDifMs ); // miliseconds from epoch
-        return Math.abs( ageDate.getUTCFullYear() - 1970 );
+        const birthdayDate = moment( birthday , 'DD/MM/YYYY' );
+        const age = moment().diff( birthdayDate , 'years' );
+        return age;
     }
 
     public static getAgeDays ( _todate ) {
