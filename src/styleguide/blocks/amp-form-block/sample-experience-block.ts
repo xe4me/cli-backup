@@ -13,7 +13,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
 @Component( {
     selector   : 'sample-experience-block' ,
     template   : `
-        <amp-form-block [context]="context()">
+        <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
                 <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 form-row-label'>Name</label>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
