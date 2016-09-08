@@ -9,7 +9,7 @@ import { FormBlock } from "../../../app/form-block";
     <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class="grid__container 1/1 palm-1/1">
                     <div class="grid__item 6/9 palm-8/9 mt-10 utils__align&#45;&#45;left" >
-                        this is
+                        this is the block
                     </div>
                 </div>
     </div>
