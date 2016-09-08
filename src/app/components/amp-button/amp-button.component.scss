@@ -100,6 +100,8 @@
         .#{$namespace}btn-ok,
         %#{$namespace}btn-ok {
             background-color: $btn-ok-background-color;
+            margin-top: $btn-ok-tools-margin-top;
+            margin-bottom: $btn-ok-tools-margin-bottom;
             color: $btn-ok-color;
             &:hover, &:focus {
                 &:not([disabled]) {
@@ -137,6 +139,11 @@
             }
         }
 
+        .#{$namespace}btn-change,
+        %#{$namespace}btn-change {
+            margin-top: $btn-change-tools-margin-top;
+            margin-bottom: $btn-change-tools-margin-bottom;
+        }
     }
 
 }

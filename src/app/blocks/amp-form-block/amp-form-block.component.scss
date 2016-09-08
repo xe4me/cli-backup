@@ -1,5 +1,6 @@
 @import '../../../styles/abstracts';
-
+@import './block-base';
+@import '../../blocks/amp-form-block/themes/theme-tools';
 
 
 
@@ -7,6 +8,7 @@
   display  : block;
   position : relative;
   .FormBlocK {
+     // background-color: #00AAAA;
     padding-top : 60px;
     .hr-block-divider {
       margin-top : 80px;
@@ -23,8 +25,12 @@
   }
 
   &[theme='tools'] {
+
     .FormBlocK {
-      padding-top : 40px;
+      padding-top : $tools-form-block-heading-top-padding;
+      padding-left : $tools-form-block-left-padding;
+      padding-right : $tools-form-block-right-padding;
+
       .hr-block-divider {
         margin-top : 50px;
       }
@@ -35,7 +41,6 @@
         }
       }
     }
-
   }
 
 }

@@ -4,7 +4,7 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../..
 @Component( {
     selector   : 'amp-form-block' ,
     template   : `
-        <div class="FormBlocK" id='{{ context?.selectorName }}'>
+        <div class="FormBlocK " id='{{ context?.selectorName }}'>
              <amp-overlay [active]='!context?.isCurrentBlockActive()'></amp-overlay>
             <h2 class="heading heading-intro">{{ context?.__custom.blockTitle}}</h2>
              <ng-content></ng-content>
