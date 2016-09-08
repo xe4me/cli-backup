@@ -93,6 +93,32 @@
         }
     }
 
+    .#{$namespace}btn-anchor,
+    %#{$namespace}btn-anchor {
+        @include transition(color $buttons-transition-time ease-in-out);
+        vertical-align: initial !important;
+        padding: 0 !important;
+        color: $btn-anchor-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: $btn-anchor-hover-background-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                color: $btn-anchor-active-background-color;
+            }
+        }
+        &.btn-anchor-large {
+            font-size: $font-size-medium;
+        }
+        &[disabled] {
+            background-color: transparent !important;
+            color: $amp-colour-grey-dark;
+        }
+    }
+
+
 
     &[theme='tools'] {
 

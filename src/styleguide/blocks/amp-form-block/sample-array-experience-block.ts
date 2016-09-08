@@ -16,43 +16,25 @@ import { FormArray , FormGroup } from "@angular/forms";
     selector   : 'sample-array-experience-block' ,
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
-        <div *ngFor="let group of controlGroupArray.controls ; let i = index;">
-        <amp-form-row [attr.theme]="themeService.theme.attr">
-            <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Mobile</label>
-                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
-                    <label class='1/1 sr-only'>What's your mobile number?</label>
-                    <amp-input
-                        [attr.theme]="themeService.theme.attr"
-                        [id]="'mobilenumber-'+i"
-                        [label]="'Your name '+i"
-                        [controlGroup]="__controlGroup"
-                        [isInSummaryState]="isInSummaryState"
-                        [isRequired]="true"
-                        [valMaxLength]="'12'"
-                        [valMaxFloat]="'654654'"
-                        [valMinLength]="'4'">
-                    </amp-input>
-                </div>
-        </amp-form-row>
-        </div>
-            <!--<div *ngFor="let group of controlGroupArray.controls ; let i = index;">-->
-               <!-- <amp-form-row [attr.theme]="themeService.theme.attr" [title]="__custom.age.title+' '+i">
-                    <button (click)="remove(i)" class="btn btn-anchor">x</button>
-                    <div class="grid__item_floated 1/3">
-                       <amp-input
+            <amp-form-row [attr.theme]="themeService.theme.attr" *ngFor="let group of controlGroupArray.controls ; let i = index;">
+              <button (click)="remove(i)" class="btn btn-anchor"> <span class="icon icon--close" aria-hidden="true"></span> Remove this field</button>
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Mobile</label>
+                    <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
+                        <label class='1/1 sr-only'>What's your mobile number?</label>
+                        <amp-input
                             [attr.theme]="themeService.theme.attr"
-                            [id]="'age-'+i"
-                            [label]="'Your age '+i"
-                            [controlGroup]="group"
+                            [id]="'mobilenumber-'+i"
+                            [label]="'Your name '+i"
+                            [controlGroup]="__controlGroup"
                             [isInSummaryState]="isInSummaryState"
                             [isRequired]="true"
-                            [valPattern]="__custom.age.regex"
-                            [valMaxLength]="__custom.age.maxLengh">
+                            [valMaxLength]="'12'"
+                            [valMaxFloat]="'654654'"
+                            [valMinLength]="'4'">
                         </amp-input>
                     </div>
-                </amp-form-row>-->
-           <!-- </div>-->
-            <button (click)="addMore()" class="btn btn-anchor"> <span class="icon icon--plus-filled" aria-hidden="true"></span> Add another field</button>
+            </amp-form-row>
+          <button (click)="addMore()" class="btn btn-anchor"> <span class="icon icon--plus-filled" aria-hidden="true"></span> Add another field</button>
         </amp-form-block>
     ` ,
     directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ]
