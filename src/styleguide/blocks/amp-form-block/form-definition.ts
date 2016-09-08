@@ -100,9 +100,9 @@ export var formDef = {
                                     commonBlock : false ,
                                     path        : 'blocks/amp-form-block/sample-array-experience-block' ,
                                     custom      : {
-                                        blockTitle : 'This block has a repeating group !' ,
-                                        age        : {
-                                            title    : "What about your age?" ,
+                                        blockTitle : 'This block has dynamic rows' ,
+                                        mobilenumber        : {
+                                            title    : "Mobile" ,
                                             regex    : '^([0-9])*$' ,
                                             maxLengh : 3
                                         }
