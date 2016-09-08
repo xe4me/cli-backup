@@ -1,9 +1,10 @@
 import { Component , ChangeDetectorRef , ViewChild } from '@angular/core';
 import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
 import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive";
-import { formDef } from '../amp-form-block/form-definition';
 import { Store , provideStore } from '@ngrx/store';
 import { FormGroup , FormBuilder } from "@angular/forms";
+import { FDN } from "./ApplicationForm.fdn";
+var formDef = require( './form-definition.fdn.json' );
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-form-block/basic_usage.html' ,
@@ -11,6 +12,9 @@ import { FormGroup , FormBuilder } from "@angular/forms";
     providers   : [ FormSectionService ] ,
     directives  : [ AmpBlockLoaderDirective ]
 } )
+
+
+
 
 
 export default class AmpFormBlockBasicUsage {
@@ -22,6 +26,7 @@ export default class AmpFormBlockBasicUsage {
         this.form = this._builder.group( {} );
         //this.model = this.store.select();
         //this.createMassiveBlocks();
+
     }
 
     private createMassiveBlocks () {

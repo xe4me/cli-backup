@@ -60,7 +60,11 @@ module.exports = {
     'styleguide': './src/main.browser.ts'
 
   },
-
+  resolveLoader:{
+    alias: {
+      'fdn-loader': require.resolve('./fdn-loader.js')
+    }
+  },
   /*
    * Options affecting the resolving of modules.
    *
@@ -82,11 +86,12 @@ module.exports = {
     modulesDirectories: ['node_modules'],
 
     alias: {
+      'amp-ddc-components': helpers.root(''),
       'Styles': helpers.root('src/styles/'),
       'AllStyles': helpers.root('src/styles/require.scss'),
       'AbstractStyles': helpers.root('src/styles/abstracts.scss'),
       'ComponentStyles': helpers.root('src/styles/components.scss')
-    },
+    }
 
   },
 
@@ -144,8 +149,12 @@ module.exports = {
        * See: https://github.com/webpack/json-loader
        */
       {
-        test: /\.json$/,
+        test: /^(\.fdn)\.json$/,
         loader: 'json-loader'
+      },
+      {
+        test: /\.fdn\.json$/,
+        loaders: ['json-loader', 'fdn-loader']
       },
 
       /*

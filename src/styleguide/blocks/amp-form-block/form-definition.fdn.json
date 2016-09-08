@@ -1,0 +1,135 @@
+{
+    "id": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-form-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-form-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "blockType": "DetailsPage",
+            "name": "Application",
+            "blockLayout": "PAGE",
+            "commonBlock": false,
+            "path": "blocks/amp-form-block/pages/details-page",
+            "page": {
+                "pageId": null,
+                "nextPageId": null,
+                "prevPageId": null,
+                "routeName": "ApplicationFormComponent"
+            },
+            "blocks": [
+                {
+                    "name": "introBlockComponent",
+                    "blockType": "IntroBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "blocks/amp-form-block/intro/intro-block.component"
+                },
+                {
+                    "blockType": "MenuFrameApplicationBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "blocks/amp-form-block/menu-frame/menu-frame.application.component",
+                    "blocks": [
+                        {
+                            "name": "InsuranceDetailsSection",
+                            "blockType": "PageSectionComponent",
+                            "blockLayout": "SECTION",
+                            "commonBlock": false,
+                            "path": "sections/page-section.component",
+                            "custom": {
+                                "label": "Beneficiaries"
+                            },
+                            "blocks": [
+                                {
+                                    "name": "anotherSampleExperienceBlock",
+                                    "blockType": "AnotherSampleExperienceBlock",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "blocks/amp-form-block/another-sample-experience-block",
+                                    "custom": {
+                                        "blockTitle ": "Which one , full or partial ? ",
+                                        "controls": [
+                                            {
+                                                "id": "FullOrPartial",
+                                                "buttons": [
+                                                    {
+                                                        "id": "fullId",
+                                                        "value": "full",
+                                                        "label": "Full sale"
+                                                    },
+                                                    {
+                                                        "id": "partialId",
+                                                        "value": "partial",
+                                                        "label": "Partial sale"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "sampleExperienceBlock",
+                                    "blockType": "SampleExperienceBlock",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "blocks/amp-form-block/sample-experience-block",
+                                    "custom": {
+                                        "blockTitle": "Lets get your name, shall we ?",
+                                        "controls": [
+                                            {
+                                                "id": "firstname",
+                                                "title": "Whats your first name?",
+                                                "errors": {
+                                                    "required": "First name is a required thing"
+                                                }
+                                            },
+                                            {
+                                                "id": "lastname",
+                                                "title": "Whats your first name?",
+                                                "errors": {
+                                                    "required": "First name is a required thing"
+                                                }
+                                            },
+                                            {
+                                                "id": "age",
+                                                "title": "What about your age?",
+                                                "errors": {
+                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+                                                },
+                                                "regex": "^([0-9])*$",
+                                                "maxLengh": 3
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "sampleArrayExperienceBlock",
+                                    "blockType": "SampleArrayExperienceBlock",
+                                    "blockLayou": "INLINE",
+                                    "commonBloc": false,
+                                    "path": "blocks/amp-form-block/sample-array-experience-block",
+                                    "custom": {
+                                        "blockTitl": "This block has a repeating group !",
+                                        "controls": [
+                                            {
+                                                "id": "age",
+                                                "title": "What about your age?",
+                                                "errors": {
+                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+                                                },
+                                                "regex": "^([0-9])*$",
+                                                "maxLengh": 3
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

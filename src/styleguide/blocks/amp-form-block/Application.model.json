@@ -1,0 +1,18 @@
+{
+    "Application": {
+        "introBlockComponent": {},
+        "InsuranceDetailsSection": {
+            "anotherSampleExperienceBlock": {
+                "FullOrPartial": null
+            },
+            "sampleExperienceBlock": {
+                "firstname": null,
+                "lastname": null,
+                "age": null
+            },
+            "sampleArrayExperienceBlock": {
+                "age": null
+            }
+        }
+    }
+}
