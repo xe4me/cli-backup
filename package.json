@@ -81,7 +81,7 @@
     "@angular2-material/tabs": "2.0.0-alpha.7-4",
     "@angular2-material/toolbar": "2.0.0-alpha.7-4",
 
-    "amp-ddc-ui-core": "^2.0.0",
+    "amp-ddc-ui-core": "^3.0.0",
     "amp-styleguide-core": "^1.0.0",
 
     "ie-shim": "^0.1.0",

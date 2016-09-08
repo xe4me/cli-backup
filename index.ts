@@ -24,6 +24,7 @@ export { ClickedOutsideDirective } from './src/app/directives/clicked-outside/cl
 export { AmpStickyOnScrollDirective } from './src/app/directives/amp-sticky-on-scroll.directive';
 export { ThemeIDDirective } from './src/app/directives/themeId.directive';
 export { FocuserDirective } from './src/app/directives/focuser/focuser.directive';
+export { AmpBlockLoaderDirective } from './src/app/amp-block-loader.directive';
 // blocks
 export {
     FormBlock ,
