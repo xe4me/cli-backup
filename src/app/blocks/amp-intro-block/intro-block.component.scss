@@ -1,0 +1,39 @@
+@import '../../../styles/abstracts';
+
+$font-size : $amp-base-font-size * 2 / 5 !default;
+
+$logo-height : 60px !default;
+
+$amp-ddc-public-asset : '../../../../../src/assets/';
+
+:host {
+  padding          : 60px 0;
+  width            : 100%;
+  display          : block;
+  background-color : $amp-colour-primary;
+  color            : #fff;
+}
+
+.intro-block {
+  max-height : 1000px;
+  height     : auto;
+  overflow   : hidden;
+  @include transition(max-height 1.1s, opacity 0.45s ease-out);
+  &.hidden {
+    max-height : 0;
+    opacity    : 0;
+  }
+}
+
+.intro-logo {
+  width                 : 100px;
+  background-position   : left bottom;
+  background-attachment : scroll;
+  background-repeat     : no-repeat;
+
+  height                : $amp-logo-height;
+  background-image      : url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
+}
+
+
+

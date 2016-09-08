@@ -1,5 +1,4 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { ThemeService } from "../../../styleguide/services/theme";
 import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../../";
 @Component( {
     selector   : 'amp-form-block' ,
