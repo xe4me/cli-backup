@@ -46,7 +46,7 @@ export var formDef = {
                                     path        : 'blocks/amp-form-block/another-sample-experience-block' ,
                                     custom      : {
                                         id         : 'FullOrPartial' ,
-                                        blockTitle : 'Which one , full or partial ? ' ,
+                                        blockTitle : 'Block with full width label ' ,
                                         buttons    : [
                                             {
                                                 id    : 'fullId' ,
@@ -69,7 +69,7 @@ export var formDef = {
                                     commonBlock : false ,
                                     path        : 'blocks/amp-form-block/sample-experience-block' ,
                                     custom      : {
-                                        blockTitle : 'Let\'s get your name, shall we ?' ,
+                                        blockTitle : 'Block with 3 columns' ,
                                         firstname  : {
                                             title  : "What's your first name?" ,
                                             errors : {
