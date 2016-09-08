@@ -79,7 +79,8 @@ $small-button-width: 80px;
     label {
       @include transition(all 300ms linear);
 
-      height: $amp-switch-height - (2*$amp-switch-border-width);
+      //height: $amp-switch-height - (2*$amp-switch-border-width);
+      height: 60px;
       line-height: $amp-switch-height - (4*$amp-switch-border-width);
       box-sizing: border-box;
       display: inline-block;
