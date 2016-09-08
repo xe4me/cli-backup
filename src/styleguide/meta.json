@@ -339,25 +339,5 @@
             }
         ],
         "readme": "<p>Block that contains item(s) for review</p>\n"
-    },
-    {
-        "name": "Amp Intro Block",
-        "sources": [
-            "src/app/blocks/amp-intro-block/amp-intro-block.ts"
-        ],
-        "id": "AmpIntroBlock",
-        "examples": [
-            {
-                "template": "src/styleguide/blocks/amp-intro-block/basic_usage.html",
-                "styles": "src/styleguide/blocks/amp-intro-block/basic_usage.scss",
-                "source": "src/styleguide/blocks/amp-intro-block/basic_usage.ts",
-                "galen": "src/styleguide/blocks/amp-intro-block/amp-intro-block.component.test.spec",
-                "jasmine": "src/styleguide/blocks/amp-intro-block/amp-intro-block.component.spec.ts",
-                "component": "amp-intro-basic-usage",
-                "component_src_location": "blocks/amp-intro-block/basic_usage",
-                "name": "Amp Intro Block Basic Usage"
-            }
-        ],
-        "readme": "<p>Block that contains</p>\n"
     }
 ]
