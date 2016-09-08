@@ -14,7 +14,7 @@
       margin-top : 80px;
     }
     .heading-intro {
-      margin-bottom : 25px;
+      margin-bottom : 28px;
     }
     @include media-query('palm') {
       padding-top : 30px;
@@ -34,12 +34,12 @@
       .hr-block-divider {
         margin-top : 50px;
       }
-      @include media-query('palm') {
+      /*@include media-query('palm') {
         padding-top : 20px;
         .hr-block-divider {
           margin-top : 20px;
         }
-      }
+      }*/
     }
   }
 
