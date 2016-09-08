@@ -113,7 +113,7 @@ export class MaxFloatValidator {
                 if ( ! c.value || c.value.length > 0 ) {
                     if ( c.value ) {
                         let newVal       = c.value;
-                        let replaceValue = newVal.replace( /[^0-9\.]+/g , "" );
+                        let replaceValue = newVal.replace( /[^0-9\.]+/g , '' );
                         if ( replaceValue > valMaxFloat ) {
                             return {
                                 mdMaxFloat : true

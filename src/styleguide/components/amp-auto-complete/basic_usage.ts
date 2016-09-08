@@ -1,7 +1,7 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core'
-import{ Highlight } from '../../highlight'
+import { ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { Highlight } from '../../highlight';
 import { AmpAutoCompleteComponent } from '../../../app/components/amp-autocomplete/amp-autocomplete.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
@@ -21,6 +21,7 @@ export default class AMPGoogleAddressComponentBasicUsage implements AfterViewIni
     control : Control       = new Control();
     selectControl : Control = new Control();
     isInSummaryState        = false;
+
     private options         = [
         {
             'id'       : 1 ,
@@ -3211,17 +3212,16 @@ export default class AMPGoogleAddressComponentBasicUsage implements AfterViewIni
     ];
     private selectedOption;
 
-    private onChange ( option ) {
-        this.selectedOption = option;
-    }
-
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     ngAfterViewInit () {
-
         // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
         this._cd.detectChanges();
+    }
+
+    private onChange ( option ) {
+        this.selectedOption = option;
     }
 
     private onAcknowledgeSelect ( value ) {

@@ -14,7 +14,7 @@ import {
     FormSectionService ,
     FormModelService
 } from 'amp-ddc-ui-core/ui-core';
-import { AmpBlockLoaderDirective } from "../amp-block-loader.directive";
+import { AmpBlockLoaderDirective } from '../amp-block-loader.directive';
 @Component( {
     selector   : 'page-section' ,
     template   : `

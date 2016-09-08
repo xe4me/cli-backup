@@ -34,7 +34,7 @@ export class ComponentsService {
             http.get( 'src/styleguide/meta.json' )
                 .subscribe( ( res : Response ) => {
                     this.components = res.json();
-                    this.components.map( ( _component : IComponentMeta )=> {
+                    this.components.map( ( _component : IComponentMeta ) => {
                         _component.type = _component.sources[ 0 ].split( '/' )[ 2 ];
                         this.getGroupByTpe( _component.type ).components.push( _component );
                     } );
