@@ -37,7 +37,31 @@ export var formDef = {
                             commonBlock : false ,
                             path        : 'sections/page-section.component' ,
                             custom      : { label : 'Beneficiaries' } ,
+
                             blocks      : [
+                                {
+                                    name        : 'samplefieldsblock' ,
+                                    blockType   : 'SampleFieldsBlock' ,
+                                    blockLayout : 'INLINE' ,
+                                    commonBlock : false ,
+                                    path        : 'blocks/amp-form-block/sample-fields-block' ,
+                                    custom      : {
+                                        id         : 'FullOrPartial' ,
+                                        blockTitle : 'Confirm or update your details ' ,
+                                        buttons    : [
+                                            {
+                                                id    : 'fullId' ,
+                                                value : 'full' ,
+                                                label : 'Full sale'
+                                            } ,
+                                            {
+                                                id    : 'partialId' ,
+                                                value : 'partial' ,
+                                                label : 'Partial sale'
+                                            }
+                                        ]
+                                    }
+                                },
                                 {
                                     name        : 'anotherSampleExperienceBlock' ,
                                     blockType   : 'AnotherSampleExperienceBlock' ,
