@@ -12,11 +12,12 @@ import {
     MinDateValidator ,
     PatterValidator
 } from '../../util/validations';
+import { FormGroup } from "@angular/forms";
 import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicked-outside.directive';
 
 @Component({
-    selector   : 'amp-dropdown' ,
-    template   : `
+    selector: 'amp-dropdown',
+    template: `
         <div
             #dropdownEl
             class='amp-dropdown'
@@ -33,7 +34,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
                 #selectEl
                 class='sr-only'
                 [attr.id]='id'
-                [formControl]='parentControl'
+                [formControl]='control'
                 (keydown)='onKeypressEvent($event)'
                 (change)='onChangeEvent()'
                 (focus)='onFocusEvent($event)'
@@ -76,22 +77,22 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
                 </div>
             </div>
         </div>
-    ` ,
-    inputs     : [
-        'id' ,
+    `,
+    inputs: [
+        'id',
         'label',
         'options',
-        'parentControl',
+        'controlGroup',
         'numOptions',
         'disabled',
-        'isRequired',
+        'required',
         'isInSummaryState',
         'labelHidden',
         'limitTo'
     ],
-    styles     : [ require( './amp-dropdown.component.scss' ).toString() ] ,
-    directives : [ ClickedOutsideDirective ] ,
-    outputs    : [ 'select' ]
+    styles: [require('./amp-dropdown.component.scss').toString()],
+    directives: [ClickedOutsideDirective],
+    outputs: ['select']
 })
 
 export class AmpDropdownComponent {
@@ -99,22 +100,21 @@ export class AmpDropdownComponent {
     @ViewChild('selectEl') selectEl;
     @ViewChild('optionsEl') optionsEl;
     @ViewChild('dropdownEl') dropDownEl;
-
-    private id : string = 'amp-dropdown-' + Math.round(Math.random() * 1e10);
-    private label : string;
-    private disabled : string;
+    private controlGroup:FormGroup;
+    private id:string = 'amp-dropdown-' + Math.round(Math.random() * 1e10);
+    private label:string;
+    private disabled:string;
     private options;
-    private parentControl : FormControl;
-    private numOptions: number = 4;
-    private optionsShown: boolean = false;
-    private hasSelection: boolean = false;
-    private animateSelection: boolean = false;
-    private hasWidth: boolean = false;
-    private _required: boolean = false;
-    private isInSummaryState: boolean = false;
-    private labelHidden: boolean = false;
+    private numOptions:number = 4;
+    private optionsShown:boolean = false;
+    private hasSelection:boolean = false;
+    private animateSelection:boolean = false;
+    private hasWidth:boolean = false;
+    private _required:boolean = false;
+    private isInSummaryState:boolean = false;
+    private labelHidden:boolean = false;
     private currentOption;
-    private _limitTo: number = 999;
+    private _limitTo:number = 999;
     private select = new EventEmitter();
     private selectedOption = {
         label: '',
@@ -125,12 +125,27 @@ export class AmpDropdownComponent {
     private dropdownElem;
     private optionsElem;
 
-    ngAfterViewInit () : any {
+    public control:FormControl = new FormControl();
+    public errors = {};
+
+    ngOnInit():any {
+        this.control['_ampErrors'] = {};
+        Object.keys(this.errors).map((errorName, i)=> {
+            (<any>this.control)._ampErrors[errorName] = this.errors[errorName];
+        });
+        if (this.controlGroup) {
+            this.controlGroup.addControl(this.id, this.control);
+        }
+        return undefined;
+    }
+
+
+    ngAfterViewInit():any {
         this.updateValitators();
 
-        this.selectElem  = this.selectEl.nativeElement;
-        this.dropdownElem  = this.dropDownEl.nativeElement;
-        this.optionsElem  = this.optionsEl.nativeElement;
+        this.selectElem = this.selectEl.nativeElement;
+        this.dropdownElem = this.dropDownEl.nativeElement;
+        this.optionsElem = this.optionsEl.nativeElement;
 
         // Set default value
         this.selectElem.selectedIndex = Math.max(0, this.selectElem.selectedIndex);
@@ -139,7 +154,7 @@ export class AmpDropdownComponent {
             this.setSelectedOption('initial');
         });
 
-        var forceRedraw = function(element){
+        var forceRedraw = function (element) {
             element.style.display = 'none';
             var trick = element.offsetHeight;
             element.style.display = '';
@@ -150,8 +165,8 @@ export class AmpDropdownComponent {
         forceRedraw(this.optionsElem.children[0]);
         this.optionsElem.style.visibility = '';
 
-        this.parentControl.registerOnChange( (value) => {
-            if (this.selectElem.value !== value ) {
+        this.control.registerOnChange((value) => {
+            if (this.selectElem.value !== value) {
                 this.setSelectValue(value);
             }
         });
@@ -159,24 +174,24 @@ export class AmpDropdownComponent {
         return undefined;
     }
 
-    get isRequired () {
+    get required() {
         return this._required;
     }
 
-    set isRequired ( value : boolean ) {
-        this._required = this.isTrue( value );
+    set required(value:boolean) {
+        this._required = this.isTrue(value);
         this.updateValitators();
     }
 
-    get limitTo () {
+    get limitTo() {
         return this._limitTo;
     }
 
-    set limitTo ( value : any ) {
+    set limitTo(value:any) {
         this._limitTo = value;
     }
 
-    private toggleOptions () {
+    private toggleOptions() {
         if (this.disabled || this.isInSummaryState) {
             return false;
         }
@@ -188,7 +203,7 @@ export class AmpDropdownComponent {
         }
     }
 
-    private showOptions (showActive) {
+    private showOptions(showActive) {
         let activeOption = this.optionsElem.querySelectorAll('.amp-dropdown__option--active')[0];
 
         if (!this.hasWidth) {
@@ -209,17 +224,17 @@ export class AmpDropdownComponent {
         }, 10);
     }
 
-    private hideOptions = (): void => {
+    private hideOptions = ():void => {
         this.optionsShown = false;
 
         setTimeout(() => {
-            if (this.parentControl.touched) {
-                this.parentControl['hasOpened'] = true;
+            if (this.control.touched) {
+                this.control['hasOpened'] = true;
             }
         });
     }
 
-    private hideOptionsWithFocus () {
+    private hideOptionsWithFocus() {
         this.selectElem.focus();
 
         setTimeout(() => {
@@ -227,7 +242,7 @@ export class AmpDropdownComponent {
         });
     }
 
-    private onKeypressEvent ($event) {
+    private onKeypressEvent($event) {
 
         switch ($event.keyCode) {
             // Enter key
@@ -264,7 +279,7 @@ export class AmpDropdownComponent {
         }
     }
 
-    private onChangeEvent () {
+    private onChangeEvent() {
         this.setSelectedOption('change');
 
         if (this.optionsShown && this.hasSelection) {
@@ -272,15 +287,15 @@ export class AmpDropdownComponent {
             this.selectElem.focus();
         }
         setTimeout(() => {
-            this.select.emit(this.parentControl.value);
+            this.select.emit(this.control.value);
         }, 0);
     }
 
-    private onFocusEvent ($event) {
+    private onFocusEvent($event) {
         this.showOptions(false);
     }
 
-    private setSelectValue (value) {
+    private setSelectValue(value) {
         this.selectElem.value = value;
         this.trigger('change', this.selectElem);
         this.hideOptionsWithFocus();
@@ -306,23 +321,24 @@ export class AmpDropdownComponent {
         }
     }
 
-    private trigger (event, el) {
+    private trigger(event, el) {
         var evObj = document.createEvent('HTMLEvents');
         evObj.initEvent(event, true, true);
         el.dispatchEvent(evObj);
     }
 
-    private updateValitators () {
-        if ( this.parentControl ) {
-            this.parentControl.validator = Validators.compose( [
-                RequiredValidator.requiredValidation( this._required )
-            ] );
-            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+    private updateValitators() {
+        if (this.control) {
+            setTimeout(()=> {
+                //TODO: fix need to for validator being undefined when controls are created
+                this.control.validator = RequiredValidator.requiredValidation(this.required);
+                this.control.updateValueAndValidity({emitEvent: true, onlySelf: false});
+            });
         }
     }
 
-    private isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === 'true' || false);
+    private isTrue(value) {
+        return isPresent(value) && (value === true || value === 'true' || false);
     }
 
 
