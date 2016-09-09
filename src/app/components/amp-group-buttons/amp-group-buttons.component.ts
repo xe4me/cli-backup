@@ -53,7 +53,8 @@ class RadioControlValueAccessors implements ControlValueAccessor {
     selector   : 'amp-group-buttons' ,
     template   : `
                 <div class='amp-group-button'>
-                    <span *ngFor='let button of buttons'>
+                    <span *ngFor='let button of buttons | slice:0; let i=index'>
+                        <div *ngIf="i<4">
                           <input
                                 class="sr-only"
                                 [disabled]='disabled'
@@ -65,10 +66,24 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 [value]='button.value'
                                 [checked]='control.value===button.value'
                                 />
-
                             <label (click)='onSelect(button.value , true)' [attr.for]='button.id + index'>{{ button.label }}
                             </label>
-
+                        </div>
+                    </span>
+                    <span *ngFor='let button of buttons | slice:4; let i=index'>
+                          <input
+                                class="sr-only"
+                                [disabled]='disabled'
+                                [attr.data-automation-id]='"radio_button_" + button.id'
+                                type='radio'
+                                [attr.id]='button.id + index'
+                                [attr.name]='id + index'
+                                [formControl]='control'
+                                [value]='button.value'
+                                [checked]='control.value===button.value'
+                                />
+                            <label (click)='onSelect(button.value , true)' [attr.for]='button.id + index'>{{ button.label }}
+                            </label>
                     </span>
                 </div>
                 ` ,

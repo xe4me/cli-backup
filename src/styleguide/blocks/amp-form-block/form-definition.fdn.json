@@ -67,7 +67,7 @@
                                     "commonBlock": false,
                                     "path": "blocks/amp-form-block/sample-fields-block2",
                                     "custom": {
-                                        "blockTitle": "Your reigion ",
+                                        "blockTitle": "Your region ",
                                         "controls": [
                                             {
                                                 "id": "FullOrPartial",
@@ -161,7 +161,7 @@
                                     "commonBloc": false,
                                     "path": "blocks/amp-form-block/sample-array-experience-block",
                                     "custom": {
-                                        "blockTitl": "This block has a repeating group !",
+                                        "blockTitle": "This block has a repeating group !",
                                         "controls": [
                                             {
                                                 "id": "age",
