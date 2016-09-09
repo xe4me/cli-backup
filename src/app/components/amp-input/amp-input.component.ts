@@ -34,9 +34,9 @@ import { FormGroup , FormControl , Validators } from "@angular/forms";
                 [disabled]='isInSummaryState || disabled'
                 class='md-input'
                 [class.label-hidden]='labelHidden'
-                [aria-label]='_id'
-                [name]='_id'
-                [id]='_id'
+                [aria-label]='id'
+                [name]='id'
+                [id]='id'
                 [tabIndex]='isActive?tabindex:-1'
                 [maxLength]='valMaxLength'
                 [formControl]='control'
@@ -262,6 +262,10 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
 
     set id ( id : string ) {
         this._id = id;
+    }
+
+    get id () {
+        return this._id;
     }
 
     // set autoFocus ( value : boolean ) {

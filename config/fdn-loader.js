@@ -4,28 +4,34 @@ var fdnRoot   = {};
 var modelRoot = {};
 function fdnLoader ( Orgsource ) {
     this.cacheable && this.cacheable ();
-    source = JSON.parse ( Orgsource );
-    createFdn ( source , [] );
-    var staticClassString = createStaticClassString ( fdnRoot );
-    createModel ( source , null , modelRoot );
-    var fdnExt      = '.fdn.ts';
-    var modelExt      = '.model.json';
-    var fdnFileName = source.id ? source.id + fdnExt : 'fully-distinguished-names' + fdnExt;
-    var modelFileName = source.id ? source.id + modelExt : 'model' + modelExt;
+    try {
+        source = JSON.parse ( Orgsource );
+    } catch ( error ) {
+        throw new Error ( '****  ****** Cannot parse form definition file , make sure it\'s valid JSON and it does not have any comment in it ' );
+    }
     if ( source.fdnClassPath ) {
-        fdnFileName = source.fdnClassPath + '/' + fdnFileName;
+        createFdn ( source , [] );
+        var staticClassString = createStaticClassString ( fdnRoot );
+        createModel ( source , null , modelRoot );
+        var fdnExt        = '.fdn.ts';
+        var modelExt      = '.model.json';
+        var fdnFileName   = source.id ? source.id + fdnExt : 'fully-distinguished-names' + fdnExt;
+        var modelFileName = source.id ? source.id + modelExt : 'model' + modelExt;
+        if ( source.fdnClassPath ) {
+            fdnFileName = source.fdnClassPath + '/' + fdnFileName;
+        }
+        if ( source.fdnModelPath ) {
+            modelFileName = source.fdnModelPath + '/' + modelFileName;
+        }
+        fs.writeFile ( fdnFileName , staticClassString , function ( err ) {
+            if ( err ) return console.log ( err );
+            console.log ( '*********************** Successfully created fully distinguished names at ' + fdnFileName );
+        } );
+        fs.writeFile ( modelFileName , JSON.stringify ( modelRoot ) , function ( err ) {
+            if ( err ) return console.log ( err );
+            console.log ( '*********************** Successfully created model at ' + modelFileName );
+        } );
     }
-    if ( source.fdnModelPath ) {
-        modelFileName = source.fdnModelPath + '/' + modelFileName;
-    }
-    fs.writeFile ( fdnFileName , staticClassString , function ( err ) {
-        if ( err ) return console.log ( err );
-        console.log ( '*********************** Successfully created fully distinguished names at ' + fdnFileName );
-    } );
-    fs.writeFile ( modelFileName , JSON.stringify(modelRoot) , function ( err ) {
-        if ( err ) return console.log ( err );
-        console.log ( '*********************** Successfully created model at ' + modelFileName );
-    } );
     return Orgsource;
 }
 function createModel ( formDef , fdn , model ) {

@@ -14,7 +14,6 @@ import { NavigationService } from './services/navigation';
 import { TableContentsService } from './services/content-table-service';
 import { ThemeService } from './services/theme';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
-import { ModelActions } from "./blocks/amp-form-block/actions/model.action";
 @Injectable()
 export class DataResolver implements Resolve<any> {
     constructor () {
@@ -36,7 +35,7 @@ export const APP_RESOLVER_PROVIDERS = [
     ComponentsService ,
     BrowserDomAdapter ,
     ThemeService ,
-    ModelActions ,
     MdIconRegistry ,
     Renderer
 ];
+

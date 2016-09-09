@@ -148,12 +148,12 @@ module.exports = {
        *
        * See: https://github.com/webpack/json-loader
        */
+      // {
+      //   test: /^(\.fdn)\.json$/,
+      //   loader: 'json-loader'
+      // },
       {
-        test: /^(\.fdn)\.json$/,
-        loader: 'json-loader'
-      },
-      {
-        test: /\.fdn\.json$/,
+        test: /\.json$/,
         loaders: ['json-loader', 'fdn-loader']
       },
 

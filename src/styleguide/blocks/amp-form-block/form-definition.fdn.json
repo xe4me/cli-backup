@@ -43,6 +43,27 @@
                             },
                             "blocks": [
                                 {
+                                    "name": "sampleArrayExperienceBlock",
+                                    "blockType": "SampleArrayExperienceBlock",
+                                    "blockLayou": "INLINE",
+                                    "commonBloc": false,
+                                    "path": "blocks/amp-form-block/sample-array-experience-block",
+                                    "custom": {
+                                        "blockTitl": "This block has a repeating group !",
+                                        "controls": [
+                                            {
+                                                "id": "age",
+                                                "title": "What about your age?",
+                                                "errors": {
+                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+                                                },
+                                                "regex": "^([0-9])*$",
+                                                "maxLengh": 3
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
                                     "name": "anotherSampleExperienceBlock",
                                     "blockType": "AnotherSampleExperienceBlock",
                                     "blockLayout": "INLINE",
@@ -92,27 +113,6 @@
                                                     "required": "First name is a required thing"
                                                 }
                                             },
-                                            {
-                                                "id": "age",
-                                                "title": "What about your age?",
-                                                "errors": {
-                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
-                                                },
-                                                "regex": "^([0-9])*$",
-                                                "maxLengh": 3
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "sampleArrayExperienceBlock",
-                                    "blockType": "SampleArrayExperienceBlock",
-                                    "blockLayou": "INLINE",
-                                    "commonBloc": false,
-                                    "path": "blocks/amp-form-block/sample-array-experience-block",
-                                    "custom": {
-                                        "blockTitl": "This block has a repeating group !",
-                                        "controls": [
                                             {
                                                 "id": "age",
                                                 "title": "What about your age?",

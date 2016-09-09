@@ -60,7 +60,7 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 [attr.data-automation-id]='"radio_button_" + button.id'
                                 type='radio'
                                 [attr.id]='button.id + index'
-                                [attr.name]='groupName + index'
+                                [attr.name]='id + index'
                                 [formControl]='control'
                                 [value]='button.value'
                                 [checked]='control.value===button.value'
@@ -109,7 +109,7 @@ export class AmpGroupButtonsComponent implements OnInit {
     }
 
     public control : FormControl = new FormControl();
-    public errors            = {};
+    public errors                = {};
 
     ngOnInit () : any {
         this.control[ '_ampErrors' ] = {};
@@ -117,7 +117,7 @@ export class AmpGroupButtonsComponent implements OnInit {
             (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.groupName , this.control );
+            this.controlGroup.addControl( this.id , this.control );
         }
         return undefined;
     }
@@ -156,6 +156,10 @@ export class AmpGroupButtonsComponent implements OnInit {
 
     get required () {
         return this._required;
+    }
+
+    get id () {
+        return this.groupName;
     }
 
     set required ( value ) {

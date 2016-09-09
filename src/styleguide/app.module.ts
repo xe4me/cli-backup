@@ -17,9 +17,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
-import reducer from '../styleguide/blocks/amp-form-block/reducers/search';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreLogMonitorModule , useLogMonitor } from '@ngrx/store-log-monitor';
+import { AmpStyleguideReduxModule } from "../app/redux/amp-styleguide-redux.module";
 const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -36,14 +34,7 @@ const APP_PROVIDERS = [
         ComponentPage
     ] ,
     imports      : [
-        StoreModule.provideStore( reducer , {} ) ,
-        StoreDevtoolsModule.instrumentStore( {
-            monitor : useLogMonitor( {
-                visible  : true ,
-                position : 'right'
-            } )
-        } ) ,
-        StoreLogMonitorModule ,
+        AmpStyleguideReduxModule ,
         BrowserModule ,
         FormsModule ,
         ReactiveFormsModule ,
