@@ -1,0 +1,56 @@
+import { Component , ChangeDetectorRef , ElementRef , OnInit } from '@angular/core';
+import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
+import { ThemeService } from "../../services/theme";
+import { FormBlock } from "../../../app/form-block";
+import {
+    Action ,
+    FormModelService ,
+    ProgressObserverService ,
+    ScrollService
+} from 'amp-ddc-ui-core/ui-core';
+import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.component";
+import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-row.component";
+import { AmpGroupButtonsComponent } from "../../../app/components/amp-group-buttons/amp-group-buttons.component";
+@Component( {
+    selector   : 'sample-fields-block2' ,
+    template   : `
+        <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
+
+           <amp-form-row [attr.theme]="themeService.theme.attr">
+                 <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Scale</label>
+                    <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-6/12 mr mt0">
+                        <label class='1/1 sr-only'>What's your scale?</label>
+                         <amp-group-buttons
+                            [attr.theme]="themeService.theme.attr"
+                            (select)='onButtonClick($event)'
+                            [buttons]='__custom.buttons'
+                            [controlGroup]="__controlGroup"
+                            [required]="true"
+                            [isInSummaryState]="isInSummaryState"
+                            [groupName]='__custom.id'>
+                        </amp-group-buttons>
+                        <amp-error [controlGroup]="context?.__controlGroup" [controlId]="'firstname'"></amp-error>
+                    </div>
+            </amp-form-row>
+
+        </amp-form-block>
+    ` ,
+    directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent, AmpGroupButtonsComponent ]
+} )
+export class SampleFieldsBlock2 extends FormBlock implements OnInit {
+    constructor ( private themeService : ThemeService ,
+                  formModelService : FormModelService ,
+                  elementRef : ElementRef ,
+                  scrollService : ScrollService ,
+                  progressObserver : ProgressObserverService ) {
+        super( formModelService , elementRef , progressObserver , scrollService );
+    }
+
+    ngOnInit () : any {
+        return undefined;
+    }
+
+    context () {
+        return this;
+    }
+}

@@ -63,6 +63,59 @@ export var formDef = {
                                     }
                                 },
                                 {
+                                    name        : 'samplefieldsblock2' ,
+                                    blockType   : 'SampleFieldsBlock2' ,
+                                    blockLayout : 'INLINE' ,
+                                    commonBlock : false ,
+                                    path        : 'blocks/amp-form-block/sample-fields-block2' ,
+                                    custom      : {
+                                        id         : 'FullOrPartial' ,
+                                        blockTitle : 'Your region ' ,
+                                        buttons    : [
+                                            {
+                                                id    : 'ACT' ,
+                                                value : 'ACT' ,
+                                                label : 'ACT'
+                                            } ,
+                                            {
+                                                id    : 'NSW' ,
+                                                value : 'NSW' ,
+                                                label : 'NSW'
+                                            },
+                                            {
+                                                id    : 'NT' ,
+                                                value : 'NT' ,
+                                                label : 'NT'
+                                            },
+                                            {
+                                                id    : 'QLD' ,
+                                                value : 'QLD' ,
+                                                label : 'QLD'
+                                            },
+                                            {
+                                                id    : 'SA' ,
+                                                value : 'SA' ,
+                                                label : 'SA'
+                                            },
+                                            {
+                                                id    : 'TAS' ,
+                                                value : 'TAS' ,
+                                                label : 'TAS'
+                                            },
+                                            {
+                                                id    : 'VIC' ,
+                                                value : 'VIC' ,
+                                                label : 'VIC'
+                                            },
+                                            {
+                                                id    : 'WA' ,
+                                                value : 'WA' ,
+                                                label : 'WA'
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
                                     name        : 'anotherSampleExperienceBlock' ,
                                     blockType   : 'AnotherSampleExperienceBlock' ,
                                     blockLayout : 'INLINE' ,
