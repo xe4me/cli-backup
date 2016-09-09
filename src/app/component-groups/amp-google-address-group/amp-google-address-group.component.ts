@@ -35,9 +35,9 @@ import { MdInputComponent } from '../../components/my-md-input/my-md-input.compo
 } )
 export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     static CLASS_NAME                      = 'AMPGoogleAddressComponentGroup';
-    private index = '';
     @ViewChild('ampGoogleAddress') addressComponent: AMPGoogleAddressComponent;
 
+    private index = '';
     private googleAddress = {
         id : 'googleAddress' ,
         label : '' ,

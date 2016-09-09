@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Control, ControlArray, ControlGroup, FormBuilder } from '@angular/common';
 
-
 @Injectable()
 export class MockUIControlService {
 
@@ -41,13 +40,12 @@ export class MockUIControlService {
 /*
     Control Group
 */
-
     public getControlGroup(path? : string[]): ControlGroup {
         let root = this.model;
         if (path) {
             for (let i in path) {
-                const group = path[i]
-                if ( root.contains(group) ){
+                const group = path[i];
+                if ( root.contains(group) ) {
                     root = <ControlGroup>root.controls[group];
                 } else {
                     if (this.logging) { console.info('ControlGroup doesn\'t exists:', group); }
@@ -61,7 +59,7 @@ export class MockUIControlService {
     public createControlGroup(path : string[]): ControlGroup {
         let root = this.model;
         for (let i in path) {
-            const group = path[i]
+            const group = path[i];
             let newRoot = null;
             if ( root.contains(group) ) {
                 newRoot = root.controls[group];
@@ -74,25 +72,9 @@ export class MockUIControlService {
         return root;
     }
 
-
 /*
     Control Array
 */
-    private createControlGroupsFromArray(array?) {
-        let ret = []
-        if (array) {
-            for ( let i in array ) {
-                const obj = array[i];
-                let newGroup = new ControlGroup({});
-                for ( let key in obj ){
-                    newGroup.addControl(key, new Control(obj[key]));
-                }
-                ret.push(newGroup)
-            }
-        }
-        return ret;
-    }
-
     public createControlArray(path: string[], name: string, defaultValues?): ControlArray {
         let ctrlgroup = this.createControlGroup(path);
         let newControlArray = null;
@@ -115,11 +97,9 @@ export class MockUIControlService {
         return null;
     }
 
-
 /*
     Update model
 */
-
     public updateModel(newModel: any , path? : string[]) : void {
         if (!path) {
             path = [];
@@ -130,7 +110,7 @@ export class MockUIControlService {
             path.splice(pathIndex);
             path[pathIndex]  = key;
             let currentModel = newModel[key];
-            const group      = path.slice(0,path.length-1);
+            const group      = path.slice(0, path.length - 1);
 
             if (currentModel instanceof Array) {
                 this.createControlArray(group, key, currentModel);
@@ -141,5 +121,20 @@ export class MockUIControlService {
             }
         }
 
+    }
+
+    private createControlGroupsFromArray(array?) {
+        let ret = [];
+        if (array) {
+            for ( let i in array ) {
+                const obj = array[i];
+                let newGroup = new ControlGroup({});
+                for ( let key in obj ) {
+                    newGroup.addControl(key, new Control(obj[key]));
+                }
+                ret.push(newGroup);
+            }
+        }
+        return ret;
     }
 }

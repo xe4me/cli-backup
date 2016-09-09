@@ -115,8 +115,6 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private tabindex : any             = null;
     private defaultValue : any         = null;
     private currency : string          = null;
-    private customValidator : Function = ()=> {
-    };
     private placeholder : string;
     private visibility : Action;
     private onAdjustWidth : EventEmitter<any>;
@@ -173,6 +171,13 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         }
         return undefined;
     }
+
+    public checkErrors () {
+        this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
+    }
+
+    private customValidator : Function = () => {
+    };
 
     get disabled () {
         return this._disabled;
@@ -281,7 +286,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     private trimValue ( $event ) {
         this.checkErrors();
-        setTimeout( ()=> {
+        setTimeout( () => {
             this.removeIdleAndMakeInUntouched();
         } );
         let notUsable;
@@ -307,7 +312,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
             this.parentControl
                 .valueChanges
                 .debounceTime( this.validationDelay )
-                .subscribe( ( changes )=> {
+                .subscribe( ( changes ) => {
                     if ( changes ) {
                         this.resetIdleTimeOut();
                         this.checkErrors();
@@ -316,7 +321,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
         } else {
             this.parentControl
                 .valueChanges
-                .subscribe( ( changes )=> {
+                .subscribe( ( changes ) => {
                     if ( changes ) {
                         this.resetIdleTimeOut();
                         this.checkErrors();
@@ -344,7 +349,7 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
     private resetIdleTimeOut () {
         this.markControlAsUntouched();
         clearTimeout( this.idleTimeoutId );
-        this.idleTimeoutId = setTimeout( ()=> {
+        this.idleTimeoutId = setTimeout( () => {
             this.parentControl.markAsTouched();
         } , this.idleTimeOut );
     }
@@ -357,10 +362,6 @@ export class MdInputComponent implements AfterViewInit, OnChanges {
 
     private markControlAsUntouched () {
         (<any>this.parentControl)._touched = false;
-    }
-
-    public checkErrors () {
-        this.parentControl.setErrors( this.validate( this.parentControl ) , { emitEvent : true } );
     }
 
     private setDefaultValue () {

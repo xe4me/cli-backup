@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import{ Highlight } from '../../highlight'
 
 @Component( {
     selector    : 'padding-margin' ,
@@ -8,7 +7,7 @@ import{ Highlight } from '../../highlight'
     directives  : []
 } )
 
-export default class grid {
+export default class PaddingMargin {
     // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
     private callbackForChangeLink = (target : string) => {
     }

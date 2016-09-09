@@ -271,9 +271,9 @@ export class AmpDropdownComponent {
             this.optionsElem.querySelectorAll('[data-option-val="' + this.selectedOption.value + '"]')[0].focus();
             this.selectElem.focus();
         }
-        setTimeout(()=>{
+        setTimeout(() => {
             this.select.emit(this.parentControl.value);
-        },0)
+        }, 0);
     }
 
     private onFocusEvent ($event) {

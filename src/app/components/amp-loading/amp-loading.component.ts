@@ -1,5 +1,5 @@
-import { Input , Component } from "@angular/core";
-import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle'
+import { Input , Component } from '@angular/core';
+import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
 @Component( {
     selector   : 'amp-loading' ,
     template   : `

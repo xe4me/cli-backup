@@ -1,6 +1,6 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core'
+import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { ThemeService } from '../../services/theme';
 @Component( {

@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Control } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
-import { isPresent } from '../../util/functions.utils'
+import { isPresent } from '../../util/functions.utils';
 import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
 @Component( {
     selector   : 'amp-auto-complete' ,
@@ -130,7 +130,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     }
 
     private close = () : void => {
-        setTimeout( ()=> {
+        setTimeout( () => {
             this._optionsHidden = true;
             this.showNoResult   = false;
         } );
@@ -141,7 +141,7 @@ export class AmpAutoCompleteComponent implements OnInit {
             return;
         }
         if ( this.firstOpen ) {
-            setTimeout( ()=> {
+            setTimeout( () => {
                 this.parentControl.updateValue( '' );
             } );
             this.firstOpen = false;
@@ -193,7 +193,7 @@ export class AmpAutoCompleteComponent implements OnInit {
     }
 
     private onBlur ( $event ) {
-        setTimeout( ()=> {
+        setTimeout( () => {
             if ( this.parentControl.value ) {
                 if ( this.selectedOption === null ) {
                     let errors = Object.assign( {} , { invalid : true } , this.parentControl.errors || {} );
@@ -209,7 +209,7 @@ export class AmpAutoCompleteComponent implements OnInit {
                     } );
                 }
             }
-        } , this.VALIDATION_DELAY )
+        } , this.VALIDATION_DELAY );
     }
 
     private initWithOptions () {
@@ -255,13 +255,13 @@ export class AmpAutoCompleteComponent implements OnInit {
     }
 
     private markInputAsUnDirty () {
-        setTimeout( ()=> {
+        setTimeout( () => {
             (<any>this.parentControl)._dirty = false;
             this.parentControl.updateValueAndValidity( {
                 onlySelf  : false ,
                 emitEvent : true
             } );
-        } )
+        } );
     }
 }
 interface Option {

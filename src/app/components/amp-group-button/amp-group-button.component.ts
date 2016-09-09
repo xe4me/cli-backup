@@ -100,7 +100,7 @@ export class AmpGroupButtonComponent {
     }
 
     ngOnDestroy () : any {
-        if(!this.keepControlOnDestroy){
+        if (!this.keepControlOnDestroy) {
             this.parentControl.validator = null;
             this.parentControl.updateValueAndValidity( {
                 onlySelf  : false ,
