@@ -93,6 +93,32 @@
         }
     }
 
+    .#{$namespace}btn-anchor,
+    %#{$namespace}btn-anchor {
+        @include transition(color $buttons-transition-time ease-in-out);
+        vertical-align: initial !important;
+        padding: 0 !important;
+        color: $btn-anchor-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: $btn-anchor-hover-background-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                color: $btn-anchor-active-background-color;
+            }
+        }
+        &.btn-anchor-large {
+            font-size: $font-size-medium;
+        }
+        &[disabled] {
+            background-color: transparent !important;
+            color: $amp-colour-grey-dark;
+        }
+    }
+
+
 
     &[theme='tools'] {
 
@@ -100,6 +126,8 @@
         .#{$namespace}btn-ok,
         %#{$namespace}btn-ok {
             background-color: $btn-ok-background-color;
+            margin-top: $btn-ok-tools-margin-top;
+            margin-bottom: $btn-ok-tools-margin-bottom;
             color: $btn-ok-color;
             &:hover, &:focus {
                 &:not([disabled]) {
@@ -137,6 +165,11 @@
             }
         }
 
+        .#{$namespace}btn-change,
+        %#{$namespace}btn-change {
+            margin-top: $btn-change-tools-margin-top;
+            margin-bottom: $btn-change-tools-margin-bottom;
+        }
     }
 
 }

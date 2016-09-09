@@ -38,7 +38,7 @@ import { FormGroup , FormControl , Validators } from "@angular/forms";
                 [name]='id'
                 [id]='id'
                 [tabIndex]='isActive?tabindex:-1'
-                [maxLength]='valMaxLength'
+                [maxLength]='maxLength'
                 [formControl]='control'
                 [placeholder]='label'>
                   <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
@@ -61,17 +61,17 @@ import { FormGroup , FormControl , Validators } from "@angular/forms";
             'controlGroup' ,
             'placeholder' ,
             'visibility' ,
-            'valMaxLength' ,
-            'valMinLength' ,
-            'valPattern' ,
-            'valMaxDate' ,
-            'valMinDate' ,
-            'valMaxFloat' ,
+            'maxLength' ,
+            'minLength' ,
+            'pattern' ,
+            'maxDate' ,
+            'minDate' ,
+            'maxFloat' ,
             'valDate' ,
-            'valMinFloat' ,
+            'minFloat' ,
             'tabindex' ,
             'isActive' ,
-            'isRequired' ,
+            'required' ,
             'hostClassesRemove' ,
             'showLabel' ,
             'tolowerCase' ,
@@ -112,12 +112,12 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     public controlGroup : FormGroup;
     private inputWidth : number;
     private _id : string;
-    private _valMinLength : number;
-    private _valMaxLength : number;
-    private _valMaxDate : string;
-    private _valMinDate : string;
-    private _valMaxFloat : number;
-    private _valMinFloat : number;
+    private _minLength : number;
+    private _maxLength : number;
+    private _maxDate : string;
+    private _minDate : string;
+    private _maxFloat : number;
+    private _minFloat : number;
     private _valDate : boolean;
     private _required : boolean        = false;
     private _disabled : boolean        = false;
@@ -138,7 +138,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     private onAdjustWidth : EventEmitter<any>;
     private hostClassesRemove;
     private tempClassNames;
-    private valPattern : string;
+    private pattern : string;
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;
     private onFocus : EventEmitter<any>;
@@ -199,21 +199,21 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.updateValitators();
     }
 
-    get isRequired () {
+    get required () {
         return this._required;
     }
 
-    set isRequired ( value : boolean ) {
+    set required ( value : boolean ) {
         this._required = this.isTrue( value );
         this.updateValitators();
     }
 
-    get valMinLength () {
-        return this._valMinLength;
+    get minLength () {
+        return this._minLength;
     }
 
-    set valMinLength ( value : number ) {
-        this._valMinLength = value;
+    set minLength ( value : number ) {
+        this._minLength = value;
         this.updateValitators();
     }
 
@@ -222,41 +222,41 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.updateValitators();
     }
 
-    get valMaxLength () {
-        return this._valMaxLength;
+    get maxLength () {
+        return this._maxLength;
     }
 
-    set valMaxLength ( value : number ) {
-        this._valMaxLength = value;
+    set maxLength ( value : number ) {
+        this._maxLength = value;
         this.updateValitators();
     }
 
-    get valMinDate () {
-        return this._valMinDate;
+    get minDate () {
+        return this._minDate;
     }
 
-    set valMinDate ( value : any ) {
+    set minDate ( value : any ) {
         value            = (value === 'now' ? 0 : value);
-        this._valMinDate = value;
+        this._minDate = value;
         this.updateValitators();
     }
 
-    get valMaxDate () {
-        return this._valMaxDate;
+    get maxDate () {
+        return this._maxDate;
     }
 
-    set valMaxDate ( value : any ) {
+    set maxDate ( value : any ) {
         value            = (value === 'now' ? 0 : value);
-        this._valMaxDate = value;
+        this._maxDate = value;
         this.updateValitators();
     }
 
-    get valMaxFloat () {
-        return this._valMaxFloat;
+    get maxFloat () {
+        return this._maxFloat;
     }
 
-    set valMaxFloat ( value : any ) {
-        this._valMaxFloat = value;
+    set maxFloat ( value : any ) {
+        this._maxFloat = value;
         this.updateValitators();
     }
 
@@ -349,13 +349,13 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     private updateValitators () {
         let validators = [
             RequiredValidator.requiredValidation( this._required ) ,
-            MinLengthValidator.minLengthValidation( this._valMinLength ) ,
-            MaxLengthValidator.maxLengthValidation( this._valMaxLength ) ,
-            MaxDateValidator.maxDateValidator( this._valMaxDate , this.valPattern ) ,
-            MinDateValidator.minDateValidator( this._valMinDate , this.valPattern ) ,
-            PatterValidator.patternValidator( this.valPattern ) ,
-            MaxFloatValidator.maxFloatValidator( this._valMaxFloat ) ,
-            DateValidator.dateValidator( this._valDate , this.valPattern ) ,
+            MinLengthValidator.minLengthValidation( this._minLength ) ,
+            MaxLengthValidator.maxLengthValidation( this._maxLength ) ,
+            MaxDateValidator.maxDateValidator( this._maxDate , this.pattern ) ,
+            MinDateValidator.minDateValidator( this._minDate , this.pattern ) ,
+            PatterValidator.patternValidator( this.pattern ) ,
+            MaxFloatValidator.maxFloatValidator( this._maxFloat ) ,
+            DateValidator.dateValidator( this._valDate , this.pattern ) ,
             this.customValidator()
         ];
         this.validate  = Validators.compose( validators );

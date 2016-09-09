@@ -12,7 +12,6 @@ export default function( state , action : Action ) {
             _state[ fdn.last() ] = query;
             return newState
         }
-            break;
         case ModelActions.PUSH: {
             const query  = action.payload.query;
             const fdn    = action.payload.fdn;
@@ -21,7 +20,6 @@ export default function( state , action : Action ) {
             _state[ fdn.last() ].push( query );
             return newState
         }
-            break;
         case ModelActions.REMOVE_AT: {
             const query  = action.payload.query;
             const fdn    = action.payload.fdn;
@@ -39,7 +37,6 @@ export default function( state , action : Action ) {
             }
             return newState
         }
-            break;
         default: {
             return state;
         }

@@ -17,10 +17,11 @@ import { Store } from "@ngrx/store";
     selector   : 'sample-array-experience-block' ,
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
-            <div *ngFor="let group of controlGroupArray.controls ; let i = index;">
-                <amp-form-row [attr.theme]="themeService.theme.attr" [title]="__custom.controls[0].title+' '+i">
-                    <button (click)="remove(i)" class="btn btn-anchor">x</button>
-                    <div class="grid__item_floated 1/3">
+           <amp-form-row [attr.theme]="themeService.theme.attr" *ngFor="let group of controlGroupArray.controls ; let i = index;">
+              <button (click)="remove(i)" class="btn btn-anchor"> <span class="icon icon--close" aria-hidden="true"></span> Remove this field</button>
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Mobile</label>
+                    <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
+                        <label class='1/1 sr-only'>What's your mobile number?</label>
                        <amp-redux [fdn]="__fdn.concat(['ages', i, 'age'])">  
                            <amp-input
                                 #ampReduxRef
@@ -29,28 +30,14 @@ import { Store } from "@ngrx/store";
                                 [label]="'Your age '+i"
                                 [controlGroup]="group"
                                 [isInSummaryState]="isInSummaryState"
-                                [isRequired]="true"
-                                [valPattern]="__custom.controls[0].regex"
-                                [valMaxLength]="__custom.controls[0].maxLengh">
+                                [required]="true"
+                                [pattern]="__custom.controls[0].regex"
+                                [maxLength]="__custom.controls[0].maxLengh">
                             </amp-input>
                         </amp-redux>
-                    </div>
-                </amp-form-row>
-            </div>
-            <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
-                <amp-input
-                    #ampReduxRef
-                    [attr.theme]="themeService.theme.attr"
-                    [id]="__custom.controls[0].id"
-                    [label]="'Your age '"
-                    [controlGroup]="__controlGroup"
-                    [isInSummaryState]="isInSummaryState"
-                    [isRequired]="true"
-                    [valPattern]="__custom.controls[0].regex"
-                    [valMaxLength]="__custom.controls[0].maxLengh">
-                </amp-input>
-            </amp-redux>
-            <button (click)="addMore()" class="btn btn-anchor">Add +</button>
+                     </div>
+            </amp-form-row>
+          <button (click)="addMore()" class="btn btn-anchor"> <span class="icon icon--plus-filled" aria-hidden="true"></span> Add another field</button>
         </amp-form-block>
     ` ,
     directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ]
@@ -74,7 +61,8 @@ export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
             query : [] ,
             fdn   : this.__fdn.concat( [ 'ages' ] )
         };
-        this.store.dispatch( this.modelActions.updateModel( payload ) );
+        this.store.dispatch( this.modelActions.update( payload ) );
+        this.addMore();
         return undefined;
     }
 

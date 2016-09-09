@@ -14,7 +14,8 @@ $buttons-default-width: 128px;
 $buttons-default-height: 128px;
 $buttons-default-margin-top: 60px;
 $buttons-default-height: 42px;
-
+$disabled-text-color: #9f9f9f;
+$disabled-background-color: #cbd2dc;
 
 
 //btn-ok
@@ -70,6 +71,10 @@ $btn-submit-active-border-color: $amp-colour-primary;
 $btn-submit-active-background-color: $amp-colour-primary;
 $btn-submit-active-text-color: $amp-colour-white;
 
+// btn change-anchor
+$btn-anchor-hover-background-color: $amp-colour-secondary-darkest;
+$btn-anchor-active-background-color: $amp-colour-primary;
+$btn-anchor-color: $amp-colour-secondary;
 
 /*
 Button base class used by all

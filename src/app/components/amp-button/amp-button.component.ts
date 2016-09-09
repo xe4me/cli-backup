@@ -48,18 +48,7 @@ export class AmpButton implements AfterContentInit {
     ngAfterContentInit () {
         this.domAdatper = new BrowserDomAdapter();
         let contentStr  = this.domAdatper.getText( this.elementRef.nativeElement );
-        /*console.log(contentStr);
-         console.log(this.elementRef);
 
-         if (this._chevron) {
-         switch ( this._chevron ) {
-         case'right':
-         //this.elementRef.nativeElement.innerText = this.dataAutomationId;
-         //console.log("outer");
-         //console.log(this.elementRef.nativeElement.innerText);
-         break;
-         }
-         }*/
         if ( ! this.dataAutomationId || ! this.dataAutomationId.length ) {
             this._dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g , '' ) : '');
             if ( this.parent ) {
