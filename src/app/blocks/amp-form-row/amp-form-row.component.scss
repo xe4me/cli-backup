@@ -1,39 +1,6 @@
 @import '../../../styles/abstracts';
 
 :host {
-  display  : block;
-  position : relative;
-  .FormBlocK {
-    padding-top : 60px;
-    .hr-block-divider {
-      margin-top : 80px;
-    }
-    @include media-query('palm') {
-      padding-top : 30px;
-      .hr-block-divider {
-        margin-top : 40px;
-      }
-    }
-  }
+
 
 }
-
-
-/*
-.heading-intro {
-    font-size: 24px;
-}
-
-.form__row {
-    .form-row-label-full-width {
-        color: $amp-colour-grey-darker;
-        font-size: 24px;
-        margin: 2px 0 16px 0;
-    }
-    .form-row-label {
-        color: $amp-colour-grey-darker;
-        font-size: 24px;
-        margin: 8px 0 8px 0;
-    }
-}*/
-
