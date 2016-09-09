@@ -8,7 +8,15 @@
   display  : block;
   position : relative;
   .FormBlocK {
-     // background-color: #00AAAA;
+
+  .heading-intro {
+       margin-bottom : 32px;
+   }
+
+   .md-input-wrapper {
+      margin: 0 0;
+   }
+
     padding-top : 60px;
     .hr-block-divider {
       margin-top : 80px;
@@ -23,6 +31,8 @@
 
   &[theme='tools'] {
 
+
+
     .FormBlocK {
       padding-top : $tools-form-block-heading-top-padding;
       padding-left : $tools-form-block-left-padding;
@@ -35,12 +45,6 @@
       .hr-block-divider {
         margin-top : 50px;
       }
-      /*@include media-query('palm') {
-        padding-top : 20px;
-        .hr-block-divider {
-          margin-top : 20px;
-        }
-      }*/
     }
   }
 
