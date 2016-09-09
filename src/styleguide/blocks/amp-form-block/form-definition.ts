@@ -116,6 +116,17 @@ export var formDef = {
                                     }
                                 },
                                 {
+                                    name        : 'samplefieldsblock3' ,
+                                    blockType   : 'SampleFieldsBlock3' ,
+                                    blockLayout : 'INLINE' ,
+                                    commonBlock : false ,
+                                    path        : 'blocks/amp-form-block/sample-fields-block3' ,
+                                    custom      : {
+                                        id         : 'FullOrPartial' ,
+                                        blockTitle : 'Are there other equity holders? ' ,
+                                    }
+                                },
+                                {
                                     name        : 'anotherSampleExperienceBlock' ,
                                     blockType   : 'AnotherSampleExperienceBlock' ,
                                     blockLayout : 'INLINE' ,

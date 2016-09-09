@@ -10,33 +10,33 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.component";
 import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-row.component";
-import { AmpGroupButtonsComponent } from "../../../app/components/amp-group-buttons/amp-group-buttons.component";
 @Component( {
-    selector   : 'sample-fields-block2' ,
+    selector   : 'sample-fields-block3' ,
     template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
 
-           <amp-form-row [attr.theme]="themeService.theme.attr">
-                 <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Scale</label>
-                    <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-6/12 mr mt0">
-                        <label class='1/1 sr-only'>What's your scale?</label>
-                         <amp-group-buttons
-                            [attr.theme]="themeService.theme.attr"
-                            [buttons]='__custom.buttons'
-                            [controlGroup]="__controlGroup"
-                            [required]="true"
-                            [isInSummaryState]="isInSummaryState"
-                            [groupName]='__custom.id'>
-                        </amp-group-buttons>
-                        <amp-error [controlGroup]="context?.__controlGroup" [controlId]="'firstname'"></amp-error>
-                    </div>
+            <amp-form-row [attr.theme]="themeService.theme.attr">
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Contact number</label>
+                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
+                    <label class='1/1 sr-only'>What's your Contact number?</label>
+                    <amp-input
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'Contactnumber'"
+                        [label]="'Contact number '"
+                        [controlGroup]="__controlGroup"
+                        [isInSummaryState]="isInSummaryState"
+                        [isRequired]="true"
+                        [valMaxLength]="'12'"
+                        [valMaxFloat]="'654654'"
+                        [valMinLength]="'4'">
+                    </amp-input>
+                </div>
             </amp-form-row>
-
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent, AmpGroupButtonsComponent ]
+    directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ]
 } )
-export class SampleFieldsBlock2 extends FormBlock implements OnInit {
+export class SampleFieldsBlock3 extends FormBlock implements OnInit {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
