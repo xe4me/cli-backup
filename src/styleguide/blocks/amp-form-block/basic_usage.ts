@@ -4,7 +4,7 @@ import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive
 import { Store , provideStore } from '@ngrx/store';
 import { FormGroup , FormBuilder } from "@angular/forms";
 import { FDN } from "./Application.fdn";
-var formDef = require( './form-definition.def.json' );
+var formDef = require( './form-def.def.json' );
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-form-block/basic_usage.html' ,
