@@ -22,17 +22,14 @@ export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-r
 export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp-review-total.component';
 // components
 export { AmpErrorComponent } from './src/app/components/amp-error/amp-error.component';
-export { AmpBlockComponent } from './src/app/components/amp-block/amp-block.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpButton } from './src/app/components/amp-button/amp-button.component';
-export { MdInputComponent } from './src/app/components/my-md-input/my-md-input.component';
+export { AmpInputComponent } from './src/app/components/amp-input/amp-input.component';
 export { AmpCheckboxComponent } from './src/app/components/amp-checkbox/amp-checkbox.component';
-export { AmpDefaultRouterComponent } from './src/app/components/amp-default-router/amp-default-router.component';
 export { AmpDropdownComponent } from './src/app/components/amp-dropdown/amp-dropdown.component';
-export { AmpValidationMessagesComponent } from './src/app/components/amp-fields-validation/amp-validation-messages.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
-export { AmpGroupButtonComponent } from './src/app/components/amp-group-button/amp-group-button.component';
+export { AmpGroupButtonsComponent } from './src/app/components/amp-group-buttons/amp-group-buttons.component';
 export { AmpRadioButtonGroupComponent } from './src/app/components/amp-radio-button-group/amp-radio-button-group.component';
 export { AmpTextareaComponent } from './src/app/components/amp-textarea/amp-textarea.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';

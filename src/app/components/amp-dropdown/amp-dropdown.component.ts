@@ -74,6 +74,7 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicke
         'id' ,
         'label' ,
         'options' ,
+        'errors' ,
         'controlGroup' ,
         'numOptions' ,
         'disabled' ,

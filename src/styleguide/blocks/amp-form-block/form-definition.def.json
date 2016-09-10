@@ -60,6 +60,21 @@
                                         ]
                                     }
                                 },
+                                 {
+                                    "name": "BlockWithCheckbox",
+                                    "blockType": "BlockWithCheckbox",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "blocks/amp-form-block/blocks/block-with-checkbox",
+                                    "custom": {
+                                        "blockTitle": "Check the checkbox !",
+                                        "controls": [
+                                            {
+                                                "id": "checkboxId"
+                                            }
+                                        ]
+                                    }
+                                },
                                 {
                                     "name": "samplefieldsblock2",
                                     "blockType": "SampleFieldsBlock2",
