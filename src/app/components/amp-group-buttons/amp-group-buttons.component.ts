@@ -1,57 +1,18 @@
 import {
     Component ,
     EventEmitter ,
-    Directive ,
-    Renderer ,
     ElementRef ,
-    forwardRef ,
     ChangeDetectorRef ,
-    Provider , OnInit
+    OnInit ,
+    ChangeDetectionStrategy
 } from '@angular/core';
-import {
-    Validators , FORM_DIRECTIVES , Control , NG_VALUE_ACCESSOR , ControlValueAccessor ,
-    ControlGroup
-} from '@angular/common';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
-import {
-    RequiredValidator
-} from '../../util/validations';
+import { RequiredValidator } from '../../util/validations';
 import { FormGroup , FormControl } from "@angular/forms";
-const RADIO_VALUE_ACCESSOR = new Provider( NG_VALUE_ACCESSOR ,
-    { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
-@Directive( {
-    selector  : 'input[type=radio][ngControl],input[type=radio][ngFormControl],input[type=radio][ngModel]' ,
-    host      : {
-        '(change)' : 'onChange($event.target.value)' ,
-        '(blur)'   : 'onTouched()'
-    } ,
-    providers : [ RADIO_VALUE_ACCESSOR ]
-} )
-class RadioControlValueAccessors implements ControlValueAccessor {
-    onChange  = ( _ ) => {
-    };
-    onTouched = () => {
-    };
-
-    constructor ( private _renderer : Renderer , private _elementRef : ElementRef ) {
-    }
-
-    writeValue ( value : any ) : void {
-        this._renderer.setElementProperty( this._elementRef , 'checked' , value === this._elementRef.nativeElement.value );
-    }
-
-    registerOnChange ( fn : ( _ : any ) => {} ) : void {
-        this.onChange = fn;
-    }
-
-    registerOnTouched ( fn : () => {} ) : void {
-        this.onTouched = fn;
-    }
-}
 @Component( {
-    selector   : 'amp-group-buttons' ,
-    template   : `
+    selector        : 'amp-group-buttons' ,
+    template        : `
                 <div class='amp-group-button'>
                     <span *ngFor='let button of buttons'>
                           <input
@@ -65,14 +26,11 @@ class RadioControlValueAccessors implements ControlValueAccessor {
                                 [value]='button.value'
                                 [checked]='control.value===button.value'
                                 />
-
-                            <label (click)='onSelect(button.value , true)' [attr.for]='button.id + index'>{{ button.label }}
-                            </label>
-
+                            <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
                     </span>
                 </div>
                 ` ,
-    inputs     : [
+    inputs          : [
         'errors' ,
         'defaultValue' ,
         'isInSummaryState' ,
@@ -86,9 +44,9 @@ class RadioControlValueAccessors implements ControlValueAccessor {
         'groupName' ,
         'index'
     ] ,
-    styles     : [ require( './amp-group-buttons.scss' ).toString() ] ,
-    directives : [ FORM_DIRECTIVES , RadioControlValueAccessors ] ,
-    outputs    : [ 'select' ]
+    styles          : [ require( './amp-group-buttons.scss' ).toString() ] ,
+    changeDetection : ChangeDetectionStrategy.OnPush ,
+    outputs         : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent implements OnInit {
     private controlGroup : FormGroup;
@@ -108,7 +66,7 @@ export class AmpGroupButtonsComponent implements OnInit {
                   private scrollService : ScrollService ) {
     }
 
-    public control : FormControl = new FormControl();
+    public control : FormControl = new FormControl( null );
     public errors                = {};
 
     ngOnInit () : any {
@@ -122,24 +80,17 @@ export class AmpGroupButtonsComponent implements OnInit {
         return undefined;
     }
 
-    ngOnDestroy () : any {
-        if ( ! this.keepControlOnDestroy ) {
-            this.control.validator = null;
-            this.control.updateValueAndValidity( {
-                onlySelf  : false ,
-                emitEvent : true
-            } );
-        }
-        return undefined;
-    }
-
     ngAfterViewInit () : any {
-        this.control.valueChanges.subscribe( ( changes ) => {
-            if ( changes )
-                this.onSelect( changes , false );
-        } );
+        this.control
+            .valueChanges
+            .distinctUntilChanged()
+            .subscribe( ( changes ) => {
+                if ( changes ) {
+                    this.select.emit( changes + '' );
+                }
+            } );
         if ( this.defaultValue ) {
-            this.control.updateValue( this.defaultValue );
+            this.control.setValue( this.defaultValue , { emitEvent : true } );
         }
         this.updateValidators();
         this.changeDetector.detectChanges();
@@ -170,18 +121,6 @@ export class AmpGroupButtonsComponent implements OnInit {
         } , 0 );
     }
 
-    private onSelect ( value , shouldScroll ) {
-        this.select.emit( value + '' );
-        if ( ! shouldScroll ) {
-            return;
-        }
-        if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
-            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
-        } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
-            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
-        }
-    }
-
     private isTrue ( value ) {
         return isPresent( value ) && (value === true || value === 'true' || false);
     }
@@ -189,7 +128,14 @@ export class AmpGroupButtonsComponent implements OnInit {
     private updateValidators () {
         if ( this.control ) {
             this.control.validator = RequiredValidator.requiredValidation( this._required );
-            this.control.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        }
+    }
+
+    private scroll ( value ) {
+        if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
+            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
+        } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
+            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
         }
     }
 }

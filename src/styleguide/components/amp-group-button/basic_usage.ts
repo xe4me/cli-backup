@@ -5,13 +5,14 @@ import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-group-button-block-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-group-button/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ],
+    styles      : [ require( './basic_usage.scss' ).toString() ] ,
     directives  : [ AmpGroupButtonComponent ]
 } )
 
 export default class AmpGroupButtonComponentBasicUsage {
-    control : FormControl            = new FormControl();
-    private fullOrPartialButtons = {
+    private required              = true;
+            control : FormControl = new FormControl();
+    private fullOrPartialButtons  = {
         buttons       : [
             {
                 id    : 'fullId' ,
@@ -26,7 +27,7 @@ export default class AmpGroupButtonComponentBasicUsage {
         ] ,
         fullOrPartial : 'fullOrPartial'
     };
-    private color                = 'red';
+    private color                 = 'red';
 
     constructor ( private  themeService : ThemeService ) {
     }

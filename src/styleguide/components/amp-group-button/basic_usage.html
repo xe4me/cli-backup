@@ -7,6 +7,7 @@
                 scrollOutOn='full'
                 class="1/5"
                 (select)='onButtonClick($event)'
+                [required]="required"
                 [buttons]='fullOrPartialButtons.buttons'
                 [parentControl]='control'
                 [groupName]='fullOrPartialButtons.fullOrPartial'
@@ -23,7 +24,18 @@
             </amp-button>
         </div>
     </section>
+    <section>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" (click)='required=!required' class='btn btn-ok'>
+                Required {{ required }}
+            </amp-button>
+        </div>
+    </section>
 
+    <div class="title">
+        Is Valid : {{ control.valid}}
+    </div>
+    <hr>
     <div class="title">
         Value : {{ control.value}}
     </div>
