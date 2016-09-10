@@ -1,4 +1,4 @@
-import { forwardRef , provide , ElementRef } from '@angular/core';
+import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy } from '@angular/core';
 import {
     Action ,
     FormModelService ,
@@ -7,7 +7,8 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 import { arrayJoinByDash } from './util/functions.utils';
 import { FormGroup } from "@angular/forms";
-export abstract class FormBlock {
+import { Subscription } from "rxjs";
+export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
@@ -18,19 +19,27 @@ export abstract class FormBlock {
     protected __fdn : string[]               = null;
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
+    private scrollSubscription : Subscription;
 
     abstract context () : any;
 
     constructor ( private formModelService : FormModelService ,
                   private elementRef : ElementRef ,
+                  private _cd : ChangeDetectorRef ,
                   private progressObserver : ProgressObserverService ,
                   private scrollService : ScrollService ) {
-        setTimeout( () => {
-            this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
-            this.visibleFlag  = this.selectorName + 'IsVisible';
-            this.doneFlag     = this.selectorName + 'IsDone';
-            this.subscribeToScrollEvents();
-        } );
+    }
+
+    ngAfterViewInit () {
+        this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
+        this.visibleFlag  = this.selectorName + 'IsVisible';
+        this.doneFlag     = this.selectorName + 'IsDone';
+        this.subscribeToScrollEvents();
+        this._cd.markForCheck();
+    }
+
+    ngOnDestroy () {
+        this.unSubscribeToScrollEvents();
     }
 
     updateSelectorName ( _customString : string|number ) {
@@ -68,43 +77,18 @@ export abstract class FormBlock {
     }
 
     protected subscribeToScrollEvents () {
-        if ( this.noScroll ) {
-            return;
+        if ( ! this.noScroll ) {
+            this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( changes ) => {
+                if ( changes === this.selectorName ) {
+                    this.isInSummaryState = false;
+                    this.isActive         = true;
+                    this.autoFocus();
+                    this._cd.markForCheck();
+                }
+            } );
         }
-        this.scrollService.$scrolled.subscribe( ( changes ) => {
-            console.log( 'changes' , changes );
-            if ( changes === this.selectorName ) {
-                this.isInSummaryState = false;
-                this.isActive         = true;
-                this.autoFocus();
-            }
-        } );
     }
 
-    // protected next ( nextBlock ) {
-    //     // console.log(nextBlock);
-    //     this.hasClickedOnOkButton = true;
-    //     if ( this.controlService.getFormGroup( this._fdn ).valid ) {
-    //         this.isInSummaryState = true;
-    //         this.progressObserver.onProgress();
-    //         TimerWrapper.setTimeout( () => {
-    //             this.isInSummaryState = true;
-    //         } , 1200 );
-    //         const fdn = this.scrollService.scrollToNextUndoneBlock( this.controlService , this._fdn );
-    //         this.formModelService.present( {
-    //             action    : 'setFlag' ,
-    //             flag      : nextBlock + 'IsVisible' ,
-    //             flagValue : true
-    //         } );
-    //         if ( fdn ) {
-    //             this.formModelService.present( {
-    //                 action    : 'setFlag' ,
-    //                 flag      : arrayJoinByDash( this._fdn ) + 'IsVisible' ,
-    //                 flagValue : true
-    //             } );
-    //         }
-    //     }
-    // }
     protected tickDone () {
         this.formModelService.present( {
             action    : 'setFlag' ,
@@ -121,10 +105,6 @@ export abstract class FormBlock {
         } );
     }
 
-    protected isCurrentBlockActive () {
-        return this.isActive;
-    }
-
     private resetBlock () {
         this.formModelService.present( {
             action    : 'setFlag' ,
@@ -132,5 +112,9 @@ export abstract class FormBlock {
             flagValue : false
         } );
         this.isInSummaryState = false;
+    }
+
+    private unSubscribeToScrollEvents () {
+        this.scrollSubscription.unsubscribe();
     }
 }
