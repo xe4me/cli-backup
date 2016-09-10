@@ -1,48 +1,18 @@
 import {
     Component ,
     EventEmitter ,
-    Directive ,
-    Renderer ,
     ElementRef ,
-    forwardRef ,
-    Provider ,
     ChangeDetectorRef ,
-    AfterViewInit , OnDestroy
+    AfterViewInit , OnDestroy , ChangeDetectionStrategy , OnInit
 } from '@angular/core';
-import { Validators , FormControl , NG_VALUE_ACCESSOR , ControlValueAccessor } from '@angular/forms';
+import { FormControl , FormGroup } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { isPresent } from '@angular/core/src/facade/lang';
-const RADIO_VALUE_ACCESSOR = new Provider(
-    NG_VALUE_ACCESSOR , { useExisting : forwardRef( () => RadioControlValueAccessors ) , multi : true } );
-@Directive( {
-    selector  : 'input[type=radio][formControl],input[type=radio][ngModel]' ,
-    host      : { '(change)' : 'onChange($event.target.value)' , '(blur)' : 'onTouched()' } ,
-    providers : [ RADIO_VALUE_ACCESSOR ]
-} )
- class RadioControlValueAccessors implements ControlValueAccessor {
-    onChange  = ( _ ) => {
-    };
-    onTouched = () => {
-    };
-
-    constructor ( private _renderer : Renderer , private _elementRef : ElementRef ) {
-    }
-
-    writeValue ( value : any ) : void {
-        this._renderer.setElementProperty( this._elementRef , 'checked' , value === this._elementRef.nativeElement.value );
-    }
-
-    registerOnChange ( fn : ( _ : any ) => {} ) : void {
-        this.onChange = fn;
-    }
-
-    registerOnTouched ( fn : () => {} ) : void {
-        this.onTouched = fn;
-    }
-}
+import { RequiredValidator } from "../../util/validations";
+import { isTrue } from "../../util/functions.utils";
 @Component( {
-    selector   : 'amp-radio-button-group' ,
-    template   : `
+    selector        : 'amp-radio-button-group' ,
+    template        : `
         <div  *ngFor='let button of buttons' class='amp-radio-button-group'>
               <input
                     [disabled]='disabled'
@@ -50,12 +20,11 @@ const RADIO_VALUE_ACCESSOR = new Provider(
                     type='radio'
                     [attr.id]='button.id'
                     [attr.name]='groupName'
-                    [formControl]='parentControl'
-                    [attr.value]='button.value'
-                    [checked]='parentControl.value===button.value'
-               />
+                    [formControl]='control'
+                    [value]='button.value'
+                    [checked]='control.value===button.value'/>
               <label
-                    [class.checked]="parentControl.value===button.value"
+                    [class.checked]="control.value===button.value"
                     (click)='onSelect($event , button.value , true)'
                     [attr.for]='button.id' class="root">
                     <div class="container">
@@ -68,57 +37,69 @@ const RADIO_VALUE_ACCESSOR = new Provider(
               </label>
         </div>
                 ` ,
-    inputs     : [
+    inputs          : [
+        'errors' ,
         'required' ,
+        'defaultValue' ,
         'scrollOutUnless' ,
+        'isInSummaryState' ,
         'scrollOutOn' ,
         'disabled' ,
-        'parentControl' ,
+        'controlGroup' ,
         'buttons' ,
         'groupName' ,
         'autoSelectOnOne' ,
         'selected'
     ] ,
-    host       : {
+    host            : {
         '[attr.aria-disabled]' : 'disabled'
     } ,
-    styles     : [ require( './amp-radio-button-group.scss' ).toString() ] ,
-    directives : [ RadioControlValueAccessors ] ,
-    outputs    : [ 'select' ]
+    styles          : [ require( './amp-radio-button-group.scss' ).toString() ] ,
+    changeDetection : ChangeDetectionStrategy.OnPush ,
+    outputs         : [ 'select' ]
 } )
-export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
-    private _selected : string     = null;
-    private _disabled : boolean    = false;
-    private _required : boolean    = false;
-    private parentControl : FormControl;
-    private select                 = new EventEmitter<any>();
+export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, OnInit {
+    private _selected : string         = null;
+    private _disabled : boolean        = false;
+    private _required : boolean        = false;
+    private isInSummaryState : boolean = false;
+    private defaultValue;
+    private select                     = new EventEmitter<any>();
     private buttons;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private groupName : string;
-    private previousValue : string = null;
+    private previousValue : string     = null;
+    private controlGroup : FormGroup;
+    public control : FormControl       = new FormControl( null );
+    public errors                      = {};
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
                   private scrollService : ScrollService ) {
     }
 
+    ngOnInit () : any {
+        this.joinToParentGroupAndSetAmpErrors();
+        return undefined;
+    }
+
     private set selected ( selected : string ) {
-        if ( isPresent( selected ) && this.parentControl ) {
+        if ( isPresent( selected ) && this.control ) {
             this._selected = selected;
-            this.parentControl.updateValue( this._selected );
+            this.control.setValue( this._selected );
         }
     }
 
     private set autoSelectOnOne ( select : boolean ) {
-        if ( this.isTrue( select ) && this.parentControl && this.buttons.length === 1 ) {
-            this.parentControl.updateValue( this.buttons[ 0 ].value );
+        if ( isTrue( select ) && this.control && this.buttons.length === 1 ) {
+            this.control.setValue( this.buttons[ 0 ].value );
         }
     }
 
     ngOnDestroy () : any {
-        this.parentControl.validator = null;
-        this.parentControl.updateValueAndValidity( {
+        this.control.validator = null;
+        this.control.updateValueAndValidity( {
             onlySelf  : false ,
             emitEvent : true
         } );
@@ -126,10 +107,18 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit () : any {
-        this.parentControl.valueChanges.subscribe( ( changes ) => {
-            this.onSelect( null , changes , false );
-        } );
-        this.updateValitators();
+        this.control
+            .valueChanges
+            .distinctUntilChanged()
+            .subscribe( ( changes ) => {
+                if ( changes ) {
+                    this.onSelect( null , changes , false );
+                }
+            } );
+        if ( this.defaultValue ) {
+            this.control.setValue( this.defaultValue , { emitEvent : true } );
+        }
+        this.updateValidators();
         this.changeDetector.detectChanges();
         return undefined;
     }
@@ -139,16 +128,20 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
     }
 
     set disabled ( value ) {
-        this._disabled = this.isTrue( value );
+        this._disabled = isTrue( value );
     }
 
     get required () {
         return this._required;
     }
 
+    get id () {
+        return this.groupName;
+    }
+
     set required ( value ) {
-        this._required = this.isTrue( value );
-        this.updateValitators();
+        this._required = isTrue( value );
+        this.updateValidators();
     }
 
     private onSelect ( $event , value , shouldScroll ) {
@@ -162,9 +155,12 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
             this.previousValue = value;
             this.select.emit( value + '' );
         }
-        if ( !shouldScroll ) {
-            return;
+        if ( shouldScroll ) {
+            this.scroll( value );
         }
+    }
+
+    private scroll ( value ) {
         if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
         } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
@@ -172,14 +168,20 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    private isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === 'true' || false);
+    private updateValidators () {
+        if ( this.control ) {
+            this.control.setValidators( RequiredValidator.requiredValidation( this._required ) );
+            this.control.updateValueAndValidity( { emitEvent : false } );
+        }
     }
 
-    private updateValitators () {
-        if ( this.parentControl ) {
-            this.parentControl.validator = this.isTrue( this.required ) ? Validators.required : null;
-            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+    private joinToParentGroupAndSetAmpErrors () {
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName , i )=> {
+            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( this.id , this.control );
         }
     }
 }

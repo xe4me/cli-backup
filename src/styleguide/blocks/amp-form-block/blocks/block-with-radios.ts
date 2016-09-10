@@ -11,36 +11,33 @@ import {
 import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/amp-checkbox.component";
+import { AmpRadioButtonGroupComponent } from "../../../../app/components/amp-radio-button-group/amp-radio-button-group.component";
 @Component( {
-    selector        : 'block-with-checkbox' ,
+    selector        : 'block-with-radios' ,
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Do you like redux ?</label>
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Plase select one ?</label>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
-                         <amp-checkbox
-                                #ampReduxRef
-                                [attr.theme]="themeService.theme.attr"
-                                [isInSummaryState]='isInSummaryState'
-                                [controlGroup]="__controlGroup"
-                                [required]='true'
-                                [id]='__custom.controls[0].id'>
-                            <div class='heading heading-contxtual-label'>
-                                I agree to advertising my practice's register internally, and for to seek out
-                                practices that
-                                may be interested in becoming the servicing practice for some or all of the register.
-                            </div>
-                        </amp-checkbox>
+                      <amp-radio-button-group
+                            #ampReduxRef
+                            [attr.theme]="themeService.theme.attr"
+                            [controlGroup]="__controlGroup"
+                            [isInSummaryState]="isInSummaryState"
+                            [required]="true"
+                            [buttons]='__custom.controls[0].buttons'
+                            [groupName]='__custom.controls[0].id'>
+                        </amp-radio-button-group>
                     </amp-redux>
                 </div>
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpCheckboxComponent , AmpFormRowComponent ] ,
+    directives      : [ AmpFormBlockComponent , AmpRadioButtonGroupComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class BlockWithCheckbox extends FormBlock {
+export class BlockWithRadios extends FormBlock {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
