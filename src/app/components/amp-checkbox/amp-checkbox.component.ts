@@ -54,12 +54,11 @@ import { isTrue } from "../../util/functions.utils";
         outputs  : [ 'select' ]
     } )
 export class AmpCheckboxComponent implements AfterViewInit {
-    private _disabled : boolean            = false;
-    private _checked : boolean             = false;
-    private _required : boolean            = false;
+    private _disabled : boolean        = false;
+    private _checked : boolean         = false;
+    private _required : boolean        = false;
     private _tabindex : number;
-    private isInSummaryState : boolean     = false;
-    private control : FormControl;
+    private isInSummaryState : boolean = false;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private controlGroup : FormGroup;
