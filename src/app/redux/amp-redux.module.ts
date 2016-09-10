@@ -9,7 +9,10 @@ import { StoreModule } from "@ngrx/store";
 /*
  * TODO : Where is the best place to put bellow code ?
  * */
-if ( ! Array.prototype.last ) {
+interface Array<T> {
+    last() : Array<T>;
+}
+if ( ! (<any>Array.prototype).last ) {
     (<any>Array.prototype).last = function() {
         return this[ this.length - 1 ];
     };
