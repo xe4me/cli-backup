@@ -1,16 +1,16 @@
-import { Component , ChangeDetectorRef , ElementRef , OnInit } from '@angular/core';
-import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
-import { ThemeService } from "../../services/theme";
-import { FormBlock } from "../../../app/form-block";
+import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy } from '@angular/core';
+import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
+import { ThemeService } from "../../../services/theme";
+import { FormBlock } from "../../../../app/form-block";
 import {
     Action ,
     FormModelService ,
     ProgressObserverService ,
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
-import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.component";
-import { AmpDropdownComponent } from "../../../app/components/amp-dropdown/amp-dropdown.component";
-import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-row.component";
+import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
+import { AmpDropdownComponent } from "../../../../app/components/amp-dropdown/amp-dropdown.component";
+import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 @Component( {
     selector   : 'sample-fields-block3' ,
     template   : `
@@ -20,6 +20,7 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
                 <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>There are
                 <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                     <amp-dropdown
+                        #ampReduxRef
                         [attr.theme]="themeService.theme.attr"
                         [isInSummaryState]='false'
                         [id]='__custom.controls[0].id'
@@ -38,15 +39,17 @@ import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-r
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent, AmpDropdownComponent ]
+    directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent, AmpDropdownComponent ],
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleFieldsBlock3 extends FormBlock implements OnInit {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
-                  elementRef : ElementRef ,
                   scrollService : ScrollService ,
+                  _cd : ChangeDetectorRef ,
+                  elementRef : ElementRef ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , progressObserver , scrollService );
+        super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
     ngOnInit () : any {

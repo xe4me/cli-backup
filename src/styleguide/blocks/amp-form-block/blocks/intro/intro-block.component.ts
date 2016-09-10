@@ -1,12 +1,12 @@
-import { Component , ChangeDetectorRef , ElementRef } from "@angular/core";
+import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from "@angular/core";
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
-import { ThemeService } from "../../../services/theme";
-import { FormBlock } from "../../../../app/form-block";
-import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
+import { ThemeService } from "../../../../services/theme";
+import { FormBlock } from "../../../../../app/form-block";
+import { AmpButton } from "../../../../../app/components/amp-button/amp-button.component";
 @Component( {
-    selector   : 'intro-block' ,
-    directives : [ AmpButton ] ,
-    template   : `
+    selector        : 'intro-block' ,
+    directives      : [ AmpButton ] ,
+    template        : `
         <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class='intro-logo mt-60 mb-60 palm-m'></div>
                 <div class="utils__align--center mb-60" >
@@ -27,17 +27,20 @@ import { AmpButton } from "../../../../app/components/amp-button/amp-button.comp
             </div>
         </div>
     ` ,
-    styles     : [ require( './intro-block.component.scss' ).toString() ]
+    styles          : [ require( './intro-block.component.scss' ).toString() ] ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class IntroBlockComponent extends FormBlock {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   scrollService : ScrollService ,
+                  _cd : ChangeDetectorRef ,
                   elementRef : ElementRef ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , progressObserver , scrollService );
+        super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
     context () {
+        return this;
     }
 }

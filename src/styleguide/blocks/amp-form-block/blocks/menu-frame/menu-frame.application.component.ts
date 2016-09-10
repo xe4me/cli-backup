@@ -10,15 +10,15 @@ import {
     trigger ,
     ChangeDetectorRef
 } from '@angular/core';
-import { StickyProgressHeaderBlockComponent } from '../sticky-progress-header-block/sticky-progress-header-block.component';
+import { StickyProgressHeaderBlockComponent } from '../../sticky-progress-header-block/sticky-progress-header-block.component';
 import {
     FormModelService ,
     FormSectionService ,
     ProgressObserverService ,
     AmpHttpService
 } from 'amp-ddc-ui-core/ui-core';
-import { AmpBlockLoaderDirective } from "../../../../app/amp-block-loader.directive";
-import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
+import { AmpBlockLoaderDirective } from "../../../../../app/amp-block-loader.directive";
+import { AmpButton } from "../../../../../app/components/amp-button/amp-button.component";
 @Component( {
     selector   : 'menu-frame' ,
     template   : require( './menu-frame.application.component.html' ) ,

@@ -1,21 +1,21 @@
-import { Component , ElementRef , OnInit } from '@angular/core';
-import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
-import { ThemeService } from "../../services/theme";
-import { FormBlock } from "../../../app/form-block";
+import { Component , ElementRef , OnInit , ChangeDetectionStrategy , ChangeDetectorRef } from '@angular/core';
+import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
+import { ThemeService } from "../../../services/theme";
+import { FormBlock } from "../../../../app/form-block";
 import {
     Action ,
     FormModelService ,
     ProgressObserverService ,
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
-import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.component";
-import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-row.component";
+import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
+import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 import { FormArray , FormGroup } from "@angular/forms";
-import { ModelActions , Payload } from "../../../app/redux/actions/model.action";
+import { ModelActions , Payload } from "../../../../app/redux/actions/model.action";
 import { Store } from "@ngrx/store";
 @Component( {
-    selector   : 'sample-array-experience-block' ,
-    template   : `
+    selector        : 'sample-array-experience-block' ,
+    template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
            <amp-form-row [attr.theme]="themeService.theme.attr" *ngFor="let group of controlGroupArray.controls ; let i = index;">
               <button (click)="remove(i)" class="btn btn-anchor"> <span class="icon icon--close" aria-hidden="true"></span> Remove this field</button>
@@ -40,19 +40,21 @@ import { Store } from "@ngrx/store";
           <button (click)="addMore()" class="btn btn-anchor"> <span class="icon icon--plus-filled" aria-hidden="true"></span> Add another field</button>
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ]
+    directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
     private controlGroupArray : FormArray = new FormArray( [] );
 
     constructor ( private themeService : ThemeService ,
-                  private store : Store<any> ,
                   private modelActions : ModelActions ,
+                  private store : Store<any> ,
                   formModelService : FormModelService ,
-                  elementRef : ElementRef ,
                   scrollService : ScrollService ,
+                  _cd : ChangeDetectorRef ,
+                  elementRef : ElementRef ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , progressObserver , scrollService );
+        super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
     ngOnInit () : any {

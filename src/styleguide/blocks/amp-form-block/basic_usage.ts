@@ -4,7 +4,7 @@ import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive
 import { Store , provideStore } from '@ngrx/store';
 import { FormGroup , FormBuilder } from "@angular/forms";
 import { FDN } from "./Application.fdn";
-var formDef = require( './form-definition.fdn.json' );
+var formDef = require( './form-definition.def.json' );
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-form-block/basic_usage.html' ,
@@ -14,14 +14,10 @@ var formDef = require( './form-definition.fdn.json' );
 } )
 
 
-
-
-
 export default class AmpFormBlockBasicUsage {
     private fullyDistinguishedName = [];
     private childBlocks            = formDef;
     private form : FormGroup;
-
     constructor ( public store : Store<any> , private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );
         //this.model = this.store.select();

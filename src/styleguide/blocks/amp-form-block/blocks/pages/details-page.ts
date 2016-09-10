@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AmpBlockLoaderDirective } from "../../../../app/amp-block-loader.directive";
+import { AmpBlockLoaderDirective } from "../../../../../app/amp-block-loader.directive";
 @Component( {
     selector   : 'details-page' ,
     template   : `

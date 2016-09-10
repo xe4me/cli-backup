@@ -1,15 +1,15 @@
-import { Component , ChangeDetectorRef , ElementRef , OnInit } from '@angular/core';
-import { AmpFormBlockComponent } from "../../../app/blocks/amp-form-block/amp-form-block.component";
-import { ThemeService } from "../../services/theme";
-import { FormBlock } from "../../../app/form-block";
+import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy } from '@angular/core';
+import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
+import { ThemeService } from "../../../services/theme";
+import { FormBlock } from "../../../../app/form-block";
 import {
     Action ,
     FormModelService ,
     ProgressObserverService ,
     ScrollService
 } from 'amp-ddc-ui-core/ui-core';
-import { AmpFormRowComponent } from "../../../app/blocks/amp-form-row/amp-form-row.component";
-import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.component";
+import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
+import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 @Component( {
     selector   : 'sample-experience-block' ,
     template   : `
@@ -39,15 +39,17 @@ import { AmpInputComponent } from "../../../app/components/amp-input/amp-input.c
              </amp-form-row> 
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpFormRowComponent , AmpInputComponent ]
+    directives : [ AmpFormBlockComponent , AmpFormRowComponent , AmpInputComponent ],
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleExperienceBlock extends FormBlock implements OnInit {
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
+                  _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , progressObserver , scrollService );
+        super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
     ngOnInit () : any {

@@ -37,12 +37,12 @@ import { FormBlock } from "../../../app/form-block";
     styles     : [ require( './intro-block.component.scss' ).toString() ]
 } )
 export class IntroBlockComponent extends FormBlock {
-    constructor (
-                  formModelService : FormModelService ,
+    constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
+                  _cd : ChangeDetectorRef ,
                   elementRef : ElementRef ,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , progressObserver , scrollService );
+        super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
     context () {

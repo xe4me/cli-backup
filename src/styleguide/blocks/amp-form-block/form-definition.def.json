@@ -11,7 +11,7 @@
             "name": "Application",
             "blockLayout": "PAGE",
             "commonBlock": false,
-            "path": "blocks/amp-form-block/pages/details-page",
+            "path": "blocks/amp-form-block/blocks/pages/details-page",
             "page": {
                 "pageId": null,
                 "nextPageId": null,
@@ -24,13 +24,13 @@
                     "blockType": "IntroBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
-                    "path": "blocks/amp-form-block/intro/intro-block.component"
+                    "path": "blocks/amp-form-block/blocks/intro/intro-block.component"
                 },
                 {
                     "blockType": "MenuFrameApplicationBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
-                    "path": "blocks/amp-form-block/menu-frame/menu-frame.application.component",
+                    "path": "blocks/amp-form-block/blocks/menu-frame/menu-frame.application.component",
                     "blocks": [
                         {
                             "name": "InsuranceDetailsSection",
@@ -47,7 +47,7 @@
                                     "blockType": "SampleFieldsBlock",
                                     "blockLayout": "INLINE",
                                     "commonBlock": false,
-                                    "path": "blocks/amp-form-block/sample-fields-block",
+                                    "path": "blocks/amp-form-block/blocks/sample-fields-block",
                                     "custom": {
                                         "blockTitle": "Confirm or update your details ",
                                         "controls": [
@@ -65,7 +65,7 @@
                                     "blockType": "SampleFieldsBlock2",
                                     "blockLayout": "INLINE",
                                     "commonBlock": false,
-                                    "path": "blocks/amp-form-block/sample-fields-block2",
+                                    "path": "blocks/amp-form-block/blocks/sample-fields-block2",
                                     "custom": {
                                         "blockTitle": "Your reigion ",
                                         "controls": [
@@ -122,7 +122,7 @@
                                     "blockType": "SampleFieldsBlock3",
                                     "blockLayout": "INLINE",
                                     "commonBlock": false,
-                                    "path": "blocks/amp-form-block/sample-fields-block3",
+                                    "path": "blocks/amp-form-block/blocks/sample-fields-block3",
                                     "custom": {
                                         "blockTitle": "Are there other equity holders? ",
                                         "controls": [
@@ -159,9 +159,9 @@
                                     "blockType": "SampleArrayExperienceBlock",
                                     "blockLayou": "INLINE",
                                     "commonBloc": false,
-                                    "path": "blocks/amp-form-block/sample-array-experience-block",
+                                    "path": "blocks/amp-form-block/blocks/sample-array-experience-block",
                                     "custom": {
-                                        "blockTitl": "This block has a repeating group !",
+                                        "blockTitle": "This block has a repeating group !",
                                         "controls": [
                                             {
                                                 "id": "age",
@@ -180,7 +180,7 @@
                                     "blockType": "AnotherSampleExperienceBlock",
                                     "blockLayout": "INLINE",
                                     "commonBlock": false,
-                                    "path": "blocks/amp-form-block/another-sample-experience-block",
+                                    "path": "blocks/amp-form-block/blocks/another-sample-experience-block",
                                     "custom": {
                                         "blockTitle ": "Which one , full or partial ? ",
                                         "controls": [
@@ -207,7 +207,7 @@
                                     "blockType": "SampleExperienceBlock",
                                     "blockLayout": "INLINE",
                                     "commonBlock": false,
-                                    "path": "blocks/amp-form-block/sample-experience-block",
+                                    "path": "blocks/amp-form-block/blocks/sample-experience-block",
                                     "custom": {
                                         "blockTitle": "Lets get your name, shall we ?",
                                         "controls": [
