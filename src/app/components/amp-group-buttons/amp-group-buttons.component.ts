@@ -66,7 +66,7 @@ export class AmpGroupButtonsComponent implements OnInit {
                   private scrollService : ScrollService ) {
     }
 
-    public control : FormControl = new FormControl( null );
+    public control : FormControl = new FormControl(null);
     public errors                = {};
 
     ngOnInit () : any {
@@ -127,7 +127,8 @@ export class AmpGroupButtonsComponent implements OnInit {
 
     private updateValidators () {
         if ( this.control ) {
-            this.control.validator = RequiredValidator.requiredValidation( this._required );
+            this.control.setValidators(RequiredValidator.requiredValidation( this._required ));
+            this.control.updateValueAndValidity( { emitEvent : false} );
         }
     }
 
