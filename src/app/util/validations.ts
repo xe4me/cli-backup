@@ -6,7 +6,8 @@ export class RequiredValidator {
                 if ( ! c.value || c.value.length === 0 ) {
                     return {
                         required : {
-                            text : c._ampErrors.required ? c._ampErrors.required : 'This field is required'
+                            text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +
+                            ' required'
                         }
                     };
                 }
@@ -24,7 +25,9 @@ export class MaxLengthValidator {
                 }
                 return {
                     maxLength : {
-                        text : c._ampErrors.maxLength ? c._ampErrors.maxLength : 'This field should not be more than' +
+                        text : c._ampErrors && c._ampErrors.maxLength ? c._ampErrors.maxLength : 'This field should' +
+                        ' not' +
+                    ' be more than' +
                         ' ' + valMaxLength + ' characters.'
                     }
                 };
@@ -42,7 +45,9 @@ export class MinLengthValidator {
                 }
                 return {
                     minLength : {
-                        text : c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should  be more than ' + valMinLength + ' characters.'
+                        text : c._ampErrors && c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should' +
+                        '  be' +
+                    ' more than ' + valMinLength + ' characters.'
                     }
                 };
             }
@@ -59,7 +64,7 @@ export class PatterValidator {
                 }
                 return {
                     mdPattern : {
-                        text : c._ampErrors.pattern ? c._ampErrors.pattern : 'This field is not valid.'
+                        text : c._ampErrors && c._ampErrors.pattern ? c._ampErrors.pattern : 'This field is not valid.'
                     }
                 };
             }
@@ -77,7 +82,8 @@ export class MaxDateValidator {
                 }
                 return {
                     maxDate : {
-                        text : c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This date should not be greater' +
+                        text : c._ampErrors && c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This date should not be' +
+                    ' greater' +
                         ' than ' + pattern + ' .'
                     }
                 };
@@ -96,7 +102,9 @@ export class DateValidator {
                 }
                 return {
                     invalidDate : {
-                        text : c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'This date is not valid.'
+                        text : c._ampErrors && c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'This date is' +
+                        ' not' +
+                    ' valid.'
                     }
                 };
             }
@@ -114,7 +122,8 @@ export class MinDateValidator {
                 }
                 return {
                     minDate : {
-                        text : c._ampErrors.minDate ? c._ampErrors.minDate : 'This date should be greater' +
+                        text : c._ampErrors && c._ampErrors.minDate ? c._ampErrors.minDate : 'This date should be' +
+                    ' greater' +
                         ' than ' + pattern + ' .'
                     }
                 };
@@ -134,7 +143,9 @@ export class MaxFloatValidator {
                         if ( replaceValue > valMaxFloat ) {
                             return {
                                 maxFloat : {
-                                    text : c._ampErrors.maxFloat ? c._ampErrors.maxFloat : 'This amount should be more' +
+                                    text : c._ampErrors && c._ampErrors.maxFloat ? c._ampErrors.maxFloat : 'This' +
+                                    ' amount' +
+                                ' should be more' +
                                     ' than ' + valMaxFloat + ' .'
                                 }
                             }
