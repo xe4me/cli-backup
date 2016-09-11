@@ -1,18 +1,18 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { AmpGroupButtonComponent } from '../../../app/components/amp-group-button/amp-group-button.component';
+import { FormControl , FormGroup } from '@angular/forms';
+import { AmpGroupButtonsComponent } from '../../../app/components/amp-group-buttons/amp-group-buttons.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
-    selector    : 'amp-group-button-block-basic-usage' ,
-    templateUrl : 'src/styleguide/components/amp-group-button/basic_usage.html' ,
+    selector    : 'amp-group-buttons-block-basic-usage' ,
+    templateUrl : 'src/styleguide/components/amp-group-buttons/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ AmpGroupButtonComponent ]
+    directives  : [ AmpGroupButtonsComponent ]
 } )
 
 export default class AmpGroupButtonComponentBasicUsage {
-    private required              = true;
-            control : FormControl = new FormControl();
-    private fullOrPartialButtons  = {
+    private required                   = true;
+            controlGroup : FormGroup = new FormGroup({});
+    private fullOrPartialButtons       = {
         buttons       : [
             {
                 id    : 'fullId' ,
@@ -27,9 +27,13 @@ export default class AmpGroupButtonComponentBasicUsage {
         ] ,
         fullOrPartial : 'fullOrPartial'
     };
-    private color                 = 'red';
+    private color                      = 'red';
 
     constructor ( private  themeService : ThemeService ) {
+    }
+
+    private get control () {
+        return this.controlGroup.controls[ 'fullOrPartial' ];
     }
 
     private onButtonClick () {

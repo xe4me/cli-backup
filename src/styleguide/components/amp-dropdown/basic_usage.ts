@@ -1,5 +1,5 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl , FormGroup } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core'
 import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { ThemeService } from '../../services/theme';
@@ -12,9 +12,14 @@ import { ThemeService } from '../../services/theme';
 } )
 
 export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
-    control : FormControl = new FormControl();
-    isInSummaryState  = false;
-    titleOptions      = [
+    controlGroup : FormGroup = new FormGroup( {} );
+
+    get control () {
+        return this.controlGroup.controls[ 'Title' ];
+    }
+
+    isInSummaryState    = false;
+    titleOptions        = [
         { value : 'mr' , label : 'Mr' } ,
         { value : 'mrs' , label : 'Mrs' } ,
         { value : 'miss' , label : 'Miss' } ,

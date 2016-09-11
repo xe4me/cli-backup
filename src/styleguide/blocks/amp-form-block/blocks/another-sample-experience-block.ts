@@ -1,6 +1,5 @@
 import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from '@angular/core';
 import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
-import { AmpGroupButtonComponent } from "../../../../app/components/amp-group-button/amp-group-button.component";
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
 import {
@@ -12,8 +11,8 @@ import {
 import { AmpGroupButtonsComponent } from "../../../../app/components/amp-group-buttons/amp-group-buttons.component";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 @Component( {
-    selector   : 'another-sample-experience-block' ,
-    template   : `
+    selector        : 'another-sample-experience-block' ,
+    template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
                  <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Scale</label>
@@ -36,7 +35,7 @@ import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-for
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpGroupButtonsComponent , AmpFormRowComponent ],
+    directives      : [ AmpFormBlockComponent , AmpGroupButtonsComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
@@ -48,6 +47,7 @@ export class AnotherSampleExperienceBlock extends FormBlock {
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
+
     onButtonClick ( value ) {
         console.log( 'onButtonClick: value' , value );
     }

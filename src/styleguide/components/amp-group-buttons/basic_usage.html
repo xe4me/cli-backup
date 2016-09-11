@@ -2,17 +2,17 @@
     <h4 [style.color]='color'>this is binded to onButtonSelect , i.e on click event , and that event is changing the
         color</h4>
     <div id="group-buttons">
-        <amp-group-button
+        <amp-group-buttons
                 [attr.theme]="themeService.theme.attr"
                 scrollOutOn='full'
                 class="1/5"
                 (select)='onButtonClick($event)'
                 [required]="required"
                 [buttons]='fullOrPartialButtons.buttons'
-                [parentControl]='control'
+                [controlGroup]='controlGroup'
                 [groupName]='fullOrPartialButtons.fullOrPartial'
         >
-        </amp-group-button>
+        </amp-group-buttons>
     </div>
     <section>
         <div class='content'>

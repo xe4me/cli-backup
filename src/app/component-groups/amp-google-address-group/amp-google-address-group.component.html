@@ -11,11 +11,11 @@
             [id]='googleAddress.id+"_"+index'
             [label]='googleAddress.label'
             [labelHidden]='googleAddress.labelHidden'
-            [parentControl]='googleAddressCtrl'
+            [controlGroup]='googleAddressControlGroup'
             [placeholder]='googleAddress.placeholder'
-            [valPattern]='googleAddress.regex'
-            [valMaxLength]='googleAddress.max'
-            [isRequired]='isRequired'>
+            [pattern]='googleAddress.regex'
+            [maxLength]='googleAddress.max'
+            [required]='required'>
         </amp-google-address>
     </div>
 
@@ -27,7 +27,7 @@
         *ngIf='googleAddress.error &&
                 googleAddress.error.required &&
                 ampGoogleAddress.addrPredictions &&
-                errorEmptyControl(ampGoogleAddress.parentControl)'>
+                errorEmptyControl(ampGoogleAddress.controlGroup)'>
 
         <span class='icon icon--close icon-errors'></span>
         {{ googleAddress.error.required }}
@@ -37,7 +37,7 @@
         *ngIf='googleAddress.error &&
                 googleAddress.error.invalid &&
                 ampGoogleAddress.addrPredictions &&
-                errorInvalidControl(ampGoogleAddress.parentControl)'>
+                errorInvalidControl(ampGoogleAddress.controlGroup)'>
 
         <span class='icon icon--close icon-errors'></span>
         {{ googleAddress.error.invalid }}
@@ -47,25 +47,25 @@
 <div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'><!--
 
  --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
-        <my-md-input
+        <amp-input
             #manualAddress
             class='1/1'
             noPadding='true'
             [isInSummaryState]='isInSummaryState'
-            [id]='address.id'
+            [id]='address.id+"_"+index'
             [label]='address.label'
-            [parentControl]='addressCtrl'
-            [isRequired]='isRequired'
-            [valPattern]='address.regex'
-            [valMaxLength]='address.max'
-            [valMinLength]='address.min'>
-        </my-md-input>
+            [controlGroup]='manualAddressControlGroup'
+            [required]='required'
+            [pattern]='address.regex'
+            [maxLength]='address.max'
+            [minLength]='address.min'>
+        </amp-input>
 
         <div class='errors mt-25 mb-15' 
             *ngIf='!isInSummaryState &&
                     address.error &&
                     address.error.required &&
-                    errorEmptyControl(manualAddress.parentControl)'>
+                    errorEmptyControl(manualAddress.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ address.error.required }}
@@ -75,7 +75,7 @@
             *ngIf='!isInSummaryState &&
                     address.error &&
                     address.error.invalid &&
-                    errorInvalidControl(manualAddress.parentControl)'>
+                    errorInvalidControl(manualAddress.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ address.error.invalid }}
@@ -85,24 +85,24 @@
  --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
 
  --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
-        <my-md-input
+        <amp-input
             #manualSuburb
             class='1/1'
             [isInSummaryState]='isInSummaryState'
-            [id]='suburb.id'
+            [id]='suburb.id+"_"+index'
             [label]='suburb.label'
-            [parentControl]='suburbCtrl'
-            [isRequired]='isRequired'
-            [valPattern]='suburb.regex'
-            [valMaxLength]='suburb.max'
-            [valMinLength]='suburb.min'>
-        </my-md-input>
+            [controlGroup]='manualAddressControlGroup'
+            [required]='required'
+            [pattern]='suburb.regex'
+            [maxLength]='suburb.max'
+            [minLength]='suburb.min'>
+        </amp-input>
 
         <div class='errors mt-25 mb-15' 
             *ngIf='!isInSummaryState &&
                     suburb.error &&
                     suburb.error.required &&
-                    errorEmptyControl(manualSuburb.parentControl)'>
+                    errorEmptyControl(manualSuburb.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ suburb.error.required }}
@@ -112,7 +112,7 @@
             *ngIf='!isInSummaryState &&
                     suburb.error &&
                     suburb.error.invalid &&
-                    errorInvalidControl(manualSuburb.parentControl)'>
+                    errorInvalidControl(manualSuburb.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ suburb.error.invalid }}
@@ -122,24 +122,25 @@
  --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
 
  --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
-        <my-md-input
+        <amp-input
             #manualState
             noPadding='true'
             class='1/1'
             [isInSummaryState]='isInSummaryState'
-            [id]='state.id'
+            [id]='state.id+"_"+index'
             [label]='state.label'
-            [parentControl]='stateCtrl'
-            [isRequired]='isRequired'
-            [valPattern]='state.regex'
-            [valMaxLength]='state.max'>
-        </my-md-input>
+            [controlGroup]='manualAddressControlGroup'
+            [required]='required'
+            [toupperCase]='true'
+            [pattern]='state.regex'
+            [maxLength]='state.max'>
+        </amp-input>
 
         <div class='errors mt-25 mb-15' 
             *ngIf='!isInSummaryState &&
                     state.error &&
                     state.error.required &&
-                    errorEmptyControl(manualState.parentControl)'>
+                    errorEmptyControl(manualState.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ state.error.required }}
@@ -149,7 +150,7 @@
             *ngIf='!isInSummaryState &&
                     state.error &&
                     state.error.invalid &&
-                    errorInvalidControl(manualState.parentControl)'>
+                    errorInvalidControl(manualState.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ state.error.invalid }}
@@ -159,25 +160,25 @@
     --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
 
     --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
-        <my-md-input
+        <amp-input
             #manualPostcode
             noPadding='true'
             class='1/1'
             [isInSummaryState]='isInSummaryState'
-            [id]='postcode.id'
+            [id]='postcode.id+"_"+index'
             [label]='postcode.label'
-            [parentControl]='postcodeCtrl'
-            [isRequired]='isRequired'
-            [valPattern]='postcode.regex'
-            [valMaxLength]='postcode.max'
-            [valMinLength]="postcode.min">
-        </my-md-input>
+            [controlGroup]='manualAddressControlGroup'
+            [required]='required'
+            [pattern]='postcode.regex'
+            [maxLength]='postcode.max'
+            [minLength]="postcode.min">
+        </amp-input>
 
         <div class='errors mt-25 mb-15' 
             *ngIf='!isInSummaryState &&
                     postcode.error &&
                     postcode.error.required &&
-                    errorEmptyControl(manualPostcode.parentControl)'>
+                    errorEmptyControl(manualPostcode.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ postcode.error.required }}
@@ -187,7 +188,7 @@
             *ngIf='!isInSummaryState &&
                     postcode.error &&
                     postcode.error.invalid &&
-                    errorInvalidControl(manualPostcode.parentControl)'>
+                    errorInvalidControl(manualPostcode.controlGroup)'>
 
             <span class='icon icon--close icon-errors'></span>
             {{ postcode.error.invalid }}

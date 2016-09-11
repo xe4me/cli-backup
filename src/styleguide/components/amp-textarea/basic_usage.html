@@ -5,11 +5,11 @@
         <amp-textarea
                 [attr.theme]="themeService.theme.attr"
                 [isInSummaryState]='isInSummaryState'
-                id='a-text-area'
+                id='textarea'
                 label='A label '
-                [isRequired]='isTextAreaRequired'
-                [parentControl]='control'
-                valMaxLength='500'>
+                [required]='isTextAreaRequired'
+                [controlGroup]='controlGroup'
+                maxLength='500'>
         </amp-textarea>
         <!-- End copy at here -->
         <br><br>

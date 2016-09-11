@@ -1,10 +1,10 @@
 @@ set
-    task    MyMdInput
-    url     http://localhost:3001/#/components/MyMdInput
+    task    AmpInput
+    url     http://localhost:3001/#/components/AmpInput
 
 @@ parameterized
     | subtask    | spec                                                      |
-    | All        | src/styleguide/components/my-md-input/my-md-input.test.spec    |
+    | All        | src/styleguide/components/amp-input/amp-input.test.spec    |
 
 @@ parameterized
     | browser    |
@@ -19,7 +19,7 @@
     | Mobile     | mobile  | 320x800     |
 
 
-@@ groups ddc, my-md-input
+@@ groups ddc, amp-input
 ${task}: ${subtask} - ${breakpoint}
     selenium ${browser} ${url} ${size}
         wait 5s until gone "css: .ng-cloak"

@@ -1,5 +1,5 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { AmpTextareaComponent } from '../../../app/components/amp-textarea/amp-textarea.component';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { ThemeService } from '../../services/theme';
@@ -11,8 +11,11 @@ import { ThemeService } from '../../services/theme';
 } )
 
 export default class AMPTextareaComponentBasicUsage {
-    control : FormControl = new FormControl();
+    controlGroup : FormGroup = new FormGroup({});
 
+    get control(){
+        return this.controlGroup.controls['textarea']
+    }
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 }

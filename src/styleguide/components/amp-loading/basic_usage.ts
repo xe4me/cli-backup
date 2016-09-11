@@ -1,14 +1,13 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AmpLoadingComponent } from '../../../app/components/amp-loading/amp-loading.component';
-import { MdInputComponent } from '../../../app/components/my-md-input/my-md-input.component';
-import { InputWithLoadingGroupComponent } from '../../../app/component-groups/input-with-loading-group/input-with-loading-group.component';
+import { AmpInputComponent } from '../../../app/components/amp-input/amp-input.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-loading-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-loading/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ InputWithLoadingGroupComponent , AmpLoadingComponent , MdInputComponent ]
+    directives  : [ AmpLoadingComponent , AmpInputComponent ]
 } )
 
 export default class AmpLoadingComponentBasicUsage {

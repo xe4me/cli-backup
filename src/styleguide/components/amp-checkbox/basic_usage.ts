@@ -1,5 +1,5 @@
 import { Component , OnInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl , FormGroup } from '@angular/forms';
 import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { ThemeService } from '../../services/theme';
@@ -12,7 +12,11 @@ import { ThemeService } from '../../services/theme';
 } )
 
 export default class AMPCheckboxComponentBasicUsage implements OnInit {
-    control : FormControl   = new FormControl();
+    controlGroup : FormGroup = new FormGroup( {} );
+    get control () {
+        return this.controlGroup.controls[ 'acknowledge' ];
+    }
+
     isInSummaryState    = false;
     private acknowledge = {
         id          : 'acknowledge' ,
@@ -29,7 +33,7 @@ export default class AMPCheckboxComponentBasicUsage implements OnInit {
     }
 
     private check () {
-        this.control.updateValue( ! this.control.value );
+        this.control.setValue( ! this.control.value );
     }
 
     private onAcknowledgeSelect ( value ) {

@@ -1,37 +1,33 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
-
 class MockElementRef implements ElementRef {
-  nativeElement = {};
+    nativeElement = {};
 }
-
 describe( 'amp-radio-group-button component , multiple items usage' , () => {
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [ FormsModule, ReactiveFormsModule ],
-            declarations: [
-                AmpRadioButtonGroupComponent,
+    beforeEach( async( () => {
+        TestBed.configureTestingModule( {
+            imports      : [ FormsModule , ReactiveFormsModule ] ,
+            declarations : [
+                AmpRadioButtonGroupComponent ,
                 AmpRadioGroupButtonTest1
-            ],
-            providers: [
-                { provide: FormModelService, useClass: MockFormModelService },
-                { provide: ElementRef, useClass: MockElementRef },
-                { provide: ScrollService, useClass: MockScrollService },
-                ProgressObserverService,
-                { provide: Window, useClass: window }
+            ] ,
+            providers    : [
+                { provide : FormModelService , useClass : MockFormModelService } ,
+                { provide : ElementRef , useClass : MockElementRef } ,
+                { provide : ScrollService , useClass : MockScrollService } ,
+                ProgressObserverService ,
+                { provide : Window , useClass : window }
             ]
-        });
-
+        } );
         TestBed.compileComponents();
-    }));
-
+    } ) );
     it( 'Should contain 4 radio input fields with proper data-automation-id and name attributes ' , () => {
-        let fixture: ComponentFixture<AmpRadioGroupButtonTest1> = TestBed.createComponent(AmpRadioGroupButtonTest1);
+        let fixture : ComponentFixture<AmpRadioGroupButtonTest1> = TestBed.createComponent( AmpRadioGroupButtonTest1 );
         fixture.detectChanges();
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
@@ -43,10 +39,9 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
         expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosMultipleOptions.buttons[ 0 ].id );
         expect( Inputs.length ).toBe( 4 );
     } );
-
     it( 'Should update the control value after selecting the first radio option and this value should be null' +
         ' initially' , () => {
-        let fixture: ComponentFixture<AmpRadioGroupButtonTest1> = TestBed.createComponent(AmpRadioGroupButtonTest1);
+        let fixture : ComponentFixture<AmpRadioGroupButtonTest1> = TestBed.createComponent( AmpRadioGroupButtonTest1 );
         fixture.detectChanges();
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
@@ -58,9 +53,8 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
         fixture.detectChanges();
         expect( Component.multipleOptionControl.value ).toBe( Component.radiosMultipleOptions.buttons[ 0 ].value );
     } );
-
     it( 'Should emit a "select" event to it\'s parent after selecting one of the radio options ' , () => {
-        let fixture: ComponentFixture<AmpRadioGroupButtonTest1> = TestBed.createComponent(AmpRadioGroupButtonTest1);
+        let fixture : ComponentFixture<AmpRadioGroupButtonTest1> = TestBed.createComponent( AmpRadioGroupButtonTest1 );
         fixture.detectChanges();
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
@@ -75,27 +69,25 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
     } );
 } );
 describe( 'amp-radio-group-button component , single item usage' , () => {
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [ FormsModule, ReactiveFormsModule ],
-            declarations: [
-                AmpRadioButtonGroupComponent,
+    beforeEach( async( () => {
+        TestBed.configureTestingModule( {
+            imports      : [ FormsModule , ReactiveFormsModule ] ,
+            declarations : [
+                AmpRadioButtonGroupComponent ,
                 AmpRadioGroupButtonTest2
-            ],
-            providers: [
-                { provide: FormModelService, useClass: MockFormModelService },
-                { provide: ElementRef, useClass: MockElementRef },
-                { provide: ScrollService, useClass: MockScrollService },
-                ProgressObserverService,
-                { provide: Window, useClass: window }
+            ] ,
+            providers    : [
+                { provide : FormModelService , useClass : MockFormModelService } ,
+                { provide : ElementRef , useClass : MockElementRef } ,
+                { provide : ScrollService , useClass : MockScrollService } ,
+                ProgressObserverService ,
+                { provide : Window , useClass : window }
             ]
-        });
-
+        } );
         TestBed.compileComponents();
-    }));
-
+    } ) );
     it( 'Should contain 1 radio input field with proper data-automation-id and name attributes ' , () => {
-        let fixture: ComponentFixture<AmpRadioGroupButtonTest2> = TestBed.createComponent(AmpRadioGroupButtonTest2);
+        let fixture : ComponentFixture<AmpRadioGroupButtonTest2> = TestBed.createComponent( AmpRadioGroupButtonTest2 );
         fixture.detectChanges();
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
@@ -107,9 +99,8 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
         expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosOneOption.buttons[ 0 ].id );
         expect( Inputs.length ).toBe( 1 );
     } );
-
     it( 'Should be able to preselect if there is only one option and autoSelectOnOne attr is set to true' , () => {
-        let fixture: ComponentFixture<AmpRadioGroupButtonTest2> = TestBed.createComponent(AmpRadioGroupButtonTest2);
+        let fixture : ComponentFixture<AmpRadioGroupButtonTest2> = TestBed.createComponent( AmpRadioGroupButtonTest2 );
         fixture.detectChanges();
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
@@ -121,9 +112,8 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
         expect( input.checked ).toBeTruthy();
         expect( (' ' + label.className + ' ').indexOf( ' checked ' ) ).toBeGreaterThan( - 1 );
     } );
-
     it( 'Should have one label field with the correct text' , () => {
-        let fixture: ComponentFixture<AmpRadioGroupButtonTest2> = TestBed.createComponent(AmpRadioGroupButtonTest2);
+        let fixture : ComponentFixture<AmpRadioGroupButtonTest2> = TestBed.createComponent( AmpRadioGroupButtonTest2 );
         fixture.detectChanges();
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
@@ -134,9 +124,8 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
         expect( labelText.innerHTML.trim() ).toBe( Component.radiosOneOption.buttons[ 0 ].label.trim() );
     } );
 } );
-
 @Component( {
-    template   : `
+    template : `
         <form  #formModel='ngForm' class='nl-form' >
             <div id='multiple-radio-group' class='group-buttons'>
                 <amp-radio-button-group
@@ -146,7 +135,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
                     class='grid__item 1/1'
                     (select)='onMultipleRadioButtonSelect($event)'
                     [buttons]='radiosMultipleOptions.buttons'
-                    [parentControl]='multipleOptionControl'
+                    [controlGroup]='multipleOptioncontrolGroup'
                     [groupName]='radiosMultipleOptions.groupName'>
                 </amp-radio-button-group>
                 <div class='control-value'>
@@ -157,9 +146,18 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
     `
 } )
 class AmpRadioGroupButtonTest1 {
-    oneOptionControl : FormControl      = new FormControl();
-    multipleOptionControl : FormControl = new FormControl();
-    public radiosOneOption          = {
+    oneOptioncontrolGroup : FormGroup      = new FormGroup( {} );
+    multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
+
+    get oneOptionControl () {
+        return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];
+    }
+
+    get multipleOptionControl () {
+        return this.oneOptioncontrolGroup.controls[ this.radiosMultipleOptions.groupName ];
+    }
+
+    public radiosOneOption             = {
         buttons   : [
             {
                 id    : 'five_years' ,
@@ -217,9 +215,8 @@ class AmpRadioGroupButtonTest1 {
         this.selectEventFiredOnClick = true;
     }
 }
-
 @Component( {
-template   : `
+    template : `
     <form  #formModel='ngForm' class='nl-form' >
         <div id='single-radio-group' class='group-buttons'>
             <amp-radio-button-group
@@ -229,7 +226,7 @@ template   : `
                     class='grid__item 1/1'
                     (select)='onOneRadioButtonSelect($event)'
                     [buttons]='radiosOneOption.buttons'
-                    [parentControl]='oneOptionControl'
+                    [controlGroup]='oneOptioncontrolGroup'
                     [groupName]='radiosOneOption.groupName'>
             </amp-radio-button-group>
             <div class='control-value'>
@@ -240,7 +237,7 @@ template   : `
 `
 } )
 class AmpRadioGroupButtonTest2 {
-    oneOptionControl : FormControl        = new FormControl();
+    oneOptionControl : FormControl    = new FormControl();
     public radiosOneOption            = {
         buttons   : [
             {

@@ -8,7 +8,7 @@
                 class='grid__item 1/1'
                 (select)='onOneRadioButtonSelect($event)'
                 [buttons]='radiosOneOption.buttons'
-                [parentControl]='oneOptionControl'
+                [controlGroup]='oneOptioncontrolGroup'
                 [autoSelectOnOne]='"true"'
                 [groupName]='radiosOneOption.groupName'>
             >
@@ -29,7 +29,7 @@
                 class='grid__item 1/1'
                 (select)='onMultipleRadioButtonSelect($event)'
                 [buttons]='radiosMultipleOptions.buttons'
-                [parentControl]='multipleOptionControl'
+                [controlGroup]='multipleOptioncontrolGroup'
                 [groupName]='radiosMultipleOptions.groupName'
         >
         </amp-radio-button-group>
@@ -44,7 +44,7 @@
         </p>
         <br>
         <br>
-        <button class='btn btn-ok btn-full btn--secondary' (click)='multipleOptionControl.updateValue("five_years2")'>
+        <button class='btn btn-ok btn-full btn--secondary' (click)='multipleOptionControl.setValue("five_years2")'>
             Select 'At least five years'
         </button>
         <br>
@@ -53,7 +53,7 @@
         </button>
         <br>
         <button class='btn btn-ok btn-full btn--secondary'
-                (click)='multipleOptionControl.updateValue("fewer_than_five_years")'>Select'Fewer than five years'
+                (click)='multipleOptionControl.setValue("fewer_than_five_years")'>Select'Fewer than five years'
         </button>
         <div class='control-value'>
             Control value : {{ multipleOptionControl.value}}

@@ -10,7 +10,6 @@ export {
 } from './src/app/util/validations';
 export { KeyCodes } from './src/app/util/key-kodes.utils';
 export { BasicUtils } from './src/app/util/basic-utils';
-export { FormPage } from './src/app/formPage';
 // directives
 export { ClickedOutsideDirective } from './src/app/directives/clicked-outside/clicked-outside.directive';
 export { AmpStickyOnScrollDirective } from './src/app/directives/amp-sticky-on-scroll.directive';
@@ -33,5 +32,5 @@ export { AmpGroupButtonsComponent } from './src/app/components/amp-group-buttons
 export { AmpRadioButtonGroupComponent } from './src/app/components/amp-radio-button-group/amp-radio-button-group.component';
 export { AmpTextareaComponent } from './src/app/components/amp-textarea/amp-textarea.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
-export { InputWithLabelGroupComponent } from './src/app/component-groups/input-with-label-group/input-with-label-group.component';
+
 

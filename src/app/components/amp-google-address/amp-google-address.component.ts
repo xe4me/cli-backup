@@ -1,54 +1,52 @@
 import {
     Component ,
-    ViewEncapsulation ,
     NgZone ,
     AfterViewInit ,
     ChangeDetectorRef
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl , FormGroup } from '@angular/forms';
 import { Action } from 'amp-ddc-ui-core/ui-core';
-import { MdInputComponent } from '../my-md-input/my-md-input.component';
+import { AmpInputComponent } from '../amp-input/amp-input.component';
 declare var google : any;
 @Component( {
-    selector      : 'amp-google-address' ,
-    template      : `
-    <my-md-input
+    selector   : 'amp-google-address' ,
+    template   : `
+    <amp-input
         class='3/5'
         [id]='id'
         [label]='label'
         [labelHidden]='labelHidden'
-        [parentControl]='parentControl'
+        [controlGroup]='controlGroup'
         [placeholder]='placeholder'
         [isInSummaryState]='isInSummaryState'
-        valPattern='{{valPattern}}'
-        valMaxLength='{{valMaxLength}}'
+        pattern='{{pattern}}'
+        maxLength='{{valMaxLength}}'
         (input)='showManualAddrOpt()'>
-    </my-md-input>
+    </amp-input>
     ` ,
-    styles        : [ require( './amp-google-address.component.scss' ).toString() ] ,
-    inputs        : [
+    styles     : [ require( './amp-google-address.component.scss' ).toString() ] ,
+    inputs     : [
         'id' ,
         'label' ,
-        'parentControl' ,
+        'controlGroup' ,
         'placeholder' ,
         'visibility' ,
-        'valMaxLength' ,
-        'valPattern' ,
-        'isRequired' ,
+        'maxLength' ,
+        'pattern' ,
+        'required' ,
         'isInSummaryState' ,
         'labelHidden'
     ] ,
-    directives    : [ MdInputComponent ] ,
-    encapsulation : ViewEncapsulation.Emulated
+    directives : [ AmpInputComponent ]
 } )
 export class AMPGoogleAddressComponent implements AfterViewInit {
-    static CLASS_NAME            = 'AMPGoogleAddressComponent';
-    public addrPredictions : any = {};
-    public addrPlace : any       = {};
+    static CLASS_NAME             = 'AMPGoogleAddressComponent';
+    public addrPredictions : any  = {};
+    public addrPlace : any        = {};
     private id : string;
     private label : string;
-    private parentControl : FormControl;
-    private placeholder : string = '';
+    private controlGroup : FormGroup;
+    private placeholder : string  = '';
     private visibility : Action;
     private model : any;
     private autocomplete : any;
@@ -67,7 +65,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
                                                                             addr_cur ,
                                                                             addr_index ,
                                                                             addr_arr ) {
-                        if ( addr_cur.types.indexOf( type_cur ) > -1 ) {
+                        if ( addr_cur.types.indexOf( type_cur ) > - 1 ) {
                             return (addr_prev + ' ' + (getShortName ? addr_cur.short_name : addr_cur.long_name)).trim();
                         } else {
                             return addr_prev;
@@ -81,6 +79,10 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     constructor ( private zone : NgZone , public _cd : ChangeDetectorRef ) {
     }
 
+    get control () {
+        return (<FormControl>this.controlGroup.controls[ this.id ]);
+    }
+
     ngAfterViewInit () {
         // Binding Google Places Address api to google_places_ac input field
         var input : any   = document.getElementById( this.id + '-input' );
@@ -92,12 +94,12 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
         this.autocomplete = new google.maps.places.Autocomplete( input , options );
         google.maps.event.addListener( this.autocomplete , 'place_changed' , () => {
             this.zone.run( () => {
-                if ( !this.autocomplete.getPlace().formatted_address ) {
+                if ( ! this.autocomplete.getPlace().formatted_address ) {
                     console.log( 'Google address returned an address without details!' , this.autocomplete.getPlace().name );
                 }
                 this.addrPlace = this.autocomplete.getPlace();
                 if ( this.addrPlace ) {
-                    this.parentControl.updateValue( this.addrPlace.formatted_address );
+                    this.control.setValue( this.addrPlace.formatted_address );
                 }
             } );
         } );
@@ -106,13 +108,13 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     showManualAddrOpt () {
         var service = new google.maps.places.AutocompleteService();
         // Clear the addrPlace internal value, if the input do not match the addrPlace
-        if ( this.addrPlace && this.parentControl.value !== this.addrPlace.formatted_address ) {
+        if ( this.addrPlace && this.control.value !== this.addrPlace.formatted_address ) {
             this.addrPlace = null;
         }
-        if ( this.parentControl.value ) {
+        if ( this.control.value ) {
             service.getPlacePredictions(
                 {
-                    input                 : this.parentControl.value ,
+                    input                 : this.control.value ,
                     types                 : [ 'address' ] ,
                     componentRestrictions : { country : 'au' }
                 } ,

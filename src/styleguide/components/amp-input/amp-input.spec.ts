@@ -2,17 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component , provide, ElementRef } from '@angular/core';
 import { BaseRequestOptions , Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 // Load the implementations that should be tested
-import { MdInputComponent } from '../../../app/components/my-md-input/my-md-input.component';
+import { AmpInputComponent } from '../../../app/components/amp-input/amp-input.component';
 
-describe( 'my-md-input directive' , () => {
+describe( 'amp-input directive' , () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [ FormsModule, ReactiveFormsModule ],
             declarations: [
-                MdInputComponent,
+                AmpInputComponent,
                 TestComponent
             ],
             providers: [
@@ -58,7 +58,7 @@ describe( 'my-md-input directive' , () => {
     //     //expect( compiledInput.componentInstance._validators.length ).toBe( 4 );
     //     // expect(compiledInput.componentInstance._validators[0]).toBe(MdPatternValidator);
     //     expect( compiledInput.componentInstance._validators[ 0 ].mdPattern ).toBe( '^([A-Za-z ])*$' );
-    //     // TODO: Fix the MaxLength validator in my-md-input by Milad
+    //     // TODO: Fix the MaxLength validator in amp-input by Milad
     //     expect( compiledInput.componentInstance._validators[ 1 ].mdMaxLength ).toBe( '50' );
     //     // TODO: Work out the mandatory validator that got added to the Control but doesn't show up.
     // } );
@@ -71,13 +71,16 @@ class MockElementRef implements ElementRef {
 @Component( {
     template   : `
     <form  #formModel='ngForm' class='nl-form' >
-        <my-md-input [id]="'firstname'" [label]="'Name'" [parentControl]='firstnameControl'
-            isRequired='true'
-            valPattern='^([A-Za-z ])*$'
-            valMaxLength='50'>blah</my-md-input>
+        <amp-input
+            [id]="'firstname'"
+            [label]="'Name'"
+            [controlGroup]='firstnameControl'
+            [required]='true'
+            pattern='^([A-Za-z ])*$'
+            maxLength='50'>blah</amp-input>
     </form>
     `
 } )
 class TestComponent {
-    firstnameControl : FormControl = new FormControl();
+    firstnameControl : FormGroup = new FormGroup({});
 }

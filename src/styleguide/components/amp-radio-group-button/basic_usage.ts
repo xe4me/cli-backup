@@ -1,5 +1,5 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl , FormGroup } from '@angular/forms';
 import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 import { ThemeService } from '../../services/theme';
@@ -11,8 +11,17 @@ import { ThemeService } from '../../services/theme';
 } )
 
 export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {
-    oneOptionControl : FormControl        = new FormControl();
-    multipleOptionControl : FormControl   = new FormControl();
+    oneOptioncontrolGroup : FormGroup      = new FormGroup( {} );
+    multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
+
+    get oneOptionControl () {
+        return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];
+    }
+
+    get multipleOptionControl () {
+        return this.multipleOptioncontrolGroup.controls[ this.radiosMultipleOptions.groupName ];
+    }
+
     public radiosOneOption            = {
         buttons   : [
             {

@@ -160,20 +160,20 @@
         "readme": "<p>Custom Block for AmpAutoCompleteComponent.</p>\n"
     },
     {
-        "name": "Amp Group Button",
+        "name": "Amp Group Buttons",
         "sources": [
-            "src/app/components/amp-group-button/amp-group-button.component.ts"
+            "src/app/components/amp-group-buttons/amp-group-buttons.component.ts"
         ],
         "id": "AmpGroupButtonComponent",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-group-button/basic_usage.html",
-                "styles": "src/styleguide/components/amp-group-button/basic_usage.scss",
-                "source": "src/styleguide/components/amp-group-button/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-group-button/amp-group-button.test.spec",
-                "jasmine": "src/styleguide/components/amp-group-button/amp-group-button.spec.ts",
-                "component": "amp-group-button-block-basic-usage",
-                "component_src_location": "components/amp-group-button/basic_usage",
+                "template": "src/styleguide/components/amp-group-buttons/basic_usage.html",
+                "styles": "src/styleguide/components/amp-group-buttons/basic_usage.scss",
+                "source": "src/styleguide/components/amp-group-buttons/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-group-buttons/amp-group-buttons.test.spec",
+                "jasmine": "src/styleguide/components/amp-group-buttons/amp-group-buttons.spec.ts",
+                "component": "amp-group-buttons-block-basic-usage",
+                "component_src_location": "components/amp-group-buttons/basic_usage",
                 "name": "Amp Group Button Basic Usage"
             }
         ],
@@ -260,20 +260,20 @@
         "readme": "<p>AMP Textarea basic usage</p>\n"
     },
     {
-        "name": "MyTextInput",
+        "name":"AmpInput",
         "sources": [
-            "src/app/components/my-md-input/my-md-input.component.ts"
+            "src/app/components/amp-input/amp-input.component.ts"
         ],
-        "id": "MyMdInput",
+        "id": "AmpInput",
         "examples": [
             {
-                "template": "src/styleguide/components/my-md-input/basic_usage.html",
-                "styles": "src/styleguide/components/my-md-input/basic_usage.scss",
-                "source": "src/styleguide/components/my-md-input/basic_usage.ts",
-                "galen": "src/styleguide/components/my-md-input/my-md-input.test.spec",
-                "jasmine": "src/styleguide/components/my-md-input/my-md-input.spec.ts",
-                "component": "my-md-input-basic-usage",
-                "component_src_location": "components/my-md-input/basic_usage",
+                "template": "src/styleguide/components/amp-input/basic_usage.html",
+                "styles": "src/styleguide/components/amp-input/basic_usage.scss",
+                "source": "src/styleguide/components/amp-input/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-input/amp-input.test.spec",
+                "jasmine": "src/styleguide/components/amp-input/amp-input.spec.ts",
+                "component": "amp-input-basic-usage",
+                "component_src_location": "components/amp-input/basic_usage",
                 "name": "Basic Usage"
             }
         ],

@@ -10,7 +10,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { isPresent } from '../../util/functions.utils';
-import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
+import { FocuserDirective , AmpInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
 @Component( {
     selector   : 'amp-auto-complete' ,
     queries    : {
@@ -19,7 +19,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
     template   : `
     <div [clicked-outside]="close" class="amp-auto-complete">
         <div class='amp-auto-complete-control'>
-            <my-md-input
+            <amp-input
                 focuser="input"
                 iconRight='search'
                 (click)='open()'          
@@ -31,8 +31,8 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 [isInSummaryState]='isInSummaryState'
                 [id]='id'
                 [parentControl]='parentControl'
-                [isRequired]='isRequired'>
-            </my-md-input>
+                [required]='required'>
+            </amp-input>
         </div>
         <ul
             focuser='list'
@@ -70,7 +70,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'queryServiceCall' , // This should return an observable to be consumed here
         'isInSummaryState' ,
         'selectControl' ,
-        'isRequired' ,
+        'required' ,
         'selectLabel' ,
         'label' ,
         'parentControl' ,
@@ -80,7 +80,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'isActive'
     ] ,
     outputs    : [ 'change' ] ,
-    directives : [ MdInputComponent , ClickedOutsideDirective , FocuserDirective ]
+    directives : [ AmpInputComponent , ClickedOutsideDirective , FocuserDirective ]
 } )
 export class AmpAutoCompleteComponent implements OnInit {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
@@ -114,11 +114,11 @@ export class AmpAutoCompleteComponent implements OnInit {
         return undefined;
     }
 
-    get isRequired () {
+    get required () {
         return this._required;
     }
 
-    set isRequired ( value : boolean ) {
+    set required ( value : boolean ) {
         this._required = value;
     }
 

@@ -1,11 +1,8 @@
 import { Component , AfterViewInit , ChangeDetectorRef , provide } from '@angular/core';
 import { CORE_DIRECTIVES } from '@angular/common';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { FormBlock , provideParent } from '../../../app/blocks/formBlock';
 import { BlockID } from 'amp-ddc-ui-core/ui-core';
 import { ThemeService } from '../../services/theme';
-import{ Highlight } from '../../highlight'
 @Component( {
     selector   : 'some-form-block' ,
     template   : `
@@ -19,25 +16,12 @@ import{ Highlight } from '../../highlight'
                 </amp-button>
             </div>
         ` ,
-    directives : [ AmpButton ] ,
-    providers  : [
-        provideParent( SomeFormBlockComponent )
-    ]
+    directives : [ AmpButton ]
 } )
-class SomeFormBlockComponent extends FormBlock implements FormBlock {
+class SomeFormBlockComponent {
     static CLASS_NAME : string = 'SomeFormBlockComponent';
     public blockType           = 'SomeFormBlockComponent';
     public _id                 = new BlockID( 'whatever' , 1 );
-
-    constructor ( ) {
-        super(  );
-    }
-
-    public preBindControls ( _formBlockDef ) {
-    }
-
-    public postBindControls () : void {
-    }
 }
 @Component( {
     selector    : 'amp-button-basic-usage' ,

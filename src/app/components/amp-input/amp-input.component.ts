@@ -104,14 +104,14 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this._id , this.control );
+            this.controlGroup.addControl( this.id , this.control );
         }
         return undefined;
     }
 
     public controlGroup : FormGroup;
     private inputWidth : number;
-    private _id : string;
+    private id : string;
     private _minLength : number;
     private _maxLength : number;
     private _maxDate : string;
@@ -173,7 +173,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.setDefaultValue();
         this._cd.detectChanges();
         // Artifically inject the data-automation-id into the internals of @angular-material md-input
-        this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this._id );
+        this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this.id );
         // Artifically inject the placeholder property into the input element of the md-input directive.
         this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'placeholder' , this.placeholder );
         return undefined;
@@ -236,7 +236,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     }
 
     set minDate ( value : any ) {
-        value            = (value === 'now' ? 0 : value);
+        value         = (value === 'now' ? 0 : value);
         this._minDate = value;
         this.updateValitators();
     }
@@ -246,7 +246,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     }
 
     set maxDate ( value : any ) {
-        value            = (value === 'now' ? 0 : value);
+        value         = (value === 'now' ? 0 : value);
         this._maxDate = value;
         this.updateValitators();
     }
@@ -258,14 +258,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     set maxFloat ( value : any ) {
         this._maxFloat = value;
         this.updateValitators();
-    }
-
-    set id ( id : string ) {
-        this._id = id;
-    }
-
-    get id () {
-        return this._id;
     }
 
     // set autoFocus ( value : boolean ) {
@@ -306,9 +298,9 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         } );
         let notUsable;
         if ( this.control.value ) {
-            this.control.updateValue( this.control.value.trim() );
-            notUsable = this.tolowerCase ? this.control.updateValue( this.control.value.toLowerCase() ) : '';
-            notUsable = this.toupperCase ? this.control.updateValue( this.control.value.toUpperCase() ) : '';
+            this.control.setValue( this.control.value.trim() );
+            notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
+            notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
     }
@@ -385,7 +377,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
 
     private setDefaultValue () {
         if ( this.defaultValue && this.control ) {
-            this.control.updateValue( this.defaultValue );
+            this.control.setValue( this.defaultValue );
         }
     }
 }

@@ -1,0 +1,28 @@
+<form #formModel="ngForm" class="nl-form">
+    isvalid {{ control.valid }}
+    <br/>
+    <amp-input
+            [attr.theme]="themeService.theme.attr"
+            [id]="'firstname'"
+            [label]="'Name'"
+            [controlGroup]="controlGroup"
+            [required]="true"
+            [pattern]="'^([0-9])*$'"
+            [maxLength]="'12'"
+            [minLength]="'4'"
+            [currency]="'$'"
+    >
+    </amp-input>
+    <amp-error [controlGroup]="controlGroup"></amp-error>
+    <hr>
+    <div class="grid__item">
+        <amp-input
+            [id]="'date'"
+            [label]="'Date'"
+            [controlGroup]="dateControlGroup"
+            [required]="true"
+            [valDate]="true">
+        </amp-input>
+        <amp-error [controlGroup]="dateControlGroup"></amp-error>
+    </div>
+</form>
