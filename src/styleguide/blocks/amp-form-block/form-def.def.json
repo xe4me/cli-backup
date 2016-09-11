@@ -134,7 +134,7 @@
                                     "commonBlock": false,
                                     "path": "blocks/amp-form-block/blocks/sample-fields-block2",
                                     "custom": {
-                                        "blockTitle": "Your reigion ",
+                                        "blockTitle": "Your region ",
                                         "controls": [
                                             {
                                                 "id": "FullOrPartial",
