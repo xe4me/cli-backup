@@ -11,6 +11,8 @@ import {
 import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/amp-checkbox.component";
+import { FDN } from "../Application.fdn";
+import { FormService } from "../../../../app/services/form/form.service";
 @Component( {
     selector        : 'block-with-checkbox' ,
     template        : `
@@ -27,9 +29,7 @@ import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/am
                                 [required]='true'
                                 [id]='__custom.controls[0].id'>
                             <div class='heading heading-contxtual-label'>
-                                I agree to advertising my practice's register internally, and for to seek out
-                                practices that
-                                may be interested in becoming the servicing practice for some or all of the register.
+                                Following value is coming from sample field block , {{ contactControl?.value  }}
                             </div>
                         </amp-checkbox>
                     </amp-redux>
@@ -41,13 +41,21 @@ import { AmpCheckboxComponent } from "../../../../app/components/amp-checkbox/am
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class BlockWithCheckbox extends FormBlock {
+    private contactControl;
+
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
+                  private formService : FormService ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    }
+
+    ngOnInit () : any {
+        this.contactControl = this.formService.getControlFromGroup( FDN.samplefieldsblock.concat( [ 'contactNumber' ] ) , this.__form );
+        return undefined;
     }
 
     context () {

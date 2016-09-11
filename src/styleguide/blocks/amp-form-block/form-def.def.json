@@ -33,28 +33,13 @@
                     "path": "blocks/amp-form-block/blocks/menu-frame/menu-frame.application.component",
                     "blocks": [
                         {
-                            "name": "BlockWithTextarea",
-                            "blockType": "BlockWithTextarea",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/amp-form-block/blocks/block-with-textarea",
-                            "custom": {
-                                "blockTitle": "Can you explain why ? Like in general, why ? ",
-                                "controls": [
-                                    {
-                                        "id": "textarea"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "InsuranceDetailsSection",
+                            "name": "FirstInsuranceDetailsSection",
                             "blockType": "PageSectionComponent",
                             "blockLayout": "SECTION",
                             "commonBlock": false,
                             "path": "sections/page-section.component",
                             "custom": {
-                                "label": "Beneficiaries"
+                                "label": "First Insurance Details Section"
                             },
                             "blocks": [
                                 {
@@ -86,6 +71,21 @@
                                         "controls": [
                                             {
                                                 "id": "checkboxId"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "BlockWithTextarea",
+                                    "blockType": "BlockWithTextarea",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "blocks/amp-form-block/blocks/block-with-textarea",
+                                    "custom": {
+                                        "blockTitle": "Can you explain why ? Like in general, why ? ",
+                                        "controls": [
+                                            {
+                                                "id": "textarea"
                                             }
                                         ]
                                     }

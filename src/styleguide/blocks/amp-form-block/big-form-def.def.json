@@ -1,0 +1,1136 @@
+//{
+//    "id": "Application",
+//    "fdnClassPath": "src/styleguide/blocks/amp-form-block",
+//    "fdnModelPath": "src/styleguide/blocks/amp-form-block",
+//    "version": "0.0.1",
+//    "path": "/application",
+//    "status": "NEW",
+//    "blocks": [
+//        {
+//            "blockType": "DetailsPage",
+//            "name": "Application",
+//            "blockLayout": "PAGE",
+//            "commonBlock": false,
+//            "path": "blocks/amp-form-block/blocks/pages/details-page",
+//            "page": {
+//                "pageId": null,
+//                "nextPageId": null,
+//                "prevPageId": null,
+//                "routeName": "ApplicationFormComponent"
+//            },
+//            "blocks": [
+//                {
+//                    "name": "introBlockComponent",
+//                    "blockType": "IntroBlockComponent",
+//                    "blockLayout": "INLINE",
+//                    "commonBlock": false,
+//                    "path": "blocks/amp-form-block/blocks/intro/intro-block.component"
+//                },
+//                {
+//                    "blockType": "MenuFrameApplicationBlockComponent",
+//                    "blockLayout": "INLINE",
+//                    "commonBlock": false,
+//                    "path": "blocks/amp-form-block/blocks/menu-frame/menu-frame.application.component",
+//                    "blocks": [
+//                        {
+//                            "name": "FirstInsuranceDetailsSection",
+//                            "blockType": "PageSectionComponent",
+//                            "blockLayout": "SECTION",
+//                            "commonBlock": false,
+//                            "path": "sections/page-section.component",
+//                            "custom": {
+//                                "label": "First Insurance Details Section"
+//                            },
+//                            "blocks": [
+//                                {
+//                                    "name": "samplefieldsblock",
+//                                    "blockType": "SampleFieldsBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block",
+//                                    "custom": {
+//                                        "blockTitle": "Confirm or update your details ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "contactNumber"
+//                                            },
+//                                            {
+//                                                "id": "email"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithCheckbox",
+//                                    "blockType": "BlockWithCheckbox",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-checkbox",
+//                                    "custom": {
+//                                        "blockTitle": "Check the checkbox !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "checkboxId"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithTextarea",
+//                                    "blockType": "BlockWithTextarea",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-textarea",
+//                                    "custom": {
+//                                        "blockTitle": "Can you explain why ? Like in general, why ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "textarea"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithRadios",
+//                                    "blockType": "BlockWithRadios",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-radios",
+//                                    "custom": {
+//                                        "blockTitle": "Let's test the radio buttons",
+//                                        "controls": [
+//                                            {
+//                                                "id": "radios",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "five_years2",
+//                                                        "value": "five_years2",
+//                                                        "label": "At least five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "fewer_than_five_years",
+//                                                        "value": "fewer_than_five_years",
+//                                                        "label": "Fewer than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "more_than_five_years",
+//                                                        "value": "more_than_five_years",
+//                                                        "label": "More than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "amazing_value",
+//                                                        "value": "amazing_value",
+//                                                        "label": "How amazing this radio button is"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock2",
+//                                    "blockType": "SampleFieldsBlock2",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block2",
+//                                    "custom": {
+//                                        "blockTitle": "Your reigion ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "ACT",
+//                                                        "value": "ACT",
+//                                                        "label": "ACT"
+//                                                    },
+//                                                    {
+//                                                        "id": "NSW",
+//                                                        "value": "NSW",
+//                                                        "label": "NSW"
+//                                                    },
+//                                                    {
+//                                                        "id": "NT",
+//                                                        "value": "NT",
+//                                                        "label": "NT"
+//                                                    },
+//                                                    {
+//                                                        "id": "QLD",
+//                                                        "value": "QLD",
+//                                                        "label": "QLD"
+//                                                    },
+//                                                    {
+//                                                        "id": "SA",
+//                                                        "value": "SA",
+//                                                        "label": "SA"
+//                                                    },
+//                                                    {
+//                                                        "id": "TAS",
+//                                                        "value": "TAS",
+//                                                        "label": "TAS"
+//                                                    },
+//                                                    {
+//                                                        "id": "VIC",
+//                                                        "value": "VIC",
+//                                                        "label": "VIC"
+//                                                    },
+//                                                    {
+//                                                        "id": "WA",
+//                                                        "value": "WA",
+//                                                        "label": "WA"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock3",
+//                                    "blockType": "SampleFieldsBlock3",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block3",
+//                                    "custom": {
+//                                        "blockTitle": "Are there other equity holders? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "Title",
+//                                                "options": [
+//                                                    {
+//                                                        "value": "1",
+//                                                        "label": "1"
+//                                                    },
+//                                                    {
+//                                                        "value": "2",
+//                                                        "label": "2"
+//                                                    },
+//                                                    {
+//                                                        "value": "3",
+//                                                        "label": "3"
+//                                                    },
+//                                                    {
+//                                                        "value": "4",
+//                                                        "label": "4"
+//                                                    },
+//                                                    {
+//                                                        "value": "5",
+//                                                        "label": "5"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleArrayExperienceBlock",
+//                                    "blockType": "SampleArrayExperienceBlock",
+//                                    "blockLayou": "INLINE",
+//                                    "commonBloc": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-array-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "This block has a repeating group !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "anotherSampleExperienceBlock",
+//                                    "blockType": "AnotherSampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/another-sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle ": "Which one , full or partial ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "fullId",
+//                                                        "value": "full",
+//                                                        "label": "Full sale"
+//                                                    },
+//                                                    {
+//                                                        "id": "partialId",
+//                                                        "value": "partial",
+//                                                        "label": "Partial sale"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleExperienceBlock",
+//                                    "blockType": "SampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "Lets get your name, shall we ?",
+//                                        "controls": [
+//                                            {
+//                                                "id": "firstname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "lastname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                }
+//                            ]
+//                        },
+//                        {
+//                            "name": "SecondInsuranceDetailsSection",
+//                            "blockType": "PageSectionComponent",
+//                            "blockLayout": "SECTION",
+//                            "commonBlock": false,
+//                            "path": "sections/page-section.component",
+//                            "custom": {
+//                                "label": "Second Insurance Details Section"
+//                            },
+//                            "blocks": [
+//                                {
+//                                    "name": "samplefieldsblock",
+//                                    "blockType": "SampleFieldsBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block",
+//                                    "custom": {
+//                                        "blockTitle": "Confirm or update your details ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "contactNumber"
+//                                            },
+//                                            {
+//                                                "id": "email"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithCheckbox",
+//                                    "blockType": "BlockWithCheckbox",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-checkbox",
+//                                    "custom": {
+//                                        "blockTitle": "Check the checkbox !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "checkboxId"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithTextarea",
+//                                    "blockType": "BlockWithTextarea",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-textarea",
+//                                    "custom": {
+//                                        "blockTitle": "Can you explain why ? Like in general, why ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "textarea"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithRadios",
+//                                    "blockType": "BlockWithRadios",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-radios",
+//                                    "custom": {
+//                                        "blockTitle": "Let's test the radio buttons",
+//                                        "controls": [
+//                                            {
+//                                                "id": "radios",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "five_years2",
+//                                                        "value": "five_years2",
+//                                                        "label": "At least five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "fewer_than_five_years",
+//                                                        "value": "fewer_than_five_years",
+//                                                        "label": "Fewer than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "more_than_five_years",
+//                                                        "value": "more_than_five_years",
+//                                                        "label": "More than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "amazing_value",
+//                                                        "value": "amazing_value",
+//                                                        "label": "How amazing this radio button is"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock2",
+//                                    "blockType": "SampleFieldsBlock2",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block2",
+//                                    "custom": {
+//                                        "blockTitle": "Your reigion ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "ACT",
+//                                                        "value": "ACT",
+//                                                        "label": "ACT"
+//                                                    },
+//                                                    {
+//                                                        "id": "NSW",
+//                                                        "value": "NSW",
+//                                                        "label": "NSW"
+//                                                    },
+//                                                    {
+//                                                        "id": "NT",
+//                                                        "value": "NT",
+//                                                        "label": "NT"
+//                                                    },
+//                                                    {
+//                                                        "id": "QLD",
+//                                                        "value": "QLD",
+//                                                        "label": "QLD"
+//                                                    },
+//                                                    {
+//                                                        "id": "SA",
+//                                                        "value": "SA",
+//                                                        "label": "SA"
+//                                                    },
+//                                                    {
+//                                                        "id": "TAS",
+//                                                        "value": "TAS",
+//                                                        "label": "TAS"
+//                                                    },
+//                                                    {
+//                                                        "id": "VIC",
+//                                                        "value": "VIC",
+//                                                        "label": "VIC"
+//                                                    },
+//                                                    {
+//                                                        "id": "WA",
+//                                                        "value": "WA",
+//                                                        "label": "WA"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock3",
+//                                    "blockType": "SampleFieldsBlock3",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block3",
+//                                    "custom": {
+//                                        "blockTitle": "Are there other equity holders? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "Title",
+//                                                "options": [
+//                                                    {
+//                                                        "value": "1",
+//                                                        "label": "1"
+//                                                    },
+//                                                    {
+//                                                        "value": "2",
+//                                                        "label": "2"
+//                                                    },
+//                                                    {
+//                                                        "value": "3",
+//                                                        "label": "3"
+//                                                    },
+//                                                    {
+//                                                        "value": "4",
+//                                                        "label": "4"
+//                                                    },
+//                                                    {
+//                                                        "value": "5",
+//                                                        "label": "5"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleArrayExperienceBlock",
+//                                    "blockType": "SampleArrayExperienceBlock",
+//                                    "blockLayou": "INLINE",
+//                                    "commonBloc": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-array-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "This block has a repeating group !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "anotherSampleExperienceBlock",
+//                                    "blockType": "AnotherSampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/another-sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle ": "Which one , full or partial ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "fullId",
+//                                                        "value": "full",
+//                                                        "label": "Full sale"
+//                                                    },
+//                                                    {
+//                                                        "id": "partialId",
+//                                                        "value": "partial",
+//                                                        "label": "Partial sale"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleExperienceBlock",
+//                                    "blockType": "SampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "Lets get your name, shall we ?",
+//                                        "controls": [
+//                                            {
+//                                                "id": "firstname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "lastname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                }
+//                            ]
+//                        },
+//                        {
+//                            "name": "ThirdInsuranceDetailsSection",
+//                            "blockType": "PageSectionComponent",
+//                            "blockLayout": "SECTION",
+//                            "commonBlock": false,
+//                            "path": "sections/page-section.component",
+//                            "custom": {
+//                                "label": "Third Insurance Details Section"
+//                            },
+//                            "blocks": [
+//                                {
+//                                    "name": "samplefieldsblock",
+//                                    "blockType": "SampleFieldsBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block",
+//                                    "custom": {
+//                                        "blockTitle": "Confirm or update your details ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "contactNumber"
+//                                            },
+//                                            {
+//                                                "id": "email"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithCheckbox",
+//                                    "blockType": "BlockWithCheckbox",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-checkbox",
+//                                    "custom": {
+//                                        "blockTitle": "Check the checkbox !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "checkboxId"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithTextarea",
+//                                    "blockType": "BlockWithTextarea",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-textarea",
+//                                    "custom": {
+//                                        "blockTitle": "Can you explain why ? Like in general, why ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "textarea"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithRadios",
+//                                    "blockType": "BlockWithRadios",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-radios",
+//                                    "custom": {
+//                                        "blockTitle": "Let's test the radio buttons",
+//                                        "controls": [
+//                                            {
+//                                                "id": "radios",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "five_years2",
+//                                                        "value": "five_years2",
+//                                                        "label": "At least five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "fewer_than_five_years",
+//                                                        "value": "fewer_than_five_years",
+//                                                        "label": "Fewer than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "more_than_five_years",
+//                                                        "value": "more_than_five_years",
+//                                                        "label": "More than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "amazing_value",
+//                                                        "value": "amazing_value",
+//                                                        "label": "How amazing this radio button is"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock2",
+//                                    "blockType": "SampleFieldsBlock2",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block2",
+//                                    "custom": {
+//                                        "blockTitle": "Your reigion ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "ACT",
+//                                                        "value": "ACT",
+//                                                        "label": "ACT"
+//                                                    },
+//                                                    {
+//                                                        "id": "NSW",
+//                                                        "value": "NSW",
+//                                                        "label": "NSW"
+//                                                    },
+//                                                    {
+//                                                        "id": "NT",
+//                                                        "value": "NT",
+//                                                        "label": "NT"
+//                                                    },
+//                                                    {
+//                                                        "id": "QLD",
+//                                                        "value": "QLD",
+//                                                        "label": "QLD"
+//                                                    },
+//                                                    {
+//                                                        "id": "SA",
+//                                                        "value": "SA",
+//                                                        "label": "SA"
+//                                                    },
+//                                                    {
+//                                                        "id": "TAS",
+//                                                        "value": "TAS",
+//                                                        "label": "TAS"
+//                                                    },
+//                                                    {
+//                                                        "id": "VIC",
+//                                                        "value": "VIC",
+//                                                        "label": "VIC"
+//                                                    },
+//                                                    {
+//                                                        "id": "WA",
+//                                                        "value": "WA",
+//                                                        "label": "WA"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock3",
+//                                    "blockType": "SampleFieldsBlock3",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block3",
+//                                    "custom": {
+//                                        "blockTitle": "Are there other equity holders? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "Title",
+//                                                "options": [
+//                                                    {
+//                                                        "value": "1",
+//                                                        "label": "1"
+//                                                    },
+//                                                    {
+//                                                        "value": "2",
+//                                                        "label": "2"
+//                                                    },
+//                                                    {
+//                                                        "value": "3",
+//                                                        "label": "3"
+//                                                    },
+//                                                    {
+//                                                        "value": "4",
+//                                                        "label": "4"
+//                                                    },
+//                                                    {
+//                                                        "value": "5",
+//                                                        "label": "5"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleArrayExperienceBlock",
+//                                    "blockType": "SampleArrayExperienceBlock",
+//                                    "blockLayou": "INLINE",
+//                                    "commonBloc": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-array-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "This block has a repeating group !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "anotherSampleExperienceBlock",
+//                                    "blockType": "AnotherSampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/another-sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle ": "Which one , full or partial ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "fullId",
+//                                                        "value": "full",
+//                                                        "label": "Full sale"
+//                                                    },
+//                                                    {
+//                                                        "id": "partialId",
+//                                                        "value": "partial",
+//                                                        "label": "Partial sale"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleExperienceBlock",
+//                                    "blockType": "SampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "Lets get your name, shall we ?",
+//                                        "controls": [
+//                                            {
+//                                                "id": "firstname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "lastname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                }
+//                            ]
+//                        },
+//                        {
+//                            "name": "ForthInsuranceDetailsSection",
+//                            "blockType": "PageSectionComponent",
+//                            "blockLayout": "SECTION",
+//                            "commonBlock": false,
+//                            "path": "sections/page-section.component",
+//                            "custom": {
+//                                "label": "Forth Insurance Details Section"
+//                            },
+//                            "blocks": [
+//                                {
+//                                    "name": "samplefieldsblock",
+//                                    "blockType": "SampleFieldsBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block",
+//                                    "custom": {
+//                                        "blockTitle": "Confirm or update your details ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "contactNumber"
+//                                            },
+//                                            {
+//                                                "id": "email"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithCheckbox",
+//                                    "blockType": "BlockWithCheckbox",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-checkbox",
+//                                    "custom": {
+//                                        "blockTitle": "Check the checkbox !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "checkboxId"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithTextarea",
+//                                    "blockType": "BlockWithTextarea",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-textarea",
+//                                    "custom": {
+//                                        "blockTitle": "Can you explain why ? Like in general, why ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "textarea"
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "BlockWithRadios",
+//                                    "blockType": "BlockWithRadios",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/block-with-radios",
+//                                    "custom": {
+//                                        "blockTitle": "Let's test the radio buttons",
+//                                        "controls": [
+//                                            {
+//                                                "id": "radios",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "five_years2",
+//                                                        "value": "five_years2",
+//                                                        "label": "At least five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "fewer_than_five_years",
+//                                                        "value": "fewer_than_five_years",
+//                                                        "label": "Fewer than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "more_than_five_years",
+//                                                        "value": "more_than_five_years",
+//                                                        "label": "More than five yea"
+//                                                    },
+//                                                    {
+//                                                        "id": "amazing_value",
+//                                                        "value": "amazing_value",
+//                                                        "label": "How amazing this radio button is"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock2",
+//                                    "blockType": "SampleFieldsBlock2",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block2",
+//                                    "custom": {
+//                                        "blockTitle": "Your reigion ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "ACT",
+//                                                        "value": "ACT",
+//                                                        "label": "ACT"
+//                                                    },
+//                                                    {
+//                                                        "id": "NSW",
+//                                                        "value": "NSW",
+//                                                        "label": "NSW"
+//                                                    },
+//                                                    {
+//                                                        "id": "NT",
+//                                                        "value": "NT",
+//                                                        "label": "NT"
+//                                                    },
+//                                                    {
+//                                                        "id": "QLD",
+//                                                        "value": "QLD",
+//                                                        "label": "QLD"
+//                                                    },
+//                                                    {
+//                                                        "id": "SA",
+//                                                        "value": "SA",
+//                                                        "label": "SA"
+//                                                    },
+//                                                    {
+//                                                        "id": "TAS",
+//                                                        "value": "TAS",
+//                                                        "label": "TAS"
+//                                                    },
+//                                                    {
+//                                                        "id": "VIC",
+//                                                        "value": "VIC",
+//                                                        "label": "VIC"
+//                                                    },
+//                                                    {
+//                                                        "id": "WA",
+//                                                        "value": "WA",
+//                                                        "label": "WA"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "samplefieldsblock3",
+//                                    "blockType": "SampleFieldsBlock3",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-fields-block3",
+//                                    "custom": {
+//                                        "blockTitle": "Are there other equity holders? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "Title",
+//                                                "options": [
+//                                                    {
+//                                                        "value": "1",
+//                                                        "label": "1"
+//                                                    },
+//                                                    {
+//                                                        "value": "2",
+//                                                        "label": "2"
+//                                                    },
+//                                                    {
+//                                                        "value": "3",
+//                                                        "label": "3"
+//                                                    },
+//                                                    {
+//                                                        "value": "4",
+//                                                        "label": "4"
+//                                                    },
+//                                                    {
+//                                                        "value": "5",
+//                                                        "label": "5"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleArrayExperienceBlock",
+//                                    "blockType": "SampleArrayExperienceBlock",
+//                                    "blockLayou": "INLINE",
+//                                    "commonBloc": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-array-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "This block has a repeating group !",
+//                                        "controls": [
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "anotherSampleExperienceBlock",
+//                                    "blockType": "AnotherSampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/another-sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle ": "Which one , full or partial ? ",
+//                                        "controls": [
+//                                            {
+//                                                "id": "FullOrPartial",
+//                                                "buttons": [
+//                                                    {
+//                                                        "id": "fullId",
+//                                                        "value": "full",
+//                                                        "label": "Full sale"
+//                                                    },
+//                                                    {
+//                                                        "id": "partialId",
+//                                                        "value": "partial",
+//                                                        "label": "Partial sale"
+//                                                    }
+//                                                ]
+//                                            }
+//                                        ]
+//                                    }
+//                                },
+//                                {
+//                                    "name": "sampleExperienceBlock",
+//                                    "blockType": "SampleExperienceBlock",
+//                                    "blockLayout": "INLINE",
+//                                    "commonBlock": false,
+//                                    "path": "blocks/amp-form-block/blocks/sample-experience-block",
+//                                    "custom": {
+//                                        "blockTitle": "Lets get your name, shall we ?",
+//                                        "controls": [
+//                                            {
+//                                                "id": "firstname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "lastname",
+//                                                "title": "Whats your first name?",
+//                                                "errors": {
+//                                                    "required": "First name is a required thing"
+//                                                }
+//                                            },
+//                                            {
+//                                                "id": "age",
+//                                                "title": "What about your age?",
+//                                                "errors": {
+//                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+//                                                },
+//                                                "regex": "^([0-9])*$",
+//                                                "maxLengh": 3
+//                                            }
+//                                        ]
+//                                    }
+//                                }
+//                            ]
+//                        }
+//                    ]
+//                }
+//            ]
+//        }
+//    ]
+//}

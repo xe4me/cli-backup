@@ -1,4 +1,7 @@
-import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
+    AfterViewInit
+} from '@angular/core';
 import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
@@ -10,6 +13,9 @@ import {
 } from 'amp-ddc-ui-core/ui-core';
 import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
+import { FDN } from "../Application.fdn";
+import { StoreService } from "../../../../app/redux/services/store.service";
+import { FormService } from "../../../../app/services/form/form.service";
 @Component( {
     selector        : 'sample-fields-block' ,
     template        : `
@@ -54,23 +60,24 @@ import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-for
                     </amp-redux>
                 </div>
             </amp-form-row>
+            Checkbox value : {{ $checkBoxValue | async }}  
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class SampleFieldsBlock extends FormBlock implements OnInit {
+export class SampleFieldsBlock extends FormBlock {
+    private $checkBoxValue = this.storeService.distinctSelect( FDN.BlockWithCheckbox.concat( [ 'checkboxId' ] ) );
+
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
+                  private storeService : StoreService ,
+                  private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
-    }
-
-    ngOnInit () : any {
-        return undefined;
     }
 
     context () {

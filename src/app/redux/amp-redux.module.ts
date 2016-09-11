@@ -5,7 +5,8 @@ import actions from './actions/model.action';
 import models from './models';
 import reducers from './reducers/model.reducer';
 import { ModelActions } from "./actions/model.action";
-import { StoreModule } from "@ngrx/store";
+import { StoreModule , Store } from "@ngrx/store";
+import { StoreService } from "./services/store.service";
 /*
  * TODO : Where is the best place to put bellow code ?
  * */
@@ -24,7 +25,7 @@ const ACTIONS = [
     declarations : [
         AmpReduxComponent
     ] ,
-    providers    : [ ACTIONS ] ,
+    providers    : [ ACTIONS , StoreService ] ,
     exports      : [ AmpReduxComponent ]
 } )
 export class AmpReduxModule {
