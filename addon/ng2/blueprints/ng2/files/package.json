@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.5",
     "@angular/router": "3.0.0-rc.1",
     "core-js": "^2.4.0",
-    "rxjs": "5.0.0-beta.6",
+    "rxjs": "5.0.0-beta.11",
     "ts-helpers": "^1.1.1",
     "zone.js": "0.6.12",
 
@@ -41,6 +41,7 @@
     "angular2-universal-polyfills": "0.4.1",
     "preboot": "2.1.2",
     "parse5": "1.5.1",<% } %>
+    "@angular-cli/ast-tools": "<%= version %>",
     "@types/jasmine": "^2.2.30",
     "angular-cli": "<%= version %>",
     "codelyzer": "~0.0.26",
