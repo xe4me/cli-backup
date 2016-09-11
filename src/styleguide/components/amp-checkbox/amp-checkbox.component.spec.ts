@@ -50,8 +50,8 @@ describe( 'amp-checkbox component' , () => {
         expect( Component.checkbox.required ).toBeTruthy();
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
-        expect( Component.control.errors.checkboxrequired ).toBeDefined();
-        expect( Component.control.errors.checkboxrequired ).toBeTruthy();
+        expect( Component.control.errors.required ).toBeDefined();
+        expect( Component.control.errors.required ).toBeTruthy();
     } );
     it( 'Should have the control with validity as true ,  after setting the required attr to false ' , () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
@@ -65,8 +65,8 @@ describe( 'amp-checkbox component' , () => {
         expect( Component.checkbox.required ).toBeTruthy();
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
-        expect( Component.control.errors.checkboxrequired ).toBeDefined();
-        expect( Component.control.errors.checkboxrequired ).toBeTruthy();
+        expect( Component.control.errors.required ).toBeDefined();
+        expect( Component.control.errors.required ).toBeTruthy();
         let ToggleRequired = Element.querySelector( '#toggleRequired' );
         ToggleRequired.click();
         fixture.detectChanges();
@@ -85,8 +85,8 @@ describe( 'amp-checkbox component' , () => {
         fixture.detectChanges();
         expect( Component.checkbox.checked ).toBeFalsy();
         expect( Component.control.valid ).toBeFalsy();
-        expect( Component.control.errors.checkboxrequired ).toBeDefined();
-        expect( Component.control.errors.checkboxrequired ).toBeTruthy();
+        expect( Component.control.errors.required ).toBeDefined();
+        expect( Component.control.errors.required ).toBeTruthy();
         // Let's change the checked to true
         let ToggleChecked = Element.querySelector( '#toggleChecked' );
         ToggleChecked.click();

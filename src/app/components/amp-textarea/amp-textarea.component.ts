@@ -24,7 +24,7 @@ import { isTrue } from "../../util/functions.utils";
         flex-gt-sm='' >
         <label
          [ngClass]='{"summary" : isInSummaryState}'
-        *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
+        *ngIf='!isInSummaryState' [attr.for]='id'>{{label}}</label><!--
         --><textarea
                 #textarea
                 (keyup)='adjustHeight($event.target)'
@@ -35,15 +35,14 @@ import { isTrue } from "../../util/functions.utils";
                 [class.summary-state]='isInSummaryState'
                 [disabled]='isInSummaryState'
                 class='md-input'
-                [attr.name]='_id'
-                [attr.id]='_id'
+                [attr.name]='id'
+                [attr.id]='id'
                 [attr.maxlength]='maxLength'
-                [attr.data-automation-id]='"textarea_" + _id'
+                [attr.data-automation-id]='"textarea_" + id'
                 [formControl]='control'
                 [attr.placeholder]='placeholder'>
             </textarea>
-            <span
-            [class.error]='maxLength==textarea.value.length' class='char-left'
+            <span class='char-left'
              *ngIf='maxLength && maxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ maxLength }}</span>
             <span class='summary-text'>{{ control.value }}</span>
         <ng-content></ng-content>

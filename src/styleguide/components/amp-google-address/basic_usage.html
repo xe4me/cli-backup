@@ -9,11 +9,11 @@
                 [attr.theme]="themeService.theme.attr"
                 [id]="'PracticeAddress'"
                 [label]="'Type your address'"
-                [parentControl]="addressControl"
+                [controlGroup]="addressControlGroup"
                 [placeholder]=""
-                isRequired="true"
-                valPattern="^.*$"
-                valMaxLength="500">
+                [required]="true"
+                pattern="^.*$"
+                maxLength="500">
         </amp-google-address>
         <!-- End copy at here -->
 

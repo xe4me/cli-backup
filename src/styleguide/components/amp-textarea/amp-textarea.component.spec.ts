@@ -50,25 +50,6 @@ describe( 'amp-textarea component' , () => {
         let Labels          = Element.querySelector( 'label' );
         expect( Labels.getAttribute( 'for' ) ).toBe( Textareas.id );
     } );
-    it( 'Should assign an "error" class to character count element if the maxLength and value.length are equal' , () => {
-        let fixture : ComponentFixture<AmpTextAreaTest> = TestBed.createComponent( AmpTextAreaTest );
-        fixture.detectChanges();
-        let Element               = fixture.nativeElement;
-        let ampTextAreaTest       = fixture.debugElement;
-        let Component             = ampTextAreaTest.componentInstance;
-        let Textareas             = Element.querySelector( 'textarea' );
-        let Labels                = Element.querySelector( 'label' );
-        let CharacterCountElement = Element.querySelector( '.char-left' );
-        expect( CharacterCountElement.className.trim() ).toBe( 'char-left' );
-        expect( (' ' + CharacterCountElement.className + ' ').indexOf( ' error ' ) ).not.toBeGreaterThan( - 1 );
-        Component.control.setValue( '12345' );
-        fixture.detectChanges();
-        expect( Textareas.value ).toBe( '12345' );
-        expect( (' ' + CharacterCountElement.className + ' ').indexOf( ' error ' ) ).toBeGreaterThan( - 1 );
-        Component.control.setValue( '' );
-        fixture.detectChanges();
-        expect( (' ' + CharacterCountElement.className + ' ').indexOf( ' error ' ) ).not.toBeGreaterThan( - 1 );
-    } );
     it( 'Should not show the character count if the maxLength is not provided or if it\'s 0' , () => {
         let fixture : ComponentFixture<AmpTextAreaTest> = TestBed.createComponent( AmpTextAreaTest );
         fixture.detectChanges();
@@ -93,7 +74,7 @@ describe( 'amp-textarea component' , () => {
             [label]='textarea.label'
             [id]='textarea.id'
             [controlGroup]='controlGroup'
-            [valMaxLength]='textarea.maxLenght'>
+            [maxLength]='textarea.maxLenght'>
             </amp-textarea>
             <!-- End copy at here -->
             <br><br>

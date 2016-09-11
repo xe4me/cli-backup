@@ -130,7 +130,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
             <div id='multiple-radio-group' class='group-buttons'>
                 <amp-radio-button-group
                     [autoSelectOnOne]='"true"'
-                    required='true'
+                    [required]='true'
                     scrollOutOn='null'
                     class='grid__item 1/1'
                     (select)='onMultipleRadioButtonSelect($event)'
@@ -146,15 +146,10 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
     `
 } )
 class AmpRadioGroupButtonTest1 {
-    oneOptioncontrolGroup : FormGroup      = new FormGroup( {} );
     multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
 
-    get oneOptionControl () {
-        return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];
-    }
-
     get multipleOptionControl () {
-        return this.oneOptioncontrolGroup.controls[ this.radiosMultipleOptions.groupName ];
+        return this.multipleOptioncontrolGroup.controls[ this.radiosMultipleOptions.groupName ];
     }
 
     public radiosOneOption             = {
@@ -237,7 +232,11 @@ class AmpRadioGroupButtonTest1 {
 `
 } )
 class AmpRadioGroupButtonTest2 {
-    oneOptionControl : FormControl    = new FormControl();
+    oneOptioncontrolGroup : FormGroup      = new FormGroup( {} );
+
+    get oneOptionControl () {
+        return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];
+    }
     public radiosOneOption            = {
         buttons   : [
             {
