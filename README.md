@@ -1,3 +1,61 @@
+## AMP-Angular-CLI
+
+This repo is based off [Angular-CLI](https://github.com/angular/angular-cli), the main point of difference are:-
+* Integration with [AMP-DDC-Components](https://gitlab.ccoe.ampaws.com.au/DDC/components)
+* Added DDCForm scaffold. This generates a skeleton forms entry point with a sample form definition to get you going.
+* Changed the command line executable from 'ng' to 'amp-ng'
+
+These dependencies means that we need to co-ordinate the Angular versions.
+
+## To maintain the currency of Angular-CLI, we simply use it as a upstream repo
+```bash
+git remote add upstream https://github.com/angular/angular-cli.git
+```
+
+## To upgrade Angular version or Angular-CLI
+1. Upgrade AMP-DDC-Components angular dependencies
+1. Fetch and Rebase from upstream Angular-CLI (assuming they have moved the same level of Angular)
+1. Upgrade/modify whatever the new version of Angular demands on the customized portions
+
+## Installation
+```bash
+npm install -g amp-angular-cli
+```
+
+## Usage
+
+```bash
+amp-ng --help
+
+# Generates a new experience Angular2 project
+amp-ng new experience-demo
+
+# Initialize the repo for some unknown reason, only need to accept the changes for angular-cli.json
+amp-ng init
+
+# Generates a new FormModule, that include a skeleton form Component, Definition, Template, etc..
+amp-ng generate ddc-form form-demo
+
+# Starts the webpack-dev-server
+npm start
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Angular-CLI
 
 [![Join the chat at https://gitter.im/angular/angular-cli](https://badges.gitter.im/angular/angular-cli.svg)](https://gitter.im/angular/angular-cli?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

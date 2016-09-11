@@ -52,6 +52,7 @@ const aliasMap = {
   'cl': 'class',
   'c': 'component',
   'd': 'directive',
+  'f': 'form',
   'e': 'enum',
   'm': 'module',
   'p': 'pipe',

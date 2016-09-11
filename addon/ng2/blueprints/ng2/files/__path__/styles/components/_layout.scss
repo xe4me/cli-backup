@@ -1,0 +1,32 @@
+//
+// Todo List
+// --------------------------------
+
+.container {
+    margin: 0;
+    max-width: 1224px;
+    padding: 0 $content-padding-h;
+
+    @include media-query('lap-and-up') {
+        padding: 0 $content-padding-h-lap-and-up;
+    }
+
+    &--full-height {
+        position: relative;
+        height: 100vh;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    width: $content-left-width;
+}
+
+.main {
+    display: block;
+    margin-left: $content-left-width + $content-left-margin;
+}
+
+.blocks-wrapper {
+    padding-top: $sticky-menu-margin-bottom;
+}

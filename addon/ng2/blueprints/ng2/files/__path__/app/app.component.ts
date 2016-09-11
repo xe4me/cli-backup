@@ -8,10 +8,9 @@ import { APP_SHELL_DIRECTIVES } from '@angular/app-shell';<% } %>
     {{title}}
   </h1>
   `,
-  styles: [],
-  directives: [APP_SHELL_DIRECTIVES]<% } else { %>templateUrl: 'app.component.html',
-  styleUrls: ['app.component.<%= styleExt %>']<% } %>
+  styles: [ require( '../styles/all.scss' ).toString() ],
+  directives: [APP_SHELL_DIRECTIVES]<% } else { %>templateUrl: 'app.component.html'<% } %>
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Welcome to your new AMP DDC Experience!';
 }

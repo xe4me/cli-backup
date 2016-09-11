@@ -1,11 +1,11 @@
 {
-  "name": "angular-cli",
+  "name": "amp-angular-cli",
   "version": "1.0.0-beta.11-webpack.2",
   "description": "CLI tool for Angular",
   "main": "lib/cli/index.js",
   "trackingCode": "UA-8594346-19",
   "bin": {
-    "ng": "./bin/ng"
+    "amp-ng": "./bin/ng"
   },
   "keywords": [],
   "scripts": {
@@ -39,6 +39,7 @@
     "@types/webpack": "^1.12.22-alpha",
     "angular2-template-loader": "^0.4.0",
     "awesome-typescript-loader": "^2.2.1",
+    "bundle-loader": "^0.5.4",
     "chalk": "^1.1.3",
     "compression-webpack-plugin": "^0.3.1",
     "copy-webpack-plugin": "^3.0.1",
@@ -120,5 +121,8 @@
     "tree-kill": "^1.0.0",
     "tslint": "^3.8.1",
     "walk-sync": "^0.2.6"
+  },
+  "publishConfig": {
+    "registry": "http://npm-registry-ddc.digital-pilot.ampaws.com.au/"
   }
 }
