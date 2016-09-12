@@ -13,9 +13,50 @@ import { FormGroup , FormControl } from "@angular/forms";
 @Component( {
     selector        : 'amp-group-buttons' ,
     template        : `
-                <div class='amp-group-button'>
-                    <span *ngFor='let button of buttons | slice:0; let i=index'>
-                        <div *ngIf="i<4">
+
+                       <div class='amp-group-button'>
+
+                          <span *ngFor='let button of buttons; let i=index'>
+                               <span *ngIf='i<=3'>
+                                    <input
+                                    class="sr-only"
+                                    [disabled]='disabled'
+                                    [attr.data-automation-id]='"radio_button_" + button.id'
+                                    type='radio'
+                                    [attr.id]='button.id + index'
+                                    [attr.name]='id + index'
+                                    [formControl]='control'
+                                    [value]='button.value'
+                                    [checked]='control.value===button.value'
+                                    />
+                                <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
+                               </span>
+                               <div *ngIf='i==4'>
+                               </div>
+                               <span *ngIf='i>3'>
+                                  <input
+                                    class="sr-only"
+                                    [disabled]='disabled'
+                                    [attr.data-automation-id]='"radio_button_" + button.id'
+                                    type='radio'
+                                    [attr.id]='button.id + index'
+                                    [attr.name]='id + index'
+                                    [formControl]='control'
+                                    [value]='button.value'
+                                    [checked]='control.value===button.value'
+                                    />
+                                  <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
+                               </span>
+
+
+                          </span>
+
+                         </div>
+
+               <!-- <div class='amp-group-button'>
+                    &lt;!&ndash;<span *ngFor='let button of buttons; let i=index' [ngClass]="{breakRow: i==4}">&ndash;&gt;
+                    <span *ngFor='let button of buttons; let i=index' [ngClass]="{breakRow: i==4}">
+                        <span >
                           <input
                                 class="sr-only"
                                 [disabled]='disabled'
@@ -27,25 +68,11 @@ import { FormGroup , FormControl } from "@angular/forms";
                                 [value]='button.value'
                                 [checked]='control.value===button.value'
                                 />
-                            <label (click)='onSelect(button.value , true)' [attr.for]='button.id + index'>{{ button.label }}
-                            </label>
-                        </div>
+                          <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
+                        </span>
                     </span>
-                    <span *ngFor='let button of buttons | slice:4; let i=index'>
-                          <input
-                                class="sr-only"
-                                [disabled]='disabled'
-                                [attr.data-automation-id]='"radio_button_" + button.id'
-                                type='radio'
-                                [attr.id]='button.id + index'
-                                [attr.name]='id + index'
-                                [formControl]='control'
-                                [value]='button.value'
-                                [checked]='control.value===button.value'
-                                />
-                            <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
-                    </span>
-                </div>
+                </div>-->
+
                 ` ,
     inputs          : [
         'errors' ,

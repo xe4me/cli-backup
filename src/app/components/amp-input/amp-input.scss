@@ -210,9 +210,9 @@ md-input {
           //         }
           //     }
           // }
-          margin-top    : 0 !important;
+          margin-top    : -12px !important;
           display       : inline;
-          height        : 28px;
+          height        : 58px;
           flex          : none;
           cursor        : pointer;
           color         : $amp-colour-sky-blue;
@@ -223,6 +223,17 @@ md-input {
 
           &:focus {
             color : $amp-colour-black;
+            position: relative;
+            bottom: -12px;
+          }
+          &.ng-touched {
+            position: relative;
+            bottom: -12px;
+          }
+
+          &.ng-dirty {
+            position: relative;
+            bottom: -12px;
           }
         }
         .md-input-placeholder {
