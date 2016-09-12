@@ -37,9 +37,9 @@ $heading-micro-intro-font-weight: 600;
   line-height: $heading-intro-line-height;
 
   @include media-query(palm) {
-      font-size: 20px;
+      @extend %#{$namespace}font-size-heading;
   }
-    
+
 }
 
 .#{$namespace}heading-contxtual-label,

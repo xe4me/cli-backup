@@ -9,9 +9,6 @@ Base form row styles
 bolr styles
 */
 
-/*.heading-intro {
-    font-size: 24px;
-}*/
 
 .form__row {
     .form-row-label-full-width {
@@ -21,7 +18,19 @@ bolr styles
     }
     .form-row-label {
         color: $amp-colour-grey-darker;
-        font-size: 24px;
+
+        @include media-query(tablet-and-up) {
+            @extend %#{$namespace}font-size-medium;
+        }
+
+       /* @include media-query(palm) {
+            @extend %#{$namespace}font-size-heading;
+        }*/
+
+        @include media-query(palm) {
+           font-size: $font-size-heading-lrg;
+        }
+
         margin: 12px 0 12px 0;
     }
 }
