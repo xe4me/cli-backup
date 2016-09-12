@@ -8,7 +8,6 @@ import {
     EventEmitter ,
     Renderer , OnInit , ChangeDetectionStrategy
 } from '@angular/core';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { isPresent } from '@angular/core/src/facade/lang';
 import {
@@ -60,7 +59,6 @@ import { FormGroup , FormControl , Validators } from "@angular/forms";
             'label' ,
             'controlGroup' ,
             'placeholder' ,
-            'visibility' ,
             'maxLength' ,
             'minLength' ,
             'pattern' ,
@@ -134,7 +132,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     private customValidator : Function = ()=> {
     };
     private placeholder : string;
-    private visibility : Action;
     private onAdjustWidth : EventEmitter<any>;
     private hostClassesRemove;
     private tempClassNames;

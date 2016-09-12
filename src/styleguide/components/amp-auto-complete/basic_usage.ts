@@ -1,9 +1,9 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import{ Highlight } from '../../highlight';
 import { AmpAutoCompleteComponent } from '../../../app/components/amp-autocomplete/amp-autocomplete.component';
 import { ThemeService } from '../../services/theme';
+import { ScrollService } from "../../../app/services/scroll/scroll.service";
 @Component( {
     templateUrl : 'src/styleguide/components/amp-auto-complete/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -18,8 +18,8 @@ import { ThemeService } from '../../services/theme';
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
     control : FormControl       = new FormControl();
     selectControl : FormControl = new FormControl();
-    isInSummaryState        = false;
-    private options         = [
+    isInSummaryState            = false;
+    private options             = [
         {
             'id'       : 1 ,
             'title'    : 'Professional (medical)' ,

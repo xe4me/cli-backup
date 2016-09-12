@@ -1,5 +1,5 @@
 import { Injectable , EventEmitter }     from '@angular/core';
-import { FormModelService } from 'amp-ddc-ui-core/ui-core';
+import { FormModelService } from "../../app/services/form-model/form-model.service";
 @Injectable()
 export class MockScrollService {
     public $scrolled : EventEmitter<any>;

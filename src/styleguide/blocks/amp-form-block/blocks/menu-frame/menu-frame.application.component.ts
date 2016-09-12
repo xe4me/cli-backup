@@ -11,14 +11,11 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 import { StickyProgressHeaderBlockComponent } from '../../sticky-progress-header-block/sticky-progress-header-block.component';
-import {
-    FormModelService ,
-    FormSectionService ,
-    ProgressObserverService ,
-    AmpHttpService
-} from 'amp-ddc-ui-core/ui-core';
+import { FormModelService } from "../../../../../app/services/form-model/form-model.service";
+import { ProgressObserverService } from "../../../../../app/services/progress-observer/progress-observer.service";
 import { AmpBlockLoaderDirective } from "../../../../../app/amp-block-loader.directive";
 import { AmpButton } from "../../../../../app/components/amp-button/amp-button.component";
+import { FormSectionService } from "../../../../../app/services/form-section/form-section.service";
 @Component( {
     selector   : 'menu-frame' ,
     template   : require( './menu-frame.application.component.html' ) ,

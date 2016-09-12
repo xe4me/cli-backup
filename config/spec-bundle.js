@@ -45,7 +45,7 @@ require('zone.js/dist/sync-test');
 // RxJS
 require('rxjs/Rx');
 // Custom library
-require('amp-ddc-ui-core/ui-core');
+
 var testing = require('@angular/core/testing');
 var browser = require('@angular/platform-browser-dynamic/testing');
 

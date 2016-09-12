@@ -2,12 +2,9 @@ import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionSt
 import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
-import {
-    Action ,
-    FormModelService ,
-    ProgressObserverService ,
-    ScrollService
-} from 'amp-ddc-ui-core/ui-core';
+import { ScrollService } from "../../../../app/services/scroll/scroll.service";
+import { FormModelService } from "../../../../app/services/form-model/form-model.service";
+import { ProgressObserverService } from "../../../../app/services/progress-observer/progress-observer.service";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 @Component( {

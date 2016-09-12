@@ -1,4 +1,3 @@
-import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import {
     Component ,
     AfterViewInit ,
@@ -11,6 +10,7 @@ import { AMPGoogleAddressComponent } from '../../components/amp-google-address/a
 import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
 import { FormControl , FormGroup , Validators } from "@angular/forms";
 import { RequiredValidator } from "../../util/validations";
+import { FormModelService } from "../../services/form-model/form-model.service";
 @Component( {
     selector   : 'amp-google-address-group' ,
     template   : require( './amp-google-address-group.component.html' ) ,
@@ -32,10 +32,10 @@ import { RequiredValidator } from "../../util/validations";
     directives : [ AMPGoogleAddressComponent , AmpInputComponent ]
 } )
 export class AMPGoogleAddressComponentGroup implements AfterViewInit {
-    static CLASS_NAME                  = 'AMPGoogleAddressComponentGroup';
-    private index                      = '';
+    static CLASS_NAME                         = 'AMPGoogleAddressComponentGroup';
+    private index                             = '';
     @ViewChild( 'ampGoogleAddress' ) addressComponent : AMPGoogleAddressComponent;
-    private googleAddress              = {
+    private googleAddress                     = {
         id          : 'googleAddress' ,
         label       : '' ,
         regex       : '' ,
@@ -45,28 +45,28 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
             required : 'Address is a required field.'
         }
     };
-    private address                    = {
+    private address                           = {
         id    : 'address' ,
         label : 'Address' ,
         regex : ''
     };
-    private suburb                     = {
+    private suburb                            = {
         id    : 'suburb' ,
         label : 'Suburb' ,
         regex : ''
     };
-    private state                      = {
+    private state                             = {
         id    : 'state' ,
         label : 'State' ,
         regex : ''
     };
-    private postcode                   = {
+    private postcode                          = {
         id    : 'postcode' ,
         label : 'Postcode' ,
         regex : ''
     };
-    private required : boolean         = false;
-    private isInSummaryState : boolean = false;
+    private required : boolean                = false;
+    private isInSummaryState : boolean        = false;
     private showManualAddrEntry : boolean     = false;
     private labelHidden : boolean             = false;
     private manualInputGridItemClass : string = 'u-width-auto';

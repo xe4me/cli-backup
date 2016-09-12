@@ -1,5 +1,7 @@
 import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from "@angular/core";
-import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { ScrollService } from "../../../../../app/services/scroll/scroll.service";
+import { FormModelService } from "../../../../../app/services/form-model/form-model.service";
+import { ProgressObserverService } from "../../../../../app/services/progress-observer/progress-observer.service";
 import { ThemeService } from "../../../../services/theme";
 import { FormBlock } from "../../../../../app/form-block";
 import { AmpButton } from "../../../../../app/components/amp-button/amp-button.component";

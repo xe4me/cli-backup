@@ -1,6 +1,5 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
 import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 import { ThemeService } from '../../services/theme';
 @Component( {

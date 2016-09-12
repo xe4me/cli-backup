@@ -1,8 +1,8 @@
 import { Component , ChangeDetectorRef , ViewChild } from '@angular/core';
-import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
 import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive";
 import { Store , provideStore } from '@ngrx/store';
 import { FormGroup , FormBuilder } from "@angular/forms";
+import { FormSectionService } from "../../../app/services/form-section/form-section.service";
 var formDef = require( './form-def.def.json' );
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,

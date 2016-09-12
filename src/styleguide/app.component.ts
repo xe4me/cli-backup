@@ -1,10 +1,4 @@
 import { ViewEncapsulation , Component } from '@angular/core';
-import {
-    FormModelService ,
-    ScrollService ,
-    ProgressObserverService ,
-    AmpHttpService ,
-} from 'amp-ddc-ui-core/ui-core';
 import { Store , provideStore } from '@ngrx/store';
 import { ComponentsService , IComponentMeta , IComponentGroupMeta } from './services/components';
 import { TableContentsService } from './services/content-table-service';

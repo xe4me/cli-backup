@@ -1,7 +1,6 @@
 import { Component , AfterViewInit , ChangeDetectorRef , provide } from '@angular/core';
 import { CORE_DIRECTIVES } from '@angular/common';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
-import { BlockID } from 'amp-ddc-ui-core/ui-core';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector   : 'some-form-block' ,
@@ -21,7 +20,7 @@ import { ThemeService } from '../../services/theme';
 class SomeFormBlockComponent {
     static CLASS_NAME : string = 'SomeFormBlockComponent';
     public blockType           = 'SomeFormBlockComponent';
-    public _id                 = new BlockID( 'whatever' , 1 );
+    public _id                 = 'whatever';
 }
 @Component( {
     selector    : 'amp-button-basic-usage' ,

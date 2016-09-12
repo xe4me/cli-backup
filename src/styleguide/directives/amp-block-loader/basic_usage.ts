@@ -1,8 +1,8 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormBuilder } from '@angular/forms';
 import { AmpBlockLoaderDirective } from '../../../app/amp-block-loader.directive';
-import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
 import{ Highlight } from '../../highlight';
+import { FormSectionService } from "../../../app/services/form-section/form-section.service";
 @Component( {
     providers   : [ FormSectionService , FormBuilder ] ,
     directives  : [ Highlight , AmpBlockLoaderDirective ] ,

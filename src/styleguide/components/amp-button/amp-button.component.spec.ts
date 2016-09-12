@@ -1,9 +1,9 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormModelService , BlockID } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
+import { FormModelService } from "../../../app/services/form-model/form-model.service";
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
@@ -185,6 +185,6 @@ class AmpButtonTest {
 class SomeFormBlockComponent {
     static CLASS_NAME : string = 'SomeFormBlockComponent';
     public blockType           = 'SomeFormBlockComponent';
-    public _id                 = new BlockID( 'whatever' , 1 );
+    public _id                 = 'whatever';
 }
 

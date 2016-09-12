@@ -4,11 +4,10 @@ import {
     state ,
     style ,
     transition ,
-    trigger,
+    trigger ,
     AfterContentInit
 } from '@angular/core';
 import { Location } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Router } from '@angular/router';
 import { ThemeService } from '../../services/theme';
 @Component( {
@@ -74,10 +73,9 @@ export class LeftNavigationComponent implements AfterContentInit {
         return undefined;
     }
 
-    constructor (
-        private  themeService : ThemeService ,
-        public router : Router ,
-        private location : Location) {
+    constructor ( private  themeService : ThemeService ,
+                  public router : Router ,
+                  private location : Location ) {
     }
 
     navigate ( to : any ) {

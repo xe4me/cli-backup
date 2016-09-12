@@ -6,10 +6,10 @@ import {
     AfterViewInit , OnDestroy , ChangeDetectionStrategy , OnInit
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from "../../util/validations";
 import { isTrue } from "../../util/functions.utils";
+import { ScrollService } from "../../services/scroll/scroll.service";
 @Component( {
     selector        : 'amp-radio-button-group' ,
     template        : `

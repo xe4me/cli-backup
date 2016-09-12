@@ -7,9 +7,9 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { RequiredValidator } from '../../util/validations';
 import { FormGroup , FormControl } from "@angular/forms";
+import { ScrollService } from "../../services/scroll/scroll.service";
 @Component( {
     selector        : 'amp-group-buttons' ,
     template        : `
@@ -110,7 +110,7 @@ export class AmpGroupButtonsComponent implements OnInit {
                   private scrollService : ScrollService ) {
     }
 
-    public control : FormControl = new FormControl(null);
+    public control : FormControl = new FormControl( null );
     public errors                = {};
 
     ngOnInit () : any {
@@ -171,8 +171,8 @@ export class AmpGroupButtonsComponent implements OnInit {
 
     private updateValidators () {
         if ( this.control ) {
-            this.control.setValidators(RequiredValidator.requiredValidation( this._required ));
-            this.control.updateValueAndValidity( { emitEvent : false} );
+            this.control.setValidators( RequiredValidator.requiredValidation( this._required ) );
+            this.control.updateValueAndValidity( { emitEvent : false } );
         }
     }
 

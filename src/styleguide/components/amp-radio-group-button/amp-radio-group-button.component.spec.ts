@@ -1,10 +1,12 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
+import { FormModelService } from "../../../app/services/form-model/form-model.service";
+import { ScrollService } from "../../../app/services/scroll/scroll.service";
+import { ProgressObserverService } from "../../../app/services/progress-observer/progress-observer.service";
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
@@ -232,11 +234,12 @@ class AmpRadioGroupButtonTest1 {
 `
 } )
 class AmpRadioGroupButtonTest2 {
-    oneOptioncontrolGroup : FormGroup      = new FormGroup( {} );
+    oneOptioncontrolGroup : FormGroup = new FormGroup( {} );
 
     get oneOptionControl () {
         return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];
     }
+
     public radiosOneOption            = {
         buttons   : [
             {

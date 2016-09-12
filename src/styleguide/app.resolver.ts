@@ -2,12 +2,6 @@ import { Resolve , ActivatedRouteSnapshot , RouterStateSnapshot } from '@angular
 import { Injectable , Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {
-    FormModelService ,
-    ScrollService ,
-    ProgressObserverService ,
-    AmpHttpService ,
-} from 'amp-ddc-ui-core/ui-core';
 import { ComponentsService , IComponentMeta , IComponentGroupMeta } from './services/components';
 import { MdIconRegistry } from '@angular2-material/icon/icon-registry';
 import { NavigationService } from './services/navigation';
@@ -15,6 +9,10 @@ import { TableContentsService } from './services/content-table-service';
 import { ThemeService } from './services/theme';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { FormService } from "../app/services/form/form.service";
+import { FormModelService } from "../app/services/form-model/form-model.service";
+import { ProgressObserverService } from "../app/services/progress-observer/progress-observer.service";
+import { AmpHttpService } from "../app/services/amp-http/amp-http.service";
+import { ScrollService } from "../app/services/scroll/scroll.service";
 @Injectable()
 export class DataResolver implements Resolve<any> {
     constructor () {

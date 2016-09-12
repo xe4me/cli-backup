@@ -5,7 +5,6 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { Action } from 'amp-ddc-ui-core/ui-core';
 import { AmpInputComponent } from '../amp-input/amp-input.component';
 declare var google : any;
 @Component( {
@@ -30,7 +29,6 @@ declare var google : any;
         'label' ,
         'controlGroup' ,
         'placeholder' ,
-        'visibility' ,
         'maxLength' ,
         'pattern' ,
         'required' ,
@@ -47,7 +45,6 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     private label : string;
     private controlGroup : FormGroup;
     private placeholder : string  = '';
-    private visibility : Action;
     private model : any;
     private autocomplete : any;
     private isInSummaryState : boolean;

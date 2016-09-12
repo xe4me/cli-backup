@@ -9,7 +9,7 @@ import {
     ComponentFactory ,
     OnChanges
 } from '@angular/core';
-import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
+import { FormSectionService } from "../app/services/form-section/form-section.service";
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 @Directive( { selector : '[amp-block-loader]' } )
@@ -22,7 +22,6 @@ export class AmpBlockLoaderDirective implements OnChanges {
     private blocksCount                     = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
-
 
     constructor ( private viewContainer : ViewContainerRef ,
                   private formSectionService : FormSectionService ,
@@ -88,17 +87,17 @@ export class AmpBlockLoaderDirective implements OnChanges {
                 if ( this._blocks[ i ].blockLayout ) {
                     try {
                         waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
-                    } catch (err) {
-                        console.log('Oops!! Trying to load components from node_modules but not components found.');
+                    } catch ( err ) {
+                        console.log( 'Oops!! Trying to load components from node_modules but not components found.' );
                     }
                 } else {
                 }
             } else {
                 try {
-                    myChunk  = require('../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
-                } catch (err) {
-                    console.log('Did not find the experience components, maybe we are not in an experience');
-                    myChunk = require('../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                } catch ( err ) {
+                    console.log( 'Did not find the experience components, maybe we are not in an experience' );
+                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             if ( myChunk ) {
@@ -160,17 +159,17 @@ export class AmpBlockLoaderDirective implements OnChanges {
                 if ( this._blocks[ i ].blockLayout ) {
                     try {
                         waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
-                    } catch (err) {
-                        console.log('Oops!! Trying to load components from node_modules but not components found.');
+                    } catch ( err ) {
+                        console.log( 'Oops!! Trying to load components from node_modules but not components found.' );
                     }
                 } else {
                 }
             } else {
                 try {
-                    myChunk  = require('../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
-                } catch (err) {
-                    console.log('Did not find the experience components, maybe we are not in an experience');
-                    myChunk = require('../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                } catch ( err ) {
+                    console.log( 'Did not find the experience components, maybe we are not in an experience' );
+                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             this.retrievedFiles[ i ] = null;

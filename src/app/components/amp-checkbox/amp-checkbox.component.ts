@@ -4,13 +4,13 @@ import {
     EventEmitter ,
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { NumberWrapper } from '@angular/core/src/facade/lang';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { RequiredValidator } from "../../util/validations";
 import { isTrue } from "../../util/functions.utils";
+import { ScrollService } from "../../services/scroll/scroll.service";
 @Component(
     {
         selector : 'amp-checkbox' ,
@@ -54,11 +54,11 @@ import { isTrue } from "../../util/functions.utils";
         outputs  : [ 'select' ]
     } )
 export class AmpCheckboxComponent implements AfterViewInit {
-    private _disabled : boolean        = false;
-    private _checked : boolean         = false;
-    private _required : boolean        = false;
+    private _disabled : boolean            = false;
+    private _checked : boolean             = false;
+    private _required : boolean            = false;
     private _tabindex : number;
-    private isInSummaryState : boolean = false;
+    private isInSummaryState : boolean     = false;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private controlGroup : FormGroup;

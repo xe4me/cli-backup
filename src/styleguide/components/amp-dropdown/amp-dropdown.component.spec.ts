@@ -1,10 +1,12 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { FormModelService , ProgressObserverService , ScrollService } from 'amp-ddc-ui-core/ui-core';
 import { Component , provide , ElementRef } from '@angular/core';
 import { FormControl , NgForm , ReactiveFormsModule , FormsModule , FormGroup } from '@angular/forms';
 import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
+import { FormModelService } from "../../../app/services/form-model/form-model.service";
+import { ScrollService } from "../../../app/services/scroll/scroll.service";
+import { ProgressObserverService } from "../../../app/services/progress-observer/progress-observer.service";
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }

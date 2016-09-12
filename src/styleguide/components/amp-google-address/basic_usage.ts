@@ -10,7 +10,7 @@ import { ThemeService } from '../../services/theme';
 } )
 
 export default class AMPGoogleAddressComponentBasicUsage implements AfterViewInit {
-    addressControlGroup : FormGroup = new FormGroup();
+    addressControlGroup : FormGroup = new FormGroup({});
 
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }

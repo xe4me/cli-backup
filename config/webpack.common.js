@@ -86,7 +86,7 @@ module.exports = {
     modulesDirectories: ['node_modules'],
 
     alias: {
-      'amp-ddc-components': helpers.root(''),
+      //'amp-ddc-components': helpers.root(''),
       'Styles': helpers.root('src/styles/'),
       'AllStyles': helpers.root('src/styles/require.scss'),
       'AbstractStyles': helpers.root('src/styles/abstracts.scss'),

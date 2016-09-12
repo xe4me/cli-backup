@@ -2,18 +2,15 @@ import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionSt
 import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
-import {
-    Action ,
-    FormModelService ,
-    ProgressObserverService ,
-    ScrollService
-} from 'amp-ddc-ui-core/ui-core';
 import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 import { AmpDropdownComponent } from "../../../../app/components/amp-dropdown/amp-dropdown.component";
+import { ScrollService } from "../../../../app/services/scroll/scroll.service";
+import { FormModelService } from "../../../../app/services/form-model/form-model.service";
+import { ProgressObserverService } from "../../../../app/services/progress-observer/progress-observer.service";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 @Component( {
-    selector   : 'sample-fields-block3' ,
-    template   : `
+    selector        : 'sample-fields-block3' ,
+    template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
 
             <amp-form-row [attr.theme]="themeService.theme.attr">
@@ -39,7 +36,7 @@ import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-for
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent, AmpDropdownComponent ],
+    directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent , AmpDropdownComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleFieldsBlock3 extends FormBlock implements OnInit {
