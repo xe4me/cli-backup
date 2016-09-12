@@ -17,6 +17,7 @@ import { FormService } from "../../../../app/services/form/form.service";
     selector        : 'sample-fields-block' ,
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
+         <div class="test">mobile</div>
             <amp-form-row [attr.theme]="themeService.theme.attr">
                 <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Contact number</label>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
@@ -57,11 +58,11 @@ import { FormService } from "../../../../app/services/form/form.service";
                     </amp-redux>
                 </div>
             </amp-form-row>
-            Checkbox value : {{ $checkBoxValue | async }}  
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles          : [ require( '../basic_usage.scss' ).toString() ] ,
 } )
 export class SampleFieldsBlock extends FormBlock {
     private $checkBoxValue = this.storeService.distinctSelect( FDN.BlockWithCheckbox.concat( [ 'checkboxId' ] ) );
