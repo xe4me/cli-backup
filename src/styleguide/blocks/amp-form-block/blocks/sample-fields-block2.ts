@@ -12,7 +12,7 @@ import { ProgressObserverService } from "../../../../app/services/progress-obser
     selector        : 'sample-fields-block2' ,
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
-
+            <div class="test">mobile</div>
            <amp-form-row [attr.theme]="themeService.theme.attr">
                     <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-6/12 mr mt0">
                         <label class='1/1 sr-only'>What's your scale?</label>
@@ -34,7 +34,8 @@ import { ProgressObserverService } from "../../../../app/services/progress-obser
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent , AmpGroupButtonsComponent ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles          : [ require( '../basic_usage.scss' ).toString() ] ,
 } )
 export class SampleFieldsBlock2 extends FormBlock implements OnInit {
     constructor ( private themeService : ThemeService ,

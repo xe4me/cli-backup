@@ -1,1 +1,12 @@
 @import "../../../styles/abstracts";
+
+@include media-query(palm) {
+    .test {
+     background-color: red;
+    }
+}
+@include media-query(tablet) {
+    .test {
+        background-color: orange;
+    }
+}
