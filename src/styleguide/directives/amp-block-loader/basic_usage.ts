@@ -1,10 +1,10 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
+import { FormControl , FormBuilder } from '@angular/forms';
 import { AmpBlockLoaderDirective } from '../../../app/amp-block-loader.directive';
-import { FormSectionService, UIControlService } from 'amp-ddc-ui-core/ui-core';
 import{ Highlight } from '../../highlight';
+import { FormSectionService } from "../../../app/services/form-section/form-section.service";
 @Component( {
-    providers   : [ FormSectionService, UIControlService ] ,
+    providers   : [ FormSectionService , FormBuilder ] ,
     directives  : [ Highlight , AmpBlockLoaderDirective ] ,
     selector    : 'amp-block-loader-basic-usage' ,
     templateUrl : 'src/styleguide/directives/amp-block-loader/basic_usage.html' ,
@@ -12,7 +12,7 @@ import{ Highlight } from '../../highlight';
 } )
 
 export default class AmpBlockLoaderDirectiveBasicUsage {
-    control : Control              = new Control();
+    control : FormControl          = new FormControl();
     private fullyDistinguishedName = [ 'Application' ];
     private childBlocks            = {
         name        : 'AmpButtonComponentSection' ,
@@ -29,7 +29,7 @@ export default class AmpBlockLoaderDirectiveBasicUsage {
                 commonBlock : false ,
                 path        : 'components/amp-group-button/amp-group-button.component' ,
                 custom      : {
-                    parentControl : new Control() ,
+                    parentControl : new FormControl() ,
                     id            : 'ApplicantDetails-gender' ,
                     label         : 'Gender' ,
                     buttons       : [

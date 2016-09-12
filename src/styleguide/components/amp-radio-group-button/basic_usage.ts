@@ -1,18 +1,26 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES , FORM_PROVIDERS } from '@angular/common';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
+import { FormControl , FormGroup } from '@angular/forms';
 import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-radio-group-button-block-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-radio-group-button/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ FORM_DIRECTIVES , AmpRadioButtonGroupComponent , CORE_DIRECTIVES ]
+    directives  : [ AmpRadioButtonGroupComponent ]
 } )
 
 export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {
-    oneOptionControl : Control        = new Control();
-    multipleOptionControl : Control   = new Control();
+    oneOptioncontrolGroup : FormGroup      = new FormGroup( {} );
+    multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
+
+    get oneOptionControl () {
+        return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];
+    }
+
+    get multipleOptionControl () {
+        return this.multipleOptioncontrolGroup.controls[ this.radiosMultipleOptions.groupName ];
+    }
+
     public radiosOneOption            = {
         buttons   : [
             {

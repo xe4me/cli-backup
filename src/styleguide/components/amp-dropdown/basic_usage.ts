@@ -1,24 +1,25 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormControl , FormGroup } from '@angular/forms';
 import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { ThemeService } from '../../services/theme';
+import { ScrollService } from "../../../app/services/scroll/scroll.service";
 @Component( {
     templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [
-        FORM_DIRECTIVES ,
-        AmpDropdownComponent ,
-        CORE_DIRECTIVES
-    ] ,
+    directives  : [ AmpDropdownComponent ] ,
     selector    : 'amp-dropdown-basic-usage'
 } )
 
 export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
-    control : Control = new Control();
-    isInSummaryState  = false;
-    titleOptions      = [
+    controlGroup : FormGroup = new FormGroup( {} );
+
+    get control () {
+        return this.controlGroup.controls[ 'Title' ];
+    }
+
+    isInSummaryState    = false;
+    titleOptions        = [
         { value : 'mr' , label : 'Mr' } ,
         { value : 'mrs' , label : 'Mrs' } ,
         { value : 'miss' , label : 'Miss' } ,

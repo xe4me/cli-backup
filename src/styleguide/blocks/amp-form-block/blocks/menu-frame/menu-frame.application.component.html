@@ -1,0 +1,50 @@
+<div class="frame frame--sticky frame--mt">
+    <sticky-progress-header-block
+            class="sticky-progressbar"
+            determinate="determinate"
+            [value]="calculatedProgress"
+            formType="application">
+    </sticky-progress-header-block>
+
+    <div class="container blocks-wrapper">
+        <aside class="sidebar">
+            <ol class="todo-list">
+                <li class="todo-list__item"
+                    *ngFor='let section of sections ; let i = index'
+                    [ngClass]='{ "todo-list__item--complete": isSectionValid(section._fdn), "todo-list__item--active": isSectionActive(section._fdn) }'>
+                    <button type="button"
+                            (click)='displaySection(section, i)'>
+                        <a>{{section | json}}</a>
+                    </button>
+                    <span class="icon icon--tick" aria-hidden="true"></span>
+                </li>
+
+
+                <!--<li class="todo-list__item"-->
+                    <!--[ngClass]='{ "todo-list__item&#45;&#45;complete": hasSignedDeclarations() }'>-->
+                    <!--<button [disabled]="isDisabled(6)"-->
+                            <!--type="button"-->
+                            <!--(click)='reviewApplication()'>-->
+                        <!--<a>Review and submit</a>-->
+                    <!--</button>-->
+                    <!--<span class="icon icon&#45;&#45;tick" aria-hidden="true"></span>-->
+                <!--</li>-->
+            </ol>
+
+            <button class="btn" type="button" (click)='save()' [disabled]="isSaveDisabled()">
+                <i class="icon icon--time" aria-hidden="true"></i>
+                <span>Save application</span>
+            </button>
+
+            <button class="btn" type="button">
+                <i class="icon icon--downloads icon--90-deg" aria-hidden="true"></i>
+                <span>Adjust quote</span>
+            </button>
+
+        </aside>
+        <main class="main">
+            <!--<div id="MenuFrameApplicationBlockComponent_Application_blocks"></div>-->
+            <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form" ></div>
+        </main>
+    </div>
+</div>

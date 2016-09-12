@@ -1,0 +1,53 @@
+@import '../../../styles/abstracts';
+@import './block-base';
+@import '../../blocks/amp-form-block/themes/theme-tools';
+
+
+
+:host {
+  display  : block;
+  position : relative;
+  .FormBlocK {
+
+  .heading-intro {
+       margin-bottom : 32px;
+   }
+
+   .md-input-wrapper {
+      margin: 0 0;
+   }
+
+    padding-top : 60px;
+    .hr-block-divider {
+      margin-top : 60px;
+    }
+    @include media-query('palm') {
+      padding-top : 30px;
+      .hr-block-divider {
+        margin-top : 40px;
+      }
+    }
+  }
+
+  &[theme='tools'] {
+
+
+
+    .FormBlocK {
+      padding-top : $tools-form-block-heading-top-padding;
+      padding-left : $tools-form-block-left-padding;
+      padding-right : $tools-form-block-right-padding;
+
+      .heading-intro {
+        margin-bottom : 18px;
+      }
+
+      .hr-block-divider {
+        margin-top : 50px;
+      }
+    }
+  }
+
+}
+
+

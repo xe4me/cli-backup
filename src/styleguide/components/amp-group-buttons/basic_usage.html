@@ -1,0 +1,44 @@
+<form #formModel="ngForm" class="nl-form">
+    <h4 [style.color]='color'>this is binded to onButtonSelect , i.e on click event , and that event is changing the
+        color</h4>
+    <div id="group-buttons">
+        <amp-group-buttons
+                [attr.theme]="themeService.theme.attr"
+                scrollOutOn='full'
+                class="1/5"
+                (select)='onButtonClick($event)'
+                [required]="required"
+                [buttons]='fullOrPartialButtons.buttons'
+                [controlGroup]='controlGroup'
+                [groupName]='fullOrPartialButtons.fullOrPartial'
+        >
+        </amp-group-buttons>
+    </div>
+    <section>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" (click)='control.patchValue("partial")' class='btn btn-ok'>
+                Partial
+            </amp-button>
+            <amp-button [attr.theme]="themeService.theme.attr" (click)='control.patchValue("full")' class='btn btn-ok'>
+                Full
+            </amp-button>
+        </div>
+    </section>
+    <section>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" (click)='required=!required' class='btn btn-ok'>
+                Required {{ required }}
+            </amp-button>
+        </div>
+    </section>
+
+    <div class="title">
+        Is Valid : {{ control.valid}}
+    </div>
+    <hr>
+    <div class="title">
+        Value : {{ control.value}}
+    </div>
+</form>
+
+

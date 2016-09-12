@@ -9,20 +9,22 @@ import {
     ComponentFactory ,
     OnChanges
 } from '@angular/core';
-import { FormSectionService } from 'amp-ddc-ui-core/ui-core';
+import { FormGroup } from "@angular/forms";
+import { FormSectionService } from "./services/form-section/form-section.service";
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 @Directive( { selector : '[amp-block-loader]' } )
 export class AmpBlockLoaderDirective implements OnChanges {
     @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
+    //@Input( 'form' ) form : FormGroup= new FormGroup( {} );
+    @Input( 'form' ) form : FormGroup;
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
     private _hasLoadedOnce                  = false;
     private blocksCount                     = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
-
 
     constructor ( private viewContainer : ViewContainerRef ,
                   private formSectionService : FormSectionService ,
@@ -88,17 +90,17 @@ export class AmpBlockLoaderDirective implements OnChanges {
                 if ( this._blocks[ i ].blockLayout ) {
                     try {
                         waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
-                    } catch (err) {
-                        console.log('Oops!! Trying to load components from node_modules but not components found.');
+                    } catch ( err ) {
+                        console.log( 'Oops!! Trying to load components from node_modules but not components found.' );
                     }
                 } else {
                 }
             } else {
                 try {
-                    myChunk  = require('../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
-                } catch (err) {
-                    console.log('Did not find the experience components, maybe we are not in an experience');
-                    myChunk = require('../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                } catch ( err ) {
+                    console.log( 'Did not find the experience components, maybe we are not in an experience' );
+                    myChunk = require( '../../src/styleguide/blocks' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             if ( myChunk ) {
@@ -124,22 +126,34 @@ export class AmpBlockLoaderDirective implements OnChanges {
     }
 
     private copyFormBlockDefProperty ( _componentRef : ComponentRef<any> , _blockDef ) {
-        _componentRef.instance._child_blocks = _blockDef;
-        _componentRef.instance._fdn          = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
-        _blockDef._fdn                       = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
+        let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
+        _componentRef.instance.__child_blocks = _blockDef;
+        _componentRef.instance.__form         = this.form;
+        _componentRef.instance.__fdn          = _fdn;
+        _blockDef.__fdn                       = _fdn;
+        if ( _blockDef.name ) {
+            _componentRef.instance.__controlGroup = new FormGroup( {} );
+            let _form                             = _componentRef.instance.__form;
+            for ( let i = 0 ; i < this.fdn.length ; i ++ ) {
+                if ( _form.controls[ this.fdn[ i ] ] ) {
+                    _form = _form.controls[ this.fdn[ i ] ];
+                }
+            }
+            _form.addControl( _blockDef.name , _componentRef.instance.__controlGroup );
+        }
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
             this.registerSection( _blockDef );
         }
-        _componentRef.instance.path        = _blockDef.path;
-        _componentRef.instance.blockType   = _blockDef.blockType;
-        _componentRef.instance.blockLayout = _blockDef.blockLayout;
-        _componentRef.instance.name        = _blockDef.name;
-        _componentRef.instance._id         = _blockDef._id;
+        _componentRef.instance.__path        = _blockDef.path;
+        _componentRef.instance.__blockType   = _blockDef.blockType;
+        _componentRef.instance.__blockLayout = _blockDef.blockLayout;
+        _componentRef.instance.__name        = _blockDef.name;
+        _componentRef.instance.__id          = _blockDef._id;
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
             Object.assign( _componentRef.instance , _blockDef.page );
         }
         if ( _blockDef.custom ) {
-            Object.assign( _componentRef.instance , _blockDef.custom );
+            _componentRef.instance.__custom = _blockDef.custom;
         }
     }
 
@@ -160,17 +174,18 @@ export class AmpBlockLoaderDirective implements OnChanges {
                 if ( this._blocks[ i ].blockLayout ) {
                     try {
                         waitForChunk = require( 'bundle!amp-ddc-components/src/app/' + this._blocks[ i ].path + '\.ts' );
-                    } catch (err) {
-                        console.log('Oops!! Trying to load components from node_modules but not components found.');
+                    } catch ( err ) {
+                        console.log( 'Oops!! Trying to load components from node_modules but not components found.' );
                     }
                 } else {
                 }
             } else {
                 try {
-                    myChunk  = require('../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
-                } catch (err) {
-                    console.log('Did not find the experience components, maybe we are not in an experience');
-                    myChunk = require('../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    console.log( 'Requireing ' , '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                } catch ( err ) {
+                    console.log( 'Did not find the experience components, maybe we are not in an experience' );
+                    myChunk = require( '../../src/styleguide/blocks' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             this.retrievedFiles[ i ] = null;

@@ -7,10 +7,10 @@ import {
     EventEmitter ,
     OnInit
 } from '@angular/core';
-import { Control } from '@angular/common';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { isPresent } from '../../util/functions.utils';
-import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
+import { FocuserDirective , AmpInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
 @Component( {
     selector   : 'amp-auto-complete' ,
     queries    : {
@@ -19,7 +19,7 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
     template   : `
     <div [clicked-outside]="close" class="amp-auto-complete">
         <div class='amp-auto-complete-control'>
-            <my-md-input
+            <amp-input
                 focuser="input"
                 iconRight='search'
                 (click)='open()'          
@@ -31,15 +31,15 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
                 [isInSummaryState]='isInSummaryState'
                 [id]='id'
                 [parentControl]='parentControl'
-                [isRequired]='isRequired'>
-            </my-md-input>
+                [required]='required'>
+            </amp-input>
         </div>
         <ul
             focuser='list'
             (focusOut)="onListFocusOut()"
             tabindex="-1"
             class='amp-auto-complete-options'
-            [class.amp-auto-complete-hidden]='(searchResult | async)?.length==0 || isOptionsHidden'  >
+            [class.amp-auto-complete-hidden]='(searchResult | async)===null || isOptionsHidden'  >
             <li *ngIf="selectLabel" class='amp-auto-complete-option' tabindex='-1'>
                 <strong>{{ selectLabel }}</strong>
             </li>
@@ -70,16 +70,17 @@ import { FocuserDirective , MdInputComponent , ClickedOutsideDirective , KeyCode
         'queryServiceCall' , // This should return an observable to be consumed here
         'isInSummaryState' ,
         'selectControl' ,
-        'isRequired' ,
+        'required' ,
         'selectLabel' ,
         'label' ,
         'parentControl' ,
         'placeholder' ,
         'lengthTrigger' ,
-        'options'
+        'options' ,
+        'isActive'
     ] ,
     outputs    : [ 'change' ] ,
-    directives : [ MdInputComponent , ClickedOutsideDirective , FocuserDirective ]
+    directives : [ AmpInputComponent , ClickedOutsideDirective , FocuserDirective ]
 } )
 export class AmpAutoCompleteComponent implements OnInit {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
@@ -89,13 +90,13 @@ export class AmpAutoCompleteComponent implements OnInit {
     private INPUT_FOCUSER           = 0;
     private LIST_FOCUSER            = 1;
     private canViewAll              = true;
-    private isInSummaryState              = false;
+    private isInSummaryState        = false;
     private options                 = [];
     private selectedOption : Option;
     private searchResult : Observable<Array<Option>>;
     private _required : boolean     = false;
-    private parentControl : Control;
-    private selectControl : Control;
+    private parentControl : FormControl;
+    private selectControl : FormControl;
     private _optionsHidden          = true;
     private lengthTrigger : number  = - 1;
     private showNoResult            = false;
@@ -103,8 +104,8 @@ export class AmpAutoCompleteComponent implements OnInit {
     private firstOpen               = true;
 
     ngOnInit () : any {
-        this.parentControl = this.parentControl || new Control();
-        this.selectControl = this.selectControl || new Control();
+        this.parentControl = this.parentControl || new FormControl();
+        this.selectControl = this.selectControl || new FormControl();
         if ( this.options ) {
             this.initWithOptions();
         } else if ( this.queryServiceCall ) {
@@ -113,11 +114,11 @@ export class AmpAutoCompleteComponent implements OnInit {
         return undefined;
     }
 
-    get isRequired () {
+    get required () {
         return this._required;
     }
 
-    set isRequired ( value : boolean ) {
+    set required ( value : boolean ) {
         this._required = value;
     }
 
@@ -142,7 +143,7 @@ export class AmpAutoCompleteComponent implements OnInit {
         }
         if ( this.firstOpen ) {
             setTimeout( () => {
-                this.parentControl.updateValue( '' );
+                this.parentControl.setValue( '' );
             } );
             this.firstOpen = false;
         }
@@ -167,8 +168,8 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private selectOption ( option ) {
         this.selectedOption = option;
-        this.parentControl.updateValue( option.title );
-        this.selectControl.updateValue( JSON.stringify( option ) );
+        this.parentControl.patchValue( option.title );
+        this.selectControl.patchValue( JSON.stringify( option ) );
         this.change.emit( option );
         this.close();
         this.focusInput();
@@ -244,7 +245,6 @@ export class AmpAutoCompleteComponent implements OnInit {
             this.parentControl
                 .valueChanges
                 .debounceTime( this.QUERY_DEBOUNCE_TIME )
-
                 .switchMap( queryString => this.queryServiceCall( queryString ) );
     }
 

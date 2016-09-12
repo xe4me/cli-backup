@@ -1,11 +1,14 @@
 import { FormUtils } from '../util/form-utils';
 export class RequiredValidator {
-    public static requiredValidation ( isRequired ) {
+    public static requiredValidation ( required ) {
         return ( c ) => {
-            if ( isRequired ) {
+            if ( required ) {
                 if ( ! c.value || c.value.length === 0 ) {
                     return {
-                        required : true
+                        required : {
+                            text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +
+                            ' required'
+                        }
                     };
                 }
             }
@@ -14,14 +17,19 @@ export class RequiredValidator {
     }
 }
 export class MaxLengthValidator {
-    public static maxLengthValidation ( valMaxLength ) {
+    public static maxLengthValidation ( maxLength ) {
         return ( c ) => {
-            if ( valMaxLength ) {
-                if ( ! c.value || c.value.length <= valMaxLength ) {
+            if ( maxLength ) {
+                if ( ! c.value || c.value.length <= maxLength ) {
                     return null;
                 }
                 return {
-                    mdMaxLength : true
+                    maxLength : {
+                        text : c._ampErrors && c._ampErrors.maxLength ? c._ampErrors.maxLength : 'This field should' +
+                        ' not' +
+                        ' be more than' +
+                        ' ' + maxLength + ' characters.'
+                    }
                 };
             }
             return null;
@@ -29,14 +37,18 @@ export class MaxLengthValidator {
     }
 }
 export class MinLengthValidator {
-    public static minLengthValidation ( valMinLength ) {
+    public static minLengthValidation ( minLength ) {
         return ( c ) => {
-            if ( valMinLength ) {
-                if ( ! c.value || c.value.length >= valMinLength ) {
+            if ( minLength ) {
+                if ( ! c.value || c.value.length >= minLength ) {
                     return null;
                 }
                 return {
-                    mdMinLength : true
+                    minLength : {
+                        text : c._ampErrors && c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should' +
+                        '  be' +
+                        ' more than ' + minLength + ' characters.'
+                    }
                 };
             }
             return null;
@@ -51,7 +63,9 @@ export class PatterValidator {
                     return null;
                 }
                 return {
-                    mdPattern : true
+                    mdPattern : {
+                        text : c._ampErrors && c._ampErrors.pattern ? c._ampErrors.pattern : 'This field is not valid.'
+                    }
                 };
             }
             return null;
@@ -67,7 +81,11 @@ export class MaxDateValidator {
                     return null;
                 }
                 return {
-                    mdMaxDate : true
+                    maxDate : {
+                        text : c._ampErrors && c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This date should not be' +
+                        ' greater' +
+                        ' than ' + pattern + ' .'
+                    }
                 };
             }
             return null;
@@ -83,7 +101,11 @@ export class DateValidator {
                     return null;
                 }
                 return {
-                    mdInvalidDate : true
+                    invalidDate : {
+                        text : c._ampErrors && c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'This date is' +
+                        ' not' +
+                        ' valid.'
+                    }
                 };
             }
             return null;
@@ -99,7 +121,11 @@ export class MinDateValidator {
                     return null;
                 }
                 return {
-                    mdMinDate : true
+                    minDate : {
+                        text : c._ampErrors && c._ampErrors.minDate ? c._ampErrors.minDate : 'This date should be' +
+                        ' greater' +
+                        ' than ' + pattern + ' .'
+                    }
                 };
             }
             return null;
@@ -107,17 +133,22 @@ export class MinDateValidator {
     }
 }
 export class MaxFloatValidator {
-    public static maxFloatValidator ( valMaxFloat ) {
+    public static maxFloatValidator ( maxFloat ) {
         return ( c ) => {
-            if ( valMaxFloat ) {
+            if ( maxFloat ) {
                 if ( ! c.value || c.value.length > 0 ) {
                     if ( c.value ) {
                         let newVal       = c.value;
                         let replaceValue = newVal.replace( /[^0-9\.]+/g , '' );
-                        if ( replaceValue > valMaxFloat ) {
+                        if ( replaceValue > maxFloat ) {
                             return {
-                                mdMaxFloat : true
-                            };
+                                maxFloat : {
+                                    text : c._ampErrors && c._ampErrors.maxFloat ? c._ampErrors.maxFloat : 'This' +
+                                    ' amount' +
+                                    ' should be more' +
+                                    ' than ' + maxFloat + ' .'
+                                }
+                            }
                         }
                     }
                 }

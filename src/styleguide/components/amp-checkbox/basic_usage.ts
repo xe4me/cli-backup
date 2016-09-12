@@ -1,22 +1,23 @@
 import { Component , OnInit , ChangeDetectorRef } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormControl , FormGroup } from '@angular/forms';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { ThemeService } from '../../services/theme';
+import { ScrollService } from "../../../app/services/scroll/scroll.service";
 @Component( {
     templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [
-        FORM_DIRECTIVES ,
-        AmpCheckboxComponent ,
-        CORE_DIRECTIVES
-    ] ,
+    directives  : [ AmpCheckboxComponent ] ,
     selector    : 'amp-checkbox-basic-usage'
 } )
 
 export default class AMPCheckboxComponentBasicUsage implements OnInit {
-    control : Control   = new Control();
+    controlGroup : FormGroup = new FormGroup( {} );
+
+    get control () {
+        return this.controlGroup.controls[ 'acknowledge' ];
+    }
+
     isInSummaryState    = false;
     private acknowledge = {
         id          : 'acknowledge' ,
@@ -33,7 +34,7 @@ export default class AMPCheckboxComponentBasicUsage implements OnInit {
     }
 
     private check () {
-        this.control.updateValue( ! this.control.value );
+        this.control.setValue( ! this.control.value );
     }
 
     private onAcknowledgeSelect ( value ) {

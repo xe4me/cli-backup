@@ -1,0 +1,27 @@
+
+/**
+
+Base form row styles
+
+*/
+
+/*
+bolr styles
+*/
+
+.heading-intro {
+    font-size: 24px;
+}
+
+.form__row {
+    .form-row-label-full-width {
+        color: $amp-colour-grey-darker;
+        font-size: 24px;
+        margin: 2px 0 16px 0;
+    }
+    .form-row-label {
+        color: $amp-colour-grey-darker;
+        font-size: 24px;
+        margin: 12px 0 12px 0;
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Application": {
+        "introBlockComponent": {},
+        "FirstInsuranceDetailsSection": {
+            "samplefieldsblock": {
+                "contactNumber": null,
+                "email": null,
+                "telephones": [
+                    {
+                        "phone": "0402095291"
+                    },
+                    {
+                        "phone": "0123456789"
+                    }
+                ]
+            },
+            "BlockWithCheckbox": {
+                "checkboxId": null
+            },
+            "BlockWithTextarea": {
+                "textarea": null
+            },
+            "BlockWithRadios": {
+                "radios": null
+            },
+            "samplefieldsblock2": {
+                "FullOrPartial": null
+            },
+            "samplefieldsblock3": {
+                "Title": null
+            },
+            "sampleArrayExperienceBlock": {
+                "age": null
+            },
+            "anotherSampleExperienceBlock": {
+                "FullOrPartial": null
+            },
+            "sampleExperienceBlock": {
+                "firstname": null,
+                "lastname": null,
+                "age": null
+            }
+        }
+    }
+}

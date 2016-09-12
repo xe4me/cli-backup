@@ -4,36 +4,27 @@ import {
     AfterViewInit ,
     OnDestroy ,
     Component ,
-    ViewEncapsulation ,
-    ChangeDetectorRef
+    ChangeDetectorRef , ChangeDetectionStrategy , OnInit
 } from '@angular/core';
-import { Control , Validators , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { Action } from 'amp-ddc-ui-core/src/app/actions/action';
-import { MD_INPUT_DIRECTIVES , } from '@angular2-material/input';
+import { FormControl , Validators , FormGroup } from '@angular/forms';
 import {
     RequiredValidator ,
     MinLengthValidator ,
-    MaxLengthValidator ,
-    MaxDateValidator ,
-    MinDateValidator ,
-    PatterValidator
+    MaxLengthValidator
 } from '../../util/validations';
-import { isPresent } from '@angular/core/src/facade/lang';
+import { isTrue } from "../../util/functions.utils";
 @Component(
     {
-        selector      : 'amp-textarea' ,
-        template      : `
+        selector        : 'amp-textarea' ,
+        template        : `
     <md-input-container
-        [class.md-input-has-value]='parentControl.value'
+        [class.md-input-has-value]='control.value'
         [class.md-input-focused]='hasFocus'
         [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}'
         flex-gt-sm='' >
-        <!--(paste)='adjustHeight($event.target)'
-            (blur)='adjustHeight($event.target)'
-            '-->
         <label
          [ngClass]='{"summary" : isInSummaryState}'
-        *ngIf='!isInSummaryState' [attr.for]='_id'>{{label}}</label><!--
+        *ngIf='!isInSummaryState' [attr.for]='id'>{{label}}</label><!--
         --><textarea
                 #textarea
                 (keyup)='adjustHeight($event.target)'
@@ -44,56 +35,59 @@ import { isPresent } from '@angular/core/src/facade/lang';
                 [class.summary-state]='isInSummaryState'
                 [disabled]='isInSummaryState'
                 class='md-input'
-                [attr.name]='_id'
-                [attr.id]='_id'
-                [attr.maxlength]='valMaxLength'
-                [attr.data-automation-id]='"textarea_" + _id'
-                [ngFormControl]='parentControl'
+                [attr.name]='id'
+                [attr.id]='id'
+                [attr.maxlength]='maxLength'
+                [attr.data-automation-id]='"textarea_" + id'
+                [formControl]='control'
                 [attr.placeholder]='placeholder'>
             </textarea>
-            <span
-            [class.error]='valMaxLength==textarea.value.length' class='char-left'
-             *ngIf='valMaxLength && valMaxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ valMaxLength }}</span>
-            <span class='summary-text'>{{ parentControl.value }}</span>
+            <span class='char-left'
+             *ngIf='maxLength && maxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ maxLength }}</span>
+            <span class='summary-text'>{{ control.value }}</span>
         <ng-content></ng-content>
   </md-input-container>
   ` ,
-        styles        : [ require( './amp-textarea.scss' ).toString() ] ,
-        inputs        : [
+        styles          : [ require( './amp-textarea.scss' ).toString() ] ,
+        inputs          : [
             'id' ,
             'isInSummaryState' ,
             'label' ,
-            'parentControl' ,
+            'controlGroup' ,
             'placeholder' ,
-            'visibility' ,
-            'valMaxLength' ,
-            'valMinLength' ,
-            'isRequired' ,
+            'maxLength' ,
+            'minLength' ,
+            'required' ,
             'hostClassesRemove'
         ] ,
-        directives    : [ MD_INPUT_DIRECTIVES , CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
-        encapsulation : ViewEncapsulation.Emulated
+        changeDetection : ChangeDetectionStrategy.OnPush
     } )
-export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
-    private _id : string;
+export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
+    private id : string;
     private label : string;
     private isInSummaryState : boolean;
-    private parentControl : Control;
     private placeholder : string;
-    private visibility : Action;
     private onAdjustWidth : EventEmitter<any>;
     private hostClassesRemove;
     private initialComponentHeight : number;
     private initialTextareaHeight : number;
     private componentHeightOffset : number;
-    private _valMinLength : number;
-    private _valMaxLength : number;
-    private _required : boolean = false;
-    private hasFocus : boolean  = false;
+    private _minLength : number;
+    private _maxLength : number;
+    private _required : boolean  = false;
+    private hasFocus : boolean   = false;
+    private controlGroup : FormGroup;
+    public control : FormControl = new FormControl();
+    public errors                = {};
+
+    ngOnInit () : any {
+        this.joinToParentGroupAndSetAmpErrors();
+        return undefined;
+    }
 
     ngOnDestroy () : any {
-        this.parentControl.validator = null;
-        this.parentControl.updateValueAndValidity( {
+        this.control.validator = null;
+        this.control.updateValueAndValidity( {
             onlySelf  : false ,
             emitEvent : true
         } );
@@ -118,7 +112,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
     }
 
     private adjustHeight ( element ) {
-        if ( this.parentControl.value === null || this.parentControl.value.trim() === '' ) {
+        if ( this.control.value === null || this.control.value.trim() === '' ) {
             element.style.height               = this.initialTextareaHeight + 'px';
             this.el.nativeElement.style.height = this.initialComponentHeight + 'px';
         } else {
@@ -128,57 +122,59 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    set id ( id : string ) {
-        this._id = id;
-    }
-
-    get isRequired () {
+    get required () {
         return this._required;
     }
 
-    set isRequired ( value : boolean ) {
-        this._required = this.isTrue( value );
+    set required ( value : boolean ) {
+        this._required = isTrue( value );
         this.updateValitators();
     }
 
-    get valMinLength () {
-        return this._valMinLength;
+    get minLength () {
+        return this._minLength;
     }
 
-    set valMinLength ( value : number ) {
-        this._valMinLength = value;
+    set minLength ( value : number ) {
+        this._minLength = value;
         this.updateValitators();
     }
 
-    get valMaxLength () {
-        return this._valMaxLength;
+    get maxLength () {
+        return this._maxLength;
     }
 
-    set valMaxLength ( value : number ) {
-        this._valMaxLength = value;
+    set maxLength ( value : number ) {
+        this._maxLength = value;
         this.updateValitators();
     }
 
-    private  trimValue () {
-        return this.parentControl.value ? this.parentControl.updateValue( this.parentControl.value.trim() ) : '';
+    private trimValue () {
+        return this.control.value ? this.control.setValue( this.control.value.trim() ) : '';
     }
 
     private updateValitators () {
-        if ( this.parentControl ) {
-            this.parentControl.validator = Validators.compose( [
+        if ( this.control ) {
+            this.control.validator = Validators.compose( [
                 RequiredValidator.requiredValidation( this._required ) ,
-                MinLengthValidator.minLengthValidation( this._valMinLength ) ,
-                MaxLengthValidator.maxLengthValidation( this._valMaxLength )
+                MinLengthValidator.minLengthValidation( this._minLength ) ,
+                MaxLengthValidator.maxLengthValidation( this._maxLength )
             ] );
-            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+            this.control.updateValueAndValidity( { emitEvent : false } );
         }
-    }
-
-    private isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === 'true' || false);
     }
 
     private setHasFocus ( value ) {
         this.hasFocus = value;
+    }
+
+    private joinToParentGroupAndSetAmpErrors () {
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName , i )=> {
+            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( this.id , this.control );
+        }
     }
 }

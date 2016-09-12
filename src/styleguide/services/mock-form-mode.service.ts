@@ -1,16 +1,15 @@
 import { Observable }     from 'rxjs/Observable';
-import { BlockID } from 'amp-ddc-ui-core/ui-core';
 export class MockFormModelService {
     private model = {
         currentBlockClassName : 'IntroBlockComponent' ,
         errors                : [] ,
-        currentBlockID        : new BlockID( null , 0 ) ,         // Defaults to the first block on the current page
+        currentBlockID        : null ,         // Defaults to the first block on the current page
         context               : {
-            licensee                    : 'DEA_CHARTER' ,
+            licensee                   : 'DEA_CHARTER' ,
             practicePrincipalFirstName : 'Darren' ,
             practicePrincipalLastName  : 'Mink' ,
-            payeeId                     : 'BCABB-F' ,
-            practiceName                : 'Pinnancle Financial pty ltd'
+            payeeId                    : 'BCABB-F' ,
+            practiceName               : 'Pinnancle Financial pty ltd'
         } ,
         contactDetails        : {
             email : 'sample@gmail.com' ,
@@ -34,11 +33,11 @@ export class MockFormModelService {
             function( observer ) {
                 observer.onNext(
                     {
-                        licensee                    : 'DEA_CHARTER' ,
+                        licensee                   : 'DEA_CHARTER' ,
                         practicePrincipalFirstName : 'Darren' ,
                         practicePrincipalLastName  : 'Mink' ,
-                        payeeId                     : 'BCABB-F' ,
-                        practiceName                : 'Pinnancle Financial pty ltd'
+                        payeeId                    : 'BCABB-F' ,
+                        practiceName               : 'Pinnancle Financial pty ltd'
                     } );
                 observer.onCompleted();
                 return function() {
@@ -67,7 +66,7 @@ export class MockFormModelService {
     }
 
     present ( data ) {
-        this.model.currentBlockID = new BlockID( null , 1 );
+        this.model.currentBlockID = null;
     }
 
     public get currentComponent () {

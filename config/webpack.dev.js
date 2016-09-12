@@ -15,10 +15,12 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
  * Webpack Constants
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 3001;
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = webpackMerge(commonConfig.metadata, {
-  host: '0.0.0.0',
-  port: 3001,
+  host: HOST,
+  port: PORT,
   ENV: ENV,
   HMR: HMR,
   GoogleApiKey: ''
@@ -89,8 +91,10 @@ module.exports = webpackMerge(commonConfig, {
      *
      * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
      */
-    chunkFilename: '[id].chunk.js'
+    chunkFilename: '[id].chunk.js',
 
+    library: 'ac_[name]',
+    libraryTarget: 'var',
   },
 
   plugins: [
@@ -142,18 +146,18 @@ module.exports = webpackMerge(commonConfig, {
     host: METADATA.host,
     historyApiFallback: true,
     watchOptions: {
-      aggregateTimeout: 300,
+      aggregateTimeout: 1000,
       poll: 1000
     },
     proxy: {
         '/ddc/public/*': {
-            target: 'http://0.0.0.0:3001',
+            target: 'http://localhost:3001',
             rewrite: function (req) {
                 req.url = req.url.replace(/^\/ddc\/public/, '/src/assets');
             }
         },
         '*/ddc/public/*': {
-            target: 'http://0.0.0.0:3001',
+            target: 'http://localhost:3001',
             rewrite: function (req) {
                 req.url = req.url.replace(/\/ddc\/public/, '/src/assets');
             }

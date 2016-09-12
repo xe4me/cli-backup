@@ -3,16 +3,18 @@ import {
     ElementRef ,
     EventEmitter ,
 } from '@angular/core';
-import { Control , CORE_DIRECTIVES , FORM_DIRECTIVES } from '@angular/common';
-import { ScrollService } from 'amp-ddc-ui-core/ui-core';
+import { FormControl , FormGroup } from '@angular/forms';
 import { NumberWrapper } from '@angular/core/src/facade/lang';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { RequiredValidator } from "../../util/validations";
+import { isTrue } from "../../util/functions.utils";
+import { ScrollService } from "../../services/scroll/scroll.service";
 @Component(
     {
-        selector   : 'amp-checkbox' ,
-        template   : `
+        selector : 'amp-checkbox' ,
+        template : `
             <input
                 [disabled]='disabled'
                 [checked]='checked'
@@ -20,7 +22,7 @@ import { ChangeDetectorRef } from '@angular/core';
                 [attr.data-automation-id]='"checkbox_" + id'
                 [attr.id]='id'
                 [attr.name]='id'
-                [ngFormControl]='parentControl'/>
+                [formControl]='control'/>
             <label (click)='onSelect($event)' [attr.for]='id'>
                 <div [class.hidden]='isInSummaryState' class="container">
                     <div class="off"></div>
@@ -31,25 +33,25 @@ import { ChangeDetectorRef } from '@angular/core';
                 </div>
             </label>
         ` ,
-        host       : {
+        host     : {
             '[attr.aria-checked]'  : 'checked' ,
             '[attr.aria-disabled]' : 'disabled' ,
             '[tabindex]'           : 'tabindex' ,
         } ,
-        styles     : [ require( './amp-checkbox.scss' ).toString() ] ,
-        directives : [ CORE_DIRECTIVES , FORM_DIRECTIVES ] ,
-        inputs     : [
+        styles   : [ require( './amp-checkbox.scss' ).toString() ] ,
+        inputs   : [
             'required' ,
+            'errors' ,
             'scrollOutUnless' ,
             'scrollOutOn' ,
             'disabled' ,
-            'parentControl' ,
+            'controlGroup' ,
             'checked' ,
             'id' ,
             'tabindex' ,
             'isInSummaryState'
         ] ,
-        outputs    : [ 'select' ]
+        outputs  : [ 'select' ]
     } )
 export class AmpCheckboxComponent implements AfterViewInit {
     private _disabled : boolean            = false;
@@ -57,21 +59,28 @@ export class AmpCheckboxComponent implements AfterViewInit {
     private _required : boolean            = false;
     private _tabindex : number;
     private isInSummaryState : boolean     = false;
-    private parentControl : Control;
     private scrollOutUnless : any;
     private scrollOutOn : any;
+    private controlGroup : FormGroup;
     private id : string;
     private checkboxValue : boolean        = false;
     private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
+    public control : FormControl           = new FormControl();
+    public errors                          = {};
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private elem : ElementRef ,
                   private scrollService : ScrollService ) {
     }
 
+    ngOnInit () : any {
+        this.joinToParentGroupAndSetAmpErrors();
+        return undefined;
+    }
+
     ngAfterViewInit () : any {
-        this.parentControl.valueChanges.subscribe( ( changes ) => {
-            this._checked      = this.isTrue( changes );
+        this.control.valueChanges.subscribe( ( changes ) => {
+            this._checked      = isTrue( changes );
             this.checkboxValue = this._checked;
         } );
         this.updateValitators();
@@ -96,7 +105,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
     }
 
     set disabled ( value ) {
-        this._disabled = this.isTrue( value );
+        this._disabled = isTrue( value );
     }
 
     get required () {
@@ -104,7 +113,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
     }
 
     set required ( value ) {
-        this._required = this.isTrue( value );
+        this._required = isTrue( value );
         this.updateValitators();
     }
 
@@ -113,9 +122,9 @@ export class AmpCheckboxComponent implements AfterViewInit {
     }
 
     set checked ( value ) {
-        this._checked      = this.isTrue( value );
+        this._checked      = isTrue( value );
         this.checkboxValue = this._checked;
-        this.parentControl.updateValue( this._checked );
+        this.control.setValue( this._checked );
     }
 
     private onSelect ( $event ) {
@@ -132,20 +141,20 @@ export class AmpCheckboxComponent implements AfterViewInit {
         }
     }
 
-    private requiredValidation ( c : Control ) {
-        return c.value === true ? null : {
-            checkboxrequired : true
-        };
-    }
-
-    private isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === 'true' || false);
-    }
-
     private updateValitators () {
-        if ( this.parentControl ) {
-            this.parentControl.validator = this.isTrue( this.required ) ? this.requiredValidation : null;
-            this.parentControl.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        if ( this.control ) {
+            this.control.setValidators( RequiredValidator.requiredValidation( this.required ) );
+            this.control.updateValueAndValidity( { emitEvent : false } );
+        }
+    }
+
+    private joinToParentGroupAndSetAmpErrors () {
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName , i )=> {
+            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( this.id , this.control );
         }
     }
 }

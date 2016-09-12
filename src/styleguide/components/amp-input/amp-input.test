@@ -1,0 +1,27 @@
+@@ set
+    task    AmpInput
+    url     http://localhost:3001/#/components/AmpInput
+
+@@ parameterized
+    | subtask    | spec                                                      |
+    | All        | src/styleguide/components/amp-input/amp-input.test.spec    |
+
+@@ parameterized
+    | browser    |
+    | phantomjs  |
+
+@@ parameterized
+    | breakpoint | tags    | size        |
+    | Desk       | desk    | 1025x800    |
+    | Laptop     | laptop  | 1024x800    |
+    | Tablet     | tablet  | 767x800     |
+    | Palm       | palm    | 480x800     |
+    | Mobile     | mobile  | 320x800     |
+
+
+@@ groups ddc, amp-input
+${task}: ${subtask} - ${breakpoint}
+    selenium ${browser} ${url} ${size}
+        wait 5s until gone "css: .ng-cloak"
+        wait 5s until exist "css: #firstname"
+        check ${spec} --include "${tags}"

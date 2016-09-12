@@ -6,7 +6,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { NgZone } from '@angular/core';
-import { DomEventsPlugin } from '@angular/platform-browser';
+import { DomEventsPlugin } from '@angular/platform-browser/src/dom/events/dom_events';
 import { EventManager } from '@angular/platform-browser';
 @Directive( {
     selector : '[sticky-on-scroll]'

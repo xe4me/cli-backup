@@ -1,5 +1,5 @@
 import { Injectable , EventEmitter }     from '@angular/core';
-import { MockFormModelService } from './mock-form-mode.service';
+import { FormModelService } from "../../app/services/form-model/form-model.service";
 @Injectable()
 export class MockScrollService {
     public $scrolled : EventEmitter<any>;
@@ -8,7 +8,7 @@ export class MockScrollService {
         this.$scrolled.emit( 'scrolling' );
     }
 
-    constructor ( private formModelService : MockFormModelService ) {
+    constructor ( private formModelService : FormModelService ) {
         this.$scrolled = new EventEmitter();
     }
 
