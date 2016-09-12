@@ -23,14 +23,24 @@ bolr styles
             @extend %#{$namespace}font-size-medium;
         }
 
-       /* @include media-query(palm) {
-            @extend %#{$namespace}font-size-heading;
-        }*/
-
         @include media-query(palm) {
            font-size: $font-size-heading-lrg;
+            margin-bottom: 2px;
+            margin-top: 20px;
         }
 
         margin: 12px 0 12px 0;
     }
+
 }
+
+/*.form__row label :first-of-type {
+    background-color: orange;
+}*/
+
+/*
+ label:first-child {
+       background-color: orange;
+    }
+
+*/

@@ -18,11 +18,13 @@ $summary-state-font-weight : 300;
   md-input {
     &.md-input {
       padding : 0 !important;
+        margin-top: -8px;
       div {
         &.md-input-wrapper {
-
+            //background-color: purple;
+            //padding: 7px 0 7px 0;
           input.md-input-element {
-            font-size  : 18px;
+            font-size  : 20px;
             height     : 24px;
             margin-top : 0 !important;
           }
@@ -227,17 +229,23 @@ md-input {
 
           &:focus {
             color : $amp-colour-black;
-            position: relative;
-            bottom: -12px;
+              @include media-query(tablet-and-up) {
+                  position: relative;
+                  bottom: -12px;
+              }
           }
           &.ng-touched {
-            position: relative;
-            bottom: -12px;
+              @include media-query(tablet-and-up) {
+                  position: relative;
+                  bottom: -12px;
+              }
           }
 
           &.ng-dirty {
-            position: relative;
-            bottom: -12px;
+              @include media-query(tablet-and-up) {
+                  position: relative;
+                  bottom: -12px;
+              }
           }
         }
         .md-input-placeholder {
