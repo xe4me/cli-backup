@@ -49,7 +49,7 @@
                                     "commonBlock": false,
                                     "path": "/amp-form-block/blocks/sample-fields-block2",
                                     "custom": {
-                                        "blockTitle": "Your region ",
+                                        "blockTitle": "Multiple group buttons ",
                                         "controls": [
                                             {
                                                 "id": "FullOrPartial",

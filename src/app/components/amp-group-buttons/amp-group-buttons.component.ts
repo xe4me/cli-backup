@@ -13,11 +13,9 @@ import { ScrollService } from "../../services/scroll/scroll.service";
 @Component( {
     selector        : 'amp-group-buttons' ,
     template        : `
-
                        <div class='amp-group-button'>
-
-                          <span *ngFor='let button of buttons; let i=index'>
-                               <span *ngIf='i<=3'>
+                          <span *ngFor='let button of buttons; let i=index; let last = last;' [ngClass]="{secondRow: i>3}">
+                               <span *ngIf='i<=3' [ngClass]="{lastItem: i==3}">
                                     <input
                                     class="sr-only"
                                     [disabled]='disabled'
@@ -31,9 +29,9 @@ import { ScrollService } from "../../services/scroll/scroll.service";
                                     />
                                 <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
                                </span>
-                               <div *ngIf='i==4'>
+                               <div *ngIf='i==4' class="rowBreaker">
                                </div>
-                               <span *ngIf='i>3'>
+                               <span *ngIf='i>3' [ngClass]="{lastItem: last}">
                                   <input
                                     class="sr-only"
                                     [disabled]='disabled'
@@ -47,32 +45,8 @@ import { ScrollService } from "../../services/scroll/scroll.service";
                                     />
                                   <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
                                </span>
-
-
                           </span>
-
-                         </div>
-
-               <!-- <div class='amp-group-button'>
-                    &lt;!&ndash;<span *ngFor='let button of buttons; let i=index' [ngClass]="{breakRow: i==4}">&ndash;&gt;
-                    <span *ngFor='let button of buttons; let i=index' [ngClass]="{breakRow: i==4}">
-                        <span >
-                          <input
-                                class="sr-only"
-                                [disabled]='disabled'
-                                [attr.data-automation-id]='"radio_button_" + button.id'
-                                type='radio'
-                                [attr.id]='button.id + index'
-                                [attr.name]='id + index'
-                                [formControl]='control'
-                                [value]='button.value'
-                                [checked]='control.value===button.value'
-                                />
-                          <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
-                        </span>
-                    </span>
-                </div>-->
-
+                       </div>
                 ` ,
     inputs          : [
         'errors' ,
