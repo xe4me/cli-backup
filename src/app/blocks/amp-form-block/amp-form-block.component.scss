@@ -10,7 +10,10 @@
   .FormBlocK {
 
   .heading-intro {
-       margin-bottom : 32px;
+      margin-bottom : 32px;
+      @include media-query('palm') {
+          margin-bottom : 6px;
+      }
    }
 
    .md-input-wrapper {

@@ -23,11 +23,12 @@ $summary-state-font-weight : 300;
 
           input.md-input-element {
             font-size  : 18px;
-            height     : 40px;
+            height     : 24px;
             margin-top : 0 !important;
           }
           label.md-input-placeholder {
             font-size : 12px;
+              display: none;
           }
         }
       }
@@ -47,6 +48,7 @@ $summary-state-font-weight : 300;
             }
           }
           .md-input-placeholder {
+
             color : $amp-colour-white;
             &.md-focused {
               color : $amp-colour-white;
@@ -123,7 +125,9 @@ $input-height : $input-line-height * 1.5; // Don't like Materialize CSS rule 'he
   visibility     : visible;
   padding-bottom : 5px;
   transform      : translateY(-90%) scale(0.8);
-
+  @include media-query(palm) {
+        display: none;
+  }
   .md-placeholder-required {
     color : $amp-colour-grey-darkest;
   }
