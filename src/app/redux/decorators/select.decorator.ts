@@ -1,7 +1,7 @@
 import { Store , provideStore , StoreModule } from "@ngrx/store";
 import { Inject , SkipSelf , Injectable , Injector , ReflectiveInjector } from "@angular/core";
 import { AmpReduxModule } from "../amp-redux.module";
-import reducers from '../reducers/model.reducer';
+import reducers from '../reducers/model/model.reducer';
 export type PropertySelector = string | number | symbol;
 export type PathSelector = (string | number)[];
 export type FunctionSelector<T, S> = (( s : T ) => S);

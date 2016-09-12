@@ -4,7 +4,15 @@
         "FirstInsuranceDetailsSection": {
             "samplefieldsblock": {
                 "contactNumber": null,
-                "email": null
+                "email": null,
+                "telephones": [
+                    {
+                        "phone": "0402095291"
+                    },
+                    {
+                        "phone": "0123456789"
+                    }
+                ]
             },
             "BlockWithCheckbox": {
                 "checkboxId": null

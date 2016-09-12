@@ -1,4 +1,4 @@
-import { ModelActions } from './model.action';
+import { ModelActions } from './model/model.action';
 export {
     ModelActions
 };

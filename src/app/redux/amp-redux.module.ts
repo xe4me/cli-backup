@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { compose } from '@ngrx/core/compose';
 import { AmpReduxComponent } from "./components/amp-redux/amp-redux.component";
-import actions from './actions/model.action';
+import actions from './actions/model/model.action';
 import models from './models';
-import reducers from './reducers/model.reducer';
-import { ModelActions } from "./actions/model.action";
+import reducers from './reducers/model/model.reducer';
+import { ModelActions } from "./actions/model/model.action";
 import { StoreModule , Store } from "@ngrx/store";
 import { StoreService } from "./services/store.service";
 /*

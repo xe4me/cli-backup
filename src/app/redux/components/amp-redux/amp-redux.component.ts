@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Input , Component , ContentChild , AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ModelActions , Payload } from "../../actions/model.action";
+import { ModelActions , Payload } from "../../actions/model/model.action";
 import { FormControl } from "@angular/forms";
 @Component( {
     selector : 'amp-redux' ,

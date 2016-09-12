@@ -11,7 +11,7 @@ import {
 import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 import { FormArray , FormGroup } from "@angular/forms";
-import { ModelActions , Payload } from "../../../../app/redux/actions/model.action";
+import { ModelActions , Payload } from "../../../../app/redux/actions/model/model.action";
 import { Store } from "@ngrx/store";
 @Component( {
     selector        : 'sample-array-experience-block' ,
