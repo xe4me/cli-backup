@@ -13,160 +13,176 @@ $active-background-color: $amp-colour-primary;
 
 $small-button-width: 80px;
 :host {
-  display: inline-block;
-  &[small] {
-    label {
-      height: ($amp-switch-height/2) - (2*$amp-switch-border-width) !important;
-      line-height: ($amp-switch-height/2) - (4*$amp-switch-border-width) !important;
-      font-size: 14px !important;
-      font-weight: 400 !important;;
+    display: inline-block;
+    &[small] {
+        label {
+            height: ($amp-switch-height/2) - (2*$amp-switch-border-width) !important;
+            line-height: ($amp-switch-height/2) - (4*$amp-switch-border-width) !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;;
+        }
+        .amp-group-button {
+            //width: 3* $small-button-width !important;
+            width: 100% !important;
+            margin: auto;
+        }
     }
-    .amp-group-button {
-      //width: 3* $small-button-width !important;
-      width: 100% !important;
-      margin: auto;
+    &[medium] {
+        label {
+            height: ($amp-switch-height-medium) - (2*$amp-switch-border-width) !important;
+            line-height: ($amp-switch-height-medium) - (4*$amp-switch-border-width) !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;;
+        }
+        .amp-group-button {
+            //width: 3* $small-button-width !important;
+            width: 100% !important;
+            margin: auto;
+        }
     }
-  }
-  &[medium] {
-    label {
-      height: ($amp-switch-height-medium) - (2*$amp-switch-border-width) !important;
-      line-height: ($amp-switch-height-medium) - (4*$amp-switch-border-width) !important;
-      font-size: 14px !important;
-      font-weight: 400 !important;;
-    }
-    .amp-group-button {
-      //width: 3* $small-button-width !important;
-      width: 100% !important;
-      margin: auto;
-    }
-  }
 }
 
 .amp-group-button {
-  margin: 0;
-  padding: 0;
-  display: table;
-  width: 100%;
-  max-width: 100%;
-  table-layout: fixed;
-  overflow: hidden;
-  input {
+   /* margin: 0;
+    padding: 0;
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    overflow: hidden;*/
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    /* You can set flex-wrap and flex-direction individually */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    /* tweak the where items line up on the row */
+    /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+    -webkit-align-content: flex-end;
+    align-content: flex-end;
+    input {
 
-    &:checked {
-      & + label {
-        background-color: $amp-colour-sky-blue!important;
-        color: white!important;
-      }
+        &:checked {
+            & + label {
+                background-color: $amp-colour-sky-blue;;
+                color: white;
+            }
+        }
+        &:focus {
+            & + label {
+                @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
+            }
+        }
     }
-    &:focus {
-      & + label {
-        @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
-      }
-    }
-  }
-  > span {
-      display: inline-block;
+    > span {
 
-      > span {
-        width:116px;
+        @include media-query(lap-and-up) {
+            &:nth-child(4) label {
+                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
+            }
+            &:nth-child(8) label {
+                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
+            }
+            &:nth-child(n+5) label {
+                border-bottom: solid $amp-colour-sky-blue $amp-switch-border-width;
+            }
+        }
+        
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
-        display: table-cell;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
 
         label {
-          @include transition(all 300ms linear);
+            @include transition(all 300ms linear);
 
-          //height: $amp-switch-height - (2*$amp-switch-border-width);
-          height: 58px;
-          line-height: $amp-switch-height - (4*$amp-switch-border-width);
-          box-sizing: border-box;
-          display: inline-block;
-          width: 100%;
-          @include amp-family($amp-switch-font-family);
-          background-color: white;
-          color: $amp-colour-sky-blue;
-          font-size: $amp-switch-font-size;
-          font-weight: 600;
-          text-align: center;
-          text-shadow: none;
-          border-left: solid $amp-colour-sky-blue $amp-switch-border-width;
-          border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-          border-bottom: solid $amp-colour-sky-blue $amp-switch-border-width;
-          padding:0 20px;
+            //height: $amp-switch-height - (2*$amp-switch-border-width);
+            height: 60px;
+            width: 116px;
+            line-height: $amp-switch-height - (4*$amp-switch-border-width);
+            box-sizing: border-box;
+            display: inline-block;
+
+            @include amp-family($amp-switch-font-family);
+            background-color: white;
+            color: $amp-colour-sky-blue;
+            font-size: $amp-switch-font-size;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: none;
+            //border: solid $amp-colour-sky-blue $amp-switch-border-width;;
+            border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
+            border-left: solid $amp-colour-sky-blue $amp-switch-border-width;
         }
-      }
-
-      > .lastItem {
-          border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-      }
-  }
-
-  > span.secondRow {
-    top: -6px;
-    position: relative;
-  }
-
+    }
 }
 
 @include media-query(lap-and-up) {
-  .amp-group-button {
-    > span {
-      label {
-        &:hover {
-          cursor: pointer;
-          @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
+    .amp-group-button {
+        > span {
+            label {
+                &:hover {
+                    cursor: pointer;
+                    @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @include media-query(palm) {
-  label {
-    height: 3em !important;
-    line-height: 3em !important;
-    font-size: $font-size-tin !important;;
-  }
-  :host {
-    &[small] {
-      .amp-group-button {
-        width: 80% !important;
-      }
+    label {
+        height: 3em !important;
+        line-height: 3em !important;
+        font-size: $font-size-tin !important;;
     }
-  }
+    :host {
+        &[small] {
+            .amp-group-button {
+                width: 80% !important;
+            }
+        }
+    }
 }
 
 @include media-small {
-  :host {
-    &[small] {
-      .amp-group-button {
-        span {
-          label {
-            font-size: 12px !important;
-          }
+    :host {
+        &[small] {
+            .amp-group-button {
+                span {
+                    label {
+                        font-size: 12px !important;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 .sr-only {
 
-  position: absolute;
+    position: absolute;
 
-  width: 1px;
+    width: 1px;
 
-  height: 1px;
+    height: 1px;
 
-  padding: 0;
+    padding: 0;
 
-  margin: -1px;
+    margin: -1px;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  clip: rect(0, 0, 0, 0);
+    clip: rect(0, 0, 0, 0);
 
-  border: 0;
+    border: 0;
 
 }
