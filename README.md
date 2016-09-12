@@ -34,16 +34,17 @@ amp-ng new experience-demo
 amp-ng init
 
 # Generates a new FormModule, that include a skeleton form Component, Definition, Template, etc..
-amp-ng generate ddc-form form-demo
+amp-ng generate form form-demo
 
 # Starts the webpack-dev-server
-npm start
+amp-ng serve
 
 
 
 ```
 
-
+## Concepts
+1. Current thinking is to have NgModule at the App level to bring in all dependencies instead of Form level...why? Well most services are singleton.
 
 
 

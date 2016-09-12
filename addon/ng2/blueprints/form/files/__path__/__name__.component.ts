@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AmpBlockLoaderDirective } from 'amp-ddc-components/AmpBlockComponent';
+import { FormControl } from '@angular/forms';
+import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 
 @Component({
   selector: '<%= selector %>',
@@ -15,7 +16,7 @@ import { AmpBlockLoaderDirective } from 'amp-ddc-components/AmpBlockComponent';
 })
 export class <%= classifiedModuleName %>Component implements OnInit {
   private fullyDistinguishedName = [ 'Application' ];
-  private demoFormBlocks            = {
+  private childBlocks            = {
         name        : 'AmpButtonComponentSection' ,
         blockType   : 'PageSectionComponent' ,
         blockLayout : 'SECTION' ,
@@ -27,10 +28,10 @@ export class <%= classifiedModuleName %>Component implements OnInit {
                 name        : 'ampButton' ,
                 blockType   : 'AmpGroupButtonComponent' ,
                 blockLayout : 'INLINE' ,
-                commonBlock : false ,
+                commonBlock : true ,
                 path        : 'components/amp-group-button/amp-group-button.component' ,
                 custom      : {
-                    parentControl : new Control() ,
+                    parentControl : new FormControl() ,
                     id            : 'ApplicantDetails-gender' ,
                     label         : 'Gender' ,
                     buttons       : [
