@@ -25,7 +25,11 @@ $heading-micro-intro-font-weight: 600;
 
 .#{$namespace}heading-intro,
 %#{$namespace}heading-intro {
-  @extend %#{$namespace}font-size-medium;
+
+   @include media-query(tablet-and-up) {
+        @extend %#{$namespace}font-size-medium;
+   }
+
   @include amp-family($heading-intro-font-family);
 
   color: $heading-intro-color;
@@ -33,8 +37,9 @@ $heading-micro-intro-font-weight: 600;
   line-height: $heading-intro-line-height;
 
   @include media-query(palm) {
-    @extend %#{$namespace}font-size-small;
+      font-size: $font-size-heading-lrg;
   }
+
 }
 
 .#{$namespace}heading-contxtual-label,

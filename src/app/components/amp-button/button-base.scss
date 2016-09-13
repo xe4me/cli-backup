@@ -12,7 +12,7 @@ $ddc-buttons-and-icons-transition-time: 300ms;
 $buttons-transition-time: $ddc-buttons-and-icons-transition-time;
 $buttons-default-width: 128px;
 $buttons-default-height: 128px;
-$buttons-default-margin-top: 14px;
+$buttons-default-margin-top: 4px;
 $buttons-default-height: 42px;
 $disabled-text-color: #9f9f9f;
 $disabled-background-color: #cbd2dc;
@@ -30,6 +30,7 @@ $btn-ok-background-color: $amp-colour-primary;
 $btn-ok-active-background-color: $amp-colour-secondary;
 $btn-ok-margin-height: 60px;
 $btn-ok-margin-width: 125px;
+$btn-ok-margin-top: 30px;
 
 // btn-change
 $btn-change-hover-background-color: $amp-colour-secondary-darkest;
@@ -74,7 +75,7 @@ $btn-submit-active-text-color: $amp-colour-white;
 // btn change-anchor
 $btn-anchor-hover-background-color: $amp-colour-secondary-darkest;
 $btn-anchor-active-background-color: $amp-colour-primary;
-$btn-anchor-color: $amp-colour-secondary;
+$btn-anchor-color: $amp-colour-sky-blue;
 
 /*
 Button base class used by all
@@ -83,7 +84,9 @@ Button base class used by all
 .btn {
     line-height: $buttons-default-height;
     width: $buttons-default-width;
-    margin-top: $buttons-default-margin-top;
+    @include media-query(tablet-and-up) {
+        margin-top: $btn-ok-margin-top;
+    }
     @extend %#{$namespace}font-size-small;
     @include transition(color, background-color, $buttons-transition-time ease-in-out);
     &.btn-full {

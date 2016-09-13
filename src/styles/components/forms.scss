@@ -9,9 +9,6 @@ Base form row styles
 bolr styles
 */
 
-.heading-intro {
-    font-size: 24px;
-}
 
 .form__row {
     .form-row-label-full-width {
@@ -21,7 +18,48 @@ bolr styles
     }
     .form-row-label {
         color: $amp-colour-grey-darker;
-        font-size: 24px;
-        margin: 12px 0 12px 0;
+        @include media-query(tablet-and-up) {
+            min-width: 286px;
+            @extend %#{$namespace}font-size-medium;
+            margin: 12px 0 12px 0;
+        }
+
+        @include media-query(palm) {
+           font-size: $font-size-heading-lrg;
+            margin-bottom: 2px;
+            margin-top: 20px;
+        }
+
+
     }
+    .form-row-label-inline {
+        color: $amp-colour-grey-darker;
+        @include media-query(tablet-and-up) {
+            min-width: 286px;
+            @extend %#{$namespace}font-size-medium;
+            margin: 30px 0 0 0;
+        }
+
+        @include media-query(palm) {
+            font-size: $font-size-heading-lrg;
+            margin: 20px 0 0 0;
+        }
+    }
+    .form-row-label-checkbox {
+        font-size: $font-size-heading-lrg;
+        margin-top: 20px;
+        margin-bottom: 34px;
+    }
+
 }
+
+/*.form__row label :first-of-type {
+    background-color: orange;
+}*/
+
+/*
+ label:first-child {
+       background-color: orange;
+    }
+
+*/

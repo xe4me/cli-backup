@@ -44,6 +44,12 @@ $checkbox-margin : 0;
   white-space : nowrap;
   cursor      : pointer;
   position    : relative;
+
+  @include media-query(palm) {
+      margin-top: 26px;
+      margin-bottom: 8px;
+  }
+
   &:nth-child(n+2) {
     margin-top : 23px;
   }
@@ -66,10 +72,16 @@ $checkbox-margin : 0;
   }
 
   label {
+
     text-align  : left;
     line-height : 1;
     display     : block;
     cursor      : pointer;
+      @include media-query(palm) {
+          line-height : 30px;
+          @extend %#{$namespace}font-size-small;
+          margin-left: 0;
+      }
     .container {
       box-sizing       : border-box;
       position         : absolute;
@@ -140,6 +152,32 @@ $checkbox-margin : 0;
       }
     }
   }
+
+.label {
+    line-height: 45px;
+    margin-top: -10px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    white-space: normal;
+
+    @include media-query(tablet-and-up) {
+        font-size: 24px
+    }
+
+    @include media-query(palm) {
+        line-height : 30px;
+        margin-top: 0;
+        @extend %#{$namespace}font-size-small;
+        margin-left: 0;
+    }
+    //  pointer-events: none;  ???
+    width: auto;
+    margin-left: -20px;
+    // @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
+    @include rtl(margin-right, 0, $checkbox-text-margin + $checkbox-width);
+
+}
 }
 
 // Themes :

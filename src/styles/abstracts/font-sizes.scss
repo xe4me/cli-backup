@@ -2,6 +2,12 @@ $font-size-med: $font-size-medium;
 $font-size-sma: $font-size-small;
 $font-size-tin: $font-size-tiny;
 $font-size-lrg: $font-size-large;
+$font-size-heading-lrg: $font-size-heading-mobile;
+
+
+%#{$namespace}font-size-heading {
+    font-size: $font-size-heading-lrg;
+}
 
 %#{$namespace}font-size-medium {
   font-size: $font-size-med;

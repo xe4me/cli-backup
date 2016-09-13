@@ -79,8 +79,7 @@ export class MenuFrameApplicationBlockComponent {
     }
 
     private calculateProgress ( message ) {
-        console.log( 'message' , message );
-        let form = this.__form.controls.Application.controls.FirstInsuranceDetailsSection;
+        let form = (<any>this.__form.controls).Application.controls.FirstInsuranceDetailsSection;
         if ( form ) {
             if ( form.controls ) {
                 let valids : number   = 0;
