@@ -4,7 +4,8 @@
 :host {
   display: block;
     @include media-query(palm) {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
+        margin-top: 26px;
     }
 }
 
@@ -68,24 +69,28 @@ $radio-font-weight: 300 !default;
   }
 
   .label {
-
     line-height: 45px;
     margin-top: -10px;
     display: inline-block;
     vertical-align: top;
     position: relative;
     white-space: normal;
-      @include media-query(palm) {
-          line-height : 30px;
-          margin-top: 0;
-          @extend %#{$namespace}font-size-small;
-          //margin-left: 0;
-      }
+
+    @include media-query(tablet-and-up) {
+        font-size: 24px
+    }
+
+    @include media-query(palm) {
+      line-height : 30px;
+      margin-top: 0;
+      @extend %#{$namespace}font-size-small;
+    }
     //  pointer-events: none;  ???
     width: auto;
     margin-left: 50px;
    // @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
     @include rtl(margin-right, 0, $radio-text-margin + $radio-width);
+
   }
 
   .root {

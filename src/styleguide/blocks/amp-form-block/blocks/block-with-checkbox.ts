@@ -15,7 +15,7 @@ import { FormService } from "../../../../app/services/form/form.service";
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 mr+ mt0">
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                          <amp-checkbox
                                 #ampReduxRef
@@ -24,7 +24,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                                 [controlGroup]="__controlGroup"
                                 [required]='true'
                                 [id]='__custom.controls[0].id'>
-                                <label class='palm-1/1 tablet-2/3 lap-and-up-1/2'>This a label for a checkbox that is really long </label>
+                                <label class='palm-1/1 tablet-1/1 lap-and-up-1/1 label'>This a label for a checkbox that is really long </label>
                         </amp-checkbox>
                     </amp-redux>
                 </div>

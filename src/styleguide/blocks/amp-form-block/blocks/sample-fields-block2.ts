@@ -14,7 +14,7 @@ import { ProgressObserverService } from "../../../../app/services/progress-obser
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
 
            <amp-form-row [attr.theme]="themeService.theme.attr">
-                    <div class="grid__item_floated palm-1/1 tablet-and-up-1/1 lap-and-up-6/12  mr mt0">
+                    <div class="grid__item_floated palm-1/1 tablet-and-up-1/1 lap-and-up-1/1  mr mt0">
                         <label class='1/1 sr-only'>What's your scale?</label>
                         <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                              <amp-group-buttons

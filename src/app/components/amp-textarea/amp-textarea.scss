@@ -317,6 +317,10 @@ md-input-container {
 
     @include rtl(transform-origin, left top, right top);
 
+      @include media-query(tablet-and-up) {
+          display: none;
+      }
+
     @include media-query(palm) {
           display: none;
     }
