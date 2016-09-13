@@ -42,7 +42,6 @@
                                 "label": "First Insurance Details Section"
                             },
                             "blocks": [
-
                                 {
                                     "name": "anotherSampleExperienceBlock",
                                     "blockType": "AnotherSampleExperienceBlock",
@@ -50,7 +49,7 @@
                                     "commonBlock": false,
                                     "path": "/amp-form-block/blocks/another-sample-experience-block",
                                     "custom": {
-                                        "blockTitle ": "Which one , full or partial ? ",
+                                        "blockTitle": "Group buttons ",
                                         "controls": [
                                             {
                                                 "id": "FullOrPartial",
@@ -77,7 +76,7 @@
                                     "commonBloc": false,
                                     "path": "/amp-form-block/blocks/sample-array-experience-block",
                                     "custom": {
-                                        "blockTitle": "This block has a repeating group !",
+                                        "blockTitle": "This block has dynamic controls",
                                         "controls": [
                                             {
                                                 "id": "age",
@@ -220,63 +219,7 @@
                                 },
 
 
-                                {
-                                    "name": "samplefieldsblock2",
-                                    "blockType": "SampleFieldsBlock2",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "/amp-form-block/blocks/sample-fields-block2",
-                                    "custom": {
-                                        "blockTitle": "Multiple group buttons ",
-                                        "controls": [
-                                            {
-                                                "id": "FullOrPartial",
-                                                "buttons": [
-                                                    {
-                                                        "id": "ACT",
-                                                        "value": "ACT",
-                                                        "label": "ACT"
-                                                    },
-                                                    {
-                                                        "id": "NSW",
-                                                        "value": "NSW",
-                                                        "label": "NSW"
-                                                    },
-                                                    {
-                                                        "id": "NT",
-                                                        "value": "NT",
-                                                        "label": "NT"
-                                                    },
-                                                    {
-                                                        "id": "QLD",
-                                                        "value": "QLD",
-                                                        "label": "QLD"
-                                                    },
-                                                    {
-                                                        "id": "SA",
-                                                        "value": "SA",
-                                                        "label": "SA"
-                                                    },
-                                                    {
-                                                        "id": "TAS",
-                                                        "value": "TAS",
-                                                        "label": "TAS"
-                                                    },
-                                                    {
-                                                        "id": "VIC",
-                                                        "value": "VIC",
-                                                        "label": "VIC"
-                                                    },
-                                                    {
-                                                        "id": "WA",
-                                                        "value": "WA",
-                                                        "label": "WA"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
+
                                 {
                                     "name": "samplefieldsblock",
                                     "blockType": "SampleFieldsBlock",
