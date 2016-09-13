@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 export interface Payload {
-    query : any ,
-    fdn : string[]
+    query : any ;
+    fdn : string[];
 }
 @Injectable()
 export class ModelActions {
-    static UPDATE = '[MODEL] Update model';
-    static PUSH         = '[MODEL] Push an item to array';
-    static REMOVE_AT    = '[MODEL] Remove and item from array';
-    static REMOVE_ALL   = '[MODEL] Remove all items of an array';
+    static UPDATE     = '[MODEL] Update model';
+    static PUSH       = '[MODEL] Push an item to array';
+    static REMOVE_AT  = '[MODEL] Remove and item from array';
+    static REMOVE_ALL = '[MODEL] Remove all items of an array';
 
     update ( payload : Payload ) : Action {
         return {
@@ -28,6 +28,13 @@ export class ModelActions {
     removeAt ( payload : Payload ) {
         return {
             type    : ModelActions.REMOVE_AT ,
+            payload : payload
+        };
+    }
+
+    removeAll ( payload : Payload ) {
+        return {
+            type    : ModelActions.REMOVE_ALL ,
             payload : payload
         };
     }

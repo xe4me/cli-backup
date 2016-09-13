@@ -10,7 +10,9 @@ export function AmpComponent ( annotation : any ) {
                 if ( isArray( annotation[ key ] ) ) {
                     annotation[ key ] = annotation[ key ].concat( parentAnnotation[ key ] );
                 } else {
-                    annotation[ key ] = parentAnnotation[ key ];
+                    if ( key !== 'selector' ) {
+                        annotation[ key.replace( '_' , '' ) ] = parentAnnotation[ key ];
+                    }
                 }
             }
         } );

@@ -119,6 +119,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     private _valDate : boolean;
     private _required : boolean        = false;
     private _disabled : boolean        = false;
+    private _pattern : string;
     private label : string;
     private isInSummaryState : boolean = false;
     private showLabel : boolean        = true;
@@ -133,7 +134,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     private onAdjustWidth : EventEmitter<any>;
     private hostClassesRemove;
     private tempClassNames;
-    private pattern : string;
     private onEnter : EventEmitter<any>;
     private onBlur : EventEmitter<any>;
     private onFocus : EventEmitter<any>;
@@ -198,6 +198,15 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
 
     set disabled ( value : boolean ) {
         this._disabled = this.isTrue( value );
+        this.updateValitators();
+    }
+
+    get pattern () {
+        return this._pattern;
+    }
+
+    set pattern ( value : boolean ) {
+        this._pattern = value;
         this.updateValitators();
     }
 

@@ -63,7 +63,7 @@ export class PatterValidator {
                     return null;
                 }
                 return {
-                    mdPattern : {
+                    pattern : {
                         text : c._ampErrors && c._ampErrors.pattern ? c._ampErrors.pattern : 'This field is not valid.'
                     }
                 };

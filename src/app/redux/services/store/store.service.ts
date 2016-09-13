@@ -1,6 +1,6 @@
-import { getIn } from "../../util/functions.utils";
-import { Store } from "@ngrx/store";
-import { Injectable } from "@angular/core";
+import { getIn } from '../../../util/functions.utils';
+import { Store } from '@ngrx/store';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 @Injectable()
 export class StoreService {
