@@ -7,6 +7,12 @@ ENV TZ 'Australia/Sydney'
 # Create code directory
 RUN mkdir -p /code
 
+# Set user to node
+USER node
+
+# Bundle app source
+COPY . /code/
+
 # Set code as workdir
 WORKDIR /code
 
@@ -14,11 +20,5 @@ WORKDIR /code
 RUN chown -R node:node /code && \
     rm /etc/localtime && \
     ln -s /usr/share/zoneinfo/Australia/Sydney /etc/localtime
-
-# Set user to node
-USER node
-
-# Bundle app source
-COPY . /code/
 
 CMD [ "npm", "start" ]
