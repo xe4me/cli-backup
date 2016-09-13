@@ -300,6 +300,46 @@
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
     },
     {
+        "name":"AmpFirstName",
+        "sources": [
+            "src/app/components/amp-first-name/amp-first-name.component.ts"
+        ],
+        "id": "AmpFirstName",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-first-name/basic_usage.html",
+                "styles": "src/styleguide/components/amp-first-name/basic_usage.scss",
+                "source": "src/styleguide/components/amp-first-name/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-first-name/amp-first-name.test.spec",
+                "jasmine": "src/styleguide/components/amp-first-name/amp-first-name.spec.ts",
+                "component": "amp-first-name-basic-usage",
+                "component_src_location": "components/amp-first-name/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name":"AmpLastName",
+        "sources": [
+            "src/app/components/amp-last-name/amp-last-name.component.ts"
+        ],
+        "id": "AmpLastName",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-last-name/basic_usage.html",
+                "styles": "src/styleguide/components/amp-last-name/basic_usage.scss",
+                "source": "src/styleguide/components/amp-last-name/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-last-name/amp-last-name.test.spec",
+                "jasmine": "src/styleguide/components/amp-last-name/amp-last-name.spec.ts",
+                "component": "amp-last-name-basic-usage",
+                "component_src_location": "components/amp-last-name/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
         "name":"AmpContactNumber",
         "sources": [
             "src/app/components/amp-contact-number/amp-contact-number.component.ts"
