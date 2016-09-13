@@ -43,6 +43,25 @@
                             },
                             "blocks": [
                                 {
+                                    "name": "samplefieldsblock",
+                                    "blockType": "SampleFieldsBlock",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "/amp-form-block/blocks/sample-fields-block",
+                                    "custom": {
+                                        "blockTitle": "Multiple text fields ",
+                                        "controls": [
+                                            {
+                                                "id": "contactNumber"
+                                            },
+                                            {
+                                                "id": "email"
+                                            }
+                                        ]
+                                    }
+                                },
+
+                                {
                                     "name": "anotherSampleExperienceBlock",
                                     "blockType": "AnotherSampleExperienceBlock",
                                     "blockLayout": "INLINE",
@@ -216,31 +235,7 @@
                                             }
                                         ]
                                     }
-                                },
-
-
-
-                                {
-                                    "name": "samplefieldsblock",
-                                    "blockType": "SampleFieldsBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "/amp-form-block/blocks/sample-fields-block",
-                                    "custom": {
-                                        "blockTitle": "Multiple text fields ",
-                                        "controls": [
-                                            {
-                                                "id": "contactNumber"
-                                            },
-                                            {
-                                                "id": "email"
-                                            }
-                                        ]
-                                    }
                                 }
-
-
-
                             ]
                         }
                     ]

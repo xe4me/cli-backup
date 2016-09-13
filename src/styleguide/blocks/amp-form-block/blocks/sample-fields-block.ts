@@ -18,6 +18,44 @@ import { FormService } from "../../../../app/services/form/form.service";
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
+            <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 form-row-label-inline'>First name</label>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+                    <label class='1/1 sr-only'>What's your first name?</label>
+                    <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
+                        <amp-input
+                            #ampReduxRef
+                            [attr.theme]="themeService.theme.attr"
+                            [id]="__custom.controls[0].id"
+                            [label]="'Contact number '"
+                            [controlGroup]="__controlGroup"
+                            [isInSummaryState]="isInSummaryState"
+                            [required]="true"
+                            [maxLength]="'12'"
+                            [maxFloat]="'654654'"
+                            [minLength]="'4'">
+                        </amp-input>
+                    </amp-redux>
+                </div>
+                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 form-row-label-inline'>First name</label>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+                    <label class='1/1 sr-only'>What's your first name?</label>
+                    <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
+                        <amp-input
+                            #ampReduxRef
+                            [attr.theme]="themeService.theme.attr"
+                            [id]="__custom.controls[0].id"
+                            [label]="'Contact number '"
+                            [controlGroup]="__controlGroup"
+                            [isInSummaryState]="isInSummaryState"
+                            [required]="true"
+                            [maxLength]="'12'"
+                            [maxFloat]="'654654'"
+                            [minLength]="'4'">
+                        </amp-input>
+                    </amp-redux>
+                </div>
+            </amp-form-row>
+            <amp-form-row [attr.theme]="themeService.theme.attr">
                 <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Contact number</label>
                 <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mr+ mt0">
                     <label class='1/1 sr-only'>What's your Contact number?</label>
@@ -26,7 +64,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                             #ampReduxRef
                             [attr.theme]="themeService.theme.attr"
                             [id]="__custom.controls[0].id"
-                            [label]="'Contact number '"
+                            [label]="'First name '"
                             [controlGroup]="__controlGroup"
                             [isInSummaryState]="isInSummaryState"
                             [required]="true"
