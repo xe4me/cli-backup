@@ -13,7 +13,7 @@
 //         if ( changes.shouldBlock.currentValue === true ) {
 //             this.zone.runOutsideAngular( () => {
 //                 const manager =
-//                           new EventManager( [ new DomEventsPlugin() ] , new NgZone( { enableLongStackTrace : false } ) );
+//                     new EventManager( [ new DomEventsPlugin() ], new NgZone( { enableLongStackTrace : false } ) );
 //                 manager.addGlobalEventListener( 'window' , 'beforeunload' , ( e ) => {
 //                     console.log( 'binded' );
 //                     return 'Are you sure you want to leave?';

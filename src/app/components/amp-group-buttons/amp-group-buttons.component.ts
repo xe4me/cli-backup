@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../util/validations';
-import { FormGroup , FormControl } from "@angular/forms";
-import { ScrollService } from "../../services/scroll/scroll.service";
+import { FormGroup , FormControl } from '@angular/forms';
+import { ScrollService } from '../../services/scroll/scroll.service';
 @Component( {
     selector        : 'amp-group-buttons' ,
     template        : `
@@ -49,6 +49,8 @@ import { ScrollService } from "../../services/scroll/scroll.service";
     outputs         : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent implements OnInit {
+    public control : FormControl = new FormControl( null );
+    public errors                = {};
     private controlGroup : FormGroup;
     private _disabled : boolean  = false;
     private _required : boolean  = false;
@@ -66,12 +68,10 @@ export class AmpGroupButtonsComponent implements OnInit {
                   private scrollService : ScrollService ) {
     }
 
-    public control : FormControl = new FormControl( null );
-    public errors                = {};
 
     ngOnInit () : any {
         this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i )=> {
+        Object.keys( this.errors ).map( ( errorName , i ) => {
             (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {

@@ -1,8 +1,8 @@
 import { Component , ChangeDetectorRef , ViewChild } from '@angular/core';
-import { AmpBlockLoaderDirective } from "../../../app/amp-block-loader.directive";
+import { AmpBlockLoaderDirective } from '../../../app/amp-block-loader.directive';
 import { Store , provideStore } from '@ngrx/store';
-import { FormGroup , FormBuilder } from "@angular/forms";
-import { FormSectionService } from "../../../app/services/form-section/form-section.service";
+import { FormGroup , FormBuilder } from '@angular/forms';
+import { FormSectionService } from '../../../app/services/form-section/form-section.service';
 var formDef = require( './form-def.def.json' );
 @Component( {
     selector    : 'amp-form-block-basic-usage' ,
@@ -63,29 +63,29 @@ export default class AmpFormBlockBasicUsage {
                         custom      : {
                             blockTitle : 'Let\'s get your name, shall we ?' + i ,
                             firstname  : {
-                                title  : "What's your first name?" + i ,
+                                title  : 'What\'s your first name?' + i ,
                                 errors : {
                                     required : 'First name is a required thing :)' + i
                                 }
                             } ,
                             lastname   : {
-                                title  : "What's your last name?" + i ,
+                                title  : 'What\'s your last name?' + i ,
                                 errors : {
                                     required : 'Last name is a required thing :)' + i
                                 }
                             } ,
                             age        : {
-                                title    : "What about your age?" + i ,
+                                title    : 'What about your age?' + i ,
                                 errors   : {
                                     required : 'Apparently even age is a required thing :) , what a wonderful time to be' + i
                                 } ,
                                 regex    : '^([0-9])*$' ,
-                                maxLengh : 3
+                                maxLength : 3
                             }
                         }
                     }
                 ]
-            } )
+            } );
         }
     }
 }

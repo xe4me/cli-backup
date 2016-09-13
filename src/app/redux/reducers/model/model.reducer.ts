@@ -1,7 +1,7 @@
 import '@ngrx/core/add/operator/select';
 import { Action } from '@ngrx/store';
 import { ModelActions } from '../../actions/model/model.action';
-import { clone , getIn } from "../../../util/functions.utils";
+import { clone , getIn } from '../../../util/functions.utils';
 export default function( state , action : Action ) {
     switch ( action.type ) {
         case ModelActions.UPDATE: {
@@ -10,7 +10,7 @@ export default function( state , action : Action ) {
             let newState         = clone( state );
             let _state           = getIn( fdn , newState );
             _state[ fdn.last() ] = query;
-            return newState
+            return newState;
         }
         case ModelActions.PUSH: {
             const query  = action.payload.query;
@@ -18,7 +18,7 @@ export default function( state , action : Action ) {
             let newState = clone( state );
             let _state   = getIn( fdn , newState );
             _state[ fdn.last() ].push( query );
-            return newState
+            return newState;
         }
         case ModelActions.REMOVE_AT: {
             const query  = action.payload.query;
@@ -26,7 +26,7 @@ export default function( state , action : Action ) {
             let newState = clone( state );
             let _state   = getIn( fdn , newState );
             _state[ fdn.last() ].splice( query , 1 );
-            return newState
+            return newState;
         }
         case ModelActions.REMOVE_ALL: {
             const fdn    = action.payload.fdn;
@@ -35,7 +35,7 @@ export default function( state , action : Action ) {
             while ( _state[ fdn.last() ].length ) {
                 _state[ fdn.last() ].splice( 0 , 1 );
             }
-            return newState
+            return newState;
         }
         default: {
             return state;

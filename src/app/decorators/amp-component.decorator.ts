@@ -1,5 +1,5 @@
-import { ComponentMetadata } from "@angular/core";
-import { isArray } from "@angular/common/src/facade/lang";
+import { ComponentMetadata } from '@angular/core';
+import { isArray } from '@angular/common/src/facade/lang';
 export function AmpComponent ( annotation : any ) {
     return function( target : Function ) {
         var parentTarget      = Object.getPrototypeOf( target.prototype ).constructor;
@@ -10,11 +10,13 @@ export function AmpComponent ( annotation : any ) {
                 if ( isArray( annotation[ key ] ) ) {
                     annotation[ key ] = annotation[ key ].concat( parentAnnotation[ key ] );
                 } else {
-                    annotation[ key ] = parentAnnotation[ key ];
+                    if ( key !== 'selector' ) {
+                        annotation[ key.replace( '_' , '' ) ] = parentAnnotation[ key ];
+                    }
                 }
             }
         } );
         var metadata = new ComponentMetadata( annotation );
         (<any>Reflect).defineMetadata( 'annotations' , [ metadata ] , target );
-    }
+    };
 }

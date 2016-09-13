@@ -172,7 +172,7 @@ export abstract class ExerciseDateAbstract {
         }
     };
 
-    public static getOptionsByLicensee ( licensee: string , optionGroupName ) {
+    public static getOptionsByLicensee ( licensee : string , optionGroupName ) {
         return this.exerciseDateRadios.getButtonOptions( licensee , optionGroupName );
     }
 

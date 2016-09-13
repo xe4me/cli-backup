@@ -15,8 +15,8 @@ import {MdProgressBar} from '@angular2-material/progress-bar';
     encapsulation: ViewEncapsulation.None
 })
 export class AmpLinearProgressBarComponent {
-    private value: number;
-    private determinate: string;
+    private value : number;
+    private determinate : string;
 
     constructor() {
     }

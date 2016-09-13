@@ -14,7 +14,9 @@ describe( 'AmpDate public date methods' , () => {
             let dd                                         = today.getDate();
             let mm                                         = today.getMonth() + 1; //January is 0!
             let yyyy                                       = today.getFullYear();
-            let DD: any = dd , MM: any = mm , YYYY: any = yyyy;
+            let DD : any = dd;
+            let MM : any = mm;
+            let YYYY : any = yyyy;
             if ( dd < 10 ) {
                 DD = '0' + dd;
             }

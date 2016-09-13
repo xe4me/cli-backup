@@ -11,7 +11,7 @@ import { ProgressObserverService } from "../../../../app/services/progress-obser
 import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
 import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
 import { FDN } from "../Application.fdn";
-import { StoreService } from "../../../../app/redux/services/store.service";
+import { StoreService } from "../../../../app/redux/services/store/store.service";
 import { FormService } from "../../../../app/services/form/form.service";
 @Component( {
     selector        : 'sample-fields-block' ,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ValuesPipe } from "../../pipes/values/values.pipe";
+import { ValuesPipe } from '../../pipes/values/values.pipe';
 @Component(
     {
         selector : 'amp-error' ,

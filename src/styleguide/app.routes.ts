@@ -9,7 +9,7 @@ import { ComponentPage } from './routes/component';
 // import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callback';
 
 
-export const ROUTES: Routes = [
+export const ROUTES : Routes = [
     { path : 'component/:id' , component : ComponentPage },
     { path : '**' ,              component : IndexPage }
 ];

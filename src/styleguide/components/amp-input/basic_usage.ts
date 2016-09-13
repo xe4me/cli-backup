@@ -2,7 +2,7 @@ import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../app/components/amp-input/amp-input.component';
 import { ThemeService } from '../../services/theme';
-import { AmpErrorComponent } from "../../../app/components/amp-error/amp-error.component";
+import { AmpErrorComponent } from '../../../app/components/amp-error/amp-error.component';
 @Component(
     {
         selector    : 'amp-input-basic-usage' ,

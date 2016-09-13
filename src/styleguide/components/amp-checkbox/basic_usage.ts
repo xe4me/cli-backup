@@ -2,7 +2,7 @@ import { Component , OnInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { ThemeService } from '../../services/theme';
-import { ScrollService } from "../../../app/services/scroll/scroll.service";
+import { ScrollService } from '../../../app/services/scroll/scroll.service';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-checkbox/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -38,6 +38,5 @@ export default class AMPCheckboxComponentBasicUsage implements OnInit {
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log( 'onAcknowledgeSelect value' , value );
     }
 }

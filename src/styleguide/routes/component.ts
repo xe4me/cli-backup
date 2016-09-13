@@ -23,7 +23,7 @@ export class ComponentPage implements OnInit {
 
     constructor ( private _components : ComponentsService ,
                   private _navigation : NavigationService ,
-                  private route: ActivatedRoute ) {
+                  private route : ActivatedRoute ) {
     }
 
     ngOnInit () {

@@ -1,5 +1,5 @@
 export class ValidationService {
-    static getValidatorErrorMessage ( code: string ) {
+    static getValidatorErrorMessage ( code : string ) {
         let config = {
             'required'           : 'Required' ,
             'invalidPhone'       : 'Phone is Invalid' ,

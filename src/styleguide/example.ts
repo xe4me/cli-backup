@@ -88,7 +88,7 @@ export class ExampleComponent {
         return this._loaded;
     }
 
-    //@Query( MdTabs ) public panes : QueryList<MdTabs> ,
+    // @Query( MdTabs ) public panes : QueryList<MdTabs> ,
     constructor ( public themeService : ThemeService , public http : Http , public cd : ChangeDetectorRef ,
                   public zone : NgZone ) {
     }
@@ -112,7 +112,7 @@ export class ExampleComponent {
         if ( model.jasmine ) {
             this.addFile( model.jasmine , 'typescript' , 'Jasmine' );
         }
-        var waitForChunk = require( 'bundle!./' + this._model.component_src_location + '\.ts' );
+        let waitForChunk = require( 'bundle!./' + this._model.component_src_location + '\.ts' );
         waitForChunk( ( file ) => {
             this.exampleDirective
                 .createComponent( file[ 'default' ] )

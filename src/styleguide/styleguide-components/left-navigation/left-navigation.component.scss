@@ -4,7 +4,8 @@
   position: fixed;
   width: 16.6666666% !important;;
   display: block;
-
+  height: 900px;
+  overflow-y:scroll ;
 }
 
 $autoc-primary-theme: $amp-colour-primary;

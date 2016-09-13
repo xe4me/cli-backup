@@ -280,6 +280,146 @@
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
     },
     {
+        "name":"AmpEmail",
+        "sources": [
+            "src/app/components/amp-email/amp-email.component.ts"
+        ],
+        "id": "AmpEmail",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-email/basic_usage.html",
+                "styles": "src/styleguide/components/amp-email/basic_usage.scss",
+                "source": "src/styleguide/components/amp-email/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-email/amp-email.test.spec",
+                "jasmine": "src/styleguide/components/amp-email/amp-email.spec.ts",
+                "component": "amp-email-basic-usage",
+                "component_src_location": "components/amp-email/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name":"AmpFirstName",
+        "sources": [
+            "src/app/components/amp-first-name/amp-first-name.component.ts"
+        ],
+        "id": "AmpFirstName",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-first-name/basic_usage.html",
+                "styles": "src/styleguide/components/amp-first-name/basic_usage.scss",
+                "source": "src/styleguide/components/amp-first-name/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-first-name/amp-first-name.test.spec",
+                "jasmine": "src/styleguide/components/amp-first-name/amp-first-name.spec.ts",
+                "component": "amp-first-name-basic-usage",
+                "component_src_location": "components/amp-first-name/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name":"AmpLastName",
+        "sources": [
+            "src/app/components/amp-last-name/amp-last-name.component.ts"
+        ],
+        "id": "AmpLastName",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-last-name/basic_usage.html",
+                "styles": "src/styleguide/components/amp-last-name/basic_usage.scss",
+                "source": "src/styleguide/components/amp-last-name/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-last-name/amp-last-name.test.spec",
+                "jasmine": "src/styleguide/components/amp-last-name/amp-last-name.spec.ts",
+                "component": "amp-last-name-basic-usage",
+                "component_src_location": "components/amp-last-name/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name":"AmpContactNumber",
+        "sources": [
+            "src/app/components/amp-contact-number/amp-contact-number.component.ts"
+        ],
+        "id": "AmpContactNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-contact-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-contact-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-contact-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-contact-number/amp-contact-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-contact-number/amp-contact-number.spec.ts",
+                "component": "amp-contact-number-basic-usage",
+                "component_src_location": "components/amp-contact-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language contact-number"
+    },
+    {
+        "name":"AmpPhoneNumber",
+        "sources": [
+            "src/app/components/amp-mobile-number/amp-mobile-number.component.ts"
+        ],
+        "id": "AmpPhoneNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-mobile-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-mobile-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-mobile-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-mobile-number/amp-mobile-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-mobile-number/amp-mobile-number.spec.ts",
+                "component": "amp-mobile-number-basic-usage",
+                "component_src_location": "components/amp-mobile-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language mobile-number"
+    },
+    {
+        "name":"AmpHomeNumber",
+        "sources": [
+            "src/app/components/amp-home-number/amp-home-number.component.ts"
+        ],
+        "id": "AmpHomeNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-home-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-home-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-home-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-home-number/amp-home-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-home-number/amp-home-number.spec.ts",
+                "component": "amp-home-number-basic-usage",
+                "component_src_location": "components/amp-home-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language home-number"
+    },
+    {
+        "name":"AmpWorkNumber",
+        "sources": [
+            "src/app/components/amp-home-number/amp-home-number.component.ts"
+        ],
+        "id": "AmpWorkNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-work-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-work-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-work-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-work-number/amp-work-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-work-number/amp-work-number.spec.ts",
+                "component": "amp-work-number-basic-usage",
+                "component_src_location": "components/amp-work-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language work-number"
+    },
+    {
         "name": "Amp Dropdown",
         "sources": [
             "src/app/components/amp-dropdown/amp-dropdown.component.ts"

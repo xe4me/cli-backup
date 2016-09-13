@@ -1,5 +1,5 @@
 export class AmpDateService {
-    private _dateFormat: string = 'dd/mm/yyyy';
+    private _dateFormat : string = 'dd/mm/yyyy';
     public set dateFormat ( dateFormat ) {
         this._dateFormat = dateFormat;
     }
@@ -13,7 +13,9 @@ export class AmpDateService {
         let dd       = today.getDate();
         let mm       = today.getMonth() + 1; //January is 0!
         let yyyy     = today.getFullYear();
-        let DD: any = dd , MM: any = mm , YYYY: any = yyyy;
+        let DD : any = dd;
+        let MM : any = mm;
+        let YYYY : any = yyyy;
         if ( dd < 10 ) {
             DD = '0' + dd;
         }
@@ -31,7 +33,7 @@ export class AmpDateService {
         return Math.ceil( timeDiff / (1000 * 3600 * 24) );
     }
 
-    public stringToDate ( _date , _format , _delimiter ): any {
+    public stringToDate ( _date , _format , _delimiter ) : any {
         if ( _date === null ) {
             return null;
         }

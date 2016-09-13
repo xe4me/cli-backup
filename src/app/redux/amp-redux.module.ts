@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { compose } from '@ngrx/core/compose';
-import { AmpReduxComponent } from "./components/amp-redux/amp-redux.component";
+import { AmpReduxComponent } from './components/amp-redux/amp-redux.component';
 import reducers from './reducers/model/model.reducer';
-import { ModelActions } from "./actions/model/model.action";
-import { StoreModule , Store } from "@ngrx/store";
-import { StoreService } from "./services/store.service";
+import { ModelActions } from './actions/model/model.action';
+import { StoreModule , Store } from '@ngrx/store';
+import { StoreService } from './services/store/store.service';
 /*
  * TODO : Where is the best place to put bellow code ?
  * */

@@ -100,6 +100,6 @@ export class FocuserDirective {
     }
 
     private getTabndexFromActiveElement ( activeElem ) {
-        return activeElem ? <number>activeElem.getAttribute( 'tabindex' ) - 1 : activeElem;
+        return activeElem ? <number> activeElem.getAttribute( 'tabindex' ) - 1 : activeElem;
     }
 }

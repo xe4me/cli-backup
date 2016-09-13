@@ -8,7 +8,7 @@ export class DeviceService {
     private regexPart5 = 'tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/';
     private mobileUserAgentRegex = RegExp(this.regexPart1 + this.regexPart2 + this.regexPart3 + this.regexPart4 + this.regexPart5, 'i');
 
-    public isMobileAndNotBig (): boolean {
+    public isMobileAndNotBig () : boolean {
         if ( window.screen.availWidth && window.screen.availWidth > 1024 ) {
             return false;
         }
@@ -20,7 +20,7 @@ export class DeviceService {
         return isMobile;
     }
 
-    public isMobile (): boolean {
+    public isMobile () : boolean {
         var isMobile = false; //initiate as false
         // device detection
         if ( /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test( navigator.userAgent )
