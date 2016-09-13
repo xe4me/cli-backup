@@ -43,31 +43,13 @@ $small-button-width: 80px;
 }
 
 .amp-group-button {
-
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: stretch;
-    align-items: stretch;
-    -webkit-justify-content: center;
-    justify-content: center;
-    /* You can set flex-wrap and flex-direction individually */
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    /* Or do it all in one line with flex flow */
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    /* tweak the where items line up on the row */
-    /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
-    -webkit-align-content: flex-end;
-    align-content: flex-end;
-
-    @include media-query(palm) {
-        margin-top: 30px;
-        margin-bottom: 8px;
-        //margin-left: -40px; //for some reason I had to do this
-    }
+    margin: 0;
+    padding: 0;
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
     input {
 
         &:checked {
@@ -84,86 +66,42 @@ $small-button-width: 80px;
     }
     > span {
 
-
-
-        @include media-query(palm) {
-            &:nth-child(2) label {
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
+            margin-left:-2px;
+            &:nth-child(n+1) label {
+                border-left: none;
             }
-            &:nth-child(4) label {
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(6) label {
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(7) label {
-                border-bottom: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(8) label {
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-bottom: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-        }
-
-        @include media-query(tablet-and-up) {
-            &:nth-child(1) label {
+            &:first-child label {
                 border-left: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
             }
-            &:nth-child(2) label {
-                border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(3) label {
-                border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(8) label {
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(4) label {
-                border-right: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(n+4) label {
-                //border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-            &:nth-child(n+5) label {
-                border-left: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-bottom: solid $amp-colour-sky-blue $amp-switch-border-width;
-                border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-            }
-        }
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: table-cell;
+            height: 58px;
+            label {
+                @include transition(all 300ms linear);
 
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-flex-wrap: wrap;
-        flex-wrap: wrap;
+                //height: $amp-switch-height - (2*$amp-switch-border-width);
+                height: 60px;
+                line-height: $amp-switch-height - (4*$amp-switch-border-width);
+                box-sizing: border-box;
+                display: inline-block;
+                width: 100%;
+                @include amp-family($amp-switch-font-family);
+                background-color: white;
+                color: $amp-colour-sky-blue;
+                font-size: $amp-switch-font-size;
+                font-weight: 600;
+                text-align: center;
+                text-shadow: none;
+                border: solid $amp-colour-sky-blue $amp-switch-border-width;
+                padding:0 20px;
+            }
 
-        label {
-            @include transition(all 300ms linear);
 
-            //height: $amp-switch-height - (2*$amp-switch-border-width);
-            height: 60px;
-            width: 116px;
-            line-height: $amp-switch-height - (4*$amp-switch-border-width);
-            box-sizing: border-box;
-            display: inline-block;
-
-            @include amp-family($amp-switch-font-family);
-            background-color: white;
-            color: $amp-colour-sky-blue;
-            font-size: $amp-switch-font-size;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: none;;
-            border: solid $amp-colour-sky-blue $amp-switch-border-width;;
-           // border-top: solid $amp-colour-sky-blue $amp-switch-border-width;
-           // border-left: solid $amp-colour-sky-blue $amp-switch-border-width;
-
-        }
     }
+
+
 }
 
 @include media-query(lap-and-up) {
