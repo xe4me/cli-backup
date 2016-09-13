@@ -1,13 +1,13 @@
 <form #formModel="ngForm" class="nl-form p+">
-    <h1 class="heading heading-intro">Exclusive input created for Phone Number that has the right error messages and
+    <h1 class="heading heading-intro">Exclusive input created for Work Number that has the right error messages and
         validation</h1>
     <div class="mt+">
         <div class="grid__item 1/4">
-            <amp-mobile-number
+            <amp-work-number
                     [attr.theme]="themeService.theme.attr"
-                    [id]="'mobile-number'"
+                    [id]="'work-number'"
                     [controlGroup]="controlGroup">
-            </amp-mobile-number>
+            </amp-work-number>
         </div>
     </div>
     <amp-error [controlGroup]="controlGroup"></amp-error>

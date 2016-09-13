@@ -360,6 +360,26 @@
         "readme": "<p>AMP natural language home-number"
     },
     {
+        "name":"AmpWorkNumber",
+        "sources": [
+            "src/app/components/amp-home-number/amp-home-number.component.ts"
+        ],
+        "id": "AmpWorkNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-work-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-work-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-work-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-work-number/amp-work-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-work-number/amp-work-number.spec.ts",
+                "component": "amp-work-number-basic-usage",
+                "component_src_location": "components/amp-work-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language work-number"
+    },
+    {
         "name": "Amp Dropdown",
         "sources": [
             "src/app/components/amp-dropdown/amp-dropdown.component.ts"

@@ -2,9 +2,9 @@ import { AmpComponent } from "../../decorators/amp-component.decorator";
 import { AmpInputComponent } from "../amp-input/amp-input.component";
 import { ChangeDetectorRef , ElementRef , Renderer } from "@angular/core";
 @AmpComponent( {
-    selector : 'amp-home-number'
+    selector : 'amp-work-number'
 } )
-export class AmpHomeNumberComponent extends AmpInputComponent {
+export class AmpWorkNumberComponent extends AmpInputComponent {
     constructor ( _cd : ChangeDetectorRef ,
                   _el : ElementRef ,
                   _renderer : Renderer ) {
@@ -12,10 +12,10 @@ export class AmpHomeNumberComponent extends AmpInputComponent {
         this.pattern   = '^([\\s()+-]*\\d){8,}$';
         this.maxLength = 20;
         this.required  = true;
-        this.label     = 'Home number';
+        this.label     = 'Work number';
         this.errors    = {
-            required : 'Home number is a required field.' ,
-            pattern  : 'The home number must contain a minimum of 8 characters. Only numeric and area code characters are allowed.'
+            required : 'Work number is a required field.' ,
+            pattern  : 'The work number must contain a minimum of 8 characters. Only numeric and area code characters are allowed.'
         };
     }
 }

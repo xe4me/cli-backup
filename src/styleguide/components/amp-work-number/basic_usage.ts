@@ -2,15 +2,15 @@ import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { AmpErrorComponent } from "../../../app/components/amp-error/amp-error.component";
-import { AmpHomeNumberComponent } from "../../../app/components/amp-home-number/amp-home-number.component";
+import { AmpWorkNumberComponent } from "../../../app/components/amp-work-number/amp-work-number.component";
 @Component(
     {
-        selector    : 'amp-home-number-basic-usage' ,
-        templateUrl : 'src/styleguide/components/amp-home-number/basic_usage.html' ,
+        selector    : 'amp-work-number-basic-usage' ,
+        templateUrl : 'src/styleguide/components/amp-work-number/basic_usage.html' ,
         styles      : [ require( './basic_usage.scss' ).toString() ] ,
-        directives  : [ AmpHomeNumberComponent , AmpErrorComponent ]
+        directives  : [ AmpWorkNumberComponent , AmpErrorComponent ]
     } )
-export default class AmpHomeNumberBasicUsage {
+export default class AmpWorkNumberBasicUsage {
     toggleFlag : boolean;
     private controlGroup : FormGroup = new FormGroup( {} );
 
@@ -18,7 +18,7 @@ export default class AmpHomeNumberBasicUsage {
     }
 
     get control () {
-        return this.controlGroup.controls[ 'home-number' ];
+        return this.controlGroup.controls[ 'work-number' ];
     }
 }
 
