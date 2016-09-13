@@ -43,6 +43,21 @@
                             },
                             "blocks": [
                                 {
+                                    "name": "BlockWithCheckbox",
+                                    "blockType": "BlockWithCheckbox",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "/amp-form-block/blocks/block-with-checkbox",
+                                    "custom": {
+                                        "blockTitle": "Checkbox ",
+                                        "controls": [
+                                            {
+                                                "id": "checkboxId"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
                                     "name": "samplefieldsblock2",
                                     "blockType": "SampleFieldsBlock2",
                                     "blockLayout": "INLINE",
@@ -106,7 +121,7 @@
                                     "commonBlock": false,
                                     "path": "/amp-form-block/blocks/sample-fields-block",
                                     "custom": {
-                                        "blockTitle": "Confirm or update your details ",
+                                        "blockTitle": "Multiple text fields ",
                                         "controls": [
                                             {
                                                 "id": "contactNumber"
@@ -117,21 +132,7 @@
                                         ]
                                     }
                                 },
-                                {
-                                    "name": "BlockWithCheckbox",
-                                    "blockType": "BlockWithCheckbox",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "/amp-form-block/blocks/block-with-checkbox",
-                                    "custom": {
-                                        "blockTitle": "Check the checkbox !",
-                                        "controls": [
-                                            {
-                                                "id": "checkboxId"
-                                            }
-                                        ]
-                                    }
-                                },
+
                                 {
                                     "name": "BlockWithTextarea",
                                     "blockType": "BlockWithTextarea",

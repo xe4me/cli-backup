@@ -44,6 +44,12 @@ $checkbox-margin : 0;
   white-space : nowrap;
   cursor      : pointer;
   position    : relative;
+
+  @include media-query(palm) {
+      margin-top: 26px;
+      margin-bottom: 8px;
+  }
+
   &:nth-child(n+2) {
     margin-top : 23px;
   }
@@ -70,6 +76,11 @@ $checkbox-margin : 0;
     line-height : 1;
     display     : block;
     cursor      : pointer;
+      @include media-query(palm) {
+          line-height : 30px;
+          @extend %#{$namespace}font-size-small;
+          margin-left: 0;
+      }
     .container {
       box-sizing       : border-box;
       position         : absolute;

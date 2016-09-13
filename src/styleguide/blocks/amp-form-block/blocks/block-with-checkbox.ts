@@ -1,4 +1,4 @@
-import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy } from '@angular/core';
+import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
 import { ThemeService } from "../../../services/theme";
 import { FormBlock } from "../../../../app/form-block";
@@ -15,7 +15,6 @@ import { FormService } from "../../../../app/services/form/form.service";
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Do you like redux ?</label>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                          <amp-checkbox
@@ -25,9 +24,10 @@ import { FormService } from "../../../../app/services/form/form.service";
                                 [controlGroup]="__controlGroup"
                                 [required]='true'
                                 [id]='__custom.controls[0].id'>
-                            <div class='heading heading-contxtual-label'>
+                                <label class='palm-1/1 tablet-2/3 lap-and-up-1/2'>This a label for a radio that is really long ?</label>
+                           <!-- <div class='heading heading-contxtual-label'>
                                 Following value is coming from sample field block , {{ contactControl?.value  }}
-                            </div>
+                            </div>-->
                         </amp-checkbox>
                     </amp-redux>
                 </div>
@@ -35,7 +35,9 @@ import { FormService } from "../../../../app/services/form/form.service";
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AmpCheckboxComponent , AmpFormRowComponent ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    encapsulation   : ViewEncapsulation.Emulated,
+    changeDetection : ChangeDetectionStrategy.OnPush,
+
 } )
 export class BlockWithCheckbox extends FormBlock {
     private contactControl;
