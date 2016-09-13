@@ -1,4 +1,4 @@
-import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy } from '@angular/core';
+import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewChild } from '@angular/core';
 import { arrayJoinByDash } from './util/functions.utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -6,6 +6,7 @@ import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
+    @ViewChild( 'focusZone' ) focusZone;
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
@@ -49,6 +50,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
          * */
         setTimeout( () => {
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
+            if ( ! inputs ) {
+                inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
+                if ( ! inputs ) {
+                } else {
+                    inputs = this.elementRef.nativeElement.getElementsByTagName( 'select' );
+                }
+            }
+            console.log( 'inputs' , inputs );
             if ( inputs && inputs.length > 0 ) {
                 inputs[ 0 ].focus();
             }
