@@ -9,7 +9,7 @@ import {
     ComponentFactory ,
     OnChanges
 } from '@angular/core';
-import { FormSectionService } from "../app/services/form-section/form-section.service";
+import { FormSectionService } from '../app/services/form-section/form-section.service';
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 @Directive( { selector : '[amp-block-loader]' } )

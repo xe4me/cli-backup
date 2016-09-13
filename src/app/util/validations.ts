@@ -151,7 +151,7 @@ export class MaxFloatValidator {
                                     ' should be more' +
                                     ' than ' + maxFloat + ' .'
                                 }
-                            }
+                            };
                         }
                     }
                 }
@@ -160,4 +160,3 @@ export class MaxFloatValidator {
         };
     }
 }
-

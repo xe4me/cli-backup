@@ -11,8 +11,8 @@ export class FormUtils {
         return split.join( '-' ).toLowerCase();
     }
 
-    public static splitStringByCapital ( string : string ) {
-        return string.split( /(?=[A-Z])/ );
+    public static splitStringByCapital ( str : string ) {
+        return str.split( /(?=[A-Z])/ );
     }
 
     public static stringToDate ( _date , _format , _delimiter ) {
@@ -33,7 +33,7 @@ export class FormUtils {
         let monthIndex = formatItems.indexOf( 'mm' );
         let dayIndex   = formatItems.indexOf( 'dd' );
         let yearIndex  = formatItems.indexOf( 'yyyy' );
-        let month      = parseInt( dateItems[ monthIndex ] ) - 1;
+        let month      = parseInt( dateItems[ monthIndex ], 10 ) - 1;
         return new Date( dateItems[ yearIndex ] , month , dateItems[ dayIndex ] );
     };
 

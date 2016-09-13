@@ -8,9 +8,9 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component';
 import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
-import { FormControl , FormGroup , Validators } from "@angular/forms";
-import { RequiredValidator } from "../../util/validations";
-import { FormModelService } from "../../services/form-model/form-model.service";
+import { FormControl , FormGroup , Validators } from '@angular/forms';
+import { RequiredValidator } from '../../util/validations';
+import { FormModelService } from '../../services/form-model/form-model.service';
 @Component( {
     selector   : 'amp-google-address-group' ,
     template   : require( './amp-google-address-group.component.html' ) ,
@@ -33,8 +33,8 @@ import { FormModelService } from "../../services/form-model/form-model.service";
 } )
 export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     static CLASS_NAME                         = 'AMPGoogleAddressComponentGroup';
-    private index                             = '';
     @ViewChild( 'ampGoogleAddress' ) addressComponent : AMPGoogleAddressComponent;
+    private index                             = '';
     private googleAddress                     = {
         id          : 'googleAddress' ,
         label       : '' ,
@@ -85,23 +85,23 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
     }
 
     get googleAddressCtrl () {
-        return this.controlGroup.controls[ this.googleAddress.id + "_" + this.index ];
+        return this.controlGroup.controls[ this.googleAddress.id + '_' + this.index ];
     }
 
     get stateCtrl () {
-        return this.controlGroup.controls[ this.state.id + "_" + this.index ];
+        return this.controlGroup.controls[ this.state.id + '_' + this.index ];
     }
 
     get addressCtrl () {
-        return this.controlGroup.controls[ this.address.id + "_" + this.index ];
+        return this.controlGroup.controls[ this.address.id + '_' + this.index ];
     }
 
     get suburbCtrl () {
-        return this.controlGroup.controls[ this.suburb.id + "_" + this.index ];
+        return this.controlGroup.controls[ this.suburb.id + '_' + this.index ];
     }
 
     get postcodeCtrl () {
-        return this.controlGroup.controls[ this.postcode.id + "_" + this.index ];
+        return this.controlGroup.controls[ this.postcode.id + '_' + this.index ];
     }
 
     ngAfterViewInit () {

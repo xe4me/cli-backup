@@ -4,9 +4,9 @@ import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@an
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
-import { FormModelService } from "../../../app/services/form-model/form-model.service";
-import { ScrollService } from "../../../app/services/scroll/scroll.service";
-import { ProgressObserverService } from "../../../app/services/progress-observer/progress-observer.service";
+import { FormModelService } from '../../../app/services/form-model/form-model.service';
+import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }

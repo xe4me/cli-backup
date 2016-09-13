@@ -1,11 +1,11 @@
 export abstract class LicenseesAbstract {
-    private static _licensees: any                 = {
+    private static _licensees : any                 = {
         DEA_AMPFP   : 'AMP Financial Planning' ,
         DEA_HILLROSS: 'Hillross' ,
         DEA_CHARTER : 'Charter' ,
         DEA_ASSURED : 'AMP Financial Planning'
     };
-    private static _licenseeBuybackFacilities: any = {
+    private static _licenseeBuybackFacilities : any = {
         DEA_AMPFP   : 'Buyer of last resort' ,
         DEA_HILLROSS: 'Licensee / Enhanced buyback' ,
         DEA_CHARTER : 'Buy out option' ,

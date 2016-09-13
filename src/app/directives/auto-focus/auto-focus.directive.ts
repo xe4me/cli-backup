@@ -1,4 +1,4 @@
-import { Directive , Input , ElementRef } from '@angular/core'
+import { Directive , Input , ElementRef } from '@angular/core';
 @Directive( {
     selector : '[autoFocus]' ,
     inputs   : [ 'autoFocus' ]
@@ -8,9 +8,9 @@ export class AutoFocusDirective {
 
     private set autoFocus ( _shouldFocus ) {
         if ( _shouldFocus ) {
-            setTimeout( ()=> {
+            setTimeout( () => {
                 this._el.nativeElement.getElementsByTagName( 'input' )[ 0 ].focus();
-            } , this.delay )
+            } , this.delay );
         }
     }
 

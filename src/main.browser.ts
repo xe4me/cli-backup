@@ -1,5 +1,5 @@
 /*
- * Angular bootstraping
+ * Angular bootstrapping
  */
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { decorateModuleRef } from './styleguide/environment';
@@ -14,7 +14,7 @@ import { StyleGuideAppModule } from './styleguide/app.module';
 /*
  * Bootstrap our Angular app with a top level NgModule
  */
-export function main(): Promise<any> {
+export function main() : Promise<any> {
   return platformBrowserDynamic()
     .bootstrapModule(StyleGuideAppModule)
     .then(decorateModuleRef)
@@ -22,6 +22,4 @@ export function main(): Promise<any> {
 
 }
 
-
 bootloader(main);
-

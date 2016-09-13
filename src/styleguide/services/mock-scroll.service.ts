@@ -1,5 +1,5 @@
 import { Injectable , EventEmitter }     from '@angular/core';
-import { FormModelService } from "../../app/services/form-model/form-model.service";
+import { FormModelService } from '../../app/services/form-model/form-model.service';
 @Injectable()
 export class MockScrollService {
     public $scrolled : EventEmitter<any>;
@@ -21,7 +21,7 @@ export class MockScrollService {
     }
 
     public amIVisible ( CLASS_NAME : string ) {
-        var isInView = true;
+        let isInView = true;
         if ( isInView ) {
             this.formModelService.setCurrentBlock( CLASS_NAME );
         }
@@ -31,13 +31,13 @@ export class MockScrollService {
     private smoothScroll ( element , options ) {
         options               = options || {};
         // Options
-        var duration          = options.duration || 800 , offset = options.offset || 0 , easing = options.easing || 'easeInOutQuart' , callbackBefore = options.callbackBefore || function() {
+        let duration          = options.duration || 800 , offset = options.offset || 0 , easing = options.easing || 'easeInOutQuart' , callbackBefore = options.callbackBefore || function() {
             } , callbackAfter = options.callbackAfter || function() {
             } , container     = document.getElementById( options.containerId ) || null , containerPresent = (container !== undefined && container !== null);
         /**
          * Retrieve current location
          */
-        var getScrollLocation = function() {
+        let getScrollLocation = function() {
             if ( containerPresent ) {
                 return container.scrollTop;
             } else {
@@ -55,7 +55,7 @@ export class MockScrollService {
          * - changed if-else to switch
          * @see http://archive.oreilly.com/pub/a/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html
          */
-        var getEasingPattern  = function( type , time ) {
+        let getEasingPattern  = function( type , time ) {
             switch ( type ) {
                 case 'easeInQuad':
                     return time * time; // accelerating from zero velocity
@@ -88,8 +88,8 @@ export class MockScrollService {
         /**
          * Calculate how far to scroll
          */
-        var getEndLocation    = function( element ) {
-            var location = 0;
+        let getEndLocation = function( element ) {
+            let location = 0;
             if ( element.offsetParent ) {
                 do {
                     location += element.offsetTop;
@@ -101,12 +101,12 @@ export class MockScrollService {
         };
         // Initialize the whole thing
         setTimeout( function() {
-            var currentLocation = null , startLocation = getScrollLocation() , endLocation = getEndLocation( element ) , timeLapsed = 0 , distance = endLocation - startLocation , percentage , position , scrollHeight , internalHeight;
+            let currentLocation = null , startLocation = getScrollLocation() , endLocation = getEndLocation( element ) , timeLapsed = 0 , distance = endLocation - startLocation , percentage , position , scrollHeight , internalHeight;
             /**
              * Stop the scrolling animation when the anchor is reached (or at the top/bottom of the page)
              */
-            var runAnimation;
-            var stopAnimation   = function() {
+            let runAnimation;
+            let stopAnimation   = function() {
                 currentLocation = getScrollLocation();
                 if ( containerPresent ) {
                     scrollHeight   = container.scrollHeight;
@@ -129,7 +129,7 @@ export class MockScrollService {
             /**
              * Scroll the page by an increment, and check if it's time to stop
              */
-            var animateScroll   = function() {
+            let animateScroll   = function() {
                 timeLapsed += 16;
                 percentage = ( timeLapsed / duration );
                 percentage = ( percentage > 1 ) ? 1 : percentage;
@@ -147,7 +147,7 @@ export class MockScrollService {
     };
 
     private  isElementInViewport ( el ) {
-        var rect = el.getBoundingClientRect();
+        let rect = el.getBoundingClientRect();
         return (
             rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
             rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */

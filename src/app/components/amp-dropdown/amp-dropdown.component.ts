@@ -2,10 +2,10 @@ import {
     Component ,
     ViewChild , EventEmitter , ChangeDetectionStrategy
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl,
+    FormGroup } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../util/validations';
-import { FormGroup } from "@angular/forms";
 import { ClickedOutsideDirective } from '../../directives/clicked-outside/clicked-outside.directive';
 @Component( {
     selector        : 'amp-dropdown' ,
@@ -92,6 +92,8 @@ export class AmpDropdownComponent {
     @ViewChild( 'selectEl' ) selectEl;
     @ViewChild( 'optionsEl' ) optionsEl;
     @ViewChild( 'dropdownEl' ) dropDownEl;
+    public control : FormControl       = new FormControl();
+    public errors                      = {};
     private controlGroup : FormGroup;
     private id : string                = 'amp-dropdown-' + Math.round( Math.random() * 1e10 );
     private label : string;
@@ -115,8 +117,6 @@ export class AmpDropdownComponent {
     private selectElem;
     private dropdownElem;
     private optionsElem;
-    public control : FormControl       = new FormControl();
-    public errors                      = {};
 
     ngOnInit () : any {
         this.joinToParentGroupAndSetAmpErrors();
@@ -303,7 +303,7 @@ export class AmpDropdownComponent {
 
     private joinToParentGroupAndSetAmpErrors () {
         this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i )=> {
+        Object.keys( this.errors ).map( ( errorName , i ) => {
             (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {

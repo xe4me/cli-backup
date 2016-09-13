@@ -1,5 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../../";
+import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from '../../../../';
 @Component( {
     selector : 'amp-form-block' ,
     template   : `
@@ -40,7 +40,7 @@ export class AmpFormBlockComponent implements OnInit {
     ngOnInit () : any {
         if ( ! this.context ) {
             console.error( 'Most of the amp-form-block functionalities would not be working because you have not' +
-                ' passed in the context ' )
+                ' passed in the context ' );
         }
         return undefined;
     }

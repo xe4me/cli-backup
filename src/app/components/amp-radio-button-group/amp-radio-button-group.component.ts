@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { RequiredValidator } from "../../util/validations";
-import { isTrue } from "../../util/functions.utils";
-import { ScrollService } from "../../services/scroll/scroll.service";
+import { RequiredValidator } from '../../util/validations';
+import { isTrue } from '../../util/functions.utils';
+import { ScrollService } from '../../services/scroll/scroll.service';
 @Component( {
     selector        : 'amp-radio-button-group' ,
     template        : `
@@ -59,6 +59,8 @@ import { ScrollService } from "../../services/scroll/scroll.service";
     outputs         : [ 'select' ]
 } )
 export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, OnInit {
+    public control : FormControl       = new FormControl( null );
+    public errors                      = {};
     private _selected : string         = null;
     private _disabled : boolean        = false;
     private _required : boolean        = false;
@@ -71,8 +73,6 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, O
     private groupName : string;
     private previousValue : string     = null;
     private controlGroup : FormGroup;
-    public control : FormControl       = new FormControl( null );
-    public errors                      = {};
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
@@ -177,7 +177,7 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, O
 
     private joinToParentGroupAndSetAmpErrors () {
         this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i )=> {
+        Object.keys( this.errors ).map( ( errorName , i ) => {
             (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {

@@ -8,24 +8,24 @@ const CACHE_CONTROL = 'Cache-Control';
 
 @Injectable()
 export class AmpHttpService {
-    constructor ( private http: Http ) {
+    constructor ( private http : Http ) {
     }
 
-    get ( url , options ): Observable<Response> {
+    get ( url , options ) : Observable<Response> {
         if (url.startsWith('http')) {
             return this.http.get( url , this.injectCustomOptions( url , options ) );
         }
         return this.http.get( Environments.host + url , this.injectCustomOptions( url , options ) );
     }
 
-    post ( url , data , options ): Observable<Response> {
+    post ( url , data , options ) : Observable<Response> {
         if (url.startsWith('http')) {
             return this.http.post( url , data , this.injectCustomOptions( url , options ) );
         }
         return this.http.post( Environments.host + url , data , this.injectCustomOptions( url , options ) );
     }
 
-    injectCustomOptions ( url: string , options: BaseRequestOptions ): BaseRequestOptions {
+    injectCustomOptions ( url : string , options : BaseRequestOptions ) : BaseRequestOptions {
         if ( url && options ) {
             if ( url.indexOf( Environments.property.GwPracticeService.Path ) > - 1 ) {
                 this.addHeader( options , TAM_GW_API_KEY , BASIC_AUTH_BEARER + Environments.property.GwPracticeService.ApiKey );
@@ -41,7 +41,7 @@ export class AmpHttpService {
         return options;
     }
 
-    addHeader ( option: BaseRequestOptions , key: string , value: string ) {
+    addHeader ( option : BaseRequestOptions , key : string , value : string ) {
         if ( option && option.headers ) {
             // Will override whatever value in the existing headers
             option.headers.set(key, value);

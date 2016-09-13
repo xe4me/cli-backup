@@ -68,7 +68,6 @@ export class LeftNavigationComponent implements AfterContentInit {
         this.activeComponentId = this.location.path().split( '/' )[ 2 ];
         if ( this.activeComponentId ) {
             this.activeAccordion = this.activeComponentId.toLowerCase().indexOf( 'block' ) > - 1 ? 1 : 0;
-            console.log( 'this.activeComponentId' , this.activeComponentId );
         }
         return undefined;
     }

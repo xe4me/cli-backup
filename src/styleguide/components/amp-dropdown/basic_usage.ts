@@ -2,7 +2,7 @@ import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { ThemeService } from '../../services/theme';
-import { ScrollService } from "../../../app/services/scroll/scroll.service";
+import { ScrollService } from '../../../app/services/scroll/scroll.service';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -44,6 +44,5 @@ export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log( 'onAcknowledgeSelect value' , value );
     }
 }

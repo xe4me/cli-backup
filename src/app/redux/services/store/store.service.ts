@@ -9,7 +9,7 @@ export class StoreService {
     };
 
     public select ( _fdn ) : Observable<any> {
-        return this.store.select( ( state )=> {
+        return this.store.select( ( state ) => {
             let s = state;
             s     = getIn( _fdn , s );
             return s[ _fdn.last() ];

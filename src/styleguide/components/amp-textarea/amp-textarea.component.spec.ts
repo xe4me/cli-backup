@@ -4,9 +4,9 @@ import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@an
 import { AmpTextareaComponent } from '../../../app/components/amp-textarea/amp-textarea.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
-import { FormModelService } from "../../../app/services/form-model/form-model.service";
-import { ScrollService } from "../../../app/services/scroll/scroll.service";
-import { ProgressObserverService } from "../../../app/services/progress-observer/progress-observer.service";
+import { FormModelService } from '../../../app/services/form-model/form-model.service';
+import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
@@ -88,13 +88,13 @@ describe( 'amp-textarea component' , () => {
 } )
 class AmpTextAreaTest {
     isInSummaryState = false;
+    controlGroup     = new FormGroup( {} );
     private textarea = {
         id               : 'textarea' ,
         label            : 'A Label' ,
         maxLenght        : 5 ,
         isInSummaryState : false
     };
-    controlGroup     = new FormGroup( {} );
 
     get control () {
         return this.controlGroup.controls[ 'textarea' ];
