@@ -21,7 +21,7 @@ describe( 'amp-review Total' , () => {
 
     describe('Total with a label AND value BUT NO frequency', () => {
         it( 'Should display the label AND value' , () => {
-            let fixture: ComponentFixture<AmpReviewTotalTest1> = TestBed.createComponent(AmpReviewTotalTest1);
+            let fixture : ComponentFixture<AmpReviewTotalTest1> = TestBed.createComponent(AmpReviewTotalTest1);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let AmpReviewSection = fixture.debugElement;
@@ -36,7 +36,7 @@ describe( 'amp-review Total' , () => {
 
     describe('Item with a label AND value AND frequency', () => {
         it( 'Should display the label AND value WITH the frequency' , () => {
-            let fixture: ComponentFixture<AmpReviewTotalTest2> = TestBed.createComponent(AmpReviewTotalTest2);
+            let fixture : ComponentFixture<AmpReviewTotalTest2> = TestBed.createComponent(AmpReviewTotalTest2);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let AmpReviewSection = fixture.debugElement;
@@ -51,7 +51,7 @@ describe( 'amp-review Total' , () => {
 
     describe('Item with a label but NO value OR frequency', () => {
         it( 'Should display the label AND a dash (-) for the value' , () => {
-            let fixture: ComponentFixture<AmpReviewTotalTest3> = TestBed.createComponent(AmpReviewTotalTest3);
+            let fixture : ComponentFixture<AmpReviewTotalTest3> = TestBed.createComponent(AmpReviewTotalTest3);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let AmpReviewSection = fixture.debugElement;
@@ -67,7 +67,7 @@ describe( 'amp-review Total' , () => {
     describe('Item with a label AND frequency BUT NO value', () => {
 
         it( 'Should display the label AND a dash (-) for the value BUT NOT display a frequency' , () => {
-            let fixture: ComponentFixture<AmpReviewTotalTest4> = TestBed.createComponent(AmpReviewTotalTest4);
+            let fixture : ComponentFixture<AmpReviewTotalTest4> = TestBed.createComponent(AmpReviewTotalTest4);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let AmpReviewSection = fixture.debugElement;

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 export interface Payload {
-    query : any ,
-    fdn : string[]
+    query : any;
+    fdn : string[];
 }
 @Injectable()
 export class ModelActions {

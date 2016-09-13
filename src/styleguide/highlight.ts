@@ -46,26 +46,26 @@ export class Highlight implements AfterContentInit {
     ngAfterContentInit () {
         // If there is no text binding, use the body of the element.
         if ( this._text === '' && this.element ) {
-            //this.text = DOM.getText( this.element.nativeElement );
+            // this.text = DOM.getText( this.element.nativeElement );
         }
     }
 
     render () {
-        var lines = this._text.split( '\n' );
+        let lines = this._text.split( '\n' );
         if ( this._text.trim().length === 0 || lines.length === 0 ) {
             return;
         }
         // Remove empty lines
         lines                       = lines.filter( ( line ) => line.trim().length > 0 );
         // Make it so each line starts at 0 whitespace
-        var firstLineWhitespace     = lines[ 0 ].match( /^\s*/ )[ 0 ];
-        var startingWhitespaceRegex = new RegExp( '^' + firstLineWhitespace );
+        let firstLineWhitespace     = lines[ 0 ].match( /^\s*/ )[ 0 ];
+        let startingWhitespaceRegex = new RegExp( '^' + firstLineWhitespace );
         lines                       = lines.map( function( line ) {
             return line
                 .replace( startingWhitespaceRegex , '' )
                 .replace( /\s+$/ , '' );
         } );
-        var highlightedCode         = hljs.highlight( this._type , lines.join( '\n' ) , true );
+        let highlightedCode         = hljs.highlight( this._type , lines.join( '\n' ) , true );
         highlightedCode.value       = highlightedCode.value
                                                      .replace( /=<span class='hljs-value'>''<\/span>/gi , '' )
                                                      .replace( '<head>' , '' )

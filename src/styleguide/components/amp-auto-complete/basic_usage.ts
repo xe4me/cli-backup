@@ -5,7 +5,7 @@ import{ Highlight } from '../../highlight';
 
 import { AmpAutoCompleteComponent } from '../../../app/components/amp-autocomplete/amp-autocomplete.component';
 import { ThemeService } from '../../services/theme';
-import { ScrollService } from "../../../app/services/scroll/scroll.service";
+import { ScrollService } from '../../../app/services/scroll/scroll.service';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-auto-complete/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -3226,6 +3226,5 @@ export default class AMPGoogleAddressComponentBasicUsage implements AfterViewIni
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log( 'onAcknowledgeSelect value' , value );
     }
 }

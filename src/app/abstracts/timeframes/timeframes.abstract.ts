@@ -1,5 +1,5 @@
 export abstract class TimeframesAbstract {
-    private static timeframesList: {} = {
+    private static timeframesList : {} = {
         six_months    : 'six months from' ,
         later_than    : 'later than' ,
         twelve_months : '12 months from' ,

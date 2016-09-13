@@ -2,7 +2,7 @@ import { AmpCurrencyPipe } from './amp-currency.pipe';
 
 describe('AmpCurrencyPipe', () => {
 
-  let pipe: AmpCurrencyPipe;
+  let pipe : AmpCurrencyPipe;
 
   beforeEach(() => {
     pipe = new AmpCurrencyPipe();
