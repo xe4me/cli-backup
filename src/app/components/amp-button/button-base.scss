@@ -30,6 +30,7 @@ $btn-ok-background-color: $amp-colour-primary;
 $btn-ok-active-background-color: $amp-colour-secondary;
 $btn-ok-margin-height: 60px;
 $btn-ok-margin-width: 125px;
+$btn-ok-margin-top: 28px;
 
 // btn-change
 $btn-change-hover-background-color: $amp-colour-secondary-darkest;
@@ -83,7 +84,9 @@ Button base class used by all
 .btn {
     line-height: $buttons-default-height;
     width: $buttons-default-width;
-    margin-top: $buttons-default-margin-top;
+    @include media-query(tablet-and-up) {
+        margin-top: $btn-ok-margin-top;
+    }
     @extend %#{$namespace}font-size-small;
     @include transition(color, background-color, $buttons-transition-time ease-in-out);
     &.btn-full {
