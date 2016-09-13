@@ -24,10 +24,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                                 [controlGroup]="__controlGroup"
                                 [required]='true'
                                 [id]='__custom.controls[0].id'>
-                                <label class='palm-1/1 tablet-2/3 lap-and-up-1/2'>This a label for a radio that is really long ?</label>
-                           <!-- <div class='heading heading-contxtual-label'>
-                                Following value is coming from sample field block , {{ contactControl?.value  }}
-                            </div>-->
+                                <label class='palm-1/1 tablet-2/3 lap-and-up-1/2'>This a label for a checkbox that is really long </label>
                         </amp-checkbox>
                     </amp-redux>
                 </div>
