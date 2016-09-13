@@ -15,16 +15,16 @@ import { Store } from "@ngrx/store";
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
            <amp-form-row [attr.theme]="themeService.theme.attr" *ngFor="let group of controlGroupArray.controls ; let i = index;">
-              <button (click)="remove(i)" class="btn btn-anchor"> <span class="icon icon--close" aria-hidden="true"></span> Remove this field</button>
+              <button (click)="remove(i)" class="btn btn-anchor right-aligned"> <span class="icon icon--close" aria-hidden="true"></span> Remove this field</button>
                 <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Mobile</label>
                     <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
                         <label class='1/1 sr-only'>What's your mobile number?</label>
-                       <amp-redux [fdn]="__fdn.concat(['ages', i, 'age'])">  
+                       <amp-redux [fdn]="__fdn.concat(['ages', i, 'age'])">
                            <amp-input
                                 #ampReduxRef
                                 [attr.theme]="themeService.theme.attr"
                                 [id]="__custom.controls[0].id+i"
-                                [label]="'Your age '+i"
+                                [label]="'Mobile '+i"
                                 [controlGroup]="group"
                                 [isInSummaryState]="isInSummaryState"
                                 [required]="true"

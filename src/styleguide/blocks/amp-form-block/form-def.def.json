@@ -42,6 +42,55 @@
                                 "label": "First Insurance Details Section"
                             },
                             "blocks": [
+
+                                {
+                                    "name": "anotherSampleExperienceBlock",
+                                    "blockType": "AnotherSampleExperienceBlock",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "/amp-form-block/blocks/another-sample-experience-block",
+                                    "custom": {
+                                        "blockTitle ": "Which one , full or partial ? ",
+                                        "controls": [
+                                            {
+                                                "id": "FullOrPartial",
+                                                "buttons": [
+                                                    {
+                                                        "id": "fullId",
+                                                        "value": "full",
+                                                        "label": "Full sale"
+                                                    },
+                                                    {
+                                                        "id": "partialId",
+                                                        "value": "partial",
+                                                        "label": "Partial sale"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": "sampleArrayExperienceBlock",
+                                    "blockType": "SampleArrayExperienceBlock",
+                                    "blockLayou": "INLINE",
+                                    "commonBloc": false,
+                                    "path": "/amp-form-block/blocks/sample-array-experience-block",
+                                    "custom": {
+                                        "blockTitle": "This block has a repeating group !",
+                                        "controls": [
+                                            {
+                                                "id": "age",
+                                                "title": "What about your age?",
+                                                "errors": {
+                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+                                                },
+                                                "regex": "^([0-9])*$",
+                                                "maxLengh": 20
+                                            }
+                                        ]
+                                    }
+                                },
                                 {
                                     "name": "samplefieldsblock3",
                                     "blockType": "SampleFieldsBlock3",
@@ -245,59 +294,9 @@
                                             }
                                         ]
                                     }
-                                },
-
-
-
-
-                                {
-                                    "name": "sampleArrayExperienceBlock",
-                                    "blockType": "SampleArrayExperienceBlock",
-                                    "blockLayou": "INLINE",
-                                    "commonBloc": false,
-                                    "path": "/amp-form-block/blocks/sample-array-experience-block",
-                                    "custom": {
-                                        "blockTitle": "This block has a repeating group !",
-                                        "controls": [
-                                            {
-                                                "id": "age",
-                                                "title": "What about your age?",
-                                                "errors": {
-                                                    "required": "Apparently even age is a required thing ) , what a wonderful time to be"
-                                                },
-                                                "regex": "^([0-9])*$",
-                                                "maxLengh": 3
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "anotherSampleExperienceBlock",
-                                    "blockType": "AnotherSampleExperienceBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "/amp-form-block/blocks/another-sample-experience-block",
-                                    "custom": {
-                                        "blockTitle ": "Which one , full or partial ? ",
-                                        "controls": [
-                                            {
-                                                "id": "FullOrPartial",
-                                                "buttons": [
-                                                    {
-                                                        "id": "fullId",
-                                                        "value": "full",
-                                                        "label": "Full sale"
-                                                    },
-                                                    {
-                                                        "id": "partialId",
-                                                        "value": "partial",
-                                                        "label": "Partial sale"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
                                 }
+
+
 
                             ]
                         }
