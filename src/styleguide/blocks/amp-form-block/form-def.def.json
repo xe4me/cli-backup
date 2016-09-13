@@ -43,6 +43,21 @@
                             },
                             "blocks": [
                                 {
+                                    "name": "BlockWithTextarea",
+                                    "blockType": "BlockWithTextarea",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "/amp-form-block/blocks/block-with-textarea",
+                                    "custom": {
+                                        "blockTitle": "This is a text area, it's nice isn't it ",
+                                        "controls": [
+                                            {
+                                                "id": "textarea"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
                                     "name": "BlockWithCheckbox",
                                     "blockType": "BlockWithCheckbox",
                                     "blockLayout": "INLINE",
@@ -133,21 +148,7 @@
                                     }
                                 },
 
-                                {
-                                    "name": "BlockWithTextarea",
-                                    "blockType": "BlockWithTextarea",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "/amp-form-block/blocks/block-with-textarea",
-                                    "custom": {
-                                        "blockTitle": "Can you explain why ? Like in general, why ? ",
-                                        "controls": [
-                                            {
-                                                "id": "textarea"
-                                            }
-                                        ]
-                                    }
-                                },
+
                                 {
                                     "name": "BlockWithRadios",
                                     "blockType": "BlockWithRadios",

@@ -316,6 +316,10 @@ md-input-container {
     transition: transform $swift-ease-out-timing-function 0.25s;
 
     @include rtl(transform-origin, left top, right top);
+
+    @include media-query(palm) {
+          display: none;
+    }
   }
   &.md-input-focused .md-placeholder {
     opacity: 1;
@@ -627,6 +631,9 @@ md-input-container {
   .md-input {
     padding: 0 !important;
     line-height: 45px !important;
+      @include media-query(palm) {
+          line-height: 30px !important;
+      }
     font-size: $ddc-input-field-font-size;
     &[disabled] {
       &.summary-state {

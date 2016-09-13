@@ -14,7 +14,7 @@ import { AmpTextareaComponent } from "../../../../app/components/amp-textarea/am
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Do you like redux ?</label>
+                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Here is a label</label>
                 <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                         <amp-textarea
