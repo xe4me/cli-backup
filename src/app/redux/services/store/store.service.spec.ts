@@ -30,7 +30,7 @@ describe( 'Store Service' , function() {
         } );
         TestBed.compileComponents();
     } ) );
-    beforeEach( inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store ) => {
+    beforeEach( inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store<any> ) => {
     } ) );
     describe( 'Select' , () => {
         it( 'it should get section corresponded to fdn from the store' ,
@@ -48,7 +48,7 @@ describe( 'Store Service' , function() {
             } )
         );
         it( 'it should update the store and then the subscriber should get that change' ,
-            inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store ) => {
+            inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store<any> ) => {
                 let updated   = false;
                 const fdn     = [
                     'Application' ,
@@ -77,7 +77,7 @@ describe( 'Store Service' , function() {
             } )
         );
         it( 'subscriber to the store should only called once if the update has not met debounceTime' ,
-            inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store ) => {
+            inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store<any> ) => {
                 let updated   = false;
                 let called    = 0;
                 const fdn     = [
@@ -111,8 +111,7 @@ describe( 'Store Service' , function() {
             } )
         );
         it( 'subscriber to the store should only called once if the update has not actually changed the model' ,
-            fakeAsync( inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store ) => {
-                    console.log( '************* ' );
+            fakeAsync( inject( [ StoreService , Store ] , ( storeService : StoreService , store : Store<any> ) => {
                     let updated   = false;
                     let called    = 0;
                     const fdn     = [

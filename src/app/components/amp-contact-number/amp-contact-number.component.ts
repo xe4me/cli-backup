@@ -2,20 +2,21 @@ import { AmpComponent } from "../../decorators/amp-component.decorator";
 import { AmpInputComponent } from "../amp-input/amp-input.component";
 import { ChangeDetectorRef , ElementRef , Renderer } from "@angular/core";
 @AmpComponent( {
-    selector : 'amp-email'
+    selector : 'amp-contact-number'
 } )
-export class AmpEmailComponent extends AmpInputComponent {
+export class AmpContactNumberComponent extends AmpInputComponent {
     constructor ( _cd : ChangeDetectorRef ,
                   _el : ElementRef ,
                   _renderer : Renderer ) {
         super( _cd , _el , _renderer );
-        this.pattern   = '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
-        this.maxLength = 50;
+        this.pattern   = '^([\\s()+-]*\\d){8,}$';
+        this.maxLength = 20;
         this.required  = true;
-        this.label     = 'Email';
+        this.label     = 'Contact number';
         this.errors    = {
-            required : 'Email is a required field' ,
-            pattern  : 'The email is not valid'
+            required : 'Contact number is a required field.' ,
+            pattern  : 'The contact number must contain a minimum of 8 characters. Only numeric and area code' +
+            ' characters are allowed.'
         };
     }
 }

@@ -2,13 +2,13 @@ import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , provide , ElementRef } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AmpEmailComponent } from '../../../app/components/amp-email/amp-email.component';
-describe( 'amp-email component' , () => {
+import { AmpContactNumberComponent } from '../../../app/components/amp-contact-number/amp-contact-number.component';
+describe( 'amp-contact-number component' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports      : [ FormsModule , ReactiveFormsModule ] ,
             declarations : [
-                AmpEmailComponent ,
+                AmpContactNumberComponent ,
                 TestComponent
             ] ,
             providers    : [
@@ -18,54 +18,49 @@ describe( 'amp-email component' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'should contain a label as Email' , () => {
+    it( 'should contain a label as Contact Number' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
         let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
-        expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Email' );
-        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'email-input' );
+        expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Contact number' );
+        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'contact-number-input' );
     } );
     it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
-        expect( compiledInput.nativeElement.name ).toBe( 'email' );
-        expect( compiledInput.nativeElement.id ).toBe( 'email-input' );
+        expect( compiledInput.nativeElement.name ).toBe( 'contact-number' );
+        expect( compiledInput.nativeElement.id ).toBe( 'contact-number-input' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
-        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_email' );
+        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_contact-number' );
     } );
-    it( 'should be required' , () => {
+    it( 'should be required it it is empty' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         const ComponentInstance = fixture.componentInstance;
         expect( (<any>ComponentInstance.control.errors).required ).toBeDefined();
     } );
-    it( 'should be invalid if it has wrong value ' , () => {
+    it( 'should have pattern error if the length is less than 8 character' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         const ComponentInstance = fixture.componentInstance;
-        ComponentInstance.control.setValue( ' a wrong email' );
+        ComponentInstance.control.setValue( '12345' );
         fixture.detectChanges();
+        expect( (<any>ComponentInstance.control.errors).required ).toBeUndefined();
         expect( (<any>ComponentInstance.control.errors).pattern ).toBeDefined();
     } );
-    it( 'should be invalid if it has correct email but is more than 50 character' , () => {
+    it( 'should have maxLength error if the length is less than 20 character' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         const ComponentInstance = fixture.componentInstance;
-        ComponentInstance.control.setValue( 'smiladhismiladhismiladhismilasmiladhismiladhismiladhismilasmiladhismiladhismiladhismilasmiladhismiladhismiladhismilasmiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhi@gmail.com' );
+        ComponentInstance.control.setValue( '1234567890123456789000' );
         fixture.detectChanges();
+        expect( (<any>ComponentInstance.control.errors).required ).toBeUndefined();
+        expect( (<any>ComponentInstance.control.errors).pattern ).toBeUndefined();
         expect( (<any>ComponentInstance.control.errors).maxLength ).toBeDefined();
-    } );
-    it( 'should be valid if its passed required test and has a lower than 50 character length email' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        const ComponentInstance = fixture.componentInstance;
-        ComponentInstance.control.setValue( 'smiladhi@gmail.com' );
-        fixture.detectChanges();
-        expect( ComponentInstance.control.valid ).toBeTruthy();
     } );
 } );
 class MockElementRef implements ElementRef {
@@ -75,15 +70,15 @@ class MockElementRef implements ElementRef {
 @Component( {
     template : `
     <form  #formModel='ngForm' class='nl-form' >
-        <amp-email
+        <amp-contact-number
             [id]="id"
             [controlGroup]='controlGroup'>    
-        </amp-email>
+        </amp-contact-number>
     </form>
     `
 } )
 class TestComponent {
-    id                       = 'email';
+    id                       = 'contact-number';
     controlGroup : FormGroup = new FormGroup( {} );
 
     get control () {

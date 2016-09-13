@@ -40,16 +40,19 @@ export class MinLengthValidator {
     public static minLengthValidation ( minLength ) {
         return ( c ) => {
             if ( minLength ) {
-                if ( ! c.value || c.value.length >= minLength ) {
+                if ( ! c.value || ! c.value.valid ) {
                     return null;
-                }
-                return {
-                    minLength : {
-                        text : c._ampErrors && c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should' +
-                        '  be' +
-                        ' more than ' + minLength + ' characters.'
+                } else {
+                    if ( c.value.length < minLength ) {
+                        return {
+                            minLength : {
+                                text : c._ampErrors && c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should' +
+                                '  be' +
+                                ' more than ' + minLength + ' characters.'
+                            }
+                        };
                     }
-                };
+                }
             }
             return null;
         };

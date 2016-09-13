@@ -2,15 +2,15 @@ import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { AmpErrorComponent } from "../../../app/components/amp-error/amp-error.component";
-import { AmpEmailComponent } from "../../../app/components/amp-email/amp-email.component";
+import { AmpContactNumberComponent } from "../../../app/components/amp-contact-number/amp-contact-number.component";
 @Component(
     {
-        selector    : 'amp-email-basic-usage' ,
-        templateUrl : 'src/styleguide/components/amp-email/basic_usage.html' ,
+        selector    : 'amp-contact-number-basic-usage' ,
+        templateUrl : 'src/styleguide/components/amp-contact-number/basic_usage.html' ,
         styles      : [ require( './basic_usage.scss' ).toString() ] ,
-        directives  : [ AmpEmailComponent , AmpErrorComponent ]
+        directives  : [ AmpContactNumberComponent , AmpErrorComponent ]
     } )
-export default class AmpEmailBasicUsage {
+export default class AmpContactNumberBasicUsage {
     toggleFlag : boolean;
     private controlGroup : FormGroup = new FormGroup( {} );
 
@@ -18,7 +18,7 @@ export default class AmpEmailBasicUsage {
     }
 
     get control () {
-        return this.controlGroup.controls[ 'email' ];
+        return this.controlGroup.controls[ 'contact-number' ];
     }
 }
 
