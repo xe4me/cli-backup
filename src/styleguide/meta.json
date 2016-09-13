@@ -320,6 +320,26 @@
         "readme": "<p>AMP natural language contact-number"
     },
     {
+        "name":"AmpPhoneNumber",
+        "sources": [
+            "src/app/components/amp-mobile-number/amp-mobile-number.component.ts"
+        ],
+        "id": "AmpPhoneNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-mobile-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-mobile-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-mobile-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-mobile-number/amp-mobile-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-mobile-number/amp-mobile-number.spec.ts",
+                "component": "amp-mobile-number-basic-usage",
+                "component_src_location": "components/amp-mobile-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language mobile-number"
+    },
+    {
         "name": "Amp Dropdown",
         "sources": [
             "src/app/components/amp-dropdown/amp-dropdown.component.ts"
