@@ -71,7 +71,7 @@ export function getWebpackCommonConfig(
               loader: 'angular2-template-loader'
             }
           ],
-          exclude: [/\.(spec|e2e)\.ts$/]
+          exclude: [/\.(e2e)\.ts$/]
         },
 
         // in main, load css as raw text

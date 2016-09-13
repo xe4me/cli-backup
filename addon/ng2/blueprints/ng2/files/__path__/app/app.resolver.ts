@@ -8,9 +8,8 @@ import {
     ScrollService ,
     ProgressObserverService ,
     AmpHttpService ,
-    FormSectionService,
-    UIControlService
-} from 'amp-ddc-ui-core/ui-core';
+    FormSectionService
+} from 'amp-ddc-components';
 // import { ComponentsService , IComponentMeta , IComponentGroupMeta } from './services/components';
 // import { MdIconRegistry } from '@angular2-material/icon/icon-registry';
 // import { NavigationService } from './services/navigation';
@@ -43,6 +42,5 @@ export const APP_RESOLVER_PROVIDERS = [
   // ThemeService ,
   // MdIconRegistry,
   FormSectionService,
-  UIControlService,
   Renderer
 ];

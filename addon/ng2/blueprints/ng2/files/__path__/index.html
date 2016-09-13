@@ -6,7 +6,9 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico"><% if (isMobile) { %>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <% if (isMobile) { %>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#000000">
   <link rel="manifest" href="/manifest.webapp">
@@ -23,8 +25,18 @@
   <link rel="apple-touch-startup-image" href="/icons/apple-touch-icon-180x180.png">
   <% } %>
   
+  <!-- DTM start -->
+  <script src="//assets.adobedtm.com/2852c894343904db05de677c0e93145e96cdd923/satelliteLib-c581e73181056fddc82beffcdd9555bab026d56f.js"></script>
+
+  <!-- Environment Config -->
+  <script src="http://localhost:8882/config.js" ></script>
+
+
 </head>
 <body>
   <<%= prefix %>-root>Loading...</<%= prefix %>-root>
+
+    <!-- DTM end -->
+    <script type="text/javascript">_satellite.pageBottom();</script>
 </body>
 </html>

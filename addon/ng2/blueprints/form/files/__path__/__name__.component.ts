@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 
 @Component({
@@ -26,12 +26,13 @@ export class <%= classifiedModuleName %>Component implements OnInit {
         blocks      : [
             {
                 name        : 'ampButton' ,
-                blockType   : 'AmpGroupButtonComponent' ,
+                blockType   : 'AmpGroupButtonsComponent' ,
                 blockLayout : 'INLINE' ,
                 commonBlock : true ,
-                path        : 'components/amp-group-button/amp-group-button.component' ,
+                path        : 'components/amp-group-buttons/amp-group-buttons.component' ,
                 custom      : {
-                    parentControl : new FormControl() ,
+                    groupName     : 'Gender',
+                    controlGroup  : new FormGroup({}) ,
                     id            : 'ApplicantDetails-gender' ,
                     label         : 'Gender' ,
                     buttons       : [
