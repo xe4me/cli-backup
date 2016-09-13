@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
 @Injectable()
 export class FormModelService {
-    public _formDefinition
+    public _formDefinition;
     public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent

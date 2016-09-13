@@ -82,8 +82,8 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
 
     ngAfterViewInit () {
         // Binding Google Places Address api to google_places_ac input field
-        var input : any   = document.getElementById( this.id + '-input' );
-        var options       = {
+        let input : any   = document.getElementById( this.id + '-input' );
+        let options       = {
             types                 : [ 'address' ] ,
             componentRestrictions : { country : 'au' }
         };
@@ -103,7 +103,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
     }
 
     showManualAddrOpt () {
-        var service = new google.maps.places.AutocompleteService();
+        let service = new google.maps.places.AutocompleteService();
         // Clear the addrPlace internal value, if the input do not match the addrPlace
         if ( this.addrPlace && this.control.value !== this.addrPlace.formatted_address ) {
             this.addrPlace = null;

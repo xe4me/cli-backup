@@ -20,7 +20,7 @@ import {
     PatterValidator ,
     MaxFloatValidator
 } from '../../util/validations';
-import { FormGroup , FormControl , Validators } from "@angular/forms";
+import { FormGroup , FormControl , Validators } from '@angular/forms';
 @Component(
     {
         selector        : 'amp-input' ,
@@ -95,19 +95,8 @@ import { FormGroup , FormControl , Validators } from "@angular/forms";
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     public control : FormControl = new FormControl();
     public errors                = {};
-
-    ngOnInit () : any {
-        this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i )=> {
-            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-        } );
-        if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.control );
-        }
-        return undefined;
-    }
-
     public controlGroup : FormGroup;
+
     private inputWidth : number;
     private id : string;
     private _minLength : number;
@@ -152,6 +141,17 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.onBlur        = new EventEmitter();
         this.onFocus       = new EventEmitter();
         this.onKeyup       = new EventEmitter();
+    }
+
+    ngOnInit () : any {
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName , i ) => {
+            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( this.id , this.control );
+        }
+        return undefined;
     }
 
     ngAfterViewInit () : any {
@@ -358,7 +358,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     private resetIdleTimeOut () {
         this.markControlAsUntouched();
         clearTimeout( this.idleTimeoutId );
-        this.idleTimeoutId = setTimeout( ()=> {
+        this.idleTimeoutId = setTimeout( () => {
             this.control.markAsTouched();
         } , this.idleTimeOut );
     }

@@ -1,10 +1,10 @@
 import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy } from '@angular/core';
 import { arrayJoinByDash } from './util/functions.utils';
-import { FormGroup } from "@angular/forms";
-import { Subscription } from "rxjs";
-import { FormModelService } from "./services/form-model/form-model.service";
-import { ProgressObserverService } from "./services/progress-observer/progress-observer.service";
-import { ScrollService } from "./services/scroll/scroll.service";
+import { FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { FormModelService } from './services/form-model/form-model.service';
+import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
+import { ScrollService } from './services/scroll/scroll.service';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;

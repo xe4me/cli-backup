@@ -3,10 +3,10 @@ import {
     ViewContainerRef ,
     ChangeDetectorRef
 } from '@angular/core';
-import { AmpBlockLoaderDirective } from "../amp-block-loader.directive";
-import { FormSectionService } from "../services/form-section/form-section.service";
-import { FormModelService } from "../services/form-model/form-model.service";
-import { ProgressObserverService } from "../services/progress-observer/progress-observer.service";
+import { AmpBlockLoaderDirective } from '../amp-block-loader.directive';
+import { FormSectionService } from '../services/form-section/form-section.service';
+import { FormModelService } from '../services/form-model/form-model.service';
+import { ProgressObserverService } from '../services/progress-observer/progress-observer.service';
 @Component( {
     selector   : 'page-section' ,
     template   : `

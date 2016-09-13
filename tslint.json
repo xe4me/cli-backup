@@ -45,6 +45,22 @@
       true,
       "allow-null-check"
     ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "space",
+        "index-signature": "space",
+        "parameter": "space",
+        "property-declaration": "space",
+        "variable-declaration": "space"
+      }, {
+        "call-signature": "onespace",
+        "index-signature": "onespace",
+        "parameter": "onespace",
+        "property-declaration": "onespace",
+        "variable-declaration": "onespace"
+      }
+    ],
     "variable-name": false,
     "whitespace": [
       true,

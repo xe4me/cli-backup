@@ -3,8 +3,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Input , Component , ContentChild , AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ModelActions , Payload } from "../../actions/model/model.action";
-import { FormControl } from "@angular/forms";
+import { ModelActions , Payload } from '../../actions/model/model.action';
+import { FormControl } from '@angular/forms';
 @Component( {
     selector : 'amp-redux' ,
     template : `<ng-content></ng-content>`
@@ -25,9 +25,9 @@ export class AmpReduxComponent implements AfterViewInit {
                     .valueChanges
                     .debounceTime( this.debounceTime )
                     .distinctUntilChanged()
-                    .subscribe( ( query )=> {
+                    .subscribe( ( query ) => {
                         this.dispatch( query , this.fdn );
-                    } )
+                    } );
             }
         }
     }

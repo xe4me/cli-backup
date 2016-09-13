@@ -26,7 +26,7 @@ if ( 'production' === process.env.ENV ) {
  * our top level component that holds all of our components
  */
 import { StyleGuideApp } from './styleguide/app';
-import { provideStore } from "@ngrx/store";
+import { provideStore } from '@ngrx/store';
 import reducer from './styleguide/blocks/amp-form-block/reducers/search';
 import actions from './styleguide/blocks/amp-form-block/actions';
 import { instrumentStore } from '@ngrx/store-devtools';
@@ -38,7 +38,7 @@ import { useLogMonitor } from '@ngrx/store-log-monitor';
  * our Services and Providers into Angular's dependency injection
  */
 export function main () {
-    return bootstrap( //DemosApp , [
+    return bootstrap( // DemosApp , [
         StyleGuideApp , [
             ...ENV_PROVIDERS ,
             ...HTTP_PROVIDERS ,
@@ -62,7 +62,6 @@ export function main () {
  * For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app
  * Also see custom_typings.d.ts as you also need to do `typings install x` where `x` is your module
  */
-
 
 /*
  * Hot Module Reload

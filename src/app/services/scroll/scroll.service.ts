@@ -3,8 +3,8 @@ import { FormModelService } from '../form-model/form-model.service';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Injectable()
 export class ScrollService {
-    public $scrolled: EventEmitter<any>;
-    public $scrolling: EventEmitter<any>;
+    public $scrolled : EventEmitter<any>;
+    public $scrolling : EventEmitter<any>;
     private margin  = 10;
     private lastScrollPosition;
     private _window = window;
@@ -15,15 +15,15 @@ export class ScrollService {
         this.$scrolling = new EventEmitter();
     }
 
-    public getMyScrolTop ( el: ElementRef ) {
+    public getMyScrolTop ( el : ElementRef ) {
         return el.nativeElement.scrollTop;
     }
 
-    public getMyOffsetTop ( el: ElementRef ) {
+    public getMyOffsetTop ( el : ElementRef ) {
         return el.nativeElement.offsetTop;
     }
 
-    public getMyWindowOffset ( el: ElementRef ) {
+    public getMyWindowOffset ( el : ElementRef ) {
         return this.getMyOffsetTop( el ) - this._window.scrollY;
     }
 
@@ -66,9 +66,9 @@ export class ScrollService {
         return null;
     }
 
-    public scrollToComponentSelector ( componentSelector: string ,
-                                       easing: string = 'easeInQuad' ,
-                                       margin: number = 80 ) {
+    public scrollToComponentSelector ( componentSelector : string ,
+                                       easing : string = 'easeInQuad' ,
+                                       margin : number = 80 ) {
         let element = this._dom.query( componentSelector );
         if ( ! element ) {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
@@ -81,7 +81,7 @@ export class ScrollService {
             callbackBefore: ( element ) => {
                 this.$scrolling.emit( this.getGroupNameOfSelectorName( componentSelector ) );
             } ,
-            callbackAfter  : ( element ) => {
+            callbackAfter : ( element ) => {
                 //this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
                 this.$scrolled.emit( componentSelector );
             }
@@ -91,17 +91,17 @@ export class ScrollService {
         } , 0 );
     }
 
-    public scrollToComponentByClassName ( componentName: string ) {
+    public scrollToComponentByClassName ( componentName : string ) {
         let selectorName = this.getSelectorNameOfClassName( componentName );
         this.scrollToComponentSelector( selectorName );
     }
 
-    public scrollToComponentByGroupName ( componentGroupName: string ) {
+    public scrollToComponentByGroupName ( componentGroupName : string ) {
         let selectorName = this.getSelectorNameOfGroupName( componentGroupName );
         this.scrollToComponentSelector( selectorName );
     }
 
-    public scrollMeOut ( el: ElementRef , easing: string = 'easeInQuad' , margin: number = 0 ) {
+    public scrollMeOut ( el : ElementRef , easing : string = 'easeInQuad' , margin : number = 0 ) {
         let parentElem = el.nativeElement.offsetParent;
         let style      = window.getComputedStyle( parentElem );
         let element    = el.nativeElement;
@@ -125,7 +125,7 @@ export class ScrollService {
         } , 0 );
     }
 
-    public amIVisible ( el: ElementRef , CLASS_NAME: string ) {
+    public amIVisible ( el : ElementRef , CLASS_NAME : string ) {
         if ( this.scrollTop === this.lastScrollPosition ) {
             return;
         }
@@ -167,7 +167,7 @@ export class ScrollService {
         this.scrollToComponentSelector( components[ components.length - 1 ].id );
     }
 
-    private splitStringByCapital ( string: string ) {
+    private splitStringByCapital ( string : string ) {
         return string.split( /(?=[A-Z])/ );
     }
 
@@ -191,15 +191,15 @@ export class ScrollService {
      *   Make sure to fix bellow code , I don't know what's the best way of getting
      *   document.documentElement.scrollTop;yet
      * */
-    get scrollTop (): number {
+    get scrollTop () : number {
         return this._window.pageYOffset || document.documentElement.scrollTop;
     }
 
-    get windowHeight (): number {
+    get windowHeight () : number {
         return this._window.innerHeight;
     }
 
-    get documentHeight (): number {
+    get documentHeight () : number {
         return this._dom.query( 'body' ).innerHeight;
     }
 
@@ -209,7 +209,7 @@ export class ScrollService {
         // Options
         let duration          = options.duration || 800 ,
             offset            = options.offset || 0 ,
-            easing: string   = options.easing ,
+            easing : string   = options.easing ,
             callbackBefore    = options.callbackBefore || function() {
                 } ,
             callbackAfter     = options.callbackAfter || function() {
@@ -341,7 +341,7 @@ export class ScrollService {
         return string.charAt( 0 ).toUpperCase() + string.slice( 1 );
     }
 
-    private camelCaseAndStripDash ( string: string ): string {
+    private camelCaseAndStripDash ( string : string ) : string {
         let split = string.split( '-' );
         split.pop();
         let camelCased = split.map( ( value , index ) => {

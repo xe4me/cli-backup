@@ -24,7 +24,7 @@ if ('production' === ENV) {
 
 } else {
 
-  _decorateModuleRef = (modRef: any) => {
+  _decorateModuleRef = (modRef : any) => {
     var appRef = modRef.injector.get(ApplicationRef);
     var cmpRef = appRef.components[0];
 
@@ -32,7 +32,7 @@ if ('production' === ENV) {
     enableDebugTools(cmpRef);
     (<any>window).ng.probe = _ng.probe;
     (<any>window).ng.coreTokens = _ng.coreTokens;
-    return modRef
+    return modRef;
   };
 
   // Development

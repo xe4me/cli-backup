@@ -25,7 +25,7 @@ describe( 'amp-input directive' , () => {
     }));
 
     it( 'should contain a label element with name as value and firstname as for attribute' , () => {
-        let fixture: ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
         fixture.detectChanges();
         let compiledTestComponent    = fixture.debugElement;
         let compiledLabel            = compiledTestComponent.query(By.css('label'));
@@ -35,7 +35,7 @@ describe( 'amp-input directive' , () => {
     } );
 
     it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
-        let fixture: ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
         fixture.detectChanges();
         let compiledTestComponent    = fixture.debugElement;
         let compiledInput            = compiledTestComponent.query(By.css('input'));

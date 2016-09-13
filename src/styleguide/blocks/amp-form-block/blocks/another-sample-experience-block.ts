@@ -1,12 +1,12 @@
 import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from '@angular/core';
-import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
-import { ThemeService } from "../../../services/theme";
-import { FormBlock } from "../../../../app/form-block";
-import { ScrollService } from "../../../../app/services/scroll/scroll.service";
-import { FormModelService } from "../../../../app/services/form-model/form-model.service";
-import { ProgressObserverService } from "../../../../app/services/progress-observer/progress-observer.service";
-import { AmpGroupButtonsComponent } from "../../../../app/components/amp-group-buttons/amp-group-buttons.component";
-import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
+import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
+import { ThemeService } from '../../../services/theme';
+import { FormBlock } from '../../../../app/form-block';
+import { ScrollService } from '../../../../app/services/scroll/scroll.service';
+import { FormModelService } from '../../../../app/services/form-model/form-model.service';
+import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
+import { AmpGroupButtonsComponent } from '../../../../app/components/amp-group-buttons/amp-group-buttons.component';
+import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
 @Component( {
     selector        : 'another-sample-experience-block' ,
     template        : `

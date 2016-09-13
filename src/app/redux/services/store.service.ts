@@ -1,6 +1,6 @@
-import { getIn } from "../../util/functions.utils";
-import { Store } from "@ngrx/store";
-import { Injectable } from "@angular/core";
+import { getIn } from '../../util/functions.utils';
+import { Store } from '@ngrx/store';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 @Injectable()
 export class StoreService {
@@ -9,7 +9,7 @@ export class StoreService {
     };
 
     public select ( _fdn ) : Observable<any> {
-        return this.store.select( ( state )=> {
+        return this.store.select( ( state ) => {
             let s = state;
             s     = getIn( _fdn , s );
             return s[ _fdn.last() ];

@@ -9,10 +9,12 @@ import {
     ComponentFactory ,
     OnChanges
 } from '@angular/core';
-import { FormGroup } from "@angular/forms";
-import { FormSectionService } from "./services/form-section/form-section.service";
+import { FormGroup } from '@angular/forms';
+import { FormSectionService } from './services/form-section/form-section.service';
+
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
+
 @Directive( { selector : '[amp-block-loader]' } )
 export class AmpBlockLoaderDirective implements OnChanges {
     @Input( 'amp-block-loader' ) blockLoader;
@@ -21,8 +23,8 @@ export class AmpBlockLoaderDirective implements OnChanges {
     @Input( 'form' ) form : FormGroup;
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
-    private _hasLoadedOnce                  = false;
-    private blocksCount                     = 0;
+    private _hasLoadedOnce : boolean        = false;
+    private blocksCount : number            = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
 
@@ -84,8 +86,8 @@ export class AmpBlockLoaderDirective implements OnChanges {
             this.fdn.push( _blockName );
         }
         for ( let i = 0 ; i < this._blocks.length ; i ++ ) {
-            var myChunk      = null;
-            var waitForChunk = null;
+            let myChunk      = null;
+            let waitForChunk = null;
             if ( this._blocks[ i ].commonBlock ) {
                 if ( this._blocks[ i ].blockLayout ) {
                     try {
@@ -168,8 +170,8 @@ export class AmpBlockLoaderDirective implements OnChanges {
             this.fdn.push( _blockName );
         }
         for ( let i = 0 ; i < this._blocks.length ; i ++ ) {
-            var myChunk      = null;
-            var waitForChunk = null;
+            let myChunk      = null;
+            let waitForChunk = null;
             if ( this._blocks[ i ].commonBlock ) {
                 if ( this._blocks[ i ].blockLayout ) {
                     try {

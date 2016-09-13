@@ -1,5 +1,5 @@
-import { ComponentMetadata } from "@angular/core";
-import { isArray } from "@angular/common/src/facade/lang";
+import { ComponentMetadata } from '@angular/core';
+import { isArray } from '@angular/common/src/facade/lang';
 export function AmpComponent ( annotation : any ) {
     return function( target : Function ) {
         var parentTarget      = Object.getPrototypeOf( target.prototype ).constructor;
@@ -16,5 +16,5 @@ export function AmpComponent ( annotation : any ) {
         } );
         var metadata = new ComponentMetadata( annotation );
         (<any>Reflect).defineMetadata( 'annotations' , [ metadata ] , target );
-    }
+    };
 }

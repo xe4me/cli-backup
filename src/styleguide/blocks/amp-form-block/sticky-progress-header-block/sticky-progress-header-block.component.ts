@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AmpLinearProgressBarComponent } from "../../../../app/components/amp-linear-progress-bar/amp-linear-progress-bar.component";
+import { AmpLinearProgressBarComponent } from '../../../../app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 
 @Component(
     {
