@@ -40,6 +40,8 @@ export class RootEnvProperty {
     GwPracticeService : GwServiceEnvProperty;
     // ES&I API Gateway configuration for generic DDC service [https://teamtools.amp.com.au/confluence/display/EH/Dynamic+Data+Capture+%28DDC%29+API]
     GwDDCService : GwServiceEnvProperty;
+    // ENV is one of [development, production], control via Index.html
+    ENV : string;
 
     constructor () {
         if (_process_env) {
@@ -54,7 +56,7 @@ export abstract class Environments {
     public static property : RootEnvProperty = new RootEnvProperty();
 
     public static get host () {
-        if ( process.env.ENV === 'development' ) {
+        if ( Environments.property.ENV === 'development' ) {
             return 'http://localhost:8882';
         } else {
             /*
