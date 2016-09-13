@@ -16,27 +16,19 @@ import { ProgressObserverService } from '../../../../../app/services/progress-ob
 import { AmpBlockLoaderDirective } from '../../../../../app/amp-block-loader.directive';
 import { AmpButton } from '../../../../../app/components/amp-button/amp-button.component';
 import { FormSectionService } from '../../../../../app/services/form-section/form-section.service';
+import { FormGroup } from "@angular/forms";
 @Component( {
     selector   : 'menu-frame' ,
     template   : require( './menu-frame.application.component.html' ) ,
     styles     : [ require( './menu-frame.application.component.scss' ).toString() ] ,
-    directives : [ StickyProgressHeaderBlockComponent , AmpButton , AmpBlockLoaderDirective ] ,
-    animations : [
-        trigger(
-            'openClose' ,
-            [
-                state( 'collapsed, void' , style( { height : '0px' , opacity : '0' , display : 'none' } ) ) ,
-                state( 'expanded' , style( { height : '*' , opacity : '1' , overflow : 'hidden' , display : 'block' } ) ) ,
-                transition(
-                    'collapsed <=> expanded' , [ animate( 200 ) ] )
-            ] )
-    ]
+    directives : [ StickyProgressHeaderBlockComponent , AmpButton , AmpBlockLoaderDirective ]
 } )
 export class MenuFrameApplicationBlockComponent {
     static CLASS_NAME              = 'MenuFrameApplicationBlockComponent';
     private calculatedProgress     = 0;
     private stickyAnimatedIntoView = false;
     private dialogIsVisible        = true;
+    private __form : FormGroup;
     private saveResult : string    = null;
     private ajaxError : string     = null;
     //private childTitle : string = 'This text is passed to child';
@@ -45,7 +37,7 @@ export class MenuFrameApplicationBlockComponent {
                   private progressObserver : ProgressObserverService ,
                   public formSectionService : FormSectionService ,
                   private _cd : ChangeDetectorRef ) {
-        this.progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress() );
+        this.progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress( message ) );
     }
 
     ngOnInit () : any {
@@ -86,20 +78,20 @@ export class MenuFrameApplicationBlockComponent {
         }
     }
 
-    private calculateProgress () {
-        //const model = this.controlService.getControlGroup();
-        // if ( model ) {
-        //     if ( model.controls ) {
-        //         let valids : number   = 0;
-        //         let formControlLength = Object.keys( model.controls ).length;
-        //         Object.keys( model.controls ).map( function( value , index ) {
-        //             if ( model.controls[ value ].valid ) {
-        //                 valids ++;
-        //             }
-        //         } );
-        //         this.calculatedProgress = Math.floor( (100 * valids / formControlLength) );
-        //     }
-        // }
+    private calculateProgress ( message ) {
+        let form = (<any>this.__form.controls).Application.controls.FirstInsuranceDetailsSection;
+        if ( form ) {
+            if ( form.controls ) {
+                let valids : number   = 0;
+                let formControlLength = Object.keys( form.controls ).length;
+                Object.keys( form.controls ).map( ( value , index ) => {
+                    if ( form.controls[ value ].valid ) {
+                        valids ++;
+                    }
+                } );
+                this.calculatedProgress = Math.floor( (100 * valids / formControlLength) );
+            }
+        }
     }
 
     private isSectionValid ( fullyDistinguishedName : string[] ) : boolean {

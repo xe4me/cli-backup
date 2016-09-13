@@ -12,7 +12,6 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
     selector        : 'sample-fields-block2' ,
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
-
            <amp-form-row [attr.theme]="themeService.theme.attr">
                     <div class="grid__item_floated palm-1/1 tablet-and-up-1/1 lap-and-up-6/12  mr mt0">
                         <label class='1/1 sr-only'>What's your scale?</label>
@@ -30,7 +29,6 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
                         <amp-error [controlGroup]="context?.__controlGroup" [controlId]="__custom.controls[0].id"></amp-error>
                     </div>
             </amp-form-row>
-
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent , AmpGroupButtonsComponent ] ,
