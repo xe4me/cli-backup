@@ -57,7 +57,7 @@ import { FormService } from "../../../../app/services/form/form.service";
             </amp-form-row>
             <amp-form-row [attr.theme]="themeService.theme.attr">
                 <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Contact number</label>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mr+ mt0">
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
                     <label class='1/1 sr-only'>What's your Contact number?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                         <amp-input
@@ -77,7 +77,7 @@ import { FormService } from "../../../../app/services/form/form.service";
             </amp-form-row>
              <amp-form-row [attr.theme]="themeService.theme.attr">
                 <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Email address</label>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mr+ mt0">
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
                     <label class='1/1 sr-only'>What's your Email address?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[1].id])">
                         <amp-input
