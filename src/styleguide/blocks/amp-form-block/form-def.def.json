@@ -43,6 +43,43 @@
                             },
                             "blocks": [
                                 {
+                                    "name": "samplefieldsblock3",
+                                    "blockType": "SampleFieldsBlock3",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "/amp-form-block/blocks/sample-fields-block3",
+                                    "custom": {
+                                        "blockTitle": "Are there other equity holders? ",
+                                        "controls": [
+                                            {
+                                                "id": "Title",
+                                                "options": [
+                                                    {
+                                                        "value": "1",
+                                                        "label": "1"
+                                                    },
+                                                    {
+                                                        "value": "2",
+                                                        "label": "2"
+                                                    },
+                                                    {
+                                                        "value": "3",
+                                                        "label": "3"
+                                                    },
+                                                    {
+                                                        "value": "4",
+                                                        "label": "4"
+                                                    },
+                                                    {
+                                                        "value": "5",
+                                                        "label": "5"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
                                     "name": "BlockWithRadios",
                                     "blockType": "BlockWithRadios",
                                     "blockLayout": "INLINE",
@@ -51,6 +88,7 @@
                                     "custom": {
                                         "blockTitle": "Let's test the radio buttons",
                                         "controls": [
+
                                             {
                                                 "id": "radios",
                                                 "buttons": [
@@ -211,43 +249,7 @@
 
 
 
-                                {
-                                    "name": "samplefieldsblock3",
-                                    "blockType": "SampleFieldsBlock3",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "/amp-form-block/blocks/sample-fields-block3",
-                                    "custom": {
-                                        "blockTitle": "Are there other equity holders? ",
-                                        "controls": [
-                                            {
-                                                "id": "Title",
-                                                "options": [
-                                                    {
-                                                        "value": "1",
-                                                        "label": "1"
-                                                    },
-                                                    {
-                                                        "value": "2",
-                                                        "label": "2"
-                                                    },
-                                                    {
-                                                        "value": "3",
-                                                        "label": "3"
-                                                    },
-                                                    {
-                                                        "value": "4",
-                                                        "label": "4"
-                                                    },
-                                                    {
-                                                        "value": "5",
-                                                        "label": "5"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
+
                                 {
                                     "name": "sampleArrayExperienceBlock",
                                     "blockType": "SampleArrayExperienceBlock",

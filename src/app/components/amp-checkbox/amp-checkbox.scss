@@ -169,6 +169,7 @@ $checkbox-margin : 0;
         line-height : 30px;
         margin-top: 0;
         @extend %#{$namespace}font-size-small;
+        margin-left: 20px;
     }
     //  pointer-events: none;  ???
     width: auto;

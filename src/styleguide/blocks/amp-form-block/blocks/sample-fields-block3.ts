@@ -14,7 +14,7 @@ import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-for
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
 
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>There are
+                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>There are
                 <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                     <amp-dropdown
                         #ampReduxRef
@@ -27,12 +27,8 @@ import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-for
                         [options]='__custom.controls[0].options'
                         [required]="true">
                      </amp-dropdown>
-                 </amp-redux>equity holders.
-                     
+                 </amp-redux> equity holders.
                 </label>
-                <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
-                    <label class='1/1 sr-only'>What's your Contact number?</label>
-                </div>
             </amp-form-row>
         </amp-form-block>
     ` ,
