@@ -8,9 +8,9 @@ import { NumberWrapper } from '@angular/core/src/facade/lang';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
-import { RequiredValidator } from "../../util/validations";
-import { isTrue } from "../../util/functions.utils";
-import { ScrollService } from "../../services/scroll/scroll.service";
+import { RequiredValidator } from '../../util/validations';
+import { isTrue } from '../../util/functions.utils';
+import { ScrollService } from '../../services/scroll/scroll.service';
 @Component(
     {
         selector : 'amp-checkbox' ,
@@ -54,6 +54,8 @@ import { ScrollService } from "../../services/scroll/scroll.service";
         outputs  : [ 'select' ]
     } )
 export class AmpCheckboxComponent implements AfterViewInit {
+    public control : FormControl           = new FormControl();
+    public errors                          = {};
     private _disabled : boolean            = false;
     private _checked : boolean             = false;
     private _required : boolean            = false;
@@ -65,8 +67,6 @@ export class AmpCheckboxComponent implements AfterViewInit {
     private id : string;
     private checkboxValue : boolean        = false;
     private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
-    public control : FormControl           = new FormControl();
-    public errors                          = {};
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private elem : ElementRef ,
@@ -150,7 +150,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
 
     private joinToParentGroupAndSetAmpErrors () {
         this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i )=> {
+        Object.keys( this.errors ).map( ( errorName , i ) => {
             (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {

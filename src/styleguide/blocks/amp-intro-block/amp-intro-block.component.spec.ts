@@ -22,7 +22,7 @@ describe( 'amp-review Section' , () => {
     describe('Section WITH a title AND content inside the tags', () => {
 
         it( 'Should add a title if one is supplied' , () => {
-            let fixture: ComponentFixture<AmpReviewSectionTestWithTitle> = TestBed.createComponent(AmpReviewSectionTestWithTitle);
+            let fixture : ComponentFixture<AmpReviewSectionTestWithTitle> = TestBed.createComponent(AmpReviewSectionTestWithTitle);
             fixture.detectChanges();
 
             let Element = fixture.nativeElement;
@@ -35,7 +35,7 @@ describe( 'amp-review Section' , () => {
         });
 
         it( 'Should wrap any html that is placed inside of the element tags (ie transcluded)' , () => {
-            let fixture: ComponentFixture<AmpReviewSectionTestWithTitle> = TestBed.createComponent(AmpReviewSectionTestWithTitle);
+            let fixture : ComponentFixture<AmpReviewSectionTestWithTitle> = TestBed.createComponent(AmpReviewSectionTestWithTitle);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let transculdedContent = Element.querySelector( '.test-transcluded-content' );
@@ -46,7 +46,7 @@ describe( 'amp-review Section' , () => {
 
     describe('Section WITHOUT a title', () => {
         it( 'Should NOT display a title if title is NOT supplied' , () => {
-            let fixture: ComponentFixture<AmpReviewSectionTestWithoutTitle> = TestBed.createComponent(AmpReviewSectionTestWithoutTitle);
+            let fixture : ComponentFixture<AmpReviewSectionTestWithoutTitle> = TestBed.createComponent(AmpReviewSectionTestWithoutTitle);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let title = Element.querySelector( '.amp-review-section__title' );
@@ -57,7 +57,7 @@ describe( 'amp-review Section' , () => {
 
     describe('Section WITH change link', () => {
         it( 'Should display a change link' , () => {
-            let fixture: ComponentFixture<AmpReviewSectionTestWithChangeLink1> = TestBed.createComponent(AmpReviewSectionTestWithChangeLink1);
+            let fixture : ComponentFixture<AmpReviewSectionTestWithChangeLink1> = TestBed.createComponent(AmpReviewSectionTestWithChangeLink1);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let link = Element.querySelector( '.amp-review-section__change-link' );
@@ -66,7 +66,7 @@ describe( 'amp-review Section' , () => {
         });
 
         it( 'Should call the change callback with the callback target WHEN the link is clicked', () => {
-            let fixture: ComponentFixture<AmpReviewSectionTestWithChangeLink1> = TestBed.createComponent(AmpReviewSectionTestWithChangeLink1);
+            let fixture : ComponentFixture<AmpReviewSectionTestWithChangeLink1> = TestBed.createComponent(AmpReviewSectionTestWithChangeLink1);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let AmpReviewSection = fixture.debugElement;
@@ -81,7 +81,7 @@ describe( 'amp-review Section' , () => {
     describe('Section WITHOUT change link', () => {
 
         it( 'Should NOT display a change link' , () => {
-            let fixture: ComponentFixture<AmpReviewSectionTestWithChangeLink2> = TestBed.createComponent(AmpReviewSectionTestWithChangeLink2);
+            let fixture : ComponentFixture<AmpReviewSectionTestWithChangeLink2> = TestBed.createComponent(AmpReviewSectionTestWithChangeLink2);
             fixture.detectChanges();
             let Element = fixture.nativeElement;
             let link = Element.querySelector( '.amp-review-section__change-link' );

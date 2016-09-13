@@ -1,6 +1,6 @@
-import { Store , provideStore , StoreModule } from "@ngrx/store";
-import { Inject , SkipSelf , Injectable , Injector , ReflectiveInjector } from "@angular/core";
-import { AmpReduxModule } from "../amp-redux.module";
+import { Store , provideStore , StoreModule } from '@ngrx/store';
+import { Inject , SkipSelf , Injectable , Injector , ReflectiveInjector } from '@angular/core';
+import { AmpReduxModule } from '../amp-redux.module';
 import reducers from '../reducers/model/model.reducer';
 export type PropertySelector = string | number | symbol;
 export type PathSelector = (string | number)[];
@@ -49,19 +49,19 @@ export type PropertyDecorator = ( target : any , propertyKey : string ) => void;
 export function Select<T> ( selector ) {
     return function decorate ( target : any , key : string ) : void {
         let injector = ReflectiveInjector.resolveAndCreate( [
-            StoreModule.provideStore(reducers , {Application:'milad'}).providers
+            StoreModule.provideStore(reducers , {Application: 'milad'}).providers
         ] );
         let store    = injector.get( Store );
-        store.select( 'Application' ).subscribe( ()=> {
+        store.select( 'Application' ).subscribe( () => {
             console.log( 'do my thing' );
         } );
-    }
+    };
 }
 
 export function AmpControl<T> (  selector? : FDNSelector ) {
     return function decorate ( target : any , key : string ) : void {
-        setTimeout(()=>{
-            console.log('target',target);
-        },1000)
-    }
+        setTimeout(() => {
+            console.log('target', target);
+        }, 1000);
+    };
 }

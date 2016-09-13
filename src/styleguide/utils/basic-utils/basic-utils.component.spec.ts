@@ -2,9 +2,9 @@ import { BasicUtils } from '../../../app/util/basic-utils';
 
 describe( 'Basic Util functions test' , () => {
 
-    let valueAsString : string = '2,000,00',
-        valueAsInt : number = 200000,
-        valueWithCurrency : string = '$200,000.00';
+    let valueAsString : string = '2,000,00';
+    let valueAsInt : number = 200000;
+    let valueWithCurrency : string = '$200,000.00';
 
     it( 'Format String to Number' , () => {
         expect( BasicUtils.formatStringToNumber( valueAsString ) ).toEqual( valueAsInt );
@@ -15,5 +15,4 @@ describe( 'Basic Util functions test' , () => {
             expect( BasicUtils.formatCurrency( valueAsString ) ).toEqual( valueWithCurrency );
         }
     );
-
 } );

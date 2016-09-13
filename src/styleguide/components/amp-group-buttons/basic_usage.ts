@@ -10,8 +10,8 @@ import { ThemeService } from '../../services/theme';
 } )
 
 export default class AmpGroupButtonComponentBasicUsage {
+    controlGroup : FormGroup = new FormGroup({});
     private required                   = true;
-            controlGroup : FormGroup = new FormGroup({});
     private fullOrPartialButtons       = {
         buttons       : [
             {

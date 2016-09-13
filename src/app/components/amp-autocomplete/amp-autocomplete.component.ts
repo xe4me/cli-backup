@@ -203,7 +203,7 @@ export class AmpAutoCompleteComponent implements OnInit {
                     } );
                 } else {
                     if ( this.parentControl.errors && this.parentControl.errors.hasOwnProperty( 'invalid' ) ) {
-                        delete (<any>this.parentControl.errors).invalid;
+                        delete (<any> this.parentControl.errors).invalid;
                     }
                     this.parentControl.setErrors( this.parentControl.errors , {
                         emitEvent : true
@@ -250,13 +250,14 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private resetSelectedOption () {
         this.selectedOption = null;
-        if ( this.selectControl )
-            this.selectControl.updateValue( null );
+        if ( this.selectControl ) {
+            this.selectControl.updateValue(null);
+        }
     }
 
     private markInputAsUnDirty () {
         setTimeout( () => {
-            (<any>this.parentControl)._dirty = false;
+            (<any> this.parentControl)._dirty = false;
             this.parentControl.updateValueAndValidity( {
                 onlySelf  : false ,
                 emitEvent : true

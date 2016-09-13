@@ -13,7 +13,7 @@ export default class AMPTextareaComponentBasicUsage {
     controlGroup : FormGroup = new FormGroup( {} );
 
     get control () {
-        return this.controlGroup.controls[ 'textarea' ]
+        return this.controlGroup.controls[ 'textarea' ];
     }
 
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {

@@ -9,7 +9,7 @@ export class AmpCurrencyPipe implements PipeTransform {
     * @param integer inDecimals:      length of decimal places
     * @param integer inIntegerGroups: number of digits to group in integer part
     */
-    transform(inNumber: any, inDecimals?: number, inIntegerGroups?: number, inCurrencySymbol?: string): string {
+    transform(inNumber : any, inDecimals? : number, inIntegerGroups? : number, inCurrencySymbol? : string) : string {
         const decimals = inDecimals || 0;
         const integerGroups = inIntegerGroups || 3;
         const aNumber = (typeof(inNumber) === 'string') ? this.parseValue(inNumber) : inNumber;
@@ -24,7 +24,7 @@ export class AmpCurrencyPipe implements PipeTransform {
         }
     }
 
-    public parseValue(value): number {
+    public parseValue(value) : number {
         return value ? parseFloat(value.replace(/[,\$]/g, '')) : value;
     }
 

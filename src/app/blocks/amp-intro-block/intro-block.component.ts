@@ -1,9 +1,9 @@
-import { Component , ChangeDetectorRef , ElementRef } from "@angular/core";
-import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from "../../../../";
-import { FormBlock } from "../../../app/form-block";
-import { FormModelService } from "../../services/form-model/form-model.service";
-import { ScrollService } from "../../services/scroll/scroll.service";
-import { ProgressObserverService } from "../../services/progress-observer/progress-observer.service";
+import { Component , ChangeDetectorRef , ElementRef } from '@angular/core';
+import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from '../../../../';
+import { FormBlock } from '../../../app/form-block';
+import { FormModelService } from '../../services/form-model/form-model.service';
+import { ScrollService } from '../../services/scroll/scroll.service';
+import { ProgressObserverService } from '../../services/progress-observer/progress-observer.service';
 @Component( {
     selector   : 'intro-block' ,
     directives : [ AmpButton ] ,

@@ -70,11 +70,11 @@ export abstract class AssociationLengthAbstract {
         return this.associationLengthRadios;
     }
 
-    public static getOptionsByLicensee ( licensee: string ) {
+    public static getOptionsByLicensee ( licensee : string ) {
         return this.associationLengthRadios.getOptions( licensee );
     }
 
-    public static getLabel ( licensee: string , value: string ) {
+    public static getLabel ( licensee : string , value : string ) {
         let options = this.getOptionsByLicensee( licensee );
         for ( let i = 0 ; i < options.length ; i ++ ) {
             let item = options[ i ];

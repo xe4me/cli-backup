@@ -1,4 +1,4 @@
-import { AmpCurrencyPipe } from "../pipes/currency/amp-currency.pipe";
+import { AmpCurrencyPipe } from '../pipes/currency/amp-currency.pipe';
 export class BasicUtils {
     public static formatCurrency ( amount : any ) : string {
         let currencyPipe : AmpCurrencyPipe = new AmpCurrencyPipe();

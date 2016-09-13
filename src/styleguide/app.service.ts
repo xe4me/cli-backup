@@ -19,13 +19,13 @@ export class AppState {
   }
 
 
-  get(prop?: any) {
+  get(prop? : any) {
     // use our state getter for the clone
     const state = this.state;
     return state.hasOwnProperty(prop) ? state[prop] : state;
   }
 
-  set(prop: string, value: any) {
+  set(prop : string, value : any) {
     // internally mutate our state
     return this._state[prop] = value;
   }

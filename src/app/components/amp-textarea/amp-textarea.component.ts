@@ -12,7 +12,7 @@ import {
     MinLengthValidator ,
     MaxLengthValidator
 } from '../../util/validations';
-import { isTrue } from "../../util/functions.utils";
+import { isTrue } from '../../util/functions.utils';
 @Component(
     {
         selector        : 'amp-textarea' ,
@@ -63,6 +63,8 @@ import { isTrue } from "../../util/functions.utils";
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
+    public control : FormControl = new FormControl();
+    public errors                = {};
     private id : string;
     private label : string;
     private isInSummaryState : boolean;
@@ -77,8 +79,6 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
     private _required : boolean  = false;
     private hasFocus : boolean   = false;
     private controlGroup : FormGroup;
-    public control : FormControl = new FormControl();
-    public errors                = {};
 
     ngOnInit () : any {
         this.joinToParentGroupAndSetAmpErrors();
@@ -170,7 +170,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
 
     private joinToParentGroupAndSetAmpErrors () {
         this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i )=> {
+        Object.keys( this.errors ).map( ( errorName , i ) => {
             (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {
