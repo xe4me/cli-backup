@@ -36,7 +36,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                         </amp-input>
                     </amp-redux>
                 </div>
-                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 form-row-label-inline'>First name</label>
+                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 form-row-label-inline'>Last name</label>
                 <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
@@ -44,7 +44,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                             #ampReduxRef
                             [attr.theme]="themeService.theme.attr"
                             [id]="__custom.controls[0].id"
-                            [label]="'Contact number '"
+                            [label]="'Last name '"
                             [controlGroup]="__controlGroup"
                             [isInSummaryState]="isInSummaryState"
                             [required]="true"

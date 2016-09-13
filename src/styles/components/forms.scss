@@ -21,6 +21,7 @@ bolr styles
 
         @include media-query(tablet-and-up) {
             @extend %#{$namespace}font-size-medium;
+            margin: 12px 0 12px 0;
         }
 
         @include media-query(palm) {
@@ -29,14 +30,18 @@ bolr styles
             margin-top: 20px;
         }
 
-        margin: 12px 0 0 0;
+
     }
     .form-row-label-inline {
         color: $amp-colour-grey-darker;
+        @include media-query(palm) {
+            font-size: $font-size-heading-lrg;
+            margin: 20px 0 0 0;
+        }
         @include media-query(tablet-and-up) {
             @extend %#{$namespace}font-size-medium;
+            margin: 30px 0 0 0;
         }
-        margin: 30px 0 0 0;
     }
     .form-row-label-checkbox {
         font-size: $font-size-heading-lrg;
