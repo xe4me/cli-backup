@@ -10,7 +10,7 @@ import { AmpButton } from "../../../../../app/components/amp-button/amp-button.c
     directives      : [ AmpButton ] ,
     template        : `
         <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
-                <div class='intro-logo mt-60 mb-60 palm-m'></div>
+                <div class='intro-logo mb+'></div>
                 <div class="utils__align--center mb-60" >
                     <div class="grid__item 6/9 palm-8/9 mt-10 utils__align--left" >
                     <h1 class="heading heading-intro color-white">
