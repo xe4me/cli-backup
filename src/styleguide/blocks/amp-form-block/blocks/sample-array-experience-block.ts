@@ -16,7 +16,9 @@ import { AmpButton } from "../../../../app/components/amp-button/amp-button.comp
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
            <amp-form-row [attr.theme]="themeService.theme.attr" *ngFor="let group of controlGroupArray.controls ; let i = index;">
-              <button (click)="remove(i)" class="btn btn-anchor right-aligned"> <span class="icon icon--close" aria-hidden="true"></span> Remove this field</button>
+              <amp-button [context]="context()" (click)="remove(i)" class="btn btn-anchor right-aligned">
+                <span class="icon icon--close" aria-hidden="true"></span> Remove this field
+              </amp-button>
                 <label class='grid__item_floated palm-1/1 tablet-2/3 lap-and-up-4/12 form-row-label'>Mobile</label>
                     <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-3/12 mr+ mt0">
                         <label class='1/1 sr-only'>What's your mobile number?</label>
