@@ -123,7 +123,7 @@ $input-height : $input-line-height * 1.5; // Don't like Materialize CSS rule 'he
 
 }
 
-@mixin my-md-input-placeholder-floating {
+@mixin amp-input-placeholder-floating {
   visibility     : visible;
   padding-bottom : 5px;
   transform      : translateY(-90%) scale(0.8);
@@ -279,7 +279,7 @@ md-input {
 
           // Show the placeholder above the input when it's not empty, or focused.
           &.md-float:not(.md-empty), &.md-float.md-focused {
-            @include my-md-input-placeholder-floating;
+            @include amp-input-placeholder-floating;
           }
 
           // :focus is applied to the input, but we apply md-focused to the other elements
@@ -340,7 +340,7 @@ md-input.md-input div.md-input-wrapper {
 }
 
 // Summary state
-my-md-input {
+amp-input {
   display          : inline-block;
   box-sizing       : content-box;
   padding-right    : 0 !important;

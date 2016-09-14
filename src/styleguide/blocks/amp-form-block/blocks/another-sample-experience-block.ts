@@ -27,7 +27,7 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
                                 [groupName]='__custom.controls[0].id'>
                             </amp-group-buttons>
                         </amp-redux>
-                        <amp-error [controlGroup]="context?.__controlGroup" [controlId]="__custom.controls[0].id"></amp-error>
+                        <amp-error [controlGroup]="__controlGroup" [controlId]="__custom.controls[0].id"></amp-error>
                     </div>
             </amp-form-row>
         </amp-form-block>

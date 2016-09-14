@@ -73,6 +73,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
             this.progressObserver.onProgress();
             setTimeout( () => {
                 this.isInSummaryState = true;
+                this._cd.markForCheck();
             } , 1200 );
         }
     }
