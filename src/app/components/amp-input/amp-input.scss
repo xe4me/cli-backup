@@ -14,11 +14,11 @@ $summary-state-font-weight : 300;
 //   font-size: $ddc-input-field-font-size;
 // }
 //
+
 @include media-query(palm) {
   md-input {
     &.md-input {
       padding : 0 !important;
-        margin-top: -8px;
       div {
         &.md-input-wrapper {
             //background-color: purple;
@@ -44,6 +44,9 @@ $summary-state-font-weight : 300;
     &.md-input {
       div {
         &.md-input-wrapper {
+            @include media-query(tablet-and-up) {
+                margin:0;
+            }
           .md-input-element {
             &:focus {
               color : $amp-colour-white;
@@ -164,6 +167,9 @@ md-input {
     div {
       &.md-input-wrapper {
         position : relative;
+          @include media-query(tablet-and-up) {
+              margin: 0;
+          }
         .md-input-table:hover + .md-input-underline.md-disabled {
           border-top : 1px solid $amp-colour-grey-dark;
         }
