@@ -10,7 +10,7 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
 import { FormArray , FormGroup } from '@angular/forms';
 import { ModelActions , Payload } from '../../../../app/redux/actions/model/model.action';
 import { Store } from '@ngrx/store';
-import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
+import { AmpButton } from '../../../../app/components/amp-button/amp-button.component';
 @Component( {
     selector        : 'sample-array-experience-block' ,
     template        : `

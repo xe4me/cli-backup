@@ -145,7 +145,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     ngOnInit () : any {
         this.control[ '_ampErrors' ] = {};
         Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {
             this.controlGroup.addControl( this.id , this.control );
@@ -161,14 +161,14 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.tempClassNames = this.el.nativeElement.className;
         this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
         this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
-        //this.el.nativeElement.className = this.tempClassNames;
+        // this.el.nativeElement.className = this.tempClassNames;
         this.updateValitators();
         this.addDelayedValidation();
         this.setDefaultValue();
         this._cd.detectChanges();
-        // Artifically inject the data-automation-id into the internals of @angular-material md-input
+        // Artificially inject the data-automation-id into the internals of @angular-material md-input
         this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this.id );
-        // Artifically inject the placeholder property into the input element of the md-input directive.
+        // Artificially inject the placeholder property into the input element of the md-input directive.
         this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'placeholder' , this.placeholder );
         return undefined;
     }
@@ -378,7 +378,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     }
 
     protected markControlAsUntouched () {
-        (<any>this.control)._touched = false;
+        (<any> this.control)._touched = false;
     }
 
     protected setDefaultValue () {

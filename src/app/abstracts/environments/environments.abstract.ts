@@ -50,8 +50,6 @@ export class RootEnvProperty {
     }
 }
 
-
-
 export abstract class Environments {
     public static property : RootEnvProperty = new RootEnvProperty();
 

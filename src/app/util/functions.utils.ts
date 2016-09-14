@@ -16,4 +16,3 @@ export function getIn ( _fdn : (number|string)[] , _state : any ) : any {
 export function clone ( _obj : any ) : any {
     return JSON.parse( JSON.stringify( _obj ) );
 }
-

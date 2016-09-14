@@ -17,7 +17,7 @@ import { ExampleComponent } from '../example';
 } )
 export class ComponentPage implements OnInit {
     public id : string;
-    public value : IComponentMeta    = <IComponentMeta>{};
+    public value : IComponentMeta    = <IComponentMeta> {};
     public next : IComponentMeta     = null;
     public previous : IComponentMeta = null;
 
@@ -33,7 +33,7 @@ export class ComponentPage implements OnInit {
 
             this._components.getComponent( id ).then( ( c : IComponentMeta ) => {
                 this.value                    = c;
-                //DOM.setTitle( 'AMP - DDC – ' + c.name );
+                // DOM.setTitle( 'AMP - DDC – ' + c.name );
                 this._navigation.currentTitle = c.name;
                 this._components.getNext( c ).then( ( next : IComponentMeta ) => {
                     this._navigation.nextLink = this._navigation.componentLink( next );

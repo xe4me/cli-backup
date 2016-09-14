@@ -13,8 +13,8 @@
 // import { AmpHttpService } from '../amp-http/amp-http.service.ts';
 // class MockFormDefinition extends FormDefinition {
 // }
-// var formModelService: FormModelService;
-// var mockFormDef = {
+// let formModelService: FormModelService;
+// let mockFormDef = {
 //     id     : 'BuyBackForm' ,
 //     version: '0.0.1' ,
 //     path   : '/' ,

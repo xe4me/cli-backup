@@ -1,6 +1,6 @@
-import { AmpComponent } from "../../decorators/amp-component.decorator";
-import { AmpInputComponent } from "../amp-input/amp-input.component";
-import { ChangeDetectorRef , ElementRef , Renderer } from "@angular/core";
+import { AmpComponent } from '../../decorators/amp-component.decorator';
+import { AmpInputComponent } from '../amp-input/amp-input.component';
+import { ChangeDetectorRef , ElementRef , Renderer } from '@angular/core';
 @AmpComponent( {
     selector : 'amp-first-name'
 } )

@@ -11,8 +11,8 @@ import { StoreService } from './services/store/store.service';
 interface Array<T> {
     last() : Array<T>;
 }
-if ( ! (<any>Array.prototype).last ) {
-    (<any>Array.prototype).last = function() {
+if ( ! (<any> Array.prototype).last ) {
+    (<any> Array.prototype).last = function() {
         return this[ this.length - 1 ];
     };
 }

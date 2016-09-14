@@ -12,7 +12,7 @@ describe( 'AmpDate public date methods' , () => {
             let today_string                               = '';
             let today                                      = new Date();
             let dd                                         = today.getDate();
-            let mm                                         = today.getMonth() + 1; //January is 0!
+            let mm                                         = today.getMonth() + 1; // January is 0!
             let yyyy                                       = today.getFullYear();
             let DD : any = dd;
             let MM : any = mm;
@@ -42,7 +42,7 @@ describe( 'AmpDate public date methods' , () => {
             let year           = 2020;
             let month          = 10 - 1;
             let day            = 10;
-            var date           = new Date( year , month , day );
+            let date           = new Date( year , month , day );
             expect( ampDateService.stringToDate( aFutureDate , format , delimeter ).toString() ).toBe( date.toString() );
         } ) );
     it( 'Should return null if the string provided is null or not in the correct date format' ,

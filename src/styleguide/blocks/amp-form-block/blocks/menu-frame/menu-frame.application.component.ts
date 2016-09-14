@@ -16,7 +16,7 @@ import { ProgressObserverService } from '../../../../../app/services/progress-ob
 import { AmpBlockLoaderDirective } from '../../../../amp-block-loader.directive';
 import { AmpButton } from '../../../../../app/components/amp-button/amp-button.component';
 import { FormSectionService } from '../../../../../app/services/form-section/form-section.service';
-import { FormGroup } from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 @Component( {
     selector   : 'menu-frame' ,
     template   : require( './menu-frame.application.component.html' ) ,
@@ -31,7 +31,7 @@ export class MenuFrameApplicationBlockComponent {
     private __form : FormGroup;
     private saveResult : string    = null;
     private ajaxError : string     = null;
-    //private childTitle : string = 'This text is passed to child';
+    // private childTitle : string = 'This text is passed to child';
     constructor ( private _el : ElementRef ,
                   private formModelService : FormModelService ,
                   private progressObserver : ProgressObserverService ,
@@ -79,7 +79,7 @@ export class MenuFrameApplicationBlockComponent {
     }
 
     private calculateProgress ( message ) {
-        let form = (<any>this.__form.controls).Application.controls.FirstInsuranceDetailsSection;
+        let form = (<any> this.__form.controls).Application.controls.FirstInsuranceDetailsSection;
         if ( form ) {
             if ( form.controls ) {
                 let valids : number   = 0;
@@ -95,13 +95,13 @@ export class MenuFrameApplicationBlockComponent {
     }
 
     private isSectionValid ( fullyDistinguishedName : string[] ) : boolean {
-        //var sectionControlGroup = this.controlService.getControlGroup( fullyDistinguishedName );
-        //return sectionControlGroup && sectionControlGroup.valid;
+        // let sectionControlGroup = this.controlService.getControlGroup( fullyDistinguishedName );
+        // return sectionControlGroup && sectionControlGroup.valid;
         return true;
     }
 
     private isSectionActive ( _fdn : string[] ) : boolean {
-        //return this.formSectionService.isCurrentSection( _fdn );
+        // return this.formSectionService.isCurrentSection( _fdn );
         return true;
     }
 
