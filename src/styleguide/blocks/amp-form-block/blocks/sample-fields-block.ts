@@ -174,6 +174,7 @@ import { FormService } from "../../../../app/services/form/form.service";
 } )
 export class SampleFieldsBlock extends FormBlock {
     private $checkBoxValue = this.storeService.distinctSelect( FDN.BlockWithCheckbox.concat( [ 'checkboxId' ] ) );
+    private  something = this.storeService.distinctSelect ( FDN.anotherSampleExperienceBlock.concat( [ 'FullOrPartial' ] ) );
 
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
