@@ -149,13 +149,18 @@ $checkbox-margin : 0;
         transition-delay : 1.2s !important;
         @include rtl(margin-left, 0 !important, 0);
         @include rtl(margin-right, 0, 0);
+
+        > .label {
+            margin-left: 0;
+        }
+          
       }
     }
   }
 
 .label {
     line-height: 45px;
-    margin-top: -10px;
+    margin-top: -4px;
     display: inline-block;
     vertical-align: top;
     position: relative;
@@ -177,7 +182,7 @@ $checkbox-margin : 0;
     // @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
     @include rtl(margin-right, 0, $checkbox-text-margin + $checkbox-width);
 
-}
+    }
 }
 
 // Themes :

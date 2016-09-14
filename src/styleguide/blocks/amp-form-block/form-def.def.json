@@ -43,6 +43,43 @@
                             },
                             "blocks": [
                                 {
+                                    "name": "BlockWithCheckbox",
+                                    "blockType": "BlockWithCheckbox",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "/amp-form-block/blocks/block-with-checkbox",
+                                    "custom": {
+                                        "blockTitle": "Checkbox ",
+                                        "controls": [
+                                            {
+                                                "id": "radios",
+                                                "buttons": [
+                                                    {
+                                                        "id": "five_years2",
+                                                        "value": "five_years2",
+                                                        "label": "At least five years"
+                                                    },
+                                                    {
+                                                        "id": "fewer_than_five_years",
+                                                        "value": "fewer_than_five_years",
+                                                        "label": "Fewer than five years"
+                                                    },
+                                                    {
+                                                        "id": "more_than_five_years",
+                                                        "value": "more_than_five_years",
+                                                        "label": "More than five years"
+                                                    },
+                                                    {
+                                                        "id": "amazing_value",
+                                                        "value": "amazing_value",
+                                                        "label": "How amazing this radio button is"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
                                     "name": "anotherSampleExperienceBlock",
                                     "blockType": "AnotherSampleExperienceBlock",
                                     "blockLayout": "INLINE",
@@ -145,43 +182,7 @@
                                         ]
                                     }
                                 },
-                                {
-                                    "name": "BlockWithCheckbox",
-                                    "blockType": "BlockWithCheckbox",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "/amp-form-block/blocks/block-with-checkbox",
-                                    "custom": {
-                                        "blockTitle": "Checkbox ",
-                                        "controls": [
-                                            {
-                                                "id": "radios",
-                                                "buttons": [
-                                                    {
-                                                        "id": "five_years2",
-                                                        "value": "five_years2",
-                                                        "label": "At least five years"
-                                                    },
-                                                    {
-                                                        "id": "fewer_than_five_years",
-                                                        "value": "fewer_than_five_years",
-                                                        "label": "Fewer than five years"
-                                                    },
-                                                    {
-                                                        "id": "more_than_five_years",
-                                                        "value": "more_than_five_years",
-                                                        "label": "More than five years"
-                                                    },
-                                                    {
-                                                        "id": "amazing_value",
-                                                        "value": "amazing_value",
-                                                        "label": "How amazing this radio button is"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
+
                                 {
                                     "name": "BlockWithTextarea",
                                     "blockType": "BlockWithTextarea",
