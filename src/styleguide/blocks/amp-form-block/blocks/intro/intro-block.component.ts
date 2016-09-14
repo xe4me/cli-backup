@@ -20,6 +20,7 @@ import { AmpButton } from '../../../../../app/components/amp-button/amp-button.c
                         Weigh up the pros and cons when considering your personal circumstances and if you decide your employer’s AMP super plan is right for you, simply provide the information below we’ll work with your employer to set up your AMP account.
                     </p>
                     <amp-button
+                        [context]="context()"
                         class='btn btn-ok mt+'
                         [attr.theme]="themeService.theme.attr"
                         (click)='onNext()'>

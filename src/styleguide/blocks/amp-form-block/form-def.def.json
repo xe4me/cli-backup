@@ -60,7 +60,6 @@
                                         ]
                                     }
                                 },
-
                                 {
                                     "name": "anotherSampleExperienceBlock",
                                     "blockType": "AnotherSampleExperienceBlock",
@@ -155,7 +154,6 @@
                                     "custom": {
                                         "blockTitle": "Let's test the radio buttons",
                                         "controls": [
-
                                             {
                                                 "id": "radios",
                                                 "buttons": [

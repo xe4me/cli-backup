@@ -12,6 +12,7 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from '../../../..
              </div>
              <div class="block-buttons">
                  <amp-button
+                    [context]="context"
                     *ngIf='!context?.isInSummaryState'
                     [attr.theme]="theme"
                     (click)='context.onNext()'
@@ -19,6 +20,7 @@ import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from '../../../..
                     OK
                 </amp-button>
                 <amp-button
+                    [context]="context"
                     *ngIf='context?.isInSummaryState'
                     [attr.theme]="theme"
                     (click)='context.onEdit()'

@@ -10,6 +10,7 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
 import { FormArray , FormGroup } from '@angular/forms';
 import { ModelActions , Payload } from '../../../../app/redux/actions/model/model.action';
 import { Store } from '@ngrx/store';
+import { AmpButton } from "../../../../app/components/amp-button/amp-button.component";
 @Component( {
     selector        : 'sample-array-experience-block' ,
     template        : `
@@ -34,10 +35,12 @@ import { Store } from '@ngrx/store';
                         </amp-redux>
                      </div>
             </amp-form-row>
-          <button (click)="addMore()" class="btn btn-anchor"> <span class="icon icon--plus-filled" aria-hidden="true"></span> Add another field</button>
+            <amp-button [context]="context()" (click)="addMore()" class="btn btn-anchor">
+                <span class="icon icon--plus-filled" aria-hidden="true"></span> Add another field
+           </amp-button>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
+    directives      : [ AmpButton ,AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleArrayExperienceBlock extends FormBlock implements OnInit {

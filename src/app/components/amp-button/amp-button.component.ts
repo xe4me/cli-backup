@@ -25,11 +25,11 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
         <ng-content></ng-content>
     </button>` ,
     styles          : [ require( './amp-button.component.scss' ).toString() ] ,
-    encapsulation   : ViewEncapsulation.Emulated ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 export class AmpButton implements AfterContentInit {
     @Input( 'chevron' ) _chevron : string;
+    @Input( 'context' ) context;
     @Input() click;
     @Input() disabled;
     @Input( 'class' ) _class : string;
@@ -38,7 +38,6 @@ export class AmpButton implements AfterContentInit {
     @Input( 'data-automation-id' ) dataAutomationId : string;
                                    _dataAutomationId : string;
                                    domAdatper : BrowserDomAdapter;
-    private parent;
 
     constructor ( private elementRef : ElementRef ,
                   private renderer : Renderer ) {
@@ -48,11 +47,10 @@ export class AmpButton implements AfterContentInit {
     ngAfterContentInit () {
         this.domAdatper = new BrowserDomAdapter();
         let contentStr  = this.domAdatper.getText( this.elementRef.nativeElement );
-
         if ( ! this.dataAutomationId || ! this.dataAutomationId.length ) {
             this._dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g , '' ) : '');
-            if ( this.parent ) {
-                this._dataAutomationId += '_' + this.parent.blockType;
+            if ( this.context ) {
+                this._dataAutomationId += '_' + this.context.__blockType;
             }
         } else {
             this._dataAutomationId = this.dataAutomationId;

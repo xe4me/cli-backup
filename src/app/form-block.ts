@@ -57,7 +57,6 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
                     inputs = this.elementRef.nativeElement.getElementsByTagName( 'select' );
                 }
             }
-            console.log( 'inputs' , inputs );
             if ( inputs && inputs.length > 0 ) {
                 inputs[ 0 ].focus();
             }
