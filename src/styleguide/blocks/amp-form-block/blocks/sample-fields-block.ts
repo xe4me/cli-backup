@@ -18,7 +18,7 @@ import { FormService } from "../../../../app/services/form/form.service";
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
-            <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 form-row-label-inline'>Whats your full name?</label>
+            <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label-inline'>Whats your full name?</label>
                 <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
@@ -55,7 +55,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                 </div>
             </amp-form-row>
             <amp-form-row [attr.theme]="themeService.theme.attr">
-                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 form-row-label'>Contact number</label>
+                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Contact number</label>
                 <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
                     <label class='1/1 sr-only'>What's your Contact number?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
@@ -75,7 +75,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                 </div>
             </amp-form-row>
              <amp-form-row [attr.theme]="themeService.theme.attr">
-                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 form-row-label'>Email address</label>
+                <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Email address</label>
                 <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
                     <label class='1/1 sr-only'>What's your Email address?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[1].id])">

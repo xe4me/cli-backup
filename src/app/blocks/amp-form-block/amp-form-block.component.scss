@@ -10,10 +10,13 @@
   .FormBlocK {
 
   .heading-intro {
-      margin-bottom : 32px;
+
+      @include media-query(tablet-and-up) {
+          margin-bottom : 14px;
+      }
       @include media-query('palm') {
-          margin-bottom : 6px;
           line-height: 30px;
+          margin-bottom : 10px;
       }
    }
 

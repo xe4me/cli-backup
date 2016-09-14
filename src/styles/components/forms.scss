@@ -19,9 +19,8 @@ bolr styles
     .form-row-label {
         color: $amp-colour-grey-darker;
         @include media-query(tablet-and-up) {
-            min-width: 286px;
             @extend %#{$namespace}font-size-medium;
-            margin: 12px 0 12px 0;
+            margin: 18px 0 2px 0;
         }
 
         @include media-query(palm) {
@@ -35,7 +34,6 @@ bolr styles
     .form-row-label-inline {
         color: $amp-colour-grey-darker;
         @include media-query(tablet-and-up) {
-            min-width: 286px;
             @extend %#{$namespace}font-size-medium;
             margin: 30px 0 0 0;
         }
