@@ -15,7 +15,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
  * Webpack Constants
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const HOST = process.env.HOST || '10.17.80.40';
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 3001;
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = webpackMerge(commonConfig.metadata, {
