@@ -17,30 +17,29 @@ import {
 // import { ThemeService } from './services/theme';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 
-
 @Injectable()
 export class DataResolver implements Resolve<any> {
-  constructor() {
+    constructor() {
 
-  }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return Observable.of({ res: 'I am data'});
-  }
+    }
+    public resolve(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) {
+        return Observable.of({ res: 'I am data'});
+    }
 }
 
 // an array of services to resolve routes with data
 export const APP_RESOLVER_PROVIDERS = [
-  DataResolver,
-  FormModelService ,
-  // TableContentsService ,
-  ScrollService ,
-  ProgressObserverService ,
-  AmpHttpService ,
-  // NavigationService ,
-  // ComponentsService ,
-  BrowserDomAdapter ,
-  // ThemeService ,
-  // MdIconRegistry,
-  FormSectionService,
-  Renderer
+    DataResolver,
+    FormModelService ,
+    // TableContentsService ,
+    ScrollService ,
+    ProgressObserverService ,
+    AmpHttpService ,
+    // NavigationService ,
+    // ComponentsService ,
+    BrowserDomAdapter ,
+    // ThemeService ,
+    // MdIconRegistry,
+    FormSectionService,
+    Renderer
 ];
