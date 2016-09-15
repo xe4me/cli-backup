@@ -5,6 +5,7 @@ import { ProgressObserverService } from '../../../app/services/progress-observer
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { IntroBlockComponent } from '../../../app/blocks/amp-intro-block/intro-block.component';
 import { FormBlock } from '../../../app/form-block';
+import { ThemeService } from '../../services/theme';
 @Component( {
     selector   : 'intro-block-basic-usage' ,
     directives : [ AmpButton, IntroBlockComponent ] ,
@@ -13,6 +14,10 @@ import { FormBlock } from '../../../app/form-block';
 } )
 
 export default class IntroBlockBasicUsage {
+
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
+    }
+
     // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
     private callbackForChangeLink = (target : string) => {
     }
