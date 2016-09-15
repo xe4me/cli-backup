@@ -8,6 +8,7 @@ export {
     MinDateValidator ,
     PatterValidator
 } from './src/app/util/validations';
+export { AmpCurrencyPipe } from './src/app/pipes/currency/amp-currency.pipe';
 export { KeyCodes } from './src/app/util/key-kodes.utils';
 export { BasicUtils } from './src/app/util/basic-utils';
 export { FormUtils } from './src/app/util/form-utils';
@@ -57,3 +58,15 @@ export { ProgressObserverService } from './src/app/services/progress-observer/pr
 export { AmpDateService } from './src/app/services/amp-date/amp-date.service';
 export { AmpConfirmationDialogService } from './src/app/services/amp-confirmation-dialog/amp-confirmation-dialog.service';
 export { FormSectionService } from './src/app/services/form-section/form-section.service.ts';
+export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';
+export { LicenseesAbstract } from './src/app/abstracts/licensee/licensee.abstract';
+export { AssociationLengthAbstract } from './src/app/abstracts/association-length/association-length.abstract';
+export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise-date.abstract';
+export { ScrollService } from './src/app/services/scroll/scroll.service';
+export { FormModelService } from './src/app/services/form-model/form-model.service';
+export { DeviceService } from './src/app/services/device/device.service';
+export { AmpHttpService } from './src/app/services/amp-http/amp-http.service';
+export { ValidationService } from './src/app/services/validation/validation.service';
+export { ProgressObserverService } from './src/app/services/progress-observer/progress-observer.service';
+export { AmpDateService } from './src/app/services/amp-date/amp-date.service';
+export { FormSectionService } from './src/app/services/form-section/form-section.service';
