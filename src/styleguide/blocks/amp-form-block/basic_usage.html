@@ -1,10 +1,116 @@
 <div>
-    <!--<amp-redux [form]="form">-->
-        <form #ampReduxRef [formGroup]="form" class='nl-form'>
-            <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form" [requireMethod]="'ALL'" ></div>
-        </form>
-    <!--</amp-redux>-->
-   <!-- <ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>
-    <pre>{{ form.value | json }}</pre>-->
+    <section class="p">
+        <h3 class="heading heading-intro">Dynamic for using amp-block-loader and Redux</h3>
+        <p>
+            In bellow example, we're trying to load a form defined in a form definition and access to
+            it's controls values via Redux.
+        </p>
+        <h4 class="heading heading-micro-intro">Thing you need o know before using all of these </h4>
+        <ul class="list">
+            <li>How <a target="_blank" href="http://localhost:3001/component/AmpBlockLoaderDirective">AmpBlockLoader</a>
+                works
+            </li>
+            <li>What is Redux and <a target="_blank" href="https://github.com/ngrx/store">ngrx/store</a></li>
+            <li><a target="_blank"
+                   href="http://stackoverflow.com/questions/37185820/how-to-place-a-dynamic-component-in-a-container">Dynamic
+                loading of components </a></li>
+            <li>Angular2 <a href="https://angular.io/docs/ts/latest/guide/forms.html">Form Api</a></li>
+        </ul>
+
+        <h5 class="heading heading-micro-intro">If you're comfortable enough around above concepts , let's begin </h5>
+        <h5 class="heading heading-micro-intro">What is form definition ?</h5>
+        <p>It's a JSON representation of what we expect to have/see in our form , every <a
+                href="https://teamtools.amp.com.au/confluence/display/DDC/Blocks">Block</a> that we create , we want to
+            make sure that we're loading this block as part of our form definition.
+            <br>
+            We could have easily loaded our block as a simple Angular2 component inside our HTML , but we don't do that
+            to be able to make sure we're on control of loading this block dynamically and this form def will be stored
+            in database, someday!
+
+        </p>
+        <h5 class="heading heading-micro-intro">Every block has some properties that are part of the form def </h5>
+        <p>Every block that is loaded with amp-block-loader , as part of the form def , has some sort of private and
+            hidden properties inside it that is available throughout the life of that block , these properties are
+            : </p>
+        <ul class="list">
+            <li>
+                __custom
+                <div class="grid__item_floated 1/1">
+                    All the fields that you provide inside your form definition block will be injected to this property
+                    and are accessable in your block class , Example :
+                    <h5>Say you're going to use amp-firstname inside your block</h5>
+                    <highlight type="html" label="html">
+                        <div class="grid__item_floated">
+                            <amp-first-name
+                                    [controlGroup]="__controlGroup"
+                                    [id]='__custom.controls[0].id'>
+                            </amp-first-name>
+                        </div>
+                    </highlight>
+                    <p>
+                        So FirstNameComponent requires and id to be provided, thus the consumer of this component should
+                        give it an id.
+                        <br>
+                        This id can be either hard coded
+                        <highlight>id='firstname'</highlight>
+                        Or it can be a variable
+                        <highlight>[id]='myVariableInsideMyClass'</highlight>
+                        Or this can be part of form def :
+                        <highlight type="javascript" label="javascript">
+                            <pre>
+                                {{ '{' }}
+                                  "name": "samplefieldsblock",
+                                  "blockType": "SampleFieldsBlock",
+                                  "blockLayout": "INLINE",
+                                  "commonBlock": false,
+                                  "path": "/amp-form-block/blocks/sample-fields-block",
+                                  "custom": {{ '{' }}
+                                    "blockTitle": "Please provide your firstname",
+                                    "controls": {{ '[' }}
+                                      {{ '{' }}
+                                        "id": "firstname"
+                                      {{ '}' }}
+                                    {{ ']' }}
+                                 {{ '}' }}
+                                {{ '}' }}
+                            </pre>
+                        </highlight>
+                        And then inside your block html , you'd access it like :
+                        <highlight>
+                            [id]='__custom.controls[0].id'>
+                        </highlight>
+                    </p>
+                </div>
+            </li>
+            <li>
+                __controlGroup
+                <div class="grid__item_floated 1/1">
+                    As amp-block-loader loads the blocks as it loops through them , it creates a controlGroup for every block
+                    and then adds it to the overall form ,again , you have access to this variable inside your block class.
+                </div>
+            </li>
+            <li>
+                __form
+                <div class="grid__item_floated 1/1">
+                    AmpBlockLoader expect a form that has been created by the app component , and then it assign all the dynamically created controlGroup to this form,
+                    Again , this variable is accessible inside the block class.
+                </div>
+            </li>
+            <li>
+                __blockType
+                <div class="grid__item_floated 1/1">
+                    This is the Block's class name that you provide inside the form def , it's accessible inside your block class for you to use it if you want.
+                </div>
+            </li>
+        </ul>
+        <br><br><br>
+    </section>
+
+    <form [formGroup]="form" class='nl-form'>
+        <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"
+             [requireMethod]="'ALL'"></div>
+    </form>
+
+    <!-- <ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>-->
 </div>
 
