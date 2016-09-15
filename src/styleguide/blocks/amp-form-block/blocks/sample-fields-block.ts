@@ -20,7 +20,7 @@ import { FormService } from "../../../../app/services/form/form.service";
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
          <amp-form-row [attr.theme]="themeService.theme.attr">
          <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label-inline sr-only'>Whats your full name?</label>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+                <div class="grid__item_floated palm-1/1 tablet-3/12 lap-and-down-6/12 desk-2/12 desk-mr- mr  mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                       <amp-dropdown
@@ -36,8 +36,8 @@ import { FormService } from "../../../../app/services/form/form.service";
                       </amp-dropdown>
                     </amp-redux>
                 </div>
-            <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label-inline sr-only'>Whats your full name?</label>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+
+                <div class="grid__item_floated palm-1/1 tablet-3/12 lap-and-down-6/12 desk-3/12 desk-mr- mr mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                         <amp-input
@@ -54,14 +54,14 @@ import { FormService } from "../../../../app/services/form/form.service";
                         </amp-input>
                     </amp-redux>
                 </div>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+                <div class="grid__item_floated palm-1/1 tablet-3/12 lap-and-down-6/12 desk-3/12 desk-mr- mr mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                         <amp-input
                             #ampReduxRef
                             [attr.theme]="themeService.theme.attr"
                             [id]="__custom.controls[0].id"
-                            [label]="'Last name '"
+                            [label]="'Middle name '"
                             [controlGroup]="__controlGroup"
                             [isInSummaryState]="isInSummaryState"
                             [required]="true"
@@ -71,7 +71,7 @@ import { FormService } from "../../../../app/services/form/form.service";
                         </amp-input>
                     </amp-redux>
                 </div>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+                <div class="grid__item_floated palm-1/1 tablet-3/12 lap-and-down-6/12 desk-3/12 desk-mr- mr mt0">
                     <label class='1/1 sr-only'>What's your first name?</label>
                     <amp-redux [fdn]="__fdn.concat([__custom.controls[0].id])">
                         <amp-input
