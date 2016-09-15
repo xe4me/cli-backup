@@ -4,7 +4,7 @@ $font-size : $amp-base-font-size * 2 / 5 !default;
 
 $logo-height : 60px !default;
 
-$amp-ddc-public-asset : '../../../src/assets/';
+$amp-ddc-public-asset : '../../../assets/';
 
 :host {
   padding          : 60px 0;
@@ -32,7 +32,7 @@ $amp-ddc-public-asset : '../../../src/assets/';
   background-repeat     : no-repeat;
 
   height                : $amp-logo-height;
-  //background-image      : url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
+  background-image      : url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
 }
 
 
