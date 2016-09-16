@@ -7,14 +7,20 @@ $logo-height : 60px !default;
 $amp-ddc-public-asset : '../../../assets/';
 
 :host {
-  padding          : 26px 80px 26px 0;
+  padding          : 26px 80px 60px 0;
   width            : 100%;
   display          : block;
   background-color : $amp-colour-white;
   color            : #fff;
-    
+
    .intro-list-container  {
-     margin-left: 234px;
+       @include media-query(lap-and-up) {
+           margin-left: 234px;
+       }
+
+       @include media-query(tablet-and-down) {
+           margin-left: 0;
+       }
    }
 
   .intro-logo {
@@ -46,6 +52,7 @@ $amp-ddc-public-asset : '../../../assets/';
       display: flex;
       -webkit-flex-flow: row wrap;
       justify-content: space-around;
+      flex-wrap: nowrap;
 
      > .list-item {
          display: flex;
