@@ -1,11 +1,13 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { AmpButton , AmpErrorComponent , AmpOverlayComponent } from '../../../../';
+import { AmpErrorComponent } from "../../components/amp-error/amp-error.component";
+import { AmpButton } from "../../components/amp-button/amp-button.component";
+import { AmpOverlayComponent } from "../../components/amp-overlay/amp-overlay.component";
 @Component( {
-    selector : 'amp-form-block' ,
+    selector   : 'amp-form-block' ,
     template   : `
         <div (keyup.enter)="context.onNext()" class="FormBlocK " id='{{ context?.selectorName }}'>
              <amp-overlay [active]='!context?.isActive'></amp-overlay>
-            <h2 class="heading heading-intro">{{ context?.__custom.blockTitle}}</h2>
+            <h2 class="heading heading-intro" [innerHtml]="context?.__custom.blockTitle"></h2>
              <ng-content></ng-content>
              <div *ngIf="!noError">
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>

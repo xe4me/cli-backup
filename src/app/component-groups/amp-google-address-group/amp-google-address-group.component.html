@@ -1,6 +1,6 @@
 <div class='google-address' [ngClass]='{hide: showManualAddrEntry}'>
 
-    <div class='grid__item'>
+    <div class='grid__item_floated'>
         <!--Practice address-->
         <label class='heading heading-contxtual-label mb3'>Address</label><!--
 
@@ -46,7 +46,7 @@
 
 <div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'><!--
 
- --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+ --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
         <amp-input
             #manualAddress
             class='1/1'
@@ -84,7 +84,7 @@
 
  --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
 
- --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+ --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
         <amp-input
             #manualSuburb
             class='1/1'
@@ -121,7 +121,7 @@
 
  --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
 
- --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+ --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
         <amp-input
             #manualState
             noPadding='true'
@@ -159,7 +159,7 @@
 
     --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
 
-    --><div class='grid__item input-wrapper {{ manualInputGridItemClasses() }}'>
+    --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
         <amp-input
             #manualPostcode
             noPadding='true'

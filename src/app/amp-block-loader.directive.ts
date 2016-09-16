@@ -11,10 +11,8 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormSectionService } from './services/form-section/form-section.service';
-
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
-
 @Directive( { selector : '[amp-block-loader]' } )
 export class AmpBlockLoaderDirective implements OnChanges {
     @Input( 'amp-block-loader' ) blockLoader;
@@ -99,10 +97,11 @@ export class AmpBlockLoaderDirective implements OnChanges {
                 }
             } else {
                 try {
-                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    console.log( "'../../../../src/app/' + this._blocks[ i ].path + '\.ts'" , '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 } catch ( err ) {
                     console.log( 'Did not find the experience components, maybe we are not in an experience' );
-                    myChunk = require( '../../src/styleguide/blocks' + this._blocks[ i ].path + '\.ts' );
+                    //myChunk = require( '../../src/styleguide/blocks' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             if ( myChunk ) {
@@ -184,10 +183,10 @@ export class AmpBlockLoaderDirective implements OnChanges {
             } else {
                 try {
                     console.log( 'Requiring ' , '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
-                    myChunk = require( '../../src/app/' + this._blocks[ i ].path + '\.ts' );
+                    myChunk = require( '../../../../src/app/' + this._blocks[ i ].path + '\.ts' );
                 } catch ( err ) {
                     console.log( 'Did not find the experience components, maybe we are not in an experience' );
-                    myChunk = require( '../../src/styleguide/blocks' + this._blocks[ i ].path + '\.ts' );
+                    //myChunk = require( '../../src/styleguide/blocks' + this._blocks[ i ].path + '\.ts' );
                 }
             }
             this.retrievedFiles[ i ] = null;

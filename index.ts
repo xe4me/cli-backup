@@ -1,3 +1,4 @@
+export { AmpReduxModule } from './src/app/redux/amp-redux.module';
 // utils
 export {
     RequiredValidator ,
@@ -33,6 +34,7 @@ export { AmpInputComponent } from './src/app/components/amp-input/amp-input.comp
 export { AmpFirstNameComponent } from './src/app/components/amp-first-name/amp-first-name.component';
 export { AmpLastNameComponent } from './src/app/components/amp-last-name/amp-last-name.component';
 export { AmpContactNumberComponent } from './src/app/components/amp-contact-number/amp-contact-number.component';
+export { AmpEmailComponent } from './src/app/components/amp-email/amp-email.component';
 export { AmpHomeNumberComponent } from './src/app/components/amp-home-number/amp-home-number.component';
 export { AmpWorkNumberComponent } from './src/app/components/amp-work-number/amp-work-number.component';
 export { AmpMobileNumberComponent } from './src/app/components/amp-mobile-number/amp-mobile-number.component';
@@ -57,16 +59,5 @@ export { ValidationService } from './src/app/services/validation/validation.serv
 export { ProgressObserverService } from './src/app/services/progress-observer/progress-observer.service';
 export { AmpDateService } from './src/app/services/amp-date/amp-date.service';
 export { AmpConfirmationDialogService } from './src/app/services/amp-confirmation-dialog/amp-confirmation-dialog.service';
-export { FormSectionService } from './src/app/services/form-section/form-section.service.ts';
-export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';
-export { LicenseesAbstract } from './src/app/abstracts/licensee/licensee.abstract';
-export { AssociationLengthAbstract } from './src/app/abstracts/association-length/association-length.abstract';
-export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise-date.abstract';
-export { ScrollService } from './src/app/services/scroll/scroll.service';
-export { FormModelService } from './src/app/services/form-model/form-model.service';
-export { DeviceService } from './src/app/services/device/device.service';
-export { AmpHttpService } from './src/app/services/amp-http/amp-http.service';
-export { ValidationService } from './src/app/services/validation/validation.service';
-export { ProgressObserverService } from './src/app/services/progress-observer/progress-observer.service';
-export { AmpDateService } from './src/app/services/amp-date/amp-date.service';
 export { FormSectionService } from './src/app/services/form-section/form-section.service';
+export { FormService } from './src/app/services/form/form.service';

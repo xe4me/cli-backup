@@ -6,11 +6,11 @@ import {
   {
     selector      : 'amp-review-total' ,
     template      : `
-          <div class="grid amp-review-total pv">
-            <h3 class="grid__item amp-review-total__label 2/5">
+          <div class="grid__container amp-review-total pv">
+            <h3 class="grid__item_floated amp-review-total__label 2/5">
               <span>{{label}}</span>
             </h3><!--
-         --><div class="amp-review-total__value grid__item 3/5 pl">
+         --><div class="amp-review-total__value grid__item_floated 3/5 pl">
               <span *ngIf="value">
                 <span>{{value}}</span>
                 <span *ngIf="frequency">{{frequency}}</span>

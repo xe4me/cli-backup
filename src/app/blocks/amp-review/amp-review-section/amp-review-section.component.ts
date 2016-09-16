@@ -7,7 +7,7 @@ import { AmpButton } from '../../../components/amp-button/amp-button.component';
         selector      : 'amp-review-section' ,
         template      : `
           <div class="grid amp-review-section pv">
-            <div class="grid__item" *ngIf="title">
+            <div class="grid__item_floated" *ngIf="title">
               <h3 class="amp-review-section__title mb-10">
                 {{title}}
               </h3>
