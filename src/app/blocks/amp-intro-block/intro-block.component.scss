@@ -7,11 +7,52 @@ $logo-height : 60px !default;
 $amp-ddc-public-asset : '../../../assets/';
 
 :host {
-  padding          : 60px 0;
+  padding          : 26px 0;
   width            : 100%;
   display          : block;
-  background-color : $amp-colour-primary;
+  background-color : $amp-colour-white;
   color            : #fff;
+
+  .intro-logo {
+    width                 : 100px;
+    background-position   : left bottom;
+    background-attachment : scroll;
+    background-repeat     : no-repeat;
+    text-indent: -9999px!important;
+    height                : $amp-logo-height;
+    background-image      : url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
+  }
+
+  .intro-list {
+     color: $amp-colour-grey-darkest;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: row wrap;
+      justify-content: space-around;
+
+     > .list-item {
+         display: flex;
+         flex-direction: column;
+         flex-flow: flex-start;
+     }
+  }
+  .intro-message-heading {
+      color: $amp-colour-grey-darkest;
+  }
+
+
+    &[theme='tools'] {
+      padding          : 60px 0;
+
+  }
+
+
 }
 
 .intro-block {
@@ -25,15 +66,6 @@ $amp-ddc-public-asset : '../../../assets/';
   }
 }
 
-.intro-logo {
-  width                 : 100px;
-  background-position   : left bottom;
-  background-attachment : scroll;
-  background-repeat     : no-repeat;
-
-  height                : $amp-logo-height;
-  background-image      : url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
-}
 
 
 
