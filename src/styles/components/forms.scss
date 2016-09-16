@@ -20,7 +20,7 @@ bolr styles
         color: $amp-colour-grey-darker;
         @include media-query(tablet-and-up) {
             @extend %#{$namespace}font-size-medium;
-            margin: 54px 0 2px 0;
+            margin: 44px 0 2px 0;
         }
 
         @include media-query(palm) {
