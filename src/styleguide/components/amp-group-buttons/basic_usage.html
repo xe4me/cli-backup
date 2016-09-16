@@ -1,4 +1,14 @@
+
+
 <form #formModel="ngForm" class="nl-form">
+    <!---->
+    <section class="alert alert--danger alert--iconified mt" style="background:  #d60e1c;margin:20px; padding:20px;min-height: 100px;">
+        <div class="grid_container 1/1">
+
+            <p style="color:white;" class="grid__item_floated 8/12">  <span class="alert__icon icon icon--warning-outlined" style="color:white;"></span>This button must only be used for 3 buttons or less. Anything higher than 3 options or buttons needs to use a dropdown list.</p>
+        </div>
+    </section>
+
     <h4 [style.color]='color'>this is binded to onButtonSelect , i.e on click event , and that event is changing the
         color</h4>
     <div id="group-buttons">
