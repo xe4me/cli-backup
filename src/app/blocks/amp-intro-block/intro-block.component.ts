@@ -16,8 +16,8 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
                                 <article class="intro-article grid__item_floated 1/1">
                                     <ul class="intro-list">
                                     <li class="list-item"><label class="intro-label">ABC Financial Planning</label> </li>
-                                    <li class="list-item"><label class="intro-label 6/12">PayeeID: </label> <label class="intro-value 6/12">123456</label></li>
-                                    <li class="list-item"><label class="intro-label">Practice principle:</label> <label class="intro-value">John Smith</label></li>
+                                    <li class="list-item"><label class="intro-label">PayeeID: </label> <label class="intro-value">123456</label></li>
+                                    <li class="list-item"><label class="intro-label">Practice principle: </label> <label class="intro-value">John Smith</label></li>
                                     </ul>
                                 </article>
                                 <h3 class="intro-message-heading heading heading-intro mb+">Hi John, You're about to request to exercise your buyer of the last resort facility. (BOLR). </h3>
