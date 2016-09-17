@@ -36,6 +36,8 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
+    private loadedDynamicBlock = false;
+
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   scrollService : ScrollService ,
@@ -45,8 +47,83 @@ export class AnotherSampleExperienceBlock extends FormBlock {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
+    private dynamicChild        = {
+        "name"        : "BlockWithRadios" ,
+        "blockType"   : "BlockWithRadios" ,
+        "blockLayout" : "INLINE" ,
+        "commonBlock" : false ,
+        "path"        : "/amp-form-block/blocks/block-with-radios" ,
+        "custom"      : {
+            "blockTitle" : "Let's test the radio buttons" ,
+            "controls"   : [
+                {
+                    "id"      : "radios" ,
+                    "buttons" : [
+                        {
+                            "id"    : "five_years2" ,
+                            "value" : "five_years2" ,
+                            "label" : "At least five years"
+                        } ,
+                        {
+                            "id"    : "fewer_than_five_years" ,
+                            "value" : "fewer_than_five_years" ,
+                            "label" : "Fewer than five years"
+                        } ,
+                        {
+                            "id"    : "more_than_five_years" ,
+                            "value" : "more_than_five_years" ,
+                            "label" : "More than five years"
+                        } ,
+                        {
+                            "id"    : "amazing_value" ,
+                            "value" : "amazing_value" ,
+                            "label" : "How amazing this radio button is"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+    private anotherDynamicChild = {
+        "name"        : "samplefieldsblock" ,
+        "blockType"   : "SampleFieldsBlock" ,
+        "blockLayout" : "INLINE" ,
+        "commonBlock" : false ,
+        "path"        : "/amp-form-block/blocks/sample-fields-block" ,
+        "custom"      : {
+            "blockTitle" : "Multiple text fields " ,
+            "controls"   : [
+                {
+                    "id"      : "Title" ,
+                    "options" : [
+                        {
+                            "value" : "MR" ,
+                            "label" : "MR"
+                        } ,
+                        {
+                            "value" : "MRS" ,
+                            "label" : "MRS"
+                        }
+                    ]
+                } ,
+                {
+                    "id" : "Title1"
+                }
+            ]
+        }
+    };
+
     onButtonClick ( value ) {
-        console.log( 'onButtonClick: value' , value );
+        if ( value === 'full' ) {
+            this.loadedDynamicBlock = true;
+            this.__loadAt( this.anotherDynamicChild , this.__index + 1 );
+            this.__loadAt( this.dynamicChild , this.__index + 2 );
+        } else {
+            if ( this.loadedDynamicBlock ) {
+                this.__removeAt( this.__index + 1 );
+                this.__removeAt( this.__index + 1 );
+            }
+        }
     }
 
     context () {
