@@ -14,9 +14,12 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected visibleFlag : string           = 'defaultIsVisible';
     protected doneFlag : string              = 'defaultIsDone';
     protected noScroll                       = false;
-    protected __fdn : string[]               = null;
+    protected __fdn : (number|string)[]      = null;
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
+    protected __removeAt : Function;
+    protected __loadAt : Function;
+    protected __index : number;
     private scrollSubscription : Subscription;
 
     abstract context () : any;
@@ -37,7 +40,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy () {
-        this.unSubscribeToScrollEvents();
+        this.unSubscribeFromScrollEvents();
     }
 
     updateSelectorName ( _customString : string|number ) {
@@ -95,32 +98,13 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         }
     }
 
-    protected tickDone () {
-        this.formModelService.present( {
-            action    : 'setFlag' ,
-            flag      : this.doneFlag ,
-            flagValue : true
-        } );
-    }
-
-    protected tickUnDone () {
-        this.formModelService.present( {
-            action    : 'setFlag' ,
-            flag      : this.visibleFlag ,
-            flagValue : false
-        } );
-    }
-
     private resetBlock () {
-        this.formModelService.present( {
-            action    : 'setFlag' ,
-            flag      : this.visibleFlag ,
-            flagValue : false
-        } );
         this.isInSummaryState = false;
     }
 
-    private unSubscribeToScrollEvents () {
-        this.scrollSubscription.unsubscribe();
+    private unSubscribeFromScrollEvents () {
+        if ( this.scrollSubscription ) {
+            this.scrollSubscription.unsubscribe();
+        }
     }
 }
