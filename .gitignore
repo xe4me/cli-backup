@@ -3,6 +3,8 @@
 # Logs
 logs
 *.log
+*.model.json
+*.fdn.ts
 
 # Runtime data
 pids
