@@ -8,7 +8,6 @@ import { AmpBlockLoaderDirective } from '../../../../../app/amp-block-loader.dir
     </div>
   ` ,
     directives : [ AmpBlockLoaderDirective ]
-    // encapsulation: ViewEncapsulation.Emulated
 } )
 export class DetailsPage {
     static CLASS_NAME = 'DetailsPage';
