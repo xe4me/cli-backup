@@ -11,7 +11,7 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
             <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class="grid__container 1/1 palm-1/1">
                     <div class="grid__item_floated utils__align&#45;&#45;left" >
-                       <h2 class='intro-logo mb+'>AMP Financial Planning</h2>
+                       <h2 class='intro-logo'>AMP Financial Planning</h2>
                            <div class="intro-list-container">
                                 <article class="intro-article grid__item_floated 1/1">
                                     <ul class="intro-list">
@@ -20,7 +20,7 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
                                     <li class="list-item"><label class="intro-label">Practice principle: </label> <label class="intro-value">John Smith</label></li>
                                     </ul>
                                 </article>
-                                <h3 class="intro-message-heading heading heading-intro mb+">Hi John, You're about to request to exercise your buyer of the last resort facility. (BOLR). </h3>
+                                <h3 class="intro-message-heading heading heading-intro">Hi John, You're about to request to exercise your buyer of the last resort facility. (BOLR). </h3>
                                 <p class="intro-tagline"><strong>We just need a few details, it won't take long</strong> </p>
                                  <amp-button
                                     [context]="context()"
