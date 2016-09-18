@@ -7,17 +7,16 @@ import {
     Output ,
     EventEmitter ,
     ComponentFactory ,
-    OnChanges , OnInit
+    OnChanges , OnInit , ViewRef , ComponentFactoryResolver , NgModule , Compiler , ModuleWithComponentFactories
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormSectionService } from './services/form-section/form-section.service';
-import { Subscription } from "rxjs";
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 @Directive( {
     selector : '[amp-block-loader]'
 } )
-export class AmpBlockLoaderDirective implements OnInit {
+export class AmpBlockLoaderDirective {
     @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
     @Input( 'form' ) form : FormGroup;
@@ -29,30 +28,49 @@ export class AmpBlockLoaderDirective implements OnInit {
     private _blocks                         = [];
 
     constructor ( private viewContainer : ViewContainerRef ,
+                  private compiler : Compiler ,
                   private formSectionService : FormSectionService ,
                   private componentResolver : ComponentResolver ) {
     }
 
     ngOnChanges ( changes : any ) : any {
-        if ( this._hasLoadedOnce === true ) {
-            return;
-        }
-        if ( changes.blockLoader ) {
+        if ( ! this._hasLoadedOnce && changes.blockLoader ) {
             this.loadAndCreate( changes.blockLoader.currentValue , this.requireMethod );
+            this._hasLoadedOnce = true;
         }
-        this._hasLoadedOnce = true;
         return undefined;
     }
 
-    createComponent ( _currentLoadedBlock , _index ) {
+    createComponent ( _loadedComponent : { new() : any } , _index : number )  {
         return this.componentResolver
-                   .resolveComponent( _currentLoadedBlock )
+                   .resolveComponent( _loadedComponent )
                    .then( ( componentFactory : ComponentFactory<any> ) => {
                        return this.viewContainer.createComponent( componentFactory , _index );
                    } );
     }
 
-    private loadAndCreate ( formDef : any , _requireMethod = RequireMethod.IN_ORDER ) {
+    /*
+     * TODO : When ever upgraded to RC7 , this should be used , For Sean :)
+     * */
+    // createComponent ( _loadedComponent , _index : number ) : Promise<ComponentRef<any>> {
+    //     return this.compiler
+    //                .compileModuleAndAllComponentsAsync( this.createComponentModule( _loadedComponent ) )
+    //                .then( ( moduleWithCF : ModuleWithComponentFactories<any> ) => {
+    //                    console.log( 'moduleWithCF' , moduleWithCF );
+    //                    const cf = moduleWithCF.componentFactories
+    //                                           .find( x => x.componentType === _loadedComponent );
+    //                    return this.viewContainer.createComponent( cf , _index );
+    //                } );
+    // }
+    // createComponentModule ( componentType : any ) {
+    //     @NgModule( {
+    //         declarations : [ componentType ] ,
+    //     } )
+    //     class RuntimeComponentModule {
+    //     }
+    //     return RuntimeComponentModule;
+    // }
+    private loadAndCreate ( formDef : any , _requireMethod ) {
         this._blocks = formDef.blocks;
         if ( ! this._blocks ) {
             return;
@@ -79,9 +97,7 @@ export class AmpBlockLoaderDirective implements OnInit {
         let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
         _componentRef.instance.__child_blocks = _blockDef;
         _componentRef.instance.__form         = this.form;
-        _componentRef.instance.__formDef      = this.formDef;
         _componentRef.instance.__fdn          = _fdn;
-        _componentRef.instance.__index        = _index;
         _blockDef.__fdn                       = _fdn;
         if ( _blockDef.name ) {
             let _form                             = _componentRef.instance.__form;
@@ -106,12 +122,18 @@ export class AmpBlockLoaderDirective implements OnInit {
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
             _componentRef.instance.__page = _blockDef.page;
         }
-        _componentRef.instance.__custom   = _blockDef.custom;
-        _componentRef.instance.__loadAt   = ( _def , _index : number ) : void=> {
+        _componentRef.instance.__custom     = _blockDef.custom;
+        _componentRef.instance.__loadNext   = ( _def , _viewContainerRef : ViewContainerRef ) : void=> {
+            this.loadNext( _def , _viewContainerRef );
+        };
+        _componentRef.instance.__loadAt     = ( _def , _index : number ) : void=> {
             this.loadAt( _def , _index );
         };
-        _componentRef.instance.__removeAt = ( _index : number ) : void=> {
+        _componentRef.instance.__removeAt   = ( _index : number ) : void=> {
             this.removeAt( _index );
+        };
+        _componentRef.instance.__removeNext = ( _viewContainerRef : ViewContainerRef ) : void=> {
+            this.removeNext( _viewContainerRef );
         };
         _componentRef.changeDetectorRef.detectChanges();
     }
@@ -201,5 +223,30 @@ export class AmpBlockLoaderDirective implements OnInit {
             this.loaded.emit( 'loaded' );
             this.retrievedFiles = [];
         } );
+    }
+
+    private getViewRefOfViewContainerRef ( _viewContainerRef : ViewContainerRef ) {
+        return (<any>_viewContainerRef )._element.parentView.ref;
+    }
+
+    private loadNext ( _def : any , _viewContainerRef : ViewContainerRef ) {
+        let index = this.getIndexOfComponent( _viewContainerRef );
+        if ( index !== undefined ) {
+            index ++;
+        }
+        this.loadAt( _def , index );
+    }
+
+    private getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) {
+        let viewRef = this.getViewRefOfViewContainerRef( _viewContainerRef );
+        return this.viewContainer.indexOf( viewRef );
+    }
+
+    private removeNext ( _viewContainerRef : ViewContainerRef ) {
+        let index = this.getIndexOfComponent( _viewContainerRef );
+        if ( index !== undefined ) {
+            index ++;
+        }
+        this.removeAt( index );
     }
 }

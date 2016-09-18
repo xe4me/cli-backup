@@ -1,4 +1,6 @@
-import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy , ViewContainerRef , ViewRef , ComponentRef
+} from '@angular/core';
 import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
@@ -39,6 +41,7 @@ export class AnotherSampleExperienceBlock extends FormBlock {
     private loadedDynamicBlock = false;
 
     constructor ( private themeService : ThemeService ,
+                  private _vContainerRef : ViewContainerRef ,
                   formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -114,14 +117,14 @@ export class AnotherSampleExperienceBlock extends FormBlock {
     };
 
     onButtonClick ( value ) {
-        if ( value === 'full' ) {
+        if ( value === this.__custom.controls[0].buttons[0].value ) {
             this.loadedDynamicBlock = true;
-            this.__loadAt( this.anotherDynamicChild , this.__index + 1 );
-            this.__loadAt( this.dynamicChild , this.__index + 2 );
+            this.__loadNext( this.anotherDynamicChild , this._vContainerRef );
+            this.__loadNext( this.dynamicChild , this._vContainerRef );
         } else {
             if ( this.loadedDynamicBlock ) {
-                this.__removeAt( this.__index + 1 );
-                this.__removeAt( this.__index + 1 );
+                this.__removeNext( this._vContainerRef );
+                this.__removeNext( this._vContainerRef );
             }
         }
     }

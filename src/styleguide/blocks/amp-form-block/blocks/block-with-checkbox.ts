@@ -1,4 +1,11 @@
-import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import {
+    Component ,
+    ChangeDetectorRef ,
+    ElementRef ,
+    OnInit ,
+    ChangeDetectionStrategy ,
+    ViewEncapsulation
+} from '@angular/core';
 import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
@@ -32,13 +39,10 @@ import { FormService } from '../../../../app/services/form/form.service';
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AmpCheckboxComponent , AmpFormRowComponent ] ,
-    encapsulation   : ViewEncapsulation.Emulated,
-    changeDetection : ChangeDetectionStrategy.OnPush,
-
+    encapsulation   : ViewEncapsulation.Emulated ,
+    changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 export class BlockWithCheckbox extends FormBlock {
-    private contactControl;
-
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -50,7 +54,6 @@ export class BlockWithCheckbox extends FormBlock {
     }
 
     ngOnInit () : any {
-        this.contactControl = this.formService.getControlFromGroup( FDN.samplefieldsblock.concat( [ 'contactNumber' ] ) , this.__form );
         return undefined;
     }
 

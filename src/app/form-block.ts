@@ -17,9 +17,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __fdn : (number|string)[]      = null;
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
-    protected __removeAt : Function;
+    protected __removeNext : Function;
+    protected __loadNext : Function;
     protected __loadAt : Function;
-    protected __index : number;
+    protected __removeAt : Function;
     private scrollSubscription : Subscription;
 
     abstract context () : any;
@@ -106,5 +107,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         if ( this.scrollSubscription ) {
             this.scrollSubscription.unsubscribe();
         }
+    }
+
+    private loadAfter ( _formDef ) {
     }
 }
