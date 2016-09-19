@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 
 @Component({
@@ -16,6 +16,7 @@ import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-lo
 })
 export class <%= classifiedModuleName %>Component implements OnInit {
   private fullyDistinguishedName = [ 'Application' ];
+  private form   = this._builder.group( {} );
   private childBlocks            = {
         name        : 'AmpButtonComponentSection' ,
         blockType   : 'PageSectionComponent' ,
@@ -24,26 +25,26 @@ export class <%= classifiedModuleName %>Component implements OnInit {
         path        : 'sections/page-section.component' ,
         custom      : { label : 'Beneficiaries' } ,
         blocks      : [
-            {
-                name        : 'ampButton' ,
-                blockType   : 'AmpGroupButtonsComponent' ,
-                blockLayout : 'INLINE' ,
-                commonBlock : true ,
-                path        : 'components/amp-group-buttons/amp-group-buttons.component' ,
-                custom      : {
-                    groupName     : 'Gender',
-                    controlGroup  : new FormGroup({}) ,
-                    id            : 'ApplicantDetails-gender' ,
-                    label         : 'Gender' ,
-                    buttons       : [
-                        { id : 'ApplicantDetails-femaleId' , value : 'F' , label : 'Female' } ,
-                        { id : 'ApplicantDetails-maleId' , value : 'M' , label : 'Male' }
-                    ]
-                }
-            }
+            // {
+            //     name        : 'ampButton' ,
+            //     blockType   : 'AmpGroupButtonsComponent' ,
+            //     blockLayout : 'INLINE' ,
+            //     commonBlock : true ,
+            //     path        : 'components/amp-group-buttons/amp-group-buttons.component' ,
+            //     custom      : {
+            //         groupName     : 'Gender',
+            //         controlGroup  : new FormGroup({}) ,
+            //         id            : 'ApplicantDetails-gender' ,
+            //         label         : 'Gender' ,
+            //         buttons       : [
+            //             { id : 'ApplicantDetails-femaleId' , value : 'F' , label : 'Female' } ,
+            //             { id : 'ApplicantDetails-maleId' , value : 'M' , label : 'Male' }
+            //         ]
+            //     }
+            // }
         ]
     };
-  constructor() { }
+  constructor(private _builder:FormBuilder) { }
 
   ngOnInit() {
   }

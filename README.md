@@ -30,11 +30,14 @@ amp-ng --help
 # Generates a new experience Angular2 project
 amp-ng new experience-demo
 
-# Initialize the repo for some unknown reason, only need to accept the changes for angular-cli.json
-amp-ng init
-
 # Generates a new FormModule, that include a skeleton form Component, Definition, Template, etc..
 amp-ng generate form form-demo
+
+# Generate a new Component
+amp-ng generate component demo-component
+
+# Start stubby server
+node ./stubby.js
 
 # Starts the webpack-dev-server
 amp-ng serve
