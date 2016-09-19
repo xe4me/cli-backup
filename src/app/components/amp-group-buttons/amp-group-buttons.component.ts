@@ -68,11 +68,10 @@ export class AmpGroupButtonsComponent implements OnInit {
                   private scrollService : ScrollService ) {
     }
 
-
     ngOnInit () : any {
         this.control[ '_ampErrors' ] = {};
         Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {
             this.controlGroup.addControl( this.id , this.control );

@@ -41,7 +41,7 @@ describe( 'amp-email component' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         const ComponentInstance = fixture.componentInstance;
-        expect( (<any>ComponentInstance.control.errors).required ).toBeDefined();
+        expect( (<any> ComponentInstance.control.errors).required ).toBeDefined();
     } );
     it( 'should be invalid if it has wrong value ' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -49,7 +49,7 @@ describe( 'amp-email component' , () => {
         const ComponentInstance = fixture.componentInstance;
         ComponentInstance.control.setValue( ' a wrong email' );
         fixture.detectChanges();
-        expect( (<any>ComponentInstance.control.errors).pattern ).toBeDefined();
+        expect( (<any> ComponentInstance.control.errors).pattern ).toBeDefined();
     } );
     it( 'should be invalid if it has correct email but is more than 50 character' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -57,7 +57,7 @@ describe( 'amp-email component' , () => {
         const ComponentInstance = fixture.componentInstance;
         ComponentInstance.control.setValue( 'smiladhismiladhismiladhismilasmiladhismiladhismiladhismilasmiladhismiladhismiladhismilasmiladhismiladhismiladhismilasmiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhismiladhi@gmail.com' );
         fixture.detectChanges();
-        expect( (<any>ComponentInstance.control.errors).maxLength ).toBeDefined();
+        expect( (<any> ComponentInstance.control.errors).maxLength ).toBeDefined();
     } );
     it( 'should be valid if its passed required test and has a lower than 50 character length email' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );

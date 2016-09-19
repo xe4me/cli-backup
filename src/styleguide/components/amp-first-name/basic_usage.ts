@@ -1,8 +1,8 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
-import { AmpErrorComponent } from "../../../app/components/amp-error/amp-error.component";
-import { AmpFirstNameComponent } from "../../../app/components/amp-first-name/amp-first-name.component";
+import { AmpErrorComponent } from '../../../app/components/amp-error/amp-error.component';
+import { AmpFirstNameComponent } from '../../../app/components/amp-first-name/amp-first-name.component';
 @Component(
     {
         selector    : 'amp-first-name-basic-usage' ,
@@ -21,4 +21,3 @@ export default class AmpFirstNameBasicUsage {
         return this.controlGroup.controls[ 'amp-first-name' ];
     }
 }
-

@@ -4,12 +4,12 @@ import { FormModelService } from '../../app/services/form-model/form-model.servi
 export class MockScrollService {
     public $scrolled : EventEmitter<any>;
 
-    public onScroll () {
-        this.$scrolled.emit( 'scrolling' );
-    }
-
     constructor ( private formModelService : FormModelService ) {
         this.$scrolled = new EventEmitter();
+    }
+
+    public onScroll () {
+        this.$scrolled.emit( 'scrolling' );
     }
 
     public scrollMeOut () {
@@ -31,9 +31,13 @@ export class MockScrollService {
     private smoothScroll ( element , options ) {
         options               = options || {};
         // Options
-        let duration          = options.duration || 800 , offset = options.offset || 0 , easing = options.easing || 'easeInOutQuart' , callbackBefore = options.callbackBefore || function() {
-            } , callbackAfter = options.callbackAfter || function() {
-            } , container     = document.getElementById( options.containerId ) || null , containerPresent = (container !== undefined && container !== null);
+        let duration          = options.duration || 800;
+        let offset = options.offset || 0;
+        let easing = options.easing || 'easeInOutQuart';
+        let callbackBefore = options.callbackBefore || function() {};
+        let callbackAfter = options.callbackAfter || function() {};
+        let container     = document.getElementById( options.containerId ) || null;
+        let containerPresent = (container !== undefined && container !== null);
         /**
          * Retrieve current location
          */
@@ -88,20 +92,28 @@ export class MockScrollService {
         /**
          * Calculate how far to scroll
          */
-        let getEndLocation = function( element ) {
+        let getEndLocation = function( elemt ) {
             let location = 0;
-            if ( element.offsetParent ) {
+            if ( elemt.offsetParent ) {
                 do {
-                    location += element.offsetTop;
-                    element = element.offsetParent;
-                } while ( element );
+                    location += elemt.offsetTop;
+                    elemt = elemt.offsetParent;
+                } while ( elemt );
             }
             location = Math.max( location - offset , 0 );
             return location;
         };
         // Initialize the whole thing
         setTimeout( function() {
-            let currentLocation = null , startLocation = getScrollLocation() , endLocation = getEndLocation( element ) , timeLapsed = 0 , distance = endLocation - startLocation , percentage , position , scrollHeight , internalHeight;
+            let currentLocation = null;
+            let startLocation = getScrollLocation();
+            let endLocation = getEndLocation( element );
+            let timeLapsed = 0;
+            let distance = endLocation - startLocation;
+            let percentage;
+            let position;
+            let scrollHeight;
+            let internalHeight;
             /**
              * Stop the scrolling animation when the anchor is reached (or at the top/bottom of the page)
              */
@@ -154,5 +166,3 @@ export class MockScrollService {
         );
     }
 }
-
-

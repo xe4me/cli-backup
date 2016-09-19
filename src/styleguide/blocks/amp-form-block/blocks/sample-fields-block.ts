@@ -2,18 +2,18 @@ import {
     Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
     AfterViewInit
 } from '@angular/core';
-import { AmpFormBlockComponent } from "../../../../app/blocks/amp-form-block/amp-form-block.component";
-import { ThemeService } from "../../../services/theme";
-import { FormBlock } from "../../../../app/form-block";
-import { ScrollService } from "../../../../app/services/scroll/scroll.service";
-import { FormModelService } from "../../../../app/services/form-model/form-model.service";
-import { ProgressObserverService } from "../../../../app/services/progress-observer/progress-observer.service";
-import { AmpInputComponent } from "../../../../app/components/amp-input/amp-input.component";
-import { AmpDropdownComponent } from "../../../../app/components/amp-dropdown/amp-dropdown.component";
-import { AmpFormRowComponent } from "../../../../app/blocks/amp-form-row/amp-form-row.component";
-import { FDN } from "../Application.fdn";
-import { StoreService } from "../../../../app/redux/services/store/store.service";
-import { FormService } from "../../../../app/services/form/form.service";
+import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
+import { ThemeService } from '../../../services/theme';
+import { FormBlock } from '../../../../app/form-block';
+import { ScrollService } from '../../../../app/services/scroll/scroll.service';
+import { FormModelService } from '../../../../app/services/form-model/form-model.service';
+import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
+import { AmpInputComponent } from '../../../../app/components/amp-input/amp-input.component';
+import { AmpDropdownComponent } from '../../../../app/components/amp-dropdown/amp-dropdown.component';
+import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
+import { FDN } from '../Application.fdn';
+import { StoreService } from '../../../../app/redux/services/store/store.service';
+import { FormService } from '../../../../app/services/form/form.service';
 @Component( {
     selector        : 'sample-fields-block' ,
     template        : `

@@ -13,6 +13,6 @@ export class ThemeIDDirective {
         // renderer.setElementStyle(el.nativeElement, 'background-color', 'yellow');
         renderer.setElementClass( el.nativeElement , this.themeId , true );
         // Do not directly set the style on the nativeElement, use the Renderer for serverside rendering to work (https://github.com/angular/universal).
-        //el.nativeElement.style.backgroundColor = 'yellow';
+        // el.nativeElement.style.backgroundColor = 'yellow';
     }
 }

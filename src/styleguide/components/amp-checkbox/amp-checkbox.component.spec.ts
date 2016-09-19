@@ -193,4 +193,3 @@ class AmpCheckboxTest {
         this.clickedOnTheCheckbox = value;
     }
 }
-

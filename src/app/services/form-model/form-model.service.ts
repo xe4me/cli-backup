@@ -10,6 +10,22 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
 @Injectable()
 export class FormModelService {
+    // Used in conjunction with disableValidators()
+    public static enableValidators ( control : any ) {
+        if ( control && control._ampValidator ) {
+            control.validator = control._ampValidator;
+            delete control._ampValidator;
+        }
+    }
+
+    // Used in conjunction with enableValidators()
+    public static disableValidators ( control : any ) {
+        if ( control && control.validator ) {
+            control._ampValidator = control.validator;
+            delete control.validator;
+        }
+    }
+
     public _formDefinition;
     public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
@@ -69,25 +85,16 @@ export class FormModelService {
         formId                : null ,
         folderId              : null
     };
+
     private _submitUrl         = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification';
     // private _submitUrl         = 'http://localhost:8080/ddc/secure/api/bolrnotification';
     private _contextUrl        = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/usersession';
     private _contactDetailsUrl = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/profile';
     private _advisersUrl       = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/advisors';
-    // Used in conjunction with disableValidators()
-    public static enableValidators ( control : any ) {
-        if ( control && control._ampValidator ) {
-            control.validator = control._ampValidator;
-            delete control._ampValidator;
-        }
-    }
 
-    // Used in conjunction with enableValidators()
-    public static disableValidators ( control : any ) {
-        if ( control && control.validator ) {
-            control._ampValidator = control.validator;
-            delete control.validator;
-        }
+    constructor ( private http : AmpHttpService ) {
+        this.$flags            = new EventEmitter();
+        this.dynamicFormLoaded = new EventEmitter<boolean>();
     }
 
     public generatePDFUrl () {
@@ -120,11 +127,6 @@ export class FormModelService {
     set formDefinition ( formDef ) {
         this._formDefinition      = formDef;
         this.model.currentBlockID = this._formDefinition.blocks[ 0 ]._id;
-    }
-
-    constructor ( private http : AmpHttpService ) {
-        this.$flags            = new EventEmitter();
-        this.dynamicFormLoaded = new EventEmitter<boolean>();
     }
 
     /**
@@ -181,7 +183,7 @@ export class FormModelService {
         if ( data ) {
             switch ( data.action ) {
                 case 'next':
-                    //this.model.currentBlockID = FormDefinition.getNextBlockID(this._formDefinition, data.blockId);
+                    // this.model.currentBlockID = FormDefinition.getNextBlockID(this._formDefinition, data.blockId);
                     break;
                 case 'setContext':
                     Object.assign( this.model.context , data.context.data );
@@ -245,7 +247,7 @@ export class FormModelService {
      * Utilities
      */
     getNextBlock ( currentBlockName ) {
-        //return 'PlannerDetailsBlock';
+        // return 'PlannerDetailsBlock';
         return 'ContactDetailsBlockComponent';
     }
 
@@ -260,7 +262,7 @@ export class FormModelService {
         let options = new RequestOptions( { headers : headers } );
         return this.http.get( this._contextUrl , options )
                    .map( res => res.json() );
-        //.catch(this.handleError);
+        // .catch(this.handleError);
     }
 
     getContactDetails () : Observable<string> {
@@ -273,7 +275,7 @@ export class FormModelService {
             .http
             .get( this._contactDetailsUrl , options )
             .map( res => res.json() );
-        //.catch(this.handleError);
+        // .catch(this.handleError);
     }
 
     getAdvisers () : Observable<string> {
@@ -293,7 +295,7 @@ export class FormModelService {
                        }
                        return data;
                    } );
-        //.catch( this.handleError );
+        // .catch( this.handleError );
     }
 
     generatePDF () : Observable<string> {

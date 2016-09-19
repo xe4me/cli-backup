@@ -37,7 +37,7 @@
                             "blockType": "BlockWithGoogleAddress",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "/amp-form-block/blocks/block-with-google-address",
+                            "path": "amp-form-block/blocks/block-with-google-address",
                             "custom": {
                                 "blockTitle": "Enter your address",
                                 "controls": [

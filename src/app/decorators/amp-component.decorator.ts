@@ -2,9 +2,9 @@ import { ComponentMetadata } from '@angular/core';
 import { isArray } from '@angular/common/src/facade/lang';
 export function AmpComponent ( annotation : any ) {
     return function( target : Function ) {
-        var parentTarget      = Object.getPrototypeOf( target.prototype ).constructor;
-        var parentAnnotations = (<any>Reflect).getMetadata( 'annotations' , parentTarget );
-        var parentAnnotation  = parentAnnotations[ 0 ];
+        let parentTarget      = Object.getPrototypeOf( target.prototype ).constructor;
+        let parentAnnotations = (<any> Reflect).getMetadata( 'annotations' , parentTarget );
+        let parentAnnotation  = parentAnnotations[ 0 ];
         Object.keys( parentAnnotation ).forEach( ( key ) => {
             if ( parentAnnotation[ key ] ) {
                 if ( isArray( annotation[ key ] ) ) {
@@ -16,7 +16,7 @@ export function AmpComponent ( annotation : any ) {
                 }
             }
         } );
-        var metadata = new ComponentMetadata( annotation );
-        (<any>Reflect).defineMetadata( 'annotations' , [ metadata ] , target );
+        let metadata = new ComponentMetadata( annotation );
+        (<any> Reflect).defineMetadata( 'annotations' , [ metadata ] , target );
     };
 }

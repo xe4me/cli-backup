@@ -41,7 +41,7 @@ export class MockFormModelService {
                     } );
                 observer.onCompleted();
                 return function() {
-                    //Clean up logic
+                    // Clean up logic
                 };
             } );
     }
@@ -56,7 +56,7 @@ export class MockFormModelService {
                     } );
                 observer.onCompleted();
                 return function() {
-                    //Clean up logic
+                    // Clean up logic
                 };
             } );
     }

@@ -8,12 +8,10 @@ import { ComponentPage } from './routes/component';
 // import { provideWebpack } from '@angularclass/webpack-toolkit';
 // import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callback';
 
-
 export const ROUTES : Routes = [
     { path : 'component/:id' , component : ComponentPage },
     { path : '**' ,              component : IndexPage }
 ];
-
 
 // [
 //   { path: '',      component: Home },

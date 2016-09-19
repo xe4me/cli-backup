@@ -18,7 +18,6 @@ describe( 'amp-review Item' , () => {
         TestBed.compileComponents();
     }));
 
-
     describe('Item with a label AND value BUT NO frequency', () => {
 
         it( 'Should display the label AND value' , () => {
@@ -147,4 +146,3 @@ describe( 'amp-review Item' , () => {
                 frequency : 'Monthly'
             };
         }
-

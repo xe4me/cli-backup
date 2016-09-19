@@ -24,15 +24,15 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __custom : any;
     private scrollSubscription : Subscription;
 
-    context () {
-        return this;
-    }
-
     constructor ( private formModelService : FormModelService ,
                   private elementRef : ElementRef ,
                   private _cd : ChangeDetectorRef ,
                   private progressObserver : ProgressObserverService ,
                   private scrollService : ScrollService ) {
+    }
+
+    context () {
+        return this;
     }
 
     ngAfterViewInit () {

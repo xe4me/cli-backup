@@ -1,8 +1,8 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
-import { AmpErrorComponent } from "../../../app/components/amp-error/amp-error.component";
-import { AmpMobileNumberComponent } from "../../../app/components/amp-mobile-number/amp-mobile-number.component";
+import { AmpErrorComponent } from '../../../app/components/amp-error/amp-error.component';
+import { AmpMobileNumberComponent } from '../../../app/components/amp-mobile-number/amp-mobile-number.component';
 @Component(
     {
         selector    : 'amp-mobile-number-basic-usage' ,
@@ -21,4 +21,3 @@ export default class AmpMobileNumberBasicUsage {
         return this.controlGroup.controls[ 'mobile-number' ];
     }
 }
-

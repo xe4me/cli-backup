@@ -39,6 +39,72 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
     private loadedDynamicBlock = false;
+    private dynamicChild        = {
+        'name'        : 'BlockWithRadios' ,
+        'blockType'   : 'BlockWithRadios' ,
+        'blockLayout' : 'INLINE' ,
+        'commonBlock' : false ,
+        'path'        : '/amp-form-block/blocks/block-with-radios' ,
+        'custom'      : {
+            'blockTitle' : 'Let\'s test the radio buttons' ,
+            'controls'   : [
+                {
+                    'id'      : 'radios' ,
+                    'buttons' : [
+                        {
+                            'id'    : 'five_years2' ,
+                            'value' : 'five_years2' ,
+                            'label' : 'At least five years'
+                        } ,
+                        {
+                            'id'    : 'fewer_than_five_years' ,
+                            'value' : 'fewer_than_five_years' ,
+                            'label' : 'Fewer than five years'
+                        } ,
+                        {
+                            'id'    : 'more_than_five_years' ,
+                            'value' : 'more_than_five_years' ,
+                            'label' : 'More than five years'
+                        } ,
+                        {
+                            'id'    : 'amazing_value' ,
+                            'value' : 'amazing_value' ,
+                            'label' : 'How amazing this radio button is'
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+    private anotherDynamicChild = {
+        'name'        : 'samplefieldsblock' ,
+        'blockType'   : 'SampleFieldsBlock' ,
+        'blockLayout' : 'INLINE' ,
+        'commonBlock' : false ,
+        'path'        : '/amp-form-block/blocks/sample-fields-block' ,
+        'custom'      : {
+            'blockTitle' : 'Multiple text fields ' ,
+            'controls'   : [
+                {
+                    'id'      : 'Title' ,
+                    'options' : [
+                        {
+                            'value' : 'MR' ,
+                            'label' : 'MR'
+                        } ,
+                        {
+                            'value' : 'MRS' ,
+                            'label' : 'MRS'
+                        }
+                    ]
+                } ,
+                {
+                    'id' : 'Title1'
+                }
+            ]
+        }
+    };
 
     constructor ( private themeService : ThemeService ,
                   private _vContainerRef : ViewContainerRef ,
@@ -49,72 +115,6 @@ export class AnotherSampleExperienceBlock extends FormBlock {
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
-
-    private dynamicChild        = {
-        "name"        : "BlockWithRadios" ,
-        "blockType"   : "BlockWithRadios" ,
-        "blockLayout" : "INLINE" ,
-        "commonBlock" : false ,
-        "path"        : "/amp-form-block/blocks/block-with-radios" ,
-        "custom"      : {
-            "blockTitle" : "Let's test the radio buttons" ,
-            "controls"   : [
-                {
-                    "id"      : "radios" ,
-                    "buttons" : [
-                        {
-                            "id"    : "five_years2" ,
-                            "value" : "five_years2" ,
-                            "label" : "At least five years"
-                        } ,
-                        {
-                            "id"    : "fewer_than_five_years" ,
-                            "value" : "fewer_than_five_years" ,
-                            "label" : "Fewer than five years"
-                        } ,
-                        {
-                            "id"    : "more_than_five_years" ,
-                            "value" : "more_than_five_years" ,
-                            "label" : "More than five years"
-                        } ,
-                        {
-                            "id"    : "amazing_value" ,
-                            "value" : "amazing_value" ,
-                            "label" : "How amazing this radio button is"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-    private anotherDynamicChild = {
-        "name"        : "samplefieldsblock" ,
-        "blockType"   : "SampleFieldsBlock" ,
-        "blockLayout" : "INLINE" ,
-        "commonBlock" : false ,
-        "path"        : "/amp-form-block/blocks/sample-fields-block" ,
-        "custom"      : {
-            "blockTitle" : "Multiple text fields " ,
-            "controls"   : [
-                {
-                    "id"      : "Title" ,
-                    "options" : [
-                        {
-                            "value" : "MR" ,
-                            "label" : "MR"
-                        } ,
-                        {
-                            "value" : "MRS" ,
-                            "label" : "MRS"
-                        }
-                    ]
-                } ,
-                {
-                    "id" : "Title1"
-                }
-            ]
-        }
-    };
 
     onButtonClick ( value ) {
         if ( value === this.__custom.controls[ 0 ].buttons[ 0 ].value ) {

@@ -1,9 +1,9 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable , EventEmitter } from '@angular/core';
 @Injectable()
 export class ProgressObserverService {
     public $progressed : EventEmitter<any>;
 
-    public onProgress (fdn) {
+    public onProgress ( fdn ) {
         this.$progressed.emit( fdn );
     }
 

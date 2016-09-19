@@ -1,9 +1,9 @@
 import {
     ContentChild , Component , TemplateRef , ChangeDetectionStrategy , Input , OnInit ,
     OnDestroy
-} from "@angular/core";
-import { FormArray , FormGroup } from "@angular/forms";
-import { AmpFormRowComponent } from "../../blocks/amp-form-row/amp-form-row.component";
+} from '@angular/core';
+import { FormArray , FormGroup } from '@angular/forms';
+import { AmpFormRowComponent } from '../../blocks/amp-form-row/amp-form-row.component';
 @Component( {
     selector        : 'amp-row-repeater' ,
     queries         : {
@@ -36,17 +36,13 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'removeBtn' ) removeBtn;
     @Input( 'addBtn' ) addBtn;
 
+    private controlArray : FormArray = new FormArray( [] );
+
     ngOnInit () : void {
         if ( this.controlGroup && this.id ) {
             this.controlGroup.addControl( this.id , this.controlArray );
         }
         this.init();
-    }
-
-    private init () {
-        if ( this.controlArray.controls.length === 0 ) {
-            this.add();
-        }
     }
 
     ngOnDestroy () : void {
@@ -55,7 +51,11 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         }
     }
 
-    private controlArray : FormArray = new FormArray( [] );
+    private init () {
+        if ( this.controlArray.controls.length === 0 ) {
+            this.add();
+        }
+    }
 
     private add () {
         this.controlArray.push( new FormGroup( {} ) );
@@ -67,7 +67,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
 
     private reset () {
         while ( this.controlArray.length ) {
-            this.controlArray.removeAt( 0 )
+            this.controlArray.removeAt( 0 );
         }
     }
 }

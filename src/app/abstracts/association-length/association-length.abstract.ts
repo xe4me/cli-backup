@@ -1,4 +1,27 @@
 export abstract class AssociationLengthAbstract {
+    public static get timeframes () {
+        return this.associationLengthRadios;
+    }
+
+    public static getOptionsByLicensee ( licensee : string ) {
+        return this.associationLengthRadios.getOptions( licensee );
+    }
+
+    public static getLabel ( licensee : string , value : string ) {
+        let options = this.getOptionsByLicensee( licensee );
+        for ( let i = 0 ; i < options.length ; i ++ ) {
+            let item = options[ i ];
+            if ( item.value === value ) {
+                return item.label.toLowerCase();
+            }
+        }
+        return '';
+    }
+
+    public static get groupName () {
+        return this.associationLengthRadios.groupName;
+    }
+
     private static associationLengthRadios = {
         buttons   : {
             DEA_AMPFP   : [
@@ -65,27 +88,4 @@ export abstract class AssociationLengthAbstract {
             return this.buttons[ licensee ] || [];
         }
     };
-
-    public static get timeframes () {
-        return this.associationLengthRadios;
-    }
-
-    public static getOptionsByLicensee ( licensee : string ) {
-        return this.associationLengthRadios.getOptions( licensee );
-    }
-
-    public static getLabel ( licensee : string , value : string ) {
-        let options = this.getOptionsByLicensee( licensee );
-        for ( let i = 0 ; i < options.length ; i ++ ) {
-            let item = options[ i ];
-            if ( item.value === value ) {
-                return item.label.toLowerCase();
-            }
-        }
-        return '';
-    }
-
-    public static get groupName () {
-        return this.associationLengthRadios.groupName;
-    }
 }

@@ -22,7 +22,7 @@ export enum RequireMethod { ALL , IN_ORDER }
 export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges {
     @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
-    //@Input( 'form' ) form : FormGroup= new FormGroup( {} );
+    // @Input( 'form' ) form : FormGroup= new FormGroup( {} );
     @Input( 'form' ) form : FormGroup;
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
@@ -49,7 +49,4 @@ export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges
         }
         return myChunk;
     }
-
 }
-
-
