@@ -42,8 +42,8 @@ export class PageSectionComponent {
     }
 
     isCurrentSection () : boolean {
-        //return this.formSectionService.currentSection === this.fullyDistinguishedName;
-        //return this.formSectionService.isCurrentSection( this.__fdn );
+        // return this.formSectionService.currentSection === this.fullyDistinguishedName;
+        // return this.formSectionService.isCurrentSection( this.__fdn );
         return true;
     }
 }

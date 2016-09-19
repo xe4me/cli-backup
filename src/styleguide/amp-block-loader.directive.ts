@@ -49,7 +49,4 @@ export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges
         }
         return myChunk;
     }
-
 }
-
-

@@ -1,13 +1,13 @@
 export class FDN {
-public static introBlockComponent           = [ 'Application' ,'introBlockComponent'  ];
+public static introBlockComponent           = [ 'Application' , 'introBlockComponent'  ];
 
-public static blockWithGoogleAddress           = [ 'Application' ,'blockWithGoogleAddress'  ];
+public static blockWithGoogleAddress           = [ 'Application' , 'blockWithGoogleAddress'  ];
 
-public static anotherSampleExperienceBlock           = [ 'Application' ,'anotherSampleExperienceBlock'  ];
+public static anotherSampleExperienceBlock           = [ 'Application' , 'anotherSampleExperienceBlock'  ];
 
-public static sampleArrayExperienceBlock           = [ 'Application' ,'sampleArrayExperienceBlock'  ];
+public static sampleArrayExperienceBlock           = [ 'Application' , 'sampleArrayExperienceBlock'  ];
 
-public static BlockWithCheckbox           = [ 'Application' ,'BlockWithCheckbox'  ];
+public static BlockWithCheckbox           = [ 'Application' , 'BlockWithCheckbox'  ];
 
-public static BlockWithTextarea           = [ 'Application' ,'BlockWithTextarea'  ];
+public static BlockWithTextarea           = [ 'Application' , 'BlockWithTextarea'  ];
 }

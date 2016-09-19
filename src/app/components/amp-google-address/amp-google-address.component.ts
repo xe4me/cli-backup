@@ -45,18 +45,6 @@ declare var google : any;
 } )
 export class AMPGoogleAddressComponent implements AfterViewInit {
     static CLASS_NAME                   = 'AMPGoogleAddressComponent';
-    public addrPredictions : any        = {};
-    public addrPlace : any              = {};
-    private id : string;
-    private label : string;
-    private controlGroup : FormGroup;
-    private customValidator : Function;
-    private placeholder : string        = '';
-    private model : any;
-    private autocomplete : any;
-    private isInSummaryState : boolean;
-    private labelHidden : boolean       = false;
-    private address : EventEmitter<any> = new EventEmitter<any>();
 
     static getAddressComponent ( types : Array<string> ,
                                  getShortName : boolean ,
@@ -81,11 +69,24 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
         return (addr_comp ? addr_comp.trim() : null);
     }
 
+    public addrPredictions : any        = {};
+    public addrPlace : any              = {};
+    private id : string;
+    private label : string;
+    private controlGroup : FormGroup;
+    private customValidator : Function;
+    private placeholder : string        = '';
+    private model : any;
+    private autocomplete : any;
+    private isInSummaryState : boolean;
+    private labelHidden : boolean       = false;
+    private address : EventEmitter<any> = new EventEmitter<any>();
+
     constructor ( private zone : NgZone , public _cd : ChangeDetectorRef ) {
     }
 
     get control () {
-        return (<FormControl>this.controlGroup.controls[ this.id ]);
+        return (<FormControl> this.controlGroup.controls[ this.id ]);
     }
 
     ngAfterViewInit () {
