@@ -10,8 +10,8 @@ import {
     OnChanges , OnInit , ViewRef , ComponentFactoryResolver , NgModule , Compiler , ModuleWithComponentFactories
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormSectionService } from './services/form-section/form-section.service';
-import { AmpBlockLoader } from './amp-block-loader';
+import { FormSectionService } from '../app/services/form-section/form-section.service';
+import { AmpBlockLoader } from '../app/amp-block-loader';
 
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
@@ -22,6 +22,7 @@ export enum RequireMethod { ALL , IN_ORDER }
 export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges {
     @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
+    //@Input( 'form' ) form : FormGroup= new FormGroup( {} );
     @Input( 'form' ) form : FormGroup;
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
@@ -34,12 +35,21 @@ export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges
     }
 
     protected getCustomBundle(path : string) : any {
+        let myChunk = null;
         try {
-            return require( '../../../../src/app/' + path + '\.ts' );
+            myChunk = require( '../../src/app/' + path + '\.ts' );
         } catch ( err ) {
-            console.log( 'Did not find the experience components, maybe we are not in an experience' );
+            try {
+                console.log( 'Did not find the experience components, maybe we are not in an experience' );
+                myChunk = require( '../../src/styleguide/blocks/' + path + '\.ts' );
+            } catch ( err ) {
+                console.log( 'Did not find it in styleguide blocks, let look for it in styleguide sections' );
+                myChunk = require( '../../src/styleguide/sections/' + path + '\.ts' );
+            }
         }
-        return null;
+        return myChunk;
     }
 
 }
+
+
