@@ -1,4 +1,4 @@
-import { Component , ChangeDetectorRef , ElementRef } from '@angular/core';
+import { Component , ChangeDetectorRef , ElementRef, Input } from '@angular/core';
 import { AmpButton } from "../../../app/components/amp-button/amp-button.component";
 import { FormBlock } from '../../../app/form-block';
 import { FormModelService } from '../../services/form-model/form-model.service';
@@ -8,16 +8,16 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
     selector   : 'intro-block' ,
     directives : [ AmpButton ] ,
     template   : `
-            <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
+            <div class='{{ selectorName }} ph+ tablet-and-down-ph {{style}}' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class="grid__container 1/1 palm-1/1">
                     <div class="grid__item_floated utils__align&#45;&#45;left" >
-                       <h2 class='intro-logo mb+'>AMP Financial Planning</h2>
+                       <h2 class='intro-logo'>AMP Financial Planning</h2>
                            <div class="intro-list-container">
                                 <article class="intro-article grid__item_floated 1/1">
                                     <ul class="intro-list">
                                     <li class="list-item"><label class="intro-label">ABC Financial Planning</label> </li>
-                                    <li class="list-item"><label class="intro-label 6/12">PayeeID: </label> <label class="intro-value 6/12">123456</label></li>
-                                    <li class="list-item"><label class="intro-label">Practice principle:</label> <label class="intro-value">John Smith</label></li>
+                                    <li class="list-item"><label class="intro-label">PayeeID: </label> <label class="intro-value">123456</label></li>
+                                    <li class="list-item"><label class="intro-label">Practice principle: </label> <label class="intro-value">John Smith</label></li>
                                     </ul>
                                 </article>
                                 <h3 class="intro-message-heading heading heading-intro mb+">Hi John, You're about to request to exercise your buyer of the last resort facility. (BOLR). </h3>
@@ -26,7 +26,7 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
                                     [context]="context()"
                                     class='btn btn-ok'
                                     (click)='onNext()'>
-                                    OK
+                                 Ok
                                 </amp-button>
                           </div>
                     </div>
@@ -36,6 +36,21 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
     styles     : [ require( './intro-block.component.scss' ).toString() ]
 } )
 export class IntroBlockComponent{
+    /**
+     * Use this property to set custom styles for the block.
+     *
+     * Set css classes are:
+     *
+     * branded: dark blue bg
+     * */
+    _style: string = 'branded';
+
+    @Input()
+    set style(style: string) {
+        this._style = (style && style.trim()) || '';
+    }
+
+    get style() { return this._style; }
 
     context () {
 

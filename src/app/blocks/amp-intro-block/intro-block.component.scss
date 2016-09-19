@@ -1,96 +1,142 @@
 @import '../../../styles/abstracts';
 
-$font-size : $amp-base-font-size * 2 / 5 !default;
+$font-size: $amp-base-font-size * 2 / 5 !default;
 
-$logo-height : 60px !default;
+$logo-height: 60px !default;
 
-$amp-ddc-public-asset : '../../../assets/';
+$amp-ddc-public-asset: '../../../assets/';
 
 :host {
-  padding          : 26px 80px 60px 0;
-  width            : 100%;
-  display          : block;
-  background-color : $amp-colour-white;
-  color            : #fff;
+    padding: 26px 80px 60px 0;
+    width: 100%;
+    display: block;
+    background-color: $amp-colour-white;
+    color: #fff;
 
-   .intro-list-container  {
-       @include media-query(lap-and-up) {
-           margin-left: 234px;
-       }
+    @include media-query(lap) {
+        padding-right: 0;
+    }
 
-       @include media-query(tablet-and-down) {
-           margin-left: 0;
-       }
-   }
+    .intro-list-container {
+        @include media-query(desk) {
+            margin-left: 234px;
+        }
+    }
 
-  .intro-logo {
-    width                 : 100px;
-    background-position   : left bottom;
-    background-attachment : scroll;
-    background-repeat     : no-repeat;
-    text-indent: -9999px!important;
-    height                : $amp-logo-height;
-    background-image      : url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
-  }
+    @include media-query(tablet) {
+        padding-right: 0;
+    }
 
-  .intro-article {
-      @include media-query(tablet-and-up) {
-          margin: 60px 0 60px 0;
-      }
-  }
+    @include media-query(palm) {
+        padding-right: 0;
+        padding-bottom: 40px;
+    }
 
-  .intro-list {
-     color: $amp-colour-grey-darkest;
-      font-size: $font-size-medium;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex-flow: row wrap;
-      justify-content: space-around;
-      flex-wrap: nowrap;
+    .intro-logo {
+        width: 100px;
+        background-position: left bottom;
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        text-indent: -9999px !important;
+        height: $amp-logo-height;
+        background-image: url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
+        margin-bottom: 10px;
 
-     > .list-item {
-         display: flex;
-         flex-grow: 1;
-         margin-right: 34px;
+        @include media-query(palm) {
+            margin-bottom: 30px;
+        }
 
-       > .intro-label {
-           flex: 1;
-           display: flex;
-           flex-direction: row;
-       }
-     }
-  }
-  .intro-message-heading {
+    }
 
-  }
-  .intro-tagline {
-      color: $amp-colour-grey-darkest-most;
-  }
+    .intro-article {
+        @include media-query(tablet-and-up) {
+            margin: 60px 0 44px 0;
+        }
 
+        @include media-query(palm) {
+            margin-bottom: 24px;
+        }
+    }
 
-  &[theme='tools'] {
-      padding : 60px 0;
+    .intro-list {
+        color: $amp-colour-grey-darkest;
+        font-size: $font-size-medium;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
 
-  }
+        > .list-item {
+            display: flex;
+            flex-grow: 1;
+            margin-right: 34px;
+            @include media-query(lap) {
+                margin-right: 0;
+            }
+            > .intro-label {
+                flex: 1;
+                display: flex;
+                flex-direction: row;
+            }
+            > .intro-label {
+                padding: 0 12px 0 0;
+            }
+        }
+    }
 
+    .intro-message-heading {
+        margin-bottom: 46px;
+
+        @include media-query(palm) {
+            margin-bottom: 24px;
+        }
+
+    }
+
+    .intro-tagline {
+        color: $amp-colour-grey-darkest-most;
+        margin-bottom: 30px;
+
+        @include media-query(palm) {
+            margin-bottom: 38px;
+        }
+
+    }
+
+    &[theme='tools'] {
+        padding: 60px 0;
+        background-color: $amp-colour-primary;
+
+    }
 
 }
 
 .intro-block {
-  max-height : 1000px;
-  height     : auto;
-  overflow   : hidden;
-  @include transition(max-height 1.1s, opacity 0.45s ease-out);
-  &.hidden {
-    max-height : 0;
-    opacity    : 0;
-  }
+    max-height: 1000px;
+    height: auto;
+    overflow: hidden;
+    @include transition(max-height 1.1s, opacity 0.45s ease-out);
+    &.hidden {
+        max-height: 0;
+        opacity: 0;
+    }
 }
 
 
