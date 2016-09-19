@@ -8,8 +8,8 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
 import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
 import { AmpInputComponent } from '../../../../app/components/amp-input/amp-input.component';
 @Component( {
-    selector   : 'sample-experience-block' ,
-    template   : `
+    selector        : 'sample-experience-block' ,
+    template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
 
             <amp-form-row [attr.theme]="themeService.theme.attr">
@@ -36,7 +36,7 @@ import { AmpInputComponent } from '../../../../app/components/amp-input/amp-inpu
              </amp-form-row> 
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent , AmpFormRowComponent , AmpInputComponent ],
+    directives      : [ AmpFormBlockComponent , AmpFormRowComponent , AmpInputComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleExperienceBlock extends FormBlock implements OnInit {
@@ -51,9 +51,5 @@ export class SampleExperienceBlock extends FormBlock implements OnInit {
 
     ngOnInit () : any {
         return undefined;
-    }
-
-    context () {
-        return this;
     }
 }

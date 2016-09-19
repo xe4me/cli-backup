@@ -42,8 +42,4 @@ export class IntroBlockComponent extends FormBlock {
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
-
-    context () {
-        return this;
-    }
 }

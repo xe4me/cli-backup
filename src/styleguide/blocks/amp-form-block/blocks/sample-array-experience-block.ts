@@ -42,7 +42,7 @@ import { AmpButton } from "../../../../app/components/amp-button/amp-button.comp
            </amp-button>
         </amp-form-block>
     ` ,
-    directives      : [ AmpButton ,AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
+    directives      : [ AmpButton , AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
@@ -68,10 +68,6 @@ export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
         this.store.dispatch( this.modelActions.update( payload ) );
         this.addMore();
         return undefined;
-    }
-
-    context () {
-        return this;
     }
 
     private addMore () {

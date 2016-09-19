@@ -168,13 +168,13 @@ import { FormService } from "../../../../app/services/form/form.service";
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent, AmpDropdownComponent ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush,
+    directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent , AmpDropdownComponent ] ,
+    changeDetection : ChangeDetectionStrategy.OnPush ,
     styles          : [ require( '../basic_usage.scss' ).toString() ] ,
 } )
 export class SampleFieldsBlock extends FormBlock {
     private $checkBoxValue = this.storeService.distinctSelect( FDN.BlockWithCheckbox.concat( [ 'checkboxId' ] ) );
-    private  something = this.storeService.distinctSelect ( FDN.anotherSampleExperienceBlock.concat( [ 'FullOrPartial' ] ) );
+    private something      = this.storeService.distinctSelect( FDN.anotherSampleExperienceBlock.concat( [ 'FullOrPartial' ] ) );
 
     constructor ( private themeService : ThemeService ,
                   formModelService : FormModelService ,
@@ -185,9 +185,5 @@ export class SampleFieldsBlock extends FormBlock {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
-    }
-
-    context () {
-        return this;
     }
 }

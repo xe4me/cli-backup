@@ -52,12 +52,4 @@ export class BlockWithCheckbox extends FormBlock {
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
-
-    ngOnInit () : any {
-        return undefined;
-    }
-
-    context () {
-        return this;
-    }
 }

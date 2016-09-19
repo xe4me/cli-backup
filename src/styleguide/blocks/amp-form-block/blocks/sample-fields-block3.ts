@@ -48,8 +48,4 @@ export class SampleFieldsBlock3 extends FormBlock implements OnInit {
     ngOnInit () : any {
         return undefined;
     }
-
-    context () {
-        return this;
-    }
 }

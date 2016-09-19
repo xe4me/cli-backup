@@ -1,7 +1,7 @@
 import {
     Component ,
     AfterViewInit ,
-    ViewChild
+    ViewChild , OnInit
 } from '@angular/core';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debounceTime';
@@ -9,8 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component';
 import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
 import { FormControl , FormGroup , Validators } from '@angular/forms';
-import { RequiredValidator } from '../../util/validations';
-import { FormModelService } from '../../services/form-model/form-model.service';
+
 import { AmpErrorComponent } from "../../components/amp-error/amp-error.component";
 @Component( {
     selector   : 'amp-google-address-group' ,
@@ -30,7 +29,7 @@ import { AmpErrorComponent } from "../../components/amp-error/amp-error.componen
     styles     : [ require( './amp-google-address-group.component.scss' ).toString() ] ,
     directives : [ AMPGoogleAddressComponent , AmpInputComponent , AmpErrorComponent ]
 } )
-export class AMPGoogleAddressComponentGroup implements AfterViewInit {
+export class AMPGoogleAddressComponentGroup implements OnInit {
     static CLASS_NAME                             = 'AMPGoogleAddressComponentGroup';
     @ViewChild( 'ampGoogleAddress' ) addressComponent : AMPGoogleAddressComponent;
     private index                                 = '';
@@ -74,9 +73,8 @@ export class AMPGoogleAddressComponentGroup implements AfterViewInit {
         }
     };
     private postcode                              = {
-        id        : 'postcode' ,
-        label     : 'Postcode' ,
-        regex     : '' ,
+        id    : 'postcode' ,
+        label : 'Postcode' ,
         maxLength : 10 ,
         minLength : 4 ,
         regex     : '^[0-9]*$' ,

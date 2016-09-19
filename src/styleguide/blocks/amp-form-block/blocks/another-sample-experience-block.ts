@@ -117,9 +117,9 @@ export class AnotherSampleExperienceBlock extends FormBlock {
     };
 
     onButtonClick ( value ) {
-        if ( value === this.__custom.controls[0].buttons[0].value ) {
+        if ( value === this.__custom.controls[ 0 ].buttons[ 0 ].value ) {
             this.loadedDynamicBlock = true;
-            this.__loadNext( this.anotherDynamicChild , this._vContainerRef );
+            this.__loadAt( this.anotherDynamicChild , this._vContainerRef );
             this.__loadNext( this.dynamicChild , this._vContainerRef );
         } else {
             if ( this.loadedDynamicBlock ) {
@@ -127,9 +127,5 @@ export class AnotherSampleExperienceBlock extends FormBlock {
                 this.__removeNext( this._vContainerRef );
             }
         }
-    }
-
-    context () {
-        return this;
     }
 }

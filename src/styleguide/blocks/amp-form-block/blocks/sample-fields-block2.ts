@@ -32,7 +32,7 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent , AmpGroupButtonsComponent ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush,
+    changeDetection : ChangeDetectionStrategy.OnPush ,
     styles          : [ require( '../basic_usage.scss' ).toString() ] ,
 } )
 export class SampleFieldsBlock2 extends FormBlock implements OnInit {
@@ -47,9 +47,5 @@ export class SampleFieldsBlock2 extends FormBlock implements OnInit {
 
     ngOnInit () : any {
         return undefined;
-    }
-
-    context () {
-        return this;
     }
 }
