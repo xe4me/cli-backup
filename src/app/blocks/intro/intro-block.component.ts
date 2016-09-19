@@ -9,16 +9,22 @@ import { AmpButton , ProgressObserverService , FormBlock , FormModelService , Sc
                 <div class="utils__align--center mb-60" >
                     <div class="grid__item 6/9 palm-8/9 mt-10 utils__align--left" >
                     <h1 class="heading heading-intro color-white">
-                        Youhoo
+                        Have we met before?
                     </h1>
                     <p class='mt-50'>
-                        Weigh up the pros and cons when considering your personal circumstances and if you decide your employer’s AMP super plan is right for you, simply provide the information below we’ll work with your employer to set up your AMP account.
+                        Please let us know if we know each other already or starting out a fresh
                     </p>
                     <amp-button
                         [context]="context()"
                         class='btn btn-ok mt+'
                         (click)='onNext()'>
-                        OK
+                        New customer
+                    </amp-button>
+                    <amp-button
+                        [context]="context()"
+                        class='btn btn-ok mt+'
+                        (click)='onNext()'>
+                        Existing customer
                     </amp-button>
                 </div>
             </div>
