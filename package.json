@@ -39,7 +39,6 @@
     "pree2e": "npm run webdriver:update -- --standalone",
     "e2e": "npm run protractor",
     "e2e:live": "npm run e2e -- --elementExplorer",
-    "pretest": "npm run lint",
     "test": "karma start",
     "test:ui": "runGalen",
     "test:ui-unix": "galen test ./src/styleguide/ --htmlreport report --recursive",
