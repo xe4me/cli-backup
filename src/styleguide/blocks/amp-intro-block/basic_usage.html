@@ -1,7 +1,8 @@
 <section class="section">
     <article class="article">
-        <h2 class="heading">BOLR style block</h2>
+        <h2 class="heading-test">BOLR style block</h2>
         <amp-intro-block [attr.theme]="themeService.theme.attr">
+            <h2 class='intro-logo'>This is a title</h2>
             <div class="intro-list-container">
                 <article class="intro-article grid__item_floated 1/1">
                     <ul class="intro-list">
@@ -26,28 +27,40 @@
     <!--
     This sample uses a different theme for illustration purpose.
     -->
-    <article class="article branded-container">
-        <h2 class="heading">Another sample - illustrating a custom class for style</h2>
-        <amp-intro-block [attr.theme]="themeService.theme.attr">
-            <div class="intro-list-container">
-                <article class="intro-article grid__item_floated 1/1">
-                    <ul class="intro-list">
-                        <li class="list-item"><label class="intro-label">ABC Financial Planning</label></li>
-                        <li class="list-item"><label class="intro-label">PayeeID: </label> <label class="intro-value">123456</label>
-                        </li>
-                        <li class="list-item"><label class="intro-label">Practice principle: </label> <label
-                            class="intro-value">John Smith</label></li>
-                    </ul>
-                </article>
-                <h3 class="intro-message-heading heading heading-intro mb+">Hi John, You're about to request to exercise
-                    your buyer of the last resort facility. (BOLR). </h3>
-                <p class="intro-tagline"><strong>We just need a few details, it won't take long</strong></p>
-                <amp-button
-                    class='btn btn-ok'
-                    (click)='onNext()'>
-                    Ok
-                </amp-button>
-            </div>
+    <article class="article">
+        <h2 class="heading-test">Another sample - illustrating a custom class for style</h2>
+        <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
+                <h2 class='intro-logo'>This is another title</h2>
+                <div class="intro-list-container">
+                    <article class="intro-article grid__item_floated 1/1">
+                        <ul class="intro-list">
+                            <li class="list-item"><label class="intro-label">ABC Financial Planning</label></li>
+                            <li class="list-item"><label class="intro-label">PayeeID: </label> <label class="intro-value">123456</label>
+                            </li>
+                            <li class="list-item"><label class="intro-label">Practice principle: </label> <label
+                                class="intro-value">John Smith</label></li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="intro-container">
+                    <div class="grid__container_inner">
+                        <amp-checkbox
+                            [attr.theme]="themeService.theme.attr"
+                            [isInSummaryState]='isInSummaryState'
+                            [controlGroup]="__controlGroup"
+                            [id]='test'>
+                            <label class='palm-1/1 tablet-1/1 lap-and-up-1/1 label'>This a label for a checkbox that is really long </label>
+                        </amp-checkbox>
+                    </div>
+                    <div class="grid__container_inner">
+                        <amp-button
+                            class='btn btn-ok'
+                            (click)='onNext()'>
+                            Ok
+                        </amp-button>
+                   </div>
+                </div>
         </amp-intro-block>
     </article>
 </section>

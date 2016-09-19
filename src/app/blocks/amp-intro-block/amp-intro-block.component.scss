@@ -7,6 +7,7 @@ $logo-height: 60px !default;
 $amp-ddc-public-asset: '../../../assets/';
 
 :host {
+
     padding: 26px 80px 60px 0;
     width: 100%;
     display: block;
@@ -17,7 +18,7 @@ $amp-ddc-public-asset: '../../../assets/';
         padding-right: 0;
     }
 
-    .intro-list-container {
+    .intro-list-container, .intro-container {
         @include media-query(desk) {
             margin-left: 234px;
         }
@@ -120,6 +121,16 @@ $amp-ddc-public-asset: '../../../assets/';
 
     }
 
+    label {
+        display: inline-block!important;
+        float: left;
+        .label {
+            color: $amp-colour-grey-darkest;
+        }
+    }
+
+    /* Theming */
+
     &[theme='tools'] {
         padding: 60px 0;
         background-color: $amp-colour-primary;
@@ -136,19 +147,27 @@ $amp-ddc-public-asset: '../../../assets/';
             color: $amp-colour-white;
         }
 
+        label  .container .off {
+             border-color: $amp-colour-white!important;
+        }
+
+        .label {
+            color: $amp-colour-white;
+            margin-left: 4px;
+        }
+
     }
 
-}
+    > .branded {
 
-.intro-block {
-    max-height: 1000px;
-    height: auto;
-    overflow: hidden;
-    @include transition(max-height 1.1s, opacity 0.45s ease-out);
-    &.hidden {
-        max-height: 0;
-        opacity: 0;
+        > .grid__container {
+            
+        }
+
     }
+
+
+
 }
 
 
