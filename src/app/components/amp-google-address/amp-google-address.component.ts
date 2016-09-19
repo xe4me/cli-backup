@@ -2,7 +2,7 @@ import {
     Component ,
     NgZone ,
     AfterViewInit ,
-    ChangeDetectorRef
+    ChangeDetectorRef , EventEmitter
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../amp-input/amp-input.component';
@@ -11,15 +11,18 @@ declare var google : any;
     selector   : 'amp-google-address' ,
     template   : `
     <amp-input
-        class='3/5'
+        class='1/1'
         [id]='id'
         [label]='label'
         [labelHidden]='labelHidden'
         [controlGroup]='controlGroup'
+        [required]='required'
         [placeholder]='placeholder'
+        [errors]='errors'
+        [customValidator]='customValidator'
         [isInSummaryState]='isInSummaryState'
-        pattern='{{pattern}}'
-        maxLength='{{valMaxLength}}'
+        [pattern]='pattern'
+        [maxLength]='maxLength'
         (input)='showManualAddrOpt()'>
     </amp-input>
     ` ,
@@ -28,6 +31,8 @@ declare var google : any;
         'id' ,
         'label' ,
         'controlGroup' ,
+        'errors' ,
+        'customValidator' ,
         'placeholder' ,
         'maxLength' ,
         'pattern' ,
@@ -35,20 +40,23 @@ declare var google : any;
         'isInSummaryState' ,
         'labelHidden'
     ] ,
+    outputs    : [ 'address' ] ,
     directives : [ AmpInputComponent ]
 } )
 export class AMPGoogleAddressComponent implements AfterViewInit {
-    static CLASS_NAME             = 'AMPGoogleAddressComponent';
-    public addrPredictions : any  = {};
-    public addrPlace : any        = {};
+    static CLASS_NAME                   = 'AMPGoogleAddressComponent';
+    public addrPredictions : any        = {};
+    public addrPlace : any              = {};
     private id : string;
     private label : string;
     private controlGroup : FormGroup;
-    private placeholder : string  = '';
+    private customValidator : Function;
+    private placeholder : string        = '';
     private model : any;
     private autocomplete : any;
     private isInSummaryState : boolean;
-    private labelHidden : boolean = false;
+    private labelHidden : boolean       = false;
+    private address : EventEmitter<any> = new EventEmitter<any>();
 
     static getAddressComponent ( types : Array<string> ,
                                  getShortName : boolean ,
@@ -97,6 +105,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
                 this.addrPlace = this.autocomplete.getPlace();
                 if ( this.addrPlace ) {
                     this.control.setValue( this.addrPlace.formatted_address );
+                    this.address.emit( this.addrPlace );
                 }
             } );
         } );

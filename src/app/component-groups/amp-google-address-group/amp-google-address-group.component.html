@@ -1,200 +1,105 @@
-<div class='google-address' [ngClass]='{hide: showManualAddrEntry}'>
-
+<div class='grid__item_container google-address' [ngClass]='{hide: showManualAddrEntry}'>
     <div class='grid__item_floated'>
-        <!--Practice address-->
-        <label class='heading heading-contxtual-label mb3'>Address</label><!--
-
-     --><amp-google-address
-            #ampGoogleAddress
-            class='1/1'
-            [isInSummaryState]='isInSummaryState'
-            [id]='googleAddress.id+"_"+index'
-            [label]='googleAddress.label'
-            [labelHidden]='googleAddress.labelHidden'
-            [controlGroup]='googleAddressControlGroup'
-            [placeholder]='googleAddress.placeholder'
-            [pattern]='googleAddress.regex'
-            [maxLength]='googleAddress.max'
-            [required]='required'>
+        <label class='heading heading-contxtual-label mb3'>Address</label>
+        <amp-google-address
+                #ampGoogleAddress
+                class='1/1'
+                [isInSummaryState]='isInSummaryState'
+                [id]='googleAddress.id+"_"+index'
+                [label]='googleAddress.label'
+                [labelHidden]='googleAddress.labelHidden'
+                [controlGroup]='controlGroup'
+                [errors]='googleAddress.errors'
+                [customValidator]='googleAddressCustomValidator'
+                [placeholder]='googleAddress.placeholder'
+                (address)="onGoogleAddressChanged($event)"
+                [required]='required'>
         </amp-google-address>
     </div>
-
-    <div class='errors mt-25 mb-15' *ngIf='!ampGoogleAddress.addrPredictions'>
-        <span class='icon icon--close icon-errors'></span>We are unable to find your address. Try again or tell us your address line by line <a href='' (click)='showManualAddrForm()'>here</a> instead.
+    <div class="grid__item_floated">
+        <div class='errors mt' *ngIf='!ampGoogleAddress.addrPredictions'>
+            <span class='icon icon--close icon-errors'></span>We are unable to find your address. Try again or tell us
+            your
+            address line by line <a (click)='showManualAddrForm()'>here</a> instead.
+        </div>
     </div>
+    <amp-error [controlGroup]='controlGroup'></amp-error>
 
-    <div class='errors mt-25 mb-15' 
-        *ngIf='googleAddress.error &&
-                googleAddress.error.required &&
-                ampGoogleAddress.addrPredictions &&
-                errorEmptyControl(ampGoogleAddress.controlGroup)'>
-
-        <span class='icon icon--close icon-errors'></span>
-        {{ googleAddress.error.required }}
-    </div>
-
-    <div class='errors mt-25 mb-15' 
-        *ngIf='googleAddress.error &&
-                googleAddress.error.invalid &&
-                ampGoogleAddress.addrPredictions &&
-                errorInvalidControl(ampGoogleAddress.controlGroup)'>
-
-        <span class='icon icon--close icon-errors'></span>
-        {{ googleAddress.error.invalid }}
-    </div>
 </div>
 
-<div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'><!--
-
- --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
+<div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'>
+    <div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
         <amp-input
-            #manualAddress
-            class='1/1'
-            noPadding='true'
-            [isInSummaryState]='isInSummaryState'
-            [id]='address.id+"_"+index'
-            [label]='address.label'
-            [controlGroup]='manualAddressControlGroup'
-            [required]='required'
-            [pattern]='address.regex'
-            [maxLength]='address.max'
-            [minLength]='address.min'>
+                #manualAddress
+                class='1/1'
+                noPadding='true'
+                [isInSummaryState]='isInSummaryState'
+                [id]='address.id+"_"+index'
+                [label]='address.label'
+                [controlGroup]='manualAddressControlGroup'
+                [required]='required'
+                [pattern]='address.regex'
+                [errors]='address.errors'
+                [maxLength]='address.maxLength'
+                [minLength]='address.minLength'>
+        </amp-input>
+        <amp-error [controlGroup]='manualAddressControlGroup' [controlId]="address.id+'_'+index"></amp-error>
+    </div>
+    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+    <div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
+        <amp-input
+                #manualSuburb
+                class='1/1'
+                [isInSummaryState]='isInSummaryState'
+                [id]='suburb.id+"_"+index'
+                [label]='suburb.label'
+                [controlGroup]='manualAddressControlGroup'
+                [pattern]='suburb.regex'
+                [maxLength]='suburb.maxLength'
+                [minLength]='suburb.minLength'
+                [errors]='suburb.errors'
+                [required]='required'>
+        </amp-input>
+        <amp-error [controlGroup]='manualAddressControlGroup' [controlId]="suburb.id+'_'+index"></amp-error>
+    </div>
+    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+    <div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
+        <amp-input
+                #manualState
+                noPadding='true'
+                class='1/1'
+                [isInSummaryState]='isInSummaryState'
+                [id]='state.id+"_"+index'
+                [label]='state.label'
+                [controlGroup]='manualAddressControlGroup'
+                [required]='required'
+                [toupperCase]='true'
+                [pattern]='state.regex'
+                [maxLength]='state.maxLength'
+                [errors]='state.errors'
+                [minLength]='state.minLength'
+        >
         </amp-input>
 
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    address.error &&
-                    address.error.required &&
-                    errorEmptyControl(manualAddress.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ address.error.required }}
-        </div>
-
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    address.error &&
-                    address.error.invalid &&
-                    errorInvalidControl(manualAddress.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ address.error.invalid }}
-        </div>
-    </div><!--
-
- --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
-
- --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
+        <amp-error [controlGroup]='manualAddressControlGroup' [controlId]="state.id+'_'+index"></amp-error>
+    </div>
+    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+    <div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
         <amp-input
-            #manualSuburb
-            class='1/1'
-            [isInSummaryState]='isInSummaryState'
-            [id]='suburb.id+"_"+index'
-            [label]='suburb.label'
-            [controlGroup]='manualAddressControlGroup'
-            [required]='required'
-            [pattern]='suburb.regex'
-            [maxLength]='suburb.max'
-            [minLength]='suburb.min'>
+                #manualPostcode
+                noPadding='true'
+                class='1/1'
+                [isInSummaryState]='isInSummaryState'
+                [id]='postcode.id+"_"+index'
+                [label]='postcode.label'
+                [controlGroup]='manualAddressControlGroup'
+                [required]='required'
+                [pattern]='postcode.regex'
+                [maxLength]='postcode.maxLength'
+                [errors]='postcode.errors'
+                [minLength]="postcode.minLength">
         </amp-input>
-
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    suburb.error &&
-                    suburb.error.required &&
-                    errorEmptyControl(manualSuburb.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ suburb.error.required }}
-        </div>
-
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    suburb.error &&
-                    suburb.error.invalid &&
-                    errorInvalidControl(manualSuburb.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ suburb.error.invalid }}
-        </div>
-    </div><!--
-
- --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
-
- --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
-        <amp-input
-            #manualState
-            noPadding='true'
-            class='1/1'
-            [isInSummaryState]='isInSummaryState'
-            [id]='state.id+"_"+index'
-            [label]='state.label'
-            [controlGroup]='manualAddressControlGroup'
-            [required]='required'
-            [toupperCase]='true'
-            [pattern]='state.regex'
-            [maxLength]='state.max'>
-        </amp-input>
-
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    state.error &&
-                    state.error.required &&
-                    errorEmptyControl(manualState.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ state.error.required }}
-        </div>
-
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    state.error &&
-                    state.error.invalid &&
-                    errorInvalidControl(manualState.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ state.error.invalid }}
-        </div>
-    </div><!--
-
-    --><span class='comma-summary-state' *ngIf='isInSummaryState'>, </span><!--
-
-    --><div class='grid__item_floated input-wrapper {{ manualInputGridItemClasses() }}'>
-        <amp-input
-            #manualPostcode
-            noPadding='true'
-            class='1/1'
-            [isInSummaryState]='isInSummaryState'
-            [id]='postcode.id+"_"+index'
-            [label]='postcode.label'
-            [controlGroup]='manualAddressControlGroup'
-            [required]='required'
-            [pattern]='postcode.regex'
-            [maxLength]='postcode.max'
-            [minLength]="postcode.min">
-        </amp-input>
-
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    postcode.error &&
-                    postcode.error.required &&
-                    errorEmptyControl(manualPostcode.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ postcode.error.required }}
-        </div>
-
-        <div class='errors mt-25 mb-15' 
-            *ngIf='!isInSummaryState &&
-                    postcode.error &&
-                    postcode.error.invalid &&
-                    errorInvalidControl(manualPostcode.controlGroup)'>
-
-            <span class='icon icon--close icon-errors'></span>
-            {{ postcode.error.invalid }}
-        </div>
-    </div><!--
-
-    --><span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
-
+        <amp-error [controlGroup]='manualAddressControlGroup' [controlId]="postcode.id+'_'+index"></amp-error>
+    </div>
+    <span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
 </div>
