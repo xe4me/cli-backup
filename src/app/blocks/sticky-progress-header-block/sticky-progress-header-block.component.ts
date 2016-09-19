@@ -6,16 +6,10 @@ import { AmpLinearProgressBarComponent } from 'amp-ddc-components';
         template   : `
         <div class='sticky'>
             <div class="sticky__header">
-                <div class='sticky__header--left'>
-                    <span>Request to exercise choice and join AMP Super Plan</span>
+                <div class='sticky__header--right'>
+                    <div>Save and close</div>
+                    <div>Reference number:</div>
                 </div>
-            </div>
-            <div class='sticky__progress'>
-                <amp-linear-progress-bar
-                    [determinate]='indeterminate'
-                    [value]='value'
-                    >
-                </amp-linear-progress-bar>
             </div>
         </div>
     ` ,

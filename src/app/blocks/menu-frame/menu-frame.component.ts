@@ -13,7 +13,8 @@ import {
     ScrollService
 } from "amp-ddc-components";
 import { FormGroup } from "@angular/forms";
-import { StickyProgressHeaderBlockComponent } from "../sticky-progress-header-block/sticky-progress-header-block.component";
+import { StickyProgressHeaderBlockComponent } from
+    '../sticky-progress-header-block/sticky-progress-header-block.component';
 @Component( {
     selector    : 'menu-frame' ,
     templateUrl : './menu-frame.component.html' ,
@@ -31,7 +32,7 @@ export class MenuFrameBlockComponent {
                   private progressObserver : ProgressObserverService ,
                   public formSectionService : FormSectionService ,
                   private _cd : ChangeDetectorRef ) {
-        this.progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress( message ) );
+        //this.progressObserver.$progressed.subscribe( ( message ) => this.calculateProgress( message ) );
     }
 
     ngAfterViewChecked () : any {
@@ -50,19 +51,19 @@ export class MenuFrameBlockComponent {
         }
     }
 
-    private calculateProgress ( message ) {
-        let form = (<any>this.__form.controls).Application;
-        if ( form ) {
-            if ( form.controls ) {
-                let valids : number   = 0;
-                let formControlLength = Object.keys( form.controls ).length;
-                Object.keys( form.controls ).map( ( value , index ) => {
-                    if ( form.controls[ value ].valid ) {
-                        valids ++;
-                    }
-                } );
-                this.calculatedProgress = Math.floor( (100 * valids / formControlLength) );
-            }
-        }
-    }
+    // private calculateProgress ( message ) {
+    //     let form = (<any>this.__form.controls).Application;
+    //     if ( form ) {
+    //         if ( form.controls ) {
+    //             let valids : number   = 0;
+    //             let formControlLength = Object.keys( form.controls ).length;
+    //             Object.keys( form.controls ).map( ( value , index ) => {
+    //                 if ( form.controls[ value ].valid ) {
+    //                     valids ++;
+    //                 }
+    //             } );
+    //             this.calculatedProgress = Math.floor( (100 * valids / formControlLength) );
+    //         }
+    //     }
+    // }
 }

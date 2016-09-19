@@ -27,11 +27,19 @@
                     "path": "blocks/intro/intro-block.component"
                 },
                 {
+                    "name": "WelcomeBlockComponent",
+                    "blockType": "WelcomeBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "blocks/welcome/welcome-block.component"
+                },
+                {
                     "blockType": "MenuFrameBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
                     "path": "blocks/menu-frame/menu-frame.component",
                     "blocks": [
+
                         {
                             "name": "ContactDetails",
                             "blockType": "ContactDetailsBlock",
