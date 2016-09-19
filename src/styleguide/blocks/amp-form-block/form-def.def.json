@@ -7,7 +7,7 @@
     "status": "NEW",
     "blocks": [
         {
-            "blockType": "DetailsPage",
+            "blockType": "DetailsPage1",
             "name": "Application",
             "blockLayout": "PAGE",
             "commonBlock": false,
@@ -32,6 +32,21 @@
                     "commonBlock": false,
                     "path": "/amp-form-block/blocks/menu-frame/menu-frame.application.component",
                     "blocks": [
+                        {
+                            "name": "blockWithGoogleAddress",
+                            "blockType": "BlockWithGoogleAddress",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "/amp-form-block/blocks/block-with-google-address",
+                            "custom": {
+                                "blockTitle": "Enter your address",
+                                "controls": [
+                                    {
+                                        "id": "GoogleAddress"
+                                    }
+                                ]
+                            }
+                        },
                         {
                             "name": "anotherSampleExperienceBlock",
                             "blockType": "AnotherSampleExperienceBlock",

@@ -24,7 +24,9 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __custom : any;
     private scrollSubscription : Subscription;
 
-    abstract context () : any;
+    context () {
+        return this;
+    }
 
     constructor ( private formModelService : FormModelService ,
                   private elementRef : ElementRef ,
@@ -108,8 +110,5 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         if ( this.scrollSubscription ) {
             this.scrollSubscription.unsubscribe();
         }
-    }
-
-    private loadAfter ( _formDef ) {
     }
 }
