@@ -21,6 +21,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __loadNext : Function;
     protected __loadAt : Function;
     protected __removeAt : Function;
+    protected __custom : any;
     private scrollSubscription : Subscription;
 
     context () {
