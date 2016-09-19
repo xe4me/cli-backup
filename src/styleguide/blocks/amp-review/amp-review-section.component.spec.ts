@@ -91,7 +91,6 @@ describe( 'amp-review Section' , () => {
     } );
 } );
 
-
 @Component( {
     template   : `
         <amp-review-section
@@ -117,7 +116,6 @@ class AmpReviewSectionTestWithTitle {
 } )
 class AmpReviewSectionTestWithoutTitle {}
 
-
 @Component( {
     template   : `
         <amp-review-section
@@ -136,7 +134,6 @@ class AmpReviewSectionTestWithChangeLink1 {
     };
 }
 
-
 @Component( {
     template   : `
         <amp-review-section>
@@ -145,4 +142,3 @@ class AmpReviewSectionTestWithChangeLink1 {
     directives : [ AmpReviewSection ]
 } )
 class AmpReviewSectionTestWithChangeLink2 {}
-

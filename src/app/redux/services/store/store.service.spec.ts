@@ -14,8 +14,8 @@ const TestModel = require( '../../fixtures/model/test.model.json' );
 interface Array<T> {
     last() : Array<T>;
 }
-if ( ! (<any>Array.prototype).last ) {
-    (<any>Array.prototype).last = function() {
+if ( ! (<any> Array.prototype).last ) {
+    (<any> Array.prototype).last = function() {
         return this[ this.length - 1 ];
     };
 }
@@ -141,7 +141,7 @@ describe( 'Store Service' , function() {
                     } );
                     updated = true;
                     store.dispatch( updateAction );
-                    setTimeout( ()=> {
+                    setTimeout( () => {
                         store.dispatch( updateAction );
                     } , 1800 );
                     tick( 1800 );
@@ -151,7 +151,7 @@ describe( 'Store Service' , function() {
     } );
     //     describe('getBook', function() {
     //         it('should get a selected book out of the books state', function() {
-    //             const state: fromBooks.BooksState = {
+    //             const state : fromBooks.BooksState = {
     //                 entities: {
     //                     [TestBook.id]: TestBook
     //                 },
@@ -166,7 +166,7 @@ describe( 'Store Service' , function() {
     //
     //     describe('getBooks', function() {
     //         it('should return all of the books in an array for a given list of ids', function() {
-    //             const state: fromBooks.BooksState = {
+    //             const state : fromBooks.BooksState = {
     //                 entities: {
     //                     [TestBook.id]: TestBook
     //                 },
@@ -180,4 +180,3 @@ describe( 'Store Service' , function() {
     //     });
     // });
 } );
-

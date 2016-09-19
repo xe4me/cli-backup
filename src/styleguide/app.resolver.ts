@@ -38,4 +38,3 @@ export const APP_RESOLVER_PROVIDERS = [
     MdIconRegistry ,
     Renderer
 ];
-

@@ -20,6 +20,13 @@ export class AmpStickyOnScrollDirective implements AfterViewInit {
     private measure;
     private sticked : boolean = false;
 
+    constructor ( private zone : NgZone ,
+                  private el : ElementRef ,
+                  private renderer : Renderer ) {
+        this.domAdapter = new BrowserDomAdapter();
+        this.ruler      = new Ruler( this.domAdapter );
+    }
+
     ngAfterViewInit () : any {
         this.initialPosition = this.domAdapter.getStyle( this.el.nativeElement , 'position' ) || 'initial';
         this.initialTop      = this.domAdapter.getStyle( this.el.nativeElement , 'top' ) || '0';
@@ -31,13 +38,6 @@ export class AmpStickyOnScrollDirective implements AfterViewInit {
             } );
         } );
         return undefined;
-    }
-
-    constructor ( private zone : NgZone ,
-                  private el : ElementRef ,
-                  private renderer : Renderer ) {
-        this.domAdapter = new BrowserDomAdapter();
-        this.ruler      = new Ruler( this.domAdapter );
     }
 
     private onScroll () {

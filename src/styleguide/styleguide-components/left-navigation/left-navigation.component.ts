@@ -64,17 +64,17 @@ export class LeftNavigationComponent implements AfterContentInit {
     private INDEX_ID          = - 1;
     private activeAccordion   = this.INDEX_ID;
 
+    constructor ( private  themeService : ThemeService ,
+                  public router : Router ,
+                  private location : Location ) {
+    }
+
     ngAfterContentInit () : any {
         this.activeComponentId = this.location.path().split( '/' )[ 2 ];
         if ( this.activeComponentId ) {
             this.activeAccordion = this.activeComponentId.toLowerCase().indexOf( 'block' ) > - 1 ? 1 : 0;
         }
         return undefined;
-    }
-
-    constructor ( private  themeService : ThemeService ,
-                  public router : Router ,
-                  private location : Location ) {
     }
 
     navigate ( to : any ) {

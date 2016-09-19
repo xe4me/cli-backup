@@ -1,8 +1,8 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
-import { AmpErrorComponent } from "../../../app/components/amp-error/amp-error.component";
-import { AmpEmailComponent } from "../../../app/components/amp-email/amp-email.component";
+import { AmpErrorComponent } from '../../../app/components/amp-error/amp-error.component';
+import { AmpEmailComponent } from '../../../app/components/amp-email/amp-email.component';
 @Component(
     {
         selector    : 'amp-email-basic-usage' ,
@@ -21,4 +21,3 @@ export default class AmpEmailBasicUsage {
         return this.controlGroup.controls[ 'email' ];
     }
 }
-

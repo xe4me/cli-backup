@@ -41,7 +41,7 @@ describe( 'amp-contact-number component' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         const ComponentInstance = fixture.componentInstance;
-        expect( (<any>ComponentInstance.control.errors).required ).toBeDefined();
+        expect( (<any> ComponentInstance.control.errors).required ).toBeDefined();
     } );
     it( 'should have pattern error if the length is less than 8 character' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -49,8 +49,8 @@ describe( 'amp-contact-number component' , () => {
         const ComponentInstance = fixture.componentInstance;
         ComponentInstance.control.setValue( '12345' );
         fixture.detectChanges();
-        expect( (<any>ComponentInstance.control.errors).required ).toBeUndefined();
-        expect( (<any>ComponentInstance.control.errors).pattern ).toBeDefined();
+        expect( (<any> ComponentInstance.control.errors).required ).toBeUndefined();
+        expect( (<any> ComponentInstance.control.errors).pattern ).toBeDefined();
     } );
     it( 'should have maxLength error if the length is less than 20 character' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -58,9 +58,9 @@ describe( 'amp-contact-number component' , () => {
         const ComponentInstance = fixture.componentInstance;
         ComponentInstance.control.setValue( '1234567890123456789000' );
         fixture.detectChanges();
-        expect( (<any>ComponentInstance.control.errors).required ).toBeUndefined();
-        expect( (<any>ComponentInstance.control.errors).pattern ).toBeUndefined();
-        expect( (<any>ComponentInstance.control.errors).maxLength ).toBeDefined();
+        expect( (<any> ComponentInstance.control.errors).required ).toBeUndefined();
+        expect( (<any> ComponentInstance.control.errors).pattern ).toBeUndefined();
+        expect( (<any> ComponentInstance.control.errors).maxLength ).toBeDefined();
     } );
 } );
 class MockElementRef implements ElementRef {

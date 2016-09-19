@@ -1,8 +1,8 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
-import { AmpErrorComponent } from "../../../app/components/amp-error/amp-error.component";
-import { AmpWorkNumberComponent } from "../../../app/components/amp-work-number/amp-work-number.component";
+import { AmpErrorComponent } from '../../../app/components/amp-error/amp-error.component';
+import { AmpWorkNumberComponent } from '../../../app/components/amp-work-number/amp-work-number.component';
 @Component(
     {
         selector    : 'amp-work-number-basic-usage' ,
@@ -21,4 +21,3 @@ export default class AmpWorkNumberBasicUsage {
         return this.controlGroup.controls[ 'work-number' ];
     }
 }
-

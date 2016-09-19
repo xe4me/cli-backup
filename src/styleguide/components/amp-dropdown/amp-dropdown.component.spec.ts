@@ -86,6 +86,3 @@ class AmpdropdownTest {
         this.clickedOnThedropdown = value;
     }
 }
-;
-
-

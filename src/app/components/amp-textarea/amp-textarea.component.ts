@@ -80,6 +80,11 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
     private hasFocus : boolean   = false;
     private controlGroup : FormGroup;
 
+    constructor ( private _cd : ChangeDetectorRef ,
+                  private el : ElementRef ) {
+        this.onAdjustWidth = new EventEmitter();
+    }
+
     ngOnInit () : any {
         this.joinToParentGroupAndSetAmpErrors();
         return undefined;
@@ -104,11 +109,6 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
         this.updateValitators();
         this._cd.detectChanges();
         return undefined;
-    }
-
-    constructor ( private _cd : ChangeDetectorRef ,
-                  private el : ElementRef ) {
-        this.onAdjustWidth = new EventEmitter();
     }
 
     private adjustHeight ( element ) {
@@ -171,7 +171,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
     private joinToParentGroupAndSetAmpErrors () {
         this.control[ '_ampErrors' ] = {};
         Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {
             this.controlGroup.addControl( this.id , this.control );

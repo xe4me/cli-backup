@@ -133,9 +133,9 @@ export class AmpDropdownComponent {
         setTimeout( () => {
             this.setSelectedOption( 'initial' );
         } );
-        var forceRedraw                   = function( element ) {
+        let forceRedraw                   = function( element ) {
             element.style.display = 'none';
-            var trick             = element.offsetHeight;
+            let trick             = element.offsetHeight;
             element.style.display = '';
         };
         // Redraw options to set correct width
@@ -181,7 +181,7 @@ export class AmpDropdownComponent {
     private showOptions ( showActive ) {
         let activeOption = this.optionsElem.querySelectorAll( '.amp-dropdown__option--active' )[ 0 ];
         if ( ! this.hasWidth ) {
-            var width                     = this.optionsElem.offsetWidth;
+            let width                     = this.optionsElem.offsetWidth;
             this.dropdownElem.style.width = width + 'px';
             this.hasWidth                 = true;
         }
@@ -285,7 +285,7 @@ export class AmpDropdownComponent {
     }
 
     private trigger ( event , el ) {
-        var evObj = document.createEvent( 'HTMLEvents' );
+        let evObj = document.createEvent( 'HTMLEvents' );
         evObj.initEvent( event , true , true );
         el.dispatchEvent( evObj );
     }
@@ -304,7 +304,7 @@ export class AmpDropdownComponent {
     private joinToParentGroupAndSetAmpErrors () {
         this.control[ '_ampErrors' ] = {};
         Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any>this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
         if ( this.controlGroup ) {
             this.controlGroup.addControl( this.id , this.control );

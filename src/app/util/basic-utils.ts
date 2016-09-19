@@ -9,10 +9,10 @@ export class BasicUtils {
     }
 
     public static formatStringToNumber ( str : any ) : number {
-        if ( str && str.indexOf( ',' ) > - 1 ) { //check if we have a comma, then remove it
+        if ( str && str.indexOf( ',' ) > - 1 ) { // check if we have a comma, then remove it
             str = str.replace( /,/g , '' );
         }
-        if ( isNaN( str ) || str === '' ) { //check for empty or NAN, return 0
+        if ( isNaN( str ) || str === '' ) { // check for empty or NAN, return 0
             return 0;
         }
         return + str;

@@ -18,7 +18,6 @@ describe( 'amp-review Total' , () => {
         TestBed.compileComponents();
     }));
 
-
     describe('Total with a label AND value BUT NO frequency', () => {
         it( 'Should display the label AND value' , () => {
             let fixture : ComponentFixture<AmpReviewTotalTest1> = TestBed.createComponent(AmpReviewTotalTest1);

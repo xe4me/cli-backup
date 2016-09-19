@@ -7,10 +7,10 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component';
-import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
 import { FormControl , FormGroup , Validators } from '@angular/forms';
+import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
+import { AmpErrorComponent } from '../../components/amp-error/amp-error.component';
 
-import { AmpErrorComponent } from "../../components/amp-error/amp-error.component";
 @Component( {
     selector   : 'amp-google-address-group' ,
     template   : require( './amp-google-address-group.component.html' ) ,
@@ -90,20 +90,6 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
     private manualInputGridItemClass : string     = 'u-width-auto';
     private controlGroup : FormGroup              = new FormGroup( {} );
     private manualAddressControlGroup : FormGroup = new FormGroup( {} );
-    // Need to binding this validator into a specific context
-    private googleAddressCustomValidator          = () : any => {
-        return ( c ) => {
-            if ( this.addressComponent && this.addressComponent.addrPlace ) {
-                return null;
-            } else {
-                return {
-                    invalidAddress : {
-                        text : 'Address is invalid.'
-                    }
-                };
-            }
-        };
-    };
 
     get googleAddressCtrl () {
         return this.controlGroup.controls[ this.googleAddress.id + '_' + this.index ];
@@ -123,10 +109,6 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
 
     get postcodeCtrl () {
         return this.manualAddressControlGroup.controls[ this.postcode.id + '_' + this.index ];
-    }
-
-    private onGoogleAddressChanged ( googleAddress ) {
-        this.updateAddressFields( googleAddress );
     }
 
     ngOnInit () {
@@ -162,6 +144,25 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
     showManualAddrForm () {
         this.showManualAddrEntry = true;
         this.resetManualEntryControls();
+    }
+
+    // Need to binding this validator into a specific context
+    private googleAddressCustomValidator          = () : any => {
+        return ( c ) => {
+            if ( this.addressComponent && this.addressComponent.addrPlace ) {
+                return null;
+            } else {
+                return {
+                    invalidAddress : {
+                        text : 'Address is invalid.'
+                    }
+                };
+            }
+        };
+    };
+
+    private onGoogleAddressChanged ( googleAddress ) {
+        this.updateAddressFields( googleAddress );
     }
 
     private manualInputGridItemClasses () {

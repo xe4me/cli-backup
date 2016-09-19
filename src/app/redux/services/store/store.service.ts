@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 @Injectable()
 export class StoreService {
+    constructor ( private store : Store<any> ) {
+    }
+
     public distinctSelect ( _fdn ) : Observable<any> {
         return this.select( _fdn ).distinctUntilChanged();
     };
@@ -15,8 +18,4 @@ export class StoreService {
             return s[ _fdn.last() ];
         } );
     };
-
-    constructor ( private store : Store<any> ) {
-    }
 }
-

@@ -11,7 +11,7 @@ export class AmpDateService {
     public get today () {
         let today    = new Date();
         let dd       = today.getDate();
-        let mm       = today.getMonth() + 1; //January is 0!
+        let mm       = today.getMonth() + 1; // January is 0!
         let yyyy     = today.getFullYear();
         let DD : any = dd;
         let MM : any = mm;
@@ -26,10 +26,10 @@ export class AmpDateService {
     }
 
     public getDatesDiff ( fromDate , toDate ) {
-        var date1    = this.stringToDate( fromDate , 'dd/mm/yyyy' , '/' );
-        var date2    = this.stringToDate( toDate , 'dd/mm/yyyy' , '/' );
-        //var timeDiff = Math.abs( date2.getTime() - date1.getTime() );
-        var timeDiff = date2.getTime() - date1.getTime();
+        let date1    = this.stringToDate( fromDate , 'dd/mm/yyyy' , '/' );
+        let date2    = this.stringToDate( toDate , 'dd/mm/yyyy' , '/' );
+        // let timeDiff = Math.abs( date2.getTime() - date1.getTime() );
+        let timeDiff = date2.getTime() - date1.getTime();
         return Math.ceil( timeDiff / (1000 * 3600 * 24) );
     }
 
@@ -38,23 +38,23 @@ export class AmpDateService {
             return null;
         }
         _date               = _date.replace( /\/$/ , '' ).replace( /^\// , '' );
-        var formatLowerCase = _format.toLowerCase();
-        var formatItems     = formatLowerCase.split( _delimiter );
-        var dateItems       = _date.split( _delimiter );
+        let formatLowerCase = _format.toLowerCase();
+        let formatItems     = formatLowerCase.split( _delimiter );
+        let dateItems       = _date.split( _delimiter );
         if ( dateItems.length !== 3 ) {
             return null;
         }
-        for ( var i = 0 ; i < dateItems.length ; i ++ ) {
+        for ( let i = 0 ; i < dateItems.length ; i ++ ) {
             if ( isNaN( dateItems[ i ] ) ) {
                 return null;
             }
         }
-        var monthIndex = formatItems.indexOf( 'mm' );
-        var dayIndex   = formatItems.indexOf( 'dd' );
-        var yearIndex  = formatItems.indexOf( 'yyyy' );
-        var month      = parseInt( dateItems[ monthIndex ] );
+        let monthIndex = formatItems.indexOf( 'mm' );
+        let dayIndex   = formatItems.indexOf( 'dd' );
+        let yearIndex  = formatItems.indexOf( 'yyyy' );
+        let month      = parseInt( dateItems[ monthIndex ], 10 );
         month -= 1;
-        return new Date( <number>dateItems[ yearIndex ] , <number>month , <number>dateItems[ dayIndex ] );
+        return new Date( <number> dateItems[ yearIndex ] , <number> month , <number> dateItems[ dayIndex ] );
     }
 }
 /**

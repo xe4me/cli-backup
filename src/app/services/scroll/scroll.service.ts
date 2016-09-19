@@ -74,15 +74,15 @@ export class ScrollService {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
             element = this._dom.query( '#' + componentSelector );
         }
-        var options = {
+        let options = {
             duration      : 800 ,
             easing        : easing ,
             offset        : margin ,
-            callbackBefore: ( element ) => {
+            callbackBefore: ( elemt ) => {
                 this.$scrolling.emit( this.getGroupNameOfSelectorName( componentSelector ) );
             } ,
-            callbackAfter : ( element ) => {
-                //this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
+            callbackAfter : ( elemt ) => {
+                // this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
                 this.$scrolled.emit( componentSelector );
             }
         };
@@ -111,13 +111,13 @@ export class ScrollService {
         }
         let height  = element.offsetHeight;
         let bottom  = top + height + margin;
-        var options = {
+        let options = {
             duration      : 800 ,
             easing        : easing ,
             offset        : - bottom ,
-            callbackBefore: function( element ) {
+            callbackBefore: function( elemt ) {
             } ,
-            callbackAfter : function( element ) {
+            callbackAfter : function( elemt ) {
             }
         };
         setTimeout( () => {
@@ -153,12 +153,10 @@ export class ScrollService {
         // }
         if ( isInView ) {
             this.lastScrollPosition = this.scrollTop;
-            /*@TODO: currenlty bellow line is commented out , because if you uncoment it , any components that is
-             // using ScrollService will break in the styleguide
-             // So we need to fix that and then uncomment bellow line
+            // @TODO: currently bellow line is commented out , because if you uncomment it , any components that is
+            // using ScrollService will break in the styleguide. So we need to fix that and then uncomment bellow line
 
-             * */
-            //this.formModelService.setCurrentBlock( CLASS_NAME );
+            // this.formModelService.setCurrentBlock( CLASS_NAME );
         }
         return isInView;
     }
@@ -167,8 +165,8 @@ export class ScrollService {
         this.scrollToComponentSelector( components[ components.length - 1 ].id );
     }
 
-    private splitStringByCapital ( string : string ) {
-        return string.split( /(?=[A-Z])/ );
+    private splitStringByCapital ( str : string ) {
+        return str.split( /(?=[A-Z])/ );
     }
 
     private getSelectorNameOfClassName ( className ) {
@@ -207,15 +205,13 @@ export class ScrollService {
         options               = options || {};
         let classInstance     = this;
         // Options
-        let duration          = options.duration || 800 ,
-            offset            = options.offset || 0 ,
-            easing : string   = options.easing ,
-            callbackBefore    = options.callbackBefore || function() {
-                } ,
-            callbackAfter     = options.callbackAfter || function() {
-                } ,
-            container         = options.containerId ? classInstance._dom.query( '#' + options.containerId ) : null ,
-            containerPresent  = (container !== undefined && container !== null);
+        let duration          = options.duration || 800;
+        let offset            = options.offset || 0;
+        let easing : string   = options.easing;
+        let callbackBefore    = options.callbackBefore || function() {};
+        let callbackAfter     = options.callbackAfter || function() {};
+        let container         = options.containerId ? classInstance._dom.query( '#' + options.containerId ) : null;
+        let containerPresent  = (container !== undefined && container !== null);
         /**
          * Retrieve current location
          */
@@ -233,7 +229,7 @@ export class ScrollService {
          * - changed if-else to switch
          * @see http://archive.oreilly.com/pub/a/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html
          */
-        var getEasingPattern  = function( type , time ) {
+        let getEasingPattern = function( type , time ) {
             switch ( type ) {
                 case 'easeInQuad':
                     return time * time; // accelerating from zero velocity
@@ -266,13 +262,13 @@ export class ScrollService {
         /**
          * Calculate how far to scroll
          */
-        var getEndLocation    = function( element ) {
-            var location = 0;
-            if ( element.offsetParent ) {
+        let getEndLocation = function( elemt ) {
+            let location = 0;
+            if ( elemt.offsetParent ) {
                 do {
-                    location += element.offsetTop;
-                    element = element.offsetParent;
-                } while ( element );
+                    location += elemt.offsetTop;
+                    elemt = elemt.offsetParent;
+                } while ( elemt );
             }
             location = Math.max( location - offset , 0 );
             return location;
@@ -280,20 +276,20 @@ export class ScrollService {
         // Initialize the whole thing
         setTimeout(
             function() {
-                var currentLocation = null ,
-                    startLocation   = getScrollLocation() ,
-                    endLocation     = getEndLocation( element ) ,
-                    timeLapsed      = 0 ,
-                    distance        = endLocation - startLocation ,
-                    percentage ,
-                    position ,
-                    scrollHeight ,
-                    internalHeight;
+                let currentLocation = null;
+                let startLocation   = getScrollLocation();
+                let endLocation     = getEndLocation( element );
+                let timeLapsed      = 0;
+                let distance        = endLocation - startLocation;
+                let percentage;
+                let position;
+                let scrollHeight;
+                let internalHeight;
                 /**
                  * Stop the scrolling animation when the anchor is reached (or at the top/bottom of the page)
                  */
-                var runAnimation;
-                var stopAnimation   = function() {
+                let runAnimation;
+                let stopAnimation   = function() {
                     currentLocation = getScrollLocation();
                     if ( containerPresent ) {
                         scrollHeight   = container.scrollHeight;
@@ -320,7 +316,7 @@ export class ScrollService {
                 /**
                  * Scroll the page by an increment, and check if it's time to stop
                  */
-                var animateScroll   = function() {
+                let animateScroll   = function() {
                     timeLapsed += 16;
                     percentage = ( timeLapsed / duration );
                     percentage = ( percentage > 1 ) ? 1 : percentage;
@@ -337,12 +333,12 @@ export class ScrollService {
             } , 0 );
     };
 
-    private capitalizeFirstLetter ( string ) {
-        return string.charAt( 0 ).toUpperCase() + string.slice( 1 );
+    private capitalizeFirstLetter ( str : string ) : string {
+        return str.charAt( 0 ).toUpperCase() + str.slice( 1 );
     }
 
-    private camelCaseAndStripDash ( string : string ) : string {
-        let split = string.split( '-' );
+    private camelCaseAndStripDash ( str : string ) : string {
+        let split = str.split( '-' );
         split.pop();
         let camelCased = split.map( ( value , index ) => {
             return index === 0 ? value : this.capitalizeFirstLetter( value );

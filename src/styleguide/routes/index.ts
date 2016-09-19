@@ -25,7 +25,6 @@ export class IndexPage implements OnInit {
         //         this.angularVersion = res.json().angular2;
         //     } );
 
-
         this._components.getComponents()
             .then( ( comps ) => {
                 this.components              = comps;

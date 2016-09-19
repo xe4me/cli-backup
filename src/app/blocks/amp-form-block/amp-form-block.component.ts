@@ -1,7 +1,7 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { AmpErrorComponent } from "../../components/amp-error/amp-error.component";
-import { AmpButton } from "../../components/amp-button/amp-button.component";
-import { AmpOverlayComponent } from "../../components/amp-overlay/amp-overlay.component";
+import { AmpErrorComponent } from '../../components/amp-error/amp-error.component';
+import { AmpButton } from '../../components/amp-button/amp-button.component';
+import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.component';
 @Component( {
     selector   : 'amp-form-block' ,
     template   : `

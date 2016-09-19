@@ -6,9 +6,9 @@ export class FormService {
         let _control = _form;
         for ( let i = 0 ; i < _fdn.length ; i ++ ) {
             if ( _control.contains( _fdn[ i ] ) ) {
-                _control = (<any>_control).controls[ _fdn[ i ] ];
+                _control = (<any> _control).controls[ _fdn[ i ] ];
             }
         }
-        return (<FormControl>_control);
+        return (<FormControl> _control);
     };
 }

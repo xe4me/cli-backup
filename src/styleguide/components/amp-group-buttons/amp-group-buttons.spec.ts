@@ -32,7 +32,7 @@ describe( 'amp-group-buttons directive' , () => {
         let fixture : ComponentFixture<AmpGroupButtonTest> = TestBed.createComponent( AmpGroupButtonTest );
         fixture.detectChanges();
         const Element = fixture.nativeElement;
-        //let AmpGroupButtonTest = fixture.debugElement;
+        // let AmpGroupButtonTest = fixture.debugElement;
         let Form      = Element.querySelector( 'form' );
         let Inputs    = Element.querySelectorAll( 'input' );
         expect( Inputs[ '0' ].name ).toBe( 'fullOrPartial' );

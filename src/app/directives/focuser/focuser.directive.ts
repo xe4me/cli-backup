@@ -17,6 +17,10 @@ export class FocuserDirective {
     private domAdapter : BrowserDomAdapter;
     private inputElem;
 
+    constructor ( private _el : ElementRef , private _renderer : Renderer ) {
+        this.domAdapter = new BrowserDomAdapter();
+    }
+
     focus ( keyCode : number ) {
         if ( this.focuser ) {
             if ( !this.inputElem ) {
@@ -48,10 +52,6 @@ export class FocuserDirective {
                 }
             }
         }
-    }
-
-    constructor ( private _el : ElementRef , private _renderer : Renderer ) {
-        this.domAdapter = new BrowserDomAdapter();
     }
 
     private onKeydown ( $event ) {

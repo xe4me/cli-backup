@@ -34,17 +34,6 @@ export abstract class AmpBlockLoader implements OnChanges {
                   public componentResolver : ComponentResolver ) {
     }
 
-    protected abstract getCustomBundle(path : string) : any;
-
-    protected getCommonBundle(path : string) : any {
-        try {
-            return require( 'bundle!amp-ddc-components/src/app/' + path + '\.ts' );
-        } catch ( err ) {
-            console.log( 'Oops!! Trying to load components from node_modules but not components found.' );
-        }
-        return null;
-    }
-
     ngOnChanges ( changes : any ) : any {
         if ( ! this._hasLoadedOnce && changes.blockLoader ) {
             this.loadAndCreate( changes.blockLoader.currentValue , this.requireMethod );
@@ -101,6 +90,18 @@ export abstract class AmpBlockLoader implements OnChanges {
     //     }
     //     return RuntimeComponentModule;
     // }
+
+    protected abstract getCustomBundle(path : string) : any;
+
+    protected getCommonBundle(path : string) : any {
+        try {
+            return require( 'bundle!amp-ddc-components/src/app/' + path + '\.ts' );
+        } catch ( err ) {
+            console.log( 'Oops!! Trying to load components from node_modules but not components found.' );
+        }
+        return null;
+    }
+
     private loadAndCreate ( formDef : any , _requireMethod ) {
         this._blocks = formDef.blocks;
         if ( ! this._blocks ) {
@@ -130,6 +131,7 @@ export abstract class AmpBlockLoader implements OnChanges {
         _componentRef.instance.__form         = this.form;
         _componentRef.instance.__fdn          = _fdn;
         _blockDef.__fdn                       = _fdn;
+
         if ( _blockDef.name ) {
             let _form                             = _componentRef.instance.__form;
             _componentRef.instance.__controlGroup = new FormGroup( {} );
@@ -143,29 +145,38 @@ export abstract class AmpBlockLoader implements OnChanges {
                 _form.removeControl( _blockDef.name );
             } );
         }
+
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
             this.registerSection( _blockDef );
         }
+
         _componentRef.instance.__path        = _blockDef.path;
         _componentRef.instance.__blockType   = _blockDef.blockType;
         _componentRef.instance.__blockLayout = _blockDef.blockLayout;
         _componentRef.instance.__name        = _blockDef.name;
+
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
             _componentRef.instance.__page = _blockDef.page;
         }
+
         _componentRef.instance.__custom     = _blockDef.custom;
+
         _componentRef.instance.__loadNext   = ( _def , _viewContainerRef : ViewContainerRef ) : void => {
             this.loadNext( _def , _viewContainerRef );
         };
-        _componentRef.instance.__loadAt     = ( _def , _index : number ) : void => {
-            this.loadAt( _def , _index );
+
+        _componentRef.instance.__loadAt     = ( _def , index : number ) : void => {
+            this.loadAt( _def , index );
         };
-        _componentRef.instance.__removeAt   = ( _index : number ) : void => {
-            this.removeAt( _index );
+
+        _componentRef.instance.__removeAt   = ( index : number ) : void => {
+            this.removeAt( index );
         };
+
         _componentRef.instance.__removeNext = ( _viewContainerRef : ViewContainerRef ) : void => {
             this.removeNext( _viewContainerRef );
         };
+
         _componentRef.changeDetectorRef.detectChanges();
     }
 
@@ -214,7 +225,8 @@ export abstract class AmpBlockLoader implements OnChanges {
                     this.emitLoadedAll();
                 }
                 this.copyFormBlockDefProperty( componentRef , this.retrievedFiles[ _index ].blockDef , _index );
-                if ( (_index += 1) < this.blocksCount ) {
+                _index += 1;
+                if ( _index < this.blocksCount ) {
                     this.createAllRecursively( _index );
                 }
             } );
@@ -228,7 +240,7 @@ export abstract class AmpBlockLoader implements OnChanges {
     }
 
     private getViewRefOfViewContainerRef ( _viewContainerRef : ViewContainerRef ) {
-        return (<any>_viewContainerRef )._element.parentView.ref;
+        return (<any> _viewContainerRef )._element.parentView.ref;
     }
 
     private loadNext ( _def : any , _viewContainerRef : ViewContainerRef ) {
