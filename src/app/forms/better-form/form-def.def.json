@@ -39,7 +39,13 @@
                     "commonBlock": false,
                     "path": "blocks/menu-frame/menu-frame.component",
                     "blocks": [
-
+                        {
+                            "name": "SingleOrJointBlockComponent",
+                            "blockType": "SingleOrJointBlockComponent",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/single-or-joint/single-or-joint-block.component"
+                        },
                         {
                             "name": "ContactDetails",
                             "blockType": "ContactDetailsBlock",
@@ -60,48 +66,6 @@
                                     },
                                     {
                                         "id": "Email"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "PracticePrincipal",
-                            "blockType": "PracticePrincipalBlockComponent",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/practice-principal/practice-principal.component",
-                            "custom": {
-                                "blockTitle": "Your personal address?<br> In case we need to contact you after you close your business.",
-                                "controls": [
-                                    {
-                                        "id": "Address"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "PracticeType",
-                            "blockType": "PracticeTypeBlockComponent",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/practice-type/practice-type.component",
-                            "custom": {
-                                "blockTitle": "Is your practice a company or sole trader?",
-                                "controls": [
-                                    {
-                                        "id": "PracticeType",
-                                        "buttons": [
-                                            {
-                                                "id": "Company",
-                                                "value": "Company",
-                                                "label": "Company"
-                                            },
-                                            {
-                                                "id": "SoleTrader",
-                                                "value": "SoleTrader",
-                                                "label": "Sole trader"
-                                            }
-                                        ]
                                     }
                                 ]
                             }
