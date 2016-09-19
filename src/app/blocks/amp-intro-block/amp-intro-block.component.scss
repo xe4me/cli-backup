@@ -121,6 +121,12 @@ $amp-ddc-public-asset: '../../../assets/';
 
     }
 
+    .intro-para {
+        color: $amp-colour-grey-darkest-most;
+        margin-bottom: 40px;
+        line-height: 30px;
+    }
+
     label {
         display: inline-block!important;
         float: left;
@@ -161,7 +167,7 @@ $amp-ddc-public-asset: '../../../assets/';
     > .branded {
 
         > .grid__container {
-            
+
         }
 
     }

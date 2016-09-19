@@ -20,7 +20,7 @@ export default class IntroBlockBasicUsage {
 
     // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
     private callbackForChangeLink = (target : string) => {
-        
+
     }
 
     /**
@@ -46,7 +46,7 @@ export default class IntroBlockBasicUsage {
      *
      */
 
-    _title: string = '';
+    _title: string = 'Here is a dynamic title.....';
 
     @Input()
     set title(title : string) {
