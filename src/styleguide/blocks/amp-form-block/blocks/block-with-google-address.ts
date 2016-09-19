@@ -9,7 +9,7 @@ import { AmpInputComponent } from '../../../../app/components/amp-input/amp-inpu
 import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
 import { AmpCheckboxComponent } from '../../../../app/components/amp-checkbox/amp-checkbox.component';
 import { AmpTextareaComponent } from '../../../../app/components/amp-textarea/amp-textarea.component';
-import { AMPGoogleAddressComponentGroup } from '../../../../app/component-groups/amp-google-address-group/amp-google-address-group.component';
+import { AMPGoogleAddressComponentGroup } from "../../../../app/component-groups/amp-google-address-group/amp-google-address-group.component";
 @Component( {
     selector        : 'block-with-google-address' ,
     template        : `
