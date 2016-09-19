@@ -1,0 +1,106 @@
+{
+    "id": "Application",
+    "fdnClassPath": "src/forms/buyback-form/amp-form-block",
+    "fdnModelPath": "src/forms/buyback-form/amp-form-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "blockType": "DetailsPage",
+            "name": "Application",
+            "blockLayout": "PAGE",
+            "commonBlock": false,
+            "path": "pages/details-page",
+            "page": {
+                "pageId": null,
+                "nextPageId": null,
+                "prevPageId": null,
+                "routeName": "ApplicationFormComponent"
+            },
+            "blocks": [
+                {
+                    "name": "introBlockComponent",
+                    "blockType": "IntroBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "blocks/intro/intro-block.component"
+                },
+                {
+                    "blockType": "MenuFrameBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "blocks/menu-frame/menu-frame.component",
+                    "blocks": [
+                        {
+                            "name": "ContactDetails",
+                            "blockType": "ContactDetailsBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/contact-details/contact-details.component",
+                            "custom": {
+                                "blockTitle": "Please confirm your details are correct.<br> If not, simply update them below.",
+                                "controls": [
+                                    {
+                                        "id": "FirstName"
+                                    },
+                                    {
+                                        "id": "LastName"
+                                    },
+                                    {
+                                        "id": "ContactNumber"
+                                    },
+                                    {
+                                        "id": "Email"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "PracticePrincipal",
+                            "blockType": "PracticePrincipalBlockComponent",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/practice-principal/practice-principal.component",
+                            "custom": {
+                                "blockTitle": "Your personal address?<br> In case we need to contact you after you close your business.",
+                                "controls": [
+                                    {
+                                        "id": "Address"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "PracticeType",
+                            "blockType": "PracticeTypeBlockComponent",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/practice-type/practice-type.component",
+                            "custom": {
+                                "blockTitle": "Is your practice a company or sole trader?",
+                                "controls": [
+                                    {
+                                        "id": "PracticeType",
+                                        "buttons": [
+                                            {
+                                                "id": "Company",
+                                                "value": "Company",
+                                                "label": "Company"
+                                            },
+                                            {
+                                                "id": "SoleTrader",
+                                                "value": "SoleTrader",
+                                                "label": "Sole trader"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

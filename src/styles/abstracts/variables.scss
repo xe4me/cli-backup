@@ -1,0 +1,35 @@
+// App
+$app-namespace: "ootb-form";
+
+// Border
+$border-default-color: #d4d4d4;
+
+// Content
+$content-left-width: 155px;
+$content-left-margin: 55px;
+$content-padding-h: 20px;
+$content-padding-h-lap-and-up: 44px;
+
+// Todo list
+$todo-list-item-margin-bottom: 20px;
+$todo-list-item-color: #7f8082;
+$todo-list-item-active-color: #005890;
+$todo-list-item-hover-color: $amp-colour-sky-blue;
+
+$todo-list-icon-bg: $amp-colour-sky-blue;
+$todo-list-icon-color: $amp-colour-white;
+$todo-list-icon-size: 20px;
+
+$todo-list-margin-bottom: 40px;
+$todo-list-padding-bottom: $todo-list-margin-bottom;
+
+// Sticky
+$sticky-menu-height: 70px;
+$header-font-family: $amp-font-open-sans-regular;
+$sticky-background-color: $amp-colour-primary;
+$icon-color: $amp-colour-secondary-dark;
+$icon-hover-color: $amp-colour-secondary-darkest;
+$icon-active-color: $amp-colour-primary;
+$icons-transition-time: $ddc-buttons-and-icons-transition-time;
+
+$sticky-panel-placeholder: 300px;

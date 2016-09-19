@@ -1,0 +1,38 @@
+<amp-form-block [context]="context()">
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+            <amp-first-name
+                    [id]="__custom.controls[0].id"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-first-name>
+        </div>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+            <amp-last-name
+                    [id]="__custom.controls[1].id"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-last-name>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Contact number</label>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
+            <amp-contact-number
+                    [id]="__custom.controls[2].id"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-contact-number>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Email</label>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
+            <amp-email
+                    [id]="__custom.controls[3].id"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-email>
+        </div>
+    </amp-form-row>
+</amp-form-block>

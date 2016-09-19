@@ -1,0 +1,18 @@
+[
+    {
+        "request": {
+            "url": "/bolrnotification",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "fault":{"code":"101504","type":"Status report","message":"Runtime Error","description":"Send timeout"}
+            }
+        }
+    }
+]

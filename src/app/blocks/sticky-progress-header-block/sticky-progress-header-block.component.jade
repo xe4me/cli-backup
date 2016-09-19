@@ -1,0 +1,34 @@
+header.sticky(class='sticky--{{ formType }}')
+    div.sticky__header.container
+        div.sticky__header-left
+            img.sticky__header-logo(src="{{ logo }}" class="" alt="New Insurance Offers")
+
+        div.sticky__header-middle
+            div(*ngIf="formType === 'quote'")
+                | AMP MyLife quote
+            div( *ngIf="formType === 'application'")
+                | AMP MyLife application
+
+        div.sticky__header-right
+
+            // Quote Form
+            div(*ngIf="formType === 'quote'")
+                div.sticky__header-info
+                    div.sticky__header-info__title Adviser
+                    | {{advisorName}}
+
+            // Application Form
+            div( *ngIf="formType === 'application'")
+                div.sticky__header-info
+                    div.sticky__header-info__title Adviser
+                    | {{advisorName}}
+
+                div.sticky__header-info
+                    div.sticky__header-info__title Reference number
+                    | {{quoteID}}
+
+
+
+    div.sticky__progress(*ngIf="formType === 'quote'")
+        amp-linear-progress-bar([determinate]="indeterminate",
+                                [value]="value" )
