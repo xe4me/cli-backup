@@ -3,8 +3,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class ProgressObserverService {
     public $progressed : EventEmitter<any>;
 
-    public onProgress () {
-        this.$progressed.emit( 'progressed' );
+    public onProgress (fdn) {
+        this.$progressed.emit( fdn );
     }
 
     constructor () {

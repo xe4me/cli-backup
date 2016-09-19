@@ -77,7 +77,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     onNext () {
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
-            this.progressObserver.onProgress();
+            this.progressObserver.onProgress(this.__fdn);
             setTimeout( () => {
                 this.isInSummaryState = true;
                 this._cd.markForCheck();
