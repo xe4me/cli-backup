@@ -14,13 +14,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected visibleFlag : string           = 'defaultIsVisible';
     protected doneFlag : string              = 'defaultIsDone';
     protected noScroll                       = false;
-    protected __fdn : (number|string)[]      = null;
+    protected __fdn : (number|string)[];
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
     protected __removeNext : Function;
     protected __loadNext : Function;
     protected __loadAt : Function;
     protected __removeAt : Function;
+    protected __custom : any;
     private scrollSubscription : Subscription;
 
     abstract context () : any;
