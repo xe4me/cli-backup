@@ -1,0 +1,18 @@
+
+/* Primary */
+
+:host {
+    .btn {
+        &.btn-intro-primary {
+            background-color: $amp-colour-sky-blue;
+        }
+        &.btn-intro-primary:hover {
+            background-color: $amp-colour-secondary-darkest;
+        }
+    }
+
+}
+
+
+
+
