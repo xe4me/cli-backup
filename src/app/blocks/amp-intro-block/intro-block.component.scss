@@ -124,6 +124,18 @@ $amp-ddc-public-asset: '../../../assets/';
         padding: 60px 0;
         background-color: $amp-colour-primary;
 
+        .intro-list {
+            color: $amp-colour-white;
+        }
+
+        .heading-intro {
+            color: $amp-colour-white;
+        }
+
+        .intro-tagline {
+            color: $amp-colour-white;
+        }
+
     }
 
 }
