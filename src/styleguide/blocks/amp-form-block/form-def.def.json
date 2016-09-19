@@ -11,7 +11,7 @@
             "name": "Application",
             "blockLayout": "PAGE",
             "commonBlock": false,
-            "path": "/amp-form-block/blocks/pages/details-page",
+            "path": "amp-form-block/blocks/pages/details-page",
             "page": {
                 "pageId": null,
                 "nextPageId": null,
@@ -24,13 +24,13 @@
                     "blockType": "IntroBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
-                    "path": "/amp-form-block/blocks/intro/intro-block.component"
+                    "path": "amp-form-block/blocks/intro/intro-block.component"
                 },
                 {
                     "blockType": "MenuFrameApplicationBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
-                    "path": "/amp-form-block/blocks/menu-frame/menu-frame.application.component",
+                    "path": "amp-form-block/blocks/menu-frame/menu-frame.application.component",
                     "blocks": [
                         {
                             "name": "blockWithGoogleAddress",
@@ -52,7 +52,7 @@
                             "blockType": "AnotherSampleExperienceBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "/amp-form-block/blocks/another-sample-experience-block",
+                            "path": "amp-form-block/blocks/another-sample-experience-block",
                             "custom": {
                                 "blockTitle": "Group buttons ",
                                 "controls": [
@@ -79,7 +79,7 @@
                             "blockType": "SampleArrayExperienceBlock",
                             "blockLayou": "INLINE",
                             "commonBloc": false,
-                            "path": "/amp-form-block/blocks/sample-array-experience-block",
+                            "path": "amp-form-block/blocks/sample-array-experience-block",
                             "custom": {
                                 "blockTitle": "This block has dynamic controls",
                                 "controls": [
@@ -100,7 +100,7 @@
                             "blockType": "BlockWithCheckbox",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "/amp-form-block/blocks/block-with-checkbox",
+                            "path": "amp-form-block/blocks/block-with-checkbox",
                             "custom": {
                                 "blockTitle": "Checkbox ",
                                 "controls": [
@@ -122,7 +122,7 @@
                             "blockType": "BlockWithTextarea",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "/amp-form-block/blocks/block-with-textarea",
+                            "path": "amp-form-block/blocks/block-with-textarea",
                             "custom": {
                                 "blockTitle": "This is a text area, it's nice isn't it ",
                                 "controls": [

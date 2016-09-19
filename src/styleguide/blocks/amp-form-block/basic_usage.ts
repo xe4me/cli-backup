@@ -1,5 +1,5 @@
 import { Component , ChangeDetectorRef , ViewChild } from '@angular/core';
-import { AmpBlockLoaderDirective } from '../../../app/amp-block-loader.directive';
+import { AmpBlockLoaderDirective } from '../../amp-block-loader.directive';
 import { Store , provideStore } from '@ngrx/store';
 import { FormGroup , FormBuilder } from '@angular/forms';
 import { FormSectionService } from '../../../app/services/form-section/form-section.service';
