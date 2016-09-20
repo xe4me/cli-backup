@@ -1,7 +1,6 @@
 import {
-    Component ,
-    ChangeDetectorRef ,
-    ElementRef
+    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
+    AfterViewInit
 } from '@angular/core';
 import {
     FormBlock ,
@@ -9,13 +8,13 @@ import {
     FormModelService ,
     ProgressObserverService ,
     FormService
-} from "amp-ddc-components";
+} from 'amp-ddc-components';
 @Component( {
-    selector    : 'practice-principal-block' ,
-    templateUrl : './practice-principal.component.html' ,
-    styles      : [ require( './practice-principal.component.scss' ) ]
+    selector        : 'contact-details' ,
+    templateUrl     : './contact-details.component.html' ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class PracticePrincipalBlockComponent extends FormBlock {
+export class ContactDetailsBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -23,9 +22,5 @@ export class PracticePrincipalBlockComponent extends FormBlock {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
-    }
-
-    context () {
-        return this;
     }
 }

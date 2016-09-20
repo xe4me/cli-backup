@@ -70,7 +70,7 @@
                                 ]
                             }
                         },
-                         {
+                        {
                             "name": "Address",
                             "blockType": "AddressBlock",
                             "blockLayout": "INLINE",
@@ -87,6 +87,27 @@
                                     },
                                     {
                                         "id": "PostalAddress"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ContactDetails",
+                            "blockType": "ContactDetailsBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/contact-details/contact-details.component",
+                            "custom": {
+                                "blockTitle": "Just some basic details...",
+                                "controls": [
+                                    {
+                                        "id": "EmailAddress"
+                                    },
+                                    {
+                                        "id" : "MobileNumber"
+                                    },
+                                    {
+                                        "id": "HomeNumber"
                                     }
                                 ]
                             }
