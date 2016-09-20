@@ -27,6 +27,14 @@
             }
         }
     }
+
+    .btn {
+        &.btn-intro-disabled {
+            background-color: $amp-colour-grey;
+            border: solid 1px $amp-colour-white;
+        }
+
+    }
 }
 
 

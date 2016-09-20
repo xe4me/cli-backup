@@ -66,18 +66,26 @@
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin.</p>
 
-                <div class="grid__item_floated 3/12">
+                <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr mb">
                     <amp-button
                         class='btn btn-ok btn-intro-primary'
                         (click)='onNext()'>
                         Primary
                     </amp-button>
                 </div>
-                <div class="grid__item_floated 3/12">
+                <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr mb">
                     <amp-button
                         class='btn btn-ok btn-intro-secondary'
                         (click)='onNext()'>
                         Secondary
+                    </amp-button>
+                </div>
+                <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr mb">
+                    <amp-button
+                        class='btn btn-ok'
+                        (click)='onNext()'
+                        disabled="disabled">
+                        Disabled
                     </amp-button>
                 </div>
             </div>
