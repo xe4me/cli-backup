@@ -193,7 +193,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
 
     set customValidator ( customValidator : Function ) {
         this._customValidator = customValidator;
-        console.log( this.updateValitators );
         this.updateValitators();
     }
 
@@ -203,15 +202,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
 
     get disabled () {
         return this._disabled;
-    }
-
-    set disabled ( value : boolean ) {
-        this._disabled = this.isTrue( value );
-        this.updateValitators();
-    }
-
-    get pattern () {
-        return this._pattern;
     }
 
     set disabled ( value : boolean ) {

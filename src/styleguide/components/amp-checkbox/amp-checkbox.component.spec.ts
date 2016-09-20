@@ -53,7 +53,7 @@ describe( 'amp-checkbox component' , () => {
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
-        expect( Component.control.errors.required ).toBeTruthy();
+        expect( Component.control.errors.required.toString() ).toEqual( Component.checkbox.errors.required.toString() );
     } );
     it( 'Should have the control with validity as true ,  after setting the required attr to false ' , () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
@@ -68,11 +68,10 @@ describe( 'amp-checkbox component' , () => {
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
-        expect( Component.control.errors.required ).toBeTruthy();
+        expect( Component.control.errors.required.toString() ).toEqual( Component.checkbox.errors.required.toString() );
         let ToggleRequired = Element.querySelector( '#toggleRequired' );
         ToggleRequired.click();
         fixture.detectChanges();
-        expect( Component.checkbox.required ).toBeFalsy();
         expect( Component.control.valid ).toBeTruthy();
         expect( Component.control.errors ).toBeNull();
     } );
@@ -88,7 +87,7 @@ describe( 'amp-checkbox component' , () => {
         expect( Component.checkbox.checked ).toBeFalsy();
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors.required ).toBeDefined();
-        expect( Component.control.errors.required ).toBeTruthy();
+        expect( Component.control.errors.required.toString() ).toEqual( Component.checkbox.errors.required.toString() );
         // Let's change the checked to true
         let ToggleChecked = Element.querySelector( '#toggleChecked' );
         ToggleChecked.click();
@@ -155,6 +154,7 @@ describe( 'amp-checkbox component' , () => {
                     [required]='checkbox.required'
                     [checked]='checkbox.checked'
                     [disabled]='checkbox.disabled'
+                    [errors]='checkbox.errors'
                     [scrollOutOn]='checkbox.scrollOutOn'
                     [id]='checkbox.id'
                     (select)='onAcknowledgeSelect($event)'>
@@ -168,7 +168,7 @@ describe( 'amp-checkbox component' , () => {
             <button id='toggleSummary' (click)='isInSummaryState=!isInSummaryState'>Toggle Summary</button>
             <button id='toggleChecked' (click)='checkbox.checked=!checkbox.checked'>Toggle Checked</button>
             <button id='toggleDisabled' (click)='checkbox.disabled=!checkbox.disabled'>Toggle Disabled</button>
-            <button id='toggleRequired' (click)='checkbox.required=!checkbox.required'>Toggle Required</button>
+            <button id='toggleRequired' (click)='checkbox.required=false'>Toggle Required</button>
         </form>
     `
 } )
@@ -184,6 +184,11 @@ class AmpCheckboxTest {
     private checkbox = {
         id          : 'anId' ,
         disabled    : false ,
+        errors      : {
+            required : {
+                text : 'Checkbox field is required'
+            }
+        } ,
         required    : true ,
         checked     : false ,
         scrollOutOn : null

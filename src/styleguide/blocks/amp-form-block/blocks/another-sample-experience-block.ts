@@ -39,7 +39,7 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
     private loadedDynamicBlock = false;
-    private dynamicChild        = {
+    private dynamicChild       = {
         'name'        : 'BlockWithRadios' ,
         'blockType'   : 'BlockWithRadios' ,
         'blockLayout' : 'INLINE' ,
@@ -76,7 +76,6 @@ export class AnotherSampleExperienceBlock extends FormBlock {
             ]
         }
     };
-
     private anotherDynamicChild = {
         'name'        : 'samplefieldsblock' ,
         'blockType'   : 'SampleFieldsBlock' ,
@@ -123,6 +122,7 @@ export class AnotherSampleExperienceBlock extends FormBlock {
             this.__loadNext( this.dynamicChild , this._vContainerRef );
         } else {
             if ( this.loadedDynamicBlock ) {
+                this.loadedDynamicBlock = false;
                 this.__removeNext( this._vContainerRef );
                 this.__removeNext( this._vContainerRef );
             }

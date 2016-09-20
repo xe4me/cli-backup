@@ -32,11 +32,6 @@ import { AMPGoogleAddressComponentGroup } from '../../../../app/component-groups
                     </amp-redux>
                 </div>
             </amp-form-row>
-            <pre>
-            {{ 
-                __controlGroup.value | json
-             }}
-            </pre>
         </amp-form-block>
     ` ,
     directives      : [ AmpFormBlockComponent , AMPGoogleAddressComponentGroup , AmpFormRowComponent ] ,

@@ -1,7 +1,7 @@
 import {
     Component ,
     ElementRef ,
-    EventEmitter ,
+    EventEmitter , ChangeDetectionStrategy ,
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { NumberWrapper } from '@angular/core/src/facade/lang';
@@ -13,8 +13,8 @@ import { isTrue } from '../../util/functions.utils';
 import { ScrollService } from '../../services/scroll/scroll.service';
 @Component(
     {
-        selector : 'amp-checkbox' ,
-        template : `
+        selector        : 'amp-checkbox' ,
+        template        : `
             <input
                 [disabled]='disabled'
                 [checked]='checked'
@@ -33,13 +33,13 @@ import { ScrollService } from '../../services/scroll/scroll.service';
                 </div>
             </label>
         ` ,
-        host     : {
+        host            : {
             '[attr.aria-checked]'  : 'checked' ,
             '[attr.aria-disabled]' : 'disabled' ,
             '[tabindex]'           : 'tabindex' ,
         } ,
-        styles   : [ require( './amp-checkbox.scss' ).toString() ] ,
-        inputs   : [
+        styles          : [ require( './amp-checkbox.scss' ).toString() ] ,
+        inputs          : [
             'required' ,
             'errors' ,
             'scrollOutUnless' ,
@@ -51,7 +51,8 @@ import { ScrollService } from '../../services/scroll/scroll.service';
             'tabindex' ,
             'isInSummaryState'
         ] ,
-        outputs  : [ 'select' ]
+        outputs         : [ 'select' ] ,
+        changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpCheckboxComponent implements AfterViewInit {
     public control : FormControl           = new FormControl();
@@ -143,8 +144,8 @@ export class AmpCheckboxComponent implements AfterViewInit {
 
     private updateValitators () {
         if ( this.control ) {
-            this.control.setValidators( RequiredValidator.requiredValidation( this.required ) );
-            this.control.updateValueAndValidity( { emitEvent : false } );
+            this.control.setValidators(RequiredValidator.requiredValidation( this.required , true )) ;
+            this.control.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
         }
     }
 

@@ -70,6 +70,21 @@
                                                 "label": "Partial sale"
                                             }
                                         ]
+                                    },
+                                    {
+                                        "id": "Milad",
+                                        "buttons": [
+                                            {
+                                                "id": "fullId1",
+                                                "value": "full1",
+                                                "label": "Full sale1"
+                                            },
+                                            {
+                                                "id": "partialId1",
+                                                "value": "partial1",
+                                                "label": "Partial sale1"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
