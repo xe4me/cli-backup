@@ -11,7 +11,7 @@ import { RequiredValidator } from '../../util/validations';
 import { FormGroup , FormControl } from '@angular/forms';
 import { ScrollService } from '../../services/scroll/scroll.service';
 import {
-    RadioControlValueAccessor
+    RadioControlRegistry
 } from "@angular/forms/src/directives/radio_control_value_accessor";
 @Component( {
     selector        : 'amp-group-buttons' ,
@@ -49,7 +49,7 @@ import {
     ] ,
     styles          : [ require( './amp-group-buttons.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
-    providers       : [ RadioControlValueAccessor ] ,
+    providers       : [ RadioControlRegistry ] ,
     outputs         : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent implements OnInit {
@@ -120,7 +120,7 @@ export class AmpGroupButtonsComponent implements OnInit {
         setTimeout( () => {
             this._required = this.isTrue( value );
             this.updateValidators();
-            this.changeDetector.detectChanges();
+            this.changeDetector.markForCheck();
         } , 0 );
     }
 
@@ -131,7 +131,7 @@ export class AmpGroupButtonsComponent implements OnInit {
     private updateValidators () {
         if ( this.control ) {
             this.control.setValidators( RequiredValidator.requiredValidation( this._required ) );
-            this.control.updateValueAndValidity( { emitEvent : false } );
+            this.control.updateValueAndValidity( { emitEvent : true } );
         }
     }
 

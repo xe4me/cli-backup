@@ -29,7 +29,18 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
                                 [groupName]='__custom.controls[0].id'>
                             </amp-group-buttons>
                         </amp-redux>
-                        <amp-error [controlGroup]="__controlGroup" [controlId]="__custom.controls[0].id"></amp-error>
+                        <amp-redux [fdn]="__fdn.concat([__custom.controls[1].id])">
+                             <amp-group-buttons
+                                #ampReduxRef
+                                [attr.theme]="themeService.theme.attr"
+                                (select)='onButtonClick($event)'
+                                [buttons]='__custom.controls[1].buttons'
+                                [controlGroup]="__controlGroup"
+                                [required]="true"
+                                [isInSummaryState]="isInSummaryState"
+                                [groupName]='__custom.controls[1].id'>
+                            </amp-group-buttons>
+                        </amp-redux>
                     </div>
             </amp-form-row>
         </amp-form-block>
@@ -104,7 +115,7 @@ export class AnotherSampleExperienceBlock extends FormBlock {
             ]
         }
     };
-
+    isActive = true;
     constructor ( private themeService : ThemeService ,
                   private _vContainerRef : ViewContainerRef ,
                   formModelService : FormModelService ,
@@ -116,16 +127,16 @@ export class AnotherSampleExperienceBlock extends FormBlock {
     }
 
     onButtonClick ( value ) {
-        if ( value === this.__custom.controls[ 0 ].buttons[ 0 ].value ) {
-            this.loadedDynamicBlock = true;
-            this.__loadAt( this.anotherDynamicChild , this._vContainerRef );
-            this.__loadNext( this.dynamicChild , this._vContainerRef );
-        } else {
-            if ( this.loadedDynamicBlock ) {
-                this.loadedDynamicBlock = false;
-                this.__removeNext( this._vContainerRef );
-                this.__removeNext( this._vContainerRef );
-            }
-        }
+        // if ( value === this.__custom.controls[ 0 ].buttons[ 0 ].value ) {
+        //     this.loadedDynamicBlock = true;
+        //     this.__loadAt( this.anotherDynamicChild , this._vContainerRef );
+        //     this.__loadNext( this.dynamicChild , this._vContainerRef );
+        // } else {
+        //     if ( this.loadedDynamicBlock ) {
+        //         this.loadedDynamicBlock = false;
+        //         this.__removeNext( this._vContainerRef );
+        //         this.__removeNext( this._vContainerRef );
+        //     }
+        // }
     }
 }

@@ -20,134 +20,46 @@
             },
             "blocks": [
                 {
-                    "name": "introBlockComponent",
-                    "blockType": "IntroBlockComponent",
+                    "name": "anotherSampleExperienceBlock",
+                    "blockType": "AnotherSampleExperienceBlock",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
-                    "path": "amp-form-block/blocks/intro/intro-block.component"
-                },
-                {
-                    "blockType": "MenuFrameApplicationBlockComponent",
-                    "blockLayout": "INLINE",
-                    "commonBlock": false,
-                    "path": "amp-form-block/blocks/menu-frame/menu-frame.application.component",
-                    "blocks": [
-                        {
-                            "name": "blockWithGoogleAddress",
-                            "blockType": "BlockWithGoogleAddress",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "amp-form-block/blocks/block-with-google-address",
-                            "custom": {
-                                "blockTitle": "Enter your address",
-                                "controls": [
+                    "path": "amp-form-block/blocks/another-sample-experience-block",
+                    "custom": {
+                        "blockTitle": "Group buttons ",
+                        "controls": [
+                            {
+                                "id": "FullOrPartial",
+                                "buttons": [
                                     {
-                                        "id": "GoogleAddress"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "anotherSampleExperienceBlock",
-                            "blockType": "AnotherSampleExperienceBlock",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "amp-form-block/blocks/another-sample-experience-block",
-                            "custom": {
-                                "blockTitle": "Group buttons ",
-                                "controls": [
-                                    {
-                                        "id": "FullOrPartial",
-                                        "buttons": [
-                                            {
-                                                "id": "fullId",
-                                                "value": "full",
-                                                "label": "Full sale"
-                                            },
-                                            {
-                                                "id": "partialId",
-                                                "value": "partial",
-                                                "label": "Partial sale"
-                                            }
-                                        ]
+                                        "id": "fullId",
+                                        "value": "full",
+                                        "label": "Full sale"
                                     },
                                     {
-                                        "id": "Milad",
-                                        "buttons": [
-                                            {
-                                                "id": "fullId1",
-                                                "value": "full1",
-                                                "label": "Full sale1"
-                                            },
-                                            {
-                                                "id": "partialId1",
-                                                "value": "partial1",
-                                                "label": "Partial sale1"
-                                            }
-                                        ]
+                                        "id": "partialId",
+                                        "value": "partial",
+                                        "label": "Partial sale"
                                     }
                                 ]
-                            }
-                        },
-                        {
-                            "name": "sampleArrayExperienceBlock",
-                            "blockType": "SampleArrayExperienceBlock",
-                            "blockLayou": "INLINE",
-                            "commonBloc": false,
-                            "path": "amp-form-block/blocks/sample-array-experience-block",
-                            "custom": {
-                                "blockTitle": "This block has dynamic controls",
-                                "controls": [
+                            },
+                            {
+                                "id": "Milad",
+                                "buttons": [
                                     {
-                                        "id": "age",
-                                        "title": "What about your age?",
-                                        "errors": {
-                                            "required": "Apparently even age is a required thing ) , what a wonderful time to be"
-                                        },
-                                        "regex": "^([0-9])*$",
-                                        "maxLengh": 20
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "BlockWithCheckbox",
-                            "blockType": "BlockWithCheckbox",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "amp-form-block/blocks/block-with-checkbox",
-                            "custom": {
-                                "blockTitle": "Checkbox ",
-                                "controls": [
+                                        "id": "fullId1",
+                                        "value": "full1",
+                                        "label": "Full sale1"
+                                    },
                                     {
-                                        "id": "radios",
-                                        "buttons": [
-                                            {
-                                                "id": "five_years2",
-                                                "value": "five_years2",
-                                                "label": "At least five years"
-                                            }
-                                        ]
+                                        "id": "partialId1",
+                                        "value": "partial1",
+                                        "label": "Partial sale1"
                                     }
                                 ]
                             }
-                        },
-                        {
-                            "name": "BlockWithTextarea",
-                            "blockType": "BlockWithTextarea",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "amp-form-block/blocks/block-with-textarea",
-                            "custom": {
-                                "blockTitle": "This is a text area, it's nice isn't it ",
-                                "controls": [
-                                    {
-                                        "id": "textarea"
-                                    }
-                                ]
-                            }
-                        }
-                    ]
+                        ]
+                    }
                 }
             ]
         }
