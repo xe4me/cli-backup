@@ -4,6 +4,7 @@ const Command = require('ember-cli/lib/models/command');
 const SilentError = require('silent-error');
 const PortFinder = require('portfinder');
 import ServeWebpackTask from '../tasks/serve-webpack.ts';
+import StubbyTask from '../tasks/stubby.ts';
 
 PortFinder.basePort = 49152;
 
@@ -92,6 +93,14 @@ const ServeCommand = Command.extend({
     }
 
     commandOptions.liveReloadHost = commandOptions.liveReloadHost || commandOptions.host;
+
+    // Start up stubby first
+    const stubbyTask = new StubbyTask({
+      ui: this.ui,
+      analytics: this.analytics,
+      project: this.project
+    });
+    stubbyTask.run(commandOptions);
 
     return this._checkExpressPort(commandOptions)
       .then(this._autoFindLiveReloadPort.bind(this))
