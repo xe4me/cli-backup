@@ -71,7 +71,7 @@ export default class IntroBlockBasicUsage {
                 if ( inputs && inputs.length > 0 ) {
                     inputs[2].focus();
                 }
-            
+
         } , 100 );
     }
 
@@ -79,3 +79,4 @@ export default class IntroBlockBasicUsage {
         this.autoFocus();
     }
 }
+
