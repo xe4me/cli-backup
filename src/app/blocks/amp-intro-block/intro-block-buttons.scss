@@ -1,7 +1,9 @@
 
-/* Primary */
+
 
 :host {
+    /* Primary */
+
     .btn {
         &.btn-intro-primary {
             background-color: $amp-colour-sky-blue;
@@ -11,6 +13,20 @@
         }
     }
 
+    /* secondary */
+
+    .btn {
+        &.btn-intro-secondary {
+            background-color: $amp-colour-primary;
+            border: solid 1px $amp-colour-white;
+        }
+        &.btn-ok {
+            &.btn-intro-secondary:hover {
+                color: $amp-colour-primary;
+                background-color: $amp-colour-white;
+            }
+        }
+    }
 }
 
 
