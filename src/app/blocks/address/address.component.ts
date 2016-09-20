@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'address' ,
+    selector        : 'address-block' ,
     templateUrl     : './address.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
