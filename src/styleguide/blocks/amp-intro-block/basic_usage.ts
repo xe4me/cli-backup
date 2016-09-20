@@ -68,15 +68,10 @@ export default class IntroBlockBasicUsage {
 
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
 
-            //inputs[1].focus();\
-
-            inputs[2].focus();
-
-            //console.log();
-
-            //if ( inputs && inputs.length > 0 ) {
-
-            //}
+                if ( inputs && inputs.length > 0 ) {
+                    inputs[2].focus();
+                }
+            
         } , 100 );
     }
 
