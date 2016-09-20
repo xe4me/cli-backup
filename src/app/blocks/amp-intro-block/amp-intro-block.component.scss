@@ -114,10 +114,10 @@ $amp-ddc-public-asset: '../../../assets/';
 
     .intro-tagline {
         color: $amp-colour-grey-darkest-most;
-        margin-bottom: 30px;
+        margin-bottom: 0;
 
         @include media-query(palm) {
-            margin-bottom: 38px;
+          //  margin-bottom: 38px;
         }
 
     }
@@ -175,8 +175,6 @@ $amp-ddc-public-asset: '../../../assets/';
         }
 
     }
-
-
 
 }
 

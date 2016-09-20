@@ -1,8 +1,11 @@
 
-/* Primary */
+
 
 :host {
+    /* Primary */
+
     .btn {
+        margin-top: 60px;
         &.btn-intro-primary {
             background-color: $amp-colour-sky-blue;
         }
@@ -10,6 +13,39 @@
             background-color: $amp-colour-secondary-darkest;
         }
     }
+
+    /* secondary */
+
+    .btn {
+        &.btn-intro-secondary {
+            background-color: $amp-colour-primary;
+            border: solid 1px $amp-colour-white;
+        }
+        &.btn-ok {
+            &.btn-intro-secondary:hover {
+                color: $amp-colour-primary;
+                background-color: $amp-colour-white;
+            }
+        }
+    }
+
+    .btn {
+        &.btn-intro-disabled {
+            background-color: $amp-colour-grey;
+            border: solid 1px $amp-colour-white;
+        }
+    }
+    /* rectangle buttons */
+    .btn {
+        &.btn-intro-chevron {
+            background-color: $amp-colour-sky-blue;
+            border: solid 1px $amp-colour-sky-blue;
+        }
+        &.btn-intro-chevron:hover {
+            background-color: $amp-colour-secondary-darkest;
+        }
+    }
+
 
 }
 
