@@ -126,6 +126,21 @@
                                     }
                                 ]
                             }
+                        },
+                        {
+                            "name": "OnlineOrOfflineIdCheck",
+                            "blockType": "OnlineOrOfflineIdCheckBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
+                            "custom": {
+                                "blockTitle": "Secure Online ID Check",
+                                "controls": [
+                                    {
+                                        "id": "OnlineIDCheck"
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }

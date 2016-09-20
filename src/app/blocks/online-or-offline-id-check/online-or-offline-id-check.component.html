@@ -1,0 +1,27 @@
+<amp-form-block [context]="context()">
+    <div class="mt mb">
+        Thanks NAME just to confirm...
+    </div>
+    <div class="mt mb">
+        Please confirm that you have one of the following and are happy for us to check you identity using our secure online check
+        <ul>
+            <li>Australian passport</li>
+            <li>Medicare card</li>
+            <li>Australian passport</li>
+        </ul>
+    </div>
+    <amp-button
+        [context]="context()"
+        class='btn btn-ok mt+'
+        (click)='onNext()'
+    >
+                        Yes - online check me
+    </amp-button>
+    <amp-button
+        [context]="context()"
+        class='btn btn-ok mt+'
+        (click)='onNext()'
+    >
+                        No - I'll send copies
+    </amp-button>
+</amp-form-block>
