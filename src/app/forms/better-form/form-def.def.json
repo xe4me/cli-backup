@@ -111,6 +111,21 @@
                                     }
                                 ]
                             }
+                        },
+                          {
+                            "name": "TermsAndConditions",
+                            "blockType": "TermsAndConditionsBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/terms-and-conditions/terms-and-conditions.component",
+                            "custom": {
+                                "blockTitle": "Just some basic details...",
+                                "controls": [
+                                    {
+                                        "id": "AgreeTandCs"
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }

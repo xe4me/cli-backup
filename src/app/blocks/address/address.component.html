@@ -5,18 +5,20 @@
                     [id]="__custom.controls[0].id"
                     [controlGroup]="__controlGroup"
                     [label]="'Residential address'"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
             </amp-input>
         </div>
     </amp-form-row>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mr+ mt">
-            <!--<amp-checkbox
+            <amp-checkbox
                     [isInSummaryState]="isInSummaryState"
                     [controlGroup]="__controlGroup"
-                    >
+                    [id]="__custom.controls[1].id"
+            >
                     My residential address is different to my postal
-            </amp-checkbox>-->
+            </amp-checkbox>
         </div>
     </amp-form-row>
     <amp-form-row>
