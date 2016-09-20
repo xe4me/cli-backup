@@ -9,22 +9,24 @@
                 [label]='googleAddress.label'
                 [labelHidden]='googleAddress.labelHidden'
                 [controlGroup]='controlGroup'
-                [errors]='googleAddress.errors'
                 [customValidator]='googleAddressCustomValidator'
+                [errors]='googleAddress.errors'
                 [placeholder]='googleAddress.placeholder'
                 (address)="onGoogleAddressChanged($event)"
+                (predictions)="onGoogleAddressPredictionsChanged($event)"
                 [required]='required'>
         </amp-google-address>
     </div>
-    <div class="grid__item_floated">
-        <div class='errors mt' *ngIf='!ampGoogleAddress.addrPredictions'>
+    <div class="grid__item">
+        <div class='errors mt' *ngIf='showNoPredictionError && googleAddressCtrl.value'>
             <span class='icon icon--close icon-errors'></span>We are unable to find your address. Try again or tell us
             your
             address line by line <a (click)='showManualAddrForm()'>here</a> instead.
         </div>
     </div>
-    <amp-error [controlGroup]='controlGroup'></amp-error>
-
+    <div *ngIf="!showNoPredictionError">
+        <amp-error [controlGroup]='controlGroup'></amp-error>
+    </div>
 </div>
 
 <div class='manual-address' [ngClass]='{hide: !showManualAddrEntry}'>
@@ -37,7 +39,7 @@
                 [id]='address.id+"_"+index'
                 [label]='address.label'
                 [controlGroup]='manualAddressControlGroup'
-                [required]='required'
+                [required]='true'
                 [pattern]='address.regex'
                 [errors]='address.errors'
                 [maxLength]='address.maxLength'
@@ -58,7 +60,7 @@
                 [maxLength]='suburb.maxLength'
                 [minLength]='suburb.minLength'
                 [errors]='suburb.errors'
-                [required]='required'>
+                [required]='true'>
         </amp-input>
         <amp-error [controlGroup]='manualAddressControlGroup' [controlId]="suburb.id+'_'+index"></amp-error>
     </div>
@@ -72,7 +74,7 @@
                 [id]='state.id+"_"+index'
                 [label]='state.label'
                 [controlGroup]='manualAddressControlGroup'
-                [required]='required'
+                [required]='true'
                 [toupperCase]='true'
                 [pattern]='state.regex'
                 [maxLength]='state.maxLength'
@@ -93,7 +95,7 @@
                 [id]='postcode.id+"_"+index'
                 [label]='postcode.label'
                 [controlGroup]='manualAddressControlGroup'
-                [required]='required'
+                [required]='true'
                 [pattern]='postcode.regex'
                 [maxLength]='postcode.maxLength'
                 [errors]='postcode.errors'

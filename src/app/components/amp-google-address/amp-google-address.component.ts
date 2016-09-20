@@ -16,10 +16,10 @@ declare var google : any;
         [label]='label'
         [labelHidden]='labelHidden'
         [controlGroup]='controlGroup'
+        [customValidator]='customValidator'
         [required]='required'
         [placeholder]='placeholder'
         [errors]='errors'
-        [customValidator]='customValidator'
         [isInSummaryState]='isInSummaryState'
         [pattern]='pattern'
         [maxLength]='maxLength'
@@ -40,12 +40,10 @@ declare var google : any;
         'isInSummaryState' ,
         'labelHidden'
     ] ,
-    outputs    : [ 'address' ] ,
+    outputs    : [ 'address' , 'predictions' ] ,
     directives : [ AmpInputComponent ]
 } )
 export class AMPGoogleAddressComponent implements AfterViewInit {
-    static CLASS_NAME                   = 'AMPGoogleAddressComponent';
-
     static getAddressComponent ( types : Array<string> ,
                                  getShortName : boolean ,
                                  addressComponent : Array<any> ) : string {
@@ -69,18 +67,19 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
         return (addr_comp ? addr_comp.trim() : null);
     }
 
-    public addrPredictions : any        = {};
-    public addrPlace : any              = {};
+    public addrPredictions : any            = {};
+    public addrPlace : any                  = {};
     private id : string;
     private label : string;
     private controlGroup : FormGroup;
     private customValidator : Function;
-    private placeholder : string        = '';
+    private placeholder : string            = '';
     private model : any;
     private autocomplete : any;
     private isInSummaryState : boolean;
-    private labelHidden : boolean       = false;
-    private address : EventEmitter<any> = new EventEmitter<any>();
+    private labelHidden : boolean           = false;
+    private address : EventEmitter<any>     = new EventEmitter<any>();
+    private predictions : EventEmitter<any> = new EventEmitter<any>();
 
     constructor ( private zone : NgZone , public _cd : ChangeDetectorRef ) {
     }
@@ -129,6 +128,7 @@ export class AMPGoogleAddressComponent implements AfterViewInit {
                     if ( status === google.maps.places.PlacesServiceStatus.OK ||
                         status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
                         this.addrPredictions = predictions;
+                        this.predictions.emit( predictions );
                         this._cd.detectChanges();
                     }
                 } );

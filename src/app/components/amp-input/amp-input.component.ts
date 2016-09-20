@@ -29,7 +29,7 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
                 #myMdInput
                 (focus)='onFocused($event)'
                 (keyup)='onKeyupEvent($event)'
-                (blur)='trimValue($event)'
+                (blur)='onBlured($event)'
                 [disabled]='isInSummaryState || disabled'
                 class='md-input'
                 [class.label-hidden]='labelHidden'
@@ -93,8 +93,8 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
-    public control : FormControl = new FormControl();
-    public errors                = {};
+    public control : FormControl          = new FormControl();
+    public errors                         = {};
     public controlGroup : FormGroup;
     protected inputWidth : number;
     protected id : string;
@@ -105,19 +105,21 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected _maxFloat : number;
     protected _minFloat : number;
     protected _valDate : boolean;
-    protected _required : boolean        = false;
-    protected _disabled : boolean        = false;
+    protected _required : boolean         = false;
+    protected _disabled : boolean         = false;
     protected _pattern : string;
+    protected _customValidator : Function = () => {
+    };
     protected label : string;
-    protected isInSummaryState : boolean = false;
-    protected showLabel : boolean        = true;
-    protected tolowerCase : boolean      = false;
-    protected toupperCase : boolean      = false;
-    protected iconRight : boolean        = false;
-    protected isActive : boolean         = true;
-    protected tabindex : any             = null;
-    protected defaultValue : any         = null;
-    protected currency : string          = null;
+    protected isInSummaryState : boolean  = false;
+    protected showLabel : boolean         = true;
+    protected tolowerCase : boolean       = false;
+    protected toupperCase : boolean       = false;
+    protected iconRight : boolean         = false;
+    protected isActive : boolean          = true;
+    protected tabindex : any              = null;
+    protected defaultValue : any          = null;
+    protected currency : string           = null;
     protected placeholder : string;
     protected onAdjustWidth : EventEmitter<any>;
     protected hostClassesRemove;
@@ -126,13 +128,13 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected onBlur : EventEmitter<any>;
     protected onFocus : EventEmitter<any>;
     protected onKeyup : EventEmitter<any>;
-    protected labelHidden : boolean      = false;
+    protected labelHidden : boolean       = false;
     protected validate;
-    protected validationDelay            = 0;
-    protected idleTimeOut                = 2000;
+    protected validationDelay             = 0;
+    protected idleTimeOut                 = 2000;
     protected idleTimeoutId;
 
-    constructor ( protected _cd : ChangeDetectorRef ,
+    constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
                   protected renderer : Renderer ) {
         this.onAdjustWidth = new EventEmitter();
@@ -186,13 +188,30 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
 
     public checkErrors () {
         this.control.setErrors( this.validate( this.control ) , { emitEvent : true } );
+        this._cd.markForCheck();
     }
 
-    protected customValidator : Function = () => {
-    };
+    set customValidator ( customValidator : Function ) {
+        this._customValidator = customValidator;
+        console.log( this.updateValitators );
+        this.updateValitators();
+    }
+
+    get customValidator () {
+        return this._customValidator;
+    }
 
     get disabled () {
         return this._disabled;
+    }
+
+    set disabled ( value : boolean ) {
+        this._disabled = this.isTrue( value );
+        this.updateValitators();
+    }
+
+    get pattern () {
+        return this._pattern;
     }
 
     set disabled ( value : boolean ) {
@@ -283,8 +302,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     }
 
     protected onFocused ( event ) {
-        this.markControlAsUntouched();
-        this.checkErrors();
         this.resetIdleTimeOut();
         this.onFocus.emit( event );
     }
@@ -301,10 +318,11 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.el.nativeElement.children[ 1 ].offsetWidth + offset + 'px' );
     }
 
-    protected trimValue ( $event ) {
+    protected onBlured ( $event ) {
         this.checkErrors();
         setTimeout( () => {
-            this.removeIdleAndMakeInUntouched();
+            this.removeIdleAndMarkAsTouched();
+            this._cd.markForCheck();
         } );
         let notUsable;
         if ( this.control.value ) {
@@ -325,26 +343,11 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     }
 
     protected addDelayedValidation () {
-        if ( this.validationDelay > 0 ) {
-            this.control
-                .valueChanges
-                .debounceTime( this.validationDelay )
-                .subscribe( ( changes ) => {
-                    if ( changes ) {
-                        this.resetIdleTimeOut();
-                        this.checkErrors();
-                    }
-                } );
-        } else {
-            this.control
-                .valueChanges
-                .subscribe( ( changes ) => {
-                    if ( changes ) {
-                        this.resetIdleTimeOut();
-                        this.checkErrors();
-                    }
-                } );
-        }
+        this.control
+            .valueChanges
+            .subscribe( ( changes ) => {
+                this.resetIdleTimeOut();
+            } );
         this.checkErrors();
     }
 
@@ -364,21 +367,30 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     }
 
     protected resetIdleTimeOut () {
+        this.checkErrors();
         this.markControlAsUntouched();
         clearTimeout( this.idleTimeoutId );
         this.idleTimeoutId = setTimeout( () => {
-            this.control.markAsTouched();
+            this.markControlAsTouched();
+            this._cd.markForCheck();
         } , this.idleTimeOut );
     }
 
-    protected removeIdleAndMakeInUntouched () {
+    protected removeIdleAndMarkAsTouched () {
         clearTimeout( this.idleTimeoutId );
-        this.markControlAsUntouched();
-        this.control.markAsTouched();
+        this.markControlAsTouched();
     }
 
     protected markControlAsUntouched () {
-        (<any> this.control)._touched = false;
+        this.control.markAsUntouched( {
+            onlySelf : false
+        } )
+    }
+
+    protected markControlAsTouched () {
+        this.control.markAsTouched( {
+            onlySelf : false
+        } )
     }
 
     protected setDefaultValue () {

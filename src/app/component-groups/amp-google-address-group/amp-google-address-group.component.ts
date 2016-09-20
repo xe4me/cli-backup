@@ -1,7 +1,7 @@
 import {
     Component ,
     AfterViewInit ,
-    ViewChild , OnInit
+    ViewChild , OnInit , ChangeDetectorRef
 } from '@angular/core';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debounceTime';
@@ -10,7 +10,6 @@ import { AMPGoogleAddressComponent } from '../../components/amp-google-address/a
 import { FormControl , FormGroup , Validators } from '@angular/forms';
 import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
 import { AmpErrorComponent } from '../../components/amp-error/amp-error.component';
-
 @Component( {
     selector   : 'amp-google-address-group' ,
     template   : require( './amp-google-address-group.component.html' ) ,
@@ -30,8 +29,8 @@ import { AmpErrorComponent } from '../../components/amp-error/amp-error.componen
     directives : [ AMPGoogleAddressComponent , AmpInputComponent , AmpErrorComponent ]
 } )
 export class AMPGoogleAddressComponentGroup implements OnInit {
-    static CLASS_NAME                             = 'AMPGoogleAddressComponentGroup';
     @ViewChild( 'ampGoogleAddress' ) addressComponent : AMPGoogleAddressComponent;
+    @ViewChild( 'manualState' ) manualState : AmpInputComponent;
     private index                                 = '';
     private googleAddress                         = {
         id          : 'googleAddress' ,
@@ -63,30 +62,32 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
         }
     };
     private state                                 = {
-        id        : 'state' ,
-        label     : 'State' ,
-        regex     : '(ACT|NSW|NT|QLD|SA|TAS|VIC|WA)' ,
-        maxLength : 3 ,
-        minLength : 2 ,
-        errors    : {
-            required : 'State is required.'
+        id     : 'state' ,
+        label  : 'State' ,
+        regex  : '^(ACT|NSW|NT|QLD|SA|TAS|VIC|WA)$' ,
+        errors : {
+            required : 'State is required.' ,
+            pattern  : 'State is not valid.'
         }
     };
     private postcode                              = {
-        id    : 'postcode' ,
-        label : 'Postcode' ,
+        id        : 'postcode' ,
+        label     : 'Postcode' ,
         maxLength : 10 ,
         minLength : 4 ,
         regex     : '^[0-9]*$' ,
         errors    : {
-            required : 'Post code is required.'
+            required  : 'Post code is required.' ,
+            pattern   : 'Post code is not valid.' ,
+            maxLength : 'Post code is not valid.' ,
+            minLength : 'Post code is not valid.'
         }
     };
     private required : boolean                    = false;
     private manualEntryRequired : boolean         = false;
     private isInSummaryState : boolean            = false;
     private showManualAddrEntry : boolean         = false;
-    private labelHidden : boolean                 = false;
+    private showNoPredictionError : boolean       = false;
     private manualInputGridItemClass : string     = 'u-width-auto';
     private controlGroup : FormGroup              = new FormGroup( {} );
     private manualAddressControlGroup : FormGroup = new FormGroup( {} );
@@ -115,16 +116,14 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
         if ( this.controlGroup ) {
             this.controlGroup.addControl( 'manualEntryAddress' , this.manualAddressControlGroup );
         }
-        /* this.googleAddressCtrl
-         .valueChanges
-         .debounceTime( 400 )
-         .distinctUntilChanged()
-         .subscribe( () => {
-
-         } );*/
+        // this.googleAddressCtrl
+        //     .valueChanges
+        //     .subscribe( () => {
+        //     } );
     }
 
     updateAddressFields ( googleAddress ) {
+        this.resetManualEntryControls();
         if ( googleAddress && googleAddress.address_components ) {
             this.addressCtrl.setValue( AMPGoogleAddressComponent.getAddressComponent( [
                 'street_number' ,
@@ -136,8 +135,6 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
             ] , true , googleAddress.address_components ) );
             this.stateCtrl.setValue( AMPGoogleAddressComponent.getAddressComponent( [ 'administrative_area_level_1' ] , true , googleAddress.address_components ) );
             this.postcodeCtrl.setValue( AMPGoogleAddressComponent.getAddressComponent( [ 'postal_code' ] , true , googleAddress.address_components ) );
-        } else {
-            this.resetManualEntryControls();
         }
     }
 
@@ -147,8 +144,11 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
     }
 
     // Need to binding this validator into a specific context
-    private googleAddressCustomValidator          = () : any => {
+    private googleAddressCustomValidator = () : any => {
         return ( c ) => {
+            if ( ! c.valid ) {
+                return c.errors;
+            }
             if ( this.addressComponent && this.addressComponent.addrPlace ) {
                 return null;
             } else {
@@ -161,8 +161,18 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
         };
     };
 
+    constructor ( private _cd : ChangeDetectorRef ) {
+    }
+
     private onGoogleAddressChanged ( googleAddress ) {
         this.updateAddressFields( googleAddress );
+    }
+
+    private onGoogleAddressPredictionsChanged ( predictions ) {
+        this.showNoPredictionError = (predictions === null ? true : false);
+        if ( this.showNoPredictionError ) {
+            this.resetManualEntryControls();
+        }
     }
 
     private manualInputGridItemClasses () {
@@ -171,8 +181,13 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
 
     private resetManualEntryControls () {
         this.addressCtrl.setValue( null );
+        this.addressCtrl.markAsUntouched();
         this.suburbCtrl.setValue( null );
+        this.suburbCtrl.markAsUntouched();
         this.stateCtrl.setValue( null );
+        this.stateCtrl.markAsUntouched();
         this.postcodeCtrl.setValue( null );
+        this.postcodeCtrl.markAsUntouched();
+        this.manualState.checkErrors();
     }
 }

@@ -10,7 +10,7 @@ import { ValuesPipe } from '../../pipes/values/values.pipe';
                     <div *ngFor="let error of aControl.errors | values ; let i = index" class="error-item ">
                         <div *ngIf="aControl.touched">
                             <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                            {{ error.text }}
+                            <span [innerHtml]="error.text"></span>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@ import { ValuesPipe } from '../../pipes/values/values.pipe';
                 <div *ngFor="let error of controlGroup.controls[controlId].errors | values ; let i = index" class="error-item">
                     <div *ngIf="controlGroup.controls[controlId].touched">
                         <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                        {{ error.text }}
+                        <span [innerHtml]="error.text"></span>
                     </div>
                 </div>
             </div>

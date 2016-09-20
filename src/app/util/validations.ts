@@ -3,6 +3,9 @@ export class RequiredValidator {
     public static requiredValidation ( required ) {
         return ( c ) => {
             if ( required ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
                 if ( ! c.value || c.value.length === 0 ) {
                     return {
                         required : {
@@ -20,6 +23,9 @@ export class MaxLengthValidator {
     public static maxLengthValidation ( maxLength ) {
         return ( c ) => {
             if ( maxLength ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
                 if ( ! c.value || c.value.length <= maxLength ) {
                     return null;
                 }
@@ -40,7 +46,10 @@ export class MinLengthValidator {
     public static minLengthValidation ( minLength ) {
         return ( c ) => {
             if ( minLength ) {
-                if ( ! c.value || ! c.value.valid ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
+                if ( ! c.value ) {
                     return null;
                 } else {
                     if ( c.value.length < minLength ) {
@@ -62,6 +71,9 @@ export class PatterValidator {
     public static patternValidator ( pattern ) {
         return ( c ) => {
             if ( pattern ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
                 if ( ! c.value || new RegExp( pattern ).test( c.value ) ) {
                     return null;
                 }
@@ -79,6 +91,9 @@ export class MaxDateValidator {
     public static maxDateValidator ( pattern , datePattern ) {
         return ( c ) => {
             if ( pattern !== undefined ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
                 let diff = FormUtils.getAgeDays( c.value );
                 if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || ! diff || diff <= pattern ) {
                     return null;
@@ -99,6 +114,9 @@ export class DateValidator {
     public static dateValidator ( pattern , datePattern ) {
         return ( c ) => {
             if ( pattern !== undefined ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
                 let isValidDate = FormUtils.isValidDate( c.value );
                 if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || isValidDate ) {
                     return null;
@@ -119,6 +137,9 @@ export class MinDateValidator {
     public static minDateValidator ( pattern , datePattern ) {
         return ( c ) => {
             if ( pattern !== undefined ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
                 let diff = FormUtils.getAgeDays( c.value );
                 if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || diff === null || diff === undefined || diff >= pattern ) {
                     return null;
@@ -139,6 +160,9 @@ export class MaxFloatValidator {
     public static maxFloatValidator ( maxFloat ) {
         return ( c ) => {
             if ( maxFloat ) {
+                if ( ! c.valid ) {
+                    return c.errors;
+                }
                 if ( ! c.value || c.value.length > 0 ) {
                     if ( c.value ) {
                         let newVal       = c.value;

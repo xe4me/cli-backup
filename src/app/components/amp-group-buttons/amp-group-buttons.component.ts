@@ -10,6 +10,9 @@ import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../util/validations';
 import { FormGroup , FormControl } from '@angular/forms';
 import { ScrollService } from '../../services/scroll/scroll.service';
+import {
+    RadioControlValueAccessor
+} from "@angular/forms/src/directives/radio_control_value_accessor";
 @Component( {
     selector        : 'amp-group-buttons' ,
     template        : `
@@ -46,6 +49,7 @@ import { ScrollService } from '../../services/scroll/scroll.service';
     ] ,
     styles          : [ require( './amp-group-buttons.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
+    providers       : [ RadioControlValueAccessor ] ,
     outputs         : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent implements OnInit {
