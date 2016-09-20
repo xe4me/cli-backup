@@ -1,4 +1,14 @@
-import { Component , ChangeDetectorRef , ElementRef, Input } from '@angular/core';
+import {
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    Input,
+    ChangeDetectionStrategy,
+    trigger,
+    state,
+    style,
+    animate,
+    transition } from '@angular/core';
 import { AmpButton } from "../../../app/components/amp-button/amp-button.component";
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { FormBlock } from '../../../app/form-block';
@@ -7,7 +17,10 @@ import { ScrollService } from '../../services/scroll/scroll.service';
 import { ProgressObserverService } from '../../services/progress-observer/progress-observer.service';
 @Component( {
     selector   : 'amp-intro-block' ,
-    directives : [ AmpButton, AmpCheckboxComponent ] ,
+    directives : [ AmpButton, AmpCheckboxComponent ],
+    host            : {
+        '[@slideUp]' : 'slideUp'
+    } ,
     template   : `
             <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class="grid__container 1/1 palm-1/1">
@@ -18,8 +31,28 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
                 </div>
             </div>
     ` ,
-    styles     : [ require( './amp-intro-block.component.scss' ).toString() ]
+    styles     : [ require( './amp-intro-block.component.scss' ).toString() ],
+    animations      : [
+        trigger(
+            'slideUp' ,
+            [
+                state( 'collapsed, void' , style( { height : '0px' , opacity : '0' , display : 'none' , padding : 0 } ) ) ,
+                state( 'expanded' , style( { height : '*' , opacity : '1' , overflow : 'hidden' , display : 'block' } ) ) ,
+                transition(
+                    'collapsed <=> expanded' , [ animate( 800 ) ] )
+            ] )
+    ]
 } )
 export class IntroBlockComponent {
+    private slideUp = "expanded";
 
+
+    private hide () {
+        this.slideUp = 'collapsed';
+        setTimeout( ()=> {
+           // this.onNext();
+            console.log("called");
+        } , 800 )
+    }
+}
 }
