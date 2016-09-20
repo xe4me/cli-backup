@@ -5,7 +5,7 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
 @Component( {
     selector   : 'amp-form-block' ,
     template   : `
-        <div (keyup.enter)="context.onNext()" class="FormBlocK " id='{{ context?.selectorName }}'>
+        <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK " id='{{ context?.selectorName }}'>
              <amp-overlay [active]='!context?.isActive'></amp-overlay>
             <h2 class="heading heading-intro" [innerHtml]="context?.__custom.blockTitle"></h2>
              <ng-content></ng-content>
@@ -47,5 +47,11 @@ export class AmpFormBlockComponent implements OnInit {
                 ' passed in the context ' );
         }
         return undefined;
+    }
+
+    onKeyupEnter (event) {
+        if (event.target.tagName.toLowerCase() !== 'textarea') {
+            this.context.onNext();
+        }
     }
 }
