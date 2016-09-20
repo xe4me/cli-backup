@@ -1,7 +1,6 @@
 {
   "extends": "tslint:recommended",
   "rules": {
-
     // Overrides of tslint:recommended
     "object-literal-sort-keys": false,
     "max-line-length": [
@@ -43,6 +42,7 @@
     // TODO: Overrides for recommended that we don't actually want to do so aim to remove
     "interface-name": false,
     "member-access": false,
-    "no-console": false
+    "no-console": false,
+    "one-line": false // This is excluded due to a bug in tslint. This line can be removed once the following issue has been resolved https://github.com/palantir/tslint/issues/1561
   }
 }

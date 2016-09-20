@@ -52,20 +52,30 @@ export default class IntroBlockBasicUsage {
 
     _style: string = 'branding-bett3r';
 
-    @Input()
-    set style(style : string) {
-        this._style = (style && style.trim()) || '';
-    }
-
-    get style() { return this._style; }
-
     /**
      *
      * Title: Use this to set the title of the block, this sits with the logo and is hidden by default
      *
      */
 
-    _title: string = 'Here is a dynamic title.....';
+    _title : string = 'Here is a dynamic title.....';
+
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
+    }
+
+    // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
+    private callbackForChangeLink = (target : string) => {
+
+    };
+
+    @Input()
+    set style(style : string) {
+        this._style = (style && style.trim()) || '';
+    }
+
+    get style() {
+        return this._style;
+    }
 
     @Input()
     set title(title : string) {

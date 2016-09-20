@@ -10,7 +10,7 @@ import {
     style,
     animate,
     transition } from '@angular/core';
-import { AmpButton } from "../../../app/components/amp-button/amp-button.component";
+import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 import { FormBlock } from '../../../app/form-block';
 import { FormModelService } from '../../services/form-model/form-model.service';
