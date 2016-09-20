@@ -1,0 +1,31 @@
+<amp-form-block [context]="context()">
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+            <amp-input
+                    [id]="__custom.controls[0].id"
+                    [controlGroup]="__controlGroup"
+                    [label]="'Residential address'"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-input>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <amp-checkbox
+                [isInSummaryState]="isInSummaryState"
+                [controlGroup]="__controlGroup"
+                [checked]="__custom.controls[1].id.value">
+                My residential address is different to my postal
+        </amp-checkbox>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
+            <amp-input
+                    [id]="__custom.controls[2].id"
+                    [controlGroup]="__controlGroup"
+                    [label]="'Postal address'"
+                    [required]="false"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-input>
+        </div>
+    </amp-form-row>
+</amp-form-block>

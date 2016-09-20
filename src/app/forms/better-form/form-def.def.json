@@ -47,25 +47,46 @@
                             "path": "blocks/single-or-joint/single-or-joint-block.component"
                         },
                         {
-                            "name": "ContactDetails",
-                            "blockType": "ContactDetailsBlock",
+                            "name": "BasicInfo",
+                            "blockType": "BasicInfoBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "blocks/contact-details/contact-details.component",
+                            "path": "blocks/basic-info/basic-info.component",
                             "custom": {
-                                "blockTitle": "Please confirm your details are correct.<br> If not, simply update them below.",
+                                "blockTitle": "Tell us about yourself.",
                                 "controls": [
                                     {
                                         "id": "FirstName"
                                     },
                                     {
+                                        "id": "MiddleName"
+                                    },
+                                    {
                                         "id": "LastName"
                                     },
                                     {
-                                        "id": "ContactNumber"
+                                        "id": "DateOfBirth"
+                                    }
+                                ]
+                            }
+                        },
+                         {
+                            "name": "Address",
+                            "blockType": "AddressBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/address/address.component",
+                            "custom": {
+                                "blockTitle": "And where you live...",
+                                "controls": [
+                                    {
+                                        "id": "ResidentialAddress"
                                     },
                                     {
-                                        "id": "Email"
+                                        "id" : "PostalAddressSameAsResidential"
+                                    },
+                                    {
+                                        "id": "PostalAddress"
                                     }
                                 ]
                             }

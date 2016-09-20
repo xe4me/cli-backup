@@ -8,13 +8,13 @@ import {
     FormModelService ,
     ProgressObserverService ,
     FormService
-} from "amp-ddc-components";
+} from 'amp-ddc-components';
 @Component( {
-    selector        : 'contact-details-block' ,
-    templateUrl     : './contact-details.component.html' ,
+    selector        : 'address' ,
+    templateUrl     : './address.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class ContactDetailsBlock extends FormBlock {
+export class AddressBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -22,9 +22,5 @@ export class ContactDetailsBlock extends FormBlock {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
-    }
-
-    context () {
-        return this;
     }
 }
