@@ -18,7 +18,7 @@ export default class IntroBlockBasicUsage {
     /**
      * THIS CODE IS A SAMPLE ONLY
      * */
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef,  private elementRef : ElementRef ) {
     }
 
     // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
@@ -60,14 +60,19 @@ export default class IntroBlockBasicUsage {
         return this._title;
     }
 
-  /*  autoFocus () {
-        /!*
+    autoFocus () {
+        /*
          * TODO : This should be a directive or something else.
-         * *!/
+         * */
         setTimeout( () => {
 
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
-            inputs[ 0 ].focus();
+
+            //inputs[1].focus();\
+
+            inputs[2].focus();
+
+            //console.log();
 
             //if ( inputs && inputs.length > 0 ) {
 
@@ -77,5 +82,5 @@ export default class IntroBlockBasicUsage {
 
     ngAfterViewInit () {
         this.autoFocus();
-    }*/
+    }
 }
