@@ -3,18 +3,21 @@ import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
+import { AmpInputComponent } from '../../../app/components/amp-input/amp-input.component';
 import { IntroBlockComponent } from '../../../app/blocks/amp-intro-block/amp-intro-block.component';
 import { FormBlock } from '../../../app/form-block';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector   : 'intro-block-basic-usage' ,
-    directives : [ AmpButton, IntroBlockComponent ] ,
+    directives : [ AmpButton, IntroBlockComponent, AmpInputComponent ] ,
     templateUrl : 'src/styleguide/blocks/amp-intro-block/basic_usage.html',
     styles     : [ require( './basic_usage.scss' ).toString() ]
 } )
 
 export default class IntroBlockBasicUsage {
-
+    /**
+     * THIS CODE IS A SAMPLE ONLY
+     * */
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
@@ -57,4 +60,22 @@ export default class IntroBlockBasicUsage {
         return this._title;
     }
 
+  /*  autoFocus () {
+        /!*
+         * TODO : This should be a directive or something else.
+         * *!/
+        setTimeout( () => {
+
+            let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
+            inputs[ 0 ].focus();
+
+            //if ( inputs && inputs.length > 0 ) {
+
+            //}
+        } , 100 );
+    }
+
+    ngAfterViewInit () {
+        this.autoFocus();
+    }*/
 }

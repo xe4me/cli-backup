@@ -25,7 +25,6 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
             <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class="grid__container 1/1 palm-1/1">
                     <div class="grid__item_floated utils__align&#45;&#45;left" >
-
                                 <ng-content></ng-content>
                     </div>
                 </div>
@@ -46,13 +45,15 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
 export class IntroBlockComponent {
     private slideUp = "expanded";
 
-
+    /**
+     * Call this method to move onto the next block
+     * */
     private hide () {
         this.slideUp = 'collapsed';
         setTimeout( ()=> {
+            //TODO: uncomment this for use inside a block
            // this.onNext();
-            console.log("called");
         } , 800 )
     }
 }
-}
+
