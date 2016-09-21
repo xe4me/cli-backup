@@ -39,11 +39,8 @@ export class AmpFileUploadComponent implements OnInit {
         return this.progress < 1 ? true : false;
     }
 
-    private handleUpload( response : any) : void {
-        // TODO: This has to be implemented using observable
-        setTimeout(() => {
-            this._cd.detectChanges();
-        }, 10);
+    private handleUpload(response: any): void {
+        this._cd.detectChanges();
         this.fileName = response.originalName;
         this.fileSize = this.humanizeBytes( response.size);
         this.speed = response.speedAverageHumanized ? response.speedAverageHumanized : response.progress.speedHumanized;
