@@ -1,20 +1,26 @@
-import { Component , ChangeDetectorRef , ElementRef, Input } from '@angular/core';
+import { Component , ChangeDetectorRef , ElementRef, Input, ViewChild } from '@angular/core';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { AmpInputComponent } from '../../../app/components/amp-input/amp-input.component';
-import { IntroBlockComponent } from '../../../app/blocks/amp-intro-block/amp-intro-block.component';
+import { AmpIntroBlockComponent } from '../../../app/blocks/amp-intro-block/amp-intro-block.component';
 import { FormBlock } from '../../../app/form-block';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector   : 'intro-block-basic-usage' ,
-    directives : [ AmpButton, IntroBlockComponent, AmpInputComponent ] ,
+    directives : [ AmpButton, AmpIntroBlockComponent, AmpInputComponent ] ,
     templateUrl : 'src/styleguide/blocks/amp-intro-block/basic_usage.html',
     styles     : [ require( './basic_usage.scss' ).toString() ]
 } )
 
 export default class IntroBlockBasicUsage {
+
+    /**
+     * import the context from the amp-intro-block
+     * */
+    @ViewChild(AmpIntroBlockComponent) ampIntro;
+
     /**
      * THIS CODE IS A SAMPLE ONLY
      * */
@@ -24,6 +30,16 @@ export default class IntroBlockBasicUsage {
     // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
     private callbackForChangeLink = (target : string) => {
 
+    }
+
+    /**
+     * create a method to trigger the intro blocks' method, then on next inside the FormBlock itself
+     * */
+    private proceed(){
+        this.ampIntro.proceed(); // call the method from the amp-in
+        setTimeout( ()=> {
+            //this.onNext(); implement form block to call this method
+        } , 800 )
     }
 
     /**
@@ -60,10 +76,11 @@ export default class IntroBlockBasicUsage {
         return this._title;
     }
 
+    /**
+     * This code is just to set focus on an element and is not for general use.
+     * */
+
     autoFocus () {
-        /*
-         * TODO : This should be a directive or something else.
-         * */
         setTimeout( () => {
 
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
