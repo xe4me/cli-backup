@@ -182,6 +182,27 @@
                                     }
                                 ]
                             }
+                        },
+                        {
+                            "name": "TaxFileNumber",
+                            "blockType": "TaxFileNumberBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/tax-file-number/tax-file-number.component",
+                            "custom": {
+                                "blockTitle": "Nearly there...",
+                                "controls": [
+                                    {
+                                        "id": "TaxFileNumber"
+                                    },
+                                    {
+                                        "id": "NoTaxFileNumber"
+                                    },
+                                    {
+                                        "id": "NoTaxFileNumberReason"
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }
