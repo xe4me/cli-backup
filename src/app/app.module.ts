@@ -27,7 +27,9 @@ import {
     AmpTextareaComponent ,
     AmpGroupButtonsComponent ,
     AmpRadioButtonGroupComponent ,
-    FormService
+    FormService,
+    AmpHomeNumberComponent,
+    IntroBlockComponent
 } from "amp-ddc-components";
 const PROVIDERS    = [
     ScrollService ,
@@ -36,6 +38,7 @@ const PROVIDERS    = [
     FormService
 ];
 const DECLARATIONS = [
+    IntroBlockComponent,
     AmpFormBlockComponent ,
     AMPGoogleAddressComponentGroup ,
     AmpInputComponent ,
@@ -53,6 +56,7 @@ const DECLARATIONS = [
     AmpTextareaComponent ,
     AmpGroupButtonsComponent ,
     AmpRadioButtonGroupComponent ,
+    AmpHomeNumberComponent
 ];
 @NgModule( {
     declarations : [

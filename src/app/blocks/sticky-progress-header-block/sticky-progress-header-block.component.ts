@@ -8,7 +8,7 @@ import { AmpLinearProgressBarComponent } from 'amp-ddc-components';
             <div class="sticky__header">
                 <div class='sticky__header--right'>
                     <div>Save and close</div>
-                    <div>Reference number:</div>
+                    <div>Reference number:  XYZ</div>
                 </div>
             </div>
         </div>

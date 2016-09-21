@@ -1,0 +1,25 @@
+<amp-form-block [context]="context()">
+    <div class="utils__align--left" >
+        <p class='mt-50'>
+            Please choose which ID you would like ot use in order for us to check your ID and enter relevant pieces of information
+        </p>
+    </div>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-12/12 mr mt0">
+            <amp-input
+                    [id]="__custom.controls[0].id"
+                    [controlGroup]="__controlGroup"
+                    [label]="'Drivers License State'"
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
+            </amp-input>
+            <amp-input
+                    [id]="__custom.controls[1].id"
+                    [controlGroup]="__controlGroup"
+                    [label]="'Drivers License No'"
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
+            </amp-input>
+        </div>
+    </amp-form-row>
+</amp-form-block>

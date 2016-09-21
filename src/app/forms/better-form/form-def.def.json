@@ -112,7 +112,7 @@
                                 ]
                             }
                         },
-                          {
+                        {
                             "name": "TermsAndConditions",
                             "blockType": "TermsAndConditionsBlock",
                             "blockLayout": "INLINE",
@@ -138,6 +138,39 @@
                                 "controls": [
                                     {
                                         "id": "OnlineIDCheck"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "IdCheck",
+                            "blockType": "IdCheckBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/id-check/id-check.component",
+                            "custom": {
+                                "blockTitle": "Checking your ID",
+                                "controls": [
+                                    {
+                                        "id": "DriversLicenseState"
+                                    },
+                                    {
+                                        "id": "DirversLicenseNumber"
+                                    },
+                                    {
+                                        "id": "MedicareCardNumber"
+                                    },
+                                    {
+                                        "id": "MedicareCardCardColour"
+                                    },
+                                    {
+                                        "id": "MedicarecardPatientNumber"
+                                    },
+                                    {
+                                        "id": "MedicareCardExpiry"
+                                    },
+                                    {
+                                        "id" : "AustralianPassportNUmber"
                                     }
                                 ]
                             }
