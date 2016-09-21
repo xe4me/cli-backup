@@ -8,8 +8,16 @@
     <amp-button
         [context]="context()"
         class='btn btn-ok mt+'
-        (click)='onNext()'
+        (click)='acceptTandC()'
     >
                         Continue
     </amp-button>
+    <div style="display : none;">
+        <amp-input
+                [id]="__custom.controls[0].id"
+                [controlGroup]="__controlGroup"
+                [label]="'Accept T and C'"
+                [required]="true">
+        </amp-input>
+    </div>
 </amp-form-block>

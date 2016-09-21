@@ -14,7 +14,7 @@ import {
     templateUrl     : './terms-and-conditions.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AddressBlock extends FormBlock {
+export class TermsAndConditionsBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -22,5 +22,9 @@ export class AddressBlock extends FormBlock {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    }
+
+    private acceptTandC() {
+        this.__controlGroup.get(this.__custom.controls[0].id).setValue(true);
     }
 }

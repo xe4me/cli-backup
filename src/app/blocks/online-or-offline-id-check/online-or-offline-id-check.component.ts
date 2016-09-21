@@ -23,4 +23,8 @@ export class AddressBlock extends FormBlock {
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
+
+    private doOnlineIdCheck() {
+        this.__controlGroup.get(this.__custom.controls[0].id).setValue(true);
+    }
 }
