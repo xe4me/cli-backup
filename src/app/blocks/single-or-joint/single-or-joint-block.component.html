@@ -1,0 +1,27 @@
+<amp-form-block [context]="context()">
+    <div class="mt mb">
+        Please let us know if you would like to set up the account in your name or with someone else
+    </div>
+    <amp-button
+        [context]="context()"
+        class='btn btn-ok mt+'
+        (click)='onSingleJoint()'
+    >
+                        Single
+    </amp-button>
+    <amp-button
+        [context]="context()"
+        class='btn btn-ok mt+'
+        (click)='onSingleJoint()'
+    >
+                        Joint
+    </amp-button>
+    <div style="display : none;">
+        <amp-input
+                [id]="__custom.controls[0].id"
+                [controlGroup]="__controlGroup"
+                [label]="'SingleOrJoint'"
+                [required]="true">
+        </amp-input>
+    </div>
+</amp-form-block>

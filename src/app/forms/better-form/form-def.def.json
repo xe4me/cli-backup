@@ -44,7 +44,15 @@
                             "blockType": "SingleOrJointBlockComponent",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "blocks/single-or-joint/single-or-joint-block.component"
+                            "path": "blocks/single-or-joint/single-or-joint-block.component",
+                            "custom": {
+                                "blockTitle" : "Just for you or with someone else?",
+                                "controls": [
+                                    {
+                                        "id": "SingleOrJoint"
+                                    }
+                                ]
+                            }
                         },
                         {
                             "name": "BasicInfo",
