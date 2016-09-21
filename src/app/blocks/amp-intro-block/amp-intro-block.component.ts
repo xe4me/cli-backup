@@ -5,6 +5,7 @@ import {
     Input,
     ChangeDetectionStrategy,
     trigger,
+    ContentChild,
     state,
     style,
     animate,
@@ -42,18 +43,20 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
             ] )
     ]
 } )
-export class IntroBlockComponent {
+export class AmpIntroBlockComponent {
     private slideUp = "expanded";
 
     /**
      * Call this method to move onto the next block
+     *
+     * In order to call this in your form you need to import the context of this component into your class, for a sample of how to do this, see the styleguide implementation of the amp-intro-block.
+     *
+     *
      * */
-    private hide () {
+    public proceed () {
         this.slideUp = 'collapsed';
-        setTimeout( ()=> {
-            //TODO: uncomment this for use inside a block
-           // this.onNext();
-        } , 800 )
     }
+
+
 }
 

@@ -13,11 +13,12 @@
                             class="intro-value">John Smith</label></li>
                     </ul>
                 </article>
-                <h3 class="intro-message-heading heading heading-intro mb+">Hi John, You're about to request to exercise
+                <h3 class="intro-message-heading heading heading-intro">Hi John, You're about to request to exercise
                     your buyer of the last resort facility. (BOLR). </h3>
                 <p class="intro-tagline"><strong>We just need a few details, it won't take long</strong></p>
                 <amp-button
-                    class='btn btn-ok btn-intro-primary'>
+                    class='btn btn-ok btn-intro-primary'
+                    (click)="proceed()">
                     Ok
                 </amp-button>
             </div>
@@ -31,7 +32,7 @@
         <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
                 <h2 class='intro-logo'>This is another title</h2>
                 <div class="intro-container">
-                    <h3 class="intro-message-heading heading heading-intro mb+">{{title}}</h3>
+                    <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                     <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
                     <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin.</p>
                     <div class="grid__container_inner">
@@ -45,7 +46,8 @@
                     </div>
                     <div class="grid__container_inner">
                         <amp-button
-                            class='btn btn-ok btn-intro-primary'>
+                            class='btn btn-ok btn-intro-primary'
+                            (click)="proceed()">
                             Ok
                         </amp-button>
                    </div>
@@ -60,7 +62,7 @@
         <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
             <h2 class='intro-logo'>This is another title</h2>
             <div class="intro-container">
-                <h3 class="intro-message-heading heading heading-intro mb+">{{title}}</h3>
+                <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
                 <h3 class="intro-message-heading heading heading-intro mb0">buttons</h3>
 
@@ -105,7 +107,7 @@
         <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
             <h2 class='intro-logo'>This is another title</h2>
             <div class="intro-container">
-                <h3 class="intro-message-heading heading heading-intro mb+">{{title}}</h3>
+                <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
 
                 <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-3/12 mr mt0">
