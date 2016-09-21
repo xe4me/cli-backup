@@ -1,3 +1,39 @@
+$list-default-margin: 20px;
+$list-default-padding: 30px;
+$list-default-size: 6px;
+
+.list-default {
+    list-style: none;
+    margin-top: $list-default-margin;
+
+    > li {
+        padding-left: $list-default-padding;
+        font-size: 18px;
+        margin-bottom: $list-default-margin;
+
+        &:before {
+            background: $amp-colour-sky-blue;
+            border-radius: 100%;
+            content: "";
+            display: inline-block;
+            height: $list-default-size;
+            margin-right: -$list-default-size;
+            position: relative;
+            top: -0.1em;
+            left: $list-default-size - $list-default-padding;
+            vertical-align: middle;
+            width: $list-default-size;
+        }
+    }
+
+    ul li > & {
+        li {
+            font-size: inherit;
+            margin-bottom: 5px;
+        }
+    }
+}
+
 .#{$namespace}list,
 %#{$namespace}list {
   list-style: none;
