@@ -29,7 +29,7 @@ import {
     AmpRadioButtonGroupComponent ,
     FormService,
     AmpHomeNumberComponent,
-    IntroBlockComponent
+    AmpIntroBlockComponent
 } from "amp-ddc-components";
 const PROVIDERS    = [
     ScrollService ,
@@ -38,7 +38,7 @@ const PROVIDERS    = [
     FormService
 ];
 const DECLARATIONS = [
-    IntroBlockComponent,
+    AmpIntroBlockComponent,
     AmpFormBlockComponent ,
     AMPGoogleAddressComponentGroup ,
     AmpInputComponent ,
