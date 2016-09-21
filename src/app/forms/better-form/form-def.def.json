@@ -127,7 +127,7 @@
                             "commonBlock": false,
                             "path": "blocks/terms-and-conditions/terms-and-conditions.component",
                             "custom": {
-                                "blockTitle": "Just some basic details...",
+                                "blockTitle": "Thanks Charlie just to confirm...",
                                 "controls": [
                                     {
                                         "id": "AgreeTandCs"
