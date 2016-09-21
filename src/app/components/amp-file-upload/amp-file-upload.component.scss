@@ -1,0 +1,36 @@
+@import '../../../styles/abstracts';
+
+.container {
+    width: 40%;
+
+    amp-button {
+        position: relative
+    }
+
+    input {
+        position: absolute;
+        margin-top: 22px;
+        margin-left: -240px;
+        z-index: 2;
+        opacity: 0;
+        width: auto;
+        height: 52px;
+    }
+
+    .progress {
+        background-color: $amp-colour-grey-lightest;
+        border: 1px solid $amp-colour-grey;
+        min-width: 460px;
+        min-height: 112px;
+        padding: 30px;
+        margin: 30px 0;
+        .file-name {
+            margin-bottom: 3px;
+        }
+        .file-size {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+
