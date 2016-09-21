@@ -25,6 +25,7 @@ export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-r
 export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp-review-total.component';
 export { AmpFormBlockComponent } from './src/app/blocks/amp-form-block/amp-form-block.component';
 export { AmpFormRowComponent } from './src/app/blocks/amp-form-row/amp-form-row.component';
+export { IntroBlockComponent } from './src/app/blocks/amp-intro-block/amp-intro-block.component'
 // components
 export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
 export { AmpErrorComponent } from './src/app/components/amp-error/amp-error.component';
