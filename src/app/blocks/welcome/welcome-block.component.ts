@@ -4,7 +4,6 @@ import { AmpButton , ProgressObserverService , FormBlock , FormModelService , Sc
 @Component( {
     selector        : 'welcome-block' ,
     templateUrl     : './welcome-block.component.html',
-    styles          : [ require( './welcome-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class WelcomeBlockComponent extends FormBlock {

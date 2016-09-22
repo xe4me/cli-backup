@@ -3,7 +3,6 @@ import { AmpButton , ProgressObserverService , FormBlock , FormModelService , Sc
 @Component( {
     selector        : 'intro-block' ,
     templateUrl     : './intro-block.html',
-    styles          : [ require( './intro-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class IntroBlockComponent extends FormBlock {
