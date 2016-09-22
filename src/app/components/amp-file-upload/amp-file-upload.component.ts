@@ -1,5 +1,10 @@
-import {Component, OnInit, ChangeDetectorRef, Input} from '@angular/core';
+import { Component,
+         OnInit,
+         ChangeDetectorRef,
+         Input } from '@angular/core';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
+import { Http,
+         Response } from '@angular/http';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 
@@ -24,15 +29,18 @@ export class AmpFileUploadComponent implements OnInit {
     private showProgress : boolean = false;
     private uploadUrlWithToken : string = '';
 
-    constructor ( protected _cd : ChangeDetectorRef ) {}
+    constructor ( protected _cd : ChangeDetectorRef,
+                  private http : Http ) {
+    }
 
     ngOnInit() {
-        this.updateToken();
+        this.basicOptions = {
+            calculateSpeed: true
+        }
     }
 
     private displayProgress() : void {
         this.showProgress = true;
-        this.updateToken();
     }
 
     private showProgressBar() : boolean {
@@ -59,15 +67,15 @@ export class AmpFileUploadComponent implements OnInit {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
-    private updateToken () : void {
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( 'GET', this.tokenUrl, false );
-        xmlHttp.send( null );
-        this.token = JSON.parse(xmlHttp.responseText).payload.token;
-        this.uploadUrlWithToken = this.uploadUrl + this.token;
-        this.basicOptions = {
-            url: this.uploadUrlWithToken,
-            calculateSpeed: true
-        };
+    private UpdateToken () : void {
+        this.http.get(this.tokenUrl)
+            .map((res:Response) => res.json())
+            .subscribe( (res:any) => {
+                this.token = res.payload.token;
+                this.uploadUrlWithToken = this.uploadUrl + this.token;
+                this.basicOptions = {
+                    url: this.uploadUrlWithToken
+                }
+            } );
     }
 }
