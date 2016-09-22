@@ -31,7 +31,14 @@
                     "blockType": "WelcomeBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
-                    "path": "blocks/welcome/welcome-block.component"
+                    "path": "blocks/welcome/welcome-block.component",
+                    "custom": {
+                        "controls": [
+                            {
+                                "id": "NewOrExisting"
+                            }
+                        ]
+                    }
                 },
                 {
                     "blockType": "MenuFrameBlockComponent",
@@ -46,7 +53,7 @@
                             "commonBlock": false,
                             "path": "blocks/single-or-joint/single-or-joint-block.component",
                             "custom": {
-                                "blockTitle" : "Just for you or with someone else?",
+                                "blockTitle": "Just for you or with someone else?",
                                 "controls": [
                                     {
                                         "id": "SingleOrJoint"
@@ -178,7 +185,7 @@
                                         "id": "MedicareCardExpiry"
                                     },
                                     {
-                                        "id" : "AustralianPassportNUmber"
+                                        "id": "AustralianPassportNUmber"
                                     }
                                 ]
                             }

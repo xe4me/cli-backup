@@ -4,12 +4,12 @@
         <h3 class="intro-message-heading heading heading-intro">Welcome</h3>
         <p class="intro-para">To the smarter way to manage your money.  Please choose how you would like to continue.</p>
         <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-3/12 mb mr">
-            <amp-button (click)="onNext()" class="btn btn-secondary btn-intro-chevron">
+            <amp-button (click)="onNewOrExisting('new')" class="btn btn-secondary btn-intro-chevron">
                 New Application
             </amp-button>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-3/12 mb ml mr">
-            <amp-button (click)="onNext()" class="btn btn-secondary btn-intro-chevron">
+            <amp-button (click)="onNewOrExisting('online')" class="btn btn-secondary btn-intro-chevron">
                 Continue Application
             </amp-button>
         </div>
