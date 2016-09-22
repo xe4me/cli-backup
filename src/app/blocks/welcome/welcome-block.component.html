@@ -1,23 +1,15 @@
-<amp-intro-block class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
-        <div class='intro-logo mb+'></div>
-        <div class="utils__align--center mb-60" >
-            <div class="grid__item 6/9 palm-8/9 mt-10 utils__align--left" >
-            <h1 class="heading heading-intro color-vlack">
-                Welcome
-            </h1>
-            <p class='mt-50'>
-                To the smarter way to manage your money.  Please choose how you would like to continue.
-            </p>
-            <amp-button
-                [context]="context()"
-                class='btn btn-ok mt+'
-                (click)='onNext()'>
+<amp-intro-block>
+    <div class="intro-container">
+        <h2 class="intro-logo"></h2>
+        <h3 class="intro-message-heading heading heading-intro">Welcome</h3>
+        <p class="intro-para">To the smarter way to manage your money.  Please choose how you would like to continue.</p>
+        <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-3/12 mb mr">
+            <amp-button (click)="onNext()" class="btn btn-secondary btn-intro-chevron">
                 New Application
             </amp-button>
-            <amp-button
-                [context]="context()"
-                class='btn btn-ok mt+'
-                (click)='onNext()'>
+        </div>
+        <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-3/12 mb ml mr">
+            <amp-button (click)="onNext()" class="btn btn-secondary btn-intro-chevron">
                 Continue Application
             </amp-button>
         </div>
