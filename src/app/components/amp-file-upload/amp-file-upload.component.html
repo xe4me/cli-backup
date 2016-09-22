@@ -6,6 +6,7 @@
            ngFileSelect
            [options]="basicOptions"
            (onUpload)="handleUpload($event)"
+           (click)="UpdateToken()"
            (change)="displayProgress()"/>
     <div class="progress mb" *ngIf="showProgress">
         <div class="file-name">
