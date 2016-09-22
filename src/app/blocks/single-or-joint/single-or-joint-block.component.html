@@ -5,23 +5,13 @@
     <amp-button
         [context]="context()"
         class='btn btn-ok mt+'
-        (click)='onSingleJoint()'
-    >
+        (click)='onSingleJoint("single")'>
                         Single
     </amp-button>
     <amp-button
         [context]="context()"
         class='btn btn-ok mt+'
-        (click)='onSingleJoint()'
-    >
+        (click)='onSingleJoint("joint")'>
                         Joint
     </amp-button>
-    <div style="display : none;">
-        <amp-input
-                [id]="__custom.controls[0].id"
-                [controlGroup]="__controlGroup"
-                [label]="'SingleOrJoint'"
-                [required]="true">
-        </amp-input>
-    </div>
 </amp-form-block>

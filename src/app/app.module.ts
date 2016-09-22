@@ -30,7 +30,7 @@ import {
     FormService,
     AmpHomeNumberComponent,
     AmpIntroBlockComponent
-} from "amp-ddc-components";
+} from 'amp-ddc-components';
 const PROVIDERS    = [
     ScrollService ,
     FormModelService ,

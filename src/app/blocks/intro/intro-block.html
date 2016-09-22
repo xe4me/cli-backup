@@ -1,17 +1,15 @@
-<amp-intro-block class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
-    <div class='intro-logo mb+'></div>
-    <div class="utils__align--center mb-60">
-        <div class="grid__item 6/9 palm-8/9 mt-10 utils__align--left">
-            <h1 class="heading heading-intro color-vlack">
-                Have we met before?
-            </h1>
-            <p class='mt-50'>
-                Please let us know if we know each other already or starting out a fresh
-            </p>
-            <amp-button [context]="context()" class='btn btn-ok mt+' (click)='onNext()'>
+<amp-intro-block>
+    <div class="intro-container">
+        <h2 class="intro-logo"></h2>
+        <h3 class="intro-message-heading heading heading-intro">Have we met before?</h3>
+        <p class="intro-para">Please let us know if we know each other already or starting out a fresh</p>
+        <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-3/12 mb mr">
+            <amp-button class="btn btn-secondary btn-intro-chevron">
                 New customer
             </amp-button>
-            <amp-button [context]="context()" class='btn btn-ok mt+' (click)='onNext()'>
+        </div>
+        <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-3/12 mb ml mr">
+            <amp-button class="btn btn-secondary btn-intro-chevron">
                 Existing customer
             </amp-button>
         </div>
