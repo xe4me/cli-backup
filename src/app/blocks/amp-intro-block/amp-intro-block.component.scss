@@ -194,6 +194,13 @@ $amp-ddc-public-asset: '../../../assets/';
 
     }
 
+    /* Branded stuff */
+    &.branding-bett3r {
+        background-image: url($amp-ddc-public-asset + 'images/fullbackground.jpg');
+        min-height: 793px;
+    }
+
+
 }
 
 
