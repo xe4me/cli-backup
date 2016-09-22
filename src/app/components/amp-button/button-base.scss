@@ -93,6 +93,10 @@ Button base class used by all
         width: 100% !important;
         display: block;
     }
+    &.btn-inline {
+        width: auto !important;
+        display: inline-block;
+    }
     &.btn-review {
         width: $btn-review-default-width;
     }
