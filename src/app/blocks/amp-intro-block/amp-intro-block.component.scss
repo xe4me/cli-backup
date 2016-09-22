@@ -51,7 +51,8 @@ $amp-ddc-public-asset: '../../../assets/';
         background-repeat: no-repeat;
         text-indent: -9999px !important;
         height: $amp-logo-height;
-        background-image: url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
+        background-image: url($amp-ddc-public-asset + 'images/logo/AMPLogo.png');
+        background-size: 90%;
         margin-bottom: 10px;
 
         @include media-query(palm) {
@@ -169,6 +170,10 @@ $amp-ddc-public-asset: '../../../assets/';
         }
         .intro-para {
             color: $amp-colour-white;
+        }
+
+        .intro-logo {
+            background-image: url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
         }
 
         label  .container .off {
