@@ -50,7 +50,7 @@ export default class IntroBlockBasicUsage {
      * branded: dark blue bg
      */
 
-    _style: string = '';
+    _style: string = 'branding-bett3r';
 
     @Input()
     set style(style : string) {
