@@ -210,6 +210,27 @@
                                     }
                                 ]
                             }
+                        },
+                        {
+                            "name": "SourceOfFunding",
+                            "blockType": "SourceOfFundingBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/source-of-funding/source-of-funding.component",
+                            "custom": {
+                                "blockTitle": "Please tell us your...",
+                                "controls": [
+                                    {
+                                        "id": "PrimarySourceOfWealth"
+                                    },
+                                    {
+                                        "id" : "SourceOfFundsForAccount"
+                                    },
+                                    {
+                                        "id": "ReasonForOpeningAccount"
+                                    }
+                                ]
+                            }
                         }
                     ]
                 }
