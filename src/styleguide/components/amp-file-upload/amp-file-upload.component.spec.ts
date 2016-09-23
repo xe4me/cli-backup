@@ -1,9 +1,14 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , ElementRef } from '@angular/core';
 import { AmpFileUploadComponent } from '../../../app/components/amp-file-upload/amp-file-upload.component';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { Http, BaseRequestOptions } from "@angular/http";
 fdescribe ( 'amp-file-upload component' , () => {
     let fixture : ComponentFixture<TestComponent>;
     let Element : any;
+    const mockHttpProvider = {
+        deps: [ MockBackend, BaseRequestOptions ]
+    };
 
     beforeEach ( async( () => {
         TestBed.configureTestingModule( {
@@ -13,7 +18,9 @@ fdescribe ( 'amp-file-upload component' , () => {
             ] ,
             providers    : [
                 { provide : ElementRef , useClass : MockElementRef } ,
-                { provide : Window , useClass : window }
+                { provide : Window , useClass : window },
+                { provide: Http },
+                { provide: mockHttpProvider }
             ]
         } );
         TestBed.compileComponents();
