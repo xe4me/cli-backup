@@ -28,6 +28,7 @@ export class AmpFileUploadComponent implements OnInit {
     private uploaded : string;
     private showProgress : boolean = false;
     private uploadUrlWithToken : string = '';
+    private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private http : Http ) {
@@ -56,15 +57,13 @@ export class AmpFileUploadComponent implements OnInit {
         this.progress = response.progress.percent / 100;
     }
 
-    private humanizeBytes(bytes : number) : string {
-        if (bytes === 0) {
+    private humanizeBytes( bytes : number ) : string {
+        if ( bytes === 0 ) {
             return '0 Byte';
         }
         let k = 1024;
-        const sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-        let i : number = Math.floor(Math.log(bytes) / Math.log(k));
-
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        let i : number = Math.floor( Math.log( bytes ) / Math.log( k ) );
+        return parseFloat( ( bytes / Math.pow( k, i ) ).toFixed( 2 ) ) + ' ' + this.sizes[i];
     }
 
     private UpdateToken () : void {
