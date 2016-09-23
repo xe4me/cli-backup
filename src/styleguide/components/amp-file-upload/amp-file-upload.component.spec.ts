@@ -29,7 +29,7 @@ describe ( 'amp-file-upload component' , () => {
         Element = fixture.nativeElement;
     } ) );
 
-    describe ( '"File upload" button' , () => {
+    describe ( '"File Upload" button' , () => {
         let button   : any;
 
         beforeEach( async( () => {
