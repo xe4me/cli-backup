@@ -44,7 +44,7 @@ export class WelcomeBlockComponent extends FormBlock {
         this.ampIntro.proceed();
         setTimeout(() => {
            this.onNext();
-        }, 800);
+        }, 850);
     }
 
 }
