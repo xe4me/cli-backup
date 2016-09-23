@@ -9,7 +9,7 @@ import StubbyTask from '../tasks/stubby.ts';
 PortFinder.basePort = 49152;
 
 const getPort = <any>denodeify(PortFinder.getPort);
-const defaultPort = process.env.PORT || 4200;
+const defaultPort = process.env.PORT || 3000;
 
 export interface ServeTaskOptions {
   port?: number;
@@ -43,9 +43,9 @@ const ServeCommand = Command.extend({
       aliases: ['H'],
       description: 'Listens on all interfaces by default'
     },
-    { name: 'proxy-config',         type: 'Path',                          aliases: ['pc'] },
-    { name: 'watcher',              type: String,  default: 'events',      aliases: ['w'] },
-    { name: 'live-reload',          type: Boolean, default: true,          aliases: ['lr'] },
+    { name: 'proxy-config',   type: 'Path',  default: 'webpackDevProxy.js',       aliases: ['pc'] },
+    { name: 'watcher',        type: String,  default: 'events',                   aliases: ['w'] },
+    { name: 'live-reload',    type: Boolean, default: true,                       aliases: ['lr'] },
     {
       name: 'live-reload-host',
       type: String,

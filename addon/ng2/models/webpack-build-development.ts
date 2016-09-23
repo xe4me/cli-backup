@@ -4,7 +4,7 @@ export const getWebpackDevConfigPartial = function(projectRoot: string, appConfi
   return {
     devtool: 'source-map',
     output: {
-      path: path.resolve(projectRoot, appConfig.outDir),
+      path: path.resolve(projectRoot, appConfig.outDir, appConfig.baseURI),
       filename: '[name].bundle.js',
       sourceMapFilename: '[name].map',
       chunkFilename: '[id].chunk.js'

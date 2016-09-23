@@ -54,13 +54,15 @@ export default Task.extend({
       historyApiFallback: true,
       stats: webpackDevServerOutputOptions,
       inline: true,
-      proxy: proxyConfig
+      proxy: proxyConfig,
+      // For some reason the webpackCompiler does not honor the publicPath configuration, so we have to extract it and configure it directly here
+      publicPath: config.output.publicPath
     };
 
     ui.writeLine(chalk.green(oneLine`
       **
       NG Live Development Server is running on
-      http://${commandOptions.host}:${commandOptions.port}.
+      http://${commandOptions.host}:${commandOptions.port}${config.output.publicPath}
       **
     `));
 

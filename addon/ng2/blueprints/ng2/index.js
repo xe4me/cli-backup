@@ -29,7 +29,11 @@ module.exports = {
       .replace(/-(.)/g, (_, l) => ' ' + l.toUpperCase())
       .replace(/^./, (l) => l.toUpperCase());
 
-    return {
+    // Take the last portion of the name as the identifier (i.e. 'abc' from XX-XX-abc) 
+    const appId = options.entity.name.split('-').pop();
+
+    const localVars = {
+      appId: appId,
       htmlComponentName: stringUtils.dasherize(options.entity.name),
       jsComponentName: stringUtils.classify(options.entity.name),
       fullAppName: fullAppName,
@@ -38,8 +42,11 @@ module.exports = {
       prefix: options.prefix,
       styleExt: this.styleExt,
       relativeRootPath: relativeRootPath,
-      isMobile: options.mobile
+      isMobile: options.mobile,
+      __dirname: __dirname
     };
+
+    return localVars;
   },
 
   files: function() {
