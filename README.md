@@ -28,6 +28,7 @@ npm install -g amp-angular-cli
 amp-ng --help
 
 # Generates a new experience Angular2 project
+# Please note the suffix (i.e. experience-<XYZ>) of the experience is important. Most notably the suffix will be used as the final path of the URL.
 amp-ng new experience-demo
 
 # Generates a new FormModule, that include a skeleton form Component, Definition, Template, etc..
@@ -36,26 +37,27 @@ amp-ng generate form form-demo
 # Generate a new Component
 amp-ng generate component demo-component
 
+# **Important, this step is depreciated, stubby has been incorporated into amp-ng serve command, no need to do this any more!!** 
 # Start stubby server
-node ./stubby.js
+#node ./stubby.js
 
-# Starts the webpack-dev-server
+# Start the webpack-dev-server, note the URL of this experience will be printed on start up of the dev server, as shown below
+# ...
+# ** NG Live Development Server is running on http://localhost:3000/ddc/secure/ui/dummy/ **
+# ...
 amp-ng serve
 
+# To update/sync an existing amp-angular-cli project
+amp-ng init
+
+# To test out the production build
+amp-ng build --prod
 
 
 ```
 
 ## Concepts
 1. Current thinking is to have NgModule at the App level to bring in all dependencies instead of Form level...why? Well most services are singleton.
-
-
-
-
-
-
-
-
 
 
 
