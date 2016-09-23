@@ -3,7 +3,7 @@ import { Component , ElementRef } from '@angular/core';
 import { AmpFileUploadComponent } from '../../../app/components/amp-file-upload/amp-file-upload.component';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions } from "@angular/http";
-fdescribe ( 'amp-file-upload component' , () => {
+describe ( 'amp-file-upload component' , () => {
     let fixture : ComponentFixture<TestComponent>;
     let Element : any;
     const mockHttpProvider = {
