@@ -92,6 +92,9 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
     private controlGroup : FormGroup              = new FormGroup( {} );
     private manualAddressControlGroup : FormGroup = new FormGroup( {} );
 
+    constructor ( private _cd : ChangeDetectorRef ) {
+    }
+
     get googleAddressCtrl () {
         return this.controlGroup.controls[ this.googleAddress.id + '_' + this.index ];
     }
@@ -160,9 +163,6 @@ export class AMPGoogleAddressComponentGroup implements OnInit {
             }
         };
     };
-
-    constructor ( private _cd : ChangeDetectorRef ) {
-    }
 
     private onGoogleAddressChanged ( googleAddress ) {
         this.updateAddressFields( googleAddress );

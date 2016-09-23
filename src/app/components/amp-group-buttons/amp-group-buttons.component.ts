@@ -12,7 +12,7 @@ import { FormGroup , FormControl } from '@angular/forms';
 import { ScrollService } from '../../services/scroll/scroll.service';
 import {
     RadioControlRegistry
-} from "@angular/forms/src/directives/radio_control_value_accessor";
+} from '@angular/forms/src/directives/radio_control_value_accessor';
 @Component( {
     selector        : 'amp-group-buttons' ,
     template        : `
