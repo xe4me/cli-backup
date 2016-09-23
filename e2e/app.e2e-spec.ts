@@ -1,14 +1,14 @@
-import { ExperienceBuybackPage } from './app.po';
+import { ExperienceBetterPage } from './app.po';
 
-describe('experience-buyback App', function() {
-  let page: ExperienceBuybackPage;
+describe('experience-better App', function() {
+    let page : ExperienceBetterPage;
 
-  beforeEach(() => {
-    page = new ExperienceBuybackPage();
-  });
+    beforeEach(() => {
+        page = new ExperienceBetterPage();
+    });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
+    it('should display message saying app works', () => {
+        page.navigateTo();
+        expect(page.getParagraphText()).toEqual('app works!');
+    });
 });

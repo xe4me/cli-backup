@@ -1,6 +1,6 @@
 'use strict';
 
-const EXPERIENCE_NAME = 'nio';
+const EXPERIENCE_NAME = 'better';
 
 // Wrapped in config module
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;

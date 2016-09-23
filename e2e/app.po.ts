@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor/globals';
 
-export class ExperienceBuybackPage {
+export class ExperienceBetterPage {
   navigateTo() {
     return browser.get('/');
   }

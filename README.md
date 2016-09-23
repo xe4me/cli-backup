@@ -1,5 +1,15 @@
 # AMP Digital dynamic data capture Experience - ExperienceBetter
 
+This experience project repo was generated using amp-angular-cli command.
+
+Developers are free to use the cli in whichever way that delivers the maximum value to achieve their goal, whether it is only for 
+scaffolding, quick poc, generated specific test bed, forms, components, routes, etc.
+
+However, it is advisable to make use of the cli throughout the lifecycle of this project (i.e. from creation, generation, 
+initialization, installation, serving, building, testing, etc), please refer to the README.md of the amp-angular-cli for more details.
+
+The rest of this document assumes you will stay on the cli path (i.e. it will not talk about npm install and dependency management as that is managed as part of the cli).
+
 This repo contains the specific Angular components for this <Experience> only.
 It is expected that each Experience (i.e. Form) will have their own clone of this Experience repo.
 The core content will be the Form specific items
@@ -8,9 +18,6 @@ The core content will be the Form specific items
 
 thus, this repo should be very light in size.
 
-
-> This repo was based on [Angular2 Webpack Starter](https://github.com/AngularClass/angular2-webpack-starter)
->
 > Various aspects and toolings of this project with links to obtain further resources.
 > * Best practices in file and application organization for [Angular 2](https://angular.io/).
 > * Ready to go build system using [Webpack](https://webpack.github.io/docs/) for working with [TypeScript](http://www.typescriptlang.org/).
@@ -24,19 +31,10 @@ thus, this repo should be very light in size.
 
 ### Dependency
 * Depends on [amp-styleguide-core](https://gitlab.ccoe.ampaws.com.au/DDC/amp-styleguide-core), this project currently is mainly used by MyAMP but it needs to be refactored out as the core parent styleguide project and all other project should either just use it or depend on it. Currently running off a branch [amp-styleguide-core | http://github.com/ampdigital/amp-styleguide-core#feature/agile/DDC-38].
-* Depends on [ui-core](https://gitlab.ccoe.ampaws.com.au/DDC/ui-core.git) which contains the core library shared for all DDC Angular 2 projects (basically All Experience(s) and
- Components at this stage).
 * Depends on [components](https://gitlab.ccoe.ampaws.com.au/DDC/components.git) which contains all of the DDC build blocks.
 
 
 ### Quick start
-> Clone/Download the following repos:
-
-* amp-styleguide-core
-* components
-* experience-nio
-* ui-core
-
 Before you can proceed you will need to configure your proxy settings properly.
 Recommended way is to setup a [local proxy](http://stackoverflow.com/questions/18569054/npm-behind-ntlm-proxy) on your laptop.
 
@@ -45,39 +43,12 @@ Change to develop branch:
 ```bash
 git checkout develop
 
-# then install the following global packages:
-
-npm i -g webpack webpack-dev-server karma protractor typings typescript
-
-# Install packages in each of the above repos:
-
-npm i
-
-# IMPORTANT - Please do not follow the npm link steps below until the existing issue with webpack and npm link has been resolved
-# It has been promised to be resolved in webpack 2: https://gist.github.com/sokra/27b24881210b56bbaff7
-# Existing issue links: https://github.com/npm/npm/issues/10013, https://github.com/npm/npm/issues/10800, https://github.com/webpack/webpack/issues/811
-
-# Link related packages to each other:
-
-cd ui-core
-npm link
-
-cd components
-npm link
-
-cd amp-styleguide-core
-npm link
-
-cd components
-npm link amp-ddc-ui-core
-npm link amp-styleguide-core
-
-cd experience-nio
-npm link amp-ddc-ui-core
-npm link amp-ddc-components
-
 # start the server
-npm start
+amp-ng serve
+
+# to run tests
+??
+
 ```
 
 go to [http://localhost:3000/ddc/secure/ui/nio/](http://localhost:3000/ddc/secure/ui/nio/) in your browser
@@ -337,7 +308,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
 Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Deploying to Github Pages
