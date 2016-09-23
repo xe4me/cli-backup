@@ -20,13 +20,6 @@
             },
             "blocks": [
                 {
-                    "name": "introBlockComponent",
-                    "blockType": "IntroBlockComponent",
-                    "blockLayout": "INLINE",
-                    "commonBlock": false,
-                    "path": "blocks/intro/intro-block.component"
-                },
-                {
                     "name": "WelcomeBlockComponent",
                     "blockType": "WelcomeBlockComponent",
                     "blockLayout": "INLINE",
