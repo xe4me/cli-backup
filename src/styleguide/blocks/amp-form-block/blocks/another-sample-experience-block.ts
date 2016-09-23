@@ -49,6 +49,8 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
+    isActive = true;
+
     private loadedDynamicBlock = false;
     private dynamicChild       = {
         'name'        : 'BlockWithRadios' ,
@@ -115,7 +117,7 @@ export class AnotherSampleExperienceBlock extends FormBlock {
             ]
         }
     };
-    isActive = true;
+
     constructor ( private themeService : ThemeService ,
                   private _vContainerRef : ViewContainerRef ,
                   formModelService : FormModelService ,

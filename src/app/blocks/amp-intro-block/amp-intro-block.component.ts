@@ -44,7 +44,7 @@ import { ProgressObserverService } from '../../services/progress-observer/progre
     ]
 } )
 export class AmpIntroBlockComponent {
-    private slideUp = "expanded";
+    private slideUp = 'expanded';
 
     /**
      * Call this method to move onto the next block
@@ -52,11 +52,8 @@ export class AmpIntroBlockComponent {
      * In order to call this in your form you need to import the context of this component into your class, for a sample of how to do this, see the styleguide implementation of the amp-intro-block.
      *
      *
-     * */
+     */
     public proceed () {
         this.slideUp = 'collapsed';
     }
-
-
 }
-

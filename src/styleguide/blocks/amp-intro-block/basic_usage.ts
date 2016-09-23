@@ -15,32 +15,10 @@ import { ThemeService } from '../../services/theme';
 } )
 
 export default class IntroBlockBasicUsage {
-
     /**
      * import the context from the amp-intro-block
-     * */
+     */
     @ViewChild(AmpIntroBlockComponent) ampIntro;
-
-    /**
-     * THIS CODE IS A SAMPLE ONLY
-     * */
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef,  private elementRef : ElementRef ) {
-    }
-
-    // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
-    private callbackForChangeLink = (target : string) => {
-
-    }
-
-    /**
-     * create a method to trigger the intro blocks' method, then on next inside the FormBlock itself
-     * */
-    private proceed(){
-        this.ampIntro.proceed(); // call the method from the amp-in
-        setTimeout( ()=> {
-            //this.onNext(); implement form block to call this method
-        } , 800 )
-    }
 
     /**
      * Use this property to set custom styles for the block.
@@ -50,7 +28,7 @@ export default class IntroBlockBasicUsage {
      * branded: dark blue bg
      */
 
-    _style: string = 'branding-bett3r';
+    _style : string = 'branding-bett3r';
 
     /**
      *
@@ -60,13 +38,11 @@ export default class IntroBlockBasicUsage {
 
     _title : string = 'Here is a dynamic title.....';
 
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
+    /**
+     * THIS CODE IS A SAMPLE ONLY
+     */
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef,  private elementRef : ElementRef ) {
     }
-
-    // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
-    private callbackForChangeLink = (target : string) => {
-
-    };
 
     @Input()
     set style(style : string) {
@@ -88,22 +64,29 @@ export default class IntroBlockBasicUsage {
 
     /**
      * This code is just to set focus on an element and is not for general use.
-     * */
+     */
 
     autoFocus () {
         setTimeout( () => {
-
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
 
-                if ( inputs && inputs.length > 0 ) {
-                    inputs[2].focus();
-                }
-
+            if ( inputs && inputs.length > 0 ) {
+                inputs[2].focus();
+            }
         } , 100 );
     }
 
     ngAfterViewInit () {
         this.autoFocus();
     }
-}
 
+    /**
+     * create a method to trigger the intro blocks' method, then on next inside the FormBlock itself
+     */
+    private proceed() {
+        this.ampIntro.proceed(); // call the method from the amp-in
+        setTimeout( () => {
+            // this.onNext(); implement form block to call this method
+        } , 800 );
+    }
+}

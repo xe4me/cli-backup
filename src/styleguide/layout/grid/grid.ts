@@ -8,7 +8,4 @@ import { Component } from '@angular/core';
 } )
 
 export default class Grid {
-    // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
-    private callbackForChangeLink = (target : string) => {
-    }
 }

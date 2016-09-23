@@ -9,7 +9,7 @@ export class RequiredValidator {
                             text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +
                             ' required'
                         }
-                    }
+                    };
                 } else {
                     if ( ! c.value || c.value.length === 0 ) {
                         return {
