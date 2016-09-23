@@ -2,7 +2,7 @@ import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , ElementRef } from '@angular/core';
 import { AmpFileUploadComponent } from '../../../app/components/amp-file-upload/amp-file-upload.component';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { Http, BaseRequestOptions } from "@angular/http";
+import { Http, BaseRequestOptions } from '@angular/http';
 describe ( 'amp-file-upload component' , () => {
     let fixture : ComponentFixture<TestComponent>;
     let Element : any;
@@ -76,7 +76,7 @@ class MockElementRef implements ElementRef {
 
 class TestComponent {
     private urls = {
-        //TODO - Urls has to be modified to fetch data from local JSON file
+        // TODO - Urls has to be modified to fetch data from local JSON file
         uploadUrl : 'http://localhost:8081/ddc/secure/api/upload/upload?token=',
         tokenUrl : 'http://localhost:8081/ddc/secure/api/upload/token'
     };

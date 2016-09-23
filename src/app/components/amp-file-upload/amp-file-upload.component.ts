@@ -37,18 +37,18 @@ export class AmpFileUploadComponent implements OnInit {
     ngOnInit() {
         this.basicOptions = {
             calculateSpeed: true
-        }
+        };
     }
 
-    private displayProgress() : void {
+    private displayProgress ( ) : void {
         this.showProgress = true;
     }
 
-    private showProgressBar() : boolean {
+    private showProgressBar ( ) : boolean {
         return this.progress < 1 ? true : false;
     }
 
-    private handleUpload(response: any): void {
+    private handleUpload ( response : any ) : void {
         this._cd.detectChanges();
         this.fileName = response.originalName;
         this.fileSize = this.humanizeBytes( response.size);
@@ -57,7 +57,7 @@ export class AmpFileUploadComponent implements OnInit {
         this.progress = response.progress.percent / 100;
     }
 
-    private humanizeBytes( bytes : number ) : string {
+    private humanizeBytes ( bytes : number ) : string {
         if ( bytes === 0 ) {
             return '0 Byte';
         }
@@ -74,7 +74,7 @@ export class AmpFileUploadComponent implements OnInit {
                 this.uploadUrlWithToken = this.uploadUrl + this.token;
                 this.basicOptions = {
                     url: this.uploadUrlWithToken
-                }
+                };
             } );
     }
 }
