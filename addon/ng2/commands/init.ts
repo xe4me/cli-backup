@@ -28,7 +28,8 @@ const InitCommand: any = Command.extend({
     { name: 'source-dir', type: String, default: 'src', aliases: ['sd'] },
     { name: 'style', type: String, default: 'css' },
     { name: 'prefix', type: String, default: 'app', aliases: ['p'] },
-    { name: 'mobile', type: Boolean, default: false }
+    { name: 'mobile', type: Boolean, default: false },
+    { name: 'npm-install-only', type: Boolean, default: false, aliases: ['nio'] }
   ],
 
   anonymousOptions: ['<glob-pattern>'],
@@ -90,6 +91,15 @@ const InitCommand: any = Command.extend({
       });
     }
 
+    let npmInstallOnly;
+    if (commandOptions.npmInstallOnly) {
+      npmInstallOnly = new NpmInstall({
+        ui: this.ui,
+        analytics: this.analytics,
+        project: this.project
+      });
+    }
+
     const project = this.project;
     const packageName = commandOptions.name !== '.' && commandOptions.name || project.name();
 
@@ -120,35 +130,42 @@ const InitCommand: any = Command.extend({
 
     blueprintOpts.blueprint = normalizeBlueprint(blueprintOpts.blueprint);
 
-    return installBlueprint.run(blueprintOpts)
-      .then(function () {
-        if (commandOptions.skipGit === false) {
-          return gitInit.run(commandOptions, rawArgs);
-        }
-      }.bind(this))
-      .then(function () {
-        if (commandOptions.linkCli) {
-          return linkCli.run({
-            verbose: commandOptions.verbose,
-            optional: false
-          });
-        }
-      })
-      .then(function () {
-        if (!commandOptions.skipNpm) {
-          return npmInstall.run({
-            verbose: commandOptions.verbose,
-            optional: false
-          });
-        }
-      })
-      .then(function () {
-        if (!commandOptions.skipBower) {
-          return bowerInstall.run({
-            verbose: commandOptions.verbose
-          });
-        }
-      });
+    if (commandOptions.npmInstallOnly) {
+      return npmInstallOnly.run({
+              verbose: commandOptions.verbose,
+              optional: false
+            });
+    } else {
+      return installBlueprint.run(blueprintOpts)
+        .then(function () {
+          if (commandOptions.skipGit === false) {
+            return gitInit.run(commandOptions, rawArgs);
+          }
+        }.bind(this))
+        .then(function () {
+          if (commandOptions.linkCli) {
+            return linkCli.run({
+              verbose: commandOptions.verbose,
+              optional: false
+            });
+          }
+        })
+        .then(function () {
+          if (!commandOptions.skipNpm) {
+            return npmInstall.run({
+              verbose: commandOptions.verbose,
+              optional: false
+            });
+          }
+        })
+        .then(function () {
+          if (!commandOptions.skipBower) {
+            return bowerInstall.run({
+              verbose: commandOptions.verbose
+            });
+          }
+        });
+    }
   }
 });
 
