@@ -18,6 +18,7 @@
 1. [X] - Remove "../../src/styleguide/blocks" dynamic require in amp-block-loader.directive.ts and change "../../src/app/" back to "../../../../src/app/", unless there was a good reason
 1. [X] - Integrate stubby.js into amp-ng serve
 1. [] - Sort out amp-ng test
+1. [] - Sort out Docker image and build steps
 
 ### Outstanding tasks
 1. [] NPM dependency is a mess, it appears to manage by CLI itself...need to wait until the OOTB CLI to fix this.
