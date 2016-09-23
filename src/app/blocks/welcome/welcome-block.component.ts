@@ -20,7 +20,8 @@ import { ViewChild } from '@angular/core';
 @Component({
     selector: 'welcome-block',
     templateUrl: './welcome-block.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styles : [ require('./welcome-block.component.scss') ]
 })
 export class WelcomeBlockComponent extends FormBlock {
 
