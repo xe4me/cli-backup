@@ -5,7 +5,7 @@
        ngFileSelect
        [options]="basicOptions"
        (onUpload)="handleUpload($event)"
-       (click)="UpdateToken()"
+       (click)="updateToken()"
        (change)="displayProgress()"/>
 <div *ngIf="uploadError" class='errors'>
     <span class='icon icon--close icon-errors'></span> Error in file Upload, Please try again

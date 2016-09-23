@@ -66,7 +66,7 @@ export class AmpFileUploadComponent implements OnInit {
         return parseFloat( ( bytes / Math.pow( k, i ) ).toFixed( 2 ) ) + ' ' + this.sizes[i];
     }
 
-    private UpdateToken () : void {
+    private updateToken () : void {
         this.http.get( this.tokenUrl )
             .map( ( res : Response ) => res.json() )
             .subscribe( ( res : any ) => {
