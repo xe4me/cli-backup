@@ -68,9 +68,9 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private UpdateToken () : void {
-        this.http.get(this.tokenUrl)
-            .map((res:Response) => res.json())
-            .subscribe( (res:any) => {
+        this.http.get( this.tokenUrl )
+            .map( ( res : Response ) => res.json() )
+            .subscribe( ( res : any ) => {
                 this.token = res.payload.token;
                 this.uploadUrlWithToken = this.uploadUrl + this.token;
                 this.basicOptions = {
