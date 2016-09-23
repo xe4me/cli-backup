@@ -40,7 +40,7 @@ describe ( 'amp-file-upload component' , () => {
             expect( button ).toBeDefined();
         } );
 
-        it ( 'Button should contain "File upload" text' , () => {
+        it ( 'Button should contain "File Upload" text' , () => {
             expect( button.textContent.trim() ).toBe( 'File Upload' );
         } );
     });
