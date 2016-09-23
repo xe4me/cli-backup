@@ -7,7 +7,7 @@
   "license": "PROPRIETARY",
   "scripts": {
     "rimraf": "rimraf",
-    "tslint": "tslint --exclude 'src/**/*.fdn.ts' 'src/**/*.ts'",
+    "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
     "typedoc": "typedoc",
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
