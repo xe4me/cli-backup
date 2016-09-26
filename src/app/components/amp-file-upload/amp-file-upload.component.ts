@@ -61,9 +61,9 @@ export class AmpFileUploadComponent implements OnInit {
         if ( bytes === 0 ) {
             return '0 Byte';
         }
-        let oneKiloByte = 1024;
-        let i : number = Math.floor( Math.log( bytes ) / Math.log( oneKiloByte ) );
-        return parseFloat( ( bytes / Math.pow( oneKiloByte, i ) ).toFixed( 2 ) ) + ' ' + this.sizes[i];
+        let base = 1024;
+        let exponent : number = Math.floor( Math.log( bytes ) / Math.log( base ) );
+        return parseFloat( ( bytes / Math.pow( base, exponent ) ).toFixed( 2 ) ) + ' ' + this.sizes[exponent];
     }
 
     private updateToken () : void {
