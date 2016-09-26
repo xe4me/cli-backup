@@ -1,7 +1,7 @@
 {
     "id": "Application",
-    "fdnClassPath": "src/forms/buyback-form/amp-form-block",
-    "fdnModelPath": "src/forms/buyback-form/amp-form-block",
+    "fdnClassPath": "src/forms/better-form/amp-form-block",
+    "fdnModelPath": "src/forms/better-form/amp-form-block",
     "version": "0.0.1",
     "path": "/application",
     "status": "NEW",
