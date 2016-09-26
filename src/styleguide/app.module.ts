@@ -18,22 +18,42 @@ import { AppState } from './app.service';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
 import { AmpStyleguideReduxModule } from '../app/redux/amp-styleguide-redux.module';
-const APP_PROVIDERS = [
+import { AmpQasAddressModule } from "../app/modules/amp-qas-address/amp-qas-address.module";
+import { AmpTypeaheadModule } from "../app/modules/amp-typeahead/amp-typeahead.module";
+import { AmpErrorItemComponent , AmpErrorComponent } from "../app/components/amp-error/amp-error.component";
+import { FocuserDirective } from "../app/directives/focuser/focuser.directive";
+import { ClickedOutsideDirective } from "../app/directives/clicked-outside/clicked-outside.directive";
+import { AmpInputComponent } from "../app/components/amp-input/amp-input.component";
+import { AmpLoadingComponent } from "../app/components/amp-loading/amp-loading.component";
+import { Highlight } from "./highlight";
+import { AutoFocusDirective } from "../app/directives/auto-focus/auto-focus.directive";
+import { AmpDirectivesModule } from "../app/modules/amp-directives/amp-directives.module";
+import { AmpInputModule } from "../app/modules/amp-input/amp-input.module";
+const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
 ];
+const shouldBeReplacedWithModulesComponents = [
+    AmpLoadingComponent ,
+];
+console.log( 'shouldBeReplacedWithModulesComponents' , shouldBeReplacedWithModulesComponents );
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule( {
     bootstrap    : [ StyleGuideApp ] ,
     declarations : [
+        ...shouldBeReplacedWithModulesComponents ,
         StyleGuideApp ,
         LeftNavigationComponent ,
         IndexPage ,
         ComponentPage
     ] ,
     imports      : [
+        AmpDirectivesModule ,
+        AmpInputModule ,
+        AmpTypeaheadModule ,
+        AmpQasAddressModule ,
         AmpStyleguideReduxModule ,
         BrowserModule ,
         FormsModule ,

@@ -40,7 +40,7 @@ amp-loading {
   position: relative;
 }
 
-.amp-auto-complete-options {
+.amp-typeahead-options {
   background: #fff;
   border: $amp-dropdown-options-border-width solid $amp-colour-sky-blue;
   font-size: 15px;
@@ -73,7 +73,7 @@ amp-loading {
 
   max-height: 400px;
 
-  &.amp-auto-complete-hidden {
+  &.amp-typeahead-hidden {
     border-top: 0;
     border-bottom: 0;
     height: 0;
@@ -82,14 +82,14 @@ amp-loading {
     position: relative;
     visibility: hidden;
 
-    .amp-auto-complete-option {
+    .amp-typeahead-option {
       padding-right: $amp-dropdown-option-padding-right-hidden;
       white-space: nowrap;
     }
   }
 }
 
-.amp-auto-complete-option {
+.amp-typeahead-option {
   &:not([disabled]) {
     cursor: pointer;
     @include hover-focus {
@@ -97,7 +97,7 @@ amp-loading {
       outline: none;
     }
   }
-  &.amp-auto-complete-active {
+  &.amp-typeahead-active {
     background: $amp-colour-secondary-lighter;
   }
   & + & {

@@ -1,0 +1,26 @@
+<amp-typeahead
+        class="1/1"
+        [controlGroup]="controlGroup"
+        [required]="required"
+        [errors]="errors"
+        [minTriggerLength]="minTriggerLength"
+        [customValidator]="customValidator"
+        [queryServiceCall]="_ampQasAddressService.query"
+        [isInSummaryState]="isInSummaryState"
+        [id]="id"
+        (selected)="onOptionSelect($event)"
+        [selectedItemIdentifier]="'Moniker'"
+        [selectedItemValueIdentifier]="'PartialAddress'"
+        [label]='label'>
+    <template let-option="option">
+        {{ option.PartialAddress }}
+    </template>
+</amp-typeahead>
+<amp-error [controlGroup]="controlGroup">
+    <template let-error="error">
+        <error-item [error]="error" selector="addressNotFound">
+            We are unable to find your address. Try again or tell us your address line by line <a
+                (click)='showManualAddrForm()'>here</a> instead.
+        </error-item>
+    </template>
+</amp-error>

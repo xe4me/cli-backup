@@ -140,20 +140,20 @@
         "readme": "<p>Custom Block for AmpButtonComponent.</p>\n"
     },
     {
-        "name": "Amp Auto Complete",
+        "name": "Amp Typeahead",
         "sources": [
-            "src/app/components/amp-auto-complete/amp-auto-complete.component.ts"
+            "src/app/components/amp-typeahead/amp-typeahead.component.ts"
         ],
         "id": "AmpAutoCompleteComponent",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-auto-complete/basic_usage.html",
-                "styles": "src/styleguide/components/amp-auto-complete/basic_usage.scss",
-                "source": "src/styleguide/components/amp-auto-complete/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-auto-complete/amp-auto-complete.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-auto-complete/amp-auto-complete.component.spec.ts",
-                "component": "amp-auto-complete-basic-usage",
-                "component_src_location": "components/amp-auto-complete/basic_usage",
+                "template": "src/styleguide/components/amp-typeahead/basic_usage.html",
+                "styles": "src/styleguide/components/amp-typeahead/basic_usage.scss",
+                "source": "src/styleguide/components/amp-typeahead/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-typeahead/amp-typeahead.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-typeahead/amp-typeahead.component.spec.ts",
+                "component": "amp-typeahead-basic-usage",
+                "component_src_location": "components/amp-typeahead/basic_usage",
                 "name": "Amp Auto Comnplete Basic Usage"
             }
         ],

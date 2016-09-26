@@ -1,13 +1,11 @@
-var fs = require ( 'fs' );
+var fs     = require ( 'fs' );
 var Stubby = require ( 'stubby' ).Stubby;
-var helpers = require ( './helpers' );
-
-var stubby = new Stubby ();
+var stubby    = new Stubby ();
 var stubsPort = 1234;
 var adminPort = 2345;
 var httpsPort = 3456;
 //var host = helpers.getIp () ;
-var host = 'localhost';
+var host      = 'localhost';
 function getStubs () {
     var stubs = [];
     fs.readdir ( 'api-dev' , function ( key , files ) {
@@ -18,12 +16,11 @@ function getStubs () {
             }
         }
         stubby.start ( {
-            stubs : stubsPort , admin : adminPort , location : host , data : stubs, tls : httpsPort
+            stubs : stubsPort , admin : adminPort , location : host , data : stubs , tls : httpsPort
         } );
         console.log ( '------------*************----------' );
         console.log ( 'Stubby server started at ' + stubsPort );
         console.log ( '------------*************----------' );
     } );
-
 }
 getStubs ();

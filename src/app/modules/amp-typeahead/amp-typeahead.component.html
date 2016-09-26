@@ -1,0 +1,48 @@
+<div [clicked-outside]="close" class="amp-typeahead">
+    <div class='amp-typeahead-control'>
+        <amp-input
+                #input
+                class="1/1"
+                focuser="input"
+                iconRight='search'
+                (click)='open()'
+                (keydown)='onKeydown($event)'
+                [autoFocus]="isActive"
+                [errors]="errors"
+                [label]='label'
+                [isActive]='isActive'
+                [isInSummaryState]='isInSummaryState'
+                [id]='id'
+                [controlGroup]='controlGroup'
+                [customValidator]='customValidator'
+                [minLength]='minTriggerLength'
+                [required]='required'>
+        </amp-input>
+    </div>
+    <ul
+            *ngIf="searchResult!==null && !isOptionsHidden"
+            focuser='list'
+            (focusOut)="onListFocusOut()"
+            tabindex="-1"
+            class='amp-typeahead-options'>
+        <li *ngIf="selectLabel" class='amp-typeahead-option' tabindex='-1'>
+            <strong>{{ selectLabel }}</strong>
+        </li>
+        <li (keydown.enter)="selectOption(option)"
+            (click)="selectOption(option)"
+            *ngFor='let option of searchResult  ; let i = index'
+            class='amp-typeahead-option'
+            [class.amp-typeahead-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
+            [attr.tabindex]="i+1">
+            <template
+                    [ngTemplateOutlet]="itemTemplate"
+                    [ngOutletContext]="{ option: option, index: index }">
+            </template>
+        </li>
+    </ul>
+    <ul *ngIf="showNoResult" class="amp-typeahead-options">
+        <li class="amp-typeahead-option" disabled>
+            <strong>No results found</strong>
+        </li>
+    </ul>
+</div>

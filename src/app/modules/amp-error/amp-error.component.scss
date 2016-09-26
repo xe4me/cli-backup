@@ -2,3 +2,7 @@
 @import './themes/theme-form';
 @import './themes/theme-tools';
 
+:host {
+  display  : block;
+  position : relative;
+}

@@ -28,8 +28,8 @@ export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp
 export { AmpFormBlockComponent } from './src/app/blocks/amp-form-block/amp-form-block.component';
 export { AmpFormRowComponent } from './src/app/blocks/amp-form-row/amp-form-row.component';
 // components
-export { AmpAutoCompleteComponent } from './src/app/components/amp-autocomplete/amp-autocomplete.component';
-export { AmpQasAddressComponent } from './src/app/components/amp-qas-address/amp-qas-address.component';
+export { AmpTypeaheadModule } from './src/app/modules/amp-typeahead/amp-typeahead.module';
+export { AmpQasAddressModule } from './src/app/modules/amp-qas-address/amp-qas-address.module';
 export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
 export { AmpErrorItemComponent , AmpErrorComponent } from './src/app/components/amp-error/amp-error.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
