@@ -1,11 +1,12 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , ElementRef } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import { AmpFileUploadComponent } from '../../../app/components/amp-file-upload/amp-file-upload.component';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions } from '@angular/http';
 describe ( 'amp-file-upload component' , () => {
     let fixture : ComponentFixture<TestComponent>;
     let Element : any;
+    let Component : any;
     const mockHttpProvider = {
         deps: [ MockBackend, BaseRequestOptions ]
     };
@@ -27,6 +28,7 @@ describe ( 'amp-file-upload component' , () => {
         fixture = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         Element = fixture.nativeElement;
+        Component = fixture.componentInstance;
     } ) );
 
     describe ( '"File Upload" button' , () => {
@@ -56,6 +58,12 @@ describe ( 'amp-file-upload component' , () => {
         it( 'should contain a file input element' , () => {
             expect( input ).toBeDefined();
         } );
+
+        it( 'Function "updateToken" should get called on click of "input" element' , () => {
+            let spy = spyOn(Component.componentReference , 'updateToken');
+            input.click();
+            expect( spy ).toHaveBeenCalled();
+        } );
     });
 } );
 
@@ -67,6 +75,7 @@ class MockElementRef implements ElementRef {
 @Component( {
     template   : `
                 <amp-file-upload
+                    #componentReference
                     [uploadUrl]="urls.uploadUrl"
                     [tokenUrl]="urls.tokenUrl">
                 </amp-file-upload>
@@ -75,6 +84,7 @@ class MockElementRef implements ElementRef {
 } )
 
 class TestComponent {
+    @ViewChild('componentReference') componentReference : AmpFileUploadComponent;
     private urls = {
         // TODO - Urls has to be modified to fetch data from local JSON file
         uploadUrl : 'http://localhost:8081/ddc/secure/api/upload/upload?token=',
