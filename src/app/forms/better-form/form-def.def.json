@@ -322,6 +322,13 @@
                                     }
                                 ]
                             }
+                        },
+                        {
+                            "name" : "AccountConfirmation",
+                            "blockType" : "AccountConfirmationBlock",
+                            "blockLayout" : "INLINE",
+                            "commonBlock" : false,
+                            "path" : "blocks/account-confirmation/account-confirmation.component"
                         }
                     ]
                 }
