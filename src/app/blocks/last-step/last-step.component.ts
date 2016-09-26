@@ -10,11 +10,11 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'terms-and-conditions' ,
-    templateUrl     : './terms-and-conditions.component.html' ,
+    selector        : 'last-step' ,
+    templateUrl     : './last-step.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class TermsAndConditionsBlock extends FormBlock {
+export class TaxFileNumberBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -22,9 +22,5 @@ export class TermsAndConditionsBlock extends FormBlock {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
-    }
-
-    private acceptTandC() {
-        this.__controlGroup.get(this.__custom.controls[0].id).setValue(true);
     }
 }

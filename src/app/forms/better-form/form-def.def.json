@@ -121,16 +121,16 @@
                             }
                         },
                         {
-                            "name": "TermsAndConditions",
-                            "blockType": "TermsAndConditionsBlock",
+                            "name": "PrivacyDeclaration",
+                            "blockType": "PrivacyDeclarationBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "blocks/terms-and-conditions/terms-and-conditions.component",
+                            "path": "blocks/privacy-declaration/privacy-declaration.component",
                             "custom": {
                                 "blockTitle": "Thanks Charlie just to confirm...",
                                 "controls": [
                                     {
-                                        "id": "AgreeTandCs"
+                                        "id": "AcceptPrivacyDeclaration"
                                     }
                                 ]
                             }
@@ -304,6 +304,21 @@
                                                 "label": "No"
                                             }
                                         ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "LastStep",
+                            "blockType": "LastStepBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/last-step/last-step.component",
+                            "custom": {
+                                "blockTitle": "Last step...",
+                                "controls": [
+                                    {
+                                        "id": "AcceptTandCs"
                                     }
                                 ]
                             }
