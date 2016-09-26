@@ -1,5 +1,10 @@
-import {Component, OnInit, ChangeDetectorRef, Input} from '@angular/core';
+import { Component,
+         OnInit,
+         ChangeDetectorRef,
+         Input } from '@angular/core';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
+import { Http,
+         Response } from '@angular/http';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 
@@ -23,27 +28,28 @@ export class AmpFileUploadComponent implements OnInit {
     private uploaded : string;
     private showProgress : boolean = false;
     private uploadUrlWithToken : string = '';
+    private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
-    constructor ( protected _cd : ChangeDetectorRef ) {}
+    constructor ( protected _cd : ChangeDetectorRef,
+                  private http : Http ) {
+    }
 
     ngOnInit() {
-        this.updateToken();
+        this.basicOptions = {
+            calculateSpeed: true
+        };
     }
 
-    private displayProgress() : void {
+    private displayProgress ( ) : void {
         this.showProgress = true;
-        this.updateToken();
     }
 
-    private showProgressBar() : boolean {
+    private showProgressBar ( ) : boolean {
         return this.progress < 1 ? true : false;
     }
 
-    private handleUpload( response : any) : void {
-        // TODO: This has to be implemented using observable
-        setTimeout(() => {
-            this._cd.detectChanges();
-        }, 10);
+    private handleUpload ( response : any ) : void {
+        this._cd.detectChanges();
         this.fileName = response.originalName;
         this.fileSize = this.humanizeBytes( response.size);
         this.speed = response.speedAverageHumanized ? response.speedAverageHumanized : response.progress.speedHumanized;
@@ -51,26 +57,24 @@ export class AmpFileUploadComponent implements OnInit {
         this.progress = response.progress.percent / 100;
     }
 
-    private humanizeBytes(bytes : number) : string {
-        if (bytes === 0) {
+    private humanizeBytes ( bytes : number ) : string {
+        if ( bytes === 0 ) {
             return '0 Byte';
         }
-        let k = 1024;
-        const sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-        let i : number = Math.floor(Math.log(bytes) / Math.log(k));
-
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        let base = 1024;
+        let exponent : number = Math.floor( Math.log( bytes ) / Math.log( base ) );
+        return parseFloat( ( bytes / Math.pow( base, exponent ) ).toFixed( 2 ) ) + ' ' + this.sizes[exponent];
     }
 
     private updateToken () : void {
-        let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( 'GET', this.tokenUrl, false );
-        xmlHttp.send( null );
-        this.token = JSON.parse(xmlHttp.responseText).payload.token;
-        this.uploadUrlWithToken = this.uploadUrl + this.token;
-        this.basicOptions = {
-            url: this.uploadUrlWithToken,
-            calculateSpeed: true
-        };
+        this.http.get( this.tokenUrl )
+            .map( ( res : Response ) => res.json() )
+            .subscribe( ( res : any ) => {
+                this.token = res.payload.token;
+                this.uploadUrlWithToken = this.uploadUrl + this.token;
+                this.basicOptions = {
+                    url: this.uploadUrlWithToken
+                };
+            } );
     }
 }

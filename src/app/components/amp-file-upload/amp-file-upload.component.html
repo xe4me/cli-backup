@@ -1,4 +1,4 @@
-<div class="container">
+<div class="overlay">
     <amp-button class="btn btn-submit mt mb" *ngIf="!showProgress">
         File Upload
     </amp-button>
@@ -6,22 +6,26 @@
            ngFileSelect
            [options]="basicOptions"
            (onUpload)="handleUpload($event)"
+           (click)="updateToken()"
            (change)="displayProgress()"/>
-    <div class="progress mb" *ngIf="showProgress">
-        <div class="file-name">
-            <h3>{{fileName}}</h3>
-        </div>
-        <div *ngIf="showProgressBar()">
-            <div class="file-size">File size: {{uploaded}} of {{fileSize}} ({{speed}})</div>
-            <amp-linear-progress-bar
-                value="{{progress*100}}"
-                determinate="determinate">
-            </amp-linear-progress-bar>
-        </div>
-        <div *ngIf="!showProgressBar()">
-            <div class="file-size">
-                File size: {{fileSize}}
-            </div>
+</div>
+<div *ngIf="uploadError" class='errors'>
+    <span class='icon icon--close icon-errors'></span> Error in file Upload, Please try again
+</div>
+<div class="progress mb" *ngIf="showProgress">
+    <div class="file-name">
+        <h3>{{fileName}}</h3>
+    </div>
+    <div *ngIf="showProgressBar()">
+        <div class="file-size">File size: {{uploaded}} of {{fileSize}} ({{speed}})</div>
+        <amp-linear-progress-bar
+            value="{{progress*100}}"
+            determinate="determinate">
+        </amp-linear-progress-bar>
+    </div>
+    <div *ngIf="!showProgressBar()">
+        <div class="file-size">
+            File size: {{fileSize}}
         </div>
     </div>
 </div>
