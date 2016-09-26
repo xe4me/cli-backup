@@ -214,13 +214,25 @@
                                 "blockTitle": "Please tell us your...",
                                 "controls": [
                                     {
-                                        "id": "PrimarySourceOfWealth"
+                                        "id": "PrimarySourceOfWealth",
+                                        "options" : [
+                                            { "value" : "Source1", "label" : "Source1"},
+                                            { "value" : "Source2", "label" : "Source2 "}
+                                        ]
                                     },
                                     {
-                                        "id" : "SourceOfFundsForAccount"
+                                        "id" : "SourceOfFundsForAccount",
+                                        "options" : [
+                                            { "value" : "Source1", "label" : "Source1"},
+                                            { "value" : "Source2", "label" : "Source2 "}
+                                        ]
                                     },
                                     {
-                                        "id": "ReasonForOpeningAccount"
+                                        "id": "ReasonForOpeningAccount",
+                                        "options" : [
+                                            { "value" : "Reason1", "label" : "Reason1"},
+                                            { "value" : "Reason2", "label" : "Reason2 "}
+                                        ]
                                     }
                                 ]
                             }
