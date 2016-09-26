@@ -1,0 +1,36 @@
+<amp-form-block [context]="context()">
+    <div class="mt">
+        Primary source of wealth
+    </div>
+    <amp-form-row>
+        <amp-dropdown
+            [isInSummaryState]='isInSummaryState'
+            [id]="__custom.controls[0].id"
+            [options]="__custom.controls[0].options"
+            [controlGroup]="__controlGroup"
+            [required]="true">
+        </amp-dropdown>
+    </amp-form-row>
+    <div class="mt">
+        Source of funds used to open this account
+    </div>
+    <amp-form-row>
+        <amp-dropdown
+            [isInSummaryState]='isInSummaryState'
+            [id]="__custom.controls[1].id"
+            [options]="__custom.controls[1].options"
+            [required]="true">
+        </amp-dropdown>
+    </amp-form-row>
+    <div class="mt">
+        Reason for opening this acocunt
+    </div>
+    <amp-form-row>
+        <amp-dropdown
+            [isInSummaryState]='isInSummaryState'
+            [id]="__custom.controls[2].id"
+            [options]="__custom.controls[2].options"
+            [required]="true">
+        </amp-dropdown>
+    </amp-form-row>
+</amp-form-block>

@@ -21,7 +21,7 @@ import { ViewChild } from '@angular/core';
     selector: 'welcome-block',
     templateUrl: './welcome-block.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    styles : [ require('./welcome-block.component.scss') ]
+    styles: [require('./welcome-block.component.scss')]
 })
 export class WelcomeBlockComponent extends FormBlock {
 
@@ -40,11 +40,11 @@ export class WelcomeBlockComponent extends FormBlock {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
     }
 
-    private onNewOrExisting(newOrExisting : string) {
+    private onNewOrExisting(newOrExisting: string) {
         this.__controlGroup.get(this.__custom.controls[0].id).setValue(newOrExisting);
         this.ampIntro.proceed();
         setTimeout(() => {
-           this.onNext();
+            this.onNext();
         }, 850);
     }
 

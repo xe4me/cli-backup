@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AmpBlockLoaderDirective } from "amp-ddc-components";
+import { AmpBlockLoaderDirective } from 'amp-ddc-components';
 @Component( {
     selector   : 'details-page' ,
     template   : `
@@ -10,5 +10,5 @@ import { AmpBlockLoaderDirective } from "amp-ddc-components";
     directives : [ AmpBlockLoaderDirective ]
 } )
 export class DetailsPage {
-    static CLASS_NAME = 'DetailsPage';
+    public static CLASS_NAME = 'DetailsPage';
 }

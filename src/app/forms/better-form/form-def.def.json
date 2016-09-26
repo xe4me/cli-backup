@@ -215,24 +215,63 @@
                                 "controls": [
                                     {
                                         "id": "PrimarySourceOfWealth",
-                                        "options" : [
-                                            { "value" : "Source1", "label" : "Source1"},
-                                            { "value" : "Source2", "label" : "Source2 "}
+                                        "options": [
+                                            {
+                                                "value": "Source1",
+                                                "label": "Source1"
+                                            },
+                                            {
+                                                "value": "Source2",
+                                                "label": "Source2 "
+                                            }
                                         ]
                                     },
                                     {
-                                        "id" : "SourceOfFundsForAccount",
-                                        "options" : [
-                                            { "value" : "Source1", "label" : "Source1"},
-                                            { "value" : "Source2", "label" : "Source2 "}
+                                        "id": "SourceOfFundsForAccount",
+                                        "options": [
+                                            {
+                                                "value": "Source1",
+                                                "label": "Source1"
+                                            },
+                                            {
+                                                "value": "Source2",
+                                                "label": "Source2 "
+                                            }
                                         ]
                                     },
                                     {
                                         "id": "ReasonForOpeningAccount",
-                                        "options" : [
-                                            { "value" : "Reason1", "label" : "Reason1"},
-                                            { "value" : "Reason2", "label" : "Reason2 "}
+                                        "options": [
+                                            {
+                                                "value": "Reason1",
+                                                "label": "Reason1"
+                                            },
+                                            {
+                                                "value": "Reason2",
+                                                "label": "Reason2 "
+                                            }
                                         ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Residency",
+                            "blockType": "ResidencyBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/residency/residency.component",
+                            "custom": {
+                                "blockTitle": "Last questions... We promise",
+                                "controls": [
+                                    {
+                                        "id": "TaxFileNumber"
+                                    },
+                                    {
+                                        "id": "NoTaxFileNumber"
+                                    },
+                                    {
+                                        "id": "NoTaxFileNumberReason"
                                     }
                                 ]
                             }
