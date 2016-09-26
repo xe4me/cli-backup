@@ -4,7 +4,7 @@
     </div>
     <amp-form-row>
         <amp-dropdown
-            [isInSummaryState]='isInSummaryState'
+            [isInSummaryState]="isInSummaryState"
             [id]="__custom.controls[0].id"
             [options]="__custom.controls[0].options"
             [controlGroup]="__controlGroup"
@@ -16,9 +16,10 @@
     </div>
     <amp-form-row>
         <amp-dropdown
-            [isInSummaryState]='isInSummaryState'
+            [isInSummaryState]="isInSummaryState"
             [id]="__custom.controls[1].id"
             [options]="__custom.controls[1].options"
+            [controlGroup]="__controlGroup"
             [required]="true">
         </amp-dropdown>
     </amp-form-row>
