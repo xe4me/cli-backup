@@ -14,7 +14,7 @@ import {
     templateUrl     : './last-step.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class TaxFileNumberBlock extends FormBlock {
+export class LastStepBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
