@@ -14,7 +14,7 @@ import {
     templateUrl     : './residency.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class SourceOfFundingBlock extends FormBlock {
+export class ResidencyBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,

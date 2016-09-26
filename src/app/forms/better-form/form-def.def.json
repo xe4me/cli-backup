@@ -265,13 +265,45 @@
                                 "blockTitle": "Last questions... We promise",
                                 "controls": [
                                     {
-                                        "id": "TaxFileNumber"
+                                        "id": "CountryOfCitizenship",
+                                        "options" : [
+                                            {
+                                                "value": "Country1",
+                                                "label": "Country1"
+                                            },
+                                            {
+                                                "value": "Country2",
+                                                "label": "Country2"
+                                            }
+                                        ]
                                     },
                                     {
-                                        "id": "NoTaxFileNumber"
+                                        "id": "CountryOfResidency",
+                                        "options" : [
+                                            {
+                                                "value": "Country1",
+                                                "label": "Country1"
+                                            },
+                                            {
+                                                "value": "Country2",
+                                                "label": "Country2"
+                                            }
+                                        ]
                                     },
                                     {
-                                        "id": "NoTaxFileNumberReason"
+                                        "id": "USTaxCitizen",
+                                        "buttons" : [
+                                            {
+                                                "id": "Yes",
+                                                "value": "Yes",
+                                                "label": "Yes"
+                                            },
+                                            {
+                                                "id": "No",
+                                                "value": "No",
+                                                "label": "No"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
