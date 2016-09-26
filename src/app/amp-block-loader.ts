@@ -154,6 +154,7 @@ export abstract class AmpBlockLoader implements OnChanges {
         _componentRef.instance.__blockType   = _blockDef.blockType;
         _componentRef.instance.__blockLayout = _blockDef.blockLayout;
         _componentRef.instance.__name        = _blockDef.name;
+        _componentRef.instance.__prettyName  = _blockDef.prettyName || _blockDef.name;
 
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
             _componentRef.instance.__page = _blockDef.page;
