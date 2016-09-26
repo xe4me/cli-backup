@@ -20,15 +20,10 @@ import { ComponentPage } from './routes/component';
 import { AmpStyleguideReduxModule } from '../app/redux/amp-styleguide-redux.module';
 import { AmpQasAddressModule } from "../app/modules/amp-qas-address/amp-qas-address.module";
 import { AmpTypeaheadModule } from "../app/modules/amp-typeahead/amp-typeahead.module";
-import { AmpErrorItemComponent , AmpErrorComponent } from "../app/components/amp-error/amp-error.component";
-import { FocuserDirective } from "../app/directives/focuser/focuser.directive";
-import { ClickedOutsideDirective } from "../app/directives/clicked-outside/clicked-outside.directive";
-import { AmpInputComponent } from "../app/components/amp-input/amp-input.component";
 import { AmpLoadingComponent } from "../app/components/amp-loading/amp-loading.component";
-import { Highlight } from "./highlight";
-import { AutoFocusDirective } from "../app/directives/auto-focus/auto-focus.directive";
 import { AmpDirectivesModule } from "../app/modules/amp-directives/amp-directives.module";
 import { AmpInputModule } from "../app/modules/amp-input/amp-input.module";
+import { AmpPipesModule } from "../app/modules/amp-pipes/amp-pipes.module";
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -50,6 +45,7 @@ console.log( 'shouldBeReplacedWithModulesComponents' , shouldBeReplacedWithModul
         ComponentPage
     ] ,
     imports      : [
+        AmpPipesModule ,
         AmpDirectivesModule ,
         AmpInputModule ,
         AmpTypeaheadModule ,
