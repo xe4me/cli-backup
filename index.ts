@@ -10,6 +10,8 @@ export {
     PatterValidator
 } from './src/app/util/validations';
 export { AmpCurrencyPipe } from './src/app/pipes/currency/amp-currency.pipe';
+export { AmpValuesPipe } from './src/app/pipes/values/amp-values.pipe';
+export { AmpKeysPipe } from './src/app/pipes/keys/amp-keys.pipe';
 export { KeyCodes } from './src/app/util/key-kodes.utils';
 export { BasicUtils } from './src/app/util/basic-utils';
 export { FormUtils } from './src/app/util/form-utils';
@@ -26,8 +28,10 @@ export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp
 export { AmpFormBlockComponent } from './src/app/blocks/amp-form-block/amp-form-block.component';
 export { AmpFormRowComponent } from './src/app/blocks/amp-form-row/amp-form-row.component';
 // components
+export { AmpAutoCompleteComponent } from './src/app/components/amp-autocomplete/amp-autocomplete.component';
+export { AmpQasAddressComponent } from './src/app/components/amp-qas-address/amp-qas-address.component';
 export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
-export { AmpErrorComponent } from './src/app/components/amp-error/amp-error.component';
+export { AmpErrorItemComponent , AmpErrorComponent } from './src/app/components/amp-error/amp-error.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpButton } from './src/app/components/amp-button/amp-button.component';
