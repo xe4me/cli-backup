@@ -160,6 +160,26 @@
         "readme": "<p>Custom Block for AmpAutoCompleteComponent.</p>\n"
     },
     {
+        "name": "Amp Qas Address Component",
+        "sources": [
+            "src/app/components/amp-qas-address/amp-qas-address.component.ts"
+        ],
+        "id": "AmpQasAddressComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-qas-address/basic_usage.html",
+                "styles": "src/styleguide/components/amp-qas-address/basic_usage.scss",
+                "source": "src/styleguide/components/amp-qas-address/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-qas-address/amp-qas-address.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-qas-address/amp-qas-address.component.spec.ts",
+                "component": "amp-qas-address-basic-usage",
+                "component_src_location": "components/amp-qas-address/basic_usage",
+                "name": "Amp Auto Comnplete Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpQasAddressComponent.</p>\n"
+    },
+    {
         "name": "Amp Group Buttons",
         "sources": [
             "src/app/components/amp-group-buttons/amp-group-buttons.component.ts"

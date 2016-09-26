@@ -26,7 +26,12 @@ $amp-dropdown-option-padding-bottom: $amp-dropdown-option-padding-top;
 $amp-dropdown-option-padding-right: 30px;
 $amp-dropdown-option-padding-right-hidden: 4em;
 $amp-dropdown-option-padding-left: 20px;
-
+amp-loading {
+  position: absolute;
+  top: 50%;
+  @include transform(translateY(-50%));
+  right: 10px;
+}
 :host {
   my-md-input{
     width: 100% !important;

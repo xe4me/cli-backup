@@ -5,50 +5,54 @@ import {
     ContentChild ,
     TemplateRef ,
     EventEmitter ,
-    OnInit
+    OnInit , Input , Output , ChangeDetectionStrategy , ChangeDetectorRef , AfterViewInit
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl , FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { isPresent } from '../../util/functions.utils';
 import { FocuserDirective , AmpInputComponent , ClickedOutsideDirective , KeyCodes } from '../../../../';
+import { AmpLoadingComponent } from "../amp-loading/amp-loading.component";
 @Component( {
-    selector   : 'amp-auto-complete' ,
-    queries    : {
+    selector        : 'amp-auto-complete' ,
+    queries         : {
         itemTemplate : new ContentChild( TemplateRef )
     } ,
-    template   : `
+    template        : `
     <div [clicked-outside]="close" class="amp-auto-complete">
         <div class='amp-auto-complete-control'>
             <amp-input
+                class="1/1"
                 focuser="input"
                 iconRight='search'
                 (click)='open()'          
-                (onBlur)='onBlur()'     
                 (keydown)='onKeydown($event)'     
                 [autoFocus]="isActive"
+                [errors]="errors"
                 [label]='label'
                 [isActive]='isActive'
                 [isInSummaryState]='isInSummaryState'
                 [id]='id'
-                [parentControl]='parentControl'
+                [controlGroup]='controlGroup'
+                [customValidator]='customValidator'
+                [minLength]='minTriggerLength'
                 [required]='required'>
             </amp-input>
         </div>
+        isOptionsHidden {{ isOptionsHidden }}
         <ul
+            *ngIf="searchResult!==null && !isOptionsHidden"
             focuser='list'
             (focusOut)="onListFocusOut()"
             tabindex="-1"
-            class='amp-auto-complete-options'
-            [class.amp-auto-complete-hidden]='(searchResult | async)===null || isOptionsHidden'  >
+            class='amp-auto-complete-options'>
             <li *ngIf="selectLabel" class='amp-auto-complete-option' tabindex='-1'>
                 <strong>{{ selectLabel }}</strong>
             </li>
-            <!--*ngFor='let option of ((searchResult | async)===null?options:(searchResult | async)) ; let i = index'-->
             <li (keydown.enter)="selectOption(option)" 
                 (click)="selectOption(option)" 
-                *ngFor='let option of searchResult | async ; let i = index' 
+                *ngFor='let option of searchResult  ; let i = index' 
                 class='amp-auto-complete-option' 
-                [class.amp-auto-complete-active]='option.id == selectedOption?.id'
+                [class.amp-auto-complete-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
                 [attr.tabindex]="i+1">
                 <template
                     [ngTemplateOutlet]="itemTemplate"
@@ -56,7 +60,6 @@ import { FocuserDirective , AmpInputComponent , ClickedOutsideDirective , KeyCod
                 </template>
             </li>
         </ul>    
-        
         <ul *ngIf="showNoResult" class="amp-auto-complete-options">
             <li class="amp-auto-complete-option" disabled >
                 <strong>No results found</strong>
@@ -64,48 +67,72 @@ import { FocuserDirective , AmpInputComponent , ClickedOutsideDirective , KeyCod
         </ul>
     </div>
         ` ,
-    styles     : [ require( './amp-autocomplete.component.scss' ).toString() ] ,
-    inputs     : [
-        'id' ,
-        'queryServiceCall' , // This should return an observable to be consumed here
-        'isInSummaryState' ,
-        'selectControl' ,
-        'required' ,
-        'selectLabel' ,
-        'label' ,
-        'parentControl' ,
-        'placeholder' ,
-        'lengthTrigger' ,
-        'options' ,
-        'isActive'
-    ] ,
-    outputs    : [ 'change' ] ,
-    directives : [ AmpInputComponent , ClickedOutsideDirective , FocuserDirective ]
+    styles          : [ require( './amp-autocomplete.component.scss' ).toString() ] ,
+    directives      : [ AmpLoadingComponent , AmpInputComponent , ClickedOutsideDirective , FocuserDirective ] ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpAutoCompleteComponent implements OnInit {
+export class AmpAutoCompleteComponent implements AfterViewInit {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
-    private change                  = new EventEmitter<Option>();
-    private QUERY_DEBOUNCE_TIME     = 0;
+    @Output( 'selected' ) $selected      = new EventEmitter<Option>();
+    @Input() id;
+    @Input() selectedItemIdentifier      = 'id';
+    @Input() selectedItemValueIdentifier = 'label';
+    @Input() queryServiceCall            = ( queryValue : string ) : Observable<any> => {
+        return new Observable<any>();
+    };
+    @Input() customValidator;
+    @Input() isInSummaryState            = false;
+    @Input() minTriggerLength            = 0;
+    @Input() errors                      = {};
+    @Input() selectLabel;
+    @Input() label;
+    @Input() controlGroup : FormGroup;
+    @Input() placeholder;
+    @Input() lengthTrigger : number      = - 1;
+    @Input() options;
+    @Input() isActive;
+
+    @Input( 'required' ) set required ( value : boolean ) {
+        this._required = value;
+    }
+
+    get required () {
+        return this._required;
+    }
+
+    private selectedControl : FormControl;
     private NO_RESULT_DEBOUNCE_TIME = 0;
     private INPUT_FOCUSER           = 0;
     private LIST_FOCUSER            = 1;
     private canViewAll              = true;
-    private isInSummaryState        = false;
-    private options                 = [];
-    private selectedOption : Option;
-    private searchResult : Observable<Array<Option>>;
+    private selectedOption          = {};
+    private searchResult            = null;
     private _required : boolean     = false;
-    private parentControl : FormControl;
-    private selectControl : FormControl;
     private _optionsHidden          = true;
-    private lengthTrigger : number  = - 1;
-    private showNoResult            = false;
-    private VALIDATION_DELAY        = 0;
-    private firstOpen               = true;
 
-    ngOnInit () : any {
-        this.parentControl = this.parentControl || new FormControl();
-        this.selectControl = this.selectControl || new FormControl();
+    private get control () : FormControl {
+        if ( this.controlGroup && this.controlGroup.contains( this.id ) ) {
+            return this.controlGroup.controls[ this.id ];
+        }
+    }
+
+    constructor ( private _cd : ChangeDetectorRef ) {
+    }
+
+    set searchResult ( _result ) {
+        if ( this.control ) {
+            this.control.searchResult = _result;
+        }
+    }
+
+    get searchResult () {
+        return this.control.searchResult;
+    }
+
+    ngAfterViewInit () : any {
+        this.selectedOption[ this.selectedItemValueIdentifier ] = null;
+        this.selectedControl                                    = new FormControl();
+        this.controlGroup.addControl( this.id + '-selected-item' , this.selectedControl );
         if ( this.options ) {
             this.initWithOptions();
         } else if ( this.queryServiceCall ) {
@@ -114,39 +141,25 @@ export class AmpAutoCompleteComponent implements OnInit {
         return undefined;
     }
 
-    get required () {
-        return this._required;
-    }
-
-    set required ( value : boolean ) {
-        this._required = value;
-    }
-
-    private queryServiceCall = ( queryValue : string ) : Observable<any> => {
-        return new Observable<any>();
-    };
-
     private get isOptionsHidden () {
         return this._optionsHidden;
     }
 
     private close = () : void => {
-        setTimeout( () => {
-            this._optionsHidden = true;
-            this.showNoResult   = false;
-        } );
+        this._optionsHidden = true;
+        this.showNoResults  = false;
     };
 
     private open () {
         if ( this.isInSummaryState ) {
             return;
         }
-        if ( this.firstOpen ) {
-            setTimeout( () => {
-                this.parentControl.setValue( '' );
-            } );
-            this.firstOpen = false;
-        }
+        // if ( this.firstOpen ) {
+        //     setTimeout( () => {
+        //         this.control.setValue( '' );
+        //     } );
+        //     this.firstOpen = false;
+        // }
         this._optionsHidden = false;
     };
 
@@ -168,9 +181,9 @@ export class AmpAutoCompleteComponent implements OnInit {
 
     private selectOption ( option ) {
         this.selectedOption = option;
-        this.parentControl.patchValue( option.title );
-        this.selectControl.patchValue( JSON.stringify( option ) );
-        this.change.emit( option );
+        this.control.patchValue( option[ this.selectedItemValueIdentifier ].trim() );
+        this.selectedControl.patchValue( JSON.stringify( option ) );
+        this.$selected.emit( option );
         this.close();
         this.focusInput();
     }
@@ -193,36 +206,16 @@ export class AmpAutoCompleteComponent implements OnInit {
         this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( - 1 );
     }
 
-    private onBlur ( $event ) {
-        setTimeout( () => {
-            if ( this.parentControl.value ) {
-                if ( this.selectedOption === null ) {
-                    let errors = Object.assign( {} , { invalid : true } , this.parentControl.errors || {} );
-                    this.parentControl.setErrors( errors , {
-                        emitEvent : true
-                    } );
-                } else {
-                    if ( this.parentControl.errors && this.parentControl.errors.hasOwnProperty( 'invalid' ) ) {
-                        delete (<any> this.parentControl.errors).invalid;
-                    }
-                    this.parentControl.setErrors( this.parentControl.errors , {
-                        emitEvent : true
-                    } );
-                }
-            }
-        } , this.VALIDATION_DELAY );
-    }
-
     private initWithOptions () {
         this.searchResult =
-            this.parentControl
+            this.control
                 .valueChanges
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
                     if ( isPresent( this.selectedOption ) && isPresent( queryString ) && queryString !== this.selectedOption.title ) {
                         this.resetSelectedOption();
                         this.open();
-                        this.showNoResult = false;
+                        this.showNoResults = false;
                     }
                     return queryString;
                 } )
@@ -236,33 +229,57 @@ export class AmpAutoCompleteComponent implements OnInit {
         this.searchResult
             .debounceTime( this.NO_RESULT_DEBOUNCE_TIME )
             .subscribe( ( result ) => {
-                this.showNoResult = result.length === 0 && this.parentControl.value && this.parentControl.value.length > this.lengthTrigger;
+                this.showNoResults = result.length === 0 && this.control.value && this.control.value.length > this.lengthTrigger;
             } );
     }
 
     private initWithApi () {
-        this.searchResult =
-            this.parentControl
-                .valueChanges
-                .debounceTime( this.QUERY_DEBOUNCE_TIME )
-                .switchMap( queryString => this.queryServiceCall( queryString ) );
+        this.searchResult = null;
+        this.control
+            .valueChanges
+            .debounceTime( 300 )
+            .distinctUntilChanged()
+            .do( ( queryString )=> {
+                console.log( '****** queryString ' , queryString );
+                if ( ! queryString ) {
+                    this.clearSelectedItem();
+                    this.searchResult = null;
+                }
+            } )
+            .filter(
+                x => x && x.length >= this.minTriggerLength && x.trim() !== this.selectedOption[ this.selectedItemValueIdentifier ] )
+            .switchMap( queryString => this.queryServiceCall( queryString ) )
+            .subscribe( ( result )=> {
+                console.log( 'Got the result' , result );
+                this.clearSelectedItem();
+                this.open();
+                this.searchResult = result;
+                this._cd.markForCheck();
+            } , ( error )=> {
+                console.log( 'ERRROR' , error );
+                // this.clearSelectedItem();
+                // this.open();
+                // this.searchResult = result;
+            } );
     }
 
     private resetSelectedOption () {
         this.selectedOption = null;
-        if ( this.selectControl ) {
-            this.selectControl.updateValue(null);
-        }
     }
 
     private markInputAsUnDirty () {
         setTimeout( () => {
-            (<any> this.parentControl)._dirty = false;
-            this.parentControl.updateValueAndValidity( {
+            (<any> this.control)._dirty = false;
+            this.control.updateValueAndValidity( {
                 onlySelf  : false ,
                 emitEvent : true
             } );
         } );
+    }
+
+    private clearSelectedItem () {
+        this.selectedControl.patchValue( null );
+        this.selectedOption[ this.selectedItemValueIdentifier ] = null;
     }
 }
 interface Option {
