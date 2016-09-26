@@ -30,6 +30,7 @@
     "prebuild:prod": "npm run clean:dist",
     "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --colors --display-error-details --display-cached --bail",
     "server": "npm run server:dev",
+    "server:con": "concurrently \"node ./stubby.js\" \"npm run server:dev\" ",
     "server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --colors --watch --display-error-details --display-cached --content-base src/",
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
     "server:prod": "http-server dist --cors",
@@ -44,7 +45,7 @@
     "test:ui-unix": "galen test ./src/styleguide/ --htmlreport report --recursive",
     "ci": "npm run lint && npm test && npm run e2e",
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
-    "start": "npm run server:dev",
+    "start": "npm run server:con",
     "start:hmr": "npm run server:dev:hmr",
     "preversion": "npm test",
     "version": "npm run build",
@@ -90,6 +91,7 @@
     "zone.js": "0.6.12"
   },
   "devDependencies": {
+    "stubby": "^0.3.1",
     "@angularclass/hmr": "^1.0.1",
     "@angularclass/hmr-loader": "^1.0.1",
     "@types/core-js": "^0.9.28",
