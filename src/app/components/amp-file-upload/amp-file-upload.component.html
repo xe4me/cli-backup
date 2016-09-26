@@ -1,12 +1,14 @@
-<amp-button class="btn btn-submit mt mb" *ngIf="!showProgress">
-    File Upload
-</amp-button>
-<input type="file"
-       ngFileSelect
-       [options]="basicOptions"
-       (onUpload)="handleUpload($event)"
-       (click)="updateToken()"
-       (change)="displayProgress()"/>
+<div class="overlay">
+    <amp-button class="btn btn-submit mt mb" *ngIf="!showProgress">
+        File Upload
+    </amp-button>
+    <input type="file"
+           ngFileSelect
+           [options]="basicOptions"
+           (onUpload)="handleUpload($event)"
+           (click)="updateToken()"
+           (change)="displayProgress()"/>
+</div>
 <div *ngIf="uploadError" class='errors'>
     <span class='icon icon--close icon-errors'></span> Error in file Upload, Please try again
 </div>
