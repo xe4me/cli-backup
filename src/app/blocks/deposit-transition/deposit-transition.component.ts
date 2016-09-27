@@ -10,12 +10,11 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'continue-application' ,
-    templateUrl     : './continue-application.component.html' ,
-    changeDetection : ChangeDetectionStrategy.OnPush,
-    styles : [ require('./continue-application.component.scss').toString() ]
+    selector        : 'deposit-transition' ,
+    templateUrl     : './deposit-transition.component.html' ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class ContinueApplicationBlock extends FormBlock {
+export class DepositTransitionBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
