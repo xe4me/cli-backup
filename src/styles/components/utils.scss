@@ -202,6 +202,12 @@
     }
     &--right {
       text-align: right !important;
+
+      &-lap-and-up {
+        @include media-query('lap-and-up') {
+          text-align: right !important;
+        }
+      }
     }
     &--center {
       text-align: center !important;
