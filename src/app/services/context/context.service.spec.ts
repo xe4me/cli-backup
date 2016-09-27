@@ -84,7 +84,8 @@ describe( 'Fetch context from server' , () => {
                         done();
                     },
                     (error) => {
-                        done.fail('Failed to obtain the context');                    }
+                        done.fail('Failed to obtain the context');
+                    }
                 );
       });
 });
