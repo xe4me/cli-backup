@@ -14,7 +14,9 @@ import {
     templateUrl     : './tax-file-number.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class TaxFileNumberBlock extends FormBlock {
+export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
+    public hasNoTfn : boolean = false;
+
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -22,5 +24,16 @@ export class TaxFileNumberBlock extends FormBlock {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    }
+
+    public toggleTfnControls(hasNoTfn : boolean) {
+        this.hasNoTfn = hasNoTfn;
+    }
+
+    public ngAfterViewInit() {
+        const tfnCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
+        tfnCheckbox.valueChanges.subscribe(val => {
+            this.toggleTfnControls(val);
+        });
     }
 }

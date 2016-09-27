@@ -199,7 +199,18 @@
                                         "id": "NoTaxFileNumber"
                                     },
                                     {
-                                        "id": "NoTaxFileNumberReason"
+                                        "id": "NoTaxFileNumberReason",
+                                        "options" : [
+                                            {
+                                                "value": "Reason1",
+                                                "label": "Reason1"
+                                            },
+                                            {
+                                                "value": "Reason2",
+                                                "label": "Reason2"
+                                            }
+
+                                        ]
                                     }
                                 ]
                             }
