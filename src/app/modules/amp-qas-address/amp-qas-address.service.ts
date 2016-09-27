@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { Headers , RequestOptions , Http } from "@angular/http";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Headers , RequestOptions , Http } from '@angular/http';
+import { Observable } from 'rxjs';
 @Injectable()
 export class AmpQasAddressService {
     public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/secure/api/qas/doSearch/AUS';

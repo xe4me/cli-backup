@@ -17,9 +17,10 @@ import {
 import { FormControl , FormGroup } from '@angular/forms';
 import { Observable , Subscription } from 'rxjs/Rx';
 import { isPresent } from '../../util/functions.utils';
-import { FocuserDirective } from "../../directives/focuser/focuser.directive";
-import { AmpInputComponent } from "../../components/amp-input/amp-input.component";
-import { KeyCodes } from "../../util/key-kodes.utils";
+import { FocuserDirective } from '../../directives/focuser/focuser.directive';
+import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
+import { KeyCodes } from '../../util/key-kodes.utils';
+console.log('KeyCodes',KeyCodes);
 @Component( {
     selector        : 'amp-typeahead' ,
     queries         : {
@@ -36,9 +37,6 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() id;
     @Input() selectedItemIdentifier      = 'id';
     @Input() selectedItemValueIdentifier = 'label';
-    @Input() queryServiceCall            = ( queryValue : string ) : Observable<any> => {
-        return new Observable<any>();
-    };
     @Input() customValidator;
     @Input() isInSummaryState            = false;
     @Input() minTriggerLength            = 0;
@@ -50,34 +48,34 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() lengthTrigger : number      = - 1;
     @Input() options;
     @Input() isActive;
+    private selectedControl : FormControl;
+    private ApiSubscription : Subscription;
+    private showNoResults                = false;
+    private NO_RESULT_DEBOUNCE_TIME      = 0;
+    private INPUT_FOCUSER                = 0;
+    private LIST_FOCUSER                 = 1;
+    private canViewAll                   = true;
+    private selectedOption               = {};
+    private _required : boolean          = false;
+    private _optionsHidden               = true;
+    @Input() queryServiceCall            = ( queryValue : string ) : Observable<any> => {
+        return new Observable<any>();
+    };
 
     @Input( 'required' ) set required ( value : boolean ) {
         this._required = value;
     }
 
+    public static SELECTED_CONTROL_ID_POSTFIX = '-selected-item';
+
     get required () {
         return this._required;
     }
-
-    public static SELECTED_CONTROL_ID_POSTFIX = '-selected-item';
-    private selectedControl : FormControl;
-    private ApiSubscription : Subscription;
-    private showNoResults                     = false;
-    private NO_RESULT_DEBOUNCE_TIME           = 0;
-    private INPUT_FOCUSER                     = 0;
-    private LIST_FOCUSER                      = 1;
-    private canViewAll                        = true;
-    private selectedOption                    = {};
-    private _required : boolean               = false;
-    private _optionsHidden                    = true;
 
     get control () : FormControl {
         if ( this.controlGroup && this.controlGroup.contains( this.id ) ) {
             return (<FormControl>this.controlGroup.controls[ this.id ]);
         }
-    }
-
-    constructor ( private _cd : ChangeDetectorRef ) {
     }
 
     set searchResult ( _result ) {
@@ -110,6 +108,9 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         if ( this.ApiSubscription ) {
             this.ApiSubscription.unsubscribe();
         }
+    }
+
+    constructor ( private _cd : ChangeDetectorRef ) {
     }
 
     private close = () : void => {

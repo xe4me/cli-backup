@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { AmpErrorItemComponent , AmpErrorComponent } from "./amp-error.component";
-import { FormsModule , ReactiveFormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
+import { AmpErrorItemComponent , AmpErrorComponent } from './amp-error.component';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule( {
     declarations : [
         AmpErrorComponent ,

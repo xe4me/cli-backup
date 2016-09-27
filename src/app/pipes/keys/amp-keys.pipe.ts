@@ -1,4 +1,4 @@
-import { PipeTransform , Pipe } from "@angular/core";
+import { PipeTransform , Pipe } from '@angular/core';
 @Pipe( { name : 'AmpKeys' } )
 export class AmpKeysPipe implements PipeTransform {
     transform ( value , args : string[] ) : any {

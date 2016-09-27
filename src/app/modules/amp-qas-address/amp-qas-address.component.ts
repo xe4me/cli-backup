@@ -1,27 +1,35 @@
-import { Component , Input , ViewChild , Output , EventEmitter } from "@angular/core";
-import { AmpQasAddressService } from "./amp-qas-address.service";
-import { AmpTypeaheadComponent } from "../amp-typeahead/amp-typeahead.component";
+import {
+    Component , Input , ViewChild , Output , EventEmitter , OnInit ,
+    ChangeDetectionStrategy
+} from '@angular/core';
+import { AmpQasAddressService } from './amp-qas-address.service';
+import { AmpTypeaheadComponent } from '../amp-typeahead/amp-typeahead.component';
+import { FormGroup } from '@angular/forms';
 @Component( {
-    selector : 'amp-qas-address' ,
-    template : require( './amp-qas-address.component.html' ) ,
-    styles   : [ require( './amp-qas-address.component.scss' ).toString() ]
+    selector        : 'amp-qas-address' ,
+    template        : require( './amp-qas-address.component.html' ) ,
+    styles          : [ require( './amp-qas-address.component.scss' ).toString() ] ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpQasAddressComponent {
-    @Input() id                     = 'default-qas-id';
-    @Input() label                  = 'Default qas label';
+export class AmpQasAddressComponent implements OnInit {
+    @Input() id                                  = 'default-qas-id';
+    @Input() label                               = 'Default qas label';
     @Input() controlGroup;
-    @Input() errors                 = {
+    @Input() errors                              = {
         required : 'Address is a required field.'
     };
-    @Input() placeholder            = 'Default place holder';
+    @Input() placeholder                         = 'Default place holder';
     @Input() required;
     @Input() isInSummaryState;
-    @Input() minTriggerLength       = 3;
-    @Output( 'selected' ) $selected = new EventEmitter<any>();
+    @Input() minTriggerLength                    = 3;
+    @Output( 'selected' ) $selected              = new EventEmitter<any>();
     private _selectedControl;
+    public qasControlGroup                       = new FormGroup( {} );
+    public static QAS_ADDRESS_CONTROL_GROUP_NAME = 'qasAddress';
+
     get selectedControl () {
-        if ( ! this._selectedControl && this.controlGroup && this.controlGroup.contains( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ) {
-            this._selectedControl = this.controlGroup.controls[ this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
+        if ( ! this._selectedControl && this.qasControlGroup.contains( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ) {
+            this._selectedControl = this.qasControlGroup.controls[ this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
         }
         return this._selectedControl;
     };
@@ -45,6 +53,12 @@ export class AmpQasAddressComponent {
             }
         };
     };
+
+    ngOnInit () : void {
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( AmpQasAddressComponent.QAS_ADDRESS_CONTROL_GROUP_NAME , this.qasControlGroup );
+        }
+    }
 
     constructor ( private _ampQasAddressService : AmpQasAddressService ) {
     }
