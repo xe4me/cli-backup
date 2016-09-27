@@ -85,7 +85,7 @@ export class AmpFileUploadComponent implements OnInit {
                         url: this.uploadUrlWithToken
                     };
                     this.backendError = false;
-            },
+                },
                 ( error ) => {
                     this.backendError = true;
                 }
