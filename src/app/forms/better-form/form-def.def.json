@@ -94,6 +94,43 @@
                             }
                         },
                         {
+                            "name" : "BetterChoice",
+                            "blockType" : "BetterChoiceBlock",
+                            "blockLayout" : "INLINE",
+                            "commonBlock" : false,
+                            "path" : "blocks/better-choice/better-choice.component",
+                            "custom" : {
+                                "blockTitle" : "How can we make your life Bett3r?",
+                                "controls" : [
+                                    {
+                                        "id" : "BetterChoice",
+                                        "buttons"   : [
+                                             {
+                                                "id"    : "new_deposit_account",
+                                                "value" : "new_deposit_account",
+                                                "label" : "I would like to set up a new deposit account"
+                                            },
+                                            {
+                                                "id"    : "new_offset_account",
+                                                "value" : "new_offset_account",
+                                                "label" : "I would like to set up a new offset account on an existing eligble AMP home loan"
+                                            },
+                                            {
+                                                "id"    : "convert_deposit_account",
+                                                "value" : "convert_deposit_account",
+                                                "label" : "I would like to convert an existing eligible deposit account"
+                                            },
+                                            {
+                                                "id"    : "convert_offset_account",
+                                                "value" : "convert_offset_account",
+                                                "label" : "I would like to convert an existing eligible offset account"
+                                            }
+                                    ]
+                                    }   
+                                ]
+                            }
+                        },
+                        {
                             "name": "Address",
                             "blockType": "AddressBlock",
                             "blockLayout": "INLINE",
