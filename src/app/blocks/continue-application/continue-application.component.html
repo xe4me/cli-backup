@@ -1,0 +1,16 @@
+<amp-form-block [context]="context()">
+    <div class="mt mb">
+        Please enter the reference code in order to continue your application
+    </div>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt">
+            <amp-input
+                    [id]="__custom.controls[0].id"
+                    [controlGroup]="__controlGroup"
+                    [label]="'Reference code'"
+                    [required]="true"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-input>
+        </div>
+    </amp-form-row>
+</amp-form-block>

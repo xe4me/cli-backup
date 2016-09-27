@@ -18,7 +18,6 @@ import {
 @Component( {
     selector        : 'single-or-joint-block' ,
     templateUrl        : './single-or-joint-block.component.html',
-    styles          : [ require( './single-or-joint-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit {

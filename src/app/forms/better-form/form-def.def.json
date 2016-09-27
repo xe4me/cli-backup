@@ -34,6 +34,21 @@
                     }
                 },
                 {
+                    "name": "ContinueApplicationBlock",
+                    "blockType": "ContinueApplicationBlock",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "blocks/continue-application/continue-application.component",
+                    "custom": {
+                        "blockTitle" : "Where did we leave off?",
+                        "controls": [
+                            {
+                                "id": "ExistingApplicationId"
+                            }
+                        ]
+                    }
+                },
+                {
                     "blockType": "MenuFrameBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
