@@ -19,6 +19,7 @@ export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
     @Input() uploadUrl : string;
     @Input() tokenUrl : string;
+    @Input() formId : string;
 
     public token : string;
     private basicOptions : Object;
@@ -78,7 +79,8 @@ export class AmpFileUploadComponent implements OnInit {
             .subscribe(
                 ( res : any ) => {
                     this.token = res.payload.token;
-                    this.uploadUrlWithToken = this.uploadUrl + this.token;
+                    this.uploadUrl += '?formId=' + this.formId;
+                    this.uploadUrlWithToken = this.uploadUrl + '&token=' + this.token;
                     this.basicOptions = {
                         url: this.uploadUrlWithToken
                     };
