@@ -23,7 +23,7 @@ import {
     templateUrl     : './online-or-offline-id-check.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AddressBlock extends FormBlock implements OnInit {
+export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
