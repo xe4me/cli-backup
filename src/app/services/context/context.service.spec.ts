@@ -79,14 +79,12 @@ describe( 'Fetch context from server' , () => {
 
         subject.fetchContext()
                .subscribe(
-                    response => {
+                    (response) => {
                         expect(response).toEqual(contextBody);
                         done();
                     },
-                    error => {
-                        console.error('Failed to obtain the context');
-                        done();
-                    }
+                    (error) => {
+                        done.fail('Failed to obtain the context');                    }
                 );
       });
 });

@@ -5,7 +5,7 @@ import {
     Headers,
     Http
  } from '@angular/http';
-import { Environments } from '../../abstracts/environments/environments.abstract.ts';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 
 @Injectable()
 export class ContextService {
