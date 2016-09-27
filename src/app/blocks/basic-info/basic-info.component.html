@@ -3,16 +3,27 @@
         Please provide some basic personal details in order to get an idea of who you are
     </div>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
-            <amp-first-name
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/12 mr mt0">
+            <amp-input
                     [id]="__custom.controls[0].id"
                     [controlGroup]="__controlGroup"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [maxLength]="3"
+                    [required]="true"
+                    [label]="'Title'">
+            </amp-input>
+        </div>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+            <amp-first-name
+                    [id]="__custom.controls[1].id"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
             </amp-first-name>
         </div>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
             <amp-input
-                    [id]="__custom.controls[1].id"
+                    [id]="__custom.controls[2].id"
                     [controlGroup]="__controlGroup"
                     [label]="'Middle Name (optional)'"
                     [isInSummaryState]="isInSummaryState">
@@ -20,16 +31,17 @@
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
             <amp-last-name
-                    [id]="__custom.controls[2].id"
+                    [id]="__custom.controls[3].id"
                     [controlGroup]="__controlGroup"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
             </amp-last-name>
         </div>
     </amp-form-row>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt">
             <amp-input
-                    [id]="__custom.controls[3].id"
+                    [id]="__custom.controls[4].id"
                     [controlGroup]="__controlGroup"
                     [label]="'Date of birth'"
                     [valDate]="true"

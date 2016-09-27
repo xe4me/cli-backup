@@ -79,6 +79,9 @@
                                 "blockTitle": "Tell us about yourself.",
                                 "controls": [
                                     {
+                                        "id": "Title"
+                                    },
+                                    {
                                         "id": "FirstName"
                                     },
                                     {
