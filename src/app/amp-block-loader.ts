@@ -135,6 +135,9 @@ export abstract class AmpBlockLoader implements OnChanges {
         if ( _blockDef.name ) {
             let _form                             = _componentRef.instance.__form;
             _componentRef.instance.__controlGroup = new FormGroup( {} );
+            _componentRef.instance.__controlGroup.__prettyName = _blockDef.prettyName || _blockDef.name;
+            _componentRef.instance.__controlGroup.__reviewTemplate = _blockDef.reviewTemplate;
+
             for ( let i = 0 ; i < this.fdn.length ; i ++ ) {
                 if ( _form.controls[ this.fdn[ i ] ] ) {
                     _form = _form.controls[ this.fdn[ i ] ];
@@ -154,7 +157,6 @@ export abstract class AmpBlockLoader implements OnChanges {
         _componentRef.instance.__blockType   = _blockDef.blockType;
         _componentRef.instance.__blockLayout = _blockDef.blockLayout;
         _componentRef.instance.__name        = _blockDef.name;
-        _componentRef.instance.__prettyName  = _blockDef.prettyName || _blockDef.name;
 
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
             _componentRef.instance.__page = _blockDef.page;
@@ -249,6 +251,7 @@ export abstract class AmpBlockLoader implements OnChanges {
         if ( index !== undefined ) {
             index ++;
         }
+        this._blocks.splice(index, 0, _def);
         this.loadAt( _def , index );
     }
 
@@ -262,6 +265,7 @@ export abstract class AmpBlockLoader implements OnChanges {
         if ( index !== undefined ) {
             index ++;
         }
+        this._blocks.splice(index, 1);
         this.removeAt( index );
     }
 }
