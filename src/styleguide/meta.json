@@ -60,6 +60,26 @@
         "readme": "<p>Notes about helper classes for padding and margins</p>\n"
     },
     {
+        "name": "Lists",
+        "sources": [
+            "src/app/layout/lists/lists.ts"
+        ],
+        "id": "Lists",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/lists/lists.html",
+                "styles": "src/styleguide/layout/lists/lists.scss",
+                "source": "src/styleguide/layout/lists/lists.ts",
+                "galen": "src/styleguide/layout/lists/lists.spec",
+                "jasmine": "src/styleguide/layout/lists/lists.spec.ts",
+                "component": "lists",
+                "component_src_location": "layout/lists/lists",
+                "name": "Lists"
+            }
+        ],
+        "readme": "<p>Here are the different types and styles of lists available</p>\n"
+    },
+    {
         "name": "Amp Linear ProgressBar",
         "sources": [
             "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
@@ -519,6 +539,26 @@
             }
         ],
         "readme": "<p>Different permutations of intro block components</p>\n"
+    },
+    {
+        "name": "Amp File Upload",
+        "sources": [
+            "src/app/components/amp-file-upload/amp-file-upload.component.ts"
+        ],
+        "id": "AmpFileUploadComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-file-upload/basic_usage.html",
+                "styles": "src/styleguide/components/amp-file-upload/basic_usage.scss",
+                "source": "src/styleguide/components/amp-file-upload/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-file-upload/amp-file-upload.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-file-upload/amp-file-upload.component.spec.ts",
+                "component": "amp-file-upload-block-basic-usage",
+                "component_src_location": "components/amp-file-upload/basic_usage",
+                "name": "Amp File Upload Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpFileUploadComponent.</p>\n"
     }
 
 ]

@@ -108,8 +108,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected _required : boolean         = false;
     protected _disabled : boolean         = false;
     protected _pattern : string;
-    protected _customValidator : Function = () => {
-    };
     protected label : string;
     protected isInSummaryState : boolean  = false;
     protected showLabel : boolean         = true;
@@ -279,6 +277,8 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.updateValitators();
     }
 
+    protected _customValidator : Function = () => {};
+
     // set autoFocus ( value : boolean ) {
     //     if ( this.isTrue( value ) && this.el ) {
     //         let input = this.el.nativeElement.querySelector( 'input' );
@@ -374,13 +374,13 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected markControlAsUntouched () {
         this.control.markAsUntouched( {
             onlySelf : false
-        } )
+        } );
     }
 
     protected markControlAsTouched () {
         this.control.markAsTouched( {
             onlySelf : false
-        } )
+        } );
     }
 
     protected setDefaultValue () {

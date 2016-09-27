@@ -8,7 +8,11 @@ $logo-height: 60px !default;
 $amp-ddc-public-asset: '../../../assets/';
 
 :host {
+    /**
 
+    Apologies in advance for the use of !important
+
+    */
     padding: 26px 80px 60px 0;
     width: 100%;
     display: block;
@@ -20,8 +24,9 @@ $amp-ddc-public-asset: '../../../assets/';
     }
 
     .intro-list-container, .intro-container {
+        margin-left: 210px;
         @include media-query(desk) {
-            margin-left: 234px;
+            margin-left: 0px;
         }
     }
 
@@ -34,6 +39,12 @@ $amp-ddc-public-asset: '../../../assets/';
         padding-bottom: 40px;
     }
 
+    @include media-query(palm) {
+        div.md-input-wrapper {
+            margin: 10px 0;
+        }
+    }
+
     .intro-logo {
         width: 100px;
         background-position: left bottom;
@@ -41,7 +52,8 @@ $amp-ddc-public-asset: '../../../assets/';
         background-repeat: no-repeat;
         text-indent: -9999px !important;
         height: $amp-logo-height;
-        background-image: url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
+        background-image: url($amp-ddc-public-asset + 'images/logo/AMPLogo.png');
+        background-size: 90%;
         margin-bottom: 10px;
 
         @include media-query(palm) {
@@ -136,6 +148,10 @@ $amp-ddc-public-asset: '../../../assets/';
         }
     }
 
+    md-input.md-input div.md-input-wrapper {
+        margin-top: 20px;
+    }
+
     /* Theming */
 
     &[theme='tools'] {
@@ -157,6 +173,10 @@ $amp-ddc-public-asset: '../../../assets/';
             color: $amp-colour-white;
         }
 
+        .intro-logo {
+            background-image: url($amp-ddc-public-asset + 'images/logo/AMP-Logo-primary.svg');
+        }
+
         label  .container .off {
              border-color: $amp-colour-white!important;
         }
@@ -166,15 +186,31 @@ $amp-ddc-public-asset: '../../../assets/';
             margin-left: 4px;
         }
 
-    }
-
-    > .branded {
-
-        > .grid__container {
-
+        .md-input div.md-input-wrapper .md-input-placeholder {
+            color: $amp-colour-white;
+        }
+        md-input.md-input div.md-input-wrapper {
+            margin-top: 20px;
         }
 
     }
+
+    /* Branded stuff */
+    &.branding-bett3r {
+        background-image: url($amp-ddc-public-asset + 'images/fullbackground.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        min-height: 793px;
+        padding-top: 116px;
+
+        .intro-list-container, .intro-container {
+            margin-left: 210px;
+            @include media-query(desk) {
+                margin-left: 0px;
+            }
+        }
+    }
+
 
 }
 

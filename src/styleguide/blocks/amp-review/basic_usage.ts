@@ -17,5 +17,6 @@ import { AmpReviewTotal } from '../../../app/blocks/amp-review/amp-review-total/
 export default class AMPReviewBasicUsage {
     // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
     private callbackForChangeLink = (target : string) => {
+        // Note: This method is only needed in the AMP Review block
     }
 }

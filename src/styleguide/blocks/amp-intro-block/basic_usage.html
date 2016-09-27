@@ -1,4 +1,45 @@
 <section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">Below is a list of classes that can be used to layout features of the block</h2>
+        <p class="para ml">It's worth noting, that by default, the block is sitting the same width away from the side of the page, as the menu.</p>
+        <div class="grid__container 1/1 mb">
+            <div class="grid__item_floated 1/1 mv">
+                <ul class="unordered-list ml">
+                    <li>.intro-logo</li>
+                    <li>Use: <em><strong>placement of the logo</strong></em></li>
+                </ul>
+                <ul class="unordered-list ml">
+                    <li>.intro-list-container</li>
+                    <li>Use: <em><strong>this is meant specifically for list values, it's using flexbox</strong></em></li>
+                </ul>
+                <ul class="unordered-list ml">
+                    <li>.list-item</li>
+                    <li>Use: <em><strong>this is the label text</strong></em></li>
+                </ul>
+                <ul class="unordered-list ml">
+                    <li>.intro-value</li>
+                    <li>Use: <em><strong>this is the value of the item</strong></em></li>
+                </ul>
+                <ul class="unordered-list ml">
+                    <li>.intro-container</li>
+                    <li>Use: <em><strong>this is used for containing any other elements besides a list</strong></em></li>
+                </ul>
+                <ul class="unordered-list ml">
+                    <li>.heading-intro</li>
+                    <li>Use: <em><strong>The blue heading</strong></em></li>
+                </ul>
+            </div>
+
+        </div>
+    </article>
+    <article class="section">
+        <h2 class="mb- ml mt+">Events</h2>
+        <p class="para ml">A placeholder event method has been added to the component. You'll need to import the intro blocks' class into your class and then trigger the method from there. A sample implementation can be found in this page's component.</p>
+    </article>
+    <article class="section mb">
+        <h2 class="mb- ml mt+">Branding</h2>
+        <p class="para ml">Specific branding can be applied via a custom input. A demonstration of this can be found in this sample. Of course you will need to create the class and possibly the styles (if they are not reusable), if they are reusable, then create a pull into the project.</p>
+    </article>
     <article class="article">
         <h2 class="heading-test">BOLR style block</h2>
         <amp-intro-block [attr.theme]="themeService.theme.attr">
@@ -13,11 +54,12 @@
                             class="intro-value">John Smith</label></li>
                     </ul>
                 </article>
-                <h3 class="intro-message-heading heading heading-intro mb+">Hi John, You're about to request to exercise
+                <h3 class="intro-message-heading heading heading-intro">Hi John, You're about to request to exercise
                     your buyer of the last resort facility. (BOLR). </h3>
                 <p class="intro-tagline"><strong>We just need a few details, it won't take long</strong></p>
                 <amp-button
-                    class='btn btn-ok btn-intro-primary'>
+                    class='btn btn-ok btn-intro-primary'
+                    (click)="proceed()">
                     Ok
                 </amp-button>
             </div>
@@ -28,10 +70,10 @@
     -->
     <article class="article">
         <h2 class="heading-test">Another sample - illustrating a custom class for style, dynamic text</h2>
-        <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
+        <amp-intro-block [attr.theme]="themeService.theme.attr">
                 <h2 class='intro-logo'>This is another title</h2>
                 <div class="intro-container">
-                    <h3 class="intro-message-heading heading heading-intro mb+">{{title}}</h3>
+                    <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                     <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
                     <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin.</p>
                     <div class="grid__container_inner">
@@ -45,7 +87,8 @@
                     </div>
                     <div class="grid__container_inner">
                         <amp-button
-                            class='btn btn-ok btn-intro-primary'>
+                            class='btn btn-ok btn-intro-primary'
+                            (click)="proceed()">
                             Ok
                         </amp-button>
                    </div>
@@ -57,10 +100,10 @@
    -->
     <article class="article">
         <h2 class="heading-test">Another sample - button types</h2>
-        <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
+        <amp-intro-block [attr.theme]="themeService.theme.attr">
             <h2 class='intro-logo'>This is another title</h2>
             <div class="intro-container">
-                <h3 class="intro-message-heading heading heading-intro mb+">{{title}}</h3>
+                <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
                 <h3 class="intro-message-heading heading heading-intro mb0">buttons</h3>
 
@@ -93,7 +136,6 @@
                          <span class="icon icon--chevron-right"></span>
                      </amp-button>
                 </div>
-
             </div>
         </amp-intro-block>
     </article>
@@ -102,13 +144,13 @@
  -->
     <article class="article">
         <h2 class="heading-test">Another sample - input field types</h2>
-        <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
+        <amp-intro-block [attr.theme]="themeService.theme.attr">
             <h2 class='intro-logo'>This is another title</h2>
             <div class="intro-container">
-                <h3 class="intro-message-heading heading heading-intro mb+">{{title}}</h3>
+                <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
 
-                <div class="grid__item_floated palm-1/1 tablet-3/12 lap-and-down-6/12 desk-3/12 desk-mr- mr mt0">
+                <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-3/12 mr mt0">
                     <label class='1/1 sr-only'>Empty</label>
                         <amp-input
                             [attr.theme]="themeService.theme.attr"
@@ -122,18 +164,18 @@
                         </amp-input>
                 </div>
 
-                <div class="grid__item_floated palm-1/1 tablet-3/12 lap-and-down-6/12 desk-3/12 desk-mr- mr mt0">
+                <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-3/12 mr mt0">
                     <label class='1/1 sr-only'>Empty</label>
                     <amp-input
                         [attr.theme]="themeService.theme.attr"
                         [id]="test"
-                        [label]="'Empty '"
+                        [label]="'Default value '"
                         [controlGroup]="__controlGroup"
                         [isInSummaryState]="isInSummaryState"
                         [maxLength]="'12'"
                         [maxFloat]="'654654'"
                         [minLength]="'4'"
-                        [defaultValue]="'A have a default value'">
+                        [defaultValue]="'default value'">
                     </amp-input>
                 </div>
 
@@ -141,6 +183,65 @@
 
         </amp-intro-block>
     </article>
+
+
+    <!--
+This sample uses a different theme for illustration purpose.
+-->
+    <article class="article">
+        <h2 class="heading-test">Another sample - with branding</h2>
+        <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
+            <h2 class='intro-logo'>This is another title</h2>
+            <div class="intro-container">
+                <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
+                <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
+
+                <div class="intro-container">
+
+                    <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-3/12 mr mt0">
+                        <label class='1/1 sr-only'>Empty</label>
+                        <amp-input
+                            [attr.theme]="themeService.theme.attr"
+                            [id]="test"
+                            [label]="'Empty '"
+                            [controlGroup]="__controlGroup"
+                            [isInSummaryState]="isInSummaryState"
+                            [maxLength]="'12'"
+                            [maxFloat]="'654654'"
+                            [minLength]="'4'">
+                        </amp-input>
+                    </div>
+
+                    <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-6/12 mr mt0">
+                        <label class='1/1 sr-only'>Empty</label>
+                        <amp-input
+                            [attr.theme]="themeService.theme.attr"
+                            [id]="test"
+                            [label]="'Default value '"
+                            [controlGroup]="__controlGroup"
+                            [isInSummaryState]="isInSummaryState"
+                            [maxLength]="'12'"
+                            [maxFloat]="'654654'"
+                            [minLength]="'4'"
+                            [defaultValue]="'default value'">
+                        </amp-input>
+                    </div>
+
+                    <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb mt++">
+                        <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron'">
+                           Button 1
+                            <span class="icon icon--chevron-right"></span>
+                        </amp-button>
+                    </div>
+
+                    <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb mt++">
+                        <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron'">
+                            Button 2
+                        </amp-button>
+                    </div>
+                </div>
+            </div>
+        </amp-intro-block>
+    </article>
+
 </section>
-
-

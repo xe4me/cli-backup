@@ -30,7 +30,7 @@ $btn-ok-background-color: $amp-colour-primary;
 $btn-ok-active-background-color: $amp-colour-secondary;
 $btn-ok-margin-height: 60px;
 $btn-ok-margin-width: 125px;
-$btn-ok-margin-top: 60px;
+$btn-ok-margin-top: 30px;
 
 // btn-change
 $btn-change-hover-background-color: $amp-colour-secondary-darkest;
@@ -92,6 +92,10 @@ Button base class used by all
     &.btn-full {
         width: 100% !important;
         display: block;
+    }
+    &.btn-inline {
+        width: auto !important;
+        display: inline-block;
     }
     &.btn-review {
         width: $btn-review-default-width;

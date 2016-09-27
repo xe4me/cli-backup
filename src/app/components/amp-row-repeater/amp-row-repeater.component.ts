@@ -11,17 +11,19 @@ import { AmpFormRowComponent } from '../../blocks/amp-form-row/amp-form-row.comp
     } ,
     template        : `
         <amp-form-row *ngFor="let controlGroup of controlArray.controls ; let i = index;">
-            <amp-button *ngIf="i>0" [context]="context" (click)="remove(i)"
-                        class="btn btn-anchor right-aligned">
-                <span class="icon icon--close" aria-hidden="true"></span> {{ removeBtn }}
-            </amp-button>
+            <div class="utils__push--left">
             <template
                 [ngTemplateOutlet]="itemTemplate"
                 [ngOutletContext]="{ controlGroup: controlGroup, index: i }">
             </template>
+            </div>
+            <amp-button *ngIf="i>0" [context]="context" (click)="remove(i)"
+                        class="btn btn-anchor utils__push--left">
+                <span class="icon icon--close" aria-hidden="true"></span> {{ removeBtn }}
+            </amp-button>
         </amp-form-row>
         <amp-button *ngIf="controlArray.controls.length>0" [context]="context" (click)="add()"
-                    class="btn btn-anchor btn-full">
+                    class="btn btn-anchor btn-inline">
             <span class="icon icon--plus-filled" aria-hidden="true"></span> {{ addBtn }}
         </amp-button>
     ` ,

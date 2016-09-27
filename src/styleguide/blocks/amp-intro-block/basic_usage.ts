@@ -1,30 +1,24 @@
-import { Component , ChangeDetectorRef , ElementRef, Input } from '@angular/core';
+import { Component , ChangeDetectorRef , ElementRef, Input, ViewChild } from '@angular/core';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
 import { AmpInputComponent } from '../../../app/components/amp-input/amp-input.component';
-import { IntroBlockComponent } from '../../../app/blocks/amp-intro-block/amp-intro-block.component';
+import { AmpIntroBlockComponent } from '../../../app/blocks/amp-intro-block/amp-intro-block.component';
 import { FormBlock } from '../../../app/form-block';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector   : 'intro-block-basic-usage' ,
-    directives : [ AmpButton, IntroBlockComponent, AmpInputComponent ] ,
+    directives : [ AmpButton, AmpIntroBlockComponent, AmpInputComponent ] ,
     templateUrl : 'src/styleguide/blocks/amp-intro-block/basic_usage.html',
     styles     : [ require( './basic_usage.scss' ).toString() ]
 } )
 
 export default class IntroBlockBasicUsage {
     /**
-     * THIS CODE IS A SAMPLE ONLY
-     * */
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef,  private elementRef : ElementRef ) {
-    }
-
-    // Note: This callback method needs to use the fat arrow (=>) to bind it to 'this'
-    private callbackForChangeLink = (target : string) => {
-
-    }
+     * import the context from the amp-intro-block
+     */
+    @ViewChild(AmpIntroBlockComponent) ampIntro;
 
     /**
      * Use this property to set custom styles for the block.
@@ -34,14 +28,7 @@ export default class IntroBlockBasicUsage {
      * branded: dark blue bg
      */
 
-    _style: string = '';
-
-    @Input()
-    set style(style : string) {
-        this._style = (style && style.trim()) || '';
-    }
-
-    get style() { return this._style; }
+    _style : string = 'branding-bett3r';
 
     /**
      *
@@ -49,7 +36,22 @@ export default class IntroBlockBasicUsage {
      *
      */
 
-    _title: string = 'Here is a dynamic title.....';
+    _title : string = 'Here is a dynamic title.....';
+
+    /**
+     * THIS CODE IS A SAMPLE ONLY
+     */
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef,  private elementRef : ElementRef ) {
+    }
+
+    @Input()
+    set style(style : string) {
+        this._style = (style && style.trim()) || '';
+    }
+
+    get style() {
+        return this._style;
+    }
 
     @Input()
     set title(title : string) {
@@ -60,22 +62,31 @@ export default class IntroBlockBasicUsage {
         return this._title;
     }
 
-    autoFocus () {
-        /*
-         * TODO : This should be a directive or something else.
-         * */
-        setTimeout( () => {
+    /**
+     * This code is just to set focus on an element and is not for general use.
+     */
 
+    autoFocus () {
+        setTimeout( () => {
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
 
-                if ( inputs && inputs.length > 0 ) {
-                    inputs[2].focus();
-                }
-            
+            if ( inputs && inputs.length > 0 ) {
+                inputs[2].focus();
+            }
         } , 100 );
     }
 
     ngAfterViewInit () {
         this.autoFocus();
+    }
+
+    /**
+     * create a method to trigger the intro blocks' method, then on next inside the FormBlock itself
+     */
+    private proceed() {
+        this.ampIntro.proceed(); // call the method from the amp-in
+        setTimeout( () => {
+            // this.onNext(); implement form block to call this method
+        } , 800 );
     }
 }
