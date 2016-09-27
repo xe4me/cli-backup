@@ -37,7 +37,8 @@ export class AddressBlock extends FormBlock implements OnInit {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
     }
 
-    private doOnlineIdCheck() {
-        this.__controlGroup.get(this.__custom.controls[0].id).setValue('online');
+    private onIdCheckSelection(typeOfCheck : string) {
+        this.__controlGroup.get(this.__custom.controls[0].id).setValue(typeOfCheck);
+        this.onNext();
     }
 }
