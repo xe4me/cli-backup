@@ -53,7 +53,6 @@ import { AmpReviewItem, AmpReviewSection } from 'amp-ddc-components';
         AmpBlockLoaderDirective,
         AmpReviewItem
     ]
-    // encapsulation: ViewEncapsulation.Emulated
 } )
 export class ReviewSectionComponent {
 
@@ -79,11 +78,11 @@ export class ReviewSectionComponent {
         this._review_blocks = Object.assign({}, this.__child_blocks);
         this._sticky_blocks = Object.assign({}, this.__child_blocks);
 
-        this._review_blocks.blocks = this.__child_blocks.blocks.filter(block => {
+        this._review_blocks.blocks = this.__child_blocks.blocks.filter((block) => {
             return block.blockLayout !== 'STICKY';
         });
 
-        this._sticky_blocks.blocks = this.__child_blocks.blocks.filter(block => {
+        this._sticky_blocks.blocks = this.__child_blocks.blocks.filter((block) => {
             return block.blockLayout === 'STICKY';
         });
 
