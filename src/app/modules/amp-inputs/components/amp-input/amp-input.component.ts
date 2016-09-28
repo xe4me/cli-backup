@@ -160,8 +160,11 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         return undefined;
     }
 
-    public checkErrors () {
+    public checkErrors ( killTimer ) {
         this.control.setErrors( this.validate( this.control ) , { emitEvent : true } );
+        if(killTimer){
+            clearTimeout( this.idleTimeoutId );
+        }
         this._cd.markForCheck();
     }
 
