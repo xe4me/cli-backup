@@ -28,6 +28,6 @@ export class ContextService {
         let headers = new Headers( { 'Content-Type': 'application/json' } );
         let options = new RequestOptions( { headers: headers , body: '' } );
         return this.http.get( this._contextUrl , options )
-                        .map( res => res.json() );
+                        .map( (res) => res.json() );
     }
 }
