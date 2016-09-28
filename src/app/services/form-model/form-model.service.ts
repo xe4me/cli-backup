@@ -306,7 +306,7 @@ export class FormModelService {
         let options = new RequestOptions( { headers : headers } );
         return this.http
                    .get( this.generatePDFUrl() , options )
-                   .map( res => res.text() );
+                   .map( (res) => res.text() );
     }
 
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
