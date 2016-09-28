@@ -25,13 +25,70 @@ export class FormModelService {
             delete control.validator;
         }
     }
-    public $flags : EventEmitter<any>;
+
     public _formDefinition;
+    public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
+    public model               = {
+        currentBlockClassName : 'IntroBlockComponent' ,
+        fatalErrors           : [] ,
+        errors                : [] ,
+        currentBlockID        : null ,         // Defaults to the first block on the current page
+        context               : {
+            initialized                : false ,
+            licensee                   : null ,
+            practicePrincipalFirstName : null ,
+            practicePrincipalLastName  : null ,
+            payeeID                    : null ,
+            practiceName               : null ,
+            realUser                   : null ,
+            actingAsUser               : null ,
+            impersonatedUser           : null ,
+            isPrincipal                : false ,
+            iat                        : 1460707004 ,
+            exp                        : 1465891004 ,
+            jwt_realUserFirstName      : null ,
+            jwt_realUserLastName       : null ,
+            jwt_actingAsUserFirstName  : null ,
+            jwt_actingAsUserLastName   : null ,
+            jwt_realUser               : null ,
+            jwt_actingAsUser           : null ,
+            jwt_iss                    : null ,
+            jwt_saleid                 : null ,
+            jwt_impersonatedUser       : null
+        } ,
+        contactDetails        : {
+            workPhoneNumber : null ,
+            emailAddress    : null
+        } ,
+        advisers              : [] ,
+        flags                 : {
+            dialogIsVisible              : true ,
+            introIsDone                  : false ,
+            contactDetailsIsDone         : false ,
+            addressIsDone                : false ,
+            partnershipIsDone            : false ,
+            equityHoldersIsDone          : false ,
+            fullOrPartialIsDone          : false ,
+            saleReasonIsDone             : false ,
+            practiceAssociationIsDone    : false ,
+            exerciseDateIsDone           : false ,
+            isOveralOverlayActive        : false ,
+            practiceAssociationIsVisible : false ,
+            saleReasonIsVisible          : false ,
+            acknowledgeIsDone            : false ,
+            reviewBlockIsDone            : false ,
+            confirmationIsVisible        : false ,
+            reviewIsVisible              : false
+        } ,
+        formId                : null ,
+        folderId              : null
+    };
 
     private _submitUrl         = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification';
     // private _submitUrl         = 'http://localhost:8080/ddc/secure/api/bolrnotification';
+    private _contextUrl        = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/usersession';
     private _contactDetailsUrl = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/profile';
     private _advisersUrl       = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/advisors';
 
@@ -61,6 +118,10 @@ export class FormModelService {
 
     get advisers () {
         return this.model.advisers;
+    }
+
+    get context () {
+        return this.model.context;
     }
 
     set formDefinition ( formDef ) {
@@ -124,6 +185,11 @@ export class FormModelService {
                 case 'next':
                     // this.model.currentBlockID = FormDefinition.getNextBlockID(this._formDefinition, data.blockId);
                     break;
+                case 'setContext':
+                    Object.assign( this.model.context , data.context.data );
+                    // Indicator to capture that the state is after the all important context call
+                    this.model.context.initialized = true;
+                    break;
                 case 'setFlag':
                     this.model.flags[ data.flag ] = data.flagValue;
                     let flag                      = {};
@@ -185,6 +251,20 @@ export class FormModelService {
         return 'ContactDetailsBlockComponent';
     }
 
+    /**
+     * Service calls
+     */
+    getContext () : Observable<string> {
+        let headers = new Headers(
+            {
+                'Content-Type' : 'application/json' ,
+            } );
+        let options = new RequestOptions( { headers : headers } );
+        return this.http.get( this._contextUrl , options )
+                   .map( res => res.json() );
+        // .catch(this.handleError);
+    }
+
     getContactDetails () : Observable<string> {
         let headers = new Headers(
             {
@@ -194,7 +274,7 @@ export class FormModelService {
         return this
             .http
             .get( this._contactDetailsUrl , options )
-            .map( (res) => res.json() );
+            .map( res => res.json() );
         // .catch(this.handleError);
     }
 
@@ -226,7 +306,7 @@ export class FormModelService {
         let options = new RequestOptions( { headers : headers } );
         return this.http
                    .get( this.generatePDFUrl() , options )
-                   .map( (res) => res.text() );
+                   .map( res => res.text() );
     }
 
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
@@ -246,7 +326,7 @@ export class FormModelService {
         }
         return this.http
                    .post( this._submitUrl , JSON.stringify( body ) , options )
-                   .map( (res) => res.json() );
+                   .map( res => res.json() );
         //    .catch( this.handleError );
     }
 
