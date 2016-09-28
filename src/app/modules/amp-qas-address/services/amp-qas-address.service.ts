@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AmpQasAddressService {
     // public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/secure/api/qas/doSearch/AUS';
-     public static QAS_QUERY_URL     = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
-    public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/secure/api/nio/addressFormatter';
+    public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
+    public static QAS_FORMATTER_URL  = 'http://localhost:8082/ddc/secure/api/nio/addressFormatter';
+    public static DEFAULT_ERROR_TEXT = 'Server error';
 
     constructor ( private http : Http ) {
     }
@@ -26,7 +27,12 @@ export class AmpQasAddressService {
                 } else {
                     return null;
                 }
-            } );
-        // .catch(this.handleError);
+            } )
+            .catch( this.handleError );
     };
+
+    private handleError ( error : any ) {
+        let errMsg = (error.message) ? error.message : error.status ? error.status : AmpQasAddressService.DEFAULT_ERROR_TEXT;
+        return Observable.throw( errMsg );
+    }
 }
