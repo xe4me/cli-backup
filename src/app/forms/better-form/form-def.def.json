@@ -335,6 +335,35 @@
                                             {
                                                 "value": "Windfall",
                                                 "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "SourceOfFundsForAccount",
+                                        "options": [
+                                            {
+                                                "value": "Employment",
+                                                "label": "Income from employment (regular and/or bonus)"
+                                            },
+                                            {
+                                                "value": "Investment",
+                                                "label": "Investment income (e.g. rent, dividends, pension)"
+                                            },
+                                            {
+                                                "value": "Business",
+                                                "label": "Business income"
+                                            },
+                                            {
+                                                "value": "One-off payment",
+                                                "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                            },
+                                            {
+                                                "value": "Assets",
+                                                "label": "Sale of assets (e.g. shares, property)"
+                                            },
+                                            {
+                                                "value": "Windfall",
+                                                "label": "Windfall (e.g. gift, lottery winnings, gambling)"
                                             },
                                             {
                                                 "value": "Borrowed funds",
@@ -347,28 +376,23 @@
                                         ]
                                     },
                                     {
-                                        "id": "SourceOfFundsForAccount",
-                                        "options": [
-                                            {
-                                                "value": "Source1",
-                                                "label": "Source1"
-                                            },
-                                            {
-                                                "value": "Source2",
-                                                "label": "Source2 "
-                                            }
-                                        ]
-                                    },
-                                    {
                                         "id": "ReasonForOpeningAccount",
                                         "options": [
                                             {
-                                                "value": "Reason1",
-                                                "label": "Reason1"
+                                                "value": "Everday banking",
+                                                "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
                                             },
                                             {
-                                                "value": "Reason2",
-                                                "label": "Reason2 "
+                                                "value": "Business income",
+                                                "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
+                                            },
+                                            {
+                                                "value": "Savings",
+                                                "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
+                                            },
+                                            {
+                                                "value": "Wealth",
+                                                "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
                                             }
                                         ]
                                     }
@@ -599,9 +623,38 @@
                             "path": "blocks/source-of-funding/source-of-funding.component",
                             "custom": {
                                 "blockTitle": "Please tell us your...",
-                                "controls": [
+                                                               "controls": [
                                     {
                                         "id": "PrimarySourceOfWealth",
+                                        "options": [
+                                            {
+                                                "value": "Employment",
+                                                "label": "Income from employment (regular and/or bonus)"
+                                            },
+                                            {
+                                                "value": "Investment",
+                                                "label": "Investment income (e.g. rent, dividends, pension)"
+                                            },
+                                            {
+                                                "value": "Business",
+                                                "label": "Business income"
+                                            },
+                                            {
+                                                "value": "One-off payment",
+                                                "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                            },
+                                            {
+                                                "value": "Assets",
+                                                "label": "Sale of assets (e.g. shares, property)"
+                                            },
+                                            {
+                                                "value": "Windfall",
+                                                "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "SourceOfFundsForAccount",
                                         "options": [
                                             {
                                                 "value": "Employment",
@@ -638,28 +691,23 @@
                                         ]
                                     },
                                     {
-                                        "id": "SourceOfFundsForAccount",
-                                        "options": [
-                                            {
-                                                "value": "Source1",
-                                                "label": "Source1"
-                                            },
-                                            {
-                                                "value": "Source2",
-                                                "label": "Source2 "
-                                            }
-                                        ]
-                                    },
-                                    {
                                         "id": "ReasonForOpeningAccount",
                                         "options": [
                                             {
-                                                "value": "Reason1",
-                                                "label": "Reason1"
+                                                "value": "Everday banking",
+                                                "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
                                             },
                                             {
-                                                "value": "Reason2",
-                                                "label": "Reason2 "
+                                                "value": "Business income",
+                                                "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
+                                            },
+                                            {
+                                                "value": "Savings",
+                                                "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
+                                            },
+                                            {
+                                                "value": "Wealth",
+                                                "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
                                             }
                                         ]
                                     }
