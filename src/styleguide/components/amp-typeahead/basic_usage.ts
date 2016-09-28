@@ -3215,7 +3215,7 @@ export default class AmpTypeaheadComponentBasicUsage implements AfterViewInit {
         this.selectedOption = option;
     }
 
-    get searchControlGroup () {
+    get searchControlGroup () : any {
         if ( this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ] ) {
             return this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
         }
