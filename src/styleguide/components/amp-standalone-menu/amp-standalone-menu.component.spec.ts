@@ -33,7 +33,6 @@ describe( 'amp-standalone-menu component , multiple items usage' , () => {
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
         let myMenuComponent = fixture.componentInstance;
-        
 
     } );
 } );
