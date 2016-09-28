@@ -261,7 +261,7 @@ export class FormModelService {
             } );
         let options = new RequestOptions( { headers : headers } );
         return this.http.get( this._contextUrl , options )
-                   .map( res => res.json() );
+                   .map( (res) => res.json() );
         // .catch(this.handleError);
     }
 
@@ -274,7 +274,7 @@ export class FormModelService {
         return this
             .http
             .get( this._contactDetailsUrl , options )
-            .map( res => res.json() );
+            .map( (res) => res.json() );
         // .catch(this.handleError);
     }
 
@@ -326,7 +326,7 @@ export class FormModelService {
         }
         return this.http
                    .post( this._submitUrl , JSON.stringify( body ) , options )
-                   .map( res => res.json() );
+                   .map( (res) => res.json() );
         //    .catch( this.handleError );
     }
 
