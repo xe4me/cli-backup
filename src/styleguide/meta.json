@@ -100,6 +100,26 @@
         "readme": "<p>To see a progress bar look and feel.</p>\n"
     },
     {
+        "name": "Amp standalone menu",
+        "sources": [
+            "src/app/components/amp-standalone-menu/amp-standalone-menu.component.ts"
+        ],
+        "id": "AmpStandAloneMenuComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-standalone-menu/basic_usage.html",
+                "styles": "src/styleguide/components/amp-standalone-menu/basic_usage.scss",
+                "source": "src/styleguide/components/amp-standalone-menu/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.spec.ts",
+                "component": "amp-standalone-menu-basic-usage",
+                "component_src_location": "components/amp-standalone-menu/basic_usage",
+                "name": "AMP standalone menu"
+            }
+        ],
+        "readme": "<p>Stand alone menu component</p>\n"
+    },
+    {
         "name": "Amp Block Loader",
         "sources": [
             "src/app/directives/amp-block-loader/amp-block-loader.component.ts"
