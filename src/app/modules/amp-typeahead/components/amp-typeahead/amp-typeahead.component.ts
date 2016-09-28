@@ -36,6 +36,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
+    @Output( 'deSelected' ) $deSelected             = new EventEmitter<any>();
     @Input() id;
     @Input() selectedItemIdentifier                 = 'id';
     @Input() selectedItemValueIdentifier            = 'label';
@@ -230,6 +231,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     private clearSelectedItem () : void {
         this.selectedControl.setValue( null );
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
+        this.$deSelected.emit( null );
     }
 
     private initForOptions () {

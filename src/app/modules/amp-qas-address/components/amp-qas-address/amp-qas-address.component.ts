@@ -11,6 +11,7 @@ import { FormGroup } from '@angular/forms';
     styles   : [ require( './amp-qas-address.component.scss' ).toString() ]
 } )
 export class AmpQasAddressComponent implements AfterViewInit {
+    @ViewChild( 'manualEntryCmp' ) manualEntryCmp;
     @Input() id                     = 'default-qas-id';
     @Input() label                  = 'Default qas label';
     @Input() controlGroup;
@@ -49,8 +50,19 @@ export class AmpQasAddressComponent implements AfterViewInit {
         return this._selectedControl;
     };
 
+    public onOptionDeSelect ( $event ) {
+        this.manualEntryCmp.updateControls( $event );
+    }
+
     public onOptionSelect ( $event ) {
-        this.$selected.emit( $event );
+        let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
+        this._ampQasAddressService
+            .getFormattedAddress( testManiker )
+            .subscribe( ( _address )=> {
+                console.log( 'address is :' , _address );
+                this.manualEntryCmp.updateControls( _address );
+                this.$selected.emit( _address );
+            } );
     }
 
     private customValidator = () : Function => {
