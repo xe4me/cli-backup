@@ -113,12 +113,6 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
         this.searchControlGroup.addControl( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX , this.selectedControl );
         this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME , this.searchControlGroup );
-        this.controlGroup.updateValueAndValidity( {
-            onlySelf  : false ,
-            emitEvent : true ,
-        } );
-        this._cd.detectChanges();
-        this._cd.markForCheck();
         if ( this.options ) {
             this.initForOptions();
         } else if ( this.queryServiceCall ) {
@@ -163,8 +157,9 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
 
     private selectOption ( option ) : void {
         this.selectedOption = Object.assign( {} , option );
-        this.control.patchValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim() );
-        this.selectedControl.patchValue( JSON.stringify( this.selectedOption ) );
+        this.control.setValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim() );
+        this.selectedControl.setValue( JSON.stringify( this.selectedOption ) );
+        this.ampInput.checkErrors();
         this.$selected.emit( this.selectedOption );
         this.close();
         this.focusInput();
@@ -233,7 +228,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     private clearSelectedItem () : void {
-        this.selectedControl.patchValue( null );
+        this.selectedControl.setValue( null );
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
     }
 
