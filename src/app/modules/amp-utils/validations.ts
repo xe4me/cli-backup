@@ -71,7 +71,7 @@ export class PatterValidator {
     public static patternValidator ( pattern ) {
         return ( c ) => {
             if ( pattern ) {
-                if ( ! c.value || new RegExp( pattern ).test( c.value ) ) {
+                if ( ! c.value || new RegExp( pattern , 'ig' ).test( c.value ) ) {
                     return null;
                 }
                 return {
