@@ -1,13 +1,15 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , provide , ElementRef , ReflectiveInjector , Injector , Injectable } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup , FormBuilder } from '@angular/forms';
-import { AmpQasAddressModule } from '../../../app/modules/amp-qas-address/amp-qas-address.module';
 import { Observable , BehaviorSubject } from 'rxjs';
-import { AmpQasAddressService } from '../../../app/modules/amp-qas-address/amp-qas-address.service';
-import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead/amp-typeahead.component';
+import {
+    AmpQasAddressModule ,
+    AmpQasAddressService ,
+    AmpQasAddressComponent
+} from '../../../app/modules/amp-qas-address';
+import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead';
 import { By } from '@angular/platform-browser';
 import { inject , ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { AmpQasAddressComponent } from '../../../app/modules/amp-qas-address/amp-qas-address.component';
 @Injectable()
 export class MockAmpQasAddressService {
     public static sampleSearchTerm = 'Pymble';
@@ -147,7 +149,7 @@ describe( 'amp-qas-address component' , () => {
         _debugElement = _fixture.debugElement;
         _element      = _fixture.nativeElement;
     } ) );
-    beforeEach( ()=> {
+    beforeEach( () => {
         _testComponentControlGroup = _comp.__controlGroup;
         _qasComponentControlGroup  = _testComponentControlGroup.controls[ AmpQasAddressComponent.QAS_ADDRESS_CONTROL_GROUP_NAME ];
     } );

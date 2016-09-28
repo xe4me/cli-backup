@@ -18,12 +18,13 @@ import { AppState } from './app.service';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
 import { AmpStyleguideReduxModule } from '../app/redux/amp-styleguide-redux.module';
-import { AmpQasAddressModule } from "../app/modules/amp-qas-address/amp-qas-address.module";
-import { AmpTypeaheadModule } from "../app/modules/amp-typeahead/amp-typeahead.module";
-import { AmpLoadingComponent } from "../app/components/amp-loading/amp-loading.component";
-import { AmpDirectivesModule } from "../app/modules/amp-directives/amp-directives.module";
-import { AmpInputModule } from "../app/modules/amp-input/amp-input.module";
-import { AmpPipesModule } from "../app/modules/amp-pipes/amp-pipes.module";
+import { AmpQasAddressModule } from '../app/modules/amp-qas-address/amp-qas-address.module';
+import { AmpTypeaheadModule } from '../app/modules/amp-typeahead/amp-typeahead.module';
+import { AmpLoadingComponent } from '../app/components/amp-loading/amp-loading.component';
+import { AmpDirectivesModule } from '../app/modules/amp-directives/amp-directives.module';
+import { AmpInputsModule } from '../app/modules/amp-inputs/amp-inputs.module';
+import { AmpPipesModule } from '../app/modules/amp-pipes/amp-pipes.module';
+import { AmpErrorModule } from '../app/modules/amp-error/amp-error.module';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -31,7 +32,6 @@ const APP_PROVIDERS                         = [
 const shouldBeReplacedWithModulesComponents = [
     AmpLoadingComponent ,
 ];
-console.log( 'shouldBeReplacedWithModulesComponents' , shouldBeReplacedWithModulesComponents );
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -45,9 +45,10 @@ console.log( 'shouldBeReplacedWithModulesComponents' , shouldBeReplacedWithModul
         ComponentPage
     ] ,
     imports      : [
+        AmpErrorModule ,
         AmpPipesModule ,
         AmpDirectivesModule ,
-        AmpInputModule ,
+        AmpInputsModule ,
         AmpTypeaheadModule ,
         AmpQasAddressModule ,
         AmpStyleguideReduxModule ,

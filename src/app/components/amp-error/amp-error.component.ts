@@ -2,10 +2,10 @@ import {
     Component , ContentChild , TemplateRef , OnInit ,
     Input , ChangeDetectionStrategy , ChangeDetectorRef
 } from '@angular/core';
-import { FormGroup } from "@angular/forms";
-import { AmpKeysPipe , AmpValuesPipe } from "../../../../";
+import { FormGroup } from '@angular/forms';
+import { AmpKeysPipe , AmpValuesPipe } from '../../../../';
 @Component( {
-    selector : "error-item" ,
+    selector : 'error-item' ,
     template : '<ng-content *ngIf="error===selector"></ng-content>'
 } )
 export class AmpErrorItemComponent {
@@ -19,29 +19,29 @@ export class AmpErrorItemComponent {
         } ,
         selector   : 'amp-error' ,
         template   : `
-        <div class='errors mt-25 mb-15' *ngIf="controlGroup">
-            <div *ngIf="!controlId">
-                <div *ngFor="let aControl of controlGroup.controls | AmpValues" class="error-item">
-                    <div *ngFor="let error of aControl.errors | AmpKeys ; let i = index" class="error-item ">
-                        <div *ngIf="aControl.touched">
-                            <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                            <span [innerHtml]="aControl.errors[error].text"></span>
+        <div class='errors mt-25 mb-15' *ngIf='controlGroup'>
+            <div *ngIf='!controlId'>
+                <div *ngFor='let aControl of controlGroup.controls | AmpValues' class='error-item'>
+                    <div *ngFor='let error of aControl.errors | AmpKeys ; let i = index' class='error-item '>
+                        <div *ngIf='aControl.touched'>
+                            <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+                            <span [innerHtml]='aControl.errors[error].text'></span>
                             <template
-                                [ngTemplateOutlet]="itemTemplate"
-                                [ngOutletContext]="{ error: error, index: index }">
+                                [ngTemplateOutlet]='itemTemplate'
+                                [ngOutletContext]='{ error: error, index: index }'>
                             </template>    
                         </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf="controlId">
-                <div *ngFor="let error of controlGroup.controls[controlId]?.errors | AmpKeys ; let i = index" class="error-item">
-                    <div *ngIf="controlGroup.controls[controlId].touched">
-                        <span class='icon icon--close icon-errors' aria-hidden="true"></span>
-                        <span [innerHtml]="controlGroup.controls[controlId].errors[error].text"></span>
+            <div *ngIf='controlId'>
+                <div *ngFor='let error of controlGroup.controls[controlId]?.errors | AmpKeys ; let i = index' class='error-item'>
+                    <div *ngIf='controlGroup.controls[controlId].touched'>
+                        <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+                        <span [innerHtml]='controlGroup.controls[controlId].errors[error].text'></span>
                         <template
-                            [ngTemplateOutlet]="itemTemplate"
-                            [ngOutletContext]="{ error: error, index: index }">
+                            [ngTemplateOutlet]='itemTemplate'
+                            [ngOutletContext]='{ error: error, index: index }'>
                         </template>                
                     </div>
                 </div>

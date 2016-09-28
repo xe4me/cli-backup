@@ -2,18 +2,20 @@ import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , provide , ElementRef } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AmpEmailComponent } from '../../../app/components/amp-email/amp-email.component';
+import { AmpEmailComponent } from '../../../app/modules/amp-inputs';
+import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
+import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 describe( 'amp-email component' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule ] ,
+            imports      : [ FormsModule , ReactiveFormsModule , AmpInputsModule ] ,
             declarations : [
-                AmpEmailComponent ,
                 TestComponent
             ] ,
             providers    : [
                 { provide : ElementRef , useClass : MockElementRef } ,
-                { provide : Window , useClass : window }
+                { provide : Window , useClass : window } ,
+                { provide : ComponentFixtureAutoDetect , useValue : true }
             ]
         } );
         TestBed.compileComponents();

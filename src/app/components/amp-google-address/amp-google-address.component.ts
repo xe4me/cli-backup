@@ -5,7 +5,7 @@ import {
     ChangeDetectorRef , EventEmitter
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { AmpInputComponent } from '../amp-input/amp-input.component';
+import { AmpInputComponent } from '../../modules/amp-inputs';
 declare var google : any;
 @Component( {
     selector   : 'amp-google-address' ,

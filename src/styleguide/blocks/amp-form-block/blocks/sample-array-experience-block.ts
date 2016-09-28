@@ -5,7 +5,6 @@ import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
-import { AmpInputComponent } from '../../../../app/components/amp-input/amp-input.component';
 import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
 import { FormArray , FormGroup } from '@angular/forms';
 import { ModelActions , Payload } from '../../../../app/redux/actions/model/model.action';
@@ -42,7 +41,7 @@ import { AmpButton } from '../../../../app/components/amp-button/amp-button.comp
            </amp-button>
         </amp-form-block>
     ` ,
-    directives      : [ AmpButton , AmpFormBlockComponent , AmpInputComponent , AmpFormRowComponent ] ,
+    directives      : [ AmpButton , AmpFormBlockComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleArrayExperienceBlock extends FormBlock implements OnInit {

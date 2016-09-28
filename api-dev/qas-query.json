@@ -124,6 +124,61 @@
                                 "Picklist": "Pym Road, ROCKLEIGH  SA",
                                 "Postcode": "",
                                 "Score": "20"
+                            },
+                            {
+                                "attributes": {
+                                    "Multiples": "true",
+                                    "CanStep": "true"
+                                },
+                                "Moniker": "BOAUSHAfgBwMAAQAAzf0CgAAAAAAAFAA-",
+                                "PartialAddress": "Pym Street, DUDLEY PARK  SA  5008",
+                                "Picklist": "Pym Street, DUDLEY PARK  SA",
+                                "Postcode": "",
+                                "Score": "20"
+                            },
+                            {
+                                "attributes": {
+                                    "Multiples": "true",
+                                    "CanStep": "true"
+                                },
+                                "Moniker": "TOAUSHAfgBwMAAQAA0tIzAAAAAAAAFAA-",
+                                "PartialAddress": "Pym Road, INKERMAN  SA  5550",
+                                "Picklist": "Pym Road, INKERMAN  SA",
+                                "Postcode": "",
+                                "Score": "20"
+                            },
+                            {
+                                "attributes": {
+                                    "Multiples": "true",
+                                    "CanStep": "true"
+                                },
+                                "Moniker": "COAUSHAfgBwMAAQAA1bYuwAAAAAAAFAA-",
+                                "PartialAddress": "Pym Street, MIDDLETON  SA  5213",
+                                "Picklist": "Pym Street, MIDDLETON  SA",
+                                "Postcode": "",
+                                "Score": "20"
+                            },
+                            {
+                                "attributes": {
+                                    "Multiples": "true",
+                                    "CanStep": "true"
+                                },
+                                "Moniker": "JOAUSHAfgBwMAAQAA3B47AAAAAAAAFAA-",
+                                "PartialAddress": "Pym Street, PROSPECT  SA  5082",
+                                "Picklist": "Pym Street, PROSPECT  SA",
+                                "Postcode": "",
+                                "Score": "20"
+                            },
+                            {
+                                "attributes": {
+                                    "Multiples": "true",
+                                    "CanStep": "true"
+                                },
+                                "Moniker": "2OAUSHAfgBwMAAQAA3OcqgAAAAAAAFAA-",
+                                "PartialAddress": "Pym Road, ROCKLEIGH  SA  5254",
+                                "Picklist": "Pym Road, ROCKLEIGH  SA",
+                                "Postcode": "",
+                                "Score": "20"
                             }
                         ],
                         "Prompt": "Enter selection",

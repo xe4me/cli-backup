@@ -1,5 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { AmpErrorComponent } from '../../components/amp-error/amp-error.component';
+import { AmpErrorComponent } from '../../modules/amp-error';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.component';
 @Component( {
@@ -49,8 +49,8 @@ export class AmpFormBlockComponent implements OnInit {
         return undefined;
     }
 
-    onKeyupEnter (event) {
-        if (event.target.tagName.toLowerCase() !== 'textarea') {
+    onKeyupEnter ( event ) {
+        if ( event.target.tagName.toLowerCase() !== 'textarea' ) {
             this.context.onNext();
         }
     }

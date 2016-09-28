@@ -6,7 +6,6 @@ import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
 import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
-import { AmpInputComponent } from '../../../../app/components/amp-input/amp-input.component';
 @Component( {
     selector        : 'sample-experience-block' ,
     template        : `
@@ -36,7 +35,7 @@ import { AmpInputComponent } from '../../../../app/components/amp-input/amp-inpu
              </amp-form-row> 
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpFormRowComponent , AmpInputComponent ] ,
+    directives      : [ AmpFormBlockComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleExperienceBlock extends FormBlock implements OnInit {

@@ -1,14 +1,11 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
-import { AmpErrorComponent } from '../../../app/components/amp-error/amp-error.component';
-import { AmpLastNameComponent } from '../../../app/components/amp-last-name/amp-last-name.component';
 @Component(
     {
         selector    : 'amp-last-name-basic-usage' ,
         templateUrl : 'src/styleguide/components/amp-last-name/basic_usage.html' ,
-        styles      : [ require( './basic_usage.scss' ).toString() ] ,
-        directives  : [ AmpLastNameComponent , AmpErrorComponent ]
+        styles      : [ require( './basic_usage.scss' ).toString() ]
     } )
 export default class AmpLastNameBasicUsage {
     toggleFlag : boolean;

@@ -300,9 +300,9 @@
         "readme": "<p>AMP Textarea basic usage</p>\n"
     },
     {
-        "name":"AmpInput",
+        "name": "AmpInput",
         "sources": [
-            "src/app/components/amp-input/amp-input.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpInput",
         "examples": [
@@ -320,9 +320,9 @@
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
     },
     {
-        "name":"AmpEmail",
+        "name": "AmpEmail",
         "sources": [
-            "src/app/components/amp-email/amp-email.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpEmail",
         "examples": [
@@ -340,9 +340,9 @@
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
     },
     {
-        "name":"AmpFirstName",
+        "name": "AmpFirstName",
         "sources": [
-            "src/app/components/amp-first-name/amp-first-name.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpFirstName",
         "examples": [
@@ -360,9 +360,9 @@
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
     },
     {
-        "name":"AmpLastName",
+        "name": "AmpLastName",
         "sources": [
-            "src/app/components/amp-last-name/amp-last-name.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpLastName",
         "examples": [
@@ -380,9 +380,9 @@
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
     },
     {
-        "name":"AmpContactNumber",
+        "name": "AmpContactNumber",
         "sources": [
-            "src/app/components/amp-contact-number/amp-contact-number.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpContactNumber",
         "examples": [
@@ -400,9 +400,9 @@
         "readme": "<p>AMP natural language contact-number"
     },
     {
-        "name":"AmpPhoneNumber",
+        "name": "AmpPhoneNumber",
         "sources": [
-            "src/app/components/amp-mobile-number/amp-mobile-number.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpPhoneNumber",
         "examples": [
@@ -420,9 +420,9 @@
         "readme": "<p>AMP natural language mobile-number"
     },
     {
-        "name":"AmpHomeNumber",
+        "name": "AmpHomeNumber",
         "sources": [
-            "src/app/components/amp-home-number/amp-home-number.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpHomeNumber",
         "examples": [
@@ -440,9 +440,9 @@
         "readme": "<p>AMP natural language home-number"
     },
     {
-        "name":"AmpWorkNumber",
+        "name": "AmpWorkNumber",
         "sources": [
-            "src/app/components/amp-home-number/amp-home-number.component.ts"
+            "src/app/modules/amp-inputs/components"
         ],
         "id": "AmpWorkNumber",
         "examples": [
@@ -560,5 +560,4 @@
         ],
         "readme": "<p>Custom Block for AmpFileUploadComponent.</p>\n"
     }
-
 ]

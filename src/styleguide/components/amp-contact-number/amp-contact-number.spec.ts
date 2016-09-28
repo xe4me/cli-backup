@@ -2,35 +2,36 @@ import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , provide , ElementRef } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AmpContactNumberComponent } from '../../../app/components/amp-contact-number/amp-contact-number.component';
+import { AmpContactNumberComponent } from '../../../app/modules/amp-inputs';
+import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
+import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 describe( 'amp-contact-number component' , () => {
+    let _fixture : ComponentFixture<TestComponent>;
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule ] ,
+            imports      : [ FormsModule , ReactiveFormsModule , AmpInputsModule ] ,
             declarations : [
-                AmpContactNumberComponent ,
                 TestComponent
             ] ,
             providers    : [
-                { provide : ElementRef , useClass : MockElementRef } ,
-                { provide : Window , useClass : window }
+                { provide : ComponentFixtureAutoDetect , useValue : true }
             ]
         } );
         TestBed.compileComponents();
+        _fixture = TestBed.createComponent( TestComponent );
+        _fixture.detectChanges();
     } ) );
     it( 'should contain a label as Contact Number' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
+        _fixture.detectChanges();
+        let compiledTestComponent = _fixture.debugElement;
         let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Contact number' );
         expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'contact-number-input' );
     } );
     it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
+        _fixture.detectChanges();
+        let compiledTestComponent = _fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         expect( compiledInput.nativeElement.name ).toBe( 'contact-number' );
         expect( compiledInput.nativeElement.id ).toBe( 'contact-number-input' );
@@ -38,26 +39,24 @@ describe( 'amp-contact-number component' , () => {
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_contact-number' );
     } );
     it( 'should be required it it is empty' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        const ComponentInstance = fixture.componentInstance;
+        _fixture.detectChanges();
+        const ComponentInstance = _fixture.componentInstance;
+        expect( <any> ComponentInstance.control.errors ).not.toBeNull();
         expect( (<any> ComponentInstance.control.errors).required ).toBeDefined();
     } );
     it( 'should have pattern error if the length is less than 8 character' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        const ComponentInstance = fixture.componentInstance;
+        _fixture.detectChanges();
+        const ComponentInstance = _fixture.componentInstance;
         ComponentInstance.control.setValue( '12345' );
-        fixture.detectChanges();
+        _fixture.detectChanges();
         expect( (<any> ComponentInstance.control.errors).required ).toBeUndefined();
         expect( (<any> ComponentInstance.control.errors).pattern ).toBeDefined();
     } );
     it( 'should have maxLength error if the length is less than 20 character' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        const ComponentInstance = fixture.componentInstance;
+        _fixture.detectChanges();
+        const ComponentInstance = _fixture.componentInstance;
         ComponentInstance.control.setValue( '1234567890123456789000' );
-        fixture.detectChanges();
+        _fixture.detectChanges();
         expect( (<any> ComponentInstance.control.errors).required ).toBeUndefined();
         expect( (<any> ComponentInstance.control.errors).pattern ).toBeUndefined();
         expect( (<any> ComponentInstance.control.errors).maxLength ).toBeDefined();

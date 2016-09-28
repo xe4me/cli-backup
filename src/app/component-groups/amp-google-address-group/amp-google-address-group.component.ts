@@ -8,8 +8,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { AMPGoogleAddressComponent } from '../../components/amp-google-address/amp-google-address.component';
 import { FormControl , FormGroup , Validators } from '@angular/forms';
-import { AmpInputComponent } from '../../components/amp-input/amp-input.component';
-import { AmpErrorComponent } from '../../components/amp-error/amp-error.component';
+import { AmpInputComponent } from '../../modules/amp-inputs';
+import { AmpErrorComponent } from '../../modules/amp-error';
 @Component( {
     selector   : 'amp-google-address-group' ,
     template   : require( './amp-google-address-group.component.html' ) ,

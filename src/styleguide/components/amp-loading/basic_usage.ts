@@ -1,13 +1,12 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AmpLoadingComponent } from '../../../app/components/amp-loading/amp-loading.component';
-import { AmpInputComponent } from '../../../app/components/amp-input/amp-input.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-loading-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-loading/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ AmpLoadingComponent , AmpInputComponent ]
+    directives  : [ AmpLoadingComponent ]
 } )
 
 export default class AmpLoadingComponentBasicUsage {

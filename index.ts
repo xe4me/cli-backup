@@ -1,24 +1,5 @@
 export { AmpReduxModule } from './src/app/redux/amp-redux.module';
 // utils
-export {
-    RequiredValidator ,
-    MinLengthValidator ,
-    MaxLengthValidator ,
-    DateValidator ,
-    MaxDateValidator ,
-    MinDateValidator ,
-    PatterValidator
-} from './src/app/util/validations';
-export { AmpCurrencyPipe } from './src/app/pipes/currency/amp-currency.pipe';
-export { AmpValuesPipe } from './src/app/pipes/values/amp-values.pipe';
-export { AmpKeysPipe } from './src/app/pipes/keys/amp-keys.pipe';
-export { KeyCodes } from './src/app/util/key-kodes.utils';
-export { BasicUtils } from './src/app/util/basic-utils';
-export { FormUtils } from './src/app/util/form-utils';
-export { ClickedOutsideDirective } from './src/app/directives/clicked-outside/clicked-outside.directive';
-export { AmpStickyOnScrollDirective } from './src/app/directives/amp-sticky-on-scroll.directive';
-export { ThemeIDDirective } from './src/app/directives/themeId.directive';
-export { FocuserDirective } from './src/app/directives/focuser/focuser.directive';
 export { AmpBlockLoaderDirective } from './src/app/amp-block-loader.directive';
 export { FormBlock } from './src/app/form-block';
 // blocks
@@ -29,21 +10,17 @@ export { AmpFormBlockComponent } from './src/app/blocks/amp-form-block/amp-form-
 export { AmpFormRowComponent } from './src/app/blocks/amp-form-row/amp-form-row.component';
 export { AmpIntroBlockComponent } from './src/app/blocks/amp-intro-block/amp-intro-block.component'
 // components
-export { AmpTypeaheadModule } from './src/app/modules/amp-typeahead/amp-typeahead.module';
-export { AmpQasAddressModule } from './src/app/modules/amp-qas-address/amp-qas-address.module';
+export * from './src/app/modules/amp-utils';
+export * from './src/app/modules/amp-pipes';
+export * from './src/app/modules/amp-typeahead';
+export * from './src/app/modules/amp-qas-address';
+export * from './src/app/modules/amp-inputs';
+export * from './src/app/modules/amp-error';
+export * from './src/app/modules/amp-directives';
 export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
-export { AmpErrorItemComponent , AmpErrorComponent } from './src/app/components/amp-error/amp-error.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpButton } from './src/app/components/amp-button/amp-button.component';
-export { AmpInputComponent } from './src/app/components/amp-input/amp-input.component';
-export { AmpFirstNameComponent } from './src/app/components/amp-first-name/amp-first-name.component';
-export { AmpLastNameComponent } from './src/app/components/amp-last-name/amp-last-name.component';
-export { AmpContactNumberComponent } from './src/app/components/amp-contact-number/amp-contact-number.component';
-export { AmpEmailComponent } from './src/app/components/amp-email/amp-email.component';
-export { AmpHomeNumberComponent } from './src/app/components/amp-home-number/amp-home-number.component';
-export { AmpWorkNumberComponent } from './src/app/components/amp-work-number/amp-work-number.component';
-export { AmpMobileNumberComponent } from './src/app/components/amp-mobile-number/amp-mobile-number.component';
 export { AmpCheckboxComponent } from './src/app/components/amp-checkbox/amp-checkbox.component';
 export { AmpDropdownComponent } from './src/app/components/amp-dropdown/amp-dropdown.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';

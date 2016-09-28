@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { AmpTypeaheadComponent } from './amp-typeahead.component.ts';
-import { AmpDirectivesModule } from '../amp-directives/amp-directives.module';
-import { AmpInputModule } from '../amp-input/amp-input.module';
+import { AmpTypeaheadComponent } from './index';
+import { AmpDirectivesModule } from '../amp-directives';
+import { AmpInputsModule } from '../amp-inputs';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 @NgModule( {
@@ -13,7 +13,7 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
         FormsModule ,
         ReactiveFormsModule ,
         AmpDirectivesModule ,
-        AmpInputModule
+        AmpInputsModule
     ] ,
     exports      : [ AmpTypeaheadComponent ]
 } )

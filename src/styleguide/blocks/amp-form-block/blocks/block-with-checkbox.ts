@@ -12,7 +12,6 @@ import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
-import { AmpInputComponent } from '../../../../app/components/amp-input/amp-input.component';
 import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
 import { AmpCheckboxComponent } from '../../../../app/components/amp-checkbox/amp-checkbox.component';
 import { FDN } from '../Application.fdn';
@@ -38,7 +37,7 @@ import { FormService } from '../../../../app/services/form/form.service';
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpCheckboxComponent , AmpFormRowComponent ] ,
+    directives      : [ AmpFormBlockComponent , AmpCheckboxComponent ] ,
     encapsulation   : ViewEncapsulation.Emulated ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )

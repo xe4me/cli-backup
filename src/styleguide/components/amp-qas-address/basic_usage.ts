@@ -12,10 +12,8 @@ import{ Highlight } from '../../highlight';
 } )
 
 export default class AmpQasAddressComponentBasicUsage implements AfterViewInit {
-    ngAfterViewInit () : void {
-    }
-
     public __controlGroup = new FormGroup( {} );
+
     public __custom       = {
         controls : [
             {
@@ -29,5 +27,8 @@ export default class AmpQasAddressComponentBasicUsage implements AfterViewInit {
 
     constructor ( private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );
+    }
+
+    ngAfterViewInit () : void {
     }
 }

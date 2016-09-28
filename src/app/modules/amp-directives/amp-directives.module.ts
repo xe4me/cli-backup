@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { ThemeIDDirective } from './theme-id/themeId.directive';
-import { ClickedOutsideDirective } from './clicked-outside/clicked-outside.directive';
-import { AutoFocusDirective } from './auto-focus/auto-focus.directive';
-import { FocuserDirective } from './focuser/focuser.directive';
-import { AmpStickyOnScrollDirective } from './auto-sticky-on-scroll/amp-sticky-on-scroll.directive';
+import {
+    ThemeIDDirective ,
+    ClickedOutsideDirective ,
+    AutoFocusDirective ,
+    FocuserDirective ,
+    AmpStickyOnScrollDirective
+} from './index';
 const DECLARATIONS = [
     ClickedOutsideDirective ,
     AutoFocusDirective ,

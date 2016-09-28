@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
-import { AmpErrorItemComponent , AmpErrorComponent } from './amp-error.component';
+import { AmpErrorItemComponent , AmpErrorComponent } from './index';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AmpPipesModule } from '../amp-pipes';
+const DECLARATIONS = [ AmpErrorItemComponent , AmpErrorComponent ];
 @NgModule( {
-    declarations : [
-        AmpErrorComponent ,
-        AmpErrorItemComponent
-    ] ,
+    declarations : DECLARATIONS ,
     imports      : [
+        AmpPipesModule ,
         BrowserModule ,
         FormsModule ,
         ReactiveFormsModule
     ] ,
-    exports      : [
-        AmpErrorComponent ,
-        AmpErrorItemComponent
-    ]
+    exports      : DECLARATIONS
 } )
 export class AmpErrorModule {
 }
