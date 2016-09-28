@@ -129,7 +129,7 @@
                                                 "label" : "I would like to convert an existing eligible offset account"
                                             }
                                     ]
-                                    }   
+                                    }
                                 ]
                             }
                         },
@@ -258,7 +258,7 @@
                                         "id": "MedicareCardCardColour"
                                     },
                                     {
-                                        "id": "MedicarecardPatientNumber"
+                                        "id": "MedicareCardPatientNumber"
                                     },
                                     {
                                         "id": "MedicareCardExpiry"
@@ -354,6 +354,274 @@
                         },
                         {
                             "name": "Residency",
+                            "blockType": "ResidencyBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/residency/residency.component",
+                            "custom": {
+                                "blockTitle": "Last questions... We promise",
+                                "controls": [
+                                    {
+                                        "id": "CountryOfCitizenship",
+                                        "options" : [
+                                            {
+                                                "value": "Country1",
+                                                "label": "Country1"
+                                            },
+                                            {
+                                                "value": "Country2",
+                                                "label": "Country2"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "CountryOfResidency",
+                                        "options" : [
+                                            {
+                                                "value": "Country1",
+                                                "label": "Country1"
+                                            },
+                                            {
+                                                "value": "Country2",
+                                                "label": "Country2"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "USTaxCitizen",
+                                        "buttons" : [
+                                            {
+                                                "id": "Yes",
+                                                "value": "Yes",
+                                                "label": "Yes"
+                                            },
+                                            {
+                                                "id": "No",
+                                                "value": "No",
+                                                "label": "No"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-BasicInfo",
+                            "blockType": "BasicInfoBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/basic-info/basic-info.component",
+                            "custom": {
+                                "blockTitle": "And now for applicant 2",
+                                "controls": [
+                                    {
+                                        "id": "Title"
+                                    },
+                                    {
+                                        "id": "FirstName"
+                                    },
+                                    {
+                                        "id": "MiddleName"
+                                    },
+                                    {
+                                        "id": "LastName"
+                                    },
+                                    {
+                                        "id": "DateOfBirth"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-Address",
+                            "blockType": "AddressBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/address/address.component",
+                            "custom": {
+                                "blockTitle": "And where you live...",
+                                "controls": [
+                                    {
+                                        "id": "ResidentialAddress"
+                                    },
+                                    {
+                                        "id": "PostalAddressSameAsResidential"
+                                    },
+                                    {
+                                        "id": "PostalAddress"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-ContactDetails",
+                            "blockType": "ContactDetailsBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/contact-details/contact-details.component",
+                            "custom": {
+                                "blockTitle": "Just some basic details...",
+                                "controls": [
+                                    {
+                                        "id": "EmailAddress"
+                                    },
+                                    {
+                                        "id": "MobileNumber"
+                                    },
+                                    {
+                                        "id": "HomeNumber"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-PrivacyDeclaration",
+                            "blockType": "PrivacyDeclarationBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/privacy-declaration/privacy-declaration.component",
+                            "custom": {
+                                "blockTitle": "Thanks Charlie just to confirm...",
+                                "controls": [
+                                    {
+                                        "id": "AcceptPrivacyDeclaration"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-OnlineOrOfflineIdCheck",
+                            "blockType": "OnlineOrOfflineIdCheckBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
+                            "custom": {
+                                "blockTitle": "Secure Online ID Check",
+                                "controls": [
+                                    {
+                                        "id": "OnlineIDCheck"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-IdCheck",
+                            "blockType": "IdCheckBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/id-check/id-check.component",
+                            "custom": {
+                                "blockTitle": "Checking your ID",
+                                "controls": [
+                                    {
+                                        "id": "DriversLicenseState"
+                                    },
+                                    {
+                                        "id": "DirversLicenseNumber"
+                                    },
+                                    {
+                                        "id": "MedicareCardNumber"
+                                    },
+                                    {
+                                        "id": "MedicareCardCardColour"
+                                    },
+                                    {
+                                        "id": "MedicareCardPatientNumber"
+                                    },
+                                    {
+                                        "id": "MedicareCardExpiry"
+                                    },
+                                    {
+                                        "id": "AustralianPassportNUmber"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-TaxFileNumber",
+                            "blockType": "TaxFileNumberBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/tax-file-number/tax-file-number.component",
+                            "custom": {
+                                "blockTitle": "Nearly there...",
+                                "controls": [
+                                    {
+                                        "id": "TaxFileNumber"
+                                    },
+                                    {
+                                        "id": "NoTaxFileNumber"
+                                    },
+                                    {
+                                        "id": "NoTaxFileNumberReason",
+                                        "options" : [
+                                            {
+                                                "value": "Reason1",
+                                                "label": "Reason1"
+                                            },
+                                            {
+                                                "value": "Reason2",
+                                                "label": "Reason2"
+                                            }
+
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-SourceOfFunding",
+                            "blockType": "SourceOfFundingBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/source-of-funding/source-of-funding.component",
+                            "custom": {
+                                "blockTitle": "Please tell us your...",
+                                "controls": [
+                                    {
+                                        "id": "PrimarySourceOfWealth",
+                                        "options": [
+                                            {
+                                                "value": "Source1",
+                                                "label": "Source1"
+                                            },
+                                            {
+                                                "value": "Source2",
+                                                "label": "Source2 "
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "SourceOfFundsForAccount",
+                                        "options": [
+                                            {
+                                                "value": "Source1",
+                                                "label": "Source1"
+                                            },
+                                            {
+                                                "value": "Source2",
+                                                "label": "Source2 "
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "ReasonForOpeningAccount",
+                                        "options": [
+                                            {
+                                                "value": "Reason1",
+                                                "label": "Reason1"
+                                            },
+                                            {
+                                                "value": "Reason2",
+                                                "label": "Reason2 "
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Applicant2-Residency",
                             "blockType": "ResidencyBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
