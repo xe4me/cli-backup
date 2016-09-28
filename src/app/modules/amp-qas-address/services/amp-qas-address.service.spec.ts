@@ -131,7 +131,7 @@ export class MockAmpQasAddressService {
         return Observable.throw( errMsg );
     }
 }
-describe( 'Qas adress service ' , () => {
+describe( 'QAS address service ' , () => {
     let _mockService;
     describe( 'Query' , () => {
         beforeEach( () => {

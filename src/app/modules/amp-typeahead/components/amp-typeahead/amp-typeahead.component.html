@@ -20,11 +20,9 @@
         </amp-input>
     </div>
     <ul
-            #list
             *ngIf='searchResult!==null && !isOptionsHidden'
             focuser='list'
             (focusOut)='onListFocusOut()'
-            tabindex='-1'
             class='amp-typeahead-options'>
         <li *ngIf='selectLabel && filteredList.length>0' class='amp-typeahead-option' tabindex='-1'>
             <strong>{{ selectLabel }}</strong>
@@ -41,7 +39,8 @@
             </template>
         </li>
     </ul>
-    <ul *ngIf='!doApiQuery && !isOptionsHidden && control.value && filteredList.length===0' class='amp-typeahead-options'>
+    <ul *ngIf='!doApiQuery && !isOptionsHidden && control.value && filteredList.length===0'
+        class='amp-typeahead-options'>
         <li class='amp-typeahead-option' disabled>
             <strong>No results found</strong>
         </li>
