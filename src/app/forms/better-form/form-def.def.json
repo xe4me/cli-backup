@@ -288,12 +288,32 @@
                                         "id": "NoTaxFileNumberReason",
                                         "options": [
                                             {
-                                                "value": "Reason1",
-                                                "label": "Reason1"
+                                                "value": "Exempt",
+                                                "label": "Exempt for TFN"
                                             },
                                             {
-                                                "value": "Reason2",
-                                                "label": "Reason2"
+                                                "value": "Returns not required",
+                                                "label": "Tax returns not required"
+                                            },
+                                            {
+                                                "value" : "Aged service or invalid pensioner",
+                                                "label" : "Aged, Service or Invalid Pensioner"
+                                            },
+                                            {
+                                                "value" : "Other pensioner",
+                                                "label" : "Other exempt Pensioner"
+                                            },
+                                            {
+                                                "value" : "Territory residents",
+                                                "label" : "Territory residents"
+                                            },
+                                            {
+                                                "value" : "Non resident",
+                                                "label" : "Non resident"
+                                            },
+                                            {
+                                                "value" : "Children",
+                                                "label" : "Children"
                                             }
                                         ]
                                     }
@@ -603,12 +623,32 @@
                                         "id": "NoTaxFileNumberReason",
                                         "options": [
                                             {
-                                                "value": "Reason1",
-                                                "label": "Reason1"
+                                                "value": "Exempt",
+                                                "label": "Exempt for TFN"
                                             },
                                             {
-                                                "value": "Reason2",
-                                                "label": "Reason2"
+                                                "value": "Returns not required",
+                                                "label": "Tax returns not required"
+                                            },
+                                            {
+                                                "value" : "Aged service or invalid pensioner",
+                                                "label" : "Aged, Service or Invalid Pensioner"
+                                            },
+                                            {
+                                                "value" : "Other pensioner",
+                                                "label" : "Other exempt Pensioner"
+                                            },
+                                            {
+                                                "value" : "Territory residents",
+                                                "label" : "Territory residents"
+                                            },
+                                            {
+                                                "value" : "Non resident",
+                                                "label" : "Non resident"
+                                            },
+                                            {
+                                                "value" : "Children",
+                                                "label" : "Children"
                                             }
                                         ]
                                     }
