@@ -40,7 +40,7 @@
                     "commonBlock": false,
                     "path": "blocks/continue-application/continue-application.component",
                     "custom": {
-                        "blockTitle" : "Where did we leave off?",
+                        "blockTitle": "Where did we leave off?",
                         "controls": [
                             {
                                 "id": "ExistingApplicationId"
@@ -97,38 +97,38 @@
                             }
                         },
                         {
-                            "name" : "BetterChoice",
-                            "blockType" : "BetterChoiceBlock",
-                            "blockLayout" : "INLINE",
-                            "commonBlock" : false,
-                            "path" : "blocks/better-choice/better-choice.component",
-                            "custom" : {
-                                "blockTitle" : "How can we make your life Bett3r?",
-                                "controls" : [
+                            "name": "BetterChoice",
+                            "blockType": "BetterChoiceBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/better-choice/better-choice.component",
+                            "custom": {
+                                "blockTitle": "How can we make your life Bett3r?",
+                                "controls": [
                                     {
-                                        "id" : "BetterChoice",
-                                        "buttons"   : [
-                                             {
-                                                "id"    : "new_deposit_account",
-                                                "value" : "new_deposit_account",
-                                                "label" : "I would like to set up a new deposit account"
+                                        "id": "BetterChoice",
+                                        "buttons": [
+                                            {
+                                                "id": "new_deposit_account",
+                                                "value": "new_deposit_account",
+                                                "label": "I would like to set up a new deposit account"
                                             },
                                             {
-                                                "id"    : "new_offset_account",
-                                                "value" : "new_offset_account",
-                                                "label" : "I would like to set up a new offset account on an existing eligble AMP home loan"
+                                                "id": "new_offset_account",
+                                                "value": "new_offset_account",
+                                                "label": "I would like to set up a new offset account on an existing eligble AMP home loan"
                                             },
                                             {
-                                                "id"    : "convert_deposit_account",
-                                                "value" : "convert_deposit_account",
-                                                "label" : "I would like to convert an existing eligible deposit account"
+                                                "id": "convert_deposit_account",
+                                                "value": "convert_deposit_account",
+                                                "label": "I would like to convert an existing eligible deposit account"
                                             },
                                             {
-                                                "id"    : "convert_offset_account",
-                                                "value" : "convert_offset_account",
-                                                "label" : "I would like to convert an existing eligible offset account"
+                                                "id": "convert_offset_account",
+                                                "value": "convert_offset_account",
+                                                "label": "I would like to convert an existing eligible offset account"
                                             }
-                                    ]
+                                        ]
                                     }
                                 ]
                             }
@@ -159,7 +159,7 @@
                                 "controls": [
                                     {
                                         "id": "LoanOffsetAccountNumber",
-                                        "label" : "Deposit Account Number"
+                                        "label": "Deposit Account Number"
                                     }
                                 ]
                             }
@@ -286,7 +286,7 @@
                                     },
                                     {
                                         "id": "NoTaxFileNumberReason",
-                                        "options" : [
+                                        "options": [
                                             {
                                                 "value": "Reason1",
                                                 "label": "Reason1"
@@ -295,7 +295,6 @@
                                                 "value": "Reason2",
                                                 "label": "Reason2"
                                             }
-
                                         ]
                                     }
                                 ]
@@ -314,12 +313,36 @@
                                         "id": "PrimarySourceOfWealth",
                                         "options": [
                                             {
-                                                "value": "Source1",
-                                                "label": "Source1"
+                                                "value": "Employment",
+                                                "label": "Income from employment (regular and/or bonus)"
                                             },
                                             {
-                                                "value": "Source2",
-                                                "label": "Source2 "
+                                                "value": "Investment",
+                                                "label": "Investment income (e.g. rent, dividends, pension)"
+                                            },
+                                            {
+                                                "value": "Business",
+                                                "label": "Business income"
+                                            },
+                                            {
+                                                "value": "One-off payment",
+                                                "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                            },
+                                            {
+                                                "value": "Assets",
+                                                "label": "Sale of assets (e.g. shares, property)"
+                                            },
+                                            {
+                                                "value": "Windfall",
+                                                "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                            },
+                                            {
+                                                "value": "Borrowed funds",
+                                                "label": "Borrowed Funds"
+                                            },
+                                            {
+                                                "value": "Government benefits",
+                                                "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
                                             }
                                         ]
                                     },
@@ -363,7 +386,7 @@
                                 "controls": [
                                     {
                                         "id": "CountryOfCitizenship",
-                                        "options" : [
+                                        "options": [
                                             {
                                                 "value": "Country1",
                                                 "label": "Country1"
@@ -376,7 +399,7 @@
                                     },
                                     {
                                         "id": "CountryOfResidency",
-                                        "options" : [
+                                        "options": [
                                             {
                                                 "value": "Country1",
                                                 "label": "Country1"
@@ -389,7 +412,7 @@
                                     },
                                     {
                                         "id": "USTaxCitizen",
-                                        "buttons" : [
+                                        "buttons": [
                                             {
                                                 "id": "Yes",
                                                 "value": "Yes",
@@ -554,7 +577,7 @@
                                     },
                                     {
                                         "id": "NoTaxFileNumberReason",
-                                        "options" : [
+                                        "options": [
                                             {
                                                 "value": "Reason1",
                                                 "label": "Reason1"
@@ -563,7 +586,6 @@
                                                 "value": "Reason2",
                                                 "label": "Reason2"
                                             }
-
                                         ]
                                     }
                                 ]
@@ -582,12 +604,36 @@
                                         "id": "PrimarySourceOfWealth",
                                         "options": [
                                             {
-                                                "value": "Source1",
-                                                "label": "Source1"
+                                                "value": "Employment",
+                                                "label": "Income from employment (regular and/or bonus)"
                                             },
                                             {
-                                                "value": "Source2",
-                                                "label": "Source2 "
+                                                "value": "Investment",
+                                                "label": "Investment income (e.g. rent, dividends, pension)"
+                                            },
+                                            {
+                                                "value": "Business",
+                                                "label": "Business income"
+                                            },
+                                            {
+                                                "value": "One-off payment",
+                                                "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                            },
+                                            {
+                                                "value": "Assets",
+                                                "label": "Sale of assets (e.g. shares, property)"
+                                            },
+                                            {
+                                                "value": "Windfall",
+                                                "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                            },
+                                            {
+                                                "value": "Borrowed funds",
+                                                "label": "Borrowed Funds"
+                                            },
+                                            {
+                                                "value": "Government benefits",
+                                                "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
                                             }
                                         ]
                                     },
@@ -631,7 +677,7 @@
                                 "controls": [
                                     {
                                         "id": "CountryOfCitizenship",
-                                        "options" : [
+                                        "options": [
                                             {
                                                 "value": "Country1",
                                                 "label": "Country1"
@@ -644,7 +690,7 @@
                                     },
                                     {
                                         "id": "CountryOfResidency",
-                                        "options" : [
+                                        "options": [
                                             {
                                                 "value": "Country1",
                                                 "label": "Country1"
@@ -657,7 +703,7 @@
                                     },
                                     {
                                         "id": "USTaxCitizen",
-                                        "buttons" : [
+                                        "buttons": [
                                             {
                                                 "id": "Yes",
                                                 "value": "Yes",
@@ -689,11 +735,11 @@
                             }
                         },
                         {
-                            "name" : "AccountConfirmation",
-                            "blockType" : "AccountConfirmationBlock",
-                            "blockLayout" : "INLINE",
-                            "commonBlock" : false,
-                            "path" : "blocks/account-confirmation/account-confirmation.component"
+                            "name": "AccountConfirmation",
+                            "blockType": "AccountConfirmationBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/account-confirmation/account-confirmation.component"
                         }
                     ]
                 }
