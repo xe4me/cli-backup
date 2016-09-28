@@ -1,0 +1,33 @@
+[
+    {
+        "request": {
+            "url": "/ddc/secure/api/qas/addressFormatter/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
+            "post": "this is some post data in textual format",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "meta": {
+                    "url": "/ddc/secure/api/qas/doSearch/AUS/pym",
+                    "method": "GET",
+                    "responseTimeMs": 153,
+                    "requestId": "132a13b7-f62f-42c2-9625-7354fb26faa6",
+                    "count": 1
+                },
+                "payload": {
+                    "postCode": "324234",
+                    "state": "nsw",
+                    "address": "33 Aldref street",
+                    "suburb": "sydney",
+                    "city": null
+                }
+            }
+        }
+    }
+]
+
