@@ -8,7 +8,8 @@ import { AmpBlockLoaderDirective } from '../../amp-block-loader.directive';
 import { FormSectionService } from '../../services/form-section/form-section.service';
 import { FormModelService } from '../../services/form-model/form-model.service';
 import { ProgressObserverService } from '../../services/progress-observer/progress-observer.service';
-import { AmpReviewItem, AmpReviewSection } from 'amp-ddc-components';
+import { AmpReviewItem } from '../../blocks/amp-review/amp-review-item/amp-review-item.component';
+import { AmpReviewSection } from '../../blocks/amp-review/amp-review-section/amp-review-section.component';
 @Component( {
     selector   : 'review-section' ,
     template   : `
