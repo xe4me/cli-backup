@@ -110,11 +110,11 @@
                 "template": "src/styleguide/components/amp-standalone-menu/basic_usage.html",
                 "styles": "src/styleguide/components/amp-standalone-menu/basic_usage.scss",
                 "source": "src/styleguide/components/amp-standalone-menu/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.test.spec",
-                "jasmine": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.spec.ts",
+                "galen": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.spec.ts",
                 "component": "amp-standalone-menu-basic-usage",
                 "component_src_location": "components/amp-standalone-menu/basic_usage",
-                "name": "Amp Linear Progress Bar Basic Usage"
+                "name": "AMP standalone menu"
             }
         ],
         "readme": "<p>Stand alone menu component</p>\n"

@@ -10,7 +10,7 @@ import { ProgressObserverService } from '../../../app/services/progress-observer
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
-describe( 'amp-standalone-menu component , multiple items usage' , () => {
+describe( 'amp-standalone-menu component ' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports      : [ FormsModule , ReactiveFormsModule ] ,
@@ -33,20 +33,20 @@ describe( 'amp-standalone-menu component , multiple items usage' , () => {
         const Element               = fixture.nativeElement;
         let AmpRadioGroupButtonTest = fixture.debugElement;
         let myMenuComponent = fixture.componentInstance;
+        let containerElement = Element.querySelector( '.sidebar' );
+
+        expect( containerElement).toBeDefined();
+
+    } );
+    it( 'Should contain an aside element ' , () => {
+        let fixture : ComponentFixture<AmpStandAloneMenuComponent> = TestBed.createComponent( AmpStandAloneMenuComponent );
+        fixture.detectChanges();
+        const Element               = fixture.nativeElement;
+        let AmpRadioGroupButtonTest = fixture.debugElement;
+        let myMenuComponent = fixture.componentInstance;
+        let containerElement = Element.querySelector( '.sidebar' );
+
+        expect( containerElement).toBeDefined();
 
     } );
 } );
-@Component( {
-    selector : 'amp-standalone-menu-test',
-    template : `
-        <amp-standalone-menu #ref ><aside> <ul><li>this is test</li></ul> </aside></amp-standalone-menu>
-    `
-} )
-class AmpStandAloneTest1 {
-    @ViewChild('ref') ref ;
-    multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
-
-    get multipleOptionControl () {
-        return this.multipleOptioncontrolGroup.controls[ 'test' ];
-    }
-}
