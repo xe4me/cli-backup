@@ -128,7 +128,7 @@ describe( 'amp-typeahead component' , () => {
             expect( ulElements.length ).toBe( 1 );
             expect( _typeAheadCmp.isOptionsHidden ).toBeFalsy();
             focusOut();
-            let liElements = getAlltheLis();
+            liElements = getAlltheLis();
             expect( liElements.length ).toBe( 0 );
             expect( _typeAheadCmp.isOptionsHidden ).toBeTruthy();
         } );
@@ -345,7 +345,7 @@ class AmpTypeaheadComponentTest {
         this.selectedOption = option;
     }
 
-    get searchControlGroup () {
+    get searchControlGroup () : any {
         if ( this.__controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ] ) {
             return this.__controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
         }
