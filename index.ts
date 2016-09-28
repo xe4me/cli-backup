@@ -63,3 +63,4 @@ export { AmpDateService } from './src/app/services/amp-date/amp-date.service';
 export { AmpConfirmationDialogService } from './src/app/services/amp-confirmation-dialog/amp-confirmation-dialog.service';
 export { FormSectionService } from './src/app/services/form-section/form-section.service';
 export { FormService } from './src/app/services/form/form.service';
+export { ContextService } from './src/app/services/context/context.service';

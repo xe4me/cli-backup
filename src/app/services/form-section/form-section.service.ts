@@ -28,14 +28,14 @@ export class FormSectionService {
     goToNextSection () {
         if ( this.currentSectionIndex < (this._formDefSections.length - 1) ) {
             this.currentSectionIndex ++;
-            this.currentSectionFdn = this._formDefSections[ this.currentSectionIndex ]._fdn;
+            this.currentSectionFdn = this._formDefSections[ this.currentSectionIndex ].__fdn;
         }
     }
 
     goToPrevSection () {
         if ( this.currentSectionIndex > 0 ) {
             this.currentSectionIndex --;
-            this.currentSectionFdn = this._formDefSections[ this.currentSectionIndex ]._fdn;
+            this.currentSectionFdn = this._formDefSections[ this.currentSectionIndex ].__fdn;
         }
     }
 
@@ -43,7 +43,7 @@ export class FormSectionService {
         setTimeout( () => {
             if ( this.currentSectionFdn.length === 0 ) { // The first section who registers would be the first current
                 // section
-                this.currentSectionFdn   = _section._fdn;
+                this.currentSectionFdn   = _section.__fdn;
                 this.currentSectionIndex = 0;
             }
             this._formDefSections.push( _section );
@@ -56,6 +56,6 @@ export class FormSectionService {
             return;
         }
         this.currentSectionIndex = _index;
-        this.currentSectionFdn   = _section._fdn;
+        this.currentSectionFdn   = _section.__fdn;
     }
 }
