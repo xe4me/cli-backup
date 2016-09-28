@@ -23,6 +23,7 @@ export class AmpErrorItemComponent {
 export class AmpErrorComponent implements OnInit {
     @Input() controlGroup : FormGroup;
     @Input() controlId;
+    public gooz = 'sdfsdf';
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }

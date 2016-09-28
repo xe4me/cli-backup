@@ -162,9 +162,9 @@
     {
         "name": "Amp Typeahead",
         "sources": [
-            "src/app/components/amp-typeahead/amp-typeahead.component.ts"
+            "src/app/modules/amp-typeahead/components/amp-typeahead/amp-typeahead.component.ts"
         ],
-        "id": "AmpAutoCompleteComponent",
+        "id": "AmpTypeaheadComponent",
         "examples": [
             {
                 "template": "src/styleguide/components/amp-typeahead/basic_usage.html",
@@ -180,7 +180,7 @@
         "readme": "<p>Custom Block for AmpAutoCompleteComponent.</p>\n"
     },
     {
-        "name": "Amp Qas Address Component",
+        "name": "Amp Qas Address",
         "sources": [
             "src/app/components/amp-qas-address/amp-qas-address.component.ts"
         ],

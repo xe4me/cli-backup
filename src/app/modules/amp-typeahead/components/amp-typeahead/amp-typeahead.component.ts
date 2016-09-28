@@ -29,38 +29,52 @@ import { AmpInputComponent } from '../../../amp-inputs';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
-    public static SELECTED_CONTROL_ID_POSTFIX = '-selected-item';
+    public static SEARCH_ADDRESS_CONTROL_GROUP_NAME = 'searchControls';
+    public static SELECTED_CONTROL_ID_POSTFIX       = '-selected-item';
+    public selectedControl                          = new FormControl();
+    public searchControlGroup                       = new FormGroup( {} );
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
-    @Output( 'selected' ) $selected           = new EventEmitter<any>();
+    @Output( 'selected' ) $selected                 = new EventEmitter<any>();
     @Input() id;
-    @Input() selectedItemIdentifier           = 'id';
-    @Input() selectedItemValueIdentifier      = 'label';
-    @Input() customValidator;
-    @Input() isInSummaryState                 = false;
-    @Input() minTriggerLength                 = 0;
-    @Input() errors                           = {};
+    @Input() selectedItemIdentifier                 = 'id';
+    @Input() selectedItemValueIdentifier            = 'label';
+    @Input() isInSummaryState                       = false;
+    @Input() minTriggerLength                       = 0;
+    @Input() errors                                 = {};
     @Input() selectLabel;
     @Input() label;
     @Input() controlGroup : FormGroup;
     @Input() placeholder;
-    @Input() lengthTrigger : number           = - 1;
     @Input() options;
     @Input() isActive;
-    private selectedControl : FormControl;
-    private ApiSubscription : Subscription;
-    private showNoResults                     = false;
-    private NO_RESULT_DEBOUNCE_TIME           = 0;
-    private INPUT_FOCUSER                     = 0;
-    private LIST_FOCUSER                      = 1;
-    private canViewAll                        = true;
-    private selectedOption                    = {};
-    private _required : boolean               = false;
-    private _optionsHidden                    = true;
+    private subscription : Subscription;
+    private showNoResults : boolean                 = false;
+    private INPUT_FOCUSER : number                  = 0;
+    private LIST_FOCUSER : number                   = 1;
+    private selectedOption                          = {};
+    private _required : boolean                     = false;
+    private _optionsHidden : boolean                = true;
+    private doApiQuery : boolean                    = false;
+    private filteredList : any[]                    = [];
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 
+    @Input() customValidator  = () : Function => {
+        return ( c ) => {
+            if ( c.value && c.value.length >= this.minTriggerLength ) {
+                return this.selectedControl.value ? null : {
+                    invalidSearch : {
+                        text : c._ampErrors && c._ampErrors.invalidSearch ? c._ampErrors.invalidSearch : 'please' +
+                        ' select a search result'
+                    }
+                };
+            } else {
+                return null;
+            }
+        };
+    };
     @Input() queryServiceCall = ( queryValue : string ) : Observable<any> => {
         return new Observable<any>();
     };
@@ -74,8 +88,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     get control () : FormControl {
-        if ( this.controlGroup && this.controlGroup.contains( this.id ) ) {
-            return (<FormControl> this.controlGroup.controls[ this.id ]);
+        if ( this.searchControlGroup && this.searchControlGroup.contains( this.id ) ) {
+            return (<FormControl> this.searchControlGroup.controls[ this.id ]);
         }
     }
 
@@ -86,28 +100,36 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     get searchResult () {
-        return (<any> this.control).searchResult;
+        if ( this.control ) {
+            return (<any> this.control).searchResult;
+        }
     }
 
-    get isOptionsHidden () {
+    get isOptionsHidden () : boolean {
         return this._optionsHidden;
     }
 
     ngAfterViewInit () : any {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
-        this.selectedControl                                    = new FormControl();
-        this.controlGroup.addControl( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX , this.selectedControl );
+        this.searchControlGroup.addControl( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX , this.selectedControl );
+        this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME , this.searchControlGroup );
+        this.controlGroup.updateValueAndValidity( {
+            onlySelf  : false ,
+            emitEvent : true ,
+        } );
+        this._cd.detectChanges();
+        this._cd.markForCheck();
         if ( this.options ) {
-            this.initWithOptions();
+            this.initForOptions();
         } else if ( this.queryServiceCall ) {
-            this.initWithApi();
+            this.initForApi();
         }
         return undefined;
     }
 
     ngOnDestroy () : void {
-        if ( this.ApiSubscription ) {
-            this.ApiSubscription.unsubscribe();
+        if ( this.subscription ) {
+            this.subscription.unsubscribe();
         }
     }
 
@@ -140,10 +162,10 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     private selectOption ( option ) : void {
-        this.selectedOption = option;
-        this.control.patchValue( option[ this.selectedItemValueIdentifier ].trim() );
-        this.selectedControl.patchValue( JSON.stringify( option ) );
-        this.$selected.emit( option );
+        this.selectedOption = Object.assign( {} , option );
+        this.control.patchValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim() );
+        this.selectedControl.patchValue( JSON.stringify( this.selectedOption ) );
+        this.$selected.emit( this.selectedOption );
         this.close();
         this.focusInput();
     }
@@ -155,14 +177,12 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    private filter ( queryString : any ) : Observable<any> {
-        return Observable.create( observer => {
-            isPresent( queryString ) && queryString.length > 0 ?
-                observer.next(
-                    this.options.filter( item => item.title.toLowerCase().indexOf( queryString.toLowerCase() ) !== - 1 )
-                ) :
-                observer.next( this.options );
-        } );
+    private filter ( items , identifier , query , doFilter ) : Observable<any> {
+        return this.filteredList = doFilter && isPresent( query ) ? items.filter(
+            item => {
+                return item[ identifier ] && item[ identifier ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
+            }
+        ) : items;
     }
 
     private focusInput () : void {
@@ -171,39 +191,12 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    private initWithOptions () {
-        this.searchResult =
-            this.control
-                .valueChanges
-                .distinctUntilChanged()
-                .do( ( queryString ) => {
-                    if ( isPresent( this.selectedOption ) && isPresent( queryString ) && queryString !== this.selectedOption[ this.selectedItemValueIdentifier ] ) {
-                        this.resetSelectedOption();
-                        this.open();
-                        this.showNoResults = false;
-                    }
-                    return queryString;
-                } )
-                .switchMap( ( queryString ) => {
-                    if ( this.canViewAll ) {
-                        return this.filter( queryString );
-                    } else {
-                        return queryString && queryString.length > this.lengthTrigger ? this.filter( queryString ) : Observable.of( [] );
-                    }
-                } );
-        this.searchResult
-            .debounceTime( this.NO_RESULT_DEBOUNCE_TIME )
-            .subscribe( ( result ) => {
-                this.showNoResults = result.length === 0 && this.control.value && this.control.value.length > this.lengthTrigger;
-            } );
-    }
-
-    private initWithApi () : Subscription {
+    private initForApi () : Subscription {
         this.searchResult = null;
-        return this.ApiSubscription =
+        this.doApiQuery   = true;
+        return this.subscription =
             this.control
                 .valueChanges
-                .debounceTime( 300 )
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
                     if ( ! queryString ) {
@@ -229,10 +222,6 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                 } );
     }
 
-    private resetSelectedOption () : void {
-        this.selectedOption = null;
-    }
-
     private markInputAsUnDirty () : void {
         setTimeout( () => {
             (<any> this.control)._dirty = false;
@@ -246,5 +235,20 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     private clearSelectedItem () : void {
         this.selectedControl.patchValue( null );
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
+    }
+
+    private initForOptions () {
+        this.searchResult = this.options;
+        this.doApiQuery   = false;
+        this.control
+            .valueChanges
+            .distinctUntilChanged()
+            .subscribe( ( queryString ) => {
+                if ( ! queryString || queryString !== this.selectedOption[ this.selectedItemValueIdentifier ] ) {
+                    this.clearSelectedItem();
+                    this.ampInput.checkErrors();
+                }
+                this.open();
+            } );
     }
 }

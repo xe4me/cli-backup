@@ -13,24 +13,25 @@
                 [isActive]='isActive'
                 [isInSummaryState]='isInSummaryState'
                 [id]='id'
-                [controlGroup]='controlGroup'
+                [controlGroup]='searchControlGroup'
                 [customValidator]='customValidator'
                 [minLength]='minTriggerLength'
                 [required]='required'>
         </amp-input>
     </div>
     <ul
+            #list
             *ngIf='searchResult!==null && !isOptionsHidden'
             focuser='list'
             (focusOut)='onListFocusOut()'
             tabindex='-1'
             class='amp-typeahead-options'>
-        <li *ngIf='selectLabel' class='amp-typeahead-option' tabindex='-1'>
+        <li *ngIf='selectLabel && filteredList.length>0' class='amp-typeahead-option' tabindex='-1'>
             <strong>{{ selectLabel }}</strong>
         </li>
         <li (keydown.enter)='selectOption(option)'
             (click)='selectOption(option)'
-            *ngFor='let option of searchResult  ; let i = index'
+            *ngFor='let option of filter(searchResult,selectedItemValueIdentifier,control.value,!doApiQuery); let i = index'
             class='amp-typeahead-option'
             [class.amp-typeahead-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
             [attr.tabindex]='i+1'>
@@ -40,7 +41,7 @@
             </template>
         </li>
     </ul>
-    <ul *ngIf='showNoResult' class='amp-typeahead-options'>
+    <ul *ngIf='!doApiQuery && !isOptionsHidden && control.value && filteredList.length===0' class='amp-typeahead-options'>
         <li class='amp-typeahead-option' disabled>
             <strong>No results found</strong>
         </li>

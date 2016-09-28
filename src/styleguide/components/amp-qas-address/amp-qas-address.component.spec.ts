@@ -1,5 +1,8 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef , ReflectiveInjector , Injector , Injectable } from '@angular/core';
+import {
+    Component , provide , ElementRef , ReflectiveInjector , Injector , Injectable ,
+    ViewChild
+} from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup , FormBuilder } from '@angular/forms';
 import { Observable , BehaviorSubject } from 'rxjs';
 import {
@@ -10,6 +13,7 @@ import {
 import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead';
 import { By } from '@angular/platform-browser';
 import { inject , ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
+import { fakeAsync , tick } from '@angular/core/testing/fake_async';
 @Injectable()
 export class MockAmpQasAddressService {
     public static sampleSearchTerm = 'Pymble';
@@ -151,13 +155,13 @@ describe( 'amp-qas-address component' , () => {
     } ) );
     beforeEach( () => {
         _testComponentControlGroup = _comp.__controlGroup;
-        _qasComponentControlGroup  = _testComponentControlGroup.controls[ AmpQasAddressComponent.QAS_ADDRESS_CONTROL_GROUP_NAME ];
+        _qasComponentControlGroup  = _testComponentControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
     } );
     it( 'testComponentControlGroup should be defined ' , () => {
         _fixture.detectChanges();
         expect( _testComponentControlGroup ).toBeDefined();
     } );
-    it( 'testComponentControlGroup should have a  controlGroup named ' + AmpQasAddressComponent.QAS_ADDRESS_CONTROL_GROUP_NAME , () => {
+    it( 'testComponentControlGroup should have a  controlGroup named ' + AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME , () => {
         _fixture.detectChanges();
         expect( _qasComponentControlGroup ).toBeDefined();
     } );
@@ -167,27 +171,21 @@ describe( 'amp-qas-address component' , () => {
         expect( _qasComponentControlGroup.controls [ _comp.__custom.controls[ 0 ].id ] ).toBeDefined();
         expect( _qasComponentControlGroup.controls [ _comp.__custom.controls[ 0 ].id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ] ).toBeDefined();
     } );
-    it( 'should have a amp-error component that has the same controlGroup as qasAddressComponent' , () => {
+    it( 'should have a amp-error component that has the same controlGroup as qasAddressComponent' , fakeAsync( () => {
         _fixture.detectChanges();
         let ErrorEl = _debugElement.query( By.css( 'amp-error' ) );
         expect( ErrorEl ).toBeDefined();
+        tick( 2000 );
         let ErrorComponent = ErrorEl.componentInstance;
         expect( ErrorComponent.controlGroup ).toBeDefined();
         expect( ErrorComponent.controlGroup ).toEqual( _qasComponentControlGroup );
-    } );
-    it( 'should fire up the selected' , () => {
-        _fixture.detectChanges();
-        let ErrorEl = _debugElement.query( By.css( 'amp-error' ) );
-        expect( ErrorEl ).toBeDefined();
-        let ErrorComponent = ErrorEl.componentInstance;
-        expect( ErrorComponent.controlGroup ).toBeDefined();
-        expect( ErrorComponent.controlGroup ).toEqual( _qasComponentControlGroup );
-    } );
+    } ) );
 } );
 @Component( {
     template : `
         <form [formGroup]='form' class='nl-form'>
             <amp-qas-address
+                #qasComponent
                 class='1/3'
                 [controlGroup]='__controlGroup'
                 [id]='__custom.controls[0].id'
@@ -199,6 +197,7 @@ describe( 'amp-qas-address component' , () => {
     `
 } )
 class AmpQasAddressComponentTest {
+    @ViewChild( 'qasComponent' ) qasComponent;
     public __controlGroup = new FormGroup( {} );
     public __custom       = {
         controls : [

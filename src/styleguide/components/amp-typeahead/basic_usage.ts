@@ -1,7 +1,8 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl , FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead/components/amp-typeahead/amp-typeahead.component';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-typeahead/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -10,10 +11,9 @@ import { ScrollService } from '../../../app/services/scroll/scroll.service';
 } )
 
 export default class AmpTypeaheadComponentBasicUsage implements AfterViewInit {
-    control : FormControl       = new FormControl();
-    selectControl : FormControl = new FormControl();
-    isInSummaryState            = false;
-    private options             = [
+    controlGroup : FormGroup = new FormGroup( {} );
+    isInSummaryState         = false;
+    private options          = [
         {
             'id'       : 1 ,
             'title'    : 'Professional (medical)' ,
@@ -3202,17 +3202,35 @@ export default class AmpTypeaheadComponentBasicUsage implements AfterViewInit {
         }
     ];
     private selectedOption;
+    private id               = 'my-typeahead';
 
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     ngAfterViewInit () {
-        // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
         this._cd.detectChanges();
     }
 
     private onChange ( option ) {
         this.selectedOption = option;
+    }
+
+    get searchControlGroup () {
+        if ( this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ] ) {
+            return this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
+        }
+    }
+
+    get control () {
+        if ( this.searchControlGroup ) {
+            return this.searchControlGroup.controls[ this.id ];
+        }
+    }
+
+    get selectControl () {
+        if ( this.searchControlGroup ) {
+            return this.searchControlGroup.controls[ this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
+        }
     }
 
     private onAcknowledgeSelect ( value ) {

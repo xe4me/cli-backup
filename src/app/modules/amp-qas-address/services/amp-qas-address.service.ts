@@ -3,8 +3,8 @@ import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
 @Injectable()
 export class AmpQasAddressService {
-    public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/secure/api/qas/doSearch/AUS';
-    // public static QAS_QUERY_URL     = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
+    // public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/secure/api/qas/doSearch/AUS';
+     public static QAS_QUERY_URL     = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
     public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/secure/api/nio/addressFormatter';
 
     constructor ( private http : Http ) {

@@ -1,18 +1,15 @@
 <form class='nl-form'>
     <div style='padding: 50px 100px; text-align:left'>
-        Control errors
-        <highlight color-default>
-            {{ control.errors | json }}
-        </highlight>
         <amp-typeahead
                 [attr.theme]="themeService.theme.attr"
                 class="1/2"
                 [options]="options"
-                [parentControl]="control"
-                [selectControl]="selectControl"
-                (change)="onChange($event)"
+                [controlGroup]="controlGroup"
+                (selected)="onChange($event)"
                 [required]="true"
-                [isActive]="false"
+                [selectedItemIdentifier]='"id"'
+                [selectedItemValueIdentifier]='"title"'
+                [id]='id'
                 [isInSummaryState]="isInSummaryState"
                 [label]='"Occupations"'
                 [selectLabel]='"selectLabel"'>
@@ -20,18 +17,27 @@
                 {{ option.title }}
             </template>
         </amp-typeahead>
-
+        <amp-error [controlGroup]="searchControlGroup"></amp-error>
+        <br>
+        controlGroup value
+        <highlight color-default>
+            {{ controlGroup.value | json }}
+        </highlight>
 
         <br>
         <p>
+            errors :
+            <highlight color-default>
+                {{ control?.errors | json}}
+            </highlight>
             value :
             <highlight color-default>
-                {{ control.value }}
+                {{ control?.value }}
             </highlight>
 
             selected value ( should be an object):
             <highlight color-default>
-                {{ selectControl.value | json }}
+                {{ selectControl?.value | json }}
             </highlight>
         </p>
         <p>
@@ -41,10 +47,10 @@
             </highlight>
         </p>
         <p>
-            Control is valid : {{ control.valid }}
+            Control is valid : {{ control?.valid }}
         </p>
 
-        <button class="btn btn-ok" (click)='isInSummaryState=!isInSummaryState'>
+        <button class="btn btn-ok" type='button' (click)='isInSummaryState=!isInSummaryState'>
             Toggle Summary {{ isInSummaryState }}
         </button>
     </div>

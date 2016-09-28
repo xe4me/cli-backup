@@ -1,4 +1,4 @@
-<div class='errors mt-25 mb-15' *ngIf='controlGroup && controlGroup.touched'>
+<div class='errors mt-25 mb-15' *ngIf='controlGroup && controlGroup.invalid && controlGroup.touched'>
     <div *ngIf='!controlId'>
         <div *ngFor='let aControl of controlGroup.controls | AmpValues' class='error-item'>
             <div *ngIf="aControl.errors">
