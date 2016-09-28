@@ -34,6 +34,7 @@ Grid items are floated, they need a container that will make sure the floated it
     float: left;
     padding-left:$gutter;
     vertical-align:top;
+    min-height: 1px;
     @if $mobile-first {
         width:100%;
     }

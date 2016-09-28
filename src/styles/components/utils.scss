@@ -1,232 +1,249 @@
 
 .#{$namespace}mb1,
 %#{$namespace}mb1 {
-  margin-bottom: $amp-ddc-padding;
+    margin-bottom: $amp-ddc-padding;
 }
 
 .#{$namespace}mb2,
 %#{$namespace}mb2 {
-  margin-bottom: $amp-ddc-padding * 2;
+    margin-bottom: $amp-ddc-padding * 2;
 }
 
 .#{$namespace}mb3,
 %#{$namespace}mb3 {
-  margin-bottom: $amp-ddc-padding * 3;
+    margin-bottom: $amp-ddc-padding * 3;
 }
 
 .#{$namespace}mb4,
 %#{$namespace}mb4 {
-  margin-bottom: $amp-ddc-padding * 4;
+    margin-bottom: $amp-ddc-padding * 4;
 }
 
 .#{$namespace}mb-10,
 %#{$namespace}mb-10 {
-  margin-bottom: $amp-ddc-padding/2;
+    margin-bottom: $amp-ddc-padding/2;
 }
 
 .#{$namespace}mt-10,
 %#{$namespace}mt-10 {
-  margin-top: $amp-ddc-padding/2;
+    margin-top: $amp-ddc-padding/2;
 }
 
 .#{$namespace}mb-15,
 %#{$namespace}mb-15 {
-  margin-bottom: $amp-ddc-padding - 5;
+    margin-bottom: $amp-ddc-padding - 5;
 }
 
 .#{$namespace}mt-15,
 %#{$namespace}mt-15 {
-  margin-top: $amp-ddc-padding - 5;
+    margin-top: $amp-ddc-padding - 5;
 }
 
 .#{$namespace}mb-20,
 %#{$namespace}mb-20 {
-  margin-bottom: $amp-ddc-padding;
+    margin-bottom: $amp-ddc-padding;
 }
 
 .#{$namespace}mt-20,
 %#{$namespace}mt-20 {
-  margin-top: $amp-ddc-padding;
+    margin-top: $amp-ddc-padding;
 }
 
 .#{$namespace}mb-25,
 %#{$namespace}mb-25 {
-  margin-bottom: $amp-ddc-padding+5;
+    margin-bottom: $amp-ddc-padding+5;
 }
 
 .#{$namespace}mt-25,
 %#{$namespace}mt-25 {
-  margin-top: $amp-ddc-padding+5;
+    margin-top: $amp-ddc-padding+5;
 }
 
 .#{$namespace}mb-30,
 %#{$namespace}mb-30 {
-  margin-bottom: $amp-ddc-padding*1.5;
+    margin-bottom: $amp-ddc-padding*1.5;
 }
 
 .#{$namespace}mt-30,
 %#{$namespace}mt-30 {
-  margin-top: $amp-ddc-padding *1.5;
+    margin-top: $amp-ddc-padding *1.5;
 }
 
 .#{$namespace}mb-35,
 %#{$namespace}mb-35 {
-  margin-bottom: ($amp-ddc-padding * 1.5) + 5;
+    margin-bottom: ($amp-ddc-padding * 1.5) + 5;
 }
 
 .#{$namespace}mt-35,
 %#{$namespace}mt-35 {
-  margin-top: ($amp-ddc-padding * 1.5) + 5;
+    margin-top: ($amp-ddc-padding * 1.5) + 5;
 }
 
 .#{$namespace}mb-40,
 %#{$namespace}mb-40 {
-  margin-bottom: $amp-ddc-padding * 2;
+    margin-bottom: $amp-ddc-padding * 2;
 }
 
 .#{$namespace}mt-40,
 %#{$namespace}mt-40 {
-  margin-top: $amp-ddc-padding * 2;
+    margin-top: $amp-ddc-padding * 2;
 }
 
 .#{$namespace}mb-45,
 %#{$namespace}mb-45 {
-  margin-bottom: ($amp-ddc-padding * 2 )+5;
+    margin-bottom: ($amp-ddc-padding * 2 )+5;
 }
 
 .#{$namespace}mt-45,
 %#{$namespace}mt-45 {
-  margin-top: ($amp-ddc-padding * 2)+5;
+    margin-top: ($amp-ddc-padding * 2)+5;
 }
 
 .#{$namespace}mb-50,
 %#{$namespace}mb-50 {
-  margin-bottom: ($amp-ddc-padding * 2 )+10;
+    margin-bottom: ($amp-ddc-padding * 2 )+10;
 }
 
 .#{$namespace}mt-50,
 %#{$namespace}mt-50 {
-  margin-top: ($amp-ddc-padding * 2)+10;
+    margin-top: ($amp-ddc-padding * 2)+10;
 }
 
 .#{$namespace}mb-60,
 %#{$namespace}mb-60 {
-  margin-bottom: $amp-ddc-padding * 3;
+    margin-bottom: $amp-ddc-padding * 3;
 }
 
 .#{$namespace}mt-60,
 %#{$namespace}mt-60 {
-  margin-top: $amp-ddc-padding * 3;
+    margin-top: $amp-ddc-padding * 3;
 }
 
 .#{$namespace}mb-80,
 %#{$namespace}mb-80 {
-  margin-bottom: $amp-ddc-padding * 4;
+    margin-bottom: $amp-ddc-padding * 4;
 }
 
 .#{$namespace}mt-80,
 %#{$namespace}mt-80 {
-  margin-top: $amp-ddc-padding * 4;
+    margin-top: $amp-ddc-padding * 4;
 }
 
 .#{$namespace}pb-20,
 %#{$namespace}pb-20 {
-  padding-bottom: $amp-ddc-padding;
+    padding-bottom: $amp-ddc-padding;
 }
 
 .#{$namespace}pt-20,
 %#{$namespace}pt-20 {
-  padding-top: $amp-ddc-padding;
+    padding-top: $amp-ddc-padding;
 }
 
 .#{$namespace}pb-40,
 %#{$namespace}pb-40 {
-  padding-bottom: $amp-ddc-padding * 2;
+    padding-bottom: $amp-ddc-padding * 2;
 }
 
 .#{$namespace}pt-40,
 %#{$namespace}pt-40 {
-  padding-top: $amp-ddc-padding * 2;
+    padding-top: $amp-ddc-padding * 2;
 }
 
 .#{$namespace}pb-60,
 %#{$namespace}pb-60 {
-  padding-bottom: $amp-ddc-padding * 3;
+    padding-bottom: $amp-ddc-padding * 3;
 }
 
 .#{$namespace}pt-60,
 %#{$namespace}pt-60 {
-  padding-top: $amp-ddc-padding * 3;
+    padding-top: $amp-ddc-padding * 3;
 }
 
 .#{$namespace}pb-80,
 %#{$namespace}pb-80 {
-  padding-bottom: $amp-ddc-padding * 4;
+    padding-bottom: $amp-ddc-padding * 4;
 }
 
 .#{$namespace}pt-80,
 %#{$namespace}pt-80 {
-  padding-top: $amp-ddc-padding * 4;
+    padding-top: $amp-ddc-padding * 4;
 }
 
 .#{$namespace}mr-label-input,
 %#{$namespace}mr-label-input {
-  margin-right: 7px;
+    margin-right: 7px;
 }
 
 .#{$namespace}utils,
 %#{$namespace}utils {
 
-  &__position {
-    &--rel {
-      position: relative !important;
-    }
-    &--abs {
-      position: absolute !important;
-    }
-  }
-  &__display {
-    &--block {
-      display: block !important;
-    }
-    &--in-block {
-      display: inline-block !important;
-    }
-    &--inline {
-      display: inline !important;
-    }
-  }
-  &__align {
-    &--left {
-      text-align: left !important;
-    }
-    &--right {
-      text-align: right !important;
-    }
-    &--center {
-      text-align: center !important;
-    }
-  }
-  &__push {
-    &--left {
-      float: left !important;
-    }
-    &--right {
-      float: right !important;
-    }
-  }
+    &__position {
+        &--rel {
+            position: relative !important;
+        }
 
-  &__weight {
-    &--600 {
-      font-weight: 600 !important;
+        &--abs {
+            position: absolute !important;
+        }
     }
-    &--700 {
-      font-weight: 700 !important;
+
+    &__display {
+        &--block {
+            display: block !important;
+        }
+
+        &--in-block {
+            display: inline-block !important;
+        }
+
+        &--inline {
+            display: inline !important;
+        }
     }
-    &--500 {
-      font-weight: 500 !important;
+
+    &__align {
+        &--left {
+            text-align: left !important;
+        }
+
+        &--right {
+            text-align: right !important;
+
+            &-lap-and-up {
+                @include media-query('lap-and-up') {
+                    text-align: right !important;
+                }
+            }
+        }
+
+        &--center {
+            text-align: center !important;
+        }
     }
-  }
+
+    &__push {
+        &--left {
+            float: left !important;
+        }
+
+        &--right {
+            float: right !important;
+        }
+    }
+
+    &__weight {
+        &--600 {
+            font-weight: 600 !important;
+        }
+
+        &--700 {
+            font-weight: 700 !important;
+        }
+
+        &--500 {
+            font-weight: 500 !important;
+        }
+    }
 }
 
 .#{$namespace}sr-only,
