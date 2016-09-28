@@ -27,33 +27,35 @@
     "rxjs": "5.0.0-beta.11",
     "ts-helpers": "^1.1.1",
     "zone.js": "0.6.12",
+
     "amp-ddc-components": "^3.0.0",
     "amp-styleguide-core": "^1.0.0",
     "ddcjs-logger": "^1.0.0",
     "ddcjs-server": "^1.0.0"
+
   },
   "devDependencies": {
     "@angular-cli/ast-tools": "1.0.0-beta.11-webpack.5",
     "@types/jasmine": "^2.2.30",
     "amp-angular-cli": "1.0.0-beta.11-webpack.8",
-    "bundle-loader": "^0.5.4",
     "codelyzer": "~0.0.26",
-    "concurrently": "^2.0.0",
-    "eslint": "^2.13.1",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "0.13.22",
     "karma-chrome-launcher": "0.2.3",
     "karma-jasmine": "0.3.8",
-    "karma-phantomjs-launcher": "^1.0.0",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "4.0.3",
-    "stubby": "^0.3.1",
     "ts-node": "1.2.1",
     "tslint": "^3.13.0",
-    "typescript": "2.0.0"
+    "typescript": "^2.0.0",
+
+    "bundle-loader": "^0.5.4",
+    "concurrently": "^2.0.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "stubby": "^0.3.1"
   },
-  "publishConfig": {
-    "registry": "http://npm-registry-ddc.digital-pilot.ampaws.com.au/"
-  }
+    "publishConfig": {
+        "registry": "http://npm-registry-ddc.digital-pilot.ampaws.com.au/"
+    }
 }
