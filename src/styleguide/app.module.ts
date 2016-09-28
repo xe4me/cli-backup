@@ -60,7 +60,7 @@ export class StyleGuideAppModule {
     }
 
     hmrOnDestroy ( store ) {
-        let cmpLocation       = this.appRef.components.map( cmp => cmp.location.nativeElement );
+        let cmpLocation       = this.appRef.components.map( (cmp) => cmp.location.nativeElement );
         // recreate elements
         let state             = this.appState.state;
         store.state           = state;

@@ -181,10 +181,10 @@ export class AmpAutoCompleteComponent implements OnInit {
     }
 
     private filter ( queryString : any ) : Observable<any> {
-        return Observable.create( observer => {
+        return Observable.create( (observer) => {
             isPresent( queryString ) && queryString.length > 0 ?
                 observer.next(
-                    this.options.filter( item => item.title.toLowerCase().indexOf( queryString.toLowerCase() ) !== - 1 )
+                    this.options.filter( (item) => item.title.toLowerCase().indexOf( queryString.toLowerCase() ) !== - 1 )
                 ) : observer.next( this.options );
         } );
     }
@@ -245,7 +245,7 @@ export class AmpAutoCompleteComponent implements OnInit {
             this.parentControl
                 .valueChanges
                 .debounceTime( this.QUERY_DEBOUNCE_TIME )
-                .switchMap( queryString => this.queryServiceCall( queryString ) );
+                .switchMap( (queryString) => this.queryServiceCall( queryString ) );
     }
 
     private resetSelectedOption () {

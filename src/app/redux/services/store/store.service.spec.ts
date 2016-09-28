@@ -42,7 +42,7 @@ describe( 'Store Service' , function() {
                     'telephones'
                 ];
                 let section = getIn( fdn , TestModel );
-                storeService.select( fdn ).subscribe( telephones => {
+                storeService.select( fdn ).subscribe( (telephones) => {
                     expect( telephones ).toEqual( section.telephones );
                 } );
             } )
@@ -60,7 +60,7 @@ describe( 'Store Service' , function() {
                     fdn   : fdn ,
                     query : 'updated with redux'
                 };
-                storeService.select( fdn ).subscribe( contactNumber => {
+                storeService.select( fdn ).subscribe( (contactNumber) => {
                     if ( updated ) {
                         expect( contactNumber ).toEqual( payload.query );
                     } else {
@@ -90,7 +90,7 @@ describe( 'Store Service' , function() {
                     fdn   : fdn ,
                     query : 'updated with redux'
                 };
-                storeService.select( fdn ).subscribe( contactNumber => {
+                storeService.select( fdn ).subscribe( (contactNumber) => {
                     if ( updated ) {
                         called ++;
                         expect( contactNumber ).toEqual( payload.query );
@@ -124,7 +124,7 @@ describe( 'Store Service' , function() {
                         fdn   : fdn ,
                         query : 'updated with redux'
                     };
-                    storeService.select( fdn ).subscribe( contactNumber => {
+                    storeService.select( fdn ).subscribe( (contactNumber) => {
                         if ( updated ) {
                             console.log( '********* called' , called );
                             called ++;
