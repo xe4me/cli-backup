@@ -26,17 +26,6 @@ import { AmpReviewSection } from '../../blocks/amp-review/amp-review-section/amp
                 <div class="grid__container 1/1">
 
                     <div class="grid__item_floated lap-and-up-3/4 review-main">
-
-                        <div class="grid__container 1/1 review-item" *ngFor="let block of _summaryBlocks">
-                            <div class="grid__item_floated lap-and-up-4/12">
-                                <strong>{{ block.formGroup.__prettyName }}</strong>
-                            </div>
-                            <div class="grid__item_floated lap-and-up-7/12" [innerHTML]="formatControlValue(block.formGroup)"></div>
-                            <div class="grid__item_floated lap-and-up-1/12 utils__align--right-lap-and-up">
-                                {{ block.name }}
-                            </div>
-                        </div>
-
                         <div [amp-block-loader]="_review_blocks" [fdn]="__fdn" [form]="__form"></div>
                     </div>
 
@@ -102,5 +91,9 @@ export class ReviewSectionComponent {
                 });
             }
         }
+    }
+
+    showReviewSection () : boolean {
+        return true;
     }
 }
