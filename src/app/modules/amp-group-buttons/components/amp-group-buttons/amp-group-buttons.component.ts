@@ -7,32 +7,15 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { RequiredValidator } from '../../modules/amp-utils';
+import { RequiredValidator } from '../../../../modules/amp-utils';
 import { FormGroup , FormControl } from '@angular/forms';
-import { ScrollService } from '../../services/scroll/scroll.service';
+import { ScrollService } from '../../../../services/scroll/scroll.service';
 import {
     RadioControlRegistry
 } from '@angular/forms/src/directives/radio_control_value_accessor';
 @Component( {
     selector        : 'amp-group-buttons' ,
-    template        : `
-                       <div class='amp-group-button'>
-                          <span *ngFor='let button of buttons; let i=index; let last = last;'>
-                                  <input
-                                    class="sr-only"
-                                    [disabled]='disabled'
-                                    [attr.data-automation-id]='"radio_button_" + button.id'
-                                    type='radio'
-                                    [attr.id]='button.id + index'
-                                    [attr.name]='id + index'
-                                    [formControl]='control'
-                                    [value]='button.value'
-                                    [checked]='control.value===button.value'
-                                    />
-                                  <label (click)='scroll(button.value)' [attr.for]='button.id + index'>{{ button.label }}</label>
-                          </span>
-                       </div>
-                ` ,
+    template        : require( './amp-group-buttons.component.html' ) ,
     inputs          : [
         'errors' ,
         'defaultValue' ,

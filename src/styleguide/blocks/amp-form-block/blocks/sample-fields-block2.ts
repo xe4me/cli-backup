@@ -3,7 +3,6 @@ import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
 import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
-import { AmpGroupButtonsComponent } from '../../../../app/components/amp-group-buttons/amp-group-buttons.component';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
@@ -30,7 +29,7 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpFormRowComponent , AmpGroupButtonsComponent ] ,
+    directives      : [ AmpFormBlockComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     styles          : [ require( '../basic_usage.scss' ).toString() ] ,
 } )

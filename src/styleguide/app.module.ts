@@ -28,6 +28,7 @@ import { AmpErrorModule } from '../app/modules/amp-error/amp-error.module';
 import { AmpCheckboxModule } from '../app/modules/amp-checkbox';
 import { AmpDropdownModule } from '../app/modules/amp-dropdown';
 import { AmpTextareaModule } from '../app/modules/amp-textarea';
+import { AmpGroupButtonsModule } from '../app/modules/amp-group-buttons';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -36,6 +37,7 @@ const shouldBeReplacedWithModulesComponents = [
     AmpLoadingComponent ,
 ];
 const IMPORTS                               = [
+    AmpGroupButtonsModule ,
     AmpTextareaModule ,
     AmpCheckboxModule ,
     AmpErrorModule ,
