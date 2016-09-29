@@ -56,7 +56,6 @@ const IMPORTS                               = [
     HttpModule ,
     RouterModule.forRoot( ROUTES , { useHash : false } )
 ];
-console.log( 'IMPORTS' , IMPORTS );
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */

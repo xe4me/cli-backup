@@ -1,0 +1,54 @@
+table {
+    border-collapse: collapse;
+    max-width: 100%;
+    width: 100%;
+    background-color: transparent;
+
+    > tbody {
+        tr {
+            > th,
+            > td {
+                vertical-align: top;
+            }
+        }
+    }
+}
+
+th {
+    text-align: left;
+}
+
+.table {
+    > tbody {
+        > tr {
+            > th,
+            > td {
+                border-bottom: 1px solid $amp-colour-grey-dark;
+                padding: 20px 0 20px 20px;
+
+                &:first-child {
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}
+
+.table--responsive {
+    > tbody {
+        > tr {
+            > th,
+            > td {
+                @include media-query('tablet-and-down') {
+                    display: block;
+                    padding: 15px 0;
+
+                    &:not(:last-child) {
+                        border: none;
+                        padding-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
