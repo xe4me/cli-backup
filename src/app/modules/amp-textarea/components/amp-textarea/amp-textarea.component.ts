@@ -12,42 +12,11 @@ import {
     MinLengthValidator ,
     MaxLengthValidator ,
     isTrue
-} from '../../modules/amp-utils';
+} from '../../../../modules/amp-utils';
 @Component(
     {
         selector        : 'amp-textarea' ,
-        template        : `
-    <md-input-container
-        [class.md-input-has-value]='control.value'
-        [class.md-input-focused]='hasFocus'
-        [ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}'
-        flex-gt-sm='' >
-        <label
-         [ngClass]='{"summary" : isInSummaryState}'
-        *ngIf='!isInSummaryState' [attr.for]='id'>{{label}}</label><!--
-        --><textarea
-                #textarea
-                (keyup)='adjustHeight($event.target)'
-                (blur)='adjustHeight($event.target)'
-                (blur)='trimValue()'
-                (blur)='setHasFocus(false)'
-                (focus)='setHasFocus(true)'
-                [class.summary-state]='isInSummaryState'
-                [disabled]='isInSummaryState'
-                class='md-input'
-                [attr.name]='id'
-                [attr.id]='id'
-                [attr.maxlength]='maxLength'
-                [attr.data-automation-id]='"textarea_" + id'
-                [formControl]='control'
-                [attr.placeholder]='placeholder'>
-            </textarea>
-            <span class='char-left'
-             *ngIf='maxLength && maxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ maxLength }}</span>
-            <span class='summary-text'>{{ control.value }}</span>
-        <ng-content></ng-content>
-  </md-input-container>
-  ` ,
+        template        : require( './amp-textarea.component.html' ) ,
         styles          : [ require( './amp-textarea.scss' ).toString() ] ,
         inputs          : [
             'id' ,

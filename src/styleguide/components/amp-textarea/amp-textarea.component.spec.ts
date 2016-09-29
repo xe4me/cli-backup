@@ -1,21 +1,20 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , provide , ElementRef } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
-import { AmpTextareaComponent } from '../../../app/components/amp-textarea/amp-textarea.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
+import { AmpTextareaModule } from '../../../app/modules/amp-textarea';
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
 describe( 'amp-textarea component' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule ] ,
+            imports      : [ FormsModule , ReactiveFormsModule , AmpTextareaModule ] ,
             declarations : [
-                AmpTextareaComponent ,
                 AmpTextAreaTest
             ] ,
             providers    : [
@@ -69,7 +68,7 @@ describe( 'amp-textarea component' , () => {
     } );
 } );
 @Component( {
-    template   : `
+    template : `
         <form  #formModel='ngForm' class='nl-form' >
             <amp-textarea
             [isInSummaryState]='textarea.isInSummaryState'
@@ -83,8 +82,7 @@ describe( 'amp-textarea component' , () => {
             <button (click)='toggleIsInSummaryState()'>Toggle summary
             mode</button>
         </form>
-    ` ,
-    directives : [ AmpTextareaComponent ]
+    `
 } )
 class AmpTextAreaTest {
     isInSummaryState = false;

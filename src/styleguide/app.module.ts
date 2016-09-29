@@ -27,6 +27,7 @@ import { AmpPipesModule } from '../app/modules/amp-pipes';
 import { AmpErrorModule } from '../app/modules/amp-error/amp-error.module';
 import { AmpCheckboxModule } from '../app/modules/amp-checkbox';
 import { AmpDropdownModule } from '../app/modules/amp-dropdown';
+import { AmpTextareaModule } from '../app/modules/amp-textarea';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -35,6 +36,7 @@ const shouldBeReplacedWithModulesComponents = [
     AmpLoadingComponent ,
 ];
 const IMPORTS                               = [
+    AmpTextareaModule ,
     AmpCheckboxModule ,
     AmpErrorModule ,
     AmpPipesModule ,
