@@ -30,6 +30,7 @@ import { AmpDropdownModule } from '../app/modules/amp-dropdown';
 import { AmpTextareaModule } from '../app/modules/amp-textarea';
 import { AmpGroupButtonsModule } from '../app/modules/amp-group-buttons';
 import { AmpRadioButtonGroupModule } from '../app/modules/amp-radio-button-group';
+import { AmpStandAloneMenuModule } from '../app/modules/amp-standalone-menu';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState

@@ -6,18 +6,10 @@ import {
     AfterViewInit , OnDestroy , ChangeDetectionStrategy , OnInit
 } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { ScrollService } from '../../services/scroll/scroll.service';
+import { ScrollService } from '../../../../services/scroll/scroll.service.ts';
 @Component( {
     selector        : 'amp-standalone-menu' ,
-    template        : `
-                   <aside class="sidebar">
-                        <button class="btn" type="button">
-                            <i class="icon icon--time" aria-hidden="true"></i>
-                            <span>Save application</span>
-                        </button>
-                   </aside>
-                ` ,
-
+    template        : require( './amp-standalone-menu.component.html' ).toString(),
     styles          : [ require( './amp-standalone-menu.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
