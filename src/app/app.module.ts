@@ -39,6 +39,7 @@ const PROVIDERS    = [
     FormService
 ];
 const DECLARATIONS = [
+    AmpFormRowComponent,
     AmpIntroBlockComponent,
     AmpFormBlockComponent ,
     AmpButton ,

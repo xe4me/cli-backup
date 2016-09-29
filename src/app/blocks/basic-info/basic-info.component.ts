@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'basic-info' ,
+    selector        : 'basic-info-block' ,
     templateUrl     : './basic-info.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

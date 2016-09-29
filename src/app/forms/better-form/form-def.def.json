@@ -473,7 +473,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-BasicInfo",
+                            "name": "Applicant2BasicInfo",
                             "blockType": "BasicInfoBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -500,7 +500,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-Address",
+                            "name": "Applicant2Address",
                             "blockType": "AddressBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -521,7 +521,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-ContactDetails",
+                            "name": "Applicant2ContactDetails",
                             "blockType": "ContactDetailsBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -542,7 +542,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-PrivacyDeclaration",
+                            "name": "Applicant2PrivacyDeclaration",
                             "blockType": "PrivacyDeclarationBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -557,7 +557,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-OnlineOrOfflineIdCheck",
+                            "name": "Applicant2OnlineOrOfflineIdCheck",
                             "blockType": "OnlineOrOfflineIdCheckBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -572,7 +572,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-IdCheck",
+                            "name": "Applicant2IdCheck",
                             "blockType": "IdCheckBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -605,7 +605,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-TaxFileNumber",
+                            "name": "Applicant2TaxFileNumber",
                             "blockType": "TaxFileNumberBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -656,7 +656,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-SourceOfFunding",
+                            "name": "Applicant2SourceOfFunding",
                             "blockType": "SourceOfFundingBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -755,7 +755,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2-Residency",
+                            "name": "Applicant2Residency",
                             "blockType": "ResidencyBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
