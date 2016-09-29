@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'id-check' ,
+    selector        : 'id-check-block' ,
     templateUrl     : './id-check.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

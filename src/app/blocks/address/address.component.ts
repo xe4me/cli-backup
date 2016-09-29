@@ -3,6 +3,9 @@ import {
     AfterViewInit
 } from '@angular/core';
 import {
+    AbstractControl
+} from '@angular/forms';
+import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
@@ -16,7 +19,7 @@ import {
 } )
 export class AddressBlock extends FormBlock {
     public postalAddressDifferent : boolean;
-
+    public postalAddressCheckbox : AbstractControl;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -26,15 +29,8 @@ export class AddressBlock extends FormBlock {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
-    public togglePostalAddress(postalAddressDifferent : boolean) {
-        this.postalAddressDifferent = postalAddressDifferent;
-    }
-
     public ngAfterViewInit() {
-        const postalAddressCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
-        postalAddressCheckbox.valueChanges.subscribe(val => {
-            this.togglePostalAddress(val);
-        });
+        this.postalAddressCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
         super.ngAfterViewInit();
     }
 }

@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'tax-file-number' ,
+    selector        : 'tax-file-number-block' ,
     templateUrl     : './tax-file-number.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

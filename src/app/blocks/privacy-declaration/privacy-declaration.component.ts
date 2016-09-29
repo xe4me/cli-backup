@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'privacy-declaration' ,
+    selector        : 'privacy-declaration-block' ,
     templateUrl     : './privacy-declaration.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

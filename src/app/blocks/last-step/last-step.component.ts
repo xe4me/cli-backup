@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'last-step' ,
+    selector        : 'last-step-block' ,
     templateUrl     : './last-step.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

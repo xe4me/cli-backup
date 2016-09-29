@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'deposit-transition' ,
+    selector        : 'deposit-transition-block' ,
     templateUrl     : './deposit-transition.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

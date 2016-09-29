@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'better-choice' ,
+    selector        : 'better-choice-block' ,
     templateUrl     : './better-choice.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

@@ -19,7 +19,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'online-or-offline-id-check' ,
+    selector        : 'online-or-offline-id-check-block' ,
     templateUrl     : './online-or-offline-id-check.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

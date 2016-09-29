@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'loan-offset' ,
+    selector        : 'loan-offset-block' ,
     templateUrl     : './loan-offset.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'contact-details' ,
+    selector        : 'contact-details-block' ,
     templateUrl     : './contact-details.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

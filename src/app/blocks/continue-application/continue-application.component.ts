@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'continue-application' ,
+    selector        : 'continue-application-block' ,
     templateUrl     : './continue-application.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles : [ require('./continue-application.component.scss').toString() ]

@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'source-of-funding' ,
+    selector        : 'source-of-funding-block' ,
     templateUrl     : './source-of-funding.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

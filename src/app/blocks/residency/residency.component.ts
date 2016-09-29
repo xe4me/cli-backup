@@ -10,7 +10,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'residency' ,
+    selector        : 'residency-block' ,
     templateUrl     : './residency.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
