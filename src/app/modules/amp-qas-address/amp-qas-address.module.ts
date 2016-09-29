@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { AmpQasAddressComponent , AmpQasAddressService } from './index';
+import { AmpQasAddressService } from './services/amp-qas-address.service';
+import { AmpQasAddressComponent } from './components/amp-qas-address/amp-qas-address.component';
 import { AmpTypeaheadModule } from '../amp-typeahead/amp-typeahead.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
