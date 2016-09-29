@@ -17,6 +17,7 @@ import {
  } from '@angular/http';
 
 import { ContextService } from './context.service';
+import { AmpHttpService } from '../amp-http/amp-http.service';
 
 const contextBody = {
                 'errors': [],
@@ -56,7 +57,7 @@ describe( 'Fetch context from server' , () => {
             providers    : [ BaseRequestOptions,
                              ContextService,
                              MockBackend,
-                             provide(Http, mockHttpProvider) ]
+                             provide(AmpHttpService, mockHttpProvider) ]
         } );
         TestBed.compileComponents();
     }));
