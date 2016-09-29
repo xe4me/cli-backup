@@ -1,4 +1,4 @@
-# AMP Digital dynamic data capture Experience - ExperienceBetter
+# AMP Digital dynamic data capture Experience - ExperienceBett3r
 
 This experience project repo was generated using amp-angular-cli command.
 
@@ -287,7 +287,7 @@ testing
  [PROPRIETARY]
 
 
-# ExperienceBetter
+# ExperienceBett3r
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.11-webpack.8.
 
