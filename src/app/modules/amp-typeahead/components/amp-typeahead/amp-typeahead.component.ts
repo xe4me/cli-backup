@@ -174,7 +174,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
 
     private filter ( items , identifier , query , doFilter ) : Observable<any> {
         return this.filteredList = doFilter && isPresent( query ) ? items.filter(
-            item => {
+            ( item ) => {
                 return item[ identifier ] && item[ identifier ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
             }
         ) : items;
@@ -200,8 +200,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                     }
                 } )
                 .filter(
-                    x => x && x.length >= this.minTriggerLength && x.trim() !== this.selectedOption[ this.selectedItemValueIdentifier ] )
-                .switchMap( queryString => this.queryServiceCall( queryString ) )
+                    ( x ) => x && x.length >= this.minTriggerLength && x.trim() !== this.selectedOption[ this.selectedItemValueIdentifier ] )
+                .switchMap( ( queryString ) => this.queryServiceCall( queryString ) )
                 .subscribe( ( result ) => {
                     this.clearSelectedItem();
                     this.open();

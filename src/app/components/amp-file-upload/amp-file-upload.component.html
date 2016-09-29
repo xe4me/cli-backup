@@ -3,13 +3,14 @@
         File Upload
     </amp-button>
     <input type="file"
+           #fileInput
            ngFileSelect
            [options]="basicOptions"
            (onUpload)="handleUpload($event)"
            (click)="updateToken()"
            (change)="displayProgress()"/>
 </div>
-<div *ngIf="uploadError" class='errors'>
+<div *ngIf="error" class='errors'>
     <span class='icon icon--close icon-errors'></span> Error in file Upload, Please try again
 </div>
 <div class="progress mb" *ngIf="showProgress">

@@ -18,13 +18,15 @@ import { AppState } from './app.service';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
 import { AmpStyleguideReduxModule } from '../app/redux/amp-styleguide-redux.module';
-import { AmpQasAddressModule } from '../app/modules/amp-qas-address/amp-qas-address.module';
-import { AmpTypeaheadModule } from '../app/modules/amp-typeahead/amp-typeahead.module';
+import { AmpQasAddressModule } from '../app/modules/amp-qas-address';
+import { AmpTypeaheadModule } from '../app/modules/amp-typeahead';
 import { AmpLoadingComponent } from '../app/components/amp-loading/amp-loading.component';
-import { AmpDirectivesModule } from '../app/modules/amp-directives/amp-directives.module';
-import { AmpInputsModule } from '../app/modules/amp-inputs/amp-inputs.module';
-import { AmpPipesModule } from '../app/modules/amp-pipes/amp-pipes.module';
+import { AmpDirectivesModule } from '../app/modules/amp-directives';
+import { AmpInputsModule } from '../app/modules/amp-inputs';
+import { AmpPipesModule } from '../app/modules/amp-pipes';
 import { AmpErrorModule } from '../app/modules/amp-error/amp-error.module';
+import { AmpCheckboxModule } from '../app/modules/amp-checkbox';
+import { AmpDropdownModule } from '../app/modules/amp-dropdown';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -32,6 +34,23 @@ const APP_PROVIDERS                         = [
 const shouldBeReplacedWithModulesComponents = [
     AmpLoadingComponent ,
 ];
+const IMPORTS                               = [
+    AmpCheckboxModule ,
+    AmpErrorModule ,
+    AmpPipesModule ,
+    AmpDirectivesModule ,
+    AmpDropdownModule ,
+    AmpInputsModule ,
+    AmpTypeaheadModule ,
+    AmpQasAddressModule ,
+    AmpStyleguideReduxModule ,
+    BrowserModule ,
+    FormsModule ,
+    ReactiveFormsModule ,
+    HttpModule ,
+    RouterModule.forRoot( ROUTES , { useHash : false } )
+];
+console.log( 'IMPORTS' , IMPORTS );
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -44,20 +63,7 @@ const shouldBeReplacedWithModulesComponents = [
         IndexPage ,
         ComponentPage
     ] ,
-    imports      : [
-        AmpErrorModule ,
-        AmpPipesModule ,
-        AmpDirectivesModule ,
-        AmpInputsModule ,
-        AmpTypeaheadModule ,
-        AmpQasAddressModule ,
-        AmpStyleguideReduxModule ,
-        BrowserModule ,
-        FormsModule ,
-        ReactiveFormsModule ,
-        HttpModule ,
-        RouterModule.forRoot( ROUTES , { useHash : false } )
-    ] ,
+    imports      : IMPORTS ,
     providers    : [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS ,
         APP_PROVIDERS
@@ -77,7 +83,7 @@ export class StyleGuideAppModule {
     }
 
     hmrOnDestroy ( store ) {
-        let cmpLocation       = this.appRef.components.map( cmp => cmp.location.nativeElement );
+        let cmpLocation       = this.appRef.components.map( ( cmp ) => cmp.location.nativeElement );
         // recreate elements
         let state             = this.appState.state;
         store.state           = state;

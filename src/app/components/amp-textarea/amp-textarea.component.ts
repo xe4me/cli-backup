@@ -10,9 +10,9 @@ import { FormControl , Validators , FormGroup } from '@angular/forms';
 import {
     RequiredValidator ,
     MinLengthValidator ,
-    MaxLengthValidator
-} from '../../util/validations';
-import { isTrue } from '../../util/functions.utils';
+    MaxLengthValidator ,
+    isTrue
+} from '../../modules/amp-utils';
 @Component(
     {
         selector        : 'amp-textarea' ,

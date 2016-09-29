@@ -55,7 +55,7 @@ export function main () {
             provideForms() , // enable new forms module
             ngCore.provide( Window , { useValue : window } )
         ] )
-        .catch( err => console.error( err ) );
+        .catch( (err) => console.error( err ) );
 }
 /*
  * Vendors

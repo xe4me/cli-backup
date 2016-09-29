@@ -6,7 +6,7 @@
 
 a {
     text-decoration: none;
-    color : $amp-colour-sky-blue;
+    color: $amp-colour-sky-blue;
     cursor: pointer;
 }
 
@@ -41,5 +41,17 @@ body {
     background-color: white !important;
 }
 
+.container {
+    margin: 0;
+    max-width: 1224px;
+    padding: 0 $content-padding-h;
 
+    @include media-query('lap-and-up') {
+        padding: 0 $content-padding-h-lap-and-up;
+    }
 
+    &--full-height {
+        position: relative;
+        height: 100vh;
+    }
+}

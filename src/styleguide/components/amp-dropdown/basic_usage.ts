@@ -1,13 +1,11 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { AmpDropdownComponent } from '../../../app/components/amp-dropdown/amp-dropdown.component';
 import { ThemeService } from '../../services/theme';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
     providers   : [ ScrollService ] ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ AmpDropdownComponent ] ,
     selector    : 'amp-dropdown-basic-usage'
 } )
 

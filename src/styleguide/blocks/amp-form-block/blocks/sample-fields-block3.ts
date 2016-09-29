@@ -2,7 +2,6 @@ import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionSt
 import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
-import { AmpDropdownComponent } from '../../../../app/components/amp-dropdown/amp-dropdown.component';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
@@ -31,7 +30,7 @@ import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-for
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpFormRowComponent , AmpDropdownComponent ] ,
+    directives      : [ AmpFormBlockComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleFieldsBlock3 extends FormBlock implements OnInit {

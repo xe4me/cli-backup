@@ -18,7 +18,7 @@ export function main() : Promise<any> {
   return platformBrowserDynamic()
     .bootstrapModule(StyleGuideAppModule)
     .then(decorateModuleRef)
-    .catch(err => console.error(err));
+    .catch((err) => console.error(err));
 
 }
 

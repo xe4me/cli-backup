@@ -7,7 +7,7 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
-import { RequiredValidator } from '../../util/validations';
+import { RequiredValidator } from '../../modules/amp-utils';
 import { FormGroup , FormControl } from '@angular/forms';
 import { ScrollService } from '../../services/scroll/scroll.service';
 import {

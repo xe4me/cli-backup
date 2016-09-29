@@ -1,0 +1,17 @@
+<input
+        [disabled]='disabled'
+        [checked]='checked'
+        type='checkbox'
+        [attr.data-automation-id]='"checkbox_" + id'
+        [attr.id]='id'
+        [attr.name]='id'
+        [formControl]='control'/>
+<label (click)='onSelect($event)' [attr.for]='id'>
+    <div [class.hidden]='isInSummaryState' class="container">
+        <div class="off"></div>
+        <div class="on"></div>
+    </div>
+    <div [class.summary-state]='isInSummaryState' class="content">
+        <ng-content></ng-content>
+    </div>
+</label>

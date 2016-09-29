@@ -1,21 +1,15 @@
 import {
     Component ,
-    ChangeDetectorRef ,
-    ElementRef ,
-    Input ,
-    ChangeDetectionStrategy ,
     trigger ,
-    ContentChild ,
     state ,
     style ,
     animate ,
     transition
 } from '@angular/core';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
-import { AmpCheckboxComponent } from '../../../app/components/amp-checkbox/amp-checkbox.component';
 @Component( {
     selector   : 'amp-intro-block' ,
-    directives : [ AmpButton , AmpCheckboxComponent ] ,
+    directives : [ AmpButton ] ,
     host       : {
         '[@slideUp]' : 'slideUp'
     } ,
