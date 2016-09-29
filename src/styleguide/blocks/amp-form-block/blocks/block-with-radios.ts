@@ -6,7 +6,6 @@ import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
 import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
-import { AmpRadioButtonGroupComponent } from '../../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 @Component( {
     selector        : 'block-with-radios' ,
     template        : `
@@ -28,7 +27,7 @@ import { AmpRadioButtonGroupComponent } from '../../../../app/components/amp-rad
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpRadioButtonGroupComponent , AmpFormRowComponent ] ,
+    directives      : [ AmpFormBlockComponent , AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class BlockWithRadios extends FormBlock {

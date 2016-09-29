@@ -21,12 +21,12 @@ export * from './src/app/modules/amp-checkbox';
 export * from './src/app/modules/amp-dropdown';
 export * from './src/app/modules/amp-textarea';
 export * from './src/app/modules/amp-group-buttons';
+export * from './src/app/modules/amp-radio-button-group';
 export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpButton } from './src/app/components/amp-button/amp-button.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
-export { AmpRadioButtonGroupComponent } from './src/app/components/amp-radio-button-group/amp-radio-button-group.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
 // Constants
 export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';

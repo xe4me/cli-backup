@@ -1,21 +1,20 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import { Component , provide , ElementRef } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
-import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
+import { AmpRadioButtonGroupModule } from '../../../app/modules/amp-radio-button-group';
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
 describe( 'amp-radio-group-button component , multiple items usage' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule ] ,
+            imports      : [ FormsModule , ReactiveFormsModule , AmpRadioButtonGroupModule ] ,
             declarations : [
-                AmpRadioButtonGroupComponent ,
                 AmpRadioGroupButtonTest1
             ] ,
             providers    : [
@@ -73,9 +72,8 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
 describe( 'amp-radio-group-button component , single item usage' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule ] ,
+            imports      : [ FormsModule , ReactiveFormsModule , AmpRadioButtonGroupModule ] ,
             declarations : [
-                AmpRadioButtonGroupComponent ,
                 AmpRadioGroupButtonTest2
             ] ,
             providers    : [
