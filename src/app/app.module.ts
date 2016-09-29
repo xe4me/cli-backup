@@ -4,7 +4,21 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
+
 import { BetterFormComponent } from './forms/better-form/better-form.component';
+import {
+    AmpTypeaheadModule ,
+    AmpDropdownModule ,
+    AmpPipesModule ,
+    AmpDirectivesModule ,
+    AmpQasAddressModule ,
+    AmpInputsModule ,
+    AmpCheckboxModule ,
+    AmpTextareaModule ,
+    AmpGroupButtonsModule ,
+    AmpRadioButtonGroupModule ,
+    AmpErrorModule
+} from 'amp-ddc-components';
 import {
     FormBlock ,
     ScrollService ,
@@ -12,23 +26,10 @@ import {
     ProgressObserverService ,
     AmpFormBlockComponent ,
     AMPGoogleAddressComponentGroup ,
-    AmpInputComponent ,
     AmpFormRowComponent ,
-    AmpFirstNameComponent ,
-    AmpLastNameComponent ,
-    AmpContactNumberComponent ,
-    AmpEmailComponent ,
-    AmpDropdownComponent ,
-    AmpCheckboxComponent ,
     AmpButton ,
     AmpOverlayComponent ,
-    AmpLinearProgressBarComponent ,
-    AmpErrorComponent ,
-    AmpTextareaComponent ,
-    AmpGroupButtonsComponent ,
-    AmpRadioButtonGroupComponent ,
     FormService,
-    AmpHomeNumberComponent,
     AmpIntroBlockComponent
 } from 'amp-ddc-components';
 const PROVIDERS    = [
@@ -40,36 +41,35 @@ const PROVIDERS    = [
 const DECLARATIONS = [
     AmpIntroBlockComponent,
     AmpFormBlockComponent ,
-    AMPGoogleAddressComponentGroup ,
-    AmpInputComponent ,
-    AmpFormRowComponent ,
-    AmpFirstNameComponent ,
-    AmpLastNameComponent ,
-    AmpContactNumberComponent ,
-    AmpEmailComponent ,
-    AmpDropdownComponent ,
-    AmpCheckboxComponent ,
     AmpButton ,
     AmpOverlayComponent ,
-    AmpLinearProgressBarComponent ,
-    AmpErrorComponent ,
-    AmpTextareaComponent ,
-    AmpGroupButtonsComponent ,
-    AmpRadioButtonGroupComponent ,
-    AmpHomeNumberComponent
 ];
+
+const IMPORTS = [
+    AmpTypeaheadModule ,
+    AmpDropdownModule ,
+    AmpPipesModule ,
+    AmpDirectivesModule ,
+    AmpQasAddressModule ,
+    AmpInputsModule ,
+    AmpErrorModule ,
+    AmpCheckboxModule ,
+    AmpTextareaModule ,
+    AmpGroupButtonsModule ,
+    AmpRadioButtonGroupModule ,
+    BrowserModule ,
+    FormsModule ,
+    ReactiveFormsModule ,
+    HttpModule
+];
+
 @NgModule( {
     declarations : [
         AppComponent ,
         BetterFormComponent ,
         ...DECLARATIONS
     ] ,
-    imports      : [
-        BrowserModule ,
-        FormsModule ,
-        ReactiveFormsModule ,
-        HttpModule
-    ] ,
+    imports      : IMPORTS ,
     providers    : [
         ...APP_RESOLVER_PROVIDERS
     ] ,
