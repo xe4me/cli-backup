@@ -132,6 +132,13 @@ describe( 'amp-typeahead component' , () => {
             expect( liElements.length ).toBe( 0 );
             expect( _typeAheadCmp.isOptionsHidden ).toBeTruthy();
         } );
+        it( 'should have a Dropdown of maxheight:250px which represents the 5 item visible' , fakeAsync( () => {
+            focusOnInput();
+            let ulElements = getAlltheUls();
+            let maxHeight  = ulElements[ 0 ].nativeElement.offsetHeight;
+            let padding    = 5;
+            expect( maxHeight ).toBeLessThan( _testCmp.__custom.controls[ 0 ].maxHeight.replace( 'px' , '' ) + padding );
+        } ) );
     } );
     describe( 'Typing and updating controls' , () => {
         it( 'should update the AmpTypeahead control and controlGroup when typing inside the search input' , () => {
@@ -211,6 +218,7 @@ describe( 'amp-typeahead component' , () => {
                     #typeAheadComponent
                     [options]="options"
                     [controlGroup]="__controlGroup"
+                    [maxHeight]="__custom.controls[0].maxHeight"
                     (selected)="onChange($event)"
                     [selectedItemValueIdentifier]='__custom.controls[0].selectedItemValueIdentifier'
                     [selectedItemIdentifier]='__custom.controls[0].selectedItemIdentifier'
@@ -235,6 +243,7 @@ class AmpTypeaheadComponentTest {
                 id                          : 'amp-typeahead' ,
                 label                       : 'This is a type ahead label' ,
                 required                    : true ,
+                maxHeight                   : '250px' ,
                 selectedItemIdentifier      : 'id' ,
                 dropDownLabel               : 'drop down first label' ,
                 selectedItemValueIdentifier : 'title'

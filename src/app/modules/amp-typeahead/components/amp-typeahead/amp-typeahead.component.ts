@@ -36,6 +36,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
+    @Input() maxHeight : string                     = '400px';
     @Input() id;
     @Input() selectedItemIdentifier                 = 'id';
     @Input() selectedItemValueIdentifier            = 'label';
