@@ -3,6 +3,9 @@ import {
     AfterViewInit
 } from '@angular/core';
 import {
+    AbstractControl
+} from '@angular/forms';
+import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
@@ -24,17 +27,12 @@ export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
-        this.tfnExclusion = false;
-    }
-
-    public toggleTfnControls(tfnExclusion : boolean) {
-        this.tfnExclusion = tfnExclusion;
     }
 
     public ngAfterViewInit() {
         const tfnCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
         tfnCheckbox.valueChanges.subscribe(val => {
-            this.toggleTfnControls(val);
+            this.tfnExclusion = val;
         });
         super.ngAfterViewInit();
     }
