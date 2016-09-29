@@ -28,6 +28,7 @@ export class FormModelService {
 
     public _formDefinition;
     public $flags : EventEmitter<any>;
+    public $saveEvent : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
     public model               = {
@@ -94,16 +95,21 @@ export class FormModelService {
 
     constructor ( private http : AmpHttpService ) {
         this.$flags            = new EventEmitter();
+        this.$saveEvent        = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
     }
 
+    public ngOnInit () {
+        this.$saveEvent.subscribe ((model) => {
+            this.save(model);
+        })
+    }
     public generatePDFUrl () {
         if ( this.model.formId ) {
             return Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification/' + this.model.formId + '/pdf';
         }
         return null;
     }
-
     public get licensee () {
         return this.model.context.licensee;
     }
@@ -122,6 +128,10 @@ export class FormModelService {
 
     get context () {
         return this.model.context;
+    }
+
+    set submitUrl (url) {
+        this._submitUrl = url;
     }
 
     set formDefinition ( formDef ) {
@@ -308,7 +318,11 @@ export class FormModelService {
                    .get( this.generatePDFUrl() , options )
                    .map( (res) => res.text() );
     }
-
+    public save( model ) : Observable<Response> {
+        let headers = new Headers( { 'Content-Type' : 'application/json' } );
+        let options = new RequestOptions( { headers : headers } );
+        return this.http.post(this._submitUrl, JSON.stringify( model ), options);
+    }
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
     saveForm ( value : any ) : Observable < string > {
         let headers = new Headers( { 'Content-Type' : 'application/json' } );
