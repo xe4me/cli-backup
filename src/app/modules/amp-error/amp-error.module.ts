@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AmpErrorItemComponent , AmpErrorComponent } from './index';
+import { AmpErrorItemComponent , AmpErrorComponent } from './components/amp-error/amp-error.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AmpPipesModule } from '../amp-pipes';
