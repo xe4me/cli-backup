@@ -5,6 +5,7 @@ import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import { FormSectionService } from '../../../app/services/form-section/form-section.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 import { AmpStandAloneMenuModule } from '../../../app/modules/amp-standalone-menu/amp-standalone-menu.module';
 import { AmpStandAloneMenuComponent } from '../../../app/modules/amp-standalone-menu/components/amp-standalone-menu/amp-standalone-menu.component';
