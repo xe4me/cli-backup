@@ -104,8 +104,6 @@ export class ReviewSectionComponent {
     }
 
     public shouldStick = () : boolean => {
-        console.log(this.scrollService.getMyWindowOffset( this.el ));
-
         return this.scrollService.getMyWindowOffset( this.el ) <= 80;
     };
 }
