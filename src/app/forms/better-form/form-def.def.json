@@ -512,7 +512,7 @@
                                         "id": "ResidentialAddress"
                                     },
                                     {
-                                        "id": "PostalAddressSameAsResidential"
+                                        "id": "Applicant2PostalAddressSameAsResidential"
                                     },
                                     {
                                         "id": "PostalAddress"
@@ -617,7 +617,7 @@
                                         "id": "TaxFileNumber"
                                     },
                                     {
-                                        "id": "NoTaxFileNumber"
+                                        "id": "Applicant2NoTaxFileNumber"
                                     },
                                     {
                                         "id": "NoTaxFileNumberReason",
@@ -790,15 +790,15 @@
                                         ]
                                     },
                                     {
-                                        "id": "USTaxCitizen",
+                                        "id": "Applicant2USTaxCitizen",
                                         "buttons": [
                                             {
-                                                "id": "Yes",
+                                                "id": "Applicant2Yes",
                                                 "value": "Yes",
                                                 "label": "Yes"
                                             },
                                             {
-                                                "id": "No",
+                                                "id": "Applicant2No",
                                                 "value": "No",
                                                 "label": "No"
                                             }
