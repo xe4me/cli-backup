@@ -8,15 +8,14 @@ import { AmpInputComponent } from '../../../amp-inputs';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpManualAddressComponent implements OnInit {
+    public static MANUAL_ARRES_GROUP_NAME = 'manual-address';
     @ViewChild( 'manualAddress' ) manualAddress : AmpInputComponent;
-    private static MANUAL_ARRES_GROUP_NAME = 'manual-address';
-    private manualAddressCG : FormGroup    = new FormGroup( {} );
-    @Input() id : string                   = 'default-';
-    @Input() index : string                = '';
-    @Input() isInSummaryState : boolean    = false;
-    @Input() required : boolean            = true;
+    @Input() id : string                = 'default-';
+    @Input() index : string             = '';
+    @Input() isInSummaryState : boolean = false;
+    @Input() required : boolean         = true;
     @Input() controlGroup : FormGroup;
-    @Input() googleAddress                 = {
+    @Input() googleAddress              = {
         id          : 'googleAddress' ,
         label       : '' ,
         placeholder : '' ,
@@ -25,7 +24,7 @@ export class AmpManualAddressComponent implements OnInit {
             required : 'Address is a required field.'
         }
     };
-    @Input() address                       = {
+    @Input() address                    = {
         id        : 'address' ,
         label     : 'Address' ,
         regex     : '' ,
@@ -35,7 +34,7 @@ export class AmpManualAddressComponent implements OnInit {
             required : 'Address is a required field.'
         }
     };
-    @Input() suburb                        = {
+    @Input() suburb                     = {
         id        : 'suburb' ,
         label     : 'Suburb' ,
         regex     : '' ,
@@ -45,7 +44,7 @@ export class AmpManualAddressComponent implements OnInit {
             required : 'Suburb is required.'
         }
     };
-    @Input() state                         = {
+    @Input() state                      = {
         id     : 'state' ,
         label  : 'State' ,
         regex  : '^(ACT|NSW|NT|QLD|SA|TAS|VIC|WA)$' ,
@@ -54,7 +53,7 @@ export class AmpManualAddressComponent implements OnInit {
             pattern  : 'State is not valid.'
         }
     };
-    @Input() postCode                      = {
+    @Input() postCode                   = {
         id        : 'postCode' ,
         label     : 'Postcode' ,
         maxLength : 10 ,
@@ -67,6 +66,7 @@ export class AmpManualAddressComponent implements OnInit {
             minLength : 'Post code is not valid.'
         }
     };
+    private manualAddressCG : FormGroup = new FormGroup( {} );
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -106,11 +106,11 @@ export class AmpManualAddressComponent implements OnInit {
             this.postCodeCtrl.setValue( null , { emitEvent : false } );
             this.markAllAsUnToched();
         }
-        //this.cityCtrl.setValue( _addressGroup.city );
+        // this.cityCtrl.setValue( _addressGroup.city );
     }
 
     private markAllAsUnToched () {
-        //this.manualAddressCG.markAsUntouched();
+        // this.manualAddressCG.markAsUntouched();
         this.addressCtrl.markAsUntouched();
         this.suburbCtrl.markAsUntouched();
         this.stateCtrl.markAsUntouched();

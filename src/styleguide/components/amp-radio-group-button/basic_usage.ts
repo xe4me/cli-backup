@@ -1,12 +1,10 @@
 import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
-import { AmpRadioButtonGroupComponent } from '../../../app/components/amp-radio-button-group/amp-radio-button-group.component';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-radio-group-button-block-basic-usage' ,
     templateUrl : 'src/styleguide/components/amp-radio-group-button/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ] ,
-    directives  : [ AmpRadioButtonGroupComponent ]
+    styles      : [ require( './basic_usage.scss' ).toString() ]
 } )
 
 export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {

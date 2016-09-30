@@ -1,9 +1,6 @@
 import 'rxjs/add/operator/let';
-import { of } from 'rxjs/observable/of';
 import { ModelActions } from '../../actions/model/model.action';
-import modelReducer from '../../reducers/model/model.reducer';
-import { getIn } from '../../../util/functions.utils';
-import { addProviders } from '@angular/core/testing/testing';
+import { getIn } from '../../../modules/amp-utils';
 import { StoreService } from './store.service';
 import { inject , TestBed } from '@angular/core/testing/test_bed';
 import { AmpReduxModule } from '../../amp-redux.module';
@@ -42,7 +39,7 @@ describe( 'Store Service' , function() {
                     'telephones'
                 ];
                 let section = getIn( fdn , TestModel );
-                storeService.select( fdn ).subscribe( telephones => {
+                storeService.select( fdn ).subscribe( ( telephones ) => {
                     expect( telephones ).toEqual( section.telephones );
                 } );
             } )
@@ -60,7 +57,7 @@ describe( 'Store Service' , function() {
                     fdn   : fdn ,
                     query : 'updated with redux'
                 };
-                storeService.select( fdn ).subscribe( contactNumber => {
+                storeService.select( fdn ).subscribe( ( contactNumber ) => {
                     if ( updated ) {
                         expect( contactNumber ).toEqual( payload.query );
                     } else {
@@ -90,7 +87,7 @@ describe( 'Store Service' , function() {
                     fdn   : fdn ,
                     query : 'updated with redux'
                 };
-                storeService.select( fdn ).subscribe( contactNumber => {
+                storeService.select( fdn ).subscribe( ( contactNumber ) => {
                     if ( updated ) {
                         called ++;
                         expect( contactNumber ).toEqual( payload.query );
@@ -124,7 +121,7 @@ describe( 'Store Service' , function() {
                         fdn   : fdn ,
                         query : 'updated with redux'
                     };
-                    storeService.select( fdn ).subscribe( contactNumber => {
+                    storeService.select( fdn ).subscribe( ( contactNumber ) => {
                         if ( updated ) {
                             console.log( '********* called' , called );
                             called ++;

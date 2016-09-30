@@ -2,7 +2,7 @@ import 'rxjs/add/operator/let';
 import { of } from 'rxjs/observable/of';
 import { ModelActions } from '../../actions/model/model.action';
 import modelReducer from './model.reducer';
-import { getIn } from '../../../util/functions.utils';
+import { getIn } from '../../../modules/amp-utils';
 const TestModel = require( '../../fixtures/model/test.model.json' );
 interface Array<T> {
     last() : Array<T>;
@@ -137,7 +137,6 @@ describe( 'Model' , function() {
         } );
     } );
 } );
-
 //     describe('getBook', function() {
 //         it('should get a selected book out of the books state', function() {
 //             const state : fromBooks.BooksState = {

@@ -80,6 +80,26 @@
         "readme": "<p>Here are the different types and styles of lists available</p>\n"
     },
     {
+        "name": "Tables",
+        "sources": [
+            "src/app/layout/tables/tables.ts"
+        ],
+        "id": "Tables",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/tables/tables.html",
+                "styles": "src/styleguide/layout/tables/tables.scss",
+                "source": "src/styleguide/layout/tables/tables.ts",
+                "galen": "src/styleguide/layout/tables/tables.spec",
+                "jasmine": "src/styleguide/layout/tables/tables.spec.ts",
+                "component": "tables",
+                "component_src_location": "layout/tables/tables",
+                "name": "Tables"
+            }
+        ],
+        "readme": "<p>Here are the different types and styles of lists available</p>\n"
+    },
+    {
         "name": "Amp Linear ProgressBar",
         "sources": [
             "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
@@ -98,6 +118,26 @@
             }
         ],
         "readme": "<p>To see a progress bar look and feel.</p>\n"
+    },
+    {
+        "name": "Amp standalone menu",
+        "sources": [
+            "src/app/components/amp-standalone-menu/amp-standalone-menu.component.ts"
+        ],
+        "id": "AmpStandAloneMenuComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-standalone-menu/basic_usage.html",
+                "styles": "src/styleguide/components/amp-standalone-menu/basic_usage.scss",
+                "source": "src/styleguide/components/amp-standalone-menu/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.spec.ts",
+                "component": "amp-standalone-menu-basic-usage",
+                "component_src_location": "components/amp-standalone-menu/basic_usage",
+                "name": "AMP standalone menu"
+            }
+        ],
+        "readme": "<p>Stand alone menu component</p>\n"
     },
     {
         "name": "Amp Block Loader",

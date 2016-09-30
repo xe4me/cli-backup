@@ -1,4 +1,4 @@
-import { getIn } from '../../../util/functions.utils';
+import { getIn } from '../../../modules/amp-utils';
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

@@ -12,18 +12,19 @@ import { FormGroup } from '@angular/forms';
 } )
 export class AmpQasAddressComponent implements AfterViewInit {
     @ViewChild( 'manualEntryCmp' ) manualEntryCmp;
-    @Input() id                     = 'default-qas-id';
-    @Input() label                  = 'Default qas label';
-    @Input() controlGroup;
-    @Input() errors                 = {
+    @Input() id : string                                = 'default-qas-id';
+    @Input() label : string                             = 'Default qas label';
+    @Input() controlGroup : FormGroup;
+    @Input() errors                                     = {
         required : 'Address is a required field.'
     };
-    @Input() placeholder            = 'Default place holder';
-    @Input() required;
-    @Input() isInSummaryState;
-    @Input() minTriggerLength       = 3;
-    @Output( 'selected' ) $selected = new EventEmitter<any>();
+    @Input() placeholder : string                       = 'Default place holder';
+    @Input() required : boolean;
+    @Input() isInSummaryState : boolean;
+    @Input() minTriggerLength : number                  = 3;
+    @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
+    private maxHeight : string                          = '250px';
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
@@ -58,8 +59,7 @@ export class AmpQasAddressComponent implements AfterViewInit {
         let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
         this._ampQasAddressService
             .getFormattedAddress( testManiker )
-            .subscribe( ( _address )=> {
-                console.log( 'address is :' , _address );
+            .subscribe( ( _address ) => {
                 this.manualEntryCmp.updateControls( _address );
                 this.$selected.emit( _address );
             } );

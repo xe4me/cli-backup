@@ -36,13 +36,14 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
-    @Output( 'deSelected' ) $deSelected             = new EventEmitter<any>();
+    @Output( 'deSelected' ) $deSelected = new EventEmitter<any>();
+    @Input() maxHeight : string = '400px';
     @Input() id;
-    @Input() selectedItemIdentifier                 = 'id';
-    @Input() selectedItemValueIdentifier            = 'label';
-    @Input() isInSummaryState                       = false;
-    @Input() minTriggerLength                       = 0;
-    @Input() errors                                 = {};
+    @Input() selectedItemIdentifier      = 'id';
+    @Input() selectedItemValueIdentifier = 'label';
+    @Input() isInSummaryState            = false;
+    @Input() minTriggerLength            = 0;
+    @Input() errors                      = {};
     @Input() selectLabel;
     @Input() label;
     @Input() controlGroup : FormGroup;
@@ -50,14 +51,14 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() options;
     @Input() isActive;
     private subscription : Subscription;
-    private showNoResults : boolean                 = false;
-    private INPUT_FOCUSER : number                  = 0;
-    private LIST_FOCUSER : number                   = 1;
-    private selectedOption                          = {};
-    private _required : boolean                     = false;
-    private _optionsHidden : boolean                = true;
-    private doApiQuery : boolean                    = false;
-    private filteredList : any[]                    = [];
+    private showNoResults : boolean      = false;
+    private INPUT_FOCUSER : number       = 0;
+    private LIST_FOCUSER : number        = 1;
+    private selectedOption               = {};
+    private _required : boolean          = false;
+    private _optionsHidden : boolean     = true;
+    private doApiQuery : boolean         = false;
+    private filteredList : any[]         = [];
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -175,7 +176,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
 
     private filter ( items , identifier , query , doFilter ) : Observable<any> {
         return this.filteredList = doFilter && isPresent( query ) ? items.filter(
-            item => {
+            ( item ) => {
                 return item[ identifier ] && item[ identifier ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
             }
         ) : items;
@@ -201,8 +202,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                     }
                 } )
                 .filter(
-                    x => x && x.length >= this.minTriggerLength && x.trim() !== this.selectedOption[ this.selectedItemValueIdentifier ] )
-                .switchMap( queryString => this.queryServiceCall( queryString ) )
+                    ( x ) => x && x.length >= this.minTriggerLength && x.trim() !== this.selectedOption[ this.selectedItemValueIdentifier ] )
+                .switchMap( ( queryString ) => this.queryServiceCall( queryString ) )
                 .subscribe( ( result ) => {
                     this.clearSelectedItem();
                     this.open();

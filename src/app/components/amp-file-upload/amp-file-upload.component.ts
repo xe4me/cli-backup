@@ -1,7 +1,8 @@
 import { Component,
          OnInit,
          ChangeDetectorRef,
-         Input } from '@angular/core';
+         Input,
+         ViewChild } from '@angular/core';
 import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 import { Http,
          Response } from '@angular/http';
@@ -15,9 +16,10 @@ import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progr
     directives  : [ UPLOAD_DIRECTIVES, AmpButton, AmpLinearProgressBarComponent ]
 })
 export class AmpFileUploadComponent implements OnInit {
-
+    @ViewChild('fileInput') fileInput;
     @Input() uploadUrl : string;
     @Input() tokenUrl : string;
+    @Input() formId : string;
 
     public token : string;
     private basicOptions : Object;
@@ -27,6 +29,8 @@ export class AmpFileUploadComponent implements OnInit {
     private speed : string;
     private uploaded : string;
     private showProgress : boolean = false;
+    private backendError : boolean = false;
+    private error : boolean = false;
     private uploadUrlWithToken : string = '';
     private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
@@ -41,7 +45,8 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private displayProgress ( ) : void {
-        this.showProgress = true;
+        this.error = this.backendError;
+        this.showProgress = !this.error;
     }
 
     private showProgressBar ( ) : boolean {
@@ -67,14 +72,23 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private updateToken () : void {
+        this.fileInput.nativeElement.value = null;
+        this.error = false;
         this.http.get( this.tokenUrl )
             .map( ( res : Response ) => res.json() )
-            .subscribe( ( res : any ) => {
-                this.token = res.payload.token;
-                this.uploadUrlWithToken = this.uploadUrl + this.token;
-                this.basicOptions = {
-                    url: this.uploadUrlWithToken
-                };
-            } );
+            .subscribe(
+                ( res : any ) => {
+                    this.token = res.payload.token;
+                    this.uploadUrl += '?formId=' + this.formId;
+                    this.uploadUrlWithToken = this.uploadUrl + '&token=' + this.token;
+                    this.basicOptions = {
+                        url: this.uploadUrlWithToken
+                    };
+                    this.backendError = false;
+                },
+                ( error ) => {
+                    this.backendError = true;
+                }
+            );
     }
 }

@@ -1,5 +1,5 @@
 import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewChild } from '@angular/core';
-import { arrayJoinByDash } from './util/functions.utils';
+import { arrayJoinByDash } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
@@ -24,11 +24,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __custom : any;
     private scrollSubscription : Subscription;
 
-    constructor ( private formModelService : FormModelService ,
-                  private elementRef : ElementRef ,
-                  private _cd : ChangeDetectorRef ,
-                  private progressObserver : ProgressObserverService ,
-                  private scrollService : ScrollService ) {
+    constructor ( protected formModelService : FormModelService ,
+                  protected elementRef : ElementRef ,
+                  protected _cd : ChangeDetectorRef ,
+                  protected progressObserver : ProgressObserverService ,
+                  protected scrollService : ScrollService ) {
     }
 
     context () {
@@ -77,7 +77,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     onNext () {
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
-            this.progressObserver.onProgress(this.__fdn);
+            this.progressObserver.onProgress( this.__fdn );
             setTimeout( () => {
                 this.isInSummaryState = true;
                 this._cd.markForCheck();

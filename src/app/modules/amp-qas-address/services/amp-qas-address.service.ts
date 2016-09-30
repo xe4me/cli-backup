@@ -21,7 +21,7 @@ export class AmpQasAddressService {
         return this
             .http
             .get( url , options )
-            .map( res => {
+            .map( ( res ) => {
                 let re = res.json();
                 if ( re.payload.QAPicklist.Total && re.payload.QAPicklist.Total > 0 ) {
                     return re.payload.QAPicklist.PicklistEntry;
@@ -40,7 +40,7 @@ export class AmpQasAddressService {
         return this
             .http
             .get( url , options )
-            .map( res => {
+            .map( ( res ) => {
                 let re = res.json();
                 return re.payload;
             } )

@@ -12,13 +12,10 @@ import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
-import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
-import { AmpCheckboxComponent } from '../../../../app/components/amp-checkbox/amp-checkbox.component';
-import { FDN } from '../Application.fdn';
 import { FormService } from '../../../../app/services/form/form.service';
 @Component( {
-    selector        : 'block-with-checkbox' ,
-    template        : `
+    selector   : 'block-with-checkbox' ,
+    template   : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
             <amp-form-row [attr.theme]="themeService.theme.attr">
                 <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 mr+ mt0">
@@ -37,8 +34,7 @@ import { FormService } from '../../../../app/services/form/form.service';
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AmpCheckboxComponent ] ,
-    encapsulation   : ViewEncapsulation.Emulated ,
+    directives : [ AmpFormBlockComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 export class BlockWithCheckbox extends FormBlock {
