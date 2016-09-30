@@ -1,19 +1,19 @@
 
 .errors {
-  @extend %#{$namespace}font-size-tiny;
-  @include amp-family($errors-font-family);
-  color: #d60e1c;
-  font-weight: 400;
-  display: block;
-  line-height: 25px;
-  margin-top: 5px;
-  .error-item {
-    margin-bottom: 20px;
-  }
-  .error-item:last-child {
-    margin-bottom: 0;
-  }
-  .icon-errors {
+    @extend %#{$namespace}font-size-tiny;
+    @include amp-family($errors-font-family);
     color: #d60e1c;
-  }
+    font-weight: 400;
+    display: block;
+    line-height: 25px;
+    margin-top: 5px;
+    .error-item {
+        margin-bottom: 20px;
+    }
+    .error-item:last-child {
+        margin-bottom: 0;
+    }
+    .icon-errors {
+        color: #d60e1c;
+    }
 }

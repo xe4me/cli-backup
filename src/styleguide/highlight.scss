@@ -1,46 +1,46 @@
 
 highlight {
-  display: block;
-  overflow-x: auto;
-  padding: 0 !important;
-  background: #0C2238;
-  color: white;
-  font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
-  line-height: 1.45;
-  tab-size: 2;
-  -webkit-font-smoothing: auto;
-  -webkit-text-size-adjust: none;
-  position: relative;
-  margin: 0 0 1em;
-  margin-bottom: 0;
-  border-radius: 0;
-  min-height: 100%;
-  &[color-default]{
-    line-height:1 !important;
-    background-color: whitesmoke !important;
-    color: #000 !important;
-  }
+    display: block;
+    overflow-x: auto;
+    padding: 0 !important;
+    background: #0C2238;
+    color: white;
+    font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+    line-height: 1.45;
+    tab-size: 2;
+    -webkit-font-smoothing: auto;
+    -webkit-text-size-adjust: none;
+    position: relative;
+    margin: 0 0 1em;
+    margin-bottom: 0;
+    border-radius: 0;
+    min-height: 100%;
+    &[color-default]{
+        line-height:1 !important;
+        background-color: whitesmoke !important;
+        color: #000 !important;
+    }
 }
 
 highlight:before {
-  content: attr(lang);
-  display: block;
-  background: #1C5792;
-  color: white;
-  line-height: 48px;
-  padding: 0 16px;
-  border-radius: 2px 2px 0 0;
+    content: attr(lang);
+    display: block;
+    background: #1C5792;
+    color: white;
+    line-height: 48px;
+    padding: 0 16px;
+    border-radius: 2px 2px 0 0;
 }
 
 highlight {
-  &.no-header:before {
-    display: none;
-  }
-  pre {
-    min-height: 100%;
-    background-color: transparent;
-    font-weight: 400;
-  }
+    &.no-header:before {
+        display: none;
+    }
+    pre {
+        min-height: 100%;
+        background-color: transparent;
+        font-weight: 400;
+    }
 }
 
 .hljs-tag,
@@ -53,23 +53,23 @@ highlight {
 .hljs-flow,
 .nginx .hljs-title,
 .tex .hljs-special {
-  color: #E5C3A2;
+    color: #E5C3A2;
 }
 
 highlight {
-  color: #ddd;
+    color: #ddd;
 }
 
 highlight .hljs-constant,
 .asciidoc .hljs-code,
 .markdown .hljs-code {
-  color: #80CBC4;
+    color: #80CBC4;
 }
 
 .hljs-code,
 .hljs-class .hljs-title,
 .hljs-header {
-  color: white;
+    color: white;
 }
 
 .hljs-link_label,
@@ -79,7 +79,7 @@ highlight .hljs-constant,
 .hljs-value,
 .hljs-params,
 .hljs-regexp {
-  color: #7DB9F4;
+    color: #7DB9F4;
 }
 
 .hljs-link_url,
@@ -111,7 +111,7 @@ highlight .hljs-constant,
 .tex .hljs-command,
 .hljs-prompt,
 .hljs-name {
-  color: #9ccc65;
+    color: #9ccc65;
 }
 
 .hljs-comment,
@@ -126,7 +126,7 @@ highlight .hljs-constant,
 .hljs-shebang,
 .apache .hljs-sqbracket,
 .tex .hljs-formula {
-  color: #607D8B;
+    color: #607D8B;
 }
 
 .coffeescript .javascript,
@@ -136,7 +136,7 @@ highlight .hljs-constant,
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 
@@ -144,52 +144,52 @@ highlight .hljs-constant,
  * CODE HIGHLIGHTING
  *******************/
 pre {
-  white-space: pre;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 pre > code.highlight {
 
-  font-weight: 400;
-  -webkit-user-select: initial;
-  -moz-user-select: initial;
-  -ms-user-select: initial;
-  user-select: initial;
+    font-weight: 400;
+    -webkit-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
 }
 
 pre, code {
-  margin: 0;
-  padding: 0;
-  font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
-  overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+    overflow-wrap: break-word;
 }
 
 
 pre > code.highlight {
-  background-color: transparent;
-  font-weight: 400;
+    background-color: transparent;
+    font-weight: 400;
 
 }
 
 code {
-  font-size: rem(1.2);
-  background: rgba(0, 0, 0, 0.065);
+    font-size: rem(1.2);
+    background: rgba(0, 0, 0, 0.065);
 }
 
 code.highlight {
-  display: block;
-  overflow-wrap: break-word;
+    display: block;
+    overflow-wrap: break-word;
 }
 
 code:not(.highlight) {
-  color: #106CC8;
-  margin-left: 1px;
-  margin-right: 1px;
-  -webkit-font-smoothing: auto;
-  padding: 0.125em 0.35em;
-  border-radius: 2px;
+    color: #106CC8;
+    margin-left: 1px;
+    margin-right: 1px;
+    -webkit-font-smoothing: auto;
+    padding: 0.125em 0.35em;
+    border-radius: 2px;
 }
 .layout-content code.highlight {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
