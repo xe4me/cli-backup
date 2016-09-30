@@ -1,7 +1,11 @@
 @import '../../../../../styles/abstracts';
 @import './themes/theme-form';
 @import './themes/theme-tools';
-
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 $summary-state-color : $amp-colour-sky-blue;
 $summary-state-font-family : $amp-font-open-sans-regular;
 $summary-state-font-weight : 300;

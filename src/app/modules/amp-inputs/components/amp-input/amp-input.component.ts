@@ -27,6 +27,7 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
         styles          : [ require( './amp-input.component.scss' ).toString() ] ,
         inputs          : [
             'id' ,
+            'type' ,
             'defaultValue' ,
             'errors' ,
             'customValidator' ,
@@ -68,11 +69,12 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
-    public control : FormControl         = new FormControl();
+    public control : FormControl = new FormControl();
     public errors                        = {};
     public controlGroup : FormGroup;
     protected inputWidth : number;
     protected id : string;
+    protected type : string              = 'text';
     protected _minLength : number;
     protected _maxLength : number;
     protected _maxDate : string;
@@ -160,9 +162,9 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         return undefined;
     }
 
-    public checkErrors ( killTimer ) {
+    public checkErrors ( killTimer = false ) {
         this.control.setErrors( this.validate( this.control ) , { emitEvent : true } );
-        if(killTimer){
+        if ( killTimer ) {
             clearTimeout( this.idleTimeoutId );
         }
         this._cd.markForCheck();
@@ -295,7 +297,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             this._cd.markForCheck();
         } );
         let notUsable;
-        if ( this.control.value ) {
+        if ( this.control.value && isNaN( this.control.value ) ) {
             this.control.setValue( this.control.value.trim() );
             notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
             notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';

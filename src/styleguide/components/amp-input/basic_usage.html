@@ -1,28 +1,41 @@
 <form #formModel="ngForm" class="nl-form">
     isvalid {{ control.valid }}
     <br/>
-    <amp-input
-            [attr.theme]="themeService.theme.attr"
-            [id]="'firstname'"
-            [label]="'Name'"
-            [controlGroup]="controlGroup"
-            [required]="true"
-            [pattern]="'^([0-9])*$'"
-            [maxLength]="'12'"
-            [minLength]="'4'"
-            [currency]="'$'"
-    >
-    </amp-input>
-    <amp-error [controlGroup]="controlGroup"></amp-error>
-    <hr>
-    <div class="grid__item">
+    <amp-form-row>
         <amp-input
-            [id]="'date'"
-            [label]="'Date'"
-            [controlGroup]="dateControlGroup"
-            [required]="true"
-            [valDate]="true">
+                [attr.theme]="themeService.theme.attr"
+                [id]="'firstname'"
+                [label]="'Name'"
+                [controlGroup]="controlGroup"
+                [required]="true"
+                [pattern]="'^([0-9])*$'"
+                [maxLength]="'12'"
+                [minLength]="'4'"
+                [currency]="'$'">
+        </amp-input>
+    </amp-form-row>
+    <amp-form-row class='mt+'>
+        <amp-input
+                [attr.theme]="themeService.theme.attr"
+                [id]="'number'"
+                [label]="'Number'"
+                [type]="'number'"
+                [controlGroup]="controlGroup"
+                [required]="true"
+                [pattern]="'^([0-9])*$'"
+                [maxLength]="'12'"
+                [minLength]="'4'">
+        </amp-input>
+        <amp-error [controlGroup]="controlGroup"></amp-error>
+    </amp-form-row>
+    <amp-form-row class='mt+'>
+        <amp-input
+                [id]="'date'"
+                [label]="'Date'"
+                [controlGroup]="dateControlGroup"
+                [required]="true"
+                [valDate]="true">
         </amp-input>
         <amp-error [controlGroup]="dateControlGroup"></amp-error>
-    </div>
+    </amp-form-row>
 </form>
