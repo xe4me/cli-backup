@@ -249,7 +249,7 @@
                                         "id": "DriversLicenseState"
                                     },
                                     {
-                                        "id": "DirversLicenseNumber"
+                                        "id": "DriversLicenseNumber"
                                     },
                                     {
                                         "id": "MedicareCardNumber"
@@ -584,7 +584,7 @@
                                         "id": "Applicant2_DriversLicenseState"
                                     },
                                     {
-                                        "id": "Applicant2_DirversLicenseNumber"
+                                        "id": "Applicant2_DriversLicenseNumber"
                                     },
                                     {
                                         "id": "Applicant2_MedicareCardNumber"
