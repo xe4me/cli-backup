@@ -3,21 +3,21 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 
 @Component({
-  selector: '<%= selector %>',
-  directives: [ AmpBlockLoaderDirective ],<% if(inlineTemplate) { %>
-  template: `
-    <p>
-      <%= dasherizedModuleName %> Works!
-    </p>
-  `,<% } else { %>
-  templateUrl: '<%= dasherizedModuleName %>.component.html',<% } if(inlineStyle) { %>
-  styles: []<% } else { %>
-  styleUrls: ['<%= dasherizedModuleName %>.component.<%= styleExt %>']<% } %>
+    selector: '<%= selector %>',
+    directives: [ AmpBlockLoaderDirective ],<% if(inlineTemplate) { %>
+    template: `
+        <p>
+          <%= dasherizedModuleName %> Works!
+        </p>
+    `,<% } else { %>
+    templateUrl: '<%= dasherizedModuleName %>.component.html',<% } if(inlineStyle) { %>
+    styles: []<% } else { %>
+    styleUrls: ['<%= dasherizedModuleName %>.component.<%= styleExt %>']<% } %>
 })
 export class <%= classifiedModuleName %>Component implements OnInit {
-  private fullyDistinguishedName = [ 'Application' ];
-  private form   = this._builder.group( {} );
-  private childBlocks            = {
+    private fullyDistinguishedName = [ 'Application' ];
+    private form   = this._builder.group( {} );
+    private childBlocks            = {
         name        : 'AmpButtonComponentSection' ,
         blockType   : 'PageSectionComponent' ,
         blockLayout : 'SECTION' ,

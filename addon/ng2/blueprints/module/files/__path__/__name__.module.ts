@@ -4,12 +4,12 @@ import { routing } from './<%= dasherizedModuleName %>.routes';
 import { <%= classifiedModuleName %>Component } from './<%= dasherizedModuleName %>.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    routing
-  ],
-  declarations: [
-    <%= classifiedModuleName %>Component
-  ]
+    imports: [
+        CommonModule,
+        routing
+    ],
+    declarations: [
+        <%= classifiedModuleName %>Component
+    ]
 })
 export class <%= classifiedModuleName %>Module { }
