@@ -33,7 +33,7 @@ export class AmpQasAddressComponent implements AfterViewInit {
         this._cd.detectChanges();
     }
 
-    public get qasControlGroup () {
+    public get qasControlGroup () : any {
         if ( this.controlGroup && this.controlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ) ) {
             return this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
         }
