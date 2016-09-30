@@ -3,9 +3,6 @@ import {
     AfterViewInit
 } from '@angular/core';
 import {
-    AbstractControl
-} from '@angular/forms';
-import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
@@ -19,7 +16,6 @@ import {
 } )
 export class AddressBlock extends FormBlock {
     public postalAddressDifferent : boolean;
-    public postalAddressCheckbox : AbstractControl;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
