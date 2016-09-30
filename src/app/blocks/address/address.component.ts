@@ -30,7 +30,10 @@ export class AddressBlock extends FormBlock {
     }
 
     public ngAfterViewInit() {
-        this.postalAddressCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
+        const postalAddressCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
+        postalAddressCheckbox.valueChanges.subscribe(val => {
+            this.postalAddressDifferent = val;
+        });
         super.ngAfterViewInit();
     }
 }

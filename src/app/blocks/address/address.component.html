@@ -20,14 +20,14 @@
             </amp-checkbox>
         </div>
     </amp-form-row>
-    <amp-form-row *ngIf="postalAddressCheckbox && postalAddressCheckbox.value">
+    <amp-form-row *ngIf="postalAddressDifferent">
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt0">
             <amp-input
                     [id]="__custom.controls[2].id"
                     [controlGroup]="__controlGroup"
                     [label]="'Postal address'"
                     [isInSummaryState]="isInSummaryState"
-                    [required]="true">
+                    [required]="postalAddressDifferent">
             </amp-input>
         </div>
     </amp-form-row>
