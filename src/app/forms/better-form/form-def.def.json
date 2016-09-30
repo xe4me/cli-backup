@@ -512,7 +512,7 @@
                                         "id": "ResidentialAddress"
                                     },
                                     {
-                                        "id": "Applicant2PostalAddressSameAsResidential"
+                                        "id": "Applicant2_PostalAddressSameAsResidential"
                                     },
                                     {
                                         "id": "PostalAddress"
@@ -617,7 +617,7 @@
                                         "id": "TaxFileNumber"
                                     },
                                     {
-                                        "id": "Applicant2NoTaxFileNumber"
+                                        "id": "Applicant2_NoTaxFileNumber"
                                     },
                                     {
                                         "id": "NoTaxFileNumberReason",
@@ -790,15 +790,15 @@
                                         ]
                                     },
                                     {
-                                        "id": "Applicant2USTaxCitizen",
+                                        "id": "Applicant2_USTaxCitizen",
                                         "buttons": [
                                             {
-                                                "id": "Applicant2Yes",
+                                                "id": "Applicant2_USTaxCitizen_Yes",
                                                 "value": "Yes",
                                                 "label": "Yes"
                                             },
                                             {
-                                                "id": "Applicant2No",
+                                                "id": "Applicant2_USTaxCitizen_No",
                                                 "value": "No",
                                                 "label": "No"
                                             }
