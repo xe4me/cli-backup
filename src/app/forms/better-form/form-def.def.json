@@ -130,38 +130,56 @@
                                             }
                                         ]
                                     }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "LoanOffset",
-                            "blockType": "LoanOffsetBlock",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/loan-offset/loan-offset.component",
-                            "custom": {
-                                "blockTitle": "Offsetting your loan",
-                                "controls": [
-                                    {
-                                        "id": "LoanOffsetAccountNumber"
+                                ],
+                                "optionalBlocks": {
+                                    "new_offset_account" : {
+                                        "name": "LoanOffset",
+                                        "blockType": "LoanOffsetBlock",
+                                        "blockLayout": "INLINE",
+                                        "commonBlock": false,
+                                        "path": "blocks/loan-offset/loan-offset.component",
+                                        "custom": {
+                                            "blockTitle": "Offsetting your loan",
+                                            "controls": [
+                                                {
+                                                    "id": "LoanOffsetAccountNumber"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "convert_deposit_account" : {
+                                        "name": "DepositTransition",
+                                        "blockType": "DepositTransitionBlock",
+                                        "blockLayout": "INLINE",
+                                        "commonBlock": false,
+                                        "path": "blocks/deposit-transition/deposit-transition.component",
+                                        "custom": {
+                                            "blockTitle": "Switching your account",
+                                            "controls": [
+                                                {
+                                                    "id": "DepositTransitionAccountNumber",
+                                                    "label": "Deposit Account Number"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "convert_offset_account" : {
+                                        "name": "OffsetTransition",
+                                        "blockType": "DepositTransitionBlock",
+                                        "blockLayout": "INLINE",
+                                        "commonBlock": false,
+                                        "path": "blocks/deposit-transition/deposit-transition.component",
+                                        "custom": {
+                                            "blockTitle": "Switching your offset",
+                                            "controls": [
+                                                {
+                                                    "id": "OffsetTransitionAccountNumber",
+                                                    "label": "Deposit Account Number"
+                                                }
+                                            ]
+                                        }
                                     }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "DepositTransition",
-                            "blockType": "DepositTransitionBlock",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/deposit-transition/deposit-transition.component",
-                            "custom": {
-                                "blockTitle": "Switching your offset",
-                                "controls": [
-                                    {
-                                        "id": "LoanOffsetAccountNumber",
-                                        "label": "Deposit Account Number"
-                                    }
-                                ]
+                                }
                             }
                         },
                         {
@@ -296,24 +314,24 @@
                                                 "label": "Tax returns not required"
                                             },
                                             {
-                                                "value" : "Aged service or invalid pensioner",
-                                                "label" : "Aged, Service or Invalid Pensioner"
+                                                "value": "Aged service or invalid pensioner",
+                                                "label": "Aged, Service or Invalid Pensioner"
                                             },
                                             {
-                                                "value" : "Other pensioner",
-                                                "label" : "Other exempt Pensioner"
+                                                "value": "Other pensioner",
+                                                "label": "Other exempt Pensioner"
                                             },
                                             {
-                                                "value" : "Territory residents",
-                                                "label" : "Territory residents"
+                                                "value": "Territory residents",
+                                                "label": "Territory residents"
                                             },
                                             {
-                                                "value" : "Non resident",
-                                                "label" : "Non resident"
+                                                "value": "Non resident",
+                                                "label": "Non resident"
                                             },
                                             {
-                                                "value" : "Children",
-                                                "label" : "Children"
+                                                "value": "Children",
+                                                "label": "Children"
                                             }
                                         ]
                                     }
@@ -631,24 +649,24 @@
                                                 "label": "Tax returns not required"
                                             },
                                             {
-                                                "value" : "Aged service or invalid pensioner",
-                                                "label" : "Aged, Service or Invalid Pensioner"
+                                                "value": "Aged service or invalid pensioner",
+                                                "label": "Aged, Service or Invalid Pensioner"
                                             },
                                             {
-                                                "value" : "Other pensioner",
-                                                "label" : "Other exempt Pensioner"
+                                                "value": "Other pensioner",
+                                                "label": "Other exempt Pensioner"
                                             },
                                             {
-                                                "value" : "Territory residents",
-                                                "label" : "Territory residents"
+                                                "value": "Territory residents",
+                                                "label": "Territory residents"
                                             },
                                             {
-                                                "value" : "Non resident",
-                                                "label" : "Non resident"
+                                                "value": "Non resident",
+                                                "label": "Non resident"
                                             },
                                             {
-                                                "value" : "Children",
-                                                "label" : "Children"
+                                                "value": "Children",
+                                                "label": "Children"
                                             }
                                         ]
                                     }
@@ -663,7 +681,7 @@
                             "path": "blocks/source-of-funding/source-of-funding.component",
                             "custom": {
                                 "blockTitle": "Please tell us your...",
-                                                               "controls": [
+                                "controls": [
                                     {
                                         "id": "Applicant2_PrimarySourceOfWealth",
                                         "options": [
