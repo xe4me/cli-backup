@@ -1,13 +1,22 @@
 /* tslint:disable:no-unused-variable */
 
-import { By }           from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { addProviders, async, inject, ComponentFixture , TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+    addProviders,
+    async,
+    inject,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import {
+    FormBuilder,
+    ReactiveFormsModule
+} from '@angular/forms';
 import { <%= classifiedModuleName %>Component } from './<%= dasherizedModuleName %>.component';
 
 describe('Component: <%= classifiedModuleName %>', () => {
-  beforeEach( async( () => {
+    beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports      : [ ReactiveFormsModule ] ,
             declarations : [ ] ,
@@ -16,10 +25,10 @@ describe('Component: <%= classifiedModuleName %>', () => {
         TestBed.compileComponents();
     } ) );
 
-  it('should create an instance', () => {
-    let fixture: ComponentFixture<<%= classifiedModuleName %>Component> = TestBed.createComponent( <%= classifiedModuleName %>Component );
-    fixture.detectChanges();
-    let component       = fixture.debugElement.componentInstance;
-    expect(component).toBeTruthy();
-  });
+    it('should create an instance', () => {
+        let fixture: ComponentFixture<<%= classifiedModuleName %>Component> = TestBed.createComponent( <%= classifiedModuleName %>Component );
+        fixture.detectChanges();
+        let component       = fixture.debugElement.componentInstance;
+        expect(component).toBeTruthy();
+    });
 });
