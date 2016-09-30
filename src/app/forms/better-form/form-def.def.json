@@ -473,7 +473,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2BasicInfo",
+                            "name": "Applicant2_BasicInfo",
                             "blockType": "BasicInfoBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -482,25 +482,25 @@
                                 "blockTitle": "And now for applicant 2",
                                 "controls": [
                                     {
-                                        "id": "Title"
+                                        "id": "Applicant2_Title"
                                     },
                                     {
-                                        "id": "FirstName"
+                                        "id": "Applicant2_FirstName"
                                     },
                                     {
-                                        "id": "MiddleName"
+                                        "id": "Applicant2_MiddleName"
                                     },
                                     {
-                                        "id": "LastName"
+                                        "id": "Applicant2_LastName"
                                     },
                                     {
-                                        "id": "DateOfBirth"
+                                        "id": "Applicant2_DateOfBirth"
                                     }
                                 ]
                             }
                         },
                         {
-                            "name": "Applicant2Address",
+                            "name": "Applicant2_Address",
                             "blockType": "AddressBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -509,19 +509,19 @@
                                 "blockTitle": "And where you live...",
                                 "controls": [
                                     {
-                                        "id": "ResidentialAddress"
+                                        "id": "Applicant2_ResidentialAddress"
                                     },
                                     {
                                         "id": "Applicant2_PostalAddressSameAsResidential"
                                     },
                                     {
-                                        "id": "PostalAddress"
+                                        "id": "Applicant2_PostalAddress"
                                     }
                                 ]
                             }
                         },
                         {
-                            "name": "Applicant2ContactDetails",
+                            "name": "Applicant2_ContactDetails",
                             "blockType": "ContactDetailsBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -530,19 +530,19 @@
                                 "blockTitle": "Just some basic details...",
                                 "controls": [
                                     {
-                                        "id": "EmailAddress"
+                                        "id": "Applicant2_EmailAddress"
                                     },
                                     {
-                                        "id": "MobileNumber"
+                                        "id": "Applicant2_MobileNumber"
                                     },
                                     {
-                                        "id": "HomeNumber"
+                                        "id": "Applicant2_HomeNumber"
                                     }
                                 ]
                             }
                         },
                         {
-                            "name": "Applicant2PrivacyDeclaration",
+                            "name": "Applicant2_PrivacyDeclaration",
                             "blockType": "PrivacyDeclarationBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -551,13 +551,13 @@
                                 "blockTitle": "Thanks Charlie just to confirm...",
                                 "controls": [
                                     {
-                                        "id": "AcceptPrivacyDeclaration"
+                                        "id": "Applicant2_AcceptPrivacyDeclaration"
                                     }
                                 ]
                             }
                         },
                         {
-                            "name": "Applicant2OnlineOrOfflineIdCheck",
+                            "name": "Applicant2_OnlineOrOfflineIdCheck",
                             "blockType": "OnlineOrOfflineIdCheckBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -566,13 +566,13 @@
                                 "blockTitle": "Secure Online ID Check",
                                 "controls": [
                                     {
-                                        "id": "OnlineIDCheck"
+                                        "id": "Applicant2_OnlineIDCheck"
                                     }
                                 ]
                             }
                         },
                         {
-                            "name": "Applicant2IdCheck",
+                            "name": "Applicant2_IdCheck",
                             "blockType": "IdCheckBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -581,31 +581,31 @@
                                 "blockTitle": "Checking your ID",
                                 "controls": [
                                     {
-                                        "id": "DriversLicenseState"
+                                        "id": "Applicant2_DriversLicenseState"
                                     },
                                     {
-                                        "id": "DirversLicenseNumber"
+                                        "id": "Applicant2_DirversLicenseNumber"
                                     },
                                     {
-                                        "id": "MedicareCardNumber"
+                                        "id": "Applicant2_MedicareCardNumber"
                                     },
                                     {
-                                        "id": "MedicareCardCardColour"
+                                        "id": "Applicant2_MedicareCardCardColour"
                                     },
                                     {
-                                        "id": "MedicareCardPatientNumber"
+                                        "id": "Applicant2_MedicareCardPatientNumber"
                                     },
                                     {
-                                        "id": "MedicareCardExpiry"
+                                        "id": "Applicant2_MedicareCardExpiry"
                                     },
                                     {
-                                        "id": "AustralianPassportNUmber"
+                                        "id": "Applicant2_AustralianPassportNUmber"
                                     }
                                 ]
                             }
                         },
                         {
-                            "name": "Applicant2TaxFileNumber",
+                            "name": "Applicant2_TaxFileNumber",
                             "blockType": "TaxFileNumberBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -614,13 +614,13 @@
                                 "blockTitle": "Nearly there...",
                                 "controls": [
                                     {
-                                        "id": "TaxFileNumber"
+                                        "id": "Applicant2_TaxFileNumber"
                                     },
                                     {
                                         "id": "Applicant2_NoTaxFileNumber"
                                     },
                                     {
-                                        "id": "NoTaxFileNumberReason",
+                                        "id": "Applicant2_NoTaxFileNumberReason",
                                         "options": [
                                             {
                                                 "value": "Exempt",
@@ -656,7 +656,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2SourceOfFunding",
+                            "name": "Applicant2_SourceOfFunding",
                             "blockType": "SourceOfFundingBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -665,7 +665,7 @@
                                 "blockTitle": "Please tell us your...",
                                                                "controls": [
                                     {
-                                        "id": "PrimarySourceOfWealth",
+                                        "id": "Applicant2_PrimarySourceOfWealth",
                                         "options": [
                                             {
                                                 "value": "Employment",
@@ -694,7 +694,7 @@
                                         ]
                                     },
                                     {
-                                        "id": "SourceOfFundsForAccount",
+                                        "id": "Applicant2_SourceOfFundsForAccount",
                                         "options": [
                                             {
                                                 "value": "Employment",
@@ -731,7 +731,7 @@
                                         ]
                                     },
                                     {
-                                        "id": "ReasonForOpeningAccount",
+                                        "id": "Applicant2_ReasonForOpeningAccount",
                                         "options": [
                                             {
                                                 "value": "Everday banking",
@@ -755,7 +755,7 @@
                             }
                         },
                         {
-                            "name": "Applicant2Residency",
+                            "name": "Applicant2_Residency",
                             "blockType": "ResidencyBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -764,7 +764,7 @@
                                 "blockTitle": "Last questions... We promise",
                                 "controls": [
                                     {
-                                        "id": "CountryOfCitizenship",
+                                        "id": "Applicant2_CountryOfCitizenship",
                                         "options": [
                                             {
                                                 "value": "Country1",
@@ -777,7 +777,7 @@
                                         ]
                                     },
                                     {
-                                        "id": "CountryOfResidency",
+                                        "id": "Applicant2_CountryOfResidency",
                                         "options": [
                                             {
                                                 "value": "Country1",
