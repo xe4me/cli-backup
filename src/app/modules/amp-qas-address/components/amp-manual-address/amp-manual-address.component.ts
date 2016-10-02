@@ -1,6 +1,8 @@
 import { Component , Input , OnInit , ChangeDetectorRef , ChangeDetectionStrategy , ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
+import { AddressFormats } from '../../services/amp-qas-address.service';
+import { AmpStatesComponent } from '../../../amp-dropdown';
 @Component( {
     selector        : 'amp-manual-address' ,
     template        : require( './amp-manual-address.component.html' ) ,
@@ -10,12 +12,13 @@ import { AmpInputComponent } from '../../../amp-inputs';
 export class AmpManualAddressComponent implements OnInit {
     public static MANUAL_ARRES_GROUP_NAME = 'manual-address';
     @ViewChild( 'manualAddress' ) manualAddress : AmpInputComponent;
-    @Input() id : string                = 'default-';
-    @Input() index : string             = '';
-    @Input() isInSummaryState : boolean = false;
-    @Input() required : boolean         = true;
+    @ViewChild( 'statesCmp' ) statesCmp : AmpStatesComponent;
+    @Input() id : string                  = 'default-';
+    @Input() index : string               = '';
+    @Input() isInSummaryState : boolean   = false;
+    @Input() required : boolean           = true;
     @Input() controlGroup : FormGroup;
-    @Input() googleAddress              = {
+    @Input() googleAddress                = {
         id          : 'googleAddress' ,
         label       : '' ,
         placeholder : '' ,
@@ -24,7 +27,7 @@ export class AmpManualAddressComponent implements OnInit {
             required : 'Address is a required field.'
         }
     };
-    @Input() address                    = {
+    @Input() address                      = {
         id        : 'address' ,
         label     : 'Address' ,
         regex     : '' ,
@@ -34,7 +37,7 @@ export class AmpManualAddressComponent implements OnInit {
             required : 'Address is a required field.'
         }
     };
-    @Input() suburb                     = {
+    @Input() suburb                       = {
         id        : 'suburb' ,
         label     : 'Suburb' ,
         regex     : '' ,
@@ -44,16 +47,11 @@ export class AmpManualAddressComponent implements OnInit {
             required : 'Suburb is required.'
         }
     };
-    @Input() state                      = {
-        id     : 'state' ,
-        label  : 'State' ,
-        regex  : '^(ACT|NSW|NT|QLD|SA|TAS|VIC|WA)$' ,
-        errors : {
-            required : 'State is required.' ,
-            pattern  : 'State is not valid.'
-        }
+    @Input() state                        = {
+        id    : 'state' ,
+        label : 'State'
     };
-    @Input() postCode                   = {
+    @Input() postCode                     = {
         id        : 'postCode' ,
         label     : 'Postcode' ,
         maxLength : 10 ,
@@ -66,7 +64,7 @@ export class AmpManualAddressComponent implements OnInit {
             minLength : 'Post code is not valid.'
         }
     };
-    private manualAddressCG : FormGroup = new FormGroup( {} );
+    private manualAddressCG : FormGroup   = new FormGroup( {} );
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -93,20 +91,23 @@ export class AmpManualAddressComponent implements OnInit {
         return this.manualAddressCG.controls[ this.postCode.id + '_' + this.index ];
     }
 
-    public updateControls ( _addressGroup : AddressGroup ) {
-        if ( _addressGroup ) {
-            this.stateCtrl.setValue( _addressGroup.state );
-            this.suburbCtrl.setValue( _addressGroup.suburb );
-            this.addressCtrl.setValue( _addressGroup.address );
-            this.postCodeCtrl.setValue( _addressGroup.postCode );
-        } else {
-            this.stateCtrl.setValue( null , { emitEvent : false } );
-            this.suburbCtrl.setValue( null , { emitEvent : false } );
-            this.addressCtrl.setValue( null , { emitEvent : false } );
-            this.postCodeCtrl.setValue( null , { emitEvent : false } );
-            this.markAllAsUnToched();
+    public updateControls ( _formattedAddress : AddressFormats.Bank ) {
+        if ( _formattedAddress ) {
+            this.addressCtrl.setValue( _formattedAddress.StreetName );
+            this.suburbCtrl.setValue( _formattedAddress.Locality );
+            this.statesCmp.setSelectValue( _formattedAddress.StateCode.toUpperCase() );
+            this.postCodeCtrl.setValue( _formattedAddress.Postcode );
+            //this.countryCtrl.setValue( _formattedAddress.Country );
         }
-        // this.cityCtrl.setValue( _addressGroup.city );
+        // this.cityCtrl.setValue( _formattedAddress.city );
+    }
+
+    public emptyControls () {
+        this.statesCmp.setSelectValue( null );
+        this.suburbCtrl.setValue( null , { emitEvent : false } );
+        this.addressCtrl.setValue( null , { emitEvent : false } );
+        this.postCodeCtrl.setValue( null , { emitEvent : false } );
+        this.markAllAsUnToched();
     }
 
     private markAllAsUnToched () {
@@ -115,13 +116,7 @@ export class AmpManualAddressComponent implements OnInit {
         this.suburbCtrl.markAsUntouched();
         this.stateCtrl.markAsUntouched();
         this.postCodeCtrl.markAsUntouched();
-        this.manualAddress.checkErrors( true );
+        //this.manualAddress.checkErrors( true );
     }
 }
-export interface AddressGroup {
-    postCode : number;
-    state : string;
-    address : string;
-    suburb : string;
-    city? : string;
-}
+

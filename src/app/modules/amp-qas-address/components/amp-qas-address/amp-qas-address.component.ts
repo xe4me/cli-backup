@@ -2,16 +2,19 @@ import {
     Component , Input , ViewChild , Output , EventEmitter , OnInit ,
     ChangeDetectionStrategy , AfterViewInit , ChangeDetectorRef
 } from '@angular/core';
-import { AmpQasAddressService } from '../../services/amp-qas-address.service';
+import {
+    AmpQasAddressService , AddressFormatTypes , AddressFormats
+} from '../../services/amp-qas-address.service';
 import { AmpTypeaheadComponent } from '../../../amp-typeahead';
 import { FormGroup } from '@angular/forms';
+import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-address.component';
 @Component( {
     selector : 'amp-qas-address' ,
     template : require( './amp-qas-address.component.html' ) ,
     styles   : [ require( './amp-qas-address.component.scss' ).toString() ]
 } )
 export class AmpQasAddressComponent implements AfterViewInit {
-    @ViewChild( 'manualEntryCmp' ) manualEntryCmp;
+    @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpManualAddressComponent;
     @Input() id : string                                = 'default-qas-id';
     @Input() label : string                             = 'Default qas label';
     @Input() controlGroup : FormGroup;
@@ -52,16 +55,18 @@ export class AmpQasAddressComponent implements AfterViewInit {
     };
 
     public onOptionDeSelect ( $event ) {
-        this.manualEntryCmp.updateControls( $event );
+        this.manualAddressCmp.emptyControls();
     }
 
     public onOptionSelect ( $event ) {
+        console.log( '$event' , $event );
         let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
         this._ampQasAddressService
-            .getFormattedAddress( testManiker )
-            .subscribe( ( _address ) => {
-                this.manualEntryCmp.updateControls( _address );
-                this.$selected.emit( _address );
+            .getFormattedAddress( testManiker , AddressFormatTypes.Bank )
+            //.getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
+            .subscribe( ( _formattedAddress : AddressFormats.Bank ) => {
+                this.manualAddressCmp.updateControls( _formattedAddress );
+                this.$selected.emit( _formattedAddress );
             } );
     }
 

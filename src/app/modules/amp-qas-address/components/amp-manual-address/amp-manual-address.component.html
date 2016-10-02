@@ -35,22 +35,12 @@
     </div>
     <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
     <div class='grid__item_floated mt+ 1/2 pr input-wrapper'>
-        <amp-input
-                #manualState
-                noPadding='true'
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
+        <amp-states
+                #statesCmp
                 [id]='state.id+"_"+index'
                 [label]='state.label'
-                [controlGroup]='manualAddressCG'
-                [required]='required'
-                [toupperCase]='true'
-                [pattern]='state.regex'
-                [maxLength]='state.maxLength'
-                [errors]='state.errors'
-                [minLength]='state.minLength'
-        >
-        </amp-input>
+                [controlGroup]='manualAddressCG'>
+        </amp-states>
 
         <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+'_'+index"></amp-error>
     </div>
