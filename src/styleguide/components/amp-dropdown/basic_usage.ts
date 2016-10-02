@@ -1,7 +1,8 @@
-import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
+import { Component , AfterViewInit , ChangeDetectorRef , ViewChild } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown';
 @Component( {
     templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
     providers   : [ ScrollService ] ,
@@ -11,9 +12,14 @@ import { ScrollService } from '../../../app/services/scroll/scroll.service';
 
 export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
     controlGroup : FormGroup = new FormGroup( {} );
+    @ViewChild( 'dropDown' ) dropDown : AmpDropdownComponent;
 
     get control () {
         return this.controlGroup.controls[ 'Title' ];
+    }
+
+    private setTo ( _value ) {
+        this.dropDown.setSelectValue( _value );
     }
 
     isInSummaryState    = false;
