@@ -12,7 +12,6 @@ import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../../../modules/amp-utils';
 @Component( {
     selector        : 'amp-dropdown' ,
-    template        : require( './amp-dropdown.component.html' ) ,
     inputs          : [
         'id' ,
         'label' ,
@@ -26,6 +25,7 @@ import { RequiredValidator } from '../../../../modules/amp-utils';
         'labelHidden' ,
         'limitTo'
     ] ,
+    template        : require( './amp-dropdown.component.html' ) ,
     styles          : [ require( './amp-dropdown.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     outputs         : [ 'select' ]
@@ -205,7 +205,7 @@ export class AmpDropdownComponent {
         this.showOptions( false );
     }
 
-    private setSelectValue ( value ) {
+    public setSelectValue ( value ) {
         this.selectElem.value = value;
         this.trigger( 'change' , this.selectElem );
         this.hideOptionsWithFocus();
@@ -223,13 +223,17 @@ export class AmpDropdownComponent {
                 value : selected.value
             };
             this.hasSelection   = true;
+        } else {
+            this.selectedOption = {
+                label : null ,
+                value : null
+            };
+            this.hasSelection   = false;
         }
     }
 
     private trigger ( event , el ) {
-        let evObj = document.createEvent( 'HTMLEvents' );
-        evObj.initEvent( event , true , true );
-        el.dispatchEvent( evObj );
+        el.dispatchEvent( new Event( event ) );
     }
 
     private updateValitators () {
