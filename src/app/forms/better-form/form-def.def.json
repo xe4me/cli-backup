@@ -165,16 +165,16 @@
                                     },
                                     "convert_offset_account" : {
                                         "name": "OffsetTransition",
-                                        "blockType": "DepositTransitionBlock",
+                                        "blockType": "OffsetTransitionBlock",
                                         "blockLayout": "INLINE",
                                         "commonBlock": false,
-                                        "path": "blocks/deposit-transition/deposit-transition.component",
+                                        "path": "blocks/offset-transition/offset-transition.component",
                                         "custom": {
                                             "blockTitle": "Switching your offset",
                                             "controls": [
                                                 {
                                                     "id": "OffsetTransitionAccountNumber",
-                                                    "label": "Deposit Account Number"
+                                                    "label": "Offset Account Number"
                                                 }
                                             ]
                                         }
