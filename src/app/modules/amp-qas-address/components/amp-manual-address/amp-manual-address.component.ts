@@ -97,7 +97,7 @@ export class AmpManualAddressComponent implements OnInit {
             this.suburbCtrl.setValue( _formattedAddress.Locality );
             this.statesCmp.setSelectValue( _formattedAddress.StateCode.toUpperCase() );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
-            //this.countryCtrl.setValue( _formattedAddress.Country );
+            // this.countryCtrl.setValue( _formattedAddress.Country );
         }
         // this.cityCtrl.setValue( _formattedAddress.city );
     }
@@ -116,7 +116,6 @@ export class AmpManualAddressComponent implements OnInit {
         this.suburbCtrl.markAsUntouched();
         this.stateCtrl.markAsUntouched();
         this.postCodeCtrl.markAsUntouched();
-        //this.manualAddress.checkErrors( true );
+        // this.manualAddress.checkErrors( true );
     }
 }
-

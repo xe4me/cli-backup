@@ -11,26 +11,17 @@ import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown';
 } )
 
 export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
-    controlGroup : FormGroup = new FormGroup( {} );
     @ViewChild( 'dropDown' ) dropDown : AmpDropdownComponent;
-
-    get control () {
-        return this.controlGroup.controls[ 'Title' ];
-    }
-
-    private setTo ( _value ) {
-        this.dropDown.setSelectValue( _value );
-    }
-
-    isInSummaryState    = false;
-    titleOptions        = [
+    private controlGroup : FormGroup = new FormGroup( {} );
+    private isInSummaryState         = false;
+    private titleOptions             = [
         { value : 'mr' , label : 'Mr' } ,
         { value : 'mrs' , label : 'Mrs' } ,
         { value : 'miss' , label : 'Miss' } ,
         { value : 'ms' , label : 'Ms' } ,
         { value : 'dr' , label : 'Dr' }
     ];
-    private acknowledge = {
+    private acknowledge              = {
         id          : 'acknowledge' ,
         disabled    : false ,
         required    : true ,
@@ -45,6 +36,14 @@ export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
 
         // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
         this._cd.detectChanges();
+    }
+
+    get control () {
+        return this.controlGroup.controls[ 'Title' ];
+    }
+
+    private setTo ( _value ) {
+        this.dropDown.setSelectValue( _value );
     }
 
     private onAcknowledgeSelect ( value ) {

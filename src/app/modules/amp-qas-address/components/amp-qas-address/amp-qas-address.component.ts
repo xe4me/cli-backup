@@ -62,8 +62,8 @@ export class AmpQasAddressComponent implements AfterViewInit {
         console.log( '$event' , $event );
         let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
         this._ampQasAddressService
-            .getFormattedAddress( testManiker , AddressFormatTypes.Bank )
-            //.getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
+            .getFormattedAddress( testManiker , AddressFormatTypes.BANK )
+            // .getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
             .subscribe( ( _formattedAddress : AddressFormats.Bank ) => {
                 this.manualAddressCmp.updateControls( _formattedAddress );
                 this.$selected.emit( _formattedAddress );

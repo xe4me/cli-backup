@@ -1,5 +1,5 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { ChangeDetectorRef , ElementRef , Renderer , ViewChild } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
 @AmpComponent( {
     selector : 'amp-states'
@@ -9,10 +9,8 @@ export class AmpStatesComponent extends AmpDropdownComponent {
     @ViewChild( 'optionsEl' ) optionsEl;
     @ViewChild( 'dropdownEl' ) dropDownEl;
 
-    constructor ( _cd : ChangeDetectorRef ,
-                  _el : ElementRef ,
-                  _renderer : Renderer ) {
-        super( _cd , _el , _renderer );
+    constructor () {
+        super();
         this.options  = [
             { value : 'ACT' , label : 'ACT' } ,
             { value : 'NSW' , label : 'NSW' } ,

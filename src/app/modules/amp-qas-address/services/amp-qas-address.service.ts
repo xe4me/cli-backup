@@ -1,9 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
+export interface AddressFormats {
+    Siebel : {
+        Locality : string;
+        StateCode : string;
+        Postcode : number;
+        Country : string;
+        DPIDDID : number;
+        AUSBAR : number
+    };
+    Bank : {
+        AllPostalDeliveryTypes : string;
+        BuildingLevel : string;
+        FlatUnit : string;
+        BuildingNumber : number;
+        BuildingName : string;
+        StreetName : string;
+        StreetType : string;
+        Locality : string;
+        StateCode : string;
+        Postcode : number;
+        Country : string;
+        DPIDDID : number;
+        AUSBAR : number
+    };
+}
 @Injectable()
 export class AmpQasAddressService {
-    //public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
+    // public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
     public static QAS_QUERY_URL      = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
     // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
     public static QAS_FORMATTER_URL  = 'http://localhost:1234/ddc/public/api/qas/doGetAddress';
@@ -53,33 +78,8 @@ export class AmpQasAddressService {
     }
 
     private getFormattedAddressByType ( _payload : AddressFormats ,
-                            _type : string = AddressFormatTypes.BANK ) : AddressFormats.Siebel|AddressFormats.Bank {
+                                        _type : string = AddressFormatTypes.BANK ) : AddressFormats.Siebel|AddressFormats.Bank {
         return _payload[ _type ];
-    }
-}
-export interface AddressFormats {
-    Siebel : {
-        Locality : string,
-        StateCode : string,
-        Postcode : number,
-        Country : string,
-        DPIDDID : number,
-        AUSBAR : number
-    },
-    Bank : {
-        AllPostalDeliveryTypes : string,
-        BuildingLevel : string,
-        FlatUnit : string,
-        BuildingNumber : number,
-        BuildingName : string,
-        StreetName : string,
-        StreetType : string,
-        Locality : string,
-        StateCode : string,
-        Postcode : number,
-        Country : string,
-        DPIDDID : number,
-        AUSBAR : number
     }
 }
 export abstract class AddressFormatTypes {
