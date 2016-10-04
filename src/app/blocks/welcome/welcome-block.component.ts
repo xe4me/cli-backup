@@ -45,7 +45,11 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     }
 
     private onNewOrExisting(newOrExisting: string) {
-        this.__controlGroup.get(this.__custom.controls[0].id).setValue(newOrExisting);
+        const animationTimeout = newOrExisting === 'existing' ? 1000 : 850;
+        const newOrExistingControl = this.__controlGroup.get(this.__custom.controls[0].id);
+
+        newOrExistingControl.setValue(newOrExisting);
+
         if (this.nextBlockChanged) {
             this.__removeNext(this.viewReference);
             this.nextBlockChanged = false;
@@ -57,7 +61,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
         this.ampIntro.proceed();
         setTimeout(() => {
             this.onNext();
-        }, 850);
+        }, animationTimeout);
     }
 
 }
