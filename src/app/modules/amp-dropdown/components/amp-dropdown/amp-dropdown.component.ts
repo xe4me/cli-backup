@@ -2,7 +2,7 @@ import {
     Component ,
     ViewChild ,
     EventEmitter ,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy , ChangeDetectorRef
 } from '@angular/core';
 import {
     FormControl ,
@@ -151,13 +151,11 @@ export class AmpDropdownComponent {
                 this.control[ 'hasOpened' ] = true;
             }
         } );
-    }
+    };
 
     protected hideOptionsWithFocus () {
         this.selectElem.focus();
-        setTimeout( () => {
-            this.hideOptions();
-        } );
+        this.hideOptions();
     }
 
     protected onKeypressEvent ( $event ) {

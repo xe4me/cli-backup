@@ -15,6 +15,7 @@ import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-addr
 } )
 export class AmpQasAddressComponent implements AfterViewInit {
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpManualAddressComponent;
+    @ViewChild( 'typeaheadCmp' ) typeaheadCmp : AmpTypeaheadComponent;
     @Input() id : string                                = 'default-qas-id';
     @Input() label : string                             = 'Default qas label';
     @Input() controlGroup : FormGroup;
@@ -36,6 +37,12 @@ export class AmpQasAddressComponent implements AfterViewInit {
     ngAfterViewInit () : void {
         // This will make sure the view has got the latest changes from all the descendant
         this._cd.detectChanges();
+        this.typeaheadCmp
+            .$deSelected
+            .debounceTime( 300 )
+            .subscribe( ( change ) => {
+                this.onOptionDeSelect( change );
+            } );
     }
 
     public get qasControlGroup () : any {
@@ -45,11 +52,19 @@ export class AmpQasAddressComponent implements AfterViewInit {
     }
 
     public showManualAddrForm () {
-        this.showManualEntryForm = true;
+        setTimeout( () => {
+            this.qasControlGroup.reset();
+            this.showManualEntryForm = true;
+            this._cd.detectChanges();
+        } );
     }
 
     public goBack () {
-        this.showManualEntryForm = false;
+        setTimeout( () => {
+            this.manualAddressCmp.emptyControls();
+            this.showManualEntryForm = false;
+            this._cd.detectChanges();
+        } );
     }
 
     get selectedControl () {
@@ -68,9 +83,8 @@ export class AmpQasAddressComponent implements AfterViewInit {
         let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
         this._ampQasAddressService
             .getFormattedAddress( testManiker , AddressFormatTypes.BANK )
-            //.getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
+            // .getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
             .subscribe( ( _formattedAddress : AddressFormats.Bank ) => {
-                console.log( '_formattedAddress' , _formattedAddress );
                 this.manualAddressCmp.updateControls( _formattedAddress );
                 this.$selected.emit( _formattedAddress );
             } );
@@ -87,7 +101,8 @@ export class AmpQasAddressComponent implements AfterViewInit {
                     }
                 } : {
                     invalidAddress : {
-                        text : c._ampErrors && c._ampErrors.invalidAddress ? c._ampErrors.invalidAddress : 'This address is not valid.'
+                        text : c._ampErrors && c._ampErrors.invalidAddress ? c._ampErrors.invalidAddress : 'Please' +
+                        ' select a valid address from the search results.'
                     }
                 };
             } else {

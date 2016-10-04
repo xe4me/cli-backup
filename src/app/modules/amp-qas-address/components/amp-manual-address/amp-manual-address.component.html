@@ -1,69 +1,81 @@
 <div class='manual-address grid__item_container clearfix'>
-    <div class='grid__item_floated mt+ 1/2 pr input-wrapper'>
-        <amp-input
-                #manualAddress
-                class='1/1'
-                noPadding='true'
-                [isInSummaryState]='isInSummaryState'
-                [id]='address.id+"_"+index'
-                [label]='address.label'
-                [controlGroup]='manualAddressCG'
-                [required]='required'
-                [pattern]='address.regex'
-                [errors]='address.errors'
-                [maxLength]='address.maxLength'
-                [minLength]='address.minLength'>
-        </amp-input>
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="address.id+'_'+index"></amp-error>
+    <div class='form__row'>
+        <div class="grid__container 1/1 palm-1/1">
+            <div class='grid__item_floated mt 1/3 input-wrapper'>
+                <amp-input
+                        #manualAddressCmp
+                        class='1/1'
+                        noPadding='true'
+                        [isInSummaryState]='isInSummaryState'
+                        [id]='address.id+"_"+index'
+                        [label]='address.label'
+                        [controlGroup]='manualAddressCG'
+                        [required]='required'
+                        [pattern]='address.regex'
+                        [errors]='address.errors'
+                        [maxLength]='address.maxLength'
+                        [minLength]='address.minLength'>
+                </amp-input>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="address.id+'_'+index"></amp-error>
+                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+            </div>
+        </div>
     </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
-    <div class='grid__item_floated mt+ 1/2 pl input-wrapper'>
-        <amp-input
-                #manualSuburb
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='suburb.id+"_"+index'
-                [label]='suburb.label'
-                [controlGroup]='manualAddressCG'
-                [pattern]='suburb.regex'
-                [maxLength]='suburb.maxLength'
-                [minLength]='suburb.minLength'
-                [errors]='suburb.errors'
-                [required]='required'>
-        </amp-input>
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="suburb.id+'_'+index"></amp-error>
+    <div class='form__row'>
+        <div class="grid__container 1/1 palm-1/1">
+            <div class="grid__item_container">
+                <div class='grid__item_floated mt+ 1/3  input-wrapper'>
+                    <amp-input
+                            #manualSuburbCmp
+                            class='1/1'
+                            [isInSummaryState]='isInSummaryState'
+                            [id]='suburb.id+"_"+index'
+                            [label]='suburb.label'
+                            [controlGroup]='manualAddressCG'
+                            [pattern]='suburb.regex'
+                            [maxLength]='suburb.maxLength'
+                            [minLength]='suburb.minLength'
+                            [errors]='suburb.errors'
+                            [required]='required'>
+                    </amp-input>
+                    <amp-error [controlGroup]='manualAddressCG' [controlId]="suburb.id+'_'+index"></amp-error>
+                    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+                </div>
+            </div>
+        </div>
     </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
-    <div class='grid__item_floated mt+ 1/2 pr input-wrapper'>
-        <amp-states
-                #statesCmp
-                [id]='state.id+"_"+index'
-                [label]='state.label'
-                [controlGroup]='manualAddressCG'>
-        </amp-states>
 
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+'_'+index"></amp-error>
+    <div class='form__row'>
+        <div class="grid__container 1/3 mt+ palm-1/1">
+            <div class='grid__item_floated  pr 1/2 input-wrapper'>
+                <amp-states
+                        #manualStatesCmp
+                        [id]='state.id+"_"+index'
+                        [label]='state.label'
+                        [controlGroup]='manualAddressCG'>
+                </amp-states>
+
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+'_'+index"></amp-error>
+                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+            </div>
+            <div class='grid__item_floated  pl 1/2  input-wrapper'>
+                <amp-input
+                        #manualPostcodeCmp
+                        noPadding='true'
+                        class='1/1'
+                        [isInSummaryState]='isInSummaryState'
+                        [id]='postCode.id+"_"+index'
+                        [label]='postCode.label'
+                        [controlGroup]='manualAddressCG'
+                        [required]='required'
+                        [pattern]='postCode.regex'
+                        [maxLength]='postCode.maxLength'
+                        [errors]='postCode.errors'
+                        [minLength]="postCode.minLength">
+                </amp-input>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="postCode.id+'_'+index"></amp-error>
+                <span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
+            </div>
+        </div>
     </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
-    <div class='grid__item_floated mt+ 1/2 pl input-wrapper'>
-        <amp-input
-                #manualPostcode
-                noPadding='true'
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='postCode.id+"_"+index'
-                [label]='postCode.label'
-                [controlGroup]='manualAddressCG'
-                [required]='required'
-                [pattern]='postCode.regex'
-                [maxLength]='postCode.maxLength'
-                [errors]='postCode.errors'
-                [minLength]="postCode.minLength">
-        </amp-input>
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="postCode.id+'_'+index"></amp-error>
-    </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
-    manualAddressCG : {{ manualAddressCG.value | json }} <br>
-    postCodeCtrl.touched :{{ postCodeCtrl.touched }} <br>
-    postCodeCtrl.valid :{{ postCodeCtrl.valid }} <br>
 </div>

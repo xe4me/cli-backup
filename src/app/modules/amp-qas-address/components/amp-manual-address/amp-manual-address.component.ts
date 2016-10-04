@@ -1,4 +1,7 @@
-import { Component , Input , OnInit , ChangeDetectorRef , ChangeDetectionStrategy , ViewChild } from '@angular/core';
+import {
+    Component , Input , OnInit , ChangeDetectorRef , ChangeDetectionStrategy , ViewChild ,
+    AfterViewInit
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { AddressFormats } from '../../services/amp-qas-address.service';
@@ -9,10 +12,12 @@ import { AmpStatesComponent } from '../../../amp-dropdown';
     styles          : [ require( './amp-manual-address.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpManualAddressComponent implements OnInit {
+export class AmpManualAddressComponent implements OnInit , AfterViewInit {
     public static MANUAL_ARRES_GROUP_NAME = 'manual-address';
-    @ViewChild( 'manualAddress' ) manualAddress : AmpInputComponent;
-    @ViewChild( 'statesCmp' ) statesCmp : AmpStatesComponent;
+    @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpInputComponent;
+    @ViewChild( 'manualSuburbCmp' ) manualSuburbCmp : AmpInputComponent;
+    @ViewChild( 'manualStatesCmp' ) manualStatesCmp : AmpStatesComponent;
+    @ViewChild( 'manualPostcodeCmp' ) manualPostcodeCmp : AmpInputComponent;
     @Input() id : string                  = 'default-';
     @Input() index : string               = '';
     @Input() isInSummaryState : boolean   = false;
@@ -64,6 +69,10 @@ export class AmpManualAddressComponent implements OnInit {
             minLength : 'Post code is not valid.'
         }
     };
+    protected stateCtrl;
+    protected addressCtrl;
+    protected suburbCtrl;
+    protected postCodeCtrl;
     private manualAddressCG : FormGroup   = new FormGroup( {} );
 
     constructor ( private _cd : ChangeDetectorRef ) {
@@ -75,27 +84,15 @@ export class AmpManualAddressComponent implements OnInit {
         }
     }
 
-    get stateCtrl () {
-        return this.manualAddressCG.controls[ this.state.id + '_' + this.index ];
-    }
-
-    get addressCtrl () {
-        return this.manualAddressCG.controls[ this.address.id + '_' + this.index ];
-    }
-
-    get suburbCtrl () {
-        return this.manualAddressCG.controls[ this.suburb.id + '_' + this.index ];
-    }
-
-    get postCodeCtrl () {
-        return this.manualAddressCG.controls[ this.postCode.id + '_' + this.index ];
+    ngAfterViewInit () : void {
+        this.getManualControlsFromManualAddressCG();
     }
 
     public updateControls ( _formattedAddress : AddressFormats.Bank ) {
         if ( _formattedAddress ) {
             this.addressCtrl.setValue( _formattedAddress.StreetName );
             this.suburbCtrl.setValue( _formattedAddress.Locality );
-            this.statesCmp.setSelectValue( _formattedAddress.StateCode.toUpperCase() );
+            this.manualStatesCmp.setSelectValue( _formattedAddress.StateCode.toUpperCase() );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
             // this.countryCtrl.setValue( _formattedAddress.Country );
         }
@@ -103,19 +100,28 @@ export class AmpManualAddressComponent implements OnInit {
     }
 
     public emptyControls () {
-        this.statesCmp.setSelectValue( null );
-        this.suburbCtrl.setValue( null , { emitEvent : false } );
-        this.addressCtrl.setValue( null , { emitEvent : false } );
-        this.postCodeCtrl.setValue( null , { emitEvent : false } );
-        this.markAllAsUnToched();
+        this.manualStatesCmp.setSelectValue( null );
+        this.suburbCtrl.setValue( null );
+        this.addressCtrl.setValue( null );
+        this.postCodeCtrl.setValue( null );
+        this.killDelayedValidationForInputs();
     }
 
-    private markAllAsUnToched () {
-        // this.manualAddressCG.markAsUntouched();
-        this.addressCtrl.markAsUntouched();
-        this.suburbCtrl.markAsUntouched();
-        this.stateCtrl.markAsUntouched();
-        this.postCodeCtrl.markAsUntouched();
-        // this.manualAddress.checkErrors( true );
+    private getJoinedIdWithIndex ( _id ) {
+        return _id + '_' + this.index;
+    }
+
+    private killDelayedValidationForInputs () {
+        // This will run validation but it wont make the control to be touched , so no error will be shown initially
+        this.manualAddressCmp.checkErrors( true );
+        this.manualSuburbCmp.checkErrors( true );
+        this.manualPostcodeCmp.checkErrors( true );
+    }
+
+    private getManualControlsFromManualAddressCG () {
+        this.stateCtrl    = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.state.id ) );
+        this.addressCtrl  = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.address.id ) );
+        this.suburbCtrl   = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.suburb.id ) );
+        this.postCodeCtrl = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.postCode.id ) );
     }
 }

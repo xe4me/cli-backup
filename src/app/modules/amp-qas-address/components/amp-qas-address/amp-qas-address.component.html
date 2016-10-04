@@ -1,8 +1,9 @@
 <div [hidden]='showManualEntryForm'>
     <amp-typeahead
+            #typeaheadCmp
             class='1/1'
             [controlGroup]='controlGroup'
-            [required]='required'
+            [required]='!showManualEntryForm'
             [errors]='errors'
             [minTriggerLength]='minTriggerLength'
             [customValidator]='customValidator'
@@ -11,7 +12,6 @@
             [isInSummaryState]='isInSummaryState'
             [id]='id'
             (selected)='onOptionSelect($event)'
-            (deSelected)='onOptionDeSelect($event)'
             [selectedItemIdentifier]='"Moniker"'
             [selectedItemValueIdentifier]='"PartialAddress"'
             [label]='label'>
@@ -29,13 +29,11 @@
     </amp-error>
 </div>
 <div [hidden]='!showManualEntryForm'>
+    <div>Want to try searching again? Click <a (click)='goBack()' >here</a> to find our address automatically.</div>
     <amp-manual-address
             #manualAddressCmp
             [controlGroup]='controlGroup'
             [id]='id'
             [isInSummaryState]='isInSummaryState'>
     </amp-manual-address>
-    <div class="grid__item-floated">
-        <amp-button (click)='goBack()' class='btn btn-anchor'>Go back</amp-button>
-    </div>
 </div>

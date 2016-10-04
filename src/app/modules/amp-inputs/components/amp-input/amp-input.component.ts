@@ -69,7 +69,7 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
-    public control : FormControl = new FormControl();
+    public control : FormControl         = new FormControl();
     public errors                        = {};
     public controlGroup : FormGroup;
     protected inputWidth : number;
@@ -336,6 +336,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             this.customValidator()
         ];
         this.validate  = Validators.compose( validators );
+        this.checkErrors( true );
     }
 
     protected resetIdleTimeOut () {
