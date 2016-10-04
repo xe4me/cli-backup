@@ -1,0 +1,175 @@
+@import '../../../../../styles/abstracts';
+@import './button-base';
+@import './themes/theme-tools';
+
+
+:host {
+    //btn-ok default style
+
+    $btn-ok-background-color: $btn-ok-background-color;
+
+        .#{$namespace}btn-ok,
+        %#{$namespace}btn-ok {
+            background-color: $btn-ok-background-color;
+            color: $btn-ok-color;
+            &:hover, &:focus {
+                &:not([disabled]) {
+                    color:$btn-ok-color;
+                    background-color: $btn-ok-hover-background-color;
+                }
+
+            }
+            &:active {
+                &:not([disabled]) {
+                    color: $btn-ok-color;
+                    background-color: $btn-ok-active-background-color;
+                }
+            }
+        }
+
+    //btn-ok default style
+
+     .#{$namespace}btn-change,
+     %#{$namespace}btn-change {
+       background-color: $amp-colour-white;
+       border: 2px solid $btn-change-border-color;
+       border-color: $btn-change-border-color;
+       &:hover, &:focus {
+         &:not([disabled]) {
+           color: $btn-change-hover-text-color;
+           background-color: $btn-change-hover-background-color;
+           border-color: $btn-change-hover-background-color;
+         }
+       }
+       &:active {
+         &:not([disabled]) {
+           background-color: $btn-change-active-background-color;
+         }
+       }
+     }
+
+    //btn-secondary
+
+    .#{$namespace}btn-secondary,
+    %#{$namespace}btn-secondary {
+        width: $btn-secondary-width;
+        background-color: $btn-secondary-background-color;
+        border: 2px solid;
+        border-color: $btn-secondary-border-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: $btn-secondary-hover-text-color;
+                background-color: $btn-secondary-hover-background-color;
+                border-color: $btn-secondary-hover-border-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                color: $btn-secondary-active-text-color;
+                background-color: $btn-secondary-active-background-color;
+                border-color: $btn-secondary-active-border-color;
+            }
+        }
+    }
+
+    //btn-submit
+
+    .#{$namespace}btn-submit,
+    %#{$namespace}btn-submit {
+        width: $btn-submit-width;
+        color: $btn-submit-text-color;
+        background-color: $btn-submit-background-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: $btn-submit-text-color;
+                background-color: $btn-submit-hover-background-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                color: $btn-submit-text-color;
+                background-color: $btn-submit-active-background-color;
+            }
+        }
+    }
+
+    .#{$namespace}btn-anchor,
+    %#{$namespace}btn-anchor {
+        @include transition(color $buttons-transition-time ease-in-out);
+        vertical-align: initial !important;
+        padding: 0 !important;
+        color: $btn-anchor-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: $btn-anchor-hover-background-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                color: $btn-anchor-active-background-color;
+            }
+        }
+        &.btn-anchor-large {
+            font-size: $font-size-medium;
+        }
+        &[disabled] {
+            background-color: transparent !important;
+            color: $amp-colour-grey-dark;
+        }
+    }
+
+
+
+    &[theme='tools'] {
+
+        $btn-ok-background-color: $btn-ok-tools-background-color;
+        .#{$namespace}btn-ok,
+        %#{$namespace}btn-ok {
+            background-color: $btn-ok-background-color;
+            margin-top: $btn-ok-tools-margin-top;
+            margin-bottom: $btn-ok-tools-margin-bottom;
+            color: $btn-ok-color;
+            &:hover, &:focus {
+                &:not([disabled]) {
+                    background-color: $btn-ok-tools-hover-background-color;
+                }
+
+            }
+            &:active {
+                &:not([disabled]) {
+                    background-color: $btn-ok-tools-active-background-color;
+                }
+            }
+        }
+
+        .#{$namespace}btn-secondary,
+        %#{$namespace}btn-secondary {
+            width: $btn-secondary-width;
+            background-color: $btn-secondary-tools-background-color;
+            border: 2px solid;
+            border-color: $btn-secondary-tools-border-color;
+            color: $btn-secondary-tools-text-color;
+            &:hover, &:focus {
+                &:not([disabled]) {
+                    color: $btn-secondary-tools-hover-text-color;
+                    background-color: $btn-secondary-tools-hover-background-color;
+                    border-color: $btn-secondary-tools-hover-border-color;
+                }
+            }
+            &:active {
+                &:not([disabled]) {
+                    color: $btn-secondary-tools-active-text-color;
+                    background-color: $btn-secondary-tools-active-background-color;
+                    border-color: $btn-secondary-tools-active-border-color;
+                }
+            }
+        }
+
+        .#{$namespace}btn-change,
+        %#{$namespace}btn-change {
+            margin-top: $btn-change-tools-margin-top;
+            margin-bottom: $btn-change-tools-margin-bottom;
+        }
+    }
+
+}

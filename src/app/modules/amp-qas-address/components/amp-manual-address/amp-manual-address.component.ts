@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
-import { AddressFormats } from '../../services/amp-qas-address.service';
 import { AmpStatesComponent } from '../../../amp-dropdown';
 @Component( {
     selector        : 'amp-manual-address' ,
@@ -12,7 +11,7 @@ import { AmpStatesComponent } from '../../../amp-dropdown';
     styles          : [ require( './amp-manual-address.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpManualAddressComponent implements OnInit , AfterViewInit {
+export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     public static MANUAL_ARRES_GROUP_NAME = 'manual-address';
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpInputComponent;
     @ViewChild( 'manualSuburbCmp' ) manualSuburbCmp : AmpInputComponent;
@@ -88,7 +87,7 @@ export class AmpManualAddressComponent implements OnInit , AfterViewInit {
         this.getManualControlsFromManualAddressCG();
     }
 
-    public updateControls ( _formattedAddress : AddressFormats.Bank ) {
+    public updateControls ( _formattedAddress : any ) {
         if ( _formattedAddress ) {
             this.addressCtrl.setValue( _formattedAddress.StreetName );
             this.suburbCtrl.setValue( _formattedAddress.Locality );

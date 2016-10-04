@@ -8,6 +8,7 @@ import { Http } from '@angular/http';
 import { AmpInputsModule } from '../amp-inputs';
 import { AmpDropdownModule } from '../amp-dropdown/amp-dropdown.module';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
+import { AmpButtonModule } from '../amp-button/amp-button.module';
 const DECLARATIONS = [
     AmpQasAddressComponent ,
     AmpManualAddressComponent
@@ -16,6 +17,7 @@ const DECLARATIONS = [
     declarations : DECLARATIONS ,
     imports      : [
         AmpSharedRootModule ,
+        AmpButtonModule ,
         AmpInputsModule ,
         AmpDropdownModule ,
         AmpErrorModule ,
