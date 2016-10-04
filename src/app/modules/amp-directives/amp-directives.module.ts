@@ -4,12 +4,14 @@ import { AutoFocusDirective } from './directives/auto-focus/auto-focus.directive
 import { ThemeIDDirective } from './directives/theme-id/themeId.directive';
 import { AmpStickyOnScrollDirective } from './directives/auto-sticky-on-scroll/amp-sticky-on-scroll.directive';
 import { FocuserDirective } from './directives/focuser/focuser.directive';
+import { AmpNumberDirective } from './directives/number/amp-number.directive';
 const DECLARATIONS = [
     ClickedOutsideDirective ,
     AutoFocusDirective ,
     ThemeIDDirective ,
     AmpStickyOnScrollDirective ,
-    FocuserDirective
+    FocuserDirective ,
+    AmpNumberDirective
 ];
 @NgModule( {
     declarations : DECLARATIONS ,

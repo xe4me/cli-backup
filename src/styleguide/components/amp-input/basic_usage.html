@@ -16,13 +16,13 @@
     </amp-form-row>
     <amp-form-row class='mt+'>
         <amp-input
+                #inputNumeric
+                [amp-number]="inputNumeric.control"
                 [attr.theme]="themeService.theme.attr"
                 [id]="'number'"
                 [label]="'Number'"
-                [type]="'number'"
                 [controlGroup]="controlGroup"
                 [required]="true"
-                [pattern]="'^([0-9])*$'"
                 [maxLength]="'12'"
                 [minLength]="'4'">
         </amp-input>
