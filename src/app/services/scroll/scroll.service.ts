@@ -75,7 +75,6 @@ export class ScrollService {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
             element = this._dom.query( '#' + componentSelector );
             sectionName = this._dom.getAttribute(element, 'data-section');
-            console.log("sectionName", sectionName);
         }
         let options = {
             duration      : 800 ,
