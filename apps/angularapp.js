@@ -1,6 +1,6 @@
 'use strict';
 
-const EXPERIENCE_NAME = 'better';
+const EXPERIENCE_NAME = 'bett3r';
 
 // Wrapped in config module
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
