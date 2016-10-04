@@ -1,11 +1,11 @@
 @import "~AbstractStyles";
 
 :host {
-  position: fixed;
-  width: 16.6666666% !important;;
-  display: block;
-  height: 900px;
-  overflow-y:scroll ;
+    position: fixed;
+    width: 16.6666666% !important;;
+    display: block;
+    height: 900px;
+    overflow-y:scroll ;
 }
 
 $autoc-primary-theme: $amp-colour-primary;
@@ -34,84 +34,84 @@ $amp-dropdown-option-padding-right: 30px;
 $amp-dropdown-option-padding-right-hidden: 4em;
 $amp-dropdown-option-padding-left: 20px;
 .left-navigation {
-  padding: 5px;
-  font-size: 15px;
-  opacity: 1;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: absolute;
-  width: 100%;
+    padding: 5px;
+    font-size: 15px;
+    opacity: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
 
-  &--hidden {
-    border-top: 0;
-    border-bottom: 0;
-    height: 0;
-    margin: 0;
-    padding-right: 18px; // Scrollbar offset
-    position: relative;
-    visibility: hidden;
+    &--hidden {
+        border-top: 0;
+        border-bottom: 0;
+        height: 0;
+        margin: 0;
+        padding-right: 18px; // Scrollbar offset
+        position: relative;
+        visibility: hidden;
 
-    .option {
-      padding-right: $amp-dropdown-option-padding-right-hidden;
-      white-space: nowrap;
+        .option {
+            padding-right: $amp-dropdown-option-padding-right-hidden;
+            white-space: nowrap;
+        }
     }
-  }
 }
 
 .option {
-  cursor: pointer;
-  line-height: $amp-dropdown-option-line-height;
-  min-height: $amp-dropdown-option-min-height;
-  padding: 10px;
-  width: auto;
-  @include transition(all 200ms linear);
-  color: $amp-colour-primary;
-  &--active,
-  &:hover {
-    font-weight: 600;
-  }
+    cursor: pointer;
+    line-height: $amp-dropdown-option-line-height;
+    min-height: $amp-dropdown-option-min-height;
+    padding: 10px;
+    width: auto;
+    @include transition(all 200ms linear);
+    color: $amp-colour-primary;
+    &--active,
+    &:hover {
+        font-weight: 600;
+    }
 
-  &:focus {
-    outline: none;
-  }
-  &:last-child {
-    border-bottom: $amp-dropdown-option-border-width solid #CCD2D9;
-  }
+    &:focus {
+        outline: none;
+    }
+    &:last-child {
+        border-bottom: $amp-dropdown-option-border-width solid #CCD2D9;
+    }
 
 }
 
 .option-group {
-  cursor: pointer;
-  line-height: $amp-dropdown-option-line-height;
-  min-height: $amp-dropdown-option-min-height;
-  padding: 15px 10px;
-  width: auto;
-  @include transition(all 200ms linear);
-  &--active,
-  &:hover {
-    background: $amp-colour-secondary;
-    color: #fff;
-  }
+    cursor: pointer;
+    line-height: $amp-dropdown-option-line-height;
+    min-height: $amp-dropdown-option-min-height;
+    padding: 15px 10px;
+    width: auto;
+    @include transition(all 200ms linear);
+    &--active,
+    &:hover {
+        background: $amp-colour-secondary;
+        color: #fff;
+    }
 
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
 
 }
 
 .options {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 .theme {
-  &__item {
-    cursor: pointer;
-    padding: 10px;
-    text-align: center;
-    color:#fff;
-    &.active{
-      font-weight: 800;
-      text-decoration: underline;
+    &__item {
+        cursor: pointer;
+        padding: 10px;
+        text-align: center;
+        color:#fff;
+        &.active{
+            font-weight: 800;
+            text-decoration: underline;
+        }
     }
-  }
 }

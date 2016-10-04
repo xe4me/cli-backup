@@ -1,16 +1,16 @@
 .collapse {
-  display: none;
-  &.in {
-    display: block;
-  }
-  &.fit {
-    height: initial !important;
-  }
+    display: none;
+    &.in {
+        display: block;
+    }
+    &.fit {
+        height: initial !important;
+    }
 }
 
 .collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  @include transition(height, visibility, .55s, ease-in-out);
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    @include transition(height, visibility, .55s, ease-in-out);
 }

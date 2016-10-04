@@ -19,83 +19,83 @@ $heading-micro-intro-font-weight: 600;
 
 .#{$namespace}heading,
 %#{$namespace}heading {
-  color: inherit;
-  margin-bottom: 0;
+    color: inherit;
+    margin-bottom: 0;
 }
 
 .#{$namespace}heading-intro,
 %#{$namespace}heading-intro {
 
-   @include media-query(tablet-and-up) {
+    @include media-query(tablet-and-up) {
         @extend %#{$namespace}font-size-medium;
-   }
+    }
 
-  @include amp-family($heading-intro-font-family);
+    @include amp-family($heading-intro-font-family);
 
-  color: $heading-intro-color;
-  font-weight: $heading-intro-font-weight;
-  line-height: $heading-intro-line-height;
+    color: $heading-intro-color;
+    font-weight: $heading-intro-font-weight;
+    line-height: $heading-intro-line-height;
 
-  @include media-query(palm) {
-      font-size: $font-size-heading-lrg;
-  }
+    @include media-query(palm) {
+        font-size: $font-size-heading-lrg;
+    }
 
 }
 
 .#{$namespace}heading-contxtual-label,
 %#{$namespace}heading-contxtual-label {
-  @extend %#{$namespace}font-size-medium;
-  @include amp-family($heading-intro-font-family);
+    @extend %#{$namespace}font-size-medium;
+    @include amp-family($heading-intro-font-family);
 
-  color: $heading-contxtual-label-color;
-  font-weight: $heading-contxtual-label-font-weight;
-  line-height: $heading-contxtual-label-line-height;
-  vertical-align: text-bottom;
-  @include media-query(palm) {
-    @extend %#{$namespace}font-size-small;
-  }
+    color: $heading-contxtual-label-color;
+    font-weight: $heading-contxtual-label-font-weight;
+    line-height: $heading-contxtual-label-line-height;
+    vertical-align: text-bottom;
+    @include media-query(palm) {
+        @extend %#{$namespace}font-size-small;
+    }
 }
 
 .#{$namespace}heading-micro-intro,
 %#{$namespace}heading-micro-intro {
-  @extend %#{$namespace}font-size-tiny;
-  @include amp-family($heading-micro-intro-font-family);
-  color: $heading-micro-intro-color;
-  font-weight: $heading-micro-intro-font-weight;
-  line-height: $heading-micro-intro-line-height;
-  vertical-align: sub;
+    @extend %#{$namespace}font-size-tiny;
+    @include amp-family($heading-micro-intro-font-family);
+    color: $heading-micro-intro-color;
+    font-weight: $heading-micro-intro-font-weight;
+    line-height: $heading-micro-intro-line-height;
+    vertical-align: sub;
 }
 
 .#{$namespace}heading-checkbox.#{$namespace}heading-checkbox,
 %#{$namespace}heading-checkbox {
-  @extend %#{$namespace}font-size-small;
-  @include amp-family($amp-font-open-sans-regular);
-  color: $amp-colour-grey-darkest-most;
-  font-weight: 400;
-  line-height: 30px;
-  vertical-align: sub;
-  @include media-query(palm) {
-    @extend %#{$namespace}font-size-tiny;
-    line-height: 25px;
-  }
+    @extend %#{$namespace}font-size-small;
+    @include amp-family($amp-font-open-sans-regular);
+    color: $amp-colour-grey-darkest-most;
+    font-weight: 400;
+    line-height: 30px;
+    vertical-align: sub;
+    @include media-query(palm) {
+        @extend %#{$namespace}font-size-tiny;
+        line-height: 25px;
+    }
 }
 
 .#{$namespace}heading-note,
 %#{$namespace}heading-note {
-  @extend %#{$namespace}font-size-tiny;
-  @include amp-family($amp-font-open-sans-regular);
-  color: $amp-colour-grey-darker;
-  font-weight: 400;
+    @extend %#{$namespace}font-size-tiny;
+    @include amp-family($amp-font-open-sans-regular);
+    color: $amp-colour-grey-darker;
+    font-weight: 400;
 
 }
 
 .#{$namespace}comma-summary-state,
 %#{$namespace}comma-summary-state {
-  margin-left: -5px;
-  color: $amp-colour-sky-blue;
-  @extend %#{$namespace}font-size-medium;
-  @include amp-family($heading-intro-font-family);
-  font-weight: $heading-contxtual-label-font-weight;
-  line-height: $heading-contxtual-label-line-height;
-  vertical-align: sub;
+    margin-left: -5px;
+    color: $amp-colour-sky-blue;
+    @extend %#{$namespace}font-size-medium;
+    @include amp-family($heading-intro-font-family);
+    font-weight: $heading-contxtual-label-font-weight;
+    line-height: $heading-contxtual-label-line-height;
+    vertical-align: sub;
 }
