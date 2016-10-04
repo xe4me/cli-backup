@@ -3,15 +3,14 @@
         Please provide some basic personal details in order to get an idea of who you are
     </div>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/12 mr mt0">
-            <amp-input
-                    [id]="__custom.controls[0].id"
-                    [controlGroup]="__controlGroup"
-                    [isInSummaryState]="isInSummaryState"
-                    [maxLength]="3"
-                    [required]="true"
-                    [label]="'Title'">
-            </amp-input>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 mr mt0">
+            <amp-dropdown
+                [isInSummaryState]="isInSummaryState"
+                [id]="__custom.controls[0].id"
+                [options]="__custom.controls[0].options"
+                [controlGroup]="__controlGroup"
+                [required]="true">
+            </amp-dropdown>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
             <amp-first-name
@@ -21,7 +20,7 @@
                     [required]="true">
             </amp-first-name>
         </div>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 mr mt0">
             <amp-input
                     [id]="__custom.controls[2].id"
                     [controlGroup]="__controlGroup"

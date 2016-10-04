@@ -81,7 +81,25 @@
                                 "blockTitle": "Tell us about yourself.",
                                 "controls": [
                                     {
-                                        "id": "Title"
+                                        "id": "Title",
+                                        "options": [
+                                            {
+                                                "value": "miss",
+                                                "label": "Miss"
+                                            },
+                                            {
+                                                "value": "mr",
+                                                "label": "Mr"
+                                            },
+                                            {
+                                                "value": "mrs",
+                                                "label": "Mrs"
+                                            },
+                                            {
+                                                "value": "ms",
+                                                "label": "Ms"
+                                            }
+                                        ]
                                     },
                                     {
                                         "id": "FirstName"
@@ -502,7 +520,25 @@
                                 "blockTitle": "And now for applicant 2",
                                 "controls": [
                                     {
-                                        "id": "Applicant2_Title"
+                                        "id": "Applicant2_Title",
+                                        "options" :  [
+                                            {
+                                                "value": "miss",
+                                                "label": "Miss"
+                                            },
+                                            {
+                                                "value": "mr",
+                                                "label": "Mr"
+                                            },
+                                            {
+                                                "value": "mrs",
+                                                "label": "Mrs"
+                                            },
+                                            {
+                                                "value": "ms",
+                                                "label": "Ms"
+                                            }
+                                        ]
                                     },
                                     {
                                         "id": "Applicant2_FirstName"
