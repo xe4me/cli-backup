@@ -1,5 +1,15 @@
+<div class="usage">
+    <p>Prerequisites to run "file upload" locally and upload a file successfully into AWS S3</p>
+    <ul>
+        <li>api-store should be up and running</li>
+        <li>api-upload should be up and running</li>
+    </ul>
+</div>
+
 <amp-file-upload
-    [uploadUrl]="'http://localhost:8081/ddc/secure/api/upload/upload'"
-    [tokenUrl]="'http://localhost:8081/ddc/secure/api/upload/token'"
-    [formId]="'form123'">
+    [uploadUrl]="'http://localhost:8082/ddc/secure/api/upload/upload'"
+    [tokenUrl]="'http://localhost:8082/ddc/secure/api/upload/token'"
+    [enableVirusScan]="false"
+    [formName]="'BOLR'"
+    [formId] ="'57ecaf7f3b44d76c2638d0b2'">
 </amp-file-upload>
