@@ -1,7 +1,7 @@
 import {
          Directive ,
          Input } from '@angular/core';
-import { Control } from "@angular/common";
+import { Control } from '@angular/common';
 
 @Directive( {
     selector : '[amp-number]',
@@ -14,7 +14,7 @@ export class AmpNumberDirective {
     @Input('amp-number') inputControl : Control;
 
     onInputChange () {
-        let newValue = this.inputControl.value.replace(/\D/g,'');
-        this.inputControl.updateValue(newValue);
+        let newValue = this.inputControl.value.replace( /\D/g, '' );
+        this.inputControl.updateValue( newValue );
     }
 }
