@@ -48,6 +48,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
         this.__controlGroup.get(this.__custom.controls[0].id).setValue(newOrExisting);
         if (this.nextBlockChanged) {
             this.__removeNext(this.viewReference);
+            this.nextBlockChanged = false;
         }
         if (newOrExisting === 'existing') {
             this.__loadNext(this.__custom.optionalBlocks[0], this.viewReference);
