@@ -2,12 +2,12 @@
 @import './themes/theme-form';
 @import './themes/theme-tools';
 div {
-  &.amp-overlay {
-    z-index: 9;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    opacity: 0.8;
-    background-color: white;
-  }
+    &.amp-overlay {
+        z-index: 9;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0.8;
+        background-color: white;
+    }
 }

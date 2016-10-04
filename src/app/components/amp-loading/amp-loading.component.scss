@@ -6,24 +6,24 @@ $Loading-width: 100px;
 
 :host {
 
-  &[size='small'] {
+    &[size='small'] {
+        md-progress-circle {
+            width: $Loading-width/3;
+            height: $Loading-width/3;
+        }
+    }
+    &[size='medium'] {
+        md-progress-circle {
+            width: $Loading-width/2;
+            height: $Loading-width/2;
+        }
+    }
     md-progress-circle {
-      width: $Loading-width/3;
-      height: $Loading-width/3;
+        width: $Loading-width;
+        height: $Loading-width;
+        path {
+            stroke-width: $Loading-stroke-width;
+            stroke: $amp-colour-secondary;
+        }
     }
-  }
-  &[size='medium'] {
-    md-progress-circle {
-      width: $Loading-width/2;
-      height: $Loading-width/2;
-    }
-  }
-  md-progress-circle {
-    width: $Loading-width;
-    height: $Loading-width;
-    path {
-      stroke-width: $Loading-stroke-width;
-      stroke: $amp-colour-secondary;
-    }
-  }
 }
