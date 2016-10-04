@@ -69,21 +69,24 @@ export class ScrollService {
     public scrollToComponentSelector ( componentSelector : string ,
                                        easing : string = 'easeInQuad' ,
                                        margin : number = 80 ) {
+        let sectionName;
         let element = this._dom.query( componentSelector );
         if ( ! element ) {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
             element = this._dom.query( '#' + componentSelector );
+            sectionName = this._dom.getAttribute(element, 'data-section');
+            console.log("sectionName", sectionName);
         }
         let options = {
             duration      : 800 ,
             easing        : easing ,
             offset        : margin ,
             callbackBefore: ( elemt ) => {
-                this.$scrolling.emit( this.getGroupNameOfSelectorName( componentSelector ) );
+                this.$scrolling.emit({section:sectionName,componentSelector:this.getGroupNameOfSelectorName( componentSelector )}  );
             } ,
             callbackAfter : ( elemt ) => {
                 // this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
-                this.$scrolled.emit( componentSelector );
+                this.$scrolled.emit( {section:sectionName,componentSelector:componentSelector});
             }
         };
         setTimeout( () => {

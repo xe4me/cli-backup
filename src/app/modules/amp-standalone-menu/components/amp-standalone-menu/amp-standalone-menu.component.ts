@@ -28,6 +28,8 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
     private _required : boolean        = false;
     private isInSummaryState : boolean = false;
     private controlGroup : FormGroup;
+    private  sections;
+
 
 
     constructor ( private _cd : ChangeDetectorRef ,
@@ -36,8 +38,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
                   private scrollService : ScrollService ) {
     }
 
-    private  sections;
-
+ 
     public displaySection ( _section : string[] , _index : number ) {
         this.formSectionService.setCurrentActiveSection( _section , _index );
     }

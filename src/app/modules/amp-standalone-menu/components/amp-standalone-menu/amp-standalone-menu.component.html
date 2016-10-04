@@ -1,6 +1,23 @@
-<aside class="sidebar">
+<nav class="sidebar">
+
+    <ul class="progress white">
+        <li *ngFor='let section of sections'>
+            <div class="node active" id="step-intro"></div>
+            <span>{{section.name}}</span>
+        </li>
+    </ul>
+   <!-- <div>
+        <span *ngFor='let section of sections'>
+
+            <button type="button"
+                    (click)='displaySection(section, i)'>
+                <a> //{{section.name}}</a>
+            </button>
+        </span>
+    </div>
+
     <button class="btn" type="button">
-        <i class="icon icon--time" aria-hidden="true"></i>
+        <i class="icon icon&#45;&#45;time" aria-hidden="true"></i>
         <span>Save application</span>
-    </button>
-</aside>
+    </button>-->
+</nav>

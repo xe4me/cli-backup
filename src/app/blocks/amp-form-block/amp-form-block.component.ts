@@ -5,7 +5,7 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
 @Component( {
     selector   : 'amp-form-block' ,
     template   : `
-        <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK " id='{{ context?.selectorName }}'>
+        <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK " [attr.data-section]="context?.__sectionName" id='{{ context?.selectorName }}'>
              <amp-overlay [active]='!context?.isActive'></amp-overlay>
             <h2 class="heading heading-intro" [innerHtml]="context?.__custom.blockTitle"></h2>
              <ng-content></ng-content>
