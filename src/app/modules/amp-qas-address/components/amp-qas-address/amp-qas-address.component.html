@@ -1,34 +1,41 @@
-<amp-typeahead
-        class='1/1'
-        [controlGroup]='controlGroup'
-        [required]='required'
-        [errors]='errors'
-        [minTriggerLength]='minTriggerLength'
-        [customValidator]='customValidator'
-        [queryServiceCall]='_ampQasAddressService.query'
-        [maxHeight]='maxHeight'
-        [isInSummaryState]='isInSummaryState'
-        [id]='id'
-        (selected)='onOptionSelect($event)'
-        (deSelected)='onOptionDeSelect($event)'
-        [selectedItemIdentifier]='"Moniker"'
-        [selectedItemValueIdentifier]='"PartialAddress"'
-        [label]='label'>
-    <template let-option='option'>
-        {{ option.PartialAddress }}
-    </template>
-</amp-typeahead>
-<amp-error [controlGroup]='qasControlGroup'>
-    <template let-error='error'>
-        <error-item [error]='error' selector='addressNotFound'>
-            We are unable to find your address. Try again or tell us your address line by line
-            <a (click)='showManualAddrForm()'>here</a> instead.
-        </error-item>
-    </template>
-</amp-error>
-<amp-manual-address
-        #manualAddressCmp
-        [controlGroup]='controlGroup'
-        [id]='id'
-        [isInSummaryState]='isInSummaryState'>
-</amp-manual-address>
+<div [hidden]='showManualEntryForm'>
+    <amp-typeahead
+            class='1/1'
+            [controlGroup]='controlGroup'
+            [required]='required'
+            [errors]='errors'
+            [minTriggerLength]='minTriggerLength'
+            [customValidator]='customValidator'
+            [queryServiceCall]='_ampQasAddressService.query'
+            [maxHeight]='maxHeight'
+            [isInSummaryState]='isInSummaryState'
+            [id]='id'
+            (selected)='onOptionSelect($event)'
+            (deSelected)='onOptionDeSelect($event)'
+            [selectedItemIdentifier]='"Moniker"'
+            [selectedItemValueIdentifier]='"PartialAddress"'
+            [label]='label'>
+        <template let-option='option'>
+            {{ option.PartialAddress }}
+        </template>
+    </amp-typeahead>
+    <amp-error [controlGroup]='qasControlGroup'>
+        <template let-error='error'>
+            <error-item [error]='error' selector='addressNotFound'>
+                We are unable to find your address. Try again or tell us your address line by line
+                <a (click)='showManualAddrForm()'>here</a> instead.
+            </error-item>
+        </template>
+    </amp-error>
+</div>
+<div [hidden]='!showManualEntryForm'>
+    <amp-manual-address
+            #manualAddressCmp
+            [controlGroup]='controlGroup'
+            [id]='id'
+            [isInSummaryState]='isInSummaryState'>
+    </amp-manual-address>
+    <div class="grid__item-floated">
+        <amp-button (click)='goBack()' class='btn btn-anchor'>Go back</amp-button>
+    </div>
+</div>

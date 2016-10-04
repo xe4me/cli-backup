@@ -28,6 +28,7 @@ export class AmpQasAddressComponent implements AfterViewInit {
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
+    private showManualEntryForm                         = false;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
@@ -44,7 +45,11 @@ export class AmpQasAddressComponent implements AfterViewInit {
     }
 
     public showManualAddrForm () {
-        alert( 'Show manual' );
+        this.showManualEntryForm = true;
+    }
+
+    public goBack () {
+        this.showManualEntryForm = false;
     }
 
     get selectedControl () {
@@ -63,8 +68,9 @@ export class AmpQasAddressComponent implements AfterViewInit {
         let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
         this._ampQasAddressService
             .getFormattedAddress( testManiker , AddressFormatTypes.BANK )
-            // .getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
+            //.getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
             .subscribe( ( _formattedAddress : AddressFormats.Bank ) => {
+                console.log( '_formattedAddress' , _formattedAddress );
                 this.manualAddressCmp.updateControls( _formattedAddress );
                 this.$selected.emit( _formattedAddress );
             } );
