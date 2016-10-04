@@ -202,7 +202,7 @@
     {
         "name": "Amp Typeahead",
         "sources": [
-            "src/app/modules/amp-typeahead/components/amp-typeahead/amp-typeahead.component.ts"
+            "src/app/components/amp-typeahead/amp-typeahead.component.ts"
         ],
         "id": "AmpTypeaheadComponent",
         "examples": [
@@ -342,7 +342,7 @@
     {
         "name": "AmpInput",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/amp-inputs.component.ts"
         ],
         "id": "AmpInput",
         "examples": [
@@ -362,7 +362,7 @@
     {
         "name": "AmpEmail",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpEmail",
         "examples": [
@@ -382,7 +382,7 @@
     {
         "name": "AmpFirstName",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpFirstName",
         "examples": [
@@ -402,7 +402,7 @@
     {
         "name": "AmpLastName",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpLastName",
         "examples": [
@@ -422,7 +422,7 @@
     {
         "name": "AmpContactNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpContactNumber",
         "examples": [
@@ -442,7 +442,7 @@
     {
         "name": "AmpPhoneNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpPhoneNumber",
         "examples": [
@@ -462,7 +462,7 @@
     {
         "name": "AmpHomeNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpHomeNumber",
         "examples": [
@@ -482,7 +482,7 @@
     {
         "name": "AmpWorkNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpWorkNumber",
         "examples": [
