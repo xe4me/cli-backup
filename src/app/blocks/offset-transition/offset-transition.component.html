@@ -13,7 +13,9 @@
                     [controlGroup]="__controlGroup"
                     [label]="__custom.controls[0].label"
                     [required]="true"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [pattern]="'^([0-9])*$'"
+                    [maxLength]="'12'">
             </amp-input>
         </div>
     </amp-form-row>

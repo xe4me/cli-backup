@@ -9,7 +9,9 @@
                     [controlGroup]="__controlGroup"
                     [label]="'Offset Account Number'"
                     [required]="true"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [pattern]="'^([0-9])*$'"
+                    [maxLength]="'12'">
             </amp-input>
         </div>
     </amp-form-row>
