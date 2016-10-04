@@ -2,7 +2,9 @@ import {
     Component,
     ChangeDetectorRef,
     ElementRef,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    OnInit,
+    ViewContainerRef
 } from '@angular/core';
 import {
     FormControl,
@@ -23,16 +25,18 @@ import { ViewChild } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
     styles: [require('./welcome-block.component.scss')]
 })
-export class WelcomeBlockComponent extends FormBlock {
+export class WelcomeBlockComponent extends FormBlock implements OnInit {
 
     @ViewChild(AmpIntroBlockComponent) public ampIntro;
+    private nextBlockChanged : boolean = false;
 
     constructor(
         formModelService: FormModelService,
         scrollService: ScrollService,
         _cd: ChangeDetectorRef,
         elementRef: ElementRef,
-        progressObserver: ProgressObserverService) {
+        progressObserver: ProgressObserverService,
+        private viewReference : ViewContainerRef) {
         super(formModelService, elementRef, _cd, progressObserver, scrollService);
     }
 
@@ -42,6 +46,13 @@ export class WelcomeBlockComponent extends FormBlock {
 
     private onNewOrExisting(newOrExisting: string) {
         this.__controlGroup.get(this.__custom.controls[0].id).setValue(newOrExisting);
+        if (this.nextBlockChanged) {
+            this.__removeNext(this.viewReference);
+        }
+        if (newOrExisting === 'existing') {
+            this.__loadNext(this.__custom.optionalBlocks[0], this.viewReference);
+            this.nextBlockChanged = true;
+        }
         this.ampIntro.proceed();
         setTimeout(() => {
             this.onNext();
