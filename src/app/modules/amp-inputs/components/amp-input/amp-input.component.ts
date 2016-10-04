@@ -243,6 +243,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             default:
                 value = value;
         }
+
         return value;
     }
 
