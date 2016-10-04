@@ -21,7 +21,7 @@ import { FormSectionService } from '../../../../services/form-section/form-secti
 })
 export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
     @Input() form;
-    @Input() scrollService;
+    @Input() sectionObservable;
 
     public control:FormControl = new FormControl(null);
     public errors = {};
@@ -31,6 +31,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
     private isInSummaryState:boolean = false;
     private controlGroup:FormGroup;
     private  sections = [];
+    private _currentSection:string = null;
 
     constructor(private _cd:ChangeDetectorRef,
                 private elem:ElementRef,
@@ -48,6 +49,8 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
         //   this._cd.markForCheck();
         //} );
 
+        ///console.log("scrollService", scrollService);
+
         this.form
             .valueChanges
             .debounceTime(700)
@@ -56,8 +59,9 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
                 //console.log("changes ", changes);
             });
 
-        this.scrollService.$scrolled.subscribe( blockchanges => {
-            console.log("blockchanges ", blockchanges);
+        this.sectionObservable.subscribe( blockchanges => {
+            this._currentSection = blockchanges.section;
+            console.log("blockchanges ", blockchanges.section);
         });
 
     }
