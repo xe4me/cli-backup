@@ -22,3 +22,173 @@
     }
 
 }
+@import '../../../../../styles/abstracts';
+@import 'themes/theme-form';
+@import 'themes/theme-tools';
+
+:host {
+    .steps-nav {
+
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            height: 220px;
+            top: 50%;
+            left: 60px;
+            -moz-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            position: fixed;
+            z-index: 100
+    }
+
+    .steps-nav .progress {
+        margin: 0 !important
+    }
+
+    .steps-nav .progress .node {
+        height: 10px;
+        width: 10px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        background-clip: padding-box;
+        display: inline-block;
+        transition: all 1000ms ease
+    }
+
+    .steps-nav .progress .activated {
+        box-shadow: 0 0 3px 2px rgba(194, 255, 194, 0.8)
+    }
+
+    .steps-nav .progress .divider {
+        height: 30px;
+        width: 2px;
+        margin-left: 4px;
+        transition: all 800ms ease;
+    }
+
+   /* .steps-nav .progress .divider {
+        border: solid transparent 1px;
+    }*/
+
+    .steps-nav .progress li {
+        list-style: none;
+        line-height: 1px
+    }
+
+    .steps-nav .progress li:not([disabled='true']) {
+        cursor: pointer
+    }
+
+    .steps-nav .progress li.divider {
+        cursor: initial;
+
+    }
+
+    .steps-nav .progress li.li-heading-AMP .heading-AMP {
+        max-height: 69px !important;
+        height: 69px !important;
+        margin-bottom: 40px
+    }
+
+    .steps-nav .progress li p {
+        padding: 0;
+        margin: 0
+    }
+
+    .steps-nav .progress li span {
+        display: inline-block;
+        margin-left: 10px
+    }
+
+    .steps-nav .progress li .primary {
+        background-color: #001E41
+    }
+
+    .steps-nav .progress li .primary span {
+        color: #001E41
+    }
+
+    .steps-nav .white div {
+        background-color: transparent;
+        border: solid #fff 1px
+    }
+
+    .steps-nav .white span {
+        color: rgba(255, 255, 255, 0.5)
+    }
+
+    .steps-nav .white .node.active {
+        background-color: #fff
+    }
+
+    .steps-nav .white .node.active + a span {
+        color: $amp-colour-sky-blue;
+        font-weight: 600
+    }
+
+    .steps-nav .white li:hover:not([disabled='true']) span {
+        color: #00AAE0
+    }
+
+    .steps-nav .primary div {
+        background-color: transparent;
+        border: solid rgba(0, 30, 65, 0.8) 1px
+    }
+
+    .steps-nav .primary span {
+        color: rgba(0, 30, 65, 0.5)
+    }
+
+    .steps-nav .primary .node.active {
+        background-color: #001E41
+    }
+
+    .steps-nav .primary .node.active + span {
+        color: #001e41;
+        font-weight: 600
+    }
+
+    .steps-nav .primary li:hover:not([disabled='true']) span {
+        color: #00AAE0
+    }
+
+
+    .steps-nav .skyblue div {
+        background-color: transparent;
+        border: solid rgb(171,180,191) 1px;
+    }
+
+    .steps-nav .skyblue span {
+        color: rgb(171,180,191);
+    }
+
+    .steps-nav .skyblue .node.active {
+        background-color: rgb(0,170,224);
+    }
+
+    .steps-nav .skyblue .node.active + span {
+        color: rgb(0,170,224);
+        font-weight: 600
+    }
+
+    .steps-nav .skyblue li:hover:not([disabled='true']) span {
+        color: rgb(0,170,224);
+    }
+
+    .steps-nav .skyblue .divider.first {
+        border: none;
+    }
+
+    /*.steps-nav .skyblue {
+
+        > .first {
+            border: solid 1px transparent;
+        }
+
+    }*/
+
+}

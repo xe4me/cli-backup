@@ -1,23 +1,11 @@
-<nav class="sidebar">
+<nav class="steps-nav">
 
-    <ul class="progress white">
-        <li *ngFor='let section of sections'>
-            <div class="node active" id="step-intro"></div>
-            <span>{{section.name}}</span>
+    <ul class="progress skyblue">
+        <li *ngFor='let section of sections; let i=index'>
+            <div class="divider" [ngClass]="{first: i == 0}"></div>
+            <div class="node" id="step-intro" [class.done]="form.controls[section].valid"></div>
+            <a href="#" (click)='displaySection(section, i)'><span>{{section}}</span></a>
         </li>
     </ul>
-   <!-- <div>
-        <span *ngFor='let section of sections'>
 
-            <button type="button"
-                    (click)='displaySection(section, i)'>
-                <a> //{{section.name}}</a>
-            </button>
-        </span>
-    </div>
-
-    <button class="btn" type="button">
-        <i class="icon icon&#45;&#45;time" aria-hidden="true"></i>
-        <span>Save application</span>
-    </button>-->
 </nav>
