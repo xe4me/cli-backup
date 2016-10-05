@@ -104,8 +104,8 @@ export abstract class AmpBlockLoader implements OnChanges {
     }
 
     private loadAndCreate ( formDef : any , _requireMethod ) {
-        if(formDef.blockLayout === BlockLayout[ BlockLayout.SECTION ]){
-            this._sectionName =formDef.name;
+        if ( formDef.blockLayout === BlockLayout[ BlockLayout.SECTION ]){
+            this._sectionName = formDef.name;
         }
         this._blocks = formDef.blocks;
         if ( ! this._blocks ) {
