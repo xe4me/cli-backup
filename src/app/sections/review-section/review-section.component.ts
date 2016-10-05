@@ -53,7 +53,7 @@ export class ReviewSectionComponent {
     private _review_blocks;
     private _sticky_blocks;
     private __child_blocks;
-    private __form;
+    private __form = this.__form;
 
     private __custom = this.__custom || {};
 
