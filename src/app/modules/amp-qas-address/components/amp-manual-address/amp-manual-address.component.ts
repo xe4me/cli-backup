@@ -180,11 +180,11 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
         return this.isCountryNZ || this.isCountryAUS ? this.postCode.regex : '';
     }
 
-    private getPostcodeMaxLength () : string {
+    private getPostcodeMaxLength () : number {
         return this.isCountryNZ || this.isCountryAUS ? this.postCode.maxLength : 20;
     }
 
-    private getPostcodeMinLength () : string {
+    private getPostcodeMinLength () : number {
         return this.isCountryNZ || this.isCountryAUS ? this.postCode.minLength : - 1;
     }
 }
