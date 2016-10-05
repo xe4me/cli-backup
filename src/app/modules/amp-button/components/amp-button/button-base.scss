@@ -16,6 +16,7 @@ $buttons-default-margin-top: 4px;
 $buttons-default-height: 42px;
 $disabled-text-color: #9f9f9f;
 $disabled-background-color: #cbd2dc;
+$btn-margin-top: 30px;
 
 
 //btn-ok
@@ -85,7 +86,7 @@ Button base class used by all
     line-height: $buttons-default-height;
     width: $buttons-default-width;
     @include media-query(tablet-and-up) {
-        margin-top: $btn-ok-margin-top;
+        margin-top: $btn-margin-top;
     }
     @extend %#{$namespace}font-size-small;
     @include transition(color, background-color, $buttons-transition-time ease-in-out);

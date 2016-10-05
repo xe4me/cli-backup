@@ -11,6 +11,7 @@
     %#{$namespace}btn-ok {
         background-color: $btn-ok-background-color;
         color: $btn-ok-color;
+        margin-top: $btn-ok-margin-top;
         &:hover, &:focus {
             &:not([disabled]) {
                 color:$btn-ok-color;
