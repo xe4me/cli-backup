@@ -1,0 +1,19 @@
+<form #formModel="ngForm" class="nl-form p">
+
+    <h3 class="heading heading-intro">Allow only numbers in input field</h3>
+    <p class="heading">
+        Bellow is an example of how to include AmpNumberDirective to allow only numbers in the input field.
+    </p>
+
+    <amp-form-row class='mt+'>
+        <amp-input
+            #inputNumeric
+            [amp-number]="inputNumeric.control"
+            [attr.theme]="themeService.theme.attr"
+            [id]="'number'"
+            [label]="'Number'"
+            [maxLength]="'10'">
+        </amp-input>
+    </amp-form-row>
+
+</form>
