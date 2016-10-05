@@ -45,8 +45,8 @@ export class AmpQasAddressService {
 
     public query               = ( queryValue : string ) : Observable<any> => {
         let headers : Headers = this.headers;
-        let options           = new RequestOptions( { body : '' , headers : headers } );
-        let url               = AmpQasAddressService.QAS_QUERY_URL + '/' + queryValue;
+        let options = new RequestOptions( { body : '' , headers : headers } );
+        let url     = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( queryValue );
         return this
             .http
             .get( url , options )

@@ -82,7 +82,6 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     };
 
     @Input( 'required' ) set required ( value : boolean ) {
-        console.log( 'Setting required' , value );
         this._required = value;
     }
 

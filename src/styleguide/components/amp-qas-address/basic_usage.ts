@@ -13,8 +13,9 @@ import { AmpButton } from '../../../app/components/amp-button/amp-button.compone
 } )
 
 export default class AmpQasAddressComponentBasicUsage implements AfterViewInit {
-    public __controlGroup = new FormGroup( {} );
-    public __custom = {
+    public __controlGroup   = new FormGroup( {} );
+    public isInSummaryState = false;
+    public __custom         = {
         controls : [
             {
                 id       : 'amp-qas' ,
