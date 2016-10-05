@@ -9,7 +9,7 @@ export class AmpLastNameComponent extends AmpInputComponent {
                   _el : ElementRef ,
                   _renderer : Renderer ) {
         super( _cd , _el , _renderer );
-        this.maxLength = 30;
+        this.maxLength = 20;
         this.required  = true;
         this.label     = 'Last name';
         this.errors    = {
