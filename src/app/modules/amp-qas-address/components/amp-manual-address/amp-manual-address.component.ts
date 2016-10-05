@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
-import { AddressFormats } from '../../services/amp-qas-address.service';
 import { AmpStatesComponent } from '../../../amp-dropdown';
 @Component( {
     selector        : 'amp-manual-address' ,
@@ -12,7 +11,7 @@ import { AmpStatesComponent } from '../../../amp-dropdown';
     styles          : [ require( './amp-manual-address.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpManualAddressComponent implements OnInit , AfterViewInit {
+export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     public static MANUAL_ARRES_GROUP_NAME = 'manual-address';
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpInputComponent;
     @ViewChild( 'manualSuburbCmp' ) manualSuburbCmp : AmpInputComponent;
@@ -37,7 +36,7 @@ export class AmpManualAddressComponent implements OnInit , AfterViewInit {
         label     : 'Address' ,
         regex     : '' ,
         maxLength : 200 ,
-        minLength : 5 ,
+        minLength : 3 ,
         errors    : {
             required : 'Address is a required field.'
         }
@@ -88,12 +87,13 @@ export class AmpManualAddressComponent implements OnInit , AfterViewInit {
         this.getManualControlsFromManualAddressCG();
     }
 
-    public updateControls ( _formattedAddress : AddressFormats.Bank ) {
+    public updateControls ( _formattedAddress : any ) {
         if ( _formattedAddress ) {
-            this.addressCtrl.setValue( _formattedAddress.StreetName );
-            this.suburbCtrl.setValue( _formattedAddress.Locality );
-            this.manualStatesCmp.setSelectValue( _formattedAddress.StateCode.toUpperCase() );
+            this.addressCtrl.setValue( _formattedAddress.StreetAddress );
+            this.suburbCtrl.setValue( _formattedAddress.Suburb );
+            this.manualStatesCmp.setSelectValue( _formattedAddress.State.toUpperCase() );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
+            // this.dpidCtrl.setValue( _formattedAddress.DPID );
             // this.countryCtrl.setValue( _formattedAddress.Country );
         }
         // this.cityCtrl.setValue( _formattedAddress.city );

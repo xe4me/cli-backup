@@ -3,7 +3,7 @@ import {
     ChangeDetectionStrategy , AfterViewInit , ChangeDetectorRef
 } from '@angular/core';
 import {
-    AmpQasAddressService , AddressFormatTypes , AddressFormats
+    AmpQasAddressService , AddressFormatTypes
 } from '../../services/amp-qas-address.service';
 import { AmpTypeaheadComponent } from '../../../amp-typeahead';
 import { FormGroup } from '@angular/forms';
@@ -79,12 +79,9 @@ export class AmpQasAddressComponent implements AfterViewInit {
     }
 
     public onOptionSelect ( $event ) {
-        console.log( '$event' , $event );
-        let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
         this._ampQasAddressService
-            .getFormattedAddress( testManiker , AddressFormatTypes.BANK )
-            // .getFormattedAddress( $event.Moniker , AddressFormatTypes.Bank )
-            .subscribe( ( _formattedAddress : AddressFormats.Bank ) => {
+            .getFormattedAddress( $event.Moniker , AddressFormatTypes.CRM )
+            .subscribe( ( _formattedAddress : any ) => {
                 this.manualAddressCmp.updateControls( _formattedAddress );
                 this.$selected.emit( _formattedAddress );
             } );
