@@ -81,11 +81,11 @@ export class ScrollService {
             easing        : easing ,
             offset        : margin ,
             callbackBefore: ( elemt ) => {
-                this.$scrolling.emit({section:sectionName,componentSelector:this.getGroupNameOfSelectorName( componentSelector )}  );
+                this.$scrolling.emit({section : sectionName, componentSelector : this.getGroupNameOfSelectorName( componentSelector )}  );
             } ,
             callbackAfter : ( elemt ) => {
                 // this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
-                this.$scrolled.emit( {section:sectionName,componentSelector:componentSelector});
+                this.$scrolled.emit( {section : sectionName, componentSelector : componentSelector});
             }
         };
         setTimeout( () => {

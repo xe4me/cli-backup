@@ -2,6 +2,8 @@
 @import 'themes/theme-form';
 @import 'themes/theme-tools';
 
+
+
 :host {
     .steps-nav {
 
@@ -10,8 +12,8 @@
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             height: 220px;
-            top: 50%;
-            left: 60px;
+            top: 26%;
+            left: 50px;
             -moz-transform: translateY(-50%);
             -o-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
@@ -24,22 +26,13 @@
             font-size: 14px;
     }
 
-    .steps-nav .progress {
-        margin: 0 !important
-    }
-
     .steps-nav .progress .node {
-        height: 10px;
-        width: 10px;
+        height: 11px;
+        width: 11px;
         -webkit-border-radius: 50%;
         border-radius: 50%;
         background-clip: padding-box;
         display: inline-block;
-       // transition: all 1000ms ease
-    }
-
-    .steps-nav .progress .activated {
-        box-shadow: 0 0 3px 2px rgba(194, 255, 194, 0.8)
     }
 
     .steps-nav .progress .divider {
@@ -54,96 +47,21 @@
         line-height: 1px
     }
 
-    .steps-nav .progress li:not([disabled='true']) {
-        cursor: pointer
-    }
-
     .steps-nav .progress li.divider {
         cursor: initial;
-
     }
-
-    .steps-nav .progress li.li-heading-AMP .heading-AMP {
-        max-height: 69px !important;
-        height: 69px !important;
-        margin-bottom: 40px
-    }
-
-    .steps-nav .progress li p {
-        padding: 0;
-        margin: 0
-    }
-
-    .steps-nav .progress li span {
-        display: inline-block;
-        margin-left: 10px
-    }
-
-    .steps-nav .progress li .primary {
-        background-color: #001E41
-    }
-
-    .steps-nav .progress li .primary span {
-        color: #001E41
-    }
-
-    .steps-nav .white div {
-        background-color: transparent;
-        border: solid #fff 1px
-    }
-
-    .steps-nav .white span {
-        color: rgba(255, 255, 255, 0.5)
-    }
-
-    .steps-nav .white .node.active {
-        background-color: #fff
-    }
-
-    .steps-nav .white .node.active + a span {
-        color: $amp-colour-sky-blue;
-        font-weight: 600
-    }
-
-    .steps-nav .white li:hover:not([disabled='true']) span {
-        color: #00AAE0
-    }
-
-    .steps-nav .primary div {
-        background-color: transparent;
-        border: solid rgba(0, 30, 65, 0.8) 1px
-    }
-
-    .steps-nav .primary span {
-        color: rgba(0, 30, 65, 0.5)
-    }
-
-    .steps-nav .primary .node.active {
-        background-color: #001E41
-    }
-
-    .steps-nav .primary .node.active + span {
-        color: #001e41;
-        font-weight: 600
-    }
-
-    .steps-nav .primary li:hover:not([disabled='true']) span {
-        color: #00AAE0
-    }
-
-
 
     .steps-nav .skyblue div {
         background-color: transparent;
-        border: solid rgb(156,158,159) 1px;
+        border: solid $amp-colour-grey-darker 1px;
     }
 
     .steps-nav .skyblue span {
-        color: rgb(156,158,159);
+        color: $amp-colour-grey-darker;
     }
 
     .steps-nav .skyblue .active {
-        color: rgb(0,170,224);
+        color: $amp-colour-sky-blue;
     }
 
     .steps-nav .skyblue .divider.first {
@@ -151,42 +69,33 @@
     }
 
     .steps-nav .skyblue  {
+        > li a {
+            cursor: default;
+        }
         > li.active a span{
-            color: rgb(0,170,224);
+            color: $amp-colour-sky-blue;
             font-weight: bold;
         }
+        > li.active {
+            .divider {
+                border-color: $amp-colour-sky-blue;
+            }
+        }
         > li.active div#step-intro.node {
-            border: solid 2px rgb(0,170,224);
-            height: 12px;
-            width: 12px;
-        }
-    }
-
-
-/*
-    .steps-nav .skyblue .node.active {
-        background-color: rgb(0,170,224);
-    }
-
-    .steps-nav .skyblue .node.active + span {
-        color: rgb(0,170,224);
-        //font-weight: 600
-    }
-
-    .steps-nav .skyblue li:hover:not([disabled='true']) span {
-        color: rgb(0,170,224);
-    }
-
-    .steps-nav .skyblue .divider.first {
-        border: none;
-    }*/
-
-    /*.steps-nav .skyblue {
-
-        > .first {
-            border: solid 1px transparent;
+            border: solid 2px $amp-colour-sky-blue;
+            height: 14px;
+            width: 14px;
+            margin-left: -2px;
         }
 
-    }*/
+        > li.done a span{
+            color: $amp-colour-sky-blue;
+            font-weight: normal;
+        }
+        > li.done div#step-intro.node {
+            background-color: $amp-colour-sky-blue;
+        }
+
+    }
 
 }

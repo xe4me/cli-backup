@@ -25,76 +25,98 @@ export class AmpStandAloneMenuComponent implements OnInit {
     @Input() form;
     @Input() sectionObservable;
 
-    public control:FormControl = new FormControl(null);
+    public control : FormControl = new FormControl(null);
     public errors = {};
-    private _selected:string = null;
-    private _disabled:boolean = false;
-    private _required:boolean = false;
-    private isInSummaryState:boolean = false;
-    private controlGroup:FormGroup;
-    private  sections = [];
-    private _currentSectionName:string = null;
-    private showNavigation:boolean = false;
-
-
+    private _selected : string = null;
+    private _disabled : boolean = false;
+    private _required : boolean = false;
+    private isInSummaryState : boolean = false;
+    private controlGroup : FormGroup;
+    private sections = [];
+    private sectionLabels : string = null;
+    private _currentSectionName : string = null;
+    private _previousSectionName : string = null;
+    private showNavigation : boolean = false;
 
     constructor(
                 private _dom : BrowserDomAdapter,
-                private _cd:ChangeDetectorRef,
-                private elem:ElementRef,
-                private formSectionService:FormSectionService) {
+                private _cd : ChangeDetectorRef,
+                private elem : ElementRef,
+                private formSectionService : FormSectionService) {
     }
 
-    public displaySection(_section:string[], _index:number) {
-        console.log("this has been triggered");
-        this.formSectionService.setCurrentActiveSection(_section, _index);
-    }
-
-    ngOnInit():any {
+    /**
+     *
+     * Update the sections, watch for changes on the block
+     *
+     */
+    ngOnInit() : any {
 
         this.form
             .valueChanges
             .debounceTime(700)
-            .subscribe(changes => {
+            .subscribe( ( changes ) => {
                 this.updateSections();
             });
 
-        this.sectionObservable.subscribe( blockchanges => {
+        this.sectionObservable.subscribe( ( blockchanges ) => {
 
             if (blockchanges) {
+                /*Store the current and show the navigation*/
                 this._currentSectionName = blockchanges.section;
                 this.showNavigation = true;
 
                 setTimeout(() => {
-                   let parentUlElm = this._dom.query( '.'+this._currentSectionName );
-                   let className = 'active';
-                   parentUlElm.setAttribute('class', className);
 
-                    //this.parentUlElm.addClass('test');
-                    //this._dom.querySelectorAll( parentUlElm ,'.'+this._currentSectionName).addClass(this, '.node .active');
+                    this.setUiStates(this._currentSectionName);
 
-                    //console.log();
-                }, 1);
-
-
-                //console.log(this._dom.querySelectorAll( parentElm ,'nav.steps-nav'));
-                //console.log(this._currentSection);
-                //console.log(  this._dom.query("amp-standalone-menu"));
+                }, 10);
 
             }
             this._cd.markForCheck();
 
         });
     }
+    /**
+     * Add and substract classes on elements based on current active section, add classes to elements once the sections have been done.
+     *
+     * @params: _currentSection = the current active section
+     *
+     */
+    private setUiStates( _currentSection : string ) : void {
 
-    private updateSections():void {
+        if (_currentSection) {
+
+            let parentUlElm = this._dom.query( '#' + _currentSection );
+            let className = 'active';
+            parentUlElm.setAttribute('class', className);
+
+            if (this._previousSectionName === null) {
+                this._previousSectionName = _currentSection;
+
+            } else if (this._previousSectionName !== _currentSection) {
+
+                let prevUlElm = this._dom.query( '#' + this._previousSectionName );
+                let className = 'done';
+                prevUlElm.setAttribute('class', className);
+
+            }
+        }
+
+    }
+
+    /**
+     *
+     * Update the sections and then put them into the collection along with the custom names for the menu
+     *
+     */
+    private updateSections() : void {
         this.sections = [];
-        Object.keys(this.form.controls).map((key)=> {
-
-            this.sections.push(key);
-
-        })
-
-        this._cd.markForCheck();
+        Object.keys(this.form.controls).map( ( key ) => {
+            this.sectionLabels = this.form.controls[key].custom.label;
+            if (this.sectionLabels) {
+                this.sections.push([this.sectionLabels, key]);
+            }
+        } );
     }
 }

@@ -1,11 +1,9 @@
-<nav class="steps-nav">
-
+<nav class="steps-nav" *ngIf="showNavigation">
     <ul class="progress skyblue">
-        <li *ngFor='let section of sections; let i=index' class="{{section}}">
+        <li *ngFor='let section of sections; let i=index' id="{{section[1]}}">
             <div class="divider" [ngClass]="{first: i == 0}"></div>
             <div class="node" id="step-intro"></div>
-            <a href="#" (click)='displaySection(section, i)'><span>{{section}}</span></a>
+            <a href="#"><span>{{section[0]}}</span></a>
         </li>
     </ul>
-
 </nav>
