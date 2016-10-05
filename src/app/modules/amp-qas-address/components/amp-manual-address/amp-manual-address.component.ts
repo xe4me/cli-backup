@@ -19,6 +19,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     @ViewChild( 'manualStatesCmp' ) manualStatesCmp : AmpStatesComponent;
     @ViewChild( 'manualPostcodeCmp' ) manualPostcodeCmp : AmpInputComponent;
     @ViewChild( 'manualCountryCmp' ) manualCountryCmp : AmpCountryComponent;
+    @ViewChild( 'manualCityCmp' ) manualCityCmp : AmpInputComponent;
     @Input() id : string                  = 'default-';
     @Input() index : string               = '';
     @Input() isInSummaryState : boolean   = false;
@@ -36,12 +37,21 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     @Input() address                      = {
         id        : 'address' ,
         label     : 'Street address' ,
-        regex     : '' ,
         maxLength : 200 ,
-        minLength : 5 ,
+        minLength : 3 ,
         errors    : {
             required  : 'Street address is a required field.' ,
-            minLength : 'Street address must be at least 5 characters long.'
+            minLength : 'Street address must be at least 3 characters long.'
+        }
+    };
+    @Input() city                         = {
+        id        : 'city' ,
+        label     : 'City' ,
+        maxLength : 100 ,
+        minLength : 3 ,
+        errors    : {
+            required  : 'City is a required field.' ,
+            minLength : 'City must be at least 3 characters long.'
         }
     };
     @Input() suburb                       = {
@@ -79,8 +89,11 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     protected addressCtrl;
     protected suburbCtrl;
     protected postCodeCtrl;
+    protected cityCtrl;
     private manualAddressCG : FormGroup   = new FormGroup( {} );
     private DEFAULT_SELECTED_COUNTRY      = 'AUS';
+    private COUNTRY_NZ                    = 'NZL';
+    private selectedCountry               = this.DEFAULT_SELECTED_COUNTRY;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -93,6 +106,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit () : void {
         this.getManualControlsFromManualAddressCG();
+        this.manualCountryCmp.setSelectValue( this.DEFAULT_SELECTED_COUNTRY );
     }
 
     public updateControls ( _formattedAddress : any ) {
@@ -114,7 +128,19 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
         this.suburbCtrl.setValue( null );
         this.addressCtrl.setValue( null );
         this.postCodeCtrl.setValue( null );
+        this.cityCtrl.setValue( null );
         this.killDelayedValidationForInputs();
+    }
+
+    private onCountrySelect ( _countryCode ) {
+        if ( this.selectedCountry !== _countryCode ) {
+            this.manualStatesCmp.setSelectValue( null );
+            this.cityCtrl.setValue( null );
+            this.suburbCtrl.setValue( null );
+            this.selectedCountry = _countryCode;
+            this.killDelayedValidationForInputs();
+            this._cd.markForCheck();
+        }
     }
 
     private getJoinedIdWithIndex ( _id ) {
@@ -125,6 +151,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
         // This will run validation but it wont make the control to be touched , so no error will be shown initially
         this.manualAddressCmp.checkErrors( true );
         this.manualSuburbCmp.checkErrors( true );
+        this.manualCityCmp.checkErrors( true );
         this.manualPostcodeCmp.checkErrors( true );
     }
 
@@ -134,5 +161,30 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
         this.addressCtrl  = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.address.id ) );
         this.suburbCtrl   = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.suburb.id ) );
         this.postCodeCtrl = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.postCode.id ) );
+        this.cityCtrl     = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.city.id ) );
+    }
+
+    private get isCountryAUS () : boolean {
+        return this.selectedCountry === this.DEFAULT_SELECTED_COUNTRY;
+    }
+
+    private get isCountryNZ () : boolean {
+        return this.selectedCountry === this.COUNTRY_NZ;
+    }
+
+    private getCityLabel () : string {
+        return this.isCountryNZ ? 'City' : 'Suburb or City';
+    }
+
+    private getPostcodeRegex () : string {
+        return this.isCountryNZ || this.isCountryAUS ? this.postCode.regex : '';
+    }
+
+    private getPostcodeMaxLength () : string {
+        return this.isCountryNZ || this.isCountryAUS ? this.postCode.maxLength : 20;
+    }
+
+    private getPostcodeMinLength () : string {
+        return this.isCountryNZ || this.isCountryAUS ? this.postCode.minLength : - 1;
     }
 }
