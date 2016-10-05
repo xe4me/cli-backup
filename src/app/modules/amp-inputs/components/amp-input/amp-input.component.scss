@@ -350,7 +350,7 @@ md-input.md-input div.md-input-wrapper {
 }
 
 // Summary state
-amp-input {
+:host {
     display          : inline-block;
     box-sizing       : content-box;
     padding-right    : 0 !important;
@@ -378,7 +378,7 @@ amp-input {
         margin-left : 26px;
     }
 
-    &.summary {
+    .summary {
         md-input.md-input {
             @include transition(padding 0.3s linear !important);
             transition-delay : 0.5s !important;
