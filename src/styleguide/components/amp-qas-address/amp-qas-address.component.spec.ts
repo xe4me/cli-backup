@@ -14,6 +14,7 @@ import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead';
 import { By } from '@angular/platform-browser';
 import { inject , ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { fakeAsync , tick } from '@angular/core/testing/fake_async';
+import { AmpCountryService } from '../../../app/modules/amp-dropdown/services/amp-country.service';
 @Injectable()
 export class MockAmpQasAddressService {
     public static sampleSearchTerm = 'Pymble';
@@ -125,6 +126,171 @@ export class MockAmpQasAddressService {
         // .catch(this.handleError);
     };
 }
+@Injectable()
+export class MockAmpCountryService {
+    private _countries  = [
+        {
+            countryCode : 'AUS' ,
+            country     : 'Australia'
+        } ,
+        {
+            countryCode : 'NZL' ,
+            country     : 'New Zealand'
+        } ,
+        {
+            countryCode : 'AFG' ,
+            country     : 'Afghanistan'
+        } ,
+        {
+            countryCode : 'ALB' ,
+            country     : 'Albania'
+        } ,
+        {
+            countryCode : 'DZA' ,
+            country     : 'Algeria'
+        } ,
+        {
+            countryCode : 'ASM' ,
+            country     : 'American Samoa'
+        } ,
+        {
+            countryCode : 'AND' ,
+            country     : 'Andorra'
+        } ,
+        {
+            countryCode : 'AGO' ,
+            country     : 'Angola'
+        } ,
+        {
+            countryCode : 'AIA' ,
+            country     : 'Anguilla'
+        } ,
+        {
+            countryCode : 'ATA' ,
+            country     : 'Antarctica'
+        } ,
+        {
+            countryCode : 'ATG' ,
+            country     : 'Antigua and Barbuda'
+        } ,
+        {
+            countryCode : 'ARG' ,
+            country     : 'Argentina'
+        } ,
+        {
+            countryCode : 'ARM' ,
+            country     : 'Armenia'
+        } ,
+        {
+            countryCode : 'ABW' ,
+            country     : 'Aruba'
+        } ,
+        {
+            countryCode : 'AUT' ,
+            country     : 'Austria'
+        } ,
+        {
+            countryCode : 'AZE' ,
+            country     : 'Azerbaijan'
+        } ,
+        {
+            countryCode : 'BHS' ,
+            country     : 'Bahamas'
+        } ,
+        {
+            countryCode : 'BHR' ,
+            country     : 'Bahrain'
+        } ,
+        {
+            countryCode : 'BGD' ,
+            country     : 'Bangladesh'
+        } ,
+        {
+            countryCode : 'BRB' ,
+            country     : 'Barbados'
+        } ,
+        {
+            countryCode : 'BLR' ,
+            country     : 'Belarus'
+        } ,
+        {
+            countryCode : 'BEL' ,
+            country     : 'Belgium'
+        } ,
+        {
+            countryCode : 'BLZ' ,
+            country     : 'Belize'
+        } ,
+        {
+            countryCode : 'BEN' ,
+            country     : 'Benin'
+        } ,
+        {
+            countryCode : 'BMU' ,
+            country     : 'Bermuda'
+        } ,
+        {
+            countryCode : 'BTN' ,
+            country     : 'Bhutan'
+        } ,
+        {
+            countryCode : 'BOL' ,
+            country     : 'Bolivia'
+        } ,
+        {
+            countryCode : 'BIH' ,
+            country     : 'Bosnia and Herzegowina'
+        } ,
+        {
+            countryCode : 'BWA' ,
+            country     : 'Botswana'
+        } ,
+        {
+            countryCode : 'BVT' ,
+            country     : 'Bouvet Island'
+        } ,
+        {
+            countryCode : 'BRA' ,
+            country     : 'Brazil'
+        } ,
+        {
+            countryCode : 'IOT' ,
+            country     : 'British Indian Ocean Territory'
+        } ,
+        {
+            countryCode : 'BRN' ,
+            country     : 'Brunei Darussalam'
+        } ,
+        {
+            countryCode : 'BGR' ,
+            country     : 'Bulgaria'
+        } ,
+        {
+            countryCode : 'BFA' ,
+            country     : 'Burkina Faso'
+        } ,
+        {
+            countryCode : 'BDI' ,
+            country     : 'Burundi'
+        } ,
+        {
+            countryCode : 'HRV' ,
+            country     : 'CROATIA (Local Name: Hrvatska)'
+        } ,
+        {
+            countryCode : 'KHM' ,
+            country     : 'Cambodia'
+        } ,
+        {
+            countryCode : 'CMR' ,
+            country     : 'Cameroon'
+        }
+    ];
+    private subject     = new BehaviorSubject( this._countries );
+    public getCountries = () : Observable<any> => {
+        return this.subject.asObservable();
+    };
+}
 describe( 'amp-qas-address component' , () => {
     let _searchTerm = MockAmpQasAddressService.sampleSearchTerm;
     let _fixture;
@@ -141,6 +307,10 @@ describe( 'amp-qas-address component' , () => {
                 {
                     provide  : AmpQasAddressService ,
                     useClass : MockAmpQasAddressService
+                } ,
+                {
+                    provide  : AmpCountryService ,
+                    useClass : MockAmpCountryService
                 } ,
                 { provide : ComponentFixtureAutoDetect , useValue : true }
             ] ,
