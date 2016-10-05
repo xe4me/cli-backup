@@ -10,8 +10,10 @@ import {
     AfterViewChecked,
     Input
 } from '@angular/core';
+
 import { FormControl , FormGroup } from '@angular/forms';
 import { FormSectionService } from '../../../../services/form-section/form-section.service';
+import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 
 @Component({
     selector: 'amp-standalone-menu',
@@ -19,7 +21,7 @@ import { FormSectionService } from '../../../../services/form-section/form-secti
     styles: [require('./amp-standalone-menu.scss').toString()],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
+export class AmpStandAloneMenuComponent implements OnInit {
     @Input() form;
     @Input() sectionObservable;
 
@@ -31,9 +33,14 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
     private isInSummaryState:boolean = false;
     private controlGroup:FormGroup;
     private  sections = [];
-    private _currentSection:string = null;
+    private _currentSectionName:string = null;
+    private showNavigation:boolean = false;
 
-    constructor(private _cd:ChangeDetectorRef,
+
+
+    constructor(
+                private _dom : BrowserDomAdapter,
+                private _cd:ChangeDetectorRef,
                 private elem:ElementRef,
                 private formSectionService:FormSectionService) {
     }
@@ -44,32 +51,40 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit():any {
-        //this.formSectionService.$onRegisterSection.subscribe( ( _section ) => {
-        //   this.sections = _section.sections;
-        //   this._cd.markForCheck();
-        //} );
-
-        ///console.log("scrollService", scrollService);
 
         this.form
             .valueChanges
             .debounceTime(700)
             .subscribe(changes => {
                 this.updateSections();
-                //console.log("changes ", changes);
             });
 
         this.sectionObservable.subscribe( blockchanges => {
-            this._currentSection = blockchanges.section;
-            console.log("blockchanges ", blockchanges.section);
+
+            if (blockchanges) {
+                this._currentSectionName = blockchanges.section;
+                this.showNavigation = true;
+
+                setTimeout(() => {
+                   let parentUlElm = this._dom.query( '.'+this._currentSectionName );
+                   let className = 'active';
+                   parentUlElm.setAttribute('class', className);
+
+                    //this.parentUlElm.addClass('test');
+                    //this._dom.querySelectorAll( parentUlElm ,'.'+this._currentSectionName).addClass(this, '.node .active');
+
+                    //console.log();
+                }, 1);
+
+
+                //console.log(this._dom.querySelectorAll( parentElm ,'nav.steps-nav'));
+                //console.log(this._currentSection);
+                //console.log(  this._dom.query("amp-standalone-menu"));
+
+            }
+            this._cd.markForCheck();
+
         });
-
-    }
-
-    ngAfterViewChecked():void {
-        //console.log("intro done", this.form);
-
-        //console.log( "ngAfterViewChecked ", this.sections );
     }
 
     private updateSections():void {

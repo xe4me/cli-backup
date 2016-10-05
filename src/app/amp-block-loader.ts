@@ -45,10 +45,10 @@ export abstract class AmpBlockLoader implements OnChanges {
 
     createComponent ( _loadedComponent : { new() : any } , _index : number )  {
         return this.componentResolver
-            .resolveComponent( _loadedComponent )
-            .then( ( componentFactory : ComponentFactory<any> ) => {
-                return this.viewContainer.createComponent( componentFactory , _index );
-            } );
+                   .resolveComponent( _loadedComponent )
+                   .then( ( componentFactory : ComponentFactory<any> ) => {
+                       return this.viewContainer.createComponent( componentFactory , _index );
+                   } );
     }
 
     removeAt ( _index : number ) {
@@ -155,6 +155,10 @@ export abstract class AmpBlockLoader implements OnChanges {
 
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
             this.registerSection( _blockDef );
+
+            if (_componentRef.instance.__controlGroup) {
+                _componentRef.instance.__controlGroup.custom = _blockDef.custom;
+            }
         }
 
         _componentRef.instance.__path        = _blockDef.path;
