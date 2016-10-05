@@ -31,7 +31,7 @@ export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
 
     public ngAfterViewInit() {
         const tfnCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
-        tfnCheckbox.valueChanges.subscribe(val => {
+        tfnCheckbox.valueChanges.subscribe((val) => {
             this.tfnExclusion = val;
         });
         super.ngAfterViewInit();

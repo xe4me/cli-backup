@@ -8,12 +8,12 @@ const formDef = require('./form-def.def.json');
     templateUrl: 'better-form.component.html',
     styles: [require('./better-form.component.scss')]
 })
-export class BetterFormComponent{
+export class BetterFormComponent {
     private fullyDistinguishedName = [];
     private childBlocks = formDef;
     private form : FormGroup;
 
-    constructor(private _builder: FormBuilder) {
+    constructor(private _builder : FormBuilder) {
         this.form = this._builder.group({});
     }
 }
