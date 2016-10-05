@@ -3,7 +3,8 @@ import {
     ViewContainerRef ,
     ChangeDetectorRef ,
     Input ,
-    ElementRef
+    ElementRef ,
+    AfterViewInit
 } from '@angular/core';
 import { AmpBlockLoaderDirective } from '../../amp-block-loader.directive';
 import { FormSectionService } from '../../services/form-section/form-section.service';
@@ -48,7 +49,7 @@ import { ScrollService } from '../../services/scroll/scroll.service';
         AmpStickyOnScrollDirective
     ]
 } )
-export class ReviewSectionComponent {
+export class ReviewSectionComponent implements AfterViewInit {
 
     private _review_blocks;
     private _sticky_blocks;
@@ -68,7 +69,7 @@ export class ReviewSectionComponent {
                   public _cd : ChangeDetectorRef ) {
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
 
         // Filter blocks for review main and sticky columns
         this._review_blocks = Object.assign({}, this.__child_blocks);
