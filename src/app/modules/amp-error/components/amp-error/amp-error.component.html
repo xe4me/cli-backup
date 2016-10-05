@@ -1,9 +1,9 @@
 <div  *ngIf='controlGroup && controlGroup.invalid && controlGroup.touched'>
-    <div *ngIf='!controlId' class='errors mt-25 mb-15'>
-        <div *ngFor='let aControl of controlGroup.controls | AmpValues' class='error-item'>
+    <div *ngIf='!controlId' class='errors'>
+        <div *ngFor='let aControl of controlGroup.controls | AmpValues'>
             <div *ngIf="aControl.errors">
-                <div *ngFor='let error of aControl.errors | AmpKeys ; let i = index' class='error-item '>
-                    <div *ngIf='aControl.touched'>
+                <div *ngFor='let error of aControl.errors | AmpKeys ; let i = index'>
+                    <div *ngIf='aControl.touched' class='error-item'>
                         <span class='icon icon--close icon-errors' aria-hidden='true'></span>
                         <span [innerHtml]='aControl.errors[error].text'></span>
                         <template
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf='controlId && controlGroup.controls[controlId]?.invalid && controlGroup.controls[controlId].touched' class='errors mt-25 mb-15'>
+    <div *ngIf='controlId && controlGroup.controls[controlId]?.invalid && controlGroup.controls[controlId].touched' class='errors'>
         <div *ngFor='let error of controlGroup.controls[controlId]?.errors | AmpKeys ; let i = index'>
             <div class="error-item">
                 <span class='icon icon--close icon-errors' aria-hidden='true'></span>
