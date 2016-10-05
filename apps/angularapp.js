@@ -11,7 +11,7 @@ const GW_PRACTICE_SERVICE_PATH = process.env.GW_PRACTICE_SERVICE_PATH;  // https
 const GW_DDC_API_KEY = process.env.GW_DDC_API_KEY;
 const GW_DDC_SERVICE_PATH = process.env.GW_DDC_SERVICE_PATH; // https://teamtools.amp.com.au/confluence/display/EH/Dynamic+Data+Capture+%28DDC%29+API
 
-const EXPERIENCE_BASEURL = '/ddc/secure/ui/' + EXPERIENCE_NAME;
+const EXPERIENCE_BASEURL = '/ddc/public/ui/' + EXPERIENCE_NAME;
 
 var express = require('express');
 var router = require('express').Router();
