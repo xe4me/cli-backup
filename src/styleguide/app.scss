@@ -6,25 +6,25 @@
 @import "../../node_modules/@angular2-material/core/style/_theme-functions";
 @import "../../node_modules/@angular2-material/core/style/_default-theme";
 .example-inside{
-  padding: 20px;
+    padding: 20px;
 }
 
 .icon--chevron-right {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .styleguide-app {
-  display: block;
-  &--components {
-    border: 1px solid $amp-colour-secondary-lightest;
-    height: 100%;
-    min-height: 600px;
-  }
+    display: block;
+    &--components {
+        border: 1px solid $amp-colour-secondary-lightest;
+        height: 100%;
+        min-height: 600px;
+    }
 
-  &--menu {
-    background-color: $amp-colour-secondary-light;
-    height: 100%;
-  }
+    &--menu {
+        background-color: $amp-colour-secondary-light;
+        height: 100%;
+    }
 }
 
 $md-font-url: 'src/styleguide/assets/font/';
@@ -38,172 +38,172 @@ $app-menu-width: 300px;
 $toolbar-hero-height: 170px;
 
 styleguide-app {
-  height: 100%;
-  min-height: 100%;
-  .md-primary {
-    background-color: $amp-colour-secondary-darkest !important;
-  }
-  .app-menu {
-    border-right: 1px solid $amp-colour-primary;
-  }
-
-  .app-content {
-    background-color: $amp-colour-primary;
-  }
-
-  .fixed-toolbar, .shadow-toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-
-  }
-  &.push-menu {
-    .fixed-toolbar {
-      padding-left: $app-menu-width;
+    height: 100%;
+    min-height: 100%;
+    .md-primary {
+        background-color: $amp-colour-secondary-darkest !important;
     }
-  }
+    .app-menu {
+        border-right: 1px solid $amp-colour-primary;
+    }
 
-  .seed-title {
-    padding-top: 80px;
-  }
-  .seed-intro {
-    > section {
-      > h1 {
-        margin-top: rem(6);
-        margin-bottom: rem(6);
-        font-weight: 300;
-        color: $amp-colour-primary;
-      }
-      > md-divider {
-        margin-top: rem(6);
-      }
-      .card-media {
+    .app-content {
         background-color: $amp-colour-primary;
-      }
-    }
-    > div {
-      padding: 10px 5px;
-      margin-top: 20px;
-    }
-    h3 {
-      color: $amp-colour-secondary;
-      font-size: 20px;
-      margin: 5px 0;
-    }
-    p {
-      color: $amp-colour-grey-darkest;
-      padding: 10px;
-    }
-    .highlight {
-      line-height: 2.5 !important;
-
-    }
-    highlight {
-      border-radius: 2px;
-      line-height: 0 !important;
-
-    }
-  }
-
-  .examples {
-    min-height: 640px;
-
-    .examples-title {
-      color: $amp-colour-secondary-darkest;
-      font-size: rem(3.4);
-      font-weight: 400;
-      line-height: rem(4);
-      margin-bottom: rem(4);
     }
 
-    .examples-intro {
-      font-size: rem(2);
-      line-height: rem(3.2);
-      margin-bottom: 0;
-      padding: 0 0 40px 0;
-      a {
-        text-decoration: none;
-        color: $amp-colour-secondary;
-      }
+    .fixed-toolbar, .shadow-toolbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+
     }
-    .heading-list-toc {
-      border-left: 5px solid $amp-colour-primary;
-      padding-left: 20px;
-      h1 {
-        margin: 0;
-        font-size: rem(1.5);
-        line-height: rem(1.6);
-        padding-bottom: 12px;
-        font-weight: 400;
-        color: $amp-colour-secondary-darkest;
-      }
-
-      ul {
-        list-style: none;
-        margin-top: 0;
-        padding-left: 0
-      }
-
-      li {
-        font-size: 20px;
-        line-height: 40px;
-        a {
-          cursor: pointer;
-          text-decoration: none;
-          color: $amp-colour-secondary;
-          @include transition(all 200ms linear);
-          &:hover {
-            font-weight: 500;
-          }
+    &.push-menu {
+        .fixed-toolbar {
+            padding-left: $app-menu-width;
         }
-        &:last-child {
-          line-height: 20px;
-          padding-top: 10px
-        }
-      }
     }
-  }
 
-  footer {
-    background-color: $amp-colour-primary;
-    width: 100%;
-    .container {
-      margin: auto;
-      padding: 0 25px;
-      width: 80%;
-
-      a.previous, a.next {
-        @include amp-family(open-sans-regular);
-        color: $amp-colour-primary;
-        //@include md-medium-tall-toolbar();
-        text-decoration: none;
-        &:visited {
-          color: $amp-colour-primary;
-        }
-        .label {
-          color: $amp-colour-primary;
-        }
-        .name {
-          font-weight: 500;
-          white-space: nowrap;
-        }
-        i {
-          height: 47px;
-          padding-top: 24px;
-          margin: 0 10px;
-          vertical-align: bottom;
-        }
-      }
-      .previous {
-        text-align: left;
-      }
-      .next {
-        text-align: right;
-      }
-
+    .seed-title {
+        padding-top: 80px;
     }
-  }
+    .seed-intro {
+        > section {
+            > h1 {
+                margin-top: rem(6);
+                margin-bottom: rem(6);
+                font-weight: 300;
+                color: $amp-colour-primary;
+            }
+            > md-divider {
+                margin-top: rem(6);
+            }
+            .card-media {
+                background-color: $amp-colour-primary;
+            }
+        }
+        > div {
+            padding: 10px 5px;
+            margin-top: 20px;
+        }
+        h3 {
+            color: $amp-colour-secondary;
+            font-size: 20px;
+            margin: 5px 0;
+        }
+        p {
+            color: $amp-colour-grey-darkest;
+            padding: 10px;
+        }
+        .highlight {
+            line-height: 2.5 !important;
+
+        }
+        highlight {
+            border-radius: 2px;
+            line-height: 0 !important;
+
+        }
+    }
+
+    .examples {
+        min-height: 640px;
+
+        .examples-title {
+            color: $amp-colour-secondary-darkest;
+            font-size: rem(3.4);
+            font-weight: 400;
+            line-height: rem(4);
+            margin-bottom: rem(4);
+        }
+
+        .examples-intro {
+            font-size: rem(2);
+            line-height: rem(3.2);
+            margin-bottom: 0;
+            padding: 0 0 40px 0;
+            a {
+                text-decoration: none;
+                color: $amp-colour-secondary;
+            }
+        }
+        .heading-list-toc {
+            border-left: 5px solid $amp-colour-primary;
+            padding-left: 20px;
+            h1 {
+                margin: 0;
+                font-size: rem(1.5);
+                line-height: rem(1.6);
+                padding-bottom: 12px;
+                font-weight: 400;
+                color: $amp-colour-secondary-darkest;
+            }
+
+            ul {
+                list-style: none;
+                margin-top: 0;
+                padding-left: 0
+            }
+
+            li {
+                font-size: 20px;
+                line-height: 40px;
+                a {
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: $amp-colour-secondary;
+                    @include transition(all 200ms linear);
+                    &:hover {
+                        font-weight: 500;
+                    }
+                }
+                &:last-child {
+                    line-height: 20px;
+                    padding-top: 10px
+                }
+            }
+        }
+    }
+
+    footer {
+        background-color: $amp-colour-primary;
+        width: 100%;
+        .container {
+            margin: auto;
+            padding: 0 25px;
+            width: 80%;
+
+            a.previous, a.next {
+                @include amp-family(open-sans-regular);
+                color: $amp-colour-primary;
+                //@include md-medium-tall-toolbar();
+                text-decoration: none;
+                &:visited {
+                    color: $amp-colour-primary;
+                }
+                .label {
+                    color: $amp-colour-primary;
+                }
+                .name {
+                    font-weight: 500;
+                    white-space: nowrap;
+                }
+                i {
+                    height: 47px;
+                    padding-top: 24px;
+                    margin: 0 10px;
+                    vertical-align: bottom;
+                }
+            }
+            .previous {
+                text-align: left;
+            }
+            .next {
+                text-align: right;
+            }
+
+        }
+    }
 
 }

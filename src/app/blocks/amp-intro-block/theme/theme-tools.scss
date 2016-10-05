@@ -1,18 +1,18 @@
 @import '../../../../styles/abstracts';
 
 :host {
-  &[theme='tools'] {
-    .FormBlocK {
-      padding-top : 40px;
-      .hr-block-divider {
-        margin-top : 50px;
-      }
-      @include media-query('palm') {
-        padding-top : 20px;
-        .hr-block-divider {
-          margin-top : 20px;
+    &[theme='tools'] {
+        .FormBlocK {
+            padding-top : 40px;
+            .hr-block-divider {
+                margin-top : 50px;
+            }
+            @include media-query('palm') {
+                padding-top : 20px;
+                .hr-block-divider {
+                    margin-top : 20px;
+                }
+            }
         }
-      }
     }
-  }
 }
