@@ -136,8 +136,8 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             this.inputWidth = 300;
         }
         this.tempClassNames = this.el.nativeElement.className;
-        this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
-        this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
+        // this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
+        // this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
         // this.el.nativeElement.className = this.tempClassNames;
         this.updateValitators();
         this.addDelayedValidation();

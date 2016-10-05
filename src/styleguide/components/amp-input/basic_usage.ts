@@ -5,11 +5,10 @@ import { AmpFormRowComponent } from '../../../app/blocks/amp-form-row/amp-form-r
 import { AmpNumberDirective } from '../../../app/modules/amp-directives/directives/number/amp-number.directive';
 @Component(
     {
-        selector        : 'amp-input-basic-usage' ,
-        templateUrl     : 'src/styleguide/components/amp-input/basic_usage.html' ,
-        styles          : [ require( './basic_usage.scss' ).toString() ] ,
-        directives      : [ AmpFormRowComponent ] ,
-        declarations    : [ AmpNumberDirective ]
+        selector    : 'amp-input-basic-usage' ,
+        templateUrl : 'src/styleguide/components/amp-input/basic_usage.html' ,
+        styles      : [ require( './basic_usage.scss' ).toString() ] ,
+        directives  : [ AmpFormRowComponent ]
     } )
 export default class AmpInputBasicUsage {
     toggleFlag : boolean;
