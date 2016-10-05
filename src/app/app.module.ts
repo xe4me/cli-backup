@@ -42,7 +42,6 @@ const DECLARATIONS = [
     AmpFormRowComponent,
     AmpIntroBlockComponent,
     AmpFormBlockComponent ,
-    AmpButton ,
     AmpOverlayComponent ,
 ];
 
