@@ -55,7 +55,6 @@ export class ReviewSectionComponent implements AfterViewInit {
     private _sticky_blocks;
     private __child_blocks;
     private __form = this.__form;
-
     private __custom = this.__custom || {};
 
     private _summaryBlocks = [];
@@ -82,11 +81,13 @@ export class ReviewSectionComponent implements AfterViewInit {
         this._sticky_blocks.blocks = this.__child_blocks.blocks.filter((block) => {
             return block.blockLayout === 'STICKY';
         });
-
-        this.createBlocksOfFormModel();
     }
 
-    createBlocksOfFormModel (){
+    ngAfterViewInit () {
+          this.createBlocksOfFormModel();
+    }
+
+    createBlocksOfFormModel () {
         this._summaryBlocks = [];
         let ctrls = this.__form.controls.Application.controls.PageSection.controls;
 
