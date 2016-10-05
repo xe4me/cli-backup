@@ -5,7 +5,7 @@
   },
   "apps": [
     {
-      "baseURI": "ddc/secure/ui/bett3r",
+      "baseURI": "ddc/public/ui/bett3r",
       "root": "src",
       "outDir": "dist",
       "assets": "assets",
