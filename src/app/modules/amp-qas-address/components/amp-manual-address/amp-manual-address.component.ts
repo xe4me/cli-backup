@@ -36,7 +36,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
         label     : 'Address' ,
         regex     : '' ,
         maxLength : 200 ,
-        minLength : 5 ,
+        minLength : 3 ,
         errors    : {
             required : 'Address is a required field.'
         }
@@ -89,10 +89,11 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
 
     public updateControls ( _formattedAddress : any ) {
         if ( _formattedAddress ) {
-            this.addressCtrl.setValue( _formattedAddress.StreetName );
-            this.suburbCtrl.setValue( _formattedAddress.Locality );
-            this.manualStatesCmp.setSelectValue( _formattedAddress.StateCode.toUpperCase() );
+            this.addressCtrl.setValue( _formattedAddress.StreetAddress );
+            this.suburbCtrl.setValue( _formattedAddress.Suburb );
+            this.manualStatesCmp.setSelectValue( _formattedAddress.State.toUpperCase() );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
+            // this.dpidCtrl.setValue( _formattedAddress.DPID );
             // this.countryCtrl.setValue( _formattedAddress.Country );
         }
         // this.cityCtrl.setValue( _formattedAddress.city );
