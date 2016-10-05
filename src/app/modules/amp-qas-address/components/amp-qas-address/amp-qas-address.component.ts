@@ -2,16 +2,20 @@ import {
     Component , Input , ViewChild , Output , EventEmitter , OnInit ,
     ChangeDetectionStrategy , AfterViewInit , ChangeDetectorRef
 } from '@angular/core';
-import { AmpQasAddressService } from '../../services/amp-qas-address.service';
+import {
+    AmpQasAddressService , AddressFormatTypes
+} from '../../services/amp-qas-address.service';
 import { AmpTypeaheadComponent } from '../../../amp-typeahead';
 import { FormGroup } from '@angular/forms';
+import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-address.component';
 @Component( {
     selector : 'amp-qas-address' ,
     template : require( './amp-qas-address.component.html' ) ,
     styles   : [ require( './amp-qas-address.component.scss' ).toString() ]
 } )
 export class AmpQasAddressComponent implements AfterViewInit {
-    @ViewChild( 'manualEntryCmp' ) manualEntryCmp;
+    @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpManualAddressComponent;
+    @ViewChild( 'typeaheadCmp' ) typeaheadCmp : AmpTypeaheadComponent;
     @Input() id : string                                = 'default-qas-id';
     @Input() label : string                             = 'Default qas label';
     @Input() controlGroup : FormGroup;
@@ -25,6 +29,7 @@ export class AmpQasAddressComponent implements AfterViewInit {
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
+    private showManualEntryForm                         = false;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
@@ -32,6 +37,12 @@ export class AmpQasAddressComponent implements AfterViewInit {
     ngAfterViewInit () : void {
         // This will make sure the view has got the latest changes from all the descendant
         this._cd.detectChanges();
+        this.typeaheadCmp
+            .$deSelected
+            .debounceTime( 300 )
+            .subscribe( ( change ) => {
+                this.onOptionDeSelect( change );
+            } );
     }
 
     public get qasControlGroup () : any {
@@ -41,7 +52,19 @@ export class AmpQasAddressComponent implements AfterViewInit {
     }
 
     public showManualAddrForm () {
-        alert( 'Show manual' );
+        setTimeout( () => {
+            this.qasControlGroup.reset();
+            this.showManualEntryForm = true;
+            this._cd.detectChanges();
+        } );
+    }
+
+    public goBack () {
+        setTimeout( () => {
+            this.manualAddressCmp.emptyControls();
+            this.showManualEntryForm = false;
+            this._cd.detectChanges();
+        } );
     }
 
     get selectedControl () {
@@ -52,16 +75,15 @@ export class AmpQasAddressComponent implements AfterViewInit {
     };
 
     public onOptionDeSelect ( $event ) {
-        this.manualEntryCmp.updateControls( $event );
+        this.manualAddressCmp.emptyControls();
     }
 
     public onOptionSelect ( $event ) {
-        let testManiker = 'COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-';
         this._ampQasAddressService
-            .getFormattedAddress( testManiker )
-            .subscribe( ( _address ) => {
-                this.manualEntryCmp.updateControls( _address );
-                this.$selected.emit( _address );
+            .getFormattedAddress( $event.Moniker , AddressFormatTypes.CRM )
+            .subscribe( ( _formattedAddress : any ) => {
+                this.manualAddressCmp.updateControls( _formattedAddress );
+                this.$selected.emit( _formattedAddress );
             } );
     }
 
@@ -76,7 +98,8 @@ export class AmpQasAddressComponent implements AfterViewInit {
                     }
                 } : {
                     invalidAddress : {
-                        text : c._ampErrors && c._ampErrors.invalidAddress ? c._ampErrors.invalidAddress : 'This address is not valid.'
+                        text : c._ampErrors && c._ampErrors.invalidAddress ? c._ampErrors.invalidAddress : 'Please' +
+                        ' select a valid address from the search results.'
                     }
                 };
             } else {

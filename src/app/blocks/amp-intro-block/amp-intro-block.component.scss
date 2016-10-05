@@ -129,7 +129,7 @@ $amp-ddc-public-asset: '../../../assets/';
         margin-bottom: 0;
 
         @include media-query(palm) {
-          //  margin-bottom: 38px;
+            //  margin-bottom: 38px;
         }
 
     }
@@ -178,7 +178,7 @@ $amp-ddc-public-asset: '../../../assets/';
         }
 
         label  .container .off {
-             border-color: $amp-colour-white!important;
+            border-color: $amp-colour-white!important;
         }
 
         .label {
@@ -210,10 +210,4 @@ $amp-ddc-public-asset: '../../../assets/';
             }
         }
     }
-
-
 }
-
-
-
-

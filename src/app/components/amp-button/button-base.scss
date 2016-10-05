@@ -5,8 +5,6 @@ Button Base, base styles for all buttons, default values, white label if you wil
 Do not modify this unless you know what you're doing
 */
 
-
-
 //common
 $ddc-buttons-and-icons-transition-time: 300ms;
 $buttons-transition-time: $ddc-buttons-and-icons-transition-time;
@@ -16,7 +14,6 @@ $buttons-default-margin-top: 4px;
 $buttons-default-height: 42px;
 $disabled-text-color: #9f9f9f;
 $disabled-background-color: #cbd2dc;
-
 
 //btn-ok
 $btn-ok-color: $amp-colour-white;

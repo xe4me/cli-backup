@@ -1,7 +1,7 @@
 [
     {
         "request": {
-            "url": "/ddc/secure/api/qas/addressFormatter/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
+            "url": "ddc/public/api/qas/doGetAddress/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
             "post": "this is some post data in textual format",
             "method": "GET"
         },
@@ -13,18 +13,36 @@
             "latency": 100,
             "body": {
                 "meta": {
-                    "url": "/ddc/secure/api/qas/doSearch/AUS/pym",
+                    "url": "",
                     "method": "GET",
-                    "responseTimeMs": 153,
-                    "requestId": "132a13b7-f62f-42c2-9625-7354fb26faa6",
+                    "responseTimeMs": 59,
+                    "requestId": "cf5371f9-9d3c-4014-a74b-963976a3c39c",
                     "count": 1
                 },
                 "payload": {
-                    "postCode": "324234",
-                    "state": "nsw",
-                    "address": "33 Aldref street",
-                    "suburb": "sydney",
-                    "city": null
+                    "Siebel": {
+                        "Locality": "MILLTHORPE",
+                        "StateCode": "NSW",
+                        "Postcode": "2798",
+                        "Country": "Australia",
+                        "DPIDDID": "66898785",
+                        "AUSBAR": "1301012020223022212212311113230110113"
+                    },
+                    "Bank": {
+                        "AllPostalDeliveryTypes": "",
+                        "BuildingLevel": "",
+                        "FlatUnit": "",
+                        "BuildingNumber": "1",
+                        "BuildingName": "",
+                        "StreetName": "33 alfred street",
+                        "StreetType": "St",
+                        "Locality": "MILLTHORPE",
+                        "StateCode": "NSW",
+                        "Postcode": "2798",
+                        "Country": "Australia",
+                        "DPIDDID": "66898785",
+                        "AUSBAR": "1301012020223022212212311113230110113"
+                    }
                 }
             }
         }
