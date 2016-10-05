@@ -377,25 +377,25 @@ md-input.md-input div.md-input-wrapper {
     & + amp-dropdown {
         margin-left : 26px;
     }
+}
 
-    .summary {
-        md-input.md-input {
-            @include transition(padding 0.3s linear !important);
-            transition-delay : 0.5s !important;
-            padding-right    : 0 !important;
-            padding-left     : 0 !important;
-            cursor           : default;
+.summary {
+    md-input.md-input {
+        @include transition(padding 0.3s linear !important);
+        transition-delay : 0.5s !important;
+        padding-right    : 0 !important;
+        padding-left     : 0 !important;
+        cursor           : default;
 
-            div.md-input-wrapper {
-                .md-input-element {
-                    cursor : default;
-                }
-                .md-input-underline {
-                    display : none;
-                }
-                .md-input-placeholder {
-                    display : none;
-                }
+        div.md-input-wrapper {
+            .md-input-element {
+                cursor : default;
+            }
+            .md-input-underline {
+                display : none;
+            }
+            .md-input-placeholder {
+                display : none;
             }
         }
     }
