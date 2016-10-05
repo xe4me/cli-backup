@@ -4,14 +4,14 @@ import {
 import { Control } from '@angular/common';
 
 @Directive( {
-    selector : '[amp-number]',
+    selector : '[amp-number-only]',
     host: {
-        '(keyup)' : 'onInputChange()'
+        '(input)' : 'onInputChange()'
     }
 } )
 
 export class AmpNumberDirective {
-    @Input('amp-number') inputControl : Control;
+    @Input('amp-number-only') inputControl : Control;
 
     onInputChange () {
         let newValue = this.inputControl.value.replace( /\D/g, '' );
