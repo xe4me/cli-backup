@@ -1,0 +1,78 @@
+{
+    "id": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-form-block-menu",
+    "fdnModelPath": "src/styleguide/blocks/amp-form-block-menu",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "blockType": "DetailsPage1",
+            "name": "Application",
+            "blockLayout": "PAGE",
+            "commonBlock": false,
+            "path": "amp-form-block-menu/blocks/pages/details-page",
+            "page": {
+                "pageId": null,
+                "nextPageId": null,
+                "prevPageId": null,
+                "routeName": "ApplicationFormComponent"
+            },
+            "blocks": [
+                {
+                    "name": "introBlockComponent",
+                    "blockType": "IntroBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "amp-form-block-menu/blocks/intro/intro-block.component"
+                },
+                {
+                    "blockType": "MenuFrameApplicationBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": false,
+                    "path": "amp-form-block-menu/blocks/menu-frame/menu-frame.application.component",
+                    "blocks": [
+                        {
+                            "name": "blockWithGoogleAddress",
+                            "blockType": "BlockWithGoogleAddress",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "amp-form-block-menu/blocks/block-with-google-address",
+                            "custom": {
+                                "blockTitle": "Enter your address",
+                                "controls": [
+                                    {
+                                        "id": "GoogleAddress"
+                                    }
+                                ]
+                            }
+                        },
+
+                        {
+                            "name": "sampleArrayExperienceBlock",
+                            "blockType": "SampleArrayExperienceBlock",
+                            "blockLayou": "INLINE",
+                            "commonBloc": false,
+                            "path": "amp-form-block-menu/blocks/sample-array-experience-block",
+                            "custom": {
+                                "blockTitle": "This block has dynamic controls",
+                                "controls": [
+                                    {
+                                        "id": "age",
+                                        "title": "What about your age?",
+                                        "errors": {
+                                            "required": "Apparently even age is a required thing ) , what a wonderful time to be"
+                                        },
+                                        "regex": "^([0-9])*$",
+                                        "maxLengh": 20
+                                    }
+                                ]
+                            }
+                        }
+
+                    ]
+                }
+            ]
+        }
+    ]
+}
