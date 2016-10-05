@@ -154,12 +154,17 @@ export function getWebpackCommonConfig(
         filename: 'inline.js',
         sourceMapFilename: 'inline.map'
       }),
-      new CopyWebpackPlugin([{
-        context: path.resolve(appRoot, appConfig.assets),
-        from: { glob: '**/*', dot: true },
-        ignore: [ '.gitkeep' ],
-        to: path.resolve(projectRoot, appConfig.outDir, appConfig.assets)
-      }])
+      new CopyWebpackPlugin([
+        {
+          context: path.resolve(appRoot, appConfig.assets),
+          from: { glob: '**/*', dot: true },
+          ignore: [ '.gitkeep' ],
+          to: path.resolve(projectRoot, appConfig.outDir, appConfig.assets)
+        },
+        { from: 'src/assets', to: path.resolve(projectRoot, appConfig.outDir, 'public') },
+        { from: 'public', to: path.resolve(projectRoot, appConfig.outDir, 'public') },
+        { from: 'node_modules/amp-ddc-components/src/assets', to: path.resolve(projectRoot, appConfig.outDir, 'public') }
+      ])
     ],
     node: {
       fs: 'empty',
