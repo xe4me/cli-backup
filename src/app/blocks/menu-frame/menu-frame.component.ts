@@ -18,7 +18,8 @@ import { StickyProgressHeaderBlockComponent } from
 @Component({
     selector: 'menu-frame',
     templateUrl: './menu-frame.component.html',
-    styles: [require('./menu-frame.component.scss')]
+    styles: [require('./menu-frame.component.scss')],
+    directives: [StickyProgressHeaderBlockComponent]
 })
 export class MenuFrameBlockComponent {
     private calculatedProgress = 0;
