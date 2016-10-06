@@ -1,19 +1,26 @@
 import {
-    Component , Input , OnInit , ChangeDetectorRef , ChangeDetectionStrategy , ViewChild ,
-    AfterViewInit
+    Component ,
+    Input ,
+    OnInit ,
+    ChangeDetectorRef ,
+    ChangeDetectionStrategy ,
+    ViewChild ,
+    AfterViewInit ,
+    OnDestroy
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { AmpStatesComponent } from '../../../amp-dropdown';
 import { AmpCountryComponent } from '../../../amp-dropdown/components/amp-country/amp-country.component';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component( {
     selector        : 'amp-manual-address' ,
     template        : require( './amp-manual-address.component.html' ) ,
     styles          : [ require( './amp-manual-address.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpManualAddressComponent implements OnInit, AfterViewInit {
-    public static MANUAL_ARRES_GROUP_NAME = 'manual-address';
+export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestroy {
+    public static MANUAL_ARRES_GROUP_NAME = 'manualAddress';
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpInputComponent;
     @ViewChild( 'manualSuburbCmp' ) manualSuburbCmp : AmpInputComponent;
     @ViewChild( 'manualStatesCmp' ) manualStatesCmp : AmpStatesComponent;
@@ -21,8 +28,9 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     @ViewChild( 'manualCountryCmp' ) manualCountryCmp : AmpCountryComponent;
     @ViewChild( 'manualCityCmp' ) manualCityCmp : AmpInputComponent;
     @Input() id : string                  = 'default-';
-    @Input() index : string               = '';
+    @Input() index;
     @Input() isInSummaryState : boolean   = false;
+    @Input() keepControl : boolean        = false;
     @Input() required : boolean           = true;
     @Input() controlGroup : FormGroup;
     @Input() googleAddress                = {
@@ -100,13 +108,21 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
 
     ngOnInit () {
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id + AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME , this.manualAddressCG );
+            this.controlGroup.addControl( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) , this.manualAddressCG );
         }
     }
 
     ngAfterViewInit () : void {
         this.getManualControlsFromManualAddressCG();
         this.manualCountryCmp.setSelectValue( this.DEFAULT_SELECTED_COUNTRY );
+    }
+
+    ngOnDestroy () : void {
+        if ( ! this.keepControl ) {
+            if ( this.controlGroup.contains( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME ) ) {
+                this.controlGroup.removeControl( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME );
+            }
+        }
     }
 
     public updateControls ( _formattedAddress : any ) {
@@ -144,7 +160,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     }
 
     private getJoinedIdWithIndex ( _id ) {
-        return _id + '_' + this.index;
+        return _id + addDashOrNothing( this.index );
     }
 
     private killDelayedValidationForInputs () {

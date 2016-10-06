@@ -10,6 +10,7 @@ import { AmpInputsModule } from '../amp-inputs';
 import { AmpDropdownModule } from '../amp-dropdown/amp-dropdown.module';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpButtonModule } from '../amp-button/amp-button.module';
+import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
 const DECLARATIONS = [
     AmpQasAddressComponent ,
     AmpQasAddressMultiComponent ,
@@ -21,6 +22,7 @@ const DECLARATIONS = [
         AmpSharedRootModule ,
         AmpButtonModule ,
         AmpInputsModule ,
+        AmpCheckboxModule ,
         AmpDropdownModule ,
         AmpErrorModule ,
         AmpTypeaheadModule

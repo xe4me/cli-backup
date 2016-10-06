@@ -20,6 +20,7 @@ import {
     MaxFloatValidator
 } from '../../../amp-utils';
 import { FormGroup , FormControl , Validators } from '@angular/forms';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component(
     {
         selector        : 'amp-input' ,
@@ -39,6 +40,7 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
             'maxLength' ,
             'minLength' ,
             'pattern' ,
+            'index' ,
             'maxDate' ,
             'minDate' ,
             'maxFloat' ,
@@ -73,7 +75,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     public errors                        = {};
     public controlGroup : FormGroup;
     protected inputWidth : number;
-    protected id : string;
+    protected _id : string               = 'default';
     protected type : string              = 'text';
     protected _minLength : number;
     protected _maxLength : number;
@@ -108,6 +110,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected validationDelay            = 0;
     protected idleTimeOut                = 4500;
     protected idleTimeoutId;
+    protected index;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
@@ -227,6 +230,14 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     set maxLength ( value : number ) {
         this._maxLength = value;
         this.updateValitators();
+    }
+
+    set id ( value ) {
+        this._id = value;
+    }
+
+    get id () {
+        return this._id + addDashOrNothing( this.index );
     }
 
     protected humanDate ( value : any ) {
