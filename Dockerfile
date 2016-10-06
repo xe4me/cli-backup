@@ -20,6 +20,4 @@ RUN chown -R node:node /code && \
 # Set user to node
 USER node
 
-RUN amp-ng build --prod
-
 CMD [ "npm", "run", "server:express" ]
