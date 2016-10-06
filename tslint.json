@@ -3,7 +3,6 @@
     "rules": {
         // Overrides of tslint:recommended
         "arrow-parens": true,
-        "object-literal-sort-keys": false,
         "max-line-length": [
             true,
             400 // TODO: Aim to bring this number down to between 120 - 140
@@ -12,6 +11,7 @@
         "no-string-literal": false, // This is needed for accessing Angular Controls
         "no-unused-variable": false,
         "no-var-requires": false, // Allow for .json files to be required
+        "object-literal-sort-keys": false,
         "quotemark": [
             true,
             "single"
