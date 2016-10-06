@@ -29,7 +29,7 @@ describe( 'amp-account-number component' , () => {
         expect( compiledInput.nativeElement.id ).toBe( 'account-number-input' );
         expect( compiledInput.nativeElement.attributes['maxlength'].value ).toBe( '9' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
-        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'account_number' );
+        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_account-number' );
     } );
 } );
 class MockElementRef implements ElementRef {
