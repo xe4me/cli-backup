@@ -6,7 +6,7 @@ import { FormSectionService } from '../../../app/services/form-section/form-sect
 import{ Highlight } from '../../highlight';
 let formDef = require( './form-def.def.json' );
 @Component( {
-    selector    : 'amp-form-block-basic-usage' ,
+    selector    : 'amp-form-block-menu-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-form-block-menu/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
     providers   : [ FormSectionService ] ,

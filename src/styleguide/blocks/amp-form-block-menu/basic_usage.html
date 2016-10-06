@@ -1,31 +1,4 @@
 <div>
-    <section class="p">
-        <h3 class="heading heading-intro">Dynamic for using amp-block-loader and Redux</h3>
-        <ul>
-            <li>
-                __controlGroup
-                <div class="grid__item_floated 1/1">
-                    As amp-block-loader loads the blocks as it loops through them , it creates a controlGroup for every block
-                    and then adds it to the overall form ,again , you have access to this variable inside your block class.
-                </div>
-            </li>
-            <li>
-                __form
-                <div class="grid__item_floated 1/1">
-                    AmpBlockLoader expect a form that has been created by the app component , and then it assign all the dynamically created controlGroup to this form,
-                    Again , this variable is accessible inside the block class.
-                </div>
-            </li>
-            <li>
-                __blockType
-                <div class="grid__item_floated 1/1">
-                    This is the Block's class name that you provide inside the form def , it's accessible inside your block class for you to use it if you want.
-                </div>
-            </li>
-        </ul>
-        <br><br><br>
-    </section>
-
     <form [formGroup]="form" class='nl-form'>
         <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"
              [requireMethod]="'ALL'"></div>

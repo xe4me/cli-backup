@@ -7,7 +7,7 @@
     "status": "NEW",
     "blocks": [
         {
-            "blockType": "DetailsPage",
+            "blockType": "DetailsPage1",
             "name": "Application",
             "blockLayout": "PAGE",
             "commonBlock": false,
@@ -23,43 +23,37 @@
                     "name": "sectiona",
                     "blockType": "PageSectionComponent",
                     "blockLayout": "SECTION",
-                    "commonBlock": true,
+                    "commonBlock": false,
                     "path": "sections/page-section.component",
                     "custom": {
                         "label": "this is section a"
                     },
-                    "blocks": [
-                        {
-                            "name": "introBlockComponent",
-                            "blockType": "introBlockComponent",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "amp-form-block-menu/blocks/intro/intro-block.component"
-                        },
-                        {
-                            "blockType": "AmpStandAloneMenuComponent",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "amp-form-block-menu/blocks/menu-component/menu-component.component",
-                            "blocks": [
+
+                "blocks":[
+                    {
+                        "name": "BlockWithCheckbox",
+                        "blockType": "BlockWithCheckbox",
+                        "blockLayout": "INLINE",
+                        "commonBlock": false,
+                        "path": "amp-form-block-menu/blocks/block-with-checkbox",
+                        "custom": {
+                            "blockTitle": "Checkbox ",
+                            "controls": [
                                 {
-                                    "name": "BlockWithTextarea",
-                                    "blockType": "BlockWithTextarea",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "amp-form-block-menu/blocks/block-with-textarea",
-                                    "custom": {
-                                        "blockTitle": "This is a text area, it's nice isn't it ",
-                                        "controls": [
-                                            {
-                                                "id": "textarea"
-                                            }
-                                        ]
-                                    }
+                                    "id": "radios",
+                                    "buttons": [
+                                        {
+                                            "id": "five_years2",
+                                            "value": "five_years2",
+                                            "label": "At least five years"
+                                        }
+                                    ]
                                 }
                             ]
                         }
-                    ]
+                    }
+                        ]
+
                 }
             ]
         }
