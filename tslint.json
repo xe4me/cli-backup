@@ -36,6 +36,10 @@
         ],
         "variable-name": [true,
             "ban-keywords",
+            // This rule is commented out as this rule doesn't allow for double leading underscores. I have raised an
+            // issue with TSLint re this: https://github.com/palantir/tslint/issues/1605
+            // "check-format",
+            "allow-leading-underscore",
             "allow-pascal-case"
         ]
     }
