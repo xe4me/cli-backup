@@ -159,11 +159,8 @@ export function getWebpackCommonConfig(
           context: path.resolve(appRoot, appConfig.assets),
           from: { glob: '**/*', dot: true },
           ignore: [ '.gitkeep' ],
-          to: path.resolve(projectRoot, appConfig.outDir, appConfig.assets)
-        },
-        { from: 'src/assets', to: path.resolve(projectRoot, appConfig.outDir, 'public') },
-        { from: 'public', to: path.resolve(projectRoot, appConfig.outDir, 'public') },
-        { from: 'node_modules/amp-ddc-components/src/assets', to: path.resolve(projectRoot, appConfig.outDir, 'public') }
+          to: path.resolve(projectRoot, appConfig.outDir, appConfig.baseURI, appConfig.assets)
+        }
       ])
     ],
     node: {
