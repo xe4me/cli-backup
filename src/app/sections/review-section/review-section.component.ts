@@ -68,7 +68,7 @@ export class ReviewSectionComponent implements AfterViewInit {
                   public _cd : ChangeDetectorRef ) {
     }
 
-    ngAfterViewInit() {
+    ngOnInit() {
 
         // Filter blocks for review main and sticky columns
         this._review_blocks = Object.assign({}, this.__child_blocks);
