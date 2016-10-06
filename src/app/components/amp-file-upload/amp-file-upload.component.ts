@@ -8,12 +8,14 @@ import { Http,
          Response } from '@angular/http';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
+import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
 
 @Component({
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
     styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
-    directives  : [ UPLOAD_DIRECTIVES, AmpButton, AmpLinearProgressBarComponent ]
+    directives  : [ UPLOAD_DIRECTIVES, AmpButton, AmpLinearProgressBarComponent ],
+    providers   : [ AmpFileUploadService ]
 })
 export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
@@ -37,10 +39,19 @@ export class AmpFileUploadComponent implements OnInit {
     private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
     constructor ( protected _cd : ChangeDetectorRef,
-                  private http : Http ) {
+                  private http : Http,
+                  private fileUploadService : AmpFileUploadService,
+                    ) {
     }
 
     ngOnInit() {
+        // Get the urls from fileUploadService if it is not passed as input
+        if ( !this.tokenUrl ) {
+            this.tokenUrl = this.fileUploadService.tokenUrl;
+        }
+        if ( !this.uploadUrl ) {
+            this.uploadUrl = this.fileUploadService.uploadUrl;
+        }
         this.basicOptions = {
             calculateSpeed: true
         };
