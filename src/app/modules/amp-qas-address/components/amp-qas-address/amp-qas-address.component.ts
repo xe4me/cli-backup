@@ -1,22 +1,27 @@
 import {
-    Component , Input , ViewChild , Output , EventEmitter , OnInit ,
-    ChangeDetectionStrategy , AfterViewInit , ChangeDetectorRef
+    Component ,
+    Input ,
+    ViewChild ,
+    Output ,
+    EventEmitter ,
+    AfterViewInit ,
+    ChangeDetectorRef ,
+    OnDestroy
 } from '@angular/core';
-import {
-    AmpQasAddressService , AddressFormatTypes
-} from '../../services/amp-qas-address.service';
+import { AmpQasAddressService , AddressFormatTypes } from '../../services/amp-qas-address.service';
 import { AmpTypeaheadComponent } from '../../../amp-typeahead';
 import { FormGroup } from '@angular/forms';
 import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-address.component';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component( {
     selector : 'amp-qas-address' ,
     template : require( './amp-qas-address.component.html' ) ,
     styles   : [ require( './amp-qas-address.component.scss' ).toString() ]
 } )
-export class AmpQasAddressComponent implements AfterViewInit {
+export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpManualAddressComponent;
     @ViewChild( 'typeaheadCmp' ) typeaheadCmp : AmpTypeaheadComponent;
-    @Input() id : string                                = 'default-qas-id';
+    @Input() id : string                                = 'qas';
     @Input() label : string                             = 'Default qas label';
     @Input() controlGroup : FormGroup;
     @Input() errors                                     = {
@@ -25,13 +30,30 @@ export class AmpQasAddressComponent implements AfterViewInit {
     @Input() placeholder : string                       = 'Default place holder';
     @Input() required : boolean;
     @Input() isInSummaryState : boolean;
+    @Input() keepControl : boolean                      = false;
+    @Input() index;
     @Input() minTriggerLength : number                  = 3;
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
     private showManualEntryForm                         = false;
+    private qasControlGroup                             = new FormGroup( {} );
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
+    }
+
+    ngOnInit () : void {
+        if ( this.controlGroup ) {
+            this.controlGroup.addControl( this.id + addDashOrNothing( this.index ) , this.qasControlGroup );
+        }
+    }
+
+    ngOnDestroy () : void {
+        if ( ! this.keepControl ) {
+            if ( this.controlGroup.contains( this.id + addDashOrNothing( this.index ) ) ) {
+                this.controlGroup.removeControl( this.id + addDashOrNothing( this.index ) );
+            }
+        }
     }
 
     ngAfterViewInit () : void {
@@ -45,9 +67,9 @@ export class AmpQasAddressComponent implements AfterViewInit {
             } );
     }
 
-    public get qasControlGroup () : any {
-        if ( this.controlGroup && this.controlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ) ) {
-            return this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
+    public get typeaheadCG () : any {
+        if ( this.qasControlGroup && this.qasControlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ) ) {
+            return this.qasControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
         }
     }
 
@@ -70,8 +92,8 @@ export class AmpQasAddressComponent implements AfterViewInit {
     }
 
     get selectedControl () {
-        if ( ! this._selectedControl && this.qasControlGroup && this.qasControlGroup.contains( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ) {
-            this._selectedControl = this.qasControlGroup.controls[ this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
+        if ( ! this._selectedControl && this.typeaheadCG && this.typeaheadCG.contains( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ) {
+            this._selectedControl = this.typeaheadCG.controls[ this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
         }
         return this._selectedControl;
     };

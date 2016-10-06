@@ -10,11 +10,13 @@ import {
 } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../../../modules/amp-utils';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component( {
     selector        : 'amp-dropdown' ,
     inputs          : [
         'id' ,
         'label' ,
+        'index' ,
         'fieldItemKey' ,
         'fieldValueKey' ,
         'options' ,
@@ -39,7 +41,6 @@ export class AmpDropdownComponent {
     public control : FormControl         = new FormControl();
     public errors                        = {};
     protected controlGroup : FormGroup;
-    protected id : string                = 'amp-dropdown-' + Math.round( Math.random() * 1e10 );
     protected label : string;
     protected disabled : string;
     protected options;
@@ -54,12 +55,14 @@ export class AmpDropdownComponent {
     protected fieldItemKey               = 'label';
     protected fieldValueKey              = 'value';
     protected currentOption;
-    protected _limitTo : number = 999;
-    protected select            = new EventEmitter();
-    protected selectedOption    = {};
+    protected index;
+    protected _limitTo : number          = 999;
+    protected select                     = new EventEmitter();
+    protected selectedOption             = {};
     protected selectElem;
     protected dropdownElem;
     protected optionsElem;
+    private _id                          = 'default';
 
     public setSelectValue ( value ) {
         this.selectElem.value = value;
@@ -116,6 +119,14 @@ export class AmpDropdownComponent {
 
     set limitTo ( value : any ) {
         this._limitTo = value;
+    }
+
+    set id ( value ) {
+        this._id = value;
+    }
+
+    get id () {
+        return this._id + addDashOrNothing( this.index );
     }
 
     protected toggleOptions () {
