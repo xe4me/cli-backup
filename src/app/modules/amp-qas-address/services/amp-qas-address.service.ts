@@ -30,10 +30,10 @@ import { Observable } from 'rxjs';
 export class AmpQasAddressService {
     // public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
     // public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
-    // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
+    // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/public/api/qas/doSearch/AUS/pym';
     // public static QAS_FORMATTER_URL  = 'http://localhost:1234/ddc/public/api/qas/doGetAddress';
-    public static QAS_QUERY_URL      = '/ddc/secure/api/qas/doSearch/AUS/pym';
-    public static QAS_FORMATTER_URL  = '/ddc/public/api/qas/doGetAddress';
+    public static QAS_FORMATTER_URL = '/ddc/public/api/qas/doGetAddress';
+    public static QAS_QUERY_URL     = '/ddc/public/api/qas/doSearch/AUS';
     public static DEFAULT_ERROR_TEXT = 'Server error';
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,
