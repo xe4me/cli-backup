@@ -25,9 +25,9 @@ export class MenuFrameBlockComponent {
     private calculatedProgress = 0;
     private stickyAnimatedIntoView = false;
     private dialogIsVisible = true;
-    private __form: FormGroup;
+    private __form : FormGroup;
     constructor(
-        private _el: ElementRef,
+        private _el : ElementRef,
         private formModelService : FormModelService,
         private progressObserver : ProgressObserverService,
         public formSectionService : FormSectionService,

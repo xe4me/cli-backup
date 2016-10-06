@@ -1,6 +1,8 @@
 import {
-    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
-    AfterViewInit
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import {
     FormBlock ,
@@ -27,7 +29,7 @@ export class AddressBlock extends FormBlock {
 
     public ngAfterViewInit() {
         const postalAddressCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
-        postalAddressCheckbox.valueChanges.subscribe(val => {
+        postalAddressCheckbox.valueChanges.subscribe((val) => {
             this.postalAddressDifferent = val;
         });
         super.ngAfterViewInit();

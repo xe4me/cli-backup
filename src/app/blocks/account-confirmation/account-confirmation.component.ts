@@ -1,8 +1,8 @@
 import {
-    Component, 
-    ChangeDetectorRef, 
-    ElementRef, 
-    OnInit, 
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    OnInit,
     ChangeDetectionStrategy,
     Input,
     AfterViewInit

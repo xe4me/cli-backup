@@ -1,5 +1,10 @@
 import {
-    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    OnInit,
+    ChangeDetectionStrategy,
+    Input,
     AfterViewInit
 } from '@angular/core';
 import {
@@ -18,7 +23,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
-    public tfnExclusion : AbstractControl;
+    public tfnExclusion : boolean;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -30,10 +35,9 @@ export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
     }
 
     public ngAfterViewInit() {
-        this.tfnExclusion = this.__controlGroup.get(this.__custom.controls[1].id);
-        this.tfnExclusion.valueChanges.subscribe(val => {
-            this.__controlGroup.get(this.__custom.controls[0].id).setValue('');
-            this.__controlGroup.get(this.__custom.controls[2].id).setValue(null);
+        const tfnCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
+        tfnCheckbox.valueChanges.subscribe((val) => {
+            this.tfnExclusion = val;
         });
         super.ngAfterViewInit();
     }
