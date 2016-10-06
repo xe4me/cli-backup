@@ -28,16 +28,16 @@ import { Observable } from 'rxjs';
 // }
 @Injectable()
 export class AmpQasAddressService {
-    public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
-    public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
+    //public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
+    //public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
     // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
     // public static QAS_FORMATTER_URL  = 'http://localhost:1234/ddc/public/api/qas/doGetAddress';
-    // public static QAS_QUERY_URL      = '/ddc/secure/api/qas/doSearch/AUS/pym';
-    // public static QAS_FORMATTER_URL  = '/ddc/public/api/qas/doGetAddress';
+    public static QAS_QUERY_URL      = '/ddc/secure/api/qas/doSearch/AUS/pym';
+    public static QAS_FORMATTER_URL  = '/ddc/public/api/qas/doGetAddress';
     public static DEFAULT_ERROR_TEXT = 'Server error';
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,
-        // 'caller'       : 'should-be-change'
+        'caller'       : 'components'
     } );
     // TODO : What needs to be set as caller ?
     constructor ( private http : Http ) {
@@ -45,8 +45,8 @@ export class AmpQasAddressService {
 
     public query               = ( queryValue : string ) : Observable<any> => {
         let headers : Headers = this.headers;
-        let options = new RequestOptions( { body : '' , headers : headers } );
-        let url     = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( queryValue );
+        let options           = new RequestOptions( { body : '' , headers : headers } );
+        let url               = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( queryValue );
         return this
             .http
             .get( url , options )
