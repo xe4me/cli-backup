@@ -1,12 +1,14 @@
 {
   "name": "<%= htmlComponentName %>",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "PROPRIETARY",
   "description": "AMP digital dynamic data capture experience",
   "angular-cli": {},
   "scripts": {
     "start": "amp-ng serve",
-    "lint": "tslint \"<%= sourceDir %>/**/*.ts\"",
+    "tslint": "tslint \"<%= sourceDir %>/**/*.ts\"",
+    "lint": "npm run tslint",
+    "pretest": "npm run lint",
     "test": "amp-ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "amp-ng e2e",
