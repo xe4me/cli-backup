@@ -2,55 +2,39 @@
 @import './block-base';
 @import '../../blocks/amp-form-block/themes/theme-tools';
 
-
-
 :host {
-  display  : block;
-  position : relative;
-  .FormBlocK {
-
-  .heading-intro {
-
-      @include media-query(tablet-and-up) {
-          margin-bottom : 14px;
-      }
-      @include media-query('palm') {
-          line-height: 30px;
-          margin-bottom : 10px;
-      }
-   }
-
-    padding-top : 50px;
-    .hr-block-divider {
-      margin-top : 60px;
-    }
-    @include media-query('palm') {
-      padding-top : 30px;
-      .hr-block-divider {
-        margin-top : 40px;
-      }
-    }
-  }
-
-  &[theme='tools'] {
-
-
+    display: block;
+    position: relative;
 
     .FormBlocK {
-      padding-top : $tools-form-block-heading-top-padding;
-      padding-left : $tools-form-block-left-padding;
-      padding-right : $tools-form-block-right-padding;
+        margin-bottom: $default-margin;
 
-      .heading-intro {
-        margin-bottom : 18px;
-      }
+        .heading-intro {
+            margin-bottom: $default-margin-w-offset;
 
-      .hr-block-divider {
-        margin-top : 50px;
-      }
+            @include media-query('palm') {
+                font-size: 20px;
+            }
+        }
+
+        .hr-block-divider {
+            margin: $default-margin 0;
+        }
     }
-  }
 
+    &[theme='tools'] {
+        .FormBlocK {
+            padding-top: $tools-form-block-heading-top-padding;
+            padding-left: $tools-form-block-left-padding;
+            padding-right: $tools-form-block-right-padding;
+
+            .heading-intro {
+                margin-bottom: 18px;
+            }
+
+            .hr-block-divider {
+                margin: $default-margin 0;
+            }
+        }
+    }
 }
-
-

@@ -28,85 +28,85 @@ $amp-dropdown-option-padding-right : 30px;
 $amp-dropdown-option-padding-right-hidden : 4em;
 $amp-dropdown-option-padding-left : 20px;
 amp-loading {
-  position : absolute;
-  top      : 50%;
-  @include transform(translateY(-50%));
-  right    : 10px;
+    position : absolute;
+    top      : 50%;
+    @include transform(translateY(-50%));
+    right    : 10px;
 }
 
 :host {
-  my-md-input {
-    width : 100% !important;
-  }
-  display  : block;
-  position : relative;
+    my-md-input {
+        width : 100% !important;
+    }
+    display  : block;
+    position : relative;
 }
 
 .amp-typeahead-options {
-  background             : #fff;
-  border                 : $amp-dropdown-options-border-width solid $amp-colour-sky-blue;
-  font-size              : 15px;
-  margin-top             : -1 * $amp-dropdown-input-border-width;
-  opacity                : 1;
-  overflow-x             : hidden;
-  overflow-y             : auto;
-  position               : absolute;
-  width                  : 100%;
-  z-index                : 10;
+    background             : #fff;
+    border                 : $amp-dropdown-options-border-width solid $amp-colour-sky-blue;
+    font-size              : 15px;
+    margin-top             : -1 * $amp-dropdown-input-border-width;
+    opacity                : 1;
+    overflow-x             : hidden;
+    overflow-y             : auto;
+    position               : absolute;
+    width                  : 100%;
+    z-index                : 10;
 
-  // IE Scrollbar
-  scrollbar-base-color   : $amp-colour-sky-blue;
-  scrollbar-track-color  : #f4f4f4;
-  scrollbar-arrow-color  : $amp-colour-sky-blue;
-  scrollbar-shadow-color : $amp-colour-sky-blue;
+    // IE Scrollbar
+    scrollbar-base-color   : $amp-colour-sky-blue;
+    scrollbar-track-color  : #f4f4f4;
+    scrollbar-arrow-color  : $amp-colour-sky-blue;
+    scrollbar-shadow-color : $amp-colour-sky-blue;
 
-  // Webkit Scrollbar
-  &::-webkit-scrollbar {
-    width : 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background : #f4f4f4;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background : $amp-colour-sky-blue;
-  }
-
-  &.amp-typeahead-hidden {
-    border-top    : 0;
-    border-bottom : 0;
-    height        : 0;
-    margin        : 0;
-    padding-right : 18px; // Scrollbar offset
-    position      : relative;
-    visibility    : hidden;
-
-    .amp-typeahead-option {
-      padding-right : $amp-dropdown-option-padding-right-hidden;
-      white-space   : nowrap;
+    // Webkit Scrollbar
+    &::-webkit-scrollbar {
+        width : 6px;
     }
-  }
+
+    &::-webkit-scrollbar-track {
+        background : #f4f4f4;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background : $amp-colour-sky-blue;
+    }
+
+    &.amp-typeahead-hidden {
+        border-top    : 0;
+        border-bottom : 0;
+        height        : 0;
+        margin        : 0;
+        padding-right : 18px; // Scrollbar offset
+        position      : relative;
+        visibility    : hidden;
+
+        .amp-typeahead-option {
+            padding-right : $amp-dropdown-option-padding-right-hidden;
+            white-space   : nowrap;
+        }
+    }
 }
 
 .amp-typeahead-option {
-  &:not([disabled]) {
-    cursor : pointer;
-    @include hover-focus {
-      background : $amp-colour-secondary-lightest;
-      outline    : none;
+    &:not([disabled]) {
+        cursor : pointer;
+        @include hover-focus {
+            background : $amp-colour-secondary-lightest;
+            outline    : none;
+        }
     }
-  }
-  &.amp-typeahead-active {
-    background : $amp-colour-secondary-lighter;
-  }
-  & + & {
-    border-top : $amp-dropdown-option-border-width solid $amp-colour-grey-dark;
-  }
-  line-height : $amp-dropdown-option-line-height;
-  min-height  : $amp-dropdown-option-min-height;
-  padding     : $amp-dropdown-option-padding-top $amp-dropdown-option-padding-right $amp-dropdown-option-padding-bottom $amp-dropdown-option-padding-left;
-  width       : auto;
+    &.amp-typeahead-active {
+        background : $amp-colour-secondary-lighter;
+    }
+    & + & {
+        border-top : $amp-dropdown-option-border-width solid $amp-colour-grey-dark;
+    }
+    line-height : $amp-dropdown-option-line-height;
+    min-height  : $amp-dropdown-option-min-height;
+    padding     : $amp-dropdown-option-padding-top $amp-dropdown-option-padding-right $amp-dropdown-option-padding-bottom $amp-dropdown-option-padding-left;
+    width       : auto;
 
 }
 

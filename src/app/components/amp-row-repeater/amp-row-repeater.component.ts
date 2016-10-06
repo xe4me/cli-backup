@@ -17,13 +17,17 @@ import { AmpFormRowComponent } from '../../blocks/amp-form-row/amp-form-row.comp
                 [ngOutletContext]="{ controlGroup: controlGroup, index: i }">
             </template>
             </div>
-            <amp-button *ngIf="i>0" [context]="context" (click)="remove(i)"
+            <amp-button *ngIf="i > 0" [context]="context" (click)="remove(i)"
                         class="btn btn-anchor utils__push--left">
                 <span class="icon icon--close" aria-hidden="true"></span> {{ removeBtn }}
             </amp-button>
         </amp-form-row>
-        <amp-button *ngIf="controlArray.controls.length>0" [context]="context" (click)="add()"
-                    class="btn btn-anchor btn-inline">
+        <amp-button
+            *ngIf="controlArray.controls.length > 0"
+            [context]="context"
+            (click)="add()"
+            [disabled]="maxRows === controlArray.controls.length"
+            class="btn btn-anchor btn-inline">
             <span class="icon icon--plus-filled" aria-hidden="true"></span> {{ addBtn }}
         </amp-button>
     ` ,
@@ -37,6 +41,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'id' ) id;
     @Input( 'removeBtn' ) removeBtn;
     @Input( 'addBtn' ) addBtn;
+    @Input( 'maxRows' ) maxRows : Number = 9999;
 
     private controlArray : FormArray = new FormArray( [] );
 

@@ -3,8 +3,8 @@
 @import './themes/theme-tools';
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 $summary-state-color : $amp-colour-sky-blue;
 $summary-state-font-family : $amp-font-open-sans-regular;
@@ -19,77 +19,53 @@ $summary-state-font-weight : 300;
 // }
 //
 
-@include media-query(palm) {
-  md-input {
-    &.md-input {
-      padding : 0 !important;
-      div {
-        &.md-input-wrapper {
-            //background-color: purple;
-            //padding: 7px 0 7px 0;
-          input.md-input-element {
-            font-size  : 20px;
-            height     : 24px;
-            margin-top : 0 !important;
-          }
-          label.md-input-placeholder {
-            font-size : 12px;
-            top: 0;
-          }
-        }
-      }
-    }
-  }
-
-}
-
 [primaryColor] {
-  md-input {
-    &.md-input {
-      div {
-        &.md-input-wrapper {
-            @include media-query(tablet-and-up) {
-                margin:0;
-            }
-          .md-input-element {
-            &:focus {
-              color : $amp-colour-white;
-            }
-          }
-          .md-input-placeholder {
+    md-input {
+        &.md-input {
+            div {
+                &.md-input-wrapper {
+                    @include media-query(tablet-and-up) {
+                        margin:0;
+                    }
+                    .md-input-element {
+                        &:focus {
+                            color : $amp-colour-white;
+                        }
+                    }
+                    .md-input-placeholder {
 
-            color : $amp-colour-white;
-            &.md-focused {
-              color : $amp-colour-white;
+                        color : $amp-colour-white;
+                        &.md-focused {
+                            color : $amp-colour-white;
 
-              &.md-accent {
-                color : $amp-colour-white;
-              }
-              &.md-warn {
-                color : $amp-colour-white;
-              }
+                            &.md-accent {
+                                color : $amp-colour-white;
+                            }
+                            &.md-warn {
+                                color : $amp-colour-white;
+                            }
+                        }
+
+                    }
+                }
             }
-
-          }
         }
-      }
     }
-  }
 }
 
 .summary-text {
-  @include amp-family($summary-state-font-family);
-  color       : $amp-colour-sky-blue;
-  font-weight : $summary-state-font-weight;
-  font-size   : $ddc-input-field-font-size;
-  white-space : nowrap;
-  visibility  : hidden;
-  height      : 1px;
-  position    : absolute;
+    @include amp-family($summary-state-font-family);
+    color       : $amp-colour-sky-blue;
+    font-weight : $summary-state-font-weight;
+    font-size   : $ddc-input-field-font-size;
+    white-space : nowrap;
+    visibility  : hidden;
+    height      : 1px;
+    position    : absolute;
 }
 
 .invisible {
-  display : none !important;
+    display : none !important;
 }
 
 $font-size : $amp-base-font-size;
@@ -126,306 +102,291 @@ $input-padding-bottom : 15px !default;
 $input-height : $input-line-height * 1.5; // Don't like Materialize CSS rule 'height: $input-line-height + ($input-padding-top * 2);'
 
 @function pt2px($pt) {
-  @return decimal-round($pt * 1.3333, 2) + px;
+    @return decimal-round($pt * 1.3333, 2) + px;
 
 }
 
 @mixin amp-input-placeholder-floating {
-  visibility     : visible;
-  padding-bottom : 5px;
-  transform      : translateY(-90%) scale(0.8);
-  .md-placeholder-required {
-    color : $amp-colour-grey-darkest;
-  }
+    visibility     : visible;
+    padding-bottom : 5px;
+    transform      : translateY(-90%) scale(0.8);
+    .md-placeholder-required {
+        color : $amp-colour-grey-darkest;
+    }
 }
 
 .currency {
-  font-size : 26px;
+    font-size : 26px;
 }
 
 md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-underline, md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-element:not(:focus) {
-  color        : #000 !important;
-  border-color : #000 !important;
+    color        : #000 !important;
+    border-color : #000 !important;
 }
 
 md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-underline .md-input-ripple {
-  border-top : 1px solid red !important;
+    border-top : 1px solid red !important;
 }
 
 md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-underline, md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-element {
-  border-color : red !important;
+    border-color : red !important;
 
 }
 
 md-input {
 
-  &.md-input {
-    cursor      : pointer;
-    color       : $amp-colour-sky-blue;
-    @include amp-family($amp-font-open-sans-regular);
-    font-weight : 300;
+    &.md-input {
+        cursor      : pointer;
+        color       : $amp-colour-sky-blue;
+        @include amp-family($amp-font-open-sans-regular);
+        font-weight : 300;
 
-    width       : 100%;
-    box-sizing  : border-box;
+        width       : 100%;
+        box-sizing  : border-box;
 
-    div {
-      &.md-input-wrapper {
-        position : relative;
-          @include media-query(tablet-and-up) {
-              margin: 0;
-          }
-        .md-input-table:hover + .md-input-underline.md-disabled {
-          border-top : 1px solid $amp-colour-grey-dark;
+        div {
+            &.md-input-wrapper {
+                position : relative;
+                @include media-query(tablet-and-up) {
+                    margin: 0;
+                }
+                .md-input-table:hover + .md-input-underline.md-disabled {
+                    border-top : 1px solid $amp-colour-grey-dark;
+                }
+                .md-input-underline {
+                    // position: absolute;
+                    // height: 1px;
+                    // width: 100%;
+                    // margin-top: 4px;
+                    border-top : 1px solid $amp-colour-grey-dark;
+
+                    .md-input-ripple {
+                        &:hover {
+                            background-color : $amp-colour-sky-blue;
+                        }
+                        //   position: absolute;
+                        height           : 1px;
+                        //   z-index: 1;
+                        background-color : $amp-colour-grey-dark;
+                        //   top: -1px;
+                        //   width: 100%;
+                        //   transform-origin: top;
+                        //   opacity: 0;
+                        //   transform: scaleY(0);
+                        //   transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
+                        //               opacity $swift-ease-out-duration $swift-ease-out-timing-function;
+
+                        &.md-accent {
+                            background-color : $amp-colour-grey-dark;
+                        }
+                        &.md-warn {
+                            background-color : $amp-colour-grey-dark;
+                        }
+                    }
+                }
+                .md-input-element {
+                    padding       : 0 !important;
+                    font-size     : $ddc-input-field-font-size;
+                    // &[disabled] {
+                    //     &.summary-state {
+                    //         border-bottom: 1px solid transparent !important;
+                    //         color: #00AAE0;
+                    //         background-image: none;
+                    //         cursor: default;
+                    //         background-image: none;
+                    //         &:hover {
+                    //           border-bottom: 1px solid transparent !important
+                    //         }
+                    //     }
+                    // }
+                    margin-top    : -12px !important;
+                    display       : inline;
+                    height        : 58px;
+                    flex          : none;
+                    cursor        : pointer;
+                    color         : $amp-colour-sky-blue;
+                    @include amp-family($amp-font-open-sans-regular);
+                    font-weight   : 300;
+                    position: relative;
+                    text-overflow : ellipsis;
+                    min-width     : 20px;
+                    bottom: -12px;
+
+                    &:focus {
+                        color : $amp-colour-black;
+                    }
+                }
+                .md-input-placeholder {
+                    // The placeholder is after the <input>, but needs to be aligned top-left of the
+                    // infix <div>.
+                    position       : absolute;
+                    left           : 0;
+                    top            : 14px;
+
+                    visibility     : visible;
+                    font-size      : 13px;
+                    font-weight    : 700;
+                    pointer-events : none; // We shouldn't catch mouse events (let them through).
+                    color          : $amp-colour-grey-darkest;
+                    // z-index: 1;
+                    //
+                    // // Put ellipsis text overflow.
+                    // width: 100%;
+                    // display: block;
+                    // white-space: nowrap;
+                    // text-overflow: ellipsis;
+                    // overflow-x: hidden;
+                    //
+                    // transform: translateY(0);
+                    // transform-origin: bottom left;
+                    // transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
+                    //           scale $swift-ease-out-duration $swift-ease-out-timing-function,
+                    //           color $swift-ease-out-duration $swift-ease-out-timing-function;
+
+                    &.md-empty {
+                        visibility : visible;
+                        cursor     : text;
+                    }
+
+                    // Show the placeholder above the input when it's not empty, or focused.
+                    &.md-float:not(.md-empty), &.md-float.md-focused {
+                        @include amp-input-placeholder-floating;
+                    }
+
+                    // :focus is applied to the input, but we apply md-focused to the other elements
+                    // that need to listen to it.
+                    &.md-focused {
+                        color : $amp-colour-grey-darkest;
+
+                        &.md-accent {
+                            color : $amp-colour-grey-darkest;
+                        }
+                        &.md-warn {
+                            color : $amp-colour-grey-darkest;
+                        }
+                    }
+                }
+
+                //
+                //   label {
+                //
+                //     padding-left: 26px !important;
+                //     &.noPadding {
+                //       padding-left: 0 !important;
+                //     }
+                //     &.summary {
+                //       @include transition(padding .2s linear !important);
+                //       transition-delay: 1.2s !important;
+                //       padding-left: 0 !important;
+                //     }
+                //     @include transition(padding .7s linear);
+                //     transition-delay: 0s;
+                //
+                //     min-width: 350px;
+                //     @include amp-family($amp-font-open-sans-semibold);
+                //     color: $amp-colour-grey-darkest;
+                //   }
+                //
+                //   &:not(.md-input-invalid).md-input-has-value, &:not(.md-input-invalid).md-input-focused, &.md-input-has-value {
+                //     label {
+                //       @include amp-family($amp-font-open-sans-semibold);
+                //       color: $amp-colour-grey-darkest;
+                //     }
+                //   }
+                // }
+                //
+            }
         }
-        .md-input-underline {
-          // position: absolute;
-          // height: 1px;
-          // width: 100%;
-          // margin-top: 4px;
-          border-top : 1px solid $amp-colour-grey-dark;
-
-          .md-input-ripple {
-            &:hover {
-              background-color : $amp-colour-sky-blue;
-            }
-            //   position: absolute;
-            height           : 1px;
-            //   z-index: 1;
-            background-color : $amp-colour-grey-dark;
-            //   top: -1px;
-            //   width: 100%;
-            //   transform-origin: top;
-            //   opacity: 0;
-            //   transform: scaleY(0);
-            //   transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
-            //               opacity $swift-ease-out-duration $swift-ease-out-timing-function;
-
-            &.md-accent {
-              background-color : $amp-colour-grey-dark;
-            }
-            &.md-warn {
-              background-color : $amp-colour-grey-dark;
-            }
-          }
-        }
-        .md-input-element {
-          padding       : 0 !important;
-          font-size     : $ddc-input-field-font-size;
-          // &[disabled] {
-          //     &.summary-state {
-          //         border-bottom: 1px solid transparent !important;
-          //         color: #00AAE0;
-          //         background-image: none;
-          //         cursor: default;
-          //         background-image: none;
-          //         &:hover {
-          //           border-bottom: 1px solid transparent !important
-          //         }
-          //     }
-          // }
-          margin-top    : -12px !important;
-          display       : inline;
-          height        : 58px;
-          flex          : none;
-          cursor        : pointer;
-          color         : $amp-colour-sky-blue;
-          @include amp-family($amp-font-open-sans-regular);
-          font-weight   : 300;
-          text-overflow : ellipsis;
-          min-width     : 20px;
-
-          &:focus {
-            color : $amp-colour-black;
-              @include media-query(tablet-and-up) {
-                  position: relative;
-                  bottom: -12px;
-              }
-          }
-          &.ng-touched {
-              @include media-query(tablet-and-up) {
-                  position: relative;
-                  bottom: -12px;
-              }
-          }
-
-          &.ng-dirty {
-              @include media-query(tablet-and-up) {
-                  position: relative;
-                  bottom: -12px;
-              }
-          }
-        }
-        .md-input-placeholder {
-          // The placeholder is after the <input>, but needs to be aligned top-left of the
-          // infix <div>.
-          position       : absolute;
-          left           : 0;
-          top            : 14px;
-
-          visibility     : visible;
-          font-size      : 13px;
-          font-weight    : 700;
-          pointer-events : none; // We shouldn't catch mouse events (let them through).
-          color          : $amp-colour-grey-darkest;
-          // z-index: 1;
-          //
-          // // Put ellipsis text overflow.
-          // width: 100%;
-          // display: block;
-          // white-space: nowrap;
-          // text-overflow: ellipsis;
-          // overflow-x: hidden;
-          //
-          // transform: translateY(0);
-          // transform-origin: bottom left;
-          // transition: transform $swift-ease-out-duration $swift-ease-out-timing-function,
-          //           scale $swift-ease-out-duration $swift-ease-out-timing-function,
-          //           color $swift-ease-out-duration $swift-ease-out-timing-function;
-
-          &.md-empty {
-            visibility : visible;
-            cursor     : text;
-          }
-
-          // Show the placeholder above the input when it's not empty, or focused.
-          &.md-float:not(.md-empty), &.md-float.md-focused {
-            @include amp-input-placeholder-floating;
-          }
-
-          // :focus is applied to the input, but we apply md-focused to the other elements
-          // that need to listen to it.
-          &.md-focused {
-            color : $amp-colour-grey-darkest;
-
-            &.md-accent {
-              color : $amp-colour-grey-darkest;
-            }
-            &.md-warn {
-              color : $amp-colour-grey-darkest;
-            }
-          }
-        }
-
-        //
-        //   label {
-        //
-        //     padding-left: 26px !important;
-        //     &.noPadding {
-        //       padding-left: 0 !important;
-        //     }
-        //     &.summary {
-        //       @include transition(padding .2s linear !important);
-        //       transition-delay: 1.2s !important;
-        //       padding-left: 0 !important;
-        //     }
-        //     @include transition(padding .7s linear);
-        //     transition-delay: 0s;
-        //
-        //     min-width: 350px;
-        //     @include amp-family($amp-font-open-sans-semibold);
-        //     color: $amp-colour-grey-darkest;
-        //   }
-        //
-        //   &:not(.md-input-invalid).md-input-has-value, &:not(.md-input-invalid).md-input-focused, &.md-input-has-value {
-        //     label {
-        //       @include amp-family($amp-font-open-sans-semibold);
-        //       color: $amp-colour-grey-darkest;
-        //     }
-        //   }
-        // }
-        //
-      }
     }
-  }
 }
 
 // All about the hovering effects
 md-input.md-input div.md-input-wrapper {
-  .md-input-table:hover + .md-input-underline {
-    border-top : 1px solid $amp-colour-sky-blue;
-  }
-  .md-input-table:hover + .md-input-underline .md-input-ripple {
-    background-color : $amp-colour-sky-blue;
-  }
+    .md-input-table:hover + .md-input-underline {
+        border-top : 1px solid $amp-colour-sky-blue;
+    }
+    .md-input-table:hover + .md-input-underline .md-input-ripple {
+        background-color : $amp-colour-sky-blue;
+    }
 }
 
 // Summary state
-amp-input {
-  display          : inline-block;
-  box-sizing       : content-box;
-  padding-right    : 0 !important;
+:host {
+    display          : inline-block;
+    box-sizing       : content-box;
+    padding-right    : 0 !important;
 
-  @include transition(width 0.3s linear !important);
-  transition-delay : 0.1s !important;
-  &[iconright] {
-    .icon-right {
-      position : absolute;
-      right    : 0;
-      top      : 50%;
-      @include transform(translateY(-50%));
+    @include transition(width 0.3s linear !important);
+    transition-delay : 0.1s !important;
+    &[iconright] {
+        .icon-right {
+            position : absolute;
+            right    : 0;
+            top      : 50%;
+            @include transform(translateY(-50%));
+        }
+        md-input.md-input {
+            input.md-input-element {
+                padding-right : 30px !important;
+                &::-ms-clear {
+                    display : none !important;
+                }
+            }
+        }
     }
+    & + &,
+    & + amp-dropdown {
+        margin-left : 26px;
+    }
+}
+
+.summary {
     md-input.md-input {
-      input.md-input-element {
-        padding-right : 30px !important;
-        &::-ms-clear {
-          display : none !important;
-        }
-      }
-    }
-  }
-  & + &,
-  & + amp-dropdown {
-    margin-left : 26px;
-  }
+        @include transition(padding 0.3s linear !important);
+        transition-delay : 0.5s !important;
+        padding-right    : 0 !important;
+        padding-left     : 0 !important;
+        cursor           : default;
 
-  &.summary {
-    md-input.md-input {
-      @include transition(padding 0.3s linear !important);
-      transition-delay : 0.5s !important;
-      padding-right    : 0 !important;
-      padding-left     : 0 !important;
-      cursor           : default;
-
-      div.md-input-wrapper {
-        .md-input-element {
-          cursor : default;
+        div.md-input-wrapper {
+            .md-input-element {
+                cursor : default;
+            }
+            .md-input-underline {
+                display : none;
+            }
+            .md-input-placeholder {
+                display : none;
+            }
         }
-        .md-input-underline {
-          display : none;
-        }
-        .md-input-placeholder {
-          display : none;
-        }
-      }
     }
-  }
 }
 
 // Error state
 md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper {
-  .md-input-underline,
-  .md-input-element:not(:focus) {
-    color        : $amp-colour-alert-danger;
-    border-color : $amp-colour-alert-danger;
-  }
+    .md-input-underline,
+    .md-input-element:not(:focus) {
+        color        : $amp-colour-alert-danger;
+        border-color : $amp-colour-alert-danger;
+    }
 }
 
 md-input.label-hidden {
-  label.md-input-placeholder {
-    position : absolute !important;
-    width    : 1px !important;
-    height   : 1px !important;
-    padding  : 0 !important;
-    margin   : -1px !important;
-    overflow : hidden !important;
-    clip     : rect(0, 0, 0, 0) !important;
-    border   : 0 !important;
-  }
+    label.md-input-placeholder {
+        position : absolute !important;
+        width    : 1px !important;
+        height   : 1px !important;
+        padding  : 0 !important;
+        margin   : -1px !important;
+        overflow : hidden !important;
+        clip     : rect(0, 0, 0, 0) !important;
+        border   : 0 !important;
+    }
 }
 
 .icon-right {
-  position : absolute;
-  right    : 0;
-  top      : 50%;
-  @include transform(translateY(-50%));
+    position : absolute;
+    right    : 0;
+    top      : 50%;
+    @include transform(translateY(-50%));
 }

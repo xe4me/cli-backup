@@ -7,8 +7,7 @@ import { AmpHomeNumberComponent } from './components/amp-home-number/amp-home-nu
 import { AmpLastNameComponent } from './components/amp-last-name/amp-last-name.component';
 import { AmpMobileNumberComponent } from './components/amp-mobile-number/amp-mobile-number.component';
 import { AmpWorkNumberComponent } from './components/amp-work-number/amp-work-number.component';
-import { FormsModule , ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { MdInputModule } from '@angular2-material/input';
 const DECLARATIONS = [
     AmpInputComponent ,
@@ -23,9 +22,7 @@ const DECLARATIONS = [
 @NgModule( {
     declarations : DECLARATIONS ,
     imports      : [
-        BrowserModule ,
-        FormsModule ,
-        ReactiveFormsModule ,
+        AmpSharedRootModule ,
         MdInputModule
     ] ,
     exports      : DECLARATIONS

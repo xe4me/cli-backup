@@ -2,7 +2,9 @@ import {
     Component ,
     ViewContainerRef ,
     ChangeDetectorRef ,
-    Input
+    Input ,
+    ElementRef ,
+    AfterViewInit
 } from '@angular/core';
 import { AmpBlockLoaderDirective } from '../../amp-block-loader.directive';
 import { FormSectionService } from '../../services/form-section/form-section.service';
@@ -10,6 +12,8 @@ import { FormModelService } from '../../services/form-model/form-model.service';
 import { ProgressObserverService } from '../../services/progress-observer/progress-observer.service';
 import { AmpReviewItem } from '../../blocks/amp-review/amp-review-item/amp-review-item.component';
 import { AmpReviewSection } from '../../blocks/amp-review/amp-review-section/amp-review-section.component';
+import { AmpStickyOnScrollDirective } from '../../modules/amp-directives/directives/auto-sticky-on-scroll/amp-sticky-on-scroll.directive';
+import { ScrollService } from '../../services/scroll/scroll.service';
 @Component( {
     selector   : 'review-section' ,
     template   : `
@@ -29,7 +33,7 @@ import { AmpReviewSection } from '../../blocks/amp-review/amp-review-section/amp
                         <div [amp-block-loader]="_review_blocks" [fdn]="__fdn" [form]="__form"></div>
                     </div>
 
-                    <div class="grid__item_floated lap-and-up-1/4 review-item__col--padding">
+                    <div class="grid__item_floated lap-and-up-1/4 review-item__col--padding" [sticky-on-scroll]='shouldStick'>
                         <div [amp-block-loader]="_sticky_blocks" [fdn]="__fdn" [form]="__form"></div>
                     </div>
 
@@ -41,16 +45,16 @@ import { AmpReviewSection } from '../../blocks/amp-review/amp-review-section/amp
     styles   : [ require('./review-section.component.scss') ] ,
     directives : [
         AmpBlockLoaderDirective,
-        AmpReviewItem
+        AmpReviewItem,
+        AmpStickyOnScrollDirective
     ]
 } )
-export class ReviewSectionComponent {
+export class ReviewSectionComponent implements AfterViewInit {
 
     private _review_blocks;
     private _sticky_blocks;
     private __child_blocks;
-    private __form;
-
+    private __form = this.__form;
     private __custom = this.__custom || {};
 
     private _summaryBlocks = [];
@@ -59,10 +63,12 @@ export class ReviewSectionComponent {
                   public progressObserver : ProgressObserverService ,
                   public formSectionService : FormSectionService ,
                   private formModelService : FormModelService ,
+                  private scrollService : ScrollService ,
+                  private el : ElementRef,
                   public _cd : ChangeDetectorRef ) {
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
 
         // Filter blocks for review main and sticky columns
         this._review_blocks = Object.assign({}, this.__child_blocks);
@@ -75,11 +81,13 @@ export class ReviewSectionComponent {
         this._sticky_blocks.blocks = this.__child_blocks.blocks.filter((block) => {
             return block.blockLayout === 'STICKY';
         });
-
-        this.createBlocksOfFormModel();
     }
 
-    createBlocksOfFormModel (){
+    ngAfterViewInit () {
+          this.createBlocksOfFormModel();
+    }
+
+    createBlocksOfFormModel () {
         this._summaryBlocks = [];
         let ctrls = this.__form.controls.Application.controls.PageSection.controls;
 
@@ -96,4 +104,8 @@ export class ReviewSectionComponent {
     showReviewSection () : boolean {
         return true;
     }
+
+    public shouldStick = () : boolean => {
+        return this.scrollService.getMyWindowOffset( this.el ) <= 80;
+    };
 }

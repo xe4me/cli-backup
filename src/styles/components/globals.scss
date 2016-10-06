@@ -1,57 +1,61 @@
 *,
 *:after,
 *:before {
-    @include box-sizing(border-box);
+  @include box-sizing(border-box);
 }
 
 a {
-    text-decoration: none;
-    color: $amp-colour-sky-blue;
-    cursor: pointer;
+  text-decoration : none;
+  color           : $amp-colour-sky-blue;
+  cursor          : pointer;
 }
 
 .btn-ok-margin-top {
-    margin-top: 32px;
+  margin-top : 32px;
 }
 
 .summary-state {
-    @include amp-family($summary-state-font-family);
-    color: $amp-colour-sky-blue;
-    font-weight: $summary-state-font-weight;
-    vertical-align: bottom;
-    line-height: 43px;
-    font-size: $ddc-input-field-font-size;
+  @include amp-family($summary-state-font-family);
+  color          : $amp-colour-sky-blue;
+  font-weight    : $summary-state-font-weight;
+  vertical-align : bottom;
+  line-height    : 43px;
+  font-size      : $ddc-input-field-font-size;
 }
 
 .calculated-total {
-    color: $amp-colour-sky-blue;
+  color : $amp-colour-sky-blue;
 }
 
 .bolr-right-padding {
-    padding-right: $bolr-right-padding;
+  padding-right : $bolr-right-padding;
 }
 
 .bolr-left-margin {
-    margin-left: $bolr-left-margin;
+  margin-left : $bolr-left-margin;
 }
 
 // Just to check if this is the reason for the gray overall background
 html,
 body {
-    background-color: white !important;
+  background-color : white !important;
 }
 
 .container {
-    margin: 0;
-    max-width: 1224px;
-    padding: 0 $content-padding-h;
+  margin    : 0;
+  max-width : 1224px;
+  padding   : 0 $content-padding-h;
 
-    @include media-query('lap-and-up') {
-        padding: 0 $content-padding-h-lap-and-up;
-    }
+  @include media-query('lap-and-up') {
+    padding : 0 $content-padding-h-lap-and-up;
+  }
 
-    &--full-height {
-        position: relative;
-        height: 100vh;
-    }
+  &--full-height {
+    position : relative;
+    height   : 100vh;
+  }
+}
+
+[hidden] {
+  display : none;
 }

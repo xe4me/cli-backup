@@ -2,6 +2,7 @@ import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { AmpFormRowComponent } from '../../../app/blocks/amp-form-row/amp-form-row.component';
+import { AmpNumberDirective } from '../../../app/modules/amp-directives/directives/number/amp-number.directive';
 @Component(
     {
         selector    : 'amp-input-basic-usage' ,

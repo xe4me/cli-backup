@@ -69,7 +69,7 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
-    public control : FormControl = new FormControl();
+    public control : FormControl         = new FormControl();
     public errors                        = {};
     public controlGroup : FormGroup;
     protected inputWidth : number;
@@ -106,7 +106,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected labelHidden : boolean      = false;
     protected validate;
     protected validationDelay            = 0;
-    protected idleTimeOut                = 2000;
+    protected idleTimeOut                = 4500;
     protected idleTimeoutId;
 
     constructor ( private _cd : ChangeDetectorRef ,
@@ -136,8 +136,8 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             this.inputWidth = 300;
         }
         this.tempClassNames = this.el.nativeElement.className;
-        this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
-        this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
+        // this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
+        // this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
         // this.el.nativeElement.className = this.tempClassNames;
         this.updateValitators();
         this.addDelayedValidation();
@@ -229,13 +229,29 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         this.updateValitators();
     }
 
+    protected humanDate ( value : any ) {
+        switch ( value ) {
+            case 'yesterday':
+                value = - 1;
+                break;
+            case 'now':
+                value = 0;
+                break;
+            case 'tomorrow':
+                value = 1;
+                break;
+            default:
+                value = value;
+        }
+        return value;
+    }
+
     get minDate () {
         return this._minDate;
     }
 
     set minDate ( value : any ) {
-        value         = (value === 'now' ? 0 : value);
-        this._minDate = value;
+        this._minDate = this.humanDate( value );
         this.updateValitators();
     }
 
@@ -244,8 +260,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     }
 
     set maxDate ( value : any ) {
-        value         = (value === 'now' ? 0 : value);
-        this._maxDate = value;
+        this._maxDate = this.humanDate( value );
         this.updateValitators();
     }
 
@@ -336,6 +351,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             this.customValidator()
         ];
         this.validate  = Validators.compose( validators );
+        this.checkErrors( true );
     }
 
     protected resetIdleTimeOut () {

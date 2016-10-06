@@ -9,7 +9,6 @@ Base form row styles
 bolr styles
 */
 
-
 .form__row {
     .form-row-label-full-width {
         color: $amp-colour-grey-darker;
@@ -24,13 +23,10 @@ bolr styles
         }
 
         @include media-query(palm) {
-           font-size: $font-size-heading-lrg;
+            font-size: $font-size-heading-lrg;
             margin-bottom: 2px;
             margin-top: 20px;
-
         }
-
-
     }
     .form-row-label-inline {
         color: $amp-colour-grey-darker;
@@ -62,3 +58,11 @@ bolr styles
     }
 
 */
+
+amp-form-row > .form__row > .grid__container > .grid__item_floated {
+    margin-top: $default-margin-w-offset;
+}
+
+.heading-intro + amp-form-row {
+    margin-top: -$default-margin-w-offset;
+}

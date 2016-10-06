@@ -81,8 +81,8 @@ export class AmpFileUploadComponent implements OnInit {
             .subscribe(
                 ( res : any ) => {
                     this.token = res.payload.token;
-                    this.uploadUrl += '?formName=' + this.formName + '&objectId=' + this.formId
-                                            + '&enableVirusScan=' + this.enableVirusScan;
+                    this.uploadUrl += `?formName= ${ this.formName } &objectId=  ${this.formId} &enableVirusScan=
+                                        ${this.enableVirusScan}`;
                     this.uploadUrlWithToken = this.uploadUrl + '&token=' + this.token;
                     this.basicOptions = {
                         url: this.uploadUrlWithToken
