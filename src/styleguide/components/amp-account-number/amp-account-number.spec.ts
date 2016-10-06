@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 // Load the implementations that should be tested
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
-describe( 'amp-account-number directive' , () => {
+describe( 'amp-account-number component' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports      : [ FormsModule , ReactiveFormsModule , AmpInputsModule ] ,
@@ -27,7 +27,7 @@ describe( 'amp-account-number directive' , () => {
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         expect( compiledInput.nativeElement.name ).toBe( 'account-number' );
         expect( compiledInput.nativeElement.id ).toBe( 'account-number-input' );
-        expect( compiledInput.nativeElement.attributes['maxlength'] ).toBe( '9' );
+        expect( compiledInput.nativeElement.attributes['maxlength'].value ).toBe( '9' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'account_number' );
     } );
