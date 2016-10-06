@@ -2,7 +2,7 @@
     <amp-typeahead
             #typeaheadCmp
             class='1/1'
-            [controlGroup]='controlGroup'
+            [controlGroup]='qasControlGroup'
             [required]='!showManualEntryForm'
             [errors]='errors'
             [minTriggerLength]='minTriggerLength'
@@ -11,6 +11,7 @@
             [maxHeight]='maxHeight'
             [isInSummaryState]='isInSummaryState'
             [id]='id'
+            [index]='index'
             (selected)='onOptionSelect($event)'
             [selectedItemIdentifier]='"Moniker"'
             [selectedItemValueIdentifier]='"PartialAddress"'
@@ -19,7 +20,7 @@
             {{ option.PartialAddress }}
         </template>
     </amp-typeahead>
-    <amp-error [controlGroup]='qasControlGroup'>
+    <amp-error [controlGroup]='typeaheadCG'>
         <template let-error='error'>
             <error-item [error]='error' selector='addressNotFound'>
                 We are unable to find your address. Try again or tell us your address line by line
@@ -29,17 +30,12 @@
     </amp-error>
 </div>
 <div [hidden]='!showManualEntryForm'>
-    <div>Want to try searching again? Click <a (click)='goBack()' >here</a> to find our address automatically.</div>
+    <div>Want to try searching again? Click <a (click)='goBack()'>here</a> to find our address automatically.</div>
     <amp-manual-address
             #manualAddressCmp
-            [controlGroup]='controlGroup'
+            [controlGroup]='qasControlGroup'
             [id]='id'
+            [index]='index'
             [isInSummaryState]='isInSummaryState'>
     </amp-manual-address>
 </div>
-
-
-<!--<br>-->
-<!--<pre>-->
-    <!--value : {{ controlGroup.value | json }}-->
-<!--</pre>-->
