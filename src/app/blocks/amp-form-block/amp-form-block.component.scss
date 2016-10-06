@@ -7,10 +7,10 @@
     position: relative;
 
     .FormBlocK {
-        margin: 60px 0;
+        margin-bottom: $default-margin;
 
         .heading-intro {
-            margin-bottom: 55px;
+            margin-bottom: $default-margin-w-offset;
 
             @include media-query('palm') {
                 font-size: 20px;
@@ -18,7 +18,7 @@
         }
 
         .hr-block-divider {
-            margin-top: 60px;
+            margin: $default-margin 0;
         }
     }
 
@@ -33,7 +33,7 @@
             }
 
             .hr-block-divider {
-                margin-top: 60px;
+                margin: $default-margin 0;
             }
         }
     }

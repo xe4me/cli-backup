@@ -19,30 +19,6 @@ $summary-state-font-weight : 300;
 // }
 //
 
-@include media-query(palm) {
-    md-input {
-        &.md-input {
-            padding : 0 !important;
-            div {
-                &.md-input-wrapper {
-                    //background-color: purple;
-                    //padding: 7px 0 7px 0;
-                    input.md-input-element {
-                        font-size  : 20px;
-                        height     : 24px;
-                        margin-top : 0 !important;
-                    }
-                    label.md-input-placeholder {
-                        font-size : 12px;
-                        top: 0;
-                    }
-                }
-            }
-        }
-    }
-
-}
-
 [primaryColor] {
     md-input {
         &.md-input {
@@ -231,28 +207,13 @@ md-input {
                     color         : $amp-colour-sky-blue;
                     @include amp-family($amp-font-open-sans-regular);
                     font-weight   : 300;
+                    position: relative;
                     text-overflow : ellipsis;
                     min-width     : 20px;
+                    bottom: -12px;
 
                     &:focus {
                         color : $amp-colour-black;
-                        @include media-query(tablet-and-up) {
-                            position: relative;
-                            bottom: -12px;
-                        }
-                    }
-                    &.ng-touched {
-                        @include media-query(tablet-and-up) {
-                            position: relative;
-                            bottom: -12px;
-                        }
-                    }
-
-                    &.ng-dirty {
-                        @include media-query(tablet-and-up) {
-                            position: relative;
-                            bottom: -12px;
-                        }
                     }
                 }
                 .md-input-placeholder {
