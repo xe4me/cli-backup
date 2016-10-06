@@ -26,7 +26,7 @@ describe( 'amp-account-number directive' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         expect( compiledInput.nativeElement.name ).toBe( 'account-number' );
-        expect( compiledInput.nativeElement.id ).toBe( 'account-number' );
+        expect( compiledInput.nativeElement.id ).toBe( 'account-number-input' );
         expect( compiledInput.nativeElement.attributes['maxlength'] ).toBe( '9' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'account_number' );
