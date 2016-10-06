@@ -20,7 +20,7 @@ describe( 'amp-account-number component' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
+    it( 'should contain an input text element with the correct name, max value, id and data-automation-id attribute' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
@@ -48,5 +48,5 @@ class MockElementRef implements ElementRef {
     `
 } )
 class TestComponent {
-    firstnameControl : FormGroup = new FormGroup( {} );
+    accountNumberControl : FormGroup = new FormGroup( {} );
 }
