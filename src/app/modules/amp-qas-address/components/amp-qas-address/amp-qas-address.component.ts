@@ -29,7 +29,7 @@ export class AmpQasAddressComponent implements AfterViewInit {
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
-    private showManualEntryForm                         = true;
+    private showManualEntryForm                         = false;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
