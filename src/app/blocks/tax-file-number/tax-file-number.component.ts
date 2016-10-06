@@ -23,7 +23,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
-    public tfnExclusion : boolean;
+    public tfnExclusion : AbstractControl;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -35,9 +35,10 @@ export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
     }
 
     public ngAfterViewInit() {
-        const tfnCheckbox = this.__controlGroup.get(this.__custom.controls[1].id);
-        tfnCheckbox.valueChanges.subscribe((val) => {
-            this.tfnExclusion = val;
+        this.tfnExclusion = this.__controlGroup.get(this.__custom.controls[1].id);
+        this.tfnExclusion.valueChanges.subscribe((val) => {
+            this.__controlGroup.get(this.__custom.controls[0].id).setValue('');
+            this.__controlGroup.get(this.__custom.controls[2].id).setValue(null);
         });
         super.ngAfterViewInit();
     }
