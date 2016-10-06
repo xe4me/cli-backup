@@ -160,6 +160,24 @@
         "readme": "<p>To load components dynamically</p>\n"
     },
     {
+        "name": "Amp Number ",
+        "sources": [
+            "src/app/directives/amp-number/amp-number.component.ts"
+        ],
+        "id": "AmpNumberDirective",
+        "examples": [
+            {
+                "template": "src/styleguide/directives/amp-number/basic_usage.html",
+                "styles": "src/styleguide/directives/amp-number/basic_usage.scss",
+                "source": "src/styleguide/directives/amp-number/basic_usage.ts",
+                "component": "amp-number-basic-usage",
+                "component_src_location": "directives/amp-number/basic_usage",
+                "name": "Amp Number basic usage"
+            }
+        ],
+        "readme": "<p>To Allow only numbers in the input field</p>\n"
+    },
+    {
         "name": "Amp loading icon",
         "sources": [
             "src/app/components/amp-loading/amp-loading.component.ts"

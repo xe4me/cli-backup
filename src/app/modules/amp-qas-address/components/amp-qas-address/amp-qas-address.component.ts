@@ -53,6 +53,7 @@ export class AmpQasAddressComponent implements AfterViewInit {
 
     public showManualAddrForm () {
         setTimeout( () => {
+            this.isInSummaryState = false;
             this.qasControlGroup.reset();
             this.showManualEntryForm = true;
             this._cd.detectChanges();
@@ -61,6 +62,7 @@ export class AmpQasAddressComponent implements AfterViewInit {
 
     public goBack () {
         setTimeout( () => {
+            this.isInSummaryState = false;
             this.manualAddressCmp.emptyControls();
             this.showManualEntryForm = false;
             this._cd.detectChanges();

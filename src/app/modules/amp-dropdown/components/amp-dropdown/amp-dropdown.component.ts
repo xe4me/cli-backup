@@ -15,6 +15,8 @@ import { RequiredValidator } from '../../../../modules/amp-utils';
     inputs          : [
         'id' ,
         'label' ,
+        'fieldItemKey' ,
+        'fieldValueKey' ,
         'options' ,
         'errors' ,
         'controlGroup' ,
@@ -49,13 +51,12 @@ export class AmpDropdownComponent {
     protected _required : boolean        = false;
     protected isInSummaryState : boolean = false;
     protected labelHidden : boolean      = false;
+    protected fieldItemKey               = 'label';
+    protected fieldValueKey              = 'value';
     protected currentOption;
-    protected _limitTo : number          = 999;
-    protected select                     = new EventEmitter();
-    protected selectedOption             = {
-        label : '' ,
-        value : ''
-    };
+    protected _limitTo : number = 999;
+    protected select            = new EventEmitter();
+    protected selectedOption    = {};
     protected selectElem;
     protected dropdownElem;
     protected optionsElem;
@@ -68,6 +69,8 @@ export class AmpDropdownComponent {
 
     ngOnInit () : any {
         this.joinToParentGroupAndSetAmpErrors();
+        this.selectedOption[ this.fieldItemKey ]  = null;
+        this.selectedOption[ this.fieldValueKey ] = null;
         return undefined;
     }
 
@@ -197,7 +200,7 @@ export class AmpDropdownComponent {
     protected onChangeEvent () {
         this.setSelectedOption( 'change' );
         if ( this.optionsShown && this.hasSelection ) {
-            this.optionsElem.querySelectorAll( '[data-option-val="' + this.selectedOption.value + '"]' )[ 0 ].focus();
+            this.optionsElem.querySelectorAll( '[data-option-val="' + this.selectedOption[ this.fieldValueKey ] + '"]' )[ 0 ].focus();
             this.selectElem.focus();
         }
         setTimeout( () => {
@@ -215,18 +218,14 @@ export class AmpDropdownComponent {
             if ( ! this.animateSelection && type === 'change' ) {
                 this.animateSelection = true;
             }
-            let selected        = this.selectElem.options[ this.currentOption ];
-            this.selectedOption = {
-                label : selected.text ,
-                value : selected.value
-            };
-            this.hasSelection   = true;
+            let selected                              = this.selectElem.options[ this.currentOption ];
+            this.selectedOption[ this.fieldItemKey ]  = selected.text;
+            this.selectedOption[ this.fieldValueKey ] = selected.value;
+            this.hasSelection                         = true;
         } else {
-            this.selectedOption = {
-                label : null ,
-                value : null
-            };
-            this.hasSelection   = false;
+            this.selectedOption[ this.fieldItemKey ]  = null;
+            this.selectedOption[ this.fieldValueKey ] = null;
+            this.hasSelection                         = false;
         }
     }
 
