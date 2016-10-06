@@ -7,7 +7,7 @@
     "status": "NEW",
     "blocks": [
         {
-            "blockType": "DetailsPage1",
+            "blockType": "DetailsPage",
             "name": "Application",
             "blockLayout": "PAGE",
             "commonBlock": false,
@@ -20,56 +20,45 @@
             },
             "blocks": [
                 {
-                    "name": "introBlockComponent",
-                    "blockType": "IntroBlockComponent",
-                    "blockLayout": "INLINE",
-                    "commonBlock": false,
-                    "path": "amp-form-block-menu/blocks/intro/intro-block.component"
-                },
-                {
-                    "blockType": "MenuFrameApplicationBlockComponent",
-                    "blockLayout": "INLINE",
-                    "commonBlock": false,
-                    "path": "amp-form-block-menu/blocks/menu-frame/menu-frame.application.component",
+                    "name": "sectiona",
+                    "blockType": "PageSectionComponent",
+                    "blockLayout": "SECTION",
+                    "commonBlock": true,
+                    "path": "sections/page-section.component",
+                    "custom": {
+                        "label": "this is section a"
+                    },
                     "blocks": [
                         {
-                            "name": "blockWithGoogleAddress",
-                            "blockType": "BlockWithGoogleAddress",
+                            "name": "introBlockComponent",
+                            "blockType": "introBlockComponent",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
-                            "path": "amp-form-block-menu/blocks/block-with-google-address",
-                            "custom": {
-                                "blockTitle": "Enter your address",
-                                "controls": [
-                                    {
-                                        "id": "GoogleAddress"
-                                    }
-                                ]
-                            }
+                            "path": "amp-form-block-menu/blocks/intro/intro-block.component"
                         },
-
                         {
-                            "name": "sampleArrayExperienceBlock",
-                            "blockType": "SampleArrayExperienceBlock",
-                            "blockLayou": "INLINE",
-                            "commonBloc": false,
-                            "path": "amp-form-block-menu/blocks/sample-array-experience-block",
-                            "custom": {
-                                "blockTitle": "This block has dynamic controls",
-                                "controls": [
-                                    {
-                                        "id": "age",
-                                        "title": "What about your age?",
-                                        "errors": {
-                                            "required": "Apparently even age is a required thing ) , what a wonderful time to be"
-                                        },
-                                        "regex": "^([0-9])*$",
-                                        "maxLengh": 20
+                            "blockType": "AmpStandAloneMenuComponent",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "amp-form-block-menu/blocks/menu-component/menu-component.component",
+                            "blocks": [
+                                {
+                                    "name": "BlockWithTextarea",
+                                    "blockType": "BlockWithTextarea",
+                                    "blockLayout": "INLINE",
+                                    "commonBlock": false,
+                                    "path": "amp-form-block-menu/blocks/block-with-textarea",
+                                    "custom": {
+                                        "blockTitle": "This is a text area, it's nice isn't it ",
+                                        "controls": [
+                                            {
+                                                "id": "textarea"
+                                            }
+                                        ]
                                     }
-                                ]
-                            }
+                                }
+                            ]
                         }
-
                     ]
                 }
             ]
