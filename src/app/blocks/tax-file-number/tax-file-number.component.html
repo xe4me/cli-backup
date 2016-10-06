@@ -1,32 +1,33 @@
 <amp-form-block [context]="context()">
-    <div>
-        Please enter your tax file number
-    </div>
-    <amp-form-row *ngIf="!tfnExclusion">
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0" >
-            <amp-input
-                    [id]="__custom.controls[0].id"
-                    [controlGroup]="__controlGroup"
-                    [label]="'Tax file number'"
-                    [required]="true"
-                    [isInSummaryState]="isInSummaryState"
-                    [maxLength]="'12'"
-            >
-            </amp-input>
+    <div [hidden]="tfnExclusion?.value">
+        <div>
+            Please enter your tax file number
         </div>
-    </amp-form-row>
+        <amp-form-row >
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0" >
+                <amp-input
+                        [id]="__custom.controls[0].id"
+                        [controlGroup]="__controlGroup"
+                        [label]="'Tax file number'"
+                        [required]="!tfnExclusion?.value"
+                        [isInSummaryState]="isInSummaryState"
+                        [maxLength]="'9'"
+                        [pattern]="'[0-9]'">
+                </amp-input>
+            </div>
+        </amp-form-row>
+    </div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mr+ mt">
             <amp-checkbox
                     [isInSummaryState]="isInSummaryState"
                     [controlGroup]="__controlGroup"
-                    [id]="__custom.controls[1].id"
-            >
+                    [id]="__custom.controls[1].id">
                      I don't have a tax file number
             </amp-checkbox>
         </div>
     </amp-form-row>
-    <div *ngIf="tfnExclusion">
+    <div [hidden]="!tfnExclusion?.value">
         <div class="mt">
             Reason for not having a tax file number
         </div>
@@ -36,7 +37,8 @@
                     [isInSummaryState]="isInSummaryState"
                     [id]="__custom.controls[2].id"
                     [options]="__custom.controls[2].options"
-                    [required]="tfnExclusion">
+                    [controlGroup]="__controlGroup"
+                    [required]="tfnExclusion?.value">
                 </amp-dropdown>
             </div>
         </amp-form-row>
