@@ -1,5 +1,10 @@
 import {
-    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    OnInit,
+    ChangeDetectionStrategy,
+    Input,
     AfterViewInit
 } from '@angular/core';
 import {
