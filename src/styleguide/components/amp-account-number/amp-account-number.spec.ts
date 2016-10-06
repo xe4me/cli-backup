@@ -20,7 +20,7 @@ describe( 'amp-account-number component' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'should contain an input text element with the correct name, max value, id and data-automation-id attribute' , () => {
+    it( 'should contain an input text element with the correct name, min value, max value, id and data-automation-id attribute' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
@@ -28,6 +28,7 @@ describe( 'amp-account-number component' , () => {
         expect( compiledInput.nativeElement.name ).toBe( 'account-number' );
         expect( compiledInput.nativeElement.id ).toBe( 'account-number-input' );
         expect( compiledInput.nativeElement.attributes['maxlength'].value ).toBe( '9' );
+        expect( compiledInput.attributes['min']).toBe( '9');
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_account-number' );
     } );
