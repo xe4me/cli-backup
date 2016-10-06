@@ -6,9 +6,10 @@
         <amp-form-row >
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0" >
                 <amp-input
+                        #tfn
                         [id]="__custom.controls[0].id"
+                        [amp-number-only]="tfn.control"
                         [controlGroup]="__controlGroup"
-                        [label]="'Tax file number'"
                         [required]="!tfnExclusion?.value"
                         [isInSummaryState]="isInSummaryState"
                         [maxLength]="'9'"
