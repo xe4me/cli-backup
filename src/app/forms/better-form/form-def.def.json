@@ -72,51 +72,6 @@
                             }
                         },
                         {
-                            "name": "BasicInfo",
-                            "blockType": "BasicInfoBlock",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/basic-info/basic-info.component",
-                            "custom": {
-                                "blockTitle": "Tell us about yourself.",
-                                "controls": [
-                                    {
-                                        "id": "Title",
-                                        "options": [
-                                            {
-                                                "value": "miss",
-                                                "label": "Miss"
-                                            },
-                                            {
-                                                "value": "mr",
-                                                "label": "Mr"
-                                            },
-                                            {
-                                                "value": "mrs",
-                                                "label": "Mrs"
-                                            },
-                                            {
-                                                "value": "ms",
-                                                "label": "Ms"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "id": "FirstName"
-                                    },
-                                    {
-                                        "id": "MiddleName"
-                                    },
-                                    {
-                                        "id": "LastName"
-                                    },
-                                    {
-                                        "id": "DateOfBirth"
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "name": "BetterChoice",
                             "blockType": "BetterChoiceBlock",
                             "blockLayout": "INLINE",
@@ -200,6 +155,51 @@
                                         }
                                     }
                                 }
+                            }
+                        },
+                        {
+                            "name": "BasicInfo",
+                            "blockType": "BasicInfoBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/basic-info/basic-info.component",
+                            "custom": {
+                                "blockTitle": "Tell us about yourself.",
+                                "controls": [
+                                    {
+                                        "id": "Title",
+                                        "options": [
+                                            {
+                                                "value": "miss",
+                                                "label": "Miss"
+                                            },
+                                            {
+                                                "value": "mr",
+                                                "label": "Mr"
+                                            },
+                                            {
+                                                "value": "mrs",
+                                                "label": "Mrs"
+                                            },
+                                            {
+                                                "value": "ms",
+                                                "label": "Ms"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "FirstName"
+                                    },
+                                    {
+                                        "id": "MiddleName"
+                                    },
+                                    {
+                                        "id": "LastName"
+                                    },
+                                    {
+                                        "id": "DateOfBirth"
+                                    }
+                                ]
                             }
                         },
                         {
