@@ -33,6 +33,7 @@ export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {
         this.tfnExclusion = this.__controlGroup.get(this.__custom.controls[1].id);
         this.tfnExclusion.valueChanges.subscribe(val => {
             this.__controlGroup.get(this.__custom.controls[0].id).setValue('');
+            this.__controlGroup.get(this.__custom.controls[2].id).setValue(null);
         });
         super.ngAfterViewInit();
     }
