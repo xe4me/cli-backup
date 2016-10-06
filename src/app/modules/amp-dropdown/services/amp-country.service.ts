@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export class AmpCountryService {
     public countries : Observable<any[]>;
     public countryServiceError = null;
-    private _countryUrl        = 'http://localhost:8081/ddc/secure/api/refdata/countries';
+    private _countryUrl        = '/ddc/public/api/refdata/countries';
     private _countries;
 
     constructor ( private http : Http ) {
