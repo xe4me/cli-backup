@@ -46,8 +46,7 @@ describe( 'amp-account-number component' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
-        compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'].setValue('99999999');
-        console.log(compiledTestComponent.componentInstance.accountNumberControl.controls['account-number']);
+        accountNumberControl.setValue('99999999');
         expect( accountNumberControl._status).toBe( 'INVALID');
     } );
     it( 'should be valid if exactly 9 digits' , () => {
@@ -66,7 +65,6 @@ describe( 'amp-account-number component' , () => {
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
         accountNumberControl.setValue('9999999ab');
-        console.log(accountNumberControl);
         expect( accountNumberControl._status).toBe( 'INVALID');
     } );
 } );
