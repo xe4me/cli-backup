@@ -20,7 +20,7 @@ describe( 'amp-account-number component' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'should contain an input text element with the correct name, min value, max value, id and data-automation-id attribute' , () => {
+    it( 'should contain an input text element with the correct name, max value, id and data-automation-id attribute' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
@@ -28,9 +28,46 @@ describe( 'amp-account-number component' , () => {
         expect( compiledInput.nativeElement.name ).toBe( 'account-number' );
         expect( compiledInput.nativeElement.id ).toBe( 'account-number-input' );
         expect( compiledInput.nativeElement.attributes['maxlength'].value ).toBe( '9' );
-        expect( compiledInput.attributes['min']).toBe( '9');
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_account-number' );
+    } );
+    it( 'should be invalid if longer than 9 characters' , () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent = fixture.debugElement;
+        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
+        accountNumberControl.setValue('9999999999');
+        expect( accountNumberControl._status).toBe( 'INVALID');
+    } );
+    it( 'should be invalid if shorter than 9 characters' , () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent = fixture.debugElement;
+        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
+        compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'].setValue('99999999');
+        console.log(compiledTestComponent.componentInstance.accountNumberControl.controls['account-number']);
+        expect( accountNumberControl._status).toBe( 'INVALID');
+    } );
+    it( 'should be valid if exactly 9 digits' , () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent = fixture.debugElement;
+        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
+        accountNumberControl.setValue('999999999');
+        expect( accountNumberControl._status).toBe( 'VALID');
+    } );
+    it( 'should be invalid if contains non-numeric characters' , () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent = fixture.debugElement;
+        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
+        accountNumberControl.setValue('9999999ab');
+        console.log(accountNumberControl);
+        expect( accountNumberControl._status).toBe( 'INVALID');
     } );
 } );
 class MockElementRef implements ElementRef {
@@ -42,9 +79,7 @@ class MockElementRef implements ElementRef {
     <form  #formModel='ngForm' class='nl-form' >
         <amp-account-number
             [id]="'account-number'"
-            [label]="'Account number'"
-            [controlGroup]='accountNumberControl'
-            [required]='true'></amp-account-number>
+            [controlGroup]='accountNumberControl'></amp-account-number>
     </form>
     `
 } )

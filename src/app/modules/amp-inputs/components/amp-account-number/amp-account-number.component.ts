@@ -13,8 +13,8 @@ export class AmpAccountNumberComponent extends AmpInputComponent {
                   _el : ElementRef ,
                   _renderer : Renderer ) {
         super( _cd , _el , _renderer );
-        this.minLength = 9;
         this.maxLength = 9;
+        this.pattern = '^[0-9]{9}$';
         this.required  = true;
         this.label     = 'Account number';
         this.errors    = {
