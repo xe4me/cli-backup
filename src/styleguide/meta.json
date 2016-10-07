@@ -258,6 +258,26 @@
         "readme": "<p>Custom Block for AmpQasAddressComponent.</p>\n"
     },
     {
+        "name": "Amp Manual Address",
+        "sources": [
+            "src/app/components/amp-manual-address/amp-manual-address.component.ts"
+        ],
+        "id": "AmpManualAddressComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-manual-address/basic_usage.html",
+                "styles": "src/styleguide/components/amp-manual-address/basic_usage.scss",
+                "source": "src/styleguide/components/amp-manual-address/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-manual-address/amp-manual-address.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-manual-address/amp-manual-address.component.spec.ts",
+                "component": "amp-manual-address-basic-usage",
+                "component_src_location": "components/amp-manual-address/basic_usage",
+                "name": "Amp Manual Address Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpManualAddressComponent.</p>\n"
+    },
+    {
         "name": "Amp Qas Address Multi",
         "sources": [
             "src/app/components/amp-qas-address-multi/amp-qas-address-multi.component.ts"
