@@ -9,7 +9,6 @@ import { findLazyModules } from './find-lazy-modules';
 
 import { BaseHrefWebpackPlugin } from '../utilities/base-href-webpack-plugin';
 
-
 export function getWebpackCommonConfig(
   projectRoot: string,
   environment: string,
@@ -37,6 +36,11 @@ export function getWebpackCommonConfig(
 
   return {
     devtool: 'source-map',
+    resolveLoader: {
+      alias: {
+        'fdn-loader': require.resolve('./fdn-loader.js')
+      }
+    },
     resolve: {
       extensions: ['', '.ts', '.js'],
       root: appRoot
@@ -116,7 +120,7 @@ export function getWebpackCommonConfig(
         // load global scripts using script-loader
         { include: scripts, test: /\.js$/, loader: 'script-loader' },
 
-        { test: /\.json$/, loader: 'json-loader' },
+        { test: /\.json$/, loader: ['json-loader', 'fdn-loader'] },
         { test: /\.(jpg|png)$/, loader: 'url-loader?limit=10000' },
         { test: /\.html$/, loader: 'raw-loader' },
 
