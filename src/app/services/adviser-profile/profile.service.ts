@@ -1,11 +1,16 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {
+    Injectable,
+    EventEmitter
+} from '@angular/core';
+
 import {
     RequestOptions,
     Headers,
  } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
 import { AmpHttpService } from '../amp-http/amp-http.service';
-import { Environments }   from '../../abstracts/environments/environments.abstract';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 
 @Injectable()
 export class ProfileService {
