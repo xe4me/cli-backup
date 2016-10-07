@@ -31,7 +31,7 @@ describe( 'amp-account-number component' , () => {
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_account-number' );
     } );
-    it( 'should be invalid if longer than 9 characters' , () => {
+    it( 'should be invalid if longer than 9 digits' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
@@ -40,7 +40,7 @@ describe( 'amp-account-number component' , () => {
         accountNumberControl.setValue('12345678910');
         expect( accountNumberControl._status).toBe( 'INVALID');
     } );
-    it( 'should be invalid if shorter than 9 characters' , () => {
+    it( 'should be invalid if shorter than 9 digits' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
