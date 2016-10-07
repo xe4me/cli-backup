@@ -164,7 +164,7 @@
                         </amp-input>
                 </div>
 
-                <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-3/12 mr mt0">
+                <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-6/12 mr mt0">
                     <label class='1/1 sr-only'>Empty</label>
                     <amp-input
                         [attr.theme]="themeService.theme.attr"
@@ -177,6 +177,16 @@
                         [minLength]="'4'"
                         [defaultValue]="'default value'">
                     </amp-input>
+                </div>
+
+                <div class="mb mt+ intro-block-button-container">
+                    <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr'">
+                        Button 1
+                        <span class="icon icon--chevron-right"></span>
+                    </amp-button>
+                    <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1'">
+                        Button 2
+                    </amp-button>
                 </div>
 
             </div>
@@ -195,8 +205,6 @@ This sample uses a different theme for illustration purpose.
             <div class="intro-container">
                 <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
-
-                <div class="intro-container">
 
                     <div class="grid__item_floated palm-1/1 tablet-6/12 lap-6/12 desk-3/12 mr mt0">
                         <label class='1/1 sr-only'>Empty</label>
@@ -227,20 +235,17 @@ This sample uses a different theme for illustration purpose.
                         </amp-input>
                     </div>
 
-                    <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb mt++">
-                        <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron'">
-                           Button 1
+                    <div class="mb mt+ intro-block-button-container">
+                        <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr'">
+                            Button 1
                             <span class="icon icon--chevron-right"></span>
                         </amp-button>
-                    </div>
-
-                    <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb mt++">
-                        <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron'">
+                        <amp-button [attr.theme]="tools" [class]="'btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1'">
                             Button 2
                         </amp-button>
                     </div>
                 </div>
-            </div>
+
         </amp-intro-block>
     </article>
 
