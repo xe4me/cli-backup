@@ -37,7 +37,7 @@ describe( 'amp-account-number component' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
-        accountNumberControl.setValue('9999999999');
+        accountNumberControl.setValue('12345678910');
         expect( accountNumberControl._status).toBe( 'INVALID');
     } );
     it( 'should be invalid if shorter than 9 characters' , () => {
@@ -46,7 +46,7 @@ describe( 'amp-account-number component' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
-        accountNumberControl.setValue('99999999');
+        accountNumberControl.setValue('12345678');
         expect( accountNumberControl._status).toBe( 'INVALID');
     } );
     it( 'should be valid if exactly 9 digits' , () => {
@@ -55,7 +55,7 @@ describe( 'amp-account-number component' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
-        accountNumberControl.setValue('999999999');
+        accountNumberControl.setValue('123456789');
         expect( accountNumberControl._status).toBe( 'VALID');
     } );
     it( 'should be invalid if contains non-numeric characters' , () => {
@@ -64,7 +64,7 @@ describe( 'amp-account-number component' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
-        accountNumberControl.setValue('9999999ab');
+        accountNumberControl.setValue('12345678ab');
         expect( accountNumberControl._status).toBe( 'INVALID');
     } );
 } );

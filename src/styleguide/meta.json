@@ -548,8 +548,8 @@
                 "template": "src/styleguide/components/amp-account-number/basic_usage.html",
                 "styles": "src/styleguide/components/amp-account-number/basic_usage.scss",
                 "source": "src/styleguide/components/amp-account-number/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-account-number/amp-first-name.test.spec",
-                "jasmine": "src/styleguide/components/amp-account-number/amp-first-name.spec.ts",
+                "galen": "src/styleguide/components/amp-account-number/amp-account-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-account-number/amp-account-number.spec.ts",
                 "component": "amp-account-number-basic-usage",
                 "component_src_location": "components/amp-account-number/basic_usage",
                 "name": "Amp Account Number Basic Usage"
