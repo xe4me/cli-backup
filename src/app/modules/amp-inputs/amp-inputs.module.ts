@@ -8,6 +8,7 @@ import { AmpLastNameComponent } from './components/amp-last-name/amp-last-name.c
 import { AmpMobileNumberComponent } from './components/amp-mobile-number/amp-mobile-number.component';
 import { AmpWorkNumberComponent } from './components/amp-work-number/amp-work-number.component';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
+import { AmpAccountNumberComponent } from './components/amp-account-number/amp-account-number.component';
 import { MdInputModule } from '@angular2-material/input';
 const DECLARATIONS = [
     AmpInputComponent ,
@@ -17,7 +18,8 @@ const DECLARATIONS = [
     AmpHomeNumberComponent ,
     AmpLastNameComponent ,
     AmpMobileNumberComponent ,
-    AmpWorkNumberComponent
+    AmpWorkNumberComponent,
+    AmpAccountNumberComponent
 ];
 @NgModule( {
     declarations : DECLARATIONS ,
