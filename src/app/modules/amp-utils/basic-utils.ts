@@ -21,24 +21,24 @@ export class BasicUtils {
     public static formatAddress ( addressObj : any ) : string {
         let address = '';
 
-        if (addressObj.address_) {
-            address += addressObj.address_;
+        if (addressObj.address) {
+            address += addressObj.address;
         }
-        if (addressObj.suburb_) {
-            address += ', ' + addressObj.suburb_;
+        if (addressObj.suburb) {
+            address += ', ' + addressObj.suburb;
         }
-        if (addressObj.city_) {
-            address += ', ' + addressObj.city_;
+        if (addressObj.city) {
+            address += ', ' + addressObj.city;
         }
-        if (addressObj.state_) {
-            address += ' ' + addressObj.state_;
+        if (addressObj.state) {
+            address += ' ' + addressObj.state;
         }
-        if (addressObj.postCode_) {
-            address += ' ' + addressObj.postCode_;
+        if (addressObj.postCode) {
+            address += ' ' + addressObj.postCode;
         }
-        if (addressObj.country_) {
-            address += ', ' + addressObj.country_;
+        if (addressObj.country) {
+            address += ', ' + addressObj.country;
         }
-        return addressObj.address_ ? address : '';
+        return addressObj.address ? address : '';
     }
 }
