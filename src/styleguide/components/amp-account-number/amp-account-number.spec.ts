@@ -64,7 +64,7 @@ describe( 'amp-account-number component' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls['account-number'];
-        accountNumberControl.setValue('12345678ab');
+        accountNumberControl.setValue('12345678a');
         expect( accountNumberControl._status).toBe( 'INVALID');
     } );
 } );
