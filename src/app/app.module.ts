@@ -4,6 +4,9 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
+import {
+    StickyProgressHeaderBlockComponent
+} from './blocks/sticky-progress-header-block/sticky-progress-header-block.component';
 
 import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
@@ -42,7 +45,8 @@ const DECLARATIONS = [
     AmpFormRowComponent,
     AmpIntroBlockComponent,
     AmpFormBlockComponent ,
-    AmpOverlayComponent ,
+    AmpOverlayComponent,
+    StickyProgressHeaderBlockComponent
 ];
 
 const IMPORTS = [
