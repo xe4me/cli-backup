@@ -35,7 +35,7 @@ export class AmpFileUploadComponent implements OnInit {
     private showProgress : boolean = false;
     private backendError : boolean = false;
     private error : boolean = false;
-    private errorMessage : string = 'Error in uploading the file. Please try again';
+    private errorMessage : string;
     private uploadUrlWithParms : string = '';
     private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
@@ -53,6 +53,7 @@ export class AmpFileUploadComponent implements OnInit {
         if ( !this.uploadUrl ) {
             this.uploadUrl = this.fileUploadService.uploadUrl;
         }
+        this.errorMessage = this.fileUploadService.errorMessage;
         this.basicOptions = {
             calculateSpeed: true
         };
