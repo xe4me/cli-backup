@@ -46,10 +46,18 @@ class MockElementRef implements ElementRef {
     template : `
     <form  #formModel='ngForm' class='nl-form' >
     <label></label>
-        <amp-standalone-menu #menu [form]="__form.controls.Application" [sectionObservable]="scrollService.$scrolled"></amp-standalone-menu>
+        <amp-standalone-menu #menu [form]="form" [sectionObservable]="scrollService.$scrolled"></amp-standalone-menu>
     </form>
     `
 } )
 class TestComponent {
     @ViewChild('menu') menu;
+
+    private form : FormGroup;
+
+    private scrollService : ScrollService;
+
+    constructor ( private _builder : FormBuilder ) {
+        this.form = this._builder.group( {} );
+    }
 }
