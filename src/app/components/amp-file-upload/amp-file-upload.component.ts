@@ -35,7 +35,7 @@ export class AmpFileUploadComponent implements OnInit {
     private showProgress : boolean = false;
     private backendError : boolean = false;
     private error : boolean = false;
-    private errorMessage : string;
+    private errorMessage : string = 'Error in uploading the file. Please try again';
     private uploadUrlWithParms : string = '';
     private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
@@ -59,8 +59,8 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private displayProgress ( ) : void {
-        this.showProgress = true;
         this.error = this.backendError;
+        this.showProgress = !this.error;
     }
 
     private showProgressBar ( ) : boolean {
@@ -69,7 +69,7 @@ export class AmpFileUploadComponent implements OnInit {
 
     private handleUpload ( response : any ) : void {
         let res : any;
-        if ( response.response ) {
+        if ( response.response && response.status !== 404 ) {
             res = JSON.parse( response.response );
         }
         this._cd.detectChanges();
@@ -78,7 +78,7 @@ export class AmpFileUploadComponent implements OnInit {
         this.speed = response.speedAverageHumanized ? response.speedAverageHumanized : response.progress.speedHumanized;
         this.uploaded = this.humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
-        if ( res && res.statusCode !== 200 ) {
+        if ( (res && res.statusCode !== 200) || response.status === 404 ) {
             this.setErrorMessage( res );
         }
     }
@@ -103,7 +103,8 @@ export class AmpFileUploadComponent implements OnInit {
                     this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
                                             + '&enableVirusScan=' + this.enableVirusScan + '&token=' + this.token;
                     this.basicOptions = {
-                        url: this.uploadUrlWithParms
+                        url : this.uploadUrlWithParms,
+                        calculateSpeed : true
                     };
                     this.backendError = false;
                 },
@@ -116,6 +117,6 @@ export class AmpFileUploadComponent implements OnInit {
     private setErrorMessage ( res : any ) : void {
         this.error = true;
         this.showProgress = !this.error;
-        this.errorMessage = res.message;
+        this.errorMessage = res ? res.message : this.errorMessage;
     }
 }
