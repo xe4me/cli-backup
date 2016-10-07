@@ -555,7 +555,7 @@
                 "name": "Amp Account Number Basic Usage"
             }
         ],
-        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+        "readme": "<p>AMP account number input, based amp-input component.</p>\n"
     },
     {
         "name": "Amp Review Block",
