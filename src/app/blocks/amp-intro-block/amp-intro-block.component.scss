@@ -23,9 +23,14 @@ $amp-ddc-public-asset: '../../../assets/';
         padding-right: 0;
     }
 
-    .intro-list-container, .intro-container {
-        margin-left: 210px;
-        @include media-query(desk) {
+    .intro-container {
+        @include media-query(lap-and-up) {
+            margin-left: 210px;
+        }
+        @include media-query(tablet) {
+            margin-left: 0px;
+        }
+        @include media-query(palm) {
             margin-left: 0px;
         }
     }
@@ -60,6 +65,12 @@ $amp-ddc-public-asset: '../../../assets/';
             margin-bottom: 30px;
         }
 
+    }
+
+    .intro-block-button-container {
+        > .btn {
+            width: 100%;
+        }
     }
 
     .intro-article {
@@ -202,12 +213,5 @@ $amp-ddc-public-asset: '../../../assets/';
         background-size: 100%;
         min-height: 793px;
         padding-top: 116px;
-
-        .intro-list-container, .intro-container {
-            margin-left: 210px;
-            @include media-query(desk) {
-                margin-left: 0px;
-            }
-        }
     }
 }
