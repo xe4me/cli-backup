@@ -1,12 +1,16 @@
 import {
-  addProviders,
-  inject,
-  async,
-  TestBed
+    addProviders,
+    inject,
+    async,
+    TestBed
 } from '@angular/core/testing';
 
-import {MockBackend, MockConnection} from '@angular/http/testing';
-import {provide} from '@angular/core';
+import {
+    MockBackend,
+    MockConnection
+} from '@angular/http/testing';
+
+import { provide } from '@angular/core';
 
 import {
     Http,
