@@ -121,7 +121,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
     }
 
     private onSelect ( $event ) {
-        if ( this.disabled === true ) {
+        if ( this.disabled === true || this.isInSummaryState === true) {
             $event.stopPropagation();
             return;
         }
