@@ -212,13 +212,7 @@
                                 "blockTitle": "And where you live...",
                                 "controls": [
                                     {
-                                        "id": "ResidentialAddress"
-                                    },
-                                    {
-                                        "id": "PostalAddressSameAsResidential"
-                                    },
-                                    {
-                                        "id": "PostalAddress"
+                                        "id": "Address"
                                     }
                                 ]
                             }
@@ -565,13 +559,7 @@
                                 "blockTitle": "And where you live...",
                                 "controls": [
                                     {
-                                        "id": "Applicant2_ResidentialAddress"
-                                    },
-                                    {
-                                        "id": "Applicant2_PostalAddressSameAsResidential"
-                                    },
-                                    {
-                                        "id": "Applicant2_PostalAddress"
+                                        "id": "Applicant2_Address"
                                     }
                                 ]
                             }
