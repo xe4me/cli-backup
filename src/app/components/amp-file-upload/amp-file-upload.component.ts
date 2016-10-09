@@ -35,7 +35,8 @@ export class AmpFileUploadComponent implements OnInit {
     private showProgress : boolean = false;
     private backendError : boolean = false;
     private error : boolean = false;
-    private uploadUrlWithToken : string = '';
+    private errorMessage : string;
+    private uploadUrlWithParms : string = '';
     private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
     constructor ( protected _cd : ChangeDetectorRef,
@@ -52,6 +53,7 @@ export class AmpFileUploadComponent implements OnInit {
         if ( !this.uploadUrl ) {
             this.uploadUrl = this.fileUploadService.uploadUrl;
         }
+        this.errorMessage = this.fileUploadService.errorMessage;
         this.basicOptions = {
             calculateSpeed: true
         };
@@ -67,12 +69,19 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private handleUpload ( response : any ) : void {
+        let res : any;
+        if ( response.response && response.status !== 404 ) {
+            res = JSON.parse( response.response );
+        }
         this._cd.detectChanges();
         this.fileName = response.originalName;
-        this.fileSize = this.humanizeBytes( response.size);
+        this.fileSize = this.humanizeBytes( response.size );
         this.speed = response.speedAverageHumanized ? response.speedAverageHumanized : response.progress.speedHumanized;
-        this.uploaded = this.humanizeBytes(((response.size * response.progress.percent) / 100));
+        this.uploaded = this.humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
+        if ( (res && res.statusCode !== 200) || response.status === 404 ) {
+            this.setErrorMessage( res );
+        }
     }
 
     private humanizeBytes ( bytes : number ) : string {
@@ -92,11 +101,11 @@ export class AmpFileUploadComponent implements OnInit {
             .subscribe(
                 ( res : any ) => {
                     this.token = res.payload.token;
-                    this.uploadUrl += `?formName= ${ this.formName } &objectId=  ${this.formId} &enableVirusScan=
-                                        ${this.enableVirusScan}`;
-                    this.uploadUrlWithToken = this.uploadUrl + '&token=' + this.token;
+                    this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
+                                            + '&enableVirusScan=' + this.enableVirusScan + '&token=' + this.token;
                     this.basicOptions = {
-                        url: this.uploadUrlWithToken
+                        url : this.uploadUrlWithParms,
+                        calculateSpeed : true
                     };
                     this.backendError = false;
                 },
@@ -104,5 +113,11 @@ export class AmpFileUploadComponent implements OnInit {
                     this.backendError = true;
                 }
             );
+    }
+
+    private setErrorMessage ( res : any ) : void {
+        this.error = true;
+        this.showProgress = !this.error;
+        this.errorMessage = res ? res.message : this.errorMessage;
     }
 }
