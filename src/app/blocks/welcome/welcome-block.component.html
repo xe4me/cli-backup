@@ -2,15 +2,17 @@
     <div class="intro-container">
         <h3 class="intro-message-heading heading heading-intro">Welcome</h3>
         <p class="intro-para">To the smarter way to manage your money.  Please choose how you would like to continue.</p>
-        <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb mr">
-            <amp-button (click)="onNewOrExisting('new')" class="btn btn-secondary btn-intro-chevron">
-                New Application
-            </amp-button>
-        </div>
-        <div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb ml mr">
-            <amp-button (click)="onNewOrExisting('existing')" class="btn btn-secondary btn-intro-chevron">
-                Continue Application
-            </amp-button>
+        <div class="mb mt+ intro-block-button-container">
+            <!--<div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb mr">-->
+                <amp-button (click)="onNewOrExisting('new')" class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
+                    New application
+                </amp-button>
+            <!--</div>-->
+            <!--<div class="grid__item_floated palm-1/1 tablet-4/12 tablet-mr lap-and-up-4/12 mb ml mr">-->
+                <amp-button (click)="onNewOrExisting('existing')" class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
+                    Continue application
+                </amp-button>
+            <!--</div>-->
         </div>
     </div>
 </amp-intro-block>
