@@ -23,12 +23,12 @@ export class ProfileService {
     constructor( private http : AmpHttpService ){
     }
 
-    get context () {
+    get profile () {
         return this._profile;
     }
 
-    set context (ctx) {
-        Object.assign( this._profile , ctx );
+    set profile ( profile ) {
+        Object.assign ( this._profile, profile );
         this._profile.initialized = true;
         this.$profileChanged.emit(this._profile);
     }
