@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor/globals';
 
-export class ExperienceBetterPage {
+export class ExperienceBett3rPage {
   navigateTo() {
     return browser.get('/');
   }

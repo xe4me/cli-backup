@@ -1,10 +1,10 @@
-import { ExperienceBetterPage } from './app.po';
+import { ExperienceBett3rPage } from './app.po';
 
-describe('experience-better App', function() {
-    let page : ExperienceBetterPage;
+describe('experience-bett3r App', function() {
+    let page : ExperienceBett3rPage;
 
     beforeEach(() => {
-        page = new ExperienceBetterPage();
+        page = new ExperienceBett3rPage();
     });
 
     it('should display message saying app works', () => {
