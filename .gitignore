@@ -67,3 +67,6 @@ npm-debug.log
 *.r1
 *.iml
 /.project
+
+*.fdn.ts
+Application.model.json
