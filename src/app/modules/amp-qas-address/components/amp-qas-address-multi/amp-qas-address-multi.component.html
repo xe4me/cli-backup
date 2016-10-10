@@ -3,11 +3,11 @@
         <amp-qas-address
                 class='1/3'
                 [controlGroup]='qasMultiCG'
-                [id]='postalAddress.id'
+                [id]='residentialAddress.id'
                 [index]='index'
                 [required]='required'
                 [isInSummaryState]='isInSummaryState'
-                [label]='postalAddress.label'>
+                [label]='residentialAddress.label'>
         </amp-qas-address>
     </div>
     <div class='mt+'>
@@ -20,7 +20,7 @@
                 [checked]='true'
                 (select)='onCheckboxSelect($event)'>
             <div class='heading heading-contxtual-label'>
-                My residential address is similar to my postal address.
+                My postal address is the same as my residential address.
             </div>
         </amp-checkbox>
     </div>
@@ -28,15 +28,15 @@
         <amp-qas-address
                 class='1/3'
                 [controlGroup]='qasMultiCG'
-                [id]='residentialAddress.id'
+                [id]='postalAddress.id'
                 [index]='index'
                 [required]='required'
                 [isInSummaryState]='isInSummaryState'
-                [label]='residentialAddress.label'>
+                [label]='postalAddress.label'>
         </amp-qas-address>
     </div>
 </div>
 
 <!--<pre>-->
-    <!--controlGroup {{ qasMultiCG.value | json }}-->
+<!--controlGroup {{ qasMultiCG.value | json }}-->
 <!--</pre>-->
