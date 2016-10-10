@@ -4,15 +4,13 @@
     </div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr+ mt">
-            <amp-input
+            <amp-account-number
+                    #loanAccount
                     [id]="__custom.controls[0].id"
                     [controlGroup]="__controlGroup"
-                    [label]="'Offset Account Number'"
-                    [required]="true"
-                    [isInSummaryState]="isInSummaryState"
-                    [pattern]="'^([0-9])*$'"
-                    [maxLength]="'12'">
-            </amp-input>
+                    [amp-number-only]="loanAccount.control"
+                    [isInSummaryState]="isInSummaryState">
+            </amp-account-number>
         </div>
     </amp-form-row>
 </amp-form-block>
