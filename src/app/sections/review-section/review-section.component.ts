@@ -75,7 +75,7 @@ export class ReviewSectionComponent implements OnInit {
              this.reviewSectionVisible = _fdnString === this.__fdn.join('-') + '-block';
         });
 
-        // Filter blocks for review main and sticky columns
+        // Filter blocks for review main and sticky columns.
         this._review_blocks = Object.assign({}, this.__child_blocks);
         this._sticky_blocks = Object.assign({}, this.__child_blocks);
 
