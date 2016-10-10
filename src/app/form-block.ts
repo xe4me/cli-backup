@@ -72,6 +72,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     onEdit () {
         this.isInSummaryState = false;
+
+        this.scrollService.$scrolled.emit(this.selectorName);
     }
 
     onNext () {
