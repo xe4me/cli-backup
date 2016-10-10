@@ -41,13 +41,20 @@ Recommended way is to setup a [local proxy](http://stackoverflow.com/questions/1
 
 Change to develop branch:
 ```bash
+# Switch over to the develop branch, if it's not the default
 git checkout develop
+
+# Init npm dependency
+amp-ng init -nio
 
 # start the server
 amp-ng serve
 
-# to run tests
-??
+# to run tests once off
+amp-ng test --watch false
+
+# to have test watching code changes
+amp-ng test
 
 ```
 
