@@ -63,7 +63,7 @@ export class FormUtils {
     public static isValidDate ( _date : string ) {
         return _date
                 && typeof _date === 'string'
-                && _date.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)
+                && _date.match(/^\d{2}\/\d{2}\/\d{4}$/)
                 && moment( _date , 'DD/MM/YYYY' ).isValid();
     }
 }
