@@ -48,7 +48,7 @@ describe( 'amp-input directive' , () => {
         dateValControl.setValue('01011980');
         expect( dateValControl._status).toBe( 'INVALID');
     } );
-    it( 'should be valid date and valdate property is set' , () => {
+    it( 'should be valid if valid date and valdate property is set' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
