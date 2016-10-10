@@ -1,5 +1,5 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter } from '@angular/core';
+import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup, FormBuilder } from '@angular/forms';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
@@ -11,7 +11,16 @@ import { FormSectionService } from '../../../app/services/form-section/form-sect
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 import { AmpStandAloneMenuModule, AmpStandAloneMenuComponent } from '../../../app/modules/amp-standalone-menu';
 import { By } from '@angular/platform-browser';
+@Injectable()
+class ScrollService1 {
+    @Input() sectionObservable;
 
+    public $scrolled : EventEmitter<any>;
+
+    constructor () {
+        this.$scrolled  = new EventEmitter();
+    }
+}
 describe( 'amp standalone menu tests' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
@@ -47,7 +56,7 @@ class MockElementRef implements ElementRef {
     template : `
     <form  #formModel='ngForm' class='nl-form' >
     <label></label>
-        <amp-standalone-menu #menu [form]="form" [sectionObservable]="ScrollService1.$scrolled"></amp-standalone-menu>
+        <amp-standalone-menu #menu [form]="form" [sectionObservable]="scrollService.$scrolled"></amp-standalone-menu>
     </form>
     `
 } )
@@ -56,17 +65,11 @@ class TestComponent {
 
     private form : FormGroup;
 
-   // private scrollService : ScrollService;
-
-    constructor ( private _builder : FormBuilder) {
+    constructor ( private _builder : FormBuilder,
+                  private scrollService : ScrollService
+                ) {
         this.form = this._builder.group( {} );
+
     }
 }
 
-export class ScrollService1 {
-    public $scrolled : EventEmitter<any>;
-
-    constructor () {
-        this.$scrolled  = new EventEmitter();
-    }
-}
