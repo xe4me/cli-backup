@@ -1,4 +1,5 @@
 <amp-form-block [context]="context()">
+    <div class="mt mb">Please provide us with some contact details so that we know who you are.</div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr mt0">
             <amp-email
@@ -24,7 +25,8 @@
                     [id]="__custom.controls[2].id"
                     [controlGroup]="__controlGroup"
                     [isInSummaryState]="isInSummaryState"
-                    [label]="'Home number'">
+                    [label]="'Home number'"
+                    [required]="false">
             </amp-home-number>
         </div>
     </amp-form-row>
