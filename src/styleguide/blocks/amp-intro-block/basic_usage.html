@@ -40,10 +40,32 @@
         <h2 class="mb- ml mt+">Branding</h2>
         <p class="para ml">Specific branding can be applied via a custom input. A demonstration of this can be found in this sample. Of course you will need to create the class and possibly the styles (if they are not reusable), if they are reusable, then create a pull into the project.</p>
     </article>
+    <article class="section mb">
+        <h2 class="mb- ml mt+">Logos</h2>
+        <p class="para ml">All of the logos are located in the AEM Dam. I have included the images inside the page itself. </p>
+        <div class="grid__container 1/1 mb mt ml">
+            <div class="grid__item_floated 3/12">
+                <h2 class='intro-logo amp-logo-blue-text-bg mb'> <img alt="AMP" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/amp.svg"> </h2>
+                <h2 class='intro-logo amp-logo-blue-text-bg show-pony-blue'> <img alt="AMP" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/amp_rev_fc.svg"> </h2>
+            </div>
+            <div class="grid__item_floated 3/12">
+                <h2 class='intro-logo amp-logo-blue-text-bg show-pony-blue mb'> <img alt="AMP Charter Financial" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/charter_fp_rev_fc.svg"> </h2>
+                <h2 class='intro-logo amp-logo-blue-text-bg '> <img alt="AMP Charter Financial" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/charter_fp.svg"> </h2>
+            </div>
+            <div class="grid__item_floated 3/12">
+                <h2 class='intro-logo amp-logo-blue-text-bg mb'> <img alt="AMP Hillross" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/hillross.svg"> </h2>
+                <h2 class='intro-logo amp-logo-blue-text-bg show-pony-blue'> <img alt="AMP Hillross" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/hillross_rev_fc.svg"> </h2>
+            </div>
+            <div class="grid__item_floated 3/12">
+                <h2 class='intro-logo amp-logo-blue-text-bg show-pony-blue mb'> <img alt="AMP Financial Planning" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/amp_fp_rev_fc.svg"> </h2>
+                <h2 class='intro-logo amp-logo-blue-text-bg'> <img alt="AMP Financial Planning" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/amp_fp.svg"> </h2>
+            </div>
+        </div>
+    </article>
     <article class="article">
         <h2 class="heading-test">BOLR style block</h2>
         <amp-intro-block [attr.theme]="themeService.theme.attr">
-            <h2 class='intro-logo'>This is a title</h2>
+            <h2 class='intro-logo amp-financial-logo-blue-text-bg'> <img alt="AMP Financial Planning" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/amp_fp.svg"> </h2>
             <div class="intro-list-container">
                 <article class="intro-article grid__item_floated 1/1">
                     <ul class="intro-list">
@@ -65,13 +87,14 @@
             </div>
         </amp-intro-block>
     </article>
+
     <!--
     This sample uses a different theme for illustration purpose.
     -->
     <article class="article">
         <h2 class="heading-test">Another sample - illustrating a custom class for style, dynamic text</h2>
         <amp-intro-block [attr.theme]="themeService.theme.attr">
-                <h2 class='intro-logo'>This is another title</h2>
+            <h2 class='intro-logo amp-financial-logo-blue-text-bg'> <img alt="AMP Financial Planning" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/amp_fp.svg"> </h2>
                 <div class="intro-container">
                     <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                     <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
@@ -101,7 +124,7 @@
     <article class="article">
         <h2 class="heading-test">Another sample - button types</h2>
         <amp-intro-block [attr.theme]="themeService.theme.attr">
-            <h2 class='intro-logo'>This is another title</h2>
+            <h2 class='intro-logo amp-hillross-logo-black-text-bg'> <img alt="Hillross Financial Planning" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/hillross.svg"> </h2>
             <div class="intro-container">
                 <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
@@ -145,7 +168,7 @@
     <article class="article">
         <h2 class="heading-test">Another sample - input field types</h2>
         <amp-intro-block [attr.theme]="themeService.theme.attr">
-            <h2 class='intro-logo'>This is another title</h2>
+            <h2 class='intro-logo amp-charter-logo-blue-text-bg'> <img alt="Charter Financial Planning" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/charter_fp.svg"> </h2>
             <div class="intro-container">
                 <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
@@ -201,7 +224,7 @@ This sample uses a different theme for illustration purpose.
     <article class="article">
         <h2 class="heading-test">Another sample - with branding</h2>
         <amp-intro-block [attr.theme]="themeService.theme.attr" class="{{style}}">
-            <h2 class='intro-logo'>This is another title</h2>
+            <h2 class='intro-logo amp-logo-white-text-bg'> <img alt="AMP Financial Planning" src="//www.amp.com.au/content/dam/amp/digitalhub/common/images/systems/ddc/amp_rev_fc.svg"> </h2>
             <div class="intro-container">
                 <h3 class="intro-message-heading heading heading-intro">{{title}}</h3>
                 <p class="intro-para">Bacon ipsum dolor amet pork belly tri-tip kevin, tenderloin meatloaf strip steak frankfurter doner short loin. Shoulder pork belly beef ribs chicken shankle salami kielbasa rump porchetta doner alcatra flank tenderloin tongue. Short ribs tenderloin meatloaf pork chop beef ribs cow hamburger landjaeger chuck t-bone capicola biltong tail andouille. Cupim ground round bacon, tri-tip fatback leberkas strip steak sirloin jowl salami.</p>
