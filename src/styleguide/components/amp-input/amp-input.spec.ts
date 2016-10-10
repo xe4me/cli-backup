@@ -24,7 +24,7 @@ describe( 'amp-input directive' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
-        let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
+        let compiledLabel         = compiledTestComponent.query( By.css( '.first-name label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Name' );
         expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'firstname-input' );
@@ -33,11 +33,29 @@ describe( 'amp-input directive' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
-        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        let compiledInput         = compiledTestComponent.query( By.css( '.first-name input' ) );
         expect( compiledInput.nativeElement.name ).toBe( 'firstname' );
         expect( compiledInput.nativeElement.id ).toBe( 'firstname-input' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_firstname' );
+    } );
+    it( 'should be invalid if not invalid date and valdate property is set' , () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent = fixture.debugElement;
+        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        const dateValControl = compiledTestComponent.componentInstance.firstnameControl.controls['date-val'];
+        dateValControl.setValue('01011980');
+        expect( dateValControl._status).toBe( 'INVALID');
+    } );
+    it( 'should be valid date and valdate property is set' , () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent = fixture.debugElement;
+        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        const dateValControl = compiledTestComponent.componentInstance.firstnameControl.controls['date-val'];
+        dateValControl.setValue('01/01/1980');
+        expect( dateValControl._status).toBe( 'VALID');
     } );
 } );
 class MockElementRef implements ElementRef {
@@ -47,13 +65,24 @@ class MockElementRef implements ElementRef {
 @Component( {
     template : `
     <form  #formModel='ngForm' class='nl-form' >
-        <amp-input
-            [id]="'firstname'"
-            [label]="'Name'"
-            [controlGroup]='firstnameControl'
-            [required]='true'
-            pattern='^([A-Za-z ])*$'
-            maxLength='50'>blah</amp-input>
+        <div class="first-name">
+            <amp-input
+                [id]="'firstname'"
+                [label]="'Name'"
+                [controlGroup]='firstnameControl'
+                [required]='true'
+                pattern='^([A-Za-z ])*$'
+                maxLength='50'>blah</amp-input>
+        </div>
+        <div class="date-validator">
+            <amp-input
+                [id]="'date-val'"
+                [label]="'Name'"
+                [controlGroup]='firstnameControl'
+                [required]='true'
+                [valDate]='true'
+                maxLength='50'>blah</amp-input>
+            </div>
     </form>
     `
 } )

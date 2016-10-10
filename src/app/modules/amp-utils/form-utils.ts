@@ -61,6 +61,9 @@ export class FormUtils {
     }
 
     public static isValidDate ( _date : string ) {
-        return moment( _date , 'DD/MM/YYYY' ).isValid();
+        return _date
+                && typeof _date === 'string'
+                && _date.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)
+                && moment( _date , 'DD/MM/YYYY' ).isValid();
     }
 }
