@@ -20,43 +20,50 @@ describe( 'amp-input directive' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'should contain a label element with name as value and firstname as for attribute' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
-        let compiledLabel         = compiledTestComponent.query( By.css( '.first-name label' ) );
-        expect( compiledLabel.name ).toBe( 'label' );
-        expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Name' );
-        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'firstname-input' );
+
+    describe('correct attributes should be set', () => {
+        it( 'should contain a label element with name as value and firstname as for attribute' , () => {
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+            fixture.detectChanges();
+            let compiledTestComponent = fixture.debugElement;
+            let compiledLabel         = compiledTestComponent.query( By.css( '.first-name label' ) );
+            expect( compiledLabel.name ).toBe( 'label' );
+            expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Name' );
+            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'firstname-input' );
+        } );
+        it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+            fixture.detectChanges();
+            let compiledTestComponent = fixture.debugElement;
+            let compiledInput         = compiledTestComponent.query( By.css( '.first-name input' ) );
+            expect( compiledInput.nativeElement.name ).toBe( 'firstname' );
+            expect( compiledInput.nativeElement.id ).toBe( 'firstname-input' );
+            expect( compiledInput.nativeElement.type ).toBe( 'text' );
+            expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_firstname' );
+        } );
+    });
+
+    describe('"valDate" attribute should correctly validate date data', () => {
+        it( 'should be invalid if not invalid date and "valDate" property is set' , () => {
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+            fixture.detectChanges();
+            let compiledTestComponent = fixture.debugElement;
+            let compiledInput         = compiledTestComponent.query( By.css( '.date-validator input' ) );
+            const dateValControl = compiledTestComponent.componentInstance.firstnameControl.controls['date-val'];
+            dateValControl.setValue('01011980');
+            expect( dateValControl._status).toBe( 'INVALID');
+        } );
+        it( 'should be valid if valid date and "valDate" property is set' , () => {
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+            fixture.detectChanges();
+            let compiledTestComponent = fixture.debugElement;
+            let compiledInput         = compiledTestComponent.query( By.css( '.date-validator input' ) );
+            const dateValControl = compiledTestComponent.componentInstance.firstnameControl.controls['date-val'];
+            dateValControl.setValue('01/01/1980');
+            expect( dateValControl._status).toBe( 'VALID');
+        } );
     } );
-    it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
-        let compiledInput         = compiledTestComponent.query( By.css( '.first-name input' ) );
-        expect( compiledInput.nativeElement.name ).toBe( 'firstname' );
-        expect( compiledInput.nativeElement.id ).toBe( 'firstname-input' );
-        expect( compiledInput.nativeElement.type ).toBe( 'text' );
-        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_firstname' );
-    } );
-    it( 'should be invalid if not invalid date and valdate property is set' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
-        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
-        const dateValControl = compiledTestComponent.componentInstance.firstnameControl.controls['date-val'];
-        dateValControl.setValue('01011980');
-        expect( dateValControl._status).toBe( 'INVALID');
-    } );
-    it( 'should be valid if valid date and valdate property is set' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
-        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
-        const dateValControl = compiledTestComponent.componentInstance.firstnameControl.controls['date-val'];
-        dateValControl.setValue('01/01/1980');
-        expect( dateValControl._status).toBe( 'VALID');
-    } );
+
 } );
 class MockElementRef implements ElementRef {
     nativeElement = {};
@@ -82,7 +89,7 @@ class MockElementRef implements ElementRef {
                 [required]='true'
                 [valDate]='true'
                 maxLength='50'>blah</amp-input>
-            </div>
+        </div>
     </form>
     `
 } )
