@@ -1,0 +1,13 @@
+<form [formGroup]="form" class='nl-form'>
+    <div class="p">
+        <amp-manual-address
+                #manualAddressCmp
+                [controlGroup]='__controlGroup'
+                [id]='__custom.controls[0].id'
+                [isInSummaryState]='isInSummaryState'>
+        </amp-manual-address>
+    </div>
+
+    <amp-button class='btn btn-ok' [disabled]='!__controlGroup.valid'>Go Next </amp-button>
+    <amp-button class='btn btn-ok' (click)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
+</form>

@@ -63,7 +63,9 @@ export class AmpDropdownComponent {
     protected dropdownElem;
     protected optionsElem;
     private _id                          = 'default';
+    constructor ( protected _cd : ChangeDetectorRef ) {
 
+    }
     public setSelectValue ( value ) {
         this.selectElem.value = value;
         this.trigger( 'change' , this.selectElem );
@@ -242,6 +244,7 @@ export class AmpDropdownComponent {
 
     protected trigger ( event , el ) {
         el.dispatchEvent( new Event( event ) );
+        this._cd.detectChanges();
     }
 
     protected updateValitators () {
@@ -263,5 +266,6 @@ export class AmpDropdownComponent {
         if ( this.controlGroup ) {
             this.controlGroup.addControl( this.id , this.control );
         }
+        this._cd.detectChanges();
     }
 }
