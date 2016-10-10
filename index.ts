@@ -47,3 +47,4 @@ export { AmpConfirmationDialogService } from './src/app/services/amp-confirmatio
 export { FormSectionService } from './src/app/services/form-section/form-section.service';
 export { FormService } from './src/app/services/form/form.service';
 export { ContextService } from './src/app/services/context/context.service';
+export { ProfileService } from './src/app/services/adviser-profile/profile.service';
