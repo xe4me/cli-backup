@@ -71,7 +71,7 @@ export class ReviewSectionComponent implements OnInit {
     }
 
     ngOnInit() {
-         this.scrollService.$scrolled.subscribe((_fdnString) => {
+        this.scrollService.$scrolled.subscribe((_fdnString) => {
              this.reviewSectionVisible = _fdnString === this.__fdn.join('-') + '-block';
         });
 
