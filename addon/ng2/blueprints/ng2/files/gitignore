@@ -67,3 +67,7 @@ npm-debug.log
 *.r1
 *.iml
 /.project
+
+# FDN loader generated files
+*.fdn.ts
+Application.model.json
