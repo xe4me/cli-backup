@@ -258,6 +258,46 @@
         "readme": "<p>Custom Block for AmpQasAddressComponent.</p>\n"
     },
     {
+        "name": "Amp Manual Address",
+        "sources": [
+            "src/app/components/amp-manual-address/amp-manual-address.component.ts"
+        ],
+        "id": "AmpManualAddressComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-manual-address/basic_usage.html",
+                "styles": "src/styleguide/components/amp-manual-address/basic_usage.scss",
+                "source": "src/styleguide/components/amp-manual-address/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-manual-address/amp-manual-address.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-manual-address/amp-manual-address.component.spec.ts",
+                "component": "amp-manual-address-basic-usage",
+                "component_src_location": "components/amp-manual-address/basic_usage",
+                "name": "Amp Manual Address Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpManualAddressComponent.</p>\n"
+    },
+    {
+        "name": "Amp Qas Address Multi",
+        "sources": [
+            "src/app/components/amp-qas-address-multi/amp-qas-address-multi.component.ts"
+        ],
+        "id": "AmpQasAddressMultiComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-qas-address-multi/basic_usage.html",
+                "styles": "src/styleguide/components/amp-qas-address-multi/basic_usage.scss",
+                "source": "src/styleguide/components/amp-qas-address-multi/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-qas-address-multi/amp-qas-address-multi.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-qas-address-multi/amp-qas-address-multi.component.spec.ts",
+                "component": "amp-qas-address-multi-basic-usage",
+                "component_src_location": "components/amp-qas-address-multi/basic_usage",
+                "name": "Amp Auto Comnplete Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpQasAddressMultiComponent.</p>\n"
+    },
+    {
         "name": "Amp Group Buttons",
         "sources": [
             "src/app/components/amp-group-buttons/amp-group-buttons.component.ts"
@@ -536,6 +576,26 @@
             }
         ],
         "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
+    },
+    {
+        "name": "AmpAccountNumber",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpAccountNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-account-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-account-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-account-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-account-number/amp-account-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-account-number/amp-account-number.spec.ts",
+                "component": "amp-account-number-basic-usage",
+                "component_src_location": "components/amp-account-number/basic_usage",
+                "name": "Amp Account Number Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP account number input, based amp-input component.</p>\n"
     },
     {
         "name": "Amp Review Block",

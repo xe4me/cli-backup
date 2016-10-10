@@ -64,7 +64,7 @@ testing.setBaseTestProviders(
  * we say do this recursively
  */
 var testContext = require.context('../src', true, /\.spec\.ts/);
-//var testContext = require.context('../src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component', true, /\.spec\.ts/);
+//var testContext = require.context('../src/styleguide/components/amp-manual-address', true, /\.spec\.ts/);
 
 /*
  * get all the files, for each file, call the context function

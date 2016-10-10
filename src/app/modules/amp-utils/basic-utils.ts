@@ -17,4 +17,28 @@ export class BasicUtils {
         }
         return + str;
     }
+
+    public static formatAddress ( addressObj : any ) : string {
+        let address = '';
+
+        if (addressObj.address) {
+            address += addressObj.address;
+        }
+        if (addressObj.suburb) {
+            address += ', ' + addressObj.suburb;
+        }
+        if (addressObj.city) {
+            address += ', ' + addressObj.city;
+        }
+        if (addressObj.state) {
+            address += ' ' + addressObj.state;
+        }
+        if (addressObj.postCode) {
+            address += ' ' + addressObj.postCode;
+        }
+        if (addressObj.country) {
+            address += ', ' + addressObj.country;
+        }
+        return addressObj.address ? address : '';
+    }
 }

@@ -6,7 +6,8 @@
                     <amp-country
                             (select)='onCountrySelect($event)'
                             #manualCountryCmp
-                            [id]='country.id+"_"+index'
+                            [id]='country.id'
+                            [index]='index'
                             [controlGroup]='manualAddressCG'>
                     </amp-country>
                     <amp-error [controlGroup]='manualAddressCG' [controlId]="country.id+'_'+index"></amp-error>
@@ -21,8 +22,9 @@
                             #manualAddressCmp
                             class='1/1'
                             noPadding='true'
-                            [id]='address.id+"_"+index'
+                            [id]='address.id'
                             [label]='address.label'
+                            [index]='index'
                             [controlGroup]='manualAddressCG'
                             [required]='required'
                             [errors]='address.errors'
@@ -41,8 +43,9 @@
                         <amp-input
                                 #manualSuburbCmp
                                 class='1/1'
-                                [id]='suburb.id+"_"+index'
+                                [id]='suburb.id'
                                 [label]='suburb.label'
+                                [index]='index'
                                 [controlGroup]='manualAddressCG'
                                 [pattern]='suburb.regex'
                                 [required]='isCountryAUS '
@@ -62,7 +65,9 @@
                 <div class='grid__item_floated  pr 1/2 input-wrapper' [hidden]='!isCountryAUS'>
                     <amp-states
                             #manualStatesCmp
-                            [id]='state.id+"_"+index'
+                            [id]='state.id'
+                            [index]='index'
+                            [errors]='state.errors'
                             [required]='isCountryAUS'
                             [controlGroup]='manualAddressCG'>
                     </amp-states>
@@ -72,8 +77,9 @@
                 <div class='grid__item_floated  pr 1/2 input-wrapper' [hidden]='isCountryAUS'>
                     <amp-input
                             #manualCityCmp
-                            [id]='city.id+"_"+index'
+                            [id]='city.id'
                             [label]='getCityLabel()'
+                            [index]='index'
                             [required]='!isCountryAUS'
                             [maxLength]='city.maxLength'
                             [errors]='city.errors'
@@ -88,8 +94,9 @@
                             #manualPostcodeCmp
                             noPadding='true'
                             class='1/1'
-                            [id]='postCode.id+"_"+index'
+                            [id]='postCode.id'
                             [label]='postCode.label'
+                            [index]='index'
                             [controlGroup]='manualAddressCG'
                             [required]='isCountryAUS || isCountryNZ'
                             [pattern]='getPostcodeRegex()'

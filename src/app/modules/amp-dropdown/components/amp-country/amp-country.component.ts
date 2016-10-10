@@ -1,5 +1,5 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { ViewChild , OnInit } from '@angular/core';
+import { ViewChild , OnInit , ChangeDetectorRef } from '@angular/core';
 import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
 import { AmpCountryService } from '../../services/amp-country.service';
 @AmpComponent( {
@@ -10,9 +10,8 @@ export class AmpCountryComponent extends AmpDropdownComponent implements OnInit 
     @ViewChild( 'optionsEl' ) optionsEl;
     @ViewChild( 'dropdownEl' ) dropDownEl;
 
-    constructor ( public ampCountryService : AmpCountryService ) {
-        super();
-        this.required      = true;
+    constructor ( public _cd : ChangeDetectorRef , public ampCountryService : AmpCountryService ) {
+        super( _cd );
         this.fieldItemKey  = 'country';
         this.fieldValueKey = 'countryCode';
         this.options       = [
@@ -26,8 +25,9 @@ export class AmpCountryComponent extends AmpDropdownComponent implements OnInit 
             }
         ];
         this.label         = 'Country';
+        this.required      = true;
         this.errors        = {
-            required : 'Coountry is a required field.'
+            required : 'Country is a required field.'
         };
     }
 

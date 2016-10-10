@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
+import { Environments } from '../../../abstracts/environments/environments.abstract';
 // export interface AddressFormats {
 //     Siebel : {
 //         Locality : string;
@@ -30,10 +31,11 @@ import { Observable } from 'rxjs';
 export class AmpQasAddressService {
     // public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
     // public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
-    // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/secure/api/qas/doSearch/AUS/pym';
+    // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/public/api/qas/doSearch/AUS/pym';
     // public static QAS_FORMATTER_URL  = 'http://localhost:1234/ddc/public/api/qas/doGetAddress';
-    public static QAS_QUERY_URL      = '/ddc/secure/api/qas/doSearch/AUS/pym';
-    public static QAS_FORMATTER_URL  = '/ddc/public/api/qas/doGetAddress';
+    public static BASE_URL           = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
+    public static QAS_FORMATTER_URL  = AmpQasAddressService.BASE_URL + '/qas/doGetAddress';
+    public static QAS_QUERY_URL      = AmpQasAddressService.BASE_URL + '/qas/doSearch/AUS';
     public static DEFAULT_ERROR_TEXT = 'Server error';
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,

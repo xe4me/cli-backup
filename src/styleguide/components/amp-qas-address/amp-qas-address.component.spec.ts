@@ -325,7 +325,7 @@ describe( 'amp-qas-address component' , () => {
     } ) );
     beforeEach( () => {
         _testComponentControlGroup = _comp.__controlGroup;
-        _qasComponentControlGroup  = _testComponentControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
+        _qasComponentControlGroup  = _comp.searchControlGroup;
     } );
     it( 'testComponentControlGroup should be defined ' , () => {
         _fixture.detectChanges();
@@ -338,7 +338,7 @@ describe( 'amp-qas-address component' , () => {
     it( 'qas controlGroup should have two controls corresponding to the ids provided ' , () => {
         _fixture.detectChanges();
         expect( Object.keys( _qasComponentControlGroup.controls ).length ).toEqual( 2 );
-        expect( _qasComponentControlGroup.controls [ _comp.__custom.controls[ 0 ].id ] ).toBeDefined();
+        expect( _qasComponentControlGroup.controls [ _comp.__custom.controls[ 0 ].id ] + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ).toBeDefined();
         expect( _qasComponentControlGroup.controls [ _comp.__custom.controls[ 0 ].id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ] ).toBeDefined();
     } );
     it( 'should have a amp-error component that has the same controlGroup as qasAddressComponent' , fakeAsync( () => {
@@ -384,9 +384,15 @@ class AmpQasAddressComponentTest {
         this.form = this._builder.group( {} );
     }
 
-    get control () {
+    get controlGroup () : any {
         if ( this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
             return this.__controlGroup.controls[ this.__custom.controls[ 0 ].id ];
+        }
+    }
+
+    get searchControlGroup () {
+        if ( this.controlGroup ) {
+            return this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
         }
     }
 }

@@ -1,19 +1,28 @@
 import {
-    Component , Input , OnInit , ChangeDetectorRef , ChangeDetectionStrategy , ViewChild ,
-    AfterViewInit
+    Component ,
+    Input ,
+    OnInit ,
+    ChangeDetectorRef ,
+    ChangeDetectionStrategy ,
+    ViewChild ,
+    AfterViewInit ,
+    OnDestroy
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { AmpStatesComponent } from '../../../amp-dropdown';
 import { AmpCountryComponent } from '../../../amp-dropdown/components/amp-country/amp-country.component';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component( {
     selector        : 'amp-manual-address' ,
     template        : require( './amp-manual-address.component.html' ) ,
     styles          : [ require( './amp-manual-address.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpManualAddressComponent implements OnInit, AfterViewInit {
-    public static MANUAL_ARRES_GROUP_NAME = 'manual-address';
+export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestroy {
+    public static MANUAL_ARRES_GROUP_NAME = 'manualAddress';
+    public static DEFAULT_SELECTED_COUNTRY      = 'AUS';
+    public static COUNTRY_NZ                    = 'NZL';
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpInputComponent;
     @ViewChild( 'manualSuburbCmp' ) manualSuburbCmp : AmpInputComponent;
     @ViewChild( 'manualStatesCmp' ) manualStatesCmp : AmpStatesComponent;
@@ -21,19 +30,11 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     @ViewChild( 'manualCountryCmp' ) manualCountryCmp : AmpCountryComponent;
     @ViewChild( 'manualCityCmp' ) manualCityCmp : AmpInputComponent;
     @Input() id : string                  = 'default-';
-    @Input() index : string               = '';
+    @Input() index;
     @Input() isInSummaryState : boolean   = false;
+    @Input() keepControl : boolean        = false;
     @Input() required : boolean           = true;
     @Input() controlGroup : FormGroup;
-    @Input() googleAddress                = {
-        id          : 'googleAddress' ,
-        label       : '' ,
-        placeholder : '' ,
-        errors      : {
-            invalid  : 'Address is invalid.' ,
-            required : 'Address is a required field.'
-        }
-    };
     @Input() address                      = {
         id        : 'address' ,
         label     : 'Street address' ,
@@ -61,12 +62,15 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
         maxLength : 50 ,
         minLength : 3 ,
         errors    : {
-            required  : 'Suburb is required.' ,
+            required  : 'Suburb is a required field.' ,
             minLength : 'Suburb must be at least 3 characters long.'
         }
     };
     @Input() state                        = {
-        id : 'state'
+        id     : 'state' ,
+        errors : {
+            required : 'State is a required field.'
+        }
     };
     @Input() country                      = {
         id : 'country'
@@ -91,22 +95,29 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     protected postCodeCtrl;
     protected cityCtrl;
     private manualAddressCG : FormGroup   = new FormGroup( {} );
-    private DEFAULT_SELECTED_COUNTRY      = 'AUS';
-    private COUNTRY_NZ                    = 'NZL';
-    private selectedCountry               = this.DEFAULT_SELECTED_COUNTRY;
+
+    private selectedCountry               = AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 
     ngOnInit () {
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id + AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME , this.manualAddressCG );
+            this.controlGroup.addControl( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) , this.manualAddressCG );
         }
     }
 
     ngAfterViewInit () : void {
         this.getManualControlsFromManualAddressCG();
-        this.manualCountryCmp.setSelectValue( this.DEFAULT_SELECTED_COUNTRY );
+        this.manualCountryCmp.setSelectValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
+    }
+
+    ngOnDestroy () : void {
+        if ( ! this.keepControl ) {
+            if ( this.controlGroup.contains( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME ) ) {
+                this.controlGroup.removeControl( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME );
+            }
+        }
     }
 
     public updateControls ( _formattedAddress : any ) {
@@ -115,7 +126,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
             this.suburbCtrl.setValue( _formattedAddress.Suburb );
             this.manualStatesCmp.setSelectValue( _formattedAddress.State.toUpperCase() );
             // this.manualCountryCmp.setSelectValue( _formattedAddress.Country );
-            this.manualCountryCmp.setSelectValue( this.DEFAULT_SELECTED_COUNTRY );
+            this.manualCountryCmp.setSelectValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
             // this.dpidCtrl.setValue( _formattedAddress.DPID );
         }
@@ -124,7 +135,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
 
     public emptyControls () {
         this.manualStatesCmp.setSelectValue( null );
-        this.manualCountryCmp.setSelectValue( this.DEFAULT_SELECTED_COUNTRY );
+        this.manualCountryCmp.setSelectValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
         this.suburbCtrl.setValue( null );
         this.addressCtrl.setValue( null );
         this.postCodeCtrl.setValue( null );
@@ -144,7 +155,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     }
 
     private getJoinedIdWithIndex ( _id ) {
-        return _id + '_' + this.index;
+        return _id + addDashOrNothing( this.index );
     }
 
     private killDelayedValidationForInputs () {
@@ -165,11 +176,11 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit {
     }
 
     private get isCountryAUS () : boolean {
-        return this.selectedCountry === this.DEFAULT_SELECTED_COUNTRY;
+        return this.selectedCountry === AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
     }
 
     private get isCountryNZ () : boolean {
-        return this.selectedCountry === this.COUNTRY_NZ;
+        return this.selectedCountry === AmpManualAddressComponent.COUNTRY_NZ;
     }
 
     private getCityLabel () : string {
