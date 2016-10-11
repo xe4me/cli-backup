@@ -8,16 +8,20 @@ import {
     ChangeDetectorRef ,
     OnDestroy
 } from '@angular/core';
+
 import { AmpQasAddressService , AddressFormatTypes } from '../../services/amp-qas-address.service';
 import { AmpTypeaheadComponent } from '../../../amp-typeahead';
 import { FormGroup } from '@angular/forms';
 import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-address.component';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { AmpFormRowComponent } from '../../../../blocks/amp-form-row/amp-form-row.component';
+
 @Component( {
     selector : 'amp-qas-address' ,
     template : require( './amp-qas-address.component.html' ) ,
     styles   : [ require( './amp-qas-address.component.scss' ).toString() ]
 } )
+
 export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpManualAddressComponent;
     @ViewChild( 'typeaheadCmp' ) typeaheadCmp : AmpTypeaheadComponent;

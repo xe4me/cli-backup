@@ -2,7 +2,8 @@ import {
     Component ,
     ViewChild ,
     EventEmitter ,
-    ChangeDetectionStrategy , ChangeDetectorRef
+    ChangeDetectionStrategy ,
+    ChangeDetectorRef
 } from '@angular/core';
 import {
     FormControl ,
@@ -34,6 +35,7 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
     changeDetection : ChangeDetectionStrategy.OnPush ,
     outputs         : [ 'select' ]
 } )
+
 export class AmpDropdownComponent {
     @ViewChild( 'selectEl' ) selectEl;
     @ViewChild( 'optionsEl' ) optionsEl;
@@ -89,15 +91,9 @@ export class AmpDropdownComponent {
         setTimeout( () => {
             this.setSelectedOption( 'initial' );
         } );
-        let forceRedraw                   = function( element ) {
-            element.style.display = 'none';
-            let trick             = element.offsetHeight;
-            element.style.display = '';
-        };
-        // Redraw options to set correct width
-        this.optionsElem.style.visibility = 'visible';
-        forceRedraw( this.optionsElem.children[ 0 ] );
-        this.optionsElem.style.visibility = '';
+
+        this.redraw();
+
         this.control.registerOnChange( ( value ) => {
             if ( this.selectElem.value !== value ) {
                 this.setSelectValue( value );
@@ -267,5 +263,21 @@ export class AmpDropdownComponent {
             this.controlGroup.addControl( this.id , this.control );
         }
         this._cd.detectChanges();
+    }
+
+    protected redraw () {
+        let forceRedraw           = function( element ) {
+            element.style.display = 'none';
+            let trick             = element.offsetHeight;
+            element.style.display = '';
+        };
+        this.optionsElem.style.visibility = 'visible';
+        forceRedraw( this.optionsElem.children[ 0 ] );
+        this.optionsElem.style.visibility = '';
+    }
+
+    protected onResize (event) {
+        this.dropdownElem.style.width = '';
+        this.hasWidth = false;
     }
 }

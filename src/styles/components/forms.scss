@@ -60,9 +60,9 @@ bolr styles
 */
 
 amp-form-row > .form__row > .grid__container > .grid__item_floated {
-    margin-top: $default-margin-w-offset;
+    margin-top: $default-margin;
 }
 
 .heading-intro + amp-form-row {
-    margin-top: -$default-margin-w-offset;
+    margin-top: -1 * $default-margin;
 }

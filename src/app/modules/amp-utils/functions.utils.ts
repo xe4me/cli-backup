@@ -24,3 +24,12 @@ export function stringTemplate ( _string : string , _data : any = {} ) {
         return _data.hasOwnProperty( key ) ? _data[ key ] : match;
     } );
 }
+export function humanizeBytes ( bytes : number ) : string {
+    let sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+    if ( bytes === 0 ) {
+        return '0 Byte';
+    }
+    let base = 1024;
+    let exponent : number = Math.floor( Math.log( bytes ) / Math.log( base ) );
+    return parseFloat( ( bytes / Math.pow( base, exponent ) ).toFixed( 2 ) ) + ' ' + sizes[exponent];
+}
