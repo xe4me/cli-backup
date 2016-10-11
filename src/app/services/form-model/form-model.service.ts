@@ -102,7 +102,7 @@ export class FormModelService {
     public ngOnInit () {
         this.$saveEvent.subscribe ((model) => {
             this.save(model);
-        })
+        });
     }
     public generatePDFUrl () {
         if ( this.model.formId ) {
