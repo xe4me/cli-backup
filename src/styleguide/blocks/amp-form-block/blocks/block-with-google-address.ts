@@ -5,7 +5,6 @@ import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
-import { AmpFormRowComponent } from '../../../../app/blocks/amp-form-row/amp-form-row.component';
 import { AMPGoogleAddressComponentGroup } from '../../../../app/component-groups/amp-google-address-group/amp-google-address-group.component';
 @Component( {
     selector        : 'block-with-google-address' ,
@@ -31,7 +30,7 @@ import { AMPGoogleAddressComponentGroup } from '../../../../app/component-groups
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent , AMPGoogleAddressComponentGroup , AmpFormRowComponent ] ,
+    directives      : [ AmpFormBlockComponent , AMPGoogleAddressComponentGroup ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class BlockWithGoogleAddress extends FormBlock {

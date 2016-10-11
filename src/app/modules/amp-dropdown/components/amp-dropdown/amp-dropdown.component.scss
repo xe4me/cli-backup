@@ -1,9 +1,13 @@
 @import '../../../../../styles/abstracts';
 @import './themes/theme-form';
 @import './themes/theme-tools';
-$amp-dropdown-input-border-width: 1px;
 
-$amp-dropdown-select-height: 50px;
+$amp-dropdown-input-border-width: 1px;
+$amp-dropdown-input-border-width-hover: 2px;
+
+$amp-dropdown-select-height: $input-height;
+
+$amp-dropdown-label-font-size: $input-placeholder-font-size;
 
 $amp-dropdown-options-border-width: 2px;
 
@@ -18,19 +22,21 @@ $amp-dropdown-option-padding-right: 30px;
 $amp-dropdown-option-padding-right-hidden: 4em;
 $amp-dropdown-option-padding-left: 20px;
 
+$amp-dropdown-from-bottom: 10px;
+$amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border-width - $amp-dropdown-label-font-size - $amp-dropdown-from-bottom;
+
 :host {
     display: inline-block;
     vertical-align: bottom;
 }
 
 .amp-dropdown {
-    @include media-query(palm) {
-        margin-top: 0;
-    }
-    margin-bottom: 11px;
-    max-width: 292px;
     min-width: 140px;
     position: relative;
+
+    @include media-query('tablet-and-up') {
+        max-width: 292px;
+    }
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -50,20 +56,32 @@ $amp-dropdown-option-padding-left: 20px;
     }
 
     &__select {
-        border-bottom: $amp-dropdown-input-border-width solid #CCD2D9;
+        border-bottom: $amp-dropdown-input-border-width solid transparent;
         color: $amp-colour-sky-blue;
         cursor: pointer;
         font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
-        font-size: 24px;
+        font-size: $input-font-size;
         font-weight: 300;
         line-height: 1.2em;
         min-height: $amp-dropdown-select-height;
-        padding: 7px 25px 7px 0;
+        padding: 25px 25px 0 0;
         position: relative;
         z-index: 1;
 
-        &:hover {
-            border-color: $amp-colour-sky-blue;
+        &:after {
+            border-top: 1px solid $input-border-color-default;
+            content: "";
+            display: block;
+            height: $amp-dropdown-input-border-width;
+            position: absolute;
+            bottom: -$amp-dropdown-input-border-width;
+            width: 100%;
+        }
+
+        select:not([disabled]) + &:hover:after {
+            border-color: $input-border-color-hover;
+            border-width: $amp-dropdown-input-border-width-hover;
+            bottom: -$amp-dropdown-input-border-width-hover;
         }
 
         &-value {
@@ -79,36 +97,47 @@ $amp-dropdown-option-padding-left: 20px;
         }
 
         .amp-dropdown--summary-state & {
-            border-color: transparent;
             cursor: default;
+
+            &:after {
+                display: none;
+            }
         }
 
-        .ng-invalid.ng-touched:not(:focus) + & {
+        .ng-invalid.ng-touched:not(:focus) + &:after {          
             border-color: $amp-colour-alert-danger !important;
+            border-width: $amp-dropdown-input-border-width-hover;
+            bottom: -$amp-dropdown-input-border-width-hover;
+        }
+
+        .amp-dropdown--is-open & {
+            color: $input-color-focus;
+        }
+
+        select[disabled] ~ & {
+            color: $amp-colour-sky-blue !important;
         }
     }
 
     &__label {
-        color: #646567;
-        font-size: 13px;
+        color: $input-placeholder-color;
+        font-size: $amp-dropdown-label-font-size;
         font-weight: 700;
+        line-height: $amp-dropdown-label-font-size;
         position: absolute;
+        top: $amp-dropdown-from-top;
         left: 0;
-        top: 12px;
         visibility: visible;
         pointer-events: none;
         transform-origin: 0 0;
         z-index: 3;
 
         .amp-dropdown--has-selection & {
-            transform: translateY(-125%) scale(0.8);
+            top: 0;
         }
 
         .amp-dropdown--animate & {
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-            scale 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-            color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-            -webkit-transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
     }
 
@@ -116,10 +145,10 @@ $amp-dropdown-option-padding-left: 20px;
     &__icon {
         color: #004983;
         font-size: 18px;
-        line-height: $amp-dropdown-select-height;
+        line-height: 0;
         margin: 0;
         position: absolute;
-        top: 0;
+        top: $amp-dropdown-from-top;
         right: 0;
         z-index: 3;
 
@@ -140,13 +169,13 @@ $amp-dropdown-option-padding-left: 20px;
         background: #fff;
         border: $amp-dropdown-options-border-width solid $amp-colour-sky-blue;
         font-size: 15px;
-        margin-top: -1 * $amp-dropdown-input-border-width;
+        margin-top: -$amp-dropdown-input-border-width;
         opacity: 1;
         overflow-x: hidden;
         overflow-y: auto;
         position: absolute;
         width: 100%;
-        z-index: 3;
+        z-index: 15;
 
         // IE Scrollbar
         scrollbar-base-color: $amp-colour-sky-blue;
@@ -189,6 +218,10 @@ $amp-dropdown-option-padding-left: 20px;
                 white-space: nowrap;
             }
         }
+
+        select[disabled] ~ & {
+            display: none !important;
+        }
     }
 
     &__option {
@@ -210,16 +243,5 @@ $amp-dropdown-option-padding-left: 20px;
         & + & {
             border-top: $amp-dropdown-option-border-width solid #CCD2D9;
         }
-    }
-
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0,0,0,0);
-        border: 0;
     }
 }

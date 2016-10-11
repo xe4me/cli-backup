@@ -32,3 +32,12 @@ $content-padding-h-lap-and-up: 44px;
 
 $default-margin: 60px;
 $default-margin-w-offset: $default-margin - 5px;
+
+// Inputs
+$input-color-focus: $amp-colour-grey-darkest-most;
+$input-border-color-default: $amp-colour-grey-dark;
+$input-border-color-hover: $amp-colour-sky-blue;
+$input-font-size: $ddc-input-field-font-size;
+$input-height: 59px;
+$input-placeholder-color: $amp-colour-grey-darker;
+$input-placeholder-font-size: 14px;

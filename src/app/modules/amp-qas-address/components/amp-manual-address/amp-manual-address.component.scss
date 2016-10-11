@@ -6,3 +6,19 @@
     display  : block;
     position : relative;
 }
+
+.address-pr {
+    @include media-query('tablet-and-up') {
+        padding-right: 30px;
+    }
+}
+
+.address-pl {
+    @include media-query('tablet-and-up') {
+        padding-left: 30px;
+    }
+}
+
+.w-auto {
+    width: auto;
+}
