@@ -11,13 +11,14 @@ import { AmpDropdownModule } from '../amp-dropdown/amp-dropdown.module';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpButtonModule } from '../amp-button/amp-button.module';
 import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
+import { AmpFormRowComponent } from '../../blocks/amp-form-row/amp-form-row.component';
 const DECLARATIONS = [
     AmpQasAddressComponent ,
     AmpQasAddressMultiComponent ,
     AmpManualAddressComponent
 ];
 @NgModule( {
-    declarations : DECLARATIONS ,
+    declarations : [ ...DECLARATIONS, AmpFormRowComponent ],
     imports      : [
         AmpSharedRootModule ,
         AmpButtonModule ,
