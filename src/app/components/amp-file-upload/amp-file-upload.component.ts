@@ -57,11 +57,17 @@ export class AmpFileUploadComponent implements OnInit {
         this.basicOptions = {
             calculateSpeed: true
         };
+        this.fileUploadService.onUpload.subscribe(( data: any ) => {
+            this.handleUpload( data );
+        });
     }
 
     private displayProgress ( ) : void {
         this.error = this.backendError;
         this.showProgress = !this.error;
+        this.fileUploadService.updateUrl( this.uploadUrlWithParms );
+        let files = Array.from( this.fileInput.nativeElement.files );
+        this.fileUploadService.addFilesToQueue( files );
     }
 
     private showProgressBar ( ) : boolean {
