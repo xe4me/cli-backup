@@ -27,6 +27,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
 
     public control : FormControl = new FormControl(null);
     public errors = {};
+    private showNavigation : boolean = false;
     private _selected : string = null;
     private _disabled : boolean = false;
     private _required : boolean = false;
@@ -36,13 +37,15 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private sectionLabels : string = null;
     private _currentSectionName : string = null;
     private _previousSectionName : string = null;
-    private showNavigation : boolean = false;
 
-    constructor(
-                private _dom : BrowserDomAdapter,
+    constructor(private _dom : BrowserDomAdapter,
                 private _cd : ChangeDetectorRef,
                 private elem : ElementRef,
                 private formSectionService : FormSectionService) {
+    }
+
+    public testForClass(targetEl : any, className : string) {
+        return this.hasClass(targetEl, className);
     }
 
     /**
@@ -154,4 +157,5 @@ export class AmpStandAloneMenuComponent implements OnInit {
             return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
         }
     }
+
 }

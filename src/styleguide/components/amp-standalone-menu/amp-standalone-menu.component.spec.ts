@@ -26,7 +26,8 @@ describe( 'amp standalone menu tests' , () => {
         TestBed.configureTestingModule( {
             imports      : [ FormsModule , ReactiveFormsModule , AmpStandAloneMenuModule ] ,
             declarations : [
-                TestComponent
+                TestComponent,
+                TestComponent1
             ] ,
             providers    : [
                 { provide : ElementRef , useClass : MockElementRef } ,
@@ -40,41 +41,51 @@ describe( 'amp standalone menu tests' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'amp-standalone-menu contains a label' , () => {
+    it( 'amp-standalone-menu contains a form' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
-        let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
-        expect( compiledLabel.name ).toBe( 'label' );
+        let compiledLabel         = compiledTestComponent.query( By.css( 'form' ) );
+        expect( compiledLabel.name ).toBe( 'form' );
     } );
-    it( 'amp-standalone-menu contains a label' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        const element = fixture.nativeElement;
+    it( 'amp-standalone-menu check for shown element ' , () => {
+        let fixture : ComponentFixture<TestComponent1> = TestBed.createComponent( TestComponent1 );
+        let compiledTestComponentNav = fixture.debugElement;
+        let compiledNav = compiledTestComponentNav.query( By.css( 'nav' ) );
+        expect( compiledNav ).toBe( null );
         fixture.componentInstance.showNavigation = true;
         fixture.detectChanges();
+        expect( compiledNav ).toBe( null );
     } );
 } );
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
-// Create a test component to test directives
 @Component( {
     template : `
-    <form class='nl-form' >
-    <label>{{showNavigation}}</label>
+    <form class='nl-form'>
         <amp-standalone-menu #menu [form]="form" [sectionObservable]="scrollService.$scrolled"></amp-standalone-menu>
     </form>
     `
 } )
 class TestComponent {
-    @ViewChild('menu') menu;
-   @Output() showNavigation = true;
-
     private form : FormGroup;
 
     constructor(private _builder : FormBuilder,
                 private scrollService : ScrollService) {
+        this.form = this._builder.group({ });
+    }
+}
 
-        this.form = this._builder.group({});
+@Component( {
+    template : `
+    <nav *ngIf="showNavigation">This element is visible</nav>
+    `
+} )
+class TestComponent1 {
+    public showNavigation : boolean = false;
+
+    constructor() {
+
     }
 }
