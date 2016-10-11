@@ -2,7 +2,7 @@ import {
     Component ,
     ViewChild ,
     EventEmitter ,
-    ChangeDetectionStrategy , 
+    ChangeDetectionStrategy ,
     ChangeDetectorRef
 } from '@angular/core';
 import {
@@ -35,7 +35,6 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
     changeDetection : ChangeDetectionStrategy.OnPush ,
     outputs         : [ 'select' ]
 } )
-
 
 export class AmpDropdownComponent {
     @ViewChild( 'selectEl' ) selectEl;
