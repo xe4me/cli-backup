@@ -7,23 +7,62 @@
 :host {
     .steps-nav {
 
-        transform: translate3d(0, 0, 0);
-        -webkit-transform: translate3d(0, 0, 0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        height: 220px;
-        top: 26%;
-        left: 50px;
-        -moz-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        position: fixed;
-        z-index: 100;
-        font-family: 'Open Sans';
-        font-weight: normal;
-        font-size: 14px;
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            height: 220px;
+            top: 26%;
+            left: 50px;
+            -moz-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            position: fixed;
+            z-index: 100;
+            font-family: 'Open Sans';
+            font-weight: normal;
+            font-size: 14px;
+
+      @include media-query(palm) {
+          &.open {
+              position: absolute;
+              background: $amp-colour-grey-lightest;
+              width: 100%;
+              left: 0;
+              top: 0;
+              -webkit-transform: translate3d(0, 150px, 0);
+              transform: translate3d(0, 150px, 0);
+              -webkit-transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,-webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+              transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,-webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+              transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s,opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
+              transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s,opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,-webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+              > .skyblue {
+                  > li:not(.active) {
+                      display: block;
+                  }
+              }
+          }
+      }
+
+
+       @include media-query(palm) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            -moz-transform: translateY(0);
+            -o-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+            width: 100%;
+            height: 69px;
+            background: $amp-colour-white;
+            text-align: center;
+            background: $amp-colour-grey-lightest;
+            border-bottom: $amp-colour-grey-darker;
+        }
     }
 
     .steps-nav .progress .node {
@@ -34,7 +73,9 @@
         background-clip: padding-box;
         display: inline-block;
     }
-
+    .steps-nav .progress .icon {
+        display: none;
+    }
     .steps-nav .progress .divider {
         height: 40px;
         width: 2px;
@@ -60,8 +101,33 @@
         color: $amp-colour-grey-darker;
     }
 
+    @include media-query(palm) {
+        .steps-nav .skyblue li:not(.active) {
+            display: none;
+            > .divider {
+                display: none;
+            }
+        }
+    }
     .steps-nav .skyblue .active {
         color: $amp-colour-sky-blue;
+
+        @include media-query(palm) {
+            > .divider {
+                height: 26px;
+            }
+            > .node {
+                display: none;
+            }
+
+            > .icon {
+                display: block;
+                position: absolute;
+                left: 50%;
+                margin-top: 10px;
+                color: $amp-colour-sky-blue;
+            }
+        }
     }
 
     .steps-nav .skyblue .divider.first {

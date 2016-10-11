@@ -1,5 +1,5 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable } from '@angular/core';
+import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable, Output } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup, FormBuilder } from '@angular/forms';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
@@ -20,7 +20,7 @@ class ScrollService1 {
     constructor () {
         this.$scrolled  = new EventEmitter();
     }
-}
+ }
 describe( 'amp standalone menu tests' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
@@ -47,6 +47,12 @@ describe( 'amp standalone menu tests' , () => {
         let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
     } );
+    it( 'amp-standalone-menu contains a label' , () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        const element = fixture.nativeElement;
+        fixture.componentInstance.showNavigation = true;
+        fixture.detectChanges();
+    } );
 } );
 class MockElementRef implements ElementRef {
     nativeElement = {};
@@ -54,22 +60,21 @@ class MockElementRef implements ElementRef {
 // Create a test component to test directives
 @Component( {
     template : `
-    <form  #formModel='ngForm' class='nl-form' >
-    <label></label>
+    <form class='nl-form' >
+    <label>{{showNavigation}}</label>
         <amp-standalone-menu #menu [form]="form" [sectionObservable]="scrollService.$scrolled"></amp-standalone-menu>
     </form>
     `
 } )
 class TestComponent {
     @ViewChild('menu') menu;
+   @Output() showNavigation = true;
 
     private form : FormGroup;
 
-    constructor ( private _builder : FormBuilder,
-                  private scrollService : ScrollService
-                ) {
-        this.form = this._builder.group( {} );
+    constructor(private _builder : FormBuilder,
+                private scrollService : ScrollService) {
 
+        this.form = this._builder.group({});
     }
 }
-
