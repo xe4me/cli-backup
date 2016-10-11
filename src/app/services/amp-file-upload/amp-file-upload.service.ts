@@ -1,4 +1,6 @@
-import {Injectable, EventEmitter, Output} from '@angular/core';
+import { Injectable,
+         EventEmitter,
+         Output } from '@angular/core';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 
 @Injectable()
@@ -10,7 +12,6 @@ export class AmpFileUploadService {
     public _uploadUrl : string = '/ddc/secure/api/upload/upload';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
-    private _uploadUrl;
     private _queue: any[] = [];
 
     public get tokenUrl () : string {
@@ -43,10 +44,7 @@ export class AmpFileUploadService {
     }
 
     uploadFilesInQueue( ) : void {
-        let newFiles = this._queue.filter(( f ) => {
-            return !f.uploading;
-        });
-        newFiles.forEach(( f ) => {
+        this._queue.forEach(( f ) => {
             this.uploadFile( f );
         });
     };
