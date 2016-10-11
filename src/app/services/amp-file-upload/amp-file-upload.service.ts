@@ -1,6 +1,8 @@
 import { Injectable,
          EventEmitter,
-         Output } from '@angular/core';
+         Output
+} from '@angular/core';
+import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 
 @Injectable()
@@ -54,14 +56,14 @@ export class AmpFileUploadService {
         let form = new FormData();
         form.append('file', file, file.name);
 
-        let uploadingFile = new UploadedFile(
+        let uploadingFile = new UploadStatus(
             file.name,
             file.size
         );
 
         let time : number = new Date().getTime();
-        let load = 0;
-        let speed = 0;
+        let load : number = 0;
+        let speed : number = 0;
         let speedHumanized : string = null;
 
         xhr.upload.onprogress = ( e : ProgressEvent ) => {
@@ -73,21 +75,19 @@ export class AmpFileUploadService {
                 speedHumanized = humanizeBytes(speed);
 
                 let percent = Math.round( e.loaded / e.total * 100 );
-                if ( speed === 0 ) {
-                    uploadingFile.setProgress({
-                        total: e.total,
-                        loaded: e.loaded,
-                        percent: percent
-                    });
-                } else {
-                    uploadingFile.setProgress({
-                        total: e.total,
-                        loaded: e.loaded,
-                        percent: percent,
-                        speed: speed,
-                        speedHumanized: speedHumanized
-                    });
+                let progressStatus : Object = {
+                    total: e.total,
+                    loaded: e.loaded,
+                    percent: percent
+                };
+                if ( speed !== 0 ) {
+                    Object.assign( progressStatus,
+                        {
+                            speed,
+                            speedHumanized
+                        });
                 }
+                uploadingFile.setProgress( progressStatus );
             }
             this.onUpload.emit( uploadingFile );
         };
@@ -114,65 +114,5 @@ export class AmpFileUploadService {
         };
         xhr.open('POST', this._uploadUrl, true);
         xhr.send(form);
-    }
-}
-
-export class UploadedFile {
-    status : number;
-    statusText : string;
-    progress : Object;
-    originalName : string;
-    size : number;
-    response : string;
-    done : boolean;
-    error : boolean;
-    abort : boolean;
-    startTime : number;
-    endTime : number;
-    speedAverage : number;
-    speedAverageHumanized : string;
-
-    constructor( originalName : string, size : number) {
-        this.originalName = originalName;
-        this.size = size;
-        this.progress = {
-            loaded : 0,
-            total : 0,
-            percent : 0,
-            speed : 0,
-            speedHumanized : null
-        };
-        this.done = false;
-        this.error = false;
-        this.abort = false;
-        this.startTime = new Date().getTime();
-        this.endTime = 0;
-        this.speedAverage = 0;
-        this.speedAverageHumanized = null;
-    }
-
-    setProgress( progress : Object ) : void {
-        this.progress = progress;
-    }
-
-    setError() : void {
-        this.error = true;
-        this.done = true;
-    }
-
-    setAbort() : void {
-        this.abort = true;
-        this.done = true;
-    }
-
-    onFinished( status : number, statusText : string, response : string ) : void {
-        this.endTime = new Date().getTime();
-        this.speedAverage = this.size / ( this.endTime - this.startTime ) * 1000;
-        this.speedAverage = parseInt( <any> this.speedAverage, 10 );
-        this.speedAverageHumanized = humanizeBytes( this.speedAverage );
-        this.status = status;
-        this.statusText = statusText;
-        this.response = response;
-        this.done = true;
     }
 }
