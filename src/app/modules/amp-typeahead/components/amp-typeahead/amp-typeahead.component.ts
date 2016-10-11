@@ -19,6 +19,7 @@ import { Observable , Subscription } from 'rxjs/Rx';
 import { isPresent , KeyCodes } from '../../../amp-utils';
 import { FocuserDirective } from '../../../amp-directives';
 import { AmpInputComponent } from '../../../amp-inputs';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component( {
     selector        : 'amp-typeahead' ,
     queries         : {
@@ -29,36 +30,40 @@ import { AmpInputComponent } from '../../../amp-inputs';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
-    public static SEARCH_ADDRESS_CONTROL_GROUP_NAME = 'searchControls';
-    public static SELECTED_CONTROL_ID_POSTFIX       = '-selected-item';
-    public selectedControl                          = new FormControl();
-    public searchControlGroup                       = new FormGroup( {} );
+    public static SEARCH_ADDRESS_CONTROL_GROUP_NAME    = 'search';
+    public static SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX = 'Query';
+    public static SELECTED_CONTROL_ID_POSTFIX          = 'SelectedItem';
+    public selectedControl                             = new FormControl();
+    public searchControlGroup                          = new FormGroup( {} );
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
-    @Output( 'selected' ) $selected                 = new EventEmitter<any>();
-    @Output( 'deSelected' ) $deSelected = new EventEmitter<any>();
-    @Input() maxHeight : string = '400px';
+    @Output( 'selected' ) $selected                    = new EventEmitter<any>();
+    @Output( 'deSelected' ) $deSelected                = new EventEmitter<any>();
+    @Input() maxHeight : string                        = '400px';
     @Input() id;
-    @Input() selectedItemIdentifier      = 'id';
-    @Input() selectedItemValueIdentifier = 'label';
-    @Input() isInSummaryState            = false;
-    @Input() minTriggerLength            = 0;
-    @Input() errors                      = {};
+    @Input() selectedItemIdentifier                    = 'id';
+    @Input() selectedItemValueIdentifier               = 'label';
+    @Input() isInSummaryState                          = false;
+    @Input() minTriggerLength                          = 0;
+    @Input() errors                                    = {};
     @Input() selectLabel;
     @Input() label;
     @Input() controlGroup : FormGroup;
     @Input() placeholder;
     @Input() options;
     @Input() isActive;
+    @Input() index;
+    @Input() keepControl : boolean                     = false;
     private subscription : Subscription;
-    private showNoResults : boolean      = false;
-    private INPUT_FOCUSER : number       = 0;
-    private LIST_FOCUSER : number        = 1;
-    private selectedOption               = {};
-    private _required : boolean          = false;
-    private _optionsHidden : boolean     = true;
-    private doApiQuery : boolean         = false;
-    private filteredList : any[]         = [];
+    private showNoResults : boolean                    = false;
+    private INPUT_FOCUSER : number                     = 0;
+    private LIST_FOCUSER : number                      = 1;
+    private selectedOption                             = {};
+    private _required : boolean                        = false;
+    private _id : string                               = 'default';
+    private _optionsHidden : boolean                   = true;
+    private doApiQuery : boolean                       = false;
+    private filteredList : any[]                       = [];
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -90,9 +95,13 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     get control () : FormControl {
-        if ( this.searchControlGroup && this.searchControlGroup.contains( this.id ) ) {
-            return (<FormControl> this.searchControlGroup.controls[ this.id ]);
+        if ( this.searchControlGroup && this.searchControlGroup.contains( this.queryControlId + addDashOrNothing( this.index ) ) ) {
+            return (<FormControl> this.searchControlGroup.controls[ this.queryControlId + addDashOrNothing( this.index ) ]);
         }
+    }
+
+    get queryControlId () {
+        return this.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX;
     }
 
     set searchResult ( _result ) {
@@ -113,8 +122,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () : any {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
-        this.searchControlGroup.addControl( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX , this.selectedControl );
-        this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME , this.searchControlGroup );
+        this.searchControlGroup.addControl( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
+        this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) , this.searchControlGroup );
         if ( this.options ) {
             this.initForOptions();
         } else if ( this.queryServiceCall ) {
@@ -126,6 +135,11 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     ngOnDestroy () : void {
         if ( this.subscription ) {
             this.subscription.unsubscribe();
+        }
+        if ( ! this.keepControl ) {
+            if ( this.controlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ) ) {
+                this.controlGroup.removeControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME );
+            }
         }
     }
 
@@ -191,6 +205,9 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     private initForApi () : Subscription {
         this.searchResult = null;
         this.doApiQuery   = true;
+        if ( this.subscription ) {
+            this.subscription.unsubscribe();
+        }
         return this.subscription =
             this.control
                 .valueChanges
@@ -216,6 +233,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                     this.searchResult = null;
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
+                    this.initForApi(); // If there is an error , subscription would die , so we need to subscribe again
                 } );
     }
 

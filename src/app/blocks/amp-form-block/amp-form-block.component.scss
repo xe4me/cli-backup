@@ -1,26 +1,24 @@
 @import '../../../styles/abstracts';
 @import './block-base';
 @import '../../blocks/amp-form-block/themes/theme-tools';
+
 :host {
     display: block;
     position: relative;
 
     .FormBlocK {
-        margin: 60px 0;
+        margin-bottom: $default-margin;
 
         .heading-intro {
-            @include media-query(tablet-and-up) {
-                margin-bottom: 14px;
-            }
+            margin-bottom: $default-margin-w-offset;
 
             @include media-query('palm') {
-                line-height: 30px;
-                margin-bottom: 10px;
+                font-size: 20px;
             }
         }
 
         .hr-block-divider {
-            margin-top: 60px;
+            margin: $default-margin 0;
         }
     }
 
@@ -35,7 +33,7 @@
             }
 
             .hr-block-divider {
-                margin-top: 60px;
+                margin: $default-margin 0;
             }
         }
     }

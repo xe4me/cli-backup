@@ -21,7 +21,7 @@ $ddc-buttons-height: 57px;
 $bolr-right-padding: 16%;
 $bolr-left-margin: 20%;
 $ddc-log-height: 60px;
-$amp-logo-height: 50px;
+$amp-logo-height: 60px;
 $ddc-buttons-and-icons-transition-time: 300ms;
 
 // Content
@@ -29,3 +29,6 @@ $content-left-width: 155px;
 $content-left-margin: 55px;
 $content-padding-h: 20px;
 $content-padding-h-lap-and-up: 44px;
+
+$default-margin: 60px;
+$default-margin-w-offset: $default-margin - 5px;

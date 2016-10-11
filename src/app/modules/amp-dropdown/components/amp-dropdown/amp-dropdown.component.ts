@@ -2,7 +2,7 @@ import {
     Component ,
     ViewChild ,
     EventEmitter ,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy , ChangeDetectorRef
 } from '@angular/core';
 import {
     FormControl ,
@@ -10,12 +10,15 @@ import {
 } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../../../modules/amp-utils';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component( {
     selector        : 'amp-dropdown' ,
-    template        : require( './amp-dropdown.component.html' ) ,
     inputs          : [
         'id' ,
         'label' ,
+        'index' ,
+        'fieldItemKey' ,
+        'fieldValueKey' ,
         'options' ,
         'errors' ,
         'controlGroup' ,
@@ -26,6 +29,7 @@ import { RequiredValidator } from '../../../../modules/amp-utils';
         'labelHidden' ,
         'limitTo'
     ] ,
+    template        : require( './amp-dropdown.component.html' ) ,
     styles          : [ require( './amp-dropdown.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     outputs         : [ 'select' ]
@@ -34,34 +38,44 @@ export class AmpDropdownComponent {
     @ViewChild( 'selectEl' ) selectEl;
     @ViewChild( 'optionsEl' ) optionsEl;
     @ViewChild( 'dropdownEl' ) dropDownEl;
-    public control : FormControl       = new FormControl();
-    public errors                      = {};
-    private controlGroup : FormGroup;
-    private id : string                = 'amp-dropdown-' + Math.round( Math.random() * 1e10 );
-    private label : string;
-    private disabled : string;
-    private options;
-    private numOptions : number        = 4;
-    private optionsShown : boolean     = false;
-    private hasSelection : boolean     = false;
-    private animateSelection : boolean = false;
-    private hasWidth : boolean         = false;
-    private _required : boolean        = false;
-    private isInSummaryState : boolean = false;
-    private labelHidden : boolean      = false;
-    private currentOption;
-    private _limitTo : number          = 999;
-    private select                     = new EventEmitter();
-    private selectedOption             = {
-        label : '' ,
-        value : ''
-    };
-    private selectElem;
-    private dropdownElem;
-    private optionsElem;
+    public control : FormControl         = new FormControl();
+    public errors                        = {};
+    protected controlGroup : FormGroup;
+    protected label : string;
+    protected disabled : string;
+    protected options;
+    protected numOptions : number        = 4;
+    protected optionsShown : boolean     = false;
+    protected hasSelection : boolean     = false;
+    protected animateSelection : boolean = false;
+    protected hasWidth : boolean         = false;
+    protected _required : boolean        = false;
+    protected isInSummaryState : boolean = false;
+    protected labelHidden : boolean      = false;
+    protected fieldItemKey               = 'label';
+    protected fieldValueKey              = 'value';
+    protected currentOption;
+    protected index;
+    protected _limitTo : number          = 999;
+    protected select                     = new EventEmitter();
+    protected selectedOption             = {};
+    protected selectElem;
+    protected dropdownElem;
+    protected optionsElem;
+    private _id                          = 'default';
+    constructor ( protected _cd : ChangeDetectorRef ) {
+
+    }
+    public setSelectValue ( value ) {
+        this.selectElem.value = value;
+        this.trigger( 'change' , this.selectElem );
+        this.hideOptionsWithFocus();
+    }
 
     ngOnInit () : any {
         this.joinToParentGroupAndSetAmpErrors();
+        this.selectedOption[ this.fieldItemKey ]  = null;
+        this.selectedOption[ this.fieldValueKey ] = null;
         return undefined;
     }
 
@@ -109,7 +123,15 @@ export class AmpDropdownComponent {
         this._limitTo = value;
     }
 
-    private toggleOptions () {
+    set id ( value ) {
+        this._id = value;
+    }
+
+    get id () {
+        return this._id + addDashOrNothing( this.index );
+    }
+
+    protected toggleOptions () {
         if ( this.disabled || this.isInSummaryState ) {
             return false;
         }
@@ -120,7 +142,7 @@ export class AmpDropdownComponent {
         }
     }
 
-    private showOptions ( showActive ) {
+    protected showOptions ( showActive ) {
         let activeOption = this.optionsElem.querySelectorAll( '.amp-dropdown__option--active' )[ 0 ];
         if ( ! this.hasWidth ) {
             let width                     = this.optionsElem.offsetWidth;
@@ -138,23 +160,21 @@ export class AmpDropdownComponent {
         } , 10 );
     }
 
-    private hideOptions = () : void => {
+    protected hideOptions = () : void => {
         this.optionsShown = false;
         setTimeout( () => {
             if ( this.control.touched ) {
                 this.control[ 'hasOpened' ] = true;
             }
         } );
-    }
+    };
 
-    private hideOptionsWithFocus () {
+    protected hideOptionsWithFocus () {
         this.selectElem.focus();
-        setTimeout( () => {
-            this.hideOptions();
-        } );
+        this.hideOptions();
     }
 
-    private onKeypressEvent ( $event ) {
+    protected onKeypressEvent ( $event ) {
         switch ( $event.keyCode ) {
             // Enter key
             case 13:
@@ -180,7 +200,7 @@ export class AmpDropdownComponent {
         }
     }
 
-    private changeCurrentOption () {
+    protected changeCurrentOption () {
         // Fix for firefox select change event not being fired
         // each option change
         if ( navigator.userAgent.toLowerCase().indexOf( 'firefox' ) > - 1 ) {
@@ -190,10 +210,10 @@ export class AmpDropdownComponent {
         }
     }
 
-    private onChangeEvent () {
+    protected onChangeEvent () {
         this.setSelectedOption( 'change' );
         if ( this.optionsShown && this.hasSelection ) {
-            this.optionsElem.querySelectorAll( '[data-option-val="' + this.selectedOption.value + '"]' )[ 0 ].focus();
+            this.optionsElem.querySelectorAll( '[data-option-val="' + this.selectedOption[ this.fieldValueKey ] + '"]' )[ 0 ].focus();
             this.selectElem.focus();
         }
         setTimeout( () => {
@@ -201,49 +221,44 @@ export class AmpDropdownComponent {
         } , 0 );
     }
 
-    private onFocusEvent ( $event ) {
+    protected onFocusEvent ( $event ) {
         this.showOptions( false );
     }
 
-    private setSelectValue ( value ) {
-        this.selectElem.value = value;
-        this.trigger( 'change' , this.selectElem );
-        this.hideOptionsWithFocus();
-    }
-
-    private setSelectedOption ( type ) {
+    protected setSelectedOption ( type ) {
         this.currentOption = this.selectElem.selectedIndex;
         if ( this.currentOption > 0 ) {
             if ( ! this.animateSelection && type === 'change' ) {
                 this.animateSelection = true;
             }
-            let selected        = this.selectElem.options[ this.currentOption ];
-            this.selectedOption = {
-                label : selected.text ,
-                value : selected.value
-            };
-            this.hasSelection   = true;
+            let selected                              = this.selectElem.options[ this.currentOption ];
+            this.selectedOption[ this.fieldItemKey ]  = selected.text;
+            this.selectedOption[ this.fieldValueKey ] = selected.value;
+            this.hasSelection                         = true;
+        } else {
+            this.selectedOption[ this.fieldItemKey ]  = null;
+            this.selectedOption[ this.fieldValueKey ] = null;
+            this.hasSelection                         = false;
         }
     }
 
-    private trigger ( event , el ) {
-        let evObj = document.createEvent( 'HTMLEvents' );
-        evObj.initEvent( event , true , true );
-        el.dispatchEvent( evObj );
+    protected trigger ( event , el ) {
+        el.dispatchEvent( new Event( event ) );
+        this._cd.detectChanges();
     }
 
-    private updateValitators () {
+    protected updateValitators () {
         if ( this.control ) {
             this.control.setValidators( RequiredValidator.requiredValidation( this.required ) );
             this.control.updateValueAndValidity( { emitEvent : false } );
         }
     }
 
-    private isTrue ( value ) {
+    protected isTrue ( value ) {
         return isPresent( value ) && (value === true || value === 'true' || false);
     }
 
-    private joinToParentGroupAndSetAmpErrors () {
+    protected joinToParentGroupAndSetAmpErrors () {
         this.control[ '_ampErrors' ] = {};
         Object.keys( this.errors ).map( ( errorName , i ) => {
             (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
@@ -251,5 +266,6 @@ export class AmpDropdownComponent {
         if ( this.controlGroup ) {
             this.controlGroup.addControl( this.id , this.control );
         }
+        this._cd.detectChanges();
     }
 }

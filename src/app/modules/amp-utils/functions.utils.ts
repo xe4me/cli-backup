@@ -16,3 +16,11 @@ export function getIn ( _fdn : (number|string)[] , _state : any ) : any {
 export function clone ( _obj : any ) : any {
     return JSON.parse( JSON.stringify( _obj ) );
 }
+export function addDashOrNothing ( _thing ) : any {
+    return _thing !== undefined ? ('_' + _thing) : '';
+}
+export function stringTemplate ( _string : string , _data : any = {} ) {
+    return _string.replace( /\{([0-9a-zA-Z_]+)\}/g , ( match , key ) => {
+        return _data.hasOwnProperty( key ) ? _data[ key ] : match;
+    } );
+}

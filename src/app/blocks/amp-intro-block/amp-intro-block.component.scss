@@ -4,6 +4,7 @@
 $font-size: $amp-base-font-size * 2 / 5 !default;
 
 $logo-height: 60px !default;
+$logo-width: 220px !default;
 
 $amp-ddc-public-asset: '../../../assets/';
 
@@ -23,9 +24,14 @@ $amp-ddc-public-asset: '../../../assets/';
         padding-right: 0;
     }
 
-    .intro-list-container, .intro-container {
-        margin-left: 210px;
-        @include media-query(desk) {
+    .intro-container {
+        @include media-query(lap-and-up) {
+            margin-left: 210px;
+        }
+        @include media-query(tablet) {
+            margin-left: 0px;
+        }
+        @include media-query(palm) {
             margin-left: 0px;
         }
     }
@@ -46,20 +52,54 @@ $amp-ddc-public-asset: '../../../assets/';
     }
 
     .intro-logo {
-        width: 100px;
         background-position: left bottom;
         background-attachment: scroll;
         background-repeat: no-repeat;
-        text-indent: -9999px !important;
-        height: $amp-logo-height;
-        background-image: url($amp-ddc-public-asset + 'images/logo/AMPLogo.png');
         background-size: 90%;
         margin-bottom: 10px;
+        min-height: 60px;
 
         @include media-query(palm) {
             margin-bottom: 30px;
         }
 
+        /*
+            Logos seperated for stylistic purposes only
+        */
+
+        &.amp-financial-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-hillross-logo-black-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-charter-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-logo-white-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-charter-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-hillross-logo-white-text-bg {
+            width: $logo-width;
+        }
+    }
+
+    .intro-block-button-container {
+        > .btn {
+            width: 100%;
+        }
     }
 
     .intro-article {
@@ -129,7 +169,7 @@ $amp-ddc-public-asset: '../../../assets/';
         margin-bottom: 0;
 
         @include media-query(palm) {
-          //  margin-bottom: 38px;
+            //  margin-bottom: 38px;
         }
 
     }
@@ -178,7 +218,7 @@ $amp-ddc-public-asset: '../../../assets/';
         }
 
         label  .container .off {
-             border-color: $amp-colour-white!important;
+            border-color: $amp-colour-white!important;
         }
 
         .label {
@@ -202,18 +242,5 @@ $amp-ddc-public-asset: '../../../assets/';
         background-size: 100%;
         min-height: 793px;
         padding-top: 116px;
-
-        .intro-list-container, .intro-container {
-            margin-left: 210px;
-            @include media-query(desk) {
-                margin-left: 0px;
-            }
-        }
     }
-
-
 }
-
-
-
-

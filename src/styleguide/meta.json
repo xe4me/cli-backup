@@ -160,6 +160,24 @@
         "readme": "<p>To load components dynamically</p>\n"
     },
     {
+        "name": "Amp Number ",
+        "sources": [
+            "src/app/directives/amp-number/amp-number.component.ts"
+        ],
+        "id": "AmpNumberDirective",
+        "examples": [
+            {
+                "template": "src/styleguide/directives/amp-number/basic_usage.html",
+                "styles": "src/styleguide/directives/amp-number/basic_usage.scss",
+                "source": "src/styleguide/directives/amp-number/basic_usage.ts",
+                "component": "amp-number-basic-usage",
+                "component_src_location": "directives/amp-number/basic_usage",
+                "name": "Amp Number basic usage"
+            }
+        ],
+        "readme": "<p>To Allow only numbers in the input field</p>\n"
+    },
+    {
         "name": "Amp loading icon",
         "sources": [
             "src/app/components/amp-loading/amp-loading.component.ts"
@@ -202,7 +220,7 @@
     {
         "name": "Amp Typeahead",
         "sources": [
-            "src/app/modules/amp-typeahead/components/amp-typeahead/amp-typeahead.component.ts"
+            "src/app/components/amp-typeahead/amp-typeahead.component.ts"
         ],
         "id": "AmpTypeaheadComponent",
         "examples": [
@@ -238,6 +256,46 @@
             }
         ],
         "readme": "<p>Custom Block for AmpQasAddressComponent.</p>\n"
+    },
+    {
+        "name": "Amp Manual Address",
+        "sources": [
+            "src/app/components/amp-manual-address/amp-manual-address.component.ts"
+        ],
+        "id": "AmpManualAddressComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-manual-address/basic_usage.html",
+                "styles": "src/styleguide/components/amp-manual-address/basic_usage.scss",
+                "source": "src/styleguide/components/amp-manual-address/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-manual-address/amp-manual-address.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-manual-address/amp-manual-address.component.spec.ts",
+                "component": "amp-manual-address-basic-usage",
+                "component_src_location": "components/amp-manual-address/basic_usage",
+                "name": "Amp Manual Address Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpManualAddressComponent.</p>\n"
+    },
+    {
+        "name": "Amp Qas Address Multi",
+        "sources": [
+            "src/app/components/amp-qas-address-multi/amp-qas-address-multi.component.ts"
+        ],
+        "id": "AmpQasAddressMultiComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-qas-address-multi/basic_usage.html",
+                "styles": "src/styleguide/components/amp-qas-address-multi/basic_usage.scss",
+                "source": "src/styleguide/components/amp-qas-address-multi/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-qas-address-multi/amp-qas-address-multi.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-qas-address-multi/amp-qas-address-multi.component.spec.ts",
+                "component": "amp-qas-address-multi-basic-usage",
+                "component_src_location": "components/amp-qas-address-multi/basic_usage",
+                "name": "Amp Auto Comnplete Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpQasAddressMultiComponent.</p>\n"
     },
     {
         "name": "Amp Group Buttons",
@@ -342,7 +400,7 @@
     {
         "name": "AmpInput",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/amp-inputs.component.ts"
         ],
         "id": "AmpInput",
         "examples": [
@@ -362,7 +420,7 @@
     {
         "name": "AmpEmail",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpEmail",
         "examples": [
@@ -382,7 +440,7 @@
     {
         "name": "AmpFirstName",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpFirstName",
         "examples": [
@@ -402,7 +460,7 @@
     {
         "name": "AmpLastName",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpLastName",
         "examples": [
@@ -422,7 +480,7 @@
     {
         "name": "AmpContactNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpContactNumber",
         "examples": [
@@ -442,7 +500,7 @@
     {
         "name": "AmpPhoneNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpPhoneNumber",
         "examples": [
@@ -462,7 +520,7 @@
     {
         "name": "AmpHomeNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpHomeNumber",
         "examples": [
@@ -482,7 +540,7 @@
     {
         "name": "AmpWorkNumber",
         "sources": [
-            "src/app/modules/amp-inputs/components"
+            "src/app/components/amp-inputs/components"
         ],
         "id": "AmpWorkNumber",
         "examples": [
@@ -518,6 +576,26 @@
             }
         ],
         "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
+    },
+    {
+        "name": "AmpAccountNumber",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpAccountNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-account-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-account-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-account-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-account-number/amp-account-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-account-number/amp-account-number.spec.ts",
+                "component": "amp-account-number-basic-usage",
+                "component_src_location": "components/amp-account-number/basic_usage",
+                "name": "Amp Account Number Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP account number input, based amp-input component.</p>\n"
     },
     {
         "name": "Amp Review Block",

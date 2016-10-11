@@ -5,8 +5,12 @@
             [controlGroup]="__controlGroup"
             [id]="__custom.controls[0].id"
             [required]="__custom.controls[0].required"
+            [isInSummaryState]='isInSummaryState'
             [label]="__custom.controls[0].label"
             >
         </amp-qas-address>
     </div>
+
+    <amp-button class='btn btn-ok' [disabled]='!__controlGroup.valid'>Go Next </amp-button>
+    <amp-button class='btn btn-ok' (click)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
 </form>
