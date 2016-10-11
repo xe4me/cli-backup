@@ -49,6 +49,17 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
         this.__custom.controls[0].buttons = clone(this.__custom.controls[0].buttons );
     }
 
+    public setNextBlock(betterChoiceId : string) {
+        const nextBlock = this.__custom.optionalBlocks[betterChoiceId];
+        if (this.loadedDynamicBlock && betterChoiceId !== this.loadedDynamicBlock) {
+            this.__removeNext(this.viewContainerRef);
+        }
+        if (nextBlock) {
+            this.loadedDynamicBlock = betterChoiceId;
+            this.__loadNext(nextBlock, this.viewContainerRef);
+        }
+    }
+
     public ngOnInit() {
         this.setButtonLabels('single');
         this.existingCustomer = window.location.href.search('[?&]existingCustomer=true') > 0;
@@ -62,14 +73,7 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
         const betterChoiceControl = this.__controlGroup.get(this.__custom.controls[0].id);
         const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
         betterChoiceControl.valueChanges.subscribe((val) => {
-            const nextBlock = this.__custom.optionalBlocks[val];
-            if (this.loadedDynamicBlock && val !== this.loadedDynamicBlock) {
-                this.__removeNext(this.viewContainerRef);
-            }
-            if (nextBlock) {
-                this.loadedDynamicBlock = val;
-                this.__loadNext(nextBlock, this.viewContainerRef);
-            }
+            this.setNextBlock(val);
         });
         singleOrJointControl.valueChanges.subscribe((val) => {
             this.setButtonLabels(val);
