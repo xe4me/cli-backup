@@ -126,10 +126,6 @@ export class FormModelService {
         return this.model.context;
     }
 
-    set submitUrl (url) {
-        this._submitUrl = url;
-    }
-
     set formDefinition ( formDef ) {
         this._formDefinition      = formDef;
         this.model.currentBlockID = this._formDefinition.blocks[ 0 ]._id;
