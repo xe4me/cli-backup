@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Environments } from '../../../abstracts/environments/environments.abstract';
+import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 @Injectable()
 export class AmpCountryService {
     public static BASE_URL     = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
@@ -13,7 +14,7 @@ export class AmpCountryService {
     public countryServiceError = null;
     private _cachedCountries : Observable<any[]>;
 
-    constructor ( private http : Http ) {
+    constructor ( private http : AmpHttpService ) {
     }
 
     public getCountries () {

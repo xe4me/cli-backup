@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Environments } from '../../../abstracts/environments/environments.abstract';
+import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 @Injectable()
 export class AmpQasAddressService {
     // public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
@@ -17,7 +18,7 @@ export class AmpQasAddressService {
         'caller'       : 'components'
     } );
     // TODO : What needs to be set as caller ?
-    constructor ( private http : Http ) {
+    constructor ( private http : AmpHttpService ) {
     }
 
     public query               = ( queryValue : string ) : Observable<any> => {
