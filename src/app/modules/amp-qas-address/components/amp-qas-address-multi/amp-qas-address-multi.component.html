@@ -1,0 +1,40 @@
+<div>
+    <div>
+        <amp-qas-address
+                class='1/3'
+                [controlGroup]='qasMultiCG'
+                [id]='residentialAddress.id'
+                [index]='index'
+                [required]='required'
+                [isInSummaryState]='isInSummaryState'
+                [label]='residentialAddress.label'>
+        </amp-qas-address>
+    </div>
+    <div class='mt+'>
+        <amp-checkbox
+                [isInSummaryState]='isInSummaryState'
+                [controlGroup]='qasMultiCG'
+                [required]='required'
+                [index]='index'
+                [id]='postalAndResidentialAreSame.id'
+                [checked]='true'
+                (select)='onCheckboxSelect($event)'>
+                My postal address is the same as my residential address.
+        </amp-checkbox>
+    </div>
+    <div *ngIf='!arePostalAndResidentialTheSame' class='mt+'>
+        <amp-qas-address
+                class='1/3'
+                [controlGroup]='qasMultiCG'
+                [id]='postalAddress.id'
+                [index]='index'
+                [required]='required'
+                [isInSummaryState]='isInSummaryState'
+                [label]='postalAddress.label'>
+        </amp-qas-address>
+    </div>
+</div>
+
+<!--<pre>-->
+<!--controlGroup {{ qasMultiCG.value | json }}-->
+<!--</pre>-->

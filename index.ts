@@ -7,7 +7,6 @@ export { AmpReviewSection } from './src/app/blocks/amp-review/amp-review-section
 export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-review-item.component';
 export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp-review-total.component';
 export { AmpFormBlockComponent } from './src/app/blocks/amp-form-block/amp-form-block.component';
-export { AmpFormRowComponent } from './src/app/blocks/amp-form-row/amp-form-row.component';
 export { AmpIntroBlockComponent } from './src/app/blocks/amp-intro-block/amp-intro-block.component'
 // components
 export * from './src/app/modules/amp-utils';
@@ -23,10 +22,12 @@ export * from './src/app/modules/amp-textarea';
 export * from './src/app/modules/amp-group-buttons';
 export * from './src/app/modules/amp-radio-button-group';
 export * from './src/app/modules/amp-standalone-menu';
-export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
+export * from './src/app/modules/amp-button';
+export * from './src/app/modules/amp-row-repeater';
+export * from './src/app/modules/amp-form-row';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
-export { AmpButton } from './src/app/components/amp-button/amp-button.component';
+export { AmpFileUploadComponent } from './src/app/components/amp-file-upload/amp-file-upload.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
 // Constants
@@ -46,3 +47,4 @@ export { AmpConfirmationDialogService } from './src/app/services/amp-confirmatio
 export { FormSectionService } from './src/app/services/form-section/form-section.service';
 export { FormService } from './src/app/services/form/form.service';
 export { ContextService } from './src/app/services/context/context.service';
+export { ProfileService } from './src/app/services/adviser-profile/profile.service';

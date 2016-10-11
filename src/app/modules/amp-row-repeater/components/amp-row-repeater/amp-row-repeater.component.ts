@@ -3,7 +3,6 @@ import {
     OnDestroy
 } from '@angular/core';
 import { FormArray , FormGroup } from '@angular/forms';
-import { AmpFormRowComponent } from '../../blocks/amp-form-row/amp-form-row.component';
 @Component( {
     selector        : 'amp-row-repeater' ,
     queries         : {
@@ -32,7 +31,6 @@ import { AmpFormRowComponent } from '../../blocks/amp-form-row/amp-form-row.comp
         </amp-button>
     ` ,
     styles          : [ require( './amp-row-repeater.scss' ).toString() ] ,
-    directives      : [ AmpFormRowComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
@@ -42,8 +40,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'removeBtn' ) removeBtn;
     @Input( 'addBtn' ) addBtn;
     @Input( 'maxRows' ) maxRows : Number = 9999;
-
-    private controlArray : FormArray = new FormArray( [] );
+    private controlArray : FormArray     = new FormArray( [] );
 
     ngOnInit () : void {
         if ( this.controlGroup && this.id ) {

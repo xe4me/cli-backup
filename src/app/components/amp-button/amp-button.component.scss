@@ -2,51 +2,51 @@
 @import './button-base';
 @import './themes/theme-tools';
 
-
 :host {
     //btn-ok default style
 
     $btn-ok-background-color: $btn-ok-background-color;
 
-        .#{$namespace}btn-ok,
-        %#{$namespace}btn-ok {
-            background-color: $btn-ok-background-color;
-            color: $btn-ok-color;
-            &:hover, &:focus {
-                &:not([disabled]) {
-                    color:$btn-ok-color;
-                    background-color: $btn-ok-hover-background-color;
-                }
-
+    .#{$namespace}btn-ok,
+    %#{$namespace}btn-ok {
+        background-color: $btn-ok-background-color;
+        color: $btn-ok-color;
+        margin-top: $btn-ok-margin-top;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color:$btn-ok-color;
+                background-color: $btn-ok-hover-background-color;
             }
-            &:active {
-                &:not([disabled]) {
-                    color: $btn-ok-color;
-                    background-color: $btn-ok-active-background-color;
-                }
+
+        }
+        &:active {
+            &:not([disabled]) {
+                color: $btn-ok-color;
+                background-color: $btn-ok-active-background-color;
             }
         }
+    }
 
     //btn-ok default style
 
-     .#{$namespace}btn-change,
-     %#{$namespace}btn-change {
-       background-color: $amp-colour-white;
-       border: 2px solid $btn-change-border-color;
-       border-color: $btn-change-border-color;
-       &:hover, &:focus {
-         &:not([disabled]) {
-           color: $btn-change-hover-text-color;
-           background-color: $btn-change-hover-background-color;
-           border-color: $btn-change-hover-background-color;
-         }
-       }
-       &:active {
-         &:not([disabled]) {
-           background-color: $btn-change-active-background-color;
-         }
-       }
-     }
+    .#{$namespace}btn-change,
+    %#{$namespace}btn-change {
+        background-color: $amp-colour-white;
+        border: 2px solid $btn-change-border-color;
+        border-color: $btn-change-border-color;
+        &:hover, &:focus {
+            &:not([disabled]) {
+                color: $btn-change-hover-text-color;
+                background-color: $btn-change-hover-background-color;
+                border-color: $btn-change-hover-background-color;
+            }
+        }
+        &:active {
+            &:not([disabled]) {
+                background-color: $btn-change-active-background-color;
+            }
+        }
+    }
 
     //btn-secondary
 

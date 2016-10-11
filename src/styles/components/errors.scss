@@ -6,13 +6,11 @@
     font-weight: 400;
     display: block;
     line-height: 25px;
-    margin-top: 5px;
-    .error-item {
-        margin-bottom: 20px;
+
+    .error-item:not(:empty) {
+        margin-top: 25px;
     }
-    .error-item:last-child {
-        margin-bottom: 0;
-    }
+
     .icon-errors {
         color: #d60e1c;
     }

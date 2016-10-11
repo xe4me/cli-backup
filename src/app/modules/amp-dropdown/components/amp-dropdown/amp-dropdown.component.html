@@ -5,7 +5,8 @@
         [class.amp-dropdown--animate]='animateSelection'
         [class.amp-dropdown--summary-state]='isInSummaryState'
         [class.amp-dropdown--is-open]='optionsShown'
-        [clicked-outside]='hideOptions'>
+        [clicked-outside]='hideOptions'
+        (window:resize)="onResize($event)">
 
     <label class='sr-only' [attr.for]='id'>
         {{ label }}
@@ -24,8 +25,8 @@
         <option value='' selected [attr.disabled]='currentOption > 0 ? "disabled" : null'></option>
 
         <option *ngFor='let option of options | slice:0:_limitTo; let i=index'
-                [value]='option.value'>
-            {{ option.label }}
+                [value]='option[fieldValueKey]'>
+            {{ option[fieldItemKey] }}
         </option>
 
     </select>
@@ -34,7 +35,7 @@
         <div class='amp-dropdown__label' aria-hidden='true' *ngIf='!labelHidden'>{{ label }}</div>
         <span class='amp-dropdown__icon icon icon--chevron-down' aria-hidden='true'></span>
 
-        <span class='amp-dropdown__select-value' aria-hidden='true'>{{ selectedOption.label }}</span>&nbsp;
+        <span class='amp-dropdown__select-value' aria-hidden='true'>{{ selectedOption[fieldItemKey] }}</span>&nbsp;
     </div>
 
     <div
@@ -46,13 +47,13 @@
         <div
                 *ngFor='let option of options | slice:0:_limitTo; let i=index'
                 class='amp-dropdown__option'
-                [class.amp-dropdown__option--active]='option.value == selectedOption.value'
-                (click)='setSelectValue(option.value)'
+                [class.amp-dropdown__option--active]='option[fieldValueKey] == selectedOption[fieldValueKey]'
+                (click)='setSelectValue(option[fieldValueKey])'
                 aria-hidden='true'
                 tabindex='-1'
-                [attr.data-option-val]='option.value'>
+                [attr.data-option-val]='option[fieldValueKey]'>
 
-            {{ option.label }}
+            {{ option[fieldItemKey] }}
 
         </div>
     </div>

@@ -5,8 +5,6 @@ Button Base, base styles for all buttons, default values, white label if you wil
 Do not modify this unless you know what you're doing
 */
 
-
-
 //common
 $ddc-buttons-and-icons-transition-time: 300ms;
 $buttons-transition-time: $ddc-buttons-and-icons-transition-time;
@@ -16,7 +14,7 @@ $buttons-default-margin-top: 4px;
 $buttons-default-height: 42px;
 $disabled-text-color: #9f9f9f;
 $disabled-background-color: #cbd2dc;
-
+$btn-margin-top: 30px;
 
 //btn-ok
 $btn-ok-color: $amp-colour-white;
@@ -30,7 +28,7 @@ $btn-ok-background-color: $amp-colour-primary;
 $btn-ok-active-background-color: $amp-colour-secondary;
 $btn-ok-margin-height: 60px;
 $btn-ok-margin-width: 125px;
-$btn-ok-margin-top: 30px;
+$btn-ok-margin-top: 60px;
 
 // btn-change
 $btn-change-hover-background-color: $amp-colour-secondary-darkest;
@@ -85,7 +83,7 @@ Button base class used by all
     line-height: $buttons-default-height;
     width: $buttons-default-width;
     @include media-query(tablet-and-up) {
-        margin-top: $btn-ok-margin-top;
+        margin-top: $btn-margin-top;
     }
     @extend %#{$namespace}font-size-small;
     @include transition(color, background-color, $buttons-transition-time ease-in-out);

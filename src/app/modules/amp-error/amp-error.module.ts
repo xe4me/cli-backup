@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { AmpErrorItemComponent , AmpErrorComponent } from './components/amp-error/amp-error.component';
-import { FormsModule , ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { AmpPipesModule } from '../amp-pipes';
+import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 const DECLARATIONS = [ AmpErrorItemComponent , AmpErrorComponent ];
 @NgModule( {
     declarations : DECLARATIONS ,
     imports      : [
         AmpPipesModule ,
-        BrowserModule ,
-        FormsModule ,
-        ReactiveFormsModule
+        AmpSharedRootModule
     ] ,
     exports      : DECLARATIONS
 } )

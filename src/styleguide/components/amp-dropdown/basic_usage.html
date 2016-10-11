@@ -2,6 +2,7 @@
     <div style='padding: 50px 100px; text-align:left'>
 
         <amp-dropdown
+                #dropDown
                 [attr.theme]="themeService.theme.attr"
                 [isInSummaryState]='false'
                 [id]='"Title"'
@@ -21,6 +22,9 @@
         <div style='; text-align:left ; background-color: lightgrey'>
             Control is valid : {{ control.valid }}
         </div>
+
+        <button (click)='setTo("mr")'>Set to Mr</button>
+        <button (click)='setTo(null)'>Deselect</button>
 
     </div>
 </form>

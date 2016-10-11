@@ -1,79 +1,125 @@
 <div class='manual-address grid__item_container clearfix'>
-    <div class='grid__item_floated mt+ 1/2 pr input-wrapper'>
-        <amp-input
-                #manualAddress
-                class='1/1'
-                noPadding='true'
-                [isInSummaryState]='isInSummaryState'
-                [id]='address.id+"_"+index'
-                [label]='address.label'
-                [controlGroup]='manualAddressCG'
-                [required]='required'
-                [pattern]='address.regex'
-                [errors]='address.errors'
-                [maxLength]='address.maxLength'
-                [minLength]='address.minLength'>
-        </amp-input>
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="address.id+'_'+index"></amp-error>
-    </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
-    <div class='grid__item_floated mt+ 1/2 pl input-wrapper'>
-        <amp-input
-                #manualSuburb
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='suburb.id+"_"+index'
-                [label]='suburb.label'
-                [controlGroup]='manualAddressCG'
-                [pattern]='suburb.regex'
-                [maxLength]='suburb.maxLength'
-                [minLength]='suburb.minLength'
-                [errors]='suburb.errors'
-                [required]='required'>
-        </amp-input>
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="suburb.id+'_'+index"></amp-error>
-    </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
-    <div class='grid__item_floated mt+ 1/2 pr input-wrapper'>
-        <amp-input
-                #manualState
-                noPadding='true'
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='state.id+"_"+index'
-                [label]='state.label'
-                [controlGroup]='manualAddressCG'
-                [required]='required'
-                [toupperCase]='true'
-                [pattern]='state.regex'
-                [maxLength]='state.maxLength'
-                [errors]='state.errors'
-                [minLength]='state.minLength'
-        >
-        </amp-input>
+    <div [hidden]='isInSummaryState'>
+        <amp-form-row>
+            <div class='grid__item_floated 1/1'>
+                <amp-country
+                        class="utils__display--block-palm"
+                        (select)='onCountrySelect($event)'
+                        #manualCountryCmp
+                        [id]='country.id'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'>
+                </amp-country>
 
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+'_'+index"></amp-error>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="country.id+'_'+index"></amp-error>
+            </div>
+        </amp-form-row>
+
+        <amp-form-row>
+            <div class='grid__item_floated 1/1'>
+                <amp-input
+                        #manualAddressCmp
+                        class='1/1'
+                        noPadding='true'
+                        [id]='address.id'
+                        [label]='address.label'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'
+                        [required]='required'
+                        [errors]='address.errors'
+                        [maxLength]='address.maxLength'
+                        [minLength]='address.minLength'
+                        [required]="false">
+                </amp-input>
+                
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="address.id+'_'+index"></amp-error>
+                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+            </div>
+        </amp-form-row>
+
+        <div [hidden]='!isCountryAUS && !isCountryNZ'>
+            <amp-form-row>
+                <div class='grid__item_floated 1/1'>
+                    <amp-input
+                            #manualSuburbCmp
+                            class='1/1'
+                            [id]='suburb.id'
+                            [label]='suburb.label'
+                            [index]='index'
+                            [controlGroup]='manualAddressCG'
+                            [pattern]='suburb.regex'
+                            [required]='isCountryAUS '
+                            [maxLength]='suburb.maxLength'
+                            [minLength]='suburb.minLength'
+                            [errors]='suburb.errors'>
+                    </amp-input>
+
+                    <amp-error [controlGroup]='manualAddressCG' [controlId]="suburb.id+'_'+index"></amp-error>
+                    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+                </div>
+            </amp-form-row>
+        </div>
+
+        <amp-form-row>
+            <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr' [hidden]='!isCountryAUS'>
+                <amp-states
+                        class="utils__display--block-tablet-and-down"
+                        #manualStatesCmp
+                        [id]='state.id'
+                        [index]='index'
+                        [errors]='state.errors'
+                        [required]='isCountryAUS'
+                        [controlGroup]='manualAddressCG'>
+                </amp-states>
+
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+'_'+index"></amp-error>
+                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+            </div>
+
+            <div class='grid__item_floated tablet-and-up-1/2 address-pr' [hidden]='isCountryAUS'>
+                <amp-input
+                        #manualCityCmp
+                        [id]='city.id'
+                        [label]='getCityLabel()'
+                        [index]='index'
+                        [required]='!isCountryAUS'
+                        [maxLength]='city.maxLength'
+                        [errors]='city.errors'
+                        [minLength]="city.minLength"
+                        [controlGroup]='manualAddressCG'>
+                </amp-input>
+
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="city.id+'_'+index"></amp-error>
+                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+            </div>
+
+            <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
+                <amp-input
+                        #manualPostcodeCmp
+                        noPadding='true'
+                        class='1/1'
+                        [id]='postCode.id'
+                        [label]='postCode.label'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'
+                        [required]='isCountryAUS || isCountryNZ'
+                        [pattern]='getPostcodeRegex()'
+                        [maxLength]='getPostcodeMaxLength()'
+                        [errors]='postCode.errors'
+                        [minLength]="getPostcodeMinLength()">
+                </amp-input>
+
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="postCode.id+'_'+index"></amp-error>
+                <span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
+            </div>
+        </amp-form-row>
     </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
-    <div class='grid__item_floated mt+ 1/2 pl input-wrapper'>
-        <amp-input
-                #manualPostcode
-                noPadding='true'
-                class='1/1'
-                [isInSummaryState]='isInSummaryState'
-                [id]='postCode.id+"_"+index'
-                [label]='postCode.label'
-                [controlGroup]='manualAddressCG'
-                [required]='required'
-                [pattern]='postCode.regex'
-                [maxLength]='postCode.maxLength'
-                [errors]='postCode.errors'
-                [minLength]="postCode.minLength">
-        </amp-input>
-        <amp-error [controlGroup]='manualAddressCG' [controlId]="postCode.id+'_'+index"></amp-error>
+
+    <div *ngIf='isInSummaryState'>
+        <amp-form-row>
+            <div class='grid__item_floated 1/1 summary-state'>
+                {{ summaryAddress }}
+            </div>
+        </amp-form-row>
     </div>
-    <span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
-    manualAddressCG : {{ manualAddressCG.value | json }} <br>
-    postCodeCtrl.touched :{{ postCodeCtrl.touched }} <br>
-    postCodeCtrl.valid :{{ postCodeCtrl.valid }} <br>
 </div>

@@ -10,6 +10,7 @@ import { AfterViewInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { RequiredValidator , isTrue } from '../../../../modules/amp-utils';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component(
     {
         selector        : 'amp-checkbox' ,
@@ -28,6 +29,7 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
             'disabled' ,
             'controlGroup' ,
             'checked' ,
+            'index' ,
             'id' ,
             'tabindex' ,
             'isInSummaryState'
@@ -46,9 +48,10 @@ export class AmpCheckboxComponent implements AfterViewInit {
     private scrollOutUnless : any;
     private scrollOutOn : any;
     private controlGroup : FormGroup;
-    private id : string;
     private checkboxValue : boolean        = false;
     private select : EventEmitter<boolean> = new EventEmitter<boolean>( false );
+    private _id                            = 'default';
+    private index;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private elem : ElementRef ,
@@ -82,6 +85,14 @@ export class AmpCheckboxComponent implements AfterViewInit {
         return this._tabindex;
     }
 
+    set id ( value ) {
+        this._id = value + addDashOrNothing( this.index );
+    }
+
+    get id () {
+        return this._id;
+    }
+
     get disabled () {
         return this._disabled;
     }
@@ -110,7 +121,7 @@ export class AmpCheckboxComponent implements AfterViewInit {
     }
 
     private onSelect ( $event ) {
-        if ( this.disabled === true ) {
+        if ( this.disabled === true || this.isInSummaryState === true) {
             $event.stopPropagation();
             return;
         }
