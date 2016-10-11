@@ -56,6 +56,9 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
     }
 
     public ngAfterViewInit() {
+        if (!this.existingCustomer) {
+            return;
+        }
         const betterChoiceControl = this.__controlGroup.get(this.__custom.controls[0].id);
         const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
         betterChoiceControl.valueChanges.subscribe((val) => {
