@@ -8,17 +8,21 @@ import {
     AfterViewInit ,
     OnDestroy
 } from '@angular/core';
+
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { AmpStatesComponent } from '../../../amp-dropdown';
 import { AmpCountryComponent } from '../../../amp-dropdown/components/amp-country/amp-country.component';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { BasicUtils } from '../../../amp-utils/basic-utils';
+
 @Component( {
     selector        : 'amp-manual-address' ,
     template        : require( './amp-manual-address.component.html' ) ,
     styles          : [ require( './amp-manual-address.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
+
 export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestroy {
     public static MANUAL_ARRES_GROUP_NAME = 'manualAddress';
     public static DEFAULT_SELECTED_COUNTRY      = 'AUS';
@@ -197,5 +201,9 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
 
     private getPostcodeMinLength () : number {
         return this.isCountryNZ || this.isCountryAUS ? this.postCode.minLength : - 1;
+    }
+
+    private get summaryAddress () {
+        return BasicUtils.formatAddress(this.manualAddressCG.value);
     }
 }

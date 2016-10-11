@@ -5,15 +5,16 @@ import { Injectable } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Environments } from '../../../abstracts/environments/environments.abstract';
+import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 @Injectable()
 export class AmpCountryService {
     public static BASE_URL     = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
     public static COUNTRY_URL  = AmpCountryService.BASE_URL + '/refdata/countries';
-    public countries : Observable<any[]>;
+    // public static COUNTRY_URL = 'http://localhost:8080/ddc/public/api/refdata/countries';
     public countryServiceError = null;
-    private _countries;
+    private _cachedCountries : Observable<any[]>;
 
-    constructor ( private http : Http ) {
+    constructor ( private http : AmpHttpService ) {
     }
 
     public getCountries () {
@@ -22,8 +23,12 @@ export class AmpCountryService {
             'caller'       : 'components'
         } );
         let options = new RequestOptions( { headers : headers , body : '' } );
-        return this.http
-                   .get( AmpCountryService.COUNTRY_URL , options )
-                   .map( ( res ) => res.json().payload );
+        return this._cachedCountries ? this._cachedCountries :
+            this.http
+                .get( AmpCountryService.COUNTRY_URL , options )
+                .map( ( res ) => {
+                    this._cachedCountries = Observable.of( res.json().payload );
+                    return res.json().payload;
+                } );
     }
 }

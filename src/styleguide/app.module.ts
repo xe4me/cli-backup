@@ -32,6 +32,8 @@ import { AmpGroupButtonsModule } from '../app/modules/amp-group-buttons';
 import { AmpRadioButtonGroupModule } from '../app/modules/amp-radio-button-group';
 import { AmpButtonModule } from '../app/modules/amp-button';
 import { AmpStandAloneMenuModule } from '../app/modules/amp-standalone-menu';
+import { AmpFormRowModule } from '../app/modules/amp-form-row/amp-form-row.module';
+import { AmpRowRepeaterModule } from '../app/modules/amp-row-repeater/amp-row-repeater.module';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -40,6 +42,8 @@ const shouldBeReplacedWithModulesComponents = [
     AmpLoadingComponent ,
 ];
 const IMPORTS                               = [
+    AmpRowRepeaterModule,
+    AmpFormRowModule ,
     AmpStandAloneMenuModule ,
     AmpButtonModule ,
     AmpRadioButtonGroupModule ,

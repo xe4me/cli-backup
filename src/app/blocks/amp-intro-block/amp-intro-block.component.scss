@@ -4,6 +4,7 @@
 $font-size: $amp-base-font-size * 2 / 5 !default;
 
 $logo-height: 60px !default;
+$logo-width: 220px !default;
 
 $amp-ddc-public-asset: '../../../assets/';
 
@@ -51,20 +52,48 @@ $amp-ddc-public-asset: '../../../assets/';
     }
 
     .intro-logo {
-        width: 100px;
         background-position: left bottom;
         background-attachment: scroll;
         background-repeat: no-repeat;
-        text-indent: -9999px !important;
-        height: $amp-logo-height;
-        background-image: url($amp-ddc-public-asset + 'images/logo/AMPLogo.png');
         background-size: 90%;
         margin-bottom: 10px;
+        min-height: 60px;
 
         @include media-query(palm) {
             margin-bottom: 30px;
         }
 
+        /*
+            Logos seperated for stylistic purposes only
+        */
+
+        &.amp-financial-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-hillross-logo-black-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-charter-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-logo-white-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-charter-logo-blue-text-bg {
+            width: $logo-width;
+        }
+
+        &.amp-hillross-logo-white-text-bg {
+            width: $logo-width;
+        }
     }
 
     .intro-block-button-container {
