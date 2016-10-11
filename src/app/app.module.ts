@@ -35,6 +35,9 @@ import {
     FormService,
     AmpIntroBlockComponent
 } from 'amp-ddc-components';
+import {
+    SharedFormDataService
+} from './shared/shared-form-data.service';
 const PROVIDERS    = [
     ScrollService ,
     FormModelService ,
@@ -75,7 +78,8 @@ const IMPORTS = [
     ] ,
     imports      : IMPORTS ,
     providers    : [
-        ...APP_RESOLVER_PROVIDERS
+        ...APP_RESOLVER_PROVIDERS,
+        SharedFormDataService
     ] ,
     bootstrap    : [ AppComponent ]
 } )

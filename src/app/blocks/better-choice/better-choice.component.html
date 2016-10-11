@@ -1,4 +1,4 @@
-<amp-form-block [context]="context()">
+<amp-form-block [context]="context()" *ngIf="existingCustomer">
     <div class="mt mb">
         Tell us how we can help you out today
     </div>
@@ -8,8 +8,7 @@
                 [buttons]="__custom.controls[0].buttons"
                 [controlGroup]="__controlGroup"
                 [groupName]="__custom.controls[0].id"
-                [required]="true"
-        >
+                [required]="true">
         </amp-radio-button-group>
     </amp-form-row>
     <div class="mt mb">
