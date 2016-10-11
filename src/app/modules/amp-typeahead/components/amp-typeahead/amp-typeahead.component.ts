@@ -205,6 +205,9 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     private initForApi () : Subscription {
         this.searchResult = null;
         this.doApiQuery   = true;
+        if ( this.subscription ) {
+            this.subscription.unsubscribe();
+        }
         return this.subscription =
             this.control
                 .valueChanges
@@ -230,6 +233,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                     this.searchResult = null;
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
+                    this.initForApi(); // If there is an error , subscription would die , so we need to subscribe again
                 } );
     }
 

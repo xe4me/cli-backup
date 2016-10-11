@@ -2,31 +2,6 @@ import { Injectable } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Environments } from '../../../abstracts/environments/environments.abstract';
-// export interface AddressFormats {
-//     Siebel : {
-//         Locality : string;
-//         StateCode : string;
-//         Postcode : number;
-//         Country : string;
-//         DPIDDID : number;
-//         AUSBAR : number
-//     };
-//     Bank : {
-//         AllPostalDeliveryTypes : string;
-//         BuildingLevel : string;
-//         FlatUnit : string;
-//         BuildingNumber : number;
-//         BuildingName : string;
-//         StreetName : string;
-//         StreetType : string;
-//         Locality : string;
-//         StateCode : string;
-//         Postcode : number;
-//         Country : string;
-//         DPIDDID : number;
-//         AUSBAR : number
-//     };
-// }
 @Injectable()
 export class AmpQasAddressService {
     // public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
