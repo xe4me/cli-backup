@@ -9,6 +9,9 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import {
+    clone
+} from 'amp-ddc-components';
+import {
     FormBlock,
     ScrollService,
     FormModelService,
@@ -43,6 +46,7 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
         for ( const button of this.__custom.controls[0].buttons) {
             button.label = button['label_' + singleOrJoint];
         }
+        this.__custom.controls[0].buttons = clone(this.__custom.controls[0].buttons );
     }
 
     public ngOnInit() {
