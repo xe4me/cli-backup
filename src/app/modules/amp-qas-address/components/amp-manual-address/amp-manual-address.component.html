@@ -115,7 +115,11 @@
         </amp-form-row>
     </div>
 
-    <div class='mt' *ngIf='isInSummaryState'>
-        <span class='summary-state'>{{ summaryAddress }}</span>
+    <div *ngIf='isInSummaryState'>
+        <amp-form-row>
+            <div class='grid__item_floated 1/1 summary-state'>
+                {{ summaryAddress }}
+            </div>
+        </amp-form-row>
     </div>
 </div>
