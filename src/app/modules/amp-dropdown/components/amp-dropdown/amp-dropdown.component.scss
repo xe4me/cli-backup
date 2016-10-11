@@ -56,7 +56,7 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
     }
 
     &__select {
-        border-bottom: $amp-dropdown-input-border-width solid magenta;
+        border-bottom: $amp-dropdown-input-border-width solid transparent;
         color: $amp-colour-sky-blue;
         cursor: pointer;
         font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
@@ -78,7 +78,7 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
             width: 100%;
         }
 
-        &:hover:after {
+        select:not([disabled]) + &:hover:after {
             border-color: $input-border-color-hover;
             border-width: $amp-dropdown-input-border-width-hover;
             bottom: -$amp-dropdown-input-border-width-hover;
@@ -94,10 +94,6 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
             .amp-dropdown--animate & {
                 transition: opacity 0.4s 0.2s ease;
             }
-
-            .amp-dropdown--is-open & {
-                color: $input-color-focus;
-            }
         }
 
         .amp-dropdown--summary-state & {
@@ -112,6 +108,14 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
             border-color: $amp-colour-alert-danger !important;
             border-width: $amp-dropdown-input-border-width-hover;
             bottom: -$amp-dropdown-input-border-width-hover;
+        }
+
+        .amp-dropdown--is-open & {
+            color: $input-color-focus;
+        }
+
+        select[disabled] ~ & {
+            color: $amp-colour-sky-blue !important;
         }
     }
 
@@ -171,7 +175,7 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
         overflow-y: auto;
         position: absolute;
         width: 100%;
-        z-index: 3;
+        z-index: 15;
 
         // IE Scrollbar
         scrollbar-base-color: $amp-colour-sky-blue;
@@ -214,6 +218,10 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
                 white-space: nowrap;
             }
         }
+
+        select[disabled] ~ & {
+            display: none !important;
+        }
     }
 
     &__option {
@@ -235,16 +243,5 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
         & + & {
             border-top: $amp-dropdown-option-border-width solid #CCD2D9;
         }
-    }
-
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0,0,0,0);
-        border: 0;
     }
 }

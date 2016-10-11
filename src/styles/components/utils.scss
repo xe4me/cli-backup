@@ -257,11 +257,3 @@
         }
     }
 }
-
-.#{$namespace}sr-only,
-%#{$namespace}sr-only {
-    visibility: hidden;
-    height: 1px;
-    display: inline;
-    float: left;
-}
