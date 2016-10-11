@@ -5,6 +5,8 @@ import { Observable }     from 'rxjs/Observable';
 import { AmpHttpService } from '../amp-http/amp-http.service.ts';
 import { Environments } from '../../abstracts/environments/environments.abstract.ts';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
+import { SubmitService } from '../form-submit/submit.service';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
@@ -28,7 +30,6 @@ export class FormModelService {
 
     public _formDefinition;
     public $flags : EventEmitter<any>;
-    public $saveEvent : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
     public model               = {
@@ -93,17 +94,12 @@ export class FormModelService {
     private _contactDetailsUrl = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/profile';
     private _advisersUrl       = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/advisors';
 
-    constructor ( private http : AmpHttpService ) {
+    constructor ( private http : AmpHttpService,
+                  public submitService : SubmitService) {
         this.$flags            = new EventEmitter();
-        this.$saveEvent        = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
     }
 
-    public ngOnInit () {
-        this.$saveEvent.subscribe((model) => {
-            this.save(model);
-        });
-    }
     public generatePDFUrl () {
         if ( this.model.formId ) {
             return Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification/' + this.model.formId + '/pdf';
@@ -318,11 +314,15 @@ export class FormModelService {
                    .get( this.generatePDFUrl() , options )
                    .map( (res) => res.text() );
     }
-    public save( model ) : Observable<Response> {
-        let headers = new Headers( { 'Content-Type' : 'application/json' } );
-        let options = new RequestOptions( { headers : headers } );
-        return this.http.post(this._submitUrl, JSON.stringify( model ), options);
+
+    public setSubmitRelativeUrl( relativeUrl : string ) {
+        this.submitService.setRelativeUrl(relativeUrl);
     }
+
+    public save( model : any ) {
+        this.submitService.$saveMe.emit(model);
+    }
+
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
     saveForm ( value : any ) : Observable < string > {
         let headers = new Headers( { 'Content-Type' : 'application/json' } );
