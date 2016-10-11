@@ -1,4 +1,5 @@
 import {Injectable, EventEmitter, Output} from '@angular/core';
+import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 
 @Injectable()
 export class AmpFileUploadService {
@@ -177,16 +178,4 @@ export class UploadedFile {
         this.response = response;
         this.done = true;
     }
-
 }
-
-function humanizeBytes ( bytes : number ) : string {
-    let sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-    if ( bytes === 0 ) {
-        return '0 Byte';
-    }
-    let base = 1024;
-    let exponent : number = Math.floor( Math.log( bytes ) / Math.log( base ) );
-    return parseFloat( ( bytes / Math.pow( base, exponent ) ).toFixed( 2 ) ) + ' ' + sizes[exponent];
-}
-

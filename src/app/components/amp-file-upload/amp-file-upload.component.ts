@@ -9,6 +9,7 @@ import { Http,
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
+import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 
 @Component({
     selector    : 'amp-file-upload',
@@ -37,7 +38,6 @@ export class AmpFileUploadComponent implements OnInit {
     private error : boolean = false;
     private errorMessage : string;
     private uploadUrlWithParms : string = '';
-    private sizes : string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private http : Http,
@@ -81,22 +81,13 @@ export class AmpFileUploadComponent implements OnInit {
         }
         this._cd.detectChanges();
         this.fileName = response.originalName;
-        this.fileSize = this.humanizeBytes( response.size );
+        this.fileSize = humanizeBytes( response.size );
         this.speed = response.speedAverageHumanized ? response.speedAverageHumanized : response.progress.speedHumanized;
-        this.uploaded = this.humanizeBytes((( response.size * response.progress.percent ) / 100));
+        this.uploaded = humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
         if ( (res && res.statusCode !== 200) || response.status === 404 ) {
             this.setErrorMessage( res );
         }
-    }
-
-    private humanizeBytes ( bytes : number ) : string {
-        if ( bytes === 0 ) {
-            return '0 Byte';
-        }
-        let base = 1024;
-        let exponent : number = Math.floor( Math.log( bytes ) / Math.log( base ) );
-        return parseFloat( ( bytes / Math.pow( base, exponent ) ).toFixed( 2 ) ) + ' ' + this.sizes[exponent];
     }
 
     private updateToken () : void {
