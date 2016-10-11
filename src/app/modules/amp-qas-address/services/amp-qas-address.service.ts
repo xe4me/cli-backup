@@ -5,13 +5,13 @@ import { Environments } from '../../../abstracts/environments/environments.abstr
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 @Injectable()
 export class AmpQasAddressService {
-    // public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
-    // public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
+    public static QAS_FORMATTER_URL = 'https://advice-uat.amp.com.au/services/secure/ddc/1.0.0/qas/doGetAddress';
+    public static QAS_QUERY_URL     = 'https://advice-uat.amp.com.au/services/secure/ddc/1.0.0/qas/doSearch/AUS';
     // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/public/api/qas/doSearch/AUS/pym';
     // public static QAS_FORMATTER_URL  = 'http://localhost:1234/ddc/public/api/qas/doGetAddress';
-    public static BASE_URL           = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
-    public static QAS_FORMATTER_URL  = AmpQasAddressService.BASE_URL + '/qas/doGetAddress';
-    public static QAS_QUERY_URL      = AmpQasAddressService.BASE_URL + '/qas/doSearch/AUS';
+    // public static BASE_URL           = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
+    // public static QAS_FORMATTER_URL  = AmpQasAddressService.BASE_URL + '/qas/doGetAddress';
+    // public static QAS_QUERY_URL      = AmpQasAddressService.BASE_URL + '/qas/doSearch/AUS';
     public static DEFAULT_ERROR_TEXT = 'Server error';
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,

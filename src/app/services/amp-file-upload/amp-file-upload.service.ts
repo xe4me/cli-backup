@@ -32,7 +32,7 @@ export class AmpFileUploadService {
         this._uploadUrl = url;
     }
 
-    public addFilesToQueue( files : File[] ) : void {
+    public addFilesToQueue( files : any ) : void {
         files.forEach(( file : File ) => {
             if (this.isFile( file )) {
                 this._queue.push( file );

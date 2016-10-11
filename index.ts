@@ -24,6 +24,8 @@ export * from './src/app/modules/amp-group-buttons';
 export * from './src/app/modules/amp-radio-button-group';
 export * from './src/app/modules/amp-standalone-menu';
 export * from './src/app/modules/amp-button';
+export * from './src/app/modules/amp-row-repeater';
+export * from './src/app/modules/amp-form-row';
 export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
