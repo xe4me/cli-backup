@@ -7,7 +7,6 @@ export { AmpReviewSection } from './src/app/blocks/amp-review/amp-review-section
 export { AmpReviewItem } from './src/app/blocks/amp-review/amp-review-item/amp-review-item.component';
 export { AmpReviewTotal } from './src/app/blocks/amp-review/amp-review-total/amp-review-total.component';
 export { AmpFormBlockComponent } from './src/app/blocks/amp-form-block/amp-form-block.component';
-export { AmpFormRowComponent } from './src/app/blocks/amp-form-row/amp-form-row.component';
 export { AmpIntroBlockComponent } from './src/app/blocks/amp-intro-block/amp-intro-block.component'
 // components
 export * from './src/app/modules/amp-utils';
@@ -26,7 +25,6 @@ export * from './src/app/modules/amp-standalone-menu';
 export * from './src/app/modules/amp-button';
 export * from './src/app/modules/amp-row-repeater';
 export * from './src/app/modules/amp-form-row';
-export { AmpRowRepeaterComponent } from './src/app/components/amp-row-repeater/amp-row-repeater.component';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpFileUploadComponent } from './src/app/components/amp-file-upload/amp-file-upload.component';
