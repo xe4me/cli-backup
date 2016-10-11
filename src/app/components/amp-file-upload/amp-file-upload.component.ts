@@ -57,7 +57,7 @@ export class AmpFileUploadComponent implements OnInit {
         this.basicOptions = {
             calculateSpeed: true
         };
-        this.fileUploadService.onUpload.subscribe(( data: any ) => {
+        this.fileUploadService.onUpload.subscribe(( data : any ) => {
             this.handleUpload( data );
         });
     }

@@ -6,13 +6,13 @@ import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 @Injectable()
 export class AmpFileUploadService {
 
-    @Output() onUpload: EventEmitter<any> = new EventEmitter();
+    @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
     public _tokenUrl : string = '/ddc/secure/api/upload/token';
     public _uploadUrl : string = '/ddc/secure/api/upload/upload';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
-    private _queue: any[] = [];
+    private _queue : any[] = [];
 
     public get tokenUrl () : string {
         return this._tokenUrl;
@@ -30,8 +30,8 @@ export class AmpFileUploadService {
         this._uploadUrl = url;
     }
 
-    public addFilesToQueue( files: File[] ) : void {
-        files.forEach(( file: File ) => {
+    public addFilesToQueue( files : File[] ) : void {
+        files.forEach(( file : File ) => {
             if (this.isFile( file )) {
                 this._queue.push( file );
             }
@@ -39,17 +39,17 @@ export class AmpFileUploadService {
         this.uploadFilesInQueue();
     }
 
-    private isFile( file: any ) : boolean {
-        return file !== null && ( file instanceof Blob || ( file.name && file.size ));
-    }
-
-    uploadFilesInQueue( ) : void {
+    public uploadFilesInQueue( ) : void {
         this._queue.forEach(( f ) => {
             this.uploadFile( f );
         });
     };
 
-    uploadFile( file: any ): void {
+    private isFile( file : any ) : boolean {
+        return file !== null && ( file instanceof Blob || ( file.name && file.size ));
+    }
+
+    private uploadFile( file : any ) : void {
         let xhr = new XMLHttpRequest();
         let form = new FormData();
         form.append('file', file, file.name);
@@ -59,17 +59,17 @@ export class AmpFileUploadService {
             file.size
         );
 
-        let time: number = new Date().getTime();
+        let time : number = new Date().getTime();
         let load = 0;
         let speed = 0;
-        let speedHumanized: string = null;
+        let speedHumanized : string = null;
 
-        xhr.upload.onprogress = ( e: ProgressEvent ) => {
+        xhr.upload.onprogress = ( e : ProgressEvent ) => {
             if ( e.lengthComputable ) {
                 time = new Date().getTime() - time;
                 load = e.loaded - load;
                 speed = load / time * 1000;
-                speed = parseInt( <any>speed, 10 );
+                speed = parseInt( <any> speed, 10 );
                 speedHumanized = humanizeBytes(speed);
 
                 let percent = Math.round( e.loaded / e.total * 100 );
@@ -92,12 +92,12 @@ export class AmpFileUploadService {
             this.onUpload.emit( uploadingFile );
         };
 
-        xhr.upload.onabort = ( e: Event ) => {
+        xhr.upload.onabort = ( e : Event ) => {
             uploadingFile.setAbort();
             this.onUpload.emit( uploadingFile );
         };
 
-        xhr.upload.onerror = ( e: Event ) => {
+        xhr.upload.onerror = ( e : Event ) => {
             uploadingFile.setError();
             this.onUpload.emit( uploadingFile );
         };
@@ -117,31 +117,30 @@ export class AmpFileUploadService {
     }
 }
 
-
 export class UploadedFile {
-    status: number;
-    statusText: string;
-    progress: Object;
-    originalName: string;
-    size: number;
-    response: string;
-    done: boolean;
-    error: boolean;
-    abort: boolean;
-    startTime: number;
-    endTime: number;
-    speedAverage: number;
-    speedAverageHumanized: string;
+    status : number;
+    statusText : string;
+    progress : Object;
+    originalName : string;
+    size : number;
+    response : string;
+    done : boolean;
+    error : boolean;
+    abort : boolean;
+    startTime : number;
+    endTime : number;
+    speedAverage : number;
+    speedAverageHumanized : string;
 
     constructor( originalName : string, size : number) {
         this.originalName = originalName;
         this.size = size;
         this.progress = {
-            loaded: 0,
-            total: 0,
-            percent: 0,
-            speed: 0,
-            speedHumanized: null
+            loaded : 0,
+            total : 0,
+            percent : 0,
+            speed : 0,
+            speedHumanized : null
         };
         this.done = false;
         this.error = false;
@@ -152,7 +151,7 @@ export class UploadedFile {
         this.speedAverageHumanized = null;
     }
 
-    setProgress( progress: Object ) : void {
+    setProgress( progress : Object ) : void {
         this.progress = progress;
     }
 
@@ -166,10 +165,10 @@ export class UploadedFile {
         this.done = true;
     }
 
-    onFinished( status: number, statusText: string, response: string ) : void {
+    onFinished( status : number, statusText : string, response : string ) : void {
         this.endTime = new Date().getTime();
-        this.speedAverage = this.size / (this.endTime - this.startTime) * 1000;
-        this.speedAverage = parseInt( <any>this.speedAverage, 10);
+        this.speedAverage = this.size / ( this.endTime - this.startTime ) * 1000;
+        this.speedAverage = parseInt( <any> this.speedAverage, 10 );
         this.speedAverageHumanized = humanizeBytes( this.speedAverage );
         this.status = status;
         this.statusText = statusText;
