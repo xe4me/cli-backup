@@ -19,9 +19,7 @@
                 [id]='postalAndResidentialAreSame.id'
                 [checked]='true'
                 (select)='onCheckboxSelect($event)'>
-            <div class='heading heading-contxtual-label'>
                 My postal address is the same as my residential address.
-            </div>
         </amp-checkbox>
     </div>
     <div *ngIf='!arePostalAndResidentialTheSame' class='mt+'>
