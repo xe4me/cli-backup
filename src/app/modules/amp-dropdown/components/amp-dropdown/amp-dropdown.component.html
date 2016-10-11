@@ -5,7 +5,8 @@
         [class.amp-dropdown--animate]='animateSelection'
         [class.amp-dropdown--summary-state]='isInSummaryState'
         [class.amp-dropdown--is-open]='optionsShown'
-        [clicked-outside]='hideOptions'>
+        [clicked-outside]='hideOptions'
+        (window:resize)="onResize($event)">
 
     <label class='sr-only' [attr.for]='id'>
         {{ label }}

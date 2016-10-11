@@ -190,6 +190,18 @@
     &__display {
         &--block {
             display: block !important;
+
+            &-palm {
+                @include media-query('palm') {
+                    display: block !important;
+                }
+            }
+
+            &-tablet-and-down {
+                @include media-query('tablet-and-down') {
+                    display: block !important;
+                }
+            }
         }
 
         &--in-block {

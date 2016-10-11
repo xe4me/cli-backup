@@ -232,7 +232,7 @@
                 "jasmine": "src/styleguide/components/amp-typeahead/amp-typeahead.component.spec.ts",
                 "component": "amp-typeahead-basic-usage",
                 "component_src_location": "components/amp-typeahead/basic_usage",
-                "name": "Amp Auto Comnplete Basic Usage"
+                "name": "Amp Auto Complete Basic Usage"
             }
         ],
         "readme": "<p>Custom Block for AmpAutoCompleteComponent.</p>\n"
@@ -252,7 +252,7 @@
                 "jasmine": "src/styleguide/components/amp-qas-address/amp-qas-address.component.spec.ts",
                 "component": "amp-qas-address-basic-usage",
                 "component_src_location": "components/amp-qas-address/basic_usage",
-                "name": "Amp Auto Comnplete Basic Usage"
+                "name": "Amp Auto Complete Basic Usage"
             }
         ],
         "readme": "<p>Custom Block for AmpQasAddressComponent.</p>\n"
@@ -292,7 +292,7 @@
                 "jasmine": "src/styleguide/components/amp-qas-address-multi/amp-qas-address-multi.component.spec.ts",
                 "component": "amp-qas-address-multi-basic-usage",
                 "component_src_location": "components/amp-qas-address-multi/basic_usage",
-                "name": "Amp Auto Comnplete Basic Usage"
+                "name": "Amp Auto Complete Basic Usage"
             }
         ],
         "readme": "<p>Custom Block for AmpQasAddressMultiComponent.</p>\n"
