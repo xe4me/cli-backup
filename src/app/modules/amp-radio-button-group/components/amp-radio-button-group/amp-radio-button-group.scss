@@ -78,7 +78,7 @@ $radio-font-weight : 300 !default;
         white-space    : normal;
 
         @include media-query(tablet-and-up) {
-            font-size : 24px
+            font-size : $font-size-small;
         }
 
         @include media-query(palm) {
