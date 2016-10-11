@@ -22,7 +22,6 @@ import {
 
 import { FormModelService } from './form-model.service';
 import { AmpHttpService } from '../amp-http/amp-http.service';
-import { SubmitService } from '../form-submit/submit.service';
 
 const testModel = {
                 'errors': [],
@@ -62,7 +61,6 @@ describe( 'Save model to the server' , () => {
             providers    : [ BaseRequestOptions,
                              FormModelService,
                              MockBackend,
-                             SubmitService,
                              provide(AmpHttpService, mockHttpProvider) ]
         } );
         TestBed.compileComponents();
@@ -84,7 +82,7 @@ describe( 'Save model to the server' , () => {
             connection.mockRespond(new Response(options));
         });
         subject.setSubmitRelativeUrl('saveTheWorld');
-        subject.submitService.$response.subscribe((response) => {
+        subject.$saveResponse.subscribe((response) => {
             expect(response).toEqual(testModel);
             done();
         });
@@ -99,7 +97,7 @@ describe( 'Save model to the server' , () => {
             connection.mockError(new Error(errorMessage));
         });
         subject.setSubmitRelativeUrl('saveTheWorld');
-        subject.submitService.$error.subscribe((error) => {
+        subject.$saveError.subscribe((error) => {
             expect(error.toString()).toEqual('Error: Simulated error response');
             done();
         });
@@ -112,7 +110,7 @@ describe( 'Save model to the server' , () => {
             subject.save(testModel);
         }
         catch (e) {
-            expect(e).toEqual(new Error('Relative URL not set in SubmitService!'));
+            expect(e).toEqual(new Error('Relative URL not set in FormModelService for submit!'));
             done();
         }
     });
