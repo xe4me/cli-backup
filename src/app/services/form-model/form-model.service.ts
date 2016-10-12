@@ -303,7 +303,9 @@ export class FormModelService {
             {
                 'Content-Type' : 'application/json' ,
             } );
-        let options = new RequestOptions( { headers : headers } );
+        let options = new RequestOptions({
+            headers: headers, body: '',
+        });
         return this
             .http
             .get( this._contactDetailsUrl , options )
@@ -316,7 +318,9 @@ export class FormModelService {
             {
                 'Content-Type' : 'application/json' ,
             } );
-        let options = new RequestOptions( { headers : headers } );
+        let options = new RequestOptions({
+            headers: headers, body: '',
+        });
         return this.http
                    .get( this._advisersUrl , options )
                    .map( function( x , idx ) {
