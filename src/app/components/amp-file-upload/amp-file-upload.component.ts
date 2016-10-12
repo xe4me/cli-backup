@@ -26,7 +26,6 @@ export class AmpFileUploadComponent implements OnInit {
     @Input() tokenUrl : string;
     @Input() formName : string;
     @Input() formId : string;
-    @Input() enableVirusScan : string;
 
     public token : string;
     private basicOptions : Object;
@@ -101,7 +100,7 @@ export class AmpFileUploadComponent implements OnInit {
                 ( res : any ) => {
                     this.token = res.payload.token;
                     this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
-                                            + '&enableVirusScan=' + this.enableVirusScan + '&token=' + this.token;
+                                            + '&token=' + this.token;
                     this.basicOptions = {
                         url : this.uploadUrlWithParms,
                         calculateSpeed : true
