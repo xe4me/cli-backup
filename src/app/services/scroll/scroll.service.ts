@@ -53,8 +53,14 @@ export class ScrollService {
                         formGroup = formGroup.controls[ _fdnOfSelectorName[ i ] ];
                     }
                 }
-                if ( ! isScrolled && ! formGroup.valid ) {
-                    this.scrollToComponentSelector( selectorName );
+                if (!isScrolled &&
+                    ( formGroup.invalid ||
+                         (formGroup.valid &&
+                          formGroup.untouched &&
+                           Object.keys(formGroup.value).length > 0)
+                         )
+                    ) {
+                    this.scrollToComponentSelector(selectorName);
                     isScrolled = true;
                     return null;
                 }
