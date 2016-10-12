@@ -65,7 +65,8 @@ describe( 'amp standalone menu tests' , () => {
         let compiledTestComponentNav = fixture.debugElement;
         let compiledNav = compiledTestComponentNav.query( By.css( 'div' ) );
         let menuComp = new AmpStandAloneMenuComponent();
-        menuComp.testForClass( compiledNav.nativeElement, 'thisisaclass');
+        expect( menuComp.testForClass( compiledNav.nativeElement, 'thisisaclass')).toBe(true);
+        expect( menuComp.testForClass( compiledNav.nativeElement, 'somespruisclass')).toBe(false);
     } );
 } );
 class MockElementRef implements ElementRef {
