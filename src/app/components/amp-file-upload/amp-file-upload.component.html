@@ -1,7 +1,7 @@
-<h2 class="heading heading-intro mt-60">{{title}}</h2>
-<p class="mt-60 mb-60">{{text}}</p>
-<div class="overlay">
-    <amp-button class="btn btn-submit mt mb" *ngIf="!showProgress">
+<h2 class="heading heading-intro mt-60 mb-60">{{title}}</h2>
+<p *ngIf="text">{{text}}</p>
+<div class="overlay mt-60 mb-60">
+    <amp-button class="btn btn-submit" *ngIf="!showProgress">
         File Upload
     </amp-button>
     <input type="file"
