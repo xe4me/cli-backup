@@ -6,13 +6,12 @@ import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
+    public autoFocusOn;
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
-    protected visibleFlag : string           = 'defaultIsVisible';
-    protected doneFlag : string              = 'defaultIsDone';
-    protected noScroll                       = false;
+    protected noScroll = false;
     protected __fdn : (number|string)[];
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
@@ -36,8 +35,6 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () {
         this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
-        this.visibleFlag  = this.selectorName + 'IsVisible';
-        this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
         this._cd.markForCheck();
     }
@@ -82,7 +79,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
             this.progressObserver.onProgress( this.__fdn );
-            this.formModelService.save(this.__form.value);
+            this.formModelService.save( this.__form.value );
             setTimeout( () => {
                 this.isInSummaryState = true;
                 this._cd.markForCheck();
