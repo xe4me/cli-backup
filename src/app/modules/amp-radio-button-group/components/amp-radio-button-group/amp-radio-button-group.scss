@@ -33,7 +33,6 @@ $radio-font-weight : 300 !default;
         margin-top : 23px;
     }
     input {
-        display : none;
         &:not([disabled]) + label {
             .container {
                 &:hover {
