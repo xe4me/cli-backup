@@ -2,7 +2,7 @@
 @import 'themes/theme-form';
 @import 'themes/theme-tools';
 
-
+$amp-ddc-menu-height:                          69px                     !default;
 
 :host {
     .steps-nav {
@@ -26,18 +26,14 @@
             font-size: 14px;
 
       @include media-query(palm) {
+
           &.open {
               position: absolute;
               background: $amp-colour-grey-lightest;
               width: 100%;
               left: 0;
               top: 0;
-              -webkit-transform: translate3d(0, 150px, 0);
-              transform: translate3d(0, 150px, 0);
-              -webkit-transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,-webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
-              transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,-webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
-              transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s,opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
-              transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s,opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,-webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+              height: 100%;
               > .skyblue {
                   > li:not(.active) {
                       display: block;
@@ -57,7 +53,7 @@
             -webkit-transform: translateY(0);
             transform: translateY(0);
             width: 100%;
-            height: 69px;
+            height: $amp-ddc-menu-height;
             background: $amp-colour-white;
             text-align: center;
             background: $amp-colour-grey-lightest;
@@ -85,7 +81,11 @@
 
     .steps-nav .progress li {
         list-style: none;
-        line-height: 1px
+        line-height: 1px;
+
+        @include media-query(palm) {
+            height: $amp-ddc-menu-height;
+        }
     }
 
     .steps-nav .progress li.divider {
