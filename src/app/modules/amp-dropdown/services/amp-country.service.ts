@@ -1,8 +1,5 @@
-/**
- * Created by SNGSE2 on 26/09/2016.
- */
 import { Injectable } from '@angular/core';
-import { Headers , RequestOptions , Http } from '@angular/http';
+import { Headers , RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Environments } from '../../../abstracts/environments/environments.abstract';
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';

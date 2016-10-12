@@ -8,8 +8,6 @@ export class AmpQasAddressService {
     public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
     public static QAS_FORMATTER_URL = AmpQasAddressService.BASE_URL + '/qas/doGetAddress';
     public static QAS_QUERY_URL     = AmpQasAddressService.BASE_URL + '/qas/doSearch/AUS';
-    // public static QAS_QUERY_URL      = 'http://localhost:1234/ddc/public/api/qas/doSearch/AUS/pym';
-    // public static QAS_FORMATTER_URL  = 'http://localhost:1234/ddc/public/api/qas/doGetAddress';
     public static DEFAULT_ERROR_TEXT = 'Server error';
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,
