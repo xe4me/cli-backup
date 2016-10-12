@@ -1,7 +1,16 @@
 import {
-    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    OnInit,
+    ChangeDetectionStrategy,
+    Input,
     AfterViewInit
 } from '@angular/core';
+import {
+    FormControl,
+    Validators
+} from '@angular/forms';
 import {
     FormBlock ,
     ScrollService ,
@@ -14,7 +23,7 @@ import {
     templateUrl     : './privacy-declaration.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class PrivacyDeclarationBlock extends FormBlock {
+export class PrivacyDeclarationBlock extends FormBlock implements OnInit {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -22,6 +31,10 @@ export class PrivacyDeclarationBlock extends FormBlock {
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    }
+
+    public ngOnInit() {
+        this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
     }
 
     private acceptPrivacyDeclaration() {
