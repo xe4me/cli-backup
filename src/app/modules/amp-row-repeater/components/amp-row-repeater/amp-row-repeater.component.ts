@@ -19,7 +19,7 @@ import { FormArray , FormGroup } from '@angular/forms';
             <div class="row-repeated__col-right utils__push--left">
                 <amp-button *ngIf="i > 0" [context]="context" (click)="remove(i)"
                             class="btn btn-anchor utils__push--left">
-                    <span class="icon icon--close" aria-hidden="true"></span> {{ removeBtn }}
+                    {{ removeBtn }}
                 </amp-button>
             </div>
         </div>
