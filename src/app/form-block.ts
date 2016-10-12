@@ -6,7 +6,6 @@ import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
-    @ViewChild( 'focusZone' ) focusZone;
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
@@ -56,33 +55,34 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
          * TODO : This should be a directive or something else.
          * */
         setTimeout( () => {
-            let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
-            if ( ! inputs ) {
-                inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
+            if ( this.autoFocusOn ) {
+                this.autoFocusOn.focus();
+            } else {
+                let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
                 if ( ! inputs ) {
-                } else {
-                    inputs = this.elementRef.nativeElement.getElementsByTagName( 'select' );
+                    inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
+                    if ( ! inputs ) {
+                    } else {
+                        inputs = this.elementRef.nativeElement.getElementsByTagName( 'select' );
+                    }
                 }
-            }
-            if ( inputs && inputs.length > 0 ) {
-                inputs[ 0 ].focus();
+                if ( inputs && inputs.length > 0 ) {
+                    inputs[ 0 ].focus();
+                }
             }
         } , 100 );
     }
 
     onEdit () {
         this.isInSummaryState = false;
-
-        this.scrollService.$scrolled.emit(this.selectorName);
+        this.scrollService.$scrolled.emit( this.selectorName );
     }
 
     onNext () {
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
             this.progressObserver.onProgress( this.__fdn );
-            this.formModelService.$saveEvent.emit({
-                model: this.__form.value
-            });
+            this.formModelService.save(this.__form.value);
             setTimeout( () => {
                 this.isInSummaryState = true;
                 this._cd.markForCheck();

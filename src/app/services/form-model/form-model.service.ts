@@ -1,10 +1,23 @@
-import { Injectable , EventEmitter }     from '@angular/core';
-import { ControlGroup , Control } from '@angular/common';
-import { Http , Headers , RequestOptions , Response } from '@angular/http';
+import {
+    Injectable,
+    EventEmitter
+} from '@angular/core';
+
+import {
+    ControlGroup,
+    Control
+} from '@angular/common';
+import {
+    Http,
+    Headers,
+    RequestOptions,
+    Response
+} from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { AmpHttpService } from '../amp-http/amp-http.service.ts';
 import { Environments } from '../../abstracts/environments/environments.abstract.ts';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
@@ -26,9 +39,12 @@ export class FormModelService {
         }
     }
 
+    public $saveMe       : EventEmitter<any> = new EventEmitter();
+    public $saveResponse : EventEmitter<any> = new EventEmitter();
+    public $saveError    : EventEmitter<any> = new EventEmitter();
+
     public _formDefinition;
     public $flags : EventEmitter<any>;
-    public $saveEvent : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
     public model               = {
@@ -93,17 +109,28 @@ export class FormModelService {
     private _contactDetailsUrl = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/profile';
     private _advisersUrl       = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/advisors';
 
-    constructor ( private http : AmpHttpService ) {
+    private _baseURL = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/';
+    private _submitRelativeUrl = null;
+
+    constructor ( private http : AmpHttpService) {
         this.$flags            = new EventEmitter();
-        this.$saveEvent        = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
+
+        this.$saveMe.subscribe((model) => {
+            if (!this._submitRelativeUrl) {
+                throw new Error('Relative URL not set in FormModelService for submit!');
+            }
+            this.saveModel(model)
+                .subscribe((response) => {
+                    this.$saveResponse.emit(response.json());
+                }, (error) => {
+                    if (error) {
+                        this.$saveError.emit(error);
+                    }
+                });
+        });
     }
 
-    public ngOnInit () {
-        this.$saveEvent.subscribe ((model) => {
-            this.save(model);
-        })
-    }
     public generatePDFUrl () {
         if ( this.model.formId ) {
             return Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification/' + this.model.formId + '/pdf';
@@ -128,10 +155,6 @@ export class FormModelService {
 
     get context () {
         return this.model.context;
-    }
-
-    set submitUrl (url) {
-        this._submitUrl = url;
     }
 
     set formDefinition ( formDef ) {
@@ -280,7 +303,9 @@ export class FormModelService {
             {
                 'Content-Type' : 'application/json' ,
             } );
-        let options = new RequestOptions( { headers : headers } );
+        let options = new RequestOptions({
+            headers: headers, body: '',
+        });
         return this
             .http
             .get( this._contactDetailsUrl , options )
@@ -293,7 +318,9 @@ export class FormModelService {
             {
                 'Content-Type' : 'application/json' ,
             } );
-        let options = new RequestOptions( { headers : headers } );
+        let options = new RequestOptions({
+            headers: headers, body: '',
+        });
         return this.http
                    .get( this._advisersUrl , options )
                    .map( function( x , idx ) {
@@ -318,11 +345,15 @@ export class FormModelService {
                    .get( this.generatePDFUrl() , options )
                    .map( (res) => res.text() );
     }
-    public save( model ) : Observable<Response> {
-        let headers = new Headers( { 'Content-Type' : 'application/json' } );
-        let options = new RequestOptions( { headers : headers } );
-        return this.http.post(this._submitUrl, JSON.stringify( model ), options);
+
+    public setSubmitRelativeUrl (relativeUrl : string) {
+        this._submitRelativeUrl = relativeUrl;
     }
+
+    public save (model : any) {
+        this.$saveMe.emit(model);
+    }
+
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
     saveForm ( value : any ) : Observable < string > {
         let headers = new Headers( { 'Content-Type' : 'application/json' } );
@@ -344,7 +375,13 @@ export class FormModelService {
         //    .catch( this.handleError );
     }
 
-    private handleError ( error : any ) {
+    private saveModel (model) : Observable<Response> {
+        let headers = new Headers ({ 'Content-Type' : 'application/json' });
+        let options = new RequestOptions ({ headers : headers });
+        return this.http.post (this._baseURL + this._submitRelativeUrl, JSON.stringify(model), options);
+    }
+
+    private handleError (error : any) {
         console.log( 'Handling the error ' );
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message

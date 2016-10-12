@@ -7,7 +7,8 @@
     position: relative;
 
     .FormBlocK {
-        margin-bottom: $default-margin;
+        padding-top: $default-margin;
+        position: relative;
 
         .heading-intro {
             margin-bottom: $default-margin-w-offset;
@@ -18,7 +19,7 @@
         }
 
         .hr-block-divider {
-            margin: $default-margin 0;
+            margin: $default-margin 0 0;
         }
     }
 
@@ -33,7 +34,7 @@
             }
 
             .hr-block-divider {
-                margin: $default-margin 0;
+                margin: $default-margin 0 0;
             }
         }
     }
