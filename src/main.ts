@@ -1,5 +1,4 @@
 import './polyfills.ts';
-import './app/forms/better-form/form-def.def.json';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
