@@ -1,7 +1,7 @@
 {
     "id": "Application",
-    "fdnClassPath": "src/forms/better-form/amp-form-block",
-    "fdnModelPath": "src/forms/better-form/amp-form-block",
+    "fdnClassPath": "src/app/forms/better-form",
+    "fdnModelPath": "src/app/forms/better-form",
     "version": "0.0.1",
     "path": "/application",
     "status": "NEW",
@@ -20,7 +20,7 @@
             },
             "blocks": [
                 {
-                    "name": "WelcomeBlockComponent",
+                    "name": "Welcome",
                     "blockType": "WelcomeBlockComponent",
                     "blockLayout": "INLINE",
                     "commonBlock": false,
@@ -57,7 +57,7 @@
                     "path": "blocks/menu-frame/menu-frame.component",
                     "blocks": [
                         {
-                            "name": "SingleOrJointBlockComponent",
+                            "name": "SingleOrJoint",
                             "blockType": "SingleOrJointBlockComponent",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
@@ -86,22 +86,26 @@
                                             {
                                                 "id": "new_deposit_account",
                                                 "value": "new_deposit_account",
-                                                "label": "I would like to set up a new deposit account"
+                                                "label_single": "I would like to set up a new deposit account",
+                                                "label_joint" : "We would like to set up a new deposit account"
                                             },
                                             {
                                                 "id": "new_offset_account",
                                                 "value": "new_offset_account",
-                                                "label": "I would like to set up a new offset account on an existing eligble AMP home loan"
+                                                "label_single": "I would like to set up a new offset account on an existing eligble AMP home loan",
+                                                "label_joint" : "We would like to set up a new offset account on an existing eligible AMP home loan"
                                             },
                                             {
                                                 "id": "convert_deposit_account",
                                                 "value": "convert_deposit_account",
-                                                "label": "I would like to convert an existing eligible deposit account"
+                                                "label_single": "I would like to convert an existing eligible deposit account",
+                                                "label_joint" : "We would like to convert an existing eligible deposit account"
                                             },
                                             {
                                                 "id": "convert_offset_account",
                                                 "value": "convert_offset_account",
-                                                "label": "I would like to convert an existing eligible offset account"
+                                                "label_single": "I would like to convert an existing eligible offset account",
+                                                "label_joint" : "We would like to convert an existing eligible offset account"
                                             }
                                         ]
                                     }
