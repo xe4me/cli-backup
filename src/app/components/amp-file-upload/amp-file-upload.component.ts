@@ -20,6 +20,8 @@ import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 })
 export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
+    @Input() title : string;
+    @Input() text : string;
     @Input() uploadUrl : string;
     @Input() tokenUrl : string;
     @Input() formName : string;
