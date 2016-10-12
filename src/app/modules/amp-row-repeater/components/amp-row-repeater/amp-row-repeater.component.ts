@@ -9,18 +9,20 @@ import { FormArray , FormGroup } from '@angular/forms';
         itemTemplate : new ContentChild( TemplateRef )
     } ,
     template        : `
-        <amp-form-row *ngFor="let controlGroup of controlArray.controls ; let i = index;">
+        <div class="grid__container 1/1" *ngFor="let controlGroup of controlArray.controls ; let i = index;">
             <div class="utils__push--left">
-            <template
-                [ngTemplateOutlet]="itemTemplate"
-                [ngOutletContext]="{ controlGroup: controlGroup, index: i }">
-            </template>
+                <template
+                    [ngTemplateOutlet]="itemTemplate"
+                    [ngOutletContext]="{ controlGroup: controlGroup, index: i }">
+                </template>
             </div>
-            <amp-button *ngIf="i > 0" [context]="context" (click)="remove(i)"
-                        class="btn btn-anchor utils__push--left">
-                <span class="icon icon--close" aria-hidden="true"></span> {{ removeBtn }}
-            </amp-button>
-        </amp-form-row>
+            <div class="utils__push--left">
+                <amp-button *ngIf="i > 0" [context]="context" (click)="remove(i)"
+                            class="btn btn-anchor utils__push--left">
+                    <span class="icon icon--close" aria-hidden="true"></span> {{ removeBtn }}
+                </amp-button>
+            </div>
+        </div>
         <amp-button
             *ngIf="controlArray.controls.length > 0"
             [context]="context"
