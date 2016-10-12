@@ -84,7 +84,7 @@ export class AmpFileUploadComponent implements OnInit {
         this._cd.detectChanges();
         this.fileName = response.originalName;
         this.fileSize = humanizeBytes( response.size );
-        this.speed = response.speedAverageHumanized ? response.speedAverageHumanized : response.progress.speedHumanized;
+        this.speed = response.progress.speedHumanized ? response.progress.speedHumanized : this.speed;
         this.uploaded = humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
         if ( (res && res.statusCode !== 200) || response.status === 404 ) {
