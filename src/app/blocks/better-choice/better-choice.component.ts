@@ -9,14 +9,15 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import {
-    clone
-} from 'amp-ddc-components';
+    ActivatedRoute
+} from '@angular/router';
 import {
     FormBlock,
     ScrollService,
     FormModelService,
     ProgressObserverService,
-    FormService
+    FormService,
+    clone
 } from 'amp-ddc-components';
 import {
     SharedFormDataService
@@ -38,6 +39,7 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
         private viewContainerRef : ViewContainerRef,
         progressObserver : ProgressObserverService,
         private sharedFormDataService : SharedFormDataService,
+        private route : ActivatedRoute
     ) {
         super(formModelService, elementRef, _cd, progressObserver, scrollService);
     }
@@ -62,8 +64,13 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
 
     public ngOnInit() {
         this.setButtonLabels('single');
-        this.existingCustomer = window.location.href.search('[?&]existingCustomer=true') > 0;
-        return;
+        this.route.queryParams
+                    .map((params) => {
+                        return params['existingCustomer'];
+                    } )
+                    .subscribe((existingCustomer) => {
+                        this.existingCustomer = existingCustomer === 'true';
+                    });
     }
 
     public ngAfterViewInit() {
