@@ -8,7 +8,7 @@ import { Environments } from '../../../abstracts/environments/environments.abstr
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 @Injectable()
 export class AmpCountryService {
-    public static BASE_URL     = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
+    public static BASE_URL     = Environments.property.ApiCallsBaseUrl;
     public static COUNTRY_URL  = AmpCountryService.BASE_URL + '/refdata/countries';
     // public static COUNTRY_URL = 'http://localhost:8080/ddc/public/api/refdata/countries';
     public countryServiceError = null;
