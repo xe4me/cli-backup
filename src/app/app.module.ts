@@ -1,6 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,
+         ReactiveFormsModule
+} from '@angular/forms';
+import { Routes,
+         RouterModule
+} from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
@@ -20,10 +25,9 @@ import {
     AmpTextareaModule ,
     AmpGroupButtonsModule ,
     AmpRadioButtonGroupModule ,
-    AmpErrorModule
-} from 'amp-ddc-components';
-import {
-    FormBlock ,
+    AmpErrorModule,
+    AmpButtonModule,
+    FormBlock,
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
@@ -33,7 +37,9 @@ import {
     AmpButton ,
     AmpOverlayComponent ,
     FormService,
-    AmpIntroBlockComponent
+    AmpIntroBlockComponent,
+    AmpRowRepeaterModule,
+    AmpFormRowModule
 } from 'amp-ddc-components';
 import {
     SharedFormDataService
@@ -45,29 +51,36 @@ const PROVIDERS    = [
     FormService
 ];
 const DECLARATIONS = [
-    AmpFormRowComponent,
     AmpIntroBlockComponent,
     AmpFormBlockComponent ,
     AmpOverlayComponent,
     StickyProgressHeaderBlockComponent
 ];
 
+const routes : Routes = [
+    { path: '', component: BetterFormComponent },
+];
+
 const IMPORTS = [
-    AmpTypeaheadModule ,
-    AmpDropdownModule ,
-    AmpPipesModule ,
-    AmpDirectivesModule ,
-    AmpQasAddressModule ,
-    AmpInputsModule ,
-    AmpErrorModule ,
-    AmpCheckboxModule ,
-    AmpTextareaModule ,
-    AmpGroupButtonsModule ,
-    AmpRadioButtonGroupModule ,
-    BrowserModule ,
-    FormsModule ,
-    ReactiveFormsModule ,
-    HttpModule
+    AmpRowRepeaterModule,
+    AmpFormRowModule,
+    AmpButtonModule,
+    AmpTypeaheadModule,
+    AmpDropdownModule,
+    AmpPipesModule,
+    AmpDirectivesModule,
+    AmpQasAddressModule,
+    AmpInputsModule,
+    AmpErrorModule,
+    AmpCheckboxModule,
+    AmpTextareaModule,
+    AmpGroupButtonsModule,
+    AmpRadioButtonGroupModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
+    RouterModule.forRoot( routes )
 ];
 
 @NgModule( {
