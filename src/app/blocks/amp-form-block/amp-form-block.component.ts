@@ -40,7 +40,7 @@ export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
     @Input( 'noError' ) noError;
     @Input( 'theme' ) theme;
-    @Input( 'headingClass' ) headingClass;
+    @Input( 'headingClass' ) headingClass : string = '';
 
     ngOnInit () : any {
         if ( ! this.context ) {
