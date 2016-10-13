@@ -598,6 +598,26 @@
         "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
     },
     {
+        "name": "Amp Tooltip",
+        "sources": [
+            "src/app/components/amp-tooltip/amp-tooltip.component.ts"
+        ],
+        "id": "AmpTooltip",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-tooltip/basic_usage.html",
+                "styles": "src/styleguide/components/amp-tooltip/basic_usage.scss",
+                "source": "src/styleguide/components/amp-tooltip/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-tooltip/amp-tooltip.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-tooltip/amp-tooltip.component.spec.ts",
+                "component": "amp-tooltip-block-basic-usage",
+                "component_src_location": "components/amp-tooltip/basic_usage",
+                "name": "Amp Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpTooltipComponent.</p>\n"
+    },
+    {
         "name": "AmpAccountNumber",
         "sources": [
             "src/app/components/amp-inputs/components"

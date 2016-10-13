@@ -25,6 +25,7 @@ export * from './src/app/modules/amp-standalone-menu';
 export * from './src/app/modules/amp-button';
 export * from './src/app/modules/amp-row-repeater';
 export * from './src/app/modules/amp-form-row';
+export * from './src/app/modules/amp-tooltip';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AmpFileUploadComponent } from './src/app/components/amp-file-upload/amp-file-upload.component';
