@@ -3,7 +3,6 @@ import { Component,
          ChangeDetectorRef,
          Input,
          ViewChild } from '@angular/core';
-import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 import { Http,
          Response } from '@angular/http';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
@@ -15,7 +14,7 @@ import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
     styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
-    directives  : [ UPLOAD_DIRECTIVES, AmpButton, AmpLinearProgressBarComponent ],
+    directives  : [ AmpButton, AmpLinearProgressBarComponent ],
     providers   : [ AmpFileUploadService ]
 })
 export class AmpFileUploadComponent implements OnInit {
