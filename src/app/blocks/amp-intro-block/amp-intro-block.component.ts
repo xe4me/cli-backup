@@ -27,8 +27,8 @@ import { AmpButton } from '../../../app/components/amp-button/amp-button.compone
         trigger(
             'slideUp' ,
             [
-                state( 'collapsed, void' , style( { height : '0px' , opacity : '0' , display : 'none' , padding : 0 } ) ) ,
-                state( 'expanded' , style( { height : '*' , opacity : '1' , overflow : 'hidden' , display : 'block' } ) ) ,
+                state( 'collapsed, void' , style( { height : '0px' , opacity : '0' , display : 'none' } ) ) ,
+                state( 'expanded' , style( { height : '*' , opacity : '1' , display : 'block' } ) ) ,
                 transition(
                     'collapsed <=> expanded' , [ animate( 800 ) ] )
             ] )
