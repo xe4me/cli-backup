@@ -31,9 +31,12 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public ngOnInit() {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
+        this.formModelService.setSubmitRelativeUrl('submit');
     }
 
     private onSingleJoint(singleJointIndicator : string) {
-        this.__controlGroup.get(this.__custom.controls[0].id).setValue(singleJointIndicator);
+        const singleOrJoint = this.__controlGroup.get(this.__custom.controls[0].id);
+        singleOrJoint.setValue(singleJointIndicator);
+        singleOrJoint.markAsTouched();
     }
 }

@@ -465,30 +465,10 @@
                                 "blockTitle": "Last questions... We promise",
                                 "controls": [
                                     {
-                                        "id": "CountryOfCitizenship",
-                                        "options": [
-                                            {
-                                                "value": "Country1",
-                                                "label": "Country1"
-                                            },
-                                            {
-                                                "value": "Country2",
-                                                "label": "Country2"
-                                            }
-                                        ]
+                                        "id": "CountryOfCitizenship"
                                     },
                                     {
-                                        "id": "CountryOfResidency",
-                                        "options": [
-                                            {
-                                                "value": "Country1",
-                                                "label": "Country1"
-                                            },
-                                            {
-                                                "value": "Country2",
-                                                "label": "Country2"
-                                            }
-                                        ]
+                                        "id": "CountryOfResidency"
                                     },
                                     {
                                         "id": "USTaxCitizen",
@@ -504,6 +484,12 @@
                                                 "label": "No"
                                             }
                                         ]
+                                    },
+                                    {
+                                        "id" : "SSN"
+                                    },
+                                    {
+                                        "id" : "TIN"
                                     }
                                 ]
                             }
@@ -851,6 +837,12 @@
                                                 "label": "No"
                                             }
                                         ]
+                                    },
+                                    {
+                                        "id" : "Applicant2_SSN"
+                                    },
+                                    {
+                                        "id" : "Applicant2_TIN"
                                     }
                                 ]
                             }

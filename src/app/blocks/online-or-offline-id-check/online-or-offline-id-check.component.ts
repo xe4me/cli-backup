@@ -38,7 +38,8 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     }
 
     private onIdCheckSelection(typeOfCheck : string) {
-        this.__controlGroup.get(this.__custom.controls[0].id).setValue(typeOfCheck);
-        this.onNext();
+        const onlineOrOffline = this.__controlGroup.get(this.__custom.controls[0].id)
+        onlineOrOffline.setValue(typeOfCheck);
+        onlineOrOffline.markAsTouched();
     }
 }

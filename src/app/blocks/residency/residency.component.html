@@ -3,25 +3,23 @@
         Country of citizenship
     </div>
     <amp-form-row>
-        <amp-dropdown
+        <amp-country
             [isInSummaryState]="isInSummaryState"
             [id]="__custom.controls[0].id"
-            [options]="__custom.controls[0].options"
             [controlGroup]="__controlGroup"
             [required]="true">
-        </amp-dropdown>
+        </amp-country>
     </amp-form-row>
     <div class="mt">
         Country of residency
     </div>
     <amp-form-row>
-        <amp-dropdown
+        <amp-country
             [isInSummaryState]="isInSummaryState"
             [id]="__custom.controls[1].id"
-            [options]="__custom.controls[1].options"
             [controlGroup]="__controlGroup"
             [required]="true">
-        </amp-dropdown>
+        </amp-country>
     </amp-form-row>
     <div class="mt">
         Are you a United States resident or citizen for tax purposes?
@@ -35,5 +33,7 @@
             [buttons]="__custom.controls[2].buttons"
             [controlGroup]="__controlGroup" >
         </amp-group-buttons>
+    </amp-form-row>
+    <amp-form-row>
     </amp-form-row>
 </amp-form-block>
