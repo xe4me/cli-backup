@@ -1,1 +1,26 @@
-@import '../abstracts';
+*,
+*:after,
+*:before {
+    @include box-sizing(border-box);
+}
+
+html,
+body {
+    background-color: white !important;
+}
+
+a {
+    text-decoration: none;
+    color: $amp-colour-sky-blue;
+    cursor: pointer;
+}
+
+p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6em;
+
+    @include media-query('tablet-and-up') {
+        font-size: 24px;
+    }
+}

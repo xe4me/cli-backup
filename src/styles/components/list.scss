@@ -9,6 +9,7 @@ $list-default-size: 6px;
     > li {
         padding-left: $list-default-padding;
         font-size: 18px;
+        font-weight: 300;
         margin-bottom: $list-default-margin;
 
         &:before {
