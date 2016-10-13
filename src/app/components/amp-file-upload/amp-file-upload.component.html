@@ -10,9 +10,6 @@
            (click)="updateToken()"
            (change)="displayProgress()"/>
 </div>
-<div *ngIf="error" class='errors'>
-    <span class='icon icon--close icon-errors'></span> {{errorMessage}}
-</div>
 <div class="progress mb" *ngIf="showProgress">
     <div class="file-name grid__item_floated 10/12">
         <h3>{{fileName}}</h3>
@@ -30,6 +27,9 @@
         </div>
     </div>
     <div class="file-remove grid__item_floated 2/12">
-        <h3>Remove<span class="icon icon--modal-close" aria-hidden="true"></span></h3>
+        <h3>Remove<span class="icon icon--modal-close" aria-hidden="true" (click)="removeFile()"></span></h3>
     </div>
+</div>
+<div *ngIf="error" class='errors'>
+    <span class='icon icon--close icon-errors'></span> {{errorMessage}}
 </div>
