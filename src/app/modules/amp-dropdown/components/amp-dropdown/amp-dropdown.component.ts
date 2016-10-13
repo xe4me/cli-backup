@@ -12,7 +12,7 @@ import {
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../../../modules/amp-utils';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
-import { DeviceService } from '../../../services/device/device.service';
+import { DeviceService } from '../../../../services/device/device.service';
 @Component( {
     selector        : 'amp-dropdown' ,
     inputs          : [
