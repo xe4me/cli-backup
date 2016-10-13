@@ -11,7 +11,7 @@
                         [controlGroup]='manualAddressCG'>
                 </amp-country>
 
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="country.id+'_'+index"></amp-error>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="country.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
 
@@ -32,7 +32,7 @@
                         [required]="false">
                 </amp-input>
                 
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="address.id+'_'+index"></amp-error>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="address.id+addDashOrNothing(index)"></amp-error>
                 <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
             </div>
         </amp-form-row>
@@ -54,7 +54,7 @@
                             [errors]='suburb.errors'>
                     </amp-input>
 
-                    <amp-error [controlGroup]='manualAddressCG' [controlId]="suburb.id+'_'+index"></amp-error>
+                    <amp-error [controlGroup]='manualAddressCG' [controlId]="suburb.id+addDashOrNothing(index)"></amp-error>
                     <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
                 </div>
             </amp-form-row>
@@ -72,7 +72,7 @@
                         [controlGroup]='manualAddressCG'>
                 </amp-states>
 
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+'_'+index"></amp-error>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+addDashOrNothing(index)"></amp-error>
                 <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
             </div>
 
@@ -89,7 +89,7 @@
                         [controlGroup]='manualAddressCG'>
                 </amp-input>
 
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="city.id+'_'+index"></amp-error>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="city.id+addDashOrNothing(index)"></amp-error>
                 <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
             </div>
 
@@ -109,7 +109,7 @@
                         [minLength]="getPostcodeMinLength()">
                 </amp-input>
 
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="postCode.id+'_'+index"></amp-error>
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="postCode.id+addDashOrNothing(index)"></amp-error>
                 <span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
             </div>
         </amp-form-row>
