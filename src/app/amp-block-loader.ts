@@ -27,6 +27,7 @@ export abstract class AmpBlockLoader implements OnChanges {
     private blocksCount : number            = 0;
     private retrievedFiles                  = [];
     private _blocks                         = [];
+    private _sectionName ;
 
     constructor ( public viewContainer : ViewContainerRef ,
                   public compiler : Compiler ,
@@ -103,6 +104,9 @@ export abstract class AmpBlockLoader implements OnChanges {
     }
 
     private loadAndCreate ( formDef : any , _requireMethod ) {
+        if ( formDef.blockLayout === BlockLayout[ BlockLayout.SECTION ]){
+            this._sectionName = formDef.name;
+        }
         this._blocks = formDef.blocks;
         if ( ! this._blocks ) {
             return;
@@ -151,12 +155,17 @@ export abstract class AmpBlockLoader implements OnChanges {
 
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
             this.registerSection( _blockDef );
+
+            if (_componentRef.instance.__controlGroup) {
+                _componentRef.instance.__controlGroup.custom = _blockDef.custom;
+            }
         }
 
         _componentRef.instance.__path        = _blockDef.path;
         _componentRef.instance.__blockType   = _blockDef.blockType;
         _componentRef.instance.__blockLayout = _blockDef.blockLayout;
         _componentRef.instance.__name        = _blockDef.name;
+        _componentRef.instance.__sectionName        = this._sectionName;
 
         if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
             _componentRef.instance.__page = _blockDef.page;

@@ -15,6 +15,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __fdn : (number|string)[];
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
+    protected __sectionName : string;
     protected __removeNext : Function;
     protected __loadNext : Function;
     protected __loadAt : Function;
@@ -77,7 +78,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     onNext () {
         if ( this.canGoNext ) {
-            this.scrollService.scrollToNextUndoneBlock( this.__form );
+            this.scrollService.scrollToNextUndoneBlock( this.__form);
             this.progressObserver.onProgress( this.__fdn );
             this.formModelService.save( this.__form.value );
             setTimeout( () => {
@@ -94,7 +95,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected subscribeToScrollEvents () {
         if ( ! this.noScroll ) {
             this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( changes ) => {
-                if ( changes === this.selectorName ) {
+                if ( changes.componentSelector && changes.componentSelector === this.selectorName ) {
                     this.isInSummaryState = false;
                     this.isActive         = true;
                     this.autoFocus();
