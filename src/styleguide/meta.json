@@ -100,6 +100,26 @@
         "readme": "<p>Here are the different types and styles of lists available</p>\n"
     },
     {
+        "name": "Icons",
+        "sources": [
+            "src/app/layout/icons/icons.ts"
+        ],
+        "id": "Icons",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/icons/icons.html",
+                "styles": "src/styleguide/layout/icons/icons.scss",
+                "source": "src/styleguide/layout/icons/icons.ts",
+                "galen": "src/styleguide/layout/icons/icons.spec",
+                "jasmine": "src/styleguide/layout/icons/icons.spec.ts",
+                "component": "icons",
+                "component_src_location": "layout/icons/icons",
+                "name": "Icons"
+            }
+        ],
+        "readme": "<p>Our available icons</p>\n"
+    },
+    {
         "name": "Amp Linear ProgressBar",
         "sources": [
             "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
