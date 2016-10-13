@@ -31,6 +31,7 @@ export class AmpFileUploadComponent implements OnInit {
     private basicOptions : Object;
     private progress : number = 0;
     private fileName : string;
+    private deleteFileName : string;
     private fileSize : string;
     private speed : string;
     private uploaded : string;
@@ -80,6 +81,7 @@ export class AmpFileUploadComponent implements OnInit {
         if ( response.response && response.status !== 404 ) {
             res = JSON.parse( response.response );
         }
+        this.deleteFileName = res ? res.payload.fileName : '';
         this._cd.detectChanges();
         this.fileName = response.originalName;
         this.fileSize = humanizeBytes( response.size );
@@ -117,5 +119,15 @@ export class AmpFileUploadComponent implements OnInit {
         this.error = true;
         this.showProgress = !this.error;
         this.errorMessage = res ? res.message : this.errorMessage;
+    }
+
+    private removeFile () : void {
+        let fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
+        if ( !fileRemoved ) {
+            this.error = true;
+            this.errorMessage = 'Error in deleting file';
+            return null;
+        }
+        this.showProgress = false;
     }
 }
