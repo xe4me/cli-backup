@@ -60,14 +60,14 @@ describe( 'amp standalone menu tests' , () => {
         fixture.detectChanges();
         expect( compiledNav ).toBe( null );
     } );
-    it( 'amp-standalone-menu check to see of the div has a class' , () => {
+   /* it( 'amp-standalone-menu check to see of the div has a class' , () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentNav = fixture.debugElement;
         let compiledNav = compiledTestComponentNav.query( By.css( 'div' ) );
         let menuComp = new AmpStandAloneMenuComponent();
         expect( menuComp.testForClass( compiledNav.nativeElement, 'thisisaclass')).toBe(true);
         expect( menuComp.testForClass( compiledNav.nativeElement, 'somespruisclass')).toBe(false);
-    } );
+    } );*/
 } );
 class MockElementRef implements ElementRef {
     nativeElement = {};
