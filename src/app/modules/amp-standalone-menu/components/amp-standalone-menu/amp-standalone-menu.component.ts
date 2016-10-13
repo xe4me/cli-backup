@@ -13,6 +13,7 @@ import {
 
 import { FormControl , FormGroup } from '@angular/forms';
 import { FormSectionService } from '../../../../services/form-section/form-section.service';
+import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 
 @Component({
@@ -41,11 +42,11 @@ export class AmpStandAloneMenuComponent implements OnInit {
     constructor(private _dom : BrowserDomAdapter,
                 private _cd : ChangeDetectorRef,
                 private elem : ElementRef,
-                private formSectionService : FormSectionService) {
-    }
+                private formSectionService : FormSectionService,
+                private domUtils : DomUtils) {
 
-    public testForClass(targetEl : any, className : string) {
-        return this.hasClass(targetEl, className);
+    this.domUtils = new DomUtils();
+
     }
 
     ngOnInit() : any {
@@ -115,14 +116,16 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private openCloseMenu(event) {
         let navElement = this._dom.query('nav');
         let clsName = 'open';
-        if (this.hasClass(navElement, clsName)) {
-            this.removeClass(navElement, clsName);
+        if (this.domUtils.hasClass(navElement, clsName)) {
+            this.domUtils.removeClass(navElement, clsName);
         } else {
-            this.addClass(navElement, clsName);
+            this.domUtils.addClass(navElement, clsName);
         }
     }
 
-    private addClass(el : any, className : string) {
+   // this.browserDomAdapter
+
+   /* private addClass(el : any, className : string) {
         if (el.classList) {
             el.classList.add(className);
         } else if (!this.hasClass(el, className)) {
@@ -145,5 +148,5 @@ export class AmpStandAloneMenuComponent implements OnInit {
         } else {
             return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
         }
-    }
+    }*/
 }

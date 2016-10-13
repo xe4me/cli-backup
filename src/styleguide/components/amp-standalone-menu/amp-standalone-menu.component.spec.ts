@@ -10,6 +10,7 @@ import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { FormSectionService } from '../../../app/services/form-section/form-section.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 import { AmpStandAloneMenuModule, AmpStandAloneMenuComponent } from '../../../app/modules/amp-standalone-menu';
+import { DomUtils } from '../../../app/modules/amp-utils/dom-utils';
 import { By } from '@angular/platform-browser';
 @Injectable()
 class ScrollService1 {
@@ -39,7 +40,8 @@ describe( 'amp standalone menu tests' , () => {
                 { provide : AmpStandAloneMenuComponent , useClass: TestComponent2 },
                 ProgressObserverService,
                 BrowserDomAdapter,
-                FormSectionService
+                FormSectionService,
+                DomUtils
             ]
         } );
         TestBed.compileComponents();
@@ -60,14 +62,6 @@ describe( 'amp standalone menu tests' , () => {
         fixture.detectChanges();
         expect( compiledNav ).toBe( null );
     } );
-   /* it( 'amp-standalone-menu check to see of the div has a class' , () => {
-        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
-        let compiledTestComponentNav = fixture.debugElement;
-        let compiledNav = compiledTestComponentNav.query( By.css( 'div' ) );
-        let menuComp = new AmpStandAloneMenuComponent();
-        expect( menuComp.testForClass( compiledNav.nativeElement, 'thisisaclass')).toBe(true);
-        expect( menuComp.testForClass( compiledNav.nativeElement, 'somespruisclass')).toBe(false);
-    } );*/
 } );
 class MockElementRef implements ElementRef {
     nativeElement = {};
