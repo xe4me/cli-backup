@@ -2,7 +2,7 @@
     <ul id="menu" class="progress skyblue">
         <li *ngFor='let section of sections; let i=index' id="{{section[1]}}" (click)="openCloseMenu()">
             <div class="divider" [ngClass]="{first: i == 0}"></div>
-            <div class="node" id="step-intro"></div>
+            <div class="node step-intro"></div>
             <span class="icon icon--chevron-down" aria-hidden="true"></span>
             <a href="#"><span>{{section[0]}}</span></a>
         </li>
