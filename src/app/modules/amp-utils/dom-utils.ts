@@ -1,5 +1,5 @@
 /*
- * Utils based class for dom manipulation
+ * Utils based class for dom manipulation, its worth noting that you can add or search single classes, multiple classes will need to be added
  *
  */
 export class DomUtils {
