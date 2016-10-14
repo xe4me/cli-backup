@@ -71,8 +71,14 @@ export class ReviewSectionComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.scrollService.$scrolling.subscribe((_fdnString) => {
+            if (_fdnString.componentSelector === this.__fdn.join('')) {
+                this.reviewSectionVisible = true;
+            }
+        });
+
         this.scrollService.$scrolled.subscribe((_fdnString) => {
-             this.reviewSectionVisible = _fdnString === this.__fdn.join('-') + '-block';
+            this.reviewSectionVisible = _fdnString.componentSelector === this.__fdn.join('-') + '-block';
         });
 
         // Filter blocks for review main and sticky columns.
@@ -86,10 +92,6 @@ export class ReviewSectionComponent implements OnInit {
         this._sticky_blocks.blocks = this.__child_blocks.blocks.filter((block) => {
             return block.blockLayout === 'STICKY';
         });
-    }
-
-    showReviewSection () : boolean {
-        return true;
     }
 
     public shouldStick = () : boolean => {
