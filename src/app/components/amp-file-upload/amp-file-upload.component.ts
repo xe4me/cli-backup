@@ -9,6 +9,7 @@ import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import {Observable} from "rxjs";
 
 @Component({
     selector    : 'amp-file-upload',
@@ -121,12 +122,16 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private removeFile () : void {
-        let fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
-        if ( !fileRemoved ) {
-            this.error = true;
-            this.errorMessage = 'Error in deleting file';
-            return null;
-        }
-        this.showProgress = false;
+        let fileRemoved : Observable <any>;
+        fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
+        fileRemoved.subscribe(
+            ( res : any ) => {
+                this.showProgress = false;
+            },
+            ( error ) => {
+                this.error = true;
+                this.errorMessage = 'Error in deleting file';
+            }
+        );
     }
 }
