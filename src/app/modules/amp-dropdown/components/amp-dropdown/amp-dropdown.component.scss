@@ -106,8 +106,6 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
 
         .ng-invalid.ng-touched:not(:focus) + &:after {          
             border-color: $amp-colour-alert-danger !important;
-            border-width: $amp-dropdown-input-border-width-hover;
-            bottom: -$amp-dropdown-input-border-width-hover;
         }
 
         .amp-dropdown--is-open & {

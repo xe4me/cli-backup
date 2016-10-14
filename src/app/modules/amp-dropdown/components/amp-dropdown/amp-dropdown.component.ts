@@ -72,7 +72,7 @@ export class AmpDropdownComponent {
     public setSelectValue ( value ) {
         this.selectElem.value = value;
         this.trigger( 'change' , this.selectElem );
-        this.hideOptionsWithFocus();
+        this.hideOptions();
     }
 
     ngOnInit () : any {
