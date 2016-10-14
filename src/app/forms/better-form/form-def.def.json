@@ -852,7 +852,7 @@
                             ]
                         },
                         {
-                            "name": "Last step",
+                            "name": "LastStep",
                             "blockType": "PageSectionComponent",
                             "blockLayout": "SECTION",
                             "commonBlock": true,
