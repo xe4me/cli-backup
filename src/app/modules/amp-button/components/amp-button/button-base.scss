@@ -11,12 +11,13 @@ Do not modify this unless you know what you're doing
 $ddc-buttons-and-icons-transition-time: 300ms;
 $buttons-transition-time: $ddc-buttons-and-icons-transition-time;
 $buttons-default-width: 128px;
-$buttons-default-height: 128px;
+$buttons-default-height: 58px;
+$buttons-default-line-height: 22px;
 $buttons-default-margin-top: 4px;
 $buttons-default-height: 42px;
 $disabled-text-color: #9f9f9f;
 $disabled-background-color: #cbd2dc;
-$btn-margin-top: 30px;
+$btn-margin-top: 60px;
 
 
 //btn-ok
@@ -83,30 +84,38 @@ Button base class used by all
 */
 
 .btn {
-    line-height: $buttons-default-height;
-    width: $buttons-default-width;
+    line-height: $buttons-default-line-height;
+    min-height: $buttons-default-height;
+    min-width: $buttons-default-width;
+
     @include media-query(tablet-and-up) {
         margin-top: $btn-margin-top;
     }
+
     @extend %#{$namespace}font-size-small;
     @include transition(color, background-color, $buttons-transition-time ease-in-out);
+
     &.btn-full {
         width: 100% !important;
         display: block;
     }
+
     &.btn-inline {
         width: auto !important;
         display: inline-block;
     }
+
     &.btn-review {
         width: $btn-review-default-width;
     }
+
     &[disabled] {
         background-color: $btn-ok-disabled-background-color !important;
         border-color: #FFFFFF;
         cursor: default;
         color: $btn-ok-disabled-text-color;
     }
+
     > .icon {
         font-size: 18px;
         padding-right:4px;
