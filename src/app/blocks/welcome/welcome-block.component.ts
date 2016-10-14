@@ -49,6 +49,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
         const newOrExistingControl = this.__controlGroup.get(this.__custom.controls[0].id);
 
         newOrExistingControl.setValue(newOrExisting);
+        newOrExistingControl.markAsTouched();
 
         if (this.nextBlockChanged) {
             this.__removeNext(this.viewReference);

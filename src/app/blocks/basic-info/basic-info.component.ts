@@ -1,13 +1,20 @@
 import {
-    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
-    AfterViewInit
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    OnInit,
+    ChangeDetectionStrategy,
+    Input,
+    AfterViewInit,
+    ViewChild
 } from '@angular/core';
 import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
-    FormService
+    FormService,
+    AutoFocusOnDirective
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'basic-info-block' ,
@@ -15,6 +22,9 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class BasicInfoBlock extends FormBlock {
+
+    @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
+
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,

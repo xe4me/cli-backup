@@ -475,12 +475,12 @@
                                         "buttons": [
                                             {
                                                 "id": "Yes",
-                                                "value": "Yes",
+                                                "value": "yes",
                                                 "label": "Yes"
                                             },
                                             {
                                                 "id": "No",
-                                                "value": "No",
+                                                "value": "no",
                                                 "label": "No"
                                             }
                                         ]
@@ -798,42 +798,22 @@
                                 "blockTitle": "Last questions... We promise",
                                 "controls": [
                                     {
-                                        "id": "Applicant2_CountryOfCitizenship",
-                                        "options": [
-                                            {
-                                                "value": "Country1",
-                                                "label": "Country1"
-                                            },
-                                            {
-                                                "value": "Country2",
-                                                "label": "Country2"
-                                            }
-                                        ]
+                                        "id": "Applicant2_CountryOfCitizenship"
                                     },
                                     {
-                                        "id": "Applicant2_CountryOfResidency",
-                                        "options": [
-                                            {
-                                                "value": "Country1",
-                                                "label": "Country1"
-                                            },
-                                            {
-                                                "value": "Country2",
-                                                "label": "Country2"
-                                            }
-                                        ]
+                                        "id": "Applicant2_CountryOfResidency"
                                     },
                                     {
                                         "id": "Applicant2_USTaxCitizen",
                                         "buttons": [
                                             {
                                                 "id": "Applicant2_USTaxCitizen_Yes",
-                                                "value": "Yes",
+                                                "value": "yes",
                                                 "label": "Yes"
                                             },
                                             {
                                                 "id": "Applicant2_USTaxCitizen_No",
-                                                "value": "No",
+                                                "value": "no",
                                                 "label": "No"
                                             }
                                         ]
