@@ -1,9 +1,8 @@
 import { Component , ChangeDetectionStrategy } from '@angular/core';
 @Component( {
-    selector        : 'amp-tooltip' ,
-    template        : require( './amp-tooltip.component.html' ) ,
-    styles          : [ require( './amp-tooltip.component.scss' ).toString() ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush ,
+    selector : 'amp-tooltip-cmp' ,
+    template : `<div class="amp-tooltip" [innerHtml]='message'></div>` ,
+    styles   : [ require( './amp-tooltip.component.scss' ).toString() ]
 } )
 export class AmpTooltipComponent {
 }

@@ -62,8 +62,7 @@ export class ExampleDirective {
         MdButton ,
         MdIcon,
         MD_RIPPLE_DIRECTIVES,
-        TABS_INTERNAL_DIRECTIVES,
-        PORTAL_DIRECTIVES
+        TABS_INTERNAL_DIRECTIVES
     ]
 } )
 export class ExampleComponent {
