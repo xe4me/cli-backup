@@ -11,7 +11,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
-    protected noScroll = false;
+    protected noScroll                       = false;
     protected __fdn : (number|string)[];
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
@@ -20,6 +20,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __loadAt : Function;
     protected __removeAt : Function;
     protected __custom : any;
+    protected visibleFlag : string           = 'defaultIsVisible';
+    protected doneFlag : string              = 'defaultIsDone';
     private scrollSubscription : Subscription;
 
     constructor ( protected formModelService : FormModelService ,
@@ -35,6 +37,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () {
         this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
+        this.visibleFlag  = this.selectorName + 'IsVisible';
+        this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
         this._cd.markForCheck();
     }
