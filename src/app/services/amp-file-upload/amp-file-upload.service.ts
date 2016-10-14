@@ -7,6 +7,7 @@ import { Http,
 } from '@angular/http';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AmpFileUploadService {
@@ -41,6 +42,7 @@ export class AmpFileUploadService {
     }
 
     public addFilesToQueue( files : any ) : void {
+        this._queue = [];
         files.forEach(( file : File ) => {
             if (this.isFile( file )) {
                 this._queue.push( file );
@@ -55,21 +57,11 @@ export class AmpFileUploadService {
         });
     };
 
-    public deleteFile ( fileName : string, formName : string, formId : string ) : boolean {
+    public deleteFile ( fileName : string, formName : string, formId : string ) : Observable<any> {
         let deleteUrlwithParms : string;
-        let isFileDeleted : boolean = false;
         deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&objectId=' + formId;
-        this.http.post( deleteUrlwithParms, {} )
-                        .map( ( res : Response ) => res.json() )
-                        .subscribe(
-                            ( res : any ) => {
-                                isFileDeleted = true;
-                            },
-                            ( error ) => {
-                                isFileDeleted = false;
-                            }
-                        );
-        return isFileDeleted;
+        return this.http.post( deleteUrlwithParms, {} )
+                        .map( ( res : Response ) => res.json() );
     }
 
     private isFile( file : any ) : boolean {
