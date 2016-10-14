@@ -1,10 +1,10 @@
 @@ set
     task    AmpIntroBlock
-    url     http://localhost:3001/component/AmpIntroBlock
+    url     http://localhost:3001/component/AmpGreenidBlock
 
 @@ parameterized
     | subtask    | spec                                                      |
-    | All        | src/styleguide/blocks/amp-intro-block/amp-intro-block.component.test.spec    |
+    | All        | src/styleguide/blocks/amp-intro-block/amp-greenid-block.component.test.spec    |
 
 @@ parameterized
     | browser       |
