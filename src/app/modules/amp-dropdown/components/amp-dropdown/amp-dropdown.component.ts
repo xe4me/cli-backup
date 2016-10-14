@@ -12,6 +12,7 @@ import {
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../../../modules/amp-utils';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { DeviceService } from '../../../../services/device/device.service';
 @Component( {
     selector        : 'amp-dropdown' ,
     inputs          : [
@@ -239,7 +240,15 @@ export class AmpDropdownComponent {
     }
 
     protected trigger ( event , el ) {
-        el.dispatchEvent( new Event( event ) );
+        let ev = null;
+        if (DeviceService.isIE()) {
+            ev = document.createEvent('Event');
+            ev.initEvent(event, true, true);
+        } else {
+            ev = new Event( event );
+        }
+
+        el.dispatchEvent( ev );
         this._cd.detectChanges();
     }
 

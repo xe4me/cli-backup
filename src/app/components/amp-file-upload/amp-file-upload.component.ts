@@ -3,7 +3,6 @@ import { Component,
          ChangeDetectorRef,
          Input,
          ViewChild } from '@angular/core';
-import { UPLOAD_DIRECTIVES } from 'ng2-uploader';
 import { Http,
          Response } from '@angular/http';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
@@ -15,7 +14,7 @@ import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
     styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
-    directives  : [ UPLOAD_DIRECTIVES, AmpButton, AmpLinearProgressBarComponent ],
+    directives  : [ AmpButton, AmpLinearProgressBarComponent ],
     providers   : [ AmpFileUploadService ]
 })
 export class AmpFileUploadComponent implements OnInit {
@@ -26,12 +25,12 @@ export class AmpFileUploadComponent implements OnInit {
     @Input() tokenUrl : string;
     @Input() formName : string;
     @Input() formId : string;
-    @Input() enableVirusScan : string;
 
     public token : string;
     private basicOptions : Object;
     private progress : number = 0;
     private fileName : string;
+    private deleteFileName : string;
     private fileSize : string;
     private speed : string;
     private uploaded : string;
@@ -81,10 +80,11 @@ export class AmpFileUploadComponent implements OnInit {
         if ( response.response && response.status !== 404 ) {
             res = JSON.parse( response.response );
         }
+        this.deleteFileName = res ? res.payload.fileName : '';
         this._cd.detectChanges();
         this.fileName = response.originalName;
         this.fileSize = humanizeBytes( response.size );
-        this.speed = response.speedAverageHumanized ? response.speedAverageHumanized : response.progress.speedHumanized;
+        this.speed = response.progress.speedHumanized ? response.progress.speedHumanized : this.speed;
         this.uploaded = humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
         if ( (res && res.statusCode !== 200) || response.status === 404 ) {
@@ -101,7 +101,7 @@ export class AmpFileUploadComponent implements OnInit {
                 ( res : any ) => {
                     this.token = res.payload.token;
                     this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
-                                            + '&enableVirusScan=' + this.enableVirusScan + '&token=' + this.token;
+                                            + '&token=' + this.token;
                     this.basicOptions = {
                         url : this.uploadUrlWithParms,
                         calculateSpeed : true
@@ -118,5 +118,15 @@ export class AmpFileUploadComponent implements OnInit {
         this.error = true;
         this.showProgress = !this.error;
         this.errorMessage = res ? res.message : this.errorMessage;
+    }
+
+    private removeFile () : void {
+        let fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
+        if ( !fileRemoved ) {
+            this.error = true;
+            this.errorMessage = 'Error in deleting file';
+            return null;
+        }
+        this.showProgress = false;
     }
 }

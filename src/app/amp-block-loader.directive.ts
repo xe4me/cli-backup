@@ -37,7 +37,7 @@ export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges
         try {
             return require( '../../../../src/app/' + path + '\.ts' );
         } catch ( err ) {
-            console.log( 'Did not find the experience components, maybe we are not in an experience' );
+            console.log( 'Cannot find path: ' + path );
         }
         return null;
     }
