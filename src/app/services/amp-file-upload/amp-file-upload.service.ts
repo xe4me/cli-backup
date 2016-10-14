@@ -2,6 +2,9 @@ import { Injectable,
          EventEmitter,
          Output
 } from '@angular/core';
+import { Http,
+         Response
+} from '@angular/http';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 
@@ -10,11 +13,16 @@ export class AmpFileUploadService {
 
     @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
-    public _tokenUrl : string = '/ddc/secure/api/upload/token';
-    public _uploadUrl : string = '/ddc/secure/api/upload/upload';
+    public _baseUrl : string = 'https://api-upload-ddc.digital-pilot.ampaws.com.au';
+    public _tokenUrl : string = this._baseUrl + '/ddc/secure/api/upload/token';
+    public _uploadUrl : string = this._baseUrl + '/ddc/secure/api/upload/upload';
+    public _deleteUrl : string = this._baseUrl + '/ddc/secure/api/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
     private _queue : any[] = [];
+
+    constructor ( private http : Http ) {
+    }
 
     public get tokenUrl () : string {
         return this._tokenUrl;
@@ -46,6 +54,23 @@ export class AmpFileUploadService {
             this.uploadFile( f );
         });
     };
+
+    public deleteFile ( fileName : string, formName : string, formId : string ) : boolean {
+        let deleteUrlwithParms : string;
+        let isFileDeleted : boolean = false;
+        deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&objectId=' + formId;
+        this.http.post( deleteUrlwithParms, {} )
+                        .map( ( res : Response ) => res.json() )
+                        .subscribe(
+                            ( res : any ) => {
+                                isFileDeleted = true;
+                            },
+                            ( error ) => {
+                                isFileDeleted = false;
+                            }
+                        );
+        return isFileDeleted;
+    }
 
     private isFile( file : any ) : boolean {
         return file !== null && ( file instanceof Blob || ( file.name && file.size ));
