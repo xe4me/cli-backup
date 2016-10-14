@@ -2,13 +2,12 @@ import { Component , ChangeDetectorRef , ElementRef , Input , ViewChild } from '
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
-import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
-import { AmpIntroBlockComponent } from '../../../app/blocks/amp-intro-block/amp-intro-block.component';
+import { AmpGreenidBlockComponent } from '../../../app/blocks/amp-greenid-block/amp-greenid-block';
 import { FormBlock } from '../../../app/form-block';
 import { ThemeService } from '../../services/theme';
 @Component( {
     selector    : 'amp-greenid-block-basic-usage' ,
-    directives  : [ AmpButton , AmpIntroBlockComponent ] ,
+    directives  : [ AmpGreenidBlockComponent ] ,
     templateUrl : 'src/styleguide/blocks/amp-greenid-block/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ]
 } )
