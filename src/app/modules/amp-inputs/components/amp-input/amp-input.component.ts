@@ -62,7 +62,8 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
             'noPadding' ,
             'currency' ,
             'iconRight' ,
-            'labelHidden'
+            'labelHidden',
+            'keepControl'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
@@ -100,6 +101,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
     protected tabindex : any             = null;
     protected defaultValue : any         = null;
     protected currency : string          = null;
+    protected keepControl : boolean      = false;
     protected placeholder : string;
     protected onAdjustWidth : EventEmitter<any>;
     protected hostClassesRemove;
@@ -169,11 +171,11 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
     }
 
     ngOnDestroy () : any {
-        this.control.validator = null;
-        this.control.updateValueAndValidity( {
-            onlySelf  : false ,
-            emitEvent : true
-        } );
+         if ( ! this.keepControl ) {
+            if ( this.controlGroup.contains( this.id ) ) {
+                this.controlGroup.removeControl( this.id );
+            }
+        }
     }
 
     public checkErrors ( killTimer = false ) {
