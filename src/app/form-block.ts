@@ -1,11 +1,11 @@
-import { ElementRef , ChangeDetectorRef , OnInit, AfterViewInit , OnDestroy , ViewChild } from '@angular/core';
+import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewChild } from '@angular/core';
 import { arrayJoinByDash } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
-export abstract class FormBlock implements OnInit, AfterViewInit, OnDestroy {
+export abstract class FormBlock implements AfterViewInit, OnDestroy {
     public autoFocusOn;
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
@@ -34,11 +34,8 @@ export abstract class FormBlock implements OnInit, AfterViewInit, OnDestroy {
         return this;
     }
 
-    ngOnInit () {
-        this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
-    }
-
     ngAfterViewInit () {
+        this.selectorName = arrayJoinByDash( this.__fdn ) + '-block';
         this.subscribeToScrollEvents();
         this._cd.markForCheck();
     }
