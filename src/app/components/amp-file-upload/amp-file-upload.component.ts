@@ -9,7 +9,7 @@ import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
-import {Observable} from "rxjs";
+import { Observable } from 'rxjs';
 
 @Component({
     selector    : 'amp-file-upload',
@@ -40,6 +40,7 @@ export class AmpFileUploadComponent implements OnInit {
     private error : boolean = false;
     private errorMessage : string;
     private uploadUrlWithParms : string = '';
+    private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private http : Http,
@@ -77,20 +78,22 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private handleUpload ( response : any ) : void {
-        let res : any;
-        if ( response.response && response.status !== 404 ) {
-            res = JSON.parse( response.response );
-        }
-        this.deleteFileName = res ? res.payload.fileName : '';
         this._cd.detectChanges();
+        let res : any;
+        res = response.response ? JSON.parse( response.response ) : null;
+        if ( res && (this.errorCodes.indexOf(res.statusCode) > -1 )) {
+            this.setErrorMessage( res );
+            return null;
+        }
+        if (res && res.statusCode === 200 ) {
+            this.deleteFileName = res ? res.payload.fileName : '';
+            return null;
+        }
         this.fileName = response.originalName;
         this.fileSize = humanizeBytes( response.size );
         this.speed = response.progress.speedHumanized ? response.progress.speedHumanized : this.speed;
         this.uploaded = humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
-        if ( (res && res.statusCode !== 200) || response.status === 404 ) {
-            this.setErrorMessage( res );
-        }
     }
 
     private updateToken () : void {
