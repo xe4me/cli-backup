@@ -1,73 +1,71 @@
 <amp-form-block [context]="context()">
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
-            <amp-country
+	<amp-form-row>
+		<div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+			<amp-country
                 [isInSummaryState]="isInSummaryState"
                 [id]="__custom.controls[0].id"
                 [controlGroup]="__controlGroup"
                 [required]="true"
-                [label]="'Country of citizenship'">
-            </amp-country>
-        </div>
-    </amp-form-row>
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
-            <amp-country
+				[label]="'Country of citizenship'">
+			</amp-country>
+		</div>
+	</amp-form-row>
+	<amp-form-row>
+		<div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+			<amp-country
                 [isInSummaryState]="isInSummaryState"
                 [id]="__custom.controls[1].id"
                 [controlGroup]="__controlGroup"
                 [required]="true"
-                [label]="'Country of residency'">
-            </amp-country>
+				[label]="'Country of residency'">
+			</amp-country>
+		</div>
+	</amp-form-row>
+	<p class="mt-60">
+        <label>
+            Are you a United States resident or citizen for tax purposes?
+        </label>
+    </p>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-9/12">
+            <amp-group-buttons
+                #usTaxResidency
+                [required]="true"
+                [isInSummaryState]="isInSummaryState"
+                [id]="__custom.controls[2].id"
+                [buttons]="__custom.controls[2].buttons"
+                [controlGroup]="__controlGroup">
+            </amp-group-buttons>
         </div>
     </amp-form-row>
-    <amp-form-row>
-        <p class="grid__item_floated">
-            <label>
-                Are you a United States resident or citizen for tax purposes?
-            </label>
-            <amp-form-row>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-9/12 mt">
-                    <amp-group-buttons
-                        #usTaxResidency
-                        [required]="true"
-                        class="palm-3/5 tablet-and-up-2/5"
-                        [isInSummaryState]="isInSummaryState"
-                        [id]="__custom.controls[2].id"
-                        [buttons]="__custom.controls[2].buttons"
-                        [controlGroup]="__controlGroup">
-                    </amp-group-buttons>
-                </div>
-            </amp-form-row>
-        </p>
-    </amp-form-row>
-    <amp-form-row *ngIf="usTaxResidency?.control?.value === 'yes'">
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
-                <amp-input
-                        #ssn
-                        [id]="__custom.controls[3].id"
-                        [controlGroup]="__controlGroup"
-                        [label]="'SSN'"
-                        [isInSummaryState]="isInSummaryState"
-                        [required]="!tin.control.value"
-                        [amp-number-only]="ssn.control"
-                        [maxLength]="9">
-                </amp-input>
-            </div>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr" [hidden]="isInSummaryState">
-                <p class="mt ml++">Or</p>
-            </div>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
-                <amp-input
-                        #tin
-                        [id]="__custom.controls[4].id"
-                        [controlGroup]="__controlGroup"
-                        [label]="'TIN'"
-                        [required]="!ssn.control.value"
-                        [isInSummaryState]="isInSummaryState"
-                        [amp-number-only]="tin.control"
-                        [maxLength]="9">
-                </amp-input>
-            </div>
-    </amp-form-row>
+
+	<amp-form-row *ngIf="usTaxResidency.control.value === 'yes'">
+		<div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+			<amp-input
+                #ssn
+                [id]="__custom.controls[3].id"
+                [controlGroup]="__controlGroup"
+                [label]="'SSN'"
+                [isInSummaryState]="isInSummaryState"
+				[required]="!tin.control.value"
+                [amp-number-only]="ssn.control"
+                [maxLength]="9">
+			</amp-input>
+		</div>
+		<div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr" [hidden]="isInSummaryState">
+			<p class="mt ml++">Or</p>
+		</div>
+		<div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+			<amp-input
+                #tin
+                [id]="__custom.controls[4].id"
+                [controlGroup]="__controlGroup"
+                [label]="'TIN'"
+                [required]="!ssn.control.value"
+				[isInSummaryState]="isInSummaryState"
+                [amp-number-only]="tin.control"
+                [maxLength]="9">
+			</amp-input>
+		</div>
+	</amp-form-row>
 </amp-form-block>
