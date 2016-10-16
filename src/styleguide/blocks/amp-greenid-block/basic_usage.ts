@@ -1,10 +1,10 @@
-import { Component , ChangeDetectorRef , ElementRef , Input , ViewChild } from '@angular/core';
-import { ScrollService } from '../../../app/services/scroll/scroll.service';
-import { FormModelService } from '../../../app/services/form-model/form-model.service';
-import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
+
+import { Component , OnInit , ChangeDetectorRef, ElementRef } from '@angular/core';
 import { AmpGreenidBlockComponent } from '../../../app/blocks/amp-greenid-block/amp-greenid-block';
-import { FormBlock } from '../../../app/form-block';
+import { FormControl , FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
+import { ScrollService } from '../../../app/services/scroll/scroll.service';
+
 @Component( {
     selector    : 'amp-greenid-block-basic-usage' ,
     directives  : [ AmpGreenidBlockComponent ] ,
@@ -14,29 +14,36 @@ import { ThemeService } from '../../services/theme';
 
 export default class AmpGreenIdBlockBasicUsage {
 
-
+    public controlGroup : FormGroup = new FormGroup( {} );
+    public isInSummaryState    = false;
+    private acknowledge = {
+        id          : 'acknowledge' ,
+        disabled    : false ,
+        required    : true ,
+        checked     : false ,
+        scrollOutOn : null
+    };
 
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ,
                   private elementRef : ElementRef ) {
     }
 
-
-
-    /**
-     * This code is just to set focus on an element and is not for general use.
-     */
-
-    autoFocus () {
-        setTimeout( () => {
-            let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
-            if ( inputs && inputs.length > 0 ) {
-                inputs[ 2 ].focus();
-            }
-        } , 100 );
+    get control () {
+        return this.controlGroup.controls[ 'acknowledge' ];
     }
 
-    ngAfterViewInit () {
-        this.autoFocus();
+    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
+    }
+
+    ngOnInit () {
+    }
+
+    private check () {
+        this.control.setValue( ! this.control.value );
+    }
+
+    private onAcknowledgeSelect ( value ) {
+       // console.log('value', value );
     }
 
 }

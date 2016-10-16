@@ -6,13 +6,18 @@ import {
     animate ,
     transition
 } from '@angular/core';
+
 @Component( {
     selector   : 'amp-greenid-block' ,
     host       : {
         '[@slideUp]' : 'slideUp'
     } ,
     template   : `
-           <div> this is the green id</div>
+                <div class='grid__container 1/1 palm-1/1'>
+                    <div class='grid__item_floated utils__align&#45;&#45;left' >
+                                <ng-content></ng-content>
+                    </div>
+                </div>
     ` ,
     styles     : [ require( './amp-greenid-block.component.scss' ).toString() ] ,
     animations : [

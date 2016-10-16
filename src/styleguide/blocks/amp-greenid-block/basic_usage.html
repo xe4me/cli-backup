@@ -1,3 +1,24 @@
 <amp-greenid-block>
 
+    <section class="section mv">
+        <p class="para">
+            GreenID implementation
+
+        </p>
+    </section>
+
+    <amp-checkbox
+        [attr.theme]="themeService.theme.attr"
+        [isInSummaryState]='isInSummaryState'
+        [controlGroup]='controlGroup'
+        [required]='acknowledge.required'
+        [checked]='acknowledge.checked'
+        [disabled]='acknowledge.disabled'
+        [scrollOutOn]='acknowledge.scrollOutOn'
+        [id]='acknowledge.id'
+        (select)='onAcknowledgeSelect($event)'>
+        <div class='heading heading-contxtual-label'>
+            I agree that I want to verfiy my id...
+        </div>
+    </amp-checkbox>
 </amp-greenid-block>
