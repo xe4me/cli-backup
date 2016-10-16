@@ -71,7 +71,7 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
-    @ViewChild( 'input' ) inputCmp : AmpInputComponent;
+    @ViewChild( 'input' ) inputCmp;
     public control : FormControl         = new FormControl();
     public errors                        = {};
     public controlGroup : FormGroup;
@@ -326,8 +326,8 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
             this.inputCmp.value = this.control.value.trim();
-            notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
-            notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
+            notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
+            notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
     }
