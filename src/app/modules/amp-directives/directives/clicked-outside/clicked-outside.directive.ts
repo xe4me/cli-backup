@@ -11,6 +11,7 @@ export class ClickedOutsideDirective {
     private outsideClick : EventEmitter<boolean>;
 
     constructor ( private _el : ElementRef ) {
+        console.log('initializing clicked outside');
         this.outsideClick = new EventEmitter<boolean>();
     }
 

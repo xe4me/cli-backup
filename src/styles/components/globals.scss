@@ -1,87 +1,90 @@
 *,
 *:after,
 *:before {
-    @include box-sizing(border-box);
+  @include box-sizing(border-box);
 }
 
 a {
-    text-decoration: none;
-    color: $amp-colour-sky-blue;
-    cursor: pointer;
+  text-decoration : none;
+  color           : $amp-colour-sky-blue;
+  cursor          : pointer;
 }
 
 .btn-ok-margin-top {
-    margin-top: 60px;
+  margin-top : 60px;
 }
 
 .summary-state {
-    @include amp-family($summary-state-font-family);
-    color: $amp-colour-sky-blue;
-    font-weight: $summary-state-font-weight;
-    vertical-align: bottom;
-    line-height: 43px;
-    font-size: $ddc-input-field-font-size;
+  @include amp-family($summary-state-font-family);
+  color          : $amp-colour-sky-blue;
+  font-weight    : $summary-state-font-weight;
+  vertical-align : bottom;
+  line-height    : 43px;
+  font-size      : $ddc-input-field-font-size;
 }
 
 .calculated-total {
-    color: $amp-colour-sky-blue;
+  color : $amp-colour-sky-blue;
 }
 
 .bolr-right-padding {
-    padding-right: $bolr-right-padding;
+  padding-right : $bolr-right-padding;
 }
 
 .bolr-left-margin {
-    margin-left: $bolr-left-margin;
+  margin-left : $bolr-left-margin;
 }
 
 // Just to check if this is the reason for the gray overall background
 html,
 body {
-    background-color: white !important;
+  background-color : white !important;
 }
 
 .container {
-    margin: 0;
-    max-width: 1224px;
-    padding: 0 $content-padding-h;
+  margin    : 0;
+  max-width : 1224px;
+  padding   : 0 $content-padding-h;
 
-    @include media-query('lap-and-up') {
-        padding: 0 $content-padding-h-lap-and-up;
-    }
+  @include media-query('lap-and-up') {
+    padding : 0 $content-padding-h-lap-and-up;
+  }
 
-    &--full-height {
-        position: relative;
-        height: 100vh;
-    }
+  &--full-height {
+    position : relative;
+    height   : 100vh;
+  }
 }
 
 [hidden] {
-    display: none;
+  display : none;
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+  position : absolute;
+  width    : 1px;
+  height   : 1px;
+  padding  : 0;
+  margin   : -1px;
+  overflow : hidden;
+  clip     : rect(0, 0, 0, 0);
+  border   : 0;
 }
+
 /** The overlay-container is an invisible element which contains all individual overlays. */
 .md-overlay-container {
-    position: absolute;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%; }
+  position       : absolute;
+  pointer-events : none;
+  top            : 0;
+  left           : 0;
+  height         : 100%;
+  width          : 100%;
+}
 
 /** A single overlay pane. */
 .md-overlay-pane {
-    position: absolute;
-    pointer-events: auto;
-    box-sizing: border-box;
-    z-index: 1000; }
+  position       : absolute;
+  pointer-events : auto;
+  box-sizing     : border-box;
+  z-index        : 1000;
+}

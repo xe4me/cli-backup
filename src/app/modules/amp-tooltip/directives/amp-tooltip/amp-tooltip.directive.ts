@@ -14,14 +14,15 @@ export type TooltipPosition = 'before' | 'after' | 'above' | 'below';
 @Directive( {
     selector : '[amp-tooltip]' ,
     host     : {
-        '(mouseenter)' : '_handleMouseEnter($event)' ,
-        '(mouseleave)' : '_handleMouseLeave($event)' ,
+        //'(mouseenter)' : '_handleMouseEnter($event)' ,
+        '(click)' : '_handleMouseEnter($event)' ,
+        //'(mouseleave)' : '_handleMouseLeave($event)' ,
     }
 } )
 export class AmpTooltipDirective {
     visible : boolean                   = false;
     /** Allows the user to define the position of the tooltip relative to the parent element */
-    private _position : TooltipPosition = 'below';
+    private _position : TooltipPosition = 'after';
     @Input( 'amp-tooltip-position' ) get position () : TooltipPosition {
         return this._position;
     }
@@ -130,12 +131,17 @@ export class AmpTooltipDirective {
         this.show();
     }
 
+    _handleClickedOutside = () : void=> {
+        console.log('Cliock');
+        this.hide();
+    };
+
     /**
      * Hides the tooltip on mouse leave
      * @param event
      */
     _handleMouseLeave ( event : MouseEvent ) {
-        //this.hide();
+        this.hide();
     }
 
     /**
@@ -149,6 +155,7 @@ export class AmpTooltipDirective {
                 .attach( portal )
                 .then( ( tooltipRef )=> {
                     tooltipRef.instance.message = this.message;
+                    tooltipRef.instance.hide = this.hide;
                     console.log( 'tooltipRef.instance' , tooltipRef.instance );
                     this._updatePosition();
                 } );
