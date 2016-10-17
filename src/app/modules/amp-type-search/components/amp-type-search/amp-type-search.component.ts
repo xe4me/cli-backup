@@ -203,9 +203,6 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    private initForApi () : Subscription {
-    }
-
     private markInputAsUnDirty () : void {
         setTimeout( () => {
             (<any> this.control)._dirty = false;
