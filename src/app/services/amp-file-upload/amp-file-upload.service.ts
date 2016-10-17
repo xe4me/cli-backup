@@ -34,6 +34,10 @@ export class AmpFileUploadService {
         return this._uploadUrl;
     }
 
+    public get deleteUrl () : string {
+        return this._deleteUrl;
+    }
+
     public get errorMessage () : string {
         return this._errorMessage;
     }

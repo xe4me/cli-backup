@@ -23,6 +23,7 @@ export class AmpFileUploadComponent implements OnInit {
     @Input() title : string;
     @Input() text : string;
     @Input() uploadUrl : string;
+    @Input() deleteUrl : string;
     @Input() tokenUrl : string;
     @Input() formName : string;
     @Input() formId : string;
@@ -55,6 +56,9 @@ export class AmpFileUploadComponent implements OnInit {
         }
         if ( !this.uploadUrl ) {
             this.uploadUrl = this.fileUploadService.uploadUrl;
+        }
+        if ( !this.deleteUrl ) {
+            this.deleteUrl = this.fileUploadService.deleteUrl;
         }
         this.errorMessage = this.fileUploadService.errorMessage;
         this.basicOptions = {
