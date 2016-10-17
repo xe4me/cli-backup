@@ -31,7 +31,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public ngOnInit() {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
-        this.formModelService.setSubmitRelativeUrl('submit');
+        this.formModelService.setSubmitRelativeUrl('ddc/public/api/bett3r/submit');
     }
 
     private onSingleJoint(singleJointIndicator : string) {
