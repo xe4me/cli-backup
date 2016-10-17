@@ -75,7 +75,7 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
         } ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
-export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit,OnDestroy {
+export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDestroy {
     @ViewChild( 'input' ) inputCmp;
     public control : FormControl         = new FormControl();
     public errors                        = {};
