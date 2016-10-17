@@ -42,6 +42,8 @@ export class RootEnvProperty {
     GwDDCService : GwServiceEnvProperty;
     // ENV is one of [development, production], control via Index.html
     ENV : string;
+    // Base url for api calls like : /ddc/secure/api/...
+    ApiCallsBaseUrl : string;
 
     constructor () {
         if (_process_env) {

@@ -6,7 +6,11 @@ import {
     ChangeDetectorRef ,
     AfterViewInit ,
     EventEmitter ,
-    Renderer , OnInit , ChangeDetectionStrategy
+    Renderer ,
+    OnInit ,
+    ChangeDetectionStrategy ,
+    OnDestroy ,
+    ViewChild
 } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
 import {
@@ -59,7 +63,9 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
             'noPadding' ,
             'currency' ,
             'iconRight' ,
-            'labelHidden'
+            'labelHidden' ,
+            'keepControl' ,
+            'autoComplete'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
@@ -70,7 +76,8 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
         } ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
-export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
+export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDestroy {
+    @ViewChild( 'input' ) inputCmp;
     public control : FormControl         = new FormControl();
     public errors                        = {};
     public controlGroup : FormGroup;
@@ -97,6 +104,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected tabindex : any             = null;
     protected defaultValue : any         = null;
     protected currency : string          = null;
+    protected keepControl : boolean      = false;
     protected placeholder : string;
     protected onAdjustWidth : EventEmitter<any>;
     protected hostClassesRemove;
@@ -111,6 +119,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected idleTimeOut                = 4500;
     protected idleTimeoutId;
     protected index;
+    protected autoComplete : string      = 'off';
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
@@ -163,6 +172,14 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             }
         }
         return undefined;
+    }
+
+    ngOnDestroy () : any {
+        if ( ! this.keepControl ) {
+            if ( this.controlGroup.contains( this.id ) ) {
+                this.controlGroup.removeControl( this.id );
+            }
+        }
     }
 
     public checkErrors ( killTimer = false ) {
@@ -324,9 +341,9 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
         } );
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
-            this.control.setValue( this.control.value.trim() );
-            notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
-            notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
+            this.inputCmp.value = this.control.value.trim();
+            notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
+            notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
     }

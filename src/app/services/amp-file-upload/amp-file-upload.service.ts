@@ -2,19 +2,29 @@ import { Injectable,
          EventEmitter,
          Output
 } from '@angular/core';
+import { Http,
+         Response
+} from '@angular/http';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { Environments } from '../../abstracts/environments/environments.abstract';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AmpFileUploadService {
+    public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
 
     @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
-    public _tokenUrl : string = '/ddc/secure/api/upload/token';
-    public _uploadUrl : string = '/ddc/secure/api/upload/upload';
+    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/api/upload/token';
+    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/api/upload/upload';
+    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/api/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
     private _queue : any[] = [];
+
+    constructor ( private http : Http ) {
+    }
 
     public get tokenUrl () : string {
         return this._tokenUrl;
@@ -22,6 +32,10 @@ export class AmpFileUploadService {
 
     public get uploadUrl () : string {
         return this._uploadUrl;
+    }
+
+    public get deleteUrl () : string {
+        return this._deleteUrl;
     }
 
     public get errorMessage () : string {
@@ -33,6 +47,7 @@ export class AmpFileUploadService {
     }
 
     public addFilesToQueue( files : any ) : void {
+        this._queue = [];
         files.forEach(( file : File ) => {
             if (this.isFile( file )) {
                 this._queue.push( file );
@@ -46,6 +61,13 @@ export class AmpFileUploadService {
             this.uploadFile( f );
         });
     };
+
+    public deleteFile ( fileName : string, formName : string, formId : string ) : Observable<any> {
+        let deleteUrlwithParms : string;
+        deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&objectId=' + formId;
+        return this.http.post( deleteUrlwithParms, {} )
+                        .map( ( res : Response ) => res.json() );
+    }
 
     private isFile( file : any ) : boolean {
         return file !== null && ( file instanceof Blob || ( file.name && file.size ));
