@@ -9,12 +9,12 @@ Do not modify this unless you know what you're doing
 $ddc-buttons-and-icons-transition-time: 300ms;
 $buttons-transition-time: $ddc-buttons-and-icons-transition-time;
 $buttons-default-width: 128px;
-$buttons-default-height: 128px;
+$buttons-default-height: 58px;
+$buttons-default-line-height: 22px;
 $buttons-default-margin-top: 4px;
-$buttons-default-height: 42px;
 $disabled-text-color: #9f9f9f;
 $disabled-background-color: #cbd2dc;
-$btn-margin-top: 30px;
+$btn-margin-top: 60px;
 
 //btn-ok
 $btn-ok-color: $amp-colour-white;
