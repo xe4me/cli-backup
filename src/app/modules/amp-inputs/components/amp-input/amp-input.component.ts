@@ -122,6 +122,22 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         this.onKeyup       = new EventEmitter();
     }
 
+    updateValidators () {
+        let validators = [
+            RequiredValidator.requiredValidation( this._required ) ,
+            MinLengthValidator.minLengthValidation( this._minLength ) ,
+            MaxLengthValidator.maxLengthValidation( this._maxLength ) ,
+            MaxDateValidator.maxDateValidator( this._maxDate , this.pattern ) ,
+            MinDateValidator.minDateValidator( this._minDate , this.pattern ) ,
+            PatterValidator.patternValidator( this.pattern ) ,
+            MaxFloatValidator.maxFloatValidator( this._maxFloat ) ,
+            DateValidator.dateValidator( this._valDate , this.pattern ) ,
+            this.customValidator()
+        ];
+        this.validate  = Validators.compose( validators );
+        this.checkErrors( true );
+    }
+
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
         if ( this.inputWidth === 0 ) {
@@ -290,22 +306,6 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
                 this.resetIdleTimeOut();
             } );
         this.checkErrors();
-    }
-
-    protected updateValidators () {
-        let validators = [
-            RequiredValidator.requiredValidation( this._required ) ,
-            MinLengthValidator.minLengthValidation( this._minLength ) ,
-            MaxLengthValidator.maxLengthValidation( this._maxLength ) ,
-            MaxDateValidator.maxDateValidator( this._maxDate , this.pattern ) ,
-            MinDateValidator.minDateValidator( this._minDate , this.pattern ) ,
-            PatterValidator.patternValidator( this.pattern ) ,
-            MaxFloatValidator.maxFloatValidator( this._maxFloat ) ,
-            DateValidator.dateValidator( this._valDate , this.pattern ) ,
-            this.customValidator()
-        ];
-        this.validate  = Validators.compose( validators );
-        this.checkErrors( true );
     }
 
     protected resetIdleTimeOut () {

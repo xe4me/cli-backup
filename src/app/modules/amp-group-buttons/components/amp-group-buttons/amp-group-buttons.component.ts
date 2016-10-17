@@ -49,6 +49,18 @@ export class AmpGroupButtonsComponent extends BaseControl {
         return this._id;
     }
 
+    updateValidators () {
+        if ( this.control ) {
+            let validators = Validators.compose( [
+                RequiredValidator.requiredValidation( this.required ) ,
+                this.customValidator()
+            ] );
+            this.control.setValidators( validators );
+            this.control.updateValueAndValidity( { emitEvent : true } );
+            this.changeDetector.markForCheck();
+        }
+    }
+
     ngAfterViewInit () : any {
         this.control
             .valueChanges
@@ -64,18 +76,6 @@ export class AmpGroupButtonsComponent extends BaseControl {
         this.updateValidators();
         this.changeDetector.detectChanges();
         return undefined;
-    }
-
-    private updateValidators () {
-        if ( this.control ) {
-            let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required ) ,
-                this.customValidator()
-            ] );
-            this.control.setValidators( validators );
-            this.control.updateValueAndValidity( { emitEvent : true } );
-            this.changeDetector.markForCheck();
-        }
     }
 
     private scroll ( value ) {

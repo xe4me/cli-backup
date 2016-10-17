@@ -49,6 +49,18 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
         this.onAdjustWidth = new EventEmitter();
     }
 
+    updateValidators () {
+        if ( this.control ) {
+            this.control.validator = Validators.compose( [
+                RequiredValidator.requiredValidation( this._required ) ,
+                MinLengthValidator.minLengthValidation( this._minLength ) ,
+                MaxLengthValidator.maxLengthValidation( this._maxLength ) ,
+                this.customValidator()
+            ] );
+            this.control.updateValueAndValidity( { emitEvent : false } );
+        }
+    }
+
     ngAfterViewInit () : any {
         let componentHeight         = this.el.nativeElement.scrollHeight;
         let textarea                = this.el.nativeElement.querySelector( 'textarea' );
@@ -92,18 +104,6 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
 
     private trimValue () {
         return this.control.value ? this.control.setValue( this.control.value.trim() ) : '';
-    }
-
-    private updateValidators () {
-        if ( this.control ) {
-            this.control.validator = Validators.compose( [
-                RequiredValidator.requiredValidation( this._required ) ,
-                MinLengthValidator.minLengthValidation( this._minLength ) ,
-                MaxLengthValidator.maxLengthValidation( this._maxLength ) ,
-                this._customValidator
-            ] );
-            this.control.updateValueAndValidity( { emitEvent : false } );
-        }
     }
 
     private setHasFocus ( value ) {

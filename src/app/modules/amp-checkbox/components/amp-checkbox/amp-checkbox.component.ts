@@ -53,6 +53,17 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
         super();
     }
 
+    updateValidators () {
+        if ( this.control ) {
+            let validators = Validators.compose( [
+                RequiredValidator.requiredValidation( this.required , true ) ,
+                this.customValidator()
+            ] );
+            this.control.setValidators( validators );
+            this.control.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
+        }
+    }
+
     ngAfterViewInit () : any {
         this.control.valueChanges.subscribe( ( changes ) => {
             this._checked      = isTrue( changes );
@@ -96,17 +107,6 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
         } else if ( this.scrollOutOn && this.checkboxValue === this.scrollOutOn ) {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
-        }
-    }
-
-    private updateValidators () {
-        if ( this.control ) {
-            let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required , true ) ,
-                this.customValidator()
-            ] );
-            this.control.setValidators( validators );
-            this.control.updateValueAndValidity( { emitEvent : true , onlySelf : false } );
         }
     }
 }

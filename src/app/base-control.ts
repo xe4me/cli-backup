@@ -14,6 +14,9 @@ export class BaseControl implements OnDestroy {
     public _customValidator : Function = () => {
     };
 
+    public updateValidators () {
+    }
+
     set errors ( errors ) {
         this._errors = errors;
     }

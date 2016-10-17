@@ -55,6 +55,17 @@ export class AmpDropdownComponent extends BaseControl {
         super();
     }
 
+    updateValidators () {
+        if ( this.control ) {
+            let validators = Validators.compose( [
+                RequiredValidator.requiredValidation( this.required ) ,
+                this.customValidator()
+            ] );
+            this.control.setValidators( validators );
+            this.control.updateValueAndValidity( { emitEvent : false } );
+        }
+    }
+
     public setSelectValue ( value ) {
         this.selectElem.value = value;
         this.trigger( 'change' , this.selectElem );
@@ -216,17 +227,6 @@ export class AmpDropdownComponent extends BaseControl {
         }
         el.dispatchEvent( ev );
         this._cd.detectChanges();
-    }
-
-    protected updateValidators () {
-        if ( this.control ) {
-            let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required ) ,
-                this.customValidator()
-            ] );
-            this.control.setValidators( validators );
-            this.control.updateValueAndValidity( { emitEvent : false } );
-        }
     }
 
     protected redraw () {
