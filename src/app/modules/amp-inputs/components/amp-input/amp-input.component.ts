@@ -6,10 +6,11 @@ import {
     ChangeDetectorRef ,
     AfterViewInit ,
     EventEmitter ,
-    Renderer,
-    OnInit,
-    ChangeDetectionStrategy,
-    OnDestroy
+    Renderer ,
+    OnInit ,
+    ChangeDetectionStrategy ,
+    OnDestroy ,
+    ViewChild
 } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
 import {
@@ -62,7 +63,7 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
             'noPadding' ,
             'currency' ,
             'iconRight' ,
-            'labelHidden',
+            'labelHidden' ,
             'keepControl'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
@@ -75,6 +76,7 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDestroy {
+    @ViewChild( 'input' ) inputCmp;
     public control : FormControl         = new FormControl();
     public errors                        = {};
     public controlGroup : FormGroup;
@@ -171,7 +173,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
     }
 
     ngOnDestroy () : any {
-         if ( ! this.keepControl ) {
+        if ( ! this.keepControl ) {
             if ( this.controlGroup.contains( this.id ) ) {
                 this.controlGroup.removeControl( this.id );
             }
@@ -337,9 +339,9 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
         } );
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
-            this.control.setValue( this.control.value.trim() );
-            notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
-            notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
+            this.inputCmp.value = this.control.value.trim();
+            notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
+            notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
     }
