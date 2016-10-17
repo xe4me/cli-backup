@@ -3,14 +3,15 @@
               <input
                       class="sr-only"
                       [disabled]='disabled'
-                      [attr.data-automation-id]='"radio_button_" + button.id'
+                      [attr.data-automation-id]='"radio_button_" + button.id+"_"+_randomString'
                       type='radio'
-                      [attr.id]='button.id'
-                      [attr.name]='id'
+                      [attr.id]='button.id+"_"+_randomString'
+                      [attr.name]='randomizedId'
                       [formControl]='control'
                       [value]='button.value'
                       [checked]='control.value===button.value'
               />
-              <label (click)='scroll(button.value)' [attr.for]='button.id'>{{ button.label }}</label>
+              <label (click)='scroll(button.value)'
+                     [attr.for]='button.id+"_"+_randomString'>{{ button.label }}</label>
       </span>
 </div>

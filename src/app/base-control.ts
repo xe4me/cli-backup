@@ -1,6 +1,6 @@
 import { FormControl , FormGroup } from '@angular/forms';
 import { OnDestroy , OnInit , ChangeDetectorRef } from '@angular/core';
-import { addDashOrNothing , isTrue } from './modules/amp-utils/functions.utils';
+import { addDashOrNothing , isTrue , generateRandomString } from './modules/amp-utils/functions.utils';
 export class BaseControl implements OnDestroy {
     public _controlGroup : FormGroup;
     public control : FormControl;
@@ -11,6 +11,7 @@ export class BaseControl implements OnDestroy {
     public index;
     public _required : boolean         = false;
     public _disabled : boolean         = false;
+    public _randomString               = 'default_random_id';
     public _customValidator : Function = () => {
     };
 
@@ -56,6 +57,7 @@ export class BaseControl implements OnDestroy {
 
     createAndJoinControl () {
         if ( ! this.createdAndJoinedControl ) {
+            this._randomString = generateRandomString();
             if ( this.controlGroup ) {
                 if ( this.controlGroup.get( this.id ) ) {
                     this.control = <FormControl> this.controlGroup.get( this.id );
@@ -101,5 +103,9 @@ export class BaseControl implements OnDestroy {
 
     get customValidator () {
         return this._customValidator;
+    }
+
+    get randomizedId () {
+        return this.id + '_' + this._randomString;
     }
 }

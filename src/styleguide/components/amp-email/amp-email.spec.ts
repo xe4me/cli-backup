@@ -1,10 +1,9 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef } from '@angular/core';
-import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
+import { Component , ElementRef , ViewChild } from '@angular/core';
+import { FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AmpEmailComponent } from '../../../app/modules/amp-inputs';
-import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
+import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 describe( 'amp-email component' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
@@ -24,20 +23,22 @@ describe( 'amp-email component' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
+        let Component             = fixture.componentInstance;
         let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Email' );
-        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'email-input' );
+        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'email' + '_' + Component.emailCmp._randomString + '-input' );
     } );
     it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
-        expect( compiledInput.nativeElement.name ).toBe( 'email' );
-        expect( compiledInput.nativeElement.id ).toBe( 'email-input' );
+        let Component             = fixture.componentInstance;
+        expect( compiledInput.nativeElement.name ).toBe( 'email' + '_' + Component.emailCmp._randomString );
+        expect( compiledInput.nativeElement.id ).toBe( 'email' + '_' + Component.emailCmp._randomString + '-input' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
-        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_email' );
+        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_email' + '_' + Component.emailCmp._randomString );
     } );
     it( 'should be required' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -78,6 +79,7 @@ class MockElementRef implements ElementRef {
     template : `
     <form  #formModel='ngForm' class='nl-form' >
         <amp-email
+            #emailCmp
             [id]="id"
             [controlGroup]='controlGroup'>    
         </amp-email>
@@ -85,8 +87,9 @@ class MockElementRef implements ElementRef {
     `
 } )
 class TestComponent {
-    id                       = 'email';
-    controlGroup : FormGroup = new FormGroup( {} );
+    @ViewChild( 'emailCmp' ) emailCmp;
+                             id                       = 'email';
+                             controlGroup : FormGroup = new FormGroup( {} );
 
     get control () {
         return this.controlGroup.controls[ this.id ];

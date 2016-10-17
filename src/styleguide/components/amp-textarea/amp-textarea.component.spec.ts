@@ -1,6 +1,6 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef } from '@angular/core';
-import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
+import { Component , ElementRef , ViewChild } from '@angular/core';
+import { FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
@@ -37,9 +37,9 @@ describe( 'amp-textarea component' , () => {
         let Textareas       = Element.querySelector( 'textarea' );
         let Labels          = Element.querySelector( 'label' );
         expect( Textareas ).toBeDefined();
-        expect( Textareas.name ).toBe( Component.textarea.id );
-        expect( Textareas.id ).toBe( Component.textarea.id );
-        expect( Textareas.getAttribute( 'data-automation-id' ) ).toBe( 'textarea_' + Component.textarea.id );
+        expect( Textareas.name ).toBe( Component.textarea.id + '_' + Component.textAreaCmp._randomString );
+        expect( Textareas.id ).toBe( Component.textarea.id + '_' + Component.textAreaCmp._randomString );
+        expect( Textareas.getAttribute( 'data-automation-id' ) ).toBe( 'textarea_' + Component.textarea.id + '_' + Component.textAreaCmp._randomString );
     } );
     it( 'Should contain a label with for attribute pointed to the id' , () => {
         let fixture : ComponentFixture<AmpTextAreaTest> = TestBed.createComponent( AmpTextAreaTest );
@@ -71,6 +71,7 @@ describe( 'amp-textarea component' , () => {
     template : `
         <form  #formModel='ngForm' class='nl-form' >
             <amp-textarea
+            #textAreaCmp
             [isInSummaryState]='textarea.isInSummaryState'
             [label]='textarea.label'
             [id]='textarea.id'
@@ -85,9 +86,10 @@ describe( 'amp-textarea component' , () => {
     `
 } )
 class AmpTextAreaTest {
-    isInSummaryState = false;
-    controlGroup     = new FormGroup( {} );
-    private textarea = {
+    @ViewChild( 'textAreaCmp' ) textAreaCmp;
+                             isInSummaryState = false;
+                             controlGroup     = new FormGroup( {} );
+    private textarea                          = {
         id               : 'textarea' ,
         label            : 'A Label' ,
         maxLenght        : 5 ,

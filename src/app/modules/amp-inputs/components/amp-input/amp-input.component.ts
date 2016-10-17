@@ -151,7 +151,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         this.addDelayedValidation();
         this.setDefaultValue();
         // Artificially inject the data-automation-id into the internals of @angular-material md-input
-        this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this.id );
+        this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'data-automation-id' , 'text_' + this.randomizedId );
         // Artificially inject the placeholder property into the input element of the md-input directive.
         this.renderer.setElementAttribute( this.el.nativeElement.querySelector( 'input' ) , 'placeholder' , this.placeholder );
         this._cd.detectChanges();
