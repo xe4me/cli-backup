@@ -1,5 +1,6 @@
 import {
-    Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy , ViewContainerRef , ViewRef , ComponentRef
+    Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy , ViewContainerRef , ViewRef , ComponentRef ,
+    ViewChild
 } from '@angular/core';
 import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
@@ -7,10 +8,23 @@ import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
+import { AutoFocusOnDirective } from '../../../../app/modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
 @Component( {
     selector        : 'another-sample-experience-block' ,
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
+            <amp-form-row [attr.theme]="themeService.theme.attr">
+                  <amp-dropdown
+                    auto-focus-on='select'
+                    [attr.theme]="themeService.theme.attr"
+                    [isInSummaryState]='false'
+                    [id]='__custom.controls[2].id'
+                    [label]='"Title"'
+                    [controlGroup]="__controlGroup"
+                    [options]='__custom.controls[2].options'
+                    [required]="true">
+                  </amp-dropdown>
+            </amp-form-row>
             <amp-form-row [attr.theme]="themeService.theme.attr">
                  <label class='grid__item_floated palm-1/1 tablet-1/1 lap-and-up-1/1 form-row-label'>Scale</label>
                     <div class="grid__item_floated palm-1/1 tablet-2/3 lap-and-up-6/12 mr mt0">
@@ -47,6 +61,7 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
+    @ViewChild( AutoFocusOnDirective ) autoFocusOn;
     isActive                    = true;
     private loadedDynamicBlock  = false;
     private dynamicChild        = {

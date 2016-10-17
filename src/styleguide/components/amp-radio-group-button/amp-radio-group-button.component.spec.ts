@@ -1,5 +1,5 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef } from '@angular/core';
+import { Component , provide , ElementRef , ViewChild } from '@angular/core';
 import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
@@ -36,8 +36,8 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
         let multipleRadioGroup      = Element.querySelector( '#multiple-radio-group' );
         let Inputs                  = multipleRadioGroup.querySelectorAll( 'input' );
         let Form                    = Element.querySelector( 'form' );
-        expect( Inputs[ '0' ].name ).toBe( Component.radiosMultipleOptions.groupName );
-        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosMultipleOptions.buttons[ 0 ].id );
+        expect( Inputs[ '0' ].name ).toBe( Component.radiosMultipleOptions.groupName + '_' + Component.radioGroupButtonCmp1._randomString );
+        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosMultipleOptions.buttons[ 0 ].id + '_' + Component.radioGroupButtonCmp1._randomString );
         expect( Inputs.length ).toBe( 4 );
     } );
     it( 'Should update the control value after selecting the first radio option and this value should be null' +
@@ -95,8 +95,8 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
         let multipleRadioGroup      = Element.querySelector( '#single-radio-group' );
         let Inputs                  = multipleRadioGroup.querySelectorAll( 'input' );
         let Form                    = Element.querySelector( 'form' );
-        expect( Inputs[ '0' ].name ).toBe( Component.radiosOneOption.groupName );
-        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosOneOption.buttons[ 0 ].id );
+        expect( Inputs[ '0' ].name ).toBe( Component.radiosOneOption.groupName + '_' + Component.radioGroupButtonCmp2._randomString );
+        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosOneOption.buttons[ 0 ].id + '_' + Component.radioGroupButtonCmp2._randomString );
         expect( Inputs.length ).toBe( 1 );
     } );
     it( 'Should be able to preselect if there is only one option and autoSelectOnOne attr is set to true' , () => {
@@ -129,6 +129,7 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
         <form  #formModel='ngForm' class='nl-form' >
             <div id='multiple-radio-group' class='group-buttons'>
                 <amp-radio-button-group
+                    #radioGroupButtonCmp1
                     [autoSelectOnOne]='"true"'
                     [required]='true'
                     scrollOutOn='null'
@@ -146,7 +147,8 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
     `
 } )
 class AmpRadioGroupButtonTest1 {
-    multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
+    @ViewChild( 'radioGroupButtonCmp1' ) radioGroupButtonCmp1;
+                                         multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
 
     get multipleOptionControl () {
         return this.multipleOptioncontrolGroup.controls[ this.radiosMultipleOptions.groupName ];
@@ -215,6 +217,7 @@ class AmpRadioGroupButtonTest1 {
     <form  #formModel='ngForm' class='nl-form' >
         <div id='single-radio-group' class='group-buttons'>
             <amp-radio-button-group
+                    #radioGroupButtonCmp2
                     [autoSelectOnOne]='autoSelectOnOne'
                     required='true'
                     scrollOutOn='null'
@@ -232,7 +235,8 @@ class AmpRadioGroupButtonTest1 {
 `
 } )
 class AmpRadioGroupButtonTest2 {
-    oneOptioncontrolGroup : FormGroup = new FormGroup( {} );
+    @ViewChild( 'radioGroupButtonCmp2' ) radioGroupButtonCmp2;
+                                         oneOptioncontrolGroup : FormGroup = new FormGroup( {} );
 
     get oneOptionControl () {
         return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];

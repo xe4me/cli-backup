@@ -1,11 +1,11 @@
 @objects
 
-    textInput                     css [data-automation-id="text_firstname"]
+    noteText                     css .note
+    strongText                   css .strong-text
 
-= Text Input base =
+= noteText =
     @on *
-        = TextInput only has bottom border width solid =
-        textInput:
-            css border-width is "0px 0px 1px"
-            css border-style is "solid"
-            css border-color is "rgb(204, 210, 217)"
+        = noteText =
+        noteText:
+            contains strongText 
+

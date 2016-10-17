@@ -12,7 +12,7 @@
 
 $radio-width : 30px !default;
 $radio-height : $radio-width !default;
-$radio-text-margin : 40px !default;
+$radio-text-margin : 20px !default;
 $radio-top-left : 12px !default;
 $radio-margin : 0;
 $radio-font-weight : 300 !default;
@@ -33,7 +33,6 @@ $radio-font-weight : 300 !default;
         margin-top : 23px;
     }
     input {
-        display : none;
         &:not([disabled]) + label {
             .container {
                 &:hover {

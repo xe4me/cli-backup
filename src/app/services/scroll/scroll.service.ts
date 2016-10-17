@@ -53,8 +53,14 @@ export class ScrollService {
                         formGroup = formGroup.controls[ _fdnOfSelectorName[ i ] ];
                     }
                 }
-                if ( ! isScrolled && ! formGroup.valid ) {
-                    this.scrollToComponentSelector( selectorName );
+                if (!isScrolled &&
+                    ( formGroup.invalid ||
+                         (formGroup.valid &&
+                          formGroup.untouched &&
+                           Object.keys(formGroup.value).length > 0)
+                         )
+                    ) {
+                    this.scrollToComponentSelector(selectorName);
                     isScrolled = true;
                     return null;
                 }
@@ -69,21 +75,23 @@ export class ScrollService {
     public scrollToComponentSelector ( componentSelector : string ,
                                        easing : string = 'easeInQuad' ,
                                        margin : number = 80 ) {
+        let sectionName;
         let element = this._dom.query( componentSelector );
         if ( ! element ) {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
             element = this._dom.query( '#' + componentSelector );
+            sectionName = this._dom.getAttribute(element, 'data-section');
         }
         let options = {
             duration      : 800 ,
             easing        : easing ,
             offset        : margin ,
             callbackBefore: ( elemt ) => {
-                this.$scrolling.emit( this.getGroupNameOfSelectorName( componentSelector ) );
+                this.$scrolling.emit({section : sectionName, componentSelector : this.getGroupNameOfSelectorName( componentSelector )}  );
             } ,
             callbackAfter : ( elemt ) => {
                 // this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
-                this.$scrolled.emit( componentSelector );
+                this.$scrolled.emit( {section : sectionName, componentSelector : componentSelector});
             }
         };
         setTimeout( () => {

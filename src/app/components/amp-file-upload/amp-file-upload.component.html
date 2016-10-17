@@ -1,5 +1,7 @@
-<div class="overlay">
-    <amp-button class="btn btn-submit mt mb" *ngIf="!showProgress">
+<h2 class="heading heading-intro mt-60 mb-60">{{title}}</h2>
+<p *ngIf="text">{{text}}</p>
+<div class="overlay mt-60 mb-60">
+    <amp-button class="btn btn-submit" *ngIf="!showProgress">
         File Upload
     </amp-button>
     <input type="file"
@@ -7,24 +9,29 @@
            #fileInput
            (click)="updateToken()"
            (change)="displayProgress()"/>
-</div>
-<div *ngIf="error" class='errors'>
-    <span class='icon icon--close icon-errors'></span> {{errorMessage}}
+    <div *ngIf="error" class='errors'>
+        <span class='icon icon--close icon-errors'></span> {{errorMessage}}
+    </div>
 </div>
 <div class="progress mb" *ngIf="showProgress">
-    <div class="file-name">
+    <div class="file-name grid__item_floated 10/12">
         <h3>{{fileName}}</h3>
+        <div>
+            <div class="file-size">
+                File size:
+                <span *ngIf="showProgressBar()"> {{uploaded}} of </span>
+                {{fileSize}}
+                <span *ngIf="showProgressBar()">({{speed}})</span>
+            </div>
+        </div>
     </div>
-    <div *ngIf="showProgressBar()">
-        <div class="file-size">File size: {{uploaded}} of {{fileSize}} ({{speed}})</div>
+    <div class="file-remove grid__item_floated 2/12">
+        <h3>Remove<span class="icon icon--modal-close" aria-hidden="true" (click)="removeFile()"></span></h3>
+    </div>
+    <div class="file-remove grid__item_floated 12/12" *ngIf="showProgressBar()">
         <amp-linear-progress-bar
             value="{{progress*100}}"
             determinate="determinate">
         </amp-linear-progress-bar>
-    </div>
-    <div *ngIf="!showProgressBar()">
-        <div class="file-size">
-            File size: {{fileSize}}
-        </div>
     </div>
 </div>

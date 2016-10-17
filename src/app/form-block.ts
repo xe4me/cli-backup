@@ -6,22 +6,23 @@ import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
-    @ViewChild( 'focusZone' ) focusZone;
+    public autoFocusOn;
     protected isInSummaryState : boolean     = false;
     protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
-    protected visibleFlag : string           = 'defaultIsVisible';
-    protected doneFlag : string              = 'defaultIsDone';
     protected noScroll                       = false;
     protected __fdn : (number|string)[];
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
+    protected __sectionName : string;
     protected __removeNext : Function;
     protected __loadNext : Function;
     protected __loadAt : Function;
     protected __removeAt : Function;
     protected __custom : any;
+    protected visibleFlag : string           = 'defaultIsVisible';
+    protected doneFlag : string              = 'defaultIsDone';
     private scrollSubscription : Subscription;
 
     constructor ( protected formModelService : FormModelService ,
@@ -56,30 +57,34 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
          * TODO : This should be a directive or something else.
          * */
         setTimeout( () => {
-            let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
-            if ( ! inputs ) {
-                inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
+            if ( this.autoFocusOn ) {
+                this.autoFocusOn.focus();
+            } else {
+                let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
                 if ( ! inputs ) {
-                } else {
-                    inputs = this.elementRef.nativeElement.getElementsByTagName( 'select' );
+                    inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
+                    if ( ! inputs ) {
+                    } else {
+                        inputs = this.elementRef.nativeElement.getElementsByTagName( 'select' );
+                    }
                 }
-            }
-            if ( inputs && inputs.length > 0 ) {
-                inputs[ 0 ].focus();
+                if ( inputs && inputs.length > 0 ) {
+                    inputs[ 0 ].focus();
+                }
             }
         } , 100 );
     }
 
     onEdit () {
         this.isInSummaryState = false;
-
-        this.scrollService.$scrolled.emit(this.selectorName);
+        this.scrollService.$scrolled.emit( this.selectorName );
     }
 
     onNext () {
         if ( this.canGoNext ) {
-            this.scrollService.scrollToNextUndoneBlock( this.__form );
+            this.scrollService.scrollToNextUndoneBlock( this.__form);
             this.progressObserver.onProgress( this.__fdn );
+            this.formModelService.save( this.__form.value );
             setTimeout( () => {
                 this.isInSummaryState = true;
                 this._cd.markForCheck();
@@ -94,7 +99,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected subscribeToScrollEvents () {
         if ( ! this.noScroll ) {
             this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( changes ) => {
-                if ( changes === this.selectorName ) {
+                if ( changes.componentSelector && changes.componentSelector === this.selectorName ) {
                     this.isInSummaryState = false;
                     this.isActive         = true;
                     this.autoFocus();

@@ -1,15 +1,15 @@
 <md-input
-        #myMdInput
+        #input
         (focus)='onFocused($event)'
         (keyup)='onKeyupEvent($event)'
         (blur)='onBlured($event)'
         [disabled]='isInSummaryState || disabled'
         class='md-input'
         [class.label-hidden]='labelHidden'
-        [aria-label]='id'
-        [name]='id'
+        [aria-label]='randomizedId'
+        [name]='randomizedId'
         [type]='type'
-        [id]='id'
+        [id]='randomizedId'
         [tabIndex]='isActive?tabindex:-1'
         [maxLength]='maxLength'
         [formControl]='control'
@@ -17,7 +17,4 @@
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 </md-input>
 <span *ngIf='iconRight && !isInSummaryState' class="icon icon--search icon-right"></span>
-<span
-        class='summary-text'
-        [innerHTML]='myMdInput.value'>
-            </span>
+<span class='summary-text' [innerHTML]='input.value'></span>

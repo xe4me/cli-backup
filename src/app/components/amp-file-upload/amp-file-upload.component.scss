@@ -18,7 +18,7 @@ input {
     background-color: $amp-colour-grey-lightest;
     border: 1px solid $amp-colour-grey;
     min-width: 460px;
-    min-height: 112px;
+    min-height: 150px;
     padding: 30px;
     margin: 30px 0;
     .file-name {
@@ -26,5 +26,8 @@ input {
     }
     .file-size {
         margin-bottom: 10px;
+    }
+    .icon--modal-close {
+        color: $amp-colour-secondary;
     }
 }

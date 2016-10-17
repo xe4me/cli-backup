@@ -1,6 +1,6 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef } from '@angular/core';
-import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
+import { Component , ElementRef , ViewChild } from '@angular/core';
+import { FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
@@ -30,12 +30,13 @@ describe( 'amp-group-buttons directive' , () => {
     it( 'Should contain 2 radio input field  with proper data-automation-id and name attributes ' , () => {
         let fixture : ComponentFixture<AmpGroupButtonTest> = TestBed.createComponent( AmpGroupButtonTest );
         fixture.detectChanges();
-        const Element = fixture.nativeElement;
+        const Element   = fixture.nativeElement;
+        const Component = fixture.componentInstance;
         // let AmpGroupButtonTest = fixture.debugElement;
-        let Form      = Element.querySelector( 'form' );
-        let Inputs    = Element.querySelectorAll( 'input' );
-        expect( Inputs[ '0' ].name ).toBe( 'fullOrPartial' );
-        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_fullId' );
+        let Form        = Element.querySelector( 'form' );
+        let Inputs      = Element.querySelectorAll( 'input' );
+        expect( Inputs[ '0' ].name ).toBe( 'fullOrPartial' + '_' + Component.groupButtonsCmp._randomString );
+        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_fullId' + '_' + Component.groupButtonsCmp._randomString );
         expect( Inputs.length ).toBe( 2 );
     } );
     it( 'Should contain 2 label field with proper text ' , () => {
@@ -86,6 +87,7 @@ describe( 'amp-group-buttons directive' , () => {
     template : `
         <form  #formModel='ngForm' class='nl-form' >
             <amp-group-buttons
+                    #groupButtonsCmp
                     scrollOutOn='full'
                     class='1/5'
                     (select)='onButtonClick($event)'
@@ -98,6 +100,7 @@ describe( 'amp-group-buttons directive' , () => {
     `
 } )
 class AmpGroupButtonTest {
+    @ViewChild( 'groupButtonsCmp' ) groupButtonsCmp;
     private controlGroup : FormGroup = new FormGroup( {} );
     private fullOrPartialButtons     = {
         buttons       : [
