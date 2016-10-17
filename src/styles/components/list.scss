@@ -6,7 +6,7 @@ $list-nested-margin: 20px;
 
 .list-default {
     list-style: none;
-    margin: $default-margin 0;
+    margin: $list-default-margin 0;
 
     > li {
         padding-left: $list-default-padding;
