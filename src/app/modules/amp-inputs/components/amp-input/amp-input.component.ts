@@ -25,26 +25,27 @@ import {
 } from '../../../amp-utils';
 import { FormGroup , FormControl , Validators } from '@angular/forms';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { BaseControl } from '../../../../base-control';
 @Component(
     {
         selector        : 'amp-input' ,
         template        : require( './amp-input.component.html' ) ,
         styles          : [ require( './amp-input.component.scss' ).toString() ] ,
         inputs          : [
+            'errors' ,
             'id' ,
+            'controlGroup' ,
             'type' ,
             'defaultValue' ,
-            'errors' ,
+            'index' ,
             'customValidator' ,
-            'disabled' ,
             'isInSummaryState' ,
+            'disabled' ,
             'label' ,
-            'controlGroup' ,
             'placeholder' ,
             'maxLength' ,
             'minLength' ,
             'pattern' ,
-            'index' ,
             'maxDate' ,
             'minDate' ,
             'maxFloat' ,
@@ -64,7 +65,6 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
             'currency' ,
             'iconRight' ,
             'labelHidden' ,
-            'keepControl'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
@@ -75,13 +75,9 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
         } ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
-export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDestroy {
+export class AmpInputComponent extends BaseControl implements AfterViewInit, OnChanges {
     @ViewChild( 'input' ) inputCmp;
-    public control : FormControl         = new FormControl();
-    public errors                        = {};
-    public controlGroup : FormGroup;
     protected inputWidth : number;
-    protected _id : string               = 'default';
     protected type : string              = 'text';
     protected _minLength : number;
     protected _maxLength : number;
@@ -90,8 +86,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
     protected _maxFloat : number;
     protected _minFloat : number;
     protected _valDate : boolean;
-    protected _required : boolean        = false;
-    protected _disabled : boolean        = false;
     protected _pattern : string;
     protected label : string;
     protected isInSummaryState : boolean = false;
@@ -103,7 +97,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
     protected tabindex : any             = null;
     protected defaultValue : any         = null;
     protected currency : string          = null;
-    protected keepControl : boolean      = false;
     protected placeholder : string;
     protected onAdjustWidth : EventEmitter<any>;
     protected hostClassesRemove;
@@ -117,27 +110,16 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
     protected validationDelay            = 0;
     protected idleTimeOut                = 4500;
     protected idleTimeoutId;
-    protected index;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
                   protected renderer : Renderer ) {
+        super();
         this.onAdjustWidth = new EventEmitter();
         this.onEnter       = new EventEmitter();
         this.onBlur        = new EventEmitter();
         this.onFocus       = new EventEmitter();
         this.onKeyup       = new EventEmitter();
-    }
-
-    ngOnInit () : any {
-        this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-        } );
-        if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.control );
-        }
-        return undefined;
     }
 
     ngAfterViewInit () : any {
@@ -149,7 +131,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
         // this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
         // this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
         // this.el.nativeElement.className = this.tempClassNames;
-        this.updateValitators();
+        this.updateValidators();
         this.addDelayedValidation();
         this.setDefaultValue();
         // Artificially inject the data-automation-id into the internals of @angular-material md-input
@@ -172,38 +154,14 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
         return undefined;
     }
 
-    ngOnDestroy () : any {
-        if ( ! this.keepControl ) {
-            if ( this.controlGroup.contains( this.id ) ) {
-                this.controlGroup.removeControl( this.id );
-            }
-        }
-    }
-
     public checkErrors ( killTimer = false ) {
-        this.control.setErrors( this.validate( this.control ) , { emitEvent : true } );
-        if ( killTimer ) {
-            clearTimeout( this.idleTimeoutId );
+        if ( this.control ) {
+            this.control.setErrors( this.validate( this.control ) , { emitEvent : true } );
+            if ( killTimer ) {
+                clearTimeout( this.idleTimeoutId );
+            }
+            this._cd.markForCheck();
         }
-        this._cd.markForCheck();
-    }
-
-    set customValidator ( customValidator : Function ) {
-        this._customValidator = customValidator;
-        this.updateValitators();
-    }
-
-    get customValidator () {
-        return this._customValidator;
-    }
-
-    get disabled () {
-        return this._disabled;
-    }
-
-    set disabled ( value : boolean ) {
-        this._disabled = this.isTrue( value );
-        this.updateValitators();
     }
 
     get pattern () {
@@ -212,16 +170,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
 
     set pattern ( value : string ) {
         this._pattern = value;
-        this.updateValitators();
-    }
-
-    get required () {
-        return this._required;
-    }
-
-    set required ( value : boolean ) {
-        this._required = this.isTrue( value );
-        this.updateValitators();
+        this.updateValidators();
     }
 
     get minLength () {
@@ -230,12 +179,12 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
 
     set minLength ( value : number ) {
         this._minLength = value;
-        this.updateValitators();
+        this.updateValidators();
     }
 
     set valDate ( value : boolean ) {
         this._valDate = value;
-        this.updateValitators();
+        this.updateValidators();
     }
 
     get maxLength () {
@@ -244,15 +193,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
 
     set maxLength ( value : number ) {
         this._maxLength = value;
-        this.updateValitators();
-    }
-
-    set id ( value ) {
-        this._id = value;
-    }
-
-    get id () {
-        return this._id + addDashOrNothing( this.index );
+        this.updateValidators();
     }
 
     protected humanDate ( value : any ) {
@@ -278,7 +219,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
 
     set minDate ( value : any ) {
         this._minDate = this.humanDate( value );
-        this.updateValitators();
+        this.updateValidators();
     }
 
     get maxDate () {
@@ -287,7 +228,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
 
     set maxDate ( value : any ) {
         this._maxDate = this.humanDate( value );
-        this.updateValitators();
+        this.updateValidators();
     }
 
     get maxFloat () {
@@ -296,17 +237,8 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
 
     set maxFloat ( value : any ) {
         this._maxFloat = value;
-        this.updateValitators();
+        this.updateValidators();
     }
-
-    // set autoFocus ( value : boolean ) {
-    //     if ( this.isTrue( value ) && this.el ) {
-    //         let input = this.el.nativeElement.querySelector( 'input' );
-    //         input.focus();
-    //     }
-    // }
-    protected _customValidator : Function = () => {
-    };
 
     protected onEnterClick ( event ) {
         if ( event.keyCode === 13 ) {
@@ -346,10 +278,6 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
         this.onBlur.emit( $event );
     }
 
-    protected isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === 'true' || false);
-    }
-
     protected onKeyupEvent ( $event ) {
         this.onEnterClick( $event );
         this.onKeyup.emit( $event );
@@ -364,7 +292,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
         this.checkErrors();
     }
 
-    protected updateValitators () {
+    protected updateValidators () {
         let validators = [
             RequiredValidator.requiredValidation( this._required ) ,
             MinLengthValidator.minLengthValidation( this._minLength ) ,

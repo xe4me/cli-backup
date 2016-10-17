@@ -1,23 +1,17 @@
-import {
-    Component ,
-    EventEmitter ,
-    ElementRef ,
-    ChangeDetectorRef ,
-    OnInit ,
-    ChangeDetectionStrategy
-} from '@angular/core';
-import { isPresent } from '@angular/core/src/facade/lang';
+import { Component , EventEmitter , ElementRef , ChangeDetectorRef , ChangeDetectionStrategy } from '@angular/core';
 import { RequiredValidator } from '../../../../modules/amp-utils';
-import { FormGroup , FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
-import {
-    RadioControlRegistry
-} from '@angular/forms/src/directives/radio_control_value_accessor';
+import { RadioControlRegistry } from '@angular/forms/src/directives/radio_control_value_accessor';
+import { BaseControl } from '../../../../base-control';
 @Component( {
     selector        : 'amp-group-buttons' ,
     template        : require( './amp-group-buttons.component.html' ) ,
     inputs          : [
         'errors' ,
+        'groupName' ,
+        'controlGroup' ,
+        'customValidator' ,
         'defaultValue' ,
         'isInSummaryState' ,
         'keepControlOnDestroy' ,
@@ -25,9 +19,7 @@ import {
         'scrollOutUnless' ,
         'scrollOutOn' ,
         'disabled' ,
-        'controlGroup' ,
         'buttons' ,
-        'groupName' ,
         'index'
     ] ,
     styles          : [ require( './amp-group-buttons.scss' ).toString() ] ,
@@ -35,35 +27,26 @@ import {
     providers       : [ RadioControlRegistry ] ,
     outputs         : [ 'select' ]
 } )
-export class AmpGroupButtonsComponent implements OnInit {
-    public control : FormControl = new FormControl( null );
-    public errors                = {};
-    private controlGroup : FormGroup;
-    private _disabled : boolean  = false;
-    private _required : boolean  = false;
+export class AmpGroupButtonsComponent extends BaseControl {
     private buttons;
     private keepControlOnDestroy = false;
     private scrollOutUnless : string;
     private scrollOutOn : string;
-    private groupName : string;
     private defaultValue : string;
     private select               = new EventEmitter<any>();
-    private index : string       = '';
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
                   private scrollService : ScrollService ) {
+        super();
     }
 
-    ngOnInit () : any {
-        this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-        } );
-        if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.control );
-        }
-        return undefined;
+    private set groupName ( _id ) {
+        this._id = _id;
+    }
+
+    private get groupName () {
+        return this._id;
     }
 
     ngAfterViewInit () : any {
@@ -83,38 +66,15 @@ export class AmpGroupButtonsComponent implements OnInit {
         return undefined;
     }
 
-    get disabled () {
-        return this._disabled;
-    }
-
-    set disabled ( value ) {
-        this._disabled = this.isTrue( value );
-    }
-
-    get required () {
-        return this._required;
-    }
-
-    get id () {
-        return this.groupName;
-    }
-
-    set required ( value ) {
-        setTimeout( () => {
-            this._required = this.isTrue( value );
-            this.updateValidators();
-            this.changeDetector.markForCheck();
-        } , 0 );
-    }
-
-    private isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === 'true' || false);
-    }
-
     private updateValidators () {
         if ( this.control ) {
-            this.control.setValidators( RequiredValidator.requiredValidation( this._required ) );
+            let validators = Validators.compose( [
+                RequiredValidator.requiredValidation( this.required ) ,
+                this.customValidator()
+            ] );
+            this.control.setValidators( validators );
             this.control.updateValueAndValidity( { emitEvent : true } );
+            this.changeDetector.markForCheck();
         }
     }
 
