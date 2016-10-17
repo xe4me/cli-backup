@@ -1,6 +1,6 @@
 {
   "name": "amp-ddc-components",
-  "version": "3.0.133",
+  "version": "3.0.142",
   "description": "AMP digital dynamic data capture UI component library",
   "author": "Eric Kwok <eric_kwok@amp.com.au>",
   "homepage": "https://gitlab.ccoe.ampaws.com.au/ddc/components",
@@ -126,6 +126,7 @@
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.0.0",
     "karma-jasmine": "^1.0.2",
+    "karma-junit-reporter": "^1.1.0",
     "karma-mocha-reporter": "^2.0.0",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",

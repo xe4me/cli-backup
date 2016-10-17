@@ -38,14 +38,13 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private sectionLabels : string = null;
     private _currentSectionName : string = null;
     private _previousSectionName : string = null;
-
+    private domUtils : DomUtils = null;
     constructor(private _dom : BrowserDomAdapter,
                 private _cd : ChangeDetectorRef,
                 private elem : ElementRef,
-                private formSectionService : FormSectionService,
-                private domUtils : DomUtils) {
+                private formSectionService : FormSectionService) {
 
-    this.domUtils = new DomUtils();
+        this.domUtils = new DomUtils();
 
     }
 

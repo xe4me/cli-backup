@@ -7,16 +7,18 @@ import { Http,
 } from '@angular/http';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { Environments } from '../../abstracts/environments/environments.abstract';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AmpFileUploadService {
+    public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
 
     @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
-    public _baseUrl : string = 'https://api-upload-ddc.digital-pilot.ampaws.com.au';
-    public _tokenUrl : string = this._baseUrl + '/ddc/secure/api/upload/token';
-    public _uploadUrl : string = this._baseUrl + '/ddc/secure/api/upload/upload';
-    public _deleteUrl : string = this._baseUrl + '/ddc/secure/api/upload/delete';
+    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/token';
+    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/upload';
+    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
     private _queue : any[] = [];
@@ -32,6 +34,10 @@ export class AmpFileUploadService {
         return this._uploadUrl;
     }
 
+    public get deleteUrl () : string {
+        return this._deleteUrl;
+    }
+
     public get errorMessage () : string {
         return this._errorMessage;
     }
@@ -41,6 +47,7 @@ export class AmpFileUploadService {
     }
 
     public addFilesToQueue( files : any ) : void {
+        this._queue = [];
         files.forEach(( file : File ) => {
             if (this.isFile( file )) {
                 this._queue.push( file );
@@ -55,21 +62,11 @@ export class AmpFileUploadService {
         });
     };
 
-    public deleteFile ( fileName : string, formName : string, formId : string ) : boolean {
+    public deleteFile ( fileName : string, formName : string, formId : string ) : Observable<any> {
         let deleteUrlwithParms : string;
-        let isFileDeleted : boolean = false;
         deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&objectId=' + formId;
-        this.http.post( deleteUrlwithParms, {} )
-                        .map( ( res : Response ) => res.json() )
-                        .subscribe(
-                            ( res : any ) => {
-                                isFileDeleted = true;
-                            },
-                            ( error ) => {
-                                isFileDeleted = false;
-                            }
-                        );
-        return isFileDeleted;
+        return this.http.post( deleteUrlwithParms, {} )
+                        .map( ( res : Response ) => res.json() );
     }
 
     private isFile( file : any ) : boolean {

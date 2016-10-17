@@ -6,7 +6,10 @@ import {
     ChangeDetectorRef ,
     AfterViewInit ,
     EventEmitter ,
-    Renderer , OnInit , ChangeDetectionStrategy
+    Renderer,
+    OnInit,
+    ChangeDetectionStrategy,
+    OnDestroy
 } from '@angular/core';
 import { isPresent } from '@angular/core/src/facade/lang';
 import {
@@ -59,7 +62,8 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
             'noPadding' ,
             'currency' ,
             'iconRight' ,
-            'labelHidden'
+            'labelHidden',
+            'keepControl'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
@@ -70,7 +74,7 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
         } ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
-export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
+export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDestroy {
     public control : FormControl         = new FormControl();
     public errors                        = {};
     public controlGroup : FormGroup;
@@ -97,6 +101,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
     protected tabindex : any             = null;
     protected defaultValue : any         = null;
     protected currency : string          = null;
+    protected keepControl : boolean      = false;
     protected placeholder : string;
     protected onAdjustWidth : EventEmitter<any>;
     protected hostClassesRemove;
@@ -163,6 +168,14 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit {
             }
         }
         return undefined;
+    }
+
+    ngOnDestroy () : any {
+         if ( ! this.keepControl ) {
+            if ( this.controlGroup.contains( this.id ) ) {
+                this.controlGroup.removeControl( this.id );
+            }
+        }
     }
 
     public checkErrors ( killTimer = false ) {
