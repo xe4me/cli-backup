@@ -16,9 +16,9 @@ export class AmpFileUploadService {
 
     @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
-    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/api/upload/token';
-    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/api/upload/upload';
-    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/api/upload/delete';
+    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/upload/token';
+    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/upload/upload';
+    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
     private _queue : any[] = [];
