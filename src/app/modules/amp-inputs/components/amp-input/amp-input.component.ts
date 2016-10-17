@@ -62,8 +62,9 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
             'noPadding' ,
             'currency' ,
             'iconRight' ,
-            'labelHidden',
-            'keepControl'
+            'labelHidden' ,
+            'keepControl' ,
+            'autoComplete'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
@@ -116,6 +117,7 @@ export class AmpInputComponent implements AfterViewInit, OnChanges, OnInit, OnDe
     protected idleTimeOut                = 4500;
     protected idleTimeoutId;
     protected index;
+    protected autoComplete : string      = 'off';
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
