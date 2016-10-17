@@ -139,7 +139,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         if (e.target.className.includes('icon--search')) {
             this.searchIconClick();
         }
-    }   
+    }
 
     private open () {
         if ( this.isInSummaryState ) {
