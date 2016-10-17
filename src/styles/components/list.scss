@@ -1,10 +1,11 @@
-$list-default-margin: 20px;
+$list-default-margin: $default-margin;
 $list-default-padding: 30px;
 $list-default-size: 6px;
+$list-nested-margin: 20px;
 
 .list-default {
     list-style: none;
-    margin-top: $list-default-margin;
+    margin: $default-margin 0;
 
     > li {
         padding-left: $list-default-padding;
@@ -28,6 +29,8 @@ $list-default-size: 6px;
     }
 
     ul li > & {
+        margin-bottom: $list-nested-margin 0;
+
         li {
             font-size: inherit;
             margin-bottom: 5px;
