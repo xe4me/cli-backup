@@ -7,17 +7,18 @@ import { Http,
 } from '@angular/http';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class AmpFileUploadService {
+    public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
 
     @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
-    public _baseUrl : string = 'https://api-upload-ddc.digital-pilot.ampaws.com.au';
-    public _tokenUrl : string = this._baseUrl + '/ddc/secure/api/upload/token';
-    public _uploadUrl : string = this._baseUrl + '/ddc/secure/api/upload/upload';
-    public _deleteUrl : string = this._baseUrl + '/ddc/secure/api/upload/delete';
+    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/upload/token';
+    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/upload/upload';
+    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
     private _queue : any[] = [];
@@ -31,6 +32,10 @@ export class AmpFileUploadService {
 
     public get uploadUrl () : string {
         return this._uploadUrl;
+    }
+
+    public get deleteUrl () : string {
+        return this._deleteUrl;
     }
 
     public get errorMessage () : string {

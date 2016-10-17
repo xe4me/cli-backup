@@ -20,44 +20,24 @@
         "readme": "<p>Examples of grid layouts</p>\n"
     },
     {
-        "name": "Responsive",
+        "name": "Icons",
         "sources": [
-            "src/app/layout/responsive/responsive.ts"
+            "src/app/layout/icons/icons.ts"
         ],
-        "id": "Responsive",
+        "id": "Icons",
         "examples": [
             {
-                "template": "src/styleguide/layout/responsive/responsive.html",
-                "styles": "src/styleguide/layout/responsive/responsive.scss",
-                "source": "src/styleguide/layout/responsive/responsive.ts",
-                "galen": "src/styleguide/layout/responsive/responsive.spec",
-                "jasmine": "src/styleguide/layout/responsive/responsive.spec.ts",
-                "component": "grid",
-                "component_src_location": "layout/responsive/responsive",
-                "name": "Responsive"
+                "template": "src/styleguide/layout/icons/icons.html",
+                "styles": "src/styleguide/layout/icons/icons.scss",
+                "source": "src/styleguide/layout/icons/icons.ts",
+                "galen": "src/styleguide/layout/icons/icons.spec",
+                "jasmine": "src/styleguide/layout/icons/icons.spec.ts",
+                "component": "icons",
+                "component_src_location": "layout/icons/icons",
+                "name": "Icons"
             }
         ],
-        "readme": "<p>Notes about the responsive breakpoints</p>\n"
-    },
-    {
-        "name": "Padding and Margins",
-        "sources": [
-            "src/app/layout/padding-margin/padding-margin.ts"
-        ],
-        "id": "PaddingandMargins",
-        "examples": [
-            {
-                "template": "src/styleguide/layout/padding-margin/padding-margin.html",
-                "styles": "src/styleguide/layout/padding-margin/padding-margin.scss",
-                "source": "src/styleguide/layout/padding-margin/padding-margin.ts",
-                "galen": "src/styleguide/layout/padding-margin/padding-margin.spec",
-                "jasmine": "src/styleguide/layout/padding-margin/padding-margin.spec.ts",
-                "component": "grid",
-                "component_src_location": "layout/padding-margin/padding-margin",
-                "name": "Padding and Margins"
-            }
-        ],
-        "readme": "<p>Notes about helper classes for padding and margins</p>\n"
+        "readme": "<p>Our available icons</p>\n"
     },
     {
         "name": "Lists",
@@ -80,6 +60,46 @@
         "readme": "<p>Here are the different types and styles of lists available</p>\n"
     },
     {
+        "name": "Padding and Margins",
+        "sources": [
+            "src/app/layout/padding-margin/padding-margin.ts"
+        ],
+        "id": "PaddingandMargins",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/padding-margin/padding-margin.html",
+                "styles": "src/styleguide/layout/padding-margin/padding-margin.scss",
+                "source": "src/styleguide/layout/padding-margin/padding-margin.ts",
+                "galen": "src/styleguide/layout/padding-margin/padding-margin.spec",
+                "jasmine": "src/styleguide/layout/padding-margin/padding-margin.spec.ts",
+                "component": "grid",
+                "component_src_location": "layout/padding-margin/padding-margin",
+                "name": "Padding and Margins"
+            }
+        ],
+        "readme": "<p>Notes about helper classes for padding and margins</p>\n"
+    },
+    {
+        "name": "Responsive",
+        "sources": [
+            "src/app/layout/responsive/responsive.ts"
+        ],
+        "id": "Responsive",
+        "examples": [
+            {
+                "template": "src/styleguide/layout/responsive/responsive.html",
+                "styles": "src/styleguide/layout/responsive/responsive.scss",
+                "source": "src/styleguide/layout/responsive/responsive.ts",
+                "galen": "src/styleguide/layout/responsive/responsive.spec",
+                "jasmine": "src/styleguide/layout/responsive/responsive.spec.ts",
+                "component": "grid",
+                "component_src_location": "layout/responsive/responsive",
+                "name": "Responsive"
+            }
+        ],
+        "readme": "<p>Notes about the responsive breakpoints</p>\n"
+    },
+    {
         "name": "Tables",
         "sources": [
             "src/app/layout/tables/tables.ts"
@@ -97,27 +117,27 @@
                 "name": "Tables"
             }
         ],
-        "readme": "<p>Here are the different types and styles of lists available</p>\n"
+        "readme": "<p>Here are the different types and styles of tables available</p>\n"
     },
     {
-        "name": "Icons",
+        "name": "Text",
         "sources": [
-            "src/app/layout/icons/icons.ts"
+            "src/app/layout/text/text.ts"
         ],
-        "id": "Icons",
+        "id": "Text",
         "examples": [
             {
-                "template": "src/styleguide/layout/icons/icons.html",
-                "styles": "src/styleguide/layout/icons/icons.scss",
-                "source": "src/styleguide/layout/icons/icons.ts",
-                "galen": "src/styleguide/layout/icons/icons.spec",
-                "jasmine": "src/styleguide/layout/icons/icons.spec.ts",
-                "component": "icons",
-                "component_src_location": "layout/icons/icons",
-                "name": "Icons"
+                "template": "src/styleguide/layout/text/text.html",
+                "styles": "src/styleguide/layout/text/text.scss",
+                "source": "src/styleguide/layout/text/text.ts",
+                "galen": "src/styleguide/layout/text/text.spec",
+                "jasmine": "src/styleguide/layout/text/text.spec.ts",
+                "component": "text",
+                "component_src_location": "layout/text/text",
+                "name": "Text"
             }
         ],
-        "readme": "<p>Our available icons</p>\n"
+        "readme": "<p>Here are the different styles of text available</p>\n"
     },
     {
         "name": "Amp Linear ProgressBar",

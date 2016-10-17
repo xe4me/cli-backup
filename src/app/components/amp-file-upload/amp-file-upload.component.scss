@@ -6,19 +6,19 @@
 
 input {
     position: absolute;
-    top: 22px;
+    top: 61px;
     left: 0px;
     z-index: 2;
     opacity: 0;
     width: auto;
-    height: 52px;
+    height: 55px;
 }
 
 .progress {
     background-color: $amp-colour-grey-lightest;
     border: 1px solid $amp-colour-grey;
     min-width: 460px;
-    min-height: 112px;
+    min-height: 150px;
     padding: 30px;
     margin: 30px 0;
     .file-name {

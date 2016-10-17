@@ -16,20 +16,22 @@
 <div class="progress mb" *ngIf="showProgress">
     <div class="file-name grid__item_floated 10/12">
         <h3>{{fileName}}</h3>
-        <div *ngIf="showProgressBar()">
-            <div class="file-size">File size: {{uploaded}} of {{fileSize}} ({{speed}})</div>
-            <amp-linear-progress-bar
-                value="{{progress*100}}"
-                determinate="determinate">
-            </amp-linear-progress-bar>
-        </div>
-        <div *ngIf="!showProgressBar()">
+        <div>
             <div class="file-size">
-                File size: {{fileSize}}
+                File size:
+                <span *ngIf="showProgressBar()"> {{uploaded}} of </span>
+                {{fileSize}}
+                <span *ngIf="showProgressBar()">({{speed}})</span>
             </div>
         </div>
     </div>
     <div class="file-remove grid__item_floated 2/12">
         <h3>Remove<span class="icon icon--modal-close" aria-hidden="true" (click)="removeFile()"></span></h3>
+    </div>
+    <div class="file-remove grid__item_floated 12/12" *ngIf="showProgressBar()">
+        <amp-linear-progress-bar
+            value="{{progress*100}}"
+            determinate="determinate">
+        </amp-linear-progress-bar>
     </div>
 </div>

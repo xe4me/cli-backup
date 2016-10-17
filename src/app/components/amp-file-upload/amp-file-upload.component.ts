@@ -3,13 +3,16 @@ import { Component,
          ChangeDetectorRef,
          Input,
          ViewChild } from '@angular/core';
-import { Http,
-         Response } from '@angular/http';
+import { Response,
+         Headers,
+         RequestOptions
+} from '@angular/http';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 import { Observable } from 'rxjs';
+import { AmpHttpService } from '../../services/amp-http/amp-http.service';
 
 @Component({
     selector    : 'amp-file-upload',
@@ -23,6 +26,7 @@ export class AmpFileUploadComponent implements OnInit {
     @Input() title : string;
     @Input() text : string;
     @Input() uploadUrl : string;
+    @Input() deleteUrl : string;
     @Input() tokenUrl : string;
     @Input() formName : string;
     @Input() formId : string;
@@ -41,9 +45,13 @@ export class AmpFileUploadComponent implements OnInit {
     private errorMessage : string;
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
+    private headers  = new Headers( {
+        'Content-Type' : 'application/json' ,
+        'caller'       : 'components'
+    } );
 
     constructor ( protected _cd : ChangeDetectorRef,
-                  private http : Http,
+                  private http : AmpHttpService,
                   private fileUploadService : AmpFileUploadService,
                     ) {
     }
@@ -55,6 +63,9 @@ export class AmpFileUploadComponent implements OnInit {
         }
         if ( !this.uploadUrl ) {
             this.uploadUrl = this.fileUploadService.uploadUrl;
+        }
+        if ( !this.deleteUrl ) {
+            this.deleteUrl = this.fileUploadService.deleteUrl;
         }
         this.errorMessage = this.fileUploadService.errorMessage;
         this.basicOptions = {
@@ -97,9 +108,10 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private updateToken () : void {
+        let options = new RequestOptions( { body : '' , headers : this.headers } );
         this.fileInput.nativeElement.value = null;
         this.error = false;
-        this.http.get( this.tokenUrl )
+        this.http.get( this.tokenUrl, options )
             .map( ( res : Response ) => res.json() )
             .subscribe(
                 ( res : any ) => {
