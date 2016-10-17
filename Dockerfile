@@ -4,7 +4,7 @@ MAINTAINER "Francis Naoum" <francis_naoum@amp.com.au>
 
 # Create code directory and remove anything just in case
 # Set permissions for node and set timezone
-RUN mkdir -p /code &&
+RUN mkdir -p /code && \
     rm /etc/localtime && \
     ln -s /usr/share/zoneinfo/Australia/Sydney /etc/localtime
 
