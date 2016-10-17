@@ -27,7 +27,8 @@ import {
             'maxLength' ,
             'minLength' ,
             'required' ,
-            'hostClassesRemove'
+            'hostClassesRemove' ,
+            'spellCheck'
         ] ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
@@ -48,6 +49,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
     private _required : boolean  = false;
     private hasFocus : boolean   = false;
     private controlGroup : FormGroup;
+    private spellCheck : boolean = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ) {
