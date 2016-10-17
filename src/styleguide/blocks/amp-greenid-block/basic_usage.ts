@@ -24,7 +24,8 @@ export default class AmpGreenIdBlockBasicUsage {
         scrollOutOn : null
     };
 
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ,
+    constructor ( private  themeService : ThemeService ,
+                  private _cd : ChangeDetectorRef ,
                   private elementRef : ElementRef ) {
     }
 
@@ -36,6 +37,7 @@ export default class AmpGreenIdBlockBasicUsage {
     }
 
     ngOnInit () {
+
     }
 
     private check () {
@@ -45,5 +47,6 @@ export default class AmpGreenIdBlockBasicUsage {
     private onAcknowledgeSelect ( value ) {
        // console.log('value', value );
     }
+
 
 }

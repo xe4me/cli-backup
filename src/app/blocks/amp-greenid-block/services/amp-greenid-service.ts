@@ -7,8 +7,8 @@ import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 export class AmpGreenIdServices {
 
     public static BASE_URL          = 'http://localhost:9000';
-
     public static DEFAULT_ERROR_TEXT = 'Server error';
+
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,
         'caller'       : 'components'
@@ -18,4 +18,22 @@ export class AmpGreenIdServices {
 
     }
 
+    public registerCustomer  = ( queryValue : string ) : Observable<any> => {
+        let headers : Headers = this.headers;
+        let options           = new RequestOptions( { body : '' , headers : headers } );
+        let url               = AmpGreenIdServices.BASE_URL + '/' + encodeURIComponent( queryValue );
+        return this
+            .http
+            .get( url , options )
+            .map( ( res ) => {
+                let re = res.json();
+                console.log("response: ",re);
+            } )
+            .catch( this.handleError );
+    };
+
+    private handleError ( error : any ) {
+        let errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
+        return Observable.throw( errMsg );
+    }
 }

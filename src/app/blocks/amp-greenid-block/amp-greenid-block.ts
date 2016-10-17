@@ -4,7 +4,8 @@ import {
     state ,
     style ,
     animate ,
-    transition
+    transition,
+    OnInit
 } from '@angular/core';
 
 @Component( {
@@ -44,4 +45,6 @@ export class AmpGreenidBlockComponent {
     public proceed () {
         this.slideUp = 'collapsed';
     }
+
+
 }
