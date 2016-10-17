@@ -12,6 +12,7 @@ export { AmpIntroBlockComponent } from './src/app/blocks/amp-intro-block/amp-int
 export * from './src/app/modules/amp-utils';
 export * from './src/app/modules/amp-pipes';
 export * from './src/app/modules/amp-typeahead';
+export * from './src/app/modules/amp-type-search';
 export * from './src/app/modules/amp-qas-address';
 export * from './src/app/modules/amp-inputs';
 export * from './src/app/modules/amp-error';
