@@ -7,11 +7,11 @@ describe( 'Amp File Upload service' , ( ) => {
     } );
 
     it( 'Should return a valid token url' , ( ) => {
-        expect( _fileUploadService.tokenUrl ).toBe( 'https://api-upload-ddc.digital-pilot.ampaws.com.au/ddc/secure/api/upload/token' );
+        expect( _fileUploadService.tokenUrl ).toContain( '/ddc/secure/api/upload/token' );
         } );
 
     it( 'Should return a valid upload url' , ( ) => {
-            expect( _fileUploadService.uploadUrl ).toBe( 'https://api-upload-ddc.digital-pilot.ampaws.com.au/ddc/secure/api/upload/upload' );
+            expect( _fileUploadService.uploadUrl ).toContain( '/ddc/secure/api/upload/upload' );
         } ) ;
 
 } );
