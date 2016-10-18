@@ -6,16 +6,16 @@ import { TableContentsService } from './services/content-table-service';
     selector      : 'styleguide-app' ,
     styles        : [ require( './app.scss' ).toString() ] ,
     template      : `
-        <button (click)="hideNavigation=!hideNavigation">Slide</button>
-        <div class="styleguide-app">
-            <div class="grid__item 1/6 styleguide-app--menu palm-hide" [class.desk-hide]="hideNavigation">
+        <div class="styleguide-app" [class.show-menu]="!hideNavigation">
+            <button class="styleguide-app--toggle" role="button" (click)="hideNavigation=!hideNavigation">Slide</button>
+            <div class="styleguide-app--menu">
                 <left-navigation
                     [contentTable]="contentTable"
                     [components]="components"
                     [componentsGrouped]="componentsGrouped">
                 </left-navigation>
             </div><!--
-         --><div class="examples grid__item 5/6 pl styleguide-app--components palm-p palm-1/1" [ngClass]="{'desk-1/1':hideNavigation}">
+         --><div class="examples styleguide-app--components palm-p">
                 <router-outlet ></router-outlet>
             </div>
         </div>
