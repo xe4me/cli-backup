@@ -27,6 +27,23 @@ export default class AmpGreenIdBlockBasicUsage {
         scrollOutOn : null
     };
 
+    private modelValue = {
+        firstName: 'John',
+        lastName: 'Smith',
+        middleNames: 'Danger',
+        honorific: 'Mr',
+        dateOfBirth: '2001-04-12',
+        email: 'sample@test.com',
+        address: {
+            country: 'AU',
+            state: 'NSW',
+            streetName: 'SMITH',
+            flatNumber: 'U 2',
+            streetNumber: '53-57',
+            streetType: 'RD',
+            suburb: 'SYDNEY'
+        }
+    };
     constructor ( private  themeService : ThemeService ,
                   private _cd : ChangeDetectorRef ,
                   private elementRef : ElementRef,
@@ -46,8 +63,6 @@ export default class AmpGreenIdBlockBasicUsage {
     }
 
     private onAcknowledgeSelect ( value ) {
-        console.log('AmpGreenIdServices: ', this._AmpGreenIdServices );
-        console.log('value', value );
 
         this.acceptTerms = value;
 
@@ -55,7 +70,13 @@ export default class AmpGreenIdBlockBasicUsage {
 
     private onContinue( value ) {
 
+        console.log(value);
 
+        this._AmpGreenIdServices
+            .registerCustomer(this.modelValue)
+            .subscribe( ( respo ) => {
+                console.log('respo ', respo);
+            });
     }
 
 }

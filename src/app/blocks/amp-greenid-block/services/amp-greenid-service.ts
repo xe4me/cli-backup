@@ -5,33 +5,36 @@ import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 @Injectable()
 export class AmpGreenIdServices {
 
-    public static BASE_URL          = 'http://localhost:9000';
+    public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
     public static DEFAULT_ERROR_TEXT = 'Server error';
+    public static VERFICATION_ENDPOINT = '/registerVerification';
 
     private headers                  = new Headers( {
-        'Content-Type' : 'application/json' ,
-        'caller'       : 'components'
+        'Content-Type' : 'application/json'
     } );
 
     constructor ( private http : AmpHttpService ) {
 
     }
 
-    public registerCustomer  = ( queryValue : string ) : Observable<any> => {
+    public registerCustomer  = ( modelValue : any ) : Observable<any> => {
         let headers : Headers = this.headers;
-        let options           = new RequestOptions( { body : '' , headers : headers } );
-        let url               = AmpGreenIdServices.BASE_URL + '/' + encodeURIComponent( queryValue );
+        let options           = new RequestOptions( { headers : headers } );
+        let url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.VERFICATION_ENDPOINT;
+        let body              = JSON.stringify( modelValue );
+
         return this
             .http
-            .get( url , options )
+            .post( url, body, options )
             .map( ( res ) => {
                 let re = res.json();
                 console.log(' response: ', re);
-            } )
-            .catch( this.handleError );
+            })
+         .catch( this.handleError );
     };
 
     private handleError ( error : any ) {
+        console.log('error: ', errMsg);
         let errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
         return Observable.throw( errMsg );
     }
