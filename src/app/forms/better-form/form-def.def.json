@@ -269,7 +269,8 @@
                                                             {
                                                                 "id": "HomeNumber"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "mobileNumberErrorMsg" : "Mobile number must be in the format 04nnnnnnnn."
                                                     }
                                                 },
                                                 {
@@ -545,7 +546,8 @@
                                                             {
                                                                 "id": "TIN"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "ssnRequiredMsg" : "Either SSN or TIN is required."
                                                     }
                                                 }
                                             ]
@@ -650,7 +652,8 @@
                                                             {
                                                                 "id": "HomeNumber"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "mobileNumberErrorMsg" : "Mobile number must be in the format 04nnnnnnnn."
                                                     }
                                                 },
                                                 {
@@ -926,7 +929,8 @@
                                                             {
                                                                 "id": "TIN"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "ssnRequiredMsg" : "Either SSN or TIN is required."
                                                     }
                                                 }
                                             ]
