@@ -26,4 +26,30 @@
         Ok
     </amp-button>
 
+    <span>Green id start</span>
+    <div id="greenid-div">
+    </div>
+    <span>Green id end</span>
+    <script src="//test2.edentiti.com/df/javascripts/greenidConfig.js" type="text/javascript"></script>
+    <script src="//test2.edentiti.com/df/javascripts/greenidui.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        greenidJQuery("document").ready(function() {
+
+            // The setup function initialises the greenID Simple UI and passes in key variables,
+            // such as the div ID where the form controls will be injected and the ID of your form.
+            // A full list of parameters is available at https://vixverify.atlassian.net/wiki/display/GREEN/Using+the+SimpleUI#UsingtheSimpleUI-JavascriptSetupforRegisteringaNewPerson
+            greenidUI.setup({
+                environment: 'test',
+                formId: "theform",
+                frameId: "greenid-div",
+                country: "usethiscountry",
+                debug: false
+            });
+
+        })
+
+    </script>
+
 </amp-greenid-block>
