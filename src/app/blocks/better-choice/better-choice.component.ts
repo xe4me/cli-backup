@@ -22,6 +22,9 @@ import {
 import {
     SharedFormDataService
 } from '../../shared/shared-form-data.service';
+import {
+    Constants
+} from '../../shared/constants';
 @Component({
     selector: 'better-choice-block',
     templateUrl: './better-choice.component.html',
@@ -45,8 +48,9 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
     }
 
     public setButtonLabels(singleOrJoint : string) {
+        const mappedLabel = singleOrJoint === Constants.singleApplicant ? 'single' : 'joint';
         for ( const button of this.__custom.controls[0].buttons) {
-            button.label = button['label_' + singleOrJoint];
+            button.label = button['label_' + mappedLabel];
         }
         this.__custom.controls[0].buttons = clone(this.__custom.controls[0].buttons );
     }

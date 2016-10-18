@@ -14,6 +14,7 @@ import {
     Validators,
     FormControl
 } from '@angular/forms';
+import { Constants } from '../../shared/constants';
 
 @Component( {
     selector        : 'single-or-joint-block' ,
@@ -31,7 +32,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public ngOnInit() {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
-        this.formModelService.setSubmitRelativeUrl('ddc/public/api/bett3r/save');
+        this.formModelService.setSubmitRelativeUrl(Constants.saveUrl);
     }
 
     private onSingleJoint(singleJointIndicator : string) {

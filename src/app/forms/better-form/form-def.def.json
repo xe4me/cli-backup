@@ -423,27 +423,27 @@
                                                                 "id": "PrimarySourceOfWealth",
                                                                 "options": [
                                                                     {
-                                                                        "value": "Employment",
+                                                                        "value": "WIE",
                                                                         "label": "Income from employment (regular and/or bonus)"
                                                                     },
                                                                     {
-                                                                        "value": "Investment",
+                                                                        "value": "WII",
                                                                         "label": "Investment income (e.g. rent, dividends, pension)"
                                                                     },
                                                                     {
-                                                                        "value": "Business",
+                                                                        "value": "WBI",
                                                                         "label": "Business income"
                                                                     },
                                                                     {
-                                                                        "value": "One-off payment",
+                                                                        "value": "WOO",
                                                                         "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
                                                                     },
                                                                     {
-                                                                        "value": "Assets",
+                                                                        "value": "WSA",
                                                                         "label": "Sale of assets (e.g. shares, property)"
                                                                     },
                                                                     {
-                                                                        "value": "Windfall",
+                                                                        "value": "WWF",
                                                                         "label": "Windfall (e.g. gift, lottery winnings, gambling)"
                                                                     }
                                                                 ]
@@ -452,35 +452,35 @@
                                                                 "id": "SourceOfFundsForAccount",
                                                                 "options": [
                                                                     {
-                                                                        "value": "Employment",
+                                                                        "value": "FIE",
                                                                         "label": "Income from employment (regular and/or bonus)"
                                                                     },
                                                                     {
-                                                                        "value": "Investment",
+                                                                        "value": "FII",
                                                                         "label": "Investment income (e.g. rent, dividends, pension)"
                                                                     },
                                                                     {
-                                                                        "value": "Business",
+                                                                        "value": "FBI",
                                                                         "label": "Business income"
                                                                     },
                                                                     {
-                                                                        "value": "One-off payment",
+                                                                        "value": "FOO",
                                                                         "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
                                                                     },
                                                                     {
-                                                                        "value": "Assets",
+                                                                        "value": "FSA",
                                                                         "label": "Sale of assets (e.g. shares, property)"
                                                                     },
                                                                     {
-                                                                        "value": "Windfall",
+                                                                        "value": "FWF",
                                                                         "label": "Windfall (e.g. gift, lottery winnings, gambling)"
                                                                     },
                                                                     {
-                                                                        "value": "Borrowed funds",
+                                                                        "value": "FBF",
                                                                         "label": "Borrowed Funds"
                                                                     },
                                                                     {
-                                                                        "value": "Government benefits",
+                                                                        "value": "FGB",
                                                                         "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
                                                                     }
                                                                 ]
@@ -489,19 +489,19 @@
                                                                 "id": "ReasonForOpeningAccount",
                                                                 "options": [
                                                                     {
-                                                                        "value": "Everday banking",
+                                                                        "value": "EB",
                                                                         "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
                                                                     },
                                                                     {
-                                                                        "value": "Business income",
+                                                                        "value": "BI",
                                                                         "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
                                                                     },
                                                                     {
-                                                                        "value": "Savings",
+                                                                        "value": "SAV",
                                                                         "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
                                                                     },
                                                                     {
-                                                                        "value": "Wealth",
+                                                                        "value": "BW",
                                                                         "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
                                                                     }
                                                                 ]
@@ -800,31 +800,31 @@
                                                     "custom": {
                                                         "blockTitle": "Please tell us your...",
                                                         "controls": [
-                                                            {
+                                                                                                                        {
                                                                 "id": "PrimarySourceOfWealth",
                                                                 "options": [
                                                                     {
-                                                                        "value": "Employment",
+                                                                        "value": "WIE",
                                                                         "label": "Income from employment (regular and/or bonus)"
                                                                     },
                                                                     {
-                                                                        "value": "Investment",
+                                                                        "value": "WII",
                                                                         "label": "Investment income (e.g. rent, dividends, pension)"
                                                                     },
                                                                     {
-                                                                        "value": "Business",
+                                                                        "value": "WBI",
                                                                         "label": "Business income"
                                                                     },
                                                                     {
-                                                                        "value": "One-off payment",
+                                                                        "value": "WOO",
                                                                         "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
                                                                     },
                                                                     {
-                                                                        "value": "Assets",
+                                                                        "value": "WSA",
                                                                         "label": "Sale of assets (e.g. shares, property)"
                                                                     },
                                                                     {
-                                                                        "value": "Windfall",
+                                                                        "value": "WWF",
                                                                         "label": "Windfall (e.g. gift, lottery winnings, gambling)"
                                                                     }
                                                                 ]
@@ -833,35 +833,35 @@
                                                                 "id": "SourceOfFundsForAccount",
                                                                 "options": [
                                                                     {
-                                                                        "value": "Employment",
+                                                                        "value": "FIE",
                                                                         "label": "Income from employment (regular and/or bonus)"
                                                                     },
                                                                     {
-                                                                        "value": "Investment",
+                                                                        "value": "FII",
                                                                         "label": "Investment income (e.g. rent, dividends, pension)"
                                                                     },
                                                                     {
-                                                                        "value": "Business",
+                                                                        "value": "FBI",
                                                                         "label": "Business income"
                                                                     },
                                                                     {
-                                                                        "value": "One-off payment",
+                                                                        "value": "FOO",
                                                                         "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
                                                                     },
                                                                     {
-                                                                        "value": "Assets",
+                                                                        "value": "FSA",
                                                                         "label": "Sale of assets (e.g. shares, property)"
                                                                     },
                                                                     {
-                                                                        "value": "Windfall",
+                                                                        "value": "FWF",
                                                                         "label": "Windfall (e.g. gift, lottery winnings, gambling)"
                                                                     },
                                                                     {
-                                                                        "value": "Borrowed funds",
+                                                                        "value": "FBF",
                                                                         "label": "Borrowed Funds"
                                                                     },
                                                                     {
-                                                                        "value": "Government benefits",
+                                                                        "value": "FGB",
                                                                         "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
                                                                     }
                                                                 ]
@@ -870,19 +870,19 @@
                                                                 "id": "ReasonForOpeningAccount",
                                                                 "options": [
                                                                     {
-                                                                        "value": "Everday banking",
+                                                                        "value": "EB",
                                                                         "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
                                                                     },
                                                                     {
-                                                                        "value": "Business income",
+                                                                        "value": "BI",
                                                                         "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
                                                                     },
                                                                     {
-                                                                        "value": "Savings",
+                                                                        "value": "SAV",
                                                                         "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
                                                                     },
                                                                     {
-                                                                        "value": "Wealth",
+                                                                        "value": "BW",
                                                                         "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
                                                                     }
                                                                 ]
