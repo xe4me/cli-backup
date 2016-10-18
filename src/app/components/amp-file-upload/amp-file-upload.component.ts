@@ -118,7 +118,7 @@ export class AmpFileUploadComponent implements OnInit {
                     this.token = res.payload.token;
                     this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
                                             + '&token=' + this.token;
-                     this.backendError = false;
+                    this.backendError = false;
                 },
                 ( error ) => {
                     this.backendError = true;
