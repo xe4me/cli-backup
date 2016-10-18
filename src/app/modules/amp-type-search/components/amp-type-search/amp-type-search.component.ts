@@ -116,6 +116,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
         this.searchControlGroup.addControl( this.id + AmpTypeSearchComponent.SELECTED_CONTROL_ID_POSTFIX , this.selectedControl );
         this.controlGroup.addControl( AmpTypeSearchComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME , this.searchControlGroup );
+        this.initForApi();
         return undefined;
     }
 
@@ -136,7 +137,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 .subscribe((result) => {
                     this.clearSelectedItem();
                     this.open();
-                    this.searchResult = result;
+                    this.searchResult = result.json().payload;
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
                 } , ( error ) => {
@@ -201,6 +202,38 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         if ( this.focusers.toArray()[ this.INPUT_FOCUSER ] ) {
             this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( - 1 );
         }
+    }
+
+    private initForApi () : Subscription {
+        // this.searchResult = null;
+         this.doApiQuery   = true;
+        // return this.subscription =
+        //     this.control
+        //         .valueChanges
+        //         .distinctUntilChanged()
+        //         .do( ( queryString ) => {
+        //             if ( ! queryString ) {
+        //                 this.clearSelectedItem();
+        //                 this.searchResult = null;
+        //             }
+        //         } )
+        //         .filter(
+        //             ( x ) => x && x.length >= this.minTriggerLength && x.trim() !== this.selectedOption[ this.selectedItemValueIdentifier ] )
+        //         .switchMap( ( queryString ) => this.queryServiceCall( queryString ) )
+        //         .subscribe( ( result ) => {
+        //             this.clearSelectedItem();
+        //             this.open();
+        //             this.searchResult = result;
+        //             this._cd.markForCheck();
+        //             this.ampInput.checkErrors();
+        //         } , ( error ) => {
+        //             this.clearSelectedItem();
+        //             this.close();
+        //             this.searchResult = null;
+        //             this._cd.markForCheck();
+        //             this.ampInput.checkErrors();
+        //         } );
+         return undefined;
     }
 
     private markInputAsUnDirty () : void {
