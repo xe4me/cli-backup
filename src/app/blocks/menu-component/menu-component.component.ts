@@ -21,16 +21,8 @@ export class MenuComponentComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit() {
-      setTimeout(() => {
-          const application : FormGroup = <FormGroup> this.__form.controls['Application'];
-          this.ApplicantsSection = <FormGroup> application.controls['ApplicantsSection'];
-          console.log(application);
-          console.log(application.controls);
-          console.log(application.controls['ApplicantsSection']);
-          console.log(this.ApplicantsSection);
-      },100);
-
-
+      const application : FormGroup = <FormGroup> this.__form.controls['Application'];
+      this.ApplicantsSection = <FormGroup> application.controls['ApplicantsSection'];
   }
 
 }
