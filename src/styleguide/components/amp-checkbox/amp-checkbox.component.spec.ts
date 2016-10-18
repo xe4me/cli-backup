@@ -1,12 +1,12 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef } from '@angular/core';
-import { FormControl , FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
+import { Component , ElementRef , ViewChild } from '@angular/core';
+import { FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
-import { AmpCheckboxModule , AmpCheckboxComponent } from '../../../app/modules/amp-checkbox';
+import { AmpCheckboxModule } from '../../../app/modules/amp-checkbox';
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
@@ -36,9 +36,9 @@ describe( 'amp-checkbox component' , () => {
         let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
         let Labels          = Element.querySelector( 'label' );
         expect( Checkbox ).toBeDefined();
-        expect( Checkbox.name ).toBe( Component.checkbox.id );
-        expect( Checkbox.id ).toBe( Component.checkbox.id );
-        expect( Checkbox.getAttribute( 'data-automation-id' ) ).toBe( 'checkbox_' + Component.checkbox.id );
+        expect( Checkbox.name ).toBe( Component.checkbox.id + '_' + Component.checkboxCmp._randomString );
+        expect( Checkbox.id ).toBe( Component.checkbox.id + '_' + Component.checkboxCmp._randomString );
+        expect( Checkbox.getAttribute( 'data-automation-id' ) ).toBe( 'checkbox_' + Component.checkbox.id + '_' + Component.checkboxCmp._randomString );
     } );
     it( 'Should be required initially when required attr has set to true and the control should be invalid ' , () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
@@ -148,6 +148,7 @@ describe( 'amp-checkbox component' , () => {
     template : `
         <form  #formModel class='nl-form' >
             <amp-checkbox
+                    #checkboxCmp
                     [isInSummaryState]='isInSummaryState'
                     [controlGroup]='controlGroup'
                     [required]='checkbox.required'
@@ -172,7 +173,8 @@ describe( 'amp-checkbox component' , () => {
     `
 } )
 class AmpCheckboxTest {
-    controlGroup : FormGroup = new FormGroup( {} );
+    @ViewChild( 'checkboxCmp' ) checkboxCmp;
+                                controlGroup : FormGroup = new FormGroup( {} );
 
     get control () {
         return this.controlGroup.controls[ 'anId' ];
