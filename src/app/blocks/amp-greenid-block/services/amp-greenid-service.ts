@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
@@ -34,7 +34,6 @@ export class AmpGreenIdServices {
     };
 
     private handleError ( error : any ) {
-        console.log('error: ', errMsg);
         let errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
         return Observable.throw( errMsg );
     }

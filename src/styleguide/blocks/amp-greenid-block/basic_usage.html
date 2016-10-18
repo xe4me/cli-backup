@@ -1,59 +1,89 @@
 <amp-greenid-block>
 
-    <section class="section mv">
-        <p class="para">
-            GreenID implementation
+    <section class="section mv" *ngIf="!okAccepted">
+        <div class="grid__container 1/1 mb">
+            <div class="grid__item_floated 1/1 mv mh">
+                <h2 class="mb-">Thanks Charlie, just to confirm…</h2>
+                <p class="para mt mb">By opening a Bett3r account, you are agreeing to….</p>
+                <div class="grid__container_inner">
+                    <div class="grid__item_floated">
+                        Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a
+                        comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of
+                        the hero. And most times they're friends, like you and me! I should've known way back when...
+                        You know why, David? Because of the kids. They called me Mr Glass.
+                    </div>
+                    <div class="grid__item_floated">
+                        <amp-checkbox
+                            [attr.theme]="themeService.theme.attr"
+                            [isInSummaryState]='isInSummaryState'
+                            [controlGroup]='controlGroup'
+                            [required]='acknowledge.required'
+                            [checked]='acknowledge.checked'
+                            [disabled]='acknowledge.disabled'
+                            [scrollOutOn]='acknowledge.scrollOutOn'
+                            [id]='acknowledge.id'
+                            (select)='onAcknowledgeSelect($event)'>
+                        </amp-checkbox>
 
-        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid__container_inner mv mh">
+                <div class="grid__item_floated">
+                    <amp-button [disabled]='!acceptTerms' (click)='onOk(1)' [class]="'btn btn-ok mt0'"
+                                [data-automation-id]='"abcd"'>
+                        Continue
+                    </amp-button>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <amp-checkbox
-        [attr.theme]="themeService.theme.attr"
-        [isInSummaryState]='isInSummaryState'
-        [controlGroup]='controlGroup'
-        [required]='acknowledge.required'
-        [checked]='acknowledge.checked'
-        [disabled]='acknowledge.disabled'
-        [scrollOutOn]='acknowledge.scrollOutOn'
-        [id]='acknowledge.id'
-        (select)='onAcknowledgeSelect($event)'>
-        <div class='heading heading-contxtual-label'>
-            I agree that I want to verfiy my id...
+    <section class="section mv" *ngIf="okAccepted">
+        <h2 class="mb-">Thanks Charlie, just to confirm…</h2>
+        <div class="grid__container 1/1 mb">
+        <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'"
+                    [data-automation-id]='"abcd"'>
+            Ok
+        </amp-button>
+
+        <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'"
+                    [data-automation-id]='"abcd"'>
+            Ok
+        </amp-button>
         </div>
-    </amp-checkbox>
+    </section>
 
-    <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'" [data-automation-id]='"abcd"'>
-        Ok
-    </amp-button>
-    
-       <!--
-       not complete
-
-       -->
-    <span>Green id start</span>
-    <div id="greenid-div">
-    </div>
-    <span>Green id end</span>
-    <script src="//test2.edentiti.com/df/javascripts/greenidConfig.js" type="text/javascript"></script>
-    <script src="//test2.edentiti.com/df/javascripts/greenidui.min.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-
-        greenidJQuery("document").ready(function() {
-
-            // The setup function initialises the greenID Simple UI and passes in key variables,
-            // such as the div ID where the form controls will be injected and the ID of your form.
-            // A full list of parameters is available at https://vixverify.atlassian.net/wiki/display/GREEN/Using+the+SimpleUI#UsingtheSimpleUI-JavascriptSetupforRegisteringaNewPerson
-            greenidUI.setup({
-                environment: 'test',
-                formId: "theform",
-                frameId: "greenid-div",
-                country: "usethiscountry",
-                debug: false
-            });
-
-        })
-
-    </script>
 
 </amp-greenid-block>
+
+
+<!--
+not complete
+
+-->
+<span>Green id start</span>
+<div id="greenid-div">
+</div>
+<span>Green id end</span>
+<script src="//test2.edentiti.com/df/javascripts/greenidConfig.js" type="text/javascript"></script>
+<script src="//test2.edentiti.com/df/javascripts/greenidui.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    greenidJQuery("document").ready(function () {
+
+        // The setup function initialises the greenID Simple UI and passes in key variables,
+        // such as the div ID where the form controls will be injected and the ID of your form.
+        // A full list of parameters is available at https://vixverify.atlassian.net/wiki/display/GREEN/Using+the+SimpleUI#UsingtheSimpleUI-JavascriptSetupforRegisteringaNewPerson
+        greenidUI.setup({
+            environment: 'test',
+            formId: "theform",
+            frameId: "greenid-div",
+            country: "usethiscountry",
+            debug: false
+        });
+
+    })
+
+</script>
