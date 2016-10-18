@@ -57,6 +57,14 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
 
     public setNextBlock(betterChoiceId : string) {
         const nextBlock = this.__custom.optionalBlocks[betterChoiceId];
+        if (this.loadedDynamicBlock === betterChoiceId) {
+            return;
+        }
+        if (!nextBlock && this.loadedDynamicBlock) {
+            this.__removeNext(this.viewContainerRef);
+            this.loadedDynamicBlock = null;
+            return;
+        }
         if (this.loadedDynamicBlock && betterChoiceId !== this.loadedDynamicBlock) {
             this.__removeNext(this.viewContainerRef);
         }
