@@ -15,7 +15,6 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class ResidencyBlock extends FormBlock {
-    public ssnRequiredMsg = 'Either SSN or TIN is required.';
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
