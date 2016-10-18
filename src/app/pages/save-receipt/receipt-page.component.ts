@@ -29,7 +29,6 @@ import { AmpEmailComponent } from '../../modules/amp-inputs/components/amp-email
         inputs     : ['title',
                       'messageForReference',
                       'messageForEmail',
-                      'referenceId',
                       'label',
                       'emailUrl'],
         outputs    : ['$sendEmailEvent']
