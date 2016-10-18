@@ -44,4 +44,8 @@ export class AmpQasAddressMultiComponent implements OnInit {
         this.arePostalAndResidentialTheSame = _value;
         this._cd.detectChanges();
     }
+
+    get isPostalAndResidentialAreSameRequired () {
+        return this.required && this.arePostalAndResidentialTheSame;
+    }
 }
