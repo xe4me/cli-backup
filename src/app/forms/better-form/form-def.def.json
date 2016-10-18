@@ -272,7 +272,9 @@
                                                                 "id": "EmailAddress"
                                                             },
                                                             {
-                                                                "id": "MobileNumber"
+                                                                "id": "MobileNumber",
+                                                                "errorMsg" : "Mobile number must be in the format 04nnnnnnnn.",
+                                                                "label" : "Mobile number"
                                                             },
                                                             {
                                                                 "id": "HomeNumber"
@@ -553,7 +555,8 @@
                                                             {
                                                                 "id": "TIN"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "ssnRequiredMsg" : "Either SSN or TIN is required."
                                                     }
                                                 }
                                             ]
@@ -653,7 +656,9 @@
                                                                 "id": "EmailAddress"
                                                             },
                                                             {
-                                                                "id": "MobileNumber"
+                                                                "id": "MobileNumber",
+                                                                "errorMsg" : "Mobile number must be in the format 04nnnnnnnn.",
+                                                                "label" : "Mobile number"
                                                             },
                                                             {
                                                                 "id": "HomeNumber"
@@ -934,7 +939,8 @@
                                                             {
                                                                 "id": "TIN"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "ssnRequiredMsg" : "Either SSN or TIN is required."
                                                     }
                                                 }
                                             ]

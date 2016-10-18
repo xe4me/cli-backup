@@ -15,7 +15,11 @@
                     [id]="__custom.controls[1].id"
                     [isInSummaryState]="isInSummaryState"
                     [controlGroup]="__controlGroup"
-                    [label]="'Mobile number'">
+                    [label]="__custom.controls[1].label"
+                    [pattern]="'^04(\\d){8}$'"
+                    [maxLength]="10"
+                    [errors]="{'pattern' : __custom.controls[1].mobileNumberErrorMsg}"
+                    [required]="true">
             </amp-mobile-number>
         </div>
     </amp-form-row>

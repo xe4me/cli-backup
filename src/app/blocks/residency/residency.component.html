@@ -50,7 +50,7 @@
 				[required]="!tin.control.value"
                 [amp-number-only]="ssn.control"
                 [maxLength]="9"
-                [errors]="{ required : 'Either SSN or TIN is required.'}">
+                [errors]="{ required : __custom.ssnRequiredMsg }">
 			</amp-input>
 		</div>
 		<div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr" [hidden]="isInSummaryState">
@@ -66,7 +66,7 @@
 				[isInSummaryState]="isInSummaryState"
                 [amp-number-only]="tin.control"
                 [maxLength]="9"
-                [errors]="{ required : 'Either SSN or TIN is required.'}">
+                [errors]="{ required : __custom.ssnRequiredMsg}">
 			</amp-input>
 		</div>
 	</amp-form-row>
