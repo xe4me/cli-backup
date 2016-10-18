@@ -264,13 +264,14 @@
                                                                 "id": "EmailAddress"
                                                             },
                                                             {
-                                                                "id": "MobileNumber"
+                                                                "id": "MobileNumber",
+                                                                "errorMsg" : "Mobile number must be in the format 04nnnnnnnn.",
+                                                                "label" : "Mobile number"
                                                             },
                                                             {
                                                                 "id": "HomeNumber"
                                                             }
-                                                        ],
-                                                        "mobileNumberErrorMsg" : "Mobile number must be in the format 04nnnnnnnn."
+                                                        ]
                                                     }
                                                 },
                                                 {
@@ -647,13 +648,14 @@
                                                                 "id": "EmailAddress"
                                                             },
                                                             {
-                                                                "id": "MobileNumber"
+                                                                "id": "MobileNumber",
+                                                                "errorMsg" : "Mobile number must be in the format 04nnnnnnnn.",
+                                                                "label" : "Mobile number"
                                                             },
                                                             {
                                                                 "id": "HomeNumber"
                                                             }
-                                                        ],
-                                                        "mobileNumberErrorMsg" : "Mobile number must be in the format 04nnnnnnnn."
+                                                        ]
                                                     }
                                                 },
                                                 {
