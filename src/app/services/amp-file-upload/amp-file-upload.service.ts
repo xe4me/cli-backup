@@ -134,11 +134,15 @@ export class AmpFileUploadService {
             }
             this.onUpload.emit( uploadingFile );
         };
-        let apiKeyValue = 'Bearer ' + Environments.property.GwDDCService.ApiKey;
+        let BASIC_AUTH_BEARER = 'Bearer ';
         xhr.open('POST', this._uploadUrl, true);
         xhr.setRequestHeader( 'Cache-Control' , 'no-cache' );
         xhr.setRequestHeader( 'caller' , 'components' );
-        xhr.setRequestHeader( 'apiKey' , apiKeyValue );
+        if ( this._uploadUrl.indexOf( Environments.property.GwPracticeService.Path ) > - 1 ) {
+            xhr.setRequestHeader( 'apiKey' , BASIC_AUTH_BEARER + Environments.property.GwPracticeService.ApiKey );
+        } else if ( this._uploadUrl.indexOf( Environments.property.GwDDCService.Path ) > - 1 ) {
+            xhr.setRequestHeader( 'apiKey' , BASIC_AUTH_BEARER + Environments.property.GwDDCService.ApiKey );
+        }
         xhr.send(form);
     }
 }
