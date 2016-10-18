@@ -15,6 +15,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class ContactDetailsBlock extends FormBlock {
+    public mobileNumberErrorMsg : string = 'Mobile number must be in the format 04nnnnnnnn.';
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
