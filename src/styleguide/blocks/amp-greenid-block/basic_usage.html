@@ -21,4 +21,9 @@
             I agree that I want to verfiy my id...
         </div>
     </amp-checkbox>
+
+    <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'" [data-automation-id]='"abcd"'>
+        Ok
+    </amp-button>
+
 </amp-greenid-block>

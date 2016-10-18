@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
-import { Environments } from '../../../abstracts/environments/environments.abstract';
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 @Injectable()
 export class AmpGreenIdServices {
@@ -27,7 +26,7 @@ export class AmpGreenIdServices {
             .get( url , options )
             .map( ( res ) => {
                 let re = res.json();
-                console.log("response: ",re);
+                console.log(' response: ', re);
             } )
             .catch( this.handleError );
     };

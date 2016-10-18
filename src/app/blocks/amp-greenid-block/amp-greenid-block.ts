@@ -7,12 +7,13 @@ import {
     transition,
     OnInit
 } from '@angular/core';
-
+import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
 @Component( {
     selector   : 'amp-greenid-block' ,
     host       : {
         '[@slideUp]' : 'slideUp'
     } ,
+    providers: [AmpGreenIdServices],
     template   : `
                 <div class='grid__container 1/1 palm-1/1'>
                     <div class='grid__item_floated utils__align&#45;&#45;left' >
@@ -33,18 +34,9 @@ import {
     ]
 } )
 export class AmpGreenidBlockComponent {
-    private slideUp = 'expanded';
 
-    /**
-     * Call this method to move onto the next block
-     *
-     * In order to call this in your form you need to import the context of this component into your class, for a sample of how to do this, see the styleguide implementation of the amp-intro-block.
-     *
-     *
-     */
-    public proceed () {
-        this.slideUp = 'collapsed';
+    constructor ( private _AmpGreenIdServices : AmpGreenIdServices ) {
+
     }
-
 
 }
