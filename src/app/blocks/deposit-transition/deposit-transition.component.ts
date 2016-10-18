@@ -22,7 +22,7 @@ import {
 } from '../account-transition-base/account-transition-base.component';
 @Component( {
     selector        : 'deposit-transition-block' ,
-    templateUrl     : './deposit-transition.component.html' ,
+    templateUrl     : '../account-transition-base/account-transition-base.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class DepositTransitionBlock extends AccountTransitionBaseBlock {

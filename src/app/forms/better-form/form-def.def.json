@@ -143,7 +143,8 @@
                                                 }
                                             ],
                                             "description_single" : "When switching, your existing deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances.",
-                                            "description_joint" : "When switching, your existing joint deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances."
+                                            "description_joint" : "When switching, your existing joint deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances.",
+                                            "additional_instruction" : "Please enter the deposit account number that you would like to become your Bett3r Pay account."
                                         }
                                     },
                                     "convert_offset_account": {
@@ -161,8 +162,9 @@
                                                 }
                                             ],
                                             "description_single" : "When switching, your existing offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances.",
-                                            "description_joint" : "When switching, your existing joint offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances."
-                                        }
+                                            "description_joint" : "When switching, your existing joint offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances.",
+                                            "additional_instruction" : "Please enter the offset account number that you would like to become your Bett3r Pay account."
+                                         }
                                     }
                                 }
                             }

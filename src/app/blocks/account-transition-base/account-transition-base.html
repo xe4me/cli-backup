@@ -2,8 +2,8 @@
     <div class="mt mb">
         {{ description }}
     </div>
-    <div class="mt mb">
-        Please enter the deposit account number that you would like to become your Bett3r Pay account.
+    <div class="mt mb" *ngIf="__custom.additional_instruction">
+        {{ __custom.additional_instruction }}
     </div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">

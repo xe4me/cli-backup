@@ -17,7 +17,7 @@ import {
 } from '../account-transition-base/account-transition-base.component';
 @Component( {
     selector        : 'loan-offset-block' ,
-    templateUrl     : './loan-offset.component.html' ,
+    templateUrl     :  '../account-transition-base/account-transition-base.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class LoanOffsetBlock extends AccountTransitionBaseBlock {
