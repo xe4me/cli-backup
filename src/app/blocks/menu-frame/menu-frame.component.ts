@@ -30,6 +30,7 @@ export class MenuFrameBlockComponent {
         private formModelService : FormModelService,
         private progressObserver : ProgressObserverService,
         public formSectionService : FormSectionService,
-        private _cd : ChangeDetectorRef) {
+        private _cd : ChangeDetectorRef,
+        private scrollService : ScrollService) {
     }
 }

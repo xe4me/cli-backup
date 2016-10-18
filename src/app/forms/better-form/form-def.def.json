@@ -162,697 +162,781 @@
                             }
                         },
                         {
-                            "name": "Applicant1",
+                            "name": "ApplicantsSection",
                             "blockType": "PageSectionComponent",
                             "blockLayout": "SECTION",
                             "commonBlock": true,
                             "path": "sections/page-section.component",
                             "custom": {
-                                "label": "Applicant 1"
+                                "label": "Applicants"
                             },
                             "blocks": [
                                 {
-                                    "name": "BasicInfo",
-                                    "blockType": "BasicInfoBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/basic-info/basic-info.component",
+                                    "name": "Applicant1Section",
+                                    "blockType": "PageSectionComponent",
+                                    "blockLayout": "SECTION",
+                                    "commonBlock": true,
+                                    "path": "sections/page-section.component",
                                     "custom": {
-                                        "blockTitle": "Tell us about yourself.",
-                                        "controls": [
-                                            {
-                                                "id": "Title",
-                                                "options": [
-                                                    {
-                                                        "value": "miss",
-                                                        "label": "Miss"
-                                                    },
-                                                    {
-                                                        "value": "mr",
-                                                        "label": "Mr"
-                                                    },
-                                                    {
-                                                        "value": "mrs",
-                                                        "label": "Mrs"
-                                                    },
-                                                    {
-                                                        "value": "ms",
-                                                        "label": "Ms"
+                                        "label": "Applicant 1"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "name": "PersonalDetailsSection",
+                                            "blockType": "PageSectionComponent",
+                                            "blockLayout": "SECTION",
+                                            "commonBlock": true,
+                                            "path": "sections/page-section.component",
+                                            "custom": {
+                                                "label": "Personal Details"
+                                            },
+                                            "blocks": [
+                                                {
+                                                    "name": "BasicInfo",
+                                                    "blockType": "BasicInfoBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/basic-info/basic-info.component",
+                                                    "custom": {
+                                                        "blockTitle": "Tell us about yourself.",
+                                                        "controls": [
+                                                            {
+                                                                "id": "Title",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "miss",
+                                                                        "label": "Miss"
+                                                                    },
+                                                                    {
+                                                                        "value": "mr",
+                                                                        "label": "Mr"
+                                                                    },
+                                                                    {
+                                                                        "value": "mrs",
+                                                                        "label": "Mrs"
+                                                                    },
+                                                                    {
+                                                                        "value": "ms",
+                                                                        "label": "Ms"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "FirstName"
+                                                            },
+                                                            {
+                                                                "id": "MiddleName"
+                                                            },
+                                                            {
+                                                                "id": "LastName"
+                                                            },
+                                                            {
+                                                                "id": "DateOfBirth"
+                                                            }
+                                                        ]
                                                     }
-                                                ]
-                                            },
-                                            {
-                                                "id": "FirstName"
-                                            },
-                                            {
-                                                "id": "MiddleName"
-                                            },
-                                            {
-                                                "id": "LastName"
-                                            },
-                                            {
-                                                "id": "DateOfBirth"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Address",
-                                    "blockType": "AddressBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/address/address.component",
-                                    "custom": {
-                                        "blockTitle": "And where you live...",
-                                        "controls": [
-                                            {
-                                                "id": "Address"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "ContactDetails",
-                                    "blockType": "ContactDetailsBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/contact-details/contact-details.component",
-                                    "custom": {
-                                        "blockTitle": "Just some basic details...",
-                                        "controls": [
-                                            {
-                                                "id": "EmailAddress"
-                                            },
-                                            {
-                                                "id": "MobileNumber"
-                                            },
-                                            {
-                                                "id": "HomeNumber"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "PrivacyDeclaration",
-                                    "blockType": "PrivacyDeclarationBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/privacy-declaration/privacy-declaration.component",
-                                    "custom": {
-                                        "blockTitle": "Thanks Charlie just to confirm...",
-                                        "controls": [
-                                            {
-                                                "id": "AcceptPrivacyDeclaration"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "OnlineOrOfflineIdCheck",
-                                    "blockType": "OnlineOrOfflineIdCheckBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
-                                    "custom": {
-                                        "blockTitle": "Secure Online ID Check",
-                                        "controls": [
-                                            {
-                                                "id": "OnlineIDCheck"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "IdCheck",
-                                    "blockType": "IdCheckBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/id-check/id-check.component",
-                                    "custom": {
-                                        "blockTitle": "Checking your ID",
-                                        "controls": [
-                                            {
-                                                "id": "DriversLicenseState"
-                                            },
-                                            {
-                                                "id": "DriversLicenseNumber"
-                                            },
-                                            {
-                                                "id": "MedicareCardNumber"
-                                            },
-                                            {
-                                                "id": "MedicareCardCardColour"
-                                            },
-                                            {
-                                                "id": "MedicareCardPatientNumber"
-                                            },
-                                            {
-                                                "id": "MedicareCardExpiry"
-                                            },
-                                            {
-                                                "id": "AustralianPassportNUmber"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "TaxFileNumber",
-                                    "blockType": "TaxFileNumberBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/tax-file-number/tax-file-number.component",
-                                    "custom": {
-                                        "blockTitle": "Nearly there...",
-                                        "controls": [
-                                            {
-                                                "id": "TaxFileNumber"
-                                            },
-                                            {
-                                                "id": "NoTaxFileNumber"
-                                            },
-                                            {
-                                                "id": "NoTaxFileNumberReason",
-                                                "options": [
-                                                    {
-                                                        "value": "Exempt",
-                                                        "label": "Exempt for TFN"
-                                                    },
-                                                    {
-                                                        "value": "Returns not required",
-                                                        "label": "Tax returns not required"
-                                                    },
-                                                    {
-                                                        "value": "Aged service or invalid pensioner",
-                                                        "label": "Aged, Service or Invalid Pensioner"
-                                                    },
-                                                    {
-                                                        "value": "Other pensioner",
-                                                        "label": "Other exempt Pensioner"
-                                                    },
-                                                    {
-                                                        "value": "Territory residents",
-                                                        "label": "Territory residents"
-                                                    },
-                                                    {
-                                                        "value": "Non resident",
-                                                        "label": "Non resident"
-                                                    },
-                                                    {
-                                                        "value": "Children",
-                                                        "label": "Children"
+                                                },
+                                                {
+                                                    "name": "Address",
+                                                    "blockType": "AddressBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/address/address.component",
+                                                    "custom": {
+                                                        "blockTitle": "And where you live...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "Address"
+                                                            }
+                                                        ]
                                                     }
-                                                ]
-                                            }
-                                        ]
-                                    }
+                                                },
+                                                {
+                                                    "name": "ContactDetails",
+                                                    "blockType": "ContactDetailsBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/contact-details/contact-details.component",
+                                                    "custom": {
+                                                        "blockTitle": "Just some basic details...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "EmailAddress"
+                                                            },
+                                                            {
+                                                                "id": "MobileNumber"
+                                                            },
+                                                            {
+                                                                "id": "HomeNumber"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "name": "PrivacyDeclaration",
+                                                    "blockType": "PrivacyDeclarationBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/privacy-declaration/privacy-declaration.component",
+                                                    "custom": {
+                                                        "blockTitle": "Thanks Charlie just to confirm...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "AcceptPrivacyDeclaration"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "name": "OnlineOrOfflineIdCheck",
+                                                    "blockType": "OnlineOrOfflineIdCheckBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
+                                                    "custom": {
+                                                        "blockTitle": "Secure Online ID Check",
+                                                        "controls": [
+                                                            {
+                                                                "id": "OnlineIDCheck"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "IdentiySection",
+                                            "blockType": "PageSectionComponent",
+                                            "blockLayout": "SECTION",
+                                            "commonBlock": true,
+                                            "path": "sections/page-section.component",
+                                            "custom": {
+                                                "label": "Identity"
+                                            },
+                                            "blocks": [
+                                                {
+                                                    "name": "IdCheck",
+                                                    "blockType": "IdCheckBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/id-check/id-check.component",
+                                                    "custom": {
+                                                        "blockTitle": "Checking your ID",
+                                                        "controls": [
+                                                            {
+                                                                "id": "DriversLicenseState"
+                                                            },
+                                                            {
+                                                                "id": "DriversLicenseNumber"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardNumber"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardCardColour"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardPatientNumber"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardExpiry"
+                                                            },
+                                                            {
+                                                                "id": "AustralianPassportNUmber"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "FinalQuesitonsSection",
+                                            "blockType": "PageSectionComponent",
+                                            "blockLayout": "SECTION",
+                                            "commonBlock": true,
+                                            "path": "sections/page-section.component",
+                                            "custom": {
+                                                "label": "Final Questions"
+                                            },
+                                            "blocks": [
+                                                {
+                                                    "name": "TaxFileNumber",
+                                                    "blockType": "TaxFileNumberBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/tax-file-number/tax-file-number.component",
+                                                    "custom": {
+                                                        "blockTitle": "Nearly there...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "TaxFileNumber"
+                                                            },
+                                                            {
+                                                                "id": "NoTaxFileNumber"
+                                                            },
+                                                            {
+                                                                "id": "NoTaxFileNumberReason",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Exempt",
+                                                                        "label": "Exempt for TFN"
+                                                                    },
+                                                                    {
+                                                                        "value": "Returns not required",
+                                                                        "label": "Tax returns not required"
+                                                                    },
+                                                                    {
+                                                                        "value": "Aged service or invalid pensioner",
+                                                                        "label": "Aged, Service or Invalid Pensioner"
+                                                                    },
+                                                                    {
+                                                                        "value": "Other pensioner",
+                                                                        "label": "Other exempt Pensioner"
+                                                                    },
+                                                                    {
+                                                                        "value": "Territory residents",
+                                                                        "label": "Territory residents"
+                                                                    },
+                                                                    {
+                                                                        "value": "Non resident",
+                                                                        "label": "Non resident"
+                                                                    },
+                                                                    {
+                                                                        "value": "Children",
+                                                                        "label": "Children"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SourceOfFunding",
+                                                    "blockType": "SourceOfFundingBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/source-of-funding/source-of-funding.component",
+                                                    "custom": {
+                                                        "blockTitle": "Please tell us your...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "PrimarySourceOfWealth",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Employment",
+                                                                        "label": "Income from employment (regular and/or bonus)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Investment",
+                                                                        "label": "Investment income (e.g. rent, dividends, pension)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Business",
+                                                                        "label": "Business income"
+                                                                    },
+                                                                    {
+                                                                        "value": "One-off payment",
+                                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Assets",
+                                                                        "label": "Sale of assets (e.g. shares, property)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Windfall",
+                                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "SourceOfFundsForAccount",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Employment",
+                                                                        "label": "Income from employment (regular and/or bonus)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Investment",
+                                                                        "label": "Investment income (e.g. rent, dividends, pension)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Business",
+                                                                        "label": "Business income"
+                                                                    },
+                                                                    {
+                                                                        "value": "One-off payment",
+                                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Assets",
+                                                                        "label": "Sale of assets (e.g. shares, property)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Windfall",
+                                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Borrowed funds",
+                                                                        "label": "Borrowed Funds"
+                                                                    },
+                                                                    {
+                                                                        "value": "Government benefits",
+                                                                        "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "ReasonForOpeningAccount",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Everday banking",
+                                                                        "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
+                                                                    },
+                                                                    {
+                                                                        "value": "Business income",
+                                                                        "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Savings",
+                                                                        "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
+                                                                    },
+                                                                    {
+                                                                        "value": "Wealth",
+                                                                        "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Residency",
+                                                    "blockType": "ResidencyBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/residency/residency.component",
+                                                    "custom": {
+                                                        "blockTitle": "Last questions... We promise",
+                                                        "controls": [
+                                                            {
+                                                                "id": "CountryOfCitizenship"
+                                                            },
+                                                            {
+                                                                "id": "CountryOfResidency"
+                                                            },
+                                                            {
+                                                                "id": "USTaxCitizen",
+                                                                "buttons": [
+                                                                    {
+                                                                        "id": "Yes",
+                                                                        "value": "yes",
+                                                                        "label": "Yes"
+                                                                    },
+                                                                    {
+                                                                        "id": "No",
+                                                                        "value": "no",
+                                                                        "label": "No"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "SSN"
+                                                            },
+                                                            {
+                                                                "id": "TIN"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 },
                                 {
-                                    "name": "SourceOfFunding",
-                                    "blockType": "SourceOfFundingBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/source-of-funding/source-of-funding.component",
+                                    "name": "Applicant2Section",
+                                    "blockType": "PageSectionComponent",
+                                    "blockLayout": "SECTION",
+                                    "commonBlock": true,
+                                    "path": "sections/page-section.component",
                                     "custom": {
-                                        "blockTitle": "Please tell us your...",
-                                        "controls": [
-                                            {
-                                                "id": "PrimarySourceOfWealth",
-                                                "options": [
-                                                    {
-                                                        "value": "Employment",
-                                                        "label": "Income from employment (regular and/or bonus)"
-                                                    },
-                                                    {
-                                                        "value": "Investment",
-                                                        "label": "Investment income (e.g. rent, dividends, pension)"
-                                                    },
-                                                    {
-                                                        "value": "Business",
-                                                        "label": "Business income"
-                                                    },
-                                                    {
-                                                        "value": "One-off payment",
-                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
-                                                    },
-                                                    {
-                                                        "value": "Assets",
-                                                        "label": "Sale of assets (e.g. shares, property)"
-                                                    },
-                                                    {
-                                                        "value": "Windfall",
-                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                        "label": "Applicant 2"
+                                    },
+                                    "blocks": [
+                                        {
+                                            "name": "PersonalDetailsSection",
+                                            "blockType": "PageSectionComponent",
+                                            "blockLayout": "SECTION",
+                                            "commonBlock": true,
+                                            "path": "sections/page-section.component",
+                                            "custom": {
+                                                "label": "Personal Details"
+                                            },
+                                            "blocks": [
+                                                {
+                                                    "name": "BasicInfo",
+                                                    "blockType": "BasicInfoBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/basic-info/basic-info.component",
+                                                    "custom": {
+                                                        "blockTitle": "Tell us about yourself.",
+                                                        "controls": [
+                                                            {
+                                                                "id": "Title",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "miss",
+                                                                        "label": "Miss"
+                                                                    },
+                                                                    {
+                                                                        "value": "mr",
+                                                                        "label": "Mr"
+                                                                    },
+                                                                    {
+                                                                        "value": "mrs",
+                                                                        "label": "Mrs"
+                                                                    },
+                                                                    {
+                                                                        "value": "ms",
+                                                                        "label": "Ms"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "FirstName"
+                                                            },
+                                                            {
+                                                                "id": "MiddleName"
+                                                            },
+                                                            {
+                                                                "id": "LastName"
+                                                            },
+                                                            {
+                                                                "id": "DateOfBirth"
+                                                            }
+                                                        ]
                                                     }
-                                                ]
-                                            },
-                                            {
-                                                "id": "SourceOfFundsForAccount",
-                                                "options": [
-                                                    {
-                                                        "value": "Employment",
-                                                        "label": "Income from employment (regular and/or bonus)"
-                                                    },
-                                                    {
-                                                        "value": "Investment",
-                                                        "label": "Investment income (e.g. rent, dividends, pension)"
-                                                    },
-                                                    {
-                                                        "value": "Business",
-                                                        "label": "Business income"
-                                                    },
-                                                    {
-                                                        "value": "One-off payment",
-                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
-                                                    },
-                                                    {
-                                                        "value": "Assets",
-                                                        "label": "Sale of assets (e.g. shares, property)"
-                                                    },
-                                                    {
-                                                        "value": "Windfall",
-                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
-                                                    },
-                                                    {
-                                                        "value": "Borrowed funds",
-                                                        "label": "Borrowed Funds"
-                                                    },
-                                                    {
-                                                        "value": "Government benefits",
-                                                        "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
+                                                },
+                                                {
+                                                    "name": "Address",
+                                                    "blockType": "AddressBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/address/address.component",
+                                                    "custom": {
+                                                        "blockTitle": "And where you live...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "Address"
+                                                            }
+                                                        ]
                                                     }
-                                                ]
-                                            },
-                                            {
-                                                "id": "ReasonForOpeningAccount",
-                                                "options": [
-                                                    {
-                                                        "value": "Everday banking",
-                                                        "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
-                                                    },
-                                                    {
-                                                        "value": "Business income",
-                                                        "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
-                                                    },
-                                                    {
-                                                        "value": "Savings",
-                                                        "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
-                                                    },
-                                                    {
-                                                        "value": "Wealth",
-                                                        "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
+                                                },
+                                                {
+                                                    "name": "ContactDetails",
+                                                    "blockType": "ContactDetailsBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/contact-details/contact-details.component",
+                                                    "custom": {
+                                                        "blockTitle": "Just some basic details...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "EmailAddress"
+                                                            },
+                                                            {
+                                                                "id": "MobileNumber"
+                                                            },
+                                                            {
+                                                                "id": "HomeNumber"
+                                                            }
+                                                        ]
                                                     }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Residency",
-                                    "blockType": "ResidencyBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/residency/residency.component",
-                                    "custom": {
-                                        "blockTitle": "Last questions... We promise",
-                                        "controls": [
-                                            {
-                                                "id": "CountryOfCitizenship"
-                                            },
-                                            {
-                                                "id": "CountryOfResidency"
-                                            },
-                                            {
-                                                "id": "USTaxCitizen",
-                                                "buttons": [
-                                                    {
-                                                        "id": "Yes",
-                                                        "value": "yes",
-                                                        "label": "Yes"
-                                                    },
-                                                    {
-                                                        "id": "No",
-                                                        "value": "no",
-                                                        "label": "No"
+                                                },
+                                                {
+                                                    "name": "PrivacyDeclaration",
+                                                    "blockType": "PrivacyDeclarationBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/privacy-declaration/privacy-declaration.component",
+                                                    "custom": {
+                                                        "blockTitle": "Thanks Charlie just to confirm...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "AcceptPrivacyDeclaration"
+                                                            }
+                                                        ]
                                                     }
-                                                ]
+                                                },
+                                                {
+                                                    "name": "OnlineOrOfflineIdCheck",
+                                                    "blockType": "OnlineOrOfflineIdCheckBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
+                                                    "custom": {
+                                                        "blockTitle": "Secure Online ID Check",
+                                                        "controls": [
+                                                            {
+                                                                "id": "OnlineIDCheck"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "IdentiySection",
+                                            "blockType": "PageSectionComponent",
+                                            "blockLayout": "SECTION",
+                                            "commonBlock": true,
+                                            "path": "sections/page-section.component",
+                                            "custom": {
+                                                "label": "Identity"
                                             },
-                                            {
-                                                "id": "SSN"
+                                            "blocks": [
+                                                {
+                                                    "name": "IdCheck",
+                                                    "blockType": "IdCheckBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/id-check/id-check.component",
+                                                    "custom": {
+                                                        "blockTitle": "Checking your ID",
+                                                        "controls": [
+                                                            {
+                                                                "id": "DriversLicenseState"
+                                                            },
+                                                            {
+                                                                "id": "DriversLicenseNumber"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardNumber"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardCardColour"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardPatientNumber"
+                                                            },
+                                                            {
+                                                                "id": "MedicareCardExpiry"
+                                                            },
+                                                            {
+                                                                "id": "AustralianPassportNUmber"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "FinalQuesitonsSection",
+                                            "blockType": "PageSectionComponent",
+                                            "blockLayout": "SECTION",
+                                            "commonBlock": true,
+                                            "path": "sections/page-section.component",
+                                            "custom": {
+                                                "label": "Final Questions"
                                             },
-                                            {
-                                                "id": "TIN"
-                                            }
-                                        ]
-                                    }
+                                            "blocks": [
+                                                {
+                                                    "name": "TaxFileNumber",
+                                                    "blockType": "TaxFileNumberBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/tax-file-number/tax-file-number.component",
+                                                    "custom": {
+                                                        "blockTitle": "Nearly there...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "TaxFileNumber"
+                                                            },
+                                                            {
+                                                                "id": "NoTaxFileNumber"
+                                                            },
+                                                            {
+                                                                "id": "NoTaxFileNumberReason",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Exempt",
+                                                                        "label": "Exempt for TFN"
+                                                                    },
+                                                                    {
+                                                                        "value": "Returns not required",
+                                                                        "label": "Tax returns not required"
+                                                                    },
+                                                                    {
+                                                                        "value": "Aged service or invalid pensioner",
+                                                                        "label": "Aged, Service or Invalid Pensioner"
+                                                                    },
+                                                                    {
+                                                                        "value": "Other pensioner",
+                                                                        "label": "Other exempt Pensioner"
+                                                                    },
+                                                                    {
+                                                                        "value": "Territory residents",
+                                                                        "label": "Territory residents"
+                                                                    },
+                                                                    {
+                                                                        "value": "Non resident",
+                                                                        "label": "Non resident"
+                                                                    },
+                                                                    {
+                                                                        "value": "Children",
+                                                                        "label": "Children"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SourceOfFunding",
+                                                    "blockType": "SourceOfFundingBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/source-of-funding/source-of-funding.component",
+                                                    "custom": {
+                                                        "blockTitle": "Please tell us your...",
+                                                        "controls": [
+                                                            {
+                                                                "id": "PrimarySourceOfWealth",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Employment",
+                                                                        "label": "Income from employment (regular and/or bonus)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Investment",
+                                                                        "label": "Investment income (e.g. rent, dividends, pension)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Business",
+                                                                        "label": "Business income"
+                                                                    },
+                                                                    {
+                                                                        "value": "One-off payment",
+                                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Assets",
+                                                                        "label": "Sale of assets (e.g. shares, property)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Windfall",
+                                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "SourceOfFundsForAccount",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Employment",
+                                                                        "label": "Income from employment (regular and/or bonus)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Investment",
+                                                                        "label": "Investment income (e.g. rent, dividends, pension)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Business",
+                                                                        "label": "Business income"
+                                                                    },
+                                                                    {
+                                                                        "value": "One-off payment",
+                                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Assets",
+                                                                        "label": "Sale of assets (e.g. shares, property)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Windfall",
+                                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Borrowed funds",
+                                                                        "label": "Borrowed Funds"
+                                                                    },
+                                                                    {
+                                                                        "value": "Government benefits",
+                                                                        "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "ReasonForOpeningAccount",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "Everday banking",
+                                                                        "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
+                                                                    },
+                                                                    {
+                                                                        "value": "Business income",
+                                                                        "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
+                                                                    },
+                                                                    {
+                                                                        "value": "Savings",
+                                                                        "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
+                                                                    },
+                                                                    {
+                                                                        "value": "Wealth",
+                                                                        "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Residency",
+                                                    "blockType": "ResidencyBlock",
+                                                    "blockLayout": "INLINE",
+                                                    "commonBlock": false,
+                                                    "path": "blocks/residency/residency.component",
+                                                    "custom": {
+                                                        "blockTitle": "Last questions... We promise",
+                                                        "controls": [
+                                                            {
+                                                                "id": "CountryOfCitizenship"
+                                                            },
+                                                            {
+                                                                "id": "CountryOfResidency"
+                                                            },
+                                                            {
+                                                                "id": "USTaxCitizen",
+                                                                "buttons": [
+                                                                    {
+                                                                        "id": "Yes",
+                                                                        "value": "yes",
+                                                                        "label": "Yes"
+                                                                    },
+                                                                    {
+                                                                        "id": "No",
+                                                                        "value": "no",
+                                                                        "label": "No"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "SSN"
+                                                            },
+                                                            {
+                                                                "id": "TIN"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         },
                         {
-                            "name": "Applicant2",
-                            "blockType": "PageSectionComponent",
-                            "blockLayout": "SECTION",
-                            "commonBlock": true,
-                            "path": "sections/page-section.component",
-                            "custom": {
-                                "label": "Applicant 2"
-                            },
-                            "blocks": [
-                                {
-                                    "name": "Applicant2_BasicInfo",
-                                    "blockType": "BasicInfoBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/basic-info/basic-info.component",
-                                    "custom": {
-                                        "blockTitle": "And now for applicant 2",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_Title",
-                                                "options": [
-                                                    {
-                                                        "value": "miss",
-                                                        "label": "Miss"
-                                                    },
-                                                    {
-                                                        "value": "mr",
-                                                        "label": "Mr"
-                                                    },
-                                                    {
-                                                        "value": "mrs",
-                                                        "label": "Mrs"
-                                                    },
-                                                    {
-                                                        "value": "ms",
-                                                        "label": "Ms"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "id": "Applicant2_FirstName"
-                                            },
-                                            {
-                                                "id": "Applicant2_MiddleName"
-                                            },
-                                            {
-                                                "id": "Applicant2_LastName"
-                                            },
-                                            {
-                                                "id": "Applicant2_DateOfBirth"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_Address",
-                                    "blockType": "AddressBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/address/address.component",
-                                    "custom": {
-                                        "blockTitle": "And where you live...",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_Address"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_ContactDetails",
-                                    "blockType": "ContactDetailsBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/contact-details/contact-details.component",
-                                    "custom": {
-                                        "blockTitle": "Just some basic details...",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_EmailAddress"
-                                            },
-                                            {
-                                                "id": "Applicant2_MobileNumber"
-                                            },
-                                            {
-                                                "id": "Applicant2_HomeNumber"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_PrivacyDeclaration",
-                                    "blockType": "PrivacyDeclarationBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/privacy-declaration/privacy-declaration.component",
-                                    "custom": {
-                                        "blockTitle": "Thanks Charlie just to confirm...",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_AcceptPrivacyDeclaration"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_OnlineOrOfflineIdCheck",
-                                    "blockType": "OnlineOrOfflineIdCheckBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
-                                    "custom": {
-                                        "blockTitle": "Secure Online ID Check",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_OnlineIDCheck"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_IdCheck",
-                                    "blockType": "IdCheckBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/id-check/id-check.component",
-                                    "custom": {
-                                        "blockTitle": "Checking your ID",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_DriversLicenseState"
-                                            },
-                                            {
-                                                "id": "Applicant2_DriversLicenseNumber"
-                                            },
-                                            {
-                                                "id": "Applicant2_MedicareCardNumber"
-                                            },
-                                            {
-                                                "id": "Applicant2_MedicareCardCardColour"
-                                            },
-                                            {
-                                                "id": "Applicant2_MedicareCardPatientNumber"
-                                            },
-                                            {
-                                                "id": "Applicant2_MedicareCardExpiry"
-                                            },
-                                            {
-                                                "id": "Applicant2_AustralianPassportNUmber"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_TaxFileNumber",
-                                    "blockType": "TaxFileNumberBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/tax-file-number/tax-file-number.component",
-                                    "custom": {
-                                        "blockTitle": "Nearly there...",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_TaxFileNumber"
-                                            },
-                                            {
-                                                "id": "Applicant2_NoTaxFileNumber"
-                                            },
-                                            {
-                                                "id": "Applicant2_NoTaxFileNumberReason",
-                                                "options": [
-                                                    {
-                                                        "value": "Exempt",
-                                                        "label": "Exempt for TFN"
-                                                    },
-                                                    {
-                                                        "value": "Returns not required",
-                                                        "label": "Tax returns not required"
-                                                    },
-                                                    {
-                                                        "value": "Aged service or invalid pensioner",
-                                                        "label": "Aged, Service or Invalid Pensioner"
-                                                    },
-                                                    {
-                                                        "value": "Other pensioner",
-                                                        "label": "Other exempt Pensioner"
-                                                    },
-                                                    {
-                                                        "value": "Territory residents",
-                                                        "label": "Territory residents"
-                                                    },
-                                                    {
-                                                        "value": "Non resident",
-                                                        "label": "Non resident"
-                                                    },
-                                                    {
-                                                        "value": "Children",
-                                                        "label": "Children"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_SourceOfFunding",
-                                    "blockType": "SourceOfFundingBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/source-of-funding/source-of-funding.component",
-                                    "custom": {
-                                        "blockTitle": "Please tell us your...",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_PrimarySourceOfWealth",
-                                                "options": [
-                                                    {
-                                                        "value": "Employment",
-                                                        "label": "Income from employment (regular and/or bonus)"
-                                                    },
-                                                    {
-                                                        "value": "Investment",
-                                                        "label": "Investment income (e.g. rent, dividends, pension)"
-                                                    },
-                                                    {
-                                                        "value": "Business",
-                                                        "label": "Business income"
-                                                    },
-                                                    {
-                                                        "value": "One-off payment",
-                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
-                                                    },
-                                                    {
-                                                        "value": "Assets",
-                                                        "label": "Sale of assets (e.g. shares, property)"
-                                                    },
-                                                    {
-                                                        "value": "Windfall",
-                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "id": "Applicant2_SourceOfFundsForAccount",
-                                                "options": [
-                                                    {
-                                                        "value": "Employment",
-                                                        "label": "Income from employment (regular and/or bonus)"
-                                                    },
-                                                    {
-                                                        "value": "Investment",
-                                                        "label": "Investment income (e.g. rent, dividends, pension)"
-                                                    },
-                                                    {
-                                                        "value": "Business",
-                                                        "label": "Business income"
-                                                    },
-                                                    {
-                                                        "value": "One-off payment",
-                                                        "label": "One-off payment (e.g. matured investment, court settlement, redundancy, inheritance)"
-                                                    },
-                                                    {
-                                                        "value": "Assets",
-                                                        "label": "Sale of assets (e.g. shares, property)"
-                                                    },
-                                                    {
-                                                        "value": "Windfall",
-                                                        "label": "Windfall (e.g. gift, lottery winnings, gambling)"
-                                                    },
-                                                    {
-                                                        "value": "Borrowed funds",
-                                                        "label": "Borrowed Funds"
-                                                    },
-                                                    {
-                                                        "value": "Government benefits",
-                                                        "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "id": "Applicant2_ReasonForOpeningAccount",
-                                                "options": [
-                                                    {
-                                                        "value": "Everday banking",
-                                                        "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
-                                                    },
-                                                    {
-                                                        "value": "Business income",
-                                                        "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
-                                                    },
-                                                    {
-                                                        "value": "Savings",
-                                                        "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
-                                                    },
-                                                    {
-                                                        "value": "Wealth",
-                                                        "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "Applicant2_Residency",
-                                    "blockType": "ResidencyBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/residency/residency.component",
-                                    "custom": {
-                                        "blockTitle": "Last questions... We promise",
-                                        "controls": [
-                                            {
-                                                "id": "Applicant2_CountryOfCitizenship"
-                                            },
-                                            {
-                                                "id": "Applicant2_CountryOfResidency"
-                                            },
-                                            {
-                                                "id": "Applicant2_USTaxCitizen",
-                                                "buttons": [
-                                                    {
-                                                        "id": "Applicant2_USTaxCitizen_Yes",
-                                                        "value": "yes",
-                                                        "label": "Yes"
-                                                    },
-                                                    {
-                                                        "id": "Applicant2_USTaxCitizen_No",
-                                                        "value": "no",
-                                                        "label": "No"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "id": "Applicant2_SSN"
-                                            },
-                                            {
-                                                "id": "Applicant2_TIN"
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "name": "LastStep",
+                            "name": "LastStepSection",
                             "blockType": "PageSectionComponent",
                             "blockLayout": "SECTION",
                             "commonBlock": true,
