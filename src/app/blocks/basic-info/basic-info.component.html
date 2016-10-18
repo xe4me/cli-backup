@@ -3,7 +3,7 @@
         Please provide some basic personal details in order to get an idea of who you are
     </div>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 mr">
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12">
             <amp-dropdown
                 auto-focus-on='select'
                 [isInSummaryState]="isInSummaryState"
@@ -22,12 +22,13 @@
                     [required]="true">
             </amp-first-name>
         </div>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 mr">
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
             <amp-input
                     [id]="__custom.controls[2].id"
                     [controlGroup]="__controlGroup"
                     [label]="'Middle Name'"
                     [required]="false"
+                    [maxLength]="30"
                     [isInSummaryState]="isInSummaryState">
             </amp-input>
         </div>
