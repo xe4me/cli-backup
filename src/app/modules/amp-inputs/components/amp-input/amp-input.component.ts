@@ -108,8 +108,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected validationDelay            = 0;
     protected idleTimeOut                = 4500;
     protected idleTimeoutId;
-    protected index;
-    protected autoComplete : string = 'off';
+    protected autoComplete : string      = 'off';
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
