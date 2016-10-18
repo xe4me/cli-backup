@@ -2,28 +2,91 @@ import { Directive , Input , ViewContainerRef , ElementRef , ChangeDetectorRef }
 import {
     Overlay ,
     OverlayState ,
-    OverlayModule ,
     OverlayRef ,
     ComponentPortal ,
-    OverlayConnectionPosition ,
     OriginConnectionPosition ,
-    OVERLAY_PROVIDERS ,
+    OverlayConnectionPosition
 } from '@angular2-material/core';
-import { AmpTooltipComponent } from '../../components/amp-tooltip/amp-tooltip.component';
+import { AmpTooltipTemplateComponent } from '../../components/amp-tooltip/amp-tooltip.component';
+import { ConnectedPositionStrategy } from '@angular2-material/core/overlay/position/connected-position-strategy';
+import { applyCssTransform } from '@angular2-material/core/style/apply-transform';
+import { applyCss } from '../../../amp-utils/functions.utils';
+(<any> ConnectedPositionStrategy).prototype._setElementPosition = function( element , overlayPoint ) {
+    let offsetForMargin    = 40;
+    let offsetForUx        = offsetForMargin + 12;
+    let elementRec         = element.getBoundingClientRect();
+    let elementWidth       = elementRec.width;
+    let scrollPos          = this._viewportRuler.getViewportScrollPosition();
+    let viewportRect       = this._viewportRuler.getViewportRect();
+    let overlayOriginRight = viewportRect.width - overlayPoint.x;
+    let overlayOriginLeft  = overlayPoint.x;
+    let y                  = overlayPoint.y + scrollPos.top - 5;
+    // if there is no room right
+    if ( elementWidth >= overlayOriginRight ) {
+        if ( elementWidth >= overlayOriginLeft ) {// if there is NOT enough room in left
+            putInCenterX( y );
+        } else {
+            // if there is enough room in left
+            putInLeft( overlayOriginLeft - elementWidth + offsetForUx , y );
+        }
+    } else {
+        let transofrm = overlayOriginLeft + scrollPos.left;
+        // check if there is room in left for uxOfsset other wise no uxoffset but we still need to get rid of margin
+        if ( overlayOriginLeft > offsetForUx ) {
+            transofrm = transofrm - offsetForUx;
+        } else {
+            transofrm = transofrm - offsetForMargin;
+        }
+        putInOriginalPos( transofrm , y );
+    }
+    function putInCenterX ( transformY ) {
+        applyCssTransform( element , 'translateX(-50%) translateY(' + transformY + 'px)' );
+        applyCss( 'left' , element , '50%' );
+    }
+
+    function putInOriginalPos ( transformX , transformY ) {
+        applyCssTransform( element , 'translateX(' + transformX + 'px) translateY(' + transformY + 'px)' );
+        applyCss( 'left' , element , 'initial' );
+    }
+
+    function putInLeft ( transformX , transformY ) {
+        applyCssTransform( element , 'translateX(' + (transformX) + 'px) translateY(' + transformY + 'px)' );
+        applyCss( 'left' , element , 'initial' );
+    }
+};
 export type TooltipPosition = 'before' | 'after' | 'above' | 'below';
 @Directive( {
-    selector : '[amp-tooltip]' ,
+    selector : '[amp-tooltip-dir]' ,
     host     : {
-        //'(mouseenter)' : '_handleMouseEnter($event)' ,
-        '(click)' : '_handleMouseEnter($event)' ,
-        //'(mouseleave)' : '_handleMouseLeave($event)' ,
-    }
+        // '(mouseenter)' : '_handleMouseEnter($event)' ,
+        // '(mouseleave)' : '_handleMouseLeave($event)' ,
+        '(click)'                      : '_handleClick($event)' ,
+        '(touch)'                      : '_handleClick($event)' ,
+        '[class.amp-tooltip-up-arrow]' : 'visible' ,
+    } ,
+    exportAs : 'tooltip'
 } )
 export class AmpTooltipDirective {
-    visible : boolean                   = false;
-    /** Allows the user to define the position of the tooltip relative to the parent element */
-    private _position : TooltipPosition = 'after';
-    @Input( 'amp-tooltip-position' ) get position () : TooltipPosition {
+    @Input( 'extraClasses' ) extraClasses   = '';
+    @Input( 'autoHideDelay' ) autoHideDelay = 10000;
+
+    @Input( 'amp-tooltip-dir' ) get message () {
+        return this._message;
+    }
+
+    public visible : boolean            = false;
+    private _position : TooltipPosition = 'above';
+    private _message : string;
+    private _overlayRef : OverlayRef;
+    private autoHideDelatTimeoutRef;
+
+    constructor ( private _overlay : Overlay ,
+                  private _elementRef : ElementRef ,
+                  private _viewContainerRef : ViewContainerRef ,
+                  private _changeDetectionRef : ChangeDetectorRef ) {
+    }
+
+    get position () : TooltipPosition {
         return this._position;
     }
 
@@ -35,31 +98,59 @@ export class AmpTooltipDirective {
         }
     }
 
-    /** The message to be displayed in the tooltip */
-    private _message : string;
-    @Input( 'amp-tooltip' ) get message () {
-        return this._message;
-    }
-
     set message ( value : string ) {
         this._message = value;
         this._updatePosition();
     }
 
-    private _overlayRef : OverlayRef;
-
-    constructor ( private _overlay : Overlay ,
-                  private _elementRef : ElementRef ,
-                  private _viewContainerRef : ViewContainerRef ,
-                  private _changeDetectionRef : ChangeDetectorRef ) {
+    ngOnInit () {
+        this._createOverlay();
     }
 
     /**
-     * Create overlay on init
-     * TODO: internal
+     * Shows the tooltip and returns a promise that will resolve when the tooltip is visible
      */
-    ngOnInit () {
-        this._createOverlay();
+    show () : void {
+        if ( ! this.visible && this._overlayRef && ! this._overlayRef.hasAttached() ) {
+            this.visible = true;
+            let portal   = new ComponentPortal( AmpTooltipTemplateComponent , this._viewContainerRef );
+            this._overlayRef
+                .attach( portal )
+                .then( ( tooltipRef ) => {
+                    tooltipRef.instance.message      = this.message;
+                    tooltipRef.instance.hide         = this.hide;
+                    tooltipRef.instance.extraClasses = this.extraClasses;
+                    tooltipRef.changeDetectorRef.detectChanges();
+                    this._updatePosition();
+                    if ( this.autoHideDelay ) {
+                        clearTimeout( this.autoHideDelatTimeoutRef );
+                        this.autoHideDelatTimeoutRef = setTimeout( () => {
+                            this.hide();
+                        } , this.autoHideDelay );
+                    }
+                } );
+        }
+    }
+
+    /**
+     * Hides the tooltip and returns a promise that will resolve when the tooltip is hidden
+     */
+    hide = () : Promise<any> => {
+        if ( this.visible && this._overlayRef && this._overlayRef.hasAttached() ) {
+            this.visible = false;
+            return this._overlayRef.detach();
+        }
+    };
+
+    /**
+     * Shows/hides the tooltip and returns a promise that will resolve when it is done
+     */
+    toggle () : void {
+        if ( this.visible ) {
+            this.hide();
+        } else {
+            this.show();
+        }
     }
 
     /**
@@ -85,7 +176,7 @@ export class AmpTooltipDirective {
             config.positionStrategy = strategy;
             this._overlay
                 .create( config )
-                .then( ( promise )=> {
+                .then( ( promise ) => {
                     this._overlayRef = promise;
                 } );
         }
@@ -101,9 +192,11 @@ export class AmpTooltipDirective {
             case 'after':
                 return { originX : 'end' , originY : 'center' };
             case 'above':
-                return { originX : 'center' , originY : 'top' };
+                return { originX : 'start' , originY : 'top' };
             case 'below':
                 return { originX : 'center' , originY : 'bottom' };
+            default:
+                return { originX : 'start' , originY : 'top' };
         }
     }
 
@@ -117,79 +210,36 @@ export class AmpTooltipDirective {
             case 'after':
                 return { overlayX : 'start' , overlayY : 'center' };
             case 'above':
-                return { overlayX : 'center' , overlayY : 'bottom' };
+                return { overlayX : 'start' , overlayY : 'bottom' };
             case 'below':
                 return { overlayX : 'center' , overlayY : 'top' };
+            default:
+                return { overlayX : 'start' , overlayY : 'bottom' };
         }
     }
 
-    /**
-     * Shows the tooltip on mouse enter
-     * @param event
-     */
-    _handleMouseEnter ( event : MouseEvent ) {
-        this.show();
-    }
-
-    _handleClickedOutside = () : void=> {
-        console.log('Cliock');
-        this.hide();
-    };
-
-    /**
-     * Hides the tooltip on mouse leave
-     * @param event
-     */
-    _handleMouseLeave ( event : MouseEvent ) {
-        this.hide();
-    }
-
-    /**
-     * Shows the tooltip and returns a promise that will resolve when the tooltip is visible
-     */
-    show () : void {
-        if ( ! this.visible && this._overlayRef && ! this._overlayRef.hasAttached() ) {
-            this.visible = true;
-            let portal   = new ComponentPortal( AmpTooltipComponent , this._viewContainerRef );
-            this._overlayRef
-                .attach( portal )
-                .then( ( tooltipRef )=> {
-                    tooltipRef.instance.message = this.message;
-                    tooltipRef.instance.hide = this.hide;
-                    console.log( 'tooltipRef.instance' , tooltipRef.instance );
-                    this._updatePosition();
-                } );
-        }
-    }
-
-    /**
-     * Hides the tooltip and returns a promise that will resolve when the tooltip is hidden
-     */
-    hide () : void {
-        if ( this.visible && this._overlayRef && this._overlayRef.hasAttached() ) {
-            this.visible = false;
-            this._overlayRef.detach();
-        }
-    }
-
-    /**
-     * Shows/hides the tooltip and returns a promise that will resolve when it is done
-     */
-    toggle () : void {
-        if ( this.visible ) {
-            this.hide();
-        } else {
-            this.show();
-        }
-    }
-
-    /**
-     * Updates the tooltip's position
-     */
     private _updatePosition () {
         if ( this._overlayRef ) {
             this._changeDetectionRef.detectChanges();
             this._overlayRef.updatePosition();
         }
+    }
+
+    private _handleMouseEnter ( event : MouseEvent ) {
+        this.show();
+    }
+
+    private _handleClick = () : void => {
+        setTimeout( () => {
+            if ( this.visible ) {
+                this.hide();
+            } else {
+                this.show();
+            }
+        } );
+    };
+
+    private _handleMouseLeave ( event : MouseEvent ) {
+        this.hide();
     }
 }

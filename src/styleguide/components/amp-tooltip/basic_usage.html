@@ -1,16 +1,60 @@
-<form #formModel='ngForm' class='nl-form '>
-    <!--<div class="icon icon&#45;&#45;announcement"-->
-         <!--amp-tooltip-->
-         <!--title='<h1>A good title</h1>'-->
-         <!--content='<p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>'>-->
-    <!--</div>-->
-    <span amp-tooltip="<p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>" class="icon icon--announcement">
-    </span>
-    <br><br><br>
-    <button amp-tooltip="some message" amp-tooltip-position="below">Button</button>
-    <!--<amp-tooltip-cmp-->
-            <!--content='<p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>'-->
-            <!--title='<h1>A good title</h1>'>-->
-    <!--</amp-tooltip-cmp>-->
-
+<form #formModel='ngForm' class='nl-form p'>
+    <section>
+        <div class='form__row'>
+            <h2>It's a
+                <string>component</string>
+                and has the icon
+            </h2>
+            <div class='heading heading-checkbox mb+'>
+                It can be auto hidden after a delay specified other wise it will close itself after 10 seconds !.
+                <amp-tooltip-cmp
+                        autoHideDelay='2000'
+                        message='This will hide after 2 second'>
+                </amp-tooltip-cmp>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class='form__row'>
+            <h2>It accept any kind of html as text and the text will be sanitized.</h2>
+            <div class='heading heading-checkbox mb+'>
+                It can be auto hidden after a delay specified other wise it will close itself after 10 seconds !.
+                <amp-tooltip-cmp
+                        message='<h2>You can put image and stuff ...: </h2><div class="responsiveImage mt"><img src="assets/images/fullbackground.jpg" class="grid__item "></div>'>
+                </amp-tooltip-cmp>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class='form__row'>
+            <h2>It's a directive, so it can be on any icon</h2>
+            <div class="grid__container 1/1 mb+">
+                <div class="grid__item_floated 1/1">
+                    This one is a directive , meaning it can be on anything , also in mobile , this will open in center
+                    because there is not enough room in left or right.
+                    <span class='has-tooltip'>
+                        <span amp-tooltip-dir="<h1>A title</h1><p>This is a long text , so we have scroll .Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>"
+                              class="icon icon--danger">
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class='form__row'>
+            <div class="grid__container 1/1 mb+">
+                <div class="grid__item_floated 2/4"><h2>It's a directive, so it can be on any element</h2></div>
+                <div class="grid__item_floated 2/4" style='text-align: right'>
+                    This one is a directive , meaning it can be on anything. <br>
+                    Also If there is no room in the right , it will open on the left side .
+                    <span class='has-tooltip'>
+                        <button  amp-tooltip-dir="<h1>A title</h1><p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum Sed.</p>">
+                            Click !
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
 </form>

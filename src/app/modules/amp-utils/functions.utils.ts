@@ -36,3 +36,6 @@ export function humanizeBytes ( bytes : number ) : string {
     let exponent : number = Math.floor( Math.log( bytes ) / Math.log( base ) );
     return parseFloat( ( bytes / Math.pow( base , exponent ) ).toFixed( 2 ) ) + ' ' + sizes[ exponent ];
 }
+export function applyCss ( property , element , transformValue ) {
+    element.style[ property ] = transformValue.trim();
+}
