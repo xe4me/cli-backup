@@ -135,6 +135,8 @@ export class AmpFileUploadService {
             this.onUpload.emit( uploadingFile );
         };
         xhr.open('POST', this._uploadUrl, true);
+        xhr.setRequestHeader( 'Cache-Control' , 'no-cache' );
+        xhr.setRequestHeader( 'caller' , 'components' );
         xhr.send(form);
     }
 }
