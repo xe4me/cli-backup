@@ -134,9 +134,11 @@ export class AmpFileUploadService {
             }
             this.onUpload.emit( uploadingFile );
         };
+        let apiKeyValue = 'Bearer ' + Environments.property.GwDDCService.ApiKey;
         xhr.open('POST', this._uploadUrl, true);
         xhr.setRequestHeader( 'Cache-Control' , 'no-cache' );
         xhr.setRequestHeader( 'caller' , 'components' );
+        xhr.setRequestHeader( 'apiKey' , apiKeyValue );
         xhr.send(form);
     }
 }
