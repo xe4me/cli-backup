@@ -1,10 +1,11 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
 import { AmpInputComponent } from '../amp-input/amp-input.component';
-import { ChangeDetectorRef , ElementRef , Renderer } from '@angular/core';
+import { ChangeDetectorRef , ElementRef , Renderer , ViewChild } from '@angular/core';
 @AmpComponent( {
     selector : 'amp-contact-number'
 } )
 export class AmpContactNumberComponent extends AmpInputComponent {
+    @ViewChild( 'input' ) inputCmp;
     constructor ( _cd : ChangeDetectorRef ,
                   _el : ElementRef ,
                   _renderer : Renderer ) {

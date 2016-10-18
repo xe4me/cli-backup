@@ -3,26 +3,29 @@ import {
     EventEmitter ,
     ElementRef ,
     ChangeDetectorRef ,
-    AfterViewInit , OnDestroy , ChangeDetectionStrategy , OnInit
+    AfterViewInit ,
+    ChangeDetectionStrategy
 } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
 import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator , isTrue } from '../../../../modules/amp-utils';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
+import { BaseControl } from '../../../../base-control';
+import { Validators } from '@angular/forms';
 @Component( {
     selector        : 'amp-radio-button-group' ,
     template        : require( './amp-radio-button-group.component.html' ) ,
     inputs          : [
         'errors' ,
-        'required' ,
+        'groupName' ,
+        'controlGroup' ,
+        'customValidator' ,
         'defaultValue' ,
         'scrollOutUnless' ,
         'isInSummaryState' ,
         'scrollOutOn' ,
+        'required' ,
         'disabled' ,
-        'controlGroup' ,
         'buttons' ,
-        'groupName' ,
         'autoSelectOnOne' ,
         'selected'
     ] ,
@@ -33,30 +36,28 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
     changeDetection : ChangeDetectionStrategy.OnPush ,
     outputs         : [ 'select' ]
 } )
-export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, OnInit {
-    public control : FormControl       = new FormControl( null );
-    public errors                      = {};
+export class AmpRadioButtonGroupComponent extends BaseControl implements AfterViewInit {
     private _selected : string         = null;
-    private _disabled : boolean        = false;
-    private _required : boolean        = false;
     private isInSummaryState : boolean = false;
     private defaultValue;
     private select                     = new EventEmitter<any>();
     private buttons;
     private scrollOutUnless : any;
     private scrollOutOn : any;
-    private groupName : string;
     private previousValue : string     = null;
-    private controlGroup : FormGroup;
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
                   private scrollService : ScrollService ) {
+        super();
     }
 
-    ngOnInit () : any {
-        this.joinToParentGroupAndSetAmpErrors();
-        return undefined;
+    private set groupName ( _id ) {
+        this._id = _id;
+    }
+
+    private get groupName () {
+        return this._id;
     }
 
     private set selected ( selected : string ) {
@@ -72,13 +73,16 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, O
         }
     }
 
-    ngOnDestroy () : any {
-        this.control.validator = null;
-        this.control.updateValueAndValidity( {
-            onlySelf  : false ,
-            emitEvent : true
-        } );
-        return undefined;
+    updateValidators () {
+        if ( this.control ) {
+            let validators = Validators.compose( [
+                RequiredValidator.requiredValidation( this.required ) ,
+                this.customValidator()
+            ] );
+            this.control.setValidators( validators );
+            this.control.updateValueAndValidity( { emitEvent : true } );
+            this.changeDetector.markForCheck();
+        }
     }
 
     ngAfterViewInit () : any {
@@ -96,27 +100,6 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, O
         this.updateValidators();
         this.changeDetector.detectChanges();
         return undefined;
-    }
-
-    get disabled () {
-        return this._disabled;
-    }
-
-    set disabled ( value ) {
-        this._disabled = isTrue( value );
-    }
-
-    get required () {
-        return this._required;
-    }
-
-    get id () {
-        return this.groupName;
-    }
-
-    set required ( value ) {
-        this._required = isTrue( value );
-        this.updateValidators();
     }
 
     private onSelect ( $event , value , shouldScroll ) {
@@ -140,23 +123,6 @@ export class AmpRadioButtonGroupComponent implements AfterViewInit, OnDestroy, O
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
         } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
-        }
-    }
-
-    private updateValidators () {
-        if ( this.control ) {
-            this.control.setValidators( RequiredValidator.requiredValidation( this._required ) );
-            this.control.updateValueAndValidity( { emitEvent : false } );
-        }
-    }
-
-    private joinToParentGroupAndSetAmpErrors () {
-        this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-        } );
-        if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.control );
         }
     }
 }

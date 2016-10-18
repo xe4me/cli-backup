@@ -2,39 +2,36 @@ import {
     EventEmitter ,
     ElementRef ,
     AfterViewInit ,
-    OnDestroy ,
     Component ,
-    ChangeDetectorRef , ChangeDetectionStrategy , OnInit
+    ChangeDetectorRef ,
+    ChangeDetectionStrategy
 } from '@angular/core';
-import { FormControl , Validators , FormGroup } from '@angular/forms';
-import {
-    RequiredValidator ,
-    MinLengthValidator ,
-    MaxLengthValidator ,
-    isTrue
-} from '../../../../modules/amp-utils';
+import { Validators } from '@angular/forms';
+import { RequiredValidator , MinLengthValidator , MaxLengthValidator } from '../../../../modules/amp-utils';
+import { BaseControl } from '../../../../base-control';
 @Component(
     {
         selector        : 'amp-textarea' ,
         template        : require( './amp-textarea.component.html' ) ,
         styles          : [ require( './amp-textarea.scss' ).toString() ] ,
         inputs          : [
+            'errors' ,
             'id' ,
-            'isInSummaryState' ,
-            'label' ,
             'controlGroup' ,
+            'isInSummaryState' ,
+            'customValidator' ,
+            'index' ,
+            'label' ,
             'placeholder' ,
             'maxLength' ,
             'minLength' ,
             'required' ,
-            'hostClassesRemove'
+            'hostClassesRemove' ,
+            'spellCheck'
         ] ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
-export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
-    public control : FormControl = new FormControl();
-    public errors                = {};
-    private id : string;
+export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     private label : string;
     private isInSummaryState : boolean;
     private placeholder : string;
@@ -45,27 +42,24 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
     private componentHeightOffset : number;
     private _minLength : number;
     private _maxLength : number;
-    private _required : boolean  = false;
-    private hasFocus : boolean   = false;
-    private controlGroup : FormGroup;
+    private spellCheck : boolean = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ) {
+        super();
         this.onAdjustWidth = new EventEmitter();
     }
 
-    ngOnInit () : any {
-        this.joinToParentGroupAndSetAmpErrors();
-        return undefined;
-    }
-
-    ngOnDestroy () : any {
-        this.control.validator = null;
-        this.control.updateValueAndValidity( {
-            onlySelf  : false ,
-            emitEvent : true
-        } );
-        return undefined;
+    updateValidators () {
+        if ( this.control ) {
+            this.control.validator = Validators.compose( [
+                RequiredValidator.requiredValidation( this._required ) ,
+                MinLengthValidator.minLengthValidation( this._minLength ) ,
+                MaxLengthValidator.maxLengthValidation( this._maxLength ) ,
+                this.customValidator()
+            ] );
+            this.control.updateValueAndValidity( { emitEvent : false } );
+        }
     }
 
     ngAfterViewInit () : any {
@@ -75,7 +69,7 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
         this.componentHeightOffset  = componentHeight - (this.initialTextareaHeight + 4);
         this.initialComponentHeight = this.initialTextareaHeight + this.componentHeightOffset;
         this.adjustHeight( textarea );
-        this.updateValitators();
+        this.updateValidators();
         this._cd.detectChanges();
         return undefined;
     }
@@ -91,22 +85,13 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
         }
     }
 
-    get required () {
-        return this._required;
-    }
-
-    set required ( value : boolean ) {
-        this._required = isTrue( value );
-        this.updateValitators();
-    }
-
     get minLength () {
         return this._minLength;
     }
 
     set minLength ( value : number ) {
         this._minLength = value;
-        this.updateValitators();
+        this.updateValidators();
     }
 
     get maxLength () {
@@ -115,35 +100,14 @@ export class AmpTextareaComponent implements AfterViewInit, OnDestroy, OnInit {
 
     set maxLength ( value : number ) {
         this._maxLength = value;
-        this.updateValitators();
+        this.updateValidators();
     }
 
     private trimValue () {
         return this.control.value ? this.control.setValue( this.control.value.trim() ) : '';
     }
 
-    private updateValitators () {
-        if ( this.control ) {
-            this.control.validator = Validators.compose( [
-                RequiredValidator.requiredValidation( this._required ) ,
-                MinLengthValidator.minLengthValidation( this._minLength ) ,
-                MaxLengthValidator.maxLengthValidation( this._maxLength )
-            ] );
-            this.control.updateValueAndValidity( { emitEvent : false } );
-        }
-    }
-
     private setHasFocus ( value ) {
         this.hasFocus = value;
-    }
-
-    private joinToParentGroupAndSetAmpErrors () {
-        this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-        } );
-        if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.control );
-        }
     }
 }

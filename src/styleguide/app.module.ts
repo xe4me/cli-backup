@@ -35,6 +35,7 @@ import { AmpStandAloneMenuModule } from '../app/modules/amp-standalone-menu';
 import { AmpFormRowModule } from '../app/modules/amp-form-row/amp-form-row.module';
 import { AmpRowRepeaterModule } from '../app/modules/amp-row-repeater/amp-row-repeater.module';
 import { AmpTooltipModule } from '../app/modules/amp-tooltip/amp-tooltip.module';
+import { PortalModule } from '@angular2-material/core';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -43,7 +44,7 @@ const shouldBeReplacedWithModulesComponents = [
     AmpLoadingComponent ,
 ];
 const IMPORTS                               = [
-    AmpTooltipModule ,
+    AmpTooltipModule.forRoot() ,
     AmpRowRepeaterModule ,
     AmpFormRowModule ,
     AmpStandAloneMenuModule ,
@@ -60,6 +61,7 @@ const IMPORTS                               = [
     AmpTypeaheadModule ,
     AmpQasAddressModule ,
     AmpStyleguideReduxModule ,
+    PortalModule ,
     BrowserModule ,
     FormsModule ,
     ReactiveFormsModule ,

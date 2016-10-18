@@ -1,6 +1,7 @@
-import { ChangeDetectorRef,
-         ElementRef,
-         Renderer
+import {
+    ChangeDetectorRef ,
+    ElementRef ,
+    Renderer , ViewChild
 } from '@angular/core';
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
 import { AmpInputComponent } from '../amp-input/amp-input.component';
@@ -9,6 +10,7 @@ import { AmpInputComponent } from '../amp-input/amp-input.component';
     selector : 'amp-account-number'
 } )
 export class AmpAccountNumberComponent extends AmpInputComponent {
+    @ViewChild( 'input' ) inputCmp;
     constructor ( _cd : ChangeDetectorRef ,
                   _el : ElementRef ,
                   _renderer : Renderer ) {

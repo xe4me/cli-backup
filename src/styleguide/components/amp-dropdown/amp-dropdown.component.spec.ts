@@ -1,5 +1,5 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , provide , ElementRef } from '@angular/core';
+import { Component , provide , ElementRef , ViewChild } from '@angular/core';
 import { FormControl , NgForm , ReactiveFormsModule , FormsModule , FormGroup } from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
@@ -36,8 +36,8 @@ describe( 'amp-dropdown component' , () => {
         let dropdown        = Element.querySelector( 'select' );
         let options         = dropdown.children;
         expect( dropdown ).toBeDefined();
-        expect( dropdown.id ).toBe( 'Title' );
-        expect( dropdown.getAttribute( 'data-automation-id' ) ).toBe( 'slt_Title' );
+        expect( dropdown.id ).toBe( 'Title' + '_' + Component.dropDownCmp._randomString );
+        expect( dropdown.getAttribute( 'data-automation-id' ) ).toBe( 'slt_Title' + '_' + Component.dropDownCmp._randomString );
         expect( options ).toBeDefined();
         expect( options.length ).toBe( 6 );
         expect( options[ 0 ].value ).toEqual( '' );
@@ -52,6 +52,7 @@ describe( 'amp-dropdown component' , () => {
     template : `
         <form #formModel  class='nl-form' >
             <amp-dropdown
+                    #dropDownCmp
                     [attr.theme]='"forms"'
                     [isInSummaryState]='false'
                     [id]='"Title"'
@@ -65,7 +66,8 @@ describe( 'amp-dropdown component' , () => {
     `
 } )
 class AmpdropdownTest {
-    controlGroup : FormGroup = new FormGroup( {} );
+    @ViewChild( 'dropDownCmp' ) dropDownCmp;
+                                controlGroup : FormGroup = new FormGroup( {} );
 
     get control () {
         return this.controlGroup.controls[ 'Title' ];
