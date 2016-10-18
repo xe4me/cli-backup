@@ -39,7 +39,8 @@ import {
     FormService,
     AmpIntroBlockComponent,
     AmpRowRepeaterModule,
-    AmpFormRowModule
+    AmpFormRowModule,
+    AmpStandAloneMenuModule
 } from 'amp-ddc-components';
 import {
     SharedFormDataService
@@ -76,6 +77,7 @@ const IMPORTS = [
     AmpTextareaModule,
     AmpGroupButtonsModule,
     AmpRadioButtonGroupModule,
+    AmpStandAloneMenuModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
