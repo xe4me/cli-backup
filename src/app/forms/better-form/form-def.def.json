@@ -123,7 +123,9 @@
                                                 {
                                                     "id": "LoanOffsetAccountNumber"
                                                 }
-                                            ]
+                                            ],
+                                            "description_single" : "Please enter the loan account number that you would like Bett3r to offset.",
+                                            "description_joint" : "Please enter the joint loan account number that you would like Bett3r to offset. Please note that both applicants must be holders of the loan."
                                         }
                                     },
                                     "convert_deposit_account": {
@@ -139,7 +141,9 @@
                                                     "id": "DepositTransitionAccountNumber",
                                                     "label": "Deposit Account Number"
                                                 }
-                                            ]
+                                            ],
+                                            "description_single" : "When switching, your existing deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances.",
+                                            "description_joint" : "When switching, your existing joint deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances."
                                         }
                                     },
                                     "convert_offset_account": {
@@ -155,7 +159,9 @@
                                                     "id": "OffsetTransitionAccountNumber",
                                                     "label": "Offset Account Number"
                                                 }
-                                            ]
+                                            ],
+                                            "description_single" : "When switching, your existing offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances.",
+                                            "description_joint" : "When switching, your existing joint offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances."
                                         }
                                     }
                                 }

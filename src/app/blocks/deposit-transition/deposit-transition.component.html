@@ -1,10 +1,9 @@
 <amp-form-block [context]="context()">
     <div class="mt mb">
-        When switching, your existing depost will become your Bett3r Pay account.
-        We will also set up a Bett3r save and spend account to help manage your finances.
+        {{ description }}
     </div>
     <div class="mt mb">
-        Please enter the deposit account number that you would like to switch.
+        Please enter the deposit account number that you would like to become your Bett3r Pay account.
     </div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
@@ -13,7 +12,8 @@
                     [id]="__custom.controls[0].id"
                     [controlGroup]="__controlGroup"
                     [amp-number-only]="depositAccount.control"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
             </amp-account-number>
         </div>
     </amp-form-row>

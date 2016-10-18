@@ -1,6 +1,6 @@
 <amp-form-block [context]="context()">
     <div class="mt mb">
-        Please enter the loan account number that you would like Bett3r to offset.
+        {{ description }}
     </div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
@@ -9,7 +9,8 @@
                     [id]="__custom.controls[0].id"
                     [controlGroup]="__controlGroup"
                     [amp-number-only]="loanAccount.control"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
             </amp-account-number>
         </div>
     </amp-form-row>
