@@ -21,7 +21,8 @@
         [attr.maxlength]='maxLength'
         [attr.data-automation-id]='"textarea_" + randomizedId'
         [formControl]='control'
-        [attr.placeholder]='placeholder'>
+        [attr.placeholder]='placeholder'
+        [attr.spellcheck]='spellCheck'>
             </textarea>
     <span class='char-left'
           *ngIf='maxLength && maxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ maxLength }}</span>

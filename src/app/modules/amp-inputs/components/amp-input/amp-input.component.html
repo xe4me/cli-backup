@@ -13,6 +13,7 @@
         [tabIndex]='isActive?tabindex:-1'
         [maxLength]='maxLength'
         [formControl]='control'
+        [autoComplete]='autoComplete'
         [placeholder]='required?label:label+" (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 </md-input>

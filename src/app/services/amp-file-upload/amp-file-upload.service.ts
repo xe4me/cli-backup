@@ -16,9 +16,9 @@ export class AmpFileUploadService {
 
     @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
-    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/token';
-    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/upload';
-    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/delete';
+    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/upload/token';
+    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/upload/upload';
+    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
 
     private _queue : any[] = [];
@@ -135,6 +135,8 @@ export class AmpFileUploadService {
             this.onUpload.emit( uploadingFile );
         };
         xhr.open('POST', this._uploadUrl, true);
+        xhr.setRequestHeader( 'Cache-Control' , 'no-cache' );
+        xhr.setRequestHeader( 'caller' , 'components' );
         xhr.send(form);
     }
 }

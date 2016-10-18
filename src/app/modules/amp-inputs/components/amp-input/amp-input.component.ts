@@ -7,12 +7,9 @@ import {
     AfterViewInit ,
     EventEmitter ,
     Renderer ,
-    OnInit ,
     ChangeDetectionStrategy ,
-    OnDestroy ,
     ViewChild
 } from '@angular/core';
-import { isPresent } from '@angular/core/src/facade/lang';
 import {
     RequiredValidator ,
     MinLengthValidator ,
@@ -23,8 +20,7 @@ import {
     PatterValidator ,
     MaxFloatValidator
 } from '../../../amp-utils';
-import { FormGroup , FormControl , Validators } from '@angular/forms';
-import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
 @Component(
     {
@@ -65,6 +61,8 @@ import { BaseControl } from '../../../../base-control';
             'currency' ,
             'iconRight' ,
             'labelHidden' ,
+            'keepControl' ,
+            'autoComplete'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
@@ -110,6 +108,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected validationDelay            = 0;
     protected idleTimeOut                = 4500;
     protected idleTimeoutId;
+    protected index;
+    protected autoComplete : string = 'off';
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,

@@ -26,7 +26,8 @@ import { BaseControl } from '../../../../base-control';
             'maxLength' ,
             'minLength' ,
             'required' ,
-            'hostClassesRemove'
+            'hostClassesRemove' ,
+            'spellCheck'
         ] ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
@@ -41,7 +42,7 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     private componentHeightOffset : number;
     private _minLength : number;
     private _maxLength : number;
-    private hasFocus : boolean = false;
+    private spellCheck : boolean = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ) {

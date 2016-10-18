@@ -1,19 +1,19 @@
-<div [clicked-outside]='close' class='amp-typeahead'>
-    <div class='amp-typeahead-control'>
+<div [clicked-outside]='close' class='amp-type-search'>
+    <div class='amp-type-search-control'>
         <amp-input
                 #input
                 class='1/1'
                 focuser='input'
                 iconRight='search'
-                (click)='open()'
+                (click)='onClick($event)'
                 (keydown)='onKeydown($event)'
                 [autoFocus]='isActive'
                 [errors]='errors'
                 [label]='label'
-                [index]='index'
+                [isActive]='isActive'
                 [idleTimeOut]='"1000"'
                 [isInSummaryState]='isInSummaryState'
-                [id]='queryControlId'
+                [id]='id'
                 [controlGroup]='searchControlGroup'
                 [customValidator]='customValidator'
                 [minLength]='minTriggerLength'
@@ -25,15 +25,15 @@
             focuser='list'
             [ngStyle]='{"max-height":maxHeight}'
             (focusOut)='onListFocusOut()'
-            class='amp-typeahead-options'>
-        <li *ngIf='selectLabel && filteredList.length>0' class='amp-typeahead-option' tabindex='-1'>
+            class='amp-type-search-options'>
+        <li *ngIf='selectLabel && filteredList.length>0' class='amp-type-search-option' tabindex='-1'>
             <strong>{{ selectLabel }}</strong>
         </li>
         <li (keydown.enter)='selectOption(option)'
             (click)='selectOption(option)'
             *ngFor='let option of filter(searchResult,selectedItemValueIdentifier,control.value,!doApiQuery); let i = index'
-            class='amp-typeahead-option'
-            [class.amp-typeahead-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
+            class='amp-type-search-option'
+            [class.amp-type-search-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
             [attr.tabindex]='i+1'>
             <template
                     [ngTemplateOutlet]='itemTemplate'
@@ -42,8 +42,8 @@
         </li>
     </ul>
     <ul *ngIf='!doApiQuery && !isOptionsHidden && control.value && filteredList.length===0'
-        class='amp-typeahead-options'>
-        <li class='amp-typeahead-option' disabled>
+        class='amp-type-search-options'>
+        <li class='amp-type-search-option' disabled>
             <strong>No results found</strong>
         </li>
     </ul>

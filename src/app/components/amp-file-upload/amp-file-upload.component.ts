@@ -32,7 +32,6 @@ export class AmpFileUploadComponent implements OnInit {
     @Input() formId : string;
 
     public token : string;
-    private basicOptions : Object;
     private progress : number = 0;
     private fileName : string;
     private deleteFileName : string;
@@ -68,15 +67,16 @@ export class AmpFileUploadComponent implements OnInit {
             this.deleteUrl = this.fileUploadService.deleteUrl;
         }
         this.errorMessage = this.fileUploadService.errorMessage;
-        this.basicOptions = {
-            calculateSpeed: true
-        };
         this.fileUploadService.onUpload.subscribe(( data : any ) => {
             this.handleUpload( data );
         });
     }
 
     private displayProgress ( ) : void {
+        if ( this.backendError ) {
+            this.setErrorMessage( null );
+            return null;
+        }
         this.error = this.backendError;
         this.showProgress = !this.error;
         this.fileUploadService.updateUrl( this.uploadUrlWithParms );
@@ -118,10 +118,6 @@ export class AmpFileUploadComponent implements OnInit {
                     this.token = res.payload.token;
                     this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
                                             + '&token=' + this.token;
-                    this.basicOptions = {
-                        url : this.uploadUrlWithParms,
-                        calculateSpeed : true
-                    };
                     this.backendError = false;
                 },
                 ( error ) => {

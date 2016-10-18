@@ -1,11 +1,14 @@
 @import "~AbstractStyles";
 
 :host {
-    position: fixed;
-    width: 16.6666666% !important;;
+    background: #fff;
     display: block;
-    height: 900px;
-    overflow-y:scroll ;
+    height: calc(100vh - 30px);
+    overflow-y: scroll;
+    position: fixed;
+    top: 30px;
+    width: 260px;
+    z-index: 1000;
 }
 
 $autoc-primary-theme: $amp-colour-primary;
@@ -33,12 +36,12 @@ $amp-dropdown-option-padding-bottom: $amp-dropdown-option-padding-top;
 $amp-dropdown-option-padding-right: 30px;
 $amp-dropdown-option-padding-right-hidden: 4em;
 $amp-dropdown-option-padding-left: 20px;
+
 .left-navigation {
     padding: 5px;
     font-size: 15px;
     opacity: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     position: absolute;
     width: 100%;
 
