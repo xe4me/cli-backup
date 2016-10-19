@@ -5,7 +5,8 @@ import {
     style ,
     animate ,
     transition,
-    OnInit
+    OnInit,
+    AfterContentInit
 } from '@angular/core';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
 @Component( {
@@ -33,7 +34,8 @@ import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/servic
             ] )
     ]
 } )
-export class AmpGreenidBlockComponent {
+export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
+
     private loadAPI : Promise<any>;
     // Greed id components need to be
     private scriptUrls : string[] =['//test2.edentiti.com/df/javascripts/greenidConfig.js','//test2.edentiti.com/df/javascripts/greenidui.min.js'];
@@ -41,25 +43,47 @@ export class AmpGreenidBlockComponent {
     constructor ( private _AmpGreenIdServices : AmpGreenIdServices ) {
 
     }
-
+    /**
+     * Get the array of greenid scripts that we need to submit with the model
+     */
     ngOnInit() : any {
         if (this.scriptUrls) {
             for (var stringUrl of this.scriptUrls) {
                 this.loadAllScripts(stringUrl);
             }
         }
+    }
+    /**
+     * Once we have the scripts loaded, we need to init the green id stuff, set it up
+     */
+    ngAfterContentInit() : void {
 
+        setTimeout(() => {
+            if (window.greenidUI) {
+                greenidUI.setup({
+                    environment: 'test',
+                    formId: "theform",
+                    frameId: "greenid-div",
+                    country: "usethiscountry",
+                    debug: false
+                });
+            }
+        }, 1000);
 
     }
-
-    private loadAllScripts (stringUrl : string) {
+    /**
+     * Load all of the scripts async
+     */
+    private loadAllScripts (stringUrl : string) : void {
         this.loadAPI = new Promise((resolve) => {
             console.log('resolving promise...');
             this.loadScript(stringUrl);
         });
     }
-
-    private loadScript(urlString : string) {
+    /**
+     * Create the element in the DOM
+     */
+    private loadScript(urlString : string) : void  {
         console.log('preparing to load...', urlString);
         let node = document.createElement('script');
         node.src = urlString;

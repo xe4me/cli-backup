@@ -35,6 +35,8 @@ export default class AmpGreenIdBlockBasicUsage {
         honorific: 'Mr',
         dateOfBirth: '2001-04-12',
         email: 'sample@test.com',
+        verificationId: "1FDW6whT1",
+        verificationToken: '75b7ad90aac03bb7295f67c1044de1040d365b34',
         address: {
             country: 'AU',
             state: 'NSW',
