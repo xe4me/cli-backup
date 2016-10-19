@@ -8,7 +8,6 @@ import {
     OnInit
 } from '@angular/core';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
-import arrayIsEqualTo = ts.arrayIsEqualTo;
 @Component( {
     selector   : 'amp-greenid-block' ,
     host       : {
@@ -36,6 +35,7 @@ import arrayIsEqualTo = ts.arrayIsEqualTo;
 } )
 export class AmpGreenidBlockComponent {
     private loadAPI : Promise<any>;
+    // Greed id components need to be
     private scriptUrls : string[] =['//test2.edentiti.com/df/javascripts/greenidConfig.js','//test2.edentiti.com/df/javascripts/greenidui.min.js'];
 
     constructor ( private _AmpGreenIdServices : AmpGreenIdServices ) {
@@ -48,6 +48,8 @@ export class AmpGreenidBlockComponent {
                 this.loadAllScripts(stringUrl);
             }
         }
+
+
     }
 
     private loadAllScripts (stringUrl : string) {

@@ -42,7 +42,8 @@ export default class AmpGreenIdBlockBasicUsage {
             flatNumber: 'U 2',
             streetNumber: '53-57',
             streetType: 'RD',
-            suburb: 'SYDNEY'
+            suburb: 'SYDNEY',
+            postcode: '2018'
         }
     };
     constructor ( private  themeService : ThemeService ,
@@ -81,7 +82,6 @@ export default class AmpGreenIdBlockBasicUsage {
         this._AmpGreenIdServices
             .registerCustomer(this.modelValue)
             .subscribe( ( respo ) => {
-                console.log('respo ', respo);
             });
     }
 
