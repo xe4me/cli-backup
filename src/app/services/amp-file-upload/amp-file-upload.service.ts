@@ -139,9 +139,9 @@ export class AmpFileUploadService {
         xhr.setRequestHeader( 'Cache-Control' , 'no-cache' );
         xhr.setRequestHeader( 'caller' , 'components' );
         if ( this._uploadUrl.indexOf( Environments.property.GwPracticeService.Path ) > - 1 ) {
-            xhr.setRequestHeader( 'apiKey' , BASIC_AUTH_BEARER + Environments.property.GwPracticeService.ApiKey );
+            xhr.setRequestHeader( 'apikey' , BASIC_AUTH_BEARER + Environments.property.GwPracticeService.ApiKey );
         } else if ( this._uploadUrl.indexOf( Environments.property.GwDDCService.Path ) > - 1 ) {
-            xhr.setRequestHeader( 'apiKey' , BASIC_AUTH_BEARER + Environments.property.GwDDCService.ApiKey );
+            xhr.setRequestHeader( 'apikey' , BASIC_AUTH_BEARER + Environments.property.GwDDCService.ApiKey );
         }
         xhr.send(form);
     }
