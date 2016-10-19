@@ -34,4 +34,14 @@ export class ContextService {
         return this.http.get( this._contextUrl , options )
                         .map( (res) => res.json() );
     }
+
+    public whenReady (cb) {
+        if (!this.context.initialized) {
+            this.$contextChanged.subscribe( (newContext) => {
+                cb();
+            });
+        } else {
+            cb();
+        }
+    }
 }
