@@ -39,7 +39,7 @@
         </div>
     </amp-form-row>
 
-	<amp-form-row *ngIf="usTaxResidency.control.value === 'yes'">
+	<amp-form-row *ngIf="usTaxResidency?.control?.value === 'yes'">
 		<div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
 			<amp-input
                 #ssn
@@ -47,7 +47,7 @@
                 [controlGroup]="__controlGroup"
                 [label]="'SSN'"
                 [isInSummaryState]="isInSummaryState"
-				[required]="!tin.control.value"
+				[required]="!tin?.control?.value"
                 [amp-number-only]="ssn.control"
                 [maxLength]="9"
                 [errors]="{ required : __custom.ssnRequiredMsg }">
@@ -62,11 +62,11 @@
                 [id]="__custom.controls[4].id"
                 [controlGroup]="__controlGroup"
                 [label]="'TIN'"
-                [required]="!ssn.control.value"
+                [required]="!ssn?.control?.value"
 				[isInSummaryState]="isInSummaryState"
                 [amp-number-only]="tin.control"
                 [maxLength]="9"
-                [errors]="{ required : __custom.ssnRequiredMsg}">
+                [errors]="{ required : __custom.ssnRequiredMsg }">
 			</amp-input>
 		</div>
 	</amp-form-row>
