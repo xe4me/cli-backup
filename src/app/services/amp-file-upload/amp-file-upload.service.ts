@@ -9,6 +9,7 @@ import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 import { Environments } from '../../abstracts/environments/environments.abstract';
 import { Observable } from 'rxjs';
+import { AmpHttpService } from '../../services/amp-http/amp-http.service';
 
 @Injectable()
 export class AmpFileUploadService {
@@ -23,7 +24,8 @@ export class AmpFileUploadService {
 
     private _queue : any[] = [];
 
-    constructor ( private http : Http ) {
+    constructor ( private http : Http,
+                  private ampHttp : AmpHttpService  ) {
     }
 
     public get tokenUrl () : string {
@@ -65,7 +67,7 @@ export class AmpFileUploadService {
     public deleteFile ( fileName : string, formName : string, formId : string ) : Observable<any> {
         let deleteUrlwithParms : string;
         deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&objectId=' + formId;
-        return this.http.post( deleteUrlwithParms, {} )
+        return this.ampHttp.post( deleteUrlwithParms, {}, {} )
                         .map( ( res : Response ) => res.json() );
     }
 
@@ -134,7 +136,15 @@ export class AmpFileUploadService {
             }
             this.onUpload.emit( uploadingFile );
         };
+        let BASIC_AUTH_BEARER = 'Bearer ';
         xhr.open('POST', this._uploadUrl, true);
+        xhr.setRequestHeader( 'Cache-Control' , 'no-cache' );
+        xhr.setRequestHeader( 'caller' , 'components' );
+        if ( this._uploadUrl.indexOf( Environments.property.GwPracticeService.Path ) > - 1 ) {
+            xhr.setRequestHeader( 'apikey' , BASIC_AUTH_BEARER + Environments.property.GwPracticeService.ApiKey );
+        } else if ( this._uploadUrl.indexOf( Environments.property.GwDDCService.Path ) > - 1 ) {
+            xhr.setRequestHeader( 'apikey' , BASIC_AUTH_BEARER + Environments.property.GwDDCService.ApiKey );
+        }
         xhr.send(form);
     }
 }
