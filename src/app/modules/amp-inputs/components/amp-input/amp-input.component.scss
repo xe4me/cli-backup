@@ -110,18 +110,18 @@ $input-padding-bottom : 15px !default;
   font-size : 26px;
 }
 
-md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-underline,
-md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-element:not(:focus) {
-  color : #333 !important;
-  // border-color:#F0F !important;
-}
+//md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-underline,
+//md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-element:not(:focus) {
+//  color : #333 !important;
+//  // border-color:#F0F !important;
+//}
 
-md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-underline .md-input-ripple {
+md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-underline .md-input-ripple {
   border-top : 1px solid $amp-colour-alert-danger !important;
 }
 
-md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-underline,
-md-input.md-input.ng-invalid.ng-touched div.md-input-wrapper .md-input-element {
+md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-underline,
+md-input.md-input.ng-invalid.ng-dirty div.md-input-wrapper .md-input-element {
   border-color : $amp-colour-alert-danger !important;
 }
 

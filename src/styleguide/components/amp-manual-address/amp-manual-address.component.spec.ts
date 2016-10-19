@@ -1,5 +1,5 @@
 import { async , TestBed } from '@angular/core/testing';
-import { Component , Injector , Injectable , ViewChild } from '@angular/core';
+import { Component , Injector , Injectable , ViewChild , ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule , ReactiveFormsModule , FormGroup , FormBuilder , FormControl } from '@angular/forms';
 import { Observable , BehaviorSubject } from 'rxjs';
 import { AmpQasAddressModule } from '../../../app/modules/amp-qas-address';
@@ -319,7 +319,7 @@ describe( 'amp-qas-address component' , () => {
     } );
 } );
 @Component( {
-    template : `
+    template        : `
         <form [formGroup]='form' class='nl-form'>
             <amp-manual-address
                 #manualAddressCmp
@@ -328,7 +328,8 @@ describe( 'amp-qas-address component' , () => {
                 [isInSummaryState]='isInSummaryState'>
             </amp-manual-address>
         </form>
-    `
+    ` ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 class AmpManualAddressComponentTest {
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp;

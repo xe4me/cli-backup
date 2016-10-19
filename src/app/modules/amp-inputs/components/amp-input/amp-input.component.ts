@@ -281,7 +281,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected onBlured ( $event ) {
         this.checkErrors();
         setTimeout( () => {
-            this.removeIdleAndMarkAsTouched();
+            this.removeIdleAndMarkAsDirty();
             this._cd.markForCheck();
         } );
         let notUsable;
@@ -309,27 +309,29 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
 
     protected resetIdleTimeOut () {
         this.checkErrors();
-        this.markControlAsUntouched();
+        this.markControlAsUndirty();
         clearTimeout( this.idleTimeoutId );
         this.idleTimeoutId = setTimeout( () => {
-            this.markControlAsTouched();
-            this._cd.markForCheck();
+            if ( this.control.value ) {
+                this.markControlAsDirty();
+                this._cd.markForCheck();
+            }
         } , this.idleTimeOut );
     }
 
-    protected removeIdleAndMarkAsTouched () {
+    protected removeIdleAndMarkAsDirty () {
         clearTimeout( this.idleTimeoutId );
-        this.markControlAsTouched();
+        this.markControlAsDirty();
     }
 
-    protected markControlAsUntouched () {
-        this.control.markAsUntouched( {
+    protected markControlAsUndirty () {
+        this.control.markAsPristine( {
             onlySelf : false
         } );
     }
 
-    protected markControlAsTouched () {
-        this.control.markAsTouched( {
+    protected markControlAsDirty () {
+        this.control.markAsDirty( {
             onlySelf : false
         } );
     }
