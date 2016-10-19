@@ -67,9 +67,11 @@ export class AmpDropdownComponent extends BaseControl {
         }
     }
 
-    public setSelectValue ( value ) {
+    public setSelectValue ( value , triggerChange = true ) {
         this.selectElem.value = value;
-        this.trigger( 'change' , this.selectElem );
+        if ( triggerChange ) {
+            this.trigger( 'change' , this.selectElem );
+        }
         this.hideOptions();
     }
 

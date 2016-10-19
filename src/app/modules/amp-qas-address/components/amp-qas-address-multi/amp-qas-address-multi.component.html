@@ -6,6 +6,7 @@
                 [id]='residentialAddress.id'
                 [index]='index'
                 [required]='required'
+                addressType='residential'
                 [isInSummaryState]='isInSummaryState'
                 [label]='residentialAddress.label'>
         </amp-qas-address>
@@ -19,7 +20,7 @@
                 [id]='postalAndResidentialAreSame.id'
                 [checked]='true'
                 (select)='onCheckboxSelect($event)'>
-                My postal address is the same as my residential address.
+            My postal address is the same as my residential address.
         </amp-checkbox>
     </div>
     <div *ngIf='!arePostalAndResidentialTheSame' class='mt+'>
@@ -28,13 +29,10 @@
                 [controlGroup]='qasMultiCG'
                 [id]='postalAddress.id'
                 [index]='index'
+                addressType='postal'
                 [required]='required'
                 [isInSummaryState]='isInSummaryState'
                 [label]='postalAddress.label'>
         </amp-qas-address>
     </div>
 </div>
-
-<!--<pre>-->
-<!--controlGroup {{ qasMultiCG.value | json }}-->
-<!--</pre>-->
