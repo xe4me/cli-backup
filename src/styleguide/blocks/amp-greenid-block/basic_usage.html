@@ -1,3 +1,4 @@
+
 <amp-greenid-block>
 
     <section class="section mv" *ngIf="!okAccepted">
@@ -7,10 +8,12 @@
                 <p class="para mt mb">By opening a Bett3r account, you are agreeing to….</p>
                 <div class="grid__container_inner">
                     <div class="grid__item_floated">
-                        Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a
-                        comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of
-                        the hero. And most times they're friends, like you and me! I should've known way back when...
-                        You know why, David? Because of the kids. They called me Mr Glass.
+                        <p class="para mt mb">
+                            Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a
+                            comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of
+                            the hero. And most times they're friends, like you and me! I should've known way back when...
+                            You know why, David? Because of the kids. They called me Mr Glass.
+                        </p>
                     </div>
                     <div class="grid__item_floated">
                         <amp-checkbox
@@ -39,51 +42,74 @@
         </div>
     </section>
 
-    <section class="section mv" *ngIf="okAccepted">
-        <h2 class="mb-">Thanks Charlie, just to confirm…</h2>
+    <section class="section mv mh" *ngIf="okAccepted">
         <div class="grid__container 1/1 mb">
-        <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'"
-                    [data-automation-id]='"abcd"'>
-            Ok
-        </amp-button>
+            <h2 class="mb-">How do you want us to ID you?</h2>
+            <p class="para">
+                Let us know if you’d like to use our online ID service to confirm
+                your identity or whether you want to mail us certified copies.
+                Either way, please have one of the below ready:
+            </p>
+            <ul class="mh">
+                <li>
+                    Australian work visa
+                </li>
+                <li>
+                    Medicare card
+                </li>
+                <li>
+                    Drivers license
+                </li>
+                <li>
+                    Australian passport
+                </li>
+            </ul>
+        </div>
+        <div class="grid__container 1/1 mb">
+            <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'"
+                        [data-automation-id]='"abcd"'>
+                Online now
+            </amp-button>
 
-        <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'"
-                    [data-automation-id]='"abcd"'>
-            Ok
-        </amp-button>
+            <amp-button [disabled]='!acceptTerms' [class]="'btn btn-ok mt0'"
+                        [data-automation-id]='"abcd"'>
+                I'll mail then
+            </amp-button>
         </div>
     </section>
+    <!--
+not complete
+
+-->
+    <span>Green id start</span>
+    <div id="greenid-div">
+    </div>
+    <span>Green id end</span>
+
+    <script type="text/javascript">
+/*
+
+        greenidJQuery("document").ready(function () {
+
+            alert('this is test');
+
+            // The setup function initialises the greenID Simple UI and passes in key variables,
+            // such as the div ID where the form controls will be injected and the ID of your form.
+            // A full list of parameters is available at https://vixverify.atlassian.net/wiki/display/GREEN/Using+the+SimpleUI#UsingtheSimpleUI-JavascriptSetupforRegisteringaNewPerson
+            greenidUI.setup({
+                environment: 'test',
+                formId: "theform",
+                frameId: "greenid-div",
+                country: "usethiscountry",
+                debug: false
+            });
+
+        })
+*/
+
+    </script>
 
 
 </amp-greenid-block>
 
 
-<!--
-not complete
-
--->
-<span>Green id start</span>
-<div id="greenid-div">
-</div>
-<span>Green id end</span>
-<script src="//test2.edentiti.com/df/javascripts/greenidConfig.js" type="text/javascript"></script>
-<script src="//test2.edentiti.com/df/javascripts/greenidui.min.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-
-    greenidJQuery("document").ready(function () {
-
-        // The setup function initialises the greenID Simple UI and passes in key variables,
-        // such as the div ID where the form controls will be injected and the ID of your form.
-        // A full list of parameters is available at https://vixverify.atlassian.net/wiki/display/GREEN/Using+the+SimpleUI#UsingtheSimpleUI-JavascriptSetupforRegisteringaNewPerson
-        greenidUI.setup({
-            environment: 'test',
-            formId: "theform",
-            frameId: "greenid-div",
-            country: "usethiscountry",
-            debug: false
-        });
-
-    })
-
-</script>

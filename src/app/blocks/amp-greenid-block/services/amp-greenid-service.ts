@@ -1,4 +1,4 @@
-import { Injectable, ChangeDetectorRef } from '@angular/core';
+import { Injectable, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
@@ -9,7 +9,7 @@ export class AmpGreenIdServices {
     public static DEFAULT_ERROR_TEXT = 'Server error';
     public static VERFICATION_ENDPOINT = '/registerVerification';
 
-    private headers                  = new Headers( {
+    private headers = new Headers( {
         'Content-Type' : 'application/json'
     } );
 
@@ -37,4 +37,5 @@ export class AmpGreenIdServices {
         let errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
         return Observable.throw( errMsg );
     }
+
 }
