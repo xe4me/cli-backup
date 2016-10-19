@@ -10,7 +10,7 @@ import { AmpCountryComponent } from '../../../app/modules/amp-dropdown/component
     selector    : 'amp-country-basic-usage'
 } )
 
-export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
+export default class AMPCountryDropDownComponentBasicUsage {
     @ViewChild( 'dropDown' ) dropDown : AmpCountryComponent;
     private controlGroup : FormGroup = new FormGroup( {} );
     private isInSummaryState         = false;
