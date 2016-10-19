@@ -130,6 +130,7 @@ export class AmpFileUploadComponent implements OnInit {
         this.error = true;
         this.showProgress = !this.error;
         this.errorMessage = res ? res.message : this.errorMessage;
+        this._cd.detectChanges();
     }
 
     private removeFile () : void {
