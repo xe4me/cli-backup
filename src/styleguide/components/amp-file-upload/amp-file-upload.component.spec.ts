@@ -3,7 +3,8 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import { AmpFileUploadComponent } from '../../../app/components/amp-file-upload/amp-file-upload.component';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions } from '@angular/http';
-xdescribe ( 'amp-file-upload component' , () => {
+import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
+describe ( 'amp-file-upload component' , () => {
     let fixture : ComponentFixture<TestComponent>;
     let Element : any;
     let Component : any;
@@ -21,6 +22,7 @@ xdescribe ( 'amp-file-upload component' , () => {
                 { provide : ElementRef , useClass : MockElementRef } ,
                 { provide : Window , useClass : window },
                 { provide: Http },
+                { provide: AmpHttpService },
                 { provide: mockHttpProvider }
             ]
         } );
