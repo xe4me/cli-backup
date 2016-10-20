@@ -22,12 +22,22 @@
             </div>
         </amp-form-row>
         <div class="block-buttons">
-            <amp-button
-                [attr.theme]="theme"
-                (click)='sendEmail()'
-                [disabled]='buttonDisabled' class='btn btn-ok'>
-                OK
-            </amp-button>
+            <div class="grid__item_floated lap-and-up-1/2">
+                <amp-button
+                    [attr.theme]="theme"
+                    (click)='sendEmail()'
+                    [disabled]='buttonDisabled' class='btn btn-ok btn-primary'>
+                    OK
+                </amp-button>
+            </div>
+            <div class="grid__item_floated lap-and-up-1/2">
+                <amp-button
+                    [attr.theme]="theme"
+                    (click)='back()'
+                    class='btn btn-ok btn-secondary'>
+                    Back
+                </amp-button>
+            </div>
         </div>
     </div>
 </div>
