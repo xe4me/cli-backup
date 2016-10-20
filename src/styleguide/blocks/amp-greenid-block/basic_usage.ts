@@ -33,7 +33,7 @@ export default class AmpGreenIdBlockBasicUsage {
         lastName: 'Smith',
         middleNames: 'Danger',
         honorific: 'Mr',
-        dateOfBirth: '2001-04-12',
+        dateOfBirth: '27/11/2013',
         email: 'sample@test.com',
         verificationId: "1FDW6whT1",
         verificationToken: '75b7ad90aac03bb7295f67c1044de1040d365b34',
@@ -44,8 +44,7 @@ export default class AmpGreenIdBlockBasicUsage {
             flatNumber: 'U 2',
             streetNumber: '53-57',
             streetType: 'RD',
-            suburb: 'SYDNEY',
-            postcode: '2018'
+            suburb: 'SYDNEY'
         }
     };
     constructor ( private  themeService : ThemeService ,
@@ -79,10 +78,8 @@ export default class AmpGreenIdBlockBasicUsage {
 
     private onContinue( value ) {
 
-        console.log(value);
-
         this._AmpGreenIdServices
-            .registerCustomer(this.modelValue)
+            .getTheToken(this.modelValue)
             .subscribe( ( respo ) => {
             });
     }

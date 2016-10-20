@@ -17,7 +17,7 @@ export class AmpGreenIdServices {
 
     }
 
-    public registerCustomer  = ( modelValue : any ) : Observable<any> => {
+    public getTheToken  = ( modelValue : any ) : Observable<any> => {
         let headers : Headers = this.headers;
         let options           = new RequestOptions( { headers : headers } );
         let url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.VERFICATION_ENDPOINT;
@@ -32,7 +32,7 @@ export class AmpGreenIdServices {
             })
          .catch( this.handleError );
     };
-
+    
     private handleError ( error : any ) {
         let errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
         return Observable.throw( errMsg );

@@ -85,6 +85,10 @@
 
     <form method="POST" action="/verification/simpleui-finish.seam" id="theform" role="form">
 
+       <div style="display: none;">
+
+
+
         <!--
             Your accountId (sometimes known as your customerId) is unique to you and remains the same in test and production
         -->
@@ -205,19 +209,27 @@
             </div>
         </div>
 
+       </div>
+
         <div class="row">
             <div class="form-group col-sm-12">
                 <input value="Submit details" id="submitbob" name="submitbob" class="btn btn-primary" type="submit">
             </div>
         </div>
 
+
     </form>
+
 
     <!--
 
     End form
     -->
 
+    <span>Green id start</span>
+    <div id="greenid-div">
+    </div>
+    <span>Green id end</span>
 
 </amp-greenid-block>
 
