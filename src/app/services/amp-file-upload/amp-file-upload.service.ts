@@ -2,8 +2,11 @@ import { Injectable,
          EventEmitter,
          Output
 } from '@angular/core';
-import { Http,
-         Response
+import {
+         Http,
+         Response,
+         Headers,
+         RequestOptions
 } from '@angular/http';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
@@ -21,6 +24,8 @@ export class AmpFileUploadService {
     public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/upload/upload';
     public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
+    private _formName : string;
+    private _formId : string;
 
     private _queue : any[] = [];
 
@@ -30,6 +35,10 @@ export class AmpFileUploadService {
 
     public get tokenUrl () : string {
         return this._tokenUrl;
+    }
+
+    public setTokenUrl ( url : string ) : void {
+        this._tokenUrl = url;
     }
 
     public get uploadUrl () : string {
@@ -46,6 +55,24 @@ export class AmpFileUploadService {
 
     public updateUrl ( url : string ) : void {
         this._uploadUrl = url;
+    }
+
+    public updateFormDetails ( formName : string, formId : string ) : void {
+        this._formName = formName;
+        this._formId = formId;
+    }
+
+    public retrieveNewToken ( ) : Observable<any> {
+        let headers  = new Headers( {
+                'Content-Type' : 'application/json' ,
+                'caller'       : 'components'
+            } );
+        let options = new RequestOptions( {
+            body : '' ,
+            headers : headers
+        } );
+        return this.ampHttp.get( this.tokenUrl, options )
+            .map( ( res : Response ) => res.json() );
     }
 
     public addFilesToQueue( files : any ) : void {

@@ -3,16 +3,11 @@ import { Component,
          ChangeDetectorRef,
          Input,
          ViewChild } from '@angular/core';
-import { Response,
-         Headers,
-         RequestOptions
-} from '@angular/http';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 import { Observable } from 'rxjs';
-import { AmpHttpService } from '../../services/amp-http/amp-http.service';
 
 @Component({
     selector    : 'amp-file-upload',
@@ -44,21 +39,16 @@ export class AmpFileUploadComponent implements OnInit {
     private errorMessage : string;
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
-    private headers  = new Headers( {
-        'Content-Type' : 'application/json' ,
-        'caller'       : 'components'
-    } );
 
     constructor ( protected _cd : ChangeDetectorRef,
-                  private http : AmpHttpService,
                   private fileUploadService : AmpFileUploadService,
                     ) {
     }
 
     ngOnInit() {
         // Get the urls from fileUploadService if it is not passed as input
-        if ( !this.tokenUrl ) {
-            this.tokenUrl = this.fileUploadService.tokenUrl;
+        if ( this.tokenUrl ) {
+            this.fileUploadService.setTokenUrl( this.tokenUrl );
         }
         if ( !this.uploadUrl ) {
             this.uploadUrl = this.fileUploadService.uploadUrl;
@@ -67,6 +57,7 @@ export class AmpFileUploadComponent implements OnInit {
             this.deleteUrl = this.fileUploadService.deleteUrl;
         }
         this.errorMessage = this.fileUploadService.errorMessage;
+        this.fileUploadService.updateFormDetails( this.formName, this.formId );
         this.fileUploadService.onUpload.subscribe(( data : any ) => {
             this.handleUpload( data );
         });
@@ -108,22 +99,24 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private updateToken () : void {
-        let options = new RequestOptions( { body : '' , headers : this.headers } );
         this.fileInput.nativeElement.value = null;
         this.error = false;
-        this.http.get( this.tokenUrl, options )
-            .map( ( res : Response ) => res.json() )
-            .subscribe(
-                ( res : any ) => {
-                    this.token = res.payload.token;
-                    this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
-                                            + '&token=' + this.token;
-                    this.backendError = false;
-                },
-                ( error ) => {
-                    this.backendError = true;
-                }
-            );
+        let retrieveToken : Observable <any>;
+        retrieveToken = this.fileUploadService.retrieveNewToken( );
+        retrieveToken.subscribe(
+            ( res : any ) => {
+                let token = res.payload.token;
+                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
+                    + '&token=' + token;
+                this.backendError = false;
+                // TODO: Change detection is not happening automatically
+                this._cd.detectChanges();
+            },
+            ( error ) => {
+                this.backendError = true;
+                this._cd.detectChanges();
+            }
+        );
     }
 
     private setErrorMessage ( res : any ) : void {
