@@ -5,7 +5,7 @@ import { Component,
          ViewChild } from '@angular/core';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
-import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
+import { AmpFileUploadService } from './services/amp-file-upload.service';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 import { Observable } from 'rxjs';
 
