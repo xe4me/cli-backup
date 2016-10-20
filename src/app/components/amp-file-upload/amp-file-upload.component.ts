@@ -139,10 +139,12 @@ export class AmpFileUploadComponent implements OnInit {
         fileRemoved.subscribe(
             ( res : any ) => {
                 this.showProgress = false;
+                this._cd.detectChanges();
             },
             ( error ) => {
                 this.error = true;
                 this.errorMessage = 'Error in deleting file';
+                this._cd.detectChanges();
             }
         );
     }
