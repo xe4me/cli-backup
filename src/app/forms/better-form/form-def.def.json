@@ -408,13 +408,14 @@
                                                                         "label": "Aged, Service or Invalid Pensioner"
                                                                     },
                                                                     {
-                                                                        "value": "Tax returns not required",
-                                                                        "label": "Tax returns not required"
-                                                                    },
-                                                                    {
                                                                         "value": "Other exempt Pensioner",
                                                                         "label": "Other exempt Pensioner"
                                                                     },
+                                                                    {
+                                                                        "value": "Tax returns not required",
+                                                                        "label": "Tax returns not required"
+                                                                    },
+
                                                                     {
                                                                         "value": "Exempt for TFN",
                                                                         "label": "Exempt for TFN"
