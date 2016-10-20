@@ -1,36 +1,40 @@
 <amp-form-block [context]="context()">
-    <div [hidden]="tfnExclusion?.value">
-        <div>
-            Please enter your tax file number
-        </div>
-        <amp-form-row >
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mt0" >
-                <amp-input
-                        #tfn
-                        [id]="__custom.controls[0].id"
-                        [amp-number-only]="tfn.control"
-                        [controlGroup]="__controlGroup"
-                        [required]="!tfnExclusion?.value"
-                        [isInSummaryState]="isInSummaryState"
-                        [minLength]="8"
-                        [maxLength]="9"
-                        [pattern]="'[0-9]'">
-                </amp-input>
-            </div>
-        </amp-form-row>
+    <div class="mt">
+        Do you have a tax file number?
     </div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12">
-            <amp-checkbox
-                    [isInSummaryState]="isInSummaryState"
-                    [controlGroup]="__controlGroup"
-                    [id]="__custom.controls[1].id">
-                     I don't have a tax file number
-            </amp-checkbox>
+            <amp-group-buttons
+                class="grid__item 1/1"
+                [buttons]="__custom.controls[0].buttons"
+                [controlGroup]="__controlGroup"
+                [groupName]="__custom.controls[0].id"
+                [required]="true">
+            </amp-group-buttons>
         </div>
     </amp-form-row>
-    <div [hidden]="!tfnExclusion?.value">
-        <div class="mt">
+    <div *ngIf="hasTfn?.value === 'yes'">
+            <div class="mt-60">
+                Please enter your tax file number
+            </div>
+            <amp-form-row>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mt0" >
+                    <amp-input
+                            #tfn
+                            [id]="__custom.controls[1].id"
+                            [amp-number-only]="tfn.control"
+                            [controlGroup]="__controlGroup"
+                            [required]="true"
+                            [isInSummaryState]="isInSummaryState"
+                            [minLength]="8"
+                            [maxLength]="9"
+                            [pattern]="'[0-9]'">
+                    </amp-input>
+                </div>
+            </amp-form-row>
+    </div>
+    <div *ngIf="hasTfn?.value === 'no'">
+        <div class="mt-60">
             Reason for not having a tax file number
         </div>
         <amp-form-row >
@@ -40,7 +44,7 @@
                     [id]="__custom.controls[2].id"
                     [options]="__custom.controls[2].options"
                     [controlGroup]="__controlGroup"
-                    [required]="tfnExclusion?.value">
+                    [required]="true">
                 </amp-dropdown>
             </div>
         </amp-form-row>
