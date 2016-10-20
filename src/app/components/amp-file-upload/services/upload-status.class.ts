@@ -1,4 +1,4 @@
-import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
 
 export class UploadStatus {
     status : number;

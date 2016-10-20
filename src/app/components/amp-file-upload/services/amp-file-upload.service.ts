@@ -8,10 +8,10 @@ import { Http,
          RequestOptions
 } from '@angular/http';
 import { UploadStatus } from './upload-status.class';
-import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
-import { Environments } from '../../abstracts/environments/environments.abstract';
+import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
+import { Environments } from '../../../abstracts/environments/environments.abstract';
 import { Observable } from 'rxjs';
-import { AmpHttpService } from '../../services/amp-http/amp-http.service';
+import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 
 @Injectable()
 export class AmpFileUploadService {
