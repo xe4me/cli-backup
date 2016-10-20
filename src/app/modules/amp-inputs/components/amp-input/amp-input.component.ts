@@ -54,22 +54,20 @@ import { BaseControl } from '../../../../base-control';
             'showLabel' ,
             'tolowerCase' ,
             'idleTimeOut' ,
-            'validationDelay' ,
             'toupperCase' ,
-            'autoFocus' ,
-            'noPadding' ,
             'currency' ,
             'iconRight' ,
             'labelHidden' ,
             'keepControl' ,
+            'autoShrink ' ,
+            'iconRightClickHandler' ,
             'autoComplete'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
         host            : {
             '[class.md-input-has-value]' : 'control.value' ,
-            '[class.summary]'            : 'isInSummaryState' ,
-            '[class.noPadding]'          : 'noPadding'
+            '[class.summary]'            : 'isInSummaryState'
         } ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
@@ -90,6 +88,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected showLabel : boolean        = true;
     protected tolowerCase : boolean      = false;
     protected toupperCase : boolean      = false;
+    protected autoShrink : boolean       = true;
     protected iconRight : boolean        = false;
     protected isActive : boolean         = true;
     protected tabindex : any             = null;
@@ -105,10 +104,10 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected onKeyup : EventEmitter<any>;
     protected labelHidden : boolean      = false;
     protected validate;
-    protected validationDelay            = 0;
-    protected idleTimeOut                = 4500;
+    protected idleTimeOut           = 4500;
     protected idleTimeoutId;
-    protected autoComplete : string      = 'off';
+    protected autoComplete : string = 'off';
+    protected iconRightClickHandler;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
@@ -137,15 +136,23 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         this.checkErrors( true );
     }
 
+    handleIconRightClick () {
+        if ( this.iconRightClickHandler ) {
+            this.iconRightClickHandler( this.inputCmp , this.control );
+        }
+    }
+
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
         if ( this.inputWidth === 0 ) {
             this.inputWidth = 300;
         }
         this.tempClassNames = this.el.nativeElement.className;
-        // this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
-        // this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
-        // this.el.nativeElement.className = this.tempClassNames;
+        if ( this.autoShrink ) {
+            this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
+            this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
+            this.el.nativeElement.className = this.tempClassNames;
+        }
         this.updateValidators();
         this.addDelayedValidation();
         this.setDefaultValue();
