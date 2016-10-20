@@ -13,7 +13,7 @@
             </amp-group-buttons>
         </div>
     </amp-form-row>
-    <div *ngIf="hasTfn?.value === 'yes'">
+    <div *ngIf="hasTfn?.value === 'true'">
             <div class="mt-60">
                 Please enter your tax file number
             </div>
@@ -33,7 +33,7 @@
                 </div>
             </amp-form-row>
     </div>
-    <div *ngIf="hasTfn?.value === 'no'">
+    <div *ngIf="hasTfn?.value === 'false'">
         <div class="mt-60">
             Reason for not having a tax file number
         </div>
