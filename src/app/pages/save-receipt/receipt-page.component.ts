@@ -4,7 +4,7 @@ import {
     ChangeDetectorRef,
     ViewContainerRef,
     EventEmitter,
-    OnInit
+    AfterViewInit
 } from '@angular/core';
 import {
     Headers,
@@ -29,18 +29,19 @@ import { AmpEmailComponent } from '../../modules/amp-inputs/components/amp-email
         inputs     : ['title',
                       'messageForReference',
                       'messageForEmail',
-                      'label',
-                      'emailUrl'],
+                      'emailSentEvent'],
         outputs    : ['$sendEmailEvent']
     })
 
-export class SaveReceiptPageComponent implements OnInit {
+export class SaveReceiptPageComponent implements AfterViewInit {
 
     public $sendEmailEvent : EventEmitter<any> = new EventEmitter();
+    public emailSentEvent  : EventEmitter<any> = null;
 
     private title = 'Your quote/application has been saved';
     private messageForReference = 'Your quote/application is now saved and your reference is ';
     private messageForEmail = 'Enter your email address so instructions to retrieve the quote/application can be sent to you.';
+    private emailSentNotification = null;
 
     private referenceId : string = null;
     private isInSummaryState : boolean = false;
@@ -52,8 +53,13 @@ export class SaveReceiptPageComponent implements OnInit {
                 private route : ActivatedRoute) {
     }
 
-    ngOnInit() {
+    ngAfterViewInit () {
         this.referenceId = this.route.snapshot.params['referenceId'];
+        this.controlGroup.controls['emailAddress'].setValue(this.route.snapshot.params['email']);
+        this.emailSentEvent.subscribe( (message) => {
+            this.emailSentNotification = message;
+            this._cd.markForCheck();
+        });
     }
 
     private get buttonDisabled() : boolean {
@@ -61,10 +67,14 @@ export class SaveReceiptPageComponent implements OnInit {
     }
 
     private sendEmail() {
-        this.$sendEmailEvent.emit(this.controlGroup.value);
+        this.$sendEmailEvent.emit(this.controlGroup.value.emailAddress);
 
         // We set errors so the button gets disabled after click
         // The user can still edit the email address and the button becomes active again
         this.controlGroup.setErrors({ emailSent: true });
+    }
+
+    private get emailSentMessage() {
+        return this.emailSentNotification;
     }
 }

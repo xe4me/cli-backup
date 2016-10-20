@@ -8,11 +8,17 @@
         <amp-form-row>
             <div class="grid__item_floated lap-and-up-1/2">
                 <amp-email
-                        [id]='"EmailAddress"'
+                        [id]="'emailAddress'"
                         [controlGroup]="controlGroup"
                         [required]="'true'"
                         [isInSummaryState]="isInSummaryState">
                 </amp-email>
+            </div>
+        </amp-form-row>
+        <amp-form-row>
+            <div class="email-sent_message mt" *ngIf="emailSentMessage">
+                <span aria-hidden="true" class="icon icon--tick-filled"></span>
+                {{emailSentMessage}}
             </div>
         </amp-form-row>
         <div class="block-buttons">
