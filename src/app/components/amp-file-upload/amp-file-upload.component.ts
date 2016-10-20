@@ -39,6 +39,8 @@ export class AmpFileUploadComponent implements OnInit {
     private errorMessage : string;
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
+    private typesAllowed : string[] = [ 'application/pdf' ];
+    private sizeAllowed : number = 1000000;
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private fileUploadService : AmpFileUploadService,
@@ -72,7 +74,10 @@ export class AmpFileUploadComponent implements OnInit {
         this.showProgress = !this.error;
         this.fileUploadService.updateUrl( this.uploadUrlWithParms );
         let files = Array.from( this.fileInput.nativeElement.files );
-        this.fileUploadService.addFilesToQueue( files );
+        let isValidFile = this.validateFile( files[0] );
+        if ( isValidFile ) {
+            this.fileUploadService.addFilesToQueue( files );
+        }
     }
 
     private showProgressBar ( ) : boolean {
@@ -140,5 +145,23 @@ export class AmpFileUploadComponent implements OnInit {
                 this._cd.detectChanges();
             }
         );
+    }
+
+    private validateFile ( file : any ) : boolean {
+        let error : any = {
+            message : ''
+        };
+        if ( !(file.type.indexOf( this.typesAllowed ) > -1 )) {
+            error.message = 'Invalid file type';
+            this.setErrorMessage( error );
+            return false;
+        }
+        if ( !(file.size <= this.sizeAllowed ) ) {
+            console.log(file.size);
+            error.message = 'File size Exceeds allowable limit of 1MB';
+            this.setErrorMessage( error );
+            return false;
+        }
+        return true;
     }
 }
