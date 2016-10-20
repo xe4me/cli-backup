@@ -49,7 +49,7 @@ export class BaseControl implements OnDestroy {
 
     ngOnDestroy () : any {
         if ( ! this.keepControl ) {
-            if ( this.controlGroup.contains( this.id ) ) {
+            if ( this.controlGroup && this.controlGroup.contains( this.id ) ) {
                 this.controlGroup.removeControl( this.id );
             }
         }
