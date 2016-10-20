@@ -1,22 +1,25 @@
 <div class='manual-address grid__item_container clearfix'>
     <amp-form-row>
-        <h3 class="heading">Is this a PO box?</h3>
+        <h3 class="heading mt">Is this a PO box?</h3>
         <amp-group-buttons
                 class="1/5 mt+"
                 (select)='onPoBoxButtonsChange($event)'
                 [required]="true"
                 [buttons]='isItPoBoxButtons.buttons'
-                [controlGroup]='qasControlGroup'
+                [controlGroup]='manualAddressCG'
                 [groupName]='isItPoBoxButtons.groupName'>
         </amp-group-buttons>
     </amp-form-row>
+    <div class="mt+" *ngIf="!isInSummaryState">
+        Try the address search again by clicking <a href="javascript:void(0);" (click)='goBack()'>here</a>.
+    </div>
     <div [hidden]='isItPoBox===null || isInSummaryState'>
         <div [hidden]='isItPoBox'>
             <!--Building Name-->
             <amp-form-row>
-                <div class='grid__item_floated 3/4'>
+                <div class='grid__item_floated mt 3/4'>
                     <amp-input
-                            #manualBuildingName
+                            #manualBuildingNameCmp
                             class='1/1'
                             [id]='buildingName.id'
                             [label]='buildingName.label'
@@ -104,7 +107,7 @@
         <amp-form-row [hidden]='!isItPoBox'>
             <div class='grid__item_floated 3/4'>
                 <amp-input
-                        #manualPoBox
+                        #manualPoBoxCmp
                         class='1/1'
                         [id]='poBox.id'
                         [label]='poBox.label'
@@ -141,7 +144,6 @@
             <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
                 <amp-input
                         #manualPostcodeCmp
-                        noPadding='true'
                         class='1/1'
                         [id]='postCode.id'
                         [label]='postCode.label'
@@ -178,11 +180,11 @@
         <!--State-->
 
     </div>
-    <!--<div *ngIf='isInSummaryState'>-->
-    <!--<amp-form-row>-->
-    <!--<div class='grid__item_floated 1/1 summary-state'>-->
-    <!--{{ summaryAddress }}-->
-    <!--</div>-->
-    <!--</amp-form-row>-->
-    <!--</div>-->
+    <div *ngIf='isInSummaryState'>
+        <amp-form-row>
+            <div class='grid__item_floated 1/1 summary-state'>
+                {{ summaryAddress }}
+            </div>
+        </amp-form-row>
+    </div>
 </div>

@@ -31,8 +31,8 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 } )
 export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     public static SEARCH_ADDRESS_CONTROL_GROUP_NAME    = 'search';
-    public static SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX = 'Query';
-    public static SELECTED_CONTROL_ID_POSTFIX          = 'SelectedItem';
+    public static SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX = 'query';
+    public static SELECTED_CONTROL_ID_POSTFIX          = 'selectedItem';
     public selectedControl                             = new FormControl();
     public searchControlGroup                          = new FormGroup( {} );
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
@@ -101,7 +101,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     get queryControlId () {
-        return this.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX;
+        return AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX;
     }
 
     set searchResult ( _result ) {
@@ -122,7 +122,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () : any {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
-        this.searchControlGroup.addControl( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
+        this.searchControlGroup.addControl( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
         this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) , this.searchControlGroup );
         if ( this.options ) {
             this.initForOptions();
@@ -238,12 +238,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     private markInputAsUnDirty () : void {
-        setTimeout( () => {
-            (<any> this.control)._dirty = false;
-            this.control.updateValueAndValidity( {
-                onlySelf  : false ,
-                emitEvent : true
-            } );
+        this.control.markAsPristine( {
+            onlySelf : false
         } );
     }
 

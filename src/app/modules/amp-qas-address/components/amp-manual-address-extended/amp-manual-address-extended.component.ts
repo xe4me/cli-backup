@@ -6,7 +6,7 @@ import {
     ChangeDetectionStrategy ,
     ViewChild ,
     AfterViewInit ,
-    OnDestroy
+    OnDestroy , EventEmitter , Output
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
@@ -14,6 +14,7 @@ import { AmpStatesComponent } from '../../../amp-dropdown';
 import { addDashOrNothing , isTrue } from '../../../amp-utils/functions.utils';
 import { BasicUtils } from '../../../amp-utils/basic-utils';
 import { AmpDropdownComponent } from '../../../amp-dropdown/components/amp-dropdown/amp-dropdown.component';
+import { AddressFormatTypes } from '../../services/amp-qas-address.service';
 @Component( {
     selector        : 'amp-manual-address-extended' ,
     template        : require( './amp-manual-address-extended.component.html' ) ,
@@ -21,23 +22,24 @@ import { AmpDropdownComponent } from '../../../amp-dropdown/components/amp-dropd
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit, OnDestroy {
-    public static MANUAL_ARRES_GROUP_NAME = 'manualAddress';
+    public static MANUAL_ARRES_GROUP_NAME     = 'manualAddress';
     @ViewChild( 'manualSuburbCmp' ) manualSuburbCmp : AmpInputComponent;
     @ViewChild( 'manualStatesCmp' ) manualStatesCmp : AmpStatesComponent;
     @ViewChild( 'manualPostcodeCmp' ) manualPostcodeCmp : AmpInputComponent;
     @ViewChild( 'manualBuildingNameCmp' ) manualBuildingNameCmp : AmpInputComponent;
     @ViewChild( 'manualUnitNumberCmp' ) manualUnitNumberCmp : AmpInputComponent;
     @ViewChild( 'manualStreetNumberCmp' ) manualStreetNumberCmp : AmpInputComponent;
-    @ViewChild( 'manualPoBox' ) manualPoBox : AmpInputComponent;
+    @ViewChild( 'manualPoBoxCmp' ) manualPoBoxCmp : AmpInputComponent;
     @ViewChild( 'manualStreetNameCmp' ) manualStreetNameCmp : AmpInputComponent;
     @ViewChild( 'manualStreetTypeCmp' ) manualStreetTypeCmp : AmpDropdownComponent;
-    @Input() id : string                  = 'default-';
+    @Output() onGoBack : EventEmitter<string> = new EventEmitter < string >();
+    @Input() id : string                      = 'default-';
     @Input() index;
-    @Input() isInSummaryState : boolean   = false;
-    @Input() keepControl : boolean        = false;
-    @Input() required : boolean           = true;
+    @Input() isInSummaryState : boolean       = false;
+    @Input() keepControl : boolean            = false;
+    @Input() required : boolean               = true;
     @Input() controlGroup : FormGroup;
-    @Input() suburb                       = {
+    @Input() suburb                           = {
         id        : 'suburb' ,
         label     : 'Suburb' ,
         regex     : '' ,
@@ -48,10 +50,10 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
             minLength : 'Suburb must be at least 3 characters long.'
         }
     };
-    @Input() state                        = {
+    @Input() state                            = {
         id : 'state'
     };
-    @Input() postCode                     = {
+    @Input() postCode                         = {
         id        : 'postCode' ,
         label     : 'Postcode' ,
         maxLength : 4 ,
@@ -64,7 +66,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
             minLength : 'Postcode must be 4 numbers.'
         }
     };
-    @Input() buildingName                 = {
+    @Input() buildingName                     = {
         id        : 'buildingName' ,
         label     : 'Building name' ,
         maxLength : 100 ,
@@ -73,7 +75,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
             maxLength : 'Building name must be less than 100 characters.'
         }
     };
-    @Input() unitNumber                   = {
+    @Input() unitNumber                       = {
         id        : 'unitNumber' ,
         label     : 'Unit number' ,
         maxLength : 100 ,
@@ -82,7 +84,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
             maxLength : 'Unit number must be less than 100 characters.'
         }
     };
-    @Input() streetNumber                 = {
+    @Input() streetNumber                     = {
         id        : 'streetNumber' ,
         label     : 'Street number' ,
         maxLength : 100 ,
@@ -91,7 +93,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
             maxLength : 'Street number must be less than 100 characters.'
         }
     };
-    @Input() streetName                   = {
+    @Input() streetName                       = {
         id        : 'streetName' ,
         label     : 'Street name' ,
         minLength : 5 ,
@@ -103,12 +105,12 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
             minLength : 'Street name must be at least 5 characters long.'
         }
     };
-    @Input() streetType                   = {
+    @Input() streetType                       = {
         id       : 'streetType' ,
         label    : 'Street type' ,
         required : true
     };
-    @Input() poBox                        = {
+    @Input() poBox                            = {
         id        : 'poBox' ,
         label     : 'PO Box' ,
         maxLength : 100 ,
@@ -117,7 +119,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
             maxLength : 'PO Box must be 100 numbers.' ,
         }
     };
-    protected isItPoBox                   = null;
+    protected isItPoBox                       = null;
     protected stateCtrl;
     protected suburbCtrl;
     protected postCodeCtrl;
@@ -127,9 +129,9 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
     protected streetNameCtrl;
     protected streetTypeCtrl;
     protected poBoxCtrl;
-    private manualAddressCG : FormGroup   = new FormGroup( {} );
-    private addDashOrNothing              = addDashOrNothing;
-    private isItPoBoxButtons              = {
+    private manualAddressCG : FormGroup       = new FormGroup( {} );
+    private addDashOrNothing                  = addDashOrNothing;
+    private isItPoBoxButtons                  = {
         buttons   : [
             {
                 id    : 'isItPoBoxYes' ,
@@ -160,22 +162,40 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
 
     ngOnDestroy () : void {
         if ( ! this.keepControl ) {
-            if ( this.controlGroup.contains( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME ) ) {
+            if ( this.controlGroup && this.controlGroup.contains( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME ) ) {
                 this.controlGroup.removeControl( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME );
             }
         }
+    }
+
+    public goBack () {
+        this.onGoBack.emit();
     }
 
     public updateControls ( _formattedAddress : any ) {
         if ( _formattedAddress ) {
             this.suburbCtrl.setValue( _formattedAddress.Suburb );
             this.manualStatesCmp.setSelectValue( _formattedAddress.State.toUpperCase() );
+            this.manualStreetTypeCmp.setSelectValue( _formattedAddress.StreetType.toUpperCase() );
+            this.streetNameCtrl.setValue( _formattedAddress.StreetName );
+            this.streetNumberCtrl.setValue( _formattedAddress.BuildingNumber );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
+            this.buildingNameCtrl.setValue( _formattedAddress.BuildingName );
+            this.unitNumberCtrl.setValue( _formattedAddress.FlatUnit );
+            this.streetNameCtrl.setValue( _formattedAddress.StreetName );
+        }
+    }
+
+    public onPoBoxButtonsChange ( $event ) {
+        if ( $event !== null ) {
+            this.isItPoBox = isTrue( $event );
+            this.emptyPoBoxDependantFields();
         }
     }
 
     public emptyControls () {
-        this.emptyAndResetStateAndStreetTypeControl();
+        this.manualStatesCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
+        this.manualStreetTypeCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
         this.suburbCtrl.setValue( null );
         this.postCodeCtrl.setValue( null );
         this.buildingNameCtrl.setValue( null );
@@ -186,11 +206,6 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
         this.killDelayedValidationForInputs();
     }
 
-    public emptyAndResetStateAndStreetTypeControl () {
-        this.manualStatesCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
-        this.manualStreetTypeCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
-    }
-
     private getJoinedIdWithIndex ( _id ) {
         return _id + addDashOrNothing( this.index );
     }
@@ -198,12 +213,10 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
     private killDelayedValidationForInputs () {
         this.manualSuburbCmp.checkErrors( true );
         this.manualPostcodeCmp.checkErrors( true );
-        this.manualSuburbCmp.checkErrors( true );
-        this.manualPostcodeCmp.checkErrors( true );
         this.manualBuildingNameCmp.checkErrors( true );
         this.manualUnitNumberCmp.checkErrors( true );
         this.manualStreetNumberCmp.checkErrors( true );
-        this.manualPoBox.checkErrors( true );
+        this.manualPoBoxCmp.checkErrors( true );
         this.manualStreetNameCmp.checkErrors( true );
     }
 
@@ -229,13 +242,6 @@ export class AmpManualAddressExtendedComponent implements OnInit, AfterViewInit,
     }
 
     private get summaryAddress () {
-        return BasicUtils.formatAddress( this.manualAddressCG.value );
-    }
-
-    public onPoBoxButtonsChange ( $event ) {
-        if ( $event !== null ) {
-            this.isItPoBox = isTrue( $event );
-            this.emptyPoBoxDependantFields();
-        }
+        return BasicUtils.formatAddress( this.manualAddressCG.value , AddressFormatTypes.BANK );
     }
 }

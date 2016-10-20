@@ -1,3 +1,6 @@
+<div class="mt-60" *ngIf="!isInSummaryState">
+    Try the address search again by clicking <a href="javascript:void(0);" (click)='goBack()'>here</a>.
+</div>
 <div class='manual-address grid__item_container clearfix'>
     <div [hidden]='isInSummaryState'>
         <amp-form-row>
