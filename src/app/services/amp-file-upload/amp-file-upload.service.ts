@@ -2,8 +2,7 @@ import { Injectable,
          EventEmitter,
          Output
 } from '@angular/core';
-import {
-         Http,
+import { Http,
          Response,
          Headers,
          RequestOptions
