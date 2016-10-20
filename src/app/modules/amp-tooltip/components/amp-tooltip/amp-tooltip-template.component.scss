@@ -1,0 +1,73 @@
+@import '../../../../../styles/abstracts';
+@import './themes/theme-tools';
+
+$amp-tooltip-height : 22px;
+$amp-tooltip-margin : 14px;
+$amp-tooltip-padding : 20px;
+$amp-tooltip-man-color : $amp-colour-primary-light;
+$amp-tooltip-inner-padding : 1px !default;
+$border-width : 1px !default;
+$amp-tooltip-bg : #fff !default;
+$amp-tooltip-max-width : 276px !default;
+$amp-tooltip-border-width : $border-width !default;
+$amp-tooltip-border-color : rgba(0, 0, 0, .2) !default;
+$amp-tooltip-box-shadow : 0 5px 10px rgba(0, 0, 0, .2) !default;
+$border-radius-lg : .3rem !default;
+.amp-tooltip {
+  @include reset-text();
+  background-color : $amp-tooltip-man-color;
+  color            : white;
+  padding          : $amp-tooltip-padding;
+  border-radius    : 2px;
+  font-size        : 13px;
+  max-height       : 300px;
+  overflow-Y       : auto;
+  line-height      : $amp-tooltip-height;
+  margin           : 0 $amp-tooltip-padding;
+  width            : 300px;
+  word-wrap        : break-word;
+  background-clip  : padding-box;
+  border           : $amp-tooltip-border-width solid $amp-tooltip-border-color;
+  @include border-radius($border-radius-lg);
+  @include box-shadow($amp-tooltip-box-shadow);
+}
+
+/** The overlay-container is an invisible element which contains all individual overlays. */
+.md-overlay-container {
+  position       : absolute;
+  pointer-events : none;
+  top            : 0;
+  left           : 0;
+  height         : 100%;
+  width          : 100%;
+}
+
+/** A single overlay pane. */
+.md-overlay-pane {
+  position       : absolute;
+  pointer-events : auto;
+  box-sizing     : border-box;
+  z-index        : 1000;
+}
+
+.amp-tooltip-up-arrow {
+  &::after {
+    border-width        : 12px;
+    top                 : -6px;
+    position            : absolute;
+    display             : block;
+    width               : 0;
+    height              : 0;
+    border-color        : transparent;
+    border-style        : solid;
+    z-index             : 1001;
+    content             : "";
+    border-top-color    : $amp-colour-primary-light;
+    border-bottom-width : 0;
+  }
+}
+
+.has-tooltip {
+  position : relative;
+  display  : inline-block;
+}

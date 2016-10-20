@@ -27,7 +27,7 @@ import { FormArray , FormGroup } from '@angular/forms';
             *ngIf="controlArray.controls.length > 0"
             [context]="context"
             (click)="add()"
-            [disabled]="maxRows === controlArray.controls.length"
+            [disabled]="addBtnDisabled"
             class="btn btn-anchor btn-inline">
             <span class="icon icon--plus-filled" aria-hidden="true"></span> {{ addBtn }}
         </amp-button>
@@ -41,7 +41,8 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'id' ) id;
     @Input( 'removeBtn' ) removeBtn;
     @Input( 'addBtn' ) addBtn;
-    @Input( 'maxRows' ) maxRows : Number = 9999;
+    @Input( 'maxRows' ) maxRows : number = 9999;
+    @Input( 'isInSummaryState' ) isInSummaryState : boolean = false;
     private controlArray : FormArray     = new FormArray( [] );
 
     ngOnInit () : void {
@@ -75,5 +76,9 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         while ( this.controlArray.length ) {
             this.controlArray.removeAt( 0 );
         }
+    }
+
+    private get addBtnDisabled () {
+        return (this.maxRows === this.controlArray.controls.length) || this.isInSummaryState;
     }
 }

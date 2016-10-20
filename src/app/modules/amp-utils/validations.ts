@@ -114,9 +114,7 @@ export class DateValidator {
                 }
                 return {
                     invalidDate : {
-                        text : c._ampErrors && c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'This date is' +
-                        ' not' +
-                        ' valid.'
+                        text : c._ampErrors && c._ampErrors.invalidDate ? c._ampErrors.invalidDate : 'The date should be in the format DD/MM/YYYY.'
                     }
                 };
             }

@@ -6,13 +6,14 @@
         [disabled]='isInSummaryState || disabled'
         class='md-input'
         [class.label-hidden]='labelHidden'
-        [aria-label]='id'
-        [name]='id'
+        [aria-label]='randomizedId'
+        [name]='randomizedId'
         [type]='type'
-        [id]='id'
+        [id]='randomizedId'
         [tabIndex]='isActive?tabindex:-1'
         [maxLength]='maxLength'
         [formControl]='control'
+        [autoComplete]='autoComplete'
         [placeholder]='required?label:label+" (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 </md-input>

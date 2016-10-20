@@ -22,6 +22,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpManualAddressComponent;
     @ViewChild( 'typeaheadCmp' ) typeaheadCmp : AmpTypeaheadComponent;
     @Input() id : string                                = 'qas';
+    @Input() addressType : string                       = 'residential';
     @Input() label : string                             = 'Default qas label';
     @Input() controlGroup : FormGroup;
     @Input() errors                                     = {
@@ -77,6 +78,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
         setTimeout( () => {
             this.isInSummaryState = false;
             this.qasControlGroup.reset();
+            this.manualAddressCmp.emptyControls();
             this.showManualEntryForm = true;
             this._cd.detectChanges();
         } );

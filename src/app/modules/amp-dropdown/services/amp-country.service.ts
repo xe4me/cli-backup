@@ -7,7 +7,7 @@ import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 export class AmpCountryService {
     public static BASE_URL     = Environments.property.ApiCallsBaseUrl;
     public static COUNTRY_URL  = AmpCountryService.BASE_URL + '/refdata/countries';
-    // public static COUNTRY_URL = 'http://localhost:8080/ddc/public/api/refdata/countries';
+    // public static COUNTRY_URL = 'https://ddc-uat.digital-np.ampaws.com.au/ddc/public/api/refdata/countries';
     public countryServiceError = null;
     private _cachedCountries : Observable<any[]>;
 
@@ -28,4 +28,14 @@ export class AmpCountryService {
                     return res.json().payload;
                 } );
     }
+
+    // public getItemLabel ( _value ) {
+    //     if ( _value ) {
+    //         for ( let i = 0 ; i < this._cachedCountries.length ; i ++ ) {
+    //             if ( this._cachedCountries[ i ].countryCode === _value ) {
+    //                 return this._cachedCountries[ i ].country;
+    //             }
+    //         }
+    //     }
+    // }
 }

@@ -2,12 +2,12 @@
         [disabled]='disabled'
         [checked]='checked'
         type='checkbox'
-        [attr.data-automation-id]='"checkbox_" + id'
+        [attr.data-automation-id]='"checkbox_" + randomizedId'
         class='sr-only'
-        [attr.id]='id'
-        [attr.name]='id'
+        [attr.id]='randomizedId'
+        [attr.name]='randomizedId'
         [formControl]='control'/>
-<label (click)='onSelect($event)' [attr.for]='id'>
+<label (click)='onSelect($event)' [attr.for]='randomizedId'>
     <div [class.hidden]='isInSummaryState' class="container">
         <div class="off"></div>
         <div class="on"></div>

@@ -3,12 +3,15 @@ import { Injectable,
          Output
 } from '@angular/core';
 import { Http,
-         Response
+         Response,
+         Headers,
+         RequestOptions
 } from '@angular/http';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
 import { Environments } from '../../abstracts/environments/environments.abstract';
 import { Observable } from 'rxjs';
+import { AmpHttpService } from '../../services/amp-http/amp-http.service';
 
 @Injectable()
 export class AmpFileUploadService {
@@ -16,18 +19,25 @@ export class AmpFileUploadService {
 
     @Output() onUpload : EventEmitter<any> = new EventEmitter();
 
-    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/token';
-    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/upload';
-    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/ddc/secure/api/upload/delete';
+    public _tokenUrl : string = AmpFileUploadService.BASE_URL + '/upload/token';
+    public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/upload/upload';
+    public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
+    private _formName : string;
+    private _formId : string;
 
     private _queue : any[] = [];
 
-    constructor ( private http : Http ) {
+    constructor ( private http : Http,
+                  private ampHttp : AmpHttpService  ) {
     }
 
     public get tokenUrl () : string {
         return this._tokenUrl;
+    }
+
+    public setTokenUrl ( url : string ) : void {
+        this._tokenUrl = url;
     }
 
     public get uploadUrl () : string {
@@ -44,6 +54,24 @@ export class AmpFileUploadService {
 
     public updateUrl ( url : string ) : void {
         this._uploadUrl = url;
+    }
+
+    public updateFormDetails ( formName : string, formId : string ) : void {
+        this._formName = formName;
+        this._formId = formId;
+    }
+
+    public retrieveNewToken ( ) : Observable<any> {
+        let headers  = new Headers( {
+                'Content-Type' : 'application/json' ,
+                'caller'       : 'components'
+            } );
+        let options = new RequestOptions( {
+            body : '' ,
+            headers : headers
+        } );
+        return this.ampHttp.get( this.tokenUrl, options )
+            .map( ( res : Response ) => res.json() );
     }
 
     public addFilesToQueue( files : any ) : void {
@@ -65,7 +93,7 @@ export class AmpFileUploadService {
     public deleteFile ( fileName : string, formName : string, formId : string ) : Observable<any> {
         let deleteUrlwithParms : string;
         deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&objectId=' + formId;
-        return this.http.post( deleteUrlwithParms, {} )
+        return this.ampHttp.post( deleteUrlwithParms, {}, {} )
                         .map( ( res : Response ) => res.json() );
     }
 
@@ -134,7 +162,15 @@ export class AmpFileUploadService {
             }
             this.onUpload.emit( uploadingFile );
         };
+        let BASIC_AUTH_BEARER = 'Bearer ';
         xhr.open('POST', this._uploadUrl, true);
+        xhr.setRequestHeader( 'Cache-Control' , 'no-cache' );
+        xhr.setRequestHeader( 'caller' , 'components' );
+        if ( this._uploadUrl.indexOf( Environments.property.GwPracticeService.Path ) > - 1 ) {
+            xhr.setRequestHeader( 'apikey' , BASIC_AUTH_BEARER + Environments.property.GwPracticeService.ApiKey );
+        } else if ( this._uploadUrl.indexOf( Environments.property.GwDDCService.Path ) > - 1 ) {
+            xhr.setRequestHeader( 'apikey' , BASIC_AUTH_BEARER + Environments.property.GwDDCService.ApiKey );
+        }
         xhr.send(form);
     }
 }

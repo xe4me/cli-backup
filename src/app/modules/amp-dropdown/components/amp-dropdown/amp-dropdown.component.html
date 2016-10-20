@@ -8,18 +8,18 @@
         [clicked-outside]='hideOptions'
         (window:resize)="onResize($event)">
 
-    <label class='sr-only' [attr.for]='id'>
+    <label class='sr-only' [attr.for]='randomizedId'>
         {{ label }}
     </label>
     <select
             #selectEl
             class='sr-only'
-            [attr.id]='id'
+            [attr.id]='randomizedId'
             [formControl]='control'
             (keydown)='onKeypressEvent($event)'
             (change)='onChangeEvent()'
             (focus)='onFocusEvent($event)'
-            [attr.data-automation-id]='"slt_" + id'
+            [attr.data-automation-id]='"slt_" + randomizedId'
             [attr.disabled]='(disabled || isInSummaryState) ? "disabled" : null'>
 
         <option value='' selected [attr.disabled]='currentOption > 0 ? "disabled" : null'></option>

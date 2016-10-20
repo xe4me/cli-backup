@@ -5,7 +5,8 @@
 
 :host {
     //btn-ok default style
-
+    display: inline-block;
+    position: static;
     $btn-ok-background-color: $btn-ok-background-color;
 
         .#{$namespace}btn-ok,

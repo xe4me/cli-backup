@@ -1,0 +1,9 @@
+<form #formModel='ngForm' class='nl-form p'>
+    <amp-country
+            #dropDown
+            [attr.theme]="themeService.theme.attr"
+            [id]='"countries"'
+            [controlGroup]="controlGroup"
+            [required]="true">
+    </amp-country>
+</form>

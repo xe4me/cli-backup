@@ -1,0 +1,13 @@
+@import '../../../../../styles/abstracts';
+@import './themes/theme-tools';
+
+:host {
+  position : relative;
+  display  : inline-block;
+}
+
+.icon-amp-tooltip {
+  @include hover-focus {
+    color : $amp-colour-secondary;
+  }
+}

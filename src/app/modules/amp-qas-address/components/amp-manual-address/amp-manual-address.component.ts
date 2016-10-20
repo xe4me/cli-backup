@@ -96,8 +96,8 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     protected postCodeCtrl;
     protected cityCtrl;
     private manualAddressCG : FormGroup    = new FormGroup( {} );
-    private selectedCountry  = AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
-    private addDashOrNothing = addDashOrNothing;
+    private selectedCountry                = AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
+    private addDashOrNothing               = addDashOrNothing;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -126,8 +126,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
             this.addressCtrl.setValue( _formattedAddress.StreetAddress );
             this.suburbCtrl.setValue( _formattedAddress.Suburb );
             this.manualStatesCmp.setSelectValue( _formattedAddress.State.toUpperCase() );
-            // this.manualCountryCmp.setSelectValue( _formattedAddress.Country );
-            this.manualCountryCmp.setSelectValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
+            this.manualCountryCmp.setSelectValue( _formattedAddress.Country === 'Australia' ? 'AUS' : 'NZL' );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
             // this.dpidCtrl.setValue( _formattedAddress.DPID );
         }
@@ -135,7 +134,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     public emptyControls () {
-        this.manualStatesCmp.setSelectValue( null );
+        this.emptyAndResetStateControl();
         this.manualCountryCmp.setSelectValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
         this.suburbCtrl.setValue( null );
         this.addressCtrl.setValue( null );
@@ -144,9 +143,14 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
         this.killDelayedValidationForInputs();
     }
 
+    public emptyAndResetStateControl () {
+        this.manualStatesCmp.setSelectValue( null );
+        this.stateCtrl.markAsPristine();
+    }
+
     private onCountrySelect ( _countryCode ) {
         if ( this.selectedCountry !== _countryCode ) {
-            this.manualStatesCmp.setSelectValue( null );
+            this.emptyAndResetStateControl();
             this.cityCtrl.setValue( null );
             this.suburbCtrl.setValue( null );
             this.selectedCountry = _countryCode;

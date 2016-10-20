@@ -1,30 +1,23 @@
-import {
-    Component ,
-    ViewChild ,
-    EventEmitter ,
-    ChangeDetectionStrategy ,
-    ChangeDetectorRef
-} from '@angular/core';
-import {
-    FormControl ,
-    FormGroup
-} from '@angular/forms';
-import { isPresent } from '@angular/core/src/facade/lang';
+import { Component , ViewChild , EventEmitter , ChangeDetectionStrategy , ChangeDetectorRef } from '@angular/core';
 import { RequiredValidator } from '../../../../modules/amp-utils';
-import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { addDashOrNothing , isTrue } from '../../../amp-utils/functions.utils';
 import { DeviceService } from '../../../../services/device/device.service';
+import { BaseControl } from '../../../../base-control';
+import { Validators } from '@angular/forms';
 @Component( {
     selector        : 'amp-dropdown' ,
     inputs          : [
+        'errors' ,
         'id' ,
+        'controlGroup' ,
         'label' ,
         'index' ,
         'fieldItemKey' ,
+        'customValidator' ,
         'fieldValueKey' ,
         'options' ,
-        'errors' ,
-        'controlGroup' ,
         'numOptions' ,
+        'preselect' ,
         'disabled' ,
         'required' ,
         'isInSummaryState' ,
@@ -36,54 +29,61 @@ import { DeviceService } from '../../../../services/device/device.service';
     changeDetection : ChangeDetectionStrategy.OnPush ,
     outputs         : [ 'select' ]
 } )
-
-export class AmpDropdownComponent {
+export class AmpDropdownComponent extends BaseControl {
     @ViewChild( 'selectEl' ) selectEl;
     @ViewChild( 'optionsEl' ) optionsEl;
     @ViewChild( 'dropdownEl' ) dropDownEl;
-    public control : FormControl         = new FormControl();
-    public errors                        = {};
-    protected controlGroup : FormGroup;
     protected label : string;
-    protected disabled : string;
     protected options;
     protected numOptions : number        = 4;
     protected optionsShown : boolean     = false;
     protected hasSelection : boolean     = false;
     protected animateSelection : boolean = false;
     protected hasWidth : boolean         = false;
-    protected _required : boolean        = false;
     protected isInSummaryState : boolean = false;
     protected labelHidden : boolean      = false;
     protected fieldItemKey               = 'label';
     protected fieldValueKey              = 'value';
     protected currentOption;
-    protected index;
     protected _limitTo : number          = 999;
     protected select                     = new EventEmitter();
     protected selectedOption             = {};
     protected selectElem;
     protected dropdownElem;
     protected optionsElem;
-    private _id                          = 'default';
-    constructor ( protected _cd : ChangeDetectorRef ) {
 
+    constructor ( protected _cd : ChangeDetectorRef ) {
+        super();
     }
-    public setSelectValue ( value ) {
+
+    updateValidators () {
+        if ( this.control ) {
+            let validators = Validators.compose( [
+                RequiredValidator.requiredValidation( this.required ) ,
+                this.customValidator()
+            ] );
+            this.control.setValidators( validators );
+            this.control.updateValueAndValidity( { emitEvent : false } );
+        }
+    }
+
+    public setSelectValue ( value , triggerChange = true ) {
         this.selectElem.value = value;
-        this.trigger( 'change' , this.selectElem );
+        if ( triggerChange ) {
+            this.trigger( 'change' , this.selectElem );
+        }
         this.hideOptions();
     }
 
     ngOnInit () : any {
-        this.joinToParentGroupAndSetAmpErrors();
+        super.ngOnInit();
         this.selectedOption[ this.fieldItemKey ]  = null;
         this.selectedOption[ this.fieldValueKey ] = null;
         return undefined;
     }
 
     ngAfterViewInit () : any {
-        this.updateValitators();
+        this.updateValidators();
         this.selectElem               = this.selectEl.nativeElement;
         this.dropdownElem             = this.dropDownEl.nativeElement;
         this.optionsElem              = this.optionsEl.nativeElement;
@@ -92,24 +92,13 @@ export class AmpDropdownComponent {
         setTimeout( () => {
             this.setSelectedOption( 'initial' );
         } );
-
         this.redraw();
-
         this.control.registerOnChange( ( value ) => {
             if ( this.selectElem.value !== value ) {
                 this.setSelectValue( value );
             }
         } );
         return undefined;
-    }
-
-    get required () {
-        return this._required;
-    }
-
-    set required ( value : boolean ) {
-        this._required = this.isTrue( value );
-        this.updateValitators();
     }
 
     get limitTo () {
@@ -120,12 +109,12 @@ export class AmpDropdownComponent {
         this._limitTo = value;
     }
 
-    set id ( value ) {
-        this._id = value;
-    }
-
-    get id () {
-        return this._id + addDashOrNothing( this.index );
+    set preselect ( value : any ) {
+        if ( value ) {
+            setTimeout( () => {
+                this.setSelectValue( value );
+            } );
+        }
     }
 
     protected toggleOptions () {
@@ -241,41 +230,18 @@ export class AmpDropdownComponent {
 
     protected trigger ( event , el ) {
         let ev = null;
-        if (DeviceService.isIE()) {
-            ev = document.createEvent('Event');
-            ev.initEvent(event, true, true);
+        if ( DeviceService.isIE() ) {
+            ev = document.createEvent( 'Event' );
+            ev.initEvent( event , true , true );
         } else {
             ev = new Event( event );
         }
-
         el.dispatchEvent( ev );
         this._cd.detectChanges();
     }
 
-    protected updateValitators () {
-        if ( this.control ) {
-            this.control.setValidators( RequiredValidator.requiredValidation( this.required ) );
-            this.control.updateValueAndValidity( { emitEvent : false } );
-        }
-    }
-
-    protected isTrue ( value ) {
-        return isPresent( value ) && (value === true || value === 'true' || false);
-    }
-
-    protected joinToParentGroupAndSetAmpErrors () {
-        this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName , i ) => {
-            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-        } );
-        if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.control );
-        }
-        this._cd.detectChanges();
-    }
-
     protected redraw () {
-        let forceRedraw           = function( element ) {
+        let forceRedraw                   = function( element ) {
             element.style.display = 'none';
             let trick             = element.offsetHeight;
             element.style.display = '';
@@ -285,8 +251,8 @@ export class AmpDropdownComponent {
         this.optionsElem.style.visibility = '';
     }
 
-    protected onResize (event) {
+    protected onResize ( event ) {
         this.dropdownElem.style.width = '';
-        this.hasWidth = false;
+        this.hasWidth                 = false;
     }
 }
