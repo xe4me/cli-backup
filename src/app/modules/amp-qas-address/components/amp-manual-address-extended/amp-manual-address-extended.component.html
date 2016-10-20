@@ -1,0 +1,188 @@
+<div class='manual-address grid__item_container clearfix'>
+    <amp-form-row>
+        <h3 class="heading">Is this a PO box?</h3>
+        <amp-group-buttons
+                class="1/5 mt+"
+                (select)='onPoBoxButtonsChange($event)'
+                [required]="true"
+                [buttons]='isItPoBoxButtons.buttons'
+                [controlGroup]='qasControlGroup'
+                [groupName]='isItPoBoxButtons.groupName'>
+        </amp-group-buttons>
+    </amp-form-row>
+    <div [hidden]='isItPoBox===null || isInSummaryState'>
+        <div [hidden]='isItPoBox'>
+            <!--Building Name-->
+            <amp-form-row>
+                <div class='grid__item_floated 3/4'>
+                    <amp-input
+                            #manualBuildingName
+                            class='1/1'
+                            [id]='buildingName.id'
+                            [label]='buildingName.label'
+                            [index]='index'
+                            [controlGroup]='manualAddressCG'
+                            [required]='false'
+                            [maxLength]='buildingName.maxLength'
+                            [errors]='buildingName.errors'>
+                    </amp-input>
+                    <amp-error [controlGroup]='manualAddressCG'
+                               [controlId]="buildingName.id+addDashOrNothing(index)"></amp-error>
+                </div>
+            </amp-form-row>
+            <!--Building Name-->
+
+            <!--Unit Number and Street Number-->
+            <amp-form-row>
+                <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr'>
+                    <amp-input
+                            #manualUnitNumberCmp
+                            class='1/1'
+                            [id]='unitNumber.id'
+                            [label]='unitNumber.label'
+                            [index]='index'
+                            [controlGroup]='manualAddressCG'
+                            [required]='false'
+                            [maxLength]='unitNumber.maxLength'
+                            [errors]='unitNumber.errors'>
+                    </amp-input>
+                    <amp-error [controlGroup]='manualAddressCG'
+                               [controlId]="unitNumber.id+addDashOrNothing(index)"></amp-error>
+                </div>
+                <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
+                    <amp-input
+                            #manualStreetNumberCmp
+                            class='1/1'
+                            [id]='streetNumber.id'
+                            [label]='streetNumber.label'
+                            [index]='index'
+                            [controlGroup]='manualAddressCG'
+                            [required]='false'
+                            [maxLength]='streetNumber.maxLength'
+                            [errors]='streetNumber.errors'>
+                    </amp-input>
+                    <amp-error [controlGroup]='manualAddressCG'
+                               [controlId]="streetNumber.id+addDashOrNothing(index)"></amp-error>
+                </div>
+            </amp-form-row>
+            <!--Unit Number and Street Number-->
+
+            <!--Street Name and Street Type-->
+            <amp-form-row>
+                <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr'>
+                    <amp-input
+                            #manualStreetNameCmp
+                            class='1/1'
+                            [id]='streetName.id'
+                            [label]='streetName.label'
+                            [index]='index'
+                            [controlGroup]='manualAddressCG'
+                            [required]='!isItPoBox'
+                            [maxLength]='streetName.maxLength'
+                            [errors]='streetName.errors'>
+                    </amp-input>
+                    <amp-error [controlGroup]='manualAddressCG'
+                               [controlId]="streetName.id+addDashOrNothing(index)"></amp-error>
+                </div>
+                <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
+                    <amp-street-types
+                            class="utils__display--block-palm"
+                            #manualStreetTypeCmp
+                            [id]='streetType.id'
+                            [index]='index'
+                            [required]='!isItPoBox'
+                            [controlGroup]='manualAddressCG'>
+                    </amp-street-types>
+                    <amp-error [controlGroup]='manualAddressCG'
+                               [controlId]="streetType.id+addDashOrNothing(index)"></amp-error>
+                </div>
+            </amp-form-row>
+            <!--Street Name and Street Type-->
+        </div>
+
+        <!--Po Box-->
+        <amp-form-row [hidden]='!isItPoBox'>
+            <div class='grid__item_floated 3/4'>
+                <amp-input
+                        #manualPoBox
+                        class='1/1'
+                        [id]='poBox.id'
+                        [label]='poBox.label'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'
+                        [required]='isItPoBox'
+                        [maxLength]='poBox.maxLength'
+                        [errors]='poBox.errors'>
+                </amp-input>
+                <amp-error [controlGroup]='manualAddressCG'
+                           [controlId]="poBox.id+addDashOrNothing(index)"></amp-error>
+            </div>
+        </amp-form-row>
+        <!--Po Box-->
+        <!--Suburb and Post Code-->
+        <amp-form-row>
+            <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr'>
+                <amp-input
+                        #manualSuburbCmp
+                        class='1/1'
+                        [id]='suburb.id'
+                        [label]='suburb.label'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'
+                        [pattern]='suburb.regex'
+                        [required]='true'
+                        [maxLength]='suburb.maxLength'
+                        [minLength]='suburb.minLength'
+                        [errors]='suburb.errors'>
+                </amp-input>
+                <amp-error [controlGroup]='manualAddressCG'
+                           [controlId]="suburb.id+addDashOrNothing(index)"></amp-error>
+            </div>
+            <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
+                <amp-input
+                        #manualPostcodeCmp
+                        noPadding='true'
+                        class='1/1'
+                        [id]='postCode.id'
+                        [label]='postCode.label'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'
+                        [required]='true'
+                        [pattern]='postCode.regex'
+                        [maxLength]='postCode.maxLength'
+                        [errors]='postCode.errors'
+                        [minLength]="postCode.minLength">
+                </amp-input>
+                <amp-error [controlGroup]='manualAddressCG'
+                           [controlId]="postCode.id+addDashOrNothing(index)"></amp-error>
+            </div>
+        </amp-form-row>
+        <!--Suburb and Post Code-->
+
+        <!--State-->
+        <amp-form-row>
+            <div class='grid__item_floated 1/1'>
+                <amp-states
+                        class="utils__display--block-tablet-and-down"
+                        #manualStatesCmp
+                        [id]='state.id'
+                        [index]='index'
+                        [errors]='state.errors'
+                        [required]='true'
+                        [controlGroup]='manualAddressCG'>
+                </amp-states>
+
+                <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+addDashOrNothing(index)"></amp-error>
+            </div>
+        </amp-form-row>
+        <!--State-->
+
+    </div>
+    <!--<div *ngIf='isInSummaryState'>-->
+    <!--<amp-form-row>-->
+    <!--<div class='grid__item_floated 1/1 summary-state'>-->
+    <!--{{ summaryAddress }}-->
+    <!--</div>-->
+    <!--</amp-form-row>-->
+    <!--</div>-->
+</div>
