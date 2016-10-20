@@ -315,7 +315,7 @@
                                             ]
                                         },
                                         {
-                                            "name": "IdentiySection",
+                                            "name": "IdentitySection",
                                             "blockType": "PageSectionComponent",
                                             "blockLayout": "SECTION",
                                             "commonBlock": true,
