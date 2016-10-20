@@ -1,5 +1,5 @@
 import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewChild } from '@angular/core';
-import { arrayJoinByDash } from './modules/amp-utils';
+import { arrayJoinByDash, DomUtils } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
@@ -24,12 +24,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected visibleFlag : string           = 'defaultIsVisible';
     protected doneFlag : string              = 'defaultIsDone';
     private scrollSubscription : Subscription;
+    private domUtils : DomUtils = null;
 
     constructor ( protected formModelService : FormModelService ,
                   protected elementRef : ElementRef ,
                   protected _cd : ChangeDetectorRef ,
                   protected progressObserver : ProgressObserverService ,
                   protected scrollService : ScrollService ) {
+        this.domUtils = new DomUtils();
     }
 
     context () {
@@ -69,7 +71,12 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
                     }
                 }
                 if ( inputs && inputs.length > 0 ) {
-                    inputs[ 0 ].focus();
+                    for ( let i = 0; i < inputs.length; i++ ) {
+                        if ( this.domUtils.isVisible( inputs[ i ] ) ) {
+                            inputs[ i ].focus();
+                            break;
+                        }
+                    }
                 }
             }
         } , 100 );
