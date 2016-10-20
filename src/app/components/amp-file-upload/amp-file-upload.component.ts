@@ -89,7 +89,6 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private handleUpload ( response : any ) : void {
-        this._cd.detectChanges();
         let res : any;
         res = response.response ? JSON.parse( response.response ) : null;
         if ( res && (this.errorCodes.indexOf(res.statusCode) > -1 )) {
@@ -105,6 +104,7 @@ export class AmpFileUploadComponent implements OnInit {
         this.speed = response.progress.speedHumanized ? response.progress.speedHumanized : this.speed;
         this.uploaded = humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
+        this._cd.detectChanges();
     }
 
     private updateToken () : void {
@@ -130,7 +130,6 @@ export class AmpFileUploadComponent implements OnInit {
         this.error = true;
         this.showProgress = !this.error;
         this.errorMessage = res ? res.message : this.errorMessage;
-        this._cd.detectChanges();
     }
 
     private removeFile () : void {
@@ -139,12 +138,10 @@ export class AmpFileUploadComponent implements OnInit {
         fileRemoved.subscribe(
             ( res : any ) => {
                 this.showProgress = false;
-                this._cd.detectChanges();
             },
             ( error ) => {
                 this.error = true;
                 this.errorMessage = 'Error in deleting file';
-                this._cd.detectChanges();
             }
         );
     }
