@@ -130,6 +130,7 @@ export class AmpFileUploadComponent implements OnInit {
         this.error = true;
         this.showProgress = !this.error;
         this.errorMessage = res ? res.message : this.errorMessage;
+        this._cd.detectChanges();
     }
 
     private removeFile () : void {
@@ -138,10 +139,12 @@ export class AmpFileUploadComponent implements OnInit {
         fileRemoved.subscribe(
             ( res : any ) => {
                 this.showProgress = false;
+                this._cd.detectChanges();
             },
             ( error ) => {
                 this.error = true;
                 this.errorMessage = 'Error in deleting file';
+                this._cd.detectChanges();
             }
         );
     }
