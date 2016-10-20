@@ -6,17 +6,9 @@ import {
     EventEmitter,
     AfterViewInit
 } from '@angular/core';
-import {
-    Headers,
-    RequestOptions
-} from '@angular/http';
-import { FormGroup } from '@angular/forms';
-import {
-    Router,
-    ActivatedRoute,
-    Params
-} from '@angular/router';
 
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AmpButton } from 'amp-ddc-components/src/app/components/amp-button/amp-button.component';
 import { AmpEmailComponent } from '../../modules/amp-inputs/components/amp-email/amp-email.component';
 
@@ -29,8 +21,7 @@ import { AmpEmailComponent } from '../../modules/amp-inputs/components/amp-email
         inputs     : ['title',
                       'messageForReference',
                       'messageForEmail',
-                      'emailSentEvent',
-                      'backButton'],
+                      'emailSentEvent'],
         outputs    : ['$sendEmailEvent']
     })
 
@@ -43,7 +34,6 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     private messageForReference = 'Your quote/application is now saved and your reference is ';
     private messageForEmail = 'Enter your email address so instructions to retrieve the quote/application can be sent to you.';
     private emailSentNotification : string = null;
-    private backButton : string = null;
 
     private referenceId : string = null;
     private isInSummaryState : boolean = false;
@@ -52,8 +42,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     constructor(private _cd : ChangeDetectorRef,
                 private el : ElementRef,
                 public _viewContainerRef : ViewContainerRef,
-                private route : ActivatedRoute,
-                private router : Router) {
+                private route : ActivatedRoute) {
     }
 
     ngAfterViewInit () {
@@ -78,9 +67,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     }
 
     private back () {
-        if (this.backButton) {
-            this.router.navigate([this.backButton]);
-        }
+        history.back();
     }
 
     private get emailSentMessage() {
