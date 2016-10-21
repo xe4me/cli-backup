@@ -1,4 +1,5 @@
-import { ElementRef ,
+import {
+    ElementRef ,
     ChangeDetectorRef ,
     AfterViewInit ,
     OnDestroy ,
