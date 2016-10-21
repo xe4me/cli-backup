@@ -3,18 +3,17 @@ import { Component,
          ChangeDetectorRef,
          Input,
          ViewChild } from '@angular/core';
-import { AmpButton } from '../../components/amp-button/amp-button.component';
-import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
-import { AmpFileUploadService } from './services/amp-file-upload.service';
-import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { AmpFileUploadService } from '../services/amp-file-upload.service';
+import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
+import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { Observable } from 'rxjs';
 
 @Component({
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
     styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
-    directives  : [ AmpButton, AmpLinearProgressBarComponent ],
-    providers   : [ AmpFileUploadService ]
+    providers   : [ AmpFileUploadService ] ,
+    directives  : [ AmpLinearProgressBarComponent ]
 })
 export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
