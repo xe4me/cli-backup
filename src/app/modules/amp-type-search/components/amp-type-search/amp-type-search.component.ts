@@ -133,7 +133,11 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     private onClick ( e ) {
         if (e.target.className.includes('icon--search')) {
-            this.searchIconClick(this.control.value || '')
+            this.doSearchIconClick();
+        }
+    }
+    private doSearchIconClick() {
+        this.searchIconClick(this.control.value || '')
                 .subscribe((result) => {
                     this.clearSelectedItem();
                     this.open();
@@ -147,9 +151,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
                 } );
-        }
     }
-
     private open () {
         if ( this.isInSummaryState ) {
             return;
@@ -167,9 +169,10 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
             if ( ! this.isOptionsHidden ) {
                 this.onDownKeyPressed( keyCode );
                 $event.preventDefault();
-            } else {
-                this.open();
             }
+        }
+        if (KeyCodes.ENTER === keyCode){
+            this.doSearchIconClick();
         }
     }
 
