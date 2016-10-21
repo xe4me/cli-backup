@@ -16,28 +16,6 @@
                             You know why, David? Because of the kids. They called me Mr Glass.
                         </p>
                     </div>
-                    <div class="grid__item_floated">
-                        <amp-checkbox
-                            [attr.theme]="themeService.theme.attr"
-                            [isInSummaryState]='isInSummaryState'
-                            [controlGroup]='controlGroup'
-                            [required]='acknowledge.required'
-                            [checked]='acknowledge.checked'
-                            [disabled]='acknowledge.disabled'
-                            [scrollOutOn]='acknowledge.scrollOutOn'
-                            [id]='acknowledge.id'
-                            (select)='onAcknowledgeSelect($event)'>
-                        </amp-checkbox>
-
-                    </div>
-                </div>
-            </div>
-            <div class="grid__container_inner mv mh">
-                <div class="grid__item_floated">
-                    <amp-button [disabled]='!acceptTerms' (click)='onOk(1)' [class]="'btn btn-ok mt0'"
-                                [data-automation-id]='"abcd"'>
-                        Continue
-                    </amp-button>
                 </div>
             </div>
         </div>
@@ -66,7 +44,7 @@
                 </li>
             </ul>
         </div>
-        <div class="grid__container 1/1 mb">
+       <!-- <div class="grid__container 1/1 mb">
             <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'"
                         [data-automation-id]='"abcd"'>
                 Online now
@@ -76,7 +54,7 @@
                         [data-automation-id]='"abcd"'>
                 I'll mail then
             </amp-button>
-        </div>
+        </div>-->
     </section>
     <!--
 The green id form is used
@@ -101,30 +79,13 @@ The green id form is used
 
             <input id="usethiscountry" value="AU" name="country" type="hidden">
 
-            <div class="row">
-
-
-                <div class="form-group col-sm-4">
-                    <label for="givenNames" class="control-label">First Name</label>
                     <input id="givenNames" name="givenNames" [ngModel]="modelValue.firstName" class="form-control"
                            type="text">
-                </div>
-
-                <div class="form-group col-sm-4">
-                    <label for="middleNames" class="control-label">Middle Name</label>
                     <input id="middleNames" name="middleNames" [ngModel]="modelValue.middleNames" class="form-control"
                            type="text">
-                </div>
 
-
-                <div class="form-group col-sm-4">
-                    <label for="surname" class="control-label">Surname</label>
                     <input type="text" id="surname" name="surname" [ngModel]="modelValue.lastName"
                            class="form-control"/>
-                </div>
-
-            </div>
-
 
             <input id="flatNumber" name="flatNumber" [ngModel]="modelValue.address.flatNumber" class="form-control"
                    type="text">

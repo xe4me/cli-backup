@@ -18,7 +18,7 @@ export default class AmpGreenIdBlockBasicUsage {
 
     public controlGroup : FormGroup = new FormGroup( {} );
     public isInSummaryState    = false;
-    private acceptTerms        = false;
+
     private okAccepted         = false;
     private acknowledge = {
         id          : 'acknowledge' ,
@@ -52,27 +52,13 @@ export default class AmpGreenIdBlockBasicUsage {
                   private _AmpGreenIdServices : AmpGreenIdServices  ) {
     }
 
-    get control () {
-        return this.controlGroup.controls[ 'acknowledge' ];
-    }
-
     ngOnInit () {
-
-    }
-
-    private check () {
-        this.control.setValue( ! this.control.value );
-    }
-
-    private onAcknowledgeSelect ( value ) {
-
-        this.acceptTerms = value;
 
     }
 
     private onOk( value ) {
         this.okAccepted = true;
-        // this._cd.markForCheck();
+
     }
 
     private onContinue( value ) {
