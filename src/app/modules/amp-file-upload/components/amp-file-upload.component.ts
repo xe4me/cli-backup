@@ -39,7 +39,7 @@ export class AmpFileUploadComponent implements OnInit {
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
     private typesAllowed : string[] = [ 'application/pdf' ];
-    private sizeAllowed : number = 1000000;
+    private sizeAllowed : number = 2000000;
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private fileUploadService : AmpFileUploadService,
