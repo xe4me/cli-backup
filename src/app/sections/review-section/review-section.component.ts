@@ -78,7 +78,8 @@ export class ReviewSectionComponent implements OnInit {
         });
 
         this.scrollService.$scrolled.subscribe((event) => {
-            this.reviewSectionVisible = event.componentSelector === this.__fdn.join('-') + '-block';
+            let block = event.componentSelector || '';
+            this.reviewSectionVisible = block.replace('-block', '').indexOf(this.__fdn.join('-')) > -1;
         });
 
         // Filter blocks for review main and sticky columns.

@@ -618,6 +618,26 @@
         "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
     },
     {
+        "name": "Amp Country Dropdown",
+        "sources": [
+            "src/app/components/amp-country/amp-country.component.ts"
+        ],
+        "id": "AmpCountryComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-country/basic_usage.html",
+                "styles": "src/styleguide/components/amp-country/basic_usage.scss",
+                "source": "src/styleguide/components/amp-country/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-country/amp-country.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-country/amp-country.component.spec.ts",
+                "component": "amp-country-block-basic-usage",
+                "component_src_location": "components/amp-country/basic_usage",
+                "name": "Amp Country Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for Amp Country Dropdown Component.</p>\n"
+    },
+    {
         "name": "Amp Tooltip",
         "sources": [
             "src/app/components/amp-tooltip/amp-tooltip.component.ts"

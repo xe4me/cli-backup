@@ -17,6 +17,7 @@ import { Validators } from '@angular/forms';
         'fieldValueKey' ,
         'options' ,
         'numOptions' ,
+        'preselect' ,
         'disabled' ,
         'required' ,
         'isInSummaryState' ,
@@ -66,9 +67,11 @@ export class AmpDropdownComponent extends BaseControl {
         }
     }
 
-    public setSelectValue ( value ) {
+    public setSelectValue ( value , triggerChange = true ) {
         this.selectElem.value = value;
-        this.trigger( 'change' , this.selectElem );
+        if ( triggerChange ) {
+            this.trigger( 'change' , this.selectElem );
+        }
         this.hideOptions();
     }
 
@@ -104,6 +107,14 @@ export class AmpDropdownComponent extends BaseControl {
 
     set limitTo ( value : any ) {
         this._limitTo = value;
+    }
+
+    set preselect ( value : any ) {
+        if ( value ) {
+            setTimeout( () => {
+                this.setSelectValue( value );
+            } );
+        }
     }
 
     protected toggleOptions () {

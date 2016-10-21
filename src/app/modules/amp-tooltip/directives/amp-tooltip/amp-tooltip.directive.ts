@@ -67,8 +67,8 @@ export type TooltipPosition = 'before' | 'after' | 'above' | 'below';
     exportAs : 'tooltip'
 } )
 export class AmpTooltipDirective {
-    @Input( 'extraClasses' ) extraClasses   = '';
-    @Input( 'autoHideDelay' ) autoHideDelay = 10000;
+    @Input( 'extraClasses' ) extraClasses = '';
+    @Input( 'autoHideDelay' ) autoHideDelay;
 
     @Input( 'amp-tooltip-dir' ) get message () {
         return this._message;

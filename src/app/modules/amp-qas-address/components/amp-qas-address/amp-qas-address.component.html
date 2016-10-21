@@ -26,7 +26,7 @@
             <amp-error [controlGroup]='typeaheadCG'>
                 <template let-error='error'>
                     <error-item [error]='error' selector='addressNotFound'>
-                        Try the address search again by clicking <a href="javascript:void(0);" (click)='showManualAddrForm()'>here</a>.
+                        Enter your {{ addressType }} address manually by clicking <a href="javascript:void(0);" (click)='showManualAddrForm()'>here</a>.
                     </error-item>
                 </template>
             </amp-error>
@@ -36,7 +36,7 @@
 
 <div [hidden]='!showManualEntryForm'>
     <div class="mt-60" *ngIf="!isInSummaryState">
-        Want to try searching again? Click <a href="javascript:void(0);" (click)='goBack()'>here</a> to find our address automatically.
+        Try the address search again by clicking <a href="javascript:void(0);" (click)='goBack()'>here</a>.
     </div>
 
     <amp-manual-address

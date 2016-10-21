@@ -29,6 +29,7 @@ export class AmpCountryComponent extends AmpDropdownComponent implements OnInit 
         this.errors        = {
             required : 'Country is a required field.'
         };
+        this.preselect     = 'AUS';
     }
 
     ngOnInit () : any {
@@ -36,7 +37,8 @@ export class AmpCountryComponent extends AmpDropdownComponent implements OnInit 
         this.ampCountryService
             .getCountries()
             .subscribe( ( res : any ) => {
-                this.options = res;
+                this.options   = res;
+                this.preselect = 'AUS';
             } , ( error : any ) => {
                 console.log( error );
             } );

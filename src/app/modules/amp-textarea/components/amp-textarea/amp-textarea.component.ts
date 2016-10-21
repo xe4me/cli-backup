@@ -42,6 +42,7 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     private componentHeightOffset : number;
     private _minLength : number;
     private _maxLength : number;
+    private hasFocus : boolean = false;
     private spellCheck : boolean = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
