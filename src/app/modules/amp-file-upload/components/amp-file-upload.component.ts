@@ -17,8 +17,6 @@ import { Observable } from 'rxjs';
 })
 export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
-    @Input() title : string;
-    @Input() text : string;
     @Input() uploadUrl : string;
     @Input() deleteUrl : string;
     @Input() tokenUrl : string;
