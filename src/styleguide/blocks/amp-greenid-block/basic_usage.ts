@@ -43,7 +43,6 @@ export default class AmpGreenIdBlockBasicUsage {
             streetName: 'SMITH',
             flatNumber: 'U 2',
             streetNumber: '53-57',
-            streetType: 'RD',
             suburb: 'SYDNEY'
         }
     };
