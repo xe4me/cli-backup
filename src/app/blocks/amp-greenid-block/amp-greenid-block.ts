@@ -9,6 +9,7 @@ import {
     AfterContentInit
 } from '@angular/core';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
+import { FormControl , FormGroup, FormBuilder } from '@angular/forms';
 @Component( {
     selector   : 'amp-greenid-block' ,
     host       : {
@@ -36,22 +37,36 @@ import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/servic
 } )
 export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
-    private loadAPI : Promise<any>;
-    // Greed id components need to be
+    private controlGroup : FormGroup = new FormGroup( {} );
+    private loadApiScripts : Promise<any>;
     private scriptUrls : string[] =['//test2.edentiti.com/df/javascripts/greenidConfig.js','//test2.edentiti.com/df/javascripts/greenidui.min.js'];
+    private greenIdSettings = {
+        environment: 'test',
+        formId: "theform",
+        frameId: "greenid-div",
+        country: "usethiscountry",
+        debug: false
+    };
 
-    constructor ( private _AmpGreenIdServices : AmpGreenIdServices ) {
+    constructor ( private _AmpGreenIdServices : AmpGreenIdServices,
+                  private fb : FormBuilder  ) {
 
     }
     /**
      * Get the array of greenid scripts that we need to submit with the model
      */
     ngOnInit() : any {
+
         if (this.scriptUrls) {
             for (var stringUrl of this.scriptUrls) {
                 this.loadAllScripts(stringUrl);
             }
         }
+
+        this.controlGroup = new FormGroup({
+          verificationId : new FormControl('verificationId',null),
+          verificationToken : new FormControl('verificationToken',null),
+        });
     }
     /**
      * Once we have the scripts loaded, we need to init the green id stuff, set it up
@@ -60,13 +75,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
         setTimeout(() => {
             if (window.greenidUI) {
-                greenidUI.setup({
-                    environment: 'test',
-                    formId: "theform",
-                    frameId: "greenid-div",
-                    country: "usethiscountry",
-                    debug: false
-                });
+                greenidUI.setup(this.greenIdSettings);
             }
         }, 1000);
 
@@ -76,7 +85,6 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      */
     private loadAllScripts (stringUrl : string) : void {
         this.loadAPI = new Promise((resolve) => {
-            console.log('resolving promise...');
             this.loadScript(stringUrl);
         });
     }
@@ -84,7 +92,6 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      * Create the element in the DOM
      */
     private loadScript(urlString : string) : void  {
-        console.log('preparing to load...', urlString);
         let node = document.createElement('script');
         node.src = urlString;
         node.type = 'text/javascript';

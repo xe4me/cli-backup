@@ -28,11 +28,11 @@ export class AmpGreenIdServices {
             .post( url, body, options )
             .map( ( res ) => {
                 let re = res.json();
-                console.log(' response: ', re);
+                return re;
             })
          .catch( this.handleError );
     };
-    
+
     private handleError ( error : any ) {
         let errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
         return Observable.throw( errMsg );
