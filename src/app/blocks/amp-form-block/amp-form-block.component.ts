@@ -6,13 +6,13 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
     selector   : 'amp-form-block' ,
     template   : `
      <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK " [attr.data-section]="context?.__sectionName" id='{{ context?.selectorName }}'>
-            <amp-overlay [active]='!context?.isActive'></amp-overlay>
+            <amp-overlay [active]='!context?.isActive' *ngIf="withOverlay"></amp-overlay>
             <h2 class="heading heading-intro {{ headingClass }}" [innerHtml]="context?.__custom.blockTitle"></h2>
             <ng-content></ng-content>
              <div *ngIf="!noError">
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
              </div>
-             <div class="block-buttons">
+             <div class="block-buttons" *ngIf="withOkButton">
                  <amp-button
                     [context]="context"
                     *ngIf='!context?.isInSummaryState'
@@ -39,6 +39,8 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
     @Input( 'noError' ) noError;
+    @Input( 'withOkButton' ) withOkButton = true;
+    @Input( 'withOverlay' ) withOverlay = true;
     @Input( 'theme' ) theme;
     @Input( 'headingClass' ) headingClass : string = '';
 
