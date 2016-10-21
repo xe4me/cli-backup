@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="file-remove grid__item_floated 2/12">
+    <div class="file-remove grid__item_floated 2/12" *ngIf="!showProgressBar()">
         <h3>Remove<span class="icon icon--modal-close" aria-hidden="true" (click)="removeFile()"></span></h3>
     </div>
     <div class="file-remove grid__item_floated 12/12" *ngIf="showProgressBar()">
