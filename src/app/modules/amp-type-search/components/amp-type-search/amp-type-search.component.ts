@@ -211,7 +211,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     private initForApi () : Subscription {
         // this.searchResult = null;
-         this.doApiQuery   = true;
+        this.doApiQuery   = true;
         // return this.subscription =
         //     this.control
         //         .valueChanges
@@ -238,7 +238,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         //             this._cd.markForCheck();
         //             this.ampInput.checkErrors();
         //         } );
-         return undefined;
+        return undefined;
     }
 
     private markInputAsUnDirty () : void {
