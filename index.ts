@@ -14,6 +14,7 @@ export * from './src/app/modules/amp-pipes';
 export * from './src/app/modules/amp-typeahead';
 export * from './src/app/modules/amp-type-search';
 export * from './src/app/modules/amp-qas-address';
+export * from './src/app/modules/amp-file-upload';
 export * from './src/app/modules/amp-inputs';
 export * from './src/app/modules/amp-error';
 export * from './src/app/modules/amp-directives';
@@ -29,7 +30,6 @@ export * from './src/app/modules/amp-form-row';
 export * from './src/app/modules/amp-tooltip';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
-export { AmpFileUploadComponent } from './src/app/components/amp-file-upload/amp-file-upload.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
 // Constants

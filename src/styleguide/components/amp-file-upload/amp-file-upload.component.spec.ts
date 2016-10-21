@@ -1,6 +1,6 @@
 import { async , ComponentFixture , TestBed } from '@angular/core/testing';
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import { AmpFileUploadComponent } from '../../../app/components/amp-file-upload/amp-file-upload.component';
+import { AmpFileUploadComponent } from '../../../app/modules/amp-file-upload/components/amp-file-upload.component';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions } from '@angular/http';
 import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';

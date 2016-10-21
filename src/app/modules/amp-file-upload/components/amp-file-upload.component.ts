@@ -3,18 +3,17 @@ import { Component,
          ChangeDetectorRef,
          Input,
          ViewChild } from '@angular/core';
-import { AmpButton } from '../../components/amp-button/amp-button.component';
-import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
-import { AmpFileUploadService } from './services/amp-file-upload.service';
-import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { AmpFileUploadService } from '../services/amp-file-upload.service';
+import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
+import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { Observable } from 'rxjs';
 
 @Component({
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
     styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
-    directives  : [ AmpButton, AmpLinearProgressBarComponent ],
-    providers   : [ AmpFileUploadService ]
+    providers   : [ AmpFileUploadService ] ,
+    directives  : [ AmpLinearProgressBarComponent ]
 })
 export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
@@ -40,7 +39,7 @@ export class AmpFileUploadComponent implements OnInit {
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
     private typesAllowed : string[] = [ 'application/pdf' ];
-    private sizeAllowed : number = 1000000;
+    private sizeAllowed : number = 2000000;
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private fileUploadService : AmpFileUploadService,
