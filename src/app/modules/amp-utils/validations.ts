@@ -4,7 +4,7 @@ export class RequiredValidator {
         return ( c ) => {
             if ( required ) {
                 if ( booleanValue ) {
-                    return c.value === true ? null : {
+                    return typeof c.value === 'boolean' ? null : {
                         required : {
                             text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +
                             ' required'

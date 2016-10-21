@@ -52,7 +52,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
     updateValidators () {
         if ( this.control ) {
             let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required ) ,
+                RequiredValidator.requiredValidation( this.required , true ) ,
                 this.customValidator()
             ] );
             this.control.setValidators( validators );
@@ -66,8 +66,8 @@ export class AmpGroupButtonsComponent extends BaseControl {
             .valueChanges
             .distinctUntilChanged()
             .subscribe( ( changes ) => {
-                if ( changes ) {
-                    this.select.emit( changes + '' );
+                if ( changes !== undefined && changes !== null  ) {
+                    this.select.emit( changes );
                 }
             } );
         if ( this.defaultValue ) {
