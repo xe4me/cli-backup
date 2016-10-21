@@ -1,10 +1,21 @@
-import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewChild } from '@angular/core';
-import { arrayJoinByDash, DomUtils } from './modules/amp-utils';
+import { ElementRef ,
+    ChangeDetectorRef ,
+    AfterViewInit ,
+    OnDestroy ,
+    ViewChild
+} from '@angular/core';
+
+import {
+    arrayJoinByDash ,
+    DomUtils
+} from './modules/amp-utils';
+
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
+
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     public autoFocusOn;
     protected isInSummaryState : boolean     = false;
