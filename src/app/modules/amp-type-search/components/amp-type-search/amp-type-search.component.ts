@@ -136,6 +136,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
             this.doSearchIconClick();
         }
     }
+
     private doSearchIconClick() {
         this.searchIconClick(this.control.value || '')
                 .subscribe((result) => {
@@ -152,6 +153,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                     this.ampInput.checkErrors();
                 } );
     }
+
     private open () {
         if ( this.isInSummaryState ) {
             return;
