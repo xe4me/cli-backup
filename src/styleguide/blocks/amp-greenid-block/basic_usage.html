@@ -1,6 +1,6 @@
 <amp-greenid-block>
 
-    <section class="section mv" *ngIf="!okAccepted">
+    <section class="section mv">
         <div class="grid__container 1/1 mb">
             <div class="grid__item_floated 1/1 mv mh">
                 <h2 class="mb-">Thanks Charlie, just to confirm…</h2>
@@ -20,123 +20,6 @@
             </div>
         </div>
     </section>
-
-    <section class="section mv mh" *ngIf="okAccepted">
-        <div class="grid__container 1/1 mb">
-            <h2 class="mb-">How do you want us to ID you?</h2>
-            <p class="para">
-                Let us know if you’d like to use our online ID service to confirm
-                your identity or whether you want to mail us certified copies.
-                Either way, please have one of the below ready:
-            </p>
-            <ul class="mh">
-                <li>
-                    Australian work visa
-                </li>
-                <li>
-                    Medicare card
-                </li>
-                <li>
-                    Drivers license
-                </li>
-                <li>
-                    Australian passport
-                </li>
-            </ul>
-        </div>
-       <!-- <div class="grid__container 1/1 mb">
-            <amp-button [disabled]='!acceptTerms' (click)='onContinue(1)' [class]="'btn btn-ok mt0'"
-                        [data-automation-id]='"abcd"'>
-                Online now
-            </amp-button>
-
-            <amp-button [disabled]='!acceptTerms' [class]="'btn btn-ok mt0'"
-                        [data-automation-id]='"abcd"'>
-                I'll mail then
-            </amp-button>
-        </div>-->
-    </section>
-    <!--
-The green id form is used
-
--->
-
-    <form method="POST" action="/verification/simpleui-finish.seam" id="theform" role="form">
-
-        <div style="display: none;">
-
-
-            <!--
-                Your accountId (sometimes known as your customerId) is unique to you and remains the same in test and production
-            -->
-            <input id="accountId" value="amp_au" name="accountId" type="hidden">
-
-            <!--
-                Your apiCode will be different in test and production.
-                The one that's first included below for you is for the test environment.
-            -->
-            <input id="apiCode" value="69h-xEt-PSW-vGn" name="apiCode" type="hidden">
-
-            <input id="usethiscountry" value="AU" name="country" type="hidden">
-
-                    <input id="givenNames" name="givenNames" [ngModel]="modelValue.firstName" class="form-control"
-                           type="text">
-                    <input id="middleNames" name="middleNames" [ngModel]="modelValue.middleNames" class="form-control"
-                           type="text">
-
-                    <input type="text" id="surname" name="surname" [ngModel]="modelValue.lastName"
-                           class="form-control"/>
-
-            <input id="flatNumber" name="flatNumber" [ngModel]="modelValue.address.flatNumber" class="form-control"
-                   type="text">
-
-
-            <input id="streetNumber" name="streetNumber" [ngModel]="modelValue.address.streetNumber"
-                   class="form-control" type="text">
-
-
-            <input id="streetName" name="streetName" [ngModel]="modelValue.address.streetName" class="form-control"
-                   type="text">
-
-            <input id="streetType" name="streetType" [ngModel]="modelValue.address.streetType" class="form-control"
-                   type="text">
-
-
-            <input id="suburb" name="suburb" [ngModel]="modelValue.address.streetType" class="form-control" type="text">
-
-
-            <input id="state" name="state" [ngModel]="modelValue.address.state" class="form-control" type="text">
-
-
-            <input id="postcode" name="postcode" [ngModel]="modelValue.address.postcode" class="form-control"
-                   type="text">
-
-
-            <input name="dob" id="dob" class="form-control" [ngModel]="modelValue.dateOfBirth" aria-required="true"
-                   type="text">
-
-
-            <input id="email" name="email" class="form-control" [ngModel]="modelValue.email" type="text">
-
-
-        </div>
-
-
-        <input value="Submit details" id="submitbob" name="submitbob" class="btn btn-primary" type="submit">
-
-
-    </form>
-
-
-    <!--
-
-    End form
-    -->
-
-
-    <div id="greenid-div">
-    </div>
-
 
 </amp-greenid-block>
 

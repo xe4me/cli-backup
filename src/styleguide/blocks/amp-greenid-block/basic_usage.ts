@@ -16,57 +16,10 @@ import { ScrollService } from '../../../app/services/scroll/scroll.service';
 
 export default class AmpGreenIdBlockBasicUsage {
 
-    public controlGroup : FormGroup = new FormGroup( {} );
-    public isInSummaryState    = false;
-
-    private okAccepted         = false;
-    private acknowledge = {
-        id          : 'acknowledge' ,
-        disabled    : false ,
-        required    : true ,
-        checked     : false ,
-        scrollOutOn : null
-    };
-
-    private modelValue = {
-        firstName: 'John',
-        lastName: 'Smith',
-        middleNames: 'Danger',
-        honorific: 'Mr',
-        dateOfBirth: '27/11/2013',
-        email: 'sample@test.com',
-        verificationId: "1FDW6whT1",
-        verificationToken: '75b7ad90aac03bb7295f67c1044de1040d365b34',
-        address: {
-            country: 'AU',
-            state: 'NSW',
-            streetName: 'SMITH',
-            flatNumber: 'U 2',
-            streetNumber: '53-57',
-            suburb: 'SYDNEY'
-        }
-    };
-    constructor ( private  themeService : ThemeService ,
-                  private _cd : ChangeDetectorRef ,
-                  private elementRef : ElementRef,
-                  private _AmpGreenIdServices : AmpGreenIdServices  ) {
+    constructor ( private  themeService : ThemeService) {
     }
 
     ngOnInit () {
 
     }
-
-    private onOk( value ) {
-        this.okAccepted = true;
-
-    }
-
-    private onContinue( value ) {
-
-        this._AmpGreenIdServices
-            .getTheToken(this.modelValue)
-            .subscribe( ( respo ) => {
-            });
-    }
-
 }
