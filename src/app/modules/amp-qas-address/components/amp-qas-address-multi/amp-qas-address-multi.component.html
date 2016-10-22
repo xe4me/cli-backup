@@ -6,6 +6,7 @@
                 [id]='residentialAddress.id'
                 [index]='index'
                 [required]='required'
+                [extended]='extended'
                 addressType='residential'
                 [isInSummaryState]='isInSummaryState'
                 [label]='residentialAddress.label'>
@@ -19,7 +20,7 @@
                 [index]='index'
                 [id]='postalAndResidentialAreSame.id'
                 [checked]='true'
-                (select)='onCheckboxSelect($event)'>
+                (change)='onCheckboxSelect($event)'>
             My postal address is the same as my residential address.
         </amp-checkbox>
     </div>
@@ -29,7 +30,7 @@
                 [controlGroup]='qasMultiCG'
                 [id]='postalAddress.id'
                 [index]='index'
-                [extended]='true'
+                [extended]='extended'
                 addressType='postal'
                 [required]='required'
                 [isInSummaryState]='isInSummaryState'

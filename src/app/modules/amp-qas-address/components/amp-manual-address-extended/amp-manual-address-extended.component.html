@@ -1,19 +1,23 @@
 <div class='manual-address grid__item_container clearfix'>
-    <amp-form-row>
-        <h3 class="heading mt">Is this a PO box?</h3>
-        <amp-group-buttons
-                class="1/5 mt+"
-                (select)='onPoBoxButtonsChange($event)'
-                [required]="true"
-                [buttons]='isItPoBoxButtons.buttons'
-                [controlGroup]='manualAddressCG'
-                [groupName]='isItPoBoxButtons.groupName'>
-        </amp-group-buttons>
-    </amp-form-row>
+    <div [hidden]='isResidentialAddress'>
+        <amp-form-row>
+            <h3 class="heading mt">Is this a PO box?</h3>
+            <amp-group-buttons
+                    #isItPoBoxCmp
+                    class="1/5 mt+"
+                    (select)='onPoBoxButtonsChange($event)'
+                    [required]="true"
+                    [disabled]='isInSummaryState'
+                    [buttons]='isItPoBoxButtons.buttons'
+                    [controlGroup]='controlGroup'
+                    [groupName]='isItPoBoxButtons.groupName'>
+            </amp-group-buttons>
+        </amp-form-row>
+    </div>
     <div class="mt+" *ngIf="!isInSummaryState">
         Try the address search again by clicking <a href="javascript:void(0);" (click)='goBack()'>here</a>.
     </div>
-    <div [hidden]='isItPoBox===null || isInSummaryState'>
+    <div [hidden]='(!isResidentialAddress && isItPoBox===null) || isInSummaryState'>
         <div [hidden]='isItPoBox'>
             <!--Building Name-->
             <amp-form-row>
@@ -93,7 +97,6 @@
                             #manualStreetTypeCmp
                             [id]='streetType.id'
                             [index]='index'
-                            [required]='!isItPoBox'
                             [controlGroup]='manualAddressCG'>
                     </amp-street-types>
                     <amp-error [controlGroup]='manualAddressCG'

@@ -9,8 +9,7 @@
                       [attr.name]='randomizedId'
                       [formControl]='control'
                       [value]='button.value'
-                      [checked]='control.value===button.value'
-              />
+                      [checked]='control.value===button.value'/>
               <label (click)='scroll(button.value)'
                      [attr.for]='button.id+"_"+_randomString'>{{ button.label }}</label>
       </span>

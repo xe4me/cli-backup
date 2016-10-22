@@ -46,19 +46,19 @@ export class BasicUtils {
                 address += addressObj.buildingName;
             }
             if ( addressObj.unitNumber ) {
-                address += addressObj.unitNumber;
+                address += ', ' + addressObj.unitNumber;
             }
             if ( addressObj.streetNumber ) {
-                address += addressObj.streetNumber;
+                address += ', ' + addressObj.streetNumber;
             }
             if ( addressObj.streetName ) {
-                address += addressObj.streetName;
+                address += ', ' + addressObj.streetName;
             }
             if ( addressObj.streetType ) {
-                address += addressObj.streetType;
+                address += ', ' + addressObj.streetType;
             }
             if ( addressObj.poBox ) {
-                address += addressObj.poBox;
+                address += ', ' + addressObj.poBox;
             }
             if ( addressObj.suburb ) {
                 address += ', ' + addressObj.suburb;
@@ -70,6 +70,7 @@ export class BasicUtils {
                 address += ' ' + addressObj.postCode;
             }
             address += ', Australia.';
+            return address;
         }
         return addressObj.address ? address : '';
     }

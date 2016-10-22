@@ -1,10 +1,5 @@
-import {
-    Component , AfterViewInit , Input , ChangeDetectionStrategy , ChangeDetectorRef ,
-    OnInit
-} from '@angular/core';
-import { AmpQasAddressService , AddressFormatTypes } from '../../services/amp-qas-address.service';
+import { Component , Input , ChangeDetectionStrategy , ChangeDetectorRef , OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { isTrue } from '../../../amp-utils/functions.utils';
 @Component( {
     selector        : 'amp-qas-address-multi' ,
     template        : require( './amp-qas-address-multi.component.html' ) ,
@@ -16,7 +11,8 @@ export class AmpQasAddressMultiComponent implements OnInit {
     @Input() controlGroup : FormGroup;
     @Input() required : boolean;
     @Input() index;
-    @Input() isInSummaryState : boolean;
+    @Input() extended : boolean            = true;
+    @Input() isInSummaryState : boolean    = false;
     @Input() postalAddress                 = {
         id    : 'postalAddress' ,
         label : 'Postal address'
@@ -40,8 +36,8 @@ export class AmpQasAddressMultiComponent implements OnInit {
         }
     }
 
-    private onCheckboxSelect ( _value ) {
-        this.arePostalAndResidentialTheSame = _value;
+    private onCheckboxSelect ( $event ) {
+        this.arePostalAndResidentialTheSame = $event.target.checked;
         this._cd.detectChanges();
     }
 

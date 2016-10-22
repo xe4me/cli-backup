@@ -143,6 +143,16 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
     }
 
+    iconRightClickHandler ( inputCmp : AmpInputComponent , control : FormControl ) {
+        /*control.setValue( null );
+        control.markAsPristine( {
+            onlySelf : true
+        } )*/
+        /*TODO : ASK Charlie if he wants this behaviour
+        *
+        * */
+    }
+
     private close = () : void => {
         this._optionsHidden = true;
         this.showNoResults  = false;
