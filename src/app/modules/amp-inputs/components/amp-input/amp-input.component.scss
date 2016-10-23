@@ -67,6 +67,10 @@ $summary-state-font-weight : 300;
   display : none !important;
 }
 
+.icon.icon-right {
+  cursor : pointer;
+}
+
 $font-size : $amp-base-font-size;
 
 // Overrides on existing components/input/input.scss

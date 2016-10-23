@@ -8,8 +8,8 @@ export class AmpQasAddressService {
     public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
     public static QAS_FORMATTER_URL = AmpQasAddressService.BASE_URL + '/qas/doGetAddress';
     public static QAS_QUERY_URL     = AmpQasAddressService.BASE_URL + '/qas/doSearch/AUS';
-    // public static QAS_FORMATTER_URL = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
-    // public static QAS_QUERY_URL     = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
+    // public static QAS_FORMATTER_URL  = 'http://localhost:8082/ddc/public/api/qas/doGetAddress';
+    // public static QAS_QUERY_URL      = 'http://localhost:8082/ddc/public/api/qas/doSearch/AUS';
     public static DEFAULT_ERROR_TEXT = 'Server error';
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,
@@ -56,8 +56,9 @@ export class AmpQasAddressService {
     }
 
     private getFormattedAddressByType ( _payload : any ,
-                                        _type : string = AddressFormatTypes.BANK ) {
-        return this.refactorPayload( _payload )[ _type ];
+                                        _type : string = AddressFormatTypes.ALL ) {
+        let refactored = this.refactorPayload( _payload );
+        return refactored[ _type ] || refactored;
     }
 
     private refactorPayload ( _payload ) {
@@ -102,4 +103,5 @@ export abstract class AddressFormatTypes {
     public static BANK : string   = 'Bank';
     public static SIEBEL : string = 'Siebel';
     public static CRM : string    = 'CRM';
+    public static ALL : string    = 'ALL';
 }

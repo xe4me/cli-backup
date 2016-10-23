@@ -84,13 +84,13 @@ describe( 'amp-typeahead component' , () => {
         it( '_cmpControlGroup should should have two controls one for the input and one for the selected' +
             ' item ' , () => {
             expect( Object.keys( _cmpControlGroup.controls ).length ).toBe( 2 );
-            expect( _cmpControlGroup.contains( _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX  ) ).toBeTruthy();
-            expect( _cmpControlGroup.contains( _testCmp.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ).toBeTruthy();
+            expect( _cmpControlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ) ).toBeTruthy();
+            expect( _cmpControlGroup.contains( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ).toBeTruthy();
         } );
         it( '_cmpControlGroup value should have null values initially  ' , () => {
-            let groupValue                                                                         = {};
-            groupValue[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ] = null;
-            groupValue[ _testCmp.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ]          = null;
+            let groupValue                                                           = {};
+            groupValue[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ] = null;
+            groupValue[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ]          = null;
             expect( _cmpControlGroup.value ).toEqual( groupValue );
         } );
     } );
@@ -137,10 +137,10 @@ describe( 'amp-typeahead component' , () => {
         it( 'should update the AmpTypeahead control and controlGroup when typing inside the search input' , () => {
             let text = 'im searching ';
             updateInputText( text );
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( text );
-            let groupValue                                                                         = {};
-            groupValue[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ] = text;
-            groupValue[ _testCmp.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ]          = null;
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( text );
+            let groupValue                                                           = {};
+            groupValue[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ] = text;
+            groupValue[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ]          = null;
             expect( _cmpControlGroup.value ).toEqual( groupValue );
         } );
         it( 'should update the AmpTypeahead control and selectedControl and controlGroup after selecting an option' , () => {
@@ -149,8 +149,8 @@ describe( 'amp-typeahead component' , () => {
             _fixture.detectChanges();
             let liElements = getAlltheLis();
             liElements[ 0 ].nativeElement.click();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( JSON.stringify( _testCmp.options[ 0 ] ) );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( JSON.stringify( _testCmp.options[ 0 ] ) );
         } );
         it( 'control group should be valid if select an option' , () => {
             focusOnInput();
@@ -160,46 +160,46 @@ describe( 'amp-typeahead component' , () => {
         it( 'should empty the selectedControl after selecting an option and typing again ' , () => {
             focusOnInput();
             selectFirstItem();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( JSON.stringify( _testCmp.options[ 0 ] ) );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( JSON.stringify( _testCmp.options[ 0 ] ) );
             let text = 'this text will be added to the end of the curent text';
             updateInputText( _inputElement.value + text );
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title + text );
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( null );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title + text );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( null );
         } );
         it( 'control should have an invalidSearch error if update the input after selecting an option' , () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( 'dymmy text' );
             expect( _cmpControlGroup.valid ).toBeFalsy();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeDefined();
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeDefined();
         } );
         it( 'controlGroup should be valid after selecting , updating , selecting again !!! ' , () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( 'dymmy text' );
             expect( _cmpControlGroup.valid ).toBeFalsy();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeDefined();
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeDefined();
             updateInputText( '' );
             selectItemByIndex( 5 );
             expect( _cmpControlGroup.valid ).toBeTruthy();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors ).toBeNull();
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors ).toBeNull();
         } );
         it( 'control should only have required error after selecting and the removing the text ' , () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( '' );
             expect( _cmpControlGroup.valid ).toBeFalsy();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.required ).toBeDefined();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeUndefined();
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.required ).toBeDefined();
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeUndefined();
         } );
         it( 'control should only have invalidSearch error after updating the text but not selecting' , () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( 'dummy text' );
             expect( _cmpControlGroup.valid ).toBeFalsy();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.required ).toBeUndefined();
-            expect( _cmpControlGroup.controls[ _testCmp.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeDefined();
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.required ).toBeUndefined();
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeDefined();
         } );
     } );
 } );

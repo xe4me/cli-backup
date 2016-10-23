@@ -30,6 +30,10 @@ import { Validators } from '@angular/forms';
     outputs         : [ 'select' ]
 } )
 export class AmpDropdownComponent extends BaseControl {
+    public static MARK_AS_PRISTINE       = true;
+    public static DONT_MARK_AS_PRISTINE  = false;
+    public static TRIGGER_CHANGE         = true;
+    public static DONT_TRIGGER_CHANGE    = false;
     @ViewChild( 'selectEl' ) selectEl;
     @ViewChild( 'optionsEl' ) optionsEl;
     @ViewChild( 'dropdownEl' ) dropDownEl;
@@ -67,12 +71,17 @@ export class AmpDropdownComponent extends BaseControl {
         }
     }
 
-    public setSelectValue ( value , triggerChange = true ) {
+    public setSelectValue ( value , triggerChange = true , markAsPristine = false ) {
         this.selectElem.value = value;
         if ( triggerChange ) {
             this.trigger( 'change' , this.selectElem );
         }
         this.hideOptions();
+        if ( markAsPristine ) {
+            this.control.markAsPristine( {
+                onlySelf : false
+            } );
+        }
     }
 
     ngOnInit () : any {

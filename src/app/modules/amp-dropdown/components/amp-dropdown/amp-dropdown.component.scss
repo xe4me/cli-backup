@@ -104,7 +104,7 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
             }
         }
 
-        .ng-invalid.ng-touched:not(:focus) + &:after {          
+        .ng-invalid.ng-dirty:not(:focus) + &:after {
             border-color: $amp-colour-alert-danger !important;
         }
 
@@ -150,7 +150,7 @@ $amp-dropdown-from-top: $amp-dropdown-select-height - $amp-dropdown-input-border
         right: 0;
         z-index: 3;
 
-        .ng-invalid.ng-touched:not(:focus) + div > & {
+        .ng-invalid.ng-dirty:not(:focus) + div > & {
             color: $amp-colour-alert-danger;
         }
 

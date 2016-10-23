@@ -338,8 +338,8 @@ describe( 'amp-qas-address component' , () => {
     it( 'qas controlGroup should have two controls corresponding to the ids provided ' , () => {
         _fixture.detectChanges();
         expect( Object.keys( _qasComponentControlGroup.controls ).length ).toEqual( 2 );
-        expect( _qasComponentControlGroup.controls [ _comp.__custom.controls[ 0 ].id ] + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ).toBeDefined();
-        expect( _qasComponentControlGroup.controls [ _comp.__custom.controls[ 0 ].id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ] ).toBeDefined();
+        expect( _qasComponentControlGroup.controls [ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ] ).toBeDefined();
+        expect( _qasComponentControlGroup.controls [ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ] ).toBeDefined();
     } );
     it( 'should have a amp-error component that has the same controlGroup as qasAddressComponent' , fakeAsync( () => {
         _fixture.detectChanges();
