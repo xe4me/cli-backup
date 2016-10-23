@@ -3,13 +3,15 @@ import { Injectable,
          Output
 } from '@angular/core';
 import { Http,
-         Response
+         Response,
+         Headers,
+         RequestOptions
 } from '@angular/http';
 import { UploadStatus } from './upload-status.class';
-import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
-import { Environments } from '../../abstracts/environments/environments.abstract';
+import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
+import { Environments } from '../../../abstracts/environments/environments.abstract';
 import { Observable } from 'rxjs';
-import { AmpHttpService } from '../../services/amp-http/amp-http.service';
+import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 
 @Injectable()
 export class AmpFileUploadService {
@@ -21,6 +23,8 @@ export class AmpFileUploadService {
     public _uploadUrl : string = AmpFileUploadService.BASE_URL + '/upload/upload';
     public _deleteUrl : string = AmpFileUploadService.BASE_URL + '/upload/delete';
     public _errorMessage : string = 'Error in uploading the file. Please try again';
+    private _formName : string;
+    private _formId : string;
 
     private _queue : any[] = [];
 
@@ -30,6 +34,10 @@ export class AmpFileUploadService {
 
     public get tokenUrl () : string {
         return this._tokenUrl;
+    }
+
+    public setTokenUrl ( url : string ) : void {
+        this._tokenUrl = url;
     }
 
     public get uploadUrl () : string {
@@ -46,6 +54,24 @@ export class AmpFileUploadService {
 
     public updateUrl ( url : string ) : void {
         this._uploadUrl = url;
+    }
+
+    public updateFormDetails ( formName : string, formId : string ) : void {
+        this._formName = formName;
+        this._formId = formId;
+    }
+
+    public retrieveNewToken ( ) : Observable<any> {
+        let headers  = new Headers( {
+                'Content-Type' : 'application/json' ,
+                'caller'       : 'components'
+            } );
+        let options = new RequestOptions( {
+            body : '' ,
+            headers : headers
+        } );
+        return this.ampHttp.get( this.tokenUrl, options )
+            .map( ( res : Response ) => res.json() );
     }
 
     public addFilesToQueue( files : any ) : void {

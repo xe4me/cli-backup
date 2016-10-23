@@ -111,6 +111,8 @@ export class FormModelService {
 
     private _baseURL = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/';
     private _submitRelativeUrl = null;
+    private _headers = new Headers({ 'Content-Type' : 'application/json' });
+    private _httpOptions = new RequestOptions({ headers : this._headers });
 
     constructor ( private http : AmpHttpService) {
         this.$flags            = new EventEmitter();
@@ -350,6 +352,14 @@ export class FormModelService {
         this._submitRelativeUrl = relativeUrl;
     }
 
+    public overrideSubmitBaseUrl (baseUrl : string) {
+        this._baseURL = baseUrl;
+    }
+
+    public overrideSubmitOptions(options : RequestOptions) {
+        this._httpOptions = options;
+    }
+
     public save (model : any) {
         this.$saveMe.emit(model);
     }
@@ -376,9 +386,7 @@ export class FormModelService {
     }
 
     private saveModel (model) : Observable<Response> {
-        let headers = new Headers ({ 'Content-Type' : 'application/json' });
-        let options = new RequestOptions ({ headers : headers });
-        return this.http.post (this._baseURL + this._submitRelativeUrl, JSON.stringify(model), options);
+        return this.http.post (this._baseURL + this._submitRelativeUrl, JSON.stringify(model), this._httpOptions);
     }
 
     private handleError (error : any) {

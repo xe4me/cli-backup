@@ -3,23 +3,17 @@ import { Component,
          ChangeDetectorRef,
          Input,
          ViewChild } from '@angular/core';
-import { Response,
-         Headers,
-         RequestOptions
-} from '@angular/http';
-import { AmpButton } from '../../components/amp-button/amp-button.component';
-import { AmpLinearProgressBarComponent } from '../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
-import { AmpFileUploadService } from '../../services/amp-file-upload/amp-file-upload.service';
-import { humanizeBytes } from '../../modules/amp-utils/functions.utils';
+import { AmpFileUploadService } from '../services/amp-file-upload.service';
+import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
+import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { Observable } from 'rxjs';
-import { AmpHttpService } from '../../services/amp-http/amp-http.service';
 
 @Component({
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
     styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
-    directives  : [ AmpButton, AmpLinearProgressBarComponent ],
-    providers   : [ AmpFileUploadService ]
+    providers   : [ AmpFileUploadService ] ,
+    directives  : [ AmpLinearProgressBarComponent ]
 })
 export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
@@ -44,21 +38,18 @@ export class AmpFileUploadComponent implements OnInit {
     private errorMessage : string;
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
-    private headers  = new Headers( {
-        'Content-Type' : 'application/json' ,
-        'caller'       : 'components'
-    } );
+    private typesAllowed : string[] = [ 'application/pdf' ];
+    private sizeAllowed : number = 2000000;
 
     constructor ( protected _cd : ChangeDetectorRef,
-                  private http : AmpHttpService,
                   private fileUploadService : AmpFileUploadService,
                     ) {
     }
 
     ngOnInit() {
         // Get the urls from fileUploadService if it is not passed as input
-        if ( !this.tokenUrl ) {
-            this.tokenUrl = this.fileUploadService.tokenUrl;
+        if ( this.tokenUrl ) {
+            this.fileUploadService.setTokenUrl( this.tokenUrl );
         }
         if ( !this.uploadUrl ) {
             this.uploadUrl = this.fileUploadService.uploadUrl;
@@ -67,6 +58,7 @@ export class AmpFileUploadComponent implements OnInit {
             this.deleteUrl = this.fileUploadService.deleteUrl;
         }
         this.errorMessage = this.fileUploadService.errorMessage;
+        this.fileUploadService.updateFormDetails( this.formName, this.formId );
         this.fileUploadService.onUpload.subscribe(( data : any ) => {
             this.handleUpload( data );
         });
@@ -81,7 +73,10 @@ export class AmpFileUploadComponent implements OnInit {
         this.showProgress = !this.error;
         this.fileUploadService.updateUrl( this.uploadUrlWithParms );
         let files = Array.from( this.fileInput.nativeElement.files );
-        this.fileUploadService.addFilesToQueue( files );
+        let isValidFile = this.validateFile( files[0] );
+        if ( isValidFile ) {
+            this.fileUploadService.addFilesToQueue( files );
+        }
     }
 
     private showProgressBar ( ) : boolean {
@@ -89,7 +84,6 @@ export class AmpFileUploadComponent implements OnInit {
     }
 
     private handleUpload ( response : any ) : void {
-        this._cd.detectChanges();
         let res : any;
         res = response.response ? JSON.parse( response.response ) : null;
         if ( res && (this.errorCodes.indexOf(res.statusCode) > -1 )) {
@@ -105,25 +99,28 @@ export class AmpFileUploadComponent implements OnInit {
         this.speed = response.progress.speedHumanized ? response.progress.speedHumanized : this.speed;
         this.uploaded = humanizeBytes((( response.size * response.progress.percent ) / 100));
         this.progress = response.progress.percent / 100;
+        this._cd.detectChanges();
     }
 
     private updateToken () : void {
-        let options = new RequestOptions( { body : '' , headers : this.headers } );
         this.fileInput.nativeElement.value = null;
         this.error = false;
-        this.http.get( this.tokenUrl, options )
-            .map( ( res : Response ) => res.json() )
-            .subscribe(
-                ( res : any ) => {
-                    this.token = res.payload.token;
-                    this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
-                                            + '&token=' + this.token;
-                    this.backendError = false;
-                },
-                ( error ) => {
-                    this.backendError = true;
-                }
-            );
+        let retrieveToken : Observable <any>;
+        retrieveToken = this.fileUploadService.retrieveNewToken( );
+        retrieveToken.subscribe(
+            ( res : any ) => {
+                let token = res.payload.token;
+                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
+                    + '&token=' + token;
+                this.backendError = false;
+                // TODO: Change detection is not happening automatically
+                this._cd.detectChanges();
+            },
+            ( error ) => {
+                this.backendError = true;
+                this._cd.detectChanges();
+            }
+        );
     }
 
     private setErrorMessage ( res : any ) : void {
@@ -139,11 +136,31 @@ export class AmpFileUploadComponent implements OnInit {
         fileRemoved.subscribe(
             ( res : any ) => {
                 this.showProgress = false;
+                this._cd.detectChanges();
             },
             ( error ) => {
                 this.error = true;
                 this.errorMessage = 'Error in deleting file';
+                this._cd.detectChanges();
             }
         );
+    }
+
+    private validateFile ( file : any ) : boolean {
+        let error : any = {
+            message : ''
+        };
+        if ( !(file.type.indexOf( this.typesAllowed ) > -1 )) {
+            error.message = 'Invalid file type';
+            this.setErrorMessage( error );
+            return false;
+        }
+        if ( !(file.size <= this.sizeAllowed ) ) {
+            console.log(file.size);
+            error.message = 'File size Exceeds allowable limit of 1MB';
+            this.setErrorMessage( error );
+            return false;
+        }
+        return true;
     }
 }
