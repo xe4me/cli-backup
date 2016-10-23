@@ -1,10 +1,18 @@
 import { FormUtils } from './form-utils';
 export class RequiredValidator {
-    public static requiredValidation ( required , booleanValue = false ) {
+    public static requiredValidation ( required , booleanValue = false, isCheckbox = false) {
         return ( c ) => {
             if ( required ) {
-                if ( booleanValue ) {
+                if (isCheckbox) {
                     return c.value === true ? null : {
+                        required : {
+                            text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +
+                            ' required'
+                        }
+                    };
+                }
+                if ( booleanValue ) {
+                    return typeof c.value === 'boolean' ? null : {
                         required : {
                             text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +
                             ' required'
