@@ -56,7 +56,7 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
     updateValidators () {
         if ( this.control ) {
             let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required , true ) ,
+                RequiredValidator.requiredValidation( this.required , true, true ) ,
                 this.customValidator()
             ] );
             this.control.setValidators( validators );
