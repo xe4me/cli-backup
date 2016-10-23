@@ -1,17 +1,20 @@
 import {
-    Component ,
-    trigger ,
-    state ,
-    style ,
-    animate ,
+    Component,
+    trigger,
+    state,
+    style,
+    animate,
     transition,
     OnInit,
     AfterContentInit,
     ChangeDetectorRef,
-    ChangeDetectionStrategy ,
+    ChangeDetectionStrategy,
+    ElementRef,
+    ViewChild, Renderer,
 } from '@angular/core';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
-import { FormControl , FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
 @Component( {
     selector   : 'amp-greenid-block' ,
     host       : {
@@ -45,6 +48,9 @@ import { FormControl , FormGroup, FormBuilder } from '@angular/forms';
                     </div>
 
                 </div>
+                <!--
+                This probably should be an ajax request, for the sake of getting it out the door its a form instead.
+                -->
                 <form method="POST" action="{{formAction}}" id="theform" role="form">
                     <div style="display: none;">
                         <input id="accountId" value="amp_au" name="accountId" type="hidden">
@@ -72,7 +78,7 @@ import { FormControl , FormGroup, FormBuilder } from '@angular/forms';
                                type="text">
                         <input id="email" name="email" class="form-control" [ngModel]="modelValue.email" type="text">
                     </div>
-                    <input value="Submit details" id="submitbob" name="submitbob" class="btn btn-primary" type="submit">
+                    <input value="Submit details" style="display: none;" #btnSubmit id="btnSubmit" name="btnSubmit" class="btn btn-primary" type="submit">
                 </form>
                 <div id="greenid-div">
                 </div>
@@ -90,7 +96,7 @@ import { FormControl , FormGroup, FormBuilder } from '@angular/forms';
     ]
 } )
 export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
-
+    @ViewChild('btnSubmit') btnSubmit:ElementRef;
     private controlGroup : FormGroup = new FormGroup( {} );
     private loadApiScripts : Promise<any>;
     private scriptUrls   : string[] =['//test2.edentiti.com/df/javascripts/greenidConfig.js','//test2.edentiti.com/df/javascripts/greenidui.min.js'];
@@ -98,6 +104,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     private acceptTerms  : boolean = false;
     private okAccepted   : boolean = false;
     private isSubmitting : boolean = false;
+    private domAdapter : DomAdapter;
     private greenIdSettings = {
         environment: 'test',
         formId: "theform",
@@ -113,6 +120,9 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         scrollOutOn : null
     };
 
+    /**
+    * This model is for testing purpose only
+    * */
     private modelValue = {
         firstName: 'John',
         lastName: 'Smith',
@@ -135,7 +145,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
     constructor ( private _AmpGreenIdServices : AmpGreenIdServices,
                   private fb : FormBuilder,
-                  private _cd : ChangeDetectorRef) {
+                  private _cd : ChangeDetectorRef,
+                  private _render:Renderer) {
 
     }
     /**
@@ -151,8 +162,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
         this.controlGroup = new FormGroup({
           verificationId : new FormControl('verificationId',null),
-          verificationToken : new FormControl('verificationToken',null),
-          verificationToken : new FormControl('verificationToken',null),
+          verificationToken : new FormControl('verificationToken',null)
         });
 
         this._cd.detectChanges();
@@ -189,24 +199,41 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         document.getElementsByTagName('head')[0].appendChild(node);
     }
 
-    private onAcknowledgeSelect ( value ) {
+    /**
+     * Trigger terms and conditions
+     */
+    private onAcknowledgeSelect ( value : boolean ) : void {
         this.acceptTerms = value;
-       if (value) {
-
-       }
     }
 
-    private onContinue( value ) {
+    /**
+     * Call the service and then update the model with the new token and verfication id
+     */
+    private onContinue( value : Event ) : void {
+        let event = new MouseEvent('click', {bubbles: true});
+
         this.isSubmitting = true;
         this._AmpGreenIdServices
             .getTheToken(this.modelValue)
             .subscribe( ( respo ) => {
-                this.isSubmitting = false;
-                this._cd.markForCheck();
+               this.isSubmitting = false;
+                 if (respo) {
+                   this.updateModel(respo);
 
-                console.log(respo.payload);
-                (<FormControl>this.controlGroup.controls['verificationId']).updateValue(respo.payload);
-            });
+                   this._render.invokeElementMethod(this.btnSubmit.nativeElement, 'dispatchEvent', [event]);
+                 }
+               this._cd.markForCheck();
+        });
+
+
+    }
+
+    private updateModel(respo : Object) : void {
+
+        (<FormControl>this.controlGroup.controls['verificationId']).setValue(respo.payload.verificationId);
+
+        (<FormControl>this.controlGroup.controls['verificationToken']).setValue(respo.payload.verificationToken);
+
     }
 
 }
