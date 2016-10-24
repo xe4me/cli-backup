@@ -1,10 +1,10 @@
 <nav class="steps-nav" *ngIf="showNavigation">
     <ul id="menu" class="progress skyblue">
-        <li *ngFor='let section of sections; let i=index' id="{{section[1]}}" (click)="openCloseMenu()">
+        <li *ngFor='let section of sections; let i=index' id="{{section.key}}" [ngClass]="section.state" (click)="scrollToSection($event.target = section)">
             <div class="divider" [ngClass]="{first: i == 0}"></div>
             <div class="step-intro node"></div>
             <span class="icon icon--chevron-down" aria-hidden="true"></span>
-            <span><span>{{section[0]}}</span></span>
+            <span><span>{{section.label}}</span></span>
         </li>
     </ul>
 </nav>
