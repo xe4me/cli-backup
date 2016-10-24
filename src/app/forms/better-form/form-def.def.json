@@ -528,6 +528,14 @@
                                                                         "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
                                                                     },
                                                                     {
+                                                                        "value" : "PUR",
+                                                                        "label" : "Purchase / Refinance / Business growth / Acquisitions"
+                                                                    },
+                                                                    {
+                                                                        "value" : "IMP",
+                                                                        "label" : "Improvements / Construction / Business development / Progressive drawdowns"
+                                                                    },
+                                                                    {
                                                                         "value" : "OTH",
                                                                         "label" : "Other personal or business reasons / Day to day cash flow needs"
                                                                     }
