@@ -2,7 +2,8 @@ import { Component,
          ChangeDetectorRef,
          ElementRef,
          ChangeDetectionStrategy,
-         OnInit
+         OnInit,
+         ViewContainerRef
 } from '@angular/core';
 import { AmpButton,
          ProgressObserverService,
@@ -14,7 +15,10 @@ import {
     Validators,
     FormControl
 } from '@angular/forms';
-import { Constants } from '../../shared/constants';
+import {
+    Constants,
+    ApplicantGeneratorService
+} from '../../shared';
 
 @Component( {
     selector        : 'single-or-joint-block' ,
@@ -22,11 +26,14 @@ import { Constants } from '../../shared/constants';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
+    public applicant2Added : boolean = false;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
                   elementRef : ElementRef ,
-                  progressObserver : ProgressObserverService ) {
+                  progressObserver : ProgressObserverService,
+                  private applicantGenerator : ApplicantGeneratorService,
+                  private viewContainerRef : ViewContainerRef) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
@@ -35,9 +42,22 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         this.formModelService.setSubmitRelativeUrl(Constants.saveUrl);
     }
 
+    public addOrRemoveJointApplicantSection(singleJointIndicator : string) {
+        if (!this.applicant2Added && singleJointIndicator === Constants.jointApplicant) {
+            this.__loadAt(this.applicantGenerator.getApplicantsSection(2), 3);
+            this.applicant2Added = true;
+        }
+        if (this.applicant2Added && singleJointIndicator === Constants.singleApplicant) {
+            this.__removeAt(3);
+            this.applicant2Added = false;
+        }
+    }
+
     private onSingleJoint(singleJointIndicator : string) {
         const singleOrJoint = this.__controlGroup.get(this.__custom.controls[0].id);
         singleOrJoint.setValue(singleJointIndicator);
         singleOrJoint.markAsTouched();
+
+        this.addOrRemoveJointApplicantSection(singleJointIndicator);
     }
 }

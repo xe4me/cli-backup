@@ -1,0 +1,11 @@
+{
+    "name": "ApplicantsSection",
+    "blockType": "PageSectionComponent",
+    "blockLayout": "SECTION",
+    "commonBlock": true,
+    "path": "sections/page-section.component",
+    "custom": {
+        "label": "Applicants"
+    },
+    "blocks": []
+}
