@@ -113,7 +113,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         formId: "theform",
         frameId: "greenid-div",
         country: "usethiscountry",
-        debug: false
+        debug: false,
+        sessionCompleteCallback: this.onSessionComplete,
     };
 
     private acknowledge = {
@@ -241,5 +242,9 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             (<FormControl>this.controlGroup.controls['verificationToken']).setValue(respo.verificationToken);
             this.greenIdShowing = false; // hide the orginal block content
         }
+    }
+
+    private onSessionComplete() : void {
+        console.log('onSessionComplete');
     }
 }
