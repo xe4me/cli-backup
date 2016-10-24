@@ -1,67 +1,32 @@
 @import "../../../styles/abstracts";
-
-// Border
-$border-default-color: #d4d4d4;
-
+//
+// App Frame
+// --------------------------------
 // Content
 $content-left-width: 155px;
 $content-left-margin: 55px;
 $content-padding-h: 20px;
 $content-padding-h-lap-and-up: 44px;
 
-// Todo list
-$todo-list-item-margin-bottom: 20px;
-$todo-list-item-color: #7f8082;
-$todo-list-item-active-color: #005890;
-$todo-list-item-hover-color: $amp-colour-sky-blue;
-
-$todo-list-icon-bg: $amp-colour-sky-blue;
-$todo-list-icon-color: $amp-colour-white;
-$todo-list-icon-size: 20px;
-
-$todo-list-margin-bottom: 40px;
-$todo-list-padding-bottom: $todo-list-margin-bottom;
-
-// Sticky
-$sticky-menu-height: 70px;
-$header-font-family: $amp-font-open-sans-regular;
-$sticky-background-color: $amp-colour-primary;
-$icon-color: $amp-colour-secondary-dark;
-$icon-hover-color: $amp-colour-secondary-darkest;
-$icon-active-color: $amp-colour-primary;
-$icons-transition-time: $ddc-buttons-and-icons-transition-time;
-
-.btn {
-  color : #333;
-
-  .icon {
-    color : #5c5c5c;
-  }
-}
-
 .frame {
-  .sticky-progressbar {
-    display    : block;
-    height     : 0;
-    opacity    : 0;
-    transition : opacity 1s, height 1s, cubic-bezier(0.3, 0.06, 0.91, 0.45);
-    width      : 100%;
-    z-index    : 100;
-  }
-
-  &--sticky {
     .sticky-progressbar {
-      height   : $sticky-menu-height !important;
-      position : fixed;
-      top      : 0;
-      opacity  : 1;
-      z-index  : 100;
+        display: block;
+        height: 0;
+        opacity: 0;
+        transition: opacity 1s, height 1s, cubic-bezier(0.3, 0.06, 0.91, 0.45);
+        width: 100%;
+        z-index: 100;
     }
-  }
 
-  &--mt {
-    margin-top : $sticky-menu-height;
-  }
+    &--sticky {
+        .sticky-progressbar {
+            height: $sticky-menu-height !important;
+            position: fixed;
+            top: 0;
+            opacity: 1;
+            z-index: 99999;
+        }
+    }
 }
 
 //
@@ -69,34 +34,30 @@ $icons-transition-time: $ddc-buttons-and-icons-transition-time;
 // --------------------------------
 
 .container {
-  margin: 0;
-  max-width: 1224px;
-  padding: 0 $content-padding-h;
+    margin: 0;
+    max-width: 1224px;
+    padding: 0 $content-padding-h;
 
-  @include media-query('lap-and-up') {
-    padding: 0 $content-padding-h-lap-and-up;
-  }
+    @include media-query('lap-and-up') {
+        padding: 0 $content-padding-h-lap-and-up;
+    }
 
-  &--full-height {
-    position: relative;
-    height: 100vh;
-  }
+    &--full-height {
+        position: relative;
+        height: 100vh;
+    }
 }
 
 .sidebar {
-  position: fixed;
-  width: $content-left-width;
+    position: fixed;
+    width: $content-left-width;
 }
 
-/*
 .main {
-  display: block;
-  margin-left: $content-left-width + $content-left-margin;
+    display: block;
+    margin-left: $content-left-width + $content-left-margin;
 }
-*/
 
-/*
 .blocks-wrapper {
-  padding-top: $sticky-menu-margin-bottom;
+    padding-top: $sticky-menu-margin-bottom;
 }
-*/
