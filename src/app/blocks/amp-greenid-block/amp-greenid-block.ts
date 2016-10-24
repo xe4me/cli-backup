@@ -13,10 +13,9 @@ import {
     ViewChild, Renderer,
 } from '@angular/core';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
-import { responseObject } from '../amp-greenid-block/interfaces/responseObject';
+import { ResponseObject } from '../amp-greenid-block/interfaces/responseObject';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
-
 @Component( {
     selector   : 'amp-greenid-block' ,
     host       : {
@@ -180,8 +179,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     ngAfterContentInit() : void {
 
         setTimeout(() => {
-            if (window.greenidUI) {
-                greenidUI.setup(this.greenIdSettings);
+            if (window['greenidUI']) {
+                window['greenidUI'].setup(this.greenIdSettings);
             }
         }, 1000);
 
@@ -236,7 +235,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     /**
      * Update the value in the form model with the response from the API
      * */
-    private updateModel(respo : responseObject) : void {
+    private updateModel(respo : ResponseObject) : void {
         if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
             (<FormControl>this.controlGroup.controls['verificationId']).setValue(respo.verificationId);
 

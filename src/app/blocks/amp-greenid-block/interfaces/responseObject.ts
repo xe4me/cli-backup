@@ -1,7 +1,7 @@
 /**
  * Interfaces
  * */
-export interface responseObject {
+export interface ResponseObject {
     verificationId?: string;
     verificationToken?: string;
 }
