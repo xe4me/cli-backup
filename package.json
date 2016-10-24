@@ -50,7 +50,9 @@
     "start:hmr": "npm run server:dev:hmr",
     "preversion": "npm test",
     "version": "npm run build",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "jenkins-lint": "eslint-cli src -f checkstyle -o reports/eslintReport.xml; exit 0",
+    "jenkins-jscpd": "jscpd -p . -f '**/*.ts'  -e 'node_modules/**'  -o reports/jscpd-report.xml"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.5",
@@ -92,7 +94,6 @@
     "zone.js": "0.6.12"
   },
   "devDependencies": {
-    "stubby": "^0.3.1",
     "@angularclass/hmr": "^1.0.1",
     "@angularclass/hmr-loader": "^1.0.1",
     "@types/core-js": "^0.9.28",
@@ -113,6 +114,7 @@
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
     "es6-promise-loader": "^1.0.1",
+    "eslint": "^3.8.1",
     "exports-loader": "^0.6.3",
     "expose-loader": "^0.7.1",
     "file-loader": "^0.9.0",
@@ -141,6 +143,7 @@
     "rimraf": "^2.5.2",
     "sass-loader": "^3.2.0",
     "source-map-loader": "^0.1.5",
+    "stubby": "^0.3.1",
     "style-loader": "^0.13.1",
     "to-string-loader": "^1.1.4",
     "ts-helpers": "1.1.1",
