@@ -40,6 +40,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     private maxHeight : string                          = '250px';
     private showManualEntryForm                         = false;
     private qasControlGroup                             = new FormGroup( {} );
+    private showResidentialAddressCannotBePoBoxError    = false;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
@@ -102,6 +103,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     };
 
     public onOptionDeSelect ( $event ) {
+        this.showResidentialAddressCannotBePoBoxError = false;
         this.manualAddressCmp.emptyControls();
     }
 
@@ -110,8 +112,15 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
             this._ampQasAddressService
                 .getFormattedAddress( $event.Moniker , this.extended ? AddressFormatTypes.ALL : AddressFormatTypes.CRM )
                 .subscribe( ( _formattedAddress : any ) => {
-                    this.manualAddressCmp.updateControls( _formattedAddress );
-                    this.$selected.emit( _formattedAddress );
+                    if ( this.isResidentialAddress && _formattedAddress.Bank.AllPostalDeliveryTypes.length > 1 ) {
+                        // means this address is a POBOX and it does not have street name so we need to tell the user that
+                        // he can't select a pobox address for residential address
+                        this.showResidentialAddressCannotBePoBoxError = true;
+                    } else {
+                        this.showResidentialAddressCannotBePoBoxError = false;
+                        this.manualAddressCmp.updateControls( _formattedAddress );
+                        this.$selected.emit( _formattedAddress );
+                    }
                 } );
         }
     }
@@ -136,4 +145,8 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
             }
         };
     };
+
+    private get isResidentialAddress () {
+        return this.addressType === 'residential';
+    }
 }
