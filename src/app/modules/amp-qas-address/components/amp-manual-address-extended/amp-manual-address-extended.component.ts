@@ -60,8 +60,8 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
         id        : 'postCode' ,
         label     : 'Postcode' ,
         maxLength : 4 ,
-        regex  : '^[0-9]{4}$' ,
-        errors : {
+        regex     : '^[0-9]{4}$' ,
+        errors    : {
             required : 'Postcode is a required field.' ,
             pattern  : 'Postcode must be 4 numbers.'
         }
@@ -162,8 +162,10 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
 
     public updateControls ( _formattedAddress : any ) {
         if ( _formattedAddress ) {
-            this.isItPoBoxCmp.control.setValue( _formattedAddress.Bank.AllPostalDeliveryTypes );
-            this.manualPoBoxCmp.control.setValue( _formattedAddress.Bank.AllPostalDeliveryTypes );
+            if ( ! this.isResidentialAddress ) {
+                this.isItPoBoxCmp.control.setValue( _formattedAddress.Bank.AllPostalDeliveryTypes.length > 0 );
+                this.manualPoBoxCmp.control.setValue( _formattedAddress.Bank.AllPostalDeliveryTypes );
+            }
             this.manualStreetTypeCmp.setSelectValue( _formattedAddress.Bank.StreetType.toUpperCase() );
             this.manualStreetNameCmp.control.setValue( _formattedAddress.Bank.StreetName );
             this.manualStreetNumberCmp.control.setValue( _formattedAddress.Bank.BuildingNumber );
