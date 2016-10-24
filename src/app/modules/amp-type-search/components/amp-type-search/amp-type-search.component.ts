@@ -37,6 +37,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
     @Output( 'deSelected' ) $deSelected             = new EventEmitter<any>();
+    @Output( 'errorCode' ) $errorCode             = new EventEmitter<any>();
     @Input() maxHeight : string                     = '400px';
     @Input() id;
     @Input() selectedItemIdentifier                 = 'id';
@@ -143,6 +144,9 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                     this.clearSelectedItem();
                     this.open();
                     this.searchResult = result.json().payload;
+                    if(result.json().errorCode) {
+                      this.$errorCode.emit({errorCode: result.json().errorCode});
+                    }
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
                 } , ( error ) => {
