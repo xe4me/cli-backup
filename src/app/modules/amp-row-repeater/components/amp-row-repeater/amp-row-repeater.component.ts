@@ -21,6 +21,7 @@ import { FormArray , FormGroup } from '@angular/forms';
                     *ngIf="i > 0" 
                     [context]="context" 
                     (click)="remove(i)"
+                    [disabled]="isInSummaryState"
                     class="btn btn-anchor row-repeated__btn-remove">
                     {{ removeBtn }}
                 </amp-button>
