@@ -238,9 +238,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     private updateModel(respo : ResponseObject) : void {
         if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
             (<FormControl>this.controlGroup.controls['verificationId']).setValue(respo.verificationId);
-
             (<FormControl>this.controlGroup.controls['verificationToken']).setValue(respo.verificationToken);
-
             this.greenIdShowing = false; // hide the orginal block content
         }
     }
