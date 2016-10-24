@@ -59,7 +59,8 @@ import { BaseControl } from '../../../../base-control';
             'iconRight' ,
             'labelHidden' ,
             'keepControl' ,
-            'autoShrink ' ,
+            'autoShrink' ,
+            'showIconRight' ,
             'iconRightClickHandler' ,
             'autoComplete'
         ] ,
@@ -73,6 +74,7 @@ import { BaseControl } from '../../../../base-control';
     } )
 export class AmpInputComponent extends BaseControl implements AfterViewInit, OnChanges {
     @ViewChild( 'input' ) inputCmp;
+    public doOnBlurDirty                 = true;
     protected inputWidth : number;
     protected type : string              = 'text';
     protected _minLength : number;
@@ -91,6 +93,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected autoShrink : boolean       = true;
     protected iconRight : boolean        = false;
     protected isActive : boolean         = true;
+    protected showIconRight : boolean    = true;
     protected tabindex : any             = null;
     protected defaultValue : any         = null;
     protected currency : string          = null;
@@ -104,9 +107,9 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected onKeyup : EventEmitter<any>;
     protected labelHidden : boolean      = false;
     protected validate;
-    protected idleTimeOut           = 4500;
+    protected idleTimeOut                = 4500;
     protected idleTimeoutId;
-    protected autoComplete : string = 'off';
+    protected autoComplete : string      = 'off';
     protected iconRightClickHandler;
 
     constructor ( private _cd : ChangeDetectorRef ,
@@ -184,6 +187,12 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
             }
             this._cd.markForCheck();
         }
+    }
+
+    public markControlAsDirty () {
+        this.control.markAsDirty( {
+            onlySelf : false
+        } );
     }
 
     get pattern () {
@@ -270,6 +279,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
 
     protected onFocused ( event ) {
         this.resetIdleTimeOut();
+        this.doOnBlurDirty = true;
         this.onFocus.emit( event );
     }
 
@@ -287,10 +297,13 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
 
     protected onBlured ( $event ) {
         this.checkErrors();
+        clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
-            this.removeIdleAndMarkAsDirty();
-            this._cd.markForCheck();
-        } );
+            if ( this.doOnBlurDirty ) {
+                this.markControlAsDirty();
+                this._cd.markForCheck();
+            }
+        } , 100 );
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
             this.inputCmp.value = this.control.value.trim();
@@ -326,19 +339,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         } , this.idleTimeOut );
     }
 
-    protected removeIdleAndMarkAsDirty () {
-        clearTimeout( this.idleTimeoutId );
-        this.markControlAsDirty();
-    }
-
     protected markControlAsUndirty () {
         this.control.markAsPristine( {
-            onlySelf : false
-        } );
-    }
-
-    protected markControlAsDirty () {
-        this.control.markAsDirty( {
             onlySelf : false
         } );
     }

@@ -30,7 +30,9 @@ export class FocuserDirective {
                 this._renderer.invokeElementMethod( this.inputElem , 'focus' , [] );
             }
         } else {
-            this._renderer.invokeElementMethod( this._el.nativeElement , 'focus' , [] );
+            if ( this._el.nativeElement ) {
+                this._renderer.invokeElementMethod( this._el.nativeElement , 'focus' , [] );
+            }
         }
         if ( this.focuser === 'list' ) {
             this.listElements = this.domAdapter.querySelectorAll( this._el.nativeElement , 'li' );
@@ -61,11 +63,11 @@ export class FocuserDirective {
         let keyCode = $event.keyCode;
         if ( keyCode === KeyCodes.LEFT || keyCode === KeyCodes.BACKSPACE ) {
             this.onFocusOut( keyCode );
-        } else if ( keyCode === KeyCodes.DOWN ) {
+        } else if ( keyCode === KeyCodes.DOWN || (! $event.shiftKey && keyCode === KeyCodes.TAB) ) {
             this.next();
-        } else if ( keyCode === KeyCodes.UP ) {
+            $event.preventDefault();
+        } else if ( keyCode === KeyCodes.UP || ($event.shiftKey && keyCode === KeyCodes.TAB) ) {
             this.prev();
-        } else {
             $event.preventDefault();
         }
     }
@@ -80,19 +82,20 @@ export class FocuserDirective {
     }
 
     private next () {
-        if ( this.lastTabindex === this.listElements.length - 1 ) {
-            this.lastTabindex = 0;
+        if ( this.lastTabindex < this.listElements.length - 1 ) {
+            this.lastTabindex ++;
+            this.setScrollTopAndFocus();
+        } else {
+            this.lastTabindex = - 1;
+            this.onFocusOut( KeyCodes.UP );
         }
-        if ( this.lastTabindex >= this.listElements.length ) {
-            this.lastTabindex = 0;
-        }
-        this.lastTabindex ++;
-        this.setScrollTopAndFocus();
     }
 
     private setScrollTopAndFocus () {
         this._renderer.setElementProperty( this._el.nativeElement , 'scrollTop' , this.lastTabindex * this.liScrollHeight );
-        this._renderer.invokeElementMethod( this.listElements[ this.lastTabindex ] , 'focus' , [] );
+        if ( this.listElements[ this.lastTabindex ] ) {
+            this._renderer.invokeElementMethod( this.listElements[ this.lastTabindex ] , 'focus' , [] );
+        }
     }
 
     private onFocusOut ( _keyCode ) {
