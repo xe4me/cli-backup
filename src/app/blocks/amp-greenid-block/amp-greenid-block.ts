@@ -13,6 +13,7 @@ import {
     ViewChild, Renderer,
 } from '@angular/core';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
+import { responseObject } from '../amp-greenid-block/interfaces/responseObject';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
 
@@ -78,7 +79,7 @@ import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
                                type="text">
                         <input id="email" name="email" class="form-control" [ngModel]="modelValue.email" type="text">
                     </div>
-                    <input value="Submit details" #btnSubmit id="btnSubmit" name="btnSubmit" class="btn btn-primary" type="submit">
+                    <input value="Submit details" style="display:none;" #btnSubmit id="btnSubmit" name="btnSubmit" class="btn btn-primary" type="submit">
                 </form>
                 <div id="greenid-div">
                 </div>
@@ -158,6 +159,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      * Get the array of greenid scripts that we need to submit with the model
      */
     ngOnInit() : any {
+
         this.greenIdShowing = true;
         if (this.scriptUrls) {
             for (var stringUrl of this.scriptUrls) {
@@ -240,14 +242,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
             (<FormControl>this.controlGroup.controls['verificationToken']).setValue(respo.verificationToken);
 
-            // this.greenIdShowing = false; // hide the orginal block content
+            this.greenIdShowing = false; // hide the orginal block content
         }
     }
-}
-/**
- * Interfaces
- * */
-interface responseObject {
-    verificationId?: string;
-    verificationToken?: string;
 }
