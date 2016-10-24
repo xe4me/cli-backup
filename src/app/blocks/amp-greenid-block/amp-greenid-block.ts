@@ -15,6 +15,7 @@ import {
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
+
 @Component( {
     selector   : 'amp-greenid-block' ,
     host       : {
@@ -23,7 +24,7 @@ import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
     providers: [AmpGreenIdServices],
     changeDetection : ChangeDetectionStrategy.OnPush,
     template   : `
-                <div class='grid__container 1/1 palm-1/1'>
+                <div class='grid__container 1/1 palm-1/1' *ngIf="greenIdShowing">
                     <div class='grid__item_floated utils__align&#45;&#45;left' >
                                 <ng-content></ng-content>
                        <div class="grid__item_floated mb">
@@ -41,17 +42,16 @@ import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
                        </div>
                        <div class="grid__item_floated">
                          <amp-button [disabled]='!acceptTerms || isSubmitting' (click)='onContinue($event)' [class]="'btn btn-ok mt0'"
-                                    [data-automation-id]='"abcd"'>
+                                    [data-automation-id]='"greenid_accept_terms"'>
                                 Continue
                             </amp-button>
                        </div>
                     </div>
-
                 </div>
                 <!--
                 This probably should be an ajax request, for the sake of getting it out the door its a form instead.
                 -->
-                <form method="POST" action="{{formAction}}" id="theform" role="form">
+                <form method="POST" action="{{formAction}}" id="theform" role="form" class="mb">
                     <div style="display: none;">
                         <input id="accountId" value="amp_au" name="accountId" type="hidden">
                         <input id="apiCode" value="69h-xEt-PSW-vGn" name="apiCode" type="hidden">
@@ -78,7 +78,7 @@ import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
                                type="text">
                         <input id="email" name="email" class="form-control" [ngModel]="modelValue.email" type="text">
                     </div>
-                    <input value="Submit details" style="display: none;" #btnSubmit id="btnSubmit" name="btnSubmit" class="btn btn-primary" type="submit">
+                    <input value="Submit details" #btnSubmit id="btnSubmit" name="btnSubmit" class="btn btn-primary" type="submit">
                 </form>
                 <div id="greenid-div">
                 </div>
@@ -95,8 +95,9 @@ import { DomAdapter } from "@angular/platform-browser/esm/src/dom/dom_adapter";
             ] )
     ]
 } )
+
 export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
-    @ViewChild('btnSubmit') btnSubmit:ElementRef;
+    @ViewChild('btnSubmit') btnSubmit : ElementRef;
     private controlGroup : FormGroup = new FormGroup( {} );
     private loadApiScripts : Promise<any>;
     private scriptUrls   : string[] =['//test2.edentiti.com/df/javascripts/greenidConfig.js','//test2.edentiti.com/df/javascripts/greenidui.min.js'];
@@ -105,6 +106,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     private okAccepted   : boolean = false;
     private isSubmitting : boolean = false;
     private domAdapter : DomAdapter;
+    private greenIdShowing : boolean = false;
+
     private greenIdSettings = {
         environment: 'test',
         formId: "theform",
@@ -112,6 +115,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         country: "usethiscountry",
         debug: false
     };
+
     private acknowledge = {
         id          : 'acknowledge' ,
         disabled    : false ,
@@ -133,6 +137,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         email: 'sample@test.com',
         verificationId: "1FDW6whT1",
         verificationToken: '75b7ad90aac03bb7295f67c1044de1040d365b34',
+        verficationStatus: 'un_verfied',
         address: {
             country: 'AU',
             state: 'NSW',
@@ -153,7 +158,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      * Get the array of greenid scripts that we need to submit with the model
      */
     ngOnInit() : any {
-
+        this.greenIdShowing = true;
         if (this.scriptUrls) {
             for (var stringUrl of this.scriptUrls) {
                 this.loadAllScripts(stringUrl);
@@ -218,22 +223,31 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             .subscribe( ( respo ) => {
                this.isSubmitting = false;
                  if (respo) {
-                   this.updateModel(respo);
-
+                   // update the model
+                   this.updateModel(respo.payload);
+                   //  trigger the click event on the form itself.
                    this._render.invokeElementMethod(this.btnSubmit.nativeElement, 'dispatchEvent', [event]);
                  }
                this._cd.markForCheck();
         });
-
-
     }
+    /**
+     * Update the value in the form model with the response from the API
+     * */
+    private updateModel(respo : responseObject) : void {
+        if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
+            (<FormControl>this.controlGroup.controls['verificationId']).setValue(respo.verificationId);
 
-    private updateModel(respo : Object) : void {
+            (<FormControl>this.controlGroup.controls['verificationToken']).setValue(respo.verificationToken);
 
-        (<FormControl>this.controlGroup.controls['verificationId']).setValue(respo.payload.verificationId);
-
-        (<FormControl>this.controlGroup.controls['verificationToken']).setValue(respo.payload.verificationToken);
-
+            // this.greenIdShowing = false; // hide the orginal block content
+        }
     }
-
+}
+/**
+ * Interfaces
+ * */
+interface responseObject {
+    verificationId?: string;
+    verificationToken?: string;
 }
