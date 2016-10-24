@@ -37,7 +37,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
     @Output( 'deSelected' ) $deSelected             = new EventEmitter<any>();
-    @Output( 'errorCode' ) $errorCode             = new EventEmitter<any>();
+    @Output( 'errorCode' ) $errorCode               = new EventEmitter<any>();
     @Input() maxHeight : string                     = '400px';
     @Input() id;
     @Input() selectedItemIdentifier                 = 'id';
