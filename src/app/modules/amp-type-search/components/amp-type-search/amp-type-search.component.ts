@@ -144,8 +144,8 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                     this.clearSelectedItem();
                     this.open();
                     this.searchResult = result.json().payload;
-                    if(result.json().errorCode) {
-                      this.$errorCode.emit({errorCode: result.json().errorCode});
+                    if ( result.json().errorCode ) {
+                      this.$errorCode.emit({ errorCode: result.json().errorCode });
                     }
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
