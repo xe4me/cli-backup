@@ -1,17 +1,19 @@
 <div class='manual-address grid__item_container clearfix'>
     <div [hidden]='isResidentialAddress'>
         <amp-form-row>
-            <h3 class="heading mt">Is this a PO box?</h3>
-            <amp-group-buttons
-                    #isItPoBoxCmp
-                    class="1/5 mt+"
-                    (select)='onPoBoxButtonsChange($event)'
-                    [required]="true"
-                    [disabled]='isInSummaryState'
-                    [buttons]='isItPoBoxButtons.buttons'
-                    [controlGroup]='controlGroup'
-                    [groupName]='isItPoBoxButtons.groupName'>
-            </amp-group-buttons>
+            <div class="grid__item_floated">
+                <h3 class="heading ">Is this a PO box?</h3>
+                <amp-group-buttons
+                        #isItPoBoxCmp
+                        class="1/5 mt+"
+                        (select)='onPoBoxButtonsChange($event)'
+                        [required]="true"
+                        [disabled]='isInSummaryState'
+                        [buttons]='isItPoBoxButtons.buttons'
+                        [controlGroup]='controlGroup'
+                        [groupName]='isItPoBoxButtons.groupName'>
+                </amp-group-buttons>
+            </div>
         </amp-form-row>
     </div>
     <div class="mt+" *ngIf="!isInSummaryState">

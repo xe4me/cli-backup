@@ -1,30 +1,30 @@
 <div>
-    <div>
-        <amp-qas-address
-                class='1/3'
-                [controlGroup]='qasMultiCG'
-                [id]='residentialAddress.id'
-                [index]='index'
-                [required]='required'
-                [extended]='extended'
-                addressType='residential'
-                [isInSummaryState]='isInSummaryState'
-                [label]='residentialAddress.label'>
-        </amp-qas-address>
-    </div>
-    <div class='mt+'>
-        <amp-checkbox
-                [isInSummaryState]='isInSummaryState'
-                [controlGroup]='qasMultiCG'
-                [required]='isPostalAndResidentialAreSameRequired'
-                [index]='index'
-                [id]='postalAndResidentialAreSame.id'
-                [checked]='true'
-                (change)='onCheckboxSelect($event)'>
-            My postal address is the same as my residential address.
-        </amp-checkbox>
-    </div>
-    <div *ngIf='!arePostalAndResidentialTheSame' class='mt+'>
+    <amp-qas-address
+            class='1/3'
+            [controlGroup]='qasMultiCG'
+            [id]='residentialAddress.id'
+            [index]='index'
+            [required]='required'
+            [extended]='extended'
+            addressType='residential'
+            [isInSummaryState]='isInSummaryState'
+            [label]='residentialAddress.label'>
+    </amp-qas-address>
+    <amp-form-row>
+        <div class='grid__item_floated 1/1'>
+            <amp-checkbox
+                    [isInSummaryState]='isInSummaryState'
+                    [controlGroup]='qasMultiCG'
+                    [required]='isPostalAndResidentialAreSameRequired'
+                    [index]='index'
+                    [id]='postalAndResidentialAreSame.id'
+                    [checked]='true'
+                    (change)='onCheckboxSelect($event)'>
+                My postal address is the same as my residential address.
+            </amp-checkbox>
+        </div>
+    </amp-form-row>
+    <div *ngIf='!arePostalAndResidentialTheSame'>
         <amp-qas-address
                 class='1/3'
                 [controlGroup]='qasMultiCG'
