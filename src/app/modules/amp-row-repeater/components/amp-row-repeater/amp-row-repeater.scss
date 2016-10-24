@@ -2,4 +2,10 @@
     display: block;
     padding: 0;
     width: 100%;
+
+    .row-repeated {
+        &__btn-remove {
+            margin-top: 0;
+        }
+    }
 }
