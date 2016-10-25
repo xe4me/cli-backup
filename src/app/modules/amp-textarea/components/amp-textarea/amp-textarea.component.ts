@@ -27,11 +27,13 @@ import { BaseControl } from '../../../../base-control';
             'minLength' ,
             'required' ,
             'hostClassesRemove' ,
+            'keepControl' ,
             'spellCheck'
         ] ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
+    public keepControl : boolean = false;
     private label : string;
     private isInSummaryState : boolean;
     private placeholder : string;
@@ -42,7 +44,7 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     private componentHeightOffset : number;
     private _minLength : number;
     private _maxLength : number;
-    private hasFocus : boolean = false;
+    private hasFocus : boolean   = false;
     private spellCheck : boolean = false;
 
     constructor ( private _cd : ChangeDetectorRef ,

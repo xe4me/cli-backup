@@ -1,12 +1,13 @@
-<div [hidden]='showManualEntryForm'>
+<div [hidden]='qasControlGroup.__showManualEntryForm'>
     <amp-form-row>
         <div class='grid__item_floated  1/1'>
             <amp-typeahead
                     #typeaheadCmp
                     class='1/1'
                     [controlGroup]='qasControlGroup'
-                    [required]='!showManualEntryForm'
+                    [required]='!qasControlGroup.__showManualEntryForm'
                     [errors]='errors'
+                    [keepControl]='keepControl'
                     [minTriggerLength]='minTriggerLength'
                     [customValidator]='customValidator'
                     [queryServiceCall]='_ampQasAddressService.query'
@@ -40,11 +41,12 @@
     </amp-form-row>
 </div>
 
-<div [hidden]='!showManualEntryForm'>
+<div [hidden]='!qasControlGroup.__showManualEntryForm'>
     <div *ngIf='!extended'>
         <amp-manual-address
                 (onGoBack)='goBack()'
                 #manualAddressCmp
+                [keepControl]='keepControl'
                 [controlGroup]='qasControlGroup'
                 [id]='id'
                 [index]='index'
@@ -55,6 +57,7 @@
         <amp-manual-address-extended
                 #manualAddressCmp
                 (onGoBack)='goBack()'
+                [keepControl]='keepControl'
                 [controlGroup]='qasControlGroup'
                 [id]='id'
                 [addressType]='addressType'

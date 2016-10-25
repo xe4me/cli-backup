@@ -5,7 +5,6 @@ import {
     ContentChild ,
     TemplateRef ,
     EventEmitter ,
-    OnInit ,
     Input ,
     Output ,
     ChangeDetectionStrategy ,
@@ -33,8 +32,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     public static SEARCH_ADDRESS_CONTROL_GROUP_NAME    = 'search';
     public static SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX = 'query';
     public static SELECTED_CONTROL_ID_POSTFIX          = 'selectedItem';
-    public selectedControl                             = new FormControl();
-    public searchControlGroup                          = new FormGroup( {} );
+    public selectedControl;
+    public searchControlGroup;
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                    = new EventEmitter<any>();
@@ -122,14 +121,35 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () : any {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
-        this.searchControlGroup.addControl( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
-        this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) , this.searchControlGroup );
         if ( this.options ) {
             this.initForOptions();
         } else if ( this.queryServiceCall ) {
             this.initForApi();
         }
         return undefined;
+    }
+
+    ngOnInit () : void {
+        if ( this.controlGroup ) {
+            if ( this.controlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) ) ) {
+                this.searchControlGroup = this.controlGroup.get( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) );
+            } else {
+                this.searchControlGroup = new FormGroup( {} );
+                this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) , this.searchControlGroup );
+            }
+        } else {
+            this.searchControlGroup = new FormGroup( {} );
+        }
+        if ( this.searchControlGroup ) {
+            if ( this.searchControlGroup.contains( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) ) ) {
+                this.selectedControl = this.searchControlGroup.get( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) );
+            } else {
+                this.selectedControl = new FormControl();
+                this.searchControlGroup.addControl( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
+            }
+        } else {
+            this.selectedControl = new FormControl();
+        }
     }
 
     ngOnDestroy () : void {
