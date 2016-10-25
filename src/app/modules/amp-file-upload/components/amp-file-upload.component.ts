@@ -69,7 +69,6 @@ export class AmpFileUploadComponent implements OnInit {
         }
         this.error = this.backendError;
         this.showProgress = !this.error;
-        console.log( 'form id inside displayProgress', this.formId );
         this.fileUploadService.updateUrl( this.uploadUrlWithParms );
         let files = Array.from( this.fileInput.nativeElement.files );
         let isValidFile = this.validateFile( files[0] );
@@ -112,7 +111,6 @@ export class AmpFileUploadComponent implements OnInit {
                 this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&id=' + this.formId
                     + '&token=' + token;
                 this.backendError = false;
-                console.log( 'form id inside update token', this.formId );
                 // TODO: Change detection is not happening automatically
                 this._cd.detectChanges();
             },
@@ -156,7 +154,6 @@ export class AmpFileUploadComponent implements OnInit {
             return false;
         }
         if ( !(file.size <= this.sizeAllowed ) ) {
-            console.log(file.size);
             error.message = 'File size Exceeds allowable limit of 1MB';
             this.setErrorMessage( error );
             return false;
