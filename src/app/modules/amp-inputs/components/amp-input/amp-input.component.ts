@@ -111,6 +111,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected idleTimeoutId;
     protected autoComplete : string      = 'off';
     protected iconRightClickHandler;
+    protected inputFocus = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
@@ -281,6 +282,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         this.resetIdleTimeOut();
         this.doOnBlurDirty = true;
         this.onFocus.emit( event );
+        this.inputFocus = true;
     }
 
     protected initiateInputWidth () {
@@ -311,6 +313,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
             notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
+        this.inputFocus = false;
     }
 
     protected onKeyupEvent ( $event ) {

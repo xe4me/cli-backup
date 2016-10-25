@@ -5,6 +5,7 @@
         (blur)='onBlured($event)'
         [disabled]='isInSummaryState || disabled'
         class='md-input'
+        [class.amp-input-focused]='inputFocus'
         [class.label-hidden]='labelHidden'
         [aria-label]='randomizedId'
         [name]='randomizedId'
