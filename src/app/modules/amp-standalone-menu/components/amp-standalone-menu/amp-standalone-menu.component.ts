@@ -77,8 +77,6 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private updateSections() {
         let body = this._dom.query('body');
         let sections = this._dom.querySelectorAll(body, 'page-section');
-        console.log('sections', sections);
-
         let mySections = [];
 
         this.sections = Array.prototype.map.call(sections, (section, index) => {
@@ -91,8 +89,6 @@ export class AmpStandAloneMenuComponent implements OnInit {
                 state: classes
             };
         });
-
-        // console.log('my menu sections ', this.sections);
 
         this._cd.markForCheck();
 
