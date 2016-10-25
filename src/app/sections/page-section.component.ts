@@ -39,7 +39,6 @@ export class PageSectionComponent {
     public CLASS_NAME = 'PageSectionComponent';
     private isActive = false;
     private __fdn;
-    
     constructor(
         public _viewContainerRef : ViewContainerRef,
         public progressObserver : ProgressObserverService,
