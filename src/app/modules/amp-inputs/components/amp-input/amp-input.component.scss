@@ -82,10 +82,10 @@ md-input {
     &.md-input {
         color: $amp-colour-sky-blue;
         cursor: pointer;
-        font-weight: 300;
         width: 100%;
 
         @include amp-family($amp-font-open-sans-regular);
+        font-weight: 300;
 
         .md-input-wrapper {
             position: relative;
