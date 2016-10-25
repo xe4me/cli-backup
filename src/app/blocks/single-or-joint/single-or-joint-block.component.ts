@@ -40,11 +40,13 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     public ngOnInit() {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
         this.formModelService.setSubmitRelativeUrl(Constants.saveUrl);
+        // load applicant 1
+        this.__loadAt(this.applicantGenerator.getApplicantSection(1), 2);
     }
 
     public addOrRemoveJointApplicantSection(singleJointIndicator : string) {
         if (!this.applicant2Added && singleJointIndicator === Constants.jointApplicant) {
-            this.__loadAt(this.applicantGenerator.getApplicantsSection(2), 3);
+            this.__loadAt(this.applicantGenerator.getApplicantSection(2), 3);
             this.applicant2Added = true;
         }
         if (this.applicant2Added && singleJointIndicator === Constants.singleApplicant) {
