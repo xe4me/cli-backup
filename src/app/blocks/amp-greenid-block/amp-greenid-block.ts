@@ -10,7 +10,9 @@ import {
     ChangeDetectorRef,
     ChangeDetectionStrategy,
     ElementRef,
-    ViewChild, Renderer, Input,
+    ViewChild,
+    Renderer,
+    Input,
 } from '@angular/core';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
 import { ResponseObject } from '../amp-greenid-block/interfaces/responseObject';
