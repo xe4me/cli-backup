@@ -3,7 +3,8 @@ import {
     ChangeDetectorRef ,
     AfterViewInit ,
     OnDestroy ,
-    ViewChild
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 
 import {
@@ -28,10 +29,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
     protected __sectionName : string;
-    protected __removeNext : Function;
-    protected __loadNext : Function;
-    protected __loadAt : Function;
-    protected __removeAt : Function;
+    protected __removeNext : (viewContainerRef : ViewContainerRef) => void;
+    protected __loadNext : (def : any , viewContainerRef : ViewContainerRef) => void ;
+    protected __loadAt : (def : any , index : number) => void;
+    protected __removeAt : ( index : number ) => void;
     protected __custom : any;
     protected visibleFlag : string           = 'defaultIsVisible';
     protected doneFlag : string              = 'defaultIsDone';
@@ -104,10 +105,12 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
             this.scrollService.scrollToNextUndoneBlock( this.__form);
             this.progressObserver.onProgress( this.__fdn );
             this.formModelService.save( this.__form.value );
-            setTimeout( () => {
+
+            let onNextScrolled = this.scrollService.$scrolled.subscribe(() => {
                 this.isInSummaryState = true;
                 this._cd.markForCheck();
-            } , 1200 );
+                onNextScrolled.unsubscribe();
+            });
         }
     }
 

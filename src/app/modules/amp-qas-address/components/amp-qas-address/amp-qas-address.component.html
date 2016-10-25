@@ -31,6 +31,11 @@
                     </error-item>
                 </template>
             </amp-error>
+            <div *ngIf='showResidentialAddressCannotBePoBoxError' class='errors'>
+                <div class='error-item'>
+                    <span class='icon icon--close icon-errors' aria-hidden='true'></span>You've selected a po box address, please select a residential address.
+                </div>
+            </div>
         </div>
     </amp-form-row>
 </div>

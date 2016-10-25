@@ -37,13 +37,12 @@ module.exports = function(config) {
     webpack: testWebpackConfig,
 
     coverageReporter: {
-      dir : 'coverage/',
-      subdir: 'report',
+      dir : 'reports/',
       reporters: [
-        { type: 'text-summary' },
-        { type: 'json' },
-        { type: 'html' },
-        { type: 'cobertura' }
+        { type: 'text-summary', subdir: '.' },
+        { type: 'json', subdir: '.' },
+        { type: 'html', subdir: '.' },
+        { type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml' }
       ]
     },
 
@@ -60,7 +59,7 @@ module.exports = function(config) {
 
     //junit reporting
     junitReporter: {
-        outputFile: '../coverage/report/test-results.xml'
+        outputFile: '../reports/mocha-report.xml'
     },
 
     // web server port
