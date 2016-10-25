@@ -132,20 +132,23 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     private close = () : void => {
         this._optionsHidden = true;
         this.showNoResults  = false;
-        this.$showResults.emit(!this._optionsHidden);
     };
 
     private onClick ( e ) {
         if (e.target.className.includes('icon--search')) {
-            this.searchIconClick(this.control.value || '')
+            this.doSearchIconClick();
+        }
+    }
+
+    private doSearchIconClick() {
+        this.searchIconClick(this.control.value || '')
                 .subscribe((result) => {
                     this.clearSelectedItem();
                     this.open();
-
                     this.searchResult = result.json().payload;
-                    if(result.json().errorCode) {
-                      this.$errorCode.emit({errorCode: result.json().errorCode});
-                    } else {
+                    if ( result.json().errorCode ) {
+                      this.$errorCode.emit({ errorCode: result.json().errorCode });
+                    }  else {
                         /* Hardcoding in a not found option. This is only temporary.*/
                         this.searchResult.push({ "decisionWizard" : "------ Can't see your business name? Please try our decision wizard (coming soon). ------" });
                     }
@@ -179,9 +182,10 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
             if ( ! this.isOptionsHidden ) {
                 this.onDownKeyPressed( keyCode );
                 $event.preventDefault();
-            } else {
-                this.open();
             }
+        }
+        if (KeyCodes.ENTER === keyCode){
+            this.doSearchIconClick();
         }
     }
 
