@@ -16,12 +16,11 @@ import { ScrollService } from '../services/scroll/scroll.service';
     </div>
   ` ,
     host: {
-        "[id]": "getFdnJoined(__fdn)",
-        "[class.visited]": "__controlGroup.touched",
-        "[class.done]": "__controlGroup.valid && __controlGroup.touched",
-        //"[attr.custom]":"__custom.label"" ,
-        "[attr.label]": "__custom['label']",
-        "[class.active]": "isActive"
+        '[id]': 'getFdnJoined(__fdn)',
+        '[class.visited]': '__controlGroup.touched',
+        '[class.done]': '__controlGroup.valid && __controlGroup.touched',
+        '[attr.label]': '__custom["label"]',
+        '[class.active]': 'isActive'
     },
     styles: [
         `
@@ -39,23 +38,25 @@ import { ScrollService } from '../services/scroll/scroll.service';
 export class PageSectionComponent {
     public CLASS_NAME = 'PageSectionComponent';
     private isActive = false;
-    constructor(public _viewContainerRef: ViewContainerRef,
-        public progressObserver: ProgressObserverService,
-        public formSectionService: FormSectionService,
-        public scrollService: ScrollService,
-        public formModelService: FormModelService,
-        public _cd: ChangeDetectorRef) {
+    constructor(
+        public _viewContainerRef : ViewContainerRef,
+        public progressObserver : ProgressObserverService,
+        public formSectionService : FormSectionService,
+        public scrollService : ScrollService,
+        public formModelService : FormModelService,
+        public _cd : ChangeDetectorRef) {
 
         // this.formModelService.dynamicFormLoaded.subscribe((isLoaded) => {
         //     this._cd.detectChanges();
         // });
     }
 
-    isCurrentSection(): boolean {
+    isCurrentSection() : boolean {
         // return this.formSectionService.currentSection === this.fullyDistinguishedName;
         // return this.formSectionService.isCurrentSection( this.__fdn );
         return true;
     }
+
     ngOnInit() {
         this.scrollService.$scrolled.subscribe((blockchanges) => {
             //  console.log('blockchanges.componentSelector',blockchanges.componentSelector);
@@ -68,7 +69,7 @@ export class PageSectionComponent {
             }
         });
     }
-    
+
     getFdnJoined(fdn) {
         return fdn.join('-');
     }
