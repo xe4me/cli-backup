@@ -1,11 +1,7 @@
-
-import { Component , OnInit , ChangeDetectorRef, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { AmpGreenidBlockComponent } from '../../../app/blocks/amp-greenid-block/amp-greenid-block';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
-import { FormControl , FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
-import { ScrollService } from '../../../app/services/scroll/scroll.service';
-import {Environments} from "../../../app/abstracts/environments/environments.abstract";
 
 @Component( {
     selector    : 'amp-greenid-block-basic-usage' ,

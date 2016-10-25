@@ -43,17 +43,16 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
 
                        </div>
                        <div class='grid__item_floated mh mv'>
-                         <amp-button [disabled]='!acceptTerms || isSubmitting' (click)='onContinue($event)' [class]=''btn btn-ok mt0''
-                                    [data-automation-id]=''greenid_accept_terms''>
+                         <amp-button [disabled]='!acceptTerms || isSubmitting' (click)='onContinue($event)' class='btn btn-ok mt0'>
                                 Continue
-                            </amp-button>
+                         </amp-button>
                        </div>
                     </div>
                 </div>
                 <!--
-                This probably should be an ajax request, for the sake of getting it out the door its a form instead.
+                This should be an ajax request, for the sake of getting it out the door its a form instead.
                 -->
-                <form method='POST' action='{{formAction}}' id='theform' role='form' class='mb'>
+                <form method='GET' action='' id='theform' role='form' class='mb'>
                     <div style='display: none;'>
                         <input id='accountId' value='amp_au' name='accountId' type='hidden'>
                         <input id='apiCode' value='69h-xEt-PSW-vGn' name='apiCode' type='hidden'>
@@ -118,7 +117,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         frameId: 'greenid-div',
         country: 'usethiscountry',
         debug: false,
-        sessionCompleteCallback: this.onSessionComplete,
+        sessionCompleteCallback: this.onSessionComplete
     };
 
     private acknowledge = {
@@ -135,6 +134,11 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
                   private _render : Renderer) {
 
     }
+
+    public onSessionComplete(token : string, verificationStatus : string) : void {
+        console.log('onSessionComplete', token, verificationStatus)
+    }
+
     /**
      * Get the array of greenid scripts that we need to submit with the model
      */
@@ -199,7 +203,6 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      */
     private onContinue( value : Event ) : void {
         let event = new MouseEvent('click', {bubbles: true});
-
         this.isSubmitting = true;
         this._AmpGreenIdServices
             .getTheToken(this.form)
@@ -221,9 +224,5 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             (<FormControl> this.controlGroup.controls['verificationToken']).setValue(respo.verificationToken);
             this.greenIdShowing = false; // hide the orginal block content
         }
-    }
-
-    private onSessionComplete() : void {
-        console.log('onSessionComplete');
     }
 }
