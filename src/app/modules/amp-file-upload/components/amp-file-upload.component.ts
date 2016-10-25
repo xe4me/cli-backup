@@ -109,7 +109,7 @@ export class AmpFileUploadComponent implements OnInit {
         retrieveToken.subscribe(
             ( res : any ) => {
                 let token = res.payload.token;
-                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
+                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&id=' + this.formId
                     + '&token=' + token;
                 this.backendError = false;
                 console.log( 'form id inside update token', this.formId );

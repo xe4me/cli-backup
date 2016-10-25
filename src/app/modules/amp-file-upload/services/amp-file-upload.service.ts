@@ -92,7 +92,7 @@ export class AmpFileUploadService {
 
     public deleteFile ( fileName : string, formName : string, formId : string ) : Observable<any> {
         let deleteUrlwithParms : string;
-        deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&objectId=' + formId;
+        deleteUrlwithParms = this._deleteUrl + '?fileName=' + fileName + '&formName=' + formName + '&id=' + formId;
         return this.ampHttp.post( deleteUrlwithParms, {}, {} )
                         .map( ( res : Response ) => res.json() );
     }
