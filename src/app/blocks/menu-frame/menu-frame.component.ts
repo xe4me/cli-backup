@@ -1,7 +1,8 @@
 import {
     Component,
     ElementRef,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import {
     AmpBlockLoaderDirective,
@@ -18,7 +19,8 @@ import { StickyProgressHeaderBlockComponent } from
 @Component({
     selector: 'menu-frame',
     templateUrl: './menu-frame.component.html',
-    styles: [require('./menu-frame.component.scss')]
+    styles: [require('./menu-frame.component.scss')],
+    changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class MenuFrameBlockComponent {
     private calculatedProgress = 0;
