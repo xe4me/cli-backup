@@ -24,6 +24,7 @@ $amp-ddc-menu-height:                          69px                     !default
             font-family: 'Open Sans';
             font-weight: normal;
             font-size: 14px;
+           
 
       @include media-query(palm) {
 
@@ -82,6 +83,7 @@ $amp-ddc-menu-height:                          69px                     !default
     .steps-nav .progress li {
         list-style: none;
         line-height: 1px;
+        
 
         @include media-query(palm) {
             height: $amp-ddc-menu-height;
@@ -139,27 +141,41 @@ $amp-ddc-menu-height:                          69px                     !default
             cursor: default;
             padding-left: 14px;
         }
-        > li.active a span{
+        > li button {
+            border:none;
+            padding: 0;
+            background: transparent;
+            &:not([disabled]){
+                cursor: pointer;
+            }
+        }
+        > li button.active a span{
             color: $amp-colour-sky-blue;
             font-weight: bold;
         }
-        > li.active {
+        
+        > li button.active {
             .divider {
                 border-color: $amp-colour-sky-blue;
             }
         }
-        > li.active .step-intro.node {
+        > li button.active .step-intro.node {
             border: solid 2px $amp-colour-sky-blue;
             height: 14px;
             width: 14px;
             margin-left: -2px;
         }
 
-        > li.done a span{
+        > li button.done {
+            .divider {
+                border-color: $amp-colour-sky-blue;
+            }
+        }
+        > li button.done a span{
             color: $amp-colour-sky-blue;
             font-weight: normal;
         }
-        > li.done .step-intro.node {
+        > li button.done .step-intro.node {
             background-color: $amp-colour-sky-blue;
         }
 
