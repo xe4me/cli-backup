@@ -5,6 +5,7 @@ import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/servic
 import { FormControl , FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import {Environments} from "../../../app/abstracts/environments/environments.abstract";
 
 @Component( {
     selector    : 'amp-greenid-block-basic-usage' ,
@@ -18,12 +19,16 @@ export default class AmpGreenIdBlockBasicUsage {
    /**
     * This script URLs input all of the libraries needed for the form
     */
-    private scriptUrls : string[] = ['//test2.edentiti.com/df/javascripts/greenidConfig.js', '//test2.edentiti.com/df/javascripts/greenidui.min.js'];
+     private scriptUrls : string[] = ['//test2.edentiti.com/df/javascripts/greenidConfig.js', '//test2.edentiti.com/df/javascripts/greenidui.min.js'];
+    // The following are Kubernetes URLS & properties for the above settings
+    // private scriptUrls : string[] = [Environments.property.ApiGreenIdConfig, Environments.property.ApiGreenIdUI];
 
     /**
      * This is the form action URL
      */
     private formAction   : string  = '//test2.edentiti.com/verification/simpleui-finish.seam';
+    // The following are Kubernetes URLS & properties for the above settings
+    // private formAction   : string  = Environments.property.ApiGreenIdFormAction;
 
     /**
      * This model is for testing purpose only
