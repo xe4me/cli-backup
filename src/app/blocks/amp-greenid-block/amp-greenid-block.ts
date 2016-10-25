@@ -135,14 +135,19 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
     }
 
-    public onSessionComplete(token : string, verificationStatus : string) : void {
-        console.log('onSessionComplete', token, verificationStatus)
+    /**
+     * Update the model with the verification ID
+     */
+    public onSessionComplete(token : string, verificationStatus : any) : void {
+        if (verificationStatus instanceof String) {
+            (<FormControl> this.controlGroup.controls['verificationStatus']).setValue(verificationStatus);
+        }
     }
 
     /**
      * Get the array of greenid scripts that we need to submit with the model
      */
-    ngOnInit() : any {
+    public ngOnInit() : any {
 
         this.greenIdShowing = true;
         if (this.scriptUrls) {
@@ -153,7 +158,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
         this.controlGroup = new FormGroup({
           verificationId : new FormControl('verificationId', null),
-          verificationToken : new FormControl('verificationToken', null)
+          verificationToken : new FormControl('verificationToken', null),
+          verficationStatus : new FormControl('verficationStatus', null),
         });
 
         this._cd.detectChanges();
@@ -161,7 +167,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     /**
      * Once we have the scripts loaded, we need to init the green id stuff, set it up
      */
-    ngAfterContentInit() : void {
+    public ngAfterContentInit() : void {
 
         setTimeout(() => {
             if (window['greenidUI']) {
@@ -210,9 +216,10 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
                this.isSubmitting = false;
                if (respo) {
                  this.updateModel(respo.payload);
+                 this._cd.markForCheck();
                  this._render.invokeElementMethod(this.btnSubmit.nativeElement, 'dispatchEvent', [event]);
                }
-               this._cd.markForCheck();
+
         });
     }
     /**
