@@ -127,7 +127,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
     /**
     * This model is for testing purpose only
-    * */
+    */
     private modelValue = {
         firstName: 'John',
         lastName: 'Smith',
@@ -235,7 +235,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     }
     /**
      * Update the value in the form model with the response from the API
-     * */
+     */
     private updateModel(respo : ResponseObject) : void {
         if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
             (<FormControl>this.controlGroup.controls['verificationId']).setValue(respo.verificationId);
