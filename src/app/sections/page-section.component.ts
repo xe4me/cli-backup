@@ -1,7 +1,8 @@
 import {
     Component,
     ViewContainerRef,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import { AmpBlockLoaderDirective } from '../amp-block-loader.directive';
 import { FormSectionService } from '../services/form-section/form-section.service';
@@ -19,7 +20,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
         '[id]': 'getFdnJoined(__fdn)',
         '[class.visited]': '__controlGroup.touched',
         '[class.done]': '__controlGroup.valid && __controlGroup.touched',
-        '[attr.label]': '__custom["label"]',
+        '[attr.label]': '__custom?.label',
         '[class.active]': 'isActive'
     },
     styles: [
@@ -32,12 +33,13 @@ import { ScrollService } from '../services/scroll/scroll.service';
     }
   `
     ],
-    directives: [AmpBlockLoaderDirective]
-    // encapsulation: ViewEncapsulation.Emulated
+    directives: [AmpBlockLoaderDirective],
+    changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class PageSectionComponent {
     public CLASS_NAME = 'PageSectionComponent';
     private isActive = false;
+    private __fdn;
     constructor(
         public _viewContainerRef : ViewContainerRef,
         public progressObserver : ProgressObserverService,
@@ -45,26 +47,18 @@ export class PageSectionComponent {
         public scrollService : ScrollService,
         public formModelService : FormModelService,
         public _cd : ChangeDetectorRef) {
-
-        // this.formModelService.dynamicFormLoaded.subscribe((isLoaded) => {
-        //     this._cd.detectChanges();
-        // });
     }
 
     isCurrentSection() : boolean {
-        // return this.formSectionService.currentSection === this.fullyDistinguishedName;
-        // return this.formSectionService.isCurrentSection( this.__fdn );
         return true;
     }
 
     ngOnInit() {
         this.scrollService.$scrolled.subscribe((blockchanges) => {
-            //  console.log('blockchanges.componentSelector',blockchanges.componentSelector);
-            //  console.log('this.getFdnJoined(this.__fdn)',this.getFdnJoined(this.__fdn));
             if (blockchanges) {
-                let s = blockchanges.componentSelector;
-                let m = this.getFdnJoined(this.__fdn);
-                this.isActive = s.indexOf(m) > -1 ? true : false;
+                let componentSelector = blockchanges.componentSelector;
+                let fdn = this.getFdnJoined(this.__fdn);
+                this.isActive = componentSelector && componentSelector.indexOf(fdn) > -1 ? true : false;
                 this._cd.markForCheck();
             }
         });
