@@ -17,6 +17,7 @@
                 "path": "blocks/basic-info/basic-info.component",
                 "custom": {
                     "blockTitle": "Tell us about yourself.",
+                    "blockTitle_applicant2" : "And now for applicant 2",
                     "controls": [
                         {
                             "id": "Title",
