@@ -2,7 +2,7 @@
 .errors {
     @extend %#{$namespace}font-size-tiny;
     @include amp-family($errors-font-family);
-    color: #d60e1c;
+    color: $amp-colour-alert-danger;
     font-weight: 400;
     display: block;
     line-height: 25px;
@@ -12,6 +12,6 @@
     }
 
     .icon-errors {
-        color: #d60e1c;
+        color: $amp-colour-alert-danger;
     }
 }
