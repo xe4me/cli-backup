@@ -5,7 +5,8 @@ import {
     OnInit,
     ChangeDetectionStrategy,
     Input,
-    AfterViewInit
+    AfterViewInit,
+    ViewContainerRef
 } from '@angular/core';
 import {
     Validators,
@@ -18,18 +19,24 @@ import {
     ProgressObserverService ,
     FormService
 } from 'amp-ddc-components';
+import {
+    Constants
+} from '../../shared';
 @Component( {
     selector        : 'online-or-offline-id-check-block' ,
     templateUrl     : './online-or-offline-id-check.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
+    public isOnlineCheckLoaded = false;
+
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
-                  progressObserver : ProgressObserverService ) {
+                  progressObserver : ProgressObserverService,
+                  private viewContainerRef : ViewContainerRef  ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
@@ -37,9 +44,24 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
     }
 
+    private addOrRemoveOnlineIdCheck(typeOfCheck: string) {
+        if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
+            this.__loadNext(this.__custom.optionalBlocks[0], this.viewContainerRef );
+            this.isOnlineCheckLoaded = true;
+            return;
+        }
+        if (typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
+            this.__removeNext(this.viewContainerRef);
+            this.isOnlineCheckLoaded = false;
+            return;
+        }
+    }
+
     private onIdCheckSelection(typeOfCheck : string) {
         const onlineOrOffline = this.__controlGroup.get(this.__custom.controls[0].id)
         onlineOrOffline.setValue(typeOfCheck);
         onlineOrOffline.markAsTouched();
+
+        this.addOrRemoveOnlineIdCheck(typeOfCheck);
     }
 }
