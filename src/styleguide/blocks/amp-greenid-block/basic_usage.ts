@@ -19,6 +19,30 @@ export default class AmpGreenIdBlockBasicUsage {
     constructor ( private  themeService : ThemeService) {
     }
 
+    /**
+     * This model is for testing purpose only
+     */
+    private modelValue = {
+        firstName: 'John',
+        lastName: 'Smith',
+        middleNames: 'Danger',
+        honorific: 'Mr',
+        dateOfBirth2: '27/11/2013',
+        dateOfBirth:  '2001-04-12',
+        email: 'sample@test.com',
+        verificationId: "1FDW6whT1",
+        verificationToken: '75b7ad90aac03bb7295f67c1044de1040d365b34',
+        verficationStatus: 'un_verfied',
+        address: {
+            country: 'AU',
+            state: 'NSW',
+            streetName: 'SMITH',
+            flatNumber: 'U 2',
+            streetNumber: '53-57',
+            suburb: 'SYDNEY'
+        }
+    };
+
     ngOnInit () {
 
     }
