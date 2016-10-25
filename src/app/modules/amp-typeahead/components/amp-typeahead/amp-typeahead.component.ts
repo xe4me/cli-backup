@@ -5,7 +5,6 @@ import {
     ContentChild ,
     TemplateRef ,
     EventEmitter ,
-    OnInit ,
     Input ,
     Output ,
     ChangeDetectionStrategy ,
