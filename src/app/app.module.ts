@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,
-         ReactiveFormsModule
+import {
+    FormsModule ,
+    ReactiveFormsModule
 } from '@angular/forms';
-import { Routes,
-         RouterModule
+import {
+    Routes ,
+    RouterModule
 } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
@@ -12,10 +14,10 @@ import { AppComponent } from './app.component';
 import {
     StickyProgressHeaderBlockComponent
 } from './blocks/sticky-progress-header-block/sticky-progress-header-block.component';
-
 import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
     AmpTypeaheadModule ,
+    AmpTooltipModule ,
     AmpDropdownModule ,
     AmpPipesModule ,
     AmpDirectivesModule ,
@@ -25,9 +27,9 @@ import {
     AmpTextareaModule ,
     AmpGroupButtonsModule ,
     AmpRadioButtonGroupModule ,
-    AmpErrorModule,
-    AmpButtonModule,
-    FormBlock,
+    AmpErrorModule ,
+    AmpButtonModule ,
+    FormBlock ,
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
@@ -36,10 +38,10 @@ import {
     AmpFormRowComponent ,
     AmpButton ,
     AmpOverlayComponent ,
-    FormService,
-    AmpIntroBlockComponent,
-    AmpRowRepeaterModule,
-    AmpFormRowModule,
+    FormService ,
+    AmpIntroBlockComponent ,
+    AmpRowRepeaterModule ,
+    AmpFormRowModule ,
     AmpStandAloneMenuModule
 } from 'amp-ddc-components';
 import {
@@ -52,39 +54,37 @@ const PROVIDERS    = [
     FormService
 ];
 const DECLARATIONS = [
-    AmpIntroBlockComponent,
+    AmpIntroBlockComponent ,
     AmpFormBlockComponent ,
-    AmpOverlayComponent,
+    AmpOverlayComponent ,
     StickyProgressHeaderBlockComponent
 ];
-
 const routes : Routes = [
-    { path: '', component: BetterFormComponent },
+    { path : '' , component : BetterFormComponent } ,
 ];
-
 const IMPORTS = [
-    AmpRowRepeaterModule,
-    AmpFormRowModule,
-    AmpButtonModule,
-    AmpTypeaheadModule,
-    AmpDropdownModule,
-    AmpPipesModule,
-    AmpDirectivesModule,
-    AmpQasAddressModule,
-    AmpInputsModule,
-    AmpErrorModule,
-    AmpCheckboxModule,
-    AmpTextareaModule,
-    AmpGroupButtonsModule,
-    AmpRadioButtonGroupModule,
-    AmpStandAloneMenuModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
+    AmpRowRepeaterModule ,
+    AmpFormRowModule ,
+    AmpTooltipModule ,
+    AmpButtonModule ,
+    AmpTypeaheadModule ,
+    AmpDropdownModule ,
+    AmpPipesModule ,
+    AmpDirectivesModule ,
+    AmpQasAddressModule ,
+    AmpInputsModule ,
+    AmpErrorModule ,
+    AmpCheckboxModule ,
+    AmpTextareaModule ,
+    AmpGroupButtonsModule ,
+    AmpRadioButtonGroupModule ,
+    AmpStandAloneMenuModule ,
+    BrowserModule ,
+    FormsModule ,
+    ReactiveFormsModule ,
+    HttpModule ,
     RouterModule.forRoot( routes )
 ];
-
 @NgModule( {
     declarations : [
         AppComponent ,
@@ -93,7 +93,7 @@ const IMPORTS = [
     ] ,
     imports      : IMPORTS ,
     providers    : [
-        ...APP_RESOLVER_PROVIDERS,
+        ...APP_RESOLVER_PROVIDERS ,
         SharedFormDataService
     ] ,
     bootstrap    : [ AppComponent ]
