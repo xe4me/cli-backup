@@ -43,8 +43,9 @@ import {
     AmpStandAloneMenuModule
 } from 'amp-ddc-components';
 import {
-    SharedFormDataService
-} from './shared/shared-form-data.service';
+    SharedFormDataService,
+    ApplicantGeneratorService
+} from './shared';
 const PROVIDERS    = [
     ScrollService ,
     FormModelService ,
@@ -94,7 +95,8 @@ const IMPORTS = [
     imports      : IMPORTS ,
     providers    : [
         ...APP_RESOLVER_PROVIDERS,
-        SharedFormDataService
+        SharedFormDataService,
+        ApplicantGeneratorService
     ] ,
     bootstrap    : [ AppComponent ]
 } )
