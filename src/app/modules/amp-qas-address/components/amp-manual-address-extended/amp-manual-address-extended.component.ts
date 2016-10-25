@@ -5,13 +5,14 @@ import {
     ChangeDetectorRef ,
     ChangeDetectionStrategy ,
     ViewChild ,
-    AfterViewInit ,
-    OnDestroy , EventEmitter , Output
+    OnDestroy ,
+    EventEmitter ,
+    Output
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { AmpStatesComponent } from '../../../amp-dropdown';
-import { addDashOrNothing , isTrue } from '../../../amp-utils/functions.utils';
+import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 import { BasicUtils } from '../../../amp-utils/basic-utils';
 import { AmpDropdownComponent } from '../../../amp-dropdown/components/amp-dropdown/amp-dropdown.component';
 import { AddressFormatTypes } from '../../services/amp-qas-address.service';
@@ -121,7 +122,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
     };
     @Input() addressType : string                          = 'residential';
     protected isItPoBox                                    = null;
-    private manualAddressCG : FormGroup                    = new FormGroup( {} );
+    private manualAddressCG : any;
     private addDashOrNothing                               = addDashOrNothing;
     private isItPoBoxButtons                               = {
         buttons   : [
@@ -144,7 +145,14 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
 
     ngOnInit () {
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) , this.manualAddressCG );
+            if ( this.controlGroup.contains( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) ) ) {
+                this.manualAddressCG = this.controlGroup.get( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) );
+            } else {
+                this.manualAddressCG = new FormGroup( {} );
+                this.controlGroup.addControl( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) , this.manualAddressCG );
+            }
+        } else {
+            this.manualAddressCG = new FormGroup( {} );
         }
     }
 
@@ -199,11 +207,11 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
     }
 
     private emptyPoBoxDependantFields () {
-        this.manualBuildingNameCmp.control.setValue( null );
-        this.manualUnitNumberCmp.control.setValue( null );
-        this.manualStreetNumberCmp.control.setValue( null );
-        this.manualStreetNameCmp.control.setValue( null );
-        this.manualPoBoxCmp.control.setValue( null );
+        this.manualBuildingNameCmp.control.reset( null );
+        this.manualUnitNumberCmp.control.reset( null );
+        this.manualStreetNumberCmp.control.reset( null );
+        this.manualStreetNameCmp.control.reset( null );
+        this.manualPoBoxCmp.control.reset( null );
         this.manualStreetTypeCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
     }
 

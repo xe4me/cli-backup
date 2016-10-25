@@ -4,6 +4,7 @@
             <div class="grid__item_floated">
                 <h3 class="heading ">Is this a PO box?</h3>
                 <amp-group-buttons
+                        [keepControl]='keepControl'
                         #isItPoBoxCmp
                         class="1/5 mt+"
                         (select)='onPoBoxButtonsChange($event)'
@@ -25,6 +26,7 @@
             <amp-form-row>
                 <div class='grid__item_floated mt 3/4'>
                     <amp-input
+                            [keepControl]='keepControl'
                             #manualBuildingNameCmp
                             class='1/1'
                             [id]='buildingName.id'
@@ -45,6 +47,7 @@
             <amp-form-row>
                 <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr'>
                     <amp-input
+                            [keepControl]='keepControl'
                             #manualUnitNumberCmp
                             class='1/1'
                             [id]='unitNumber.id'
@@ -60,6 +63,7 @@
                 </div>
                 <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
                     <amp-input
+                            [keepControl]='keepControl'
                             #manualStreetNumberCmp
                             class='1/1'
                             [id]='streetNumber.id'
@@ -80,6 +84,7 @@
             <amp-form-row>
                 <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr'>
                     <amp-input
+                            [keepControl]='keepControl'
                             #manualStreetNameCmp
                             class='1/1'
                             [id]='streetName.id'
@@ -95,6 +100,7 @@
                 </div>
                 <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
                     <amp-street-types
+                            [keepControl]='keepControl'
                             class="utils__display--block-palm"
                             #manualStreetTypeCmp
                             [id]='streetType.id'
@@ -112,6 +118,7 @@
         <amp-form-row [hidden]='!isItPoBox'>
             <div class='grid__item_floated 3/4'>
                 <amp-input
+                        [keepControl]='keepControl'
                         #manualPoBoxCmp
                         class='1/1'
                         [id]='poBox.id'
@@ -131,6 +138,7 @@
         <amp-form-row>
             <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr'>
                 <amp-input
+                        [keepControl]='keepControl'
                         #manualSuburbCmp
                         class='1/1'
                         [id]='suburb.id'
@@ -148,6 +156,7 @@
             </div>
             <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
                 <amp-input
+                        [keepControl]='keepControl'
                         #manualPostcodeCmp
                         class='1/1'
                         [id]='postCode.id'
@@ -170,6 +179,7 @@
         <amp-form-row>
             <div class='grid__item_floated 1/1'>
                 <amp-states
+                        [keepControl]='keepControl'
                         class="utils__display--block-tablet-and-down"
                         #manualStatesCmp
                         [id]='state.id'

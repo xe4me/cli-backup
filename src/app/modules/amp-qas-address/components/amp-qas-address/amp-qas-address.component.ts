@@ -31,23 +31,29 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @Input() placeholder : string                       = 'Default place holder';
     @Input() required : boolean;
     @Input() isInSummaryState : boolean;
-    @Input() keepControl : boolean                      = false;
     @Input() index;
     @Input() minTriggerLength : number                  = 3;
+    @Input() keepControl : boolean                      = false;
     @Input() extended : boolean                         = false;
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
-    private showManualEntryForm                         = false;
-    private qasControlGroup                             = new FormGroup( {} );
-    private showResidentialAddressCannotBePoBoxError    = false;
+    private qasControlGroup;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
 
     ngOnInit () : void {
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id + addDashOrNothing( this.index ) , this.qasControlGroup );
+            if ( this.controlGroup.contains( this.id + addDashOrNothing( this.index ) ) ) {
+                this.qasControlGroup = this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
+            } else {
+                this.qasControlGroup                       = new FormGroup( {} );
+                this.qasControlGroup.__showManualEntryForm = false;
+                this.controlGroup.addControl( this.id + addDashOrNothing( this.index ) , this.qasControlGroup );
+            }
+        } else {
+            this.qasControlGroup = new FormGroup( {} );
         }
     }
 
@@ -79,9 +85,9 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     public showManualAddrForm () {
         setTimeout( () => {
             this.isInSummaryState = false;
-            this.qasControlGroup.reset();
+            this.typeaheadCG.reset();
             this.manualAddressCmp.emptyControls();
-            this.showManualEntryForm = true;
+            this.qasControlGroup.__showManualEntryForm = true;
             this._cd.detectChanges();
         } );
     }
@@ -89,8 +95,9 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     public goBack () {
         setTimeout( () => {
             this.isInSummaryState = false;
+            this.typeaheadCG.reset();
             this.manualAddressCmp.emptyControls();
-            this.showManualEntryForm = false;
+            this.qasControlGroup.__showManualEntryForm = false;
             this._cd.detectChanges();
         } );
     }
@@ -103,7 +110,6 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     };
 
     public onOptionDeSelect ( $event ) {
-        this.showResidentialAddressCannotBePoBoxError = false;
         this.manualAddressCmp.emptyControls();
     }
 
@@ -112,15 +118,8 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
             this._ampQasAddressService
                 .getFormattedAddress( $event.Moniker , this.extended ? AddressFormatTypes.ALL : AddressFormatTypes.CRM )
                 .subscribe( ( _formattedAddress : any ) => {
-                    if ( this.isResidentialAddress && _formattedAddress.Bank.AllPostalDeliveryTypes.length > 1 ) {
-                        // means this address is a POBOX and it does not have street name so we need to tell the user that
-                        // he can't select a pobox address for residential address
-                        this.showResidentialAddressCannotBePoBoxError = true;
-                    } else {
-                        this.showResidentialAddressCannotBePoBoxError = false;
-                        this.manualAddressCmp.updateControls( _formattedAddress );
-                        this.$selected.emit( _formattedAddress );
-                    }
+                    this.manualAddressCmp.updateControls( _formattedAddress );
+                    this.$selected.emit( _formattedAddress );
                 } );
         }
     }
@@ -145,8 +144,4 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
             }
         };
     };
-
-    private get isResidentialAddress () {
-        return this.addressType === 'residential';
-    }
 }
