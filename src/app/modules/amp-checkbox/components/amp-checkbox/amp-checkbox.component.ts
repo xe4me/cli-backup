@@ -32,12 +32,14 @@ import { BaseControl } from '../../../../base-control';
         'checked' ,
         'index' ,
         'tabindex' ,
+        'keepControl' ,
         'isInSummaryState'
     ] ,
     outputs         : [ 'select' ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
+    public keepControl : boolean       = false;
     private _checked : boolean         = false;
     private _tabindex : number;
     private isInSummaryState : boolean = false;

@@ -5,6 +5,7 @@
             [id]='residentialAddress.id'
             [index]='index'
             [required]='required'
+            [keepControl]='keepControl'
             [extended]='extended'
             addressType='residential'
             [isInSummaryState]='isInSummaryState'
@@ -17,6 +18,7 @@
                     [controlGroup]='qasMultiCG'
                     [required]='isPostalAndResidentialAreSameRequired'
                     [index]='index'
+                    [keepControl]='keepControl'
                     [id]='postalAndResidentialAreSame.id'
                     [checked]='true'
                     (change)='onCheckboxSelect($event)'>
@@ -31,6 +33,7 @@
                 [id]='postalAddress.id'
                 [index]='index'
                 [extended]='extended'
+                [keepControl]='keepControl'
                 addressType='postal'
                 [required]='required'
                 [isInSummaryState]='isInSummaryState'

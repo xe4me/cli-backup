@@ -13,6 +13,7 @@ export class AmpQasAddressMultiComponent implements OnInit {
     @Input() index;
     @Input() extended : boolean            = true;
     @Input() isInSummaryState : boolean    = false;
+    @Input() keepControl : boolean         = false;
     @Input() postalAddress                 = {
         id    : 'postalAddress' ,
         label : 'Postal address'
@@ -25,19 +26,31 @@ export class AmpQasAddressMultiComponent implements OnInit {
         id : 'postalAndResidentialAreSame'
     };
     private arePostalAndResidentialTheSame = true;
-    private qasMultiCG                     = new FormGroup( {} );
+    private qasMultiCG;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 
     ngOnInit () : void {
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.qasMultiCG );
+            if ( this.controlGroup.contains( this.id ) ) {
+                this.qasMultiCG = this.controlGroup.get( this.id );
+            } else {
+                this.qasMultiCG = new FormGroup( {} );
+                this.controlGroup.addControl( this.id , this.qasMultiCG );
+            }
+        } else {
+            this.qasMultiCG = new FormGroup( {} );
         }
     }
 
     private onCheckboxSelect ( $event ) {
         this.arePostalAndResidentialTheSame = $event.target.checked;
+        if ( this.arePostalAndResidentialTheSame ) {
+            if ( this.qasMultiCG.contains( this.postalAddress.id ) ) {
+                this.qasMultiCG.removeControl( this.postalAddress.id );
+            }
+        }
         this._cd.detectChanges();
     }
 

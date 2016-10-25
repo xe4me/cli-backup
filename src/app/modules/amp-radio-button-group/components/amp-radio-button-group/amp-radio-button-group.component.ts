@@ -27,6 +27,7 @@ import { Validators } from '@angular/forms';
         'disabled' ,
         'buttons' ,
         'autoSelectOnOne' ,
+        'keepControl' ,
         'selected'
     ] ,
     host            : {
@@ -37,6 +38,7 @@ import { Validators } from '@angular/forms';
     outputs         : [ 'select' ]
 } )
 export class AmpRadioButtonGroupComponent extends BaseControl implements AfterViewInit {
+    public keepControl : boolean       = false;
     private _selected : string         = null;
     private isInSummaryState : boolean = false;
     private defaultValue;

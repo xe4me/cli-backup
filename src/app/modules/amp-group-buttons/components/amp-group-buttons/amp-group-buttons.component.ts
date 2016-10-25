@@ -19,6 +19,7 @@ import { BaseControl } from '../../../../base-control';
         'scrollOutUnless' ,
         'scrollOutOn' ,
         'disabled' ,
+        'keepControl' ,
         'buttons' ,
         'index'
     ] ,
@@ -28,6 +29,7 @@ import { BaseControl } from '../../../../base-control';
     outputs         : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent extends BaseControl {
+    public keepControl : boolean      = false;
     private buttons;
     private keepControlOnDestroy      = false;
     private scrollOutUnless : string;
