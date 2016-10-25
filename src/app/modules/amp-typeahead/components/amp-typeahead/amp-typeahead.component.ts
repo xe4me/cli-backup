@@ -31,8 +31,8 @@ import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 } )
 export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     public static SEARCH_ADDRESS_CONTROL_GROUP_NAME    = 'search';
-    public static SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX = 'Query';
-    public static SELECTED_CONTROL_ID_POSTFIX          = 'SelectedItem';
+    public static SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX = 'query';
+    public static SELECTED_CONTROL_ID_POSTFIX          = 'selectedItem';
     public selectedControl                             = new FormControl();
     public searchControlGroup                          = new FormGroup( {} );
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
@@ -101,7 +101,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     get queryControlId () {
-        return this.id + AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX;
+        return AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX;
     }
 
     set searchResult ( _result ) {
@@ -122,7 +122,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () : any {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
-        this.searchControlGroup.addControl( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
+        this.searchControlGroup.addControl( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
         this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) , this.searchControlGroup );
         if ( this.options ) {
             this.initForOptions();
@@ -143,7 +143,17 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
     }
 
+    iconRightClickHandler ( inputCmp : AmpInputComponent , control : FormControl ) {
+        inputCmp.doOnBlurDirty = false;
+        control.setValue( null );
+    }
+
     private close = () : void => {
+        if ( ! this._optionsHidden ) { // when we close , we want to make sure the validation has happened for input
+            // because we manipulated the dirtyness of the input of keydown
+            this.ampInput.checkErrors( true );
+            this.ampInput.markControlAsDirty();
+        }
         this._optionsHidden = true;
         this.showNoResults  = false;
     };
@@ -163,7 +173,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         let keyCode = $event.keyCode;
         if ( keyCode === KeyCodes.DOWN || keyCode === KeyCodes.UP ) {
             if ( ! this.isOptionsHidden ) {
-                this.onDownKeyPressed( keyCode );
+                this.onDownKeyPressed( keyCode , $event );
                 $event.preventDefault();
             } else {
                 this.open();
@@ -181,10 +191,14 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         this.focusInput();
     }
 
-    private onDownKeyPressed ( _direction ) : void {
+    private onDownKeyPressed ( _direction , $event ) : void {
         if ( this.focusers.toArray()[ this.LIST_FOCUSER ] ) {
             this.focusers.toArray()[ this.LIST_FOCUSER ].focus( _direction );
-            this.markInputAsUnDirty(); // otherwise it shows the error because of the focus ou of the input
+            this.control.markAsPristine( {
+                onlySelf : false
+            } );
+            this.ampInput.doOnBlurDirty = false;
+            $event.preventDefault();
         }
     }
 
@@ -238,12 +252,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     private markInputAsUnDirty () : void {
-        setTimeout( () => {
-            (<any> this.control)._dirty = false;
-            this.control.updateValueAndValidity( {
-                onlySelf  : false ,
-                emitEvent : true
-            } );
+        this.control.markAsPristine( {
+            onlySelf : false
         } );
     }
 

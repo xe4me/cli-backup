@@ -32,7 +32,7 @@
     </select>
 
     <div class='amp-dropdown__select' (click)='toggleOptions()' aria-hidden='true'>
-        <div class='amp-dropdown__label' aria-hidden='true' *ngIf='!labelHidden'>{{ label }}</div>
+        <div class='amp-dropdown__label' aria-hidden='true' *ngIf='!labelHidden'>{{ label }} <span *ngIf='!required'>(optional)</span></div>
         <span class='amp-dropdown__icon icon icon--chevron-down' aria-hidden='true'></span>
 
         <span class='amp-dropdown__select-value' aria-hidden='true'>{{ selectedOption[fieldItemKey] }}</span>&nbsp;

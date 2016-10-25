@@ -1,6 +1,5 @@
 import { Component , ViewChild , EventEmitter , ChangeDetectionStrategy , ChangeDetectorRef } from '@angular/core';
 import { RequiredValidator } from '../../../../modules/amp-utils';
-import { addDashOrNothing , isTrue } from '../../../amp-utils/functions.utils';
 import { DeviceService } from '../../../../services/device/device.service';
 import { BaseControl } from '../../../../base-control';
 import { Validators } from '@angular/forms';
@@ -22,6 +21,7 @@ import { Validators } from '@angular/forms';
         'required' ,
         'isInSummaryState' ,
         'labelHidden' ,
+        'keepControl' ,
         'limitTo'
     ] ,
     template        : require( './amp-dropdown.component.html' ) ,
@@ -30,6 +30,11 @@ import { Validators } from '@angular/forms';
     outputs         : [ 'select' ]
 } )
 export class AmpDropdownComponent extends BaseControl {
+    public static MARK_AS_PRISTINE       = true;
+    public static DONT_MARK_AS_PRISTINE  = false;
+    public static TRIGGER_CHANGE         = true;
+    public static DONT_TRIGGER_CHANGE    = false;
+    public keepControl : boolean         = false;
     @ViewChild( 'selectEl' ) selectEl;
     @ViewChild( 'optionsEl' ) optionsEl;
     @ViewChild( 'dropdownEl' ) dropDownEl;
@@ -42,12 +47,12 @@ export class AmpDropdownComponent extends BaseControl {
     protected hasWidth : boolean         = false;
     protected isInSummaryState : boolean = false;
     protected labelHidden : boolean      = false;
-    protected fieldItemKey               = 'label';
-    protected fieldValueKey              = 'value';
+    protected fieldItemKey      = 'label';
+    protected fieldValueKey     = 'value';
     protected currentOption;
-    protected _limitTo : number          = 999;
-    protected select                     = new EventEmitter();
-    protected selectedOption             = {};
+    protected _limitTo : number = 999;
+    protected select            = new EventEmitter();
+    protected selectedOption    = {};
     protected selectElem;
     protected dropdownElem;
     protected optionsElem;
@@ -67,12 +72,17 @@ export class AmpDropdownComponent extends BaseControl {
         }
     }
 
-    public setSelectValue ( value , triggerChange = true ) {
+    public setSelectValue ( value , triggerChange = true , markAsPristine = false ) {
         this.selectElem.value = value;
         if ( triggerChange ) {
             this.trigger( 'change' , this.selectElem );
         }
         this.hideOptions();
+        if ( markAsPristine ) {
+            this.control.markAsPristine( {
+                onlySelf : false
+            } );
+        }
     }
 
     ngOnInit () : any {

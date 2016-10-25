@@ -1,0 +1,24 @@
+@import '../../../../../styles/abstracts';
+@import 'themes/theme-form';
+@import 'themes/theme-tools';
+
+:host {
+    display  : block;
+    position : relative;
+}
+
+.address-pr {
+    @include media-query('tablet-and-up') {
+        padding-right: 30px;
+    }
+}
+
+.address-pl {
+    @include media-query('tablet-and-up') {
+        padding-left: 30px;
+    }
+}
+
+.w-auto {
+    width: auto;
+}

@@ -34,6 +34,7 @@ export class ScrollService {
         let isScrolled = false;
         let body       = this._dom.query( 'body' );
         let components = this._dom.querySelectorAll( body , '[id$="-block"]' );
+
         for ( let i = 0 ; i < components.length ; i ++ ) {
             let selectorName = components[ i ].id;
             if ( fdn ) {
@@ -319,6 +320,10 @@ export class ScrollService {
                     ) { // stop
                         clearInterval( runAnimation );
                         callbackAfter( element );
+
+                        setTimeout(() => {
+                            window.scrollTo(0, getEndLocation( element ));
+                        });
                     }
                 };
                 /**

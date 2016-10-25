@@ -22,7 +22,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpManualAddressComponent;
     @ViewChild( 'typeaheadCmp' ) typeaheadCmp : AmpTypeaheadComponent;
     @Input() id : string                                = 'qas';
-    @Input() addressType : string                       = 'residential';
+    @Input() addressType : string                       = '';
     @Input() label : string                             = 'Default qas label';
     @Input() controlGroup : FormGroup;
     @Input() errors                                     = {
@@ -31,21 +31,29 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @Input() placeholder : string                       = 'Default place holder';
     @Input() required : boolean;
     @Input() isInSummaryState : boolean;
-    @Input() keepControl : boolean                      = false;
     @Input() index;
     @Input() minTriggerLength : number                  = 3;
+    @Input() keepControl : boolean                      = false;
+    @Input() extended : boolean                         = false;
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
-    private showManualEntryForm                         = false;
-    private qasControlGroup                             = new FormGroup( {} );
+    private qasControlGroup;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
 
     ngOnInit () : void {
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id + addDashOrNothing( this.index ) , this.qasControlGroup );
+            if ( this.controlGroup.contains( this.id + addDashOrNothing( this.index ) ) ) {
+                this.qasControlGroup = this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
+            } else {
+                this.qasControlGroup                       = new FormGroup( {} );
+                this.qasControlGroup.__showManualEntryForm = false;
+                this.controlGroup.addControl( this.id + addDashOrNothing( this.index ) , this.qasControlGroup );
+            }
+        } else {
+            this.qasControlGroup = new FormGroup( {} );
         }
     }
 
@@ -77,9 +85,9 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     public showManualAddrForm () {
         setTimeout( () => {
             this.isInSummaryState = false;
-            this.qasControlGroup.reset();
+            this.typeaheadCG.reset();
             this.manualAddressCmp.emptyControls();
-            this.showManualEntryForm = true;
+            this.qasControlGroup.__showManualEntryForm = true;
             this._cd.detectChanges();
         } );
     }
@@ -87,15 +95,16 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     public goBack () {
         setTimeout( () => {
             this.isInSummaryState = false;
+            this.typeaheadCG.reset();
             this.manualAddressCmp.emptyControls();
-            this.showManualEntryForm = false;
+            this.qasControlGroup.__showManualEntryForm = false;
             this._cd.detectChanges();
         } );
     }
 
     get selectedControl () {
-        if ( ! this._selectedControl && this.typeaheadCG && this.typeaheadCG.contains( this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ) {
-            this._selectedControl = this.typeaheadCG.controls[ this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
+        if ( ! this._selectedControl && this.typeaheadCG && this.typeaheadCG.contains( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ) {
+            this._selectedControl = this.typeaheadCG.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
         }
         return this._selectedControl;
     };
@@ -105,12 +114,14 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     }
 
     public onOptionSelect ( $event ) {
-        this._ampQasAddressService
-            .getFormattedAddress( $event.Moniker , AddressFormatTypes.CRM )
-            .subscribe( ( _formattedAddress : any ) => {
-                this.manualAddressCmp.updateControls( _formattedAddress );
-                this.$selected.emit( _formattedAddress );
-            } );
+        if ( ! this.isInSummaryState ) {
+            this._ampQasAddressService
+                .getFormattedAddress( $event.Moniker , this.extended ? AddressFormatTypes.ALL : AddressFormatTypes.CRM )
+                .subscribe( ( _formattedAddress : any ) => {
+                    this.manualAddressCmp.updateControls( _formattedAddress );
+                    this.$selected.emit( _formattedAddress );
+                } );
+        }
     }
 
     private customValidator = () : Function => {

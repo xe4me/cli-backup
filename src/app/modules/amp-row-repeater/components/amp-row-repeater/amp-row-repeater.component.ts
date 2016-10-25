@@ -10,15 +10,19 @@ import { FormArray , FormGroup } from '@angular/forms';
     } ,
     template        : `
         <div class="grid__container 1/1 mt-60" *ngFor="let controlGroup of controlArray.controls ; let i = index;">
-            <div class="row-repeated__col-left utils__push--left">
+            <div class="row-repeated__col-left utils__push--left {{ colLeftClass }}">
                 <template
                     [ngTemplateOutlet]="itemTemplate"
                     [ngOutletContext]="{ controlGroup: controlGroup, index: i }">
                 </template>
             </div>
-            <div class="row-repeated__col-right utils__push--left">
-                <amp-button *ngIf="i > 0" [context]="context" (click)="remove(i)"
-                            class="btn btn-anchor utils__push--left">
+            <div class="row-repeated__col-right utils__push--left {{ colRightClass }}">
+                <amp-button 
+                    *ngIf="rowCount > 1" 
+                    [context]="context" 
+                    (click)="remove(i)"
+                    [disabled]="isInSummaryState"
+                    class="btn btn-anchor row-repeated__btn-remove">
                     {{ removeBtn }}
                 </amp-button>
             </div>
@@ -43,6 +47,8 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'addBtn' ) addBtn;
     @Input( 'maxRows' ) maxRows : number = 9999;
     @Input( 'isInSummaryState' ) isInSummaryState : boolean = false;
+    @Input( 'colLeftClass' ) colLeftClass : string = '';
+    @Input( 'colRightClass' ) colRightClass : string = '';
     private controlArray : FormArray     = new FormArray( [] );
 
     ngOnInit () : void {
@@ -59,7 +65,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     }
 
     private init () {
-        if ( this.controlArray.controls.length === 0 ) {
+        if ( this.rowCount === 0 ) {
             this.add();
         }
     }
@@ -78,7 +84,11 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         }
     }
 
+    private get rowCount () {
+        return this.controlArray.controls.length;
+    }
+
     private get addBtnDisabled () {
-        return (this.maxRows === this.controlArray.controls.length) || this.isInSummaryState;
+        return (this.maxRows === this.rowCount) || this.isInSummaryState;
     }
 }

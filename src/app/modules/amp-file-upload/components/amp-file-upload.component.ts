@@ -17,8 +17,6 @@ import { Observable } from 'rxjs';
 })
 export class AmpFileUploadComponent implements OnInit {
     @ViewChild('fileInput') fileInput;
-    @Input() title : string;
-    @Input() text : string;
     @Input() uploadUrl : string;
     @Input() deleteUrl : string;
     @Input() tokenUrl : string;
@@ -110,7 +108,7 @@ export class AmpFileUploadComponent implements OnInit {
         retrieveToken.subscribe(
             ( res : any ) => {
                 let token = res.payload.token;
-                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&objectId=' + this.formId
+                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&id=' + this.formId
                     + '&token=' + token;
                 this.backendError = false;
                 // TODO: Change detection is not happening automatically
@@ -156,7 +154,6 @@ export class AmpFileUploadComponent implements OnInit {
             return false;
         }
         if ( !(file.size <= this.sizeAllowed ) ) {
-            console.log(file.size);
             error.message = 'File size Exceeds allowable limit of 1MB';
             this.setErrorMessage( error );
             return false;

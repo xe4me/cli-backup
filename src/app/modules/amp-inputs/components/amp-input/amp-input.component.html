@@ -5,6 +5,7 @@
         (blur)='onBlured($event)'
         [disabled]='isInSummaryState || disabled'
         class='md-input'
+        [class.amp-input-focused]='inputFocus'
         [class.label-hidden]='labelHidden'
         [aria-label]='randomizedId'
         [name]='randomizedId'
@@ -17,5 +18,5 @@
         [placeholder]='required?label:label+" (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 </md-input>
-<span *ngIf='iconRight && !isInSummaryState' class="icon icon--search icon-right"></span>
+<span (click)='handleIconRightClick()' *ngIf='showIconRight && iconRight && !isInSummaryState' class="icon icon--{{ iconRight }} icon-right"></span>
 <span class='summary-text' [innerHTML]='input.value'></span>

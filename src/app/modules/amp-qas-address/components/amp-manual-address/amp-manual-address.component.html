@@ -1,8 +1,12 @@
+<div class="mt-60" *ngIf="!isInSummaryState">
+    Try the address search again by clicking <a href="javascript:void(0);" (click)='goBack()'>here</a>.
+</div>
 <div class='manual-address grid__item_container clearfix'>
     <div [hidden]='isInSummaryState'>
         <amp-form-row>
             <div class='grid__item_floated 1/1'>
                 <amp-country
+                        [keepControl]='keepControl'
                         class="utils__display--block-palm"
                         (select)='onCountrySelect($event)'
                         #manualCountryCmp
@@ -10,14 +14,15 @@
                         [index]='index'
                         [controlGroup]='manualAddressCG'>
                 </amp-country>
-
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="country.id+addDashOrNothing(index)"></amp-error>
+                <amp-error [controlGroup]='manualAddressCG'
+                           [controlId]="country.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
 
         <amp-form-row>
             <div class='grid__item_floated 1/1'>
                 <amp-input
+                        [keepControl]='keepControl'
                         #manualAddressCmp
                         class='1/1'
                         noPadding='true'
@@ -31,9 +36,9 @@
                         [minLength]='address.minLength'
                         [required]="false">
                 </amp-input>
-                
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="address.id+addDashOrNothing(index)"></amp-error>
-                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+
+                <amp-error [controlGroup]='manualAddressCG'
+                           [controlId]="address.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
 
@@ -41,6 +46,7 @@
             <amp-form-row>
                 <div class='grid__item_floated 1/1'>
                     <amp-input
+                            [keepControl]='keepControl'
                             #manualSuburbCmp
                             class='1/1'
                             [id]='suburb.id'
@@ -54,8 +60,8 @@
                             [errors]='suburb.errors'>
                     </amp-input>
 
-                    <amp-error [controlGroup]='manualAddressCG' [controlId]="suburb.id+addDashOrNothing(index)"></amp-error>
-                    <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
+                    <amp-error [controlGroup]='manualAddressCG'
+                               [controlId]="suburb.id+addDashOrNothing(index)"></amp-error>
                 </div>
             </amp-form-row>
         </div>
@@ -63,6 +69,7 @@
         <amp-form-row>
             <div class='grid__item_floated w-auto palm-1/1 tablet-1/2 address-pr' [hidden]='!isCountryAUS'>
                 <amp-states
+                        [keepControl]='keepControl'
                         class="utils__display--block-tablet-and-down"
                         #manualStatesCmp
                         [id]='state.id'
@@ -73,11 +80,11 @@
                 </amp-states>
 
                 <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+addDashOrNothing(index)"></amp-error>
-                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
             </div>
 
             <div class='grid__item_floated tablet-and-up-1/2 address-pr' [hidden]='isCountryAUS'>
                 <amp-input
+                        [keepControl]='keepControl'
                         #manualCityCmp
                         [id]='city.id'
                         [label]='getCityLabel()'
@@ -90,11 +97,11 @@
                 </amp-input>
 
                 <amp-error [controlGroup]='manualAddressCG' [controlId]="city.id+addDashOrNothing(index)"></amp-error>
-                <span class='comma-summary-state' *ngIf='isInSummaryState'>, </span>
             </div>
 
             <div class='grid__item_floated tablet-and-up-1/2 address-pl'>
                 <amp-input
+                        [keepControl]='keepControl'
                         #manualPostcodeCmp
                         noPadding='true'
                         class='1/1'
@@ -109,8 +116,8 @@
                         [minLength]="getPostcodeMinLength()">
                 </amp-input>
 
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="postCode.id+addDashOrNothing(index)"></amp-error>
-                <span class='comma-summary-state' *ngIf='isInSummaryState'>.</span>
+                <amp-error [controlGroup]='manualAddressCG'
+                           [controlId]="postCode.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
     </div>

@@ -54,27 +54,27 @@ import { BaseControl } from '../../../../base-control';
             'showLabel' ,
             'tolowerCase' ,
             'idleTimeOut' ,
-            'validationDelay' ,
             'toupperCase' ,
-            'autoFocus' ,
-            'noPadding' ,
             'currency' ,
             'iconRight' ,
             'labelHidden' ,
             'keepControl' ,
+            'autoShrink' ,
+            'showIconRight' ,
+            'iconRightClickHandler' ,
             'autoComplete'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
         host            : {
             '[class.md-input-has-value]' : 'control.value' ,
-            '[class.summary]'            : 'isInSummaryState' ,
-            '[class.noPadding]'          : 'noPadding'
+            '[class.summary]'            : 'isInSummaryState'
         } ,
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent extends BaseControl implements AfterViewInit, OnChanges {
     @ViewChild( 'input' ) inputCmp;
+    public doOnBlurDirty                 = true;
     protected inputWidth : number;
     protected type : string              = 'text';
     protected _minLength : number;
@@ -90,8 +90,10 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected showLabel : boolean        = true;
     protected tolowerCase : boolean      = false;
     protected toupperCase : boolean      = false;
+    protected autoShrink : boolean       = true;
     protected iconRight : boolean        = false;
     protected isActive : boolean         = true;
+    protected showIconRight : boolean    = true;
     protected tabindex : any             = null;
     protected defaultValue : any         = null;
     protected currency : string          = null;
@@ -105,10 +107,11 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected onKeyup : EventEmitter<any>;
     protected labelHidden : boolean      = false;
     protected validate;
-    protected validationDelay            = 0;
     protected idleTimeOut                = 4500;
     protected idleTimeoutId;
     protected autoComplete : string      = 'off';
+    protected iconRightClickHandler;
+    protected inputFocus = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,
@@ -137,15 +140,23 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         this.checkErrors( true );
     }
 
+    handleIconRightClick () {
+        if ( this.iconRightClickHandler ) {
+            this.iconRightClickHandler( this.inputCmp , this.control );
+        }
+    }
+
     ngAfterViewInit () : any {
         this.inputWidth = this.el.nativeElement.offsetWidth;
         if ( this.inputWidth === 0 ) {
             this.inputWidth = 300;
         }
         this.tempClassNames = this.el.nativeElement.className;
-        // this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
-        // this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
-        // this.el.nativeElement.className = this.tempClassNames;
+        if ( this.autoShrink ) {
+            this.renderer.setElementAttribute( this.el.nativeElement , 'class' , '' );
+            this.renderer.setElementStyle( this.el.nativeElement , 'width' , this.inputWidth + 'px' );
+            this.el.nativeElement.className = this.tempClassNames;
+        }
         this.updateValidators();
         this.addDelayedValidation();
         this.setDefaultValue();
@@ -177,6 +188,12 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
             }
             this._cd.markForCheck();
         }
+    }
+
+    public markControlAsDirty () {
+        this.control.markAsDirty( {
+            onlySelf : false
+        } );
     }
 
     get pattern () {
@@ -263,7 +280,9 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
 
     protected onFocused ( event ) {
         this.resetIdleTimeOut();
+        this.doOnBlurDirty = true;
         this.onFocus.emit( event );
+        this.inputFocus = true;
     }
 
     protected initiateInputWidth () {
@@ -280,10 +299,13 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
 
     protected onBlured ( $event ) {
         this.checkErrors();
+        clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
-            this.removeIdleAndMarkAsDirty();
-            this._cd.markForCheck();
-        } );
+            if ( this.doOnBlurDirty ) {
+                this.markControlAsDirty();
+                this._cd.markForCheck();
+            }
+        } , 100 );
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
             this.inputCmp.value = this.control.value.trim();
@@ -291,6 +313,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
             notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
+        this.inputFocus = false;
     }
 
     protected onKeyupEvent ( $event ) {
@@ -319,19 +342,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         } , this.idleTimeOut );
     }
 
-    protected removeIdleAndMarkAsDirty () {
-        clearTimeout( this.idleTimeoutId );
-        this.markControlAsDirty();
-    }
-
     protected markControlAsUndirty () {
         this.control.markAsPristine( {
-            onlySelf : false
-        } );
-    }
-
-    protected markControlAsDirty () {
-        this.control.markAsDirty( {
             onlySelf : false
         } );
     }

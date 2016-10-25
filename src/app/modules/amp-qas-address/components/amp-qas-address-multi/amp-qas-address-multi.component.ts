@@ -1,10 +1,5 @@
-import {
-    Component , AfterViewInit , Input , ChangeDetectionStrategy , ChangeDetectorRef ,
-    OnInit
-} from '@angular/core';
-import { AmpQasAddressService , AddressFormatTypes } from '../../services/amp-qas-address.service';
+import { Component , Input , ChangeDetectionStrategy , ChangeDetectorRef , OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { isTrue } from '../../../amp-utils/functions.utils';
 @Component( {
     selector        : 'amp-qas-address-multi' ,
     template        : require( './amp-qas-address-multi.component.html' ) ,
@@ -16,7 +11,9 @@ export class AmpQasAddressMultiComponent implements OnInit {
     @Input() controlGroup : FormGroup;
     @Input() required : boolean;
     @Input() index;
-    @Input() isInSummaryState : boolean;
+    @Input() extended : boolean            = true;
+    @Input() isInSummaryState : boolean    = false;
+    @Input() keepControl : boolean         = false;
     @Input() postalAddress                 = {
         id    : 'postalAddress' ,
         label : 'Postal address'
@@ -29,19 +26,31 @@ export class AmpQasAddressMultiComponent implements OnInit {
         id : 'postalAndResidentialAreSame'
     };
     private arePostalAndResidentialTheSame = true;
-    private qasMultiCG                     = new FormGroup( {} );
+    private qasMultiCG;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 
     ngOnInit () : void {
         if ( this.controlGroup ) {
-            this.controlGroup.addControl( this.id , this.qasMultiCG );
+            if ( this.controlGroup.contains( this.id ) ) {
+                this.qasMultiCG = this.controlGroup.get( this.id );
+            } else {
+                this.qasMultiCG = new FormGroup( {} );
+                this.controlGroup.addControl( this.id , this.qasMultiCG );
+            }
+        } else {
+            this.qasMultiCG = new FormGroup( {} );
         }
     }
 
-    private onCheckboxSelect ( _value ) {
-        this.arePostalAndResidentialTheSame = _value;
+    private onCheckboxSelect ( $event ) {
+        this.arePostalAndResidentialTheSame = $event.target.checked;
+        if ( this.arePostalAndResidentialTheSame ) {
+            if ( this.qasMultiCG.contains( this.postalAddress.id ) ) {
+                this.qasMultiCG.removeControl( this.postalAddress.id );
+            }
+        }
         this._cd.detectChanges();
     }
 

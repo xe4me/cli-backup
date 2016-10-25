@@ -19,6 +19,7 @@ import { BaseControl } from '../../../../base-control';
         'scrollOutUnless' ,
         'scrollOutOn' ,
         'disabled' ,
+        'keepControl' ,
         'buttons' ,
         'index'
     ] ,
@@ -28,12 +29,14 @@ import { BaseControl } from '../../../../base-control';
     outputs         : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent extends BaseControl {
+    public keepControl : boolean      = false;
     private buttons;
-    private keepControlOnDestroy = false;
+    private keepControlOnDestroy      = false;
     private scrollOutUnless : string;
     private scrollOutOn : string;
     private defaultValue : string;
-    private select               = new EventEmitter<any>();
+    private hasBooleanValue : boolean = false;
+    private select                    = new EventEmitter<any>();
 
     constructor ( private changeDetector : ChangeDetectorRef ,
                   private elem : ElementRef ,
@@ -52,7 +55,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
     updateValidators () {
         if ( this.control ) {
             let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required ) ,
+                RequiredValidator.requiredValidation( this.required , this.hasBooleanValue ) ,
                 this.customValidator()
             ] );
             this.control.setValidators( validators );
@@ -62,12 +65,13 @@ export class AmpGroupButtonsComponent extends BaseControl {
     }
 
     ngAfterViewInit () : any {
+        this.checkIfHasBooleanValue();
         this.control
             .valueChanges
             .distinctUntilChanged()
             .subscribe( ( changes ) => {
-                if ( changes ) {
-                    this.select.emit( changes + '' );
+                if ( changes !== undefined && changes !== null ) {
+                    this.select.emit( changes );
                 }
             } );
         if ( this.defaultValue ) {
@@ -83,6 +87,14 @@ export class AmpGroupButtonsComponent extends BaseControl {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
         } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
             this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
+        }
+    }
+
+    private checkIfHasBooleanValue () {
+        if ( this.buttons ) {
+            for ( let i = 0 ; i < this.buttons.length ; i ++ ) {
+                this.hasBooleanValue = typeof this.buttons[ i ].value === 'boolean';
+            }
         }
     }
 }
