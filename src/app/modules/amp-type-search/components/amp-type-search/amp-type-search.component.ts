@@ -142,26 +142,26 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     private doSearchIconClick() {
         this.searchIconClick(this.control.value || '')
-                .subscribe((result) => {
-                    this.clearSelectedItem();
-                    this.open();
-                    this.searchResult = result.json().payload;
-                    if ( result.json().errorCode ) {
-                      this.$errorCode.emit({ errorCode: result.json().errorCode });
-                    }  else {
-                        /* Hardcoding in a not found option. This is only temporary.*/
-                        this.searchResult.push({ 'decisionWizard' : '------ Can\'t see your business name? Please try our decision wizard (coming soon). ------' });
-                    }
-                    this._cd.markForCheck();
-                    this.ampInput.checkErrors();
-                } , ( error ) => {
-                    this.clearSelectedItem();
-                    this.close();
-                    this.searchResult = null;
-                    this._cd.markForCheck();
-                    this.ampInput.checkErrors();
-                } );
-        }
+            .subscribe((result) => {
+                this.clearSelectedItem();
+                this.open();
+                this.searchResult = result.json().payload;
+                if ( result.json().errorCode ) {
+                  this.$errorCode.emit({ errorCode: result.json().errorCode });
+                }  else {
+                    /* Hardcoding in a not found option. This is only temporary.*/
+                    this.searchResult.push({ 'decisionWizard' : '------ Can\'t see your business name? Please try our decision wizard (coming soon). ------' });
+                }
+                this._cd.markForCheck();
+                this.ampInput.checkErrors();
+            } , ( error ) => {
+                this.clearSelectedItem();
+                this.close();
+                this.searchResult = null;
+                this._cd.markForCheck();
+                this.ampInput.checkErrors();
+            } );
+    }
 
     private open () {
         if ( this.isInSummaryState ) {
@@ -221,7 +221,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     private initForApi () : Subscription {
         // this.searchResult = null;
-         this.doApiQuery   = true;
+        this.doApiQuery   = true;
         // return this.subscription =
         //     this.control
         //         .valueChanges
@@ -248,7 +248,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         //             this._cd.markForCheck();
         //             this.ampInput.checkErrors();
         //         } );
-         return undefined;
+        return undefined;
     }
 
     private markInputAsUnDirty () : void {
