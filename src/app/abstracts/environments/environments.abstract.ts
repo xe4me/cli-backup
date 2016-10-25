@@ -45,11 +45,11 @@ export class RootEnvProperty {
     // Base url for api calls like : /ddc/secure/api/...
     ApiCallsBaseUrl : string;
     // Base URL for the js config libraries
-    ApiGreenIdConfig:string;
+    ApiGreenIdConfig : string;
     // Base URL for the js UI libraries
-    ApiGreenIdUI:string;
+    ApiGreenIdUI : string;
     // Base URL for the js UI libraries
-    ApiGreenIdFormAction:string;
+    ApiGreenIdFormAction : string;
 
     constructor () {
         if (_process_env) {
