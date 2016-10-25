@@ -1,68 +1,53 @@
-<div [hidden]='qasControlGroup.__showManualEntryForm'>
-    <amp-form-row>
-        <div class='grid__item_floated  1/1'>
-            <amp-typeahead
-                    #typeaheadCmp
-                    class='1/1'
-                    [controlGroup]='qasControlGroup'
-                    [required]='!qasControlGroup.__showManualEntryForm'
-                    [errors]='errors'
-                    [keepControl]='keepControl'
-                    [minTriggerLength]='minTriggerLength'
-                    [customValidator]='customValidator'
-                    [queryServiceCall]='_ampQasAddressService.query'
-                    [maxHeight]='maxHeight'
-                    [isInSummaryState]='isInSummaryState'
-                    [id]='id'
-                    [index]='index'
-                    (selected)='onOptionSelect($event)'
-                    [selectedItemIdentifier]='"Moniker"'
-                    [selectedItemValueIdentifier]='"PartialAddress"'
-                    [label]='label'>
-                <template let-option='option'>
-                    {{ option.PartialAddress }}
-                </template>
-            </amp-typeahead>
-
-            <amp-error [controlGroup]='typeaheadCG'>
-                <template let-error='error'>
-                    <error-item [error]='error' selector='addressNotFound'>
-                        Enter your {{ addressType }} address manually by clicking <a href="javascript:void(0);"
-                                                                                     (click)='showManualAddrForm()'>here</a>.
-                    </error-item>
-                </template>
-            </amp-error>
-            <div *ngIf='showResidentialAddressCannotBePoBoxError' class='errors'>
-                <div class='error-item'>
-                    <span class='icon icon--close icon-errors' aria-hidden='true'></span>You've selected a po box address, please select a residential address.
-                </div>
-            </div>
-        </div>
-    </amp-form-row>
-</div>
-
-<div [hidden]='!qasControlGroup.__showManualEntryForm'>
-    <div *ngIf='!extended'>
-        <amp-manual-address
-                (onGoBack)='goBack()'
-                #manualAddressCmp
+<div [clicked-outside]='close' class='amp-typeahead'>
+    <div class='amp-typeahead-control'>
+        <amp-input
+                #input
+                class='1/1'
+                focuser='input'
+                iconRight='close'
+                (click)='open()'
+                (keydown)='onKeydown($event)'
+                [autoFocus]='isActive'
+                [errors]='errors'
+                [label]='label'
                 [keepControl]='keepControl'
-                [controlGroup]='qasControlGroup'
-                [id]='id'
                 [index]='index'
-                [isInSummaryState]='isInSummaryState'>
-        </amp-manual-address>
+                [showIconRight]='input.control.value'
+                [idleTimeOut]='"1000"'
+                [isInSummaryState]='isInSummaryState'
+                [id]='queryControlId'
+                [controlGroup]='searchControlGroup'
+                [customValidator]='customValidator'
+                [iconRightClickHandler]='iconRightClickHandler'
+                [minLength]='minTriggerLength'
+                [required]='required'>
+        </amp-input>
     </div>
-    <div *ngIf='extended'>
-        <amp-manual-address-extended
-                #manualAddressCmp
-                (onGoBack)='goBack()'
-                [keepControl]='keepControl'
-                [controlGroup]='qasControlGroup'
-                [id]='id'
-                [addressType]='addressType'
-                [index]='index'
-                [isInSummaryState]='isInSummaryState'>
-        </amp-manual-address-extended>
-    </div>
+    <ul
+            *ngIf='searchResult!==null && !isOptionsHidden'
+            focuser='list'
+            [ngStyle]='{"max-height":maxHeight}'
+            (focusOut)='onListFocusOut()'
+            class='amp-typeahead-options'>
+        <li *ngIf='selectLabel && filteredList.length>0' class='amp-typeahead-option' tabindex='-1'>
+            <strong>{{ selectLabel }}</strong>
+        </li>
+        <li (keydown.enter)='selectOption(option)'
+            (click)='selectOption(option)'
+            *ngFor='let option of filter(searchResult,selectedItemValueIdentifier,control.value,!doApiQuery); let i = index'
+            class='amp-typeahead-option'
+            [class.amp-typeahead-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
+            [attr.tabindex]='i+1'>
+            <template
+                    [ngTemplateOutlet]='itemTemplate'
+                    [ngOutletContext]='{ option: option, index: index }'>
+            </template>
+        </li>
+    </ul>
+    <ul *ngIf='!doApiQuery && !isOptionsHidden && control.value && filteredList.length===0'
+        class='amp-typeahead-options'>
+        <li class='amp-typeahead-option' disabled>
+            <strong>No results found</strong>
+        </li>
+    </ul>
 </div>
