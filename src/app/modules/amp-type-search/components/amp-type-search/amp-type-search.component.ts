@@ -38,6 +38,8 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
     @Output( 'deSelected' ) $deSelected             = new EventEmitter<any>();
     @Output( 'errorCode' ) $errorCode               = new EventEmitter<any>();
+    @Output( 'showResults' ) $showResults           = new EventEmitter<any>();
+
     @Input() maxHeight : string                     = '400px';
     @Input() id;
     @Input() selectedItemIdentifier                 = 'id';
@@ -146,6 +148,9 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                     this.searchResult = result.json().payload;
                     if ( result.json().errorCode ) {
                       this.$errorCode.emit({ errorCode: result.json().errorCode });
+                    }  else {
+                        /* Hardcoding in a not found option. This is only temporary.*/
+                        this.searchResult.push({ "decisionWizard" : "------ Can't see your business name? Please try our decision wizard (coming soon). ------" });
                     }
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
@@ -156,6 +161,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
                 } );
+        }
     }
 
     private open () {
@@ -163,6 +169,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
             return;
         }
         this._optionsHidden = false;
+        this.$showResults.emit(!this._optionsHidden);
     };
 
     private onListFocusOut () {
@@ -215,7 +222,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     private initForApi () : Subscription {
         // this.searchResult = null;
-        this.doApiQuery   = true;
+         this.doApiQuery   = true;
         // return this.subscription =
         //     this.control
         //         .valueChanges
@@ -242,7 +249,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         //             this._cd.markForCheck();
         //             this.ampInput.checkErrors();
         //         } );
-        return undefined;
+         return undefined;
     }
 
     private markInputAsUnDirty () : void {
