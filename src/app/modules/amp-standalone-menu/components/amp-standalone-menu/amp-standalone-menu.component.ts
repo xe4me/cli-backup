@@ -14,6 +14,7 @@ import {
 
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormSectionService } from '../../../../services/form-section/form-section.service';
+import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 
@@ -29,7 +30,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
 
     public control: FormControl = new FormControl(null);
     public errors = {};
-    public showNavigation: boolean = false;
+    public showNavigation: boolean = true;
     private _selected: string = null;
     private _disabled: boolean = false;
     private _required: boolean = false;
@@ -45,6 +46,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
     constructor(private _dom: BrowserDomAdapter,
         private _cd: ChangeDetectorRef,
         private elem: ElementRef,
+        private scrollService: ScrollService,
         private formSectionService: FormSectionService) {
 
         this.domUtils = new DomUtils();
@@ -53,125 +55,19 @@ export class AmpStandAloneMenuComponent implements OnInit {
 
     ngOnInit(): any {
 
-        // this.form
-        //     .valueChanges
-        //     .debounceTime(700)
-        //     .subscribe( ( changes ) => {
-        //         this.updateSections();
-        //     });
-
         this.sectionObservable.subscribe((blockchanges) => {
 
-            console.log("blockchanges " + JSON.stringify(blockchanges));
-
-            console.log("section Id: " + this.getSectionIdFromBlock(blockchanges));
-
-            if (blockchanges) {
-
-                if (!this.isSectionUpdated) {
-
-                    console.log(this.form.controls);
-
-                    this.updateSections(this.form.controls);
-                    this.isSectionUpdated = true;
-                }
-
-                this._currentSectionName = blockchanges.section;
-                this.showNavigation = true;
-
-                //setTimeout(() => {
-
-                    // this.setUiStates(this._currentSectionName);
-                    // this.setUiStates(this.getSectionIdFromBlock(blockchanges));
-
-                //}, 10);
-
-                this.setUiStates(this.getSectionIdFromBlock(blockchanges));
-
-                this._cd.markForCheck();
-            }
+            setTimeout(()=>{
+                this.updateSections();                
+                
+            },0)
 
         });
     }
 
-    private getSectionIdFromBlock(block: any) {
-        let id: string = '';
-        let tempArr = [];
-        let offSet = 1;
-        let foundIndex = -1;
-        if (block['section'] && block['section'].length > 0 && block['componentSelector'] && block['componentSelector'].length > 0) {
-            tempArr = block['componentSelector'].split('-');
-            if (tempArr.length > 0 ) {
-                foundIndex = tempArr.indexOf(block['section']);
-                if (foundIndex != -1) {
-                    id = tempArr.slice(offSet, foundIndex + offSet).join('-');
-                }
-            }
-        }
-
-        return id;
-
-    }
-
-    private setUiStates(_currentSection: string): void {
-        let indexFound = -1;
-        let mySections = [];
-        let newState = null;
-
-        // console.log("this.sections", this.sections);
-        // console.log("current section " + _currentSection);
-
-        indexFound = this.sections.findIndex((section) => {
-            return section.key === _currentSection;
-        });
-
-        // console.log("found index: ", indexFound);
-
-        if (indexFound != -1) {
-            mySections = this.sections.map( (section, index)  => {
-                if (index === indexFound) {
-                    if (section.state === 'active' && index === (this.sections.length - 1)) {
-                        newState = 'done';
-                    }
-                    else {
-                        newState = 'active';
-                    }
-                } 
-                else if (index < indexFound) {
-                    newState = 'done';
-                }
-                else {
-                    newState = '';
-                }
-                return {
-                    label: section.label,
-                    key: section.key,
-                    // state: index === indexFound ? 'active' : index < indexFound ? 'done' : ''
-                    state: newState
-                }
-            });
-
-            Object.assign(this.sections, mySections);
-
-        }
-
-        // if (_currentSection) {
-        //     // TODO: cache selected values, and access to highlight sections
-
-        //     let parentUlElm = this._dom.query('#' + _currentSection);
-        //     parentUlElm.className = parentUlElm ? 'active' : '';
-
-        //     if (this._previousSectionName === null) {
-        //         this._previousSectionName = _currentSection;
-
-        //     } else if (this._previousSectionName !== _currentSection) {
-
-        //         let prevUlElm = this._dom.query('#' + this._previousSectionName);
-        //         prevUlElm.className = prevUlElm ? 'done' : '';
-
-        //     }
-        // }
-
+    private getDisabledState(_state){
+        console.log('_state.indexOf("visited")',_state.indexOf("visited")===-1);
+        return _state.indexOf("visited")===-1;
     }
 
     /**
@@ -179,33 +75,39 @@ export class AmpStandAloneMenuComponent implements OnInit {
      * Update the sections and then put them into the collection along with the custom names for the menu
      *
      */
-    private updateSections(controls: any, parentRef: string = ''): void {
-        let keyId : string = '';
+    private updateSections() {
+        let body = this._dom.query('body');
+        let sections = this._dom.querySelectorAll(body, 'page-section');
+        console.log('sections', sections);
 
-        if (controls) {
-            Object.keys(controls).map((key) => {
+        let mySections = [];
 
-                if (/section$/i.test(key)) {//only section can be considered for custom object with label.
-                    if (controls[key].custom && controls[key].custom.label) {
-                        keyId = parentRef.length > 0 ? `${parentRef}-${key}` : `${key}`;
-                        this.sections.push({ 
-                            label: controls[key].custom.label, 
-                            key: keyId, 
-                            state: null
-                        });
-                    } 
-                    if (controls[key].controls) {
-                        this.updateSections(controls[key].controls, keyId);
-                    }
-                }
-            });
-        }
+        this.sections = Array.prototype.map.call(sections, (section, index) => {
+            let id = section.id;
+            let classes = section.className;
+            let label = section.getAttribute('label');
+
+            // console.log('id', id);
+            // console.log('classes', classes);
+            // console.log('label', label);
+            return {
+                label: label,
+                id: id,
+                state: classes
+            }
+        });
+
+        console.log('my menu sections ', this.sections);
+
+        this._cd.markForCheck();
+
     }
 
     private scrollToSection(event) {
         console.log("Navigate to section ", event);
+        this.scrollService.scrollToComponentSelector(event.id);
     }
-    
+
     private openCloseMenu(event) {
         let navElement = this._dom.query('nav');
         let clsName = 'open';
