@@ -20,13 +20,6 @@ export default class AmpGreenIdBlockBasicUsage {
     // private scriptUrls : string[] = [Environments.property.ApiGreenIdConfig, Environments.property.ApiGreenIdUI];
 
     /**
-     * This is the form action URL
-     */
-    private formAction   : string  = '//test2.edentiti.com/verification/simpleui-finish.seam';
-    // The following are Kubernetes URLS & properties for the above settings
-    // private formAction   : string  = Environments.property.ApiGreenIdFormAction;
-
-    /**
      * This model is for testing purpose only
      */
     private modelValue = {
