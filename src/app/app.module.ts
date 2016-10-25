@@ -45,15 +45,16 @@ import {
     AmpStandAloneMenuModule
 } from 'amp-ddc-components';
 import {
-    SharedFormDataService
-} from './shared/shared-form-data.service';
-const PROVIDERS    = [
+    SharedFormDataService ,
+    ApplicantGeneratorService
+} from './shared';
+const PROVIDERS       = [
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
     FormService
 ];
-const DECLARATIONS = [
+const DECLARATIONS    = [
     AmpIntroBlockComponent ,
     AmpFormBlockComponent ,
     AmpOverlayComponent ,
@@ -62,7 +63,7 @@ const DECLARATIONS = [
 const routes : Routes = [
     { path : '' , component : BetterFormComponent } ,
 ];
-const IMPORTS = [
+const IMPORTS         = [
     AmpRowRepeaterModule ,
     AmpFormRowModule ,
     AmpTooltipModule ,
@@ -94,7 +95,8 @@ const IMPORTS = [
     imports      : IMPORTS ,
     providers    : [
         ...APP_RESOLVER_PROVIDERS ,
-        SharedFormDataService
+        SharedFormDataService ,
+        ApplicantGeneratorService
     ] ,
     bootstrap    : [ AppComponent ]
 } )
