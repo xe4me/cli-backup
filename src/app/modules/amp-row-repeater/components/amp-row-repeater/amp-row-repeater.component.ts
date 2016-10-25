@@ -18,7 +18,7 @@ import { FormArray , FormGroup } from '@angular/forms';
             </div>
             <div class="row-repeated__col-right utils__push--left {{ colRightClass }}">
                 <amp-button 
-                    *ngIf="i > 0" 
+                    *ngIf="rowCount > 1" 
                     [context]="context" 
                     (click)="remove(i)"
                     [disabled]="isInSummaryState"
@@ -65,7 +65,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     }
 
     private init () {
-        if ( this.controlArray.controls.length === 0 ) {
+        if ( this.rowCount === 0 ) {
             this.add();
         }
     }
@@ -84,7 +84,11 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         }
     }
 
+    private get rowCount () {
+        return this.controlArray.controls.length;
+    }
+
     private get addBtnDisabled () {
-        return (this.maxRows === this.controlArray.controls.length) || this.isInSummaryState;
+        return (this.maxRows === this.rowCount) || this.isInSummaryState;
     }
 }
