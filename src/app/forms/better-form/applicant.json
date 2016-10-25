@@ -143,27 +143,6 @@
                 "custom": {
                     "blockTitle": "Checking your ID",
                     "controls": [
-                        {
-                            "id": "DriversLicenseState"
-                        },
-                        {
-                            "id": "DriversLicenseNumber"
-                        },
-                        {
-                            "id": "MedicareCardNumber"
-                        },
-                        {
-                            "id": "MedicareCardCardColour"
-                        },
-                        {
-                            "id": "MedicareCardPatientNumber"
-                        },
-                        {
-                            "id": "MedicareCardExpiry"
-                        },
-                        {
-                            "id": "AustralianPassportNUmber"
-                        }
                     ]
                 }
             }
