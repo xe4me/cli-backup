@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AmpGreenidBlockComponent } from '../../../app/blocks/amp-greenid-block/amp-greenid-block';
 import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
 import { ThemeService } from '../../services/theme';
+import {Environments} from '../../../app/abstracts/environments/environments.abstract';
 
 @Component( {
     selector    : 'amp-greenid-block-basic-usage' ,
@@ -17,7 +18,7 @@ export default class AmpGreenIdBlockBasicUsage {
     */
      private scriptUrls : string[] = ['//test2.edentiti.com/df/javascripts/greenidConfig.js', '//test2.edentiti.com/df/javascripts/greenidui.min.js'];
     // The following are Kubernetes URLS & properties for the above settings
-    // private scriptUrls : string[] = [Environments.property.ApiGreenIdConfig, Environments.property.ApiGreenIdUI];
+    //private scriptUrls : string[] = [Environments.property.ApiGreenIdConfig, Environments.property.ApiGreenIdUI];
 
     /**
      * This model is for testing purpose only
