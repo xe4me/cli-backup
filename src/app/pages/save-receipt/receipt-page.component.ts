@@ -16,17 +16,20 @@ import { ActivatedRoute } from '@angular/router';
         'title' ,
         'messageForReference' ,
         'messageForEmail' ,
-        'emailSentEvent'
+        'emailSentEvent',
+        'emailSentErrorEvent'
     ] ,
-    outputs  : [ '$sendEmailEvent' ]
+    outputs  : [ 'sendEmailEvent' ]
 } )
 export class SaveReceiptPageComponent implements AfterViewInit {
-    public $sendEmailEvent : EventEmitter<any> = new EventEmitter();
+    public sendEmailEvent : EventEmitter<any> = new EventEmitter();
     public emailSentEvent : EventEmitter<any>  = null;
+    public emailSentErrorEvent : EventEmitter<any>  = null;
     private title                              = 'Your quote/application has been saved';
     private messageForReference                = 'Your quote/application is now saved and your reference is ';
     private messageForEmail                    = 'Enter your email address so instructions to retrieve the quote/application can be sent to you.';
-    private emailSentNotification : string     = null;
+    private emailSentConfirmation : string     = null;
+    private emailSentErrorMessage : string     = null;
     private referenceId : string               = null;
     private isInSummaryState : boolean         = false;
     private controlGroup : FormGroup           = new FormGroup( {} );
@@ -41,9 +44,13 @@ export class SaveReceiptPageComponent implements AfterViewInit {
         this.referenceId = this.route.snapshot.params[ 'referenceId' ];
         this.controlGroup.controls[ 'emailAddress' ].setValue( this.route.snapshot.params[ 'email' ] );
         this.emailSentEvent.subscribe( ( message ) => {
-            this.emailSentNotification = message;
+            this.emailSentConfirmation = message;
             this._cd.markForCheck();
         } );
+        this.emailSentErrorEvent.subscribe((errorMessage) => {
+            this.emailSentErrorMessage = errorMessage;
+            this._cd.markForCheck();
+        });
     }
 
     private get buttonDisabled () : boolean {
@@ -51,7 +58,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     }
 
     private sendEmail () {
-        this.$sendEmailEvent.emit( this.controlGroup.value.emailAddress );
+        this.sendEmailEvent.emit( this.controlGroup.value.emailAddress );
         // We set errors so the button gets disabled after click
         // The user can still edit the email address and the button becomes active again
         this.controlGroup.setErrors( { emailSent : true } );
@@ -59,9 +66,5 @@ export class SaveReceiptPageComponent implements AfterViewInit {
 
     private back () {
         history.back();
-    }
-
-    private get emailSentMessage () {
-        return this.emailSentNotification;
     }
 }

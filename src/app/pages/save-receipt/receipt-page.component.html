@@ -16,9 +16,17 @@
             </div>
         </amp-form-row>
         <amp-form-row>
-            <div class="email-sent_message mt" *ngIf="emailSentMessage">
+            <div class="email-sent_message mt" *ngIf="emailSentConfirmation">
                 <span aria-hidden="true" class="icon icon--tick-filled"></span>
-                {{emailSentMessage}}
+                {{emailSentConfirmation}}
+            </div>
+            <div class="email-sent_message mt" *ngIf="emailSentErrorMessage">
+                <div class="errors">
+                    <div class="error-item">
+                        <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+                        <span>{{emailSentErrorMessage}}</span>
+                    </div>
+                </div>
             </div>
         </amp-form-row>
         <div class="block-buttons">
