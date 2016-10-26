@@ -16,7 +16,7 @@ export abstract class LicenseesAbstract {
     }
 
     public static getLicensee ( name ) {
-        return this.hasLicensee( name ) ? this.licensees[ name ] : 'licensee not exist';
+        return this.hasLicensee( name ) ? this.licensees[ name ] : 'licensee does not exist';
     }
 
     public static hasLicensee ( name ) {
