@@ -100,7 +100,6 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
 export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     @Input() form; // form model input
     @Input() scriptUrls; // all the api urls that need to be imported, the js is loaded asnyc
-    @Input() formAction; // The form action
     @ViewChild('btnSubmit') btnSubmit : ElementRef;
     private controlGroup : FormGroup = new FormGroup( {} );
     private loadApiScripts : Promise<any>;

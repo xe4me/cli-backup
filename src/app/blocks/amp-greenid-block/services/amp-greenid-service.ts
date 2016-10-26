@@ -2,9 +2,11 @@ import { Injectable, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
+import {Environments} from '../../../abstracts/environments/environments.abstract';
 @Injectable()
 export class AmpGreenIdServices {
 
+    // public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
     public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
     public static DEFAULT_ERROR_TEXT = 'Server error';
     public static VERFICATION_ENDPOINT = '/registerVerification';

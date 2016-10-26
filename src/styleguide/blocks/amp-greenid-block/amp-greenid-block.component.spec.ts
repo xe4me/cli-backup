@@ -11,6 +11,66 @@ import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/servic
 import { AmpGreenidBlockComponent } from '../../../app/blocks/amp-greenid-block/amp-greenid-block';
 import {AmpHttpService} from '../../../app/services/amp-http/amp-http.service';
 
+describe( 'Green id unit tests' , () => {
+
+    beforeEach( async( () => {
+        const modelValue = {
+            firstName: 'John',
+            lastName: 'Smith',
+            middleNames: 'Danger',
+            honorific: 'Mr',
+            dateOfBirth2: '27/11/2013',
+            dateOfBirth:  '2001-04-12',
+            email: 'sample@test.com',
+            verificationId: 'fred',
+            verificationToken: 'fred',
+            verficationStatus: 'fred',
+            address: {
+                country: 'AU',
+                state: 'NSW',
+                streetName: 'SMITH',
+                flatNumber: 'U 2',
+                streetNumber: '53-57',
+                suburb: 'SYDNEY'
+            }
+        };
+
+        TestBed.configureTestingModule( {
+            imports      : [ AmpGreenidBlockComponent ] ,
+            declarations : [
+                TestComponent2
+            ] ,
+            providers    : [
+                { provide : ElementRef , useClass : MockElementRef } ,
+                { provide : Window , useClass : window } ,
+                { provide : ComponentFixtureAutoDetect , useValue : true },
+                { provide : AmpGreenidBlockComponent , useClass: TestComponent2 },
+                BrowserDomAdapter
+            ]
+        } );
+        TestBed.compileComponents();
+    } ) );
+   /* it( 'Green id unit tests ' , () => {
+
+    } );*/
+});
+class MockElementRef implements ElementRef {
+    nativeElement = {};
+}
+// test a public method inside the class
+@Component( {
+    template : `
+    <amp-greenid-block [form]="modelValue" [scriptUrls]="scriptUrls"></amp-greenid-block>
+    `
+} )
+class TestComponent2 {
+
+    constructor() {
+
+    }
+
+}
+
 /*
 
 This test is failing DUE an error with the fakeAsync module not being imported
