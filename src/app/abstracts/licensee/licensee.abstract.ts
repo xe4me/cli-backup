@@ -15,12 +15,12 @@ export abstract class LicenseesAbstract {
         return this._licensees;
     }
 
-    public static  getLicensee ( name ) {
-        if ( this.licensees.hasOwnProperty( name ) ) {
-            return this.licensees[ name ];
-        } else {
-            return 'licensee not exist';
-        }
+    public static getLicensee ( name ) {
+        return this.hasLicensee( name ) ? this.licensees[ name ] : 'licensee does not exist';
+    }
+
+    public static hasLicensee ( name ) {
+        return this.licensees.hasOwnProperty( name );
     }
 
     private static _licensees : any                 = {
