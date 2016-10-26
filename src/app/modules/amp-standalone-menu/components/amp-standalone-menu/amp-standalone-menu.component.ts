@@ -42,7 +42,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private _previousSectionName : string = null;
     private domUtils : DomUtils = null;
     private isSectionUpdated : boolean = false;
-
+    private itemPrefix : string = 'Item-';
     constructor(
         private _dom : BrowserDomAdapter,
         private _cd : ChangeDetectorRef,
@@ -80,22 +80,22 @@ export class AmpStandAloneMenuComponent implements OnInit {
         let mySections = [];
 
         this.sections = Array.prototype.map.call(sections, (section, index) => {
-            let id = section.id;
+            let pageSectionId = section.id;
+            let menuItemId = this.itemPrefix + section.id;
             let classes = section.className;
             let label = section.getAttribute('label');
             return {
                 label: label,
-                id: id,
+                pageSectionId: pageSectionId,
+                id: menuItemId,
                 state: classes
             };
         });
-
         this._cd.markForCheck();
-
     }
 
     private scrollToSection(section) {
-        this.scrollService.scrollToComponentSelector(section.id);
+        this.scrollService.scrollToComponentSelector(section.pageSectionId);
     }
 
 }
