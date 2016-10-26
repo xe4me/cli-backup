@@ -19,10 +19,10 @@ import { ActivatedRoute } from '@angular/router';
         'emailSentEvent',
         'emailSentErrorEvent'
     ] ,
-    outputs  : [ '$sendEmailEvent' ]
+    outputs  : [ 'sendEmailEvent' ]
 } )
 export class SaveReceiptPageComponent implements AfterViewInit {
-    public $sendEmailEvent : EventEmitter<any> = new EventEmitter();
+    public sendEmailEvent : EventEmitter<any> = new EventEmitter();
     public emailSentEvent : EventEmitter<any>  = null;
     public emailSentErrorEvent : EventEmitter<any>  = null;
     private title                              = 'Your quote/application has been saved';
@@ -58,7 +58,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     }
 
     private sendEmail () {
-        this.$sendEmailEvent.emit( this.controlGroup.value.emailAddress );
+        this.sendEmailEvent.emit( this.controlGroup.value.emailAddress );
         // We set errors so the button gets disabled after click
         // The user can still edit the email address and the button becomes active again
         this.controlGroup.setErrors( { emailSent : true } );
