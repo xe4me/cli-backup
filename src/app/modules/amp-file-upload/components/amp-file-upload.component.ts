@@ -1,21 +1,28 @@
-import { Component,
-         OnInit,
-         ChangeDetectorRef,
-         Input,
-         ViewChild } from '@angular/core';
+import {
+    Component,
+    ChangeDetectorRef,
+    Input,
+    ViewChild,
+    AfterViewInit
+} from '@angular/core';
 import { AmpFileUploadService } from '../services/amp-file-upload.service';
 import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
 import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { Observable } from 'rxjs';
+import { BaseControl } from '../../../../app/base-control';
 
 @Component({
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
     styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
+    inputs          : [
+        'id' ,
+        'controlGroup'
+    ] ,
     providers   : [ AmpFileUploadService ] ,
     directives  : [ AmpLinearProgressBarComponent ]
 })
-export class AmpFileUploadComponent implements OnInit {
+export class AmpFileUploadComponent extends BaseControl implements AfterViewInit {
     @ViewChild('fileInput') fileInput;
     @Input() uploadUrl : string;
     @Input() deleteUrl : string;
@@ -40,11 +47,12 @@ export class AmpFileUploadComponent implements OnInit {
     private sizeAllowed : number = 2000000;
 
     constructor ( protected _cd : ChangeDetectorRef,
-                  private fileUploadService : AmpFileUploadService,
-                    ) {
+                  private fileUploadService : AmpFileUploadService
+    ) {
+        super();
     }
 
-    ngOnInit() {
+    ngAfterViewInit () : any {
         // Get the urls from fileUploadService if it is not passed as input
         if ( this.tokenUrl ) {
             this.fileUploadService.setTokenUrl( this.tokenUrl );
@@ -60,6 +68,8 @@ export class AmpFileUploadComponent implements OnInit {
         this.fileUploadService.onUpload.subscribe(( data : any ) => {
             this.handleUpload( data );
         });
+        this.control.setErrors({error: 'file upload pending'});
+        return undefined;
     }
 
     private displayProgress ( ) : void {
@@ -90,6 +100,7 @@ export class AmpFileUploadComponent implements OnInit {
         }
         if (res && res.statusCode === 200 ) {
             this.deleteFileName = res ? res.payload.fileName : '';
+            this.control.setErrors( null );
             return null;
         }
         this.fileName = response.originalName;
@@ -103,6 +114,7 @@ export class AmpFileUploadComponent implements OnInit {
     private updateToken () : void {
         this.fileInput.nativeElement.value = null;
         this.error = false;
+        this.control.setErrors( {error : 'file upload pending'} );
         let retrieveToken : Observable <any>;
         retrieveToken = this.fileUploadService.retrieveNewToken( );
         retrieveToken.subscribe(
@@ -154,7 +166,7 @@ export class AmpFileUploadComponent implements OnInit {
             return false;
         }
         if ( !(file.size <= this.sizeAllowed ) ) {
-            error.message = 'File size Exceeds allowable limit of 1MB';
+            error.message = 'File size Exceeds allowable limit of 2MB';
             this.setErrorMessage( error );
             return false;
         }
