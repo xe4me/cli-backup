@@ -1,0 +1,25 @@
+@@ set
+    task    AmpIntroBlock
+    url     http://localhost:3001/component/AmpGreenidBlock
+
+@@ parameterized
+    | subtask    | spec                                                      |
+    | All        | src/styleguide/blocks/amp-intro-block/amp-greenid-block.component.test.spec    |
+
+@@ parameterized
+    | browser       |
+    | chrome        |
+
+@@ parameterized
+    | breakpoint | tags    | size        |
+    | Desk       | desk    | 1025x800    |
+    | Laptop     | laptop  | 1024x800    |
+    | Tablet     | tablet  | 767x800     |
+    | Palm       | palm    | 480x800     |
+    | Mobile     | mobile  | 320x800     |
+
+
+@@ groups ddc, amp-intro-block
+${task}: ${subtask} - ${breakpoint}
+    selenium ${browser} ${url} ${size}
+            check ${spec} --include "${tags}"
