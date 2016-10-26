@@ -50,5 +50,7 @@ export { FormSectionService } from './src/app/services/form-section/form-section
 export { FormService } from './src/app/services/form/form.service';
 export { ContextService } from './src/app/services/context/context.service';
 export { ProfileService } from './src/app/services/adviser-profile/profile.service';
-export { SaveReceiptPageComponent } from './src/app/pages/save-receipt/receipt-page.component';
 export { Environments } from './src/app/abstracts/environments/environments.abstract'
+// Pages
+export { ErrorPageComponent } from './src/app/pages/error/error-page.component';
+export { SaveReceiptPageComponent } from './src/app/pages/save-receipt/receipt-page.component';
