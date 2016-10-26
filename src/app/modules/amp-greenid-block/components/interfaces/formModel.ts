@@ -7,13 +7,13 @@ export interface IFormModel {
     email : string;
     verificationId : string;
     verificationToken : string;
-    verficationStatus : string;
-    address: {
-        country : string,
-        state : string,
-        streetName : string,
-        flatNumber : string,
-        streetNumber : string,
-        suburb : string,
+    verificationStatus : string;
+    address : {
+        country : string;
+        state : string;
+        streetName : string;
+        flatNumber : string;
+        streetNumber : string;
+        suburb : string;
     };
 }

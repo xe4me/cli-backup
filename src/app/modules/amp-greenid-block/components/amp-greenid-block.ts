@@ -75,7 +75,7 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
                         <input id='state' name='state' [ngModel]='form.address.state' class='form-control' type='text'>
                         <input id='postcode' name='postcode' [ngModel]='form.address.postcode' class='form-control'
                                type='text'>
-                        <input name='dob' id='dob' class='form-control' [ngModel]='form.dateOfBirth2' aria-required='true'
+                        <input name='dob' id='dob' class='form-control' [ngModel]='form.dateOfBirth' aria-required='true'
                                type='text'>
                         <input id='email' name='email' class='form-control' [ngModel]='form.email' type='text'>
                     </div>
@@ -158,7 +158,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         this.controlGroup = new FormGroup({
           verificationId : new FormControl('verificationId', null),
           verificationToken : new FormControl('verificationToken', null),
-          verficationStatus : new FormControl('verficationStatus', null),
+          verificationStatus : new FormControl('verificationStatus', null),
         });
 
         this._cd.detectChanges();

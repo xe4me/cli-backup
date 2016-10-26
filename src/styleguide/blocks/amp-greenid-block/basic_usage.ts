@@ -15,7 +15,7 @@ export default class AmpGreenIdBlockBasicUsage {
     */
      private scriptUrls : string[] = ['//test2.edentiti.com/df/javascripts/greenidConfig.js', '//test2.edentiti.com/df/javascripts/greenidui.min.js'];
     // The following are Kubernetes URLS & properties for the above settings
-    //private scriptUrls : string[] = [Environments.property.ApiGreenIdConfig, Environments.property.ApiGreenIdUI];
+    // private scriptUrls : string[] = [Environments.property.ApiGreenIdConfig, Environments.property.ApiGreenIdUI];
 
     /**
      * This model is for testing purpose only
@@ -30,7 +30,7 @@ export default class AmpGreenIdBlockBasicUsage {
         email: 'sample@test.com',
         verificationId: 'fred',
         verificationToken: 'fred',
-        verficationStatus: 'fred',
+        verificationStatus: 'fred',
         address: {
             country: 'AU',
             state: 'NSW',
