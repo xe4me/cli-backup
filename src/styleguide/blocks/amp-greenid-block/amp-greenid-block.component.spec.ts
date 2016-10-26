@@ -7,9 +7,9 @@ import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, In
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { By } from '@angular/platform-browser';
-import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
-import { AmpGreenidBlockComponent } from '../../../app/blocks/amp-greenid-block/amp-greenid-block';
+import {AmpGreenIdServices} from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
 import {AmpHttpService} from '../../../app/services/amp-http/amp-http.service';
+import { AmpGreenidModule, AmpGreenidBlockComponent } from '../../../app/modules/amp-greenid-block/amp-greenid.module';
 
 describe( 'Green id unit tests' , () => {
 

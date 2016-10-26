@@ -1,8 +1,8 @@
 import { Injectable, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
-import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
-import {Environments} from '../../../abstracts/environments/environments.abstract';
+import { AmpHttpService } from '../../../../services/amp-http/amp-http.service';
+import {Environments} from '../../../../abstracts/environments/environments.abstract';
 @Injectable()
 export class AmpGreenIdServices {
 

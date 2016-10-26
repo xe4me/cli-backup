@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { AmpGreenidBlockComponent } from '../../../app/blocks/amp-greenid-block/amp-greenid-block';
-import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
 import { ThemeService } from '../../services/theme';
 import {Environments} from '../../../app/abstracts/environments/environments.abstract';
+import {AmpGreenIdServices} from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
 
 @Component( {
     selector    : 'amp-greenid-block-basic-usage' ,
-    directives  : [ AmpGreenidBlockComponent ] ,
-    providers   : [ AmpGreenIdServices ],
     templateUrl : 'src/styleguide/blocks/amp-greenid-block/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ]
 } )
@@ -44,7 +41,8 @@ export default class AmpGreenIdBlockBasicUsage {
         }
     };
 
-    constructor ( private  themeService : ThemeService) {
+    constructor ( private  themeService : ThemeService,
+                  private ampGreenIdServices : AmpGreenIdServices ) {
     }
 
     ngOnInit () {

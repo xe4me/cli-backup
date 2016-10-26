@@ -14,8 +14,8 @@ import {
     Renderer,
     Input,
 } from '@angular/core';
-import { AmpGreenIdServices } from '../../../app/blocks/amp-greenid-block/services/amp-greenid-service';
-import { ResponseObject } from '../amp-greenid-block/interfaces/responseObject';
+import { AmpGreenIdServices } from '../components/services/amp-greenid-service';
+import { ResponseObject } from '../components/interfaces/responseObject';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
 @Component( {

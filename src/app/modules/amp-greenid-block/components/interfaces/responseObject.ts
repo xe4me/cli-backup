@@ -1,5 +1,5 @@
 /**
- * Interfaces - this one basically to get around typescript errors :P
+ * Interfaces - ResponseObject
  */
 export interface ResponseObject {
     verificationId? : string;
