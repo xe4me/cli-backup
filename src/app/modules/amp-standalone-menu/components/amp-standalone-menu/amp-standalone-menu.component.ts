@@ -57,16 +57,14 @@ export class AmpStandAloneMenuComponent implements OnInit {
     ngOnInit() : any {
 
         this.sectionObservable.subscribe((blockchanges) => {
-
             setTimeout(() => {
                 this.updateSections();
             }, 0);
-
         });
     }
 
-    private getDisabledState(_state){
-        return _state.indexOf('visited') === -1;
+    private isStateDisabled(state : string) {
+        return state.indexOf('visited') === -1;
     }
 
     /**
