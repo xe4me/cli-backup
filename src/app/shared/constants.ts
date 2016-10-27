@@ -1,5 +1,5 @@
 export class Constants {
-    public static saveUrl = 'save';
+    public static saveUrl = '/save';
     public static singleApplicant : string = 'Individual';
     public static jointApplicant : string = 'JointApplication';
     public static onlineIdCheck : string = 'online';
