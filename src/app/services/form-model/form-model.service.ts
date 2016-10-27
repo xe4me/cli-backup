@@ -102,14 +102,12 @@ export class FormModelService {
         formId                : null ,
         folderId              : null
     };
-
-    private _submitUrl         = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification';
+    private _baseURL = Environments.property.ApiCallsBaseUrl;
+    private _submitUrl         = this._baseURL + '/bolrnotification';
     // private _submitUrl         = 'http://localhost:8080/ddc/secure/api/bolrnotification';
-    private _contextUrl        = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/usersession';
-    private _contactDetailsUrl = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/profile';
-    private _advisersUrl       = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/advisors';
-
-    private _baseURL = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/';
+    private _contextUrl        = this._baseURL + '/usersession';
+    private _contactDetailsUrl = this._baseURL + '/profile';
+    private _advisersUrl       = this._baseURL + '/advisors';
     private _submitRelativeUrl = null;
     private _headers = new Headers({ 'Content-Type' : 'application/json' });
     private _httpOptions = new RequestOptions({ headers : this._headers });
