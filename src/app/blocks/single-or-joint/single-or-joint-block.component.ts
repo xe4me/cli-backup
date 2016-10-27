@@ -13,7 +13,8 @@ import { AmpButton,
 from 'amp-ddc-components';
 import {
     Validators,
-    FormControl
+    FormControl,
+    FormGroup
 } from '@angular/forms';
 import {
     Constants,
@@ -40,6 +41,12 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     public ngOnInit() {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
         this.formModelService.setSubmitRelativeUrl(Constants.saveUrl);
+        this.formModelService.$saveResponse.subscribe( (result) => {
+            if (result.payload.meta && result.payload.meta.id) {
+                this.storeReferenceIdInModel(result.payload.meta.id);
+            }
+        });
+
         // load applicant 1
         this.__loadAt(this.applicantGenerator.getApplicantSection(1), 2);
     }
@@ -62,4 +69,19 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
         this.addOrRemoveJointApplicantSection(singleJointIndicator);
     }
+
+    private storeReferenceIdInModel (referenceId) {
+        let group = <FormGroup> this.__form.controls['Application'];
+        let appIdControl = group.controls[Constants.referenceIdName];
+
+        if (!appIdControl) {
+            appIdControl = new FormControl(referenceId);
+            group.addControl(Constants.referenceIdName, appIdControl);
+            this.formModelService.setSubmitRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
+        } else {
+            appIdControl.setValue(referenceId);
+        }
+    }
+
+
 }
