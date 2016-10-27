@@ -8,7 +8,6 @@ import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpButtonModule } from '../amp-button/amp-button.module';
 import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
 
-
 const DECLARATIONS = [
     AmpGreenidBlockComponent
 ];
