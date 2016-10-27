@@ -81,6 +81,7 @@ describe( 'Save model to the server' , () => {
             expect(connection.request.url).toBe('/saveTheWorld');
             connection.mockRespond(new Response(options));
         });
+        subject.overrideSubmitBaseUrl('/');
         subject.setSubmitRelativeUrl('saveTheWorld');
         subject.$saveResponse.subscribe((response) => {
             expect(response).toEqual(testModel);
@@ -96,6 +97,7 @@ describe( 'Save model to the server' , () => {
             expect(connection.request.url).toBe('/saveTheWorld');
             connection.mockError(new Error(errorMessage));
         });
+        subject.overrideSubmitBaseUrl('/');
         subject.setSubmitRelativeUrl('saveTheWorld');
         subject.$saveError.subscribe((error) => {
             expect(error.toString()).toEqual('Error: Simulated error response');
