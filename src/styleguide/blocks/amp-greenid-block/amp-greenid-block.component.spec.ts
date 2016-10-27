@@ -10,6 +10,7 @@ import { By } from '@angular/platform-browser';
 import {AmpGreenIdServices} from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
 import {AmpHttpService} from '../../../app/services/amp-http/amp-http.service';
 import { AmpGreenidModule } from '../../../app/modules/amp-greenid-block/amp-greenid.module';
+import { AmpGreenidBlockComponent } from '../../../app/modules/amp-greenid-block/components/amp-greenid-block';
 
 describe( 'Green id unit tests' , () => {
 
