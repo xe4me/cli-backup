@@ -200,27 +200,27 @@
                                     "label": "Children"
                                 },
                                 {
-                                    "value": "Aged, Service or Invalid Pensioner",
+                                    "value": "AgedServiceInvalidPensioner",
                                     "label": "Aged, Service or Invalid Pensioner"
                                 },
                                 {
-                                    "value": "Other exempt Pensioner",
+                                    "value": "OtherExemptPensioner",
                                     "label": "Other exempt Pensioner"
                                 },
                                 {
-                                    "value": "Tax returns not required",
+                                    "value": "TaxReturnsNotRequired",
                                     "label": "Tax returns not required"
                                 },
                                 {
-                                    "value": "Exempt for TFN",
+                                    "value": "ExemptForTFN",
                                     "label": "Exempt for TFN"
                                 },
                                 {
-                                    "value": "Territory residents",
+                                    "value": "TerritoryResident",
                                     "label": "Territory residents"
                                 },
                                 {
-                                    "value": "Non resident",
+                                    "value": "NonResident",
                                     "label": "Non resident"
                                 }
                             ]
