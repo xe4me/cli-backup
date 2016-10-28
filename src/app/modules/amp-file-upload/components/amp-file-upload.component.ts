@@ -41,6 +41,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     private backendError : boolean = false;
     private error : boolean = false;
     private errorMessage : string;
+    private uploadCompleted : boolean = false;
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
     private typesAllowed : string[] = [ 'application/pdf' ];
@@ -88,7 +89,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     }
 
     private showProgressBar ( ) : boolean {
-        return this.progress < 1 ? true : false;
+        return !this.uploadCompleted;
     }
 
     private handleUpload ( response : any ) : void {
@@ -96,12 +97,14 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         res = response.response ? JSON.parse( response.response ) : null;
         if ( res && (this.errorCodes.indexOf(res.statusCode) > -1 )) {
             this.setErrorMessage( res );
+            this.uploadCompleted = true;
             return null;
         }
         if (res && res.statusCode === 200 ) {
             this.deleteFileName = res ? res.payload.fileName : '';
             this.control.setErrors( null );
             this._cd.detectChanges();
+            this.uploadCompleted = true;
             return null;
         }
         this.fileName = response.originalName;
@@ -115,6 +118,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     private updateToken () : void {
         this.fileInput.nativeElement.value = null;
         this.error = false;
+        this.uploadCompleted = false;
         this.control.setErrors( {error : 'file upload pending'} );
         let retrieveToken : Observable <any>;
         retrieveToken = this.fileUploadService.retrieveNewToken( );
