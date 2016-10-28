@@ -151,6 +151,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         fileRemoved.subscribe(
             ( res : any ) => {
                 this.showProgress = false;
+                this.control.setErrors({error: 'file upload pending'});
                 this._cd.detectChanges();
             },
             ( error ) => {
