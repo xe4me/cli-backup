@@ -102,13 +102,16 @@ export class FormModelService {
         formId                : null ,
         folderId              : null
     };
-    private _baseURL = Environments.property.ApiCallsBaseUrl;
-    private _submitUrl         = this._baseURL + '/bolrnotification';
-    // private _submitUrl         = 'http://localhost:8080/ddc/secure/api/bolrnotification';
-    private _contextUrl        = this._baseURL + '/usersession';
-    private _contactDetailsUrl = this._baseURL + '/profile';
-    private _advisersUrl       = this._baseURL + '/advisors';
+    private _apiBaseURL = Environments.property.ApiCallsBaseUrl;
+    private _practiceBaseURL = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
+
+    private _contactDetailsUrl = this._practiceBaseURL + '/profile';
+    private _advisersUrl       = this._practiceBaseURL + '/advisors';
+
+    private _submitUrl         = this._apiBaseURL + 'bolrnotification';
+    private _contextUrl        = this._apiBaseURL + 'usersession';
     private _submitRelativeUrl = null;
+
     private _headers = new Headers({ 'Content-Type' : 'application/json' });
     private _httpOptions = new RequestOptions({ headers : this._headers });
 
@@ -351,7 +354,7 @@ export class FormModelService {
     }
 
     public overrideSubmitBaseUrl (baseUrl : string) {
-        this._baseURL = baseUrl;
+        this._apiBaseURL = baseUrl;
     }
 
     public overrideSubmitOptions(options : RequestOptions) {
@@ -364,7 +367,7 @@ export class FormModelService {
 
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
     saveForm ( value : any ) : Observable < string > {
-        let headers = new Headers( { 'Content-Type' : 'application/json', 'caller' : 'ddc-ui' } );
+        let headers = new Headers( { 'Content-Type' : 'application/json' } );
         let options = new RequestOptions( { headers : headers } );
         // Inject context data obtained from prepop that is required by back end;
         let body = Object.assign( {} ,
@@ -384,7 +387,7 @@ export class FormModelService {
     }
 
     private saveModel (model) : Observable<Response> {
-        return this.http.post (this._baseURL + this._submitRelativeUrl, JSON.stringify(model), this._httpOptions);
+        return this.http.post (this._apiBaseURL + this._submitRelativeUrl, JSON.stringify(model), this._httpOptions);
     }
 
     private handleError (error : any) {
