@@ -51,7 +51,7 @@
     "ts-node": "1.2.1",
     "tslint": "^3.13.0",
     "typescript": "2.0.0",
-
+    "@types/hammerjs": "^2.0.33",
     "bundle-loader": "^0.5.4",
     "concurrently": "^2.0.0",
     "karma-phantomjs-launcher": "^1.0.0",

@@ -39,8 +39,8 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
         this.maxDate = moment().subtract('years', 18).toDate();
         this.ageValidator = () => {
             return (control) => {
-                let date = moment(control.value);
-                if (date.isValid && (date.toDate().valueOf() >= this.maxDate.valueOf())) {
+                let date = moment(control.value, 'DD/MM/YYYY');
+                if (date.isValid && date.toDate() >= this.maxDate) {
                     return {
                         underAge : {
                             text : this.__custom.controls[4].ageValidationMsg
