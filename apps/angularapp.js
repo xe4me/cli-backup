@@ -27,7 +27,7 @@ module.exports = {
             res.status(200).send(
                 'var _process_env = ' + JSON.stringify(
                     {
-                        ApiCallsBaseUrl:'/ddc/public/api/bett3r',
+                        ApiCallsBaseUrl:'/ddc/public/api',
                         GoogleApiKey: GOOGLE_API_KEY,
                         TamServicePath: TAM_SERVICE_PATH,
                         GwPracticeService: {
