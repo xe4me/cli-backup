@@ -41,7 +41,7 @@ export class ErrorPageComponent implements CanDeactivate<ErrorPageComponent> {
     };
 
     constructor () {
-        this.logoImage = LicenseesAbstract.hasLicensee(this.logoImage) ? this.logoImage : 'DEA_ASSURED';
+        this.logoImage = LicenseesAbstract.hasLicensee(this.logoImage) ? this.logoImage : 'DEA_AMPFP';
     }
 
     canDeactivate ( component : ErrorPageComponent , route : ActivatedRouteSnapshot ,
