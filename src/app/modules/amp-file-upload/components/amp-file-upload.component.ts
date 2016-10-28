@@ -44,7 +44,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
     private typesAllowed : string[] = [ 'application/pdf' ];
-    private sizeAllowed : number = 2000000;
+    private sizeAllowed : number = 1048576 * 2;
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private fileUploadService : AmpFileUploadService
