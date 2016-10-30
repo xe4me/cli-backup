@@ -1,11 +1,11 @@
-<div [hidden]='qasControlGroup.__showManualEntryForm'>
+<div [hidden]='searchOrManualControl.value'>
     <amp-form-row>
         <div class='grid__item_floated  1/1'>
             <amp-typeahead
                     #typeaheadCmp
                     class='1/1'
                     [controlGroup]='qasControlGroup'
-                    [required]='!qasControlGroup.__showManualEntryForm'
+                    [required]='!searchOrManualControl.value'
                     [errors]='errors'
                     [keepControl]='keepControl'
                     [minTriggerLength]='minTriggerLength'
@@ -41,7 +41,7 @@
     </amp-form-row>
 </div>
 
-<div [hidden]='!qasControlGroup.__showManualEntryForm'>
+<div [hidden]='!searchOrManualControl.value'>
     <div *ngIf='!extended'>
         <amp-manual-address
                 (onGoBack)='goBack()'
