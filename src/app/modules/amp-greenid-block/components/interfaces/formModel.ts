@@ -1,4 +1,4 @@
-export interface IFormModel {
+export interface IGreenIdFormModel {
     firstName : string;
     lastName : string;
     middleNames : string;

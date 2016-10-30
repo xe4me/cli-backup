@@ -28,6 +28,7 @@ export * from './src/app/modules/amp-button';
 export * from './src/app/modules/amp-row-repeater';
 export * from './src/app/modules/amp-form-row';
 export * from './src/app/modules/amp-tooltip';
+export * from './src/app/modules/amp-greenid-block';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
