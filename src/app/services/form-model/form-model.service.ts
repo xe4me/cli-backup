@@ -1,53 +1,23 @@
-import {
-    Injectable,
-    EventEmitter
-} from '@angular/core';
-
-import {
-    ControlGroup,
-    Control
-} from '@angular/common';
-import {
-    Http,
-    Headers,
-    RequestOptions,
-    Response
-} from '@angular/http';
-import { Observable }     from 'rxjs/Observable';
+import { Injectable , EventEmitter } from '@angular/core';
+import { Headers , RequestOptions , Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { AmpHttpService } from '../amp-http/amp-http.service.ts';
+import { RetrieveService } from '../retrieve/retrieve.service.ts';
 import { Environments } from '../../abstracts/environments/environments.abstract.ts';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
-
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
 @Injectable()
 export class FormModelService {
-    // Used in conjunction with disableValidators()
-    public static enableValidators ( control : any ) {
-        if ( control && control._ampValidator ) {
-            control.validator = control._ampValidator;
-            delete control._ampValidator;
-        }
-    }
-
-    // Used in conjunction with enableValidators()
-    public static disableValidators ( control : any ) {
-        if ( control && control.validator ) {
-            control._ampValidator = control.validator;
-            delete control.validator;
-        }
-    }
-
-    public $saveMe       : EventEmitter<any> = new EventEmitter();
+    public $saveMe : EventEmitter<any>       = new EventEmitter();
     public $saveResponse : EventEmitter<any> = new EventEmitter();
-    public $saveError    : EventEmitter<any> = new EventEmitter();
-
+    public $saveError : EventEmitter<any>    = new EventEmitter();
     public _formDefinition;
     public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
-    public model               = {
+    public model                             = {
         currentBlockClassName : 'IntroBlockComponent' ,
         fatalErrors           : [] ,
         errors                : [] ,
@@ -102,33 +72,36 @@ export class FormModelService {
         formId                : null ,
         folderId              : null
     };
-    private _baseURL = Environments.property.ApiCallsBaseUrl;
-    private _submitUrl         = this._baseURL + '/bolrnotification';
+    private _submitUrl                       = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification';
     // private _submitUrl         = 'http://localhost:8080/ddc/secure/api/bolrnotification';
-    private _contextUrl        = this._baseURL + '/usersession';
-    private _contactDetailsUrl = this._baseURL + '/profile';
-    private _advisersUrl       = this._baseURL + '/advisors';
-    private _submitRelativeUrl = null;
-    private _headers = new Headers({ 'Content-Type' : 'application/json' });
-    private _httpOptions = new RequestOptions({ headers : this._headers });
+    private _contextUrl                      = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/usersession';
+    private _contactDetailsUrl               = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/profile';
+    private _advisersUrl                     = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/advisors';
+    private _baseURL                         = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/';
+    private _submitRelativeUrl               = null;
+    private _headers                         = new Headers( { 'Content-Type' : 'application/json' } );
+    private _httpOptions                     = new RequestOptions( { headers : this._headers } );
 
-    constructor ( private http : AmpHttpService) {
+    constructor ( private http : AmpHttpService , private retrieveService : RetrieveService ) {
         this.$flags            = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
-
-        this.$saveMe.subscribe((model) => {
-            if (!this._submitRelativeUrl) {
-                throw new Error('Relative URL not set in FormModelService for submit!');
+        this.$saveMe.subscribe( ( model ) => {
+            if ( ! this._submitRelativeUrl ) {
+                throw new Error( 'Relative URL not set in FormModelService for submit!' );
             }
-            this.saveModel(model)
-                .subscribe((response) => {
-                    this.$saveResponse.emit(response.json());
-                }, (error) => {
-                    if (error) {
-                        this.$saveError.emit(error);
+            this.saveModel( model )
+                .subscribe( ( response ) => {
+                    this.$saveResponse.emit( response.json() );
+                } , ( error ) => {
+                    if ( error ) {
+                        this.$saveError.emit( error );
                     }
-                });
-        });
+                } );
+        } );
+    }
+
+    public getBlockValuesFromRetrieveService ( _fdn ) {
+        return this.retrieveService.getBlockValue( _fdn );
     }
 
     public generatePDFUrl () {
@@ -137,6 +110,7 @@ export class FormModelService {
         }
         return null;
     }
+
     public get licensee () {
         return this.model.context.licensee;
     }
@@ -233,7 +207,7 @@ export class FormModelService {
                     // Object.assign( this.model.contactDetails , data.contactDetails.data );
                     if ( data.contactDetails.data.specifiedOfficer && this.model.advisers && this.model.advisers.length ) {
                         // Assume that setAdvisers is called before here.
-                        let specifiedOfficer = this.model.advisers.find( function( adviser ) {
+                        let specifiedOfficer                      = this.model.advisers.find( function( adviser ) {
                             return (adviser.ownernum === data.contactDetails.data.specifiedOfficer);
                         } );
                         this.model.contactDetails.workPhoneNumber = specifiedOfficer.workPhoneNumber;
@@ -294,7 +268,7 @@ export class FormModelService {
             } );
         let options = new RequestOptions( { headers : headers } );
         return this.http.get( this._contextUrl , options )
-                   .map( (res) => res.json() );
+                   .map( ( res ) => res.json() );
         // .catch(this.handleError);
     }
 
@@ -303,13 +277,13 @@ export class FormModelService {
             {
                 'Content-Type' : 'application/json' ,
             } );
-        let options = new RequestOptions({
-            headers: headers, body: '',
-        });
+        let options = new RequestOptions( {
+            headers : headers , body : '' ,
+        } );
         return this
             .http
             .get( this._contactDetailsUrl , options )
-            .map( (res) => res.json() );
+            .map( ( res ) => res.json() );
         // .catch(this.handleError);
     }
 
@@ -318,9 +292,9 @@ export class FormModelService {
             {
                 'Content-Type' : 'application/json' ,
             } );
-        let options = new RequestOptions({
-            headers: headers, body: '',
-        });
+        let options = new RequestOptions( {
+            headers : headers , body : '' ,
+        } );
         return this.http
                    .get( this._advisersUrl , options )
                    .map( function( x , idx ) {
@@ -343,31 +317,31 @@ export class FormModelService {
         let options = new RequestOptions( { headers : headers } );
         return this.http
                    .get( this.generatePDFUrl() , options )
-                   .map( (res) => res.text() );
+                   .map( ( res ) => res.text() );
     }
 
-    public setSubmitRelativeUrl (relativeUrl : string) {
+    public setSubmitRelativeUrl ( relativeUrl : string ) {
         this._submitRelativeUrl = relativeUrl;
     }
 
-    public overrideSubmitBaseUrl (baseUrl : string) {
+    public overrideSubmitBaseUrl ( baseUrl : string ) {
         this._baseURL = baseUrl;
     }
 
-    public overrideSubmitOptions(options : RequestOptions) {
+    public overrideSubmitOptions ( options : RequestOptions ) {
         this._httpOptions = options;
     }
 
-    public save (model : any) {
-        this.$saveMe.emit(model);
+    public save ( model : any ) {
+        this.$saveMe.emit( model );
     }
 
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
     saveForm ( value : any ) : Observable < string > {
-        let headers = new Headers( { 'Content-Type' : 'application/json', 'caller' : 'ddc-ui' } );
+        let headers = new Headers( { 'Content-Type' : 'application/json' } );
         let options = new RequestOptions( { headers : headers } );
         // Inject context data obtained from prepop that is required by back end;
-        let body = Object.assign( {} ,
+        let body    = Object.assign( {} ,
             value ,
             {
                 context : {
@@ -379,15 +353,15 @@ export class FormModelService {
         }
         return this.http
                    .post( this._submitUrl , JSON.stringify( body ) , options )
-                   .map( (res) => res.json() );
+                   .map( ( res ) => res.json() );
         //    .catch( this.handleError );
     }
 
-    private saveModel (model) : Observable<Response> {
-        return this.http.post (this._baseURL + this._submitRelativeUrl, JSON.stringify(model), this._httpOptions);
+    private saveModel ( model ) : Observable<Response> {
+        return this.http.post( this._baseURL + this._submitRelativeUrl , JSON.stringify( model ) , this._httpOptions );
     }
 
-    private handleError (error : any) {
+    private handleError ( error : any ) {
         console.log( 'Handling the error ' );
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message

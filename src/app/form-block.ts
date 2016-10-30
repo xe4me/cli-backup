@@ -3,25 +3,22 @@ import {
     ChangeDetectorRef ,
     AfterViewInit ,
     OnDestroy ,
-    ViewChild,
+    ViewChild ,
     ViewContainerRef
 } from '@angular/core';
-
 import {
     arrayJoinByDash ,
     DomUtils
 } from './modules/amp-utils';
-
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
-
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     public autoFocusOn;
     protected isInSummaryState : boolean     = false;
-    protected isActive : boolean             = false;
+    protected isActive : boolean             = true;
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
     protected noScroll                       = false;
@@ -29,15 +26,15 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
     protected __sectionName : string;
-    protected __removeNext : (viewContainerRef : ViewContainerRef) => void;
-    protected __loadNext : (def : any , viewContainerRef : ViewContainerRef) => void ;
-    protected __loadAt : (def : any , index : number) => void;
+    protected __removeNext : ( viewContainerRef : ViewContainerRef ) => void;
+    protected __loadNext : ( def : any , viewContainerRef : ViewContainerRef ) => void;
+    protected __loadAt : ( def : any , index : number ) => void;
     protected __removeAt : ( index : number ) => void;
     protected __custom : any;
     protected visibleFlag : string           = 'defaultIsVisible';
     protected doneFlag : string              = 'defaultIsDone';
     private scrollSubscription : Subscription;
-    private domUtils : DomUtils = null;
+    private domUtils : DomUtils              = null;
 
     constructor ( protected formModelService : FormModelService ,
                   protected elementRef : ElementRef ,
@@ -56,7 +53,20 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         this.visibleFlag  = this.selectorName + 'IsVisible';
         this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
+        //this.requestPrepopulateFields();
         this._cd.markForCheck();
+    }
+
+    /*
+     * request the retrieve service to see if there is any field for this block to be prepopulated
+     * */
+    requestPrePopulateFields () {
+        let block = this.formModelService.getBlockValuesFromRetrieveService( this.__fdn );
+        if ( block ) {
+            this.__controlGroup.setValue( block );
+            this.isActive = true;
+            //this.isInSummaryState = true;
+        }
     }
 
     ngOnDestroy () {
@@ -68,9 +78,6 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     }
 
     autoFocus () {
-        /*
-         * TODO : This should be a directive or something else.
-         * */
         setTimeout( () => {
             if ( this.autoFocusOn ) {
                 this.autoFocusOn.focus();
@@ -78,13 +85,9 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
                 let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
                 if ( ! inputs ) {
                     inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
-                    if ( ! inputs ) {
-                    } else {
-                        inputs = this.elementRef.nativeElement.getElementsByTagName( 'select' );
-                    }
                 }
                 if ( inputs && inputs.length > 0 ) {
-                    for ( let i = 0; i < inputs.length; i++ ) {
+                    for ( let i = 0 ; i < inputs.length ; i ++ ) {
                         if ( this.domUtils.isVisible( inputs[ i ] ) ) {
                             inputs[ i ].focus();
                             break;
@@ -102,15 +105,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     onNext () {
         if ( this.canGoNext ) {
-            this.scrollService.scrollToNextUndoneBlock( this.__form);
+            this.scrollService.scrollToNextUndoneBlock( this.__form );
             this.progressObserver.onProgress( this.__fdn );
             this.formModelService.save( this.__form.value );
-
-            let onNextScrolled = this.scrollService.$scrolled.subscribe(() => {
+            let onNextScrolled = this.scrollService.$scrolled.subscribe( () => {
                 this.isInSummaryState = true;
                 this._cd.markForCheck();
                 onNextScrolled.unsubscribe();
-            });
+            } );
         }
     }
 
