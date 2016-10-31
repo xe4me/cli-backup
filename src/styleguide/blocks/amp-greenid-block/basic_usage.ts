@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ThemeService } from '../../services/theme';
 import {Environments} from '../../../app/abstracts/environments/environments.abstract';
 import {AmpGreenIdServices} from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
-
+import {DomSanitizationService} from '@angular/platform-browser';
 @Component( {
     selector    : 'amp-greenid-block-basic-usage' ,
     templateUrl : 'src/styleguide/blocks/amp-greenid-block/basic_usage.html' ,
@@ -14,6 +14,7 @@ export default class AmpGreenIdBlockBasicUsage {
     * This script URLs input all of the libraries needed for the form
     */
      private scriptUrls : string[] = ['//test2.edentiti.com/df/javascripts/greenidConfig.js', '//test2.edentiti.com/df/javascripts/greenidui.min.js'];
+     private styleUrl;
     // The following are Kubernetes URLS & properties for the above settings
     // private scriptUrls : string[] = [Environments.property.ApiGreenIdConfig, Environments.property.ApiGreenIdUI];
 
@@ -42,10 +43,9 @@ export default class AmpGreenIdBlockBasicUsage {
     };
 
     constructor ( private  themeService : ThemeService,
-                  private ampGreenIdServices : AmpGreenIdServices ) {
+                  private ampGreenIdServices : AmpGreenIdServices,
+                  private sanitizer : DomSanitizationService ) {
     }
-
-    ngOnInit () {
-
+    public ngOnInit () {
     }
 }
