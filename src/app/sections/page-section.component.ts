@@ -41,6 +41,7 @@ export class PageSectionComponent {
     private isActive = false;
     private __fdn;
     private __controlGroup;
+    private __custom;
     constructor(
         public _viewContainerRef : ViewContainerRef,
         public progressObserver : ProgressObserverService,
