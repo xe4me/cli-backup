@@ -1,5 +1,5 @@
-<div class="overlay mb-60">
-    <amp-button class="btn btn-submit" *ngIf="!showProgress">
+<div class="overlay"  *ngIf="!showProgress">
+    <amp-button class="btn btn-submit">
         File Upload
     </amp-button>
     <input type="file"
@@ -7,11 +7,8 @@
            #fileInput
            (click)="updateToken()"
            (change)="displayProgress()"/>
-    <div *ngIf="error" class="errors mt">
-        <span class='icon icon--close icon-errors'></span> {{errorMessage}}
-    </div>
 </div>
-<div class="progress mb" *ngIf="showProgress">
+<div class="progress" *ngIf="showProgress">
     <div class="file-name grid__item_floated 10/12">
         <h3>{{fileName}}</h3>
         <div>
@@ -19,7 +16,7 @@
                 File size:
                 <span *ngIf="showProgressBar()"> {{uploaded}} of </span>
                 {{fileSize}}
-                <span *ngIf="showProgressBar()">({{speed}})</span>
+                <span *ngIf="showProgressBar()">({{speed}}/sec)</span>
             </div>
         </div>
     </div>
@@ -32,4 +29,7 @@
             determinate="determinate">
         </amp-linear-progress-bar>
     </div>
+</div>
+<div *ngIf="error" class="errors mt">
+    <span class='icon icon--close icon-errors'></span> {{errorMessage}}
 </div>
