@@ -40,6 +40,7 @@ export class PageSectionComponent {
     public CLASS_NAME = 'PageSectionComponent';
     private isActive = false;
     private __fdn;
+    private __controlGroup;
     constructor(
         public _viewContainerRef : ViewContainerRef,
         public progressObserver : ProgressObserverService,
@@ -58,7 +59,7 @@ export class PageSectionComponent {
             if (blockchanges) {
                 let componentSelector = blockchanges.componentSelector;
                 let fdn = this.getFdnJoined(this.__fdn);
-                this.isActive = componentSelector && componentSelector.indexOf(fdn) > -1 ? true : false;
+                this.isActive = this.__controlGroup.untouched && componentSelector && componentSelector.indexOf(fdn) > -1 ? true : false;
                 this._cd.markForCheck();
             }
         });

@@ -24,17 +24,63 @@ $amp-ddc-menu-height : 69px !default;
         @include media-query(palm) {
             &.open {
                 position: absolute;
-                background: $amp-colour-grey-lightest;
+                background: #eeeeee;
                 width: 100%;
                 left: 0;
                 top: 0;
                 height: 100%;
+                text-align: left;
+                padding-left: 50px;
+                padding-top: 80px;
                 >.skyblue {
                     >li:not(.active) {
                         display: block;
                     }
+                    >li.active {
+                        padding-top: 0;
+                        .step-intro.node {
+                            display: inline-block;
+                        }
+                    }
+                }
+                >.progress li {
+                    height: 54px;
+                }
+
+                >.progress .icon {
+                    display: none;
+                }
+                >.progress .active .divider {
+                    display: block;
+                    border-color: $amp-colour-sky-blue;
                 }
             }
+
+            .docked {
+                position: fixed;
+                top: 0;
+                left: 0;
+                -moz-transform: translateY(0);
+                -o-transform: translateY(0);
+                -ms-transform: translateY(0);
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                width: 100%;
+                height: $amp-ddc-menu-height;
+                background: $amp-colour-white;
+                text-align: center;
+                background: $amp-colour-grey-lightest;
+                border-bottom: $amp-colour-grey-darker;
+                color: $amp-colour-sky-blue;
+                font-weight: bold;
+                padding-top: 20px;
+                .icon {
+                    cursor: pointer;
+                    display: block;
+                    margin-top: -5px;
+                }
+            }
+
         }
         @include media-query(palm) {
             position: fixed;
@@ -63,6 +109,11 @@ $amp-ddc-menu-height : 69px !default;
     }
     .steps-nav .progress .icon {
         display: none;
+        @include media-query(palm) {
+            display: block;
+            margin-top: 10px;
+            cursor: pointer;
+        }
     }
     .steps-nav .progress .divider {
         height: 40px;
@@ -99,6 +150,7 @@ $amp-ddc-menu-height : 69px !default;
     .steps-nav .skyblue .active {
         color: $amp-colour-sky-blue;
         @include media-query(palm) {
+            padding-top: 30px;
             >.divider {
                 height: 26px;
             }
@@ -130,13 +182,31 @@ $amp-ddc-menu-height : 69px !default;
         >li.active span {
             color: $amp-colour-sky-blue;
             font-weight: bold;
+        }        
+        >li.visited span {
+            color: $amp-colour-sky-blue;
+            font-weight: normal;
         }
         >li.active {
             .divider {
                 border-color: $amp-colour-sky-blue;
             }
+            @include media-query(palm) {
+                .divider {
+                    display: none;
+                }
+            }
         }
         >li.active .step-intro.node {
+            border: solid 2px $amp-colour-sky-blue;
+            height: 14px;
+            width: 14px;
+            margin-left: -2px;
+            @include media-query(palm) {
+                display: none;
+            }
+        }
+        >li.visited .step-intro.node {
             border: solid 2px $amp-colour-sky-blue;
             height: 14px;
             width: 14px;
