@@ -133,6 +133,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
                 this._cd.detectChanges();
             },
             ( error ) => {
+                this.errorMessage = this.fileUploadService.errorMessage;
                 this.backendError = true;
                 this._cd.detectChanges();
             }
@@ -147,6 +148,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     }
 
     private removeFile () : void {
+        this.error = false;
         let fileRemoved : Observable <any>;
         fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
         fileRemoved.subscribe(
