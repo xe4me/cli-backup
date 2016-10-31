@@ -164,12 +164,12 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             }
 
             if (!greenIdLoaded && this.configScriptUrl && this.uiScriptUrl) {
-                this.getScript(this.configScriptUrl).then(() => {
-                    this.getScript(this.uiScriptUrl).then(() => {
+                this.getScript(this.configScriptUrl)
+                    .then(() => this.getScript(this.uiScriptUrl))
+                    .then(() => {
                         greenIdLoaded = true;
                         resolve();
                     });
-                });
                 return;
             }
             reject('Script urls were not provided');
