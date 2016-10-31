@@ -3,7 +3,7 @@ export interface IGreenIdFormModel {
     lastName : string;
     middleNames : string;
     title : string;
-    dateOfBirth : Date;
+    dateOfBirth : string;
     email : string;
     verificationId : string;
     verificationToken : string;
