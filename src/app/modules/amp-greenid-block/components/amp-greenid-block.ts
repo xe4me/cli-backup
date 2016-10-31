@@ -17,7 +17,11 @@ import {
 import { DomSanitizationService } from '@angular/platform-browser';
 import { AmpGreenIdServices } from '../components/services/amp-greenid-service';
 import { ResponseObject } from '../components/interfaces/responseObject';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl,
+         FormGroup,
+         FormBuilder,
+         Validators
+} from '@angular/forms';
 import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
 let greenIdLoaded = false;
 @Component({
@@ -176,9 +180,9 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
         });
 
         this.controlGroup = new FormGroup({
-            verificationId: new FormControl('verificationId', null),
-            verificationToken: new FormControl('verificationToken', null),
-            verificationStatus: new FormControl('verificationStatus', null),
+            verificationId: new FormControl('verificationId', Validators.required),
+            verificationToken: new FormControl('verificationToken', Validators.required),
+            verificationStatus: new FormControl('verificationStatus', Validators.required),
         });
 
         this._cd.detectChanges();
