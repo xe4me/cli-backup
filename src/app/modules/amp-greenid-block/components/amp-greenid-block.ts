@@ -82,8 +82,8 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
                     </div>
                     <input value='Submit details' style='display:none;' #btnSubmit id='btnSubmit' name='btnSubmit' class='btn btn-primary' type='submit'>
                 </form>
-                <div id='greenid-div'>
                 <link *ngIf="styleUrl" type="text/css" rel="stylesheet" [href]="styleUrl">
+                <div id='greenid-div'>
                 </div>
     ` ,
     styles     : [ require( './amp-greenid-block.component.scss' ).toString() ] ,
