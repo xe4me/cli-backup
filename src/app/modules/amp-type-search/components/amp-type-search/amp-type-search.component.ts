@@ -46,6 +46,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     @Input() selectedItemValueIdentifier            = 'label';
     @Input() isInSummaryState                       = false;
     @Input() minTriggerLength                       = 50;
+    @Input() maxLength                              = 50;
     @Input() errors                                 = {};
     @Input() selectLabel                            = null;
     @Input() label;
