@@ -30,7 +30,7 @@ export class AmpErrorComponent implements OnInit {
     /*
      * TODO : We need to change the changeDetectionStrategy of this component to be OnPush
      * But the problem is then how should this component should be notified of updates ?
-     * Bellow is one way that I coult work out , but I need more time to spend to make it 100 working , thus I won't
+     * Below is one way that I coult work out , but I need more time to spend to make it 100 working , thus I won't
      * remove the com
      * */
     ngOnInit () : void {
