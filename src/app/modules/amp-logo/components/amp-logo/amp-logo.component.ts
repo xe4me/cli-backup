@@ -29,7 +29,8 @@ export class AmpLogoComponent implements OnInit {
         this.licensee = LicenseesAbstract.hasLicensee(this.licensee) ? this.licensee : 'AMP';
 
         let licenseeMap = LicenseesAbstract.licenseeImages;
-        let imageName = licenseeMap[this.licensee][this.theme] || defaultTheme;
+        let imageName = licenseeMap[this.licensee][this.theme] ||
+                        licenseeMap[this.licensee][defaultTheme];
         let imageAlt = this.alt ||
                        licenseeMap[this.licensee].name ||
                        LicenseesAbstract.getLicenseeBuybackFacility(this.licensee);
