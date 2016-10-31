@@ -34,7 +34,7 @@ go to [http://0.0.0.0:3001](http://0.0.0.0:3001) or [http://localhost:3001](http
 
 
 NOTE :
-After running "npm start" If you came across "Strict Mode and Const" related npm errors , run bellow code to fix this :
+After running "npm start" If you came across "Strict Mode and Const" related npm errors , run below code to fix this :
 
 1) Clear NPM's cache:
 

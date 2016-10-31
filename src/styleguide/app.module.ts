@@ -36,7 +36,8 @@ import { AmpFormRowModule } from '../app/modules/amp-form-row/amp-form-row.modul
 import { AmpRowRepeaterModule } from '../app/modules/amp-row-repeater/amp-row-repeater.module';
 import { AmpTooltipModule } from '../app/modules/amp-tooltip/amp-tooltip.module';
 import { PortalModule } from '@angular2-material/core';
-import {AmpGreenidModule} from '../app/modules/amp-greenid-block/amp-greenid.module';
+import { AmpGreenidModule } from '../app/modules/amp-greenid-block/amp-greenid.module';
+import { AmpLogoModule } from '../app/modules/amp-logo/amp-logo.module';
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
@@ -63,6 +64,7 @@ const IMPORTS                               = [
     AmpQasAddressModule ,
     AmpStyleguideReduxModule ,
     AmpGreenidModule,
+    AmpLogoModule,
     PortalModule ,
     BrowserModule ,
     FormsModule ,

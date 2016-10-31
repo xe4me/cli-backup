@@ -140,102 +140,24 @@
         "readme": "<p>Here are the different styles of text available</p>\n"
     },
     {
-        "name": "Amp Linear ProgressBar",
+        "name": "Amp Account Number",
         "sources": [
-            "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
+            "src/app/components/amp-inputs/components"
         ],
-        "id": "AmpLinearProgressBarComponent",
+        "id": "AmpAccountNumber",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-linear-progress-bar/basic_usage.html",
-                "styles": "src/styleguide/components/amp-linear-progress-bar/basic_usage.scss",
-                "source": "src/styleguide/components/amp-linear-progress-bar/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.test.spec",
-                "jasmine": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.spec.ts",
-                "component": "amp-linear-progress-bar-basic-usage",
-                "component_src_location": "components/amp-linear-progress-bar/basic_usage",
-                "name": "Amp Linear Progress Bar Basic Usage"
+                "template": "src/styleguide/components/amp-account-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-account-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-account-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-account-number/amp-account-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-account-number/amp-account-number.spec.ts",
+                "component": "amp-account-number-basic-usage",
+                "component_src_location": "components/amp-account-number/basic_usage",
+                "name": "Amp Account Number Basic Usage"
             }
         ],
-        "readme": "<p>To see a progress bar look and feel.</p>\n"
-    },
-    {
-        "name": "Amp standalone menu",
-        "sources": [
-            "src/app/components/amp-standalone-menu/amp-standalone-menu.component.ts"
-        ],
-        "id": "AmpStandAloneMenuComponent",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-standalone-menu/basic_usage.html",
-                "styles": "src/styleguide/components/amp-standalone-menu/basic_usage.scss",
-                "source": "src/styleguide/components/amp-standalone-menu/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.spec.ts",
-                "component": "amp-standalone-menu-basic-usage",
-                "component_src_location": "components/amp-standalone-menu/basic_usage",
-                "name": "AMP standalone menu"
-            }
-        ],
-        "readme": "<p>Stand alone menu component</p>\n"
-    },
-    {
-        "name": "Amp Block Loader",
-        "sources": [
-            "src/app/directives/amp-block-loader/amp-block-loader.component.ts"
-        ],
-        "id": "AmpBlockLoaderDirective",
-        "examples": [
-            {
-                "template": "src/styleguide/directives/amp-block-loader/basic_usage.html",
-                "styles": "src/styleguide/directives/amp-block-loader/basic_usage.scss",
-                "source": "src/styleguide/directives/amp-block-loader/basic_usage.ts",
-                "galen": "src/styleguide/directives/amp-block-loader/amp-block-loader.directive.test.spec",
-                "jasmine": "src/styleguide/directives/amp-block-loader/amp-block-loader.directive.spec.ts",
-                "component": "amp-block-loader-basic-usage",
-                "component_src_location": "directives/amp-block-loader/basic_usage",
-                "name": "Amp Block Loader basic usage"
-            }
-        ],
-        "readme": "<p>To load components dynamically</p>\n"
-    },
-    {
-        "name": "Amp Number ",
-        "sources": [
-            "src/app/directives/amp-number/amp-number.component.ts"
-        ],
-        "id": "AmpNumberDirective",
-        "examples": [
-            {
-                "template": "src/styleguide/directives/amp-number/basic_usage.html",
-                "styles": "src/styleguide/directives/amp-number/basic_usage.scss",
-                "source": "src/styleguide/directives/amp-number/basic_usage.ts",
-                "component": "amp-number-basic-usage",
-                "component_src_location": "directives/amp-number/basic_usage",
-                "name": "Amp Number basic usage"
-            }
-        ],
-        "readme": "<p>To Allow only numbers in the input field</p>\n"
-    },
-    {
-        "name": "Amp loading icon",
-        "sources": [
-            "src/app/components/amp-loading/amp-loading.component.ts"
-        ],
-        "id": "AmpLoadingComponentBasicUsage",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-loading/basic_usage.html",
-                "styles": "src/styleguide/components/amp-loading/basic_usage.scss",
-                "source": "src/styleguide/components/amp-loading/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-loading/amp-loading.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-loading/amp-loading.component.spec.ts",
-                "component": "amp-loading-basic-usage",
-                "component_src_location": "components/amp-loading/basic_usage",
-                "name": "Amp Loading Icon Basic Usage"
-            }
-        ],
-        "readme": "<p>A loading Icon</p>\n"
+        "readme": "<p>AMP account number input, based amp-input component.</p>\n"
     },
     {
         "name": "Amp Button",
@@ -258,44 +180,304 @@
         "readme": "<p>Custom Block for AmpButtonComponent.</p>\n"
     },
     {
-        "name": "Amp Typeahead",
+        "name": "Amp Checkbox",
         "sources": [
-            "src/app/components/amp-typeahead/amp-typeahead.component.ts"
+            "src/app/components/amp-checkbox/amp-checkbox.component.ts"
         ],
-        "id": "AmpTypeaheadComponent",
+        "id": "AmpCheckboxComponent",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-typeahead/basic_usage.html",
-                "styles": "src/styleguide/components/amp-typeahead/basic_usage.scss",
-                "source": "src/styleguide/components/amp-typeahead/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-typeahead/amp-typeahead.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-typeahead/amp-typeahead.component.spec.ts",
-                "component": "amp-typeahead-basic-usage",
-                "component_src_location": "components/amp-typeahead/basic_usage",
-                "name": "Amp Auto Complete Basic Usage"
+                "template": "src/styleguide/components/amp-checkbox/basic_usage.html",
+                "styles": "src/styleguide/components/amp-checkbox/basic_usage.scss",
+                "source": "src/styleguide/components/amp-checkbox/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-checkbox/amp-checkbox.component.spec.ts",
+                "component": "amp-checkbox-block-basic-usage",
+                "component_src_location": "components/amp-checkbox/basic_usage",
+                "name": "Amp Checkbox Basic Usage"
             }
         ],
-        "readme": "<p>Custom Block for AmpAutoCompleteComponent.</p>\n"
+        "readme": "<p>Custom Block for AmpCheckboxComponent.</p>\n"
     },
     {
-        "name": "Amp Qas Address",
+        "name": "Amp Contact Number",
         "sources": [
-            "src/app/components/amp-qas-address/amp-qas-address.component.ts"
+            "src/app/components/amp-inputs/components"
         ],
-        "id": "AmpQasAddressComponent",
+        "id": "AmpContactNumber",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-qas-address/basic_usage.html",
-                "styles": "src/styleguide/components/amp-qas-address/basic_usage.scss",
-                "source": "src/styleguide/components/amp-qas-address/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-qas-address/amp-qas-address.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-qas-address/amp-qas-address.component.spec.ts",
-                "component": "amp-qas-address-basic-usage",
-                "component_src_location": "components/amp-qas-address/basic_usage",
-                "name": "Amp Auto Complete Basic Usage"
+                "template": "src/styleguide/components/amp-contact-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-contact-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-contact-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-contact-number/amp-contact-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-contact-number/amp-contact-number.spec.ts",
+                "component": "amp-contact-number-basic-usage",
+                "component_src_location": "components/amp-contact-number/basic_usage",
+                "name": "Basic Usage"
             }
         ],
-        "readme": "<p>Custom Block for AmpQasAddressComponent.</p>\n"
+        "readme": "<p>AMP natural language contact number"
+    },
+    {
+        "name": "Amp Country Dropdown",
+        "sources": [
+            "src/app/components/amp-country/amp-country.component.ts"
+        ],
+        "id": "AmpCountryComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-country/basic_usage.html",
+                "styles": "src/styleguide/components/amp-country/basic_usage.scss",
+                "source": "src/styleguide/components/amp-country/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-country/amp-country.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-country/amp-country.component.spec.ts",
+                "component": "amp-country-block-basic-usage",
+                "component_src_location": "components/amp-country/basic_usage",
+                "name": "Amp Country Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for Amp Country Dropdown Component.</p>\n"
+    },
+    {
+        "name": "Amp Dropdown",
+        "sources": [
+            "src/app/components/amp-dropdown/amp-dropdown.component.ts"
+        ],
+        "id": "AmpDropdownComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-dropdown/basic_usage.html",
+                "styles": "src/styleguide/components/amp-dropdown/basic_usage.scss",
+                "source": "src/styleguide/components/amp-dropdown/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-dropdown/amp-dropdown.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-dropdown/amp-dropdown.component.spec.ts",
+                "component": "amp-dropdown-block-basic-usage",
+                "component_src_location": "components/amp-dropdown/basic_usage",
+                "name": "Amp Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
+    },
+    {
+        "name": "Amp Email",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpEmail",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-email/basic_usage.html",
+                "styles": "src/styleguide/components/amp-email/basic_usage.scss",
+                "source": "src/styleguide/components/amp-email/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-email/amp-email.test.spec",
+                "jasmine": "src/styleguide/components/amp-email/amp-email.spec.ts",
+                "component": "amp-email-basic-usage",
+                "component_src_location": "components/amp-email/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name": "Amp File Upload",
+        "sources": [
+            "src/app/components/amp-file-upload/amp-file-upload.component.ts"
+        ],
+        "id": "AmpFileUploadComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-file-upload/basic_usage.html",
+                "styles": "src/styleguide/components/amp-file-upload/basic_usage.scss",
+                "source": "src/styleguide/components/amp-file-upload/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-file-upload/amp-file-upload.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-file-upload/amp-file-upload.component.spec.ts",
+                "component": "amp-file-upload-block-basic-usage",
+                "component_src_location": "components/amp-file-upload/basic_usage",
+                "name": "Amp File Upload Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpFileUploadComponent.</p>\n"
+    },
+    {
+        "name": "Amp First Name",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpFirstName",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-first-name/basic_usage.html",
+                "styles": "src/styleguide/components/amp-first-name/basic_usage.scss",
+                "source": "src/styleguide/components/amp-first-name/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-first-name/amp-first-name.test.spec",
+                "jasmine": "src/styleguide/components/amp-first-name/amp-first-name.spec.ts",
+                "component": "amp-first-name-basic-usage",
+                "component_src_location": "components/amp-first-name/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name": "Amp Google Address",
+        "sources": [
+            "src/app/components/amp-google-address/amp-google-address.component.ts"
+        ],
+        "id": "AMPGoogleAddress",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-google-address/basic_usage.html",
+                "styles": "src/styleguide/components/amp-google-address/basic_usage.scss",
+                "source": "src/styleguide/components/amp-google-address/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-google-address/amp-google-address.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-google-address/amp-google-address.component.spec.ts",
+                "component": "amp-google-address-basic-usage",
+                "component_src_location": "components/amp-google-address/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP google address input search box</p>\n"
+    },
+    {
+        "name": "Amp Group Buttons",
+        "sources": [
+            "src/app/components/amp-group-buttons/amp-group-buttons.component.ts"
+        ],
+        "id": "AmpGroupButtonComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-group-buttons/basic_usage.html",
+                "styles": "src/styleguide/components/amp-group-buttons/basic_usage.scss",
+                "source": "src/styleguide/components/amp-group-buttons/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-group-buttons/amp-group-buttons.test.spec",
+                "jasmine": "src/styleguide/components/amp-group-buttons/amp-group-buttons.spec.ts",
+                "component": "amp-group-buttons-block-basic-usage",
+                "component_src_location": "components/amp-group-buttons/basic_usage",
+                "name": "Amp Group Button Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpGroupButtonComponent.</p>\n"
+    },
+    {
+        "name": "Amp Home Number",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpHomeNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-home-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-home-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-home-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-home-number/amp-home-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-home-number/amp-home-number.spec.ts",
+                "component": "amp-home-number-basic-usage",
+                "component_src_location": "components/amp-home-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language home number"
+    },
+    {
+        "name": "Amp Input",
+        "sources": [
+            "src/app/components/amp-inputs/amp-inputs.component.ts"
+        ],
+        "id": "AmpInput",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-input/basic_usage.html",
+                "styles": "src/styleguide/components/amp-input/basic_usage.scss",
+                "source": "src/styleguide/components/amp-input/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-input/amp-input.test.spec",
+                "jasmine": "src/styleguide/components/amp-input/amp-input.spec.ts",
+                "component": "amp-input-basic-usage",
+                "component_src_location": "components/amp-input/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name": "Amp Last Name",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpLastName",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-last-name/basic_usage.html",
+                "styles": "src/styleguide/components/amp-last-name/basic_usage.scss",
+                "source": "src/styleguide/components/amp-last-name/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-last-name/amp-last-name.test.spec",
+                "jasmine": "src/styleguide/components/amp-last-name/amp-last-name.spec.ts",
+                "component": "amp-last-name-basic-usage",
+                "component_src_location": "components/amp-last-name/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
+        "name": "Amp Linear ProgressBar",
+        "sources": [
+            "src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component.ts"
+        ],
+        "id": "AmpLinearProgressBarComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-linear-progress-bar/basic_usage.html",
+                "styles": "src/styleguide/components/amp-linear-progress-bar/basic_usage.scss",
+                "source": "src/styleguide/components/amp-linear-progress-bar/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.test.spec",
+                "jasmine": "src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.spec.ts",
+                "component": "amp-linear-progress-bar-basic-usage",
+                "component_src_location": "components/amp-linear-progress-bar/basic_usage",
+                "name": "Amp Linear Progress Bar Basic Usage"
+            }
+        ],
+        "readme": "<p>To see a progress bar look and feel.</p>\n"
+    },
+    {
+        "name": "Amp Loading Icon",
+        "sources": [
+            "src/app/components/amp-loading/amp-loading.component.ts"
+        ],
+        "id": "AmpLoadingComponentBasicUsage",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-loading/basic_usage.html",
+                "styles": "src/styleguide/components/amp-loading/basic_usage.scss",
+                "source": "src/styleguide/components/amp-loading/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-loading/amp-loading.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-loading/amp-loading.component.spec.ts",
+                "component": "amp-loading-basic-usage",
+                "component_src_location": "components/amp-loading/basic_usage",
+                "name": "Amp Loading Icon Basic Usage"
+            }
+        ],
+        "readme": "<p>A loading Icon</p>\n"
+    },
+    {
+        "name": "Amp Logo",
+        "sources": [
+            "src/app/components/amp-logo/amp-logo.component.ts"
+        ],
+        "id": "AmpFileUploadComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-logo/basic_usage.html",
+                "styles": "src/styleguide/components/amp-logo/basic_usage.scss",
+                "source": "src/styleguide/components/amp-logo/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-logo/amp-logo.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-logo/amp-logo.component.spec.ts",
+                "component": "amp-logo-block-basic-usage",
+                "component_src_location": "components/amp-logo/basic_usage",
+                "name": "Amp Logo Basic Usage"
+            }
+        ],
+        "readme": "<p>Amp Logo component provides default AMP and AMP Licensee logos.</p>\n"
     },
     {
         "name": "Amp Manual Address",
@@ -338,6 +520,46 @@
         "readme": "<p>Custom Block for AmpManualAddressExtendedComponent.</p>\n"
     },
     {
+        "name": "Amp Phone Number",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpPhoneNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-mobile-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-mobile-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-mobile-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-mobile-number/amp-mobile-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-mobile-number/amp-mobile-number.spec.ts",
+                "component": "amp-mobile-number-basic-usage",
+                "component_src_location": "components/amp-mobile-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language phone number"
+    },
+    {
+        "name": "Amp Qas Address",
+        "sources": [
+            "src/app/components/amp-qas-address/amp-qas-address.component.ts"
+        ],
+        "id": "AmpQasAddressComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-qas-address/basic_usage.html",
+                "styles": "src/styleguide/components/amp-qas-address/basic_usage.scss",
+                "source": "src/styleguide/components/amp-qas-address/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-qas-address/amp-qas-address.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-qas-address/amp-qas-address.component.spec.ts",
+                "component": "amp-qas-address-basic-usage",
+                "component_src_location": "components/amp-qas-address/basic_usage",
+                "name": "Amp Auto Complete Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for AmpQasAddressComponent.</p>\n"
+    },
+    {
         "name": "Amp Qas Address Multi",
         "sources": [
             "src/app/components/amp-qas-address-multi/amp-qas-address-multi.component.ts"
@@ -356,46 +578,6 @@
             }
         ],
         "readme": "<p>Custom Block for AmpQasAddressMultiComponent.</p>\n"
-    },
-    {
-        "name": "Amp Group Buttons",
-        "sources": [
-            "src/app/components/amp-group-buttons/amp-group-buttons.component.ts"
-        ],
-        "id": "AmpGroupButtonComponent",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-group-buttons/basic_usage.html",
-                "styles": "src/styleguide/components/amp-group-buttons/basic_usage.scss",
-                "source": "src/styleguide/components/amp-group-buttons/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-group-buttons/amp-group-buttons.test.spec",
-                "jasmine": "src/styleguide/components/amp-group-buttons/amp-group-buttons.spec.ts",
-                "component": "amp-group-buttons-block-basic-usage",
-                "component_src_location": "components/amp-group-buttons/basic_usage",
-                "name": "Amp Group Button Basic Usage"
-            }
-        ],
-        "readme": "<p>Custom Block for AmpGroupButtonComponent.</p>\n"
-    },
-    {
-        "name": "Amp Checkbox",
-        "sources": [
-            "src/app/components/amp-checkbox/amp-checkbox.component.ts"
-        ],
-        "id": "AmpCheckboxComponent",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-checkbox/basic_usage.html",
-                "styles": "src/styleguide/components/amp-checkbox/basic_usage.scss",
-                "source": "src/styleguide/components/amp-checkbox/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-checkbox/amp-checkbox.component.spec.ts",
-                "component": "amp-checkbox-block-basic-usage",
-                "component_src_location": "components/amp-checkbox/basic_usage",
-                "name": "Amp Checkbox Basic Usage"
-            }
-        ],
-        "readme": "<p>Custom Block for AmpCheckboxComponent.</p>\n"
     },
     {
         "name": "Amp Radio Group Button",
@@ -418,24 +600,24 @@
         "readme": "<p>Custom Block for AmpRadioGroupButtonComponent.</p>\n"
     },
     {
-        "name": "Amp Google Address",
+        "name": "Amp Standalone Menu",
         "sources": [
-            "src/app/components/amp-google-address/amp-google-address.component.ts"
+            "src/app/components/amp-standalone-menu/amp-standalone-menu.component.ts"
         ],
-        "id": "AMPGoogleAddress",
+        "id": "AmpStandAloneMenuComponent",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-google-address/basic_usage.html",
-                "styles": "src/styleguide/components/amp-google-address/basic_usage.scss",
-                "source": "src/styleguide/components/amp-google-address/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-google-address/amp-google-address.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-google-address/amp-google-address.component.spec.ts",
-                "component": "amp-google-address-basic-usage",
-                "component_src_location": "components/amp-google-address/basic_usage",
-                "name": "Basic Usage"
+                "template": "src/styleguide/components/amp-standalone-menu/basic_usage.html",
+                "styles": "src/styleguide/components/amp-standalone-menu/basic_usage.scss",
+                "source": "src/styleguide/components/amp-standalone-menu/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-standalone-menu/amp-standalone-menu.component.spec.ts",
+                "component": "amp-standalone-menu-basic-usage",
+                "component_src_location": "components/amp-standalone-menu/basic_usage",
+                "name": "AMP standalone menu"
             }
         ],
-        "readme": "<p>AMP google address input search box</p>\n"
+        "readme": "<p>Stand alone menu component</p>\n"
     },
     {
         "name": "Amp Textarea",
@@ -458,147 +640,47 @@
         "readme": "<p>AMP Textarea basic usage</p>\n"
     },
     {
-        "name": "AmpInput",
+        "name": "Amp Tooltip",
         "sources": [
-            "src/app/components/amp-inputs/amp-inputs.component.ts"
+            "src/app/components/amp-tooltip/amp-tooltip.component.ts"
         ],
-        "id": "AmpInput",
+        "id": "AmpTooltip",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-input/basic_usage.html",
-                "styles": "src/styleguide/components/amp-input/basic_usage.scss",
-                "source": "src/styleguide/components/amp-input/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-input/amp-input.test.spec",
-                "jasmine": "src/styleguide/components/amp-input/amp-input.spec.ts",
-                "component": "amp-input-basic-usage",
-                "component_src_location": "components/amp-input/basic_usage",
-                "name": "Basic Usage"
+                "template": "src/styleguide/components/amp-tooltip/basic_usage.html",
+                "styles": "src/styleguide/components/amp-tooltip/basic_usage.scss",
+                "source": "src/styleguide/components/amp-tooltip/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-tooltip/amp-tooltip.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-tooltip/amp-tooltip.component.spec.ts",
+                "component": "amp-tooltip-block-basic-usage",
+                "component_src_location": "components/amp-tooltip/basic_usage",
+                "name": "Amp Tooltip Basic Usage"
             }
         ],
-        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+        "readme": "<p>Custom Block for AmpTooltipComponent.</p>\n"
     },
     {
-        "name": "AmpEmail",
+        "name": "Amp Typeahead",
         "sources": [
-            "src/app/components/amp-inputs/components"
+            "src/app/components/amp-typeahead/amp-typeahead.component.ts"
         ],
-        "id": "AmpEmail",
+        "id": "AmpTypeaheadComponent",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-email/basic_usage.html",
-                "styles": "src/styleguide/components/amp-email/basic_usage.scss",
-                "source": "src/styleguide/components/amp-email/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-email/amp-email.test.spec",
-                "jasmine": "src/styleguide/components/amp-email/amp-email.spec.ts",
-                "component": "amp-email-basic-usage",
-                "component_src_location": "components/amp-email/basic_usage",
-                "name": "Basic Usage"
+                "template": "src/styleguide/components/amp-typeahead/basic_usage.html",
+                "styles": "src/styleguide/components/amp-typeahead/basic_usage.scss",
+                "source": "src/styleguide/components/amp-typeahead/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-typeahead/amp-typeahead.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-typeahead/amp-typeahead.component.spec.ts",
+                "component": "amp-typeahead-basic-usage",
+                "component_src_location": "components/amp-typeahead/basic_usage",
+                "name": "Amp Auto Complete Basic Usage"
             }
         ],
-        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+        "readme": "<p>Custom Block for AmpAutoCompleteComponent.</p>\n"
     },
     {
-        "name": "AmpFirstName",
-        "sources": [
-            "src/app/components/amp-inputs/components"
-        ],
-        "id": "AmpFirstName",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-first-name/basic_usage.html",
-                "styles": "src/styleguide/components/amp-first-name/basic_usage.scss",
-                "source": "src/styleguide/components/amp-first-name/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-first-name/amp-first-name.test.spec",
-                "jasmine": "src/styleguide/components/amp-first-name/amp-first-name.spec.ts",
-                "component": "amp-first-name-basic-usage",
-                "component_src_location": "components/amp-first-name/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
-    },
-    {
-        "name": "AmpLastName",
-        "sources": [
-            "src/app/components/amp-inputs/components"
-        ],
-        "id": "AmpLastName",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-last-name/basic_usage.html",
-                "styles": "src/styleguide/components/amp-last-name/basic_usage.scss",
-                "source": "src/styleguide/components/amp-last-name/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-last-name/amp-last-name.test.spec",
-                "jasmine": "src/styleguide/components/amp-last-name/amp-last-name.spec.ts",
-                "component": "amp-last-name-basic-usage",
-                "component_src_location": "components/amp-last-name/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
-    },
-    {
-        "name": "AmpContactNumber",
-        "sources": [
-            "src/app/components/amp-inputs/components"
-        ],
-        "id": "AmpContactNumber",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-contact-number/basic_usage.html",
-                "styles": "src/styleguide/components/amp-contact-number/basic_usage.scss",
-                "source": "src/styleguide/components/amp-contact-number/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-contact-number/amp-contact-number.test.spec",
-                "jasmine": "src/styleguide/components/amp-contact-number/amp-contact-number.spec.ts",
-                "component": "amp-contact-number-basic-usage",
-                "component_src_location": "components/amp-contact-number/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>AMP natural language contact-number"
-    },
-    {
-        "name": "AmpPhoneNumber",
-        "sources": [
-            "src/app/components/amp-inputs/components"
-        ],
-        "id": "AmpPhoneNumber",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-mobile-number/basic_usage.html",
-                "styles": "src/styleguide/components/amp-mobile-number/basic_usage.scss",
-                "source": "src/styleguide/components/amp-mobile-number/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-mobile-number/amp-mobile-number.test.spec",
-                "jasmine": "src/styleguide/components/amp-mobile-number/amp-mobile-number.spec.ts",
-                "component": "amp-mobile-number-basic-usage",
-                "component_src_location": "components/amp-mobile-number/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>AMP natural language mobile-number"
-    },
-    {
-        "name": "AmpHomeNumber",
-        "sources": [
-            "src/app/components/amp-inputs/components"
-        ],
-        "id": "AmpHomeNumber",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-home-number/basic_usage.html",
-                "styles": "src/styleguide/components/amp-home-number/basic_usage.scss",
-                "source": "src/styleguide/components/amp-home-number/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-home-number/amp-home-number.test.spec",
-                "jasmine": "src/styleguide/components/amp-home-number/amp-home-number.spec.ts",
-                "component": "amp-home-number-basic-usage",
-                "component_src_location": "components/amp-home-number/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>AMP natural language home-number"
-    },
-    {
-        "name": "AmpWorkNumber",
+        "name": "Amp Work Number",
         "sources": [
             "src/app/components/amp-inputs/components"
         ],
@@ -618,84 +700,64 @@
         "readme": "<p>AMP natural language work-number"
     },
     {
-        "name": "Amp Dropdown",
+        "name": "Amp Form Block",
         "sources": [
-            "src/app/components/amp-dropdown/amp-dropdown.component.ts"
+            "src/app/blocks/amp-form-block/amp-form-block.component.ts"
         ],
-        "id": "AmpDropdownComponent",
+        "id": "AmpFormBlock",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-dropdown/basic_usage.html",
-                "styles": "src/styleguide/components/amp-dropdown/basic_usage.scss",
-                "source": "src/styleguide/components/amp-dropdown/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-dropdown/amp-dropdown.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-dropdown/amp-dropdown.component.spec.ts",
-                "component": "amp-dropdown-block-basic-usage",
-                "component_src_location": "components/amp-dropdown/basic_usage",
-                "name": "Amp Dropdown Basic Usage"
+                "template": "src/styleguide/blocks/amp-form-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-form-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-form-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-form-block/amp-form-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-form-block/amp-form-block.component.spec.ts",
+                "component": "amp-form-basic-usage",
+                "component_src_location": "blocks/amp-form-block/basic_usage",
+                "name": "Amp Form Block Basic Usage"
             }
         ],
-        "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
+        "readme": "<p>See components in context</p>\n"
     },
     {
-        "name": "Amp Country Dropdown",
+        "name": "Amp GreenId Block",
         "sources": [
-            "src/app/components/amp-country/amp-country.component.ts"
+            "src/app/blocks/amp-greenid-block/amp-greenid-block.component.ts"
         ],
-        "id": "AmpCountryComponent",
+        "id": "AmpGreenidBlock",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-country/basic_usage.html",
-                "styles": "src/styleguide/components/amp-country/basic_usage.scss",
-                "source": "src/styleguide/components/amp-country/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-country/amp-country.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-country/amp-country.component.spec.ts",
-                "component": "amp-country-block-basic-usage",
-                "component_src_location": "components/amp-country/basic_usage",
-                "name": "Amp Country Dropdown Basic Usage"
+                "template": "src/styleguide/blocks/amp-greenid-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-greenid-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-greenid-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.spec.ts",
+                "component": "amp-greenid-basic-usage",
+                "component_src_location": "blocks/amp-greenid-block/basic_usage",
+                "name": "Amp GreenID Block Basic Usage"
             }
         ],
-        "readme": "<p>Custom Block for Amp Country Dropdown Component.</p>\n"
+        "readme": "<p>Green id block implementation</p>\n"
     },
     {
-        "name": "Amp Tooltip",
+        "name": "Amp Intro Block",
         "sources": [
-            "src/app/components/amp-tooltip/amp-tooltip.component.ts"
+            "src/app/blocks/amp-intro-block/amp-intro-block.component.ts"
         ],
-        "id": "AmpTooltip",
+        "id": "AmpIntroBlock",
         "examples": [
             {
-                "template": "src/styleguide/components/amp-tooltip/basic_usage.html",
-                "styles": "src/styleguide/components/amp-tooltip/basic_usage.scss",
-                "source": "src/styleguide/components/amp-tooltip/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-tooltip/amp-tooltip.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-tooltip/amp-tooltip.component.spec.ts",
-                "component": "amp-tooltip-block-basic-usage",
-                "component_src_location": "components/amp-tooltip/basic_usage",
-                "name": "Amp Dropdown Basic Usage"
+                "template": "src/styleguide/blocks/amp-intro-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-intro-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-intro-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-intro-block/amp-intro-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-intro-block/amp-intro-block.component.spec.ts",
+                "component": "amp-intro-basic-usage",
+                "component_src_location": "blocks/amp-intro-block/basic_usage",
+                "name": "Amp Intro Block Basic Usage"
             }
         ],
-        "readme": "<p>Custom Block for AmpTooltipComponent.</p>\n"
-    },
-    {
-        "name": "AmpAccountNumber",
-        "sources": [
-            "src/app/components/amp-inputs/components"
-        ],
-        "id": "AmpAccountNumber",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-account-number/basic_usage.html",
-                "styles": "src/styleguide/components/amp-account-number/basic_usage.scss",
-                "source": "src/styleguide/components/amp-account-number/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-account-number/amp-account-number.test.spec",
-                "jasmine": "src/styleguide/components/amp-account-number/amp-account-number.spec.ts",
-                "component": "amp-account-number-basic-usage",
-                "component_src_location": "components/amp-account-number/basic_usage",
-                "name": "Amp Account Number Basic Usage"
-            }
-        ],
-        "readme": "<p>AMP account number input, based amp-input component.</p>\n"
+        "readme": "<p>Different permutations of intro block components</p>\n"
     },
     {
         "name": "Amp Review Block",
@@ -719,83 +781,41 @@
         "readme": "<p>Block that contains item(s) for review</p>\n"
     },
     {
-        "name": "Amp Form Block",
+        "name": "Amp Block Loader",
         "sources": [
-            "src/app/blocks/amp-form-block/amp-form-block.component.ts"
+            "src/app/directives/amp-block-loader/amp-block-loader.component.ts"
         ],
-        "id": "AmpFormBlock",
+        "id": "AmpBlockLoaderDirective",
         "examples": [
             {
-                "template": "src/styleguide/blocks/amp-form-block/basic_usage.html",
-                "styles": "src/styleguide/blocks/amp-form-block/basic_usage.scss",
-                "source": "src/styleguide/blocks/amp-form-block/basic_usage.ts",
-                "galen": "src/styleguide/blocks/amp-form-block/amp-form-block.component.test.spec",
-                "jasmine": "src/styleguide/blocks/amp-form-block/amp-form-block.component.spec.ts",
-                "component": "amp-form-basic-usage",
-                "component_src_location": "blocks/amp-form-block/basic_usage",
-                "name": "Amp Form Block Basic Usage"
+                "template": "src/styleguide/directives/amp-block-loader/basic_usage.html",
+                "styles": "src/styleguide/directives/amp-block-loader/basic_usage.scss",
+                "source": "src/styleguide/directives/amp-block-loader/basic_usage.ts",
+                "galen": "src/styleguide/directives/amp-block-loader/amp-block-loader.directive.test.spec",
+                "jasmine": "src/styleguide/directives/amp-block-loader/amp-block-loader.directive.spec.ts",
+                "component": "amp-block-loader-basic-usage",
+                "component_src_location": "directives/amp-block-loader/basic_usage",
+                "name": "Amp Block Loader basic usage"
             }
         ],
-        "readme": "<p>See components in context</p>\n"
+        "readme": "<p>To load components dynamically</p>\n"
     },
     {
-        "name": "Amp Intro Block",
+        "name": "Amp Number ",
         "sources": [
-            "src/app/blocks/amp-intro-block/amp-intro-block.component.ts"
+            "src/app/directives/amp-number/amp-number.component.ts"
         ],
-        "id": "AmpIntroBlock",
+        "id": "AmpNumberDirective",
         "examples": [
             {
-                "template": "src/styleguide/blocks/amp-intro-block/basic_usage.html",
-                "styles": "src/styleguide/blocks/amp-intro-block/basic_usage.scss",
-                "source": "src/styleguide/blocks/amp-intro-block/basic_usage.ts",
-                "galen": "src/styleguide/blocks/amp-intro-block/amp-intro-block.component.test.spec",
-                "jasmine": "src/styleguide/blocks/amp-intro-block/amp-intro-block.component.spec.ts",
-                "component": "amp-intro-basic-usage",
-                "component_src_location": "blocks/amp-intro-block/basic_usage",
-                "name": "Amp Intro Block Basic Usage"
+                "template": "src/styleguide/directives/amp-number/basic_usage.html",
+                "styles": "src/styleguide/directives/amp-number/basic_usage.scss",
+                "source": "src/styleguide/directives/amp-number/basic_usage.ts",
+                "component": "amp-number-basic-usage",
+                "component_src_location": "directives/amp-number/basic_usage",
+                "name": "Amp Number basic usage"
             }
         ],
-        "readme": "<p>Different permutations of intro block components</p>\n"
-    },
-    {
-        "name": "Amp GreenId Block",
-        "sources": [
-            "src/app/blocks/amp-greenid-block/amp-greenid-block.component.ts"
-        ],
-        "id": "AmpGreenidBlock",
-        "examples": [
-            {
-                "template": "src/styleguide/blocks/amp-greenid-block/basic_usage.html",
-                "styles": "src/styleguide/blocks/amp-greenid-block/basic_usage.scss",
-                "source": "src/styleguide/blocks/amp-greenid-block/basic_usage.ts",
-                "galen": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.test.spec",
-                "jasmine": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.spec.ts",
-                "component": "amp-greenid-basic-usage",
-                "component_src_location": "blocks/amp-greenid-block/basic_usage",
-                "name": "Amp GreenID Block Basic Usage"
-            }
-        ],
-        "readme": "<p>Green id block implementation</p>\n"
-    },
-    {
-        "name": "Amp File Upload",
-        "sources": [
-            "src/app/components/amp-file-upload/amp-file-upload.component.ts"
-        ],
-        "id": "AmpFileUploadComponent",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-file-upload/basic_usage.html",
-                "styles": "src/styleguide/components/amp-file-upload/basic_usage.scss",
-                "source": "src/styleguide/components/amp-file-upload/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-file-upload/amp-file-upload.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-file-upload/amp-file-upload.component.spec.ts",
-                "component": "amp-file-upload-block-basic-usage",
-                "component_src_location": "components/amp-file-upload/basic_usage",
-                "name": "Amp File Upload Basic Usage"
-            }
-        ],
-        "readme": "<p>Custom Block for AmpFileUploadComponent.</p>\n"
+        "readme": "<p>To Allow only numbers in the input field</p>\n"
     }
 ]
