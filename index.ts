@@ -40,6 +40,7 @@ export { AssociationLengthAbstract } from './src/app/abstracts/association-lengt
 export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise-date.abstract';
 // Services
 export { ScrollService } from './src/app/services/scroll/scroll.service';
+export { PdfService } from './src/app/services/pdf/pdf.service';
 export { FormModelService } from './src/app/services/form-model/form-model.service.ts';
 export { DeviceService } from './src/app/services/device/device.service';
 export { AmpHttpService } from './src/app/services/amp-http/amp-http.service.ts';
