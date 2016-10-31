@@ -14,6 +14,7 @@ import {
     Renderer,
     Input,
 } from '@angular/core';
+import { DomSanitizationService } from '@angular/platform-browser';
 import { AmpGreenIdServices } from '../components/services/amp-greenid-service';
 import { ResponseObject } from '../components/interfaces/responseObject';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
@@ -82,6 +83,7 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
                     <input value='Submit details' style='display:none;' #btnSubmit id='btnSubmit' name='btnSubmit' class='btn btn-primary' type='submit'>
                 </form>
                 <div id='greenid-div'>
+                <link *ngIf="styleUrl" type="text/css" rel="stylesheet" [href]="styleUrl">
                 </div>
     ` ,
     styles     : [ require( './amp-greenid-block.component.scss' ).toString() ] ,
@@ -100,6 +102,7 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
 export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     @Input() form; // form model input
     @Input() scriptUrls; // all the api urls that need to be imported, the js is loaded asnyc
+    @Input() styleUrl;
     @ViewChild('btnSubmit') btnSubmit : ElementRef;
     private controlGroup : FormGroup = new FormGroup( {} );
     private loadApiScripts : Promise<any>;
@@ -130,7 +133,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     constructor ( private _AmpGreenIdServices : AmpGreenIdServices,
                   private fb : FormBuilder,
                   private _cd : ChangeDetectorRef,
-                  private _render : Renderer) {
+                  private _render : Renderer,
+                  private sanitizer : DomSanitizationService) {
 
     }
 
@@ -147,14 +151,15 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      * Get the array of greenid scripts that we need to submit with the model
      */
     public ngOnInit() : any {
-
+        if (this.styleUrl) {
+            this.styleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
+        }
         this.greenIdShowing = true;
         if (this.scriptUrls) {
             for (let stringUrl of this.scriptUrls) {
                 this.loadAllScripts(stringUrl);
             }
         }
-
         this.controlGroup = new FormGroup({
           verificationId : new FormControl('verificationId', null),
           verificationToken : new FormControl('verificationToken', null),
