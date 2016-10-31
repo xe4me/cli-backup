@@ -114,6 +114,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     private greenIdShowing : boolean = false;
 
     // TODO pass this in from an external source, as an example another component
+    // TODO pass in api code and password from an external source
     private greenIdSettings = {
         environment: 'test',
         formId: 'theform',
