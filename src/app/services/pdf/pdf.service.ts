@@ -5,22 +5,23 @@ import { DeviceService } from '../device/device.service';
 import { AmpHttpService } from '../amp-http/amp-http.service';
 @Injectable()
 export class PdfService {
-    public static BASE_URL = Environments.property.ApiCallsBaseUrl;
-    public static PDF_URL  = PdfService.BASE_URL + '/pdf';
-    private id             = null;
-    private error          = null;
-    private headers        = new Headers( {
+    public static BASE_URL        = Environments.property.ApiCallsBaseUrl;
+    public static EXPERIENCE_NAME = Environments.property.experienceName;
+    public static PDF_URL         = PdfService.BASE_URL + PdfService.EXPERIENCE_NAME + '/pdf';
+    private id                    = null;
+    private error                 = null;
+    private headers               = new Headers( {
         'Content-Type' : 'application/json' ,
         'caller'       : 'components-pdf-service'
     } );
-    private fileName       = 'MyLife';
+    private fileName              = 'MyLife';
 
     constructor ( private http : AmpHttpService ) {
     }
 
-    public download ( id , type , fileName = 'MyLife' ) {
+    public download ( id , format = 'base64' , fileName = 'MyLife' ) {
         this.fileName = fileName;
-        this.submitPrintPDF( id , type )
+        this._download( id , format )
             .subscribe( ( data ) => {
                 // Technical challenge: PDF reside in a APIGW protected URL that requires header "apiKey Bearer blahblah"
                 // Data URI will work for most browsers http://caniuse.com/#feat=datauri, except for the dreaded IE11
@@ -40,10 +41,10 @@ export class PdfService {
             } );
     }
 
-    protected submitPrintPDF ( id , type ) {
+    protected _download ( id , format ) {
         let headers : Headers = this.headers;
         let options           = new RequestOptions( { body : '' , headers : headers } );
-        const pdfUrl : string = PdfService.PDF_URL + '?id=' + id + '&type=' + type;
+        const pdfUrl : string = PdfService.PDF_URL + '?id=' + id + '&format=' + format;
         return this.http
                    .get( pdfUrl , headers )
                    .map( ( res ) => res.json() );

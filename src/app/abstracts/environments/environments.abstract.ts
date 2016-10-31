@@ -44,6 +44,7 @@ export class RootEnvProperty {
     ENV : string;
     // Base url for api calls like : /ddc/secure/api/...
     ApiCallsBaseUrl : string;
+    experienceName : string; // like : buyback , or nio , or cwc
     // Base URL for the js config libraries
     ApiGreenIdConfig : string;
     // Base URL for the js UI libraries
