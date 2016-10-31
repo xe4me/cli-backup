@@ -3,12 +3,9 @@ import {
     EventEmitter,
     ElementRef,
     ChangeDetectorRef,
-    AfterViewInit,
-    AfterContentInit,
     OnDestroy,
     ChangeDetectionStrategy,
     OnInit,
-    AfterViewChecked,
     Input
 } from '@angular/core';
 
@@ -38,11 +35,12 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private controlGroup : FormGroup;
     private sections = [];
     private sectionLabels : string = null;
-    private _currentSectionName : string = null;
-    private _previousSectionName : string = null;
+    private previousSectionName : string = null;
     private domUtils : DomUtils = null;
     private isSectionUpdated : boolean = false;
     private itemPrefix : string = 'Item-';
+    private isClassOpen : boolean = false;
+    private tempScrollTop : number;
     constructor(
         private _dom : BrowserDomAdapter,
         private _cd : ChangeDetectorRef,
@@ -67,6 +65,10 @@ export class AmpStandAloneMenuComponent implements OnInit {
         return state.indexOf('visited') === -1;
     }
 
+    private isStateActive(state : string) {
+        return state.indexOf('active') > -1;
+    }
+
     /**
      *
      * Update the sections and then put them into the collection along with the custom names for the menu
@@ -80,7 +82,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
         this.sections = Array.prototype.map.call(sections, (section, index) => {
             let pageSectionId = section.id;
             let menuItemId = this.itemPrefix + section.id;
-            let classes = section.className;
+            let classes = section.className || 'untouched';
             let label = section.getAttribute('label');
             return {
                 label: label,
@@ -92,7 +94,19 @@ export class AmpStandAloneMenuComponent implements OnInit {
         this._cd.markForCheck();
     }
 
+    private onClassOpen() {
+        this.isClassOpen = !this.isClassOpen;
+        this.tempScrollTop = this.scrollService.scrollTop;
+        window.scrollTo(0, 1);
+    }
+
+    private onClassClose() {
+        this.isClassOpen = !this.isClassOpen;
+        window.scrollTo(0, this.tempScrollTop);
+    }
+
     private scrollToSection(section) {
+        this.isClassOpen = false;
         this.scrollService.scrollToComponentSelector(section.pageSectionId);
     }
 
