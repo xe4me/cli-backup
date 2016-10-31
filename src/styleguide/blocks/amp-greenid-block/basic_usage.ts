@@ -42,7 +42,6 @@ export default class AmpGreenIdBlockBasicUsage {
         }
     };
 
-
     constructor ( private  themeService : ThemeService,
                   private ampGreenIdServices : AmpGreenIdServices,
                   private sanitizer : DomSanitizationService ) {
