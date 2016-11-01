@@ -46,19 +46,24 @@ export abstract class LicenseesAbstract {
         },
         DEA_AMPFP: {
             forms: 'ampfp-white.png',
-            tools: 'ampfp-blue.png'
+            tools: 'ampfp-blue.png',
+            tools_transparent: 'amp_fp.svg'
         },
         DEA_ASSURED: {
             forms: 'ampfp-white.png',
-            tools: 'ampfp-blue.png'
+            tools: 'ampfp-blue.png',
+            tools_transparent: 'amp_fp.svg'
         },
         DEA_CHARTER: {
             forms: 'charter-white.png',
-            tools: 'charter-blue.png'
+            tools: 'charter-blue.png',
+            tools_transparent: 'charter_fp.svg'
         },
         DEA_HILLROSS: {
             forms: 'hillross-white.png',
-            tools: 'hillross-blue.png'
+            forms_transparent: 'hillross.svg',
+            tools: 'hillross-blue.png',
+            tools_transparent: 'hillross_rev_fc.svg'
         }
     };
 
