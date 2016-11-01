@@ -7,8 +7,8 @@ import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, In
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { By } from '@angular/platform-browser';
-import {AmpGreenIdServices} from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
-import {AmpHttpService} from '../../../app/services/amp-http/amp-http.service';
+import { AmpGreenIdServices } from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
+import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
 import { AmpGreenidModule } from '../../../app/modules/amp-greenid-block/amp-greenid.module';
 import { AmpGreenidBlockComponent } from '../../../app/modules/amp-greenid-block/components/amp-greenid-block';
 
@@ -119,7 +119,7 @@ describe('AmpGreenIdServices - getTheToken', () => {
         fakeAsync(inject([AmpGreenIdServices, MockBackend], (ampGreenIdServices : AmpGreenIdServices, mockBackend : MockBackend) => {
             let res : Response;
             mockBackend.connections.subscribe(( c ) => {
-                expect(c.request.url).toBe('http://localhost:8082/ddc/public/api/green-id/registerVerification');
+                expect(c.request.url).toContain('/green-id/registerVerification');
                 let response = new ResponseOptions({body: `[{"verificationId": "M1Crf19U", "verificationToken": "fee72af1cf0f1ccd0a7f7a2af8a69ecfb40da449"}]`});
                 c.mockRespond(new Response(response));
             });
