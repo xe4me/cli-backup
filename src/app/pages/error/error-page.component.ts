@@ -9,17 +9,25 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
+import { AmpLogoComponent } from '../../modules/amp-logo/components/amp-logo/amp-logo.component';
 
 @Component( {
     selector : 'error-page' ,
     template : `
         <div class='error-page'>
-            <div class='error-page_logo logo--{{ logoImage }}'></div>
-            <div class='error-page_message'>
-                <h3>{{headline}}</h3>
-                <br>
-                {{message}}
+            <div class='error-page__row'>
+                <div class='error-page__logo'>
+                    <amp-logo [licensee]="logoImage"></amp-logo>
+                </div>
+            </div>
+            <div class='error-page__row'>
+                <div class='error-page__message'>
+                    <div class='error-page__message-inner'>
+                        <h3>{{headline}}</h3>
+                        <br>
+                        {{message}}
+                    </div>
+                </div>
             </div>
         </div>
     ` ,
@@ -28,7 +36,8 @@ import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
         'headline' ,
         'message' ,
         'logoImage'
-    ]
+    ],
+    directives : [ AmpLogoComponent ]
 } )
 export class ErrorPageComponent implements CanDeactivate<ErrorPageComponent> {
     static CLASS_NAME = 'ErrorPageComponent';
@@ -39,10 +48,6 @@ export class ErrorPageComponent implements CanDeactivate<ErrorPageComponent> {
         id    : 'DefaultContentId' ,
         label : 'Default content label'
     };
-
-    constructor () {
-        this.logoImage = LicenseesAbstract.hasLicensee(this.logoImage) ? this.logoImage : 'DEA_AMPFP';
-    }
 
     canDeactivate ( component : ErrorPageComponent , route : ActivatedRouteSnapshot ,
                     state : RouterStateSnapshot ) : Observable<boolean>|Promise<boolean>|boolean {
