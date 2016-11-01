@@ -35,9 +35,6 @@ export class PdfService {
                     link.href      = this.wrapInDataURI( data.payload );
                     link.click();
                 }
-            } , ( error : any ) => {
-                this.error = error.json();
-                console.log( this.error );
             } );
     }
 

@@ -260,7 +260,7 @@ export abstract class AmpBlockLoader implements OnChanges {
         if ( index !== undefined ) {
             index ++;
         }
-        this._blocks.splice(index, 0, _def);
+        // this._blocks.splice(index, 0, _def);
         this.loadAt( _def , index );
     }
 
@@ -274,7 +274,7 @@ export abstract class AmpBlockLoader implements OnChanges {
         if ( index !== undefined ) {
             index ++;
         }
-        this._blocks.splice(index, 1);
+        // this._blocks.splice(index, 1);
         this.removeAt( index );
     }
 }

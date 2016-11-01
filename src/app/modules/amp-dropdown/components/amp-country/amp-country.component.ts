@@ -39,8 +39,6 @@ export class AmpCountryComponent extends AmpDropdownComponent implements OnInit 
             .subscribe( ( res : any ) => {
                 this.options   = res;
                 this.preselect = this.control.value || 'AUS';
-            } , ( error : any ) => {
-                console.log( error );
             } );
         return undefined;
     }

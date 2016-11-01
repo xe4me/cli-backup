@@ -10,8 +10,8 @@ export function generateRandomString () {
 export function arrayJoinByDash ( _array ) {
     return _array.join( '-' );
 }
-export function getIn ( _fdn : (number|string)[] , _state : any ) : any {
-    for ( let i = 0 ; i < (_fdn.length - 1) ; i ++ ) {
+export function getIn ( _fdn : (number|string)[] , _state : any , _deep : number = 1 ) : any {
+    for ( let i = 0 ; i < (_fdn.length - _deep) ; i ++ ) {
         _state = _state[ _fdn[ i ] ];
     }
     return _state;

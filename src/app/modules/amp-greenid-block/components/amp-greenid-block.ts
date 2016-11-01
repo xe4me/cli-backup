@@ -13,6 +13,7 @@ import {
     ViewChild,
     Renderer,
     Input,
+    OnDestroy
 } from '@angular/core';
 import { DomSanitizationService } from '@angular/platform-browser';
 import { AmpGreenIdServices } from '../components/services/amp-greenid-service';
@@ -38,7 +39,7 @@ let greenIdLoaded = false;
                        <div class='grid__item_floated mh mv'>
                             <amp-checkbox
                                 [isInSummaryState]='isInSummaryState'
-                                [controlGroup]='controlGroup'
+                                [controlGroup]='greenIdControlGroup'
                                 [required]='acknowledge.required'
                                 [checked]='acknowledge.checked'
                                 [disabled]='acknowledge.disabled'
@@ -87,7 +88,7 @@ let greenIdLoaded = false;
                     </div>
                     <input value='Submit details' style='display:none;' #btnSubmit id='btnSubmit' name='btnSubmit' class='btn btn-primary' type='submit'>
                 </form>
-                <link *ngIf="styleUrl" type="text/css" rel="stylesheet" [href]="styleUrl">
+                <link *ngIf="styleUrl" type="text/css" media="screen" rel="stylesheet" [href]="styleUrl">
                 <div id='greenid-div'>
                 </div>
     ` ,
@@ -103,13 +104,16 @@ let greenIdLoaded = false;
             ])
     ]
 })
-export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
+export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDestroy {
+    @Input() id : string = 'green-id-identity-check';
     @Input() form; // form model input
     @Input() configScriptUrl; // all the api urls that need to be imported, the js is loaded asnyc
     @Input() uiScriptUrl;
     @Input() styleUrl;
+    @Input() keepControl = false;
+    @Input() controlGroup : FormGroup;
     @ViewChild('btnSubmit') btnSubmit : ElementRef;
-    private controlGroup : FormGroup = new FormGroup({});
+    private greenIdControlGroup : FormGroup;
     private loadApiScripts : Promise<any>;
     private acceptTerms : boolean = false;
     private okAccepted : boolean = false;
@@ -149,8 +153,16 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      */
     public onSessionComplete(token : string, verificationStatus : any) : void {
         if (verificationStatus instanceof String) {
-            (<FormControl> this.controlGroup.controls['verificationStatus']).setValue(verificationStatus);
+            (<FormControl> this.greenIdControlGroup.controls['verificationStatus']).setValue(verificationStatus);
         }
+    }
+
+    public createGreenIdControlGroup() {
+        return new FormGroup({
+            verificationId: new FormControl('verificationId', Validators.required),
+            verificationToken: new FormControl('verificationToken', Validators.required),
+            verificationStatus: new FormControl('verificationStatus', Validators.required),
+        });
     }
 
     /**
@@ -178,14 +190,24 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             }
             reject('Script urls were not provided');
         });
-
-        this.controlGroup = new FormGroup({
-            verificationId: new FormControl('verificationId', Validators.required),
-            verificationToken: new FormControl('verificationToken', Validators.required),
-            verificationStatus: new FormControl('verificationStatus', Validators.required),
-        });
+        if (this.controlGroup) {
+            if (this.controlGroup.contains(this.id)) {
+                this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
+            } else {
+                this.greenIdControlGroup = this.createGreenIdControlGroup();
+                this.controlGroup.addControl(this.id, this.greenIdControlGroup);
+            }
+        } else {
+            this.greenIdControlGroup = this.createGreenIdControlGroup();
+        }
 
         this._cd.detectChanges();
+    }
+
+    public ngOnDestroy() {
+        if (!this.keepControl && this.controlGroup && this.id) {
+            this.controlGroup.removeControl(this.id);
+        }
     }
     /**
      * Once we have the scripts loaded, we need to init the green id stuff, set it up
@@ -251,8 +273,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      */
     private updateModel(respo : ResponseObject) : void {
         if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
-            (<FormControl> this.controlGroup.controls['verificationId']).setValue(respo.verificationId);
-            (<FormControl> this.controlGroup.controls['verificationToken']).setValue(respo.verificationToken);
+            (<FormControl> this.greenIdControlGroup.controls['verificationId']).setValue(respo.verificationId);
+            (<FormControl> this.greenIdControlGroup.controls['verificationToken']).setValue(respo.verificationToken);
             this.greenIdShowing = false; // hide the orginal block content
         }
     }
