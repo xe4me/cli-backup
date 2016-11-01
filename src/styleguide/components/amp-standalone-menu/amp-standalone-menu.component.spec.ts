@@ -46,13 +46,6 @@ describe( 'amp standalone menu tests' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'amp-standalone-menu contains a form' , () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
-        let compiledLabel         = compiledTestComponent.query( By.css( 'form' ) );
-        expect( compiledLabel.name ).toBe( 'form' );
-    } );
     it( 'amp-standalone-menu check for shown element ' , () => {
         let fixture : ComponentFixture<TestComponent1> = TestBed.createComponent( TestComponent1 );
         let compiledTestComponentNav = fixture.debugElement;
@@ -70,7 +63,7 @@ class MockElementRef implements ElementRef {
 @Component( {
     template : `
     <form class='nl-form'>
-        <amp-standalone-menu #menu [form]="form" [sectionObservable]="scrollService.$scrolled"></amp-standalone-menu>
+        <amp-standalone-menu #menu></amp-standalone-menu>
     </form>
     `
 } )
