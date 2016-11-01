@@ -11,7 +11,7 @@ let defaultTheme = 'forms';
 
 @Component( {
     selector        : 'amp-logo' ,
-    template        : `<img [attr.src]="url" [attr.alt]="alt" />` ,
+    template        : `<img [attr.src]="url" [attr.alt]="alt" class="amp-logo__image"/>` ,
     styles          : [ require( './amp-logo.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
@@ -33,7 +33,7 @@ export class AmpLogoComponent implements OnInit {
                         licenseeMap[this.licensee][defaultTheme];
         let imageAlt = this.alt ||
                        licenseeMap[this.licensee].name ||
-                       LicenseesAbstract.getLicenseeBuybackFacility(this.licensee);
+                       LicenseesAbstract.getLicensee(this.licensee);
 
         this.url = this.baseURL + imageName;
         this.alt = imageAlt;
