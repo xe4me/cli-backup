@@ -760,6 +760,26 @@
         "readme": "<p>Different permutations of intro block components</p>\n"
     },
     {
+        "name": "Amp Submit Receipt page",
+        "sources": [
+            "src/app/blocks/amp-submit-receipt/amp-submit-receipt.page.ts"
+        ],
+        "id": "AmpSubmitReceiptPage",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-submit-receipt/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-submit-receipt/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-submit-receipt/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-submit-receipt/amp-submit-receipt.page.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-submit-receipt/amp-submit-receipt.page.spec.ts",
+                "component": "amp-submit-receipt-basic-usage",
+                "component_src_location": "blocks/amp-submit-receipt/basic_usage",
+                "name": "Amp Submit Receip Page Basic Usage"
+            }
+        ],
+        "readme": "<p>Submit receipt page usage</p>\n"
+    },
+    {
         "name": "Amp Review Block",
         "sources": [
             "src/app/blocks/amp-review/amp-review-block/amp-review-block.component.ts",
