@@ -88,7 +88,7 @@ let greenIdLoaded = false;
                     </div>
                     <input value='Submit details' style='display:none;' #btnSubmit id='btnSubmit' name='btnSubmit' class='btn btn-primary' type='submit'>
                 </form>
-                <link *ngIf="styleUrl" type="text/css" rel="stylesheet" [href]="styleUrl">
+                <link *ngIf="styleUrl" type="text/css" media="screen" rel="stylesheet" [href]="styleUrl">
                 <div id='greenid-div'>
                 </div>
     ` ,
