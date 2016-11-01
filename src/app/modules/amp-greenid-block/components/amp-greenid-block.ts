@@ -123,9 +123,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
      * Update the model with the verification ID
      */
     public onSessionComplete = (token : string, verificationStatus : string) => {
-        console.log('About to set form control to', verificationStatus);
         (<FormControl> this.greenIdControlGroup.controls['verificationStatus']).setValue(verificationStatus);
-        console.log('Have set form control');
         this._cd.markForCheck();
     }
 
