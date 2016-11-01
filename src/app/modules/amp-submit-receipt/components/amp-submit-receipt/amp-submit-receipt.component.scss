@@ -1,0 +1,16 @@
+@import '../../../../../styles/abstracts';
+@import './themes/theme-form';
+@import './themes/theme-tools';
+
+.submit-page_message {
+  position: absolute;
+  width: 60%;
+  min-height: 30%;
+  left: 255px;
+  top: 25%;
+  margin: auto;
+}
+
+amp-logo {
+    margin-left: $content-padding-h-lap-and-up;
+}
