@@ -1,8 +1,8 @@
 import { Injectable , EventEmitter } from '@angular/core';
 import { Headers , RequestOptions , Response } from '@angular/http';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { AmpHttpService } from '../amp-http/amp-http.service.ts';
-import { RetrieveService } from '../retrieve/retrieve.service.ts';
 import { Environments } from '../../abstracts/environments/environments.abstract.ts';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
 import 'rxjs/add/operator/catch';
@@ -13,11 +13,12 @@ export class FormModelService {
     public $saveMe : EventEmitter<any>       = new EventEmitter();
     public $saveResponse : EventEmitter<any> = new EventEmitter();
     public $saveError : EventEmitter<any>    = new EventEmitter();
+    public $patchForm : EventEmitter<any>    = new EventEmitter();
     public _formDefinition;
     public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
-    public model                             = {
+    public model = {
         currentBlockClassName : 'IntroBlockComponent' ,
         fatalErrors           : [] ,
         errors                : [] ,
@@ -72,22 +73,18 @@ export class FormModelService {
         formId                : null ,
         folderId              : null
     };
-
-    private _apiBaseURL = Environments.property.ApiCallsBaseUrl;
+    private _retreivedModel;
+    private _apiBaseURL      = Environments.property.ApiCallsBaseUrl;
     private _practiceBaseURL = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
-
     private _contactDetailsUrl = this._practiceBaseURL + '/profile';
     private _advisersUrl       = this._practiceBaseURL + '/advisors';
-
     private _submitUrl         = this._apiBaseURL + 'bolrnotification';
     private _contextUrl        = this._apiBaseURL + 'usersession';
     private _submitRelativeUrl = null;
+    private _headers     = new Headers( { 'Content-Type' : 'application/json' } );
+    private _httpOptions = new RequestOptions( { headers : this._headers } );
 
-    private _headers = new Headers({ 'Content-Type' : 'application/json' });
-    private _httpOptions = new RequestOptions({ headers : this._headers });
-
-    constructor ( private http : AmpHttpService) {
-
+    constructor ( private http : AmpHttpService ) {
         this.$flags            = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
         this.$saveMe.subscribe( ( model ) => {
@@ -105,8 +102,16 @@ export class FormModelService {
         } );
     }
 
-    public getBlockValuesFromRetrieveService ( _fdn ) {
-        return this.retrieveService.getBlockValue( _fdn );
+    public storeModelAndPatchToForm ( _form : FormGroup , model : any ) {
+        this._retreivedModel = model;
+        this.requestPatchForm( _form , model );
+    }
+
+    public requestPatchForm ( _form : FormGroup , model = this._retreivedModel ) {
+        if ( model ) {
+            _form.patchValue( model );
+            this.$patchForm.emit( model );
+        }
     }
 
     public generatePDFUrl () {
@@ -329,10 +334,8 @@ export class FormModelService {
         this._submitRelativeUrl = relativeUrl;
     }
 
-
-    public overrideSubmitBaseUrl (baseUrl : string) {
+    public overrideSubmitBaseUrl ( baseUrl : string ) {
         this._apiBaseURL = baseUrl;
-
     }
 
     public overrideSubmitOptions ( options : RequestOptions ) {
@@ -364,10 +367,8 @@ export class FormModelService {
         //    .catch( this.handleError );
     }
 
-
-    private saveModel (model) : Observable<Response> {
-        return this.http.post (this._apiBaseURL + this._submitRelativeUrl, JSON.stringify(model), this._httpOptions);
-
+    private saveModel ( model ) : Observable<Response> {
+        return this.http.post( this._apiBaseURL + this._submitRelativeUrl , JSON.stringify( model ) , this._httpOptions );
     }
 
     private handleError ( error : any ) {

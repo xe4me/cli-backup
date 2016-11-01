@@ -49,19 +49,14 @@ export type PropertyDecorator = ( target : any , propertyKey : string ) => void;
 export function Select<T> ( selector ) {
     return function decorate ( target : any , key : string ) : void {
         let injector = ReflectiveInjector.resolveAndCreate( [
-            StoreModule.provideStore(reducers , {Application: 'milad'}).providers
+            StoreModule.provideStore( reducers , { Application : 'milad' } ).providers
         ] );
         let store    = injector.get( Store );
         store.select( 'Application' ).subscribe( () => {
-            console.log( 'do my thing' );
         } );
     };
 }
-
-export function AmpControl<T> (  selector? : FDNSelector ) {
+export function AmpControl<T> ( selector? : FDNSelector ) {
     return function decorate ( target : any , key : string ) : void {
-        setTimeout(() => {
-            console.log('target', target);
-        }, 1000);
     };
 }

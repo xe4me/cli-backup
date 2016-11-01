@@ -295,10 +295,8 @@ describe( 'amp-qas-address component' , () => {
             selectNewZealand();
         } );
         it( 'Suburb should not be required and should be valid (should be optional)' , fakeAsync( () => {
-            console.log( '_suburbCtrl' , _suburbCtrl );
             _fixture.detectChanges();
             tick( 1000 );
-            console.log( '_suburbCtrl.valid' , _suburbCtrl.valid );
             expect( _suburbCtrl.valid ).toBeTruthy();
             expect( _suburbCtrl.errors ).toBeNull();
         } ) );

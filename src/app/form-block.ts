@@ -1,15 +1,5 @@
-import {
-    ElementRef ,
-    ChangeDetectorRef ,
-    AfterViewInit ,
-    OnDestroy ,
-    ViewChild ,
-    ViewContainerRef
-} from '@angular/core';
-import {
-    arrayJoinByDash ,
-    DomUtils
-} from './modules/amp-utils';
+import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewContainerRef } from '@angular/core';
+import { arrayJoinByDash , DomUtils } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
@@ -22,6 +12,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
     protected noScroll                       = false;
+    protected noPatch                        = false;
     protected __fdn : (number|string)[];
     protected __form : FormGroup;
     protected __controlGroup : FormGroup;
@@ -34,6 +25,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected visibleFlag : string           = 'defaultIsVisible';
     protected doneFlag : string              = 'defaultIsDone';
     private scrollSubscription : Subscription;
+    private formPatchSubscription : Subscription;
     private domUtils : DomUtils              = null;
 
     constructor ( protected formModelService : FormModelService ,
@@ -53,7 +45,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         this.visibleFlag  = this.selectorName + 'IsVisible';
         this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
-        //this.requestPrepopulateFields();
+        this.subscribeToFormPatchEvents();
+        this.requestPrePopulateFields();
         this._cd.markForCheck();
     }
 
@@ -61,16 +54,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * request the retrieve service to see if there is any field for this block to be prepopulated
      * */
     requestPrePopulateFields () {
-        let block = this.formModelService.getBlockValuesFromRetrieveService( this.__fdn );
-        if ( block ) {
-            this.__controlGroup.setValue( block );
-            this.isActive = true;
-            //this.isInSummaryState = true;
-        }
+        this.formModelService.requestPatchForm( this.__form );
     }
 
     ngOnDestroy () {
-        this.unSubscribeFromScrollEvents();
+        this.unSubscribeFromEvents();
     }
 
     updateSelectorName ( _customString : string|number ) {
@@ -133,13 +121,35 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         }
     }
 
+    protected subscribeToFormPatchEvents () {
+        if ( ! this.noPatch ) {
+            this.formPatchSubscription = this.formModelService.$patchForm.subscribe( ( _patchedModel ) => {
+                setTimeout( () => {
+                    this.__controlGroup.markAsTouched( {
+                        onlySelf : false
+                    } );
+                } , 250 );
+                // this timeout number should be higher than typeahead component $deselect event and the reason
+                // is typeahead will fire an event tha QAS catches and empties the manual address
+                /*
+                 * TODO : Find another way for QAS to handle this edge scenario
+                 *
+                 * */
+                this.isInSummaryState = true;
+            } );
+        }
+    }
+
     private resetBlock () {
         this.isInSummaryState = false;
     }
 
-    private unSubscribeFromScrollEvents () {
+    private unSubscribeFromEvents () {
         if ( this.scrollSubscription ) {
             this.scrollSubscription.unsubscribe();
+        }
+        if ( this.formPatchSubscription ) {
+            this.formPatchSubscription.unsubscribe();
         }
     }
 }
