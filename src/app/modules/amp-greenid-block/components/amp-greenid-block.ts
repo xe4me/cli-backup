@@ -193,8 +193,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
         if (this.controlGroup) {
             if (this.controlGroup.contains(this.id)) {
                 this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
-            }
-            else {
+            } else {
                 this.greenIdControlGroup = this.createGreenIdControlGroup();
                 this.controlGroup.addControl(this.id, this.greenIdControlGroup);
             }
