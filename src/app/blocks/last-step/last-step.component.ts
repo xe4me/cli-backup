@@ -43,7 +43,7 @@ export class LastStepBlock extends FormBlock {
             subscribed.unsubscribe();
             let group = <FormGroup> this.__form.controls['Application'];
             let appId = group.controls[Constants.referenceIdName].value;
-            this.ampHttpService.get(`${Constants.submitUrl}?id=${appId}`, null);
+            this.ampHttpService.post(`${Constants.submitUrl}?id=${appId}`, null, null);
         });
         this.formModelService.save(this.__form.value);
     }
