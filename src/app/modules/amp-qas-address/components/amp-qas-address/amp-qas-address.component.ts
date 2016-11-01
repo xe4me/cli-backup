@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { AmpQasAddressService , AddressFormatTypes } from '../../services/amp-qas-address.service';
 import { AmpTypeaheadComponent } from '../../../amp-typeahead';
-import { FormGroup } from '@angular/forms';
+import { FormGroup , FormControl } from '@angular/forms';
 import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-address.component';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 @Component( {
@@ -38,7 +38,8 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
-    private qasControlGroup;
+    private qasControlGroup : FormGroup;
+    private searchOrManualControl : FormControl;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
     }
@@ -46,10 +47,12 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     ngOnInit () : void {
         if ( this.controlGroup ) {
             if ( this.controlGroup.contains( this.id + addDashOrNothing( this.index ) ) ) {
-                this.qasControlGroup = this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
+                this.qasControlGroup = <FormGroup>this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
             } else {
-                this.qasControlGroup                       = new FormGroup( {} );
-                this.qasControlGroup.__showManualEntryForm = false;
+                this.qasControlGroup       = new FormGroup( {} );
+                this.searchOrManualControl = new FormControl();
+                this.searchOrManualControl.setValue( false );
+                this.qasControlGroup.addControl( 'isManualSearch' , this.searchOrManualControl );
                 this.controlGroup.addControl( this.id + addDashOrNothing( this.index ) , this.qasControlGroup );
             }
         } else {
@@ -70,9 +73,11 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
         this._cd.detectChanges();
         this.typeaheadCmp
             .$deSelected
-            .debounceTime( 300 )
+            .debounceTime( 200 )
             .subscribe( ( change ) => {
-                this.onOptionDeSelect( change );
+                if ( this.controlGroup.touched ) {
+                    this.onOptionDeSelect( change );
+                }
             } );
     }
 
@@ -87,7 +92,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
             this.isInSummaryState = false;
             this.typeaheadCG.reset();
             this.manualAddressCmp.emptyControls();
-            this.qasControlGroup.__showManualEntryForm = true;
+            this.searchOrManualControl.setValue( true );
             this._cd.detectChanges();
         } );
     }
@@ -97,7 +102,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
             this.isInSummaryState = false;
             this.typeaheadCG.reset();
             this.manualAddressCmp.emptyControls();
-            this.qasControlGroup.__showManualEntryForm = false;
+            this.searchOrManualControl.setValue( false );
             this._cd.detectChanges();
         } );
     }

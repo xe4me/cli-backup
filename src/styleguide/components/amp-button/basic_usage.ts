@@ -36,7 +36,7 @@ export default class AMPButtonComponentBasicUsage {
     }
 
     clickMethod ( id : number ) {
-        console.log( 'Clicked on button number ' + id );
+
     }
 
     // ngAfterViewInit () {
