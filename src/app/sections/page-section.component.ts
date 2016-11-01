@@ -60,7 +60,7 @@ export class PageSectionComponent {
             if (blockchanges) {
                 let componentSelector = blockchanges.componentSelector;
                 let fdn = this.getFdnJoined(this.__fdn);
-                this.isActive = this.__controlGroup.untouched && componentSelector && componentSelector.indexOf(fdn) > -1 ? true : false;
+                // this.isActive = componentSelector && componentSelector.indexOf(fdn) > -1 ? true : false;
                 this._cd.markForCheck();
             }
         });
