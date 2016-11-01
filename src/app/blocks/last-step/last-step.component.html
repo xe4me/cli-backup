@@ -4,10 +4,17 @@
     </div>
     <div>
     </div>
-    <amp-checkbox
-        [isInSummaryState]="isInSummaryState"
-        [controlGroup]="__controlGroup"
-        [id]="__custom.controls[0].id">
-        I agree to the Bett3r <a href="javascript:void;">Terms and Conditions</a>
-    </amp-checkbox>
+    <amp-form-row>
+        <amp-checkbox
+            [isInSummaryState]="isInSummaryState"
+            [controlGroup]="__controlGroup"
+            [id]="__custom.controls[0].id">
+            I agree to the Bett3r <a href="javascript:void;">Terms and Conditions</a>
+        </amp-checkbox>
+    </amp-form-row>
+    <amp-form-row>
+        <amp-button (click)="submitForm()" [class]="'btn btn-submit'">
+            Submit
+        </amp-button>
+    </amp-form-row>
 </amp-form-block>
