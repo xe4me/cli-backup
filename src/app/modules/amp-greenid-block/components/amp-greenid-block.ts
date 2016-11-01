@@ -17,16 +17,21 @@ import {
 import { DomSanitizationService } from '@angular/platform-browser';
 import { AmpGreenIdServices } from '../components/services/amp-greenid-service';
 import { ResponseObject } from '../components/interfaces/responseObject';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl,
+         FormGroup,
+         FormBuilder,
+         Validators
+} from '@angular/forms';
 import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
-@Component( {
-    selector   : 'amp-greenid-block' ,
-    host       : {
-        '[@slideUp]' : 'slideUp'
-    } ,
+let greenIdLoaded = false;
+@Component({
+    selector: 'amp-greenid-block',
+    host: {
+        '[@slideUp]': 'slideUp'
+    },
     providers: [AmpGreenIdServices],
-    changeDetection : ChangeDetectionStrategy.OnPush,
-    template   : `
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
                 <div class='grid__container 1/1 palm-1/1' *ngIf='greenIdShowing'>
                     <div class='grid__item_floated utils__align&#45;&#45;left' >
                                 <ng-content></ng-content>
@@ -86,33 +91,34 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
                 <div id='greenid-div'>
                 </div>
     ` ,
-    styles     : [ require( './amp-greenid-block.component.scss' ).toString() ] ,
-    animations : [
+    styles: [require('./amp-greenid-block.component.scss').toString()],
+    animations: [
         trigger(
-            'slideUp' ,
+            'slideUp',
             [
-                state( 'collapsed, void' , style( { height : '0px' , opacity : '0' , display : 'none' } ) ) ,
-                state( 'expanded' , style( { height : '*' , opacity : '1' , display : 'block' } ) ) ,
+                state('collapsed, void', style({ height: '0px', opacity: '0', display: 'none' })),
+                state('expanded', style({ height: '*', opacity: '1', display: 'block' })),
                 transition(
-                    'collapsed <=> expanded' , [ animate( 800 ) ] )
-            ] )
+                    'collapsed <=> expanded', [animate(800)])
+            ])
     ]
-} )
-
+})
 export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     @Input() form; // form model input
-    @Input() scriptUrls; // all the api urls that need to be imported, the js is loaded asnyc
+    @Input() configScriptUrl; // all the api urls that need to be imported, the js is loaded asnyc
+    @Input() uiScriptUrl;
     @Input() styleUrl;
     @ViewChild('btnSubmit') btnSubmit : ElementRef;
-    private controlGroup : FormGroup = new FormGroup( {} );
+    private controlGroup : FormGroup = new FormGroup({});
     private loadApiScripts : Promise<any>;
-    private acceptTerms  : boolean = false;
-    private okAccepted   : boolean = false;
+    private acceptTerms : boolean = false;
+    private okAccepted : boolean = false;
     private isSubmitting : boolean = false;
     private domAdapter : DomAdapter;
     private greenIdShowing : boolean = false;
 
     // TODO pass this in from an external source, as an example another component
+    // TODO pass in api code and password from an external source
     private greenIdSettings = {
         environment: 'test',
         formId: 'theform',
@@ -123,19 +129,19 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     };
 
     private acknowledge = {
-        id          : 'acknowledge' ,
-        disabled    : false ,
-        required    : true ,
-        checked     : false ,
-        scrollOutOn : null
+        id: 'acknowledge',
+        disabled: false,
+        required: true,
+        checked: false,
+        scrollOutOn: null
     };
 
-    constructor ( private _AmpGreenIdServices : AmpGreenIdServices,
-                  private fb : FormBuilder,
-                  private _cd : ChangeDetectorRef,
-                  private _render : Renderer,
-                  private sanitizer : DomSanitizationService) {
-
+    constructor(
+        private _AmpGreenIdServices : AmpGreenIdServices,
+        private fb : FormBuilder,
+        private _cd : ChangeDetectorRef,
+        private _render : Renderer,
+        private sanitizer : DomSanitizationService) {
     }
 
     /**
@@ -155,15 +161,28 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             this.styleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
         }
         this.greenIdShowing = true;
-        if (this.scriptUrls) {
-            for (let stringUrl of this.scriptUrls) {
-                this.loadAllScripts(stringUrl);
+        this.loadApiScripts = new Promise<boolean>((resolve, reject) => {
+            if (greenIdLoaded) {
+                resolve();
+                return;
             }
-        }
+
+            if (!greenIdLoaded && this.configScriptUrl && this.uiScriptUrl) {
+                this.getScript(this.configScriptUrl)
+                    .then(() => this.getScript(this.uiScriptUrl))
+                    .then(() => {
+                        greenIdLoaded = true;
+                        resolve();
+                    });
+                return;
+            }
+            reject('Script urls were not provided');
+        });
+
         this.controlGroup = new FormGroup({
-          verificationId : new FormControl('verificationId', null),
-          verificationToken : new FormControl('verificationToken', null),
-          verificationStatus : new FormControl('verificationStatus', null),
+            verificationId: new FormControl('verificationId', Validators.required),
+            verificationToken: new FormControl('verificationToken', Validators.required),
+            verificationStatus: new FormControl('verificationStatus', Validators.required),
         });
 
         this._cd.detectChanges();
@@ -172,38 +191,39 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      * Once we have the scripts loaded, we need to init the green id stuff, set it up
      */
     public ngAfterContentInit() : void {
-
-        setTimeout(() => {
+        this.loadApiScripts.then(() => {
             if (window['greenidUI']) {
                 window['greenidUI'].setup(this.greenIdSettings);
             }
-        }, 1000);
-
+        });
     }
     /**
      * Load all of the scripts async
      */
-    private loadAllScripts (stringUrl : string) : void {
-        this.loadApiScripts = new Promise((resolve) => {
-            this.loadScript(stringUrl);
+    private getScript(stringUrl : string) : Promise<string> {
+        return new Promise((resolve) => {
+            this.loadScript(stringUrl).onload = () => {
+                resolve(stringUrl);
+            };
         });
     }
     /**
      * Create the element in the DOM
      */
-    private loadScript(urlString : string) : void  {
+    private loadScript(urlString : string) : HTMLScriptElement {
         let node = document.createElement('script');
         node.src = urlString;
         node.type = 'text/javascript';
         node.async = true;
         node.charset = 'utf-8';
         document.getElementsByTagName('head')[0].appendChild(node);
+        return node;
     }
 
     /**
      * Trigger terms and conditions
      */
-    private onAcknowledgeSelect ( value : boolean ) : void {
+    private onAcknowledgeSelect(value : boolean) : void {
         this.acceptTerms = value;
     }
 
@@ -211,20 +231,20 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      * Call the service and then update the model with the new token and verfication id
      * trigger the form submission as we have a form in the template
      */
-    private onContinue( value : Event ) : void {
-        let event = new MouseEvent('click', {bubbles: true});
+    private onContinue(value : Event) : void {
+        let event = new MouseEvent('click', { bubbles: true });
         this.isSubmitting = true;
         this._AmpGreenIdServices
             .getTheToken(this.form)
-            .subscribe( ( respo ) => {
-               this.isSubmitting = false;
-               if (respo) {
-                 this.updateModel(respo.payload);
-                 this._cd.markForCheck();
-                 this._render.invokeElementMethod(this.btnSubmit.nativeElement, 'dispatchEvent', [event]);
-               }
+            .subscribe((respo) => {
+                this.isSubmitting = false;
+                if (respo) {
+                    this.updateModel(respo.payload);
+                    this._cd.markForCheck();
+                    this._render.invokeElementMethod(this.btnSubmit.nativeElement, 'dispatchEvent', [event]);
+                }
 
-        });
+            });
     }
     /**
      * Update the value in the form model with the response from the API
@@ -236,4 +256,5 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             this.greenIdShowing = false; // hide the orginal block content
         }
     }
+
 }
