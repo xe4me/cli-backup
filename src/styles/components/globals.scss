@@ -34,3 +34,20 @@
   border   : 0;
 }
 
+.logo {
+    &--DEA_AMPFP {
+        background-image: url('/assets/images/logo/AMPFP_logo.jpg');
+    }
+
+    &--DEA_HILLROSS {
+        background-image: url('/assets/images/logo/Hillross_logo.jpg');
+    }
+
+    &--DEA_CHARTER {
+        background-image: url('/assets/images/logo/Charter_logo.jpg');
+    }
+
+    &--DEA_ASSURED {
+        background-image: url('/assets/images/logo/AMPFP_logo.jpg');
+    }
+}

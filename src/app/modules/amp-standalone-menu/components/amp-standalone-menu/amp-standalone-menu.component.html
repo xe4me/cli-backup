@@ -1,17 +1,21 @@
-<nav class="steps-nav" *ngIf="showNavigation">
+<nav class="steps-nav" [class.open]="isClassOpen" *ngIf="showNavigation">
+    <div class="docked" *ngIf="isClassOpen">
+        <span><span>Close</span></span>
+        <span class="icon icon--chevron-up" (click)="onClassClose()" aria-hidden="true"></span>
+    </div>
     <ul id="menu" class="progress skyblue">
         <li *ngFor="let section of sections; let i=index" id="{{section.id}}" [ngClass]="section.state">
-            <span *ngIf="isStateDisabled(section.state)">
+            <span *ngIf="isStateDisabled(section.state) && !(isClassOpen && isStateActive(section.state))">
                 <div class="divider" [ngClass]="{first: i == 0}"></div>
                 <div class="step-intro node"></div>
-                <span class="icon icon--chevron-down" aria-hidden="true"></span>
                 <span><span>{{section.label}}</span></span>                
+                <span class="icon icon--chevron-down" (click)="onClassOpen()" aria-hidden="true"></span>
             </span>
-            <a *ngIf="!isStateDisabled(section.state)" (click)="scrollToSection($event.target = section)">
+            <a *ngIf="!isStateDisabled(section.state)  || (isClassOpen && isStateActive(section.state))" (click)="scrollToSection($event.target = section)">
                 <div class="divider" [ngClass]="{first: i == 0}"></div>
                 <div class="step-intro node"></div>
-                <span class="icon icon--chevron-down" aria-hidden="true"></span>
                 <span><span>{{section.label}}</span></span>
+                <span class="icon icon--chevron-down" aria-hidden="true"></span>
             </a>
         </li>
     </ul>

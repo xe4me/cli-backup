@@ -41,10 +41,11 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     private backendError : boolean = false;
     private error : boolean = false;
     private errorMessage : string;
+    private uploadCompleted : boolean = false;
     private uploadUrlWithParms : string = '';
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
     private typesAllowed : string[] = [ 'application/pdf' ];
-    private sizeAllowed : number = 2000000;
+    private sizeAllowed : number = 1048576 * 2;
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private fileUploadService : AmpFileUploadService
@@ -88,7 +89,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     }
 
     private showProgressBar ( ) : boolean {
-        return this.progress < 1 ? true : false;
+        return !this.uploadCompleted;
     }
 
     private handleUpload ( response : any ) : void {
@@ -96,11 +97,14 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         res = response.response ? JSON.parse( response.response ) : null;
         if ( res && (this.errorCodes.indexOf(res.statusCode) > -1 )) {
             this.setErrorMessage( res );
+            this.uploadCompleted = true;
+            this._cd.detectChanges();
             return null;
         }
         if (res && res.statusCode === 200 ) {
             this.deleteFileName = res ? res.payload.fileName : '';
             this.control.setErrors( null );
+            this.uploadCompleted = true;
             this._cd.detectChanges();
             return null;
         }
@@ -115,6 +119,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     private updateToken () : void {
         this.fileInput.nativeElement.value = null;
         this.error = false;
+        this.uploadCompleted = false;
         this.control.setErrors( {error : 'file upload pending'} );
         let retrieveToken : Observable <any>;
         retrieveToken = this.fileUploadService.retrieveNewToken( );
@@ -128,6 +133,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
                 this._cd.detectChanges();
             },
             ( error ) => {
+                this.errorMessage = this.fileUploadService.errorMessage;
                 this.backendError = true;
                 this._cd.detectChanges();
             }
@@ -142,11 +148,13 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     }
 
     private removeFile () : void {
+        this.error = false;
         let fileRemoved : Observable <any>;
         fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
         fileRemoved.subscribe(
             ( res : any ) => {
                 this.showProgress = false;
+                this.control.setErrors({error: 'file upload pending'});
                 this._cd.detectChanges();
             },
             ( error ) => {

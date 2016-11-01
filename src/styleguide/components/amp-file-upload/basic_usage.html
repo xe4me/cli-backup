@@ -1,12 +1,19 @@
 <div class="usage">
     <p>Prerequisites to run "file upload" locally and upload a file successfully into AWS S3</p>
     <ul>
-        <li>api-store should be up and running</li>
+        <li>Mongo DB should be up and running</li>
+        <li>Setup the AWS connection properties as per readme file in api-upload</li>
         <li>api-upload should be up and running</li>
+        <li>api-store should be up and running</li>
+        <li>api-buyback should be up and running</li>
     </ul>
 </div>
 
 <amp-file-upload
-    [formName]="'NIO'"
-    [formId] ="'579fe146d42da511006bfaf0'">
+    [tokenUrl]="'http://localhost:8084/ddc/secure/api/upload/token'"
+    [uploadUrl]="'http://localhost:8084/ddc/secure/api/upload/upload'"
+    [controlGroup]="controlGroup"
+    [id]="'uploadComponent'"
+    [formName]="'BUYBACK'"
+    [formId] ="'6721298156'">
 </amp-file-upload>

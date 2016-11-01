@@ -72,17 +72,22 @@ export class FormModelService {
         formId                : null ,
         folderId              : null
     };
-    private _submitUrl                       = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification';
-    // private _submitUrl         = 'http://localhost:8080/ddc/secure/api/bolrnotification';
-    private _contextUrl                      = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/usersession';
-    private _contactDetailsUrl               = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/profile';
-    private _advisersUrl                     = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path + '/advisors';
-    private _baseURL                         = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/';
-    private _submitRelativeUrl               = null;
-    private _headers                         = new Headers( { 'Content-Type' : 'application/json' } );
-    private _httpOptions                     = new RequestOptions( { headers : this._headers } );
 
-    constructor ( private http : AmpHttpService , private retrieveService : RetrieveService ) {
+    private _apiBaseURL = Environments.property.ApiCallsBaseUrl;
+    private _practiceBaseURL = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
+
+    private _contactDetailsUrl = this._practiceBaseURL + '/profile';
+    private _advisersUrl       = this._practiceBaseURL + '/advisors';
+
+    private _submitUrl         = this._apiBaseURL + 'bolrnotification';
+    private _contextUrl        = this._apiBaseURL + 'usersession';
+    private _submitRelativeUrl = null;
+
+    private _headers = new Headers({ 'Content-Type' : 'application/json' });
+    private _httpOptions = new RequestOptions({ headers : this._headers });
+
+    constructor ( private http : AmpHttpService) {
+
         this.$flags            = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
         this.$saveMe.subscribe( ( model ) => {
@@ -324,8 +329,10 @@ export class FormModelService {
         this._submitRelativeUrl = relativeUrl;
     }
 
-    public overrideSubmitBaseUrl ( baseUrl : string ) {
-        this._baseURL = baseUrl;
+
+    public overrideSubmitBaseUrl (baseUrl : string) {
+        this._apiBaseURL = baseUrl;
+
     }
 
     public overrideSubmitOptions ( options : RequestOptions ) {
@@ -357,8 +364,10 @@ export class FormModelService {
         //    .catch( this.handleError );
     }
 
-    private saveModel ( model ) : Observable<Response> {
-        return this.http.post( this._baseURL + this._submitRelativeUrl , JSON.stringify( model ) , this._httpOptions );
+
+    private saveModel (model) : Observable<Response> {
+        return this.http.post (this._apiBaseURL + this._submitRelativeUrl, JSON.stringify(model), this._httpOptions);
+
     }
 
     private handleError ( error : any ) {

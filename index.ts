@@ -28,6 +28,7 @@ export * from './src/app/modules/amp-button';
 export * from './src/app/modules/amp-row-repeater';
 export * from './src/app/modules/amp-form-row';
 export * from './src/app/modules/amp-tooltip';
+export * from './src/app/modules/amp-greenid-block';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
@@ -39,6 +40,7 @@ export { AssociationLengthAbstract } from './src/app/abstracts/association-lengt
 export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise-date.abstract';
 // Services
 export { ScrollService } from './src/app/services/scroll/scroll.service';
+export { PdfService } from './src/app/services/pdf/pdf.service';
 export { FormModelService } from './src/app/services/form-model/form-model.service.ts';
 export { DeviceService } from './src/app/services/device/device.service';
 export { AmpHttpService } from './src/app/services/amp-http/amp-http.service.ts';
