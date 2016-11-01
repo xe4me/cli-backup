@@ -5,8 +5,12 @@ import {
     OnInit,
     ChangeDetectionStrategy,
     Input,
-    AfterViewInit
+    AfterViewInit,
 } from '@angular/core';
+import {
+    RequestOptions,
+    Headers
+} from '@angular/http';
 import {
     FormGroup
 } from '@angular/forms';
@@ -43,7 +47,12 @@ export class LastStepBlock extends FormBlock {
             subscribed.unsubscribe();
             let group = <FormGroup> this.__form.controls['Application'];
             let appId = group.controls[Constants.referenceIdName].value;
-            this.ampHttpService.post(`${Constants.submitUrl}?id=${appId}`, null, null);
+            let headers = new Headers(
+            {
+                'Content-Type' : 'application/json' ,
+            } );
+            let options = new RequestOptions( { headers : headers } );
+            this.ampHttpService.post(`${Constants.submitUrl}?id=${appId}`, null, options);
         });
         this.formModelService.save(this.__form.value);
     }
