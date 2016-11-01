@@ -2,12 +2,14 @@ import { Injectable, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Headers , RequestOptions , Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AmpHttpService } from '../../../../services/amp-http/amp-http.service';
-import {Environments} from '../../../../abstracts/environments/environments.abstract';
+import { Environments } from '../../../../abstracts/environments/environments.abstract';
+import { IGreenIdFormModel } from '../interfaces/formModel';
 @Injectable()
 export class AmpGreenIdServices {
 
-    // public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
-    public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
+    // Note: For local development uncomment the line line below and comment out the other BASE_URL variable
+    // public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
+    public static BASE_URL          = `${Environments.property.ApiCallsBaseUrl}/green-id`;
     public static DEFAULT_ERROR_TEXT = 'Server error';
     public static VERFICATION_ENDPOINT = '/registerVerification';
 
@@ -19,7 +21,7 @@ export class AmpGreenIdServices {
 
     }
 
-    public getTheToken  = ( modelValue : any ) : Observable<any> => {
+    public getTheToken  = ( modelValue : IGreenIdFormModel ) : Observable<any> => {
         let headers : Headers = this.headers;
         let options           = new RequestOptions( { headers : headers } );
         let url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.VERFICATION_ENDPOINT;
