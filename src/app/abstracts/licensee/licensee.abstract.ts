@@ -41,23 +41,24 @@ export abstract class LicenseesAbstract {
         AMP: {
             name: 'AMP',
             forms: 'amp-white.png',
+            forms_transparent: 'amp.svg',
             tools: 'amp-blue.png',
             tools_transparent: 'amp_rev_fc.svg'
         },
         DEA_AMPFP: {
             forms: 'ampfp-white.png',
-            tools: 'ampfp-blue.png',
-            tools_transparent: 'amp_fp.svg'
+            forms_transparent: 'amp_fp.svg',
+            tools: 'ampfp-blue.png'
         },
         DEA_ASSURED: {
             forms: 'ampfp-white.png',
-            tools: 'ampfp-blue.png',
-            tools_transparent: 'amp_fp.svg'
+            forms_transparent: 'amp_fp.svg',
+            tools: 'ampfp-blue.png'
         },
         DEA_CHARTER: {
             forms: 'charter-white.png',
-            tools: 'charter-blue.png',
-            tools_transparent: 'charter_fp.svg'
+            forms_transparent: 'charter_fp.svg',
+            tools: 'charter-blue.png'
         },
         DEA_HILLROSS: {
             forms: 'hillross-white.png',
