@@ -42,7 +42,8 @@ import {
     AmpIntroBlockComponent ,
     AmpRowRepeaterModule ,
     AmpFormRowModule ,
-    AmpStandAloneMenuModule
+    AmpStandAloneMenuModule,
+    AmpGreenidModule
 } from 'amp-ddc-components';
 import {
     SharedFormDataService ,
@@ -73,6 +74,7 @@ const IMPORTS         = [
     AmpPipesModule ,
     AmpDirectivesModule ,
     AmpQasAddressModule ,
+    AmpGreenidModule ,
     AmpInputsModule ,
     AmpErrorModule ,
     AmpCheckboxModule ,

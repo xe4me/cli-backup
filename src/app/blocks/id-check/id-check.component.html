@@ -1,16 +1,24 @@
 <amp-form-block [context]="context()">
-    <div class="utils__align--left" >
-        <p class='mt-50'>
-            Please choose which ID you would like ot use in order for us to check your ID and enter relevant pieces of information
-        </p>
-    </div>
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-12/12">
-            <amp-input
-                [id]="__custom.controls[0].id"
-                [controlGroup]="__controlGroup"
-                [label]="'Placeholder for GreenID'"
-                [required]="true"></amp-input>
-        </div>
-    </amp-form-row>
+    <amp-greenid-block [form]="modelValue" [uiScriptUrl]="uiScriptUrl" [configScriptUrl]="configScriptUrl" [styleUrl]="styleUrl" [controlGroup]="__controlGroup">
+        <section class="section mv">
+            <div class="grid__container 1/1 mb">
+                <div class="grid__item_floated 1/1 mv mh">
+                    <h2 class="mb-">Thanks Charlie, just to confirm…</h2>
+                    <p class="para mt mb">By opening a Bett3r account, you are agreeing to….</p>
+                    <div class="grid__container_inner">
+                        <div class="grid__item_floated">
+                            <p class="para mt mb">
+                                Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a
+                                comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite
+                                of
+                                the hero. And most times they're friends, like you and me! I should've known way back
+                                when...
+                                You know why, David? Because of the kids. They called me Mr Glass.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </amp-greenid-block>
 </amp-form-block>
