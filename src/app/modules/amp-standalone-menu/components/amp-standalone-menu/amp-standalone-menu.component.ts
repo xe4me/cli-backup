@@ -14,6 +14,7 @@ import { FormSectionService } from '../../../../services/form-section/form-secti
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'amp-standalone-menu',
@@ -22,8 +23,8 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AmpStandAloneMenuComponent implements OnInit {
-    @Input() form;
-    @Input() sectionObservable;
+    // @Input() form;
+    // @Input() sectionObservable;
 
     public control : FormControl = new FormControl(null);
     public errors = {};
@@ -42,6 +43,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private itemPrefix : string = 'Item-';
     private isClassOpen : boolean = false;
     private tempScrollTop : number;
+    private sectionObservable : Observable<any>;
 
     constructor(
         private _dom : BrowserDomAdapter,
@@ -50,6 +52,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
         private scrollService : ScrollService,
         private formSectionService : FormSectionService) {
         this.domUtils = new DomUtils();
+        this.sectionObservable = scrollService.$scrolled;
     }
 
     ngOnInit() : any {
