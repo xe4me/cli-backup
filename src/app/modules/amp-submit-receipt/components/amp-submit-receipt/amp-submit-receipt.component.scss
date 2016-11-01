@@ -2,15 +2,32 @@
 @import './themes/theme-form';
 @import './themes/theme-tools';
 
-.submit-page_message {
-  position: absolute;
-  width: 60%;
-  min-height: 30%;
-  left: 255px;
-  top: 25%;
-  margin: auto;
+:host {
+    display: block;
 }
 
-amp-logo {
-    margin-left: $content-padding-h-lap-and-up;
+.submit-page {
+    @include media-query('lap-and-up') {
+        display: table;
+        width: 100%;
+        height: 100vh;
+    }
+
+    &__logo,
+    &__message {
+        @include media-query('lap-and-up') {
+            display: table-cell;
+        }
+    }
+
+    &__logo {
+        @include media-query('lap-and-up') {
+            width: 300px;
+            padding-top: 44px;
+        }
+    }
+
+    &__message {
+        vertical-align: middle;
+    }
 }

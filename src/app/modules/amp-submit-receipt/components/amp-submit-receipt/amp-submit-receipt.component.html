@@ -1,23 +1,28 @@
-<div class='submit-page'>
-    <amp-logo [licensee]="licensee"></amp-logo>
-    <div class='submit-page_message'>
-        
-        <h3 class='heading-intro mb-30'>{{intro_text}}</h3>
-        
-        <div *ngIf="reference_number">
-            <br>
-            <p>{{reference_number}}</p>
+<div class="container">
+    <div class='submit-page'>
+        <div class="submit-page__logo">
+            <amp-logo [licensee]="licensee"></amp-logo>
         </div>
-        
-        <div *ngIf="description">
-            <br>
-            <p>{{description}}</p>
+
+        <div class='submit-page__message'>
+            
+            <h3 class='heading-intro mb-30'>{{intro_text}}</h3>
+            
+            <div *ngIf="reference_number">
+                <br>
+                <p>{{reference_number}}</p>
+            </div>
+            
+            <div *ngIf="description">
+                <br>
+                <p>{{description}}</p>
+            </div>
+            
+            <div *ngIf="note_text">
+                <br>
+                <p>{{note_text}}</p>
+            </div>
+            
         </div>
-        
-        <div *ngIf="note_text">
-            <br>
-            <p>{{note_text}}</p>
-        </div>
-        
     </div>
 </div>

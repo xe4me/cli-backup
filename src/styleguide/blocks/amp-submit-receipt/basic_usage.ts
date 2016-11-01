@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBlock } from '../../../app/form-block';
 import { ThemeService } from '../../services/theme';
-import { AmpSubmitReceiptComponent } from '../../../app/modules/amp-submit-receipt/components/amp-submit-receipt/amp-submit-receipt.component'
+import { AmpSubmitReceiptComponent } from '../../../app/modules/amp-submit-receipt/components/amp-submit-receipt/amp-submit-receipt.component';
 
 @Component( {
     selector    : 'submit-receipt-basic-usage' ,
