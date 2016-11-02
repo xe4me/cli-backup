@@ -25,6 +25,9 @@ $content-padding-h-lap-and-up: 44px;
             top: 0;
             opacity: 1;
             z-index: 99999;
+            @include media-query('palm') {
+                display: none;
+            }            
         }
     }
 }
@@ -56,6 +59,9 @@ $content-padding-h-lap-and-up: 44px;
 .main {
     display: block;
     margin-left: $content-left-width + $content-left-margin;
+    @include media-query('palm') {
+        margin-left: 0;
+    }
 }
 
 .blocks-wrapper {
