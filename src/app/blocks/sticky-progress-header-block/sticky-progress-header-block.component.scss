@@ -29,6 +29,7 @@ $header-font-family : $amp-font-open-sans-regular;
     -moz-box-sizing    : border-box;
     box-sizing         : border-box;
   }
+    
   &__header {
     @include amp-family($header-font-family);
     @extend %#{$namespace}font-size-tiny;
