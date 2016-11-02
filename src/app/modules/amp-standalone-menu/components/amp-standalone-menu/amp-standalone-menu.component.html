@@ -1,7 +1,7 @@
 <nav class="steps-nav" [class.open]="isClassOpen" *ngIf="showNavigation">
     <div class="docked" *ngIf="isClassOpen" (click)="onClassClose()">
-        <span class="icon icon--chevron-up" aria-hidden="true"></span>
         <span><span>Close</span></span>
+        <span class="icon icon--chevron-up" aria-hidden="true"></span>
     </div>
     <ul id="menu" class="progress skyblue">
         <li *ngFor="let section of sections; let i=index" id="{{section.id}}" [ngClass]="section.state">
