@@ -105,12 +105,24 @@ export class AmpStandAloneMenuComponent implements OnInit {
     }
 
     private onClassOpen() {
+        let body = this._dom.query('body');
+        let main = this._dom.querySelectorAll(body, 'main');
+        if (main) {
+            main[0].setAttribute('hidden', true);
+        }
+
         this.isClassOpen = !this.isClassOpen;
         this.tempScrollTop = this.scrollService.scrollTop;
         window.scrollTo(0, 1);
     }
 
     private onClassClose() {
+        let body = this._dom.query('body');
+        let main = this._dom.querySelectorAll(body, 'main');
+        if (main) {
+            main[0].removeAttribute('hidden');
+        }
+
         this.isClassOpen = !this.isClassOpen;
         window.scrollTo(0, this.tempScrollTop);
     }
