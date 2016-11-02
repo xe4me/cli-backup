@@ -57,7 +57,9 @@ export class IdCheckBlock extends FormBlock implements OnInit {
                 streetName : residentialAddress.streetName || '',
                 flatNumber : residentialAddress.unitNumber || '',
                 streetNumber : residentialAddress.streetNumber || '',
-                suburb : residentialAddress.suburb
+                suburb : residentialAddress.suburb,
+                postcode : residentialAddress.postCode,
+                streetType : residentialAddress.streetType || ''
             }
         };
     }
