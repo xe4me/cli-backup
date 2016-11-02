@@ -107,7 +107,6 @@ export class AmpStandAloneMenuComponent implements OnInit {
         if (main) {
             main[0].setAttribute('hidden', true);
         }
-
         this.isClassOpen = !this.isClassOpen;
         this.tempScrollTop = this.scrollService.scrollTop;
         window.scrollTo(0, 1);
@@ -119,7 +118,6 @@ export class AmpStandAloneMenuComponent implements OnInit {
         if (main) {
             main[0].removeAttribute('hidden');
         }
-
         this.isClassOpen = !this.isClassOpen;
         window.scrollTo(0, this.tempScrollTop);
     }
