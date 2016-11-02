@@ -8,7 +8,7 @@ import { ScrollService } from './services/scroll/scroll.service';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     public autoFocusOn;
     protected isInSummaryState : boolean     = false;
-    protected isActive : boolean             = true;
+    protected isActive : boolean             = false;
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
     protected noScroll                       = false;
