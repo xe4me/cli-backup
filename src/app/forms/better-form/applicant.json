@@ -93,21 +93,6 @@
                         }
                     ]
                 }
-            },
-            {
-                "name": "PrivacyDeclaration",
-                "blockType": "PrivacyDeclarationBlock",
-                "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/privacy-declaration/privacy-declaration.component",
-                "custom": {
-                    "blockTitle": "Thanks Charlie just to confirm...",
-                    "controls": [
-                        {
-                            "id": "AcceptPrivacyDeclaration"
-                        }
-                    ]
-                }
             }
         ]
     },
