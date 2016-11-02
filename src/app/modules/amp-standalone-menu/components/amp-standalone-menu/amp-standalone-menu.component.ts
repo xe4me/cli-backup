@@ -23,9 +23,6 @@ import { Observable } from 'rxjs/Observable';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AmpStandAloneMenuComponent implements OnInit {
-    // @Input() form;
-    // @Input() sectionObservable;
-
     public control : FormControl = new FormControl(null);
     public errors = {};
     public showNavigation : boolean = true;
