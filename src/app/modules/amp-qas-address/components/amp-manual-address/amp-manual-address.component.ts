@@ -37,9 +37,9 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     @Input() index;
     @Input() keepControl                      = false;
     @Input() isInSummaryState : boolean       = false;
-    @Input() required : boolean = true;
+    @Input() required : boolean               = true;
     @Input() controlGroup : FormGroup;
-    @Input() address            = {
+    @Input() address                          = {
         id        : 'address' ,
         label     : 'Street address' ,
         maxLength : 200 ,
@@ -49,7 +49,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
             minLength : 'Street address must be at least 3 characters long.'
         }
     };
-    @Input() city               = {
+    @Input() city                             = {
         id        : 'city' ,
         label     : 'City' ,
         maxLength : 100 ,
@@ -59,7 +59,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
             minLength : 'City must be at least 3 characters long.'
         }
     };
-    @Input() suburb             = {
+    @Input() suburb                           = {
         id        : 'suburb' ,
         label     : 'Suburb' ,
         regex     : '' ,
@@ -70,16 +70,16 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
             minLength : 'Suburb must be at least 3 characters long.'
         }
     };
-    @Input() state              = {
+    @Input() state                            = {
         id     : 'state' ,
         errors : {
             required : 'State is a required field.'
         }
     };
-    @Input() country            = {
+    @Input() country                          = {
         id : 'country'
     };
-    @Input() postCode           = {
+    @Input() postCode                         = {
         id        : 'postCode' ,
         label     : 'Postcode' ,
         maxLength : 4 ,
@@ -99,7 +99,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     protected postCodeCtrl;
     protected cityCtrl;
     private manualAddressCG : any;
-    private addDashOrNothing    = addDashOrNothing;
+    private addDashOrNothing                  = addDashOrNothing;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -109,8 +109,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
             if ( this.controlGroup.contains( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) ) ) {
                 this.manualAddressCG = this.controlGroup.get( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) );
             } else {
-                this.manualAddressCG                   = new FormGroup( {} );
-                this.manualAddressCG.__selectedCountry = AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
+                this.manualAddressCG = new FormGroup( {} );
                 this.controlGroup.addControl( AmpManualAddressComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) , this.manualAddressCG );
             }
         } else {
@@ -163,14 +162,14 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     private onCountrySelect ( _countryCode ) {
-        if ( this.manualAddressCG.__selectedCountry !== _countryCode ) {
-            this.emptyAndResetStateControl();
-            this.cityCtrl.reset( null );
-            this.suburbCtrl.reset( null );
-            this.manualAddressCG.__selectedCountry = _countryCode;
-            this.killDelayedValidationForInputs();
-            this._cd.markForCheck();
-        }
+        // if ( this.manualAddressCG.__selectedCountry !== _countryCode ) {
+        //     this.emptyAndResetStateControl();
+        //     this.cityCtrl.reset( null );
+        //     this.suburbCtrl.reset( null );
+        //     this.manualAddressCG.__selectedCountry = _countryCode;
+        //     this.killDelayedValidationForInputs();
+        //     this._cd.markForCheck();
+        // }
     }
 
     private getJoinedIdWithIndex ( _id ) {
@@ -195,11 +194,11 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     private get isCountryAUS () : boolean {
-        return this.manualAddressCG.__selectedCountry === AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
+        return this.countryCtrl && this.countryCtrl.value === AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
     }
 
     private get isCountryNZ () : boolean {
-        return this.manualAddressCG.__selectedCountry === AmpManualAddressComponent.COUNTRY_NZ;
+        return this.countryCtrl && this.countryCtrl.value === AmpManualAddressComponent.COUNTRY_NZ;
     }
 
     private getCityLabel () : string {

@@ -47,7 +47,8 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     ngOnInit () : void {
         if ( this.controlGroup ) {
             if ( this.controlGroup.contains( this.id + addDashOrNothing( this.index ) ) ) {
-                this.qasControlGroup = <FormGroup> this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
+                this.qasControlGroup       = <FormGroup> this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
+                this.searchOrManualControl = <FormControl> this.qasControlGroup.get( 'isManualSearch' );
             } else {
                 this.qasControlGroup       = new FormGroup( {} );
                 this.searchOrManualControl = new FormControl();
@@ -75,7 +76,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
             .$deSelected
             .debounceTime( 200 )
             .subscribe( ( change ) => {
-                if ( this.controlGroup.touched ) {
+                if ( this.qasControlGroup.touched ) {
                     this.onOptionDeSelect( change );
                 }
             } );

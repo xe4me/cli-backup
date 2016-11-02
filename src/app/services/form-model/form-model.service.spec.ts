@@ -22,6 +22,7 @@ import {
 
 import { FormModelService } from './form-model.service';
 import { AmpHttpService } from '../amp-http/amp-http.service';
+import { FormBuilder } from '@angular/forms';
 
 const testModel = {
                 'errors': [],
@@ -60,6 +61,7 @@ describe( 'Save model to the server' , () => {
         TestBed.configureTestingModule( {
             providers    : [ BaseRequestOptions,
                              FormModelService,
+                             FormBuilder,
                              MockBackend,
                              provide(AmpHttpService, mockHttpProvider) ]
         } );
