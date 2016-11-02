@@ -12,21 +12,93 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
     protected noScroll                       = false;
-    protected noPatch                        = false;
+    /*
+     * __fdn : the fully distinguished name to this block :
+     * E.g : ['Application','SomeSection','ContactDetails'];
+     * */
     protected __fdn : (number|string)[];
+    /*
+     * __form : The overal form , this is accessabel in all the blocks and is the same everywhere
+     * */
     protected __form : FormGroup;
+    /*
+     * controlGroup : The control group that created specificically for this block
+     * */
     protected __controlGroup : FormGroup;
     protected __sectionName : string;
+    /*
+     * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
+     * */
     protected __removeNext : ( viewContainerRef : ViewContainerRef ) => void;
+    /*
+     * __removeAllAfter : Will remove all the blocks after current block if they're in the same conainer
+     * E.g : If you're inside menu frame , you cannot delete review block if they not in the same blocks array in
+     * form definition
+     * */
+    protected __removeAllAfter : ( viewContainerRef : ViewContainerRef ) => void;
+    /*
+     * __removeAllAfterIndex
+     * Same as removeAllAfter, except you just need to specify an index , it'll nicely remove all after that index
+     * */
+    protected __removeAllAfterIndex : ( index : number ) => void;
+    /*
+     * __getIndex : Will give you your index in the current container
+     * */
+    protected __getIndex : ( viewContainerRef : ViewContainerRef ) => number;
+    /*
+     * __loadNext : Will load a chunk of form definition after the current block
+     * E.g :
+     * @example
+     let toBeLoadedBlock = {
+     "equityHolders": {
+     "name": "EquityHolders",
+     "prettyName": "Equity holders",
+     "blockType": "EquityHoldersBlockComponent",
+     "blockLayout": "INLINE",
+     "commonBlock": false,
+     "path": "blocks/equity-holders/equity-holders.component",
+     }
+     }
+     __loadNext(toBeLoadedBlock , this.viewContainerRef);
+     * */
     protected __loadNext : ( def : any , viewContainerRef : ViewContainerRef ) => void;
+    /*
+     * __loadAt
+     * Same as loadNext , except load at a specific index without telling where you are(viewContainerRef)
+     * */
     protected __loadAt : ( def : any , index : number ) => void;
-    protected __removeAt : ( index : number ) => void;
+    /*
+     * __custom : All the custom properties that you've specified in your form definition chunk will be accesable
+     @example
+     let toBeLoadedBlock = {
+     "equityHolders": {
+     "name": "EquityHolders",
+     "prettyName": "Equity holders",
+     "blockType": "EquityHoldersBlockComponent",
+     "blockLayout": "INLINE",
+     "commonBlock": false,
+     "path": "blocks/equity-holders/equity-holders.component",
+     "custom":{
+     "whateveField":"whatever value "
+     }
+     }
+     }
+     Then inside the class you can access to whateverField like :
+     console.log(this.__custom.whateverField); // it's amazing I know :)
+     * */
     protected __custom : any;
-    protected visibleFlag : string           = 'defaultIsVisible';
-    protected doneFlag : string              = 'defaultIsDone';
+    /*
+     * __isRetrieved :
+     * If this block has been created with a hydrated form ( form that has value and conteols , or in
+     * another words ,
+     * a retrieved form ) , this variable will be true
+     * */
+    protected __isRetrieved : boolean;
+    protected visibleFlag : string = 'defaultIsVisible';
+    protected doneFlag : string    = 'defaultIsDone';
     private scrollSubscription : Subscription;
-    private formPatchSubscription : Subscription;
-    private domUtils : DomUtils              = null;
+    private hydrateFormSubscription : Subscription;
+    private domUtils : DomUtils    = null;
 
     constructor ( protected formModelService : FormModelService ,
                   protected elementRef : ElementRef ,
@@ -45,16 +117,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         this.visibleFlag  = this.selectorName + 'IsVisible';
         this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
-        this.subscribeToFormPatchEvents();
-        this.requestPrePopulateFields();
+        if ( this.__isRetrieved ) {
+            this.setToTouchedAndSummaryState();
+        }
         this._cd.markForCheck();
-    }
-
-    /*
-     * request the retrieve service to see if there is any field for this block to be prepopulated
-     * */
-    requestPrePopulateFields () {
-        this.formModelService.requestPatchForm( this.__form );
     }
 
     ngOnDestroy () {
@@ -91,6 +157,12 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         this.scrollService.$scrolled.emit( this.selectorName );
     }
 
+    setToTouchedAndSummaryState () {
+        this.__controlGroup.markAsTouched();
+        this.isInSummaryState = true;
+        this.isActive         = true;
+    }
+
     onNext () {
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
@@ -121,25 +193,6 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         }
     }
 
-    protected subscribeToFormPatchEvents () {
-        if ( ! this.noPatch ) {
-            this.formPatchSubscription = this.formModelService.$patchForm.subscribe( ( _patchedModel ) => {
-                setTimeout( () => {
-                    this.__controlGroup.markAsTouched( {
-                        onlySelf : false
-                    } );
-                } , 250 );
-                // this timeout number should be higher than typeahead component $deselect event and the reason
-                // is typeahead will fire an event tha QAS catches and empties the manual address
-                /*
-                 * TODO : Find another way for QAS to handle this edge scenario
-                 *
-                 * */
-                this.isInSummaryState = true;
-            } );
-        }
-    }
-
     private resetBlock () {
         this.isInSummaryState = false;
     }
@@ -147,9 +200,6 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     private unSubscribeFromEvents () {
         if ( this.scrollSubscription ) {
             this.scrollSubscription.unsubscribe();
-        }
-        if ( this.formPatchSubscription ) {
-            this.formPatchSubscription.unsubscribe();
         }
     }
 }

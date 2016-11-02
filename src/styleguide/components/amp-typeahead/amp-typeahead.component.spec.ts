@@ -150,7 +150,7 @@ describe( 'amp-typeahead component' , () => {
             let liElements = getAlltheLis();
             liElements[ 0 ].nativeElement.click();
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
-            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( JSON.stringify( _testCmp.options[ 0 ] ) );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( _testCmp.options[ 0 ][ _testCmp.__custom.controls[ 0 ].selectedItemIdentifier ] );
         } );
         it( 'control group should be valid if select an option' , () => {
             focusOnInput();
@@ -161,7 +161,7 @@ describe( 'amp-typeahead component' , () => {
             focusOnInput();
             selectFirstItem();
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
-            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( JSON.stringify( _testCmp.options[ 0 ] ) );
+            expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( _testCmp.options[ 0 ][ _testCmp.__custom.controls[ 0 ].selectedItemIdentifier ] );
             let text = 'this text will be added to the end of the curent text';
             updateInputText( _inputElement.value + text );
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title + text );

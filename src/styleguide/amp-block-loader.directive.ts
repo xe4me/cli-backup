@@ -3,23 +3,19 @@ import {
     ViewContainerRef ,
     Directive ,
     ComponentResolver ,
-    ComponentRef ,
     Output ,
     EventEmitter ,
-    ComponentFactory ,
-    OnChanges , OnInit , ViewRef , ComponentFactoryResolver , NgModule , Compiler , ModuleWithComponentFactories
+    Compiler
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormSectionService } from '../app/services/form-section/form-section.service';
 import { AmpBlockLoader } from '../app/amp-block-loader';
-
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
-
 @Directive( {
     selector : '[amp-block-loader]'
 } )
-export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges {
+export class AmpBlockLoaderDirective extends AmpBlockLoader {
     @Input( 'amp-block-loader' ) blockLoader;
     @Input( 'fdn' ) fdn                     = [];
     // @Input( 'form' ) form : FormGroup= new FormGroup( {} );
@@ -31,10 +27,10 @@ export class AmpBlockLoaderDirective extends AmpBlockLoader implements OnChanges
                   public compiler : Compiler ,
                   public formSectionService : FormSectionService ,
                   public componentResolver : ComponentResolver ) {
-        super(viewContainer, compiler, formSectionService, componentResolver);
+        super( viewContainer , compiler , formSectionService , componentResolver );
     }
 
-    protected getCustomBundle(path : string) : any {
+    protected getCustomBundle ( path : string ) : any {
         let myChunk = null;
         try {
             myChunk = require( '../../src/app/' + path + '\.ts' );

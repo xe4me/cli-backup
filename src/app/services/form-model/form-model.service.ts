@@ -1,24 +1,24 @@
 import { Injectable , EventEmitter } from '@angular/core';
 import { Headers , RequestOptions , Response } from '@angular/http';
-import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { AmpHttpService } from '../amp-http/amp-http.service.ts';
 import { Environments } from '../../abstracts/environments/environments.abstract.ts';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { FormGroup , FormBuilder } from '@angular/forms';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
 @Injectable()
 export class FormModelService {
     public $saveMe : EventEmitter<any>       = new EventEmitter();
     public $saveResponse : EventEmitter<any> = new EventEmitter();
     public $saveError : EventEmitter<any>    = new EventEmitter();
-    public $patchForm : EventEmitter<any>    = new EventEmitter();
+    public $hydrateForm : EventEmitter<any>  = new EventEmitter();
     public _formDefinition;
     public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
-    public model = {
+    public model                             = {
         currentBlockClassName : 'IntroBlockComponent' ,
         fatalErrors           : [] ,
         errors                : [] ,
@@ -73,24 +73,26 @@ export class FormModelService {
         formId                : null ,
         folderId              : null
     };
-    private _retreivedModel;
-    private _apiBaseURL      = Environments.property.ApiCallsBaseUrl;
-    private _practiceBaseURL = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
-    private _contactDetailsUrl = this._practiceBaseURL + '/profile';
-    private _advisersUrl       = this._practiceBaseURL + '/advisors';
-    private _submitUrl         = this._apiBaseURL + 'bolrnotification';
-    private _contextUrl        = this._apiBaseURL + 'usersession';
-    private _submitRelativeUrl = null;
-    private _headers     = new Headers( { 'Content-Type' : 'application/json' } );
-    private _httpOptions = new RequestOptions( { headers : this._headers } );
+    public form : FormGroup                  = new FormGroup( {} );
+    private _apiBaseURL                      = Environments.property.ApiCallsBaseUrl;
+    private _practiceBaseURL                 = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
+    private _contactDetailsUrl               = this._practiceBaseURL + '/profile';
+    private _advisersUrl                     = this._practiceBaseURL + '/advisors';
+    private _submitUrl                       = this._apiBaseURL + 'bolrnotification';
+    private _contextUrl                      = this._apiBaseURL + 'usersession';
+    private _submitRelativeUrl               = null;
+    private _headers                         = new Headers( { 'Content-Type' : 'application/json' } );
+    private _httpOptions                     = new RequestOptions( { headers : this._headers } );
+    private _savedModel;
 
-    constructor ( private http : AmpHttpService ) {
+    constructor ( private http : AmpHttpService , private builder : FormBuilder ) {
         this.$flags            = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
         this.$saveMe.subscribe( ( model ) => {
             if ( ! this._submitRelativeUrl ) {
                 throw new Error( 'Relative URL not set in FormModelService for submit!' );
             }
+            this._savedModel = model;
             this.saveModel( model )
                 .subscribe( ( response ) => {
                     this.$saveResponse.emit( response.json() );
@@ -102,31 +104,38 @@ export class FormModelService {
         } );
     }
 
-    public storeModelAndPatchToForm ( _form : FormGroup , model : any ) {
-        this._retreivedModel = model;
-        this.requestPatchForm( _form , model );
+    public hydrateForm ( newModel : any = this._savedModel ) : FormGroup {
+        if ( ! newModel ) {
+            return this.form;
+        }
+        let stringified = JSON.stringify( newModel );
+        let magic       = stringified
+            .replace( /\[/g , 'this.builder.array([' )
+            .replace( /\]/g , '])' )
+            .replace( /{"/g , 'this.builder.group({"' )
+            .replace( /}/g , '})' )
+            .replace( /\{\}\)/g , 'this.builder.group({})' );
+        // tslint:disable-next-line:no-eval
+        this.form       = eval( magic );
+        this.$hydrateForm.emit( this.form );
+        return this.form;
     }
 
-    public requestPatchForm ( _form : FormGroup , model = this._retreivedModel ) {
-        if ( model ) {
-            _form.patchValue( model );
-            this.$patchForm.emit( model );
-        }
+    public storeModel ( _model ) {
+        this._savedModel = _model;
     }
 
-    public generatePDFUrl () {
-        if ( this.model.formId ) {
-            return Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path + '/bolrnotification/' + this.model.formId + '/pdf';
-        }
-        return null;
+    public get savedModel () {
+        return this._savedModel;
+    }
+
+    public storeModelAndHydtrateForm ( _model ) {
+        this.storeModel( _model );
+        this.hydrateForm( _model );
     }
 
     public get licensee () {
         return this.model.context.licensee;
-    }
-
-    public setCurrentBlock ( class_name : string ) {
-        this.model.currentBlockClassName = class_name;
     }
 
     get formDefinition () {
@@ -155,10 +164,6 @@ export class FormModelService {
 
     getFlags ( flag ) {
         return this.model.flags[ flag ];
-    }
-
-    public get currentComponent () {
-        return this.model.currentBlockClassName;
     }
 
     /**
@@ -261,14 +266,6 @@ export class FormModelService {
     }
 
     /**
-     * Utilities
-     */
-    getNextBlock ( currentBlockName ) {
-        // return 'PlannerDetailsBlock';
-        return 'ContactDetailsBlockComponent';
-    }
-
-    /**
      * Service calls
      */
     getContext () : Observable<string> {
@@ -319,19 +316,12 @@ export class FormModelService {
         // .catch( this.handleError );
     }
 
-    generatePDF () : Observable<string> {
-        let headers = new Headers(
-            {
-                'Content-Type' : 'application/pdf' ,
-            } );
-        let options = new RequestOptions( { headers : headers } );
-        return this.http
-                   .get( this.generatePDFUrl() , options )
-                   .map( ( res ) => res.text() );
-    }
-
     public setSubmitRelativeUrl ( relativeUrl : string ) {
         this._submitRelativeUrl = relativeUrl;
+    }
+
+    public getSubmitRelativeUrl () {
+        return this._submitRelativeUrl;
     }
 
     public overrideSubmitBaseUrl ( baseUrl : string ) {
@@ -370,20 +360,4 @@ export class FormModelService {
     private saveModel ( model ) : Observable<Response> {
         return this.http.post( this._apiBaseURL + this._submitRelativeUrl , JSON.stringify( model ) , this._httpOptions );
     }
-
-    private handleError ( error : any ) {
-        console.log( 'Handling the error ' );
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error( errMsg ); // log to console instead
-        return Observable.throw( errMsg );
-    }
-
-    /*
-     *
-     * NOTE: commented out the handleError npm as it keeps throwing weird errors
-     * need to be sorted out
-     * */
 }

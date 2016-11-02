@@ -22,9 +22,6 @@ export class MockScrollService {
 
     public amIVisible ( CLASS_NAME : string ) {
         let isInView = true;
-        if ( isInView ) {
-            this.formModelService.setCurrentBlock( CLASS_NAME );
-        }
         return true;
     }
 
@@ -32,12 +29,14 @@ export class MockScrollService {
         options               = options || {};
         // Options
         let duration          = options.duration || 800;
-        let offset = options.offset || 0;
-        let easing = options.easing || 'easeInOutQuart';
-        let callbackBefore = options.callbackBefore || function() {};
-        let callbackAfter = options.callbackAfter || function() {};
-        let container     = document.getElementById( options.containerId ) || null;
-        let containerPresent = (container !== undefined && container !== null);
+        let offset            = options.offset || 0;
+        let easing            = options.easing || 'easeInOutQuart';
+        let callbackBefore    = options.callbackBefore || function() {
+            };
+        let callbackAfter     = options.callbackAfter || function() {
+            };
+        let container         = document.getElementById( options.containerId ) || null;
+        let containerPresent  = (container !== undefined && container !== null);
         /**
          * Retrieve current location
          */
@@ -92,7 +91,7 @@ export class MockScrollService {
         /**
          * Calculate how far to scroll
          */
-        let getEndLocation = function( elemt ) {
+        let getEndLocation    = function( elemt ) {
             let location = 0;
             if ( elemt.offsetParent ) {
                 do {
@@ -106,10 +105,10 @@ export class MockScrollService {
         // Initialize the whole thing
         setTimeout( function() {
             let currentLocation = null;
-            let startLocation = getScrollLocation();
-            let endLocation = getEndLocation( element );
-            let timeLapsed = 0;
-            let distance = endLocation - startLocation;
+            let startLocation   = getScrollLocation();
+            let endLocation     = getEndLocation( element );
+            let timeLapsed      = 0;
+            let distance        = endLocation - startLocation;
             let percentage;
             let position;
             let scrollHeight;
