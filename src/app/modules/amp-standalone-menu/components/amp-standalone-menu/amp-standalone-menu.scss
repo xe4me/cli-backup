@@ -57,6 +57,7 @@ $amp-ddc-menu-height : 69px !default;
                 }
             }
             .docked {
+                display: block;
                 cursor: pointer;
                 position: fixed;
                 bottom: 0;
@@ -74,14 +75,13 @@ $amp-ddc-menu-height : 69px !default;
                 border-bottom: $amp-colour-grey-darker;
                 color: $amp-colour-sky-blue;
                 font-weight: bold;
-                // padding-top: 20px;
                 span {
                     display: block;
-                    margin-top: -5px;
+                    padding-top: 10px;
                 }
                 .icon {
                     display: block;
-                    padding-top: 5px;
+                    margin-top: -15px;
                     margin-right: 0;
                 }
             }
@@ -104,6 +104,9 @@ $amp-ddc-menu-height : 69px !default;
             border-bottom: $amp-colour-grey-darker;
         }
     }
+    .docked {
+        display: none;
+    }    
     .steps-nav .progress {
         .node {
             height: 12px;
