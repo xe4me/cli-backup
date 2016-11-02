@@ -39,6 +39,12 @@ module.exports = {
                             ApiKey: GW_DDC_API_KEY,
                             EnvPath: GW_ENV_SERVICE_PATH,
                             Path: GW_DDC_SERVICE_PATH,
+                        },
+                        GreenId : {
+                            configUrl : process.env.greenIdConfig,
+                            uiUrl : process.env.greenIdUI,
+                            cssUrl : process.env.greenIdCss,
+                            environment : process.env.greenIdEnv
                         }
                     }
                 )
