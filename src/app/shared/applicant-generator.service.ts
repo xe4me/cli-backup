@@ -19,7 +19,10 @@ export class ApplicantGeneratorService {
 
     public getApplicantSection(_index: number): any {
         const applicant = clone(applicantJSON);
-
+        let onlineOrOfflineBlock = this.findBlock(applicant, 'OnlineOrOfflineIdCheck', 1);
+        if (onlineOrOfflineBlock) {
+            onlineOrOfflineBlock.custom.applicantIndex = _index;
+        }
         if (_index === 2) {
             let basicInfoBlock = this.findBlock(applicant, 'BasicInfo', 0);
             if (basicInfoBlock) {

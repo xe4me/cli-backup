@@ -21,28 +21,11 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class IdCheckBlock extends FormBlock implements OnInit {
-    private modelValue : IGreenIdFormModel = {
-        firstName: 'John',
-        lastName: 'Smith',
-        middleNames: 'Danger',
-        title: 'Mr',
-        dateOfBirth:  '12/04/2001',
-        email: 'sample@test.com',
-        verificationId: 'fred',
-        verificationToken: 'fred',
-        verificationStatus: 'fred',
-        address: {
-            country: 'AU',
-            state: 'NSW',
-            streetName: 'SMITH',
-            flatNumber: 'U 2',
-            streetNumber: '53-57',
-            suburb: 'SYDNEY'
-        }
-    };
+    private modelValue : IGreenIdFormModel;
     private configScriptUrl = 'https://test2.edentiti.com/df/javascripts/greenidConfig.js';
     private uiScriptUrl = 'https://test2.edentiti.com/df/javascripts/greenidui.min.js';
     private styleUrl = 'https://test2.edentiti.com/df/assets/stylesheets/greenid.css';
+
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -53,5 +36,29 @@ export class IdCheckBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit() {
+        const applicantIndex = this.__custom.applicantIndex;
+        const applicant = this.__form.get(['Application', `Applicant${applicantIndex}Section` ]).value;
+        const personalDetails = applicant.PersonalDetailsSection;
+        const residentialAddress = personalDetails.Address.Address.residentialAddress.manualAddress;
+
+        this.modelValue = {
+            firstName : personalDetails.BasicInfo.FirstName,
+            lastName : personalDetails.BasicInfo.LastName,
+            middleNames : personalDetails.BasicInfo.MiddleName || '',
+            title : personalDetails.BasicInfo.Title,
+            dateOfBirth : personalDetails.BasicInfo.DateOfBirth,
+            email : personalDetails.ContactDetails.EmailAddress,
+            verificationId : '',
+            verificationToken : '',
+            verificationStatus : '',
+            address : {
+                country : 'AU',
+                state : residentialAddress.state,
+                streetName : residentialAddress.streetName || '',
+                flatNumber : residentialAddress.unitNumber || '',
+                streetNumber : residentialAddress.streetNumber || '',
+                suburb : residentialAddress.suburb
+            }
+        };
     }
 }

@@ -46,7 +46,9 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
 
     private addOrRemoveOnlineIdCheck(typeOfCheck: string) {
         if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
-            this.__loadNext(this.__custom.optionalBlocks[0], this.viewContainerRef );
+            let onlineIdCheckBlock = this.__custom.optionalBlocks[0];
+            onlineIdCheckBlock.custom.applicantIndex = this.__custom.applicantIndex;
+            this.__loadNext(onlineIdCheckBlock, this.viewContainerRef );
             this.isOnlineCheckLoaded = true;
             return;
         }
@@ -58,7 +60,7 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     }
 
     private onIdCheckSelection(typeOfCheck : string) {
-        const onlineOrOffline = this.__controlGroup.get(this.__custom.controls[0].id)
+        const onlineOrOffline = this.__controlGroup.get(this.__custom.controls[0].id);
         onlineOrOffline.setValue(typeOfCheck);
         onlineOrOffline.markAsTouched();
 
