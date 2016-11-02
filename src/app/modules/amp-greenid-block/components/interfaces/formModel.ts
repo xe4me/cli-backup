@@ -15,5 +15,7 @@ export interface IGreenIdFormModel {
         flatNumber : string;
         streetNumber : string;
         suburb : string;
+        postcode : string;
+        streetType : string;
     };
 }
