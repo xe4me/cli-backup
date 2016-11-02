@@ -58,7 +58,7 @@ $amp-ddc-menu-height : 69px !default;
             .docked {
                 cursor: pointer;
                 position: fixed;
-                top: 0;
+                bottom: 0;
                 left: 0;
                 -moz-transform: translateY(0);
                 -o-transform: translateY(0);
@@ -73,10 +73,14 @@ $amp-ddc-menu-height : 69px !default;
                 border-bottom: $amp-colour-grey-darker;
                 color: $amp-colour-sky-blue;
                 font-weight: bold;
-                padding-top: 20px;
-                .icon {
+                span {
                     display: block;
                     margin-top: -5px;
+                }
+                .icon {
+                    display: block;
+                    padding-top: 5px;
+                    margin-right: 0;
                 }
             }
 
@@ -160,6 +164,9 @@ $amp-ddc-menu-height : 69px !default;
         >li a {
             cursor: pointer;
             padding-left: 14px;
+            @include media-query(palm) {
+                padding-left: 0;
+            }
         }
         >li {
             border: none;
