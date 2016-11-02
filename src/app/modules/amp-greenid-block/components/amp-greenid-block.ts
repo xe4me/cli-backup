@@ -189,11 +189,11 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
     }
 
     private setupGreenId() : void {
-        if (window['greenidUI']) {
+        if (window['greenidUI'] && window['greenidConfig']) {
             let options = Object.assign(this.greenIdSettings, {
                 sessionCompleteCallback: this.onSessionComplete
             });
-
+            window['greenidConfig'].setOverrides({'enable_save_and_complete_later' : false});
             window['greenidUI'].setup(options);
         }
     }
