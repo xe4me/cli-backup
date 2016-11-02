@@ -13,10 +13,12 @@ import {
     ViewChild,
     Renderer,
     Input,
+    OnDestroy
 } from '@angular/core';
 import { DomSanitizationService } from '@angular/platform-browser';
-import { AmpGreenIdServices } from '../components/services/amp-greenid-service';
-import { ResponseObject } from '../components/interfaces/responseObject';
+import { AmpGreenIdServices } from './services/amp-greenid-service';
+import { ResponseObject } from './interfaces/responseObject';
+import { IGreenIdFormModel } from './interfaces/formModel';
 import { FormControl,
          FormGroup,
          FormBuilder,
@@ -38,7 +40,7 @@ let greenIdLoaded = false;
                        <div class='grid__item_floated mh mv'>
                             <amp-checkbox
                                 [isInSummaryState]='isInSummaryState'
-                                [controlGroup]='controlGroup'
+                                [controlGroup]='greenIdControlGroup'
                                 [required]='acknowledge.required'
                                 [checked]='acknowledge.checked'
                                 [disabled]='acknowledge.disabled'
@@ -55,39 +57,7 @@ let greenIdLoaded = false;
                        </div>
                     </div>
                 </div>
-                <!--
-                This should be an ajax request, for the sake of getting it out the door its a form instead.
-                -->
-                <form method='GET' action='' id='theform' role='form' class='mb'>
-                    <div style='display: none;'>
-                        <input id='accountId' value='amp_au' name='accountId' type='hidden'>
-                        <input id='apiCode' value='69h-xEt-PSW-vGn' name='apiCode' type='hidden'>
-                        <input id='usethiscountry' value='AU' name='country' type='hidden'>
-                        <input id='givenNames' name='givenNames' [ngModel]='form.firstName' class='form-control'
-                               type='text'>
-                        <input id='middleNames' name='middleNames' [ngModel]='form.middleNames' class='form-control'
-                               type='text'>
-                        <input type='text' id='surname' name='surname' [ngModel]='form.lastName'
-                               class='form-control'/>
-                        <input id='flatNumber' name='flatNumber' [ngModel]='form.address.flatNumber' class='form-control'
-                               type='text'>
-                        <input id='streetNumber' name='streetNumber' [ngModel]='form.address.streetNumber'
-                               class='form-control' type='text'>
-                        <input id='streetName' name='streetName' [ngModel]='form.address.streetName' class='form-control'
-                               type='text'>
-                        <input id='streetType' name='streetType' [ngModel]='form.address.streetType' class='form-control'
-                               type='text'>
-                        <input id='suburb' name='suburb' [ngModel]='form.address.streetType' class='form-control' type='text'>
-                        <input id='state' name='state' [ngModel]='form.address.state' class='form-control' type='text'>
-                        <input id='postcode' name='postcode' [ngModel]='form.address.postcode' class='form-control'
-                               type='text'>
-                        <input name='dob' id='dob' class='form-control' [ngModel]='form.dateOfBirth' aria-required='true'
-                               type='text'>
-                        <input id='email' name='email' class='form-control' [ngModel]='form.email' type='text'>
-                    </div>
-                    <input value='Submit details' style='display:none;' #btnSubmit id='btnSubmit' name='btnSubmit' class='btn btn-primary' type='submit'>
-                </form>
-                <link *ngIf="styleUrl" type="text/css" rel="stylesheet" [href]="styleUrl">
+                <link *ngIf="styleUrl" type="text/css" media="screen" rel="stylesheet" [href]="styleUrl">
                 <div id='greenid-div'>
                 </div>
     ` ,
@@ -103,29 +73,34 @@ let greenIdLoaded = false;
             ])
     ]
 })
-export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
-    @Input() form; // form model input
+export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDestroy {
+    @Input() id : string = 'green-id-identity-check';
+    @Input() form : IGreenIdFormModel; // form model input
     @Input() configScriptUrl; // all the api urls that need to be imported, the js is loaded asnyc
     @Input() uiScriptUrl;
     @Input() styleUrl;
-    @ViewChild('btnSubmit') btnSubmit : ElementRef;
-    private controlGroup : FormGroup = new FormGroup({});
+    @Input() keepControl = false;
+    @Input() controlGroup : FormGroup;
+    private greenIdControlGroup : FormGroup;
     private loadApiScripts : Promise<any>;
     private acceptTerms : boolean = false;
     private okAccepted : boolean = false;
     private isSubmitting : boolean = false;
     private domAdapter : DomAdapter;
     private greenIdShowing : boolean = false;
+    private userRegistered : boolean = false;
 
     // TODO pass this in from an external source, as an example another component
     // TODO pass in api code and password from an external source
     private greenIdSettings = {
         environment: 'test',
-        formId: 'theform',
         frameId: 'greenid-div',
-        country: 'usethiscountry',
-        debug: false,
-        sessionCompleteCallback: this.onSessionComplete
+        enableBackButtonWarning: false
+    };
+
+    private greenIdCredentials = {
+        accountId: 'amp_au',
+        password: '69h-xEt-PSW-vGn'
     };
 
     private acknowledge = {
@@ -147,10 +122,17 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
     /**
      * Update the model with the verification ID
      */
-    public onSessionComplete(token : string, verificationStatus : any) : void {
-        if (verificationStatus instanceof String) {
-            (<FormControl> this.controlGroup.controls['verificationStatus']).setValue(verificationStatus);
-        }
+    public onSessionComplete = (token : string, verificationStatus : string) => {
+        (<FormControl> this.greenIdControlGroup.controls['verificationStatus']).setValue(verificationStatus);
+        this._cd.markForCheck();
+    }
+
+    public createGreenIdControlGroup() {
+        return new FormGroup({
+            verificationId: new FormControl(null, Validators.required),
+            verificationToken: new FormControl(null, Validators.required),
+            verificationStatus: new FormControl(null, Validators.required),
+        });
     }
 
     /**
@@ -178,25 +160,50 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
             }
             reject('Script urls were not provided');
         });
-
-        this.controlGroup = new FormGroup({
-            verificationId: new FormControl('verificationId', Validators.required),
-            verificationToken: new FormControl('verificationToken', Validators.required),
-            verificationStatus: new FormControl('verificationStatus', Validators.required),
-        });
+        if (this.controlGroup) {
+            if (this.controlGroup.contains(this.id)) {
+                this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
+            } else {
+                this.greenIdControlGroup = this.createGreenIdControlGroup();
+                this.controlGroup.addControl(this.id, this.greenIdControlGroup);
+            }
+        } else {
+            this.greenIdControlGroup = this.createGreenIdControlGroup();
+        }
 
         this._cd.detectChanges();
+    }
+
+    public ngOnDestroy() {
+        if (!this.keepControl && this.controlGroup && this.id) {
+            this.controlGroup.removeControl(this.id);
+        }
     }
     /**
      * Once we have the scripts loaded, we need to init the green id stuff, set it up
      */
     public ngAfterContentInit() : void {
         this.loadApiScripts.then(() => {
-            if (window['greenidUI']) {
-                window['greenidUI'].setup(this.greenIdSettings);
-            }
+            this.setupGreenId();
         });
     }
+
+    private setupGreenId() : void {
+        if (window['greenidUI'] && window['greenidConfig']) {
+            let options = Object.assign(this.greenIdSettings, {
+                sessionCompleteCallback: this.onSessionComplete
+            });
+            window['greenidConfig'].setOverrides({'enable_save_and_complete_later' : false});
+            window['greenidUI'].setup(options);
+        }
+    }
+
+    private showGreenId(verificationToken : string) : void {
+        if (window['greenidUI']) {
+            window['greenidUI'].show(this.greenIdCredentials.accountId, this.greenIdCredentials.password, verificationToken);
+        }
+    }
+
     /**
      * Load all of the scripts async
      */
@@ -229,21 +236,19 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
 
     /**
      * Call the service and then update the model with the new token and verfication id
-     * trigger the form submission as we have a form in the template
      */
     private onContinue(value : Event) : void {
-        let event = new MouseEvent('click', { bubbles: true });
         this.isSubmitting = true;
         this._AmpGreenIdServices
             .getTheToken(this.form)
             .subscribe((respo) => {
                 this.isSubmitting = false;
                 if (respo) {
+                    this.userRegistered = true;
                     this.updateModel(respo.payload);
                     this._cd.markForCheck();
-                    this._render.invokeElementMethod(this.btnSubmit.nativeElement, 'dispatchEvent', [event]);
+                    this.showGreenId(respo.payload.verificationToken);
                 }
-
             });
     }
     /**
@@ -251,10 +256,9 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit {
      */
     private updateModel(respo : ResponseObject) : void {
         if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
-            (<FormControl> this.controlGroup.controls['verificationId']).setValue(respo.verificationId);
-            (<FormControl> this.controlGroup.controls['verificationToken']).setValue(respo.verificationToken);
+            (<FormControl> this.greenIdControlGroup.controls['verificationId']).setValue(respo.verificationId);
+            (<FormControl> this.greenIdControlGroup.controls['verificationToken']).setValue(respo.verificationToken);
             this.greenIdShowing = false; // hide the orginal block content
         }
     }
-
 }
