@@ -1,0 +1,107 @@
+[
+    {
+        "request": {
+            "url": "/refdata/countries",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "meta": {
+                    "url": "/ddc/secure/api/qas/doSearch/AUS/pym",
+                    "method": "GET",
+                    "responseTimeMs": 153,
+                    "requestId": "132a13b7-f62f-42c2-9625-7354fb26faa6",
+                    "count": 1
+                },
+                "payload": [
+                    {
+                        "countryCode": "AUS",
+                        "country": "Australia"
+                    },
+                    {
+                        "countryCode": "NZL",
+                        "country": "New Zealand"
+                    },
+                    {
+                        "countryCode": "AFG",
+                        "country": "Afghanistan"
+                    },
+                    {
+                        "countryCode": "ALB",
+                        "country": "Albania"
+                    },
+                    {
+                        "countryCode": "DZA",
+                        "country": "Algeria"
+                    },
+                    {
+                        "countryCode": "ASM",
+                        "country": "American Samoa"
+                    },
+                    {
+                        "countryCode": "AND",
+                        "country": "Andorra"
+                    },
+                    {
+                        "countryCode": "AGO",
+                        "country": "Angola"
+                    },
+                    {
+                        "countryCode": "AIA",
+                        "country": "Anguilla"
+                    },
+                    {
+                        "countryCode": "ATA",
+                        "country": "Antarctica"
+                    },
+                    {
+                        "countryCode": "ATG",
+                        "country": "Antigua and Barbuda"
+                    },
+                    {
+                        "countryCode": "ARG",
+                        "country": "Argentina"
+                    },
+                    {
+                        "countryCode": "ARM",
+                        "country": "Armenia"
+                    },
+                    {
+                        "countryCode": "ABW",
+                        "country": "Aruba"
+                    },
+                    {
+                        "countryCode": "AUT",
+                        "country": "Austria"
+                    },
+                    {
+                        "countryCode": "AZE",
+                        "country": "Azerbaijan"
+                    },
+                    {
+                        "countryCode": "BHS",
+                        "country": "Bahamas"
+                    },
+                    {
+                        "countryCode": "BHR",
+                        "country": "Bahrain"
+                    },
+                    {
+                        "countryCode": "BGD",
+                        "country": "Bangladesh"
+                    },
+                    {
+                        "countryCode": "BRB",
+                        "country": "Barbados"
+                    }
+                ]
+            }
+        }
+    }
+]
+

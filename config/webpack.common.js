@@ -21,6 +21,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const METADATA = {
   title: 'AMP Components library',
   baseUrl: '/',
+  stubbyBaseUrl: 'http://localhost:1234',
   isDevServer: helpers.isWebpackDevServer()
 };
 
@@ -168,7 +169,7 @@ module.exports = {
       },
 
       {
-        test: /\.scss$/, 
+        test: /\.scss$/,
         loaders: ['css-loader', 'sass-loader']
       },
 

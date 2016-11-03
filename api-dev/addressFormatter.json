@@ -1,8 +1,7 @@
 [
     {
         "request": {
-            "url": "ddc/public/api/qas/doGetAddress/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
-            "post": "this is some post data in textual format",
+            "url": "/qas/doGetAddress/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
             "method": "GET"
         },
         "response": {
@@ -20,28 +19,37 @@
                     "count": 1
                 },
                 "payload": {
-                    "Siebel": {
+                    "siebel": {
                         "Locality": "MILLTHORPE",
-                        "StateCode": "NSW",
+                        "State code": "NSW",
                         "Postcode": "2798",
                         "Country": "Australia",
-                        "DPIDDID": "66898785",
-                        "AUSBAR": "1301012020223022212212311113230110113"
+                        "DPID/DID": "66898785",
+                        "AUSBAR.": "1301012020223022212212311113230110113"
                     },
-                    "Bank": {
-                        "AllPostalDeliveryTypes": "",
-                        "BuildingLevel": "",
-                        "FlatUnit": "",
-                        "BuildingNumber": "1",
-                        "BuildingName": "",
-                        "StreetName": "33 alfred street",
-                        "StreetType": "St",
-                        "Locality": "MILLTHORPE",
-                        "StateCode": "NSW",
+                    "crm": {
+                        "Street Address": "MILLTHORPE",
+                        "Suburb": "Pymble",
+                        "State": "NSW",
                         "Postcode": "2798",
                         "Country": "Australia",
-                        "DPIDDID": "66898785",
-                        "AUSBAR": "1301012020223022212212311113230110113"
+                        "DPID": "66898785",
+                        "Barcode": "1301012020223022212212311113230110113"
+                    },
+                    "bank": {
+                        "All postal delivery types": "",
+                        "Building level": "",
+                        "Flat/Unit": "",
+                        "Building number": "1",
+                        "Building name": "",
+                        "Street (Name)": "33 alfred street",
+                        "Street (Type)": "St",
+                        "Locality": "MILLTHORPE",
+                        "State code": "NSW",
+                        "Postcode": "2798",
+                        "Country": "Australia",
+                        "DPID/DID": "66898785",
+                        "AUSBAR.": "1301012020223022212212311113230110113"
                     }
                 }
             }

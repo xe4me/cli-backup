@@ -160,6 +160,26 @@
         "readme": "<p>AMP account number input, based amp-input component.</p>\n"
     },
     {
+        "name": "Amp Pdf Service",
+        "sources": [
+            "src/app/components/amp-pdf"
+        ],
+        "id": "AmpPdfService",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-pdf/basic_usage.html",
+                "styles": "src/styleguide/components/amp-pdf/basic_usage.scss",
+                "source": "src/styleguide/components/amp-pdf/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-pdf/amp-pdf.test.spec",
+                "jasmine": "src/styleguide/components/amp-pdf/amp-pdf.spec.ts",
+                "component": "amp-pdf-basic-usage",
+                "component_src_location": "components/amp-pdf/basic_usage",
+                "name": "Pdf Service usage"
+            }
+        ],
+        "readme": "<p> A simple example of how you'd use the pdf service .</p>\n"
+    },
+    {
         "name": "Amp Button",
         "sources": [
             "src/app/components/amp-button/amp-button.component.ts"

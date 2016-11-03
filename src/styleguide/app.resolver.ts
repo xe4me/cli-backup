@@ -9,6 +9,7 @@ import { TableContentsService } from './services/content-table-service';
 import { ThemeService } from './services/theme';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { FormService } from '../app/services/form/form.service';
+import { PdfService } from '../app/services/pdf/pdf.service';
 import { FormModelService } from '../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../app/services/progress-observer/progress-observer.service';
 import { AmpHttpService } from '../app/services/amp-http/amp-http.service';
@@ -27,6 +28,7 @@ export const APP_RESOLVER_PROVIDERS = [
     DataResolver ,
     FormModelService ,
     TableContentsService ,
+    PdfService ,
     ScrollService ,
     ProgressObserverService ,
     FormService ,
