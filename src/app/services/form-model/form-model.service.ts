@@ -270,7 +270,6 @@ export class FormModelService {
         let options = new RequestOptions( { headers : headers } );
         return this.http.get( this._contextUrl , options )
                    .map( ( res ) => res.json() );
-        // .catch(this.handleError);
     }
 
     getContactDetails () : Observable<string> {
@@ -285,7 +284,6 @@ export class FormModelService {
             .http
             .get( this._contactDetailsUrl , options )
             .map( ( res ) => res.json() );
-        // .catch(this.handleError);
     }
 
     getAdvisers () : Observable<string> {
@@ -307,7 +305,6 @@ export class FormModelService {
                        }
                        return data;
                    } );
-        // .catch( this.handleError );
     }
 
     public setSaveRelativeUrl ( relativeUrl : string ) {
@@ -344,7 +341,6 @@ export class FormModelService {
 
         this.saveModel(model).subscribe((saveResult) => {
             if (saveResult.json().statusCode === 200) {
-
                 // Save ok
                 this.submitApplication(submitUrl, referenceId)
                     .subscribe((submitResult) => {
@@ -372,39 +368,8 @@ export class FormModelService {
         return resultSubject.asObservable();
     }
 
-    // TODO: SaveForm should not be invoked directly but rather thru the present method.
-    saveForm ( value : any ) : Observable < string > {
-        let headers = new Headers( { 'Content-Type' : 'application/json' } );
-        let options = new RequestOptions( { headers : headers } );
-        // Inject context data obtained from prepop that is required by back end;
-        let body    = Object.assign( {} ,
-            value ,
-            {
-                context : {
-                    licenseeBuybackFacilities : 'Request to access the  ' + LicenseesAbstract.getLicenseeBuybackFacility( this.licensee ) + ' facility'
-                }
-            } );
-        if ( body.fullOrPartial.fullOrPartial === 'Full' ) {
-            body.fullOrPartial.impactedAdvisers = this.model.advisers;
-        }
-        return this.http
-                   .post( this._submitUrl , JSON.stringify( body ) , options )
-                   .map( ( res ) => res.json() );
-        //    .catch( this.handleError );
-    }
-
     private saveModel(model) : Observable<Response> {
         return this.http.post(this._apiBaseURL + this._saveRelativeUrl, JSON.stringify(model), this._httpOptions);
-    }
-
-    private handleError(error : any) {
-        console.log('Handling the error ');
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
     }
 
     private subscribeToSave() {
