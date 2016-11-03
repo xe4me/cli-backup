@@ -47,6 +47,7 @@ let greenIdLoaded = false;
                                 [scrollOutOn]='acknowledge.scrollOutOn'
                                 [id]='acknowledge.id'
                                 (select)='onAcknowledgeSelect($event)'>
+                                {{ checkboxLabel }}
                             </amp-checkbox>
 
                        </div>
@@ -81,6 +82,8 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
     @Input() styleUrl;
     @Input() keepControl = false;
     @Input() controlGroup : FormGroup;
+    @Input() environment : string = 'test';
+    @Input() checkboxLabel : string;
     private greenIdControlGroup : FormGroup;
     private loadApiScripts : Promise<any>;
     private acceptTerms : boolean = false;
@@ -90,13 +93,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
     private greenIdShowing : boolean = false;
     private userRegistered : boolean = false;
 
-    // TODO pass this in from an external source, as an example another component
-    // TODO pass in api code and password from an external source
-    private greenIdSettings = {
-        environment: 'test',
-        frameId: 'greenid-div',
-        enableBackButtonWarning: false
-    };
+    private greenIdSettings;
 
     private greenIdCredentials = {
         accountId: 'amp_au',
@@ -139,6 +136,11 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
      * Get the array of greenid scripts that we need to submit with the model
      */
     public ngOnInit() : any {
+        this.greenIdSettings = {
+            environment: this.environment,
+            frameId: 'greenid-div',
+            enableBackButtonWarning: false
+        };
         if (this.styleUrl) {
             this.styleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
         }
