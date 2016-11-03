@@ -296,7 +296,7 @@ export abstract class AmpBlockLoader {
     }
 
     private loadAllNext ( _def : any[] , _viewContainerRef : ViewContainerRef ) {
-        if(_def && _def.length){
+        if (_def && _def.length){
             let index = this.getIndex( _viewContainerRef );
             if ( index !== undefined ) {
                 index ++;
