@@ -19,8 +19,7 @@ import {
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
-    FormService,
-    AmpHttpService,
+    FormService
 } from 'amp-ddc-components';
 import {
     Constants
