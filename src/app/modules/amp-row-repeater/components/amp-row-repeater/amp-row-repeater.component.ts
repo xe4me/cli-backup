@@ -45,15 +45,20 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'id' ) id;
     @Input( 'removeBtn' ) removeBtn;
     @Input( 'addBtn' ) addBtn;
-    @Input( 'maxRows' ) maxRows : number = 9999;
+    @Input( 'maxRows' ) maxRows : number                    = 9999;
     @Input( 'isInSummaryState' ) isInSummaryState : boolean = false;
-    @Input( 'colLeftClass' ) colLeftClass : string = '';
-    @Input( 'colRightClass' ) colRightClass : string = '';
-    private controlArray : FormArray     = new FormArray( [] );
+    @Input( 'colLeftClass' ) colLeftClass : string          = '';
+    @Input( 'colRightClass' ) colRightClass : string        = '';
+    private controlArray : FormArray;
 
     ngOnInit () : void {
         if ( this.controlGroup && this.id ) {
-            this.controlGroup.addControl( this.id , this.controlArray );
+            if ( this.controlGroup.contains( this.id ) ) {
+                this.controlArray = <FormArray> this.controlGroup.get( this.id );
+            } else {
+                this.controlArray = new FormArray( [] );
+                this.controlGroup.addControl( this.id , this.controlArray );
+            }
         }
         this.init();
     }

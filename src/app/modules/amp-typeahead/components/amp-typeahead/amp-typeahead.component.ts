@@ -204,7 +204,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     private selectOption ( option ) : void {
         this.selectedOption = Object.assign( {} , option );
         this.control.setValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim() );
-        this.selectedControl.setValue( JSON.stringify( this.selectedOption ) );
+        // this.selectedControl.setValue( JSON.stringify( this.selectedOption ) );
+        this.selectedControl.setValue( this.selectedOption[ this.selectedItemIdentifier ] );
         this.ampInput.checkErrors();
         this.$selected.emit( this.selectedOption );
         this.close();

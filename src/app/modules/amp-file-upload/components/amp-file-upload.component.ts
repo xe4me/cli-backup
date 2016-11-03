@@ -29,11 +29,12 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     @Input() tokenUrl : string;
     @Input() formName : string;
     @Input() formId : string;
+    @Input() fileName : string;
+    @Input() deleteFileName : string;
+    @Input() size : number;
 
     public token : string;
     private progress : number = 0;
-    private fileName : string;
-    private deleteFileName : string;
     private fileSize : string;
     private speed : string;
     private uploaded : string;
@@ -64,12 +65,18 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         if ( !this.deleteUrl ) {
             this.deleteUrl = this.fileUploadService.deleteUrl;
         }
+        if ( this.fileName ) {
+            this.fileSize = humanizeBytes( this.size );
+            this.showProgress = true;
+            this.uploadCompleted = true;
+        }
         this.errorMessage = this.fileUploadService.errorMessage;
         this.fileUploadService.updateFormDetails( this.formName, this.formId );
         this.fileUploadService.onUpload.subscribe(( data : any ) => {
             this.handleUpload( data );
         });
         this.control.setErrors({error: 'file upload pending'});
+        this._cd.detectChanges();
         return undefined;
     }
 

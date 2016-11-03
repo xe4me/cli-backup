@@ -23,7 +23,7 @@ export default class AmpGreenIdBlockBasicUsage {
     /**
      * This model is for testing purpose only
      */
-    private modelValue : IGreenIdFormModel = {
+    private modelValue  = {
         firstName: 'John',
         lastName: 'Smith',
         middleNames: 'Danger',
