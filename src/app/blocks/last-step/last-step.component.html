@@ -17,4 +17,17 @@
             Submit
         </amp-button>
     </amp-form-row>
+    <!-- TODO remove this once welcome screen is done -->
+    <div *ngIf="successMessage">
+        <div>
+            <span>{{successMessage}}</span>
+        </div>
+    </div>
+    <!-- TODO remove this once welcome screen is done -->
+    <div class="errors" *ngIf="submitErrorMessage">
+        <div class="error-item">
+            <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+            <span>{{submitErrorMessage}}</span>
+        </div>
+    </div>
 </amp-form-block>
