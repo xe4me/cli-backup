@@ -1,16 +1,17 @@
 import {
-    Component,
-    ChangeDetectorRef,
-    Input,
-    ViewChild,
-    AfterViewInit
+    Component ,
+    ChangeDetectorRef ,
+    Input ,
+    ViewChild ,
+    AfterViewInit ,
+    Output ,
+    EventEmitter
 } from '@angular/core';
 import { AmpFileUploadService } from '../services/amp-file-upload.service';
 import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
 import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { Observable } from 'rxjs';
 import { BaseControl } from '../../../../app/base-control';
-import { EventEmitter } from '@angular/platform-browser';
 
 @Component({
     selector    : 'amp-file-upload',
@@ -35,7 +36,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     @Input() description : string;
     @Input() size : number;
 
-    public uploaded : EventEmitter<any>;
+    @Output() fileUploaded : EventEmitter<any> = new EventEmitter <any>();
 
     public token : string;
     private progress : number = 0;
@@ -116,7 +117,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
             this.deleteFileName = res ? res.payload.fileName : '';
             this.control.setErrors( null );
             this.uploadCompleted = true;
-            this.uploaded.emit( res.payload );
+            this.fileUploaded.emit( res.payload );
             this._cd.detectChanges();
             return null;
         }
