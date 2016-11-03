@@ -22,7 +22,7 @@ import {
     FormService
 } from 'amp-ddc-components';
 import {
-    Constants
+    Constants,
     SharedFormDataService
 } from '../../shared';
 @Component( {
