@@ -11,7 +11,7 @@
                 "Content-Type": "application/javascript"
             },
             "latency": 10,
-            "body": "var _process_env = {GoogleApiKey: '',TamServicePath: '',GwPracticeService: {ApiKey: '',EnvPath: '',Path: '',},GwDDCService: {ApiKey: '',EnvPath: '',Path: '',}};"
+            "body": "var _process_env = {GoogleApiKey: '',TamServicePath: '',GwPracticeService: {ApiKey: '',EnvPath: '',Path: '',},GwDDCService: {ApiKey: '',EnvPath: '',Path: '',}, GreenId:{configScriptUrl:'https://test2.edentiti.com/df/javascripts/greenidConfig.js', uiScriptUrl:'https://test2.edentiti.com/df/javascripts/greenidui.min.js', styleUrl: 'https://test2.edentiti.com/df/assets/stylesheets/greenid.css', environment: 'test' }};"
         }
     }
 ]

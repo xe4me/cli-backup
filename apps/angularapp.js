@@ -41,10 +41,10 @@ module.exports = {
                             Path: GW_DDC_SERVICE_PATH,
                         },
                         GreenId : {
-                            configUrl : process.env.greenIdConfig,
-                            uiUrl : process.env.greenIdUI,
-                            cssUrl : process.env.greenIdCss,
-                            environment : process.env.greenIdEnv
+                            configScriptUrl : process.env.greenIdConfig,
+                            uiScriptUrl : process.env.greenIdUI,
+                            styleUrl : process.env.greenIdCss,
+                            environment : process.env.greenIdEnvironment
                         }
                     }
                 )
