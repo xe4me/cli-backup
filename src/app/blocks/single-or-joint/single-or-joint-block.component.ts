@@ -40,8 +40,8 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public ngOnInit() {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
-        this.formModelService.setSubmitRelativeUrl(Constants.saveUrl);
-        this.formModelService.$saveResponse.subscribe( (result) => {
+        this.formModelService.setSaveRelativeUrl(Constants.saveUrl);
+        this.formModelService.saveResponse.subscribe( (result) => {
             if (result.payload.meta && result.payload.meta.id) {
                 this.storeReferenceIdInModel(result.payload.meta.id);
             }
@@ -72,14 +72,14 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     private storeReferenceIdInModel (referenceId) {
         let group = <FormGroup> this.__form.controls['Application'];
-        let appIdControl = group.controls[Constants.referenceIdName];
+        let referenceIdControl = group.controls[Constants.referenceIdName];
 
-        if (!appIdControl) {
-            appIdControl = new FormControl(referenceId);
-            group.addControl(Constants.referenceIdName, appIdControl);
-            this.formModelService.setSubmitRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
+        if (!referenceIdControl) {
+            referenceIdControl = new FormControl(referenceId);
+            group.addControl(Constants.referenceIdName, referenceIdControl);
+            this.formModelService.setSaveRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
         } else {
-            appIdControl.setValue(referenceId);
+            referenceIdControl.setValue(referenceId);
         }
     }
 
