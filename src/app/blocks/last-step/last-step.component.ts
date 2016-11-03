@@ -39,7 +39,6 @@ export class LastStepBlock extends FormBlock {
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService,
-                  private ampHttpService : AmpHttpService,
                   private sharedFormDataService : SharedFormDataService
                    ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
