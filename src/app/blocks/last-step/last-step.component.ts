@@ -52,6 +52,7 @@ export class LastStepBlock extends FormBlock {
             .subscribe((result) => {
                 // TODO remove this once welcome screen is done
                 this.successMessage = result.payload;
+                this._cd.markForCheck();
                 // TODO navigate to welcome screen
             }, (error) => {
                 this.submitErrorMessage = JSON.stringify(error);
