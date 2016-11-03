@@ -68,6 +68,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * */
     protected __loadAt : ( def : any , index : number ) => void;
     /*
+     * __loadAt
+     * Same as loadNext , except loads an array of blocks
+     * */
+    protected __loadAllNext : (_def : any[] , _viewContainerRef : ViewContainerRef) => void;
+    /*
      * __custom : All the custom properties that you've specified in your form definition chunk will be accesable
      @example
      let toBeLoadedBlock = {
