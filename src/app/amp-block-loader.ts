@@ -184,6 +184,9 @@ export abstract class AmpBlockLoader {
         _componentRef.instance.__loadAt              = ( _def , index : number ) : void => {
             this.loadAt( _def , index );
         };
+        _componentRef.instance.__loadAllNext        = ( _def : any[] , _viewContainerRef : ViewContainerRef ) : void => {
+            this.loadAllNext( _def , _viewContainerRef );
+        };
         _componentRef.instance.__removeAt            = ( index : number ) : void => {
             this.removeAt( index );
         };
@@ -199,6 +202,7 @@ export abstract class AmpBlockLoader {
         _componentRef.instance.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : void => {
             this.getIndex( _viewContainerRef );
         };
+
         _componentRef.changeDetectorRef.detectChanges();
     }
 
@@ -289,6 +293,19 @@ export abstract class AmpBlockLoader {
         }
         // this._blocks.splice(index, 0, _def);
         this.loadAt( _def , index );
+    }
+
+    private loadAllNext ( _def : any[] , _viewContainerRef : ViewContainerRef ) {
+        if(_def && _def.length){
+            let index = this.getIndex( _viewContainerRef );
+            if ( index !== undefined ) {
+                index ++;
+            }
+            for (let def of _def) {
+                this.loadAt( def , index );
+                index++;
+            }
+        }
     }
 
     private getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) {
