@@ -13,7 +13,8 @@ import {
     FormModelService ,
     ProgressObserverService ,
     FormService,
-    IGreenIdFormModel
+    IGreenIdFormModel,
+    Environments
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'id-check-block' ,
@@ -22,9 +23,11 @@ import {
 } )
 export class IdCheckBlock extends FormBlock implements OnInit {
     private modelValue : IGreenIdFormModel;
-    private configScriptUrl = 'https://test2.edentiti.com/df/javascripts/greenidConfig.js';
-    private uiScriptUrl = 'https://test2.edentiti.com/df/javascripts/greenidui.min.js';
-    private styleUrl = 'https://test2.edentiti.com/df/assets/stylesheets/greenid.css';
+    private configScriptUrl = Environments.property.GreenId.configScriptUrl;
+    private uiScriptUrl = Environments.property.GreenId.uiScriptUrl;
+    private styleUrl = Environments.property.GreenId.styleUrl;
+    private environment = Environments.property.GreenId.environment;
+    private checkboxLabel : string;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -40,7 +43,7 @@ export class IdCheckBlock extends FormBlock implements OnInit {
         const applicant = this.__form.get(['Application', `Applicant${applicantIndex}Section` ]).value;
         const personalDetails = applicant.PersonalDetailsSection;
         const residentialAddress = personalDetails.Address.Address.residentialAddress.manualAddress;
-
+        this.checkboxLabel = this.__custom.checkboxLabel;
         this.modelValue = {
             firstName : personalDetails.BasicInfo.FirstName,
             lastName : personalDetails.BasicInfo.LastName,
