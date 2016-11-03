@@ -32,6 +32,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     @Input() formId : string;
     @Input() fileName : string;
     @Input() deleteFileName : string;
+    @Input() description : string;
     @Input() size : number;
 
     public uploaded : EventEmitter<any>;
@@ -138,7 +139,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
             ( res : any ) => {
                 let token = res.payload.token;
                 this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&id=' + this.formId
-                    + '&token=' + token;
+                    + '&token=' + token + '&description=' + this.description;
                 this.backendError = false;
                 // TODO: Change detection is not happening automatically
                 this._cd.detectChanges();
