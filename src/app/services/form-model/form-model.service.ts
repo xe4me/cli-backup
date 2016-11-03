@@ -8,6 +8,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { FormGroup , FormBuilder } from '@angular/forms';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
+import { ReplaySubject } from 'rxjs/Rx';
+
 @Injectable()
 export class FormModelService {
     // Save
@@ -15,17 +17,9 @@ export class FormModelService {
     public saveResponse : EventEmitter<any> = new EventEmitter();
     public saveError : EventEmitter<any>    = new EventEmitter();
 
-    // Submit
-    public submitMe : EventEmitter<any>       = new EventEmitter();
-    public submitResponse : EventEmitter<any> = new EventEmitter();
-    public submitError : EventEmitter<any>    = new EventEmitter();
-
-    // Save and Submit
-    public saveAndSubmitMe : EventEmitter<any>       = new EventEmitter();
-    public saveAndSubmitResponse : EventEmitter<any> = new EventEmitter();
-    public saveAndSubmitError : EventEmitter<any>    = new EventEmitter();
-
-    public $hydrateForm : EventEmitter<any>          = new EventEmitter();
+    // H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O
+    public $hydrateForm : EventEmitter<any>          = new EventEmitter(); // H2O
+    // H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O
 
     public _formDefinition;
     public $flags : EventEmitter<any>;
@@ -102,7 +96,6 @@ export class FormModelService {
         this.$flags            = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
         this.subscribeToSave();
-        this.subscribeToSubmit();
     }
 
     public hydrateForm ( newModel : any = this._savedModel ) : FormGroup {
@@ -337,37 +330,46 @@ export class FormModelService {
         this.saveMe.emit( model );
     }
 
-    public submitApplication(submitUrl : string, referenceId : string) {
-        this.submitMe.emit({ submitUrl, referenceId });
+    public submitApplication(submitUrl, referenceId) : Observable<Response> {
+        let sendUrl = this._apiBaseURL + submitUrl;
+        let params : string = `id=${referenceId}`;
+        const queryUrl : string = encodeURI(`${sendUrl}?${params}`);
+
+        return this.http.post(queryUrl, JSON.stringify({}), this._httpOptions);
     }
 
-    public saveAndSubmitApplication(model, submitUrl, referenceId) {
+    public saveAndSubmitApplication(model, submitUrl, referenceId) : Observable<any> {
+        // http://stackoverflow.com/questions/33675155/creating-and-returning-observable-from-angular-2-service
+        let resultSubject = new ReplaySubject(1);
+
         this.saveModel(model).subscribe((saveResult) => {
             if (saveResult.json().statusCode === 200) {
 
                 // Save ok
-                this.callSubmitApplication(submitUrl, referenceId)
+                this.submitApplication(submitUrl, referenceId)
                     .subscribe((submitResult) => {
                         if (submitResult.json().statusCode === 200) {
 
                             // Submit ok
-                            this.saveAndSubmitResponse.emit(submitResult.json());
+                            resultSubject.next(submitResult.json());
                         } else {
                             // Submit status is not 200
-                            this.emitSaveAndSubmitError('Submit application failed');
+                            resultSubject.error('Submit application failed');
                         }
                     }, (error) => {
                         // Submit failed
-                        this.emitSaveAndSubmitError(error.json());
+                        resultSubject.error(error.json());
                     });
             } else {
                 // Save status is not 200
-                this.emitSaveAndSubmitError('Save application failed');
+                resultSubject.error('Save application failed');
             }
         }, (error) => {
             // Save failed
-            this.emitSaveAndSubmitError(error.json());
+            resultSubject.error(error.json());
         });
+
+        return resultSubject.asObservable();
     }
 
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
@@ -395,18 +397,6 @@ export class FormModelService {
         return this.http.post(this._apiBaseURL + this._saveRelativeUrl, JSON.stringify(model), this._httpOptions);
     }
 
-    private callSubmitApplication(submitUrl, referenceId) : Observable<Response> {
-        let sendUrl = this._apiBaseURL + submitUrl;
-        let params : string = `id=${referenceId}`;
-        const queryUrl : string = encodeURI(`${sendUrl}?${params}`);
-
-        return this.http.post(queryUrl, JSON.stringify({}), this._httpOptions);
-    }
-
-    private emitSaveAndSubmitError (error) {
-        this.saveAndSubmitError.emit(error);
-    }
-
     private handleError(error : any) {
         console.log('Handling the error ');
         // In a real world app, we might use a remote logging infrastructure
@@ -428,22 +418,6 @@ export class FormModelService {
                 }, (error) => {
                     if (error) {
                         this.saveError.emit(error);
-                    }
-                });
-        });
-    }
-
-    private subscribeToSubmit() {
-        this.submitMe.subscribe((params) => {
-            if (!params.submitUrl || !params.referenceId) {
-                throw new Error('Submit URL or reference ID is missing in FormModelService for submit!');
-            }
-            this.callSubmitApplication(params.submitUrl, params.referenceId)
-                .subscribe((response) => {
-                    this.submitResponse.emit(response.json());
-                }, (error) => {
-                    if (error) {
-                        this.submitError.emit(error);
                     }
                 });
         });
