@@ -21,11 +21,11 @@ import {
     ProgressObserverService ,
     FormService,
     AmpHttpService,
-    SharedFormDataService
 } from 'amp-ddc-components';
 import {
     Constants
-} from '../../shared/constants';
+    SharedFormDataService
+} from '../../shared';
 @Component( {
     selector        : 'last-step-block' ,
     templateUrl     : './last-step.component.html' ,
