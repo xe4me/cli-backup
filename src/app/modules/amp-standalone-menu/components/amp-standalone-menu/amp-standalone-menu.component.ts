@@ -25,7 +25,7 @@ import { Observable } from 'rxjs/Observable';
 export class AmpStandAloneMenuComponent implements OnInit {
     public control : FormControl = new FormControl(null);
     public errors = {};
-    public showNavigation : boolean = true;
+    public showNavigation : boolean = false;
     private _selected : string = null;
     private _disabled : boolean = false;
     private _required : boolean = false;
@@ -98,6 +98,9 @@ export class AmpStandAloneMenuComponent implements OnInit {
                 state: classes
             };
         });
+        if (this.sections.length && hasActiveClass) {
+            this.showNavigation = true;
+        }
         this._cd.markForCheck();
     }
 
@@ -127,5 +130,4 @@ export class AmpStandAloneMenuComponent implements OnInit {
         this.currentSectionId = section.pageSectionId;
         this.scrollService.scrollToComponentSelector(section.pageSectionId);
     }
-
 }
