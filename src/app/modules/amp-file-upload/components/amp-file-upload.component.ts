@@ -138,8 +138,8 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         retrieveToken.subscribe(
             ( res : any ) => {
                 let token = res.payload.token;
-                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&id=' + this.formId
-                    + '&token=' + token + '&description=' + this.description;
+                this.uploadUrlWithParms = `${this.uploadUrl}?formName=${this.formName}&id=` +
+                    `${this.formId}&token=${token}&description=${this.description}`;
                 this.backendError = false;
                 // TODO: Change detection is not happening automatically
                 this._cd.detectChanges();
