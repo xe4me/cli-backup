@@ -83,9 +83,9 @@ describe( 'Save model to the server' , () => {
             expect(connection.request.url).toBe('/saveTheWorld');
             connection.mockRespond(new Response(options));
         });
-        subject.overrideSubmitBaseUrl('/');
-        subject.setSubmitRelativeUrl('saveTheWorld');
-        subject.$saveResponse.subscribe((response) => {
+        subject.overrideApiBaseUrl('/');
+        subject.setSaveRelativeUrl('saveTheWorld');
+        subject.saveResponse.subscribe((response) => {
             expect(response).toEqual(testModel);
             done();
         });
@@ -99,9 +99,9 @@ describe( 'Save model to the server' , () => {
             expect(connection.request.url).toBe('/saveTheWorld');
             connection.mockError(new Error(errorMessage));
         });
-        subject.overrideSubmitBaseUrl('/');
-        subject.setSubmitRelativeUrl('saveTheWorld');
-        subject.$saveError.subscribe((error) => {
+        subject.overrideApiBaseUrl('/');
+        subject.setSaveRelativeUrl('saveTheWorld');
+        subject.saveError.subscribe((error) => {
             expect(error.toString()).toEqual('Error: Simulated error response');
             done();
         });
@@ -109,12 +109,12 @@ describe( 'Save model to the server' , () => {
     });
 
     it('Throws an exception because no URL was set.', (done) => {
-        subject.setSubmitRelativeUrl(null);
+        subject.setSaveRelativeUrl(null);
         try {
             subject.save(testModel);
         }
         catch (e) {
-            expect(e).toEqual(new Error('Relative URL not set in FormModelService for submit!'));
+            expect(e).toEqual(new Error('Relative URL not set in FormModelService for save!'));
             done();
         }
     });
