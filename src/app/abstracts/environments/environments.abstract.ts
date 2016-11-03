@@ -50,7 +50,7 @@ export class RootEnvProperty {
         uiScriptUrl : string;
         styleUrl : string;
         environment : string;
-    }
+    };
 
     constructor () {
         if (_process_env) {
