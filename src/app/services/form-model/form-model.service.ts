@@ -10,10 +10,23 @@ import { FormGroup , FormBuilder } from '@angular/forms';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
 @Injectable()
 export class FormModelService {
-    public $saveMe : EventEmitter<any>       = new EventEmitter();
-    public $saveResponse : EventEmitter<any> = new EventEmitter();
-    public $saveError : EventEmitter<any>    = new EventEmitter();
-    public $hydrateForm : EventEmitter<any>  = new EventEmitter();
+    // Save
+    public saveMe : EventEmitter<any>       = new EventEmitter();
+    public saveResponse : EventEmitter<any> = new EventEmitter();
+    public saveError : EventEmitter<any>    = new EventEmitter();
+
+    // Submit
+    public submitMe : EventEmitter<any>       = new EventEmitter();
+    public submitResponse : EventEmitter<any> = new EventEmitter();
+    public submitError : EventEmitter<any>    = new EventEmitter();
+
+    // Save and Submit
+    public saveAndSubmitMe : EventEmitter<any>       = new EventEmitter();
+    public saveAndSubmitResponse : EventEmitter<any> = new EventEmitter();
+    public saveAndSubmitError : EventEmitter<any>    = new EventEmitter();
+
+    public $hydrateForm : EventEmitter<any>          = new EventEmitter();
+
     public _formDefinition;
     public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
@@ -80,7 +93,7 @@ export class FormModelService {
     private _advisersUrl                     = this._practiceBaseURL + '/advisors';
     private _submitUrl                       = this._apiBaseURL + 'bolrnotification';
     private _contextUrl                      = this._apiBaseURL + 'usersession';
-    private _submitRelativeUrl               = null;
+    private _saveRelativeUrl                 = null;
     private _headers                         = new Headers( { 'Content-Type' : 'application/json' } );
     private _httpOptions                     = new RequestOptions( { headers : this._headers } );
     private _savedModel;
@@ -88,20 +101,8 @@ export class FormModelService {
     constructor ( private http : AmpHttpService , private builder : FormBuilder ) {
         this.$flags            = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
-        this.$saveMe.subscribe( ( model ) => {
-            if ( ! this._submitRelativeUrl ) {
-                throw new Error( 'Relative URL not set in FormModelService for submit!' );
-            }
-            this._savedModel = model;
-            this.saveModel( model )
-                .subscribe( ( response ) => {
-                    this.$saveResponse.emit( response.json() );
-                } , ( error ) => {
-                    if ( error ) {
-                        this.$saveError.emit( error );
-                    }
-                } );
-        } );
+        this.subscribeToSave();
+        this.subscribeToSubmit();
     }
 
     public hydrateForm ( newModel : any = this._savedModel ) : FormGroup {
@@ -316,24 +317,57 @@ export class FormModelService {
         // .catch( this.handleError );
     }
 
-    public setSubmitRelativeUrl ( relativeUrl : string ) {
-        this._submitRelativeUrl = relativeUrl;
+    public setSaveRelativeUrl ( relativeUrl : string ) {
+        this._saveRelativeUrl = relativeUrl;
     }
 
-    public getSubmitRelativeUrl () {
-        return this._submitRelativeUrl;
+    public getSaveRelativeUrl () {
+        return this._saveRelativeUrl;
     }
 
-    public overrideSubmitBaseUrl ( baseUrl : string ) {
+    public overrideApiBaseUrl ( baseUrl : string ) {
         this._apiBaseURL = baseUrl;
     }
 
-    public overrideSubmitOptions ( options : RequestOptions ) {
+    public overrideSaveOptions ( options : RequestOptions ) {
         this._httpOptions = options;
     }
 
     public save ( model : any ) {
-        this.$saveMe.emit( model );
+        this.saveMe.emit( model );
+    }
+
+    public submitApplication(submitUrl : string, referenceId : string) {
+        this.submitMe.emit({ submitUrl, referenceId });
+    }
+
+    public saveAndSubmitApplication(model, submitUrl, referenceId) {
+        this.saveModel(model).subscribe((saveResult) => {
+            if (saveResult.json().statusCode === 200) {
+
+                // Save ok
+                this.callSubmitApplication(submitUrl, referenceId)
+                    .subscribe((submitResult) => {
+                        if (submitResult.json().statusCode === 200) {
+
+                            // Submit ok
+                            this.saveAndSubmitResponse.emit(submitResult.json());
+                        } else {
+                            // Submit status is not 200
+                            this.emitSaveAndSubmitError('Submit application failed');
+                        }
+                    }, (error) => {
+                        // Submit failed
+                        this.emitSaveAndSubmitError(error.json());
+                    });
+            } else {
+                // Save status is not 200
+                this.emitSaveAndSubmitError('Save application failed');
+            }
+        }, (error) => {
+            // Save failed
+            this.emitSaveAndSubmitError(error.json());
+        });
     }
 
     // TODO: SaveForm should not be invoked directly but rather thru the present method.
@@ -357,7 +391,61 @@ export class FormModelService {
         //    .catch( this.handleError );
     }
 
-    private saveModel ( model ) : Observable<Response> {
-        return this.http.post( this._apiBaseURL + this._submitRelativeUrl , JSON.stringify( model ) , this._httpOptions );
+    private saveModel(model) : Observable<Response> {
+        return this.http.post(this._apiBaseURL + this._saveRelativeUrl, JSON.stringify(model), this._httpOptions);
+    }
+
+    private callSubmitApplication(submitUrl, referenceId) : Observable<Response> {
+        let sendUrl = this._apiBaseURL + submitUrl;
+        let params : string = `id=${referenceId}`;
+        const queryUrl : string = encodeURI(`${sendUrl}?${params}`);
+
+        return this.http.post(queryUrl, JSON.stringify({}), this._httpOptions);
+    }
+
+    private emitSaveAndSubmitError (error) {
+        this.saveAndSubmitError.emit(error);
+    }
+
+    private handleError(error : any) {
+        console.log('Handling the error ');
+        // In a real world app, we might use a remote logging infrastructure
+        // We'd also dig deeper into the error to get a better message
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable.throw(errMsg);
+    }
+
+    private subscribeToSave() {
+        this.saveMe.subscribe((model) => {
+            if (!this._saveRelativeUrl) {
+                throw new Error('Relative URL not set in FormModelService for save!');
+            }
+            this.saveModel(model)
+                .subscribe((response) => {
+                    this.saveResponse.emit(response.json());
+                }, (error) => {
+                    if (error) {
+                        this.saveError.emit(error);
+                    }
+                });
+        });
+    }
+
+    private subscribeToSubmit() {
+        this.submitMe.subscribe((params) => {
+            if (!params.submitUrl || !params.referenceId) {
+                throw new Error('Submit URL or reference ID is missing in FormModelService for submit!');
+            }
+            this.callSubmitApplication(params.submitUrl, params.referenceId)
+                .subscribe((response) => {
+                    this.submitResponse.emit(response.json());
+                }, (error) => {
+                    if (error) {
+                        this.submitError.emit(error);
+                    }
+                });
+        });
     }
 }
