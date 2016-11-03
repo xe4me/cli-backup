@@ -18,7 +18,8 @@ import {
 } from '@angular/forms';
 import {
     Constants,
-    ApplicantGeneratorService
+    ApplicantGeneratorService,
+    SharedFormDataService
 } from '../../shared';
 
 @Component( {
@@ -34,7 +35,8 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
                   elementRef : ElementRef ,
                   progressObserver : ProgressObserverService,
                   private applicantGenerator : ApplicantGeneratorService,
-                  private viewContainerRef : ViewContainerRef) {
+                  private viewContainerRef : ViewContainerRef,
+                  private sharedDataService : SharedFormDataService) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
@@ -71,16 +73,11 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     }
 
     private storeReferenceIdInModel (referenceId) {
-        let group = <FormGroup> this.__form.controls['Application'];
-        let referenceIdControl = group.controls[Constants.referenceIdName];
-
-        if (!referenceIdControl) {
-            referenceIdControl = new FormControl(referenceId);
-            group.addControl(Constants.referenceIdName, referenceIdControl);
-            this.formModelService.setSaveRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
-        } else {
-            referenceIdControl.setValue(referenceId);
+        let referenceIdControl = this.sharedDataService.getReferenceIdControl(this.__form);
+        if (!referenceIdControl.value) {
+            referenceId.setValue(referenceId);
         }
+        this.formModelService.setSaveRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
     }
 
 

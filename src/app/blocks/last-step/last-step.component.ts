@@ -20,7 +20,8 @@ import {
     FormModelService ,
     ProgressObserverService ,
     FormService,
-    AmpHttpService
+    AmpHttpService,
+    SharedFormDataService
 } from 'amp-ddc-components';
 import {
     Constants
@@ -31,29 +32,30 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class LastStepBlock extends FormBlock {
+    private submitErrorMessage;
+    private successMessage;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService,
-                  private ampHttpService : AmpHttpService
+                  private ampHttpService : AmpHttpService,
+                  private sharedFormDataService : SharedFormDataService
                    ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
     private submitForm() {
-        const subscribed = this.formModelService.$saveResponse.subscribe((result) => {
-            subscribed.unsubscribe();
-            let group = <FormGroup> this.__form.controls['Application'];
-            let appId = group.controls[Constants.referenceIdName].value;
-            let headers = new Headers(
-            {
-                'Content-Type' : 'application/json' ,
-            } );
-            let options = new RequestOptions( { headers : headers } );
-            this.ampHttpService.post(`${Constants.submitUrl}?id=${appId}`, null, options);
+        const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
+        this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
+            .subscribe((result) => {
+                // TODO remove this once welcome screen is done
+                this.successMessage = result.payload;
+                // TODO navigate to welcome screen
+            }, (error) => {
+                this.submitErrorMessage = JSON.stringify(error);
+                this._cd.markForCheck();
         });
-        this.formModelService.save(this.__form.value);
     }
 }
