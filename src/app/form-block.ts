@@ -31,7 +31,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * */
     protected __removeNext : ( viewContainerRef : ViewContainerRef ) => void;
         /*
-     * __removeNext : Will remove a block at a given index
+     * __removeAt : Will remove a block at a given index
      * */
     protected __removeAt : ( index : number ) => void;
     /*
