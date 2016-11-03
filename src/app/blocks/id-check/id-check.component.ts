@@ -26,7 +26,7 @@ export class IdCheckBlock extends FormBlock implements OnInit {
     private configScriptUrl = Environments.property.GreenId.configScriptUrl;
     private uiScriptUrl = Environments.property.GreenId.uiScriptUrl;
     private styleUrl = Environments.property.GreenId.styleUrl;
-    private environment =  Environments.property.GreenId.environment;
+    private environment = Environments.property.GreenId.environment;
     private checkboxLabel : string;
 
     constructor ( formModelService : FormModelService ,
