@@ -76,8 +76,8 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         let referenceIdControl = this.sharedDataService.getReferenceIdControl(this.__form);
         if (!referenceIdControl.value) {
             referenceIdControl.setValue(referenceId);
+            this.formModelService.setSaveRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
         }
-        this.formModelService.setSaveRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
     }
 
 
