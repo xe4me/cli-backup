@@ -17,7 +17,8 @@ import {
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
-    FormService
+    FormService,
+    clone
 } from 'amp-ddc-components';
 import {
     Constants
@@ -46,13 +47,16 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
 
     private addOrRemoveOnlineIdCheck(typeOfCheck: string) {
         if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
-            let onlineIdCheckBlock = this.__custom.optionalBlocks[0];
-            onlineIdCheckBlock.custom.applicantIndex = this.__custom.applicantIndex;
-            this.__loadNext(onlineIdCheckBlock, this.viewContainerRef );
+            const optionalBlocks = clone(this.__custom.optionalBlocks);
+            for (let optionalBlock of optionalBlocks) {
+                optionalBlock.custom.applicantIndex = this.__custom.applicantIndex;
+            }
+            this.__loadAllNext(optionalBlocks, this.viewContainerRef);
             this.isOnlineCheckLoaded = true;
             return;
         }
         if (typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
+            this.__removeNext(this.viewContainerRef);
             this.__removeNext(this.viewContainerRef);
             this.isOnlineCheckLoaded = false;
             return;

@@ -1,22 +1,23 @@
 <amp-form-block [context]="context()">
     <div class="mt mb">
-        Please confirm that you have one of the following and are happy for us to check you identity using our secure online check
+        You can use the following:
         <ul class="list-default">
             <li>Australian passport</li>
             <li>Medicare card</li>
             <li>Australian passport</li>
+            <li>Australian work visa</li>
         </ul>
     </div>
     <amp-button
         [context]="context()"
         class="btn btn-ok mr"
         (click)="onIdCheckSelection('online')">
-                        Yes - online check me
+                        Let me do it online now
     </amp-button>
     <amp-button
         [context]="context()"
         class="btn btn-ok"
         (click)="onIdCheckSelection('offline')">
-                        No - I'll send copies
+                        I'll mail certified copies
     </amp-button>
 </amp-form-block>
