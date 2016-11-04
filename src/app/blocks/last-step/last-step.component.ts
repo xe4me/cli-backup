@@ -49,7 +49,7 @@ export class LastStepBlock extends FormBlock {
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
                 // TODO remove this once welcome screen is done
-                this.successMessage = 'Accounts created: ' + result.payload.accounts.toString();
+                this.successMessage = result.payload;
                 this.submitErrorMessage = null;
                 this._cd.markForCheck();
                 // TODO navigate to welcome screen
