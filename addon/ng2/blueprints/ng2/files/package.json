@@ -6,7 +6,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "amp-ng serve",
-    "tslint": "tslint \"<%= sourceDir %>/**/*.ts\"",
+    "tslint": "tslint --exclude \"<%= sourceDir %>/**/*.fdn.ts\" \"<%= sourceDir %>/**/*.ts\"",
     "lint": "npm run tslint",
     "pretest": "npm run lint",
     "test": "amp-ng test",
