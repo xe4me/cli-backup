@@ -25,7 +25,6 @@ import { FormControl,
          Validators
 } from '@angular/forms';
 import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
-let greenIdLoaded = false;
 @Component({
     selector: 'amp-greenid-block',
     host: {
@@ -33,35 +32,7 @@ let greenIdLoaded = false;
     },
     providers: [AmpGreenIdServices],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
-                <div class='grid__container 1/1 palm-1/1' *ngIf='greenIdShowing'>
-                    <div class='grid__item_floated utils__align&#45;&#45;left' >
-                                <ng-content></ng-content>
-                       <div class='grid__item_floated mh mv'>
-                            <amp-checkbox
-                                [isInSummaryState]='isInSummaryState'
-                                [controlGroup]='greenIdControlGroup'
-                                [required]='acknowledge.required'
-                                [checked]='acknowledge.checked'
-                                [disabled]='acknowledge.disabled'
-                                [scrollOutOn]='acknowledge.scrollOutOn'
-                                [id]='acknowledge.id'
-                                (select)='onAcknowledgeSelect($event)'>
-                                {{ checkboxLabel }}
-                            </amp-checkbox>
-
-                       </div>
-                       <div class='grid__item_floated mh mv'>
-                         <amp-button [disabled]='!acceptTerms || isSubmitting' (click)='onContinue($event)' class='btn btn-ok mt0'>
-                                Continue
-                         </amp-button>
-                       </div>
-                    </div>
-                </div>
-                <link *ngIf="styleUrl" type="text/css" media="screen" rel="stylesheet" [href]="styleUrl">
-                <div id='greenid-div'>
-                </div>
-    ` ,
+    template : require( './amp-greenid-block.html' ),
     styles: [require('./amp-greenid-block.component.scss').toString()],
     animations: [
         trigger(
@@ -74,7 +45,7 @@ let greenIdLoaded = false;
             ])
     ]
 })
-export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDestroy {
+export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
     @Input() id : string = 'green-id-identity-check';
     @Input() form : IGreenIdFormModel; // form model input
     @Input() configScriptUrl; // all the api urls that need to be imported, the js is loaded asnyc
@@ -86,50 +57,22 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
     @Input() checkboxLabel : string;
     private greenIdControlGroup : FormGroup;
     private loadApiScripts : Promise<any>;
-    private acceptTerms : boolean = false;
-    private okAccepted : boolean = false;
-    private isSubmitting : boolean = false;
     private domAdapter : DomAdapter;
     private greenIdShowing : boolean = false;
-    private userRegistered : boolean = false;
-
-    private greenIdSettings;
+    private greenIdSettings : any;
 
     private greenIdCredentials = {
         accountId: 'amp_au',
         password: '69h-xEt-PSW-vGn'
     };
 
-    private acknowledge = {
-        id: 'acknowledge',
-        disabled: false,
-        required: true,
-        checked: false,
-        scrollOutOn: null
-    };
 
     constructor(
-        private _AmpGreenIdServices : AmpGreenIdServices,
+        private AmpGreenIdServices : AmpGreenIdServices,
         private fb : FormBuilder,
         private _cd : ChangeDetectorRef,
         private _render : Renderer,
         private sanitizer : DomSanitizationService) {
-    }
-
-    /**
-     * Update the model with the verification ID
-     */
-    public onSessionComplete = (token : string, verificationStatus : string) => {
-        (<FormControl> this.greenIdControlGroup.controls['verificationStatus']).setValue(verificationStatus);
-        this._cd.markForCheck();
-    }
-
-    public createGreenIdControlGroup() {
-        return new FormGroup({
-            verificationId: new FormControl(null, Validators.required),
-            verificationToken: new FormControl(null, Validators.required),
-            verificationStatus: new FormControl(null, Validators.required),
-        });
     }
 
     /**
@@ -144,24 +87,24 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
         if (this.styleUrl) {
             this.styleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
         }
-        this.greenIdShowing = true;
-        this.loadApiScripts = new Promise<boolean>((resolve, reject) => {
-            if (greenIdLoaded) {
-                resolve();
-                return;
-            }
-
-            if (!greenIdLoaded && this.configScriptUrl && this.uiScriptUrl) {
-                this.getScript(this.configScriptUrl)
-                    .then(() => this.getScript(this.uiScriptUrl))
-                    .then(() => {
-                        greenIdLoaded = true;
-                        resolve();
-                    });
-                return;
-            }
-            reject('Script urls were not provided');
+        this.createControls();
+        this.loadApiScripts = new Promise<any>(this.loadApiScriptsHandler).then(() => {
+            this.setupGreenId();
+            this.AmpGreenIdServices
+            .getTheToken(this.form)
+            .subscribe((response) => {
+                    if (response) {
+                        this.updateModel(response.payload);
+                        this.showGreenId(response.payload.verificationToken);
+                        this._cd.markForCheck();
+                    }
+                }
+            );
         });
+        this.greenIdShowing = true;
+    }
+
+    public createControls() {
         if (this.controlGroup) {
             if (this.controlGroup.contains(this.id)) {
                 this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
@@ -172,8 +115,6 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
         } else {
             this.greenIdControlGroup = this.createGreenIdControlGroup();
         }
-
-        this._cd.detectChanges();
     }
 
     public ngOnDestroy() {
@@ -181,13 +122,42 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
             this.controlGroup.removeControl(this.id);
         }
     }
+
+    private loadApiScriptsHandler = (resolve, reject) => {
+            if (this.greenIdLoaded) {
+                resolve();
+                return;
+            }
+            if (!this.greenIdLoaded && this.configScriptUrl && this.uiScriptUrl) {
+                this.getScript(this.configScriptUrl)
+                    .then(() => this.getScript(this.uiScriptUrl))
+                    .then(() => {
+                        resolve();
+                    });
+                return;
+            }
+            reject('Script urls were not provided');
+    };
+
     /**
-     * Once we have the scripts loaded, we need to init the green id stuff, set it up
+     * Update the model with the verification ID
      */
-    public ngAfterContentInit() : void {
-        this.loadApiScripts.then(() => {
-            this.setupGreenId();
+    private onSessionComplete = (token : string, verificationStatus : string) => {
+        (<FormControl> this.greenIdControlGroup.controls['verificationStatus']).setValue(verificationStatus);
+        this.greenIdShowing = false;
+        this._cd.markForCheck();
+    }
+
+    private createGreenIdControlGroup() {
+        return new FormGroup({
+            verificationId: new FormControl(null, Validators.required),
+            verificationToken: new FormControl(null, Validators.required),
+            verificationStatus: new FormControl(null, Validators.required),
         });
+    }
+
+    private get greenIdLoaded() {
+        return window['greenidUI'] && window['greenidConfig'];
     }
 
     private setupGreenId() : void {
@@ -216,6 +186,7 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
             };
         });
     }
+
     /**
      * Create the element in the DOM
      */
@@ -230,37 +201,12 @@ export class AmpGreenidBlockComponent implements OnInit, AfterContentInit, OnDes
     }
 
     /**
-     * Trigger terms and conditions
-     */
-    private onAcknowledgeSelect(value : boolean) : void {
-        this.acceptTerms = value;
-    }
-
-    /**
-     * Call the service and then update the model with the new token and verfication id
-     */
-    private onContinue(value : Event) : void {
-        this.isSubmitting = true;
-        this._AmpGreenIdServices
-            .getTheToken(this.form)
-            .subscribe((respo) => {
-                this.isSubmitting = false;
-                if (respo) {
-                    this.userRegistered = true;
-                    this.updateModel(respo.payload);
-                    this._cd.markForCheck();
-                    this.showGreenId(respo.payload.verificationToken);
-                }
-            });
-    }
-    /**
      * Update the value in the form model with the response from the API
      */
     private updateModel(respo : ResponseObject) : void {
         if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
             (<FormControl> this.greenIdControlGroup.controls['verificationId']).setValue(respo.verificationId);
             (<FormControl> this.greenIdControlGroup.controls['verificationToken']).setValue(respo.verificationToken);
-            this.greenIdShowing = false; // hide the orginal block content
         }
     }
 }
