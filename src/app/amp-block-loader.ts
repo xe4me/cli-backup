@@ -60,23 +60,30 @@ export abstract class AmpBlockLoader {
                    } );
     }
 
-    removeAt ( _index : number ) {
-        this.viewContainer.remove( _index );
+    removeAt ( _index : number ) : Promise<number> {
+        return new Promise( ( resolve , reject )=> {
+            this.viewContainer.remove( _index );
+            resolve( _index );
+        } );
     }
 
-    loadAt ( _def , _index : number ) {
-        let waitForChunk = this.requireFile( _def );
-        waitForChunk( ( file ) => {
-            Object.keys( file ).map( ( _file ) => {
-                this.createComponent( file[ _file ] , _index )
+    loadAt ( _def , _index : number ) : Promise<ComponentRef> {
+        return new Promise( ( resolve , reject )=> {
+            let waitForChunk = this.requireFile( _def );
+            if ( ! waitForChunk ) {
+                return reject( 'waitForChunk is empty  for ' , _def );
+            }
+            waitForChunk( ( file ) => {
+                let keys = Object.keys( file );
+                this.createComponent( file[ keys[ 0 ] ] , _index )
                     .then( ( componentRef : ComponentRef<any> ) => {
                         if ( _index === (this._blocks.length - 1) ) {
                             this.emitLoadedAll();
                         }
-                        this.copyFormBlockDefProperty( componentRef , _def );
+                        resolve( this.copyFormBlockDefProperty( componentRef , _def ) );
                     } );
             } );
-        } );
+        } )
     }
 
     /*
@@ -137,81 +144,84 @@ export abstract class AmpBlockLoader {
         this.formSectionService.registerSection( _section );
     }
 
-    private copyFormBlockDefProperty ( _componentRef : ComponentRef<any> , _blockDef ) {
-        let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
-        _componentRef.instance.__child_blocks = _blockDef;
-        _componentRef.instance.__form         = this.form;
-        _componentRef.instance.__fdn          = _fdn;
-        _blockDef.__fdn                       = _fdn;
-        if ( _blockDef.name ) {
-            let _form = _componentRef.instance.__form;
-            for ( let i = 0 ; i < this.fdn.length ; i ++ ) {
-                if ( _form.controls[ this.fdn[ i ] ] ) {
-                    _form = _form.controls[ this.fdn[ i ] ];
+    private copyFormBlockDefProperty ( _componentRef : ComponentRef<any> , _blockDef ) : Promise<ComponentRef<any>> {
+        return new Promise( ( resolve , reject ) => {
+            let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
+            _componentRef.instance.__child_blocks = _blockDef;
+            _componentRef.instance.__form         = this.form;
+            _componentRef.instance.__fdn          = _fdn;
+            _blockDef.__fdn                       = _fdn;
+            if ( _blockDef.name ) {
+                let _form = _componentRef.instance.__form;
+                for ( let i = 0 ; i < this.fdn.length ; i ++ ) {
+                    if ( _form.controls[ this.fdn[ i ] ] ) {
+                        _form = _form.controls[ this.fdn[ i ] ];
+                    }
+                }
+                if ( _form.contains( _blockDef.name ) ) {
+                    _componentRef.instance.__controlGroup = _form.get( _blockDef.name );
+                    _componentRef.instance.__isRetrieved  = true;
+                } else {
+                    _componentRef.instance.__controlGroup = new FormGroup( {} );
+                    _form.addControl( _blockDef.name , _componentRef.instance.__controlGroup );
+                }
+                _componentRef.instance.__controlGroup.__prettyName     = _blockDef.prettyName || _blockDef.name;
+                _componentRef.instance.__controlGroup.__reviewTemplate = _blockDef.reviewTemplate;
+                _componentRef.onDestroy( () => {
+                    _form.removeControl( _blockDef.name );
+                } );
+            }
+            if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
+                this.registerSection( _blockDef );
+                if ( _componentRef.instance.__controlGroup ) {
+                    _componentRef.instance.__controlGroup.custom = _blockDef.custom;
                 }
             }
-            if ( _form.contains( _blockDef.name ) ) {
-                _componentRef.instance.__controlGroup = _form.get( _blockDef.name );
-                _componentRef.instance.__isRetrieved  = true;
-            } else {
-                _componentRef.instance.__controlGroup = new FormGroup( {} );
-                _form.addControl( _blockDef.name , _componentRef.instance.__controlGroup );
+            _componentRef.instance.__path        = _blockDef.path;
+            _componentRef.instance.__blockType   = _blockDef.blockType;
+            _componentRef.instance.__blockLayout = _blockDef.blockLayout;
+            _componentRef.instance.__name        = _blockDef.name;
+            _componentRef.instance.__sectionName = this._sectionName;
+            if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
+                _componentRef.instance.__page = _blockDef.page;
             }
-            _componentRef.instance.__controlGroup.__prettyName     = _blockDef.prettyName || _blockDef.name;
-            _componentRef.instance.__controlGroup.__reviewTemplate = _blockDef.reviewTemplate;
-            _componentRef.onDestroy( () => {
-                _form.removeControl( _blockDef.name );
-            } );
-        }
-        if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
-            this.registerSection( _blockDef );
-            if ( _componentRef.instance.__controlGroup ) {
-                _componentRef.instance.__controlGroup.custom = _blockDef.custom;
-            }
-        }
-        _componentRef.instance.__path        = _blockDef.path;
-        _componentRef.instance.__blockType   = _blockDef.blockType;
-        _componentRef.instance.__blockLayout = _blockDef.blockLayout;
-        _componentRef.instance.__name        = _blockDef.name;
-        _componentRef.instance.__sectionName = this._sectionName;
-        if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
-            _componentRef.instance.__page = _blockDef.page;
-        }
-        _componentRef.instance.__custom              = _blockDef.custom;
-        _componentRef.instance.__loadNext            = ( _def , _viewContainerRef : ViewContainerRef ) : void => {
-            this.loadNext( _def , _viewContainerRef );
-        };
-        _componentRef.instance.__loadAt              = ( _def , index : number ) : void => {
-            this.loadAt( _def , index );
-        };
-        _componentRef.instance.__removeAt            = ( index : number ) : void => {
-            this.removeAt( index );
-        };
-        _componentRef.instance.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : void => {
-            this.removeNext( _viewContainerRef );
-        };
-        _componentRef.instance.__removeAllAfterIndex = ( index : number ) : void => {
-            this.removeAllAfterIndex( index );
-        };
-        _componentRef.instance.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : void => {
-            this.removeAllAfter( _viewContainerRef );
-        };
-        _componentRef.instance.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : void => {
-            this.getIndex( _viewContainerRef );
-        };
-        _componentRef.changeDetectorRef.detectChanges();
+            _componentRef.instance.__custom              = _blockDef.custom;
+            _componentRef.instance.__loadNext            = ( _def ,
+                                                             _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef> => {
+                return this.loadNext( _def , _viewContainerRef );
+            };
+            _componentRef.instance.__loadAt              = ( _def , index : number ) : Promise<ComponentRef> => {
+                return this.loadAt( _def , index );
+            };
+            _componentRef.instance.__removeAt            = ( index : number ) : Promise<number> => {
+                return this.removeAt( index );
+            };
+            _componentRef.instance.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
+                return this.removeNext( _viewContainerRef );
+            };
+            _componentRef.instance.__removeAllAfterIndex = ( index : number ) : Promise<number> => {
+                return this.removeAllAfterIndex( index );
+            };
+            _componentRef.instance.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
+                return this.removeAllAfter( _viewContainerRef );
+            };
+            _componentRef.instance.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
+                return this.getIndex( _viewContainerRef );
+            };
+            _componentRef.changeDetectorRef.detectChanges();
+            resolve( _componentRef );
+        } );
     }
 
     private loadAllAt ( _def : any , _index : number ) {
         this.retrievedFiles[ _index ] = null;
         let waitForChunk              = this.requireFile( _def );
         waitForChunk( ( file ) => {
-            Object.keys( file ).map( ( _file ) => {
-                this.storeFile( file[ _file ] , _def , _index );
-                if ( this.retrievedFiles.length === this.blocksCount ) {
-                    this.createAllRecursively( 0 );
-                }
-            } );
+            let keys = Object.keys( file );
+            this.storeFile( file[ keys[ 0 ] ] , _def , _index );
+            if ( this.retrievedFiles.length === this.blocksCount ) {
+                this.createAllRecursively( 0 );
+            }
         } );
     }
 
@@ -246,7 +256,7 @@ export abstract class AmpBlockLoader {
                 if ( _index === (this._blocks.length - 1) ) {
                     this.emitLoadedAll();
                 }
-                this.copyFormBlockDefProperty( componentRef , this.retrievedFiles[ _index ].blockDef  );
+                this.copyFormBlockDefProperty( componentRef , this.retrievedFiles[ _index ].blockDef );
                 _index += 1;
                 if ( _index < this.blocksCount ) {
                     this.createAllRecursively( _index );
@@ -265,43 +275,46 @@ export abstract class AmpBlockLoader {
         return (<any> _viewContainerRef )._element.parentView.ref;
     }
 
-    private getIndex ( _viewContainerRef : ViewContainerRef ) {
+    private getIndex ( _viewContainerRef : ViewContainerRef ) : number {
         return this.getIndexOfComponent( _viewContainerRef );
     }
 
-    private removeAllAfter ( _viewContainerRef : ViewContainerRef ) {
+    private removeAllAfter ( _viewContainerRef : ViewContainerRef ) : Promise<number> {
         let index = this.getIndex( _viewContainerRef );
-        this.removeAllAfterIndex( index );
+        return this.removeAllAfterIndex( index );
     }
 
-    private removeAllAfterIndex ( _index : number ) {
-        if ( _index !== undefined ) {
-            while ( this.viewContainer.length > (_index + 1) ) {
-                this.removeAt( this.viewContainer.length - 1 );
+    private removeAllAfterIndex ( _index : number ) : Promise<number> {
+        return new Promise( ( resolve , reject )=> {
+            if ( _index !== undefined ) {
+                while ( this.viewContainer.length > (_index + 1) ) {
+                    this.removeAt( this.viewContainer.length - 1 );
+                }
+                resolve( this.viewContainer.length );
+            } else {
+                reject( _index );
             }
-        }
+        } );
     }
 
-    private loadNext ( _def : any , _viewContainerRef : ViewContainerRef ) {
+    private loadNext ( _def : any , _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef> {
         let index = this.getIndex( _viewContainerRef );
         if ( index !== undefined ) {
             index ++;
         }
-        // this._blocks.splice(index, 0, _def);
-        this.loadAt( _def , index );
+        return this.loadAt( _def , index );
     }
 
-    private getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) {
+    private getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) : number {
         let viewRef = this.getViewRefOfViewContainerRef( _viewContainerRef );
         return this.viewContainer.indexOf( viewRef );
     }
 
-    private removeNext ( _viewContainerRef : ViewContainerRef ) {
+    private removeNext ( _viewContainerRef : ViewContainerRef ) : Promise<number> {
         let index = this.getIndexOfComponent( _viewContainerRef );
         if ( index !== undefined ) {
             index ++;
         }
-        // this._blocks.splice(index, 1);
-        this.removeAt( index );
+        return this.removeAt( index );
     }
 }

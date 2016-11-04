@@ -1,4 +1,7 @@
-import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewContainerRef } from '@angular/core';
+import {
+    ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewContainerRef ,
+    ComponentRef
+} from '@angular/core';
 import { arrayJoinByDash , DomUtils } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -27,20 +30,24 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __controlGroup : FormGroup;
     protected __sectionName : string;
     /*
+     * __removeAt : Will remove the next block , need to specify the current block which is ViewContainerRef
+     * */
+    protected __removeAt : ( index : number ) => Promise<number>;
+    /*
      * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
      * */
-    protected __removeNext : ( viewContainerRef : ViewContainerRef ) => void;
+    protected __removeNext : ( viewContainerRef : ViewContainerRef ) => Promise<number>;
     /*
      * __removeAllAfter : Will remove all the blocks after current block if they're in the same conainer
      * E.g : If you're inside menu frame , you cannot delete review block if they not in the same blocks array in
      * form definition
      * */
-    protected __removeAllAfter : ( viewContainerRef : ViewContainerRef ) => void;
+    protected __removeAllAfter : ( viewContainerRef : ViewContainerRef ) => Promise<number>;
     /*
      * __removeAllAfterIndex
      * Same as removeAllAfter, except you just need to specify an index , it'll nicely remove all after that index
      * */
-    protected __removeAllAfterIndex : ( index : number ) => void;
+    protected __removeAllAfterIndex : ( index : number ) => Promise<number>;
     /*
      * __getIndex : Will give you your index in the current container
      * */
@@ -61,12 +68,12 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      }
      __loadNext(toBeLoadedBlock , this.viewContainerRef);
      * */
-    protected __loadNext : ( def : any , viewContainerRef : ViewContainerRef ) => void;
+    protected __loadNext : ( def : any , viewContainerRef : ViewContainerRef ) => Promise<ComponentRef>;
     /*
      * __loadAt
      * Same as loadNext , except load at a specific index without telling where you are(viewContainerRef)
      * */
-    protected __loadAt : ( def : any , index : number ) => void;
+    protected __loadAt : ( def : any , index : number ) => Promise<ComponentRef>;
     /*
      * __custom : All the custom properties that you've specified in your form definition chunk will be accesable
      @example

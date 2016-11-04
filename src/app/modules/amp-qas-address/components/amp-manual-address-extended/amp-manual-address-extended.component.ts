@@ -173,6 +173,8 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
             if ( ! this.isResidentialAddress ) {
                 this.isItPoBoxCmp.control.setValue( _formattedAddress.Bank.AllPostalDeliveryTypes.length > 0 );
                 this.manualPoBoxCmp.control.setValue( _formattedAddress.Bank.AllPostalDeliveryTypes );
+            } else {
+                this.isItPoBoxCmp.control.setValue( false );
             }
             this.manualStreetTypeCmp.setSelectValue( _formattedAddress.Bank.StreetType.toUpperCase() );
             this.manualStreetNameCmp.control.setValue( _formattedAddress.Bank.StreetName );
@@ -198,7 +200,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
         this.manualStatesCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
         this.manualStreetTypeCmp.setSelectValue( null );
         if ( this.isResidentialAddress ) {
-            this.isItPoBoxCmp.control.setValue( ! this.isResidentialAddress );
+            this.isItPoBoxCmp.control.setValue( false );
         }
     }
 
