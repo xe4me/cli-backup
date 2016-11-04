@@ -15,7 +15,7 @@ import { ScrollService } from 'amp-ddc-components';
 export class MenuComponentComponent implements OnInit, AfterViewInit {
   private ApplicantsSection : FormGroup;
   private __form : FormGroup;
-  constructor(private scrollService: ScrollService) { }
+  constructor(private scrollService : ScrollService) { }
 
   public ngOnInit() {
   }

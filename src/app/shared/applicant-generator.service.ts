@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { FormService,
-         clone
+import {
+    FormGroup,
+    FormControl
+} from '@angular/forms';
+import {
+    FormService,
+    clone
 } from 'amp-ddc-components';
 import { FDN } from '../forms/better-form/Application.fdn';
 const applicantJSON = require('../forms/better-form/applicant.json');
 @Injectable()
 export class ApplicantGeneratorService {
-    constructor(private formService: FormService) {
+    constructor(private formService : FormService) {
 
     }
 
@@ -17,7 +21,7 @@ export class ApplicantGeneratorService {
         })[0];
     }
 
-    public getApplicantSection(_index: number): any {
+    public getApplicantSection(_index : number) : any {
         const applicant = clone(applicantJSON);
         let onlineOrOfflineBlock = this.findBlock(applicant, 'OnlineOrOfflineIdCheck', 1);
         if (onlineOrOfflineBlock) {
@@ -42,4 +46,3 @@ export class ApplicantGeneratorService {
         };
     }
 }
-

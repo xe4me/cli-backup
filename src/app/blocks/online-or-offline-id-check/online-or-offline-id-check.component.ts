@@ -44,7 +44,7 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
         this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
     }
 
-    private addOrRemoveOnlineIdCheck(typeOfCheck: string) {
+    private addOrRemoveOnlineIdCheck(typeOfCheck : string) {
         if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
             let onlineIdCheckBlock = this.__custom.optionalBlocks[0];
             onlineIdCheckBlock.custom.applicantIndex = this.__custom.applicantIndex;
