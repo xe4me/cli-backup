@@ -42,10 +42,13 @@ import { AutoFocusOnDirective } from '../../../../app/modules/amp-directives/dir
                             </amp-group-buttons>
                         </amp-redux>
                     </div>
-                    <br>
+            </amp-form-row>
+            <amp-form-row>
                     <button (click)='removeAllAfter()'>Remove all the next blocks</button>
                     <br>
                     <button (click)='removeAt()'>Remove at 1</button>
+                    <br>
+                    <button (click)='loadAllNext()'>Load all next</button>
             </amp-form-row>
         </amp-form-block>
     ` ,
@@ -93,6 +96,7 @@ export class AnotherSampleExperienceBlock extends FormBlock {
             ]
         }
     };
+    private multipleChilds                      = [ this.dynamicChild , this.dynamicChild ];
 
     constructor ( private themeService : ThemeService ,
                   private _vContainerRef : ViewContainerRef ,
@@ -108,29 +112,38 @@ export class AnotherSampleExperienceBlock extends FormBlock {
         if ( value === this.__custom.controls[ 0 ].buttons[ 0 ].value ) {
             this.loadedDynamicBlock = true;
             this.__loadNext( this.dynamicChild , this._vContainerRef )
-                .then( ( createdComponent )=> {
+                .then( ( createdComponent ) => {
                     console.log( 'createdComponent' , createdComponent );
                 } );
         } else {
             if ( this.loadedDynamicBlock ) {
                 this.loadedDynamicBlock = false;
                 this.__removeNext( this._vContainerRef )
-                    .then( ( removedAt )=> {
+                    .then( ( removedAt ) => {
                         console.log( 'removedAt' , removedAt );
                     } );
             }
         }
     }
-    removeAllAfter(){
+
+    removeAllAfter () {
         this.__removeAllAfter( this._vContainerRef )
-            .then( ( removedAt )=> {
+            .then( ( removedAt ) => {
                 console.log( 'removedAt' , removedAt );
             } );
     }
-    removeAt(){
+
+    removeAt () {
         this.__removeAt( 1 )
-            .then( ( removedAt )=> {
+            .then( ( removedAt ) => {
                 console.log( 'removedAt' , removedAt );
+            } );
+    }
+
+    loadAllNext () {
+        this.__loadAllNext( this.multipleChilds , this._vContainerRef )
+            .then( ( all ) => {
+                console.log( 'all' , all );
             } );
     }
 }

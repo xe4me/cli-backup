@@ -1,5 +1,5 @@
 <div class="usage">
-    <p>Prerequisites to run "file upload" locally and upload a file successfully into AWS S3</p>
+    <h3>Prerequisites to run "file upload" locally and upload a file successfully into AWS S3</h3>
     <ul>
         <li>Mongo DB should be up and running</li>
         <li>Setup the AWS connection properties as per readme file in api-upload</li>
@@ -9,11 +9,32 @@
     </ul>
 </div>
 
+<h3>Upload a file</h3>
+
 <amp-file-upload
     [tokenUrl]="'http://localhost:8084/ddc/secure/api/upload/token'"
     [uploadUrl]="'http://localhost:8084/ddc/secure/api/upload/upload'"
+    [deleteUrl]="'http://localhost:8084/ddc/secure/api/upload/delete'"
     [controlGroup]="controlGroup"
     [id]="'uploadComponent'"
+    [formName]="'BUYBACK'"
+    [formId] ="'6721298156'">
+</amp-file-upload>
+
+<div class="mt-40">
+    <h3>Retrieve Uploaded file ( Used to display the uploaded file on form retrieve )</h3>
+</div>
+
+<amp-file-upload
+    [tokenUrl]="'http://localhost:8084/ddc/secure/api/upload/token'"
+    [uploadUrl]="'http://localhost:8084/ddc/secure/api/upload/upload'"
+    [deleteUrl]="'http://localhost:8084/ddc/secure/api/upload/delete'"
+    [controlGroup]="controlGroup"
+    [id]="'uploadComponent'"
+    [fileName]="'samplefile.pdf'"
+    [deleteFileName]="'r45wefg789hhrt.pdf'"
+    [size]="30000"
+    [description]="'UploadSignedPages'"
     [formName]="'BUYBACK'"
     [formId] ="'6721298156'">
 </amp-file-upload>

@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
+import { FormDefinition } from './interfaces/form-def.interface';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     public autoFocusOn;
     protected isInSummaryState : boolean     = false;
@@ -47,7 +48,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * __removeAllAfterIndex
      * Same as removeAllAfter, except you just need to specify an index , it'll nicely remove all after that index
      * */
-    protected __removeAllAfterIndex : ( index : number ) => Promise<number>;
+    protected __removeAllAfterIndex : ( index : number ) => Promise<any>;
     /*
      * __getIndex : Will give you your index in the current container
      * */
@@ -68,12 +69,18 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      }
      __loadNext(toBeLoadedBlock , this.viewContainerRef);
      * */
-    protected __loadNext : ( def : any , viewContainerRef : ViewContainerRef ) => Promise<ComponentRef>;
+    protected __loadNext : ( def : FormDefinition , viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>>;
     /*
      * __loadAt
      * Same as loadNext , except load at a specific index without telling where you are(viewContainerRef)
      * */
-    protected __loadAt : ( def : any , index : number ) => Promise<ComponentRef>;
+    protected __loadAt : ( def : FormDefinition , index : number ) => Promise<ComponentRef<any>>;
+    /*
+     * __loadAt
+     * Same as loadNext , except loads an array of blocks
+     * */
+    protected __loadAllNext : ( _defs : FormDefinition[] ,
+                                _viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>[]>;
     /*
      * __custom : All the custom properties that you've specified in your form definition chunk will be accesable
      @example
@@ -104,7 +111,6 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected visibleFlag : string = 'defaultIsVisible';
     protected doneFlag : string    = 'defaultIsDone';
     private scrollSubscription : Subscription;
-    private hydrateFormSubscription : Subscription;
     private domUtils : DomUtils    = null;
 
     constructor ( protected formModelService : FormModelService ,
