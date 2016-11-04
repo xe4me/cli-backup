@@ -1,15 +1,17 @@
-import { Component,
-         ChangeDetectorRef,
-         ElementRef,
-         ChangeDetectionStrategy,
-         OnInit,
-         ViewContainerRef
+import {
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    ChangeDetectionStrategy,
+    OnInit,
+    ViewContainerRef
 } from '@angular/core';
-import { AmpButton,
-         ProgressObserverService,
-         FormBlock,
-         FormModelService,
-         ScrollService }
+import {
+    AmpButton,
+    ProgressObserverService,
+    FormBlock,
+    FormModelService,
+    ScrollService }
 from 'amp-ddc-components';
 import {
     Validators,
@@ -79,6 +81,4 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             this.formModelService.setSaveRelativeUrl(Constants.saveUrl + '?id=' + referenceId);
         }
     }
-
-
 }

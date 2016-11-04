@@ -38,7 +38,7 @@ export class PrivacyDeclarationBlock extends FormBlock implements OnInit {
     }
 
     private acceptPrivacyDeclaration() {
-        const privacyDeclaration = this.__controlGroup.get(this.__custom.controls[0].id)
+        const privacyDeclaration = this.__controlGroup.get(this.__custom.controls[0].id);
         privacyDeclaration.setValue(true);
         privacyDeclaration.markAsTouched();
     }
