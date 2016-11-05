@@ -6,7 +6,7 @@
                 <amp-group-buttons
                         [keepControl]='keepControl'
                         #isItPoBoxCmp
-                        class="1/5 mt+"
+                        class="1/4 mt+ palm-1/1"
                         (select)='onPoBoxButtonsChange($event)'
                         [required]="true"
                         [disabled]='isInSummaryState'
@@ -24,7 +24,7 @@
         <div [hidden]='isItPoBox'>
             <!--Building Name-->
             <amp-form-row>
-                <div class='grid__item_floated mt 3/4'>
+                <div class='grid__item_floated mt 3/4 palm-1/1 '>
                     <amp-input
                             [keepControl]='keepControl'
                             #manualBuildingNameCmp

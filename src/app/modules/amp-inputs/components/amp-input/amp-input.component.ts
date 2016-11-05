@@ -85,7 +85,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected _minFloat : number;
     protected _valDate : boolean;
     protected _pattern : string;
-    protected label : string;
+    protected label : string             = '';
     protected isInSummaryState : boolean = false;
     protected showLabel : boolean        = true;
     protected tolowerCase : boolean      = false;
@@ -111,7 +111,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected idleTimeoutId;
     protected autoComplete : string      = 'off';
     protected iconRightClickHandler;
-    protected inputFocus = false;
+    protected inputFocus                 = false;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,

@@ -112,6 +112,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected doneFlag : string    = 'defaultIsDone';
     private scrollSubscription : Subscription;
     private domUtils : DomUtils    = null;
+    private scrollOffset           = 80;
 
     constructor ( protected formModelService : FormModelService ,
                   protected elementRef : ElementRef ,
@@ -178,7 +179,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     onNext () {
         if ( this.canGoNext ) {
-            this.scrollService.scrollToNextUndoneBlock( this.__form );
+            this.scrollService.scrollToNextUndoneBlock( this.__form , this.scrollOffset );
             this.progressObserver.onProgress( this.__fdn );
             this.formModelService.save( this.__form.value );
             let onNextScrolled = this.scrollService.$scrolled.subscribe( () => {
