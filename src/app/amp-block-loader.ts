@@ -40,16 +40,16 @@ export abstract class AmpBlockLoader {
         }
     }
 
-    public clear () {
+    get form () {
+        return this._form;
+    }
+
+    clear () {
         this.viewContainer.clear();
     }
 
-    public reload () {
+    reload () {
         this.loadAndCreate( this.blockLoader , this.requireMethod );
-    }
-
-    get form () {
-        return this._form;
     }
 
     createComponent ( _loadedComponent : { new() : any } , _index : number ) {
@@ -133,7 +133,7 @@ export abstract class AmpBlockLoader {
         }
         for ( let _index = 0 ; _index < this._blocks.length ; _index ++ ) {
             if ( _requireMethod === RequireMethod.ALL ) {
-                this.loadAllAt( this._blocks[ _index ] , _index );
+                this.loadAllSync( this._blocks[ _index ] , _index );
             } else {
                 this.loadAt( this._blocks[ _index ] , _index );
             }
@@ -219,7 +219,7 @@ export abstract class AmpBlockLoader {
         } );
     }
 
-    private loadAllAt ( _def : FormDefinition , _index : number ) {
+    private loadAllSync ( _def : FormDefinition , _index : number ) {
         this.retrievedFiles[ _index ] = null;
         let waitForChunk              = this.requireFile( _def );
         waitForChunk( ( file ) => {
