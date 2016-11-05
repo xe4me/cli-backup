@@ -23,28 +23,23 @@ import { Observable } from 'rxjs/Observable';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AmpStandAloneMenuComponent implements OnInit {
-    public control : FormControl = new FormControl(null);
-    public errors = {};
+    // Selector of the main page content to show/hide content in mobile view.
+    @Input() mainContentSelector : string = 'main';
+
     public showNavigation : boolean = false;
-    private _selected : string = null;
-    private _disabled : boolean = false;
-    private _required : boolean = false;
-    private isInSummaryState : boolean = false;
-    private controlGroup : FormGroup;
     private sections = [];
     private sectionLabels : string = null;
-    private previousSectionName : string = null;
     private currentSectionId : string = null;
     private domUtils : DomUtils = null;
-    private isSectionUpdated : boolean = false;
-    private itemPrefix : string = 'Item-';
+    private itemPrefix : string = 'Item-'; // Prefix for the nav menu id.
     private isClassOpen : boolean = false;
     private tempScrollTop : number;
     private sectionObservable : Observable<any>;
+    private mainHostContent; // get a reference to main content element so we can hide/show it when on mobile view
 
     constructor(
-        private _dom : BrowserDomAdapter,
-        private _cd : ChangeDetectorRef,
+        private dom : BrowserDomAdapter,
+        private cd : ChangeDetectorRef,
         private elem : ElementRef,
         private scrollService : ScrollService,
         private formSectionService : FormSectionService) {
@@ -59,6 +54,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
                 this.updateSections(sectionName);
             }, 0);
         });
+        this.getMainHostElement();
     }
 
     private isStateDisabled(state : string) {
@@ -71,12 +67,13 @@ export class AmpStandAloneMenuComponent implements OnInit {
 
     /**
      *
-     * Update the sections and then put them into the collection along with the custom names for the menu
-     *
+     * On scrolled event, update the sections and then put them into the collection along with the custom names for the menu.
+     * This function will look for all the page sections which has a custom label defined in the DOM and it
+     * parses and stores in the component sections array object.
      */
     private updateSections(sectionName : string) {
-        let body = this._dom.query('body');
-        let sections = this._dom.querySelectorAll(body, 'page-section');
+        let body = this.dom.query('body');
+        let sections = this.dom.querySelectorAll(body, 'page-section');
         let mySections = [];
         let hasActiveClass = false;
         let currentSectionName = sectionName ? sectionName : this.currentSectionId;
@@ -101,33 +98,42 @@ export class AmpStandAloneMenuComponent implements OnInit {
         if (this.sections.length && hasActiveClass) {
             this.showNavigation = true;
         }
-        this._cd.markForCheck();
+        this.cd.markForCheck();
     }
 
     private onClassOpen() {
-        let body = this._dom.query('body');
-        let main = this._dom.querySelectorAll(body, 'main');
-        if (main) {
-            main[0].setAttribute('hidden', true);
-        }
+        this.hideHostContent();
         this.isClassOpen = !this.isClassOpen;
         this.tempScrollTop = this.scrollService.scrollTop;
         window.scrollTo(0, 1);
     }
 
     private onClassClose() {
-        let body = this._dom.query('body');
-        let main = this._dom.querySelectorAll(body, 'main');
-        if (main) {
-            main[0].removeAttribute('hidden');
-        }
+        this.showHostContent();
         this.isClassOpen = !this.isClassOpen;
         window.scrollTo(0, this.tempScrollTop);
     }
 
     private scrollToSection(section) {
+        this.showHostContent();
         this.isClassOpen = false;
         this.currentSectionId = section.pageSectionId;
         this.scrollService.scrollToComponentSelector(section.pageSectionId);
+    }
+
+    // Helper methods for mobile view
+    private getMainHostElement() {
+        let body = this.dom.query('body');
+        this.mainHostContent = this.dom.querySelector(body, this.mainContentSelector);
+    }
+    private showHostContent() {
+        if (this.mainHostContent) {
+            this.mainHostContent.removeAttribute('hidden');
+        }
+    }
+    private hideHostContent() {
+        if (this.mainHostContent) {
+            this.mainHostContent.setAttribute('hidden', true);
+        }
     }
 }
