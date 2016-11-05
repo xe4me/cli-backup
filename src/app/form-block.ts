@@ -30,6 +30,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
      * */
     protected __removeNext : ( viewContainerRef : ViewContainerRef ) => void;
+        /*
+     * __removeAt : Will remove a block at a given index
+     * */
+    protected __removeAt : ( index : number ) => void;
     /*
      * __removeAllAfter : Will remove all the blocks after current block if they're in the same conainer
      * E.g : If you're inside menu frame , you cannot delete review block if they not in the same blocks array in
@@ -67,6 +71,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * Same as loadNext , except load at a specific index without telling where you are(viewContainerRef)
      * */
     protected __loadAt : ( def : any , index : number ) => void;
+    /*
+     * __loadAt
+     * Same as loadNext , except loads an array of blocks
+     * */
+    protected __loadAllNext : (_def : any[] , _viewContainerRef : ViewContainerRef) => void;
     /*
      * __custom : All the custom properties that you've specified in your form definition chunk will be accesable
      @example

@@ -1,9 +1,11 @@
 import {
-    Component,
-    ChangeDetectorRef,
-    Input,
-    ViewChild,
-    AfterViewInit
+    Component ,
+    ChangeDetectorRef ,
+    Input ,
+    ViewChild ,
+    AfterViewInit ,
+    Output ,
+    EventEmitter
 } from '@angular/core';
 import { AmpFileUploadService } from '../services/amp-file-upload.service';
 import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
@@ -31,7 +33,10 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     @Input() formId : string;
     @Input() fileName : string;
     @Input() deleteFileName : string;
+    @Input() description : string;
     @Input() size : number;
+
+    @Output() fileUploaded : EventEmitter<any> = new EventEmitter <any>();
 
     public token : string;
     private progress : number = 0;
@@ -112,6 +117,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
             this.deleteFileName = res ? res.payload.fileName : '';
             this.control.setErrors( null );
             this.uploadCompleted = true;
+            this.fileUploaded.emit( res.payload );
             this._cd.detectChanges();
             return null;
         }
@@ -133,8 +139,8 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         retrieveToken.subscribe(
             ( res : any ) => {
                 let token = res.payload.token;
-                this.uploadUrlWithParms = this.uploadUrl + '?formName=' + this.formName + '&id=' + this.formId
-                    + '&token=' + token;
+                this.uploadUrlWithParms = `${this.uploadUrl}?formName=${this.formName}&id=` +
+                    `${this.formId}&token=${token}&description=${this.description}`;
                 this.backendError = false;
                 // TODO: Change detection is not happening automatically
                 this._cd.detectChanges();
