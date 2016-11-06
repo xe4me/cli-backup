@@ -66,7 +66,6 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
         password: '69h-xEt-PSW-vGn'
     };
 
-
     constructor(
         private AmpGreenIdServices : AmpGreenIdServices,
         private fb : FormBuilder,
@@ -75,9 +74,6 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
         private sanitizer : DomSanitizationService) {
     }
 
-    /**
-     * Get the array of greenid scripts that we need to submit with the model
-     */
     public ngOnInit() : any {
         this.greenIdSettings = {
             environment: this.environment,
@@ -161,24 +157,17 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
     }
 
     private setupGreenId() : void {
-        if (window['greenidUI'] && window['greenidConfig']) {
-            let options = Object.assign(this.greenIdSettings, {
-                sessionCompleteCallback: this.onSessionComplete
-            });
-            window['greenidConfig'].setOverrides({'enable_save_and_complete_later' : false});
-            window['greenidUI'].setup(options);
-        }
+        let options = Object.assign(this.greenIdSettings, {
+            sessionCompleteCallback: this.onSessionComplete
+        });
+        window['greenidConfig'].setOverrides({'enable_save_and_complete_later' : false});
+        window['greenidUI'].setup(options);
     }
 
     private showGreenId(verificationToken : string) : void {
-        if (window['greenidUI']) {
-            window['greenidUI'].show(this.greenIdCredentials.accountId, this.greenIdCredentials.password, verificationToken);
-        }
+        window['greenidUI'].show(this.greenIdCredentials.accountId, this.greenIdCredentials.password, verificationToken);
     }
 
-    /**
-     * Load all of the scripts async
-     */
     private getScript(stringUrl : string) : Promise<string> {
         return new Promise((resolve) => {
             this.loadScript(stringUrl).onload = () => {
@@ -187,9 +176,6 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
         });
     }
 
-    /**
-     * Create the element in the DOM
-     */
     private loadScript(urlString : string) : HTMLScriptElement {
         let node = document.createElement('script');
         node.src = urlString;
@@ -200,13 +186,8 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
         return node;
     }
 
-    /**
-     * Update the value in the form model with the response from the API
-     */
-    private updateModel(respo : ResponseObject) : void {
-        if (respo.hasOwnProperty('verificationId') || respo.hasOwnProperty('verificationToken')) {
-            (<FormControl> this.greenIdControlGroup.controls['verificationId']).setValue(respo.verificationId);
-            (<FormControl> this.greenIdControlGroup.controls['verificationToken']).setValue(respo.verificationToken);
-        }
+    private updateModel(response : ResponseObject) : void {
+        this.greenIdControlGroup.controls['verificationId'].setValue(response.verificationId);
+        this.greenIdControlGroup.controls['verificationToken'].setValue(response.verificationToken);
     }
 }
