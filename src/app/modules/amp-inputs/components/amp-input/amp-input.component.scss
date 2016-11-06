@@ -2,62 +2,71 @@
 @import './themes/theme-form';
 @import './themes/theme-tools';
 
-$summary-state-color: $amp-colour-sky-blue;
-$summary-state-font-family: $amp-font-open-sans-regular;
-$summary-state-font-weight: 300;
-$font-size: $amp-base-font-size;
+$summary-state-color : $amp-colour-sky-blue;
+$summary-state-font-family : $amp-font-open-sans-regular;
+$summary-state-font-weight : 300;
+$font-size : $amp-base-font-size;
 
 // Overrides on existing components/input/input.scss
-$input-container-padding: 2px !default;
-$input-label-default-offset: $amp-base-font-size * 4 !default; // 60 px
-$input-label-float-offset: $amp-base-font-size * 1.66 !default;
-$input-placeholder-offset: $input-label-default-offset !default;
-$input-border-width-default: 1px !default;
-$input-border-width-focused: 1px !default;
-$input-line-height: $amp-base-font-size * 2 !default;
-$input-padding-top: 2px !default;
-$input-full-width-line-height: $amp-base-font-size * 2 !default;
-$input-full-width-padding-top: $amp-base-font-size * 2 !default;
-$input-error-font-size: $amp-base-font-size !default;
-$input-error-height: $amp-base-font-size * 1.5 !default;
-$input-error-line-height: $input-error-font-size+2px;
-$error-padding-top: ($input-error-height - $input-error-line-height) / 2;
-$icon-offset: 36px !default;
-$icon-float-focused-top: -8px !default;
+$input-container-padding : 2px !default;
+$input-label-default-offset : $amp-base-font-size * 4 !default; // 60 px
+$input-label-float-offset : $amp-base-font-size * 1.66 !default;
+$input-placeholder-offset : $input-label-default-offset !default;
+$input-border-width-default : 1px !default;
+$input-border-width-focused : 1px !default;
+$input-line-height : $amp-base-font-size * 2 !default;
+$input-padding-top : 2px !default;
+$input-full-width-line-height : $amp-base-font-size * 2 !default;
+$input-full-width-padding-top : $amp-base-font-size * 2 !default;
+$input-error-font-size : $amp-base-font-size !default;
+$input-error-height : $amp-base-font-size * 1.5 !default;
+$input-error-line-height : $input-error-font-size+2px;
+$error-padding-top : ($input-error-height - $input-error-line-height) / 2;
+$icon-offset : 36px !default;
+$icon-float-focused-top : -8px !default;
 
 // Custom md-input variables
-$input-padding-bottom: 15px !default;
+$input-padding-bottom : 15px !default;
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    -webkit-appearance : none;
+    margin             : 0;
 }
 
 input::-ms-clear {
-    display: none;
+    display : none;
+}
+
+.empty-line {
+    display  : inline-block;
+    width    : 100%;
+    position : absolute;
+    top      : 30px;
+    color    : $amp-colour-sky-blue;
 }
 
 amp-input {
-    display: inline-block;
-    box-sizing: content-box;
-    padding-right: 0 !important;
+    position         : relative;
+    display          : inline-block;
+    box-sizing       : content-box;
+    padding-right    : 0 !important;
     @include transition(width 0.3s linear !important);
-    transition-delay: 0.1s !important;
-    width: 100%;
+    transition-delay : 0.1s !important;
+    width            : 100%;
 
     &[iconright] {
         .icon-right {
-            cursor: pointer;
-            line-height: 1;
-            position: absolute;
-            right: 0;
-            bottom: 10px;
+            cursor      : pointer;
+            line-height : 1;
+            position    : absolute;
+            right       : 0;
+            bottom      : 10px;
         }
-  
+
         md-input.md-input {
             .md-input-element {
-                padding-right: 30px !important;
+                padding-right : 30px !important;
             }
         }
     }
@@ -65,104 +74,112 @@ amp-input {
 
 .summary-text {
     @include amp-family($summary-state-font-family);
-    color: $amp-colour-sky-blue;
-    font-weight: $summary-state-font-weight;
-    font-size: $ddc-input-field-font-size;
-    white-space: nowrap;
-    visibility: hidden;
-    height: 1px;
-    position: absolute;
+    color       : $amp-colour-sky-blue;
+    font-weight : $summary-state-font-weight;
+    font-size   : $ddc-input-field-font-size;
+    white-space : nowrap;
+    width       : 100%;
+    overflow    : hidden;
+    visibility  : hidden;
+    height      : 1px;
+    position    : absolute;
 }
 
 .currency {
-    font-size: 26px;
+    font-size : 26px;
 }
 
 md-input {
     &.md-input {
-        color: $amp-colour-sky-blue;
-        cursor: pointer;
-        width: 100%;
+        color       : $amp-colour-sky-blue;
+        cursor      : pointer;
+        width       : 100%;
 
         @include amp-family($amp-font-open-sans-regular);
-        font-weight: 300;
-
+        font-weight : 300;
+        &.has-value {
+            .md-input-wrapper {
+                .md-input-placeholder.md-empty {
+                    top : 0px !important;
+                }
+            }
+        }
         .md-input-wrapper {
-            position: relative;
-            margin: 0;
+            position : relative;
+            margin   : 0;
 
-            .md-input-table:hover+.md-input-underline.md-disabled {
-                border-top: 1px solid $amp-colour-grey-dark;
+            .md-input-table:hover + .md-input-underline.md-disabled {
+                border-top : 1px solid $amp-colour-grey-dark;
             }
 
             .md-input-underline {
-                border-top: 1px solid $amp-colour-grey-dark;
-                margin: 0;
-                bottom: 0;
+                border-top : 1px solid $amp-colour-grey-dark;
+                margin     : 0;
+                bottom     : 0;
 
                 .md-input-ripple {
-                  display: none !important;
+                    display : none !important;
                 }
             }
 
             .md-input-element {
-                color: $amp-colour-sky-blue;
-                cursor: pointer;
-                display: inline;
-                flex: none;
-                font-size: $ddc-input-field-font-size;
-                min-height: $input-height;
-                min-width: 20px;
-                padding: 18px 0 0 !important;
-                position: relative;
-                text-overflow: ellipsis;
+                color         : $amp-colour-sky-blue;
+                cursor        : pointer;
+                display       : inline;
+                flex          : none;
+                font-size     : $ddc-input-field-font-size;
+                min-height    : $input-height;
+                min-width     : 280px;
+                padding       : 18px 0 0 !important;
+                position      : relative;
+                text-overflow : ellipsis;
                 @include amp-family($amp-font-open-sans-regular);
-                font-weight: 300;
+                font-weight   : 300;
 
                 &:focus {
-                    color: $input-color-focus;
+                    color : $input-color-focus;
                 }
 
                 @include media-query('palm') {
-                    font-size: $input-font-size-mobile;
+                    font-size : $input-font-size-mobile;
                 }
             }
 
             .md-input-placeholder {
-                position: absolute;
-                left: 0;
-                top: 30px;
-                visibility: visible;
-                font-size: $input-placeholder-font-size;
-                font-weight: 700;
-                pointer-events: none;
-                color: $input-placeholder-color;
-                transition: none;
-                transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                position       : absolute;
+                left           : 0;
+                top            : 30px;
+                visibility     : visible;
+                font-size      : $input-placeholder-font-size;
+                font-weight    : 700;
+                pointer-events : none;
+                color          : $input-placeholder-color;
+                transition     : none;
+                transition     : top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
                 &.md-empty {
-                    visibility: visible;
-                    cursor: text;
+                    visibility : visible;
+                    cursor     : text;
                 }
 
                 // Show the placeholder above the input when it's not empty, or focused.
                 &.md-float:not(.md-empty),
                 &.md-float.md-focused {
-                    visibility: visible;
-                    padding: 0;
-                    top: 0;
-                    transform: none;
-                    width: 100%;
+                    visibility : visible;
+                    padding    : 0;
+                    top        : 0;
+                    transform  : none;
+                    width      : 100%;
 
                     .md-placeholder-required {
-                        color: $amp-colour-grey-darkest;
+                        color : $amp-colour-grey-darkest;
                     }
                 }
 
                 // :focus is applied to the input, but we apply md-focused to the other elements
                 // that need to listen to it.
                 &.md-focused {
-                    color: $input-placeholder-color;
+                    color : $input-placeholder-color;
                 }
             }
         }
@@ -173,27 +190,26 @@ md-input {
 md-input.md-input .md-input-wrapper:hover,
 md-input.md-input.amp-input-focused .md-input-wrapper {
     .md-input-underline {
-        border-top: 2px solid $amp-colour-sky-blue;
-        bottom: -1px;
+        border-top : 2px solid $amp-colour-sky-blue;
+        bottom     : -1px;
     }
 }
 
 .summary {
     md-input.md-input {
-        cursor: default;
-        padding-right: 0 !important;
-        padding-left: 0 !important;
-        transition-delay: 0.5s !important;
+        cursor           : default;
+        padding-right    : 0 !important;
+        padding-left     : 0 !important;
+        transition-delay : 0.5s !important;
 
         @include transition(padding 0.3s linear !important);
 
         .md-input-wrapper {
             .md-input-element {
-                cursor: default;
+                cursor : default;
             }
-            .md-input-underline,
-            .md-input-placeholder {
-                display: none;
+            .md-input-underline {
+                display : none;
             }
         }
     }
@@ -203,24 +219,24 @@ md-input.md-input.amp-input-focused .md-input-wrapper {
 md-input.md-input.ng-invalid.ng-touched,
 md-input.md-input.ng-invalid.ng-dirty {
     .md-input-element {
-        color: $input-error-color;
+        color : $input-error-color;
     }
 
     .md-input-underline {
-        border-top: 2px solid $amp-colour-alert-danger;
-        bottom: -1px;
+        border-top : 2px solid $amp-colour-alert-danger;
+        bottom     : -1px;
     }
 }
 
 md-input.label-hidden {
     label.md-input-placeholder {
-        position: absolute !important;
-        width: 1px !important;
-        height: 1px !important;
-        padding: 0 !important;
-        margin: -1px !important;
-        overflow: hidden !important;
-        clip: rect(0, 0, 0, 0) !important;
-        border: 0 !important;
+        position : absolute !important;
+        width    : 1px !important;
+        height   : 1px !important;
+        padding  : 0 !important;
+        margin   : -1px !important;
+        overflow : hidden !important;
+        clip     : rect(0, 0, 0, 0) !important;
+        border   : 0 !important;
     }
 }

@@ -41,19 +41,14 @@ import { AutoFocusOnDirective } from '../../../../app/modules/amp-directives/dir
                                 [groupName]='__custom.controls[0].id'>
                             </amp-group-buttons>
                         </amp-redux>
-                        <amp-redux [fdn]="__fdn.concat([__custom.controls[1].id])">
-                             <amp-group-buttons
-                                #ampReduxRef
-                                [attr.theme]="themeService.theme.attr"
-                                (select)='onButtonClick($event)'
-                                [buttons]='__custom.controls[1].buttons'
-                                [controlGroup]="__controlGroup"
-                                [required]="true"
-                                [isInSummaryState]="isInSummaryState"
-                                [groupName]='__custom.controls[1].id'>
-                            </amp-group-buttons>
-                        </amp-redux>
                     </div>
+            </amp-form-row>
+            <amp-form-row>
+                    <button (click)='removeAllAfter()'>Remove all the next blocks</button>
+                    <br>
+                    <button (click)='removeAt()'>Remove at 1</button>
+                    <br>
+                    <button (click)='loadAllNext()'>Load all next</button>
             </amp-form-row>
         </amp-form-block>
     ` ,
@@ -62,14 +57,14 @@ import { AutoFocusOnDirective } from '../../../../app/modules/amp-directives/dir
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
     @ViewChild( AutoFocusOnDirective ) autoFocusOn;
-    isActive                    = true;
-    private loadedDynamicBlock  = false;
-    private dynamicChild        = {
+                                       isActive = true;
+    private loadedDynamicBlock                  = false;
+    private dynamicChild                        = {
         'name'        : 'BlockWithRadios' ,
         'blockType'   : 'BlockWithRadios' ,
         'blockLayout' : 'INLINE' ,
         'commonBlock' : false ,
-        'path'        : '/amp-form-block/blocks/block-with-radios' ,
+        'path'        : 'amp-form-block/blocks/block-with-radios' ,
         'custom'      : {
             'blockTitle' : 'Let\'s test the radio buttons' ,
             'controls'   : [
@@ -101,34 +96,7 @@ export class AnotherSampleExperienceBlock extends FormBlock {
             ]
         }
     };
-    private anotherDynamicChild = {
-        'name'        : 'samplefieldsblock' ,
-        'blockType'   : 'SampleFieldsBlock' ,
-        'blockLayout' : 'INLINE' ,
-        'commonBlock' : false ,
-        'path'        : '/amp-form-block/blocks/sample-fields-block' ,
-        'custom'      : {
-            'blockTitle' : 'Multiple text fields ' ,
-            'controls'   : [
-                {
-                    'id'      : 'Title' ,
-                    'options' : [
-                        {
-                            'value' : 'MR' ,
-                            'label' : 'MR'
-                        } ,
-                        {
-                            'value' : 'MRS' ,
-                            'label' : 'MRS'
-                        }
-                    ]
-                } ,
-                {
-                    'id' : 'Title1'
-                }
-            ]
-        }
-    };
+    private multipleChilds                      = [ this.dynamicChild , this.dynamicChild ];
 
     constructor ( private themeService : ThemeService ,
                   private _vContainerRef : ViewContainerRef ,
@@ -141,16 +109,41 @@ export class AnotherSampleExperienceBlock extends FormBlock {
     }
 
     onButtonClick ( value ) {
-        // if ( value === this.__custom.controls[ 0 ].buttons[ 0 ].value ) {
-        //     this.loadedDynamicBlock = true;
-        //     this.__loadAt( this.anotherDynamicChild , this._vContainerRef );
-        //     this.__loadNext( this.dynamicChild , this._vContainerRef );
-        // } else {
-        //     if ( this.loadedDynamicBlock ) {
-        //         this.loadedDynamicBlock = false;
-        //         this.__removeNext( this._vContainerRef );
-        //         this.__removeNext( this._vContainerRef );
-        //     }
-        // }
+        if ( value === this.__custom.controls[ 0 ].buttons[ 0 ].value ) {
+            this.loadedDynamicBlock = true;
+            this.__loadNext( this.dynamicChild , this._vContainerRef )
+                .then( ( createdComponent ) => {
+                    console.log( 'createdComponent' , createdComponent );
+                } );
+        } else {
+            if ( this.loadedDynamicBlock ) {
+                this.loadedDynamicBlock = false;
+                this.__removeNext( this._vContainerRef )
+                    .then( ( removedAt ) => {
+                        console.log( 'removedAt' , removedAt );
+                    } );
+            }
+        }
+    }
+
+    removeAllAfter () {
+        this.__removeAllAfter( this._vContainerRef )
+            .then( ( removedAt ) => {
+                console.log( 'removedAt' , removedAt );
+            } );
+    }
+
+    removeAt () {
+        this.__removeAt( 1 )
+            .then( ( removedAt ) => {
+                console.log( 'removedAt' , removedAt );
+            } );
+    }
+
+    loadAllNext () {
+        this.__loadAllNext( this.multipleChilds , this._vContainerRef )
+            .then( ( all ) => {
+                console.log( 'all' , all );
+            } );
     }
 }

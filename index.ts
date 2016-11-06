@@ -1,6 +1,6 @@
 export { AmpReduxModule } from './src/app/redux/amp-redux.module';
 // utils
-export { AmpBlockLoaderDirective } from './src/app/amp-block-loader.directive';
+export { AmpBlockLoaderDirective , LoadedBlockInfo } from './src/app/amp-block-loader.directive';
 export { FormBlock } from './src/app/form-block';
 // blocks
 export { AmpReviewSection } from './src/app/blocks/amp-review/amp-review-section/amp-review-section.component';

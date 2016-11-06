@@ -16,7 +16,7 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
                  <amp-button
                     [context]="context"
                     *ngIf='!context?.isInSummaryState'
-                    [attr.theme]="theme"
+                    [attr.theme]=" buttonsTheme || theme"
                     (click)='context.onNext()'
                     [disabled]='!context?.canGoNext' class='btn btn-ok'>
                     OK
@@ -24,7 +24,7 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
                 <amp-button
                     [context]="context"
                     *ngIf='context?.isInSummaryState'
-                    [attr.theme]="theme"
+                    [attr.theme]="buttonsTheme || theme"
                     (click)='context.onEdit()'
                     class='btn btn-change btn-ok-margin-top palm-m0'>
                     Change
@@ -39,9 +39,10 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
     @Input( 'noError' ) noError;
-    @Input( 'withOkButton' ) withOkButton = true;
-    @Input( 'withOverlay' ) withOverlay = true;
+    @Input( 'withOkButton' ) withOkButton          = true;
+    @Input( 'withOverlay' ) withOverlay            = true;
     @Input( 'theme' ) theme;
+    @Input( 'buttonsTheme' ) buttonsTheme;
     @Input( 'headingClass' ) headingClass : string = '';
 
     ngOnInit () : any {

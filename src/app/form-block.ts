@@ -1,10 +1,14 @@
-import { ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewContainerRef } from '@angular/core';
+import {
+    ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewContainerRef ,
+    ComponentRef
+} from '@angular/core';
 import { arrayJoinByDash , DomUtils } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
 import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
 import { ScrollService } from './services/scroll/scroll.service';
+import { FormDefinition } from './interfaces/form-def.interface';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     public autoFocusOn;
     protected isInSummaryState : boolean     = false;
@@ -12,6 +16,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected hasClickedOnOkButton : boolean = false;
     protected selectorName : string          = 'default-form-block-selector-name';
     protected noScroll                       = false;
+    /*
+     * __onChildsLoaded :
+     * Pass in a callback to notify when the children of this block are loaded
+     * E.g
+     * A block like Section , which itself will load bunch of other blocks , will call this function on loaded.
+     * And the parant and siblings of the parent will be notified if they've subscribed to .
+     * */
+    protected __onChildsLoaded : ( callback : Function ) => void;
     /*
      * __fdn : the fully distinguished name to this block :
      * E.g : ['Application','SomeSection','ContactDetails'];
@@ -27,24 +39,24 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __controlGroup : FormGroup;
     protected __sectionName : string;
     /*
+     * __removeAt : Will remove the next block , need to specify the current block which is ViewContainerRef
+     * */
+    protected __removeAt : ( index : number ) => Promise<number>;
+    /*
      * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
      * */
-    protected __removeNext : ( viewContainerRef : ViewContainerRef ) => void;
-        /*
-     * __removeAt : Will remove a block at a given index
-     * */
-    protected __removeAt : ( index : number ) => void;
+    protected __removeNext : ( viewContainerRef : ViewContainerRef ) => Promise<number>;
     /*
      * __removeAllAfter : Will remove all the blocks after current block if they're in the same conainer
      * E.g : If you're inside menu frame , you cannot delete review block if they not in the same blocks array in
      * form definition
      * */
-    protected __removeAllAfter : ( viewContainerRef : ViewContainerRef ) => void;
+    protected __removeAllAfter : ( viewContainerRef : ViewContainerRef ) => Promise<number>;
     /*
      * __removeAllAfterIndex
      * Same as removeAllAfter, except you just need to specify an index , it'll nicely remove all after that index
      * */
-    protected __removeAllAfterIndex : ( index : number ) => void;
+    protected __removeAllAfterIndex : ( index : number ) => Promise<any>;
     /*
      * __getIndex : Will give you your index in the current container
      * */
@@ -65,17 +77,18 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      }
      __loadNext(toBeLoadedBlock , this.viewContainerRef);
      * */
-    protected __loadNext : ( def : any , viewContainerRef : ViewContainerRef ) => void;
+    protected __loadNext : ( def : FormDefinition , viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>>;
     /*
      * __loadAt
      * Same as loadNext , except load at a specific index without telling where you are(viewContainerRef)
      * */
-    protected __loadAt : ( def : any , index : number ) => void;
+    protected __loadAt : ( def : FormDefinition , index : number ) => Promise<ComponentRef<any>>;
     /*
      * __loadAt
      * Same as loadNext , except loads an array of blocks
      * */
-    protected __loadAllNext : (_def : any[] , _viewContainerRef : ViewContainerRef) => void;
+    protected __loadAllNext : ( _defs : FormDefinition[] ,
+                                _viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>[]>;
     /*
      * __custom : All the custom properties that you've specified in your form definition chunk will be accesable
      @example
@@ -106,8 +119,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected visibleFlag : string = 'defaultIsVisible';
     protected doneFlag : string    = 'defaultIsDone';
     private scrollSubscription : Subscription;
-    private hydrateFormSubscription : Subscription;
     private domUtils : DomUtils    = null;
+    private scrollOffset           = 80;
 
     constructor ( protected formModelService : FormModelService ,
                   protected elementRef : ElementRef ,
@@ -174,7 +187,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     onNext () {
         if ( this.canGoNext ) {
-            this.scrollService.scrollToNextUndoneBlock( this.__form );
+            this.scrollService.scrollToNextUndoneBlock( this.__form , this.scrollOffset );
             this.progressObserver.onProgress( this.__fdn );
             this.formModelService.save( this.__form.value );
             let onNextScrolled = this.scrollService.$scrolled.subscribe( () => {

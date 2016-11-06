@@ -25,7 +25,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
         <ng-content></ng-content>
     </button>` ,
     styles          : [ require( './amp-button.component.scss' ).toString() ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush ,
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpButton implements AfterContentInit {
     @Input( 'chevron' ) _chevron : string;
