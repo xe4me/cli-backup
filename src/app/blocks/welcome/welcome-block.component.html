@@ -1,14 +1,19 @@
-<amp-intro-block class="branding-bett3r mt">
+<amp-intro-block class="mt">
     <div class="intro-container">
         <h3 class="intro-message-heading heading heading-intro">Welcome</h3>
-        <p class="intro-para">To the smarter way to manage your money.  Please choose how you would like to continue.</p>
-        <div class="mb mt+ intro-block-button-container">
-                <amp-button (click)="onNewOrExisting('new')" class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
-                    New application
-                </amp-button>
-                <amp-button (click)="onNewOrExisting('existing')" class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
-                    Continue application
-                </amp-button>
+        <p class="intro-para">To the smarter way to manage your money.
+            <br>
+            <br class='palm-hide`'>
+            Please choose how you would like to continue.</p>
+        <div class="mb mt+ palm-mt- intro-block-button-container">
+            <amp-button (click)="onNewOrExisting('new')"
+                        class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
+                New application
+            </amp-button>
+            <amp-button (click)="onNewOrExisting('existing')"
+                        class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
+                Continue application
+            </amp-button>
         </div>
     </div>
 </amp-intro-block>

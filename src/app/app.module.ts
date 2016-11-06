@@ -1,19 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {
-    FormsModule ,
-    ReactiveFormsModule
-} from '@angular/forms';
-import {
-    Routes ,
-    RouterModule
-} from '@angular/router';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { Routes , RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
-import {
-    StickyProgressHeaderBlockComponent
-} from './blocks/sticky-progress-header-block/sticky-progress-header-block.component';
+import { StickyProgressHeaderBlockComponent } from './blocks/sticky-progress-header-block/sticky-progress-header-block.component';
 import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
     AmpTypeaheadModule ,
@@ -38,23 +30,13 @@ import {
     AmpFormRowComponent ,
     AmpButton ,
     AmpOverlayComponent ,
-    FormService ,
     AmpIntroBlockComponent ,
     AmpRowRepeaterModule ,
     AmpFormRowModule ,
-    AmpStandAloneMenuModule,
+    AmpStandAloneMenuModule ,
     AmpGreenidModule
 } from 'amp-ddc-components';
-import {
-    SharedFormDataService ,
-    ApplicantGeneratorService
-} from './shared';
-const PROVIDERS       = [
-    ScrollService ,
-    FormModelService ,
-    ProgressObserverService ,
-    FormService
-];
+import { SharedFormDataService , ApplicantGeneratorService } from './shared';
 const DECLARATIONS    = [
     AmpIntroBlockComponent ,
     AmpFormBlockComponent ,

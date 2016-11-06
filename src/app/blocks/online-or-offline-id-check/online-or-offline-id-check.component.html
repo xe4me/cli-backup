@@ -1,6 +1,7 @@
-<amp-form-block [context]="context()">
-    <div class="mt mb">
-        Please confirm that you have one of the following and are happy for us to check you identity using our secure online check
+<amp-form-block [context]="context()" [withOkButton]='false'>
+    <div class="mt mb palm-mt- palm-mb-">
+        Please confirm that you have one of the following and are happy for us to check you identity using our secure
+        online check
         <ul class="list-default">
             <li>Australian passport</li>
             <li>Medicare card</li>
@@ -8,15 +9,17 @@
         </ul>
     </div>
     <amp-button
-        [context]="context()"
-        class="btn btn-ok mr"
-        (click)="onIdCheckSelection('online')">
-                        Yes - online check me
+            theme='tools'
+            [context]="context()"
+            class="btn btn-ok mr palm-1/1 palm-mr0"
+            (click)="onIdCheckSelection('online')">
+        Yes - online check me
     </amp-button>
     <amp-button
-        [context]="context()"
-        class="btn btn-ok"
-        (click)="onIdCheckSelection('offline')">
-                        No - I'll send copies
+            theme='tools'
+            [context]="context()"
+            class="btn btn-ok palm-1/1"
+            (click)="onIdCheckSelection('offline')">
+        No - I'll send copies
     </amp-button>
 </amp-form-block>

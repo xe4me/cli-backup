@@ -1,3 +1,15 @@
-:host amp-intro-block.branding-bett3r {
-    background-image: url('assets/images/fullbackground.jpg');
+@import '../../../styles/abstracts';
+
+$amp-ddc-public-asset : '../../../assets/';
+:host {
+  amp-intro-block {
+    background-image  : url('assets/images/fullbackground.jpg');
+    background-repeat : no-repeat;
+    background-size   : 100%;
+    min-height        : 793px;
+    padding-top       : 116px;
+    @include media-query(palm) {
+      min-height : 400px;
+    }
+  }
 }

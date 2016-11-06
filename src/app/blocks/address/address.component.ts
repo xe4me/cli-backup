@@ -1,15 +1,14 @@
 import {
-    Component,
-    ChangeDetectorRef,
-    ElementRef,
+    Component ,
+    ChangeDetectorRef ,
+    ElementRef ,
     ChangeDetectionStrategy
 } from '@angular/core';
 import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
-    ProgressObserverService ,
-    FormService
+    ProgressObserverService
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'address-block' ,
@@ -19,7 +18,6 @@ import {
 export class AddressBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
-                  private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
