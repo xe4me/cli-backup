@@ -6,8 +6,7 @@ import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
-    ProgressObserverService ,
-    FormService
+    ProgressObserverService
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'contact-details-block' ,
@@ -17,7 +16,6 @@ import {
 export class ContactDetailsBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
-                  private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
