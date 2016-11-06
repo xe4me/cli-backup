@@ -1,72 +1,77 @@
 import {
-    Component,
-    ViewContainerRef,
-    ChangeDetectorRef,
+    Component ,
+    ViewContainerRef ,
+    ChangeDetectorRef ,
     ChangeDetectionStrategy
 } from '@angular/core';
-import { AmpBlockLoaderDirective } from '../amp-block-loader.directive';
+import { AmpBlockLoaderDirective , LoadedBlockInfo } from '../amp-block-loader.directive';
 import { FormSectionService } from '../services/form-section/form-section.service';
 import { FormModelService } from '../services/form-model/form-model.service';
 import { ProgressObserverService } from '../services/progress-observer/progress-observer.service';
 import { ScrollService } from '../services/scroll/scroll.service';
-@Component({
-    selector: 'page-section',
-    template: `
-    <div class='section' [ngClass]='{"section__hide": !isCurrentSection()}'>
-         <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form"></div>
+@Component( {
+    selector        : 'page-section' ,
+    template        : `
+    <div class='section'>
+         <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form" (loaded)='onAllLoaded()'></div>
     </div>
   ` ,
-    host: {
-        '[id]': 'getFdnJoined(__fdn)',
-        '[class.visited]': '__controlGroup.touched',
-        '[class.done]': '__controlGroup.valid && __controlGroup.touched',
-        '[attr.label]': '__custom?.label',
-        '[class.active]': 'isActive'
-    },
-    styles: [
+    host            : {
+        '[id]'            : 'getFdnJoined(__fdn)' ,
+        '[class.visited]' : '__controlGroup.touched' ,
+        '[class.done]'    : '__controlGroup.valid && __controlGroup.touched' ,
+        '[attr.label]'    : '__custom?.label' ,
+        '[class.active]'  : 'isActive'
+    } ,
+    styles          : [
         `
     .section {
       border: 0px solid black;
     }
-    .section__hide {
-      display: none;
-    }
   `
-    ],
-    directives: [AmpBlockLoaderDirective],
+    ] ,
+    directives      : [ AmpBlockLoaderDirective ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
-})
+} )
 export class PageSectionComponent {
-    public CLASS_NAME = 'PageSectionComponent';
     private isActive = false;
     private __fdn;
     private __controlGroup;
     private __custom;
-    constructor(
-        public _viewContainerRef : ViewContainerRef,
-        public progressObserver : ProgressObserverService,
-        public formSectionService : FormSectionService,
-        public scrollService : ScrollService,
-        public formModelService : FormModelService,
-        public _cd : ChangeDetectorRef) {
+    private __emitChildLoaded;
+    private __name;
+
+    constructor ( public _viewContainerRef : ViewContainerRef ,
+                  public progressObserver : ProgressObserverService ,
+                  public formSectionService : FormSectionService ,
+                  public scrollService : ScrollService ,
+                  public formModelService : FormModelService ,
+                  public _cd : ChangeDetectorRef ) {
     }
 
-    isCurrentSection() : boolean {
-        return true;
+    ngOnInit () {
+        /*
+         * Looks like the code bellow does not do anything but a markForCheck ?????
+         *
+         * */
+        // this.scrollService.$scrolled.subscribe( ( blockchanges ) => {
+        //     if ( blockchanges ) {
+        //         let componentSelector = blockchanges.componentSelector;
+        //         let fdn               = this.__fdn.join( '-' );
+        //         // this.isActive = componentSelector && componentSelector.indexOf(fdn) > -1 ? true : false;
+        //         this._cd.markForCheck();
+        //     }
+        // } );
     }
 
-    ngOnInit() {
-        this.scrollService.$scrolled.subscribe((blockchanges) => {
-            if (blockchanges) {
-                let componentSelector = blockchanges.componentSelector;
-                let fdn = this.getFdnJoined(this.__fdn);
-                // this.isActive = componentSelector && componentSelector.indexOf(fdn) > -1 ? true : false;
-                this._cd.markForCheck();
-            }
-        });
+    onAllLoaded () {
+        this.__emitChildLoaded( {
+            fdn  : this.__fdn ,
+            name : this.__name
+        } );
     }
 
-    getFdnJoined(fdn) {
-        return fdn.join('-');
+    getFdnJoined ( _fdn ) {
+        return _fdn.join( '-' )
     }
 }

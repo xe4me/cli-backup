@@ -30,41 +30,30 @@ export class ScrollService {
     /*
      *TODO: Find another better way to get all the components avaliable in dome to prevent this direct access
      */
-    public scrollToNextUndoneBlock ( formModel , fdn? ) {
+    public scrollToNextUndoneBlock ( formModel , offset = 80 ) {
         let isScrolled = false;
         let body       = this._dom.query( 'body' );
         let components = this._dom.querySelectorAll( body , '[id$="-block"]' );
-
         for ( let i = 0 ; i < components.length ; i ++ ) {
-            let selectorName = components[ i ].id;
-            if ( fdn ) {
-                let fullName = fdn.fromString(selectorName.slice(0, selectorName.length - ('_-block'.length) ));
-                const controlGroup = formModel.getControlGroup(fullName);
-                if ( ! isScrolled && controlGroup && ! controlGroup.valid ) {
-                    this.scrollToComponentSelector( selectorName );
-                    isScrolled = true;
-                    return fullName;
+            let selectorName       = components[ i ].id;
+            let _fdnOfSelectorName = selectorName.split( '-' );
+            _fdnOfSelectorName.pop();
+            let formGroup = formModel;
+            for ( let i = 0 ; i < _fdnOfSelectorName.length ; i ++ ) {
+                if ( formGroup.controls[ _fdnOfSelectorName[ i ] ] ) {
+                    formGroup = formGroup.controls[ _fdnOfSelectorName[ i ] ];
                 }
-            } else {
-                let _fdnOfSelectorName = selectorName.split( '-' );
-                _fdnOfSelectorName.pop();
-                let formGroup = formModel;
-                for ( let i = 0 ; i < _fdnOfSelectorName.length ; i ++ ) {
-                    if ( formGroup.controls[ _fdnOfSelectorName[ i ] ] ) {
-                        formGroup = formGroup.controls[ _fdnOfSelectorName[ i ] ];
-                    }
-                }
-                if (!isScrolled &&
-                    ( formGroup.invalid ||
-                         (formGroup.valid &&
-                          formGroup.untouched &&
-                           Object.keys(formGroup.value).length > 0)
-                         )
-                    ) {
-                    this.scrollToComponentSelector(selectorName);
-                    isScrolled = true;
-                    return null;
-                }
+            }
+            if ( ! isScrolled &&
+                ( formGroup.invalid ||
+                    (formGroup.valid &&
+                    formGroup.untouched &&
+                    Object.keys( formGroup.value ).length > 0)
+                )
+            ) {
+                this.scrollToComponentSelector( selectorName , 'easeInQuad' , offset );
+                isScrolled = true;
+                return null;
             }
         }
         if ( ! isScrolled ) {
@@ -80,19 +69,19 @@ export class ScrollService {
         let element = this._dom.query( componentSelector );
         if ( ! element ) {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
-            element = this._dom.query( '#' + componentSelector );
-            sectionName = this._dom.getAttribute(element, 'data-section');
+            element     = this._dom.query( '#' + componentSelector );
+            sectionName = this._dom.getAttribute( element , 'data-section' );
         }
         let options = {
-            duration      : 800 ,
-            easing        : easing ,
-            offset        : margin ,
-            callbackBefore: ( elemt ) => {
-                this.$scrolling.emit({section : sectionName, componentSelector : this.getGroupNameOfSelectorName( componentSelector )}  );
+            duration       : 800 ,
+            easing         : easing ,
+            offset         : margin ,
+            callbackBefore : ( elemt ) => {
+                this.$scrolling.emit( { section : sectionName , componentSelector : this.getGroupNameOfSelectorName( componentSelector ) } );
             } ,
-            callbackAfter : ( elemt ) => {
+            callbackAfter  : ( elemt ) => {
                 // this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
-                this.$scrolled.emit( {section : sectionName, componentSelector : componentSelector});
+                this.$scrolled.emit( { section : sectionName , componentSelector : componentSelector } );
             }
         };
         setTimeout( () => {
@@ -121,12 +110,12 @@ export class ScrollService {
         let height  = element.offsetHeight;
         let bottom  = top + height + margin;
         let options = {
-            duration      : 800 ,
-            easing        : easing ,
-            offset        : - bottom ,
-            callbackBefore: function( elemt ) {
+            duration       : 800 ,
+            easing         : easing ,
+            offset         : - bottom ,
+            callbackBefore : function( elemt ) {
             } ,
-            callbackAfter : function( elemt ) {
+            callbackAfter  : function( elemt ) {
             }
         };
         setTimeout( () => {
@@ -164,7 +153,6 @@ export class ScrollService {
             this.lastScrollPosition = this.scrollTop;
             // @TODO: currently bellow line is commented out , because if you uncomment it , any components that is
             // using ScrollService will break in the styleguide. So we need to fix that and then uncomment bellow line
-
             // this.formModelService.setCurrentBlock( CLASS_NAME );
         }
         return isInView;
@@ -217,8 +205,10 @@ export class ScrollService {
         let duration          = options.duration || 800;
         let offset            = options.offset || 0;
         let easing : string   = options.easing;
-        let callbackBefore    = options.callbackBefore || function() {};
-        let callbackAfter     = options.callbackAfter || function() {};
+        let callbackBefore    = options.callbackBefore || function() {
+            };
+        let callbackAfter     = options.callbackAfter || function() {
+            };
         let container         = options.containerId ? classInstance._dom.query( '#' + options.containerId ) : null;
         let containerPresent  = (container !== undefined && container !== null);
         /**
@@ -238,7 +228,7 @@ export class ScrollService {
          * - changed if-else to switch
          * @see http://archive.oreilly.com/pub/a/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html
          */
-        let getEasingPattern = function( type , time ) {
+        let getEasingPattern  = function( type , time ) {
             switch ( type ) {
                 case 'easeInQuad':
                     return time * time; // accelerating from zero velocity
@@ -271,7 +261,7 @@ export class ScrollService {
         /**
          * Calculate how far to scroll
          */
-        let getEndLocation = function( elemt ) {
+        let getEndLocation    = function( elemt ) {
             let location = 0;
             if ( elemt.offsetParent ) {
                 do {
@@ -320,10 +310,9 @@ export class ScrollService {
                     ) { // stop
                         clearInterval( runAnimation );
                         callbackAfter( element );
-
-                        setTimeout(() => {
-                            window.scrollTo(0, getEndLocation( element ));
-                        });
+                        setTimeout( () => {
+                            window.scrollTo( 0 , getEndLocation( element ) );
+                        } );
                     }
                 };
                 /**

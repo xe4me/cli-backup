@@ -17,6 +17,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected selectorName : string          = 'default-form-block-selector-name';
     protected noScroll                       = false;
     /*
+     * __onChildsLoaded :
+     * Pass in a callback to notify when the children of this block are loaded
+     * E.g
+     * A block like Section , which itself will load bunch of other blocks , will call this function on loaded.
+     * And the parant and siblings of the parent will be notified if they've subscribed to .
+     * */
+    protected __onChildsLoaded : ( callback : Function ) => void;
+    /*
      * __fdn : the fully distinguished name to this block :
      * E.g : ['Application','SomeSection','ContactDetails'];
      * */

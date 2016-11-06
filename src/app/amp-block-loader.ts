@@ -11,19 +11,16 @@ import {
 import { FormGroup } from '@angular/forms';
 import { FormSectionService } from './services/form-section/form-section.service';
 import { FormDefinition } from './interfaces/form-def.interface';
-export enum BlockLayout { INLINE , PAGE , SECTION }
-export enum RequireMethod { ALL , IN_ORDER }
-@Directive( {
-    selector : '[amp-block-loader]'
-} )
+import  { LoadedBlockInfo , RequireMethod , BlockLayout } from './amp-block-loader.directive';
 export abstract class AmpBlockLoader {
     public blockLoader;
-    public fdn                         = [];
-    public requireMethod               = RequireMethod[ RequireMethod.IN_ORDER ];
-    public loaded : EventEmitter<any>  = new EventEmitter<any>();
-    private blocksCount : number       = 0;
-    private retrievedFiles             = [];
-    private _blocks : FormDefinition[] = [];
+    public fdn                               = [];
+    public requireMethod                     = RequireMethod[ RequireMethod.IN_ORDER ];
+    public loaded : EventEmitter<any>        = new EventEmitter<any>();
+    public $childsLoaded : EventEmitter<any> = new EventEmitter<any>();
+    private blocksCount : number             = 0;
+    private retrievedFiles                   = [];
+    private _blocks : FormDefinition[]       = [];
     private _form;
     private _sectionName;
 
@@ -147,6 +144,7 @@ export abstract class AmpBlockLoader {
     private copyFormBlockDefProperty ( _componentRef : ComponentRef<any> ,
                                        _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve , reject ) => {
+            let childsLoadedsubscription;
             let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
             _componentRef.instance.__child_blocks = _blockDef;
             _componentRef.instance.__form         = this.form;
@@ -170,6 +168,9 @@ export abstract class AmpBlockLoader {
                 _componentRef.instance.__controlGroup.__reviewTemplate = _blockDef.reviewTemplate;
                 _componentRef.onDestroy( () => {
                     _form.removeControl( _blockDef.name );
+                    if ( childsLoadedsubscription ) {
+                        childsLoadedsubscription.unsubscribe();
+                    }
                 } );
             }
             if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
@@ -213,6 +214,14 @@ export abstract class AmpBlockLoader {
             };
             _componentRef.instance.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
                 return this.getIndex( _viewContainerRef );
+            };
+            _componentRef.instance.__onChildsLoaded      = ( cb ) : void => {
+                childsLoadedsubscription = this.$childsLoaded.subscribe( ( _loadedBlockInfo : LoadedBlockInfo ) => {
+                    cb( _loadedBlockInfo );
+                } )
+            };
+            _componentRef.instance.__emitChildLoaded     = ( _loadedBlockInfo : LoadedBlockInfo ) : void => {
+                this.emitChildLoaded( _loadedBlockInfo );
             };
             _componentRef.changeDetectorRef.detectChanges();
             resolve( _componentRef );
@@ -346,5 +355,16 @@ export abstract class AmpBlockLoader {
             index ++;
         }
         return this.removeAt( index );
+    }
+
+    /*
+     * @method : emitChildLoaded
+     * This is a public method that should only be called by the nested blocks that are loading blocks
+     * A simple scenario is when you have a block , inside blocks and that block is using a amp-block-loaded , sometimes
+     * you want to notice you parent block that you've finished loading , so then you can call this function and if
+     * any parent block is interested , can pass a callback and then get notified when all DIRECT childs are loaded
+     * */
+    public emitChildLoaded ( _loadedBlockInfo : LoadedBlockInfo ) {
+        this.$childsLoaded.emit( _loadedBlockInfo );
     }
 }
