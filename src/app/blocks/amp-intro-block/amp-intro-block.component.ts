@@ -57,11 +57,11 @@ export class AmpIntroBlockComponent {
      *
      */
     public proceed () : Promise<string> {
-        return new Promise( ( resolve , reject )=> {
+        return new Promise( ( resolve , reject ) => {
             this.slideUp = 'collapsed';
-            setTimeout( ()=> {
+            setTimeout( () => {
                 resolve();
             } , 801 );
-        } )
+        } );
     }
 }

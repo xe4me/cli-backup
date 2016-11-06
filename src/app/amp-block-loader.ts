@@ -84,6 +84,17 @@ export abstract class AmpBlockLoader {
     }
 
     /*
+     * @method : emitChildLoaded
+     * This is a public method that should only be called by the nested blocks that are loading blocks
+     * A simple scenario is when you have a block , inside blocks and that block is using a amp-block-loaded , sometimes
+     * you want to notice you parent block that you've finished loading , so then you can call this function and if
+     * any parent block is interested , can pass a callback and then get notified when all DIRECT childs are loaded
+     * */
+    emitChildLoaded ( _loadedBlockInfo : LoadedBlockInfo ) {
+        this.$childsLoaded.emit( _loadedBlockInfo );
+    }
+
+    /*
      * TODO : When ever upgraded to RC7 , this should be used , For Sean :)
      * */
     // createComponent ( _loadedComponent , _index : number ) : Promise<ComponentRef<any>> {
@@ -218,7 +229,7 @@ export abstract class AmpBlockLoader {
             _componentRef.instance.__onChildsLoaded      = ( cb ) : void => {
                 childsLoadedsubscription = this.$childsLoaded.subscribe( ( _loadedBlockInfo : LoadedBlockInfo ) => {
                     cb( _loadedBlockInfo );
-                } )
+                } );
             };
             _componentRef.instance.__emitChildLoaded     = ( _loadedBlockInfo : LoadedBlockInfo ) : void => {
                 this.emitChildLoaded( _loadedBlockInfo );
@@ -287,7 +298,7 @@ export abstract class AmpBlockLoader {
     }
 
     private getViewRefOfViewContainerRef ( _viewContainerRef : ViewContainerRef ) : ViewRef {
-        return <ViewRef> (<any>_viewContainerRef)._element.parentView.ref;
+        return <ViewRef> (<any> _viewContainerRef)._element.parentView.ref;
     }
 
     private getIndex ( _viewContainerRef : ViewContainerRef ) : number {
@@ -355,16 +366,5 @@ export abstract class AmpBlockLoader {
             index ++;
         }
         return this.removeAt( index );
-    }
-
-    /*
-     * @method : emitChildLoaded
-     * This is a public method that should only be called by the nested blocks that are loading blocks
-     * A simple scenario is when you have a block , inside blocks and that block is using a amp-block-loaded , sometimes
-     * you want to notice you parent block that you've finished loading , so then you can call this function and if
-     * any parent block is interested , can pass a callback and then get notified when all DIRECT childs are loaded
-     * */
-    public emitChildLoaded ( _loadedBlockInfo : LoadedBlockInfo ) {
-        this.$childsLoaded.emit( _loadedBlockInfo );
     }
 }

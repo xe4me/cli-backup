@@ -13,8 +13,8 @@ import { AmpBlockLoader } from './amp-block-loader';
 export enum BlockLayout { INLINE , PAGE , SECTION }
 export enum RequireMethod { ALL , IN_ORDER }
 export interface LoadedBlockInfo {
-    fdn : (string|number)[],
-    name : string
+    fdn : (string|number)[];
+    name : string;
 }
 @Directive( {
     selector : '[amp-block-loader]'
