@@ -1,5 +1,6 @@
 <md-input
         #input
+        [class.has-value]='isInSummaryState && controlIsEmpty()'
         (focus)='onFocused($event)'
         (keyup)='onKeyupEvent($event)'
         (blur)='onBlured($event)'
@@ -18,5 +19,7 @@
         [placeholder]='required?label:label+" (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 </md-input>
-<span (click)='handleIconRightClick()' *ngIf='showIconRight && iconRight && !isInSummaryState' class="icon icon--{{ iconRight }} icon-right"></span>
+<span *ngIf='isInSummaryState && controlIsEmpty()' class='empty-line'>---</span>
+<span (click)='handleIconRightClick()' *ngIf='showIconRight && iconRight && !isInSummaryState'
+      class="icon icon--{{ iconRight }} icon-right"></span>
 <span class='summary-text' [innerHTML]='input.value'></span>

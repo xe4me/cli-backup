@@ -38,7 +38,16 @@ input::-ms-clear {
     display : none;
 }
 
+.empty-line {
+    display  : inline-block;
+    width    : 100%;
+    position : absolute;
+    top      : 30px;
+    color    : $amp-colour-sky-blue;
+}
+
 amp-input {
+    position         : relative;
     display          : inline-block;
     box-sizing       : content-box;
     padding-right    : 0 !important;
@@ -69,6 +78,8 @@ amp-input {
     font-weight : $summary-state-font-weight;
     font-size   : $ddc-input-field-font-size;
     white-space : nowrap;
+    width       : 100%;
+    overflow    : hidden;
     visibility  : hidden;
     height      : 1px;
     position    : absolute;
@@ -86,7 +97,13 @@ md-input {
 
         @include amp-family($amp-font-open-sans-regular);
         font-weight : 300;
-
+        &.has-value {
+            .md-input-wrapper {
+                .md-input-placeholder.md-empty {
+                    top : 0px !important;
+                }
+            }
+        }
         .md-input-wrapper {
             position : relative;
             margin   : 0;

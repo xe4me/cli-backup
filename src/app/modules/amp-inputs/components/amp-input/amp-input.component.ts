@@ -353,4 +353,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
             this.control.setValue( this.defaultValue );
         }
     }
+
+    protected controlIsEmpty () {
+        return !this.control.value && this.control.value !== 'false' && this.control.value !== 0;
+    }
 }
