@@ -140,12 +140,24 @@ $amp-ddc-menu-height : 69px !default;
         }
     }
     @include media-query(palm) {
-        .steps-nav .skyblue li:not(.active) {
-            display: none;
-            >.divider {
+
+        .steps-nav .skyblue {
+            span.icon {
+                color: $amp-colour-sky-blue;
+                margin-top: -36px;
+            }
+            > li:not(.active) {
                 display: none;
+                >.divider {
+                    display: none;
+                }
+            }
+            > li.active {
+                pointer-events: none;
+                cursor: default;
             }
         }
+
     }
     .steps-nav .skyblue {
         .divider.first {

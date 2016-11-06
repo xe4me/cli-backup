@@ -1,82 +1,98 @@
-
-<section class="section mh mv">
-    <section class="section mv">
-        <p class="para mb">
-            The standalone menu should be used when you have a project that requires a menu which is outside the project.
-        </p>
-        <p class="note">Currently, this menu cannot be run as part of this guide, we intend to fix this in the future. For a sample implementation, please see the Bett3r project in DDC, specifically <strong class="strong-text">DF-249-responsive-navigation branch</strong></p>
-    </section>
-</section>
-
-<page-section id="ApplicationSection" label="Application" class="visited">
+<div id="sample-static-content">
 	<section class="section mh mv">
-		<h2 class="heading heading-intro">Just for you or with someone else</h2>
-		<p class="para mb">Please let us know if you would like to apply the account in your name or with someone else</p>
+		<section class="section mv">
+			<h2 class="heading heading-intro">Please hide the side bar in order to see the navigation menu</h2>	
+			<p class="para mb">
+				This stand alone navigation menu is used to show users which section of the form the user is currently at. This can be used when
+				you have a project that requires a separate navigation menu of the site. 
+			</p>
+			<p class="note">This example show the stand alone navigation menu works with some static page sections content contains a custom label and some optional visited and done classes. The navigation menu
+				will parse these sections and shows in the navigation menu items. In an 'experience' project, you will likely configure the page sections to be dynamically generated for you. Please
+				see the Experience Bett3r or Experience BuyBack project in DDC for further details on how this works dynamically.
+			</p>
+			
+		</section>
 	</section>
+	<page-section id="ApplicationSection" label="Application" class="visited">
+		<section class="section mh mv">
+			<h2 class="heading heading-intro">Just for you or with someone else</h2>
+			<p class="para mb">Please let us know if you would like to apply the account in your name or with someone else</p>
+		</section>
 
-	<page-section id="ApplicationSection-PersonalDetailsSection" label="Personal Details" class="visited done">
-		<section class="section mh mv">
-			<h2 class="heading heading-intro">Tell us about yourself</h2>
-			<div>
-				<p class="para mb">Please provide some basic personal details in order to get an idea of who you are</p>
-			</div>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
+		<page-section id="ApplicationSection-PersonalDetailsSection" label="Personal Details" class="visited done">
+			<section class="section mh mv">
+				<h2 class="heading heading-intro">Tell us about yourself</h2>
+				<div>
+					<p class="para mb">Please provide some basic personal details in order to get an idea of who you are</p>
+				</div>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+		</page-section>
+		<page-section id="ApplicationSection-IdentitySection" label="Identity" class="visited done">
+			<section class="section mh mv">
+				<h2 class="heading heading-intro">Secure online Id check</h2>
+				<div>
+					<p class="para mb">Please confirm that you have one of the following and are happy for us to check your identity using our secure online
+						check.</p>
+				</div>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+		</page-section>
+		<page-section id="ApplicationSection-FinalQuestionsSection" label="Final Questions" class="visited">
+			<section class="section mh mv">
+				<h2 class="heading heading-intro">Final questions</h2>
+				<div>
+					<p class="para mb">We're nearly there... Do you have a tax file number?</p>
+				</div>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+			<section class="section mh mv">
+				<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum
+					non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus
+					excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
+			</section>
+		</page-section>
+		<page-section id="ApplicationSection-LastStepSection" label="Last Step">
+			<section class="section mh mv">
+				<h2 class="heading heading-intro">Last step</h2>
+				<div>
+					<p class="para mb">Hi Michael... You have chosen to open a new Bett3r account</p>
+					<p class="para mb">Please confirm you agree to the Bett3r Terms and Conditions...</p>
+				</div>
+			</section>
+		</page-section>
 	</page-section>
-	<page-section id="ApplicationSection-IdentitySection" label="Identity" class="visited done">
-		<section class="section mh mv">
-			<h2 class="heading heading-intro">Secure online Id check</h2>
-			<div>
-				<p class="para mb">Please confirm that you have one of the following and are happy for us to check your identity using our secure online check.</p>
-			</div>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
-	</page-section>
-	<page-section id="ApplicationSection-FinalQuestionsSection" label="Final Questions" class="active">
-		<section class="section mh mv">
-			<h2 class="heading heading-intro">Final questions</h2>
-			<div>
-				<p class="para mb">We're nearly there... Do you have a tax file number?</p>
-			</div>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
-		<section class="section mh mv">
-			<p class="para mb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae, expedita ipsam amet reprehenderit ut, necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet voluptates eius quam dolorem laborum odio.</p>
-		</section>
-	</page-section>
-	<page-section id="ApplicationSection-LastStepSection" label="Last Step">
-		<section class="section mh mv">
-			<h2 class="heading heading-intro">Last step</h2>
-			<div>
-				<p class="para mb">Hi Michael... You have chosen to open a new Bett3r account</p>
-				<p class="para mb">Please confirm you agree to the Bett3r Terms and Conditions...</p>
-			</div>
-		</section>
-	</page-section>
-</page-section>
-
-
-
-<amp-standalone-menu [sectionObservable]="blockChange$">
-
-</amp-standalone-menu>
-
-
+</div>
+<amp-standalone-menu [mainContentSelector]="mainContentSelector"></amp-standalone-menu>
