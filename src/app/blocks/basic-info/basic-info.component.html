@@ -1,15 +1,13 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-2/12 palm-mt">
-            <amp-dropdown
+            <amp-titles
                     auto-focus-on='select'
                     [isInSummaryState]="isInSummaryState"
                     [id]="__custom.controls[0].id"
-                    [options]="__custom.controls[0].options"
                     [controlGroup]="__controlGroup"
-                    [label]="'Title'"
                     [required]="true">
-            </amp-dropdown>
+            </amp-titles>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr palm-mr0">
             <amp-first-name

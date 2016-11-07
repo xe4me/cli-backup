@@ -35,7 +35,7 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.maxDate      = moment().subtract( 'years' , 18 ).toDate();
+        this.maxDate      = moment().subtract( 18, 'years' ).toDate();
         this.ageValidator = () => {
             return ( control ) => {
                 let date = moment( control.value , 'DD/MM/YYYY' );

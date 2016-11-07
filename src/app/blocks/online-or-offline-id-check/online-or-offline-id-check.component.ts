@@ -6,9 +6,21 @@ import {
     ChangeDetectionStrategy ,
     ViewContainerRef
 } from '@angular/core';
-import { Validators , FormControl } from '@angular/forms';
-import { FormBlock , ScrollService , FormModelService , ProgressObserverService } from 'amp-ddc-components';
-import { Constants } from '../../shared';
+import {
+    Validators,
+    FormControl
+} from '@angular/forms';
+import {
+    FormBlock ,
+    ScrollService ,
+    FormModelService ,
+    ProgressObserverService ,
+    FormService,
+    clone
+} from 'amp-ddc-components';
+import {
+    Constants
+} from '../../shared';
 @Component( {
     selector        : 'online-or-offline-id-check-block' ,
     templateUrl     : './online-or-offline-id-check.component.html' ,
@@ -27,28 +39,33 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup
-            .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id ,
+                                        new FormControl( null , Validators.required ) );
     }
 
-    private addOrRemoveOnlineIdCheck ( typeOfCheck : string ) {
-        if ( typeOfCheck === Constants.onlineIdCheck && ! this.isOnlineCheckLoaded ) {
-            let onlineIdCheckBlock                   = this.__custom.optionalBlocks[ 0 ];
-            onlineIdCheckBlock.custom.applicantIndex = this.__custom.applicantIndex;
-            this.__loadNext( onlineIdCheckBlock , this.viewContainerRef ).then( () => {
-                this.isOnlineCheckLoaded = true;
-                this.onNext();
-                return;
-            } );
-        } else if ( typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
-            this.__removeNext( this.viewContainerRef ).then( () => {
-                this.isOnlineCheckLoaded = false;
-                this.onNext();
-                return;
-            } );
-        } else {
-            this.onNext();
+    private addOrRemoveOnlineIdCheck(typeOfCheck : string) {
+        const optionalBlocks = clone(this.__custom.optionalBlocks);
+        if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
+            for (let optionalBlock of optionalBlocks) {
+                optionalBlock.custom.applicantIndex = this.__custom.applicantIndex;
+            }
+            this.__loadAllNext(optionalBlocks, this.viewContainerRef).then(() => {
+                setTimeout(() => {
+                    this.onNext();
+                }, 0);
+            });
+            this.isOnlineCheckLoaded = true;
+            return;
         }
+        if (typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
+            for ( let i = 0; i <= optionalBlocks.length; i++ ) {
+                this.__removeNext(this.viewContainerRef);
+            }
+            this.isOnlineCheckLoaded = false;
+            this.onNext();
+            return;
+        }
+        this.onNext();
     }
 
     private onIdCheckSelection ( typeOfCheck : string ) {

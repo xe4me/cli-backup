@@ -16,29 +16,11 @@
                 "commonBlock": false,
                 "path": "blocks/basic-info/basic-info.component",
                 "custom": {
-                    "blockTitle": "Tell us about yourself",
+                    "blockTitle": "Tell us about yourself.",
                     "blockTitle_applicant2": "And now for applicant 2",
                     "controls": [
                         {
-                            "id": "Title",
-                            "options": [
-                                {
-                                    "value": "miss",
-                                    "label": "Miss"
-                                },
-                                {
-                                    "value": "mr",
-                                    "label": "Mr"
-                                },
-                                {
-                                    "value": "mrs",
-                                    "label": "Mrs"
-                                },
-                                {
-                                    "value": "ms",
-                                    "label": "Ms"
-                                }
-                            ]
+                            "id": "Title"
                         },
                         {
                             "id": "FirstName"
@@ -78,7 +60,7 @@
                 "commonBlock": false,
                 "path": "blocks/contact-details/contact-details.component",
                 "custom": {
-                    "blockTitle": "And your contact details...",
+                    "blockTitle": "Just some basic details...",
                     "controls": [
                         {
                             "id": "EmailAddress"
@@ -121,14 +103,32 @@
                     ],
                     "optionalBlocks": [
                         {
+                            "name": "IdentiyCheckPrivacyDeclaration",
+                            "blockType": "PrivacyDeclarationBlock",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "blocks/privacy-declaration/privacy-declaration.component",
+                            "custom": {
+                                "blockTitle": "Before we do that, just to confirm...",
+                                "controls": [
+                                    {
+                                        "id": "AcceptIdentityCheckPrivacyDeclaration"
+                                    }
+                                ],
+                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document.",
+                                "optionalBlocks": [
+
+                                ]
+                            }
+                        },
+                        {
                             "name": "IdCheck",
                             "blockType": "IdCheckBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
                             "path": "blocks/id-check/id-check.component",
                             "custom": {
-                                "blockTitle": "Before we do that, just to confirm…",
-                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document."
+                                "blockTitle": "Checking your ID"
                             }
                         }
                     ]
@@ -153,7 +153,7 @@
                 "commonBlock": false,
                 "path": "blocks/tax-file-number/tax-file-number.component",
                 "custom": {
-                    "blockTitle": "Stuff we need to ask...",
+                    "blockTitle": "Nearly there...",
                     "controls": [
                         {
                             "id": "HasTaxFileNumber",
