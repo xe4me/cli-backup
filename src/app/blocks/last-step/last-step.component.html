@@ -1,4 +1,4 @@
-<amp-form-block [context]="context()">
+<amp-form-block [context]="context()" [withOkButton]='false'>
     <div class="mt mb">
         Hi Charlie... You have chosen to open a new Bett3r account
     </div>
@@ -6,14 +6,14 @@
     </div>
     <amp-form-row>
         <amp-checkbox
-            [isInSummaryState]="isInSummaryState"
-            [controlGroup]="__controlGroup"
-            [id]="__custom.controls[0].id">
+                [isInSummaryState]="isInSummaryState"
+                [controlGroup]="__controlGroup"
+                [id]="__custom.controls[0].id">
             I agree to the Bett3r <a href="javascript:void;">Terms and Conditions</a>
         </amp-checkbox>
     </amp-form-row>
     <amp-form-row>
-        <amp-button (click)="submitForm()" [class]="'btn btn-submit'">
+        <amp-button theme='tools' (click)="submitForm()" class="btn btn-submit palm-1/1">
             Submit
         </amp-button>
     </amp-form-row>

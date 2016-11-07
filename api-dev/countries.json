@@ -1,0 +1,28 @@
+[
+    {
+        "request": {
+            "url": "ddc/public/api/refdata/countries",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "payload": [
+                    {
+                        "countryCode": "AUS",
+                        "country": "Australia"
+                    },
+                    {
+                        "countryCode": "NZL",
+                        "country": "New Zealand"
+                    }
+                ]
+            }
+        }
+    }
+]
+

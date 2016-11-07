@@ -1,14 +1,5 @@
-import {
-    Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
-    AfterViewInit
-} from '@angular/core';
-import {
-    FormBlock ,
-    ScrollService ,
-    FormModelService ,
-    ProgressObserverService ,
-    FormService
-} from 'amp-ddc-components';
+import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from '@angular/core';
+import { FormBlock , ScrollService , FormModelService , ProgressObserverService } from 'amp-ddc-components';
 @Component( {
     selector        : 'source-of-funding-block' ,
     templateUrl     : './source-of-funding.component.html' ,
@@ -17,7 +8,6 @@ import {
 export class SourceOfFundingBlock extends FormBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
-                  private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {

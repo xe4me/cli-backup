@@ -1,11 +1,12 @@
-<amp-form-block [context]="context()">
+<amp-form-block [context]="context()" [withOkButton]='false'>
     <div class="mt mb">
         By opening a Bett3r account, you are agreeing to...
     </div>
     <amp-button
-        [context]="context()"
-        class='btn btn-ok mt+'
-        (click)='acceptPrivacyDeclaration()'>
-                        Continue
+            theme='tools'
+            [context]="context()"
+            class='btn btn-ok mt+'
+            (click)='acceptPrivacyDeclaration()'>
+        Continue
     </amp-button>
 </amp-form-block>

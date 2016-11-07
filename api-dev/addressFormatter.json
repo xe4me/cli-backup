@@ -1,0 +1,59 @@
+[
+    {
+        "request": {
+            "url": "ddc/public/api/qas/doGetAddress/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "meta": {
+                    "url": "",
+                    "method": "GET",
+                    "responseTimeMs": 59,
+                    "requestId": "cf5371f9-9d3c-4014-a74b-963976a3c39c",
+                    "count": 1
+                },
+                "payload": {
+                    "siebel": {
+                        "Locality": "MILLTHORPE",
+                        "State code": "NSW",
+                        "Postcode": "2798",
+                        "Country": "Australia",
+                        "DPID/DID": "66898785",
+                        "AUSBAR.": "1301012020223022212212311113230110113"
+                    },
+                    "crm": {
+                        "Street Address": "MILLTHORPE",
+                        "Suburb": "Pymble",
+                        "State": "NSW",
+                        "Postcode": "2798",
+                        "Country": "Australia",
+                        "DPID": "66898785",
+                        "Barcode": "1301012020223022212212311113230110113"
+                    },
+                    "bank": {
+                        "All postal delivery types": "",
+                        "Building level": "",
+                        "Flat/Unit": "",
+                        "Building number": "1",
+                        "Building name": "",
+                        "Street (Name)": "33 alfred street",
+                        "Street (Type)": "St",
+                        "Locality": "MILLTHORPE",
+                        "State code": "NSW",
+                        "Postcode": "2798",
+                        "Country": "Australia",
+                        "DPID/DID": "66898785",
+                        "AUSBAR.": "1301012020223022212212311113230110113"
+                    }
+                }
+            }
+        }
+    }
+]
+

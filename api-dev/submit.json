@@ -1,7 +1,7 @@
 [
     {
         "request": {
-            "url": "/bolrnotification",
+            "url": "ddc/public/api/bett3r/save",
             "method": "POST"
         },
         "response": {
@@ -11,7 +11,7 @@
             },
             "latency": 100,
             "body": {
-                "fault":{"code":"101504","type":"Status report","message":"Runtime Error","description":"Send timeout"}
+                "payload": {}
             }
         }
     }

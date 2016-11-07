@@ -58,6 +58,7 @@ const PROVIDERS       = [
     ProgressObserverService ,
     FormService
 ];
+import { SharedFormDataService , ApplicantGeneratorService } from './shared';
 const DECLARATIONS    = [
     AmpIntroBlockComponent ,
     AmpFormBlockComponent ,
