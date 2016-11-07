@@ -42,8 +42,9 @@ export class IdCheckBlock extends FormBlock implements OnInit {
 
     public ngOnInit() {
         this.updateGreenIdModel();
-        let scrolledSubscription = this.scrollService.$scrolled.subscribe((_obj) => {
-            if (_obj.componentSelector && _obj.componentSelector.replace('-block', '') === this.__fdn.join('-')) {
+        let scrolledSubscription = this.scrollService.$scrolled.subscribe((scrollEvent) => {
+            if (scrollEvent.componentSelector
+                        && scrollEvent.componentSelector.replace('-block', '') === this.__fdn.join('-')) {
                 if (!this.greenIdShown) {
                     this.greenIdComponent.showGreenId();
                     this.greenIdShown = true;
