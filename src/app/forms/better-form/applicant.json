@@ -20,25 +20,7 @@
                     "blockTitle_applicant2": "And now for applicant 2",
                     "controls": [
                         {
-                            "id": "Title",
-                            "options": [
-                                {
-                                    "value": "miss",
-                                    "label": "Miss"
-                                },
-                                {
-                                    "value": "mr",
-                                    "label": "Mr"
-                                },
-                                {
-                                    "value": "mrs",
-                                    "label": "Mrs"
-                                },
-                                {
-                                    "value": "ms",
-                                    "label": "Ms"
-                                }
-                            ]
+                            "id": "Title"
                         },
                         {
                             "id": "FirstName"
