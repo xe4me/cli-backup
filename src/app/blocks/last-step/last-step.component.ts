@@ -8,13 +8,6 @@ import {
     AfterViewInit,
 } from '@angular/core';
 import {
-    RequestOptions,
-    Headers
-} from '@angular/http';
-import {
-    FormGroup
-} from '@angular/forms';
-import {
     Router
 } from '@angular/router';
 import {
@@ -39,7 +32,6 @@ export class LastStepBlock extends FormBlock {
     private successMessage;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
-                  private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService,
@@ -54,14 +46,19 @@ export class LastStepBlock extends FormBlock {
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
-                // TODO remove this once welcome screen is done
-                this.successMessage = result.payload;
-                this.submitErrorMessage = null;
-                this._cd.markForCheck();
-                // TODO navigate to welcome screen
+                if(result.payload.resultStatus == "SUCCESS"){
+                    this.accountsListDataService.setAccounts(result.payload.accounts);
+                    let navigateTo = this.accountsListDataService.isNormal()? 'confirmation' : 'confirmationWithCondition';
+                    this.router.navigate([navigateTo]);
+                }else{
+                    // TODO remove this once error handling is done
+                     this.successMessage = result.payload;
+                     this.submitErrorMessage = null;
+                     this._cd.markForCheck();
+                }
             }, (error) => {
                 this.submitErrorMessage = JSON.stringify(error);
                 this._cd.markForCheck();
-        });
+    });
     }
 }
