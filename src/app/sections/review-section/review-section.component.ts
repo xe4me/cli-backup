@@ -17,7 +17,7 @@ import { ScrollService } from '../../services/scroll/scroll.service';
 @Component( {
     selector   : 'review-section' ,
     template   : `
-    <div id='Application-ReviewSection-block'>
+    <div id='Application-ReviewSection-block' data-section='ReviewSection'>
         <div class='section' *ngIf="createReviewSection" [hidden]="hideReviewSection">
             <div class="container">
                 <div class="review-wrapper">
