@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AmpGreenIdServices } from '../../modules/amp-greenid-block/components/services/amp-greenid-service';
-import { AmpGreenidBlockComponent } from '../../modules/amp-greenid-block/components/amp-greenid-block';
+import { AmpGreenIdBlockComponent } from '../../modules/amp-greenid-block/components/amp-greenid-block';
 import { FormControl, FormGroup, FormBuilder, FormsModule } from '@angular/forms';
 import { AmpErrorModule } from '../amp-error/amp-error.module';
 import { Http } from '@angular/http';
@@ -9,7 +9,7 @@ import { AmpButtonModule } from '../amp-button/amp-button.module';
 import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
 
 const DECLARATIONS = [
-    AmpGreenidBlockComponent
+    AmpGreenIdBlockComponent
 ];
 @NgModule( {
     declarations : [ ...DECLARATIONS ] ,

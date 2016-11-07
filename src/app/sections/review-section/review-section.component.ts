@@ -17,7 +17,7 @@ import { ScrollService } from '../../services/scroll/scroll.service';
 @Component( {
     selector   : 'review-section' ,
     template   : `
-    <div id='Application-ReviewSection-block'>
+    <div id='Application-ReviewSection-block' data-section='ReviewSection'>
         <div class='section' *ngIf="createReviewSection" [hidden]="hideReviewSection">
             <div class="container">
                 <div class="review-wrapper">
@@ -76,12 +76,14 @@ export class ReviewSectionComponent implements OnInit {
             if (event.componentSelector === this.__fdn.join('')) {
                 this.hideReviewSection = false;
                 this.createReviewSection = true;
+                this._cd.markForCheck();
             }
         });
 
         this.scrollService.$scrolled.subscribe((event) => {
             let block = event.componentSelector || '';
             this.hideReviewSection = block.indexOf(this.__fdn.join('-')) === -1;
+            this._cd.markForCheck();
         });
 
         // Filter blocks for review main and sticky columns.
