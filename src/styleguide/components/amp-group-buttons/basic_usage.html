@@ -19,6 +19,7 @@
                 class="1/5"
                 (select)='onButtonClick($event)'
                 [required]="required"
+                [isInSummaryState]="isInSummaryState"
                 [buttons]='fullOrPartialButtons.buttons'
                 [controlGroup]='controlGroup'
                 [groupName]='fullOrPartialButtons.fullOrPartial'
@@ -41,6 +42,11 @@
         <div class='content'>
             <amp-button [attr.theme]="themeService.theme.attr" (click)='required=!required' class='btn btn-ok'>
                 Required {{ required }}
+            </amp-button>
+        </div>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" (click)='isInSummaryState=!isInSummaryState' class='btn btn-ok'>
+                isInSummaryState
             </amp-button>
         </div>
     </section>

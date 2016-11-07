@@ -260,6 +260,26 @@
         "readme": "<p>Custom Block for Amp Country Dropdown Component.</p>\n"
     },
     {
+        "name": "Amp Titles Dropdown",
+        "sources": [
+            "src/app/components/amp-country/amp-country.component.ts"
+        ],
+        "id": "AmpTitlesComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-titles/basic_usage.html",
+                "styles": "src/styleguide/components/amp-titles/basic_usage.scss",
+                "source": "src/styleguide/components/amp-titles/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-titles/amp-titles.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-titles/amp-titles.component.spec.ts",
+                "component": "amp-titles-block-basic-usage",
+                "component_src_location": "components/amp-titles/basic_usage",
+                "name": "Amp Titles Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for Amp Titles Dropdown Component.</p>\n"
+    },
+    {
         "name": "Amp Dropdown",
         "sources": [
             "src/app/components/amp-dropdown/amp-dropdown.component.ts"

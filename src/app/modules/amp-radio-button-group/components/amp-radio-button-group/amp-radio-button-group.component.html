@@ -1,6 +1,6 @@
 <div *ngFor='let button of buttons' class='amp-radio-button-group'>
     <input
-            [disabled]='disabled'
+            [disabled]='disabled || isInSummaryState'
             [attr.data-automation-id]='"radio_button_" + button.id+"_"+_randomString'
             type='radio'
             [attr.id]='button.id+"_"+_randomString'
