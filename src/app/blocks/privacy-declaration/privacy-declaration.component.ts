@@ -16,7 +16,8 @@ export class PrivacyDeclarationBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.__controlGroup
+            .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
     }
 
     private acceptPrivacyDeclaration () {

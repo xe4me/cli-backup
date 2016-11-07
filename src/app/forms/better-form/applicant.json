@@ -16,7 +16,7 @@
                 "commonBlock": false,
                 "path": "blocks/basic-info/basic-info.component",
                 "custom": {
-                    "blockTitle": "Tell us about yourself.",
+                    "blockTitle": "Tell us about yourself",
                     "blockTitle_applicant2": "And now for applicant 2",
                     "controls": [
                         {
@@ -51,7 +51,7 @@
                         },
                         {
                             "id": "DateOfBirth",
-                            "ageValidationMsg" : "You must be at least 18 years old."
+                            "ageValidationMsg": "You must be at least 18 years old."
                         }
                     ]
                 }
@@ -78,7 +78,7 @@
                 "commonBlock": false,
                 "path": "blocks/contact-details/contact-details.component",
                 "custom": {
-                    "blockTitle": "Just some basic details...",
+                    "blockTitle": "And your contact details...",
                     "controls": [
                         {
                             "id": "EmailAddress"
@@ -113,7 +113,7 @@
                 "commonBlock": false,
                 "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
                 "custom": {
-                    "blockTitle": "Secure Online ID Check",
+                    "blockTitle": "Tell us how to identify you",
                     "controls": [
                         {
                             "id": "OnlineIDCheck"
@@ -127,8 +127,8 @@
                             "commonBlock": false,
                             "path": "blocks/id-check/id-check.component",
                             "custom": {
-                                "blockTitle": "Checking your ID",
-                                "checkboxLabel" : "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document."
+                                "blockTitle": "Before we do that, just to confirm…",
+                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document."
                             }
                         }
                     ]
@@ -153,7 +153,7 @@
                 "commonBlock": false,
                 "path": "blocks/tax-file-number/tax-file-number.component",
                 "custom": {
-                    "blockTitle": "Nearly there...",
+                    "blockTitle": "Stuff we need to ask...",
                     "controls": [
                         {
                             "id": "HasTaxFileNumber",
@@ -216,7 +216,7 @@
                 "commonBlock": false,
                 "path": "blocks/source-of-funding/source-of-funding.component",
                 "custom": {
-                    "blockTitle": "Please tell us your...",
+                    "blockTitle": "More stuff...",
                     "controls": [
                         {
                             "id": "PrimarySourceOfWealth",
@@ -327,7 +327,7 @@
                 "commonBlock": false,
                 "path": "blocks/residency/residency.component",
                 "custom": {
-                    "blockTitle": "Last questions... We promise",
+                    "blockTitle": "Nearly there...",
                     "controls": [
                         {
                             "id": "CountryOfCitizenship"

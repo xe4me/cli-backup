@@ -36,7 +36,8 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.__controlGroup
+            .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
         this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
         this.formModelService.saveResponse.subscribe( ( result ) => {
             if ( result.payload.meta && result.payload.meta.id ) {
@@ -45,8 +46,6 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         } );
         // load applicant 1
         this.__loadAt( this.applicantGenerator.getApplicantSection( 1 ) , 2 );
-
-
 
         // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
         // then go next
@@ -70,7 +69,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
-            this.__removeAt( 3 ).then( ()=> {
+            this.__removeAt( 3 ).then( () => {
                 this.applicant2Added = false;
                 this.onNext();
             } );

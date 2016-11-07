@@ -27,24 +27,25 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.__controlGroup
+            .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
     }
 
     private addOrRemoveOnlineIdCheck ( typeOfCheck : string ) {
         if ( typeOfCheck === Constants.onlineIdCheck && ! this.isOnlineCheckLoaded ) {
             let onlineIdCheckBlock                   = this.__custom.optionalBlocks[ 0 ];
             onlineIdCheckBlock.custom.applicantIndex = this.__custom.applicantIndex;
-            this.__loadNext( onlineIdCheckBlock , this.viewContainerRef ).then( ()=> {
+            this.__loadNext( onlineIdCheckBlock , this.viewContainerRef ).then( () => {
                 this.isOnlineCheckLoaded = true;
                 this.onNext();
                 return;
-            } )
+            } );
         } else if ( typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
-            this.__removeNext( this.viewContainerRef ).then( ()=> {
+            this.__removeNext( this.viewContainerRef ).then( () => {
                 this.isOnlineCheckLoaded = false;
                 this.onNext();
                 return;
-            } )
+            } );
         } else {
             this.onNext();
         }
