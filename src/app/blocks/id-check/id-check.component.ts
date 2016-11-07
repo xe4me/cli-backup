@@ -5,7 +5,8 @@ import {
     OnInit,
     ChangeDetectionStrategy,
     Input,
-    AfterViewInit
+    AfterViewInit,
+    ViewChild
 } from '@angular/core';
 import {
     FormBlock ,
@@ -14,7 +15,8 @@ import {
     ProgressObserverService ,
     FormService,
     IGreenIdFormModel,
-    Environments
+    Environments,
+    AmpGreenIdBlockComponent
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'id-check-block' ,
@@ -22,13 +24,14 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class IdCheckBlock extends FormBlock implements OnInit {
-    private modelValue : IGreenIdFormModel;
+    private greenIdModel : IGreenIdFormModel;
     private configScriptUrl = Environments.property.GreenId.configScriptUrl;
     private uiScriptUrl = Environments.property.GreenId.uiScriptUrl;
     private styleUrl = Environments.property.GreenId.styleUrl;
     private environment = Environments.property.GreenId.environment;
     private checkboxLabel : string;
-
+    @ViewChild(AmpGreenIdBlockComponent) private greenIdComponent : AmpGreenIdBlockComponent;
+    private greenIdShown = false;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private formService : FormService ,
@@ -39,12 +42,25 @@ export class IdCheckBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit() {
+        this.updateGreenIdModel();
+        let scrolledSubscription = this.scrollService.$scrolled.subscribe((_obj) => {
+            if (_obj.componentSelector && _obj.componentSelector.replace('-block', '') === this.__fdn.join('-')) {
+                if (!this.greenIdShown) {
+                    this.greenIdComponent.showGreenId();
+                    this.greenIdShown = true;
+                    scrolledSubscription.unsubscribe();
+                }
+            }
+        });
+    }
+
+    public updateGreenIdModel() {
         const applicantIndex = this.__custom.applicantIndex;
         const applicant = this.__form.get(['Application', `Applicant${applicantIndex}Section` ]).value;
         const personalDetails = applicant.PersonalDetailsSection;
         const residentialAddress = personalDetails.Address.Address.residentialAddress.manualAddress;
-        this.checkboxLabel = this.__custom.checkboxLabel;
-        this.modelValue = {
+
+        this.greenIdModel = {
             firstName : personalDetails.BasicInfo.FirstName,
             lastName : personalDetails.BasicInfo.LastName,
             middleNames : personalDetails.BasicInfo.MiddleName || '',
