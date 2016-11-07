@@ -44,8 +44,8 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     }
 
     private addOrRemoveOnlineIdCheck(typeOfCheck: string) {
+        const optionalBlocks = clone(this.__custom.optionalBlocks);
         if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
-            const optionalBlocks = clone(this.__custom.optionalBlocks);
             for (let optionalBlock of optionalBlocks) {
                 optionalBlock.custom.applicantIndex = this.__custom.applicantIndex;
             }
@@ -54,8 +54,9 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             return;
         }
         if (typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
-            this.__removeNext(this.viewContainerRef);
-            this.__removeNext(this.viewContainerRef);
+            for ( let i = 0; i <= optionalBlocks.length; i++ ) {
+                this.__removeNext(this.viewContainerRef);
+            }
             this.isOnlineCheckLoaded = false;
             this.onNext();
             return;
