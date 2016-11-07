@@ -10,6 +10,7 @@ import { ThemeService } from '../../services/theme';
 export default class AmpRadioGroupButtonComponentBasicUsage implements AfterViewInit {
     oneOptioncontrolGroup : FormGroup      = new FormGroup( {} );
     multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
+    isInSummaryState                       = false;
 
     get oneOptionControl () {
         return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];

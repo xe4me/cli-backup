@@ -11,6 +11,7 @@ $amp-switch-border-width : 1px;
 $amp-switch-font-size : 16px;
 $hover-background-color : $amp-colour-secondary;
 $active-background-color : $amp-colour-primary;
+$disabled-color : rgba(0, 0, 0, 0.54);
 
 $small-button-width : 80px;
 :host {
@@ -56,7 +57,7 @@ $small-button-width : 80px;
     &:checked {
       & + label {
         background-color : $amp-colour-sky-blue;;
-        color            : white;
+        color            : white !important;
       }
     }
     &:focus {
@@ -64,7 +65,32 @@ $small-button-width : 80px;
         @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
       }
     }
+    &:not([disabled]) {
+      + label {
+        color  : $amp-colour-sky-blue;
+        border : solid $amp-colour-sky-blue $amp-switch-border-width;
+      }
+    }
+    &[disabled] {
+      + label {
+        color  : $disabled-color;
+        border : solid $disabled-color $amp-switch-border-width;
+      }
+      &:checked {
+        & + label {
+          background-color : $disabled-color;;
+        }
+      }
+    }
   }
+  &.disabled {
+    > span {
+      &:first-child label {
+        border-left : solid $disabled-color $amp-switch-border-width;
+      }
+    }
+  }
+
   > span {
 
     margin-left   : -2px;
@@ -90,12 +116,10 @@ $small-button-width : 80px;
       width            : 100%;
       @include amp-family($amp-switch-font-family);
       background-color : white;
-      color            : $amp-colour-sky-blue;
       font-size        : $amp-switch-font-size;
       font-weight      : 600;
       text-align       : center;
       text-shadow      : none;
-      border           : solid $amp-colour-sky-blue $amp-switch-border-width;
       padding          : 0 20px;
     }
 

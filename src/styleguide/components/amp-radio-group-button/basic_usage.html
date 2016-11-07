@@ -30,6 +30,7 @@
                 (select)='onMultipleRadioButtonSelect($event)'
                 [buttons]='radiosMultipleOptions.buttons'
                 [controlGroup]='multipleOptioncontrolGroup'
+                [isInSummaryState]='isInSummaryState'
                 [groupName]='radiosMultipleOptions.groupName'
         >
         </amp-radio-button-group>
@@ -54,6 +55,9 @@
         <br>
         <button class='btn btn-ok btn-full btn--secondary'
                 (click)='multipleOptionControl.setValue("fewer_than_five_years")'>Select'Fewer than five years'
+        </button>
+        <button class='btn btn-ok btn-full btn--secondary'
+                (click)='isInSummaryState=!isInSummaryState'>isInSummaryState {{ isInSummaryState }}
         </button>
         <div class='control-value'>
             Control value : {{ multipleOptionControl.value}}

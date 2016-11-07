@@ -3,11 +3,11 @@
 @import './themes/theme-tools';
 
 :host {
-    display : block;
-    @include media-query(palm) {
-        margin-bottom : 8px;
-        margin-top    : 26px;
-    }
+  display : block;
+  @include media-query(palm) {
+    margin-bottom : 8px;
+    margin-top    : 26px;
+  }
 }
 
 $radio-width : 30px !default;
@@ -18,129 +18,130 @@ $radio-margin : 0;
 $radio-font-weight : 300 !default;
 
 .amp-radio-button-group {
-    line-height : 45px;
-    @extend %#{$namespace}font-size-medium;
-    @include amp-family($amp-font-open-sans-semibold);
+  line-height : 45px;
+  @extend %#{$namespace}font-size-medium;
+  @include amp-family($amp-font-open-sans-semibold);
 
-    font-weight : $radio-font-weight;
+  font-weight : $radio-font-weight;
 
+  display     : block;
+  margin      : $radio-margin;
+  white-space : nowrap;
+
+  position    : relative;
+  &:nth-child(n+2) {
+    margin-top : 23px;
+  }
+  input {
+    &:not([disabled]) + label {
+      cursor : pointer;
+      .container {
+        &:hover {
+          .off {
+            border-color : rgba($amp-colour-sky-blue, 0.87);
+          }
+        }
+      }
+    }
+    &[disabled] + label {
+      .container {
+        .off {
+          border-color : rgba(0, 0, 0, 0.54);
+        }
+        .checked .off {
+          border-color : rgba(0, 0, 0, 0.54);
+        }
+        .on {
+          background-color : rgba(0, 0, 0, 0.54);
+        }
+      }
+    }
+  }
+  .container {
+    box-sizing : border-box;
+    position   : absolute;
+
+    display    : inline-block;
+    width      : $radio-width;
+    height     : $radio-width;
+
+    @include rtl(left, 0, auto);
+    @include rtl(right, auto, 0);
+  }
+
+  .label {
+    line-height    : 45px;
+    margin-top     : -10px;
+    display        : inline-block;
+    vertical-align : top;
+    position       : relative;
+    white-space    : normal;
+
+    @include media-query(tablet-and-up) {
+      font-size : $font-size-small;
+    }
+
+    @include media-query(palm) {
+      line-height : 30px;
+      margin-top  : 0;
+      @extend %#{$namespace}font-size-small;
+    }
+    //  pointer-events: none;  ???
+    width          : auto;
+    margin-left    : 50px;
+    // @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
+    @include rtl(margin-right, 0, $radio-text-margin + $radio-width);
+
+  }
+
+  .root {
+    text-align  : left;
+    line-height : 1;
     display     : block;
-    margin      : $radio-margin;
-    white-space : nowrap;
-    cursor      : pointer;
-    position    : relative;
-    &:nth-child(n+2) {
-        margin-top : 23px;
-    }
-    input {
-        &:not([disabled]) + label {
-            .container {
-                &:hover {
-                    .off {
-                        border-color : rgba($amp-colour-sky-blue, 0.87);
-                    }
-                }
-            }
-        }
-        &[disabled] + label {
-            .container {
-                .off {
-                    border-color : rgba(0, 0, 0, 0.54);
-                }
-                .checked .off {
-                    border-color : rgba(0, 0, 0, 0.54);
-                }
-                .on {
-                    background-color : rgba(0, 0, 0, 0.54);
-                }
-            }
-        }
-    }
-    .container {
-        box-sizing : border-box;
-        position   : absolute;
 
-        display    : inline-block;
-        width      : $radio-width;
-        height     : $radio-width;
-        cursor     : pointer;
-        @include rtl(left, 0, auto);
-        @include rtl(right, auto, 0);
-    }
-
-    .label {
-        line-height    : 45px;
-        margin-top     : -10px;
-        display        : inline-block;
-        vertical-align : top;
-        position       : relative;
-        white-space    : normal;
-
-        @include media-query(tablet-and-up) {
-            font-size : $font-size-small;
-        }
-
-        @include media-query(palm) {
-            line-height : 30px;
-            margin-top  : 0;
-            @extend %#{$namespace}font-size-small;
-        }
-        //  pointer-events: none;  ???
-        width          : auto;
-        margin-left    : 50px;
-        // @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
-        @include rtl(margin-right, 0, $radio-text-margin + $radio-width);
-
-    }
-
-    .root {
-        text-align  : left;
-        line-height : 1;
-        display     : block;
-        cursor      : pointer;
-    }
+  }
 
 }
 
 .off {
-    box-sizing    : border-box;
-    position      : absolute;
-    top           : 0;
-    left          : 0;
-    width         : $radio-width;
-    height        : $radio-width;
-    border        : solid 2px;
-    border-radius : 50%;
-    @include transition(border-color ease 0.28s);
+  box-sizing    : border-box;
+  position      : absolute;
+  top           : 0;
+  left          : 0;
+  width         : $radio-width;
+  height        : $radio-width;
+  border        : solid 2px;
+  border-radius : 50%;
+  @include transition(border-color ease 0.28s);
 }
 
 .on {
-    box-sizing    : border-box;
-    position      : absolute;
-    top           : 0;
-    left          : 0;
-    width         : $radio-width;
-    height        : $radio-width;
-    border-radius : 50%;
-    @include transition(transform ease 0.28s);
-    transform     : scale(0);
+  box-sizing    : border-box;
+  position      : absolute;
+  top           : 0;
+  left          : 0;
+  width         : $radio-width;
+  height        : $radio-width;
+  border-radius : 50%;
+  @include transition(transform ease 0.28s);
+  transform     : scale(0);
 
-    .checked & {
-        transform : scale(0.5);
-    }
+  .checked & {
+    transform : scale(0.5);
+  }
 }
 
 .off {
 
-    border-color : rgba(0, 0, 0, 0.54);
+  border-color : rgba(0, 0, 0, 0.54);
 }
 
 .on {
 
-    background-color : rgba($amp-colour-sky-blue, 0.87);
+  background-color : rgba($amp-colour-sky-blue, 0.87);
 }
 
 .checked .off {
 
-    border-color : rgba($amp-colour-sky-blue, 0.87);
+  border-color : rgba($amp-colour-sky-blue, 0.87);
 }

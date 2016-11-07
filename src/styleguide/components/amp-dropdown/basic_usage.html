@@ -4,7 +4,7 @@
         <amp-dropdown
                 #dropDown
                 [attr.theme]="themeService.theme.attr"
-                [isInSummaryState]='false'
+                [isInSummaryState]='isInSummaryState'
                 [id]='"Title"'
                 [label]='"Title"'
                 [labelHidden]='"HiddenLabel"'
@@ -25,6 +25,7 @@
 
         <button (click)='setTo("mr")'>Set to Mr</button>
         <button (click)='setTo(null)'>Deselect</button>
+        <button (click)='isInSummaryState=!isInSummaryState'>isInSummaryState</button>
 
     </div>
 </form>
