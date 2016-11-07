@@ -2,12 +2,12 @@
 @import './themes/theme-tools';
 
 :host {
-  position : relative;
-  display  : inline-block;
+    position : relative;
+    display  : inline-block;
 }
 
 .icon-amp-tooltip {
-  @include hover-focus {
-    color : $amp-colour-secondary;
-  }
+    @include hover-focus {
+        color : $amp-colour-secondary;
+    }
 }

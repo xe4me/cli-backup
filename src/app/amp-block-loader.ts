@@ -336,7 +336,7 @@ export abstract class AmpBlockLoader {
     }
 
     private loadAllNext ( _def : FormDefinition[] ,
-                          _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>[]> {
+                          _viewContainerRef : ViewContainerRef ) : Promise<any> {
         let promises = [];
         if ( _def && _def.length ) {
             let index = this.getIndex( _viewContainerRef );
@@ -348,9 +348,8 @@ export abstract class AmpBlockLoader {
                 index ++;
             }
             return Promise.all( promises );
-        } else {
-            return Promise.reject('def is empty');
         }
+        return Promise.reject( 'def is empty' );
     }
 
     private getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) : number {
