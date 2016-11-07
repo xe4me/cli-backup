@@ -46,13 +46,13 @@ $radio-font-weight : 300 !default;
     &[disabled] + label {
       .container {
         .off {
-          border-color : rgba(0, 0, 0, 0.54);
+          border-color : $disabled-color;
         }
         .checked .off {
-          border-color : rgba(0, 0, 0, 0.54);
+          border-color : $disabled-color;
         }
         .on {
-          background-color : rgba(0, 0, 0, 0.54);
+          background-color : $disabled-color;
         }
       }
     }

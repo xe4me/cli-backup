@@ -3,6 +3,7 @@ import { RequiredValidator } from '../../../../modules/amp-utils';
 import { DeviceService } from '../../../../services/device/device.service';
 import { BaseControl } from '../../../../base-control';
 import { Validators } from '@angular/forms';
+import { KeyCodes } from '../../../amp-utils/key-kodes.utils';
 @Component( {
     selector        : 'amp-dropdown' ,
     inputs          : [
@@ -47,12 +48,12 @@ export class AmpDropdownComponent extends BaseControl {
     protected hasWidth : boolean         = false;
     protected isInSummaryState : boolean = false;
     protected labelHidden : boolean      = false;
-    protected fieldItemKey      = 'label';
-    protected fieldValueKey     = 'value';
+    protected fieldItemKey               = 'label';
+    protected fieldValueKey              = 'value';
     protected currentOption;
-    protected _limitTo : number = 999;
-    protected select            = new EventEmitter();
-    protected selectedOption    = {};
+    protected _limitTo : number          = 999;
+    protected select                     = new EventEmitter();
+    protected selectedOption             = {};
     protected selectElem;
     protected dropdownElem;
     protected optionsElem;
@@ -172,22 +173,21 @@ export class AmpDropdownComponent extends BaseControl {
 
     protected onKeypressEvent ( $event ) {
         switch ( $event.keyCode ) {
-            // Enter key
-            case 13:
+            case KeyCodes.ENTER:
                 $event.preventDefault();
                 this.toggleOptions();
                 break;
-            // Space key
-            case 32:
+            case KeyCodes.DOWN:
+                this.showOptions( true );
+                break;
+            case KeyCodes.SPACE:
                 $event.preventDefault();
                 this.toggleOptions();
                 break;
-            // Escape key
-            case 27:
+            case KeyCodes.ESCAPE:
                 this.hideOptions();
                 break;
-            // Tab key
-            case 9:
+            case KeyCodes.TAB:
                 this.hideOptions();
                 break;
             default:
@@ -218,7 +218,7 @@ export class AmpDropdownComponent extends BaseControl {
     }
 
     protected onFocusEvent ( $event ) {
-        this.showOptions( false );
+        //      this.showOptions( false );
     }
 
     protected setSelectedOption ( type ) {

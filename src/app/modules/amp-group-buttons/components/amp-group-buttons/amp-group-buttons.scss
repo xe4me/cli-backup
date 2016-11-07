@@ -11,7 +11,6 @@ $amp-switch-border-width : 1px;
 $amp-switch-font-size : 16px;
 $hover-background-color : $amp-colour-secondary;
 $active-background-color : $amp-colour-primary;
-$disabled-color : rgba(0, 0, 0, 0.54);
 
 $small-button-width : 80px;
 :host {
@@ -50,6 +49,7 @@ $small-button-width : 80px;
   display      : table;
   width        : 100%;
   max-width    : 100%;
+  min-width    : 260px;
   table-layout : fixed;
   overflow     : hidden;
   input {
@@ -114,6 +114,7 @@ $small-button-width : 80px;
       box-sizing       : border-box;
       display          : inline-block;
       width            : 100%;
+      min-width        : 130px;
       @include amp-family($amp-switch-font-family);
       background-color : white;
       font-size        : $amp-switch-font-size;

@@ -2,7 +2,7 @@
       <span *ngFor='let button of buttons; let i=index; let last = last;'>
               <input class="sr-only"
                      [disabled]='disabled || isInSummaryState'
-                     [attr.data-automation-id]='"radio_button_" + button.id+"_"+_randomString'
+                     [attr.data-automation-id]='"group_button_" + button.id+"_"+_randomString'
                      type='radio'
                      [attr.id]='button.id+"_"+_randomString'
                      [attr.name]='randomizedId'

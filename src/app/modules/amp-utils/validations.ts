@@ -18,7 +18,7 @@ export class RequiredValidator {
                         }
                     };
                 } else {
-                    if ( ! c.value || c.value.length === 0 ) {
+                    if ( (! c.value || c.value.length === 0) && (c.value !== 0) ) {
                         return {
                             required : {
                                 text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +

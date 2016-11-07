@@ -112,7 +112,6 @@ describe( 'amp-checkbox component' , () => {
         fixture.detectChanges();
         /// Let's check again
         expect( Component.isInSummaryState ).toBeTruthy();
-        expect( (' ' + ContainerElem.className + ' ').indexOf( ' hidden ' ) ).toBeGreaterThan( - 1 );
     } );
     it( 'Should emit a select event to the parent component after clicking on the checkbox ' , () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );

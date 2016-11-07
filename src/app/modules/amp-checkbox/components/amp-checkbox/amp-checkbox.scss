@@ -74,6 +74,19 @@ $checkbox-margin : 0;
 
       }
     }
+    &[disabled] {
+
+      + label {
+        .off {
+          border-color : $disabled-color;
+        }
+        .on {
+          border-color : $disabled-color;
+        }
+
+      }
+
+    }
   }
 
   label {
@@ -94,16 +107,7 @@ $checkbox-margin : 0;
       visibility       : visible;
       @include transition(all .7s ease-in-out);
       transition-delay : 0s;
-      &.hidden {
-
-        opacity          : 0;
-        visibility       : hidden;
-        @include transition(all .2s ease-in-out !important);
-        transition-delay : 1.2s !important;
-      }
-
       display          : inline-block;
-
       @include rtl(left, 0, auto);
       @include rtl(right, auto, 0);
 
@@ -149,17 +153,6 @@ $checkbox-margin : 0;
       width            : auto;
       @include rtl(margin-left, $checkbox-text-margin + $checkbox-width, 0);
       @include rtl(margin-right, 0, $checkbox-text-margin + $checkbox-width);
-      &.summary-state {
-        @include transition(margin .2s ease-in-out !important);
-        transition-delay : 1.2s !important;
-        @include rtl(margin-left, 0 !important, 0);
-        @include rtl(margin-right, 0, 0);
-
-        > .label {
-          margin-left : 0;
-        }
-
-      }
     }
   }
 
