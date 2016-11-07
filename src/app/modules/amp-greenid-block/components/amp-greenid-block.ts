@@ -181,7 +181,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         window['greenidUI'].setup(options);
     }
 
-
     private getScript(stringUrl : string) : Promise<string> {
         return new Promise((resolve) => {
             this.loadScript(stringUrl).onload = () => {
