@@ -45,7 +45,7 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
             ])
     ]
 })
-export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
+export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     @Input() id : string = 'green-id-identity-check';
     @Input() form : IGreenIdFormModel; // form model input
     @Input() configScriptUrl; // all the api urls that need to be imported, the js is loaded asnyc
@@ -55,10 +55,11 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
     @Input() controlGroup : FormGroup;
     @Input() environment : string = 'test';
     @Input() checkboxLabel : string;
+    @Input() showOnReady = false;
     private greenIdControlGroup : FormGroup;
     private loadApiScripts : Promise<any>;
     private domAdapter : DomAdapter;
-    private greenIdShowing : boolean = false;
+    private greenIdShowing : boolean = true;
     private greenIdSettings : any;
 
     private greenIdCredentials = {
@@ -87,17 +88,17 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
         this.loadApiScripts = new Promise<any>(this.loadApiScriptsHandler).then(() => {
             this.setupGreenId();
             this.AmpGreenIdServices
-            .getTheToken(this.form)
-            .subscribe((response) => {
-                    if (response) {
-                        this.updateModel(response.payload);
-                        this.showGreenId(response.payload.verificationToken);
-                        this._cd.markForCheck();
+                .getTheToken(this.form)
+                .subscribe((response) => {
+                        if (response) {
+                            this.updateModel(response.payload);
+                            if (this.showOnReady) {
+                                this.showGreenId();
+                            }
+                        }
                     }
-                }
-            );
+                );
         });
-        this.greenIdShowing = true;
     }
 
     public createControls() {
@@ -117,6 +118,22 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
         if (!this.keepControl && this.controlGroup && this.id) {
             this.controlGroup.removeControl(this.id);
         }
+    }
+
+    public showGreenId() : void {
+        const verificationToken = this.greenIdControlGroup.controls['verificationToken'];
+        if (verificationToken.value) {
+            this.showGreenIdInternal();
+        } else {
+            let changes = verificationToken.valueChanges.subscribe(() => {
+                this.showGreenIdInternal();
+                changes.unsubscribe();
+            });
+        }
+    }
+
+    private showGreenIdInternal() {
+        window['greenidUI'].show(this.greenIdCredentials.accountId, this.greenIdCredentials.password, this.greenIdControlGroup.controls['verificationToken'].value);
     }
 
     private loadApiScriptsHandler = (resolve, reject) => {
@@ -164,9 +181,6 @@ export class AmpGreenidBlockComponent implements OnInit, OnDestroy {
         window['greenidUI'].setup(options);
     }
 
-    private showGreenId(verificationToken : string) : void {
-        window['greenidUI'].show(this.greenIdCredentials.accountId, this.greenIdCredentials.password, verificationToken);
-    }
 
     private getScript(stringUrl : string) : Promise<string> {
         return new Promise((resolve) => {
