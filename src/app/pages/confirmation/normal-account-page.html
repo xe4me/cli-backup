@@ -1,0 +1,28 @@
+<div class="container blocks-wrapper">
+    <div class="main">
+        <h2 class="heading">Thank you. Your Bett3r account is now ready</h2>
+        <accounts-list>
+        </accounts-list>
+        <p>Download the My AMP app to start using your account and remeber to keep these accounts numbers handy.</p>
+        <amp-button
+            class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
+            (click)="goToIOSAppStore()">
+            IOS App Store
+        </amp-button>
+        <amp-button
+            class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
+            (click)="goToGooglePlayStore()">
+            Google Play Store
+        </amp-button>
+        <amp-button
+            class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
+            (click)="getAccountPDF()">
+            Your account PDF
+        </amp-button>
+        <amp-button
+            class="btn btn-ok mr"
+            (click)="finsh()">
+            Finish
+        </amp-button>
+    </div>
+</div>
