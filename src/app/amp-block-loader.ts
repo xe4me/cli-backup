@@ -347,7 +347,6 @@ export abstract class AmpBlockLoader {
                 promises.push( this.loadAt( def , index ) );
                 index ++;
             }
-            console.log(promises);
             return Promise.all( promises );
         } else {
             return Promise.reject('def is empty');
