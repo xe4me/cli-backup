@@ -54,7 +54,7 @@ export class IdCheckBlock extends FormBlock implements OnInit {
         });
     }
 
-    public updateGreenIdModel() {
+    private updateGreenIdModel() {
         const applicantIndex = this.__custom.applicantIndex;
         const applicant = this.__form.get(['Application', `Applicant${applicantIndex}Section` ]).value;
         const personalDetails = applicant.PersonalDetailsSection;

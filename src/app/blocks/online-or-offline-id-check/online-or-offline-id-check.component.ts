@@ -49,7 +49,11 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             for (let optionalBlock of optionalBlocks) {
                 optionalBlock.custom.applicantIndex = this.__custom.applicantIndex;
             }
-            this.__loadAllNext(optionalBlocks, this.viewContainerRef);
+            this.__loadAllNext(optionalBlocks, this.viewContainerRef).then(() => {
+                setTimeout(() => {
+                    this.onNext();
+                }, 0);
+            });
             this.isOnlineCheckLoaded = true;
             return;
         }
@@ -60,8 +64,6 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             this.isOnlineCheckLoaded = false;
             this.onNext();
             return;
-        } else {
-            this.onNext();
         }
     }
 
