@@ -1,12 +1,11 @@
-<amp-form-block [context]="context()" [withOkButton]='false'>
-    <div class="mt mb">
-        By opening a Bett3r account, you are agreeing to...
-    </div>
-    <amp-button
-            theme='tools'
-            [context]="context()"
-            class='btn btn-ok mt+'
-            (click)='acceptPrivacyDeclaration()'>
-        Continue
-    </amp-button>
+<amp-form-block [context]="context()">
+    <amp-form-row class="mt++">
+        <amp-checkbox
+            [isInSummaryState]="isInSummaryState"
+            [controlGroup]="__controlGroup"
+            [required]="true"
+            [id]="__custom.controls[0]">
+            {{ __custom.checkboxLabel }}
+        </amp-checkbox>
+    </amp-form-row>
 </amp-form-block>
