@@ -1,11 +1,19 @@
-import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component ,
+    ChangeDetectorRef ,
+    ElementRef ,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
     ProgressObserverService
 } from 'amp-ddc-components';
-import { Constants , SharedFormDataService } from '../../shared';
+import {
+    Constants ,
+    SharedFormDataService
+} from '../../shared';
 @Component( {
     selector        : 'last-step-block' ,
     templateUrl     : './last-step.component.html' ,

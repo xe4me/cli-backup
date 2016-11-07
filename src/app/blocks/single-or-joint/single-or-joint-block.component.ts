@@ -14,8 +14,15 @@ import {
     FormModelService ,
     ScrollService
 } from 'amp-ddc-components';
-import { Validators , FormControl } from '@angular/forms';
-import { Constants , ApplicantGeneratorService , SharedFormDataService } from '../../shared';
+import {
+    Validators ,
+    FormControl
+} from '@angular/forms';
+import {
+    Constants ,
+    ApplicantGeneratorService ,
+    SharedFormDataService
+} from '../../shared';
 @Component( {
     selector        : 'single-or-joint-block' ,
     templateUrl     : './single-or-joint-block.component.html' ,
