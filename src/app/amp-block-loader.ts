@@ -337,22 +337,21 @@ export abstract class AmpBlockLoader {
 
     private loadAllNext ( _def : FormDefinition[] ,
                           _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>[]> {
-        return new Promise( ( resolve , reject ) => {
-            let promises = [];
-            if ( _def && _def.length ) {
-                let index = this.getIndex( _viewContainerRef );
-                if ( index !== undefined ) {
-                    index ++;
-                }
-                for ( let def of _def ) {
-                    promises.push( this.loadAt( def , index ) );
-                    index ++;
-                }
-                resolve( Promise.all( promises ) );
-            } else {
-                reject( 'no def' );
+        let promises = [];
+        if ( _def && _def.length ) {
+            let index = this.getIndex( _viewContainerRef );
+            if ( index !== undefined ) {
+                index ++;
             }
-        } );
+            for ( let def of _def ) {
+                promises.push( this.loadAt( def , index ) );
+                index ++;
+            }
+            console.log(promises);
+            return Promise.all( promises );
+        } else {
+            return Promise.reject('def is empty');
+        }
     }
 
     private getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) : number {
