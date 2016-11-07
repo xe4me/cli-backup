@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 import { AmpGreenIdServices } from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
 import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
 import { AmpGreenidModule } from '../../../app/modules/amp-greenid-block/amp-greenid.module';
-import { AmpGreenidBlockComponent } from '../../../app/modules/amp-greenid-block/components/amp-greenid-block';
+import { AmpGreenIdBlockComponent } from '../../../app/modules/amp-greenid-block/components/amp-greenid-block';
 
 describe( 'Green id unit tests' , () => {
 
@@ -37,7 +37,7 @@ describe( 'Green id unit tests' , () => {
         };
 
         TestBed.configureTestingModule( {
-            imports      : [ AmpGreenidBlockComponent ] ,
+            imports      : [ AmpGreenIdBlockComponent ] ,
             declarations : [
                 TestComponent2
             ] ,
@@ -45,7 +45,7 @@ describe( 'Green id unit tests' , () => {
                 { provide : ElementRef , useClass : MockElementRef } ,
                 { provide : Window , useClass : window } ,
                 { provide : ComponentFixtureAutoDetect , useValue : true },
-                { provide : AmpGreenidBlockComponent , useClass: TestComponent2 },
+                { provide : AmpGreenIdBlockComponent , useClass: TestComponent2 },
                 BrowserDomAdapter
             ]
         } );
