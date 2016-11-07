@@ -52,7 +52,7 @@ export class LastStepBlock extends FormBlock {
 
     private submitForm() {
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
-      /*  let accounts = [
+        let accounts = [
             {
                 "BSB": "939200",
                 "accountNumber": "889908563",
@@ -64,7 +64,7 @@ export class LastStepBlock extends FormBlock {
                 "BSB": "939200",
                 "accountNumber": "171312231",
                 "bett3rAccountType": "Spend",
-                "transactionalStatus": "Normal",
+                "transactionalStatus": "Postnone",
                 "accountPreferredName": "Bett3r Spend"
             },
             {
@@ -79,8 +79,8 @@ export class LastStepBlock extends FormBlock {
         this.accountsListDataService.setAccounts(accounts);
         let navigateTo = this.accountsListDataService.isNormal()? 'confirmation' : 'confirmationWithCondition';
         console.log(navigateTo);
-        this.router.navigate([navigateTo]);*/
-        this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
+        this.router.navigate([navigateTo]);
+        /*this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
                 // TODO remove this once welcome screen is done
                 this.successMessage = result.payload;
@@ -95,6 +95,6 @@ export class LastStepBlock extends FormBlock {
             }, (error) => {
                 this.submitErrorMessage = JSON.stringify(error);
                 this._cd.markForCheck();
-        });
+        });*/
     }
 }
