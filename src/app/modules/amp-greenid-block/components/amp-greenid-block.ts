@@ -112,6 +112,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         } else {
             this.greenIdControlGroup = this.createGreenIdControlGroup();
         }
+        this.greenIdControlGroup.markAsTouched();
     }
 
     public ngOnDestroy() {
