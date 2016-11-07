@@ -7,7 +7,7 @@ export class SharedFormDataService {
     private singleOrJointFdn : (string|number)[] = [ ...FDN.SingleOrJoint , 'SingleOrJoint' ];
 
     public getSingleOrJointControl ( form : FormGroup ) {
-        return <FormControl>form.get( this.singleOrJointFdn );
+        return <FormControl> form.get( this.singleOrJointFdn );
     }
 
     public getReferenceIdControl ( form : FormGroup ) : AbstractControl {

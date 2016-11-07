@@ -1,19 +1,16 @@
 <amp-form-block [context]="context()" [withOkButton]='false'>
-    <div class="mt mb palm-mt-">
-        Please let us know if you would like to set up the account in your name or with someone else
-    </div>
     <amp-button
             theme='tools'
             [context]="context()"
             class="btn btn-ok palm-1/1 tablet-1/1 palm-mr0 mr"
-            (click)="onSingleJoint(singleApplicantKey)">
-        Single
+            (click)="onSingleJoint('Individual')">
+        Just me
     </amp-button>
     <amp-button
             theme='tools'
             [context]="context()"
             class="btn btn-ok palm-1/1 tablet-1/1"
-            (click)="onSingleJoint(jointApplicantKey)">
-        Joint
+            (click)="onSingleJoint('JointApplication')">
+        Me and someone else
     </amp-button>
 </amp-form-block>

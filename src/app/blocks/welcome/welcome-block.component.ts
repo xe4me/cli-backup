@@ -39,7 +39,8 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.__controlGroup
+            .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
     }
 
     private onNewOrExisting ( newOrExisting : string ) {
@@ -52,9 +53,9 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
         }
         if ( newOrExisting === 'existing' ) {
             this.__loadNext( this.__custom.optionalBlocks[ 0 ] , this.viewReference )
-                .then( ()=> {
+                .then( () => {
                     this.ampIntro.proceed()
-                        .then( ()=> {
+                        .then( () => {
                             this.onNext();
                         } );
                 } );
@@ -62,7 +63,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
             return;
         }
         this.ampIntro.proceed()
-            .then( ()=> {
+            .then( () => {
                 this.onNext();
             } );
     }

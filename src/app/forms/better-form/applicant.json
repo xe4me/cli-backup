@@ -216,7 +216,7 @@
                 "commonBlock": false,
                 "path": "blocks/source-of-funding/source-of-funding.component",
                 "custom": {
-                    "blockTitle": "Please tell us your...",
+                    "blockTitle": "More stuff...",
                     "controls": [
                         {
                             "id": "PrimarySourceOfWealth",
@@ -327,7 +327,7 @@
                 "commonBlock": false,
                 "path": "blocks/residency/residency.component",
                 "custom": {
-                    "blockTitle": "Last questions... We promise",
+                    "blockTitle": "Nearly there...",
                     "controls": [
                         {
                             "id": "CountryOfCitizenship"

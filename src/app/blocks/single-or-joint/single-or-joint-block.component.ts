@@ -58,8 +58,6 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         // load applicant 1
         this.__loadAt( this.applicantGenerator.getApplicantSection( 1 ) , 2 );
 
-
-
         // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
         // then go next
         // The reason is if you don't do this , when you start with a Single applicant and finish the form and go
@@ -82,7 +80,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
-            this.__removeAt( 3 ).then( ()=> {
+            this.__removeAt( 3 ).then( () => {
                 this.applicant2Added = false;
                 this.onNext();
             } );

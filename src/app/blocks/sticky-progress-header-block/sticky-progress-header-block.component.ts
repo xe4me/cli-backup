@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { AmpLinearProgressBarComponent } from 'amp-ddc-components';
 @Component(
     {
         selector   : 'sticky-progress-header-block' ,
         template   : `
-        <div class='sticky'>
+        <div class="sticky" *ngIf="showReferenceNo">
             <div class="sticky__header">
-                <div class='sticky__header--right'>
-                    <div>Save and close</div>
-                    <div>Reference number:  XYZ</div>
+                <div class="sticky__header--right">
+                    <div>Reference number:  {{ refNumber }}</div>
                 </div>
             </div>
         </div>
@@ -18,6 +17,7 @@ import { AmpLinearProgressBarComponent } from 'amp-ddc-components';
         styles     : [ require( './sticky-progress-header-block.component.scss' ) ] ,
     } )
 export class StickyProgressHeaderBlockComponent {
-    private value : number;
+    private refNumber : string = '12345';
     private determinate : string;
+    private showReferenceNo : boolean = false;
 }

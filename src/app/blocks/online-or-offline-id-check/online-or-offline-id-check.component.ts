@@ -43,7 +43,7 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
                                         new FormControl( null , Validators.required ) );
     }
 
-    private addOrRemoveOnlineIdCheck(typeOfCheck: string) {
+    private addOrRemoveOnlineIdCheck(typeOfCheck : string) {
         const optionalBlocks = clone(this.__custom.optionalBlocks);
         if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
             for (let optionalBlock of optionalBlocks) {
