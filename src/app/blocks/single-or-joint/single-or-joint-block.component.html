@@ -3,14 +3,14 @@
             theme='tools'
             [context]="context()"
             class="btn btn-ok palm-1/1 tablet-1/1 palm-mr0 mr"
-            (click)="onSingleJoint('Individual')">
+            (click)="onSingleJoint(singleApplicantKey)">
         Just me
     </amp-button>
     <amp-button
             theme='tools'
             [context]="context()"
             class="btn btn-ok palm-1/1 tablet-1/1"
-            (click)="onSingleJoint('JointApplication')">
+            (click)="onSingleJoint(jointApplicantKey)">
         Me and someone else
     </amp-button>
 </amp-form-block>
