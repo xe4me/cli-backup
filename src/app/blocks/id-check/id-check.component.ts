@@ -15,8 +15,8 @@ import {
     ProgressObserverService ,
     FormService,
     IGreenIdFormModel,
-    Environments,
-    AmpGreenIdBlockComponent
+    AmpGreenIdBlockComponent,
+    Environments
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'id-check-block' ,
@@ -26,15 +26,14 @@ import {
 export class IdCheckBlock extends FormBlock implements OnInit {
     private greenIdModel : IGreenIdFormModel;
     private configScriptUrl = Environments.property.GreenId.configScriptUrl;
-    private uiScriptUrl = Environments.property.GreenId.uiScriptUrl;
-    private styleUrl = Environments.property.GreenId.styleUrl;
-    private environment = Environments.property.GreenId.environment;
+    private uiScriptUrl     = Environments.property.GreenId.uiScriptUrl;
+    private styleUrl        = Environments.property.GreenId.styleUrl;
+    private environment     = Environments.property.GreenId.environment;
     private checkboxLabel : string;
     @ViewChild(AmpGreenIdBlockComponent) private greenIdComponent : AmpGreenIdBlockComponent;
     private greenIdShown = false;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
-                  private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
