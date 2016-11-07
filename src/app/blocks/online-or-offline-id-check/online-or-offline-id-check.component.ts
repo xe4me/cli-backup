@@ -65,6 +65,7 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             this.onNext();
             return;
         }
+        this.onNext();
     }
 
     private onIdCheckSelection ( typeOfCheck : string ) {
