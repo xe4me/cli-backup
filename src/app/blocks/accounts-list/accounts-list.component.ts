@@ -23,13 +23,12 @@ export class AccountsListBlock implements OnInit {
     constructor ( private _cd : ChangeDetectorRef, private accountsListDataService : AccountsListDataService) {
     }
 
-    ngOnInit () : any {
+    public ngOnInit () : any {
         this.accountsListDataService
             .getAccounts()
             .subscribe( ( res : any ) => {
                 this.accounts = res;
             } , ( error : any ) => {
-                console.log( error );
             } );
         return undefined;
     }

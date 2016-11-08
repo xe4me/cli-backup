@@ -40,7 +40,11 @@ import {
     AmpStandAloneMenuModule ,
     AmpGreenidModule
 } from 'amp-ddc-components';
-import { SharedFormDataService , ApplicantGeneratorService , AccountsListDataService } from './shared';
+import {
+    SharedFormDataService ,
+    ApplicantGeneratorService ,
+    AccountsListDataService
+} from './shared';
 const DECLARATIONS    = [
     AmpIntroBlockComponent ,
     AmpFormBlockComponent ,

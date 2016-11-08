@@ -22,7 +22,7 @@ export class AccountsListDataService {
                 });
             });
         return this._isNormal;
-}
+    }
     public getAccounts() {
         return this._accounts;
     }

@@ -1,6 +1,7 @@
 import {
     Component,
-    EventEmitter, OnInit
+    EventEmitter,
+    OnInit
 } from '@angular/core';
 import {
     AmpButton,
@@ -24,4 +25,4 @@ export class PostnoneAccountPage {
     private finish() : void {
 
     }
-    }
+}

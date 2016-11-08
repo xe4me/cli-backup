@@ -43,9 +43,11 @@ export class LastStepBlock extends FormBlock {
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
-                if( result.payload.resultStatus === 'SUCCESS' ) {
-                    this.accountsListDataService.setAccounts(result.payload.accounts);
-                    let navigateTo = this.accountsListDataService.isNormal()? 'confirmation' : 'confirmationWithCondition';
+                if ( result.payload.resultStatus === 'SUCCESS' ) {
+                    this.accountsListDataService.setAccounts( result.payload.accounts );
+                    let navigateTo = this.accountsListDataService.isNormal() ?
+                        'confirmation' :
+                        'confirmationWithCondition';
                     this.router.navigate([navigateTo]);
                 } else {
                     // TODO remove this once error handling is done
