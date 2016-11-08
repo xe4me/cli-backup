@@ -368,7 +368,7 @@ export class FormModelService {
         return resultSubject.asObservable();
     }
 
-    private saveModel(model) : Observable<Response> {
+    public saveModel(model) : Observable<Response> {
         return this.http.post(this._apiBaseURL + this._saveRelativeUrl, JSON.stringify(model), this._httpOptions);
     }
 
