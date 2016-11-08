@@ -15,7 +15,7 @@
     </amp-form-row>
     <div *ngIf="hasTfn?.value === true">
         <div class="mt-60">
-            Please enter your tax file number
+            Providing your tax file number prevents you from paying unnecessary tax on the interest you earn.
         </div>
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mt0">
@@ -34,9 +34,6 @@
         </amp-form-row>
     </div>
     <div *ngIf="hasTfn?.value === false">
-        <div class="mt-60">
-            Reason for not having a tax file number
-        </div>
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mt0">
                 <amp-dropdown

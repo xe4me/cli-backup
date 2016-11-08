@@ -1,16 +1,23 @@
 <amp-form-block [context]="context()" [withOkButton]='false'>
-    <div class="mt mb">
-        Hi Charlie... You have chosen to open a new Bett3r account
-    </div>
-    <div>
-    </div>
     <amp-form-row>
-        <amp-checkbox
-                [isInSummaryState]="isInSummaryState"
-                [controlGroup]="__controlGroup"
-                [id]="__custom.controls[0].id">
-            I agree to the Bett3r <a href="javascript:void;">Terms and Conditions</a>
-        </amp-checkbox>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
+            <amp-checkbox
+                    [isInSummaryState]="isInSummaryState"
+                    [controlGroup]="__controlGroup"
+                    [id]="__custom.controls[0].id">
+                I have read the <a href="javascript:void;">privacy information</a> and confirm the statements in the 'Declarations when applying for an AMP Bett3r Account' section
+            </amp-checkbox>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
+            <amp-checkbox
+                    [isInSummaryState]="isInSummaryState"
+                    [controlGroup]="__controlGroup"
+                    [id]="__custom.controls[0].id">
+                I agree to the <a href="javascript:void;">AMP Bett3r Account Terms and Conditions, AMP Bett3r Account Fees and Charges Guide</a> and <a href="javascript:void;">Account Access and Operating Terms and Conditions</a> specific to the AMP Bett3r Account.
+            </amp-checkbox>
+        </div>
     </amp-form-row>
     <amp-form-row>
         <amp-button theme='tools' (click)="submitForm()" class="btn btn-submit palm-1/1">

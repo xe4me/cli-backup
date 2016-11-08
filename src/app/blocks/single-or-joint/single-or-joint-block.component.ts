@@ -14,8 +14,15 @@ import {
     FormModelService ,
     ScrollService
 } from 'amp-ddc-components';
-import { Validators , FormControl } from '@angular/forms';
-import { Constants , ApplicantGeneratorService , SharedFormDataService } from '../../shared';
+import {
+    Validators ,
+    FormControl
+} from '@angular/forms';
+import {
+    Constants ,
+    ApplicantGeneratorService ,
+    SharedFormDataService
+} from '../../shared';
 @Component( {
     selector        : 'single-or-joint-block' ,
     templateUrl     : './single-or-joint-block.component.html' ,
@@ -23,7 +30,8 @@ import { Constants , ApplicantGeneratorService , SharedFormDataService } from '.
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     public applicant2Added : boolean = false;
-
+    private jointApplicantKey : string;
+    private singleApplicantKey : string;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -36,7 +44,11 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.singleApplicantKey = Constants.singleApplicant;
+        this.jointApplicantKey = Constants.jointApplicant;
+        this.__controlGroup.addControl(
+                this.__custom.controls[ 0 ].id,
+                new FormControl( null , Validators.required));
         this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
         this.formModelService.saveResponse.subscribe( ( result ) => {
             if ( result.payload.meta && result.payload.meta.id ) {
@@ -45,8 +57,6 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         } );
         // load applicant 1
         this.__loadAt( this.applicantGenerator.getApplicantSection( 1 ) , 2 );
-
-
 
         // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
         // then go next
@@ -70,7 +80,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
-            this.__removeAt( 3 ).then( ()=> {
+            this.__removeAt( 3 ).then( () => {
                 this.applicant2Added = false;
                 this.onNext();
             } );

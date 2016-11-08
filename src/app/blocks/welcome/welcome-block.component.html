@@ -1,10 +1,6 @@
 <amp-intro-block class="mt">
     <div class="intro-container">
-        <h3 class="intro-message-heading heading heading-intro">Welcome</h3>
-        <p class="intro-para">To the smarter way to manage your money.
-            <br>
-            <br class='palm-hide`'>
-            Please choose how you would like to continue.</p>
+        <h3 class="intro-message-heading heading heading-intro">Welcome <span class="heading-intro-light">to the smarter way to manage your money</span></h3>
         <div class="mb mt+ palm-mt- intro-block-button-container">
             <amp-button (click)="onNewOrExisting('new')"
                         class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
@@ -14,6 +10,13 @@
                         class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
                 Continue application
             </amp-button>
+        </div>
+        <div class="mv+ intro-list-container">
+            <ul class="data-list data-list-iconed">
+                <li class="data-list__item icon icon--time"><span>It will take about 5 minutes</span></li>
+                <li class="data-list__item icon icon--tick-outlined"><span>You must be over 18 years old</span></li>
+                <li class="data-list__item icon icon--document"><span>You must have a valid form of identification</span></li>
+            </ul>
         </div>
     </div>
 </amp-intro-block>

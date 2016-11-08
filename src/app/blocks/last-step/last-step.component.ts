@@ -1,4 +1,10 @@
 import {
+    Component ,
+    ChangeDetectorRef ,
+    ElementRef ,
+    ChangeDetectionStrategy
+} from '@angular/core';
+import {
     Component,
     ChangeDetectorRef,
     ElementRef,
@@ -14,8 +20,7 @@ import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
-    ProgressObserverService ,
-    FormService
+    ProgressObserverService
 } from 'amp-ddc-components';
 import {
     Constants,
@@ -30,6 +35,7 @@ import {
 export class LastStepBlock extends FormBlock {
     private submitErrorMessage;
     private successMessage;
+
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
@@ -59,6 +65,6 @@ export class LastStepBlock extends FormBlock {
             }, (error) => {
                 this.submitErrorMessage = JSON.stringify(error);
                 this._cd.markForCheck();
-    });
+            } );
     }
 }

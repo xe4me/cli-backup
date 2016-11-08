@@ -63,7 +63,7 @@
                             "commonBlock": false,
                             "path": "blocks/single-or-joint/single-or-joint-block.component",
                             "custom": {
-                                "blockTitle": "Just for you or with someone else?",
+                                "blockTitle": "Who's this account for?",
                                 "controls": [
                                     {
                                         "id": "SingleOrJoint"
@@ -186,11 +186,14 @@
                                     "commonBlock": false,
                                     "path": "blocks/last-step/last-step.component",
                                     "custom": {
-                                        "blockTitle": "Last step...",
+                                        "blockTitle": "And lastly, to confirm...",
                                         "controls": [
                                             {
+                                                "id": "ReadPrivacyInfo"
+                                            },
+                                            {
                                                 "id": "AcceptTandCs"
-                                            }
+                                            }                                            
                                         ]
                                     }
                                 }
