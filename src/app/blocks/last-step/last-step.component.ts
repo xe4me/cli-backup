@@ -76,6 +76,12 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
     }
 
     private submitForm() {
+        if (this.__form.invalid) {
+            // Scroll to the first invalid block
+            this.onNext();
+            return;
+        }
+
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
