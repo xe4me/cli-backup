@@ -1,5 +1,9 @@
 import {
-    ElementRef , ChangeDetectorRef , AfterViewInit , OnDestroy , ViewContainerRef ,
+    ElementRef,
+    ChangeDetectorRef,
+    AfterViewInit,
+    OnDestroy,
+    ViewContainerRef,
     ComponentRef
 } from '@angular/core';
 import { arrayJoinByDash , DomUtils } from './modules/amp-utils';
@@ -65,17 +69,17 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * __loadNext : Will load a chunk of form definition after the current block
      * E.g :
      * @example
-     let toBeLoadedBlock = {
-     "equityHolders": {
-     "name": "EquityHolders",
-     "prettyName": "Equity holders",
-     "blockType": "EquityHoldersBlockComponent",
-     "blockLayout": "INLINE",
-     "commonBlock": false,
-     "path": "blocks/equity-holders/equity-holders.component",
-     }
-     }
-     __loadNext(toBeLoadedBlock , this.viewContainerRef);
+         let toBeLoadedBlock = {
+             "equityHolders": {
+                 "name": "EquityHolders",
+                 "prettyName": "Equity holders",
+                 "blockType": "EquityHoldersBlockComponent",
+                 "blockLayout": "INLINE",
+                 "commonBlock": false,
+                 "path": "blocks/equity-holders/equity-holders.component",
+             }
+         }
+         __loadNext(toBeLoadedBlock , this.viewContainerRef);
      * */
     protected __loadNext : ( def : FormDefinition , viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>>;
     /*
@@ -90,30 +94,29 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected __loadAllNext : ( _defs : FormDefinition[] ,
                                 _viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>[]>;
     /*
-     * __custom : All the custom properties that you've specified in your form definition chunk will be accesable
+     * __custom : All the custom properties that you've specified in your form definition chunk will be accessible
      @example
-     let toBeLoadedBlock = {
-     "equityHolders": {
-     "name": "EquityHolders",
-     "prettyName": "Equity holders",
-     "blockType": "EquityHoldersBlockComponent",
-     "blockLayout": "INLINE",
-     "commonBlock": false,
-     "path": "blocks/equity-holders/equity-holders.component",
-     "custom":{
-     "whateveField":"whatever value "
-     }
-     }
-     }
+         let toBeLoadedBlock = {
+             "equityHolders": {
+                 "name": "EquityHolders",
+                 "prettyName": "Equity holders",
+                 "blockType": "EquityHoldersBlockComponent",
+                 "blockLayout": "INLINE",
+                 "commonBlock": false,
+                 "path": "blocks/equity-holders/equity-holders.component",
+                 "custom": {
+                    "whateverField": "whatever value"
+                 }
+             }
+         }
      Then inside the class you can access to whateverField like :
-     console.log(this.__custom.whateverField); // it's amazing I know :)
+        console.log(this.__custom.whateverField); // it's amazing I know :)
      * */
     protected __custom : any;
     /*
      * __isRetrieved :
-     * If this block has been created with a hydrated form ( form that has value and conteols , or in
-     * another words ,
-     * a retrieved form ) , this variable will be true
+     * If this block has been created with a hydrated form ( form that has value and controls , or in
+     * another words , a retrieved form ) , this variable will be true
      * */
     protected __isRetrieved : boolean;
     protected visibleFlag : string = 'defaultIsVisible';
