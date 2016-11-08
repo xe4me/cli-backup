@@ -168,36 +168,6 @@
                                     }
                                 }
                             }
-                        },
-                        {
-                            "name": "LastStepSection",
-                            "blockType": "PageSectionComponent",
-                            "blockLayout": "SECTION",
-                            "commonBlock": true,
-                            "path": "sections/page-section.component",
-                            "custom": {
-                                "label": "Last step"
-                            },
-                            "blocks": [
-                                {
-                                    "name": "LastStep",
-                                    "blockType": "LastStepBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/last-step/last-step.component",
-                                    "custom": {
-                                        "blockTitle": "And lastly, to confirm...",
-                                        "controls": [
-                                            {
-                                                "id": "ReadPrivacyInfo"
-                                            },
-                                            {
-                                                "id": "AcceptTandCs"
-                                            }                                            
-                                        ]
-                                    }
-                                }
-                            ]
                         }
                     ]
                 }

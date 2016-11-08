@@ -359,6 +359,24 @@
                     ],
                     "ssnRequiredMsg": "Either SSN or TIN is required."
                 }
+            },
+            {
+                "name": "LastStep",
+                "blockType": "LastStepBlock",
+                "blockLayout": "INLINE",
+                "commonBlock": false,
+                "path": "blocks/last-step/last-step.component",
+                "custom": {
+                    "blockTitle": "And lastly, to confirm...",
+                    "controls": [
+                        {
+                            "id": "AcceptPrivacyDeclaration"
+                        },
+                        {
+                            "id": "AcceptTandCs"
+                        }
+                    ]
+                }
             }
         ]
     }

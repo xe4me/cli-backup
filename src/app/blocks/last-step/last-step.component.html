@@ -1,26 +1,44 @@
-<amp-form-block [context]="context()" [withOkButton]='false'>
+<amp-form-block [context]="context()" [withOkButton]="!isFinalStepInApplication">
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
             <amp-checkbox
-                    [isInSummaryState]="isInSummaryState"
-                    [controlGroup]="__controlGroup"
-                    [id]="__custom.controls[0].id">
-                I have read the <a href="javascript:void;">privacy information</a> and confirm the statements in the 'Declarations when applying for an AMP Bett3r Account' section
+                [isInSummaryState]="isInSummaryState"
+                [controlGroup]="__controlGroup"
+                [required]="true"
+                [id]="__custom.controls[0].id">
+                I have read the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a> and
+                confirm the statements in the 'Declarations when applying for an AMP Bett3r Account' section
             </amp-checkbox>
         </div>
     </amp-form-row>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
             <amp-checkbox
-                    [isInSummaryState]="isInSummaryState"
-                    [controlGroup]="__controlGroup"
-                    [id]="__custom.controls[0].id">
-                I agree to the <a href="javascript:void;">AMP Bett3r Account Terms and Conditions, AMP Bett3r Account Fees and Charges Guide</a> and <a href="javascript:void;">Account Access and Operating Terms and Conditions</a> specific to the AMP Bett3r Account.
+                [isInSummaryState]="isInSummaryState"
+                [controlGroup]="__controlGroup"
+                [required]="true"
+                [id]="__custom.controls[1].id">
+                I agree to the
+                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20Terms%20and%20Conditions.pdf" target="_blank">
+                    AMP Bett3r Account Terms and Conditions
+                </a>,
+                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20fees%20and%20charges%20guide.pdf" target="_blank">
+                    AMP Bett3r Account Fees and Charges Guide
+                </a>
+                and
+                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20Access%20and%20Operating%20Terms%20and%20Conditions.pdf" target="_blank">
+                    Account Access and Operating Terms and Conditions
+                </a>
+                specific to the AMP Bett3r Account.
             </amp-checkbox>
         </div>
     </amp-form-row>
-    <amp-form-row>
-        <amp-button theme='tools' (click)="submitForm()" class="btn btn-submit palm-1/1">
+    <amp-form-row *ngIf="isFinalStepInApplication">
+        <amp-button
+            (click)="submitForm()"
+            [disabled]="!context().canGoNext"
+            theme="tools"
+            [class]="'btn btn-submit palm-1/1'">
             Submit
         </amp-button>
     </amp-form-row>
