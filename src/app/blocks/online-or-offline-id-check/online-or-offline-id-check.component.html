@@ -14,13 +14,14 @@
             [context]="context()"
             class="btn btn-ok mr palm-1/1 palm-mr0"
             (click)="onIdCheckSelection(onlineCheckKey)">
-        Let me do it online now
+        OK
     </amp-button>
+    <!--If running locally - uncomment the following button -->
     <amp-button
             theme='tools'
             [context]="context()"
-            class="btn btn-ok palm-1/1"
+            class="btn btn-ok mr palm-1/1 palm-mr0"
             (click)="onIdCheckSelection(offlineCheckKey)">
-        I'll mail certified copies
+        Offline check
     </amp-button>
 </amp-form-block>
