@@ -115,10 +115,7 @@
                                         "id": "AcceptIdentityCheckPrivacyDeclaration"
                                     }
                                 ],
-                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document.",
-                                "optionalBlocks": [
-
-                                ]
+                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document."
                             }
                         },
                         {
@@ -128,7 +125,9 @@
                             "commonBlock": false,
                             "path": "blocks/id-check/id-check.component",
                             "custom": {
-                                "blockTitle": "Checking your ID"
+                                "blockTitle": "Checking your ID",
+                                "blockTitle_verified" : "Thanks",
+                                "blockTitle_unverified" : "Your ID was unable to be verified"
                             }
                         }
                     ]

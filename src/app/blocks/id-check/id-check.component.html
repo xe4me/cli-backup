@@ -8,4 +8,13 @@
                        [showOnReady]="false"
                        [environment]="environment">
     </amp-greenid-block>
+    <div *ngIf="greenIdCompleted && greenIdPassed">
+        <p>Your ID has been verified.  Please continue.</p>
+    </div>
+    <div *ngIf="greenIdCompleted && !greenIdPassed">
+        <p>But please still continue and you can provide your ID using the paper forms available at the end of your application</p>
+    </div>
+    <div *ngIf="greenIdCompleted">
+        <span class="id-check-icon mt-60"></span>
+    </div>
 </amp-form-block>
