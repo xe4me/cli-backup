@@ -121,14 +121,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         }
     }
 
-    public getControlGroup() : FormGroup {
-        return this.greenIdControlGroup;
-    }
-
-    public getVerificationStatusControl() : FormControl {
-        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
-    }
-
     public showGreenId() : void {
         const verificationToken = this.greenIdControlGroup.controls['verificationToken'];
         if (verificationToken.value) {
@@ -211,5 +203,13 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     private updateModel(response : ResponseObject) : void {
         this.greenIdControlGroup.controls['verificationId'].setValue(response.verificationId);
         this.greenIdControlGroup.controls['verificationToken'].setValue(response.verificationToken);
+    }
+
+    public getControlGroup() : FormGroup {
+        return this.greenIdControlGroup;
+    }
+
+    public get getVerificationStatusControl() : FormControl {
+        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
     }
 }
