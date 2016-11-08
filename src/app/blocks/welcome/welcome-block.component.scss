@@ -2,51 +2,51 @@
 
 $amp-ddc-public-asset : '../../../assets/';
 :host {
-  amp-intro-block {
-    background-image  : url('assets/images/fullbackground.jpg');
-    background-repeat : no-repeat;
-    background-size   : 100%;
-    min-height        : 793px;
-    padding-top       : 69px;
-    @include media-query(palm) {
-      padding: 0;
-      background-position: center bottom;
-      .intro-message-heading {
-        margin: 0;
-      }
-    }
-
-    .intro-container {
-      margin-left : 55px;
-      @include media-query(palm) {
-        margin: 0;
-      }
-    }
-
-    .intro-list-container {
-      font-weight: 400;
-      color: $amp-colour-secondary-darkest;
-      .data-list {
-        &.data-list-iconed {
-          list-style: none;
-          .data-list__item {
-            span {
-              display: inline-block;
-              vertical-align: middle;
-              font-size: $font-size-tiny;
-              margin-left: 14px;
-              padding-bottom: 13px;
-              @include media-query(palm) {
-                display: block;
-                margin-left: 8px;
-              }              
+    amp-intro-block {
+        background-image  : url('assets/images/fullbackground.jpg');
+        background-repeat : no-repeat;
+        background-size   : 100%;
+        min-height        : 793px;
+        padding-top       : 69px;
+        @include media-query(palm) {
+            padding: 0;
+            background-position: center bottom;
+            .intro-message-heading {
+                margin: 0;
             }
-            &.icon {
-              font-size: 3em;
-            }
-          }
         }
-      }
+
+        .intro-container {
+            margin-left : 55px;
+            @include media-query(palm) {
+                margin: 0;
+            }
+        }
+
+        .intro-list-container {
+            font-weight: 400;
+            color: $amp-colour-secondary-darkest;
+            .data-list {
+                &.data-list-iconed {
+                    list-style: none;
+                    .data-list__item {
+                        span {
+                            display: inline-block;
+                            vertical-align: middle;
+                            font-size: $font-size-tiny;
+                            margin-left: 14px;
+                            padding-bottom: 13px;
+                            @include media-query(palm) {
+                                display: block;
+                                margin-left: 8px;
+                            }
+                        }
+                        &.icon {
+                            font-size: 3em;
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
 }
