@@ -79,7 +79,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         return this.greenIdControlGroup;
     }
 
-    public get getVerificationStatusControl() : FormControl {
+    public getVerificationStatusControl() : FormControl {
         return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
     }
 
