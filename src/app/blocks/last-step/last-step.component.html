@@ -36,7 +36,7 @@
     <amp-form-row *ngIf="isFinalStepInApplication">
         <amp-button
             (click)="submitForm()"
-            [disabled]="!context().canGoNext"
+            [disabled]="!__form.valid"
             theme="tools"
             [class]="'btn btn-submit palm-1/1'">
             Submit
