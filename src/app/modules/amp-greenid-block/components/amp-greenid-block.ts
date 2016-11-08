@@ -75,6 +75,14 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         private sanitizer : DomSanitizationService) {
     }
 
+    public getGreenIdControlGroup() : FormGroup {
+        return this.greenIdControlGroup;
+    }
+
+    public get getVerificationStatusControl() : FormControl {
+        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
+    }
+
     public ngOnInit() : any {
         this.greenIdSettings = {
             environment: this.environment,
@@ -101,20 +109,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         });
     }
 
-    public createControls() {
-        if (this.controlGroup) {
-            if (this.controlGroup.contains(this.id)) {
-                this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
-            } else {
-                this.greenIdControlGroup = this.createGreenIdControlGroup();
-                this.controlGroup.addControl(this.id, this.greenIdControlGroup);
-            }
-        } else {
-            this.greenIdControlGroup = this.createGreenIdControlGroup();
-        }
-        this.greenIdControlGroup.markAsTouched();
-    }
-
     public ngOnDestroy() {
         if (!this.keepControl && this.controlGroup && this.id) {
             this.controlGroup.removeControl(this.id);
@@ -131,6 +125,20 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
                 changes.unsubscribe();
             });
         }
+    }
+
+    private createControls() {
+        if (this.controlGroup) {
+            if (this.controlGroup.contains(this.id)) {
+                this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
+            } else {
+                this.greenIdControlGroup = this.createGreenIdControlGroup();
+                this.controlGroup.addControl(this.id, this.greenIdControlGroup);
+            }
+        } else {
+            this.greenIdControlGroup = this.createGreenIdControlGroup();
+        }
+        this.greenIdControlGroup.markAsTouched();
     }
 
     private showGreenIdInternal() {
@@ -157,7 +165,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
      * Update the model with the verification ID
      */
     private onSessionComplete = (token : string, verificationStatus : string) => {
-        (<FormControl> this.greenIdControlGroup.controls['verificationStatus']).setValue(verificationStatus);
+        this.greenIdControlGroup.controls['verificationStatus'].setValue(verificationStatus);
         this.greenIdShowing = false;
         this._cd.markForCheck();
     }
