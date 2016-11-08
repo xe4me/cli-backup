@@ -27,9 +27,7 @@ export class ScrollService {
         return this.getMyOffsetTop( el ) - this._window.scrollY;
     }
 
-    /*
-     *TODO: Find another better way to get all the components avaliable in dome to prevent this direct access
-     */
+    // TODO: Find another better way to get all the components available in dome to prevent this direct access
     public scrollToNextUndoneBlock ( formModel , offset = 80 ) {
         let isScrolled = false;
         let body       = this._dom.query( 'body' );
