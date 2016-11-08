@@ -1,4 +1,4 @@
-<amp-form-block [context]="context()" [withOkButton]="!isFinalStepInApplication">
+<amp-form-block [context]="context()" [withOkButton]="!isFinalStepInApplication" buttonsTheme="tools">
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
             <amp-checkbox
@@ -36,7 +36,7 @@
     <amp-form-row *ngIf="isFinalStepInApplication">
         <amp-button
             (click)="submitForm()"
-            [disabled]="!__form.valid"
+            [disabled]="__controlGroup.invalid"
             theme="tools"
             [class]="'btn btn-submit palm-1/1'">
             Submit
