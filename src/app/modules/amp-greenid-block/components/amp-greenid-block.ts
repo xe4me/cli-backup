@@ -205,7 +205,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         this.greenIdControlGroup.controls['verificationToken'].setValue(response.verificationToken);
     }
 
-    public getControlGroup() : FormGroup {
+    public getGreenIdControlGroup() : FormGroup {
         return this.greenIdControlGroup;
     }
 
