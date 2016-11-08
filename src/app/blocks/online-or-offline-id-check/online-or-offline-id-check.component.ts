@@ -27,7 +27,9 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
-    public isOnlineCheckLoaded = false;
+    private isOnlineCheckLoaded = false;
+    private offlineCheckKey = Constants.offlineIdCheck;
+    private onlineCheckKey = Constants.onlineIdCheck;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
