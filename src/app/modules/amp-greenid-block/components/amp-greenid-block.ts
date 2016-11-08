@@ -75,6 +75,14 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         private sanitizer : DomSanitizationService) {
     }
 
+    public getGreenIdControlGroup() : FormGroup {
+        return this.greenIdControlGroup;
+    }
+
+    public get getVerificationStatusControl() : FormControl {
+        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
+    }
+
     public ngOnInit() : any {
         this.greenIdSettings = {
             environment: this.environment,
@@ -205,11 +213,5 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         this.greenIdControlGroup.controls['verificationToken'].setValue(response.verificationToken);
     }
 
-    public getGreenIdControlGroup() : FormGroup {
-        return this.greenIdControlGroup;
-    }
 
-    public get getVerificationStatusControl() : FormControl {
-        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
-    }
 }
