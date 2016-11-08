@@ -5,7 +5,10 @@ import { Routes , RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
-import { StickyProgressHeaderBlockComponent
+import { NormalAccountPage } from './pages/confirmation/normal-account-page';
+import { PostnoneAccountPage } from './pages/confirmationWithCondition/postnone-account-page';
+import {
+    StickyProgressHeaderBlockComponent
 } from './blocks/sticky-progress-header-block/sticky-progress-header-block.component';
 import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
@@ -37,7 +40,11 @@ import {
     AmpStandAloneMenuModule ,
     AmpGreenidModule
 } from 'amp-ddc-components';
-import { SharedFormDataService , ApplicantGeneratorService } from './shared';
+import {
+    SharedFormDataService ,
+    ApplicantGeneratorService ,
+    AccountsListDataService
+} from './shared';
 const DECLARATIONS    = [
     AmpIntroBlockComponent ,
     AmpFormBlockComponent ,
@@ -46,6 +53,8 @@ const DECLARATIONS    = [
 ];
 const routes : Routes = [
     { path : '' , component : BetterFormComponent } ,
+    { path: 'confirmation', component: NormalAccountPage },
+    { path: 'confirmationWithCondition', component: PostnoneAccountPage }
 ];
 const IMPORTS         = [
     AmpRowRepeaterModule ,
@@ -81,7 +90,8 @@ const IMPORTS         = [
     providers    : [
         ...APP_RESOLVER_PROVIDERS ,
         SharedFormDataService ,
-        ApplicantGeneratorService
+        ApplicantGeneratorService,
+        AccountsListDataService
     ] ,
     bootstrap    : [ AppComponent ]
 } )
