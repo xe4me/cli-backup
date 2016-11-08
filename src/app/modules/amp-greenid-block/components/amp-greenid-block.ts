@@ -109,20 +109,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         });
     }
 
-    private createControls() {
-        if (this.controlGroup) {
-            if (this.controlGroup.contains(this.id)) {
-                this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
-            } else {
-                this.greenIdControlGroup = this.createGreenIdControlGroup();
-                this.controlGroup.addControl(this.id, this.greenIdControlGroup);
-            }
-        } else {
-            this.greenIdControlGroup = this.createGreenIdControlGroup();
-        }
-        this.greenIdControlGroup.markAsTouched();
-    }
-
     public ngOnDestroy() {
         if (!this.keepControl && this.controlGroup && this.id) {
             this.controlGroup.removeControl(this.id);
@@ -139,6 +125,20 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
                 changes.unsubscribe();
             });
         }
+    }
+
+    private createControls() {
+        if (this.controlGroup) {
+            if (this.controlGroup.contains(this.id)) {
+                this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
+            } else {
+                this.greenIdControlGroup = this.createGreenIdControlGroup();
+                this.controlGroup.addControl(this.id, this.greenIdControlGroup);
+            }
+        } else {
+            this.greenIdControlGroup = this.createGreenIdControlGroup();
+        }
+        this.greenIdControlGroup.markAsTouched();
     }
 
     private showGreenIdInternal() {
