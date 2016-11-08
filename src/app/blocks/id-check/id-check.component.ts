@@ -8,6 +8,13 @@ import {
     AfterViewInit
 } from '@angular/core';
 import {
+    FormControl
+} from '@angular/forms';
+import {
+    Observable,
+    Subscription
+} from 'rxjs';
+import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
@@ -35,6 +42,7 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
     private greenIdShown = false;
     private greenIdCompleted = false;
     private greenIdPassed = false;
+    private verficationStatusSubscription : Subscription;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
@@ -58,9 +66,13 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
         });
     }
 
+    public ngOnDestroy() {
+        this.verficationStatusSubscription.unsubscribe();
+    }
+
     public subscribeToVerificationStatus() {
-        let verficationStatusControl = this.greenIdComponent.getVerificationStatusControl();
-        let verficationStatusSubscription = verficationStatusControl.valueChanges.subscribe((verificationStatus) => {
+        let verficationStatusControl : FormControl = this.greenIdComponent.getVerificationStatusControl();
+        this.verficationStatusSubscription = verficationStatusControl.valueChanges.subscribe((verificationStatus) => {
             this.greenIdCompleted = true;
             if (verificationStatus === 'VERIFIED' || verificationStatus === 'VERIFIED_WITH_CHANGES') {
                 this.greenIdPassed = true;
