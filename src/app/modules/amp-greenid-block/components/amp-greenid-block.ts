@@ -101,7 +101,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         });
     }
 
-    public createControls() {
+    private createControls() {
         if (this.controlGroup) {
             if (this.controlGroup.contains(this.id)) {
                 this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
@@ -119,6 +119,14 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         if (!this.keepControl && this.controlGroup && this.id) {
             this.controlGroup.removeControl(this.id);
         }
+    }
+
+    public getControlGroup() : FormGroup {
+        return this.greenIdControlGroup;
+    }
+
+    public getVerificationStatusControl() : FormControl {
+        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
     }
 
     public showGreenId() : void {
@@ -157,7 +165,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
      * Update the model with the verification ID
      */
     private onSessionComplete = (token : string, verificationStatus : string) => {
-        (<FormControl> this.greenIdControlGroup.controls['verificationStatus']).setValue(verificationStatus);
+        this.greenIdControlGroup.controls['verificationStatus'].setValue(verificationStatus);
         this.greenIdShowing = false;
         this._cd.markForCheck();
     }
