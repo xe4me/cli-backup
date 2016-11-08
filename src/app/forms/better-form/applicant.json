@@ -95,7 +95,7 @@
                 "commonBlock": false,
                 "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
                 "custom": {
-                    "blockTitle": "We need to confirm your identity",
+                    "blockTitle": "Tell us how to identify you",
                     "controls": [
                         {
                             "id": "OnlineIDCheck"
