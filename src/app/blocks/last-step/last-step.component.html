@@ -41,6 +41,13 @@
             [class]="'btn btn-submit palm-1/1'">
             Submit
         </amp-button>
+        <!-- TODO remove this once welcome screen is done -->
+        <div *ngIf="successMessage">
+            <div>
+                <span>{{successMessage | json}}</span>
+            </div>
+        </div>
+        <!-- TODO remove this once welcome screen is done -->
         <div class="errors" *ngIf="submitErrorMessage">
             <div class="error-item">
                 <span class='icon icon--close icon-errors' aria-hidden='true'></span>

@@ -86,12 +86,12 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
                         'confirmationWithCondition';
                     this.router.navigate([navigateTo]);
                 } else {
-                    // TODO what error message to display?
-                    this.submitErrorMessage = 'Something went wrong';
+                    // TODO remove this once error handling is done
+                    this.successMessage = result.payload;
+                    this.submitErrorMessage = null;
                     this._cd.markForCheck();
                 }
             }, (error) => {
-                // TODO what error mesage to display?
                 this.submitErrorMessage = JSON.stringify(error);
                 this._cd.markForCheck();
             } );
