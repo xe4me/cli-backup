@@ -10,13 +10,12 @@ export class AccountsListDataService {
 
     public setAccounts( accounts ) {
         this._accounts = Observable.of( accounts );
-        console.log(this._accounts);
     }
     public isNormal() {
         this._accounts
             .subscribe((data) => {
                 data.forEach((account) => {
-                    if(account.transactionalStatus != 'Normal'){
+                    if (account.transactionalStatus !== 'Normal') {
                         this._isNormal = false;
                         return false;
                     }

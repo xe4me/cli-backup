@@ -40,12 +40,6 @@ import {
     AmpStandAloneMenuModule ,
     AmpGreenidModule
 } from 'amp-ddc-components';
-const PROVIDERS       = [
-    ScrollService ,
-    FormModelService ,
-    ProgressObserverService ,
-    FormService
-];
 import { SharedFormDataService , ApplicantGeneratorService , AccountsListDataService } from './shared';
 const DECLARATIONS    = [
     AmpIntroBlockComponent ,

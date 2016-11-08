@@ -11,27 +11,27 @@ import {
     AmpHttpService
 } from 'amp-ddc-components';
 
-import {AccountsListBlock} from "../../blocks/accounts-list/accounts-list.component";
+import {AccountsListBlock} from '../../blocks/accounts-list/accounts-list.component';
 
 @Component( {
     selector    : 'normal-account-page' ,
     directives: [AccountsListBlock],
     template: require( './normal-account-page.html' )
 } )
-export class NormalAccountPage{
+export class NormalAccountPage {
 
     constructor (private http : AmpHttpService) {
     }
-    goToIOSAppStore() : void {
+    private goToIOSAppStore() : void {
 
     }
-    goToGooglePlayStore() : void {
+    private goToGooglePlayStore() : void {
 
     }
-    getAccountPDF() : void {
+    private getAccountPDF() : void {
 
     }
-    finish() : void {
+    private finish() : void {
 
     }
 }

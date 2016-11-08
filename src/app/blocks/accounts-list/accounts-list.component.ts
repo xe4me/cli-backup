@@ -11,20 +11,19 @@ import {
     ProgressObserverService ,
     FormService
 } from 'amp-ddc-components';
-import {AccountsListDataService} from "../../shared/accounts-list-data.service";
+import {AccountsListDataService} from '../../shared/accounts-list-data.service';
 @Component( {
     selector        : 'accounts-list' ,
     templateUrl     : './accounts-list.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles : [ require('./accounts-list.component.scss').toString() ]
+    styles : [ require( './accounts-list.component.scss').toString() ]
 } )
-export class AccountsListBlock implements OnInit{
+export class AccountsListBlock implements OnInit {
     private accounts;
     constructor ( private _cd : ChangeDetectorRef, private accountsListDataService : AccountsListDataService) {
     }
 
     ngOnInit () : any {
-        console.log("get accounts");
         this.accountsListDataService
             .getAccounts()
             .subscribe( ( res : any ) => {

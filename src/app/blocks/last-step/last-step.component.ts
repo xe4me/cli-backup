@@ -5,15 +5,6 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import {
-    Component,
-    ChangeDetectorRef,
-    ElementRef,
-    OnInit,
-    ChangeDetectionStrategy,
-    Input,
-    AfterViewInit,
-} from '@angular/core';
-import {
     Router
 } from '@angular/router';
 import {
@@ -52,11 +43,11 @@ export class LastStepBlock extends FormBlock {
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
-                if(result.payload.resultStatus == "SUCCESS"){
+                if( result.payload.resultStatus === 'SUCCESS' ) {
                     this.accountsListDataService.setAccounts(result.payload.accounts);
                     let navigateTo = this.accountsListDataService.isNormal()? 'confirmation' : 'confirmationWithCondition';
                     this.router.navigate([navigateTo]);
-                }else{
+                } else {
                     // TODO remove this once error handling is done
                      this.successMessage = result.payload;
                      this.submitErrorMessage = null;
@@ -67,4 +58,4 @@ export class LastStepBlock extends FormBlock {
                 this._cd.markForCheck();
             } );
     }
-}
+};

@@ -8,20 +8,20 @@ import {
     AmpHttpService
 } from 'amp-ddc-components';
 
-import {AccountsListBlock} from "../../blocks/accounts-list/accounts-list.component";
+import {AccountsListBlock} from '../../blocks/accounts-list/accounts-list.component';
 
 @Component( {
     selector    : 'postnone-account-page' ,
     directives: [AccountsListBlock],
     template: require( './postnone-account-page.html' )
 } )
-export class PostnoneAccountPage{
+export class PostnoneAccountPage {
     constructor (private http : AmpHttpService) {
     }
-    getAccountPDF() : void {
+    private getAccountPDF() : void {
 
     }
-    finish() : void {
+    private finish() : void {
 
     }
     }
