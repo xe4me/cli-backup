@@ -20,7 +20,7 @@ export class PostnoneAccountPage {
     private getAccountPDF() : void {
 
     }
-    private finish() : static {
+    private finish() : void {
         window.open( 'https://www.amp.com.au/Bett3r', '_self' );
     }
 }

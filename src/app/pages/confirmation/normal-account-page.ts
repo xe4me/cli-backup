@@ -20,16 +20,16 @@ export class NormalAccountPage {
 
     constructor (private http : AmpHttpService) {
     }
-    private goToIOSAppStore() : static {
+    private goToIOSAppStore() : void {
         window.open( 'https://itunes.apple.com/au/app/my-amp/id763144972?mt=8', '_blank' );
     }
-    private goToGooglePlayStore() : static {
+    private goToGooglePlayStore() : void {
         window.open( 'https://play.google.com/store/apps/details?id=au.com.amp.myportfolio.android&hl=en', '_blank' );
     }
-    private getAccountPDF() : static {
+    private getAccountPDF() : void {
 
     }
-    private finish() : static {
+    private finish() : void {
         window.open( 'https://www.amp.com.au/Bett3r', '_self' );
     }
 }
