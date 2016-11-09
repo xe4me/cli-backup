@@ -42,7 +42,7 @@ input::-ms-clear {
     display  : inline-block;
     width    : 100%;
     position : absolute;
-    top      : 30px;
+    margin-top : -30px;
     color    : $amp-colour-sky-blue;
 }
 
