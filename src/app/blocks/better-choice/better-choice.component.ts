@@ -110,5 +110,6 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
             this.singleOrJointSubscription.unsubscribe();
             this.betterChoiceSubscription.unsubscribe();
         }
+        super.ngOnDestroy();
     }
 }
