@@ -1,22 +1,30 @@
+<!--
+(keyup.enter)='markAsTouched()'
+This is needed because in IE the if the block only has one input and you type in the input
+and press enter , the input still remains untouched and the scroller wont go next because
+the whole block remains untouched.
+
+-->
 <md-input
-        #input
-        [class.has-value]='isInSummaryState && controlIsEmpty()'
-        (focus)='onFocused($event)'
-        (keyup)='onKeyupEvent($event)'
-        (blur)='onBlured($event)'
-        [disabled]='isInSummaryState || disabled'
-        class='md-input'
-        [class.amp-input-focused]='inputFocus'
-        [class.label-hidden]='labelHidden'
-        [aria-label]='randomizedId'
-        [name]='randomizedId'
-        [type]='type'
-        [id]='randomizedId'
-        [tabIndex]='isActive?tabindex:-1'
-        [maxLength]='maxLength'
-        [formControl]='control'
-        [autoComplete]='autoComplete'
-        [placeholder]='required?label:label+" (optional)"'>
+    #input
+    [class.has-value]='isInSummaryState && controlIsEmpty()'
+    (focus)='onFocused($event)'
+    (keyup)='onKeyupEvent($event)'
+    (keyup.enter)='markAsTouched()'
+    (blur)='onBlured($event)'
+    [disabled]='isInSummaryState || disabled'
+    class='md-input'
+    [class.amp-input-focused]='inputFocus'
+    [class.label-hidden]='labelHidden'
+    [aria-label]='randomizedId'
+    [name]='randomizedId'
+    [type]='type'
+    [id]='randomizedId'
+    [tabIndex]='isActive?tabindex:-1'
+    [maxLength]='maxLength'
+    [formControl]='control'
+    [autoComplete]='autoComplete'
+    [placeholder]='required?label:label+" (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
 </md-input>
 <span *ngIf='isInSummaryState && controlIsEmpty()' class='empty-line'>---</span>
