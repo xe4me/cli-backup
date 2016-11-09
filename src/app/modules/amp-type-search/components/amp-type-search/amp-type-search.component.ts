@@ -65,6 +65,8 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     private doApiQuery : boolean                    = false;
     private filteredList : any[]                    = [];
 
+    public isSearching                              = false;
+
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 
@@ -142,8 +144,10 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     }
 
     private doSearchIconClick() {
+        this.isSearching = true;
         this.searchIconClick(this.control.value || '')
             .subscribe((result) => {
+                this.isSearching = false;
                 this.clearSelectedItem();
                 this.open();
                 this.searchResult = result.json().payload;
@@ -156,6 +160,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 this._cd.markForCheck();
                 this.ampInput.checkErrors();
             } , ( error ) => {
+                this.isSearching = false;
                 this.clearSelectedItem();
                 this.close();
                 this.searchResult = null;
