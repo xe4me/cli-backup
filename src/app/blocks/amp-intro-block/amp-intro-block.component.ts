@@ -30,14 +30,12 @@ import { AmpButton } from '../../../app/components/amp-button/amp-button.compone
                 state( 'collapsed, void' , style( {
                     height       : '0px' ,
                     'min-height' : '0px' ,
-                    padding      : '0px' ,
                     opacity      : '0' ,
                     display      : 'none'
                 } ) ) ,
                 state( 'expanded' , style( {
                     height       : '*' ,
                     'min-height' : '*' ,
-                    padding      : '*' ,
                     opacity      : '1' ,
                     display      : 'block'
                 } ) ) ,
