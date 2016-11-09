@@ -19,7 +19,6 @@ import {
     AmpIntroBlockComponent
 } from 'amp-ddc-components';
 import { ViewChild } from '@angular/core';
-import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 @Component( {
     selector        : 'welcome-block' ,
     templateUrl     : './welcome-block.component.html' ,
@@ -67,11 +66,5 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
             .then( () => {
                 this.onNext();
             } );
-    }
-
-    private pocTAMMyAMPLogin () {
-        // DOM.addClass(DOM.query("body"), 'fixed');
-        let DOM = getDOM();
-        DOM.query('#submitPOCBtn').click();
     }
 }
