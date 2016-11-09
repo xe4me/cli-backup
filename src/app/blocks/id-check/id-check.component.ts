@@ -4,10 +4,16 @@ import {
     ElementRef,
     OnInit,
     ChangeDetectionStrategy,
-    Input,
-    AfterViewInit,
-    ViewChild
+    ViewChild,
+    AfterViewInit
 } from '@angular/core';
+import {
+    FormControl
+} from '@angular/forms';
+import {
+    Observable,
+    Subscription
+} from 'rxjs';
 import {
     FormBlock ,
     ScrollService ,
@@ -21,17 +27,22 @@ import {
 @Component( {
     selector        : 'id-check-block' ,
     templateUrl     : './id-check.component.html' ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles : [require('./id-check-component.scss').toString()]
 } )
-export class IdCheckBlock extends FormBlock implements OnInit {
+export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
     private greenIdModel : IGreenIdFormModel;
     private configScriptUrl = Environments.property.GreenId.configScriptUrl;
     private uiScriptUrl     = Environments.property.GreenId.uiScriptUrl;
     private styleUrl        = Environments.property.GreenId.styleUrl;
     private environment     = Environments.property.GreenId.environment;
     private checkboxLabel : string;
-    @ViewChild(AmpGreenIdBlockComponent) private greenIdComponent : AmpGreenIdBlockComponent;
+    @ViewChild(AmpGreenIdBlockComponent)
+    private greenIdComponent : AmpGreenIdBlockComponent;
     private greenIdShown = false;
+    private greenIdCompleted = false;
+    private greenIdPassed = false;
+    private verficationStatusSubscription : Subscription;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
@@ -47,10 +58,30 @@ export class IdCheckBlock extends FormBlock implements OnInit {
                         && scrollEvent.componentSelector.replace('-block', '') === this.__fdn.join('-')) {
                 if (!this.greenIdShown) {
                     this.greenIdComponent.showGreenId();
+                    this.subscribeToVerificationStatus();
                     this.greenIdShown = true;
                     scrolledSubscription.unsubscribe();
                 }
             }
+        });
+    }
+
+    public ngOnDestroy() {
+        this.verficationStatusSubscription.unsubscribe();
+    }
+
+    public subscribeToVerificationStatus() {
+        let verficationStatusControl : FormControl = this.greenIdComponent.getVerificationStatusControl();
+        this.verficationStatusSubscription = verficationStatusControl.valueChanges.subscribe((verificationStatus) => {
+            this.greenIdCompleted = true;
+            if (verificationStatus === 'VERIFIED' || verificationStatus === 'VERIFIED_WITH_CHANGES') {
+                this.greenIdPassed = true;
+                this.__custom.blockTitle = this.__custom['blockTitle_verified'];
+            } else {
+                this.greenIdPassed = false;
+                this.__custom.blockTitle = this.__custom['blockTitle_unverified'];
+            }
+            this._cd.markForCheck();
         });
     }
 

@@ -8,6 +8,9 @@ import {
     Router
 } from '@angular/router';
 import {
+    Subscription
+} from 'rxjs';
+import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
@@ -39,7 +42,42 @@ export class LastStepBlock extends FormBlock {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
+    public ngAfterViewInit() {
+        const singleOfJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
+
+        this.setSingleOrJoint(singleOfJointControl.value);
+
+        this.singleOrJointSubscription = singleOfJointControl.valueChanges.subscribe((val) => {
+            this.setSingleOrJoint(val);
+            this._cd.markForCheck();
+        });
+
+        super.ngAfterViewInit();
+    }
+
+    public ngOnDestroy() {
+        this.singleOrJointSubscription.unsubscribe();
+    }
+
+    private get isFinalStepInApplication() : boolean {
+        return !this.isJointApplication || this.isSecondApplicant;
+    }
+
+    private get isSecondApplicant() : boolean {
+        return this.__custom.applicantIndex === 2;
+    }
+
+    private setSingleOrJoint(singleOrJoint : string) {
+        this.isJointApplication = singleOrJoint === Constants.jointApplicant;
+    }
+
     private submitForm() {
+        if (this.__form.invalid) {
+            // Scroll to the first invalid block
+            this.onNext();
+            return;
+        }
+
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         let accounts = [
             {
@@ -71,8 +109,7 @@ export class LastStepBlock extends FormBlock {
         this.router.navigate([navigateTo]);
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
-
-                /*if ( result.payload.resultStatus === 'SUCCESS' ) {
+                if ( result.payload.resultStatus === 'SUCCESS' ) {
                     this.accountsListDataService.setAccounts( result.payload.accounts );
                     let navigateTo = this.accountsListDataService.isNormal() ?
                         'confirmation' :
@@ -83,7 +120,7 @@ export class LastStepBlock extends FormBlock {
                      this.successMessage = result.payload;
                      this.submitErrorMessage = null;
                      this._cd.markForCheck();
-                }*/
+                }
             }, (error) => {
                 this.submitErrorMessage = JSON.stringify(error);
                 this._cd.markForCheck();
