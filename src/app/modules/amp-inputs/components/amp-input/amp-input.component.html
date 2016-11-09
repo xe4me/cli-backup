@@ -18,6 +18,7 @@
         [autoComplete]='autoComplete'
         [placeholder]='required?label:label+" (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
+    <span *ngIf="!isInSummaryState" md-suffix><ng-content></ng-content></span>
 </md-input>
 <span *ngIf='isInSummaryState && controlIsEmpty()' class='empty-line'>---</span>
 <span (click)='handleIconRightClick()' *ngIf='showIconRight && iconRight && !isInSummaryState'
