@@ -7,6 +7,7 @@
             <amp-group-buttons
                     class="grid__item 1/1"
                     [buttons]="__custom.controls[0].buttons"
+                    [isInSummaryState]="isInSummaryState"
                     [controlGroup]="__controlGroup"
                     [groupName]="__custom.controls[0].id"
                     [required]="true">
@@ -22,7 +23,7 @@
                 <amp-input
                         #tfn
                         [id]="__custom.controls[1].id"
-                    [amp-number-only]="tfn.control"
+                        [amp-number-only]="tfn.control"
                         [controlGroup]="__controlGroup"
                         [isInSummaryState]="isInSummaryState"
                         [minLength]="9"
