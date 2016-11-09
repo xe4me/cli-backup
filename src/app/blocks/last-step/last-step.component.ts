@@ -90,6 +90,7 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
                     let navigateTo = this.accountsListDataService.isNormal() ?
                         'confirmation' :
                         'confirmationWithCondition';
+                    console.log(navigateTo);
                     this.router.navigate([navigateTo]);
                 } else {
                     // TODO what error message to display?
