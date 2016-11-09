@@ -5,7 +5,9 @@
                     [id]="__custom.controls[0].id"
                     [controlGroup]="__controlGroup"
                     [isInSummaryState]="isInSummaryState">
+                    <amp-tooltip-cmp message="Confirmation of your application will be sent to this email address."></amp-tooltip-cmp>
             </amp-email>
+
         </div>
     </amp-form-row>
     <amp-form-row>
@@ -19,7 +21,9 @@
                     [maxLength]="10"
                     [errors]="{'pattern' : __custom.controls[1].errorMsg }"
                     [required]="true">
+                    <amp-tooltip-cmp message="A mobile phone number is required to allow AMP Bank to securely protect your account."></amp-tooltip-cmp>
             </amp-mobile-number>
+
         </div>
     </amp-form-row>
     <amp-form-row>
