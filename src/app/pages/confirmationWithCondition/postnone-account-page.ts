@@ -1,7 +1,5 @@
 import {
-    Component,
-    EventEmitter,
-    OnInit
+    Component
 } from '@angular/core';
 import {
     AmpButton,
@@ -22,7 +20,7 @@ export class PostnoneAccountPage {
     private getAccountPDF() : void {
 
     }
-    private finish() : void {
-
+    private finish() : static {
+        window.open( 'https://www.amp.com.au/Bett3r', '_self' );
     }
 }

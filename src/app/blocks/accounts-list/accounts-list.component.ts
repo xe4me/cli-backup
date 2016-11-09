@@ -9,7 +9,8 @@ import {
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
-    FormService
+    FormService,
+    Environments
 } from 'amp-ddc-components';
 import {AccountsListDataService} from '../../shared/accounts-list-data.service';
 @Component( {
@@ -27,7 +28,7 @@ export class AccountsListBlock implements OnInit {
     public ngOnInit () : any {
         this.accounts = this.accountsListDataService.getAccounts();
         this.imageUrls = ['01.jpg', '02.jpg', '03.jpg'];
-        this.imagePrefix = '/content/dam/enterprise-assets/ddc/bett3r/AMP_Bett3r_lockup_1_';
+        this.imagePrefix = 'assets/images/submit/AMP_Bett3r_lockup_1_';
         return undefined;
     }
 }

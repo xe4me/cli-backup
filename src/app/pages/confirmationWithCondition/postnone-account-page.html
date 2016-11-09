@@ -5,12 +5,13 @@
 
         </accounts-list>
         <p>We need to verify your identity. Please send your <a>ID verfication documents</a> to AMP so you can access you accounts. Remember to download your account numbers and keep them handy.</p>
-
-        <amp-button
-            class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
-            (click)="getAccountPDF()">
-            Your account PDF
-        </amp-button>
+        <div class="mb mt+ palm-mt- intro-block-button-container">
+            <amp-button
+                class="btn btn-submit btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
+                (click)="getAccountPDF()">
+                Your account PDF
+            </amp-button>
+        </div>
         <amp-button
             class="btn btn-ok mr"
             (click)="finish()">
