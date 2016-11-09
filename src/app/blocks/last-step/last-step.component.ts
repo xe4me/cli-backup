@@ -59,10 +59,6 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
         super.ngAfterViewInit();
     }
 
-    public ngOnDestroy() {
-        this.singleOrJointSubscription.unsubscribe();
-    }
-
     private get isFinalStepInApplication() : boolean {
         return !this.isJointApplication || this.isSecondApplicant;
     }
