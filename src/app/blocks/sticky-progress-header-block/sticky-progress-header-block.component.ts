@@ -43,11 +43,12 @@ export class StickyProgressHeaderBlockComponent implements OnInit {
     }
 
     public ngOnInit() {
-        this.refNumberControl = <FormControl> this.sharedDataService.getReferenceIdControl(this.form);
-        this.refNumberControl.valueChanges.subscribe((refNumber : string) => {
-            this.refNumber = refNumber;
-            this.showReferenceNo = this.refNumber.length > 0 ? true : false;
-            this._cd.markForCheck();
-        });
+        // Hide the reference number as requested.
+        // this.refNumberControl = <FormControl> this.sharedDataService.getReferenceIdControl(this.form);
+        // this.refNumberControl.valueChanges.subscribe((refNumber : string) => {
+        //     this.refNumber = refNumber;
+        //     this.showReferenceNo = this.refNumber.length > 0 ? true : false;
+        //     this._cd.markForCheck();
+        // });
     }
 }
