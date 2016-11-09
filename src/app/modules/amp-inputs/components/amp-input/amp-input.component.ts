@@ -355,6 +355,10 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     }
 
     protected controlIsEmpty () {
-        return !this.control.value && this.control.value !== 'false' && this.control.value !== 0;
+        return ! this.control.value && this.control.value !== 'false' && this.control.value !== 0;
+    }
+
+    protected markAsTouched () {
+        this.control.markAsTouched();
     }
 }
