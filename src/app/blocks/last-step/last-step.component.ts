@@ -30,7 +30,6 @@ import {
 } )
 export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy {
     private submitErrorMessage;
-    private successMessage;
     private isJointApplication : boolean = false;
     private singleOrJointSubscription : Subscription;
 
@@ -90,7 +89,6 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
                     let navigateTo = this.accountsListDataService.isNormal() ?
                         'confirmation' :
                         'confirmationWithCondition';
-                    console.log(navigateTo);
                     this.router.navigate([navigateTo]);
                 } else {
                     // TODO what error message to display?
