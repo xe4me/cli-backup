@@ -33,6 +33,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     public static SELECTED_CONTROL_ID_POSTFIX       = '-selected-item';
     public selectedControl                          = new FormControl();
     public searchControlGroup                       = new FormGroup( {} );
+    public isSearching : boolean                    = false;
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
@@ -142,8 +143,10 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     }
 
     private doSearchIconClick() {
+        this.isSearching = true;
         this.searchIconClick(this.control.value || '')
             .subscribe((result) => {
+                this.isSearching = false;
                 this.clearSelectedItem();
                 this.open();
                 this.searchResult = result.json().payload;
@@ -156,6 +159,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 this._cd.markForCheck();
                 this.ampInput.checkErrors();
             } , ( error ) => {
+                this.isSearching = false;
                 this.clearSelectedItem();
                 this.close();
                 this.searchResult = null;
