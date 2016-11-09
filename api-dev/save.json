@@ -13,6 +13,10 @@
             "body": {
                 "statusCode": 200,
                 "payload": {
+                    "meta": {
+                        "id": "4172867194",
+                        "name": "BETT3R"
+                    }
                 }
             }
         }

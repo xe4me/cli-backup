@@ -2,7 +2,10 @@
     {
         "request": {
             "url": "ddc/public/api/bett3r/submit",
-            "method": "POST"
+            "method": "POST",
+            "query": {
+                "id": "4172867194"
+            }
         },
         "response": {
             "statusCode": 200,
@@ -21,7 +24,7 @@
                             "BSB": "939200",
                             "accountNumber": "415343213",
                             "bett3rAccountType": "Pay",
-                            "transactionalStatus": "Normal",
+                            "transactionalStatus": "postnone",
                             "accountPreferredName": "Bett3r Pay"
                         },
                         {
