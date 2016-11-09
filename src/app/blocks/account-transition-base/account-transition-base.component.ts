@@ -33,5 +33,6 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
     public ngOnDestroy () {
         this.singleOrJointSubscription.unsubscribe();
+        super.ngOnDestroy();
     }
 }
