@@ -89,25 +89,27 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
     }
 
     public ngAfterViewInit () {
-        if ( ! this.existingCustomer ) {
-            return;
+        if ( this.existingCustomer ) {
+            const betterChoiceControl = this.__controlGroup.get(this.__custom.controls[0].id);
+            const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
+
+            this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe((val) => {
+                this.setNextBlock(val);
+            });
+
+            this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((val) => {
+                this.setButtonLabels(val);
+                this._cd.markForCheck();
+            });
         }
-        const betterChoiceControl  = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl( this.__form );
-
-        this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
-            this.setNextBlock( val );
-        } );
-
-        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe( ( val ) => {
-            this.setButtonLabels( val );
-            this._cd.markForCheck();
-        } );
         super.ngAfterViewInit();
     }
 
-    public ngOnDestroy() {
-        this.singleOrJointSubscription.unsubscribe();
-        this.betterChoiceSubscription.unsubscribe();
+    public ngOnDestroy () {
+        if ( this.existingCustomer ) {
+            this.singleOrJointSubscription.unsubscribe();
+            this.betterChoiceSubscription.unsubscribe();
+        }
+        super.ngOnDestroy();
     }
 }

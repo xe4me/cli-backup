@@ -67,6 +67,7 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
 
     public ngOnDestroy() {
         this.verificationStatusSubscription.unsubscribe();
+        super.ngOnDestroy();
     }
 
     public subscribeToVerificationStatus() {

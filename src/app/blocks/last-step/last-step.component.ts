@@ -30,7 +30,6 @@ import {
 } )
 export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy {
     private submitErrorMessage;
-    private successMessage;
     private isJointApplication : boolean = false;
     private singleOrJointSubscription : Subscription;
 
@@ -59,6 +58,11 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
         super.ngAfterViewInit();
     }
 
+    public ngOnDestroy() {
+        this.singleOrJointSubscription.unsubscribe();
+        super.ngOnDestroy();
+    }
+
     private get isFinalStepInApplication() : boolean {
         return !this.isJointApplication || this.isSecondApplicant;
     }
@@ -77,6 +81,7 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
             this.onNext();
             return;
         }
+
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
@@ -87,12 +92,12 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
                         'confirmationWithCondition';
                     this.router.navigate([navigateTo]);
                 } else {
-                    // TODO remove this once error handling is done
-                    this.successMessage = result.payload;
-                    this.submitErrorMessage = null;
+                    // TODO what error message to display?
+                    this.submitErrorMessage = 'Something went wrong';
                     this._cd.markForCheck();
                 }
             }, (error) => {
+                // TODO what error mesage to display?
                 this.submitErrorMessage = JSON.stringify(error);
                 this._cd.markForCheck();
             } );
