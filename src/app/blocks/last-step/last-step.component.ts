@@ -29,6 +29,7 @@ import {
 export class LastStepBlock extends FormBlock {
     private submitErrorMessage;
     private successMessage;
+    private isJointApplication;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -42,7 +43,7 @@ export class LastStepBlock extends FormBlock {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
-    public ngAfterViewInit() {
+   /* public ngAfterViewInit() {
         const singleOfJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
 
         this.setSingleOrJoint(singleOfJointControl.value);
@@ -70,7 +71,7 @@ export class LastStepBlock extends FormBlock {
     private setSingleOrJoint(singleOrJoint : string) {
         this.isJointApplication = singleOrJoint === Constants.jointApplicant;
     }
-
+*/
     private submitForm() {
         if (this.__form.invalid) {
             // Scroll to the first invalid block
@@ -107,7 +108,7 @@ export class LastStepBlock extends FormBlock {
         let navigateTo = this.accountsListDataService.isNormal()? 'confirmation' : 'confirmationWithCondition';
         console.log(navigateTo);
         this.router.navigate([navigateTo]);
-        this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
+       /* this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
                 if ( result.payload.resultStatus === 'SUCCESS' ) {
                     this.accountsListDataService.setAccounts( result.payload.accounts );
@@ -124,6 +125,6 @@ export class LastStepBlock extends FormBlock {
             }, (error) => {
                 this.submitErrorMessage = JSON.stringify(error);
                 this._cd.markForCheck();
-            } );
+            } );*/
     }
 };

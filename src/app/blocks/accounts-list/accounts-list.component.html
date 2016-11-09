@@ -1,7 +1,7 @@
 <section>
     <ul class="list-default" >
-        <li *ngFor="let account of accounts">
-            <img src=""/>
+        <li *ngFor="let account of accounts; let i = index">
+            <img src="{{imagePrefix}}{{imageUrls[i]}}"/>
             BSB: {{account.BSB}}<br/>
             Account number: {{account.accountNumber}}
         </li>
