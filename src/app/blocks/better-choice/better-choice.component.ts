@@ -94,10 +94,12 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
         }
         const betterChoiceControl  = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl( this.__form );
-        betterChoiceControl.valueChanges.subscribe( ( val ) => {
+
+        this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
             this.setNextBlock( val );
         } );
-        singleOrJointControl.valueChanges.subscribe( ( val ) => {
+
+        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe( ( val ) => {
             this.setButtonLabels( val );
             this._cd.markForCheck();
         } );

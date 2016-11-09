@@ -1,18 +1,46 @@
 [
     {
         "request": {
-            "url": "ddc/public/api/bett3r/save",
+            "url": "ddc/public/api/bett3r/submit",
             "method": "POST"
         },
         "response": {
-            "status": 200,
+            "statusCode": 200,
             "headers": {
                 "Content-Type": "application/json"
             },
             "latency": 100,
             "body": {
-                "payload": {}
+                "statusCode": 200,
+                "payload": {
+                    "applicationId": "4172867194",
+                    "applicationType": "Individual",
+                    "resultStatus": "SUCCESS",
+                    "accounts": [
+                        {
+                            "BSB": "939200",
+                            "accountNumber": "415343213",
+                            "bett3rAccountType": "Pay",
+                            "transactionalStatus": "Normal",
+                            "accountPreferredName": "Bett3r Pay"
+                        },
+                        {
+                            "BSB": "939200",
+                            "accountNumber": "392116786",
+                            "bett3rAccountType": "Spend",
+                            "transactionalStatus": "Normal",
+                            "accountPreferredName": "Bett3r Spend"
+                        },
+                        {
+                            "BSB": "939200",
+                            "accountNumber": "289542125",
+                            "bett3rAccountType": "Save",
+                            "transactionalStatus": "Normal",
+                            "accountPreferredName": "Bett3r Save"
+                        }
+                    ]
+                }
+                }
             }
         }
-    }
 ]
