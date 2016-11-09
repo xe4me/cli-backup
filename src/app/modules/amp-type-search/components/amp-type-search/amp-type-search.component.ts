@@ -33,6 +33,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     public static SELECTED_CONTROL_ID_POSTFIX       = '-selected-item';
     public selectedControl                          = new FormControl();
     public searchControlGroup                       = new FormGroup( {} );
+    public isSearching : boolean                    = false;
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
     @Output( 'selected' ) $selected                 = new EventEmitter<any>();
@@ -64,8 +65,6 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     private _optionsHidden : boolean                = true;
     private doApiQuery : boolean                    = false;
     private filteredList : any[]                    = [];
-
-    public isSearching                              = false;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
