@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AccountsListDataService {
     public _accounts : Array<any>;
-    private _isNormal = true;
+    private _isNormal : Boolean = true;
     constructor() {
     }
 

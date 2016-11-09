@@ -16,8 +16,8 @@ import {AccountsListDataService} from '../../shared/accounts-list-data.service';
 } )
 export class AccountsListBlock implements OnInit {
     private accounts;
-    private imageUrls;
-    private imagePrefix;
+    private imageUrls : Array;
+    private imagePrefix : String;
     constructor ( private _cd : ChangeDetectorRef, private accountsListDataService : AccountsListDataService) {
     }
     public ngOnInit () : any {
