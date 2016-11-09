@@ -89,7 +89,13 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
     }
 
     get checked () {
-        return this._checked;
+        // if the model are retrieved , the checked would still return the default false valur
+        // so the view wont tick the checkbox , bellow check is for this reason
+        if ( this.control.value !== undefined ) {
+            return this.control.value;
+        } else {
+            return this._checked;
+        }
     }
 
     set checked ( value ) {
