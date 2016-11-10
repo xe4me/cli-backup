@@ -41,8 +41,8 @@ input::-ms-clear {
 .empty-line {
     display  : inline-block;
     width    : 100%;
-    position : absolute;
-    margin-top : -30px;
+    position : relative;
+    top : -30px;
     color    : $amp-colour-sky-blue;
 }
 
