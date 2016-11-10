@@ -34,6 +34,7 @@ export * from './src/app/modules/amp-submit-receipt';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
+export { AmpLoadingComponent } from './src/app/components/amp-loading/amp-loading.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
 // Constants
 export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';
