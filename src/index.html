@@ -22,7 +22,7 @@
             function displayLoginResult() {
                 console.log('Invoked displayLoginResult');
                 try {
-                    var landingURL = document.getElementById('POC_TAM_MYAMP_LOGIN_FRAME').contentWindow.location.href;
+                    var landingURL = window.frames[0].location.href;
                     console.log('Found displayLoginResult landingURL of ', landingURL);
                     if (landingURL) {
                         if (landingURL.endsWith('errorCode=logon.invalid')) {
