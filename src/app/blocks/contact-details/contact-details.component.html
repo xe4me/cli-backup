@@ -19,7 +19,7 @@
                     [label]="__custom.controls[1].label"
                     [pattern]="'^04(\\d){8}$'"
                     [maxLength]="10"
-                    [errors]="{'pattern' : __custom.controls[1].errorMsg }"
+                    [errors]="{'pattern' : __custom.controls[1].errorMsg, 'required' : __custom.controls[1].requiredMsg }"
                     [required]="true">
                     <amp-tooltip-cmp message="A mobile phone number is required to allow AMP Bank to securely protect your account."></amp-tooltip-cmp>
             </amp-mobile-number>
