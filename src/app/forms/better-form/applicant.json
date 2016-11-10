@@ -68,6 +68,7 @@
                         {
                             "id": "MobileNumber",
                             "errorMsg": "Mobile number must be in the format 04nnnnnnnn.",
+                            "requiredMsg" : "Mobile number is a required field.",
                             "label": "Mobile number"
                         },
                         {
