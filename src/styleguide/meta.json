@@ -380,6 +380,26 @@
         "readme": "<p>AMP google address input search box</p>\n"
     },
     {
+        "name": "Amp Google Recaptcha",
+        "sources": [
+            "src/app/components/amp-google-recaptcha/amp-google-recaptcha.component.ts"
+        ],
+        "id": "AMPGoogleRecaptcha",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-google-recaptcha/basic_usage.html",
+                "styles": "src/styleguide/components/amp-google-recaptcha/basic_usage.scss",
+                "source": "src/styleguide/components/amp-google-recaptcha/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-google-recaptcha/amp-google-recaptcha.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-google-recaptcha/amp-google-recaptcha.component.spec.ts",
+                "component": "amp-google-recaptcha-basic-usage",
+                "component_src_location": "components/amp-google-recaptcha/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP google recaptcha</p>\n"
+    },
+    {
         "name": "Amp Group Buttons",
         "sources": [
             "src/app/components/amp-group-buttons/amp-group-buttons.component.ts"

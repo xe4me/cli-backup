@@ -31,6 +31,7 @@ export * from './src/app/modules/amp-form-row';
 export * from './src/app/modules/amp-tooltip';
 export * from './src/app/modules/amp-greenid-block';
 export * from './src/app/modules/amp-submit-receipt';
+export * from './src/app/modules/amp-google-recaptcha';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
