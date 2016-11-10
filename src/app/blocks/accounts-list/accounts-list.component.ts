@@ -16,7 +16,7 @@ import {AccountsListDataService} from '../../shared/accounts-list-data.service';
 } )
 export class AccountsListBlock implements OnInit {
     private accounts;
-    private imageUrls : Array;
+    private imageUrls : Array<string>;
     private imagePrefix : String;
     constructor ( private _cd : ChangeDetectorRef, private accountsListDataService : AccountsListDataService) {
     }
