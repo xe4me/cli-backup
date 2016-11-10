@@ -15,7 +15,7 @@ import {AccountsListDataService} from '../../shared/accounts-list-data.service';
     styles : [ require( './accounts-list.component.scss').toString() ]
 } )
 export class AccountsListBlock implements OnInit {
-    private accounts;
+    private accounts : Array<any>;
     private imageUrls : Array;
     private imagePrefix : String;
     constructor ( private _cd : ChangeDetectorRef, private accountsListDataService : AccountsListDataService) {
