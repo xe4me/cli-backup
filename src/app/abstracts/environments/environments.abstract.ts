@@ -45,7 +45,7 @@ export class RootEnvProperty {
     // Base url for api calls like : /ddc/secure/api/...
     ApiCallsBaseUrl : string;
     experienceName : string; // like : buyback , or nio , or cwc
-    DamContentUrl: string; // https://www.amp.com.au
+    DamContentUrl : string; // https://www.amp.com.au
     GreenId : {
         configScriptUrl : string;
         uiScriptUrl : string;
