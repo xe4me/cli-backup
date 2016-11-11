@@ -33,6 +33,7 @@
                         },
                         {
                             "id": "DateOfBirth",
+                            "requiredMsg" : "Date of birth is a required field",
                             "ageValidationMsg": "You must be at least 18 years old."
                         }
                     ]
