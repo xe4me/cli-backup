@@ -1,5 +1,6 @@
 @import '../../../../styles/abstracts';
 $tooltip-background : #003C6D;
+$small-font-size : 15px;
 amp-greenid-block #greenid-container {
     font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
     font-size: 15px;
@@ -64,7 +65,7 @@ amp-greenid-block #greenid-container {
     .greenid-modal {
         .modal-body {
             p, li {
-                font-size : 15px !important;
+                font-size : $small-font-size !important;
                 line-height : 27px;
                 font-weight : 300;
             }
@@ -118,12 +119,26 @@ amp-greenid-block #greenid-container {
 }
 
 .greenid-datepicker-container {
-    td.active.day {
+    td.active.day, td.active.month {
         background-color: $amp-colour-secondary !important;
     }
 }
 
+.medicaredvsrefnumvalidation {
+    margin-top: -41px !important ;
+}
+
 .greenid-tooltip {
+    font-size: $small-font-size !important;
+    font-weight : 300 !important;
+    font-family: "Open Sans", "Helvetica", "Arial", sans-serif !important;
+    p {
+        font-size: $small-font-size !important;
+        font-weight : 300 !important;
+        line-height : 17px !important;
+        font-family: "Open Sans", "Helvetica", "Arial", sans-serif !important;
+    }
+
     .tooltip-inner {
         background-color : #003C6D !important;
     }
