@@ -65,4 +65,22 @@ describe( 'Basic Util functions test' , () => {
             expect( BasicUtils.formatAddress( ukAddress ) ).toEqual( ukAddressOutput );
         }
     );
+
+    //
+    // Base64 Data to Object
+    //
+
+    let base64Input = 'SmFtZXMjai5ib25kQGdtYWlsLmNvbSNOU1cjMTIzNDU2Nzg';
+
+    let base64Output = {
+        name: 'James',
+        email: 'j.bond@gmail.com',
+        state: 'NSW',
+        customer_id: '12345678'
+    };
+
+    it( 'Get user data from base64 encoded string' , () => {
+            expect( BasicUtils.base64DatatoObject( base64Input ) ).toEqual( base64Output );
+        }
+    );
 } );
