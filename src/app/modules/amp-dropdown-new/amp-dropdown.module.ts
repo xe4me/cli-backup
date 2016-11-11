@@ -26,5 +26,5 @@ const DECLARATIONS = [
     providers    : [ AmpCountryService , Http ] ,
     exports      : DECLARATIONS
 } )
-export class AmpDropdownModule {
+export class AmpDropdownNewModule {
 }

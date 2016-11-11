@@ -22,7 +22,7 @@ import { BaseControl } from '../../../../base-control';
     template        : require( './amp-dropdown.component.html' ) ,
     queries         : {
         itemTemplate : new ContentChild( TemplateRef ) ,
-        optionsRef   : new ViewChildren( TemplateRef ) ,
+        optionsRef   : new ViewChildren( 'optionRef' ) ,
         focusers     : new ViewChildren( FocuserDirective )
     } ,
     styles          : [ require( './amp-dropdown.component.scss' ).toString() ] ,
@@ -52,7 +52,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     public dropdownControlGroup : FormGroup;
     public keepControl : boolean              = false;
     protected focusers : QueryList<FocuserDirective>;
-    protected optionsRef : QueryList<ElementRef>;
+    protected optionsRef : QueryList<TemplateRef<ElementRef>>;
     protected selected                        = new EventEmitter<any>();
     protected maxHeight : string              = '400px';
     protected fieldItemKey                    = 'value';
@@ -125,7 +125,6 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         this.updateValidators();
         // check if control has value ( it's been retrieved , and if so , do the select)
         if ( this.control.value !== undefined ) {
-            console.log( 'retrieved' , this.control.value );
             this.findOptionAndSelect( this.control.value );
         }
     }
@@ -188,7 +187,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private getNodeForKeyboardSearch ( $event : KeyboardEvent ) : ElementRef {
+    private getNodeForKeyboardSearch ( $event : KeyboardEvent ) : any {
         if ( this.clearSearchTimeout ) {
             clearTimeout( this.clearSearchTimeout );
         }
@@ -204,7 +203,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
             for ( let i = 0 ; i < this.options.length ; i ++ ) {
                 let op = this.options[ i ];
                 if ( search.test( op[ this.fieldValueKey ] ) ) {
-                    return <ElementRef> this.optionsRef.toArray()[ i ];
+                    return <any> this.optionsRef.toArray()[ i ];
                 }
             }
         }

@@ -85,6 +85,24 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         return undefined;
     }
 
+    public removeFile () : void {
+        this.error = false;
+        let fileRemoved : Observable <any>;
+        fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
+        fileRemoved.subscribe(
+            ( res : any ) => {
+                this.showProgress = false;
+                this.control.setErrors({error: 'file upload pending'});
+                this._cd.detectChanges();
+            },
+            ( error ) => {
+                this.error = true;
+                this.errorMessage = 'Error in deleting file';
+                this._cd.detectChanges();
+            }
+        );
+    }
+
     private displayProgress ( ) : void {
         if ( this.backendError ) {
             this.setErrorMessage( null );
@@ -158,24 +176,6 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         this.showProgress = !this.error;
         this.errorMessage = res ? res.message : this.errorMessage;
         this._cd.detectChanges();
-    }
-
-    private removeFile () : void {
-        this.error = false;
-        let fileRemoved : Observable <any>;
-        fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
-        fileRemoved.subscribe(
-            ( res : any ) => {
-                this.showProgress = false;
-                this.control.setErrors({error: 'file upload pending'});
-                this._cd.detectChanges();
-            },
-            ( error ) => {
-                this.error = true;
-                this.errorMessage = 'Error in deleting file';
-                this._cd.detectChanges();
-            }
-        );
     }
 
     private validateFile ( file : any ) : boolean {

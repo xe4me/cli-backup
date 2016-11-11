@@ -85,7 +85,7 @@ export class FocuserDirective {
     }
 
     private next () {
-        if ( this.lastTabindex < this.listElements.length - 1 ) {
+        if ( this.listElements && this.lastTabindex < this.listElements.length - 1 ) {
             this.lastTabindex ++;
             this.setScrollTopAndFocus();
         } else {

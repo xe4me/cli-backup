@@ -21,7 +21,7 @@ import { AmpInputsModule } from '../app/modules/amp-inputs';
 import { AmpPipesModule } from '../app/modules/amp-pipes';
 import { AmpErrorModule } from '../app/modules/amp-error/amp-error.module';
 import { AmpCheckboxModule } from '../app/modules/amp-checkbox';
-import { AmpDropdownModule } from '../app/modules/amp-dropdown-new';
+import { AmpDropdownNewModule } from '../app/modules/amp-dropdown-new';
 import { AmpTextareaModule } from '../app/modules/amp-textarea';
 import { AmpGroupButtonsModule } from '../app/modules/amp-group-buttons';
 import { AmpRadioButtonGroupModule } from '../app/modules/amp-radio-button-group';
@@ -57,7 +57,7 @@ const IMPORTS                               = [
     AmpErrorModule ,
     AmpPipesModule ,
     AmpDirectivesModule ,
-    AmpDropdownModule ,
+    AmpDropdownNewModule ,
     AmpInputsModule ,
     AmpTypeaheadModule ,
     AmpQasAddressModule ,
