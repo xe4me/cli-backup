@@ -7,7 +7,9 @@ import {
 import {
     Environments
 } from 'amp-ddc-components';
-import {AccountsListDataService} from '../../shared/accounts-list-data.service';
+import {
+    AccountsListDataService
+} from '../../shared/accounts-list-data.service';
 @Component( {
     selector        : 'accounts-list' ,
     templateUrl     : './accounts-list.component.html' ,
@@ -16,14 +18,15 @@ import {AccountsListDataService} from '../../shared/accounts-list-data.service';
 } )
 export class AccountsListBlock implements OnInit {
     private accounts : Array<any>;
-    private imageUrls : Array;
-    private imagePrefix : String;
-    constructor ( private _cd : ChangeDetectorRef, private accountsListDataService : AccountsListDataService) {
+    private imageUrls : Array<string>;
+    private imagePrefix : string;
+    private damContentUrl = Environments.property.DamContentUrl;
+    constructor ( private accountsListDataService : AccountsListDataService) {
     }
     public ngOnInit () : any {
         this.accounts = this.accountsListDataService.getAccounts();
         this.imageUrls = ['01.jpg', '02.jpg', '03.jpg'];
-        this.imagePrefix = 'assets/images/submit/AMP_Bett3r_lockup_1_';
+        this.imagePrefix = `${this.damContentUrl}enterprise-assets/ddc/bett3r/AMP_Bett3r_lockup_1_`;
         return undefined;
     }
 }

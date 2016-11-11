@@ -1,6 +1,30 @@
 @import '../../../styles/abstracts';
 
-$amp-ddc-public-asset : '../../../assets/';
 :host {
-    padding-top: 69px;
+    .container {
+        padding-top: 5.333em;
+        amp-button {
+            margin-top: 0 !important;
+            .btn {
+                margin-top: 0 !important;
+            }
+        }
+        .finish-button-container{
+            margin-top: 5.333em;
+        }
+        @include media-query(tablet-and-down) {
+            padding-top: 2.667em;
+            padding-left: 2em;
+            padding-right: 2em;
+            amp-button {
+                margin-top: 0 !important;
+                .btn {
+                    margin-top: 0 !important;
+                }
+            }
+            .finish-button-container{
+                margin-top: 2.667em;
+            }
+        }
+    }
 }

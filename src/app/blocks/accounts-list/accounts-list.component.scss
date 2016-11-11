@@ -2,24 +2,64 @@
 
 $amp-ddc-public-asset : '../../../assets/';
 :host > section {
-    margin-top : 60px;
-    margin-bottom: 60px;
-    .accounts {
-        margin: 0 auto;
-        overflow: auto;
+    margin : 5.33em 0 0 0 ;
+    .pdf-button-container{
+        margin-bottom: 5.333em;
     }
-    .account {
-        img {
-            display: block;
-            width: 100%;
-            @include media-query(tablet-and-down) {
-                display: none;
-            }
+    @include media-query(tablet-and-down) {
+        margin: 2.667em 0;
+        .pdf-button-container {
+            margin-bottom: 2.667em;
+            margin-top: 2em;
         }
-        .account-info {
-            padding-left: 40px;
-            @include media-query(tablet-and-down){
-                padding-left: 0;
+    }
+    .accounts {
+        margin-bottom: 4em;
+        overflow: auto;
+        @include media-query(tablet-and-down) {
+            margin-bottom: 0;
+        }
+        .account {
+            img {
+                display: block;
+                width: 100%;
+                margin-bottom: 3em;
+                @include media-query(tablet-and-down) {
+                    display: none;
+                }
+            }
+            .account-info {
+                padding-left: 2.667em;
+                .account-type, .account-index {
+                    display: none;
+                }
+                @include media-query(tablet-and-down){
+                    padding-left: 0;
+                    padding-top: 1.33em;
+                    padding-bottom: 2em;
+                    border-bottom: 1px solid #cccccc;
+                    .account-type {
+                        font-size: 1.333em;
+                        margin-bottom: 1.17em;
+                        display: block;
+                        color: #004983;
+                    }
+                    .account-index {
+                        display: inline-block;
+                        background: #004983;
+                        color: #ffffff;
+                        font-size: 1.333em;
+                        font-family: "Archer Semibold";
+                        font-weight: 700;
+                        padding: 0 10px;
+                        vertical-align: top;
+                        margin-right: 1.333em;
+                        @include border-radius(15px)
+                    }
+                    .account-detail{
+                        display: inline-block;
+                    }
+                }
             }
         }
     }
