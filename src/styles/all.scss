@@ -2,16 +2,3 @@
 @import './abstracts';
 //All the components
 @import './components';
-
-
-.greenid-datepicker-container {
-    td.active.day {
-        background-color: $amp-colour-secondary !important;
-    }
-}
-
-.greenid-tooltip {
-    .tooltip-inner {
-        background-color : #003C6D !important;
-    }
-}
