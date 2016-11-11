@@ -6,14 +6,15 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
     host     : {
         '(keydown)' : 'onKeydown($event)'
     } ,
-    outputs  : [ 'focusOut' ]
+    outputs  : [ 'focusOut' , 'onTypeCharacter' ]
 } )
 export class FocuserDirective {
     @Input( 'focuser' ) focuser : string;
-    private lastTabindex   = - 1;
-    private focusOut       = new EventEmitter<string>();
+    private lastTabindex    = - 1;
+    private focusOut        = new EventEmitter<string>();
+    private onTypeCharacter = new EventEmitter<string>();
     private listElements;
-    private liScrollHeight = 0;
+    private liScrollHeight  = 0;
     private domAdapter : BrowserDomAdapter;
     private inputElem;
 
@@ -69,6 +70,8 @@ export class FocuserDirective {
         } else if ( keyCode === KeyCodes.UP || ($event.shiftKey && keyCode === KeyCodes.TAB) ) {
             this.prev();
             $event.preventDefault();
+        } else {
+            this.onTypeCharacter.emit( $event );
         }
     }
 
