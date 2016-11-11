@@ -195,7 +195,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     private selectOption ( option ) : void {
         this.selectedOption = Object.assign( {} , option );
-        this.control.setValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim() );
+        this.control.setValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim().substring(0, 50) );
         this.selectedControl.setValue( JSON.stringify( this.selectedOption ) );
         this.ampInput.checkErrors();
         this.$selected.emit( this.selectedOption );

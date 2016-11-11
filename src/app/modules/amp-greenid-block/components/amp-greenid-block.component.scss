@@ -1,0 +1,156 @@
+@import '../../../../styles/abstracts';
+$tooltip-background : #003C6D;
+$small-font-size : 15px;
+amp-greenid-block #greenid-container {
+    font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+    font-size: $small-font-size;
+
+    h1, h2 {
+        font-size : 24px;
+    }
+
+    h1 {
+        margin-bottom : 35px;
+    }
+
+    #greenid-source-content {
+        border-top : none;
+    }
+
+    #greenid-source-list-container{
+        margin-left: 30px;
+    }
+
+    @include media-query('palm') {
+        #greenid-source-list-container{
+            margin-left: 0px;
+        }
+    }
+
+    .checkbox {
+        label {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
+    .lead {
+        font-size: 15px;
+    }
+    label {
+        font-size: 14px;
+        color: #9C9E9F;
+    }
+    .greenid-helpicon {
+        color : $amp-colour-secondary;
+        font-size: 17px;
+    }
+    a {
+        color : $amp-colour-secondary;
+        &:hover {
+            color: $amp-colour-secondary;
+            text-decoration: none;
+        }
+    }
+    .btn {
+        background-color: $amp-colour-secondary !important;
+        &:hover {
+            background-color: $amp-colour-primary !important;
+            color: $amp-colour-white;
+        }
+        border-radius : 0px;
+        border: none;
+        color: $amp-colour-white;
+        &.btn-primary {
+            min-height : 58px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+    }
+
+    .greenid-modal {
+        .modal-body {
+            p, li {
+                font-size : $small-font-size !important;
+                line-height : 27px;
+                font-weight : 300;
+            }
+            ul {
+                margin-left : 10px;
+            }
+        }
+        font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+    }
+
+    .dropdown-menu {
+        .list-group {
+            border: 2px solid $amp-colour-secondary;
+        }
+        .list-group-item a {
+            &:hover {
+                background : #e5ecf2;
+            }
+        }
+    }
+
+    #greenid-source-list-container {
+        button {
+            color: $amp-colour-white;
+            min-height : 58px;
+            font-size: 18px;
+        }
+
+    }
+
+    .greenid-alert {
+        font-size: 15px !important;
+    }
+
+    .form-control {
+        border-radius : 0px;
+    }
+
+    .glyphicon {
+        &.glyphicon-question-sign {
+            color: $amp-colour-secondary;
+        }
+        &::before {
+            font-family: 'Glyphicons Halflings';
+        }
+    }
+
+    .row {
+        padding-top: 40px;
+    }
+}
+
+.greenid-datepicker-container {
+    td.active.day,
+    span.active.month {
+        background-color: $amp-colour-secondary !important;
+    }
+}
+
+.medicaredvsrefnumvalidation {
+    margin-top: -41px !important ;
+}
+
+.greenid-tooltip {
+    font-size: $small-font-size !important;
+    font-weight : 300 !important;
+    font-family: "Open Sans", "Helvetica", "Arial", sans-serif !important;
+    p {
+        font-size: $small-font-size !important;
+        font-weight : 300 !important;
+        line-height : 17px !important;
+        font-family: "Open Sans", "Helvetica", "Arial", sans-serif !important;
+    }
+
+    .tooltip-inner {
+        background-color : #003C6D !important;
+    }
+
+    .tooltip-arrow{
+        display : none;
+    }
+}

@@ -21,6 +21,8 @@ export * from './src/app/modules/amp-logo';
 export * from './src/app/modules/amp-directives';
 export * from './src/app/modules/amp-checkbox';
 export * from './src/app/modules/amp-dropdown';
+//
+//export * from './src/app/modules/amp-dropdown-new';
 export * from './src/app/modules/amp-textarea';
 export * from './src/app/modules/amp-group-buttons';
 export * from './src/app/modules/amp-radio-button-group';
@@ -35,6 +37,7 @@ export * from './src/app/modules/amp-google-recaptcha';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
+export { AmpLoadingComponent } from './src/app/components/amp-loading/amp-loading.component';
 export { AMPGoogleAddressComponentGroup } from './src/app/component-groups/amp-google-address-group/amp-google-address-group.component';
 // Constants
 export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';

@@ -1,0 +1,37 @@
+<div [clicked-outside]='close' class='amp-dropdown'>
+    <input
+        #input
+        class='sr-only amp-dropdown-control'
+        (keydown)='onKeydown($event)'
+        id='dropdown_control'
+        focuser>
+    <label class='amp-dropdown-label'
+           [class.active]='!isOptionsHidden'
+           [class.selected]='selectedOption[fieldItemKey] && isOptionsHidden'
+           [class.disabled]='isInSummaryState || disabled'
+           (click)='!disabled && !isInSummaryState && toggleOptions($event)'
+           for='dropdown_control'>
+        <span>{{ selectedOption[fieldValueKey] || label }}</span>&nbsp;
+        <span class='amp-dropdown-icon icon icon--chevron-{{ isOptionsHidden?"down":"up" }}' aria-hidden='true'></span>
+    </label>
+    <ul
+        [hidden]='options===null || isOptionsHidden'
+        focuser='list'
+        [ngStyle]='{"max-height":maxHeight}'
+        (focusOut)='focusInput()'
+        (onTypeCharacter)='onTypeCharacter($event)'
+        class='amp-dropdown-options'>
+        <li #optionRef
+            (keydown.enter)='selectOption(option , $event)'
+            (click)='selectOption(option,$event)'
+            *ngFor='let option of options; let i = index'
+            class='amp-dropdown-option'
+            [class.amp-dropdown-active]='option[fieldItemKey] === selectedOption[fieldItemKey]'
+            [attr.tabindex]='i+1'>
+            <template
+                [ngTemplateOutlet]='itemTemplate'
+                [ngOutletContext]='{ option: option, index: index }'>
+            </template>
+        </li>
+    </ul>
+</div>

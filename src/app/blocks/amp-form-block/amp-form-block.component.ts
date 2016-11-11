@@ -12,7 +12,7 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
              <div *ngIf="!noError">
                 <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
              </div>
-             <div class="block-buttons" *ngIf="withOkButton">
+             <div class="block-buttons mt+ palm-mt0" *ngIf="withOkButton">
                  <amp-button
                     [context]="context"
                     *ngIf='!context?.isInSummaryState'
