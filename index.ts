@@ -21,6 +21,7 @@ export * from './src/app/modules/amp-logo';
 export * from './src/app/modules/amp-directives';
 export * from './src/app/modules/amp-checkbox';
 export * from './src/app/modules/amp-dropdown';
+export * from './src/app/modules/amp-dropdown-new';
 export * from './src/app/modules/amp-textarea';
 export * from './src/app/modules/amp-group-buttons';
 export * from './src/app/modules/amp-radio-button-group';
