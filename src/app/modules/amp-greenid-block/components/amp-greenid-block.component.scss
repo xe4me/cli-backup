@@ -3,9 +3,30 @@ $tooltip-background : #003C6D;
 amp-greenid-block #greenid-container {
     font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
     font-size: 15px;
+
     h1, h2 {
         font-size : 24px;
     }
+
+    h1 {
+        margin-bottom : 35px;
+    }
+
+    #greenid-source-content {
+        border-top : none;
+    }
+
+    #greenid-source-list-container{
+        margin-left: 30px;
+    }
+
+    .checkbox {
+        label {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
     .lead {
         font-size: 15px;
     }
@@ -15,6 +36,7 @@ amp-greenid-block #greenid-container {
     }
     .greenid-helpicon {
         color : $amp-colour-secondary;
+        font-size: 17px;
     }
     a {
         color : $amp-colour-secondary;
@@ -35,6 +57,7 @@ amp-greenid-block #greenid-container {
         &.btn-primary {
             min-height : 58px;
             font-weight: 600;
+            font-size: 18px;
         }
     }
 
@@ -67,6 +90,7 @@ amp-greenid-block #greenid-container {
         button {
             color: $amp-colour-white;
             min-height : 58px;
+            font-size: 18px;
         }
 
     }
@@ -89,7 +113,7 @@ amp-greenid-block #greenid-container {
     }
 
     .row {
-        padding-top: 60px;
+        padding-top: 40px;
     }
 }
 
