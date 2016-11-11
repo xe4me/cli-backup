@@ -31,13 +31,20 @@
         </div>
     </amp-form-row>
     <amp-form-row *ngIf="isFinalStepInApplication">
-        <amp-button
-            (click)="submitForm()"
-            [disabled]="__controlGroup.invalid"
-            theme="tools"
-            [class]="'btn btn-submit palm-1/1'">
-            Submit
-        </amp-button>
+        <div class="grid__item_floated palm-1/1 form-submit">
+            <amp-button
+                (click)="submitForm()"
+                [disabled]="__controlGroup.invalid || submitInProgress"
+                theme="tools"
+                [class]="'btn btn-submit palm-1/1'">
+                Submit
+                <div class="submit-in-progress" *ngIf="submitInProgress">
+                    <amp-loading [attr.theme]="tools" mode="indeterminate" size="small"></amp-loading>
+                </div>
+            </amp-button>
+
+        </div>
+
         <div class="errors" *ngIf="submitErrorMessage">
             <div class="error-item">
                 <span class='icon icon--close icon-errors' aria-hidden='true'></span>
