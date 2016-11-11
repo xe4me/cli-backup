@@ -51,7 +51,8 @@
                     [valDate]="true"
                     [required]="true"
                     [customValidator]="ageValidator"
-                    [isInSummaryState]="isInSummaryState">
+                    [isInSummaryState]="isInSummaryState"
+                    [errors]="{ 'required' : __custom.controls[4].requiredMsg }">
             </amp-input>
         </div>
     </amp-form-row>
