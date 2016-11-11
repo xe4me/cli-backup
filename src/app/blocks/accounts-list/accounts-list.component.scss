@@ -5,7 +5,7 @@ $amp-ddc-public-asset : '../../../assets/';
 :host > section {
     margin : 4em 0 0 0 ;
     .pdf-button-container{
-        margin-bottom: 54em;
+        margin-bottom: 4em;
     }
     @include media-query(tablet-and-down) {
         margin: 2.667em 0;
@@ -49,13 +49,15 @@ $amp-ddc-public-asset : '../../../assets/';
                         display: inline-block;
                         background: #004983;
                         color: #ffffff;
-                        font-size: 1.333em;
-                        font-weight: 700;
-                        padding: 0 10px;
+                        font-size: 1em;
+                        padding: 6px 14px;
                         vertical-align: top;
                         margin-right: 1.333em;
-                        @include border-radius(15px);
+                        width: 36px;
+                        height: 36px;
+                        @include border-radius(18px);
                         @include amp-family(archer-pro-medium);
+                        font-weight: 700;
                     }
                     .account-detail{
                         display: inline-block;
