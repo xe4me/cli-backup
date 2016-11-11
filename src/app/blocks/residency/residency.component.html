@@ -7,6 +7,9 @@
                 [controlGroup]="__controlGroup"
                 [required]="true"
 				[label]="'Country of citizenship'">
+                <template let-option="option">
+                    {{ option.country }}
+                </template>
 			</amp-country>
 		</div>
 	</amp-form-row>
@@ -18,6 +21,9 @@
                 [controlGroup]="__controlGroup"
                 [required]="true"
 				[label]="'Country of residency'">
+                <template let-option="option">
+                    {{ option.country }}
+                </template>
 			</amp-country>
 		</div>
 	</amp-form-row>

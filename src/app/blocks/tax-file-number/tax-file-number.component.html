@@ -45,6 +45,9 @@
                         [options]="__custom.controls[2].options"
                         [controlGroup]="__controlGroup"
                         [required]="true">
+                    <template let-option="option">
+                        {{ option.label }}
+                    </template>
                 </amp-dropdown>
             </div>
         </amp-form-row>

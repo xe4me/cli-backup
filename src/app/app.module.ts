@@ -10,7 +10,7 @@ import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
     AmpTypeaheadModule ,
     AmpTooltipModule ,
-    AmpDropdownModule ,
+    AmpDropdownNewModule ,
     AmpPipesModule ,
     AmpDirectivesModule ,
     AmpQasAddressModule ,
@@ -52,7 +52,7 @@ const IMPORTS         = [
     AmpTooltipModule ,
     AmpButtonModule ,
     AmpTypeaheadModule ,
-    AmpDropdownModule ,
+    AmpDropdownNewModule ,
     AmpPipesModule ,
     AmpDirectivesModule ,
     AmpQasAddressModule ,
