@@ -4,13 +4,8 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles , createNewHosts } from '@angularclass/hmr';
-import { Store , StoreModule } from '@ngrx/store';
-/*
- * Platform and Environment providers/directives/pipes
- */
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
-// App is our top level component
 import { StyleGuideApp } from './app.component';
 import { LeftNavigationComponent } from './styleguide-components';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
@@ -26,7 +21,7 @@ import { AmpInputsModule } from '../app/modules/amp-inputs';
 import { AmpPipesModule } from '../app/modules/amp-pipes';
 import { AmpErrorModule } from '../app/modules/amp-error/amp-error.module';
 import { AmpCheckboxModule } from '../app/modules/amp-checkbox';
-import { AmpDropdownModule } from '../app/modules/amp-dropdown';
+import { AmpDropdownModule } from '../app/modules/amp-dropdown-new';
 import { AmpTextareaModule } from '../app/modules/amp-textarea';
 import { AmpGroupButtonsModule } from '../app/modules/amp-group-buttons';
 import { AmpRadioButtonGroupModule } from '../app/modules/amp-radio-button-group';
@@ -38,6 +33,10 @@ import { AmpTooltipModule } from '../app/modules/amp-tooltip/amp-tooltip.module'
 import { PortalModule } from '@angular2-material/core';
 import { AmpGreenidModule } from '../app/modules/amp-greenid-block/amp-greenid.module';
 import { AmpLogoModule } from '../app/modules/amp-logo/amp-logo.module';
+/*
+ * Platform and Environment providers/directives/pipes
+ */
+// App is our top level component
 const APP_PROVIDERS                         = [
     ...APP_RESOLVER_PROVIDERS ,
     AppState
