@@ -1,17 +1,18 @@
 <amp-intro-block class="mt0">
     <div class="intro-container">
         <h3 class="intro-message-heading heading heading-intro">Welcome <span class="heading-intro-light">to the smarter way to manage your money</span></h3>
-        <div class="mb mt+ palm-mt- intro-block-button-container">
+        <div class="mb palm-mt- intro-block-button-container">
             <amp-button (click)="onNewOrExisting('new')"
                         class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
                 New application
             </amp-button>
-            <amp-button (click)="onNewOrExisting('existing')" theme="tools"
+            <!-- Commented out as requested -->
+            <!--<amp-button (click)="onNewOrExisting('existing')" theme="tools"
                         class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
                 Continue application
-            </amp-button>
+            </amp-button>-->
         </div>
-        <div class="mv+ intro-list-container">
+        <div class="intro-list-container">
             <ul class="data-list data-list-iconed">
                 <li class="data-list__item icon time-clock-icon"><span>It will take about 5 minutes</span></li>
                 <li class="data-list__item icon eighteen-plus-icon"><span>You must be over 18 years old</span></li>

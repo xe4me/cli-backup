@@ -3,15 +3,18 @@
 $amp-ddc-public-asset : '../../../assets/';
 :host {
     amp-intro-block {
-        background-image  : url('assets/images/fullbackground.jpg');
+        background-image  : url('assets/images/Intro-background_96DPI.jpg');
         background-repeat : no-repeat;
-        background-size   : 100%;
+        background-size   : cover;
         min-height        : 793px;
         padding-top       : 69px;
+        .intro-message-heading {
+            margin-bottom: 0;
+        }
         @include media-query(palm) {
             padding: 0 8px;
             background-position: left top;
-            background-size   : 200%;
+            background-size   : 3000px;
             .intro-message-heading {
                 margin: 30px 0px 15px;
                 color: $amp-colour-primary;
@@ -34,6 +37,7 @@ $amp-ddc-public-asset : '../../../assets/';
 
         .intro-list-container {
             font-weight: 400;
+            margin-top: 60px;
             color: $amp-colour-secondary-darkest;
             .data-list {
                 &.data-list-iconed {
@@ -44,6 +48,7 @@ $amp-ddc-public-asset : '../../../assets/';
                             display: inline-block;
                             vertical-align: middle;
                             font-size: $font-size-tiny;
+                            font-weight: 600;
                             margin-left: 14px;
                             padding-bottom: 13px;
                             @include media-query(palm) {
@@ -51,21 +56,10 @@ $amp-ddc-public-asset : '../../../assets/';
                                 margin-left: 8px;
                             }
                         }
-                        &.icon {
-                            &.time-clock-icon:before {
-                                content: ' ';
-                                float: left;
-                                margin-top: -4px;
-                                margin-right: 20px;
-                                top: 0;
-                                width: 36px;
-                                height: 37px;
-                                background-repeat: no-repeat;
-                                background-size: 100%;
-                                background-image : url('assets/images/time_clock.png');
-                            }
-                            &.eighteen-plus-icon:before {
-                                content: ' ';
+                        &.icon  {
+                            
+                            &::before {
+                                 content: ' ';
                                 float: left;
                                 margin-top: -4px;
                                 margin-right: 20px;
@@ -74,19 +68,25 @@ $amp-ddc-public-asset : '../../../assets/';
                                 height: 37px;
                                 background-repeat: no-repeat;
                                 background-size: 100%;                                
-                                background-image : url('assets/images/18+.png');
                             }
-                            &.id-check-icon:before {
-                                content: ' ';
-                                float: left;
-                                margin-top: -4px;
-                                margin-right: 20px;
-                                top: 0;
-                                width: 36px;
-                                height : 33px;
-                                background-repeat: no-repeat;
-                                background-size: 100%;                                
-                                background-image : url('assets/images/id.png');
+
+                            &.time-clock-icon {
+                                &::before {           
+                                    background-image : url('assets/images/time_clock.png');
+                                }                                
+                            }
+                            
+                            &.eighteen-plus-icon {
+                                &::before {           
+                                    background-image : url('assets/images/18+.png');
+                                }
+                            }
+
+                            &.id-check-icon {
+                                &::before {           
+                                    height : 33px;
+                                    background-image : url('assets/images/id.png');
+                                }
                             }
                         }
                     }
