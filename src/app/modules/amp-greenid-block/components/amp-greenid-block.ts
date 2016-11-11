@@ -13,7 +13,8 @@ import {
     ViewChild,
     Renderer,
     Input,
-    OnDestroy
+    OnDestroy,
+    ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizationService } from '@angular/platform-browser';
 import { AmpGreenIdServices } from './services/amp-greenid-service';
@@ -43,7 +44,8 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
                 transition(
                     'collapsed <=> expanded', [animate(800)])
             ])
-    ]
+    ],
+    encapsulation : ViewEncapsulation.None
 })
 export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     @Input() id : string = 'green-id-identity-check';
