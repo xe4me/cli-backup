@@ -1,30 +1,24 @@
 <div class="container blocks-wrapper">
     <div class="main">
-        <h1>Thank you. Your Bett3r account is now ready</h1>
+        <h1>Thank you. Your Bett3r account is now ready.</h1>
         <accounts-list>
         </accounts-list>
-        <p>Download the My AMP app to start using your account and remeber to keep these accounts numbers handy.</p>
-        <div class="mb mt+ palm-mt- intro-block-button-container">
+        <p class="description">Download the My AMP app to start using your account and remember to keep these accounts numbers handy.</p>
+        <div class="app-buttons">
+            <a href="https://itunes.apple.com/au/app/my-amp/id763144972?mt=8" target="_blank">
+                <img src="assets/images/submit/apple-store-badge.png" class="apple-store-button">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=au.com.amp.myportfolio.android&hl=en" target="_blank">
+                <img src="assets/images/submit/google-play-badge.png">
+            </a>
+        </div>
+        <div class="finish-button-container">
             <amp-button
-                class="btn btn-submit btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
-                (click)="goToIOSAppStore()">
-                IOS App Store
-            </amp-button>
-            <amp-button
-                class="btn btn-submit btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
-                (click)="goToGooglePlayStore()">
-                Google Play Store
-            </amp-button>
-            <amp-button
-                class="btn btn-submit btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr"
-                (click)="getAccountPDF()">
-                Your account PDF
+                [attr.theme]="'tools'"
+                [class]="'btn btn-secondary palm-1/1 tablet-1/1 tablet-and-up-mr'"
+                (click)="finish()">
+                Finish
             </amp-button>
         </div>
-        <amp-button
-            class="btn btn-ok mr"
-            (click)="finish()">
-            Finish
-        </amp-button>
     </div>
 </div>
