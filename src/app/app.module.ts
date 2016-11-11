@@ -35,6 +35,7 @@ import {
     AmpButton ,
     AmpOverlayComponent ,
     AmpIntroBlockComponent ,
+    AmpLoadingComponent ,
     AmpRowRepeaterModule ,
     AmpFormRowModule ,
     AmpStandAloneMenuModule ,
@@ -49,6 +50,7 @@ const DECLARATIONS    = [
     AmpIntroBlockComponent ,
     AmpFormBlockComponent ,
     AmpOverlayComponent ,
+    AmpLoadingComponent ,
     StickyProgressHeaderBlockComponent
 ];
 const routes : Routes = [

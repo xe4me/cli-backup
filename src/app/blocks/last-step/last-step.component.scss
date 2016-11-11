@@ -1,0 +1,19 @@
+@import "../../../styles/abstracts";
+
+:host {
+    .btn-submit {
+        position: relative;
+    }
+
+    .submit-in-progress {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: 12px;
+        right: 35px;
+
+        @include media-query('palm') {
+            right: 80px;
+        }
+    }
+}
