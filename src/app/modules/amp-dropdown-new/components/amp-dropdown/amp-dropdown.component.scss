@@ -53,14 +53,17 @@ $padding-up : 20px;
 }
 
 .amp-dropdown-label {
-    max-height : $amp-dropdown-select-height;
-    border     : 1px solid $amp-colour-grey-dark;
-    padding    : $padding-sides $padding-up;
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+    max-height    : $amp-dropdown-select-height;
+    border        : 1px solid $amp-colour-grey-dark;
+    padding       : $padding-sides $padding-up;
     @include amp-family('open-sans-semibold');
-    color      : $amp-colour-grey-darkest;
-    display    : block;
-    height     : 50px;
-    cursor     : pointer;
+    color         : $amp-colour-grey-darkest;
+    display       : block;
+    height        : 50px;
+    cursor        : pointer;
 
     .amp-dropdown-icon {
         color       : $amp-colour-sky-blue;
