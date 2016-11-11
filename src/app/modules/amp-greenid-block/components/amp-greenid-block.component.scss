@@ -3,7 +3,7 @@ $tooltip-background : #003C6D;
 $small-font-size : 15px;
 amp-greenid-block #greenid-container {
     font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
-    font-size: 15px;
+    font-size: $small-font-size;
 
     h1, h2 {
         font-size : 24px;
