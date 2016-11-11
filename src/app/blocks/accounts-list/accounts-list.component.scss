@@ -1,10 +1,11 @@
 @import '../../../styles/abstracts';
+@import '../../../styles/family';
 
 $amp-ddc-public-asset : '../../../assets/';
 :host > section {
-    margin : 5.33em 0 0 0 ;
+    margin : 4em 0 0 0 ;
     .pdf-button-container{
-        margin-bottom: 5.333em;
+        margin-bottom: 54em;
     }
     @include media-query(tablet-and-down) {
         margin: 2.667em 0;
@@ -49,12 +50,12 @@ $amp-ddc-public-asset : '../../../assets/';
                         background: #004983;
                         color: #ffffff;
                         font-size: 1.333em;
-                        font-family: "Archer Semibold";
                         font-weight: 700;
                         padding: 0 10px;
                         vertical-align: top;
                         margin-right: 1.333em;
-                        @include border-radius(15px)
+                        @include border-radius(15px);
+                        @include amp-family(archer-pro-medium);
                     }
                     .account-detail{
                         display: inline-block;
