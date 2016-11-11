@@ -19,6 +19,6 @@ export class NormalAccountPage {
 
     }
     private finish() : void {
-        window.open( 'https://www.amp.com.au/Bett3r', '_self' );
+        window.open( 'https://www.amp.com.au/bett3r', '_self' );
     }
 }
