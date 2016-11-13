@@ -70,7 +70,7 @@ describe( 'Basic Util functions test' , () => {
     // Base64 Data to Object
     //
 
-    let base64Input = 'SmFtZXMjai5ib25kQGdtYWlsLmNvbSNOU1cjMTIzNDU2Nzg';
+    let base64Input = btoa('James#j.bond@gmail.com#NSW#12345678');
 
     let base64Output = {
         name: 'James',
