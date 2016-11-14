@@ -11,12 +11,18 @@
         <amp-form-row>
             <div class="grid__item_floated lap-and-up-1/2">
                 <amp-email
-                        [id]="'emailAddress'"
+                        [id]="controlName"
                         [controlGroup]="controlGroup"
                         [required]="'true'"
                         [isInSummaryState]="isInSummaryState">
                 </amp-email>
             </div>
+        </amp-form-row>
+        <amp-form-row>
+            <amp-error [controlGroup]="controlGroup"
+                       [controlId]="controlName">
+            </amp-error>
+
         </amp-form-row>
         <amp-form-row>
             <div class="email-sent_message mt" *ngIf="emailSentConfirmation">
