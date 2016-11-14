@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
     template : require( './receipt-page.component.html' ) ,
     styles   : [ require( './receipt-page.component.scss' ).toString() ] ,
     inputs   : [
+        'licensee',
         'title' ,
         'messageForReference' ,
         'messageForEmail' ,
@@ -25,6 +26,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     public sendEmailEvent : EventEmitter<any> = new EventEmitter();
     public emailSentEvent : EventEmitter<any>  = null;
     public emailSentErrorEvent : EventEmitter<any>  = null;
+    public licensee : string                   = 'AMP';
     private title                              = 'Your quote/application has been saved';
     private messageForReference                = 'Your quote/application is now saved and your reference is ';
     private messageForEmail                    = 'Enter your email address so instructions to retrieve the quote/application can be sent to you.';
