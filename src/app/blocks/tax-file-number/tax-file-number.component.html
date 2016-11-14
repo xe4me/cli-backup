@@ -33,13 +33,11 @@
             </div>
         </amp-form-row>
     </div>
-    <div *ngIf="hasTfn?.value === false">
-        <div class="mt-60">
-            Reason for not having a tax file number
-        </div>
+    <div *ngIf="hasTfn?.value === false" class='mt--'>
         <amp-form-row>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mt0">
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mt+">
                 <amp-dropdown
+                        label='Reason for not having a tax file number'
                         [isInSummaryState]="isInSummaryState"
                         [id]="__custom.controls[2].id"
                         [options]="__custom.controls[2].options"

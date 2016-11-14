@@ -10,7 +10,6 @@ import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
     AmpTypeaheadModule ,
     AmpTooltipModule ,
-    AmpDropdownNewModule ,
     AmpPipesModule ,
     AmpDirectivesModule ,
     AmpQasAddressModule ,
@@ -36,6 +35,9 @@ import {
     AmpStandAloneMenuModule ,
     AmpGreenidModule
 } from 'amp-ddc-components';
+// the bellow import will be replaced with a proper one as soon as we completely remove amp-dropdown and moved to
+// the new one
+import { AmpDropdownNewModule } from 'amp-ddc-components/src/app/modules/amp-dropdown-new';
 import { SharedFormDataService , ApplicantGeneratorService } from './shared';
 const DECLARATIONS    = [
     AmpIntroBlockComponent ,
