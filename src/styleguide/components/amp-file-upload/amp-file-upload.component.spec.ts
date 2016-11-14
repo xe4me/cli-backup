@@ -63,11 +63,11 @@ describe ( 'amp-file-upload component' , () => {
             expect( input ).toBeDefined();
         } );
 
-        // it( 'Function "updateToken" should get called on click of "input" element' , () => {
-        //     let spy = spyOn(Component.componentReference , 'updateToken');
-        //     input.click();
-        //     expect( spy ).toHaveBeenCalled();
-        // } );
+        it( 'Function "updateToken" should get called on click of "input" element' , () => {
+            let spy = spyOn(Component.componentReference , 'updateToken');
+            input.click();
+            expect( spy ).toHaveBeenCalled();
+        } );
     });
 } );
 
@@ -79,6 +79,7 @@ class MockElementRef implements ElementRef {
 @Component( {
     template   : `
     <amp-file-upload
+        #componentReference
         [controlGroup]="controlGroup"
         [id]="'myid'"
         [formName]="'BUYBACK'"
