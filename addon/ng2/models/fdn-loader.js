@@ -27,7 +27,7 @@ function fdnLoader ( Orgsource ) {
             if ( err ) return console.log ( err );
             console.log ( '*********************** Successfully created fully distinguished names at ' + fdnFileName );
         } );
-        fs.writeFile ( modelFileName , JSON.stringify ( modelRoot ) , function ( err ) {
+        fs.writeFile ( modelFileName , JSON.stringify ( modelRoot , null , 4 ) , function ( err ) {
             if ( err ) return console.log ( err );
             console.log ( '*********************** Successfully created model at ' + modelFileName );
         } );
@@ -53,15 +53,29 @@ function createModel ( formDef , fdn , model ) {
         }
     } else {
         if ( formDef.name ) {
-            model[ fdn ][ formDef.name ] = {};
+            let block = {};
+
             if ( formDef.custom && formDef.custom.controls ) {
                 for ( var i = 0 ; i < formDef.custom.controls.length ; i ++ ) {
                     if ( formDef.custom.controls[ i ].id ) {
-                        model[ fdn ][ formDef.name ][ formDef.custom.controls[ i ].id ] = null;
+                        block[ formDef.custom.controls[ i ].id ] = null;
                     } else {
                         console.info ( 'Custom control for formDef does not have id ' + formDef.name );
                     }
                 }
+            }
+
+            if ( ! fdn ) {
+                model[ formDef.name ] = block;
+            } else {
+                model[ fdn ][ formDef.name ] = block;
+            }
+
+            if ( formDef.custom && formDef.custom.optionalBlocks ) {
+                objectToArray(formDef.custom.optionalBlocks)
+                    .forEach( ( block ) => {
+                        createModel ( block , null , model );
+                    });
             }
         }
     }
@@ -69,10 +83,10 @@ function createModel ( formDef , fdn , model ) {
 function createArrayString ( _array ) {
     var s = '[ ';
     for ( var i = 0 ; i < _array.length ; i ++ ) {
-        s += "'" + _array[ i ] + "' ,";
+        s += "'" + _array[ i ] + "' , ";
     }
     s = s.trim ().slice ( 0 , - 1 );
-    return s += ' ]';
+    return s += ']';
 }
 function createFdn ( formDef , fdn ) {
     if ( formDef.blocks ) {
@@ -89,15 +103,41 @@ function createFdn ( formDef , fdn ) {
     } else {
         if ( formDef.name ) {
             fdnRoot[ formDef.name ] = fdn.concat ( [ formDef.name ] );
+
+            if ( formDef.custom && formDef.custom.optionalBlocks ) {
+                objectToArray(formDef.custom.optionalBlocks)
+                    .forEach( ( block ) => {
+                        createFdn ( block , fdn );
+                    });
+            }
         }
     }
 }
 function createStaticClassString ( fdnRoot ) {
     var string = 'export class FDN {';
-    Object.keys ( fdnRoot ).map ( function ( key ) {
-        string += '\rpublic static ' + key + '           = ' + createArrayString ( fdnRoot[ key ] ) + ';\r'
+    var len = 0;
+    Object.keys( fdnRoot ).forEach( ( key ) => {
+        if (key.length > len) {
+            len = key.length;
+        }
     } );
-    string += '}';
+    Object.keys( fdnRoot ).map ( ( key ) => {
+        string += '\r    public static ' + key + ' '.repeat(len - key.length) + ' = ' + createArrayString ( fdnRoot[ key ] ) + ';\r'
+    } );
+    string += '}\r';
     return string;
+}
+function objectToArray ( item ) {
+    let arr = [];
+    if ( item.constructor === Object ) {
+        for ( blockName in item ) {
+            if ( item.hasOwnProperty(blockName) ) {
+                arr.push(item[blockName]);
+            }
+        }
+    } else if ( item.constructor === Array ) {
+        arr = item;
+    }
+    return arr;
 }
 module.exports = fdnLoader;
