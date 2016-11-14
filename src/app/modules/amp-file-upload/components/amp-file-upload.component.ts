@@ -155,7 +155,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
             return null;
         }
         if (res && res.statusCode === 200 ) {
-            this.deleteFileNameControl.setValue(res ? res.payload.fileName : '');
+            this.deleteFileNameControl.setValue( res.payload.fileName );
             this.control.setErrors( null );
             this.uploadCompleted = true;
             this.fileUploaded.emit( res.payload );
