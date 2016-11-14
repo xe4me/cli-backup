@@ -24,7 +24,7 @@ the whole block remains untouched.
     [maxLength]='maxLength'
     [formControl]='control'
     [autoComplete]='autoComplete'
-    [placeholder]='required?label:label+" (optional)"'>
+    [placeholder]='required || !showOptional ? label : label + " (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
     <span *ngIf="!isInSummaryState" md-suffix><ng-content></ng-content></span>
 </md-input>
