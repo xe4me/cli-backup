@@ -56,4 +56,13 @@
             </amp-input>
         </div>
     </amp-form-row>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12">
+            <amp-google-recaptcha 
+                [controlGroup]="__controlGroup"
+                (captchaResponse)="handleCaptchaResponse($event)" 
+                [sitekey]="sitekey">
+            </amp-google-recaptcha>
+        </div>
+    </amp-form-row>
 </amp-form-block>

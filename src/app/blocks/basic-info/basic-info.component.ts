@@ -14,7 +14,8 @@ import {
     ScrollService ,
     FormModelService ,
     ProgressObserverService ,
-    AutoFocusOnDirective
+    AutoFocusOnDirective ,
+    Environments
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'basic-info-block' ,
@@ -24,6 +25,8 @@ import {
 export class BasicInfoBlock extends FormBlock implements OnInit {
     public maxDate : Date;
     public ageValidator : any;
+    // private sitekey : string = '6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W';
+    private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
 
     constructor ( formModelService : FormModelService ,
@@ -50,4 +53,16 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
             };
         };
     }
+
+    private handleCaptchaResponse(captchaResponse : any) {
+        //console.log(`Resolved captcha with response ${captchaResponse}:`);
+        // console.log(this.myRecaptcha);
+        console.log('captchaResponse', captchaResponse);
+        // if (!captchaResponse.success) {
+        //     // let's reset
+        //     console.log('Resetting the captcha');
+        //     captchaResponse.recaptcha.reset();
+        // }
+    }
+
 }
