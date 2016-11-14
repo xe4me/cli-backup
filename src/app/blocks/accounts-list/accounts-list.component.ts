@@ -1,8 +1,7 @@
 import {
     Component,
-    ChangeDetectorRef,
     OnInit,
-    ChangeDetectionStrategy,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import {
     Environments
@@ -10,12 +9,18 @@ import {
 import {
     AccountsListDataService
 } from '../../shared/accounts-list-data.service';
+import {
+    AccountsListPipe
+} from './accounts-list.pipe';
+
 @Component( {
     selector        : 'accounts-list' ,
     templateUrl     : './accounts-list.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles : [ require( './accounts-list.component.scss').toString() ]
+    styles : [ require( './accounts-list.component.scss').toString() ],
+    pipes: [AccountsListPipe]
 } )
+
 export class AccountsListBlock implements OnInit {
     private accounts : Array<any>;
     private imageUrls : Array<string>;

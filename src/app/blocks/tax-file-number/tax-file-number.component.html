@@ -19,7 +19,7 @@
             Providing your tax file number prevents you from paying unnecessary tax on the interest you earn.
         </div>
         <amp-form-row>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12 mt0">
+            <div class="grid__item_floated palm-7/8 tablet-7/8 lap-and-up-4/12">
                 <amp-input
                         #tfn
                         [id]="__custom.controls[1].id"
@@ -30,8 +30,10 @@
                         [maxLength]="9"
                         [label]="'Tax file number'"
                         [pattern]="'[0-9]'">
-                        <amp-tooltip-cmp message="Collection of Tax File number information is authorised by tax laws. The Privacy Act and tax laws strictly regulate the use and disclosure of Tax File numbers. You are not required by law to provide your Tax File Number and it is not an offence if you don’t provide it. We collect your TFN to determine if we must withhold an amount from any interest we pay to you on your AMP Bett3r Account."></amp-tooltip-cmp>
                 </amp-input>
+            </div>
+            <div class="grid__item_floated palm-1/8 tablet-1/8 lap-and-up-2/12">
+                <amp-tooltip-cmp class="pt pl" message="Collection of tax file number (TFN) information is authorised by tax laws. Australian privacy law and tax laws strictly regulate the use and disclosure of TFNs. You are not required by law to provide your TFN and it is not an offence if you don’t provide it. We collect your TFN to determine if we must withhold an amount from any interest we pay to you on your AMP Bett3r Account."></amp-tooltip-cmp>
             </div>
         </amp-form-row>
     </div>
