@@ -62,9 +62,6 @@ export class SaveReceiptPageComponent implements AfterViewInit {
 
     private sendEmail () {
         this.sendEmailEvent.emit( this.controlGroup.value[this.controlName] );
-        // We set errors so the button gets disabled after click
-        // The user can still edit the email address and the button becomes active again
-        this.controlGroup.setErrors( { emailSent : true } );
     }
 
     private back () {
