@@ -1,10 +1,10 @@
 import { async , TestBed } from '@angular/core/testing';
 import { Component , Injector , Injectable , ViewChild , ChangeDetectionStrategy } from '@angular/core';
-import { FormsModule , ReactiveFormsModule , FormGroup , FormBuilder , FormControl } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule , FormGroup , FormBuilder } from '@angular/forms';
 import { Observable , BehaviorSubject } from 'rxjs';
 import { AmpQasAddressModule } from '../../../app/modules/amp-qas-address';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { AmpCountryService } from '../../../app/modules/amp-dropdown/services/amp-country.service';
+import { AmpCountryService } from '../../../app/modules/amp-dropdown-new/services/amp-country.service';
 import { By } from '@angular/platform-browser';
 import { AmpManualAddressComponent } from '../../../app/modules/amp-qas-address/components/amp-manual-address/amp-manual-address.component';
 import { fakeAsync , tick } from '@angular/core/testing/fake_async';
@@ -190,9 +190,9 @@ describe( 'amp-qas-address component' , () => {
     let _postCodeCtrl : any;
     let _cityCtrl : any;
     let _manualAddressCmp;
-    const COUNTRY_AUS    = 'AUS';
-    const COUNTRY_OTHERS = 'IRA';
-    const COUNTRY_NZ     = 'NZL';
+    const COUNTRY_AUS    = 'Australia';
+    const COUNTRY_OTHERS = 'Iran';
+    const COUNTRY_NZ     = 'New Zealand';
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             declarations : [ AmpManualAddressComponentTest ] ,

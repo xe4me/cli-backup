@@ -5,10 +5,6 @@ import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
     selector : 'amp-states'
 } )
 export class AmpStatesComponent extends AmpDropdownComponent {
-    @ViewChild( 'selectEl' ) selectEl;
-    @ViewChild( 'optionsEl' ) optionsEl;
-    @ViewChild( 'dropdownEl' ) dropDownEl;
-
     constructor ( public _cd : ChangeDetectorRef , public _renderer : Renderer ) {
         super( _cd , _renderer );
         this.options  = [

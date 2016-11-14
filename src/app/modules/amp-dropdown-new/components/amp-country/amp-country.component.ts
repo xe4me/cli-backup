@@ -1,5 +1,5 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { OnInit , ChangeDetectorRef , Renderer , AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef , Renderer , AfterViewInit } from '@angular/core';
 import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
 import { AmpCountryService } from '../../services/amp-country.service';
 @AmpComponent( {
