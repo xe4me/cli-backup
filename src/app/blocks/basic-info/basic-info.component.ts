@@ -19,7 +19,8 @@ import {
 @Component( {
     selector        : 'basic-info-block' ,
     templateUrl     : './basic-info.component.html' ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles :  [ require('./basic-info.component.scss')]
 } )
 export class BasicInfoBlock extends FormBlock implements OnInit {
     public maxDate : Date;
