@@ -1,9 +1,26 @@
-import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    ViewChild
+} from '@angular/core';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import {
+    Http,
+    BaseRequestOptions
+} from '@angular/http';
+import {
+    MockBackend,
+    MockConnection
+} from '@angular/http/testing';
+import { FormGroup } from '@angular/forms';
+
 import { AmpFileUploadComponent } from '../../../app/modules/amp-file-upload/components/amp-file-upload.component';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { Http, BaseRequestOptions } from '@angular/http';
 import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
+
 describe ( 'amp-file-upload component' , () => {
     let fixture : ComponentFixture<TestComponent>;
     let Element : any;
@@ -76,17 +93,21 @@ class MockElementRef implements ElementRef {
 // Create a test component to test directives
 @Component( {
     template   : `
-                <amp-file-upload
-                    #componentReference
-                    [uploadUrl]="urls.uploadUrl"
-                    [tokenUrl]="urls.tokenUrl">
-                </amp-file-upload>
-            ` ,
+    <amp-file-upload
+        #componentReference
+        [controlGroup]="controlGroup"
+        [id]="'myid'"
+        [formName]="'BUYBACK'"
+        [formId] ="'formId'"
+        [description]="'description'">
+    </amp-file-upload>` ,
     directives : [ AmpFileUploadComponent ]
 } )
 
 class TestComponent {
     @ViewChild('componentReference') componentReference : AmpFileUploadComponent;
+    controlGroup : FormGroup = new FormGroup( {} );
+
     private urls = {
         // TODO - Urls has to be modified to fetch data from local JSON file
         uploadUrl : 'http://localhost:8081/ddc/secure/api/upload/upload?token=',

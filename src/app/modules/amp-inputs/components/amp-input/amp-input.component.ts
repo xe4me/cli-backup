@@ -62,7 +62,8 @@ import { BaseControl } from '../../../../base-control';
             'autoShrink' ,
             'showIconRight' ,
             'iconRightClickHandler' ,
-            'autoComplete'
+            'autoComplete',
+            'showOptional'
         ] ,
         encapsulation   : ViewEncapsulation.None ,
         outputs         : [ 'onEnter' , 'onBlur' , 'onKeyup' ] ,
@@ -112,6 +113,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected autoComplete : string      = 'off';
     protected iconRightClickHandler;
     protected inputFocus                 = false;
+    protected showOptional               = true;
 
     constructor ( private _cd : ChangeDetectorRef ,
                   protected el : ElementRef ,

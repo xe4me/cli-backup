@@ -7,6 +7,11 @@ import {
     Output ,
     EventEmitter
 } from '@angular/core';
+
+import {
+    FormControl
+} from '@angular/forms';
+
 import { AmpFileUploadService } from '../services/amp-file-upload.service';
 import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
 import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
@@ -31,10 +36,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     @Input() tokenUrl : string;
     @Input() formName : string;
     @Input() formId : string;
-    @Input() fileName : string;
-    @Input() deleteFileName : string;
     @Input() description : string;
-    @Input() size : number;
 
     @Output() fileUploaded : EventEmitter<any> = new EventEmitter <any>();
 
@@ -52,6 +54,9 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     private errorCodes : number[] = [ 400, 401, 404, 500, 503 ];
     private typesAllowed : string[] = [ 'application/pdf' ];
     private sizeAllowed : number = 1048576 * 2;
+    private fileNameControl : FormControl = null;
+    private fileSizeControl : FormControl = null;
+    private deleteFileNameControl : FormControl = null;
 
     constructor ( protected _cd : ChangeDetectorRef,
                   private fileUploadService : AmpFileUploadService
@@ -60,6 +65,11 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     }
 
     ngAfterViewInit () : any {
+
+        this.fileNameControl       = this.initControl('fileName');
+        this.fileSizeControl       = this.initControl('fileSize');
+        this.deleteFileNameControl = this.initControl('deleteFileName');
+
         // Get the urls from fileUploadService if it is not passed as input
         if ( this.tokenUrl ) {
             this.fileUploadService.setTokenUrl( this.tokenUrl );
@@ -70,17 +80,19 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
         if ( !this.deleteUrl ) {
             this.deleteUrl = this.fileUploadService.deleteUrl;
         }
-        if ( this.fileName ) {
-            this.fileSize = humanizeBytes( this.size );
+        if ( this.fileNameControl.value ) {
+            this.fileSize = humanizeBytes( this.fileSizeControl.value );
             this.showProgress = true;
             this.uploadCompleted = true;
+        } else {
+            this.control.setErrors({error: 'file upload pending'});
         }
+
         this.errorMessage = this.fileUploadService.errorMessage;
         this.fileUploadService.updateFormDetails( this.formName, this.formId );
         this.fileUploadService.onUpload.subscribe(( data : any ) => {
             this.handleUpload( data );
         });
-        this.control.setErrors({error: 'file upload pending'});
         this._cd.detectChanges();
         return undefined;
     }
@@ -88,7 +100,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     public removeFile () : void {
         this.error = false;
         let fileRemoved : Observable <any>;
-        fileRemoved = this.fileUploadService.deleteFile( this.deleteFileName, this.formName, this.formId );
+        fileRemoved = this.fileUploadService.deleteFile( this.deleteFileNameControl.value, this.formName, this.formId );
         fileRemoved.subscribe(
             ( res : any ) => {
                 this.showProgress = false;
@@ -101,6 +113,17 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
                 this._cd.detectChanges();
             }
         );
+    }
+
+    private initControl(name) : FormControl {
+        let aControl = null;
+        if ( !this.controlGroup.contains(name) ) {
+            aControl = new FormControl();
+            this.controlGroup.addControl(name, aControl);
+        } else {
+            aControl = <FormControl> this.controlGroup.controls[name];
+        }
+        return aControl;
     }
 
     private displayProgress ( ) : void {
@@ -132,14 +155,16 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
             return null;
         }
         if (res && res.statusCode === 200 ) {
-            this.deleteFileName = res ? res.payload.fileName : '';
+            this.deleteFileNameControl.setValue( res.payload.fileName );
             this.control.setErrors( null );
             this.uploadCompleted = true;
             this.fileUploaded.emit( res.payload );
             this._cd.detectChanges();
             return null;
         }
-        this.fileName = response.originalName;
+        this.fileSizeControl.setValue(response.size );
+        this.fileNameControl.setValue(response.originalName);
+
         this.fileSize = humanizeBytes( response.size );
         this.speed = response.progress.speedHumanized ? response.progress.speedHumanized : this.speed;
         this.uploaded = humanizeBytes((( response.size * response.progress.percent ) / 100));

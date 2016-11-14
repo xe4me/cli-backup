@@ -74,4 +74,20 @@ export class BasicUtils {
         }
         return addressObj.address ? address : '';
     }
+
+    public static base64DatatoObject ( encodedString : string ,
+                                       order : string[] = ['name', 'email', 'state', 'customer_id'] ,
+                                       seperator : string = '#' ) : any {
+        let obj = {};
+        let decodedString = atob(encodedString);
+        let items = decodedString.split(seperator);
+
+        for (let i = 0; i < order.length; i++) {
+            if (!obj.hasOwnProperty(order[i])) {
+                obj[order[i]] = items[i];
+            }
+        }
+
+        return obj;
+    }
 }
