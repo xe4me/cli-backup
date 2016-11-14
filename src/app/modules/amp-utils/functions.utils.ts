@@ -39,3 +39,19 @@ export function humanizeBytes ( bytes : number ) : string {
 export function applyCss ( property , element , transformValue ) {
     element.style[ property ] = transformValue.trim();
 }
+export function getQueryParam ( paramName : string ) : string {
+    let query = decodeURIComponent(window.location.search.substring(1));
+    let params = query.split('&');
+    let value = '';
+
+    for (let i = 0; i < params.length; i++) {
+        let pair = params[i].split('=');
+
+        if (pair[0] === paramName) {
+            value = pair[1];
+            break;
+        }
+    }
+
+    return value;
+}
