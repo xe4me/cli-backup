@@ -1,20 +1,13 @@
-import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import {
-    Component , provide , ElementRef , ReflectiveInjector , Injector , Injectable ,
-    ViewChild
-} from '@angular/core';
-import { FormControl , FormsModule , ReactiveFormsModule , FormGroup , FormBuilder } from '@angular/forms';
+import { async , TestBed } from '@angular/core/testing';
+import { Component , Injector , Injectable , ViewChild } from '@angular/core';
+import { FormsModule , ReactiveFormsModule , FormGroup , FormBuilder } from '@angular/forms';
 import { Observable , BehaviorSubject } from 'rxjs';
-import {
-    AmpQasAddressModule ,
-    AmpQasAddressService ,
-    AmpQasAddressComponent
-} from '../../../app/modules/amp-qas-address';
+import { AmpQasAddressModule , AmpQasAddressService } from '../../../app/modules/amp-qas-address';
 import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead';
 import { By } from '@angular/platform-browser';
-import { inject , ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
+import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { fakeAsync , tick } from '@angular/core/testing/fake_async';
-import { AmpCountryService } from '../../../app/modules/amp-dropdown/services/amp-country.service';
+import { AmpCountryService } from '../../../app/modules/amp-dropdown-new/services/amp-country.service';
 @Injectable()
 export class MockAmpQasAddressService {
     public static sampleSearchTerm = 'Pymble';

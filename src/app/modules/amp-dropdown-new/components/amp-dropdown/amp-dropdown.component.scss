@@ -37,10 +37,8 @@ $dropdown-font-size : 14px;
     @include media-query(lap-and-up) {
         min-width : 300px;
     }
-    @include media-query(palm) {
-        select {
-            display : none !important;
-        }
+    select {
+        display : none !important;
     }
 }
 

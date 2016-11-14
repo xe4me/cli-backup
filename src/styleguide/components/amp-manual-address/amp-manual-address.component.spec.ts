@@ -4,7 +4,7 @@ import { FormsModule , ReactiveFormsModule , FormGroup , FormBuilder , FormContr
 import { Observable , BehaviorSubject } from 'rxjs';
 import { AmpQasAddressModule } from '../../../app/modules/amp-qas-address';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { AmpCountryService } from '../../../app/modules/amp-dropdown/services/amp-country.service';
+import { AmpCountryService } from '../../../app/modules/amp-dropdown-new/services/amp-country.service';
 import { By } from '@angular/platform-browser';
 import { AmpManualAddressComponent } from '../../../app/modules/amp-qas-address/components/amp-manual-address/amp-manual-address.component';
 import { fakeAsync , tick } from '@angular/core/testing/fake_async';
@@ -190,9 +190,9 @@ describe( 'amp-qas-address component' , () => {
     let _postCodeCtrl : any;
     let _cityCtrl : any;
     let _manualAddressCmp;
-    const COUNTRY_AUS    = 'AUS';
-    const COUNTRY_OTHERS = 'IRA';
-    const COUNTRY_NZ     = 'NZL';
+    const COUNTRY_AUS    = 'Australia';
+    const COUNTRY_OTHERS = 'Iran';
+    const COUNTRY_NZ     = 'New Zealand';
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             declarations : [ AmpManualAddressComponentTest ] ,
@@ -229,12 +229,12 @@ describe( 'amp-qas-address component' , () => {
         _cityCtrl               = _manualAddressCmp.cityCtrl;
     } );
     function selectNewZealand () {
-        _manualAddressCmp.manualCountryCmp.setSelectValue( AmpManualAddressComponent.COUNTRY_NZ );
+        _manualAddressCmp.manualCountryCmp.control.setValue( AmpManualAddressComponent.COUNTRY_NZ );
         _fixture.detectChanges();
     }
 
     function selectOtherCountries () {
-        _manualAddressCmp.manualCountryCmp.setSelectValue( MockAmpCountryService._countries[ 5 ].countryCode );
+        _manualAddressCmp.manualCountryCmp.control.setValue( MockAmpCountryService._countries[ 5 ].country );
         _countryCtrl.updateValueAndValidity( {
             emitEvent : true
         } );
@@ -290,7 +290,7 @@ describe( 'amp-qas-address component' , () => {
             expect( _manualAddressCmp.manualSuburbCmp.label ).toBe( _manualAddressCmp.suburb.label );
         } );
     } );
-    xdescribe( 'When selected NewZealand' , () => {
+    describe( 'When selected NewZealand' , () => {
         beforeEach( () => {
             selectNewZealand();
         } );
@@ -301,19 +301,18 @@ describe( 'amp-qas-address component' , () => {
             expect( _suburbCtrl.errors ).toBeNull();
         } ) );
     } );
-    xdescribe( 'When selected not Australia and not NewZealand' , () => {
+    describe( 'When selected not Australia and not NewZealand' , () => {
         beforeEach( () => {
             selectOtherCountries();
         } );
         it( 'Postcode should not be required and should be valid (should be optional)' , () => {
-            expect( _postCodeCtrl.valid ).toBeFalsy();
+            expect( _postCodeCtrl.valid ).toBeTruthy();
             expect( _postCodeCtrl.errors ).toBeNull();
         } );
-        // it( 'Suburb should be required ' , () => {
-        //     expect( _suburbCtrl.valid ).toBeFalsy();
-        //     expect( _suburbCtrl.errors ).not.toBeNull();
-        //     expect( _suburbCtrl.errors.required ).toBeDefined();
-        // } );
+        it( 'Suburb should NOT be required ' , () => {
+            expect( _suburbCtrl.valid ).toBeTruthy();
+            expect( _suburbCtrl.errors ).toBeNull();
+        } );
     } );
 } );
 @Component( {

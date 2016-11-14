@@ -75,14 +75,6 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         super();
     }
 
-    set required ( value : boolean ) {
-        this._required = value;
-    }
-
-    get required () {
-        return this._required;
-    }
-
     get isOptionsHidden () : boolean {
         return this._optionsHidden;
     }
