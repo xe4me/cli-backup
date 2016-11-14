@@ -41,6 +41,9 @@ import { BaseControl } from '../../../../base-control';
         'options' ,
         'index' ,
         'keepControl' ,
+    ] ,
+    outputs         : [
+        'selected'
     ]
 } )
 export class AmpDropdownComponent extends BaseControl implements AfterViewInit, OnDestroy {
@@ -51,9 +54,9 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     public control : FormControl;
     public dropdownControlGroup : FormGroup;
     public keepControl : boolean              = false;
+    public selected                           = new EventEmitter<any>();
     protected focusers : QueryList<FocuserDirective>;
     protected optionsRef : QueryList<TemplateRef<ElementRef>>;
-    protected selected                        = new EventEmitter<any>();
     protected maxHeight : string              = '400px';
     protected fieldItemKey                    = 'value';
     protected fieldValueKey                   = 'label';
@@ -72,14 +75,6 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         super();
     }
 
-    set required ( value : boolean ) {
-        this._required = value;
-    }
-
-    get required () {
-        return this._required;
-    }
-
     get isOptionsHidden () : boolean {
         return this._optionsHidden;
     }
@@ -88,54 +83,62 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         return this.id + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME;
     }
 
-    ngOnInit () : void {
-        if ( this.controlGroup ) {
-            if ( this.controlGroup.contains( this.getGroupName() ) ) {
-                this.dropdownControlGroup = <FormGroup> this.controlGroup.get( this.getGroupName() );
-            } else {
-                this.dropdownControlGroup = new FormGroup( {} );
-                this.controlGroup.addControl( this.getGroupName() , this.dropdownControlGroup );
-            }
-        } else {
-            this.dropdownControlGroup = new FormGroup( {} );
-        }
-        if ( this.dropdownControlGroup ) {
-            if ( this.dropdownControlGroup.contains( AmpDropdownComponent.SELECTED_CONTROL_NAME ) ) {
-                this.selectedControl = <FormControl> this.dropdownControlGroup.get( AmpDropdownComponent.SELECTED_CONTROL_NAME );
-            } else {
-                this.selectedControl = new FormControl();
-                this.dropdownControlGroup.addControl( AmpDropdownComponent.SELECTED_CONTROL_NAME , this.selectedControl );
-            }
-            if ( this.dropdownControlGroup.contains( AmpDropdownComponent.QUERY_CONTROL_NAME ) ) {
-                this.control = <FormControl> this.dropdownControlGroup.get( AmpDropdownComponent.QUERY_CONTROL_NAME );
-            } else {
-                this.control = new FormControl();
-                this.dropdownControlGroup.addControl( AmpDropdownComponent.QUERY_CONTROL_NAME , this.control );
-            }
-        } else {
-            this.selectedControl = new FormControl();
-            this.control         = new FormControl();
-        }
-        this.setupOnControlValueChangeHandler();
-    }
-
     ngAfterViewInit () : void {
         this.selectedOption[ this.fieldValueKey ] = null;
         this.selectedOption[ this.fieldItemKey ]  = null;
         this.updateValidators();
         // check if control has value ( it's been retrieved , and if so , do the select)
         if ( this.control.value !== undefined ) {
-            this.findOptionAndSelect( this.control.value );
+            setTimeout( () => {
+                this.findOptionAndSelect( this.control.value );
+            } );
         }
     }
 
-    ngOnDestroy () : void {
+    createAndJoinControl () {
+        if ( ! this.createdAndJoinedControl ) {
+            // if we have the fdn provided by controlGroup , use it otherwise generate a radnom string
+            this.createRandomId();
+            if ( this.controlGroup ) {
+                if ( this.controlGroup.contains( this.getGroupName() ) ) {
+                    this.dropdownControlGroup = <FormGroup> this.controlGroup.get( this.getGroupName() );
+                } else {
+                    this.dropdownControlGroup = new FormGroup( {} );
+                    this.controlGroup.addControl( this.getGroupName() , this.dropdownControlGroup );
+                }
+            } else {
+                this.dropdownControlGroup = new FormGroup( {} );
+            }
+            if ( this.dropdownControlGroup ) {
+                if ( this.dropdownControlGroup.contains( AmpDropdownComponent.SELECTED_CONTROL_NAME ) ) {
+                    this.selectedControl = <FormControl> this.dropdownControlGroup.get( AmpDropdownComponent.SELECTED_CONTROL_NAME );
+                } else {
+                    this.selectedControl = new FormControl();
+                    this.dropdownControlGroup.addControl( AmpDropdownComponent.SELECTED_CONTROL_NAME , this.selectedControl );
+                }
+                if ( this.dropdownControlGroup.contains( AmpDropdownComponent.QUERY_CONTROL_NAME ) ) {
+                    this.control = <FormControl> this.dropdownControlGroup.get( AmpDropdownComponent.QUERY_CONTROL_NAME );
+                } else {
+                    this.control = new FormControl();
+                    this.dropdownControlGroup.addControl( AmpDropdownComponent.QUERY_CONTROL_NAME , this.control );
+                }
+            } else {
+                this.selectedControl = new FormControl();
+                this.control         = new FormControl();
+            }
+            this.setAmpErrors();
+            this.createdAndJoinedControl = true;
+            this.setupOnControlValueChangeHandler();
+        }
+    }
+
+    ngOnDestroy () : any {
         if ( this.subscription ) {
             this.subscription.unsubscribe();
         }
         if ( ! this.keepControl ) {
-            if ( this.controlGroup.contains( AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME ) ) {
-                this.controlGroup.removeControl( AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME );
+            if ( this.controlGroup && this.controlGroup.contains( this.getGroupName() ) ) {
+                this.controlGroup.removeControl( this.getGroupName() );
             }
         }
     }

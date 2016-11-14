@@ -24,8 +24,8 @@ import { BasicUtils } from '../../../amp-utils/basic-utils';
 } )
 export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestroy {
     public static MANUAL_ARRES_GROUP_NAME     = 'manualAddress';
-    public static DEFAULT_SELECTED_COUNTRY    = 'AUS';
-    public static COUNTRY_NZ                  = 'NZL';
+    public static DEFAULT_SELECTED_COUNTRY    = 'Australia';
+    public static COUNTRY_NZ                  = 'New Zealand';
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp : AmpInputComponent;
     @ViewChild( 'manualSuburbCmp' ) manualSuburbCmp : AmpInputComponent;
     @ViewChild( 'manualStatesCmp' ) manualStatesCmp : AmpStatesComponent;
@@ -92,6 +92,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
             minLength : 'Postcode must be 4 numbers.'
         }
     };
+    public selectedCountry                    = 'Australia';
     protected stateCtrl;
     protected countryCtrl;
     protected addressCtrl;
@@ -119,7 +120,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
 
     ngAfterViewInit () : void {
         this.getManualControlsFromManualAddressCG();
-        this.manualCountryCmp.setSelectValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
+        this.countryCtrl.setValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
     }
 
     ngOnDestroy () : void {
@@ -138,8 +139,8 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
         if ( _formattedAddress ) {
             this.addressCtrl.setValue( _formattedAddress.StreetAddress );
             this.suburbCtrl.setValue( _formattedAddress.Suburb );
-            this.manualStatesCmp.setSelectValue( _formattedAddress.State.toUpperCase() );
-            this.manualCountryCmp.setSelectValue( _formattedAddress.Country === 'Australia' ? 'AUS' : 'NZL' );
+            this.stateCtrl.setValue( _formattedAddress.State.toUpperCase() );
+            this.countryCtrl.setValue( _formattedAddress.Country === 'Australia' ? 'Australia' : 'New Zealand' );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
             // this.dpidCtrl.setValue( _formattedAddress.DPID );
         }
@@ -148,7 +149,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
 
     public emptyControls () {
         this.emptyAndResetStateControl();
-        this.manualCountryCmp.setSelectValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
+        this.countryCtrl.setValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
         this.suburbCtrl.reset( null );
         this.addressCtrl.reset( null );
         this.postCodeCtrl.reset( null );
@@ -157,19 +158,19 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     public emptyAndResetStateControl () {
-        this.manualStatesCmp.setSelectValue( null );
+        this.stateCtrl.setValue( null );
         this.stateCtrl.markAsPristine();
     }
 
     private onCountrySelect ( _countryCode ) {
-        // if ( this.manualAddressCG.__selectedCountry !== _countryCode ) {
-        //     this.emptyAndResetStateControl();
-        //     this.cityCtrl.reset( null );
-        //     this.suburbCtrl.reset( null );
-        //     this.manualAddressCG.__selectedCountry = _countryCode;
-        //     this.killDelayedValidationForInputs();
-        //     this._cd.markForCheck();
-        // }
+        if ( this.selectedCountry !== _countryCode.country ) {
+            // this.emptyAndResetStateControl();
+            // this.cityCtrl.reset( null );
+            // this.suburbCtrl.reset( null );
+            this.selectedCountry = _countryCode.country;
+            // this.killDelayedValidationForInputs();
+            this._cd.detectChanges();
+        }
     }
 
     private getJoinedIdWithIndex ( _id ) {
@@ -185,20 +186,20 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     private getManualControlsFromManualAddressCG () {
-        this.stateCtrl    = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.state.id ) );
-        this.countryCtrl  = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.country.id ) );
-        this.addressCtrl  = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.address.id ) );
-        this.suburbCtrl   = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.suburb.id ) );
-        this.postCodeCtrl = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.postCode.id ) );
-        this.cityCtrl     = this.manualAddressCG.get( this.getJoinedIdWithIndex( this.city.id ) );
+        this.stateCtrl    = this.manualStatesCmp.control;
+        this.countryCtrl  = this.manualCountryCmp.control;
+        this.addressCtrl  = this.manualAddressCmp.control;
+        this.suburbCtrl   = this.manualSuburbCmp.control;
+        this.postCodeCtrl = this.manualPostcodeCmp.control;
+        this.cityCtrl     = this.manualCityCmp.control;
     }
 
     private get isCountryAUS () : boolean {
-        return this.countryCtrl && this.countryCtrl.value === AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
+        return this.selectedCountry === AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY;
     }
 
     private get isCountryNZ () : boolean {
-        return this.countryCtrl && this.countryCtrl.value === AmpManualAddressComponent.COUNTRY_NZ;
+        return this.selectedCountry === AmpManualAddressComponent.COUNTRY_NZ;
     }
 
     private getCityLabel () : string {

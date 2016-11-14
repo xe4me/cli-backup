@@ -1,16 +1,29 @@
+<div class='amp-dropdown-title mb-' [class.invisible]='!selectedOption[fieldValueKey]'>{{ label }}</div>
 <div [clicked-outside]='close' class='amp-dropdown'>
+    <select [formControl]='control' class='sr-only'
+            [attr.data-automation-id]='"select_" + randomizedId'
+            [attr.id]='"select_" + randomizedId'
+            [attr.name]='"select_" + randomizedId'>
+        <option value=''>{{ label }}</option>
+        <option (click)='selectOption(option,$event)' *ngFor='let option of options; let i = index'
+                value="{{ option[fieldValueKey] }}">
+            {{ option[fieldValueKey] }}
+        </option>
+    </select>
     <input
         #input
         class='sr-only amp-dropdown-control'
+        [attr.data-automation-id]='"dropdown_" + randomizedId'
+        [attr.id]='"dropdown_" + randomizedId'
+        [attr.name]='"dropdown_" + randomizedId'
         (keydown)='onKeydown($event)'
-        id='dropdown_control'
         focuser>
     <label class='amp-dropdown-label'
            [class.active]='!isOptionsHidden'
            [class.selected]='selectedOption[fieldItemKey] && isOptionsHidden'
            [class.disabled]='isInSummaryState || disabled'
            (click)='!disabled && !isInSummaryState && toggleOptions($event)'
-           for='dropdown_control'>
+           [attr.id]='"dropdown_" + randomizedId'>
         <span>{{ selectedOption[fieldValueKey] || label }}</span>&nbsp;
         <span class='amp-dropdown-icon icon icon--chevron-{{ isOptionsHidden?"down":"up" }}' aria-hidden='true'></span>
     </label>

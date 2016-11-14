@@ -37,6 +37,9 @@ $dropdown-font-size : 14px;
     @include media-query(lap-and-up) {
         min-width : 300px;
     }
+    select {
+        display : none !important;
+    }
 }
 
 @mixin border-active {
@@ -50,6 +53,20 @@ $padding-up : 20px;
     &:focus + .amp-dropdown-label {
         @include border-active();
     }
+}
+
+.amp-dropdown-title {
+    &.invisible {
+        visibility : hidden;
+    }
+    margin-bottom : 20px;
+    @include amp-family('open-sans-semibold');
+    color         : $amp-colour-grey-darkest;
+
+}
+
+.amp-dropdown {
+    position : relative;
 }
 
 .amp-dropdown-label {

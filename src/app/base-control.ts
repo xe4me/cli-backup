@@ -1,8 +1,11 @@
 import { FormControl , FormGroup } from '@angular/forms';
 import { OnDestroy } from '@angular/core';
 import { addDashOrNothing , isTrue , generateRandomString } from './modules/amp-utils/functions.utils';
+export class AmpFormGroup extends FormGroup {
+    __fdn : (number|string)[];
+}
 export class BaseControl implements OnDestroy {
-    public _controlGroup : FormGroup;
+    public _controlGroup : AmpFormGroup;
     public control : FormControl;
     public _errors;
     public _id                         = 'default';
@@ -11,7 +14,7 @@ export class BaseControl implements OnDestroy {
     public index;
     public _required : boolean         = false;
     public _disabled : boolean         = false;
-    public _randomString               = 'default_random_id';
+    public _randomString          = 'default_random_id';
     public _customValidator : Function = () => {
     };
 
@@ -57,7 +60,8 @@ export class BaseControl implements OnDestroy {
 
     createAndJoinControl () {
         if ( ! this.createdAndJoinedControl ) {
-            this._randomString = generateRandomString();
+            // if we have the fdn provided by controlGroup , use it otherwise generate a radnom string
+            this.createRandomId();
             if ( this.controlGroup ) {
                 if ( this.controlGroup.get( this.id ) ) {
                     this.control = <FormControl> this.controlGroup.get( this.id );
@@ -68,13 +72,7 @@ export class BaseControl implements OnDestroy {
             } else {
                 this.control = new FormControl();
             }
-            if ( ! this.errors ) {
-                this.errors = {};
-            }
-            this.control[ '_ampErrors' ] = {};
-            Object.keys( this.errors ).map( ( errorName , i ) => {
-                (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-            } );
+            this.setAmpErrors();
             this.createdAndJoinedControl = true;
         }
     }
@@ -107,5 +105,23 @@ export class BaseControl implements OnDestroy {
 
     get randomizedId () {
         return this.id + '_' + this._randomString;
+    }
+
+    protected createRandomId () {
+        if ( this.controlGroup && this.controlGroup.__fdn ) {
+            this._randomString = [ ...this.controlGroup.__fdn , this.id ].join( '-' );
+        } else {
+            this._randomString = generateRandomString();
+        }
+    }
+
+    protected setAmpErrors () {
+        if ( ! this.errors ) {
+            this.errors = {};
+        }
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName , i ) => {
+            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
     }
 }

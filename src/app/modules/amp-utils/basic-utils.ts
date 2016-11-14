@@ -31,14 +31,14 @@ export class BasicUtils {
             if ( addressObj.city ) {
                 address += ', ' + addressObj.city;
             }
-            if ( addressObj.state ) {
-                address += ' ' + addressObj.state;
+            if ( addressObj.stateDropdown && addressObj.stateDropdown.Query ) {
+                address += ' ' + addressObj.stateDropdown.Query;
             }
             if ( addressObj.postCode ) {
                 address += ' ' + addressObj.postCode;
             }
-            if ( addressObj.country ) {
-                address += ', ' + addressObj.country;
+            if ( addressObj.countryDropdown && addressObj.countryDropdown.Query ) {
+                address += ', ' + addressObj.countryDropdown.Query;
             }
         }
         if ( addressType === AddressFormatTypes.BANK ) {
@@ -54,8 +54,8 @@ export class BasicUtils {
             if ( addressObj.streetName ) {
                 address += ', ' + addressObj.streetName;
             }
-            if ( addressObj.streetType ) {
-                address += ', ' + addressObj.streetType;
+            if ( addressObj.streetTypeDropdown && addressObj.streetTypeDropdown.Query ) {
+                address += ', ' + addressObj.streetTypeDropdown.Query;
             }
             if ( addressObj.poBox ) {
                 address += ', ' + addressObj.poBox;
@@ -63,8 +63,8 @@ export class BasicUtils {
             if ( addressObj.suburb ) {
                 address += ', ' + addressObj.suburb;
             }
-            if ( addressObj.state ) {
-                address += ' ' + addressObj.state;
+            if ( addressObj.stateDropdown && addressObj.stateDropdown.Query ) {
+                address += ' ' + addressObj.stateDropdown.Query;
             }
             if ( addressObj.postCode ) {
                 address += ' ' + addressObj.postCode;

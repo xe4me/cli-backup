@@ -176,14 +176,14 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
             } else {
                 this.isItPoBoxCmp.control.setValue( false );
             }
-            this.manualStreetTypeCmp.setSelectValue( _formattedAddress.Bank.StreetType.toUpperCase() );
+            this.manualStreetTypeCmp.control.setValue( _formattedAddress.Bank.StreetType.toUpperCase() );
             this.manualStreetNameCmp.control.setValue( _formattedAddress.Bank.StreetName );
             this.manualStreetNumberCmp.control.setValue( _formattedAddress.Bank.BuildingNumber );
             this.manualBuildingNameCmp.control.setValue( _formattedAddress.Bank.BuildingName );
             this.manualUnitNumberCmp.control.setValue( _formattedAddress.Bank.FlatUnit );
             this.manualSuburbCmp.control.setValue( _formattedAddress.CRM.Suburb );
             this.manualPostcodeCmp.control.setValue( _formattedAddress.CRM.Postcode );
-            this.manualStatesCmp.setSelectValue( _formattedAddress.CRM.State.toUpperCase() );
+            this.manualStatesCmp.control.setValue( _formattedAddress.CRM.State.toUpperCase() );
             this._cd.detectChanges();
         }
     }
@@ -197,8 +197,8 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
 
     public emptyControls () {
         this.manualAddressCG.reset();
-        this.manualStatesCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
-        this.manualStreetTypeCmp.setSelectValue( null );
+        this.manualStatesCmp.control.setValue( null );
+        this.manualStreetTypeCmp.control.setValue( null );
         if ( this.isResidentialAddress ) {
             this.isItPoBoxCmp.control.setValue( false );
         }
@@ -214,7 +214,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
         this.manualStreetNumberCmp.control.reset( null );
         this.manualStreetNameCmp.control.reset( null );
         this.manualPoBoxCmp.control.reset( null );
-        this.manualStreetTypeCmp.setSelectValue( null , AmpDropdownComponent.TRIGGER_CHANGE , AmpDropdownComponent.MARK_AS_PRISTINE );
+        this.manualStreetTypeCmp.control.setValue( null );
     }
 
     private get summaryAddress () {
