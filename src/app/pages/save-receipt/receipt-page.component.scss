@@ -1,19 +1,9 @@
 @import '../../../styles/abstracts';
 
-$amp-ddc-public-asset: '/assets/';
-
-$logo-height: 80px !default;
 $amp-ddc-padding: 40px;
 
-.save-page_logo {
-  min-height: $logo-height;
-  margin-top: $amp-ddc-padding;
-  margin-left: $amp-ddc-padding;
-  background-position: left top;
-  background-attachment: scroll;
-  background-repeat: no-repeat;
-  background-image: url($amp-ddc-public-asset + 'images/logo/logo-amp-dark.png');
-  background-size: 10%;
+.amp-logo {
+    margin-top: $amp-ddc-padding;
 }
 
 .save-page_message {
