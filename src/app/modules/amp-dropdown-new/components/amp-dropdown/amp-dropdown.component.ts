@@ -226,6 +226,11 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
             } );
             this.selectedControl.setValue( this.selectedOption[ this.fieldItemKey ] );
         }
+        if ( this.control.untouched ) {
+            this.control.markAsTouched( {
+                onlySelf : false
+            } );
+        }
         this.selected.emit( this.selectedOption );
         this.close();
         this.focusInput();

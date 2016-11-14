@@ -203,6 +203,13 @@ describe( 'amp-dropdown component' , () => {
             expect( SelectedControl.value ).toBe( TitleOptions[ 0 ].value );
             expect( getValueOfSelectedOption() ).toBe( TitleOptions[ 0 ].label );
         } );
+        it( 'should mark the controlGroup as touched as soon as selected an item ' , fakeAsync( () => {
+            expect( CmpControlGroup.touched ).toBeFalsy();
+            expectAllControlsToBeNull();
+            Select_Options[ 1 ].click();
+            tick();
+            expect( CmpControlGroup.touched ).toBeTruthy();
+        } ) );
         it( 'Setting the value to an option that is not in the list should not change the controls value (should not' +
             ' select)' , () => {
             expectAllControlsToBeNull();
