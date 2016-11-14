@@ -1,95 +1,100 @@
-// import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-// import {Component, ElementRef, ViewChild} from '@angular/core';
-// import { AmpFileUploadComponent } from '../../../app/modules/amp-file-upload/components/amp-file-upload.component';
-// import { MockBackend, MockConnection } from '@angular/http/testing';
-// import { Http, BaseRequestOptions } from '@angular/http';
-// import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
-// describe ( 'amp-file-upload component' , () => {
-//     let fixture : ComponentFixture<TestComponent>;
-//     let Element : any;
-//     let Component : any;
-//     const mockHttpProvider = {
-//         deps: [ MockBackend, BaseRequestOptions ]
-//     };
+import { async , ComponentFixture , TestBed } from '@angular/core/testing';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import { AmpFileUploadComponent } from '../../../app/modules/amp-file-upload/components/amp-file-upload.component';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { Http, BaseRequestOptions } from '@angular/http';
+import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
+import { FormGroup } from '@angular/forms';
 
-//     beforeEach ( async( () => {
-//         TestBed.configureTestingModule( {
-//             declarations : [
-//                 AmpFileUploadComponent ,
-//                 TestComponent
-//             ] ,
-//             providers    : [
-//                 { provide : ElementRef , useClass : MockElementRef } ,
-//                 { provide : Window , useClass : window },
-//                 { provide: Http },
-//                 { provide: AmpHttpService },
-//                 { provide: mockHttpProvider }
-//             ]
-//         } );
-//         TestBed.compileComponents();
-//         fixture = TestBed.createComponent( TestComponent );
-//         fixture.detectChanges();
-//         Element = fixture.nativeElement;
-//         Component = fixture.componentInstance;
-//     } ) );
+describe ( 'amp-file-upload component' , () => {
+    let fixture : ComponentFixture<TestComponent>;
+    let Element : any;
+    let Component : any;
+    const mockHttpProvider = {
+        deps: [ MockBackend, BaseRequestOptions ]
+    };
 
-//     describe ( '"File Upload" button' , () => {
-//         let button   : any;
+    beforeEach ( async( () => {
+        TestBed.configureTestingModule( {
+            declarations : [
+                AmpFileUploadComponent ,
+                TestComponent
+            ] ,
+            providers    : [
+                { provide : ElementRef , useClass : MockElementRef } ,
+                { provide : Window , useClass : window },
+                { provide: Http },
+                { provide: AmpHttpService },
+                { provide: mockHttpProvider }
+            ]
+        } );
+        TestBed.compileComponents();
+        fixture = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        Element = fixture.nativeElement;
+        Component = fixture.componentInstance;
+    } ) );
 
-//         beforeEach( async( () => {
-//             button = Element.querySelector( 'amp-file-upload' );
-//         } ) );
+    describe ( '"File Upload" button' , () => {
+        let button   : any;
 
-//         it ( 'Should contain a button' , () => {
-//             expect( button ).toBeDefined();
-//         } );
+        beforeEach( async( () => {
+            button = Element.querySelector( 'amp-file-upload' );
+        } ) );
 
-//         it ( 'Button should contain "File Upload" text' , () => {
-//             expect( button.textContent.trim() ).toBe( 'File Upload' );
-//         } );
-//     });
+        it ( 'Should contain a button' , () => {
+            expect( button ).toBeDefined();
+        } );
 
-//     describe ( 'File input element' , () => {
+        it ( 'Button should contain "File Upload" text' , () => {
+            expect( button.textContent.trim() ).toBe( 'File Upload' );
+        } );
+    });
 
-//         let input   : any;
+    describe ( 'File input element' , () => {
 
-//         beforeEach( async( () => {
-//             input = Element.querySelector( 'input' );
-//         } ) );
+        let input   : any;
 
-//         it( 'should contain a file input element' , () => {
-//             expect( input ).toBeDefined();
-//         } );
+        beforeEach( async( () => {
+            input = Element.querySelector( 'input' );
+        } ) );
 
-//         it( 'Function "updateToken" should get called on click of "input" element' , () => {
-//             let spy = spyOn(Component.componentReference , 'updateToken');
-//             input.click();
-//             expect( spy ).toHaveBeenCalled();
-//         } );
-//     });
-// } );
+        it( 'should contain a file input element' , () => {
+            expect( input ).toBeDefined();
+        } );
 
-// class MockElementRef implements ElementRef {
-//     nativeElement = {};
-// }
+        // it( 'Function "updateToken" should get called on click of "input" element' , () => {
+        //     let spy = spyOn(Component.componentReference , 'updateToken');
+        //     input.click();
+        //     expect( spy ).toHaveBeenCalled();
+        // } );
+    });
+} );
 
-// // Create a test component to test directives
-// @Component( {
-//     template   : `
-//                 <amp-file-upload
-//                     #componentReference
-//                     [uploadUrl]="urls.uploadUrl"
-//                     [tokenUrl]="urls.tokenUrl">
-//                 </amp-file-upload>
-//             ` ,
-//     directives : [ AmpFileUploadComponent ]
-// } )
+class MockElementRef implements ElementRef {
+    nativeElement = {};
+}
 
-// class TestComponent {
-//     @ViewChild('componentReference') componentReference : AmpFileUploadComponent;
-//     private urls = {
-//         // TODO - Urls has to be modified to fetch data from local JSON file
-//         uploadUrl : 'http://localhost:8081/ddc/secure/api/upload/upload?token=',
-//         tokenUrl : 'http://localhost:8081/ddc/secure/api/upload/token'
-//     };
-// }
+// Create a test component to test directives
+@Component( {
+    template   : `
+    <amp-file-upload
+        [controlGroup]="controlGroup"
+        [id]="'myid'"
+        [formName]="'BUYBACK'"
+        [formId] ="'formId'"
+        [description]="'description'">
+    </amp-file-upload>` ,
+    directives : [ AmpFileUploadComponent ]
+} )
+
+class TestComponent {
+    @ViewChild('componentReference') componentReference : AmpFileUploadComponent;
+    controlGroup : FormGroup = new FormGroup( {} );
+
+    private urls = {
+        // TODO - Urls has to be modified to fetch data from local JSON file
+        uploadUrl : 'http://localhost:8081/ddc/secure/api/upload/upload?token=',
+        tokenUrl : 'http://localhost:8081/ddc/secure/api/upload/token'
+    };
+}
