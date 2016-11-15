@@ -376,7 +376,8 @@
                         {
                             "id": "AcceptTandCs"
                         }
-                    ]
+                    ],
+                    "submitErrMsg" : "We are currently unable to process your application. Please try again later."
                 }
             }
         ]
