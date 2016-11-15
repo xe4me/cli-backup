@@ -10,6 +10,7 @@
     <div class="p">
         <amp-google-recaptcha #myRecaptcha (captchaResponse)="handleCaptchaResponse($event)"
             data-theme="light"
+            [controlGroup]='__controlGroup'
             data-sitekey="6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W"></amp-google-recaptcha>        
     </div>
 

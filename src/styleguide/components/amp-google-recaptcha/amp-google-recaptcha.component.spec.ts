@@ -9,24 +9,6 @@ import { AmpReCaptchaService } from '../../../app/modules/amp-google-recaptcha/s
 import { AmpReCaptchaComponent } from '../../../app/modules/amp-google-recaptcha/components/amp-recaptcha.component';
 import { AmpGoogleRecaptchaModule } from '../../../app/modules/amp-google-recaptcha/amp-google-recaptcha.module';
 
-describe( 'amp-google-recaptcha service' , () => {
-    beforeEach( async( () => {
-        TestBed.configureTestingModule( {
-            imports      : [ AmpGoogleRecaptchaModule ]
-        } );
-        TestBed.compileComponents();
-    } ) );
-
-    it('should load the Google Recaptcha API script', inject([AmpReCaptchaService], (captchaService) => {
-        let myCaptchaService = captchaService;
-        expect(myCaptchaService).toBeDefined();
-        expect(myCaptchaService.scriptLoaded).toBe(false);
-        myCaptchaService.loadScript(null);
-        expect(myCaptchaService.scriptLoaded).toBe(true);
-    } ) );
-
-});
-
 describe( 'amp-google-recaptcha component' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
@@ -54,7 +36,6 @@ describe( 'amp-google-recaptcha component' , () => {
     });
 });
 
-// test a public method inside the class
 @Component( {
     template : `
     <amp-google-recaptcha #myRecaptcha data-sitekey="6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W"></amp-google-recaptcha>

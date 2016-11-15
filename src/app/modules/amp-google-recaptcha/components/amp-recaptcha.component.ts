@@ -14,6 +14,7 @@ import { FormControl,
          FormBuilder,
          Validators
 } from '@angular/forms';
+import { Subscription } from 'rxjs/Rx';
 @Component({
    selector: 'amp-google-recaptcha',
    template: `<div #recaptchaId></div>`
@@ -52,6 +53,7 @@ export class AmpReCaptchaComponent implements OnInit {
     widgetId : any = null;
 
     private recaptchControlGroup : FormGroup;
+    private myScriptLoaded : Subscription;
 
     constructor(
         private zone : NgZone,
@@ -60,7 +62,7 @@ export class AmpReCaptchaComponent implements OnInit {
 
     public ngOnInit() : any {
         // this.createControls();
-        this.captchaService.loadScript(this.language)
+        this.myScriptLoaded = this.captchaService.loadScript(this.language)
             .subscribe((loaded) => {
                 if (loaded) {
                     let captchaOptions = this.buildCaptchaOptions();
@@ -75,6 +77,7 @@ export class AmpReCaptchaComponent implements OnInit {
         if (!this.keepControl && this.controlGroup && this.id) {
             this.controlGroup.removeControl(this.id);
         }
+        this.myScriptLoaded.unsubscribe();
     }
 
     public reset() {
