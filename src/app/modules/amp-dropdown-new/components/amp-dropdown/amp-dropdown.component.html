@@ -1,5 +1,5 @@
 <div class='amp-dropdown-title mb-' [class.invisible]='!selectedOption[fieldValueKey]'>{{ label }}</div>
-<div [clicked-outside]='close' class='amp-dropdown'>
+<div (window:resize)="onResize($event)" [clicked-outside]='close' class='amp-dropdown'>
     <select [formControl]='control' class='sr-only'
             [attr.data-automation-id]='"select_" + randomizedId'
             [attr.id]='"select_" + randomizedId'
