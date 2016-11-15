@@ -128,7 +128,7 @@ function createStaticClassString ( fdnRoot ) {
     return string;
 }
 function objectToArray ( item ) {
-    let arr = [];
+    var arr = [];
     if ( item.constructor === Object ) {
         for ( blockName in item ) {
             if ( item.hasOwnProperty(blockName) ) {
