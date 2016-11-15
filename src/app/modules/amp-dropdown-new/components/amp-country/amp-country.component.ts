@@ -1,14 +1,15 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { ChangeDetectorRef , Renderer , AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef , Renderer , AfterViewInit , ElementRef } from '@angular/core';
 import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
 import { AmpCountryService } from '../../services/amp-country.service';
 @AmpComponent( {
     selector : 'amp-country'
 } )
 export class AmpCountryComponent extends AmpDropdownComponent implements AfterViewInit {
-    constructor ( public _cd : ChangeDetectorRef , public ampCountryService : AmpCountryService ,
+    constructor ( public _el : ElementRef , public _cd : ChangeDetectorRef ,
+                  public ampCountryService : AmpCountryService ,
                   public _renderer : Renderer ) {
-        super( _cd , _renderer );
+        super( _el , _cd , _renderer );
         this.fieldItemKey  = 'countryCode';
         this.fieldValueKey = 'country';
         this.options       = [
