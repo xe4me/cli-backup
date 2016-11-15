@@ -53,7 +53,7 @@ function createModel ( formDef , fdn , model ) {
         }
     } else {
         if ( formDef.name ) {
-            let block = {};
+            var block = {};
 
             if ( formDef.custom && formDef.custom.controls ) {
                 for ( var i = 0 ; i < formDef.custom.controls.length ; i ++ ) {
