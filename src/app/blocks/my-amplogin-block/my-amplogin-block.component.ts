@@ -45,7 +45,7 @@ export class MyAMPLoginBlockComponent extends FormBlock {
                 // Bind the onload event of the iframe back into angular to get the response of the login
                 this.renderer.listen(DOM.query('#myamploginframe'), 'load', (event) => {
                     try {
-                        let landingURL = DOM.query('#myamploginframe').location.href;
+                        let landingURL = DOM.query('#myamploginframe').contentWindow.location.href;
 
                         if (landingURL) {
                             if (landingURL.endsWith('errorCode=logon.invalid')) {
