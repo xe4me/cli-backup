@@ -46,6 +46,27 @@
                                         }
                                     ]
                                 }
+                            },
+                            {
+                                "name": "MyAMPLoginBlock",
+                                "blockType": "MyAMPLoginBlockComponent",
+                                "blockLayout": "INLINE",
+                                "commonBlock": false,
+                                "path": "blocks/my-amplogin-block/my-amplogin-block.component",
+                                "custom": {
+                                    "blockTitle": "Please login",
+                                    "loginFailedMsg": "Incorrect username/password combination, please try again.",
+                                    "controls": [
+                                        {
+                                            "id": "userId",
+                                            "label": "User Id"
+                                        },
+                                        {
+                                            "id": "password",
+                                            "label": "Password"
+                                        }
+                                    ]
+                                }
                             }
                         ]
                     }

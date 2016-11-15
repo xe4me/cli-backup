@@ -18,43 +18,8 @@
         <!-- Environment Config -->
         <script src="config.js"></script>
 
-        <script>
-            function displayLoginResult() {
-                console.log('Invoked displayLoginResult');
-                try {
-                    var landingURL = window.frames[0].location.href;
-                    console.log('Found displayLoginResult landingURL of ', landingURL);
-                    if (landingURL) {
-                        if (landingURL.endsWith('errorCode=logon.invalid')) {
-                            // Login Failed
-                            document.getElementById('pocLoginStatus').innerHTML = "Username and password combination is incorrect. Please try again or click here to access forgot password facility.";
-                        } else if (landingURL.indexOf('wps/myportal/sec/xseed/dashboard/mywealth/') > -1) {
-                            // Login success
-                            document.getElementById('pocLoginStatus').innerHTML = "Logged in successfully!";
-                        } else {
-                            // Where are we?
-                            document.getElementById('pocLoginStatus').innerHTML = "Got a response but unable to determine status based on the URL [" + landingURL + "]";
-                        }
-                    } else {
-                        // NA, the more likey scenario of CORS will be caught in the try/catch block
-                        document.getElementById('pocLoginStatus').innerHTML = "System Error: Failed to get status of the TAM Login request";
-                    }
-                } catch (err) {
-                    document.getElementById('pocLoginStatus').innerHTML = "System Error: Failed to get status of the TAM Login request, mostly like due to domain mismatch, make sure you are in TAM domain.<br />" + err;
-                }
-            }
-        </script>
-
     </head>
     <body>
-<div id="pocLoginStatus"></div>
-<iframe name="POC_TAM_MYAMP_LOGIN_FRAME" id="POC_TAM_MYAMP_LOGIN_FRAME"  style="display: none" onload="displayLoginResult()" ></iframe>
-<form action="https://secure-prf.amp.com.au/eam/login" method="post" style="display: none">
-    <input type="text" name="userid" value="208715776061" />
-    <input type="text" name="password" value="Password1" />
-    <button type="submit" id="submitPOCBtn" formtarget="POC_TAM_MYAMP_LOGIN_FRAME">submit</button>
-</form>
-
         <app-root>Loading...</app-root>
 
         <!-- DTM end -->
