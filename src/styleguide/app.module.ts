@@ -32,6 +32,7 @@ import { AmpRowRepeaterModule } from '../app/modules/amp-row-repeater/amp-row-re
 import { AmpTooltipModule } from '../app/modules/amp-tooltip/amp-tooltip.module';
 import { PortalModule } from '@angular2-material/core';
 import { AmpGreenidModule } from '../app/modules/amp-greenid-block/amp-greenid.module';
+import { AmpGoogleRecaptchaModule } from '../app/modules/amp-google-recaptcha/amp-google-recaptcha.module';
 import { AmpLogoModule } from '../app/modules/amp-logo/amp-logo.module';
 /*
  * Platform and Environment providers/directives/pipes
@@ -64,6 +65,7 @@ const IMPORTS                               = [
     AmpStyleguideReduxModule ,
     AmpGreenidModule,
     AmpLogoModule,
+    AmpGoogleRecaptchaModule,
     PortalModule ,
     BrowserModule ,
     FormsModule ,

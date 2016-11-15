@@ -1,0 +1,19 @@
+<form [formGroup]="form" class='nl-form'>
+    <div class="p">
+        <amp-manual-address
+                #manualAddressCmp
+                [controlGroup]='__controlGroup'
+                [id]='__custom.controls[0].id'
+                [isInSummaryState]='isInSummaryState'>
+        </amp-manual-address>
+    </div>
+    <div class="p">
+        <amp-google-recaptcha #myRecaptcha (captchaResponse)="handleCaptchaResponse($event)"
+            data-theme="light"
+            [controlGroup]='__controlGroup'
+            data-sitekey="6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W"></amp-google-recaptcha>        
+    </div>
+
+    <amp-button class='btn btn-ok' [disabled]='!__controlGroup.valid'>Go Next </amp-button>
+    <amp-button class='btn btn-ok' (click)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
+</form>

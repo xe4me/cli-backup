@@ -22,7 +22,7 @@ export * from './src/app/modules/amp-directives';
 export * from './src/app/modules/amp-checkbox';
 export * from './src/app/modules/amp-dropdown';
 //
-//export * from './src/app/modules/amp-dropdown-new';
+// export * from './src/app/modules/amp-dropdown-new';
 export * from './src/app/modules/amp-textarea';
 export * from './src/app/modules/amp-group-buttons';
 export * from './src/app/modules/amp-radio-button-group';
@@ -33,6 +33,7 @@ export * from './src/app/modules/amp-form-row';
 export * from './src/app/modules/amp-tooltip';
 export * from './src/app/modules/amp-greenid-block';
 export * from './src/app/modules/amp-submit-receipt';
+export * from './src/app/modules/amp-google-recaptcha';
 export { AmpLinearProgressBarComponent } from './src/app/components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 export { AmpOverlayComponent } from './src/app/components/amp-overlay/amp-overlay.component';
 export { AMPGoogleAddressComponent } from './src/app/components/amp-google-address/amp-google-address.component';
