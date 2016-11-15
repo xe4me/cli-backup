@@ -1,21 +1,25 @@
 import {
-    Component ,
-    ChangeDetectorRef ,
-    ElementRef ,
-    OnInit ,
-    ChangeDetectionStrategy ,
-    Input ,
-    AfterViewInit ,
-    ViewContainerRef
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    OnInit,
+    ChangeDetectionStrategy,
+    AfterViewInit,
+    ViewContainerRef,
+    OnDestroy
 } from '@angular/core';
 import {
     ActivatedRoute
 } from '@angular/router';
 import {
-    FormBlock ,
-    ScrollService ,
-    FormModelService ,
-    ProgressObserverService ,
+    Subscription
+} from 'rxjs';
+import {
+    FormBlock,
+    ScrollService,
+    FormModelService,
+    ProgressObserverService,
+    FormService,
     clone
 } from 'amp-ddc-components';
 import {
@@ -24,14 +28,16 @@ import {
 import {
     Constants
 } from '../../shared/constants';
-@Component( {
-    selector        : 'better-choice-block' ,
-    templateUrl     : './better-choice.component.html' ,
-    changeDetection : ChangeDetectionStrategy.OnPush
-} )
-export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewInit {
+@Component({
+    selector: 'better-choice-block',
+    templateUrl: './better-choice.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
+    private singleOrJointSubscription : Subscription;
+    private betterChoiceSubscription : Subscription;
     private loadedDynamicBlock : string = '';
-    private existingCustomer : boolean  = false;
+    private existingCustomer : boolean = false;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -83,18 +89,27 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
     }
 
     public ngAfterViewInit () {
-        if ( ! this.existingCustomer ) {
-            return;
+        if ( this.existingCustomer ) {
+            const betterChoiceControl = this.__controlGroup.get(this.__custom.controls[0].id);
+            const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
+
+            this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe((val) => {
+                this.setNextBlock(val);
+            });
+
+            this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((val) => {
+                this.setButtonLabels(val);
+                this._cd.markForCheck();
+            });
         }
-        const betterChoiceControl  = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl( this.__form );
-        betterChoiceControl.valueChanges.subscribe( ( val ) => {
-            this.setNextBlock( val );
-        } );
-        singleOrJointControl.valueChanges.subscribe( ( val ) => {
-            this.setButtonLabels( val );
-            this._cd.markForCheck();
-        } );
         super.ngAfterViewInit();
+    }
+
+    public ngOnDestroy () {
+        if ( this.existingCustomer ) {
+            this.singleOrJointSubscription.unsubscribe();
+            this.betterChoiceSubscription.unsubscribe();
+        }
+        super.ngOnDestroy();
     }
 }

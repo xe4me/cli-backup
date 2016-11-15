@@ -63,7 +63,7 @@
                             "commonBlock": false,
                             "path": "blocks/single-or-joint/single-or-joint-block.component",
                             "custom": {
-                                "blockTitle": "Just for you or with someone else?",
+                                "blockTitle": "Who's this account for?",
                                 "controls": [
                                     {
                                         "id": "SingleOrJoint"
@@ -168,40 +168,6 @@
                                     }
                                 }
                             }
-                        },
-                        {
-                            "name": "LastStepSection",
-                            "blockType": "PageSectionComponent",
-                            "blockLayout": "SECTION",
-                            "commonBlock": true,
-                            "path": "sections/page-section.component",
-                            "custom": {
-                                "label": "Last step"
-                            },
-                            "blocks": [
-                                {
-                                    "name": "LastStep",
-                                    "blockType": "LastStepBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/last-step/last-step.component",
-                                    "custom": {
-                                        "blockTitle": "Last step...",
-                                        "controls": [
-                                            {
-                                                "id": "AcceptTandCs"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "name": "AccountConfirmation",
-                                    "blockType": "AccountConfirmationBlock",
-                                    "blockLayout": "INLINE",
-                                    "commonBlock": false,
-                                    "path": "blocks/account-confirmation/account-confirmation.component"
-                                }
-                            ]
                         }
                     ]
                 }

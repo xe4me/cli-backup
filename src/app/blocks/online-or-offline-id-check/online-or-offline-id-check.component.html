@@ -1,25 +1,27 @@
 <amp-form-block [context]="context()" [withOkButton]='false'>
-    <div class="mt mb palm-mt- palm-mb-">
+    <div class="mt mb palm-mt- palm-mb- lap-and-up-9/12">
         Please confirm that you have one of the following and are happy for us to check you identity using our secure
         online check
         <ul class="list-default">
+            <li>Driver's licence</li>
             <li>Australian passport</li>
             <li>Medicare card</li>
-            <li>Australian passport</li>
+            <li>Australian work visa</li>
         </ul>
     </div>
     <amp-button
             theme='tools'
             [context]="context()"
             class="btn btn-ok mr palm-1/1 palm-mr0"
-            (click)="onIdCheckSelection('online')">
-        Yes - online check me
+            (click)="onIdCheckSelection(onlineCheckKey)">
+        Let me do it online now
     </amp-button>
-    <amp-button
+    <!--Uncomment following line for local dev:-->
+    <!--<amp-button
             theme='tools'
             [context]="context()"
             class="btn btn-ok palm-1/1"
-            (click)="onIdCheckSelection('offline')">
-        No - I'll send copies
-    </amp-button>
+            (click)="onIdCheckSelection(offlineCheckKey)">
+        I'll mail certified copies
+    </amp-button>-->
 </amp-form-block>

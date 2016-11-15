@@ -1,16 +1,19 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
-    <div class="mt mb">Please provide us with some contact details so that we know who you are.</div>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
-            <amp-email
-                    [id]="__custom.controls[0].id"
-                    [controlGroup]="__controlGroup"
-                    [isInSummaryState]="isInSummaryState">
-            </amp-email>
-        </div>
+            <div class="grid__item_floated palm-7/8 tablet-7/8 lap-and-up-4/12">
+                <amp-email
+                        [id]="__custom.controls[0].id"
+                        [controlGroup]="__controlGroup"
+                        [isInSummaryState]="isInSummaryState">
+
+                </amp-email>
+            </div>
+            <div class="grid__item_floated palm-1/8 tablet-1/8 lap-and-up-2/12">
+                <amp-tooltip-cmp class="pt pl" message="Confirmation of your application will be sent to this email address."></amp-tooltip-cmp>
+            </div>
     </amp-form-row>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+        <div class="grid__item_floated palm-7/8 tablet-7/8 lap-and-up-4/12">
             <amp-mobile-number
                     [id]="__custom.controls[1].id"
                     [isInSummaryState]="isInSummaryState"
@@ -18,13 +21,15 @@
                     [label]="__custom.controls[1].label"
                     [pattern]="'^04(\\d){8}$'"
                     [maxLength]="10"
-                    [errors]="{'pattern' : __custom.controls[1].errorMsg }"
-                    [required]="true">
-            </amp-mobile-number>
+                    [errors]="{'pattern' : __custom.controls[1].errorMsg, 'required' : __custom.controls[1].requiredMsg }"
+                    [required]="true"></amp-mobile-number>
+        </div>
+        <div class="grid__item_floated palm-1/8 tablet-1/8 lap-and-up-2/12">
+            <amp-tooltip-cmp class="pt pl" message="A mobile phone number is required to allow AMP Bank to securely protect your account."></amp-tooltip-cmp>
         </div>
     </amp-form-row>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12">
             <amp-home-number
                     [id]="__custom.controls[2].id"
                     [controlGroup]="__controlGroup"
