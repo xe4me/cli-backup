@@ -35,6 +35,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     private referenceId : string               = null;
     private isInSummaryState : boolean         = false;
     private controlGroup : FormGroup           = new FormGroup( {} );
+    private controlName : string               = 'emailAddress';
 
     constructor ( private _cd : ChangeDetectorRef ,
                   private el : ElementRef ,
@@ -44,7 +45,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
 
     ngAfterViewInit () {
         this.referenceId = this.route.snapshot.params[ 'referenceId' ];
-        this.controlGroup.controls[ 'emailAddress' ].setValue( this.route.snapshot.params[ 'email' ] );
+        this.controlGroup.controls[ this.controlName ].setValue( this.route.snapshot.params[ 'email' ] );
         this.emailSentEvent.subscribe( ( message ) => {
             this.emailSentConfirmation = message;
             this._cd.markForCheck();
@@ -60,10 +61,7 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     }
 
     private sendEmail () {
-        this.sendEmailEvent.emit( this.controlGroup.value.emailAddress );
-        // We set errors so the button gets disabled after click
-        // The user can still edit the email address and the button becomes active again
-        this.controlGroup.setErrors( { emailSent : true } );
+        this.sendEmailEvent.emit( this.controlGroup.value[this.controlName] );
     }
 
     private back () {

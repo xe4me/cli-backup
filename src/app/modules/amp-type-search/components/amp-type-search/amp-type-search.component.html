@@ -26,6 +26,7 @@
             focuser='list'
             [ngStyle]='{"max-height":maxHeight}'
             (focusOut)='onListFocusOut()'
+            [id]='resultList_id'
             class='amp-type-search-options'>
         <li *ngIf='selectLabel && filteredList.length>0' class='amp-type-search-option' tabindex='-1'>
             <strong>{{ selectLabel }}</strong>
