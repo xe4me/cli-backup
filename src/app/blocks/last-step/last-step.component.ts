@@ -26,11 +26,13 @@ import {
 @Component( {
     selector        : 'last-step-block' ,
     templateUrl     : './last-step.component.html' ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles : [require('./last-step.component.scss').toString()]
 } )
 export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy {
     private submitErrorMessage;
     private isJointApplication : boolean = false;
+    private submitInProgress : boolean = false;
     private singleOrJointSubscription : Subscription;
 
     constructor ( formModelService : FormModelService,
@@ -82,9 +84,12 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
             return;
         }
 
+        this.submitInProgress = true;
+
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
             .subscribe((result) => {
+                this.submitInProgress = false;
                 if ( result.payload.resultStatus === 'SUCCESS' ) {
                     this.accountsListDataService.setAccounts( result.payload.accounts );
                     let navigateTo = this.accountsListDataService.isNormal() ?
@@ -92,13 +97,12 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
                         'confirmationWithCondition';
                     this.router.navigate([navigateTo]);
                 } else {
-                    // TODO what error message to display?
-                    this.submitErrorMessage = 'Something went wrong';
+                    this.submitErrorMessage = this.__custom.submitErrMsg;
                     this._cd.markForCheck();
                 }
             }, (error) => {
-                // TODO what error mesage to display?
-                this.submitErrorMessage = JSON.stringify(error);
+                this.submitInProgress = false;
+                this.submitErrorMessage = this.__custom.submitErrMsg;
                 this._cd.markForCheck();
             } );
     }

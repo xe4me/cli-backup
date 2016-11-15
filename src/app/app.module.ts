@@ -14,7 +14,6 @@ import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
     AmpTypeaheadModule ,
     AmpTooltipModule ,
-    AmpDropdownModule ,
     AmpPipesModule ,
     AmpDirectivesModule ,
     AmpQasAddressModule ,
@@ -35,11 +34,15 @@ import {
     AmpButton ,
     AmpOverlayComponent ,
     AmpIntroBlockComponent ,
+    AmpLoadingComponent ,
     AmpRowRepeaterModule ,
     AmpFormRowModule ,
     AmpStandAloneMenuModule ,
     AmpGreenidModule
 } from 'amp-ddc-components';
+// the bellow import will be replaced with a proper one as soon as we completely remove amp-dropdown and moved to
+// the new one
+import { AmpDropdownNewModule } from 'amp-ddc-components/src/app/modules/amp-dropdown-new';
 import {
     SharedFormDataService ,
     ApplicantGeneratorService ,
@@ -49,12 +52,13 @@ const DECLARATIONS    = [
     AmpIntroBlockComponent ,
     AmpFormBlockComponent ,
     AmpOverlayComponent ,
+    AmpLoadingComponent ,
     StickyProgressHeaderBlockComponent
 ];
 const routes : Routes = [
     { path : '' , component : BetterFormComponent } ,
-    { path: 'confirmation', component: NormalAccountPage },
-    { path: 'confirmationWithCondition', component: PostnoneAccountPage }
+    { path : 'confirmation' , component : NormalAccountPage } ,
+    { path : 'confirmationWithCondition' , component : PostnoneAccountPage }
 ];
 const IMPORTS         = [
     AmpRowRepeaterModule ,
@@ -62,7 +66,7 @@ const IMPORTS         = [
     AmpTooltipModule ,
     AmpButtonModule ,
     AmpTypeaheadModule ,
-    AmpDropdownModule ,
+    AmpDropdownNewModule ,
     AmpPipesModule ,
     AmpDirectivesModule ,
     AmpQasAddressModule ,
@@ -90,7 +94,7 @@ const IMPORTS         = [
     providers    : [
         ...APP_RESOLVER_PROVIDERS ,
         SharedFormDataService ,
-        ApplicantGeneratorService,
+        ApplicantGeneratorService ,
         AccountsListDataService
     ] ,
     bootstrap    : [ AppComponent ]

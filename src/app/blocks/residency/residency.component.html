@@ -7,6 +7,9 @@
                 [controlGroup]="__controlGroup"
                 [required]="true"
                 [label]="'Country of citizenship'">
+                <template let-option="option">
+                    {{ option.country }}
+                </template>
             </amp-country>
         </div>
     </amp-form-row>
@@ -18,12 +21,18 @@
                 [controlGroup]="__controlGroup"
                 [required]="true"
                 [label]="'Country of residency'">
+                <template let-option="option">
+                    {{ option.country }}
+                </template>
             </amp-country>
         </div>
     </amp-form-row>
     <p class="mt-60">
+
         <label>
-            Are you a United States resident or citizen for tax purposes? <amp-tooltip-cmp message='We are required to identify any US citizens or residents for tax purposes. If you are a US citizen or resident for tax purposes (even if you are also a taxpayer in Australia) you should complete this section. We may then ask you for your US tax identification number.'></amp-tooltip-cmp>
+            Are you a United States resident or citizen for tax purposes?
+            <amp-tooltip-cmp
+                message='We are required to identify any US citizens or residents for tax purposes. If you are a US citizen or resident for tax purposes (even if you are also a taxpayer in Australia) you should complete this section. We may then ask you for your US tax identification number.'></amp-tooltip-cmp>
         </label>
     </p>
     <amp-form-row>
@@ -67,6 +76,7 @@
                 [amp-number-only]="tin.control"
                 [maxLength]="9"
                 [errors]="{ required : __custom.ssnRequiredMsg }">
+
             </amp-input>
         </div>
     </amp-form-row>

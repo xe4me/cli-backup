@@ -1,9 +1,23 @@
 <section>
     <div class="accounts">
-        <div *ngFor="let account of accounts; let i = index" class="palm-1/1 tablet-1/1 grid__item_floated 3/12 account">
+        <div *ngFor="let account of (accounts | sortByType); let i = index" class="palm-1/1 tablet-1/1 grid__item_floated 3/12 account">
             <img src="{{imagePrefix}}{{imageUrls[i]}}"/>
-            <div class="account-info">BSB: {{account.BSB}}</div>
-            <div class="account-info">Account number: {{account.accountNumber}}</div>
+            <div class="account-info">
+                <span class="account-index">{{i+1}}</span>
+                <span class="account-detail">
+                    <strong class="account-type">{{account.bett3rAccountType}}</strong>
+                    BSB: {{account.BSB}} <br/>
+                    Account number: {{account.accountNumber}}
+                </span>
+            </div>
         </div>
+    </div>
+    <div class="pdf-button-container">
+        <amp-button
+            [class]="'btn btn-submit palm-1/1 tablet-1/1 tablet-and-up-mr'"
+            (click)="getAccountPDF()">
+            Your account PDF
+            <span class="icon icon--downloads"></span>
+        </amp-button>
     </div>
 </section>

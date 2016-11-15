@@ -10,7 +10,7 @@ const GW_PRACTICE_API_KEY = process.env.GW_PRACTICE_API_KEY;
 const GW_PRACTICE_SERVICE_PATH = process.env.GW_PRACTICE_SERVICE_PATH;  // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=40576204
 const GW_DDC_API_KEY = process.env.GW_DDC_API_KEY;
 const GW_DDC_SERVICE_PATH = process.env.GW_DDC_SERVICE_PATH; // https://teamtools.amp.com.au/confluence/display/EH/Dynamic+Data+Capture+%28DDC%29+API
-const DAM_STORE = process.env.DAM_STORE? process.env.DAM_STORE : 'https://amponline-uat.amp.com.au/';
+const DAM_CONTENT_URL = process.env.DAM_CONTENT_URL;
 
 const EXPERIENCE_BASEURL = '/ddc/public/ui/' + EXPERIENCE_NAME;
 
@@ -47,7 +47,7 @@ module.exports = {
                             styleUrl : process.env.greenIdCss,
                             environment : process.env.greenIdEnvironment
                         },
-                        DAMStore : DAM_STORE
+                        DamContentUrl : DAM_CONTENT_URL
                     }
                 )
             );
