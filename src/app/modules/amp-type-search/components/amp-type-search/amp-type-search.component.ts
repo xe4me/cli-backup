@@ -19,6 +19,7 @@ import { Observable , Subscription } from 'rxjs/Rx';
 import { isPresent , KeyCodes } from '../../../amp-utils';
 import { FocuserDirective } from '../../../amp-directives';
 import { AmpInputComponent } from '../../../amp-inputs';
+import { ScrollService } from '../../../../services/scroll/scroll.service';
 @Component( {
     selector        : 'amp-type-search' ,
     queries         : {
@@ -66,7 +67,8 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     private doApiQuery : boolean                    = false;
     private filteredList : any[]                    = [];
 
-    constructor ( private _cd : ChangeDetectorRef ) {
+    constructor ( private _cd : ChangeDetectorRef,
+                  private scrollService : ScrollService ) {
     }
 
     @Input() customValidator  = () : Function => {
@@ -89,6 +91,10 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     @Input( 'required' ) set required ( value : boolean ) {
         this._required = value;
+    }
+
+    get resultList_id () {
+        return this.id + '-resultList';
     }
 
     get required () {
@@ -174,6 +180,10 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         }
         this._optionsHidden = false;
         this.$showResults.emit(!this._optionsHidden);
+
+        setTimeout( () => {
+          this.scrollService.scrollToComponentSelector(this.resultList_id);
+        });
     };
 
     private onListFocusOut () {
