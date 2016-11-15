@@ -5,12 +5,12 @@
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12">
             <amp-group-buttons
-                    class="grid__item 1/1"
-                    [buttons]="__custom.controls[0].buttons"
-                    [isInSummaryState]="isInSummaryState"
-                    [controlGroup]="__controlGroup"
-                    [groupName]="__custom.controls[0].id"
-                    [required]="true">
+                class="grid__item 1/1"
+                [buttons]="__custom.controls[0].buttons"
+                [isInSummaryState]="isInSummaryState"
+                [controlGroup]="__controlGroup"
+                [groupName]="__custom.controls[0].id"
+                [required]="true">
             </amp-group-buttons>
         </div>
     </amp-form-row>
@@ -21,36 +21,36 @@
         <amp-form-row>
             <div class="grid__item_floated palm-7/8 tablet-7/8 lap-and-up-4/12">
                 <amp-input
-                        #tfn
-                        [id]="__custom.controls[1].id"
-                        [amp-number-only]="tfn.control"
-                        [controlGroup]="__controlGroup"
-                        [isInSummaryState]="isInSummaryState"
-                        [minLength]="9"
-                        [maxLength]="9"
-                        [label]="'Tax file number'"
-                        [pattern]="'[0-9]'">
+                    #tfn
+                    [id]="__custom.controls[1].id"
+                    [amp-number-only]="tfn.control"
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState"
+                    [minLength]="9"
+                    [maxLength]="9"
+                    [label]="'Tax file number'"
+                    [pattern]="'[0-9]'">
                 </amp-input>
             </div>
             <div class="grid__item_floated palm-1/8 tablet-1/8 lap-and-up-2/12">
-                <amp-tooltip-cmp class="pt pl" message="Collection of tax file number (TFN) information is authorised by tax laws. Australian privacy law and tax laws strictly regulate the use and disclosure of TFNs. You are not required by law to provide your TFN and it is not an offence if you don’t provide it. We collect your TFN to determine if we must withhold an amount from any interest we pay to you on your AMP Bett3r Account."></amp-tooltip-cmp>
+                <amp-tooltip-cmp class="pt pl"
+                                 message="Collection of tax file number (TFN) information is authorised by tax laws. Australian privacy law and tax laws strictly regulate the use and disclosure of TFNs. You are not required by law to provide your TFN and it is not an offence if you don’t provide it. We collect your TFN to determine if we must withhold an amount from any interest we pay to you on your AMP Bett3r Account."></amp-tooltip-cmp>
             </div>
         </amp-form-row>
     </div>
-    <div *ngIf="hasTfn?.value === false">
-        <div class="mt-60">
-            Tax File Number exemption reason
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mt+">
+            <amp-dropdown
+                label='Tax File Number exemption reason'
+                [isInSummaryState]="isInSummaryState"
+                [id]="__custom.controls[2].id"
+                [options]="__custom.controls[2].options"
+                [controlGroup]="__controlGroup"
+                [required]="true">
+                <template let-option="option">
+                    {{ option.label }}
+                </template>
+            </amp-dropdown>
         </div>
-        <amp-form-row>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-8/12 mt0">
-                <amp-dropdown
-                        [isInSummaryState]="isInSummaryState"
-                        [id]="__custom.controls[2].id"
-                        [options]="__custom.controls[2].options"
-                        [controlGroup]="__controlGroup"
-                        [required]="true">
-                </amp-dropdown>
-            </div>
-        </amp-form-row>
-    </div>
+    </amp-form-row>
 </amp-form-block>
