@@ -9,7 +9,8 @@ import {
     AfterViewInit ,
     OnDestroy ,
     TemplateRef ,
-    Renderer , ElementRef
+    Renderer ,
+    ElementRef
 } from '@angular/core';
 import { FormControl , FormGroup , Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
@@ -71,7 +72,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     protected clearSearchTimeout;
     protected searchStr                       = '';
 
-    constructor ( public _cd : ChangeDetectorRef , public _renderer : Renderer ) {
+    constructor ( public _el : ElementRef , public _cd : ChangeDetectorRef , public _renderer : Renderer ) {
         super();
     }
 
@@ -81,6 +82,11 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
 
     getGroupName () {
         return this.id + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME;
+    }
+
+    ngOnInit () : void {
+        super.ngOnInit();
+        this.calculateMaxWidth( window.innerWidth );
     }
 
     ngAfterViewInit () : void {
@@ -318,5 +324,14 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         } else {
             return this.selectedOption[ this.fieldItemKey ] === option;
         }
+    }
+
+    private onResize ( event ) {
+        this.calculateMaxWidth( event.target.innerWidth );
+    }
+
+    private calculateMaxWidth ( _windowWidth ) {
+        let maxWidth = _windowWidth - 40; // 40 is the paddings and margins ;
+        this._renderer.setElementStyle( this._el.nativeElement , 'max-width' , maxWidth + 'px' );
     }
 }
