@@ -71,6 +71,8 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     protected _optionsHidden : boolean        = true;
     protected clearSearchTimeout;
     protected searchStr                       = '';
+    private DO_NOT_FOCUS                      = false;
+    private DO_FOCUS                          = true;
 
     constructor ( public _el : ElementRef , public _cd : ChangeDetectorRef , public _renderer : Renderer ) {
         super();
@@ -219,7 +221,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         return null;
     }
 
-    private selectOption ( option , $event : KeyboardEvent , doMarkForCheck ) : void {
+    private selectOption ( option , $event : KeyboardEvent , doMarkForCheck , doFocus = true ) : void {
         if ( this.alreadySelectedThis( option ) ) {
             return;
         }
@@ -239,7 +241,9 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
         this.selected.emit( this.selectedOption );
         this.close();
-        this.focusInput();
+        if ( doFocus === this.DO_FOCUS ) {
+            this.focusInput();
+        }
         if ( $event ) {
             $event.preventDefault();
         }
@@ -296,19 +300,19 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
                 this.control
                     .valueChanges
                     .subscribe( ( _change ) => {
-                        this.findOptionAndSelect( _change );
+                        this.findOptionAndSelect( _change , this.DO_NOT_FOCUS );
                     } );
         }
     }
 
-    private findOptionAndSelect ( _change : any ) {
+    private findOptionAndSelect ( _change : any , doFocus ) {
         if ( _change !== undefined ) {
             if ( _change === null ) {
-                return this.selectOption( _change , null , true );
+                return this.selectOption( _change , null , true , doFocus );
             }
             for ( let i = 0 ; i < this.options.length ; i ++ ) {
-                if ( this.options[ i ][ this.fieldValueKey ] === _change ) {
-                    return this.selectOption( this.options[ i ] , null , true );
+                if ( this.options[ i ][ this.fieldValueKey ] === _change || this.options[ i ][ this.fieldItemKey ] === _change ) {
+                    return this.selectOption( this.options[ i ] , null , true , doFocus );
                 }
             }
             // if the value inside the control is not in the options , set it to null !!!!

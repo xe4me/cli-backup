@@ -34,6 +34,7 @@ import { PortalModule } from '@angular2-material/core';
 import { AmpGreenidModule } from '../app/modules/amp-greenid-block/amp-greenid.module';
 import { AmpGoogleRecaptchaModule } from '../app/modules/amp-google-recaptcha/amp-google-recaptcha.module';
 import { AmpLogoModule } from '../app/modules/amp-logo/amp-logo.module';
+import { AmpCardsModule } from '../app/modules/amp-cards/amp-cards.module';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -66,6 +67,7 @@ const IMPORTS                               = [
     AmpGreenidModule,
     AmpLogoModule,
     AmpGoogleRecaptchaModule,
+    AmpCardsModule,
     PortalModule ,
     BrowserModule ,
     FormsModule ,
