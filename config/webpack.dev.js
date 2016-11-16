@@ -23,7 +23,8 @@ const METADATA = webpackMerge(commonConfig.metadata, {
   port: PORT,
   ENV: ENV,
   HMR: HMR,
-  GoogleApiKey: ''
+  GoogleApiKey: '',
+  GoogleRecaptchaSiteKey: '6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W'
 });
 
 /**
@@ -117,6 +118,7 @@ module.exports = webpackMerge(commonConfig, {
         'NODE_ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
         'GoogleApiKey': JSON.stringify(METADATA.GoogleApiKey),
+        'GoogleRecaptchaSiteKey': JSON.stringify(METADATA.GoogleRecaptchaSiteKey)
       }
     })
   ],

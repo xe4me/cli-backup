@@ -23,6 +23,7 @@ export default class AmpGoogleRecaptchaComponentBasicUsage  {
         ]
     };
     private form : FormGroup;
+    private sitekey : string = process.env.GoogleRecaptchaSiteKey; // check the sitekey value in webpack.[dev|test|prod].js
 
     constructor ( private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );
