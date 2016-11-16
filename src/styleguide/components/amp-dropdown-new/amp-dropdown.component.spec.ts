@@ -210,6 +210,12 @@ describe( 'amp-dropdown component' , () => {
             tick();
             expect( CmpControlGroup.touched ).toBeTruthy();
         } ) );
+        it( 'should not mark the controlGroup as touched if its pragmatically selected' , fakeAsync( () => {
+            expect( CmpControlGroup.touched ).toBeFalsy();
+            QueryControl.setValue( TitleOptions[ 0 ].label );
+            tick();
+            expect( CmpControlGroup.touched ).toBeFalsy();
+        } ) );
         it( 'Setting the value to an option that is not in the list should not change the controls value (should not' +
             ' select)' , () => {
             expectAllControlsToBeNull();
@@ -286,6 +292,10 @@ describe( 'amp-dropdown component' , () => {
             };
             expect( changes ).toEqual( selectedObject );
         } ) );
+        it( 'should not be marked as touched initially' , () => {
+            expect( CmpControlGroup.touched ).toBeFalsy();
+        } );
+
     } );
     describe( 'With retrieved controlGroup' , () => {
         beforeEach( () => {
@@ -300,6 +310,9 @@ describe( 'amp-dropdown component' , () => {
         it( 'should empty all the controls and selectedElement object' , () => {
             DropdownComponent.emptyAll();
             expectAllControlsToBeNull();
+        } );
+        it( 'should not be marked as touched initially' , () => {
+            expect( CmpControlGroup.touched ).toBeFalsy();
         } );
     } );
 } );
