@@ -307,7 +307,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
                 return this.selectOption( _change , null , true );
             }
             for ( let i = 0 ; i < this.options.length ; i ++ ) {
-                if ( this.options[ i ][ this.fieldValueKey ] === _change ) {
+                if ( this.options[ i ][ this.fieldValueKey ] === _change || this.options[ i ][ this.fieldItemKey ] === _change ) {
                     return this.selectOption( this.options[ i ] , null , true );
                 }
             }
