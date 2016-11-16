@@ -200,6 +200,46 @@
         "readme": "<p>Custom Block for AmpButtonComponent.</p>\n"
     },
     {
+        "name": "Amp Card",
+        "sources": [
+            "src/app/components/amp-card/amp-card.component.ts"
+        ],
+        "id": "AmpCardComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-card/basic_usage.html",
+                "styles": "src/styleguide/components/amp-card/basic_usage.scss",
+                "source": "src/styleguide/components/amp-card/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-card/amp-card.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-card/amp-card.component.spec.ts",
+                "component": "amp-card-block-basic-usage",
+                "component_src_location": "components/amp-card/basic_usage",
+                "name": "Amp Card Basic Usage"
+            }
+        ],
+        "readme": "<p>Inidivual Amp card component. For collection of cards see <a href='/component/AmpCardsComponent'>Amp Cards Component</a>.</p>\n"
+    },
+    {
+        "name": "Amp Cards",
+        "sources": [
+            "src/app/components/amp-cards/amp-cards.component.ts"
+        ],
+        "id": "AmpCardsComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-cards/basic_usage.html",
+                "styles": "src/styleguide/components/amp-cards/basic_usage.scss",
+                "source": "src/styleguide/components/amp-cards/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-cards/amp-cards.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-cards/amp-cards.component.spec.ts",
+                "component": "amp-cards-block-basic-usage",
+                "component_src_location": "components/amp-cards/basic_usage",
+                "name": "Amp Cards Basic Usage"
+            }
+        ],
+        "readme": "<p>Amp cards collection component. For individual card see <a href='/component/AmpCardComponent'>Amp Card Component</a>.</p>\n"
+    },
+    {
         "name": "Amp Checkbox",
         "sources": [
             "src/app/components/amp-checkbox/amp-checkbox.component.ts"

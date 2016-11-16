@@ -1,0 +1,10 @@
+<div class="amp-cards" [class.amp-cards--offset]="offset">
+
+    <amp-card 
+        *ngFor="let card of cards"
+        [image]="card.image"
+        [text]="card.text"
+        (click)="card.click()">
+    </amp-card>
+
+</div>

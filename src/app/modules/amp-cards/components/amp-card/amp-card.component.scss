@@ -1,0 +1,64 @@
+@import '../../../../../styles/abstracts';
+
+.amp-card {
+    background: #fff;
+    box-shadow: 1px 1px 6px  rgba(0,0,0,0.25);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 369px;
+    margin: 0 ($card-spacing / 2) $card-spacing;
+    position: relative;
+    width: 253px;
+
+    &:after {
+        background: $amp-colour-secondary;
+        content: "";
+        display: block;
+        height: 4px;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: opacity .2s ease;
+    }
+
+    &:hover,
+    &:focus {
+        color: $amp-colour-secondary;
+
+        &:after {
+            opacity: 1;
+        }
+    }
+
+    &__image {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        &-wrapper {
+            padding-top: 114%;
+            position: relative;
+        }
+    }
+
+    &__text {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+
+        &-wrapper {
+            display: table;
+            height: 81px;
+            width: 100%;
+        }
+    }
+}
