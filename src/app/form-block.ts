@@ -123,7 +123,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected doneFlag : string    = 'defaultIsDone';
     private scrollSubscription : Subscription;
     private domUtils : DomUtils    = null;
-    private scrollOffset           = 80;
+    private scrollOffset           = 0;
 
     constructor ( protected formModelService : FormModelService ,
                   protected elementRef : ElementRef ,
