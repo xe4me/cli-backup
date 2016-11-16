@@ -1,0 +1,23 @@
+<section class="section p">
+    
+    <h2 class="mb">Card with link href</h2>
+
+    <amp-card
+        [image]="'/assets/images/ready-to-apply.jpg'"
+        [text]="'Ready to apply'"
+        [href]="'/component/AmpCardComponent'">
+    </amp-card>
+
+</section>
+
+<section class="section p">
+    
+    <h2 class="mb">Card with click event (click logged in console)</h2>
+
+    <amp-card
+        [image]="'/assets/images/ready-to-apply.jpg'"
+        [text]="'Ready to apply'"
+        (click)="click()">
+    </amp-card>
+
+</section>

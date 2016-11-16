@@ -1,0 +1,13 @@
+@import '../../../../../styles/abstracts';
+
+.amp-cards {
+    //font-size: 0;
+    margin: 0 ($card-spacing / -2);
+    text-align: center;
+    position: relative;
+
+    &--offset {
+        bottom: ($card-offset * -1);
+        margin-top: ($card-offset * -1);
+    }
+}
