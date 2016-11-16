@@ -98,7 +98,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         // check if control has value ( it's been retrieved , and if so , do the select)
         if ( this.control.value !== undefined ) {
             setTimeout( () => {
-                this.findOptionAndSelect( this.control.value );
+                this.findOptionAndSelect( this.control.value , this.DO_NOT_FOCUS );
             } );
         }
     }
