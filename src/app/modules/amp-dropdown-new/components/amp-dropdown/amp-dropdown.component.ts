@@ -250,9 +250,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
 
     private toggleOptions ( $event : KeyboardEvent ) : void {
         this._optionsHidden = ! this._optionsHidden;
-        if ( ! this._optionsHidden ) {
-            this.focusInput();
-        }
+        this.focusInput();
         $event.preventDefault();
     }
 
