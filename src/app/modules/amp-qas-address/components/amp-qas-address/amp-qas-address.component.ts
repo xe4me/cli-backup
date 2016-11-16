@@ -122,7 +122,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     public onOptionSelect ( $event ) {
         if ( ! this.isInSummaryState ) {
             this._ampQasAddressService
-                .getFormattedAddress( $event.Moniker , this.extended ? AddressFormatTypes.ALL : AddressFormatTypes.CRM )
+                .getFormattedAddress( $event.Moniker , AddressFormatTypes.DDC )
                 .subscribe( ( _formattedAddress : any ) => {
                     this.manualAddressCmp.updateControls( _formattedAddress );
                     this.$selected.emit( _formattedAddress );

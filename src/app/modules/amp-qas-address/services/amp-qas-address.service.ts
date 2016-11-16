@@ -56,52 +56,32 @@ export class AmpQasAddressService {
     }
 
     private getFormattedAddressByType ( _payload : any ,
-                                        _type : string = AddressFormatTypes.ALL ) {
+                                        _type : string = AddressFormatTypes.DDC ) {
         let refactored = this.refactorPayload( _payload );
         return refactored[ _type ] || refactored;
     }
 
     private refactorPayload ( _payload ) {
         let refactoredPayload = {
-            Bank   : {
-                AllPostalDeliveryTypes : _payload[ 'bank' ][ 'All postal delivery types' ] ,
-                BuildingLevel          : _payload[ 'bank' ][ 'Building level' ] ,
-                FlatUnit               : _payload[ 'bank' ][ 'Flat/Unit' ] ,
-                BuildingNumber         : _payload[ 'bank' ][ 'Building number' ] ,
-                BuildingName           : _payload[ 'bank' ][ 'Building name' ] ,
-                StreetName             : _payload[ 'bank' ][ 'Street (Name)' ] ,
-                StreetType             : _payload[ 'bank' ][ 'Street (Type)' ] ,
-                Locality               : _payload[ 'bank' ][ 'Locality' ] ,
-                StateCode              : _payload[ 'bank' ][ 'State code' ] ,
-                Postcode               : _payload[ 'bank' ][ 'Postcode' ] ,
-                Country                : _payload[ 'bank' ][ 'Country' ] ,
-                DPIDDID                : _payload[ 'bank' ][ 'DPID/DID' ] ,
-                AUSBAR                 : _payload[ 'bank' ][ 'AUSBAR.' ]
-            } ,
-            Siebel : {
-                Locality  : _payload[ 'siebel' ][ 'Locality' ] ,
-                StateCode : _payload[ 'siebel' ][ 'State code' ] ,
-                Postcode  : _payload[ 'siebel' ][ 'Postcode' ] ,
-                Country   : _payload[ 'siebel' ][ 'Country' ] ,
-                DPIDDID   : _payload[ 'siebel' ][ 'DPID/DID' ] ,
-                AUSBAR    : _payload[ 'siebel' ][ 'AUSBAR.' ]
-            } ,
-            CRM    : {
-                StreetAddress : _payload[ 'crm' ][ 'Street Address' ] ,
-                Suburb        : _payload[ 'crm' ][ 'Suburb' ] ,
-                State         : _payload[ 'crm' ][ 'State' ] ,
-                Postcode      : _payload[ 'crm' ][ 'Postcode' ] ,
-                Country       : _payload[ 'crm' ][ 'Country' ] ,
-                DPID          : _payload[ 'crm' ][ 'DPID' ] ,
-                Barcode       : _payload[ 'crm' ][ 'Barcode' ]
+            DDC : {
+                AllPostalDeliveryTypes : _payload[ 'DDC' ][ 'All postal delivery types' ] ,
+                BuildingLevel          : _payload[ 'DDC' ][ 'Building level' ] ,
+                FlatUnit               : _payload[ 'DDC' ][ 'Flat/Unit' ] ,
+                BuildingNumber         : _payload[ 'DDC' ][ 'Building number' ] ,
+                BuildingName           : _payload[ 'DDC' ][ 'Building name' ] ,
+                StreetName             : _payload[ 'DDC' ][ 'Street (Name)' ] ,
+                StreetType             : _payload[ 'DDC' ][ 'Street (Type)' ] ,
+                Locality               : _payload[ 'DDC' ][ 'Locality' ] ,
+                StateCode              : _payload[ 'DDC' ][ 'State code' ] ,
+                Postcode               : _payload[ 'DDC' ][ 'Postcode' ] ,
+                Country                : _payload[ 'DDC' ][ 'Country' ] ,
+                DPIDDID                : _payload[ 'DDC' ][ 'DPID/DID' ] ,
+                AUSBAR                 : _payload[ 'DDC' ][ 'AUSBAR.' ]
             }
         };
         return refactoredPayload;
     }
 }
 export abstract class AddressFormatTypes {
-    public static BANK : string   = 'Bank';
-    public static SIEBEL : string = 'Siebel';
-    public static CRM : string    = 'CRM';
-    public static ALL : string    = 'ALL';
+    public static DDC : string = 'DDC';
 }

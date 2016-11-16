@@ -19,9 +19,9 @@ export class BasicUtils {
         return + str;
     }
 
-    public static formatAddress ( addressObj : any , addressType = AddressFormatTypes.CRM ) : string {
+    public static formatAddress ( addressObj : any , addressType = 'normal' ) : string {
         let address = '';
-        if ( addressType === AddressFormatTypes.CRM ) {
+        if ( addressType === 'normal' ) {
             if ( addressObj.address ) {
                 address += addressObj.address;
             }
@@ -41,7 +41,7 @@ export class BasicUtils {
                 address += ', ' + addressObj.countryDropdown.Query;
             }
         }
-        if ( addressType === AddressFormatTypes.BANK ) {
+        if ( addressType === 'extended' ) {
             if ( addressObj.buildingName ) {
                 address += addressObj.buildingName;
             }

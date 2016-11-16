@@ -137,14 +137,12 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
 
     public updateControls ( _formattedAddress : any ) {
         if ( _formattedAddress ) {
-            this.addressCtrl.setValue( _formattedAddress.StreetAddress );
-            this.suburbCtrl.setValue( _formattedAddress.Suburb );
-            this.stateCtrl.setValue( _formattedAddress.State.toUpperCase() );
-            this.countryCtrl.setValue( _formattedAddress.Country === 'Australia' ? 'Australia' : 'New Zealand' );
+            this.addressCtrl.setValue( _formattedAddress.StreetType + _formattedAddress.StreetName );
+            this.suburbCtrl.setValue( _formattedAddress.Locality );
+            this.stateCtrl.setValue( _formattedAddress.StateCode.toUpperCase() );
+            this.countryCtrl.setValue( _formattedAddress.Country );
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
-            // this.dpidCtrl.setValue( _formattedAddress.DPID );
         }
-        // this.cityCtrl.setValue( _formattedAddress.city );
     }
 
     public emptyControls () {
