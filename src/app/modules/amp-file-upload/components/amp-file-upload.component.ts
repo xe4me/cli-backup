@@ -105,6 +105,9 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
             ( res : any ) => {
                 this.showProgress = false;
                 this.control.setErrors({error: 'file upload pending'});
+                this.fileNameControl.setValue(null);
+                this.fileSizeControl.setValue(null);
+                this.deleteFileNameControl.setValue(null);
                 this._cd.detectChanges();
             },
             ( error ) => {
