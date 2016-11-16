@@ -66,7 +66,9 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
     }
 
     public ngOnDestroy() {
-        this.verificationStatusSubscription.unsubscribe();
+        if (this.verificationStatusSubscription) {
+            this.verificationStatusSubscription.unsubscribe();
+        }
         super.ngOnDestroy();
     }
 
@@ -81,6 +83,7 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
                 this.greenIdPassed = false;
                 this.__custom.blockTitle = this.__custom['blockTitle_unverified'];
             }
+            this.scrollService.scrollToNextUndoneBlock(this.__form);
             this._cd.markForCheck();
         });
     }
