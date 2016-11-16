@@ -204,7 +204,8 @@ module.exports = {
         'ENV': JSON.stringify(ENV),
         'NODE_ENV': JSON.stringify(ENV),
         'HMR': false,
-        'GoogleApiKey': 'GoogleApiKey'
+        'GoogleApiKey': 'GoogleApiKey',
+        'GoogleRecaptchaSiteKey': '6LeqZgsUAAAAAD9-le6RQUkUv5MTjhsSM-SldWKq'
       }
     }),
 
