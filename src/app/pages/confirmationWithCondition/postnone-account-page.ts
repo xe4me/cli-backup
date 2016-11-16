@@ -1,20 +1,16 @@
 import {
-    Component
+    Component,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import {
     AmpButton ,
     Environments
 } from 'amp-ddc-components';
-
-import {
-    AccountsListBlock
-} from '../../blocks/accounts-list/accounts-list.component';
-
 @Component( {
     selector    : 'postnone-account-page' ,
-    directives : [AccountsListBlock],
     template : require( './postnone-account-page.html' ),
-    styles: [ require( './postnone-account-page.scss' ) ]
+    styles: [ require( './postnone-account-page.scss' ) ],
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PostnoneAccountPage {
     private verificatonDocUrl : string =
