@@ -18,15 +18,14 @@ import {
     Environments
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'basic-info-block' ,
-    templateUrl     : './basic-info.component.html' ,
+    selector        : 'not-a-robot-block' ,
+    templateUrl     : './not-a-robot.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles :  [ require('./basic-info.component.scss')]
+    styles :  [ require('./not-a-robot.component.scss')]
 } )
 export class BasicInfoBlock extends FormBlock implements OnInit {
-    public maxDate : Date;
-    public ageValidator : any;
-    @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
+
+    private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -37,19 +36,10 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.maxDate      = moment().subtract( 18, 'years' ).toDate();
-        this.ageValidator = () => {
-            return ( control ) => {
-                let date = moment( control.value , 'DD/MM/YYYY' );
-                if ( date.isValid && date.toDate() >= this.maxDate ) {
-                    return {
-                        underAge : {
-                            text : this.__custom.controls[ 4 ].ageValidationMsg
-                        }
-                    };
-                }
-                return null;
-            };
-        };
     }
+
+    private handleCaptchaResponse(captchaResponse : any) {
+        console.log(`Resolved captcha with response ${captchaResponse}:`);
+    }
+
 }
