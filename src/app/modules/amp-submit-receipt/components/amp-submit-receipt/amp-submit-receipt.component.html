@@ -10,7 +10,7 @@
             
             <div *ngIf="reference_number">
                 <br>
-                <p>{{reference_number}}</p>
+                <p [innerHTML]="reference_number"></p>
             </div>
             
             <div *ngIf="description">
