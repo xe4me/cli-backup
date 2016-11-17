@@ -7,8 +7,9 @@ import {
     Environments
 } from 'amp-ddc-components';
 import {
+    Constants,
     AccountsListDataService
-} from '../../shared/accounts-list-data.service';
+} from '../../shared';
 import {
     AccountsListPipe
 } from './accounts-list.pipe';
@@ -26,12 +27,18 @@ export class AccountsListBlock implements OnInit {
     private imageUrls : Array<string>;
     private imagePrefix : string;
     private damContentUrl = Environments.property.DamContentUrl;
+    private _pdfBaseUrl : string = `${Environments.property.ApiCallsBaseUrl}${Constants.accountsPdfUrl}`;
+    private openPdfUrl : string;
     constructor ( private accountsListDataService : AccountsListDataService) {
     }
     public ngOnInit () : any {
         this.accounts = this.accountsListDataService.getAccounts();
         this.imageUrls = ['01.jpg', '02.jpg', '03.jpg'];
         this.imagePrefix = `${this.damContentUrl}enterprise-assets/ddc/bett3r/AMP_Bett3r_lockup_1_`;
+        this.openPdfUrl = `${this._pdfBaseUrl}?id=${this.accountsListDataService.getPdfId()}&format=stream`;
         return undefined;
+    }
+    private getAccountPDF() {
+        window.open( this.openPdfUrl, '_blank' );
     }
 }
