@@ -5,6 +5,7 @@ import { AmpEmailComponent } from './components/amp-email/amp-email.component';
 import { AmpFirstNameComponent } from './components/amp-first-name/amp-first-name.component';
 import { AmpHomeNumberComponent } from './components/amp-home-number/amp-home-number.component';
 import { AmpLastNameComponent } from './components/amp-last-name/amp-last-name.component';
+import { AmpPasswordComponent } from './components/amp-password/amp-password.component';
 import { AmpMobileNumberComponent } from './components/amp-mobile-number/amp-mobile-number.component';
 import { AmpWorkNumberComponent } from './components/amp-work-number/amp-work-number.component';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
@@ -18,6 +19,7 @@ const DECLARATIONS = [
     AmpHomeNumberComponent ,
     AmpLastNameComponent ,
     AmpMobileNumberComponent ,
+    AmpPasswordComponent ,
     AmpWorkNumberComponent,
     AmpAccountNumberComponent
 ];

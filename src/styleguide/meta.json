@@ -580,6 +580,26 @@
         "readme": "<p>Custom Block for AmpManualAddressExtendedComponent.</p>\n"
     },
     {
+        "name": "Amp Password",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpPassword",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-password/basic_usage.html",
+                "styles": "src/styleguide/components/amp-password/basic_usage.scss",
+                "source": "src/styleguide/components/amp-password/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-password/amp-password.test.spec",
+                "jasmine": "src/styleguide/components/amp-password/amp-password.spec.ts",
+                "component": "amp-password-basic-usage",
+                "component_src_location": "components/amp-password/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+    },
+    {
         "name": "Amp Phone Number",
         "sources": [
             "src/app/components/amp-inputs/components"
