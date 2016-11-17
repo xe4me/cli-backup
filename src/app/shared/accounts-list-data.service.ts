@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
+import {
+    Injectable
+} from '@angular/core';
 @Injectable()
 export class AccountsListDataService {
     public _accounts : Array<any>;
     private _isNormal : Boolean = true;
-    constructor() {
-    }
+    private _pdfId : string;
 
     public setAccounts( accounts ) {
         this._accounts = accounts;
@@ -20,7 +19,13 @@ export class AccountsListDataService {
         });
         return this._isNormal;
     }
-    public getAccounts() {
+    public getAccounts() : Array<any> {
         return this._accounts;
+    }
+    public setPdfId(id) : void {
+        this._pdfId = id;
+    }
+    public getPdfId() : string {
+        return this._pdfId;
     }
 }
