@@ -3,7 +3,7 @@ import {
     ComponentFixture,
     TestBed
 } from '@angular/core/testing';
-import { 
+import {
     Component,
     ElementRef,
     ViewChild
@@ -33,7 +33,7 @@ describe('amp-password component', () => {
     }));
     describe('correct attributes should be set', () => {
         it('should contain a label element with name as value and password as for attribute', () => {
-            let fixture: ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
             let Component = fixture.componentInstance;
@@ -43,7 +43,7 @@ describe('amp-password component', () => {
             expect(compiledLabel.nativeElement.attributes['for'].value).toBe('password' + '_' + Component.passwordCmp._randomString + '-input');
         });
         it('should contain an input text element with the correct name, id and data-automation-id attribute', () => {
-            let fixture: ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
             let Component = fixture.componentInstance;
@@ -73,5 +73,5 @@ class MockElementRef implements ElementRef {
 })
 class TestComponent {
     @ViewChild('passwordCmp') passwordCmp;
-    passwordControl: FormGroup = new FormGroup({});
+    passwordControl : FormGroup = new FormGroup({});
 }
