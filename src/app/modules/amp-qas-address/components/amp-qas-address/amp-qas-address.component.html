@@ -13,7 +13,7 @@
                     [queryServiceCall]='_ampQasAddressService.query'
                     [maxHeight]='maxHeight'
                     [isInSummaryState]='isInSummaryState'
-                    [id]='id'
+                    id='TypeAhead'
                     [index]='index'
                     (selected)='onOptionSelect($event)'
                     [selectedItemIdentifier]='"Moniker"'
@@ -48,7 +48,7 @@
                 #manualAddressCmp
                 [keepControl]='keepControl'
                 [controlGroup]='qasControlGroup'
-                [id]='id'
+                id='ManualAddress'
                 [index]='index'
                 [isInSummaryState]='isInSummaryState'>
         </amp-manual-address>
@@ -59,7 +59,7 @@
                 (onGoBack)='goBack()'
                 [keepControl]='keepControl'
                 [controlGroup]='qasControlGroup'
-                [id]='id'
+                id='ManualAddressExtended'
                 [addressType]='addressType'
                 [index]='index'
                 [isInSummaryState]='isInSummaryState'>

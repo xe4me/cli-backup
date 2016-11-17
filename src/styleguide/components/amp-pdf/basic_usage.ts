@@ -1,5 +1,4 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { PdfService } from '../../../app/services/pdf/pdf.service';
 @Component(

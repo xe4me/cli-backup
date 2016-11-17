@@ -19,6 +19,7 @@ import { isPresent , KeyCodes } from '../../../amp-utils';
 import { FocuserDirective } from '../../../amp-directives';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector        : 'amp-typeahead' ,
     queries         : {
@@ -47,7 +48,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() errors                                    = {};
     @Input() selectLabel;
     @Input() label;
-    @Input() controlGroup : FormGroup;
+    @Input() controlGroup : AmpFormGroup;
     @Input() placeholder;
     @Input() options;
     @Input() isActive;
@@ -150,6 +151,13 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         } else {
             this.selectedControl = new FormControl();
         }
+        this.searchControlGroup.__fdn = this.controlGroup && this.controlGroup.__fdn ? [
+            ...this.controlGroup.__fdn ,
+            this.id
+        ] : [
+            'default-fdn-for-' + this.id ,
+            this.label
+        ];
     }
 
     ngOnDestroy () : void {
