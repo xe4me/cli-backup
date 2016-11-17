@@ -11,6 +11,7 @@ const GW_PRACTICE_SERVICE_PATH = process.env.GW_PRACTICE_SERVICE_PATH;  // https
 const GW_DDC_API_KEY = process.env.GW_DDC_API_KEY;
 const GW_DDC_SERVICE_PATH = process.env.GW_DDC_SERVICE_PATH; // https://teamtools.amp.com.au/confluence/display/EH/Dynamic+Data+Capture+%28DDC%29+API
 const DAM_CONTENT_URL = process.env.DAM_CONTENT_URL;
+const GOOGLE_RECAPTCHA_SITEKEY = process.env.GOOGLE_RECAPTCHA_SITEKEY;
 
 const EXPERIENCE_BASEURL = '/ddc/public/ui/' + EXPERIENCE_NAME;
 
@@ -46,6 +47,9 @@ module.exports = {
                             uiScriptUrl : process.env.greenIdUI,
                             styleUrl : process.env.greenIdCss,
                             environment : process.env.greenIdEnvironment
+                        },
+                        GoogleRecaptcha : {
+                            sitekey : GOOGLE_RECAPTCHA_SITEKEY
                         },
                         DamContentUrl : DAM_CONTENT_URL
                     }
