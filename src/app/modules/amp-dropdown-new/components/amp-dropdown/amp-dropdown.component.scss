@@ -47,6 +47,14 @@ $dropdown-font-size : 14px;
     @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
 }
 
+// This will make sure in IOS zoom won't happen
+@media screen and (-webkit-min-device-pixel-ratio : 0) {
+    select,
+    input {
+        font-size : 16px;
+    }
+}
+
 $padding-sides : 15px;
 $padding-up : 20px;
 .amp-dropdown-control {
@@ -117,7 +125,6 @@ $padding-up : 20px;
     background             : #fff;
     border                 : 2px solid $amp-colour-grey-dark;
     font-size              : 15px;
-    margin-top             : -1 * $amp-dropdown-input-border-width;
     opacity                : 1;
     overflow-x             : hidden;
     overflow-y             : auto;
@@ -158,6 +165,8 @@ $padding-up : 20px;
             white-space   : nowrap;
         }
     }
+    border-top             : none;
+
 }
 
 .amp-dropdown-option {
@@ -181,5 +190,7 @@ $padding-up : 20px;
     min-height  : $amp-dropdown-option-min-height;
     padding     : $amp-dropdown-option-padding-top $amp-dropdown-option-padding-right $amp-dropdown-option-padding-bottom $amp-dropdown-option-padding-left;
     width       : auto;
-
+    &:first-child {
+        border-top : none;
+    }
 }
