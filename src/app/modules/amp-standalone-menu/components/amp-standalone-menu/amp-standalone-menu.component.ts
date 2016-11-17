@@ -24,10 +24,10 @@ export class AmpStandAloneMenuComponent implements OnInit {
     @Input() mainContentSelector : string = 'main';
     public showNavigation : boolean       = false;
     private sections                      = [];
-    private currentSectionId : string = null;
-    private domUtils : DomUtils       = null;
-    private itemPrefix : string       = 'Item-'; // Prefix for the nav menu id.
-    private isClassOpen : boolean     = false;
+    private currentSectionId : string     = null;
+    private domUtils : DomUtils           = null;
+    private itemPrefix : string           = 'Item-'; // Prefix for the nav menu id.
+    private isClassOpen : boolean         = false;
     private tempScrollTop : number;
     private sectionObservable : Observable<any>;
     private mainHostContent; // get a reference to main content element so we can hide/show it when on mobile view
@@ -134,7 +134,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
     }
 
     private onResize ( _window , nav : HTMLElement ) {
-        let menuHeight = nav ? nav.getBoundingClientRect().height : 65;
+        let menuHeight = nav && nav.getBoundingClientRect ? nav.getBoundingClientRect().height : 65;
         if ( _window.innerWidth < 481 ) {
             this.scrollService.updateOffset( menuHeight );
         } else {
