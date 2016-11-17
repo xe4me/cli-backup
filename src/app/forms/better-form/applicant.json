@@ -16,7 +16,7 @@
                 "commonBlock": false,
                 "path": "blocks/basic-info/basic-info.component",
                 "custom": {
-                    "blockTitle": "Tell us about yourself.",
+                    "blockTitle": "Tell us about yourself",
                     "blockTitle_applicant2": "And now for applicant 2",
                     "controls": [
                         {
@@ -61,7 +61,7 @@
                 "commonBlock": false,
                 "path": "blocks/contact-details/contact-details.component",
                 "custom": {
-                    "blockTitle": "Just some basic details...",
+                    "blockTitle": "And your contact details...",
                     "controls": [
                         {
                             "id": "EmailAddress"
@@ -112,7 +112,7 @@
                 "commonBlock": false,
                 "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
                 "custom": {
-                    "blockTitle": "Tell us how to identify you",
+                    "blockTitle": "We now need to verify your identity",
                     "controls": [
                         {
                             "id": "OnlineIDCheck"
@@ -132,7 +132,7 @@
                                         "id": "AcceptIdentityCheckPrivacyDeclaration"
                                     }
                                 ],
-                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document."
+                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the <a href=\"https://www.amp.com.au/depositprivacy\" target=\"_blank\">privacy information</a> document."
                             }
                         },
                         {
@@ -169,7 +169,7 @@
                 "commonBlock": false,
                 "path": "blocks/tax-file-number/tax-file-number.component",
                 "custom": {
-                    "blockTitle": "Nearly there...",
+                    "blockTitle": "Questions we need to ask...",
                     "controls": [
                         {
                             "id": "HasTaxFileNumber",
@@ -232,11 +232,15 @@
                 "commonBlock": false,
                 "path": "blocks/source-of-funding/source-of-funding.component",
                 "custom": {
-                    "blockTitle": "More stuff...",
+                    "blockTitle": "And a couple more...",
                     "controls": [
                         {
                             "id": "PrimarySourceOfWealth",
                             "options": [
+                                {
+                                    "value": "WBI",
+                                    "label": "Business income"
+                                },
                                 {
                                     "value": "WIE",
                                     "label": "Income from employment (regular and/or bonus)"
@@ -244,10 +248,6 @@
                                 {
                                     "value": "WII",
                                     "label": "Investment income (e.g. rent, dividends, pension)"
-                                },
-                                {
-                                    "value": "WBI",
-                                    "label": "Business income"
                                 },
                                 {
                                     "value": "WOO",
@@ -267,16 +267,24 @@
                             "id": "SourceOfFundsForAccount",
                             "options": [
                                 {
+                                    "value": "FBF",
+                                    "label": "Borrowed Funds"
+                                },
+                                {
+                                    "value": "FBI",
+                                    "label": "Business income"
+                                },
+                                {
+                                    "value": "FGB",
+                                    "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
+                                },
+                                {
                                     "value": "FIE",
                                     "label": "Income from employment (regular and/or bonus)"
                                 },
                                 {
                                     "value": "FII",
                                     "label": "Investment income (e.g. rent, dividends, pension)"
-                                },
-                                {
-                                    "value": "FBI",
-                                    "label": "Business income"
                                 },
                                 {
                                     "value": "FOO",
@@ -289,14 +297,6 @@
                                 {
                                     "value": "FWF",
                                     "label": "Windfall (e.g. gift, lottery winnings, gambling)"
-                                },
-                                {
-                                    "value": "FBF",
-                                    "label": "Borrowed Funds"
-                                },
-                                {
-                                    "value": "FGB",
-                                    "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
                                 }
                             ]
                         },
@@ -304,20 +304,20 @@
                             "id": "ReasonForOpeningAccount",
                             "options": [
                                 {
-                                    "value": "EB",
-                                    "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
-                                },
-                                {
                                     "value": "BI",
                                     "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
                                 },
                                 {
-                                    "value": "SAV",
-                                    "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
-                                },
-                                {
                                     "value": "BW",
                                     "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
+                                },
+                                {
+                                    "value": "EB",
+                                    "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
+                                },
+                                {
+                                    "value": "SAV",
+                                    "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
                                 },
                                 {
                                     "value": "PUR",
