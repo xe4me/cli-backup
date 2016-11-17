@@ -16,7 +16,7 @@
                 "commonBlock": false,
                 "path": "blocks/basic-info/basic-info.component",
                 "custom": {
-                    "blockTitle": "Tell us about yourself.",
+                    "blockTitle": "Tell us about yourself",
                     "blockTitle_applicant2": "And now for applicant 2",
                     "controls": [
                         {
@@ -61,7 +61,7 @@
                 "commonBlock": false,
                 "path": "blocks/contact-details/contact-details.component",
                 "custom": {
-                    "blockTitle": "Just some basic details...",
+                    "blockTitle": "And your contact details...",
                     "controls": [
                         {
                             "id": "EmailAddress"
@@ -97,7 +97,7 @@
                 "commonBlock": false,
                 "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
                 "custom": {
-                    "blockTitle": "Tell us how to identify you",
+                    "blockTitle": "We now need to verify your identity",
                     "controls": [
                         {
                             "id": "OnlineIDCheck"
@@ -117,7 +117,7 @@
                                         "id": "AcceptIdentityCheckPrivacyDeclaration"
                                     }
                                 ],
-                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the privacy information document."
+                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the <a href=\"https://www.amp.com.au/depositprivacy\" target=\"_blank\">privacy information</a> document."
                             }
                         },
                         {
@@ -154,7 +154,7 @@
                 "commonBlock": false,
                 "path": "blocks/tax-file-number/tax-file-number.component",
                 "custom": {
-                    "blockTitle": "Nearly there...",
+                    "blockTitle": "Questions we need to ask...",
                     "controls": [
                         {
                             "id": "HasTaxFileNumber",
@@ -217,7 +217,7 @@
                 "commonBlock": false,
                 "path": "blocks/source-of-funding/source-of-funding.component",
                 "custom": {
-                    "blockTitle": "More stuff...",
+                    "blockTitle": "And a couple more...",
                     "controls": [
                         {
                             "id": "PrimarySourceOfWealth",
