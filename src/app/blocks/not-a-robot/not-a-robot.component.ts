@@ -26,7 +26,7 @@ import {
 export class BasicInfoBlock extends FormBlock implements OnInit {
 
     private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
-
+    private showCaptchaBlock : boolean = true;
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
@@ -36,10 +36,12 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
+        // console.log('applicantIndex', this.__custom.applicantIndex);
+        this.showCaptchaBlock = this.__custom.applicantIndex === 1 ? true : false;
     }
 
     private handleCaptchaResponse(captchaResponse : any) {
-        console.log(`Resolved captcha with response ${captchaResponse}:`);
+        // console.log('Resolved captcha with response', captchaResponse);
     }
 
 }
