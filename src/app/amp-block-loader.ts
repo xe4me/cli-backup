@@ -177,6 +177,7 @@ export abstract class AmpBlockLoader {
                 }
                 _componentRef.instance.__controlGroup.__prettyName     = _blockDef.prettyName || _blockDef.name;
                 _componentRef.instance.__controlGroup.__reviewTemplate = _blockDef.reviewTemplate;
+                _componentRef.instance.__controlGroup.__fdn            = _fdn;
                 _componentRef.onDestroy( () => {
                     _form.removeControl( _blockDef.name );
                     if ( childsLoadedsubscription ) {
