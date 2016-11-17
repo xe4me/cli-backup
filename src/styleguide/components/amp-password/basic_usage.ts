@@ -1,6 +1,14 @@
-import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
+import {
+    Component,
+    AfterViewInit,
+    ChangeDetectorRef
+} from '@angular/core';
+import {
+    FormControl,
+    FormGroup
+} from '@angular/forms';
 import { ThemeService } from '../../services/theme';
+
 @Component(
     {
         selector    : 'amp-password-basic-usage' ,
