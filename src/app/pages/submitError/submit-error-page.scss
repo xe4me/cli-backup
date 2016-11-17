@@ -10,7 +10,7 @@ $font-color: #cd2f3a;
             padding: 40px 70px 40px 85px;
             margin-top: 40px;
             @include media-query(palm) {
-                padding : 30px 30px 30px 30px;
+                padding : 30px 30px;
             }
             .error-summary {
                 font-weight: 400;
