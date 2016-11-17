@@ -1,8 +1,14 @@
 import {
-    ContentChild , Component , TemplateRef , ChangeDetectionStrategy , Input , OnInit ,
+    ContentChild ,
+    Component ,
+    TemplateRef ,
+    ChangeDetectionStrategy ,
+    Input ,
+    OnInit ,
     OnDestroy
 } from '@angular/core';
-import { FormArray , FormGroup } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector        : 'amp-row-repeater' ,
     queries         : {
@@ -40,7 +46,7 @@ import { FormArray , FormGroup } from '@angular/forms';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
-    @Input( 'controlGroup' ) controlGroup : FormGroup;
+    @Input( 'controlGroup' ) controlGroup : AmpFormGroup;
     @Input( 'context' ) context;
     @Input( 'id' ) id;
     @Input( 'removeBtn' ) removeBtn;
@@ -76,7 +82,16 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     }
 
     private add () {
-        this.controlArray.push( new FormGroup( {} ) );
+        let formGroupForArray   = new AmpFormGroup( {} );
+        formGroupForArray.__fdn = this.controlGroup ? [
+            ...this.controlGroup.__fdn ,
+            this.id ,
+            this.controlArray.length
+        ] : [
+            'default-fdn-for-' + this.id ,
+            this.controlArray.length
+        ];
+        this.controlArray.push( formGroupForArray );
     }
 
     private remove ( _index : number ) {

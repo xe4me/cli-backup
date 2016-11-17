@@ -16,6 +16,7 @@ import { AmpStatesComponent } from '../../../amp-dropdown';
 import { AmpCountryComponent } from '../../../amp-dropdown/components/amp-country/amp-country.component';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 import { BasicUtils } from '../../../amp-utils/basic-utils';
+import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector        : 'amp-manual-address' ,
     template        : require( './amp-manual-address.component.html' ) ,
@@ -33,12 +34,12 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     @ViewChild( 'manualCountryCmp' ) manualCountryCmp : AmpCountryComponent;
     @ViewChild( 'manualCityCmp' ) manualCityCmp : AmpInputComponent;
     @Output() onGoBack : EventEmitter<string> = new EventEmitter < string >();
-    @Input() id : string                      = 'default-';
+    @Input() id : string                      = 'manualAddress';
     @Input() index;
     @Input() keepControl                      = false;
     @Input() isInSummaryState : boolean       = false;
     @Input() required : boolean               = true;
-    @Input() controlGroup : FormGroup;
+    @Input() controlGroup : AmpFormGroup;
     @Input() address                          = {
         id        : 'address' ,
         label     : 'Street address' ,
@@ -116,6 +117,9 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
         } else {
             this.manualAddressCG = new FormGroup( {} );
         }
+        this.manualAddressCG.__fdn = this.controlGroup && this.controlGroup.__fdn ? [ ...this.controlGroup.__fdn , this.id ] : [
+            'default-fdn-for-' + this.id
+        ];
     }
 
     ngAfterViewInit () : void {

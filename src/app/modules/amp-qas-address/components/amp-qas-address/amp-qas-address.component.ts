@@ -10,9 +10,10 @@ import {
 } from '@angular/core';
 import { AmpQasAddressService , AddressFormatTypes } from '../../services/amp-qas-address.service';
 import { AmpTypeaheadComponent } from '../../../amp-typeahead';
-import { FormGroup , FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-address.component';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector : 'amp-qas-address' ,
     template : require( './amp-qas-address.component.html' ) ,
@@ -24,7 +25,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @Input() id : string                                = 'qas';
     @Input() addressType : string                       = '';
     @Input() label : string                             = 'Default qas label';
-    @Input() controlGroup : FormGroup;
+    @Input() controlGroup : AmpFormGroup;
     @Input() errors                                     = {
         required : 'Address is a required field.'
     };
@@ -38,7 +39,7 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
     private _selectedControl;
     private maxHeight : string                          = '250px';
-    private qasControlGroup : FormGroup;
+    private qasControlGroup : AmpFormGroup;
     private searchOrManualControl : FormControl;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
@@ -47,18 +48,22 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     ngOnInit () : void {
         if ( this.controlGroup ) {
             if ( this.controlGroup.contains( this.id + addDashOrNothing( this.index ) ) ) {
-                this.qasControlGroup       = <FormGroup> this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
+                this.qasControlGroup       = <AmpFormGroup> this.controlGroup.get( this.id + addDashOrNothing( this.index ) );
                 this.searchOrManualControl = <FormControl> this.qasControlGroup.get( 'isManualSearch' );
             } else {
-                this.qasControlGroup       = new FormGroup( {} );
+                this.qasControlGroup       = new AmpFormGroup( {} );
                 this.searchOrManualControl = new FormControl();
                 this.searchOrManualControl.setValue( false );
                 this.qasControlGroup.addControl( 'isManualSearch' , this.searchOrManualControl );
                 this.controlGroup.addControl( this.id + addDashOrNothing( this.index ) , this.qasControlGroup );
             }
         } else {
-            this.qasControlGroup = new FormGroup( {} );
+            this.qasControlGroup = new AmpFormGroup( {} );
         }
+        this.qasControlGroup.__fdn = this.controlGroup && this.controlGroup.__fdn ? [ ...this.controlGroup.__fdn , this.id ] : [
+            'default-fdn-for-' + this.id ,
+            this.label
+        ];
     }
 
     ngOnDestroy () : void {
