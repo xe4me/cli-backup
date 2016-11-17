@@ -2,7 +2,7 @@ import { ChangeDetectorRef , ElementRef , AfterViewInit , OnDestroy } from '@ang
 import { Subscription } from 'rxjs';
 import { FormBlock , ScrollService , FormModelService , ProgressObserverService } from 'amp-ddc-components';
 import { SharedFormDataService } from '../../shared/shared-form-data.service';
-import { Constants } from '../../shared/constants';
+import { Constants } from '../../shared';
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
     public description : string = null;
     public singleOrJointSubscription : Subscription;

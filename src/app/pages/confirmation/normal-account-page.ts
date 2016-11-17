@@ -1,18 +1,17 @@
 import {
-    Component
+    Component,
+    ChangeDetectionStrategy
 } from '@angular/core';
 
 import {
     AmpButton
 } from 'amp-ddc-components';
 
-import {AccountsListBlock} from '../../blocks/accounts-list/accounts-list.component';
-
 @Component( {
     selector    : 'normal-account-page' ,
-    directives: [AccountsListBlock],
     template: require( './normal-account-page.html' ) ,
-    styles: [ require( './normal-account-page.scss' ) ]
+    styles: [ require( './normal-account-page.scss' ) ],
+    changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class NormalAccountPage {
     private getAccountPDF() : void {

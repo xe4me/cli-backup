@@ -7,10 +7,14 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
 import { NormalAccountPage } from './pages/confirmation/normal-account-page';
 import { PostnoneAccountPage } from './pages/confirmationWithCondition/postnone-account-page';
+import { SubmitErrorPage } from './pages/submitError/submit-error-page';
 import {
     StickyProgressHeaderBlockComponent
 } from './blocks/sticky-progress-header-block/sticky-progress-header-block.component';
 import { BetterFormComponent } from './forms/better-form/better-form.component';
+import {
+    AccountsListBlock
+} from './blocks/accounts-list/accounts-list.component';
 import {
     AmpTypeaheadModule ,
     AmpTooltipModule ,
@@ -55,12 +59,14 @@ const DECLARATIONS    = [
     AmpFormBlockComponent ,
     AmpOverlayComponent ,
     AmpLoadingComponent ,
-    StickyProgressHeaderBlockComponent
+    StickyProgressHeaderBlockComponent,
+    AccountsListBlock
 ];
 const routes : Routes = [
     { path : '' , component : BetterFormComponent } ,
     { path : 'confirmation' , component : NormalAccountPage } ,
-    { path : 'confirmationWithCondition' , component : PostnoneAccountPage }
+    { path : 'confirmationWithCondition' , component : PostnoneAccountPage },
+    { path : 'submitError/:errorId', component : SubmitErrorPage }
 ];
 const IMPORTS         = [
     AmpRowRepeaterModule ,
