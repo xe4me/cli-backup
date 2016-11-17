@@ -6,7 +6,7 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
     selector   : 'amp-form-block' ,
     host       : {
         '[attr.id]'           : 'context?.selectorName' ,
-        '[attr.data-section]' : "context?.__sectionName"
+        '[attr.data-section]' : 'context?.__sectionName'
     } ,
     template   : `
      <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK">
