@@ -654,10 +654,10 @@
                 "jasmine": "src/styleguide/components/amp-password/amp-password.spec.ts",
                 "component": "amp-password-basic-usage",
                 "component_src_location": "components/amp-password/basic_usage",
-                "name": "Basic Usage"
+                "name": "AMP Password Basic Usage"
             }
         ],
-        "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
+        "readme": "<p>AMP generic password input, base on amp-input.</p>\n"
     },
     {
         "name": "Amp Phone Number",
