@@ -31,10 +31,6 @@ import {
 } )
 export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
     private greenIdModel : IGreenIdFormModel;
-    private configScriptUrl = Environments.property.GreenId.configScriptUrl;
-    private uiScriptUrl     = Environments.property.GreenId.uiScriptUrl;
-    private styleUrl        = Environments.property.GreenId.styleUrl;
-    private environment     = Environments.property.GreenId.environment;
     private checkboxLabel : string;
     @ViewChild(AmpGreenIdBlockComponent)
     private greenIdComponent : AmpGreenIdBlockComponent;

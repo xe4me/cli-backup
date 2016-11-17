@@ -1,12 +1,8 @@
 <amp-form-block [context]="context()">
     <amp-greenid-block [form]="greenIdModel"
-                       [uiScriptUrl]="uiScriptUrl"
-                       [configScriptUrl]="configScriptUrl"
-                       [styleUrl]="styleUrl"
                        [controlGroup]="__controlGroup"
                        [checkboxLabel]="__custom.checkboxLabel"
-                       [showOnReady]="false"
-                       [environment]="environment">
+                       [showOnReady]="false">
     </amp-greenid-block>
     <div *ngIf="greenIdCompleted && greenIdPassed">
         <p>Your ID has been verified.  Please continue.</p>
