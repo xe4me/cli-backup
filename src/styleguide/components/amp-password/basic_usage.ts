@@ -18,7 +18,6 @@ import { ThemeService } from '../../services/theme';
 export default class AmpPasswordBasicUsage {
     toggleFlag : boolean;
     private controlGroup : FormGroup     = new FormGroup( {} );
-    private dateControlGroup : FormGroup = new FormGroup( {} );
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
