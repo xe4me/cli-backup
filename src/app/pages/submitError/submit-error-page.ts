@@ -35,8 +35,8 @@ export class SubmitErrorPage implements OnInit {
             if (this.errorId === SubmitErrors.customerHasBetter) {
                 this.errorHeader = `We're unable to create an additional AMP Bett3r Account`;
                 this.errorBody = `It appears you already have a Bett3r account.
-                                  If this is incorrect or you'd like to retrieve the exisitng account details,
-                                  please contact us on 1300 735 979`;
+                                  If this is incorrect or you'd like to retrieve the existing account details,
+                                  please contact us on 1300 735 979.`;
             }
             this._cd.markForCheck();
         });
