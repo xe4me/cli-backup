@@ -223,16 +223,16 @@
                             "id": "PrimarySourceOfWealth",
                             "options": [
                                 {
+                                    "value": "WBI",
+                                    "label": "Business income"
+                                },
+                                {
                                     "value": "WIE",
                                     "label": "Income from employment (regular and/or bonus)"
                                 },
                                 {
                                     "value": "WII",
                                     "label": "Investment income (e.g. rent, dividends, pension)"
-                                },
-                                {
-                                    "value": "WBI",
-                                    "label": "Business income"
                                 },
                                 {
                                     "value": "WOO",
@@ -252,16 +252,24 @@
                             "id": "SourceOfFundsForAccount",
                             "options": [
                                 {
+                                    "value": "FBF",
+                                    "label": "Borrowed Funds"
+                                },
+                                {
+                                    "value": "FBI",
+                                    "label": "Business income"
+                                },
+                                {
+                                    "value": "FGB",
+                                    "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
+                                },
+                                {
                                     "value": "FIE",
                                     "label": "Income from employment (regular and/or bonus)"
                                 },
                                 {
                                     "value": "FII",
                                     "label": "Investment income (e.g. rent, dividends, pension)"
-                                },
-                                {
-                                    "value": "FBI",
-                                    "label": "Business income"
                                 },
                                 {
                                     "value": "FOO",
@@ -274,14 +282,6 @@
                                 {
                                     "value": "FWF",
                                     "label": "Windfall (e.g. gift, lottery winnings, gambling)"
-                                },
-                                {
-                                    "value": "FBF",
-                                    "label": "Borrowed Funds"
-                                },
-                                {
-                                    "value": "FGB",
-                                    "label": "Government benefits (e.g. childcare rebate, family tax benefit)"
                                 }
                             ]
                         },
@@ -289,20 +289,20 @@
                             "id": "ReasonForOpeningAccount",
                             "options": [
                                 {
-                                    "value": "EB",
-                                    "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
-                                },
-                                {
                                     "value": "BI",
                                     "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
                                 },
                                 {
-                                    "value": "SAV",
-                                    "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
-                                },
-                                {
                                     "value": "BW",
                                     "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
+                                },
+                                {
+                                    "value": "EB",
+                                    "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
+                                },
+                                {
+                                    "value": "SAV",
+                                    "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
                                 },
                                 {
                                     "value": "PUR",
