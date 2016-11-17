@@ -5,9 +5,10 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
 export class ScrollService {
     public $scrolled : EventEmitter<any>;
     public $scrolling : EventEmitter<any>;
-    private margin  = 10;
+    private margin           = 10;
     private lastScrollPosition;
-    private _window = window;
+    private _window          = window;
+    private _offset : number = 0;
 
     constructor ( private _dom : BrowserDomAdapter ,
                   private _renderer : Renderer ) {
@@ -28,7 +29,7 @@ export class ScrollService {
     }
 
     // TODO: Find another better way to get all the components available in dome to prevent this direct access
-    public scrollToNextUndoneBlock ( formModel , offset = 80 ) {
+    public scrollToNextUndoneBlock ( formModel , offset = this._offset ) {
         let isScrolled = false;
         let body       = this._dom.query( 'body' );
         let components = this._dom.querySelectorAll( body , '[id$="-block"]' );
@@ -62,10 +63,14 @@ export class ScrollService {
 
     public scrollToComponentSelector ( componentSelector : string ,
                                        easing : string = 'easeInQuad' ,
-                                       margin : number = 80 ) {
+                                       margin : number = this._offset ) {
         let sectionName;
-        let element = this._dom.query( componentSelector ) || this._dom.query( '#' + componentSelector );
-        sectionName = this._dom.getAttribute( element , 'data-section' );
+        let element = this._dom.query( componentSelector );
+        if ( ! element ) {
+            // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
+            element     = this._dom.query( '#' + componentSelector );
+            sectionName = this._dom.getAttribute( element , 'data-section' );
+        }
         let options = {
             duration       : 800 ,
             easing         : easing ,
@@ -81,6 +86,10 @@ export class ScrollService {
         setTimeout( () => {
             this.smoothScroll( element , options );
         } , 0 );
+    }
+
+    public updateOffset ( _offset : number ) {
+        this._offset = _offset;
     }
 
     public scrollToComponentByClassName ( componentName : string ) {

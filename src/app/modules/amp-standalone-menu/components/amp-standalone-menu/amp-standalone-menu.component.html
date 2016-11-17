@@ -1,4 +1,4 @@
-<nav class="steps-nav" [class.open]="isClassOpen" *ngIf="showNavigation">
+<nav (window:resize)='onResize($event.target , nav)'  #nav class="steps-nav" [class.open]="isClassOpen" *ngIf="showNavigation">
     <div class="docked" *ngIf="isClassOpen" (click)="onClassClose()">
         <span><span>Close</span></span>
         <span class="icon icon--chevron-up" aria-hidden="true"></span>
@@ -8,7 +8,7 @@
             <span *ngIf="isStateDisabled(section.state)">
                 <div class="divider" [ngClass]="{first: i == 0}"></div>
                 <div class="step-intro node"></div>
-                <span><span>{{section.label}}</span></span>                
+                <span><span>{{section.label}}</span></span>
             </span>
             <a *ngIf="!isStateDisabled(section.state)" (click)="scrollToSection($event.target = section)">
                 <div class="divider" [ngClass]="{first: i == 0}"></div>
