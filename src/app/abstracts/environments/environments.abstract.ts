@@ -52,6 +52,11 @@ export class RootEnvProperty {
         styleUrl : string;
         environment : string;
     };
+    // https://www.google.com/recaptcha/admin
+    GoogleRecaptcha : {
+        sitekey : string; // Use this in the HTML code your site serves to users.
+        secretkey : string; // Use this for communication between your site and Google.
+    };
 
     constructor () {
         if (_process_env) {
