@@ -32,6 +32,7 @@ export class PdfService {
                 } else {
                     let link : any = document.createElement( 'a' );
                     link.download  = this.getFilename();
+                    link.target    = '_blank';
                     link.href      = this.wrapInDataURI( data.payload );
                     link.click();
                 }

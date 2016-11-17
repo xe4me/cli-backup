@@ -7,7 +7,7 @@
             <div class='grid__item_floated 1/1'>
                 <amp-country
                     [keepControl]='keepControl'
-                    class="2/3 palm-1/1 utils__display--block-palm"
+                    class="1/2 palm-1/1 utils__display--block-palm"
                     (selected)='onCountrySelect($event)'
                     #manualCountryCmp
                     [id]='country.id'
@@ -72,7 +72,7 @@
             <div class='grid__item_floated 1/1 palm-1/1' [hidden]='!isCountryAUS'>
                 <amp-states
                     [keepControl]='keepControl'
-                    class="1/2 palm-1/1 utils__display--block-tablet-and-down"
+                    class="utils__display--block-tablet-and-down"
                     #manualStatesCmp
                     [id]='state.id'
                     [index]='index'
