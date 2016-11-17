@@ -22,6 +22,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
     @ViewChild( 'nav' ) nav;
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
+    @Input() menuOffset : number       = 0;
     public showNavigation : boolean       = false;
     private sections                      = [];
     private currentSectionId : string     = null;
@@ -138,7 +139,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
         if ( _window.innerWidth < 481 ) {
             this.scrollService.updateOffset( menuHeight );
         } else {
-            this.scrollService.updateOffset( 0 );
+            this.scrollService.updateOffset( this.menuOffset );
         }
     }
 }
