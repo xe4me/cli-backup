@@ -1,8 +1,11 @@
 <div class="container blocks-wrapper">
     <div class="main">
         <h1>Something went wrong...</h1>
-        <p class="description">{{errorHeader}}</p>
-        <p class="error-body">{{errorBody}}</p>
+        <div class="error-container">
+            <span class="error-icon"></span>
+            <p class="error-summary">{{errorHeader}}</p>
+            <p class="error-body">{{errorBody}}</p>
+        </div>
         <div class="finish-button-container">
         <amp-button
             [attr.theme]="'tools'"
