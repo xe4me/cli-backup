@@ -1,6 +1,6 @@
 {
     "name": "NotARobot",
-    "blockType": "NotARobot",
+    "blockType": "NotARobotBlock",
     "blockLayout": "INLINE",
     "commonBlock": false,
     "path": "blocks/not-a-robot/not-a-robot.component",

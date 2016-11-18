@@ -2,7 +2,6 @@ import {
     Component ,
     ChangeDetectorRef ,
     ElementRef ,
-    OnInit ,
     ChangeDetectionStrategy ,
     Input ,
     AfterViewInit ,
@@ -23,7 +22,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles :  [ require('./not-a-robot.component.scss')]
 } )
-export class BasicInfoBlock extends FormBlock implements OnInit {
+export class NotARobotBlock extends FormBlock {
 
     private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
     private showCaptchaBlock : boolean = true;
@@ -34,9 +33,4 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
-
-    public ngOnInit () {
-        this.showCaptchaBlock = this.__custom.applicantIndex === 1 ? true : false;
-    }
-
 }
