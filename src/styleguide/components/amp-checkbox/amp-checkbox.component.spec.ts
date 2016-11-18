@@ -36,9 +36,9 @@ describe( 'amp-checkbox component' , () => {
         let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
         let Labels          = Element.querySelector( 'label' );
         expect( Checkbox ).toBeDefined();
-        expect( Checkbox.name ).toBe( Component.checkbox.id + '_' + Component.checkboxCmp._randomString );
-        expect( Checkbox.id ).toBe( Component.checkbox.id + '_' + Component.checkboxCmp._randomString );
-        expect( Checkbox.getAttribute( 'data-automation-id' ) ).toBe( 'checkbox_' + Component.checkbox.id + '_' + Component.checkboxCmp._randomString );
+        expect( Checkbox.name ).toBe( Component.checkboxCmp.randomizedId );
+        expect( Checkbox.id ).toBe( Component.checkboxCmp.randomizedId );
+        expect( Checkbox.getAttribute( 'data-automation-id' ) ).toBe( 'checkbox_' + Component.checkboxCmp.randomizedId );
     } );
     it( 'Should be required initially when required attr has set to true and the control should be invalid ' , () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );

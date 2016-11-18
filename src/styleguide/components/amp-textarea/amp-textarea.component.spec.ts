@@ -37,9 +37,9 @@ describe( 'amp-textarea component' , () => {
         let Textareas       = Element.querySelector( 'textarea' );
         let Labels          = Element.querySelector( 'label' );
         expect( Textareas ).toBeDefined();
-        expect( Textareas.name ).toBe( Component.textarea.id + '_' + Component.textAreaCmp._randomString );
-        expect( Textareas.id ).toBe( Component.textarea.id + '_' + Component.textAreaCmp._randomString );
-        expect( Textareas.getAttribute( 'data-automation-id' ) ).toBe( 'textarea_' + Component.textarea.id + '_' + Component.textAreaCmp._randomString );
+        expect( Textareas.name ).toBe( Component.textAreaCmp.randomizedId );
+        expect( Textareas.id ).toBe( Component.textAreaCmp.randomizedId );
+        expect( Textareas.getAttribute( 'data-automation-id' ) ).toBe( 'textarea_' + Component.textAreaCmp.randomizedId );
     } );
     it( 'Should contain a label with for attribute pointed to the id' , () => {
         let fixture : ComponentFixture<AmpTextAreaTest> = TestBed.createComponent( AmpTextAreaTest );
@@ -87,9 +87,9 @@ describe( 'amp-textarea component' , () => {
 } )
 class AmpTextAreaTest {
     @ViewChild( 'textAreaCmp' ) textAreaCmp;
-                             isInSummaryState = false;
-                             controlGroup     = new FormGroup( {} );
-    private textarea                          = {
+                                isInSummaryState = false;
+                                controlGroup     = new FormGroup( {} );
+    private textarea                             = {
         id               : 'textarea' ,
         label            : 'A Label' ,
         maxLenght        : 5 ,
