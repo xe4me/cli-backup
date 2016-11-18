@@ -91,21 +91,6 @@
         },
         "blocks": [
             {
-                "name": "NotARobot",
-                "blockType": "NotARobot",
-                "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/not-a-robot/not-a-robot.component",
-                "custom": {
-                    "blockTitle": "And lastly, that you’re not a robot",
-                    "controls": [
-                        {
-                            "id": "GoogleRecaptchaCheck"
-                        }
-                    ]
-                }
-            },        
-            {
                 "name": "OnlineOrOfflineIdCheck",
                 "blockType": "OnlineOrOfflineIdCheckBlock",
                 "blockLayout": "INLINE",
