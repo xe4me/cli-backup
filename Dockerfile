@@ -1,4 +1,4 @@
-FROM registry-ddc.digital-pilot.ampaws.com.au/amp-nodejs-with-deps:latest
+FROM registry-ddc.digital-pilot.ampaws.com.au/amp-nodejs-base:latest
 
 MAINTAINER "Daniel Whatmuff" <danielwhatmuff@gmail.com>
 
