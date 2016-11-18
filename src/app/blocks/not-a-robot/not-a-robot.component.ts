@@ -36,12 +36,7 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        // console.log('applicantIndex', this.__custom.applicantIndex);
         this.showCaptchaBlock = this.__custom.applicantIndex === 1 ? true : false;
-    }
-
-    private handleCaptchaResponse(captchaResponse : any) {
-        // console.log('Resolved captcha with response', captchaResponse);
     }
 
 }

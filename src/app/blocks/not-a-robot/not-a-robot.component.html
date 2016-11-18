@@ -1,4 +1,4 @@
-<amp-form-block [context]="context()" buttonsTheme='tools' *ngIf="showCaptchaBlock">
+<amp-form-block [context]="context()" buttonsTheme="tools" *ngIf="showCaptchaBlock">
     <div>
         By clicking below, it shows us that you're a human
     </div>    
@@ -6,7 +6,6 @@
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12">
             <amp-google-recaptcha 
                 [controlGroup]="__controlGroup"
-                (captchaResponse)="handleCaptchaResponse($event)" 
                 [sitekey]="sitekey">
             </amp-google-recaptcha>
         </div>
