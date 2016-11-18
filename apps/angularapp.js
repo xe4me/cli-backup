@@ -5,7 +5,7 @@ const EXPERIENCE_NAME = 'bett3r';
 // Wrapped in config module
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const TAM_SERVICE_PATH = process.env.TAM_SERVICE_PATH;       // https://teamtools.amp.com.au/confluence/display/EH/API+Gateway+traffic+flow+with+TAM
-const GW_ENV_SERVICE_PATH = process.env.GW_ENV_SERVICE_PATH; // Only neccessary for Dev and SYS, how to nullified in UAT, PRD, DR.
+const GW_ENV_SERVICE_PATH = process.env.GW_ENV_SERVICE_PATH; // Only necessary for Dev and SYS, how to nullified in UAT, PRD, DR.
 const GW_PRACTICE_API_KEY = process.env.GW_PRACTICE_API_KEY;
 const GW_PRACTICE_SERVICE_PATH = process.env.GW_PRACTICE_SERVICE_PATH;  // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=40576204
 const GW_DDC_API_KEY = process.env.GW_DDC_API_KEY;
@@ -15,10 +15,10 @@ const GOOGLE_RECAPTCHA_SITEKEY = process.env.GOOGLE_RECAPTCHA_SITEKEY;
 
 const EXPERIENCE_BASEURL = '/ddc/public/ui/' + EXPERIENCE_NAME;
 
-var express = require('express');
-var router = require('express').Router();
-var path = require('path');
-var log = require('ddcjs-logger')('experience-' + EXPERIENCE_NAME);
+const express = require('express');
+const router = require('express').Router();
+const path = require('path');
+const log = require('ddcjs-logger')('experience-' + EXPERIENCE_NAME);
 
 module.exports = {
     init : function(app) {
@@ -43,10 +43,12 @@ module.exports = {
                             Path: GW_DDC_SERVICE_PATH,
                         },
                         GreenId : {
-                            configScriptUrl : process.env.greenIdConfig,
-                            uiScriptUrl : process.env.greenIdUI,
-                            styleUrl : process.env.greenIdCss,
-                            environment : process.env.greenIdEnvironment
+                            configScriptUrl : process.env.GREEN_ID_CONFIG,
+                            uiScriptUrl : process.env.GREEN_ID_UI,
+                            styleUrl : process.env.GREEN_ID_CSS,
+                            environment : process.env.GREEN_ID_ENVIRONMENT,
+                            accountId : process.env.GREEN_ID_ACCOUNT_ID,
+                            password : process.env.GREEN_ID_PASSWORD
                         },
                         GoogleRecaptcha : {
                             sitekey : GOOGLE_RECAPTCHA_SITEKEY
