@@ -1,18 +1,18 @@
 <div *ngFor='let button of buttons' class='amp-radio-button-group'>
     <input
-            [disabled]='disabled || isInSummaryState'
-            [attr.data-automation-id]='"radio_button_" + button.id+"_"+_randomString'
-            type='radio'
-            [attr.id]='button.id+"_"+_randomString'
-            [attr.name]='randomizedId'
-            [formControl]='control'
-            [value]='button.value'
-            class='sr-only'
-            [checked]='control.value===button.value'/>
+        [disabled]='disabled || isInSummaryState'
+        [attr.data-automation-id]='"radio_button_" +randomizedId+"_"+button.id'
+        type='radio'
+        [attr.id]='randomizedId+"_"+button.id'
+        [attr.name]='randomizedId'
+        [formControl]='control'
+        [value]='button.value'
+        class='sr-only'
+        [checked]='control.value===button.value'/>
     <label
-            [class.checked]="control.value===button.value"
-            (click)='onSelect($event , button.value , true)'
-            [attr.for]='button.id+"_"+_randomString' class="root">
+        [class.checked]="control.value===button.value"
+        (click)='onSelect($event , button.value , true)'
+        [attr.for]='randomizedId+"_"+button.id' class="root">
         <div class="container">
             <div class="off"></div>
             <div class="on"></div>

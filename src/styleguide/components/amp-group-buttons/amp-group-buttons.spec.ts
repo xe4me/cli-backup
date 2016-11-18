@@ -35,8 +35,8 @@ describe( 'amp-group-buttons directive' , () => {
         // let AmpGroupButtonTest = fixture.debugElement;
         let Form        = Element.querySelector( 'form' );
         let Inputs      = Element.querySelectorAll( 'input' );
-        expect( Inputs[ '0' ].name ).toBe( 'fullOrPartial' + '_' + Component.groupButtonsCmp._randomString );
-        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'group_button_fullId' + '_' + Component.groupButtonsCmp._randomString );
+        expect( Inputs[ '0' ].name ).toBe( Component.groupButtonsCmp.randomizedId );
+        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'group_button' + '_' + Component.groupButtonsCmp.randomizedId + '_fullId' );
         expect( Inputs.length ).toBe( 2 );
     } );
     it( 'Should contain 2 label field with proper text ' , () => {
