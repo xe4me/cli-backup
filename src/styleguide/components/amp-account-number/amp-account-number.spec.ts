@@ -25,11 +25,11 @@ describe( 'amp-account-number component' , () => {
         let compiledTestComponent = fixture.debugElement;
         let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
         let Component             = fixture.componentInstance;
-        expect( compiledInput.nativeElement.name ).toBe( 'account-number' + '_' + Component.contactNumberCmp._randomString );
-        expect( compiledInput.nativeElement.id ).toBe( 'account-number' + '_' + Component.contactNumberCmp._randomString + '-input' );
+        expect( compiledInput.nativeElement.name ).toBe( Component.accountNumberCmp.randomizedId );
+        expect( compiledInput.nativeElement.id ).toBe( Component.accountNumberCmp.randomizedId + '-input' );
         expect( compiledInput.nativeElement.attributes[ 'maxlength' ].value ).toBe( '9' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
-        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_account-number' + '_' + Component.contactNumberCmp._randomString );
+        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.accountNumberCmp.randomizedId );
     } );
     it( 'should be invalid if longer than 9 digits' , () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -75,13 +75,13 @@ class MockElementRef implements ElementRef {
     template : `
     <form  #formModel='ngForm' class='nl-form' >
         <amp-account-number
-            #contactNumberCmp
+            #accountNumberCmp
             [id]="'account-number'"
             [controlGroup]='accountNumberControl'></amp-account-number>
     </form>
     `
 } )
 class TestComponent {
-    @ViewChild( 'contactNumberCmp' ) contactNumberCmp;
+    @ViewChild( 'accountNumberCmp' ) accountNumberCmp;
                                      accountNumberControl : FormGroup = new FormGroup( {} );
 }

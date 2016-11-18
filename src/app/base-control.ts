@@ -104,7 +104,7 @@ export class BaseControl implements OnDestroy {
     }
 
     get randomizedId () {
-        return this.id + '_' + this._randomString;
+        return this._randomString;
     }
 
     protected createRandomId () {
