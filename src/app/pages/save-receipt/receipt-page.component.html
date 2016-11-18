@@ -38,23 +38,25 @@
                 </div>
             </div>
         </amp-form-row>
-        <div class="block-buttons">
-            <div class="grid__item_floated lap-and-up-1/2">
-                <amp-button
-                    [attr.theme]="theme"
-                    (click)='sendEmail()'
-                    [disabled]='buttonDisabled' class='btn btn-ok btn-primary'>
-                    OK
-                </amp-button>
+        <amp-form-row>
+            <div class="grid__container 1/1">
+                <div class="grid__item_floated lap-and-up-1/4 mt-60 spacing-20">
+                    <amp-button
+                        [attr.theme]="theme"
+                        (click)='sendEmail()'
+                        [disabled]='buttonDisabled' class='mt0 btn btn-submit'>
+                        OK
+                    </amp-button>
+                </div>
+                <div class="grid__item_floated lap-and-up-1/4 mt-60">
+                    <amp-button
+                        [attr.theme]="theme"
+                        (click)='back()'
+                        class='mt0 btn btn-secondary'>
+                        Back
+                    </amp-button>
+                </div>
             </div>
-            <div class="grid__item_floated lap-and-up-1/2">
-                <amp-button
-                    [attr.theme]="theme"
-                    (click)='back()'
-                    class='btn btn-ok'>
-                    Back
-                </amp-button>
-            </div>
-        </div>
+        </amp-form-row>
     </div>
 </div>
