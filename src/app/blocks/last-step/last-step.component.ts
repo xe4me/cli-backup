@@ -92,11 +92,9 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
             .subscribe((result) => {
                 this.submitInProgress = false;
                 if ( result.payload.resultStatus === 'SUCCESS' ) {
-                    this.accountsListDataService.setAccounts( result.payload.accounts );
-                    this.accountsListDataService.setPdfId( referenceId.value );
-                    let navigateTo = this.accountsListDataService.isNormal() ?
-                        'confirmation' :
-                        'confirmationWithCondition';
+                    this.accountsListDataService
+                        .setAccountsData( referenceId.value, this.__form.value, result.payload.accounts );
+                    let navigateTo = this.accountsListDataService.navigateTo();
                     this.router.navigate([navigateTo]);
                 } else {
                     if ( result.payload.resultStatus === 'FAILURE') {
