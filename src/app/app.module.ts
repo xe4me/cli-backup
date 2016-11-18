@@ -47,7 +47,9 @@ import {
     AmpRowRepeaterModule ,
     AmpFormRowModule ,
     AmpStandAloneMenuModule ,
-    AmpGreenidModule
+    AmpGreenidModule ,
+    AMPGoogleAddressComponent ,
+    AmpGoogleRecaptchaModule
 } from 'amp-ddc-components';
 // the bellow import will be replaced with a proper one as soon as we completely remove amp-dropdown and moved to
 // the new one
@@ -83,6 +85,7 @@ const IMPORTS         = [
     AmpDirectivesModule ,
     AmpQasAddressModule ,
     AmpGreenidModule ,
+    AmpGoogleRecaptchaModule ,
     AmpInputsModule ,
     AmpErrorModule ,
     AmpCheckboxModule ,

@@ -2,69 +2,66 @@
 $base-red: #cd2f3a;
 $border-color: $base-red;
 $font-color: $base-red;
-:host {
-    .container {
-        .error-container {
-            font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
-            color: $font-color;
-            border: 1px solid $border-color;
-            padding: 40px 70px 40px 85px;
-            margin-top: 40px;
-            @include media-query(palm) {
-                padding : 30px 30px;
-            }
-            .error-summary {
-                font-weight: 400;
-                line-height : 30px;
-                margin-bottom: 30px;
-            }
 
-            .error-body {
-                font-size: 14px;
-                line-height: 26px;
-            }
-        }
 
-        .error-icon {
-            &::before {
-                content: ' ';
-                float: left;
-                margin-top: 5px;
-                margin-right: 20px;
-                top: 0;
-                width: 22px;
-                height: 22px;
-                background-repeat: no-repeat;
-                background-size: 100%;
-                background-image : url('assets/images/Error.png');
+.container.blocks-wrapper {
+    padding-left: 230px;
+    padding-top: 60px;
+}
 
-                @include media-query('lap-and-up') {
-                    margin-left : -50px;
-                }
-            }
-        }
+.error-container {
+    font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+    color: $font-color;
+    border: 1px solid $border-color;
+    padding: 40px 70px 40px 85px;
+    margin-top: 40px;
+    width: 90%;
+    .error-summary {
+        font-weight: 600;
+        line-height : 30px;
+        margin-bottom: 15px;
+    }
 
-        padding: 4em 0 2em 15.3333em;
-        amp-button {
-            margin-top: 0;
-            .btn {
-                margin-top: 0;
-            }
+    .error-body {
+        font-size: 14px;
+        line-height: 26px;
+        font-weight: 400;
+        line-height: 26px;
+    }
+}
+
+@include media-query(tablet-and-down) {
+    padding: 2.667em 2em;
+    .finish-button-container {
+        margin-top: 50px;
+    }
+    .error-container {
+        padding : 30px 30px;
+        width: 100%;
+        .error-summary {
+            margin-left : 42px;
         }
-        .finish-button-container{
-            margin-top: 4em;
-        }
-        @include media-query(tablet-and-down) {
-            padding: 2.667em 2em;
-            amp-button {
-                margin-top: 0;
-                .btn {
-                    margin-top: 0;
-                }
-            }
-            .finish-button-container{
-                margin-top: 2.667em;
-            }
+    }
+    .container.blocks-wrapper {
+        padding: 30px 40px;
+    }
+}
+
+.error-icon {
+    &::before {
+        content: ' ';
+        float: left;
+        margin-top: 5px;
+        margin-right: 20px;
+        top: 0;
+        width: 22px;
+        height: 22px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-image : url('assets/images/Error.png');
+
+        @include media-query('lap-and-up') {
+            margin-left : -40px;
         }
     }
 }
