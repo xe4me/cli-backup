@@ -6,26 +6,29 @@ import {
     animate,
     transition,
     OnInit,
-    AfterContentInit,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    ElementRef,
-    ViewChild,
     Renderer,
     Input,
     OnDestroy,
     ViewEncapsulation
 } from '@angular/core';
-import { DomSanitizationService } from '@angular/platform-browser';
+import {
+    FormControl,
+    FormGroup,
+    FormBuilder,
+    Validators
+} from '@angular/forms';
+import {
+    SafeResourceUrl,
+    DomSanitizationService
+} from '@angular/platform-browser';
+import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
+import { Environments } from '../../../../../';
 import { AmpGreenIdServices } from './services/amp-greenid-service';
 import { ResponseObject } from './interfaces/responseObject';
 import { IGreenIdFormModel } from './interfaces/formModel';
-import { FormControl,
-         FormGroup,
-         FormBuilder,
-         Validators
-} from '@angular/forms';
-import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
+
 @Component({
     selector: 'amp-greenid-block',
     host: {
@@ -50,12 +53,8 @@ import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
 export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     @Input() id : string = 'green-id-identity-check';
     @Input() form : IGreenIdFormModel; // form model input
-    @Input() configScriptUrl; // all the api urls that need to be imported, the js is loaded asnyc
-    @Input() uiScriptUrl;
-    @Input() styleUrl;
-    @Input() keepControl = false;
+    @Input() keepControl : boolean = false;
     @Input() controlGroup : FormGroup;
-    @Input() environment : string = 'test';
     @Input() checkboxLabel : string;
     @Input() showOnReady = false;
     private greenIdControlGroup : FormGroup;
@@ -63,11 +62,13 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     private domAdapter : DomAdapter;
     private greenIdShowing : boolean = true;
     private greenIdSettings : any;
-
-    private greenIdCredentials = {
-        accountId: 'amp_au',
-        password: '69h-xEt-PSW-vGn'
-    };
+    private configScriptUrl : string = Environments.property.GreenId.configScriptUrl;
+    private uiScriptUrl : string = Environments.property.GreenId.uiScriptUrl;
+    private styleUrl : string = Environments.property.GreenId.styleUrl;
+    private safeStyleUrl : SafeResourceUrl;
+    private environment : string = Environments.property.GreenId.environment;
+    private accountId : string = Environments.property.GreenId.accountId;
+    private password : string = Environments.property.GreenId.password;
 
     constructor(
         private AmpGreenIdServices : AmpGreenIdServices,
@@ -92,7 +93,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
             enableBackButtonWarning: false
         };
         if (this.styleUrl) {
-            this.styleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
+            this.safeStyleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
         }
         this.createControls();
         this.loadApiScripts = new Promise<any>(this.loadApiScriptsHandler).then(() => {
@@ -100,14 +101,13 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
             this.AmpGreenIdServices
                 .getTheToken(this.form)
                 .subscribe((response) => {
-                        if (response) {
-                            this.updateModel(response.payload);
-                            if (this.showOnReady) {
-                                this.showGreenId();
-                            }
+                    if (response) {
+                        this.updateModel(response.payload);
+                        if (this.showOnReady) {
+                            this.showGreenId();
                         }
                     }
-                );
+                });
         });
     }
 
@@ -144,7 +144,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     private showGreenIdInternal() {
-        window['greenidUI'].show(this.greenIdCredentials.accountId, this.greenIdCredentials.password, this.greenIdControlGroup.controls['verificationToken'].value);
+        window['greenidUI'].show(this.accountId, this.password, this.greenIdControlGroup.controls['verificationToken'].value);
     }
 
     private loadApiScriptsHandler = (resolve, reject) => {
@@ -170,7 +170,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         this.greenIdControlGroup.controls['verificationStatus'].setValue(verificationStatus);
         this.greenIdShowing = false;
         this._cd.markForCheck();
-    }
+    };
 
     private createGreenIdControlGroup() {
         return new FormGroup({
