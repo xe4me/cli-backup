@@ -1,25 +1,17 @@
 import { Injectable } from '@angular/core';
 import { clone } from 'amp-ddc-components';
 const applicantJSON = require( '../forms/better-form/applicant.json' );
+const captchBlockJSON = require('../forms/better-form/capcha-block.json');
 
 @Injectable()
 export class ApplicantGeneratorService {
-    public findBlock ( applicant , title , sectionIndex ) {
-        return applicant[sectionIndex].blocks.filter((item) => {
-            return title === item.name;
-        })[0];
-    }
-
-    public getApplicantSection ( index : number ) : any {
+     public getApplicantSection ( index : number ) : any {
         const applicantSections = clone( applicantJSON );
 
         this.addApplicantIdToSectionBlocks(applicantSections, index);
 
-        if ( index === 2 ) {
-            let basicInfoBlock = this.findBlock( applicantSections , 'BasicInfo' , 0 );
-            if ( basicInfoBlock ) {
-                basicInfoBlock.custom.blockTitle = basicInfoBlock.custom.blockTitle_applicant2;
-            }
+        if (index === 1) {
+            this.addCaptchaBlock(applicantSections);
         }
 
         return {
@@ -33,6 +25,18 @@ export class ApplicantGeneratorService {
             } ,
             'blocks'      : applicantSections
         };
+    }
+
+
+    private findBlock ( sections , title , sectionIndex ) {
+        return sections[sectionIndex].blocks.filter((item) => {
+            return title === item.name;
+        })[0];
+    }
+
+    private addCaptchaBlock( sections ) {
+        let captchBlock = clone(captchBlockJSON);
+        sections[0].blocks.push(captchBlock);
     }
 
     private addApplicantIdToSectionBlocks (sections, index : number ) : void {
