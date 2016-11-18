@@ -7,18 +7,18 @@ $amp-ddc-padding: 40px;
 }
 
 .save-page_message {
-  @include amp-family($amp-font-open-sans-regular);
-  font-weight: 300;
-  font-size: 24px;
-  text-align: left;
-  position: absolute;
-  width: 60%;
-  min-height: 30%;
-  left: 255px;
-  top: 25%;
-  margin: auto;
+    @include amp-family($amp-font-open-sans-regular);
+    font-weight: 300;
+    font-size: 24px;
+    text-align: left;
+    position: absolute;
+    width: 60%;
+    min-height: 30%;
+    left: 255px;
+    top: 25%;
+    margin: auto;
 }
 
 .spacing-20 {
-        margin-right: 20px;
+    margin-right: 20px;
 }
