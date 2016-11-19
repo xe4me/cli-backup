@@ -14,7 +14,6 @@ import { AmpInputComponent } from '../../../amp-inputs';
 import { AmpStatesComponent } from '../../../amp-dropdown';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 import { BasicUtils } from '../../../amp-utils/basic-utils';
-import { AddressFormatTypes } from '../../services/amp-qas-address.service';
 import { AmpStreetTypesComponent } from '../../../amp-dropdown/components/amp-street-types/amp-street-types.component';
 import { AmpGroupButtonsComponent } from '../../../amp-group-buttons/components/amp-group-buttons/amp-group-buttons.component';
 import { AmpFormGroup } from '../../../../base-control';

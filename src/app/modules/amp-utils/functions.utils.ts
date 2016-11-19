@@ -40,18 +40,33 @@ export function applyCss ( property , element , transformValue ) {
     element.style[ property ] = transformValue.trim();
 }
 export function getQueryParam ( paramName : string ) : string {
-    let query = decodeURIComponent(window.location.search.substring(1));
-    let params = query.split('&');
-    let value = '';
-
-    for (let i = 0; i < params.length; i++) {
-        let pair = params[i].split('=');
-
-        if (pair[0] === paramName) {
-            value = pair[1];
+    let query  = decodeURIComponent( window.location.search.substring( 1 ) );
+    let params = query.split( '&' );
+    let value  = '';
+    for ( let i = 0 ; i < params.length ; i ++ ) {
+        let pair = params[ i ].split( '=' );
+        if ( pair[ 0 ] === paramName ) {
+            value = pair[ 1 ];
             break;
         }
     }
-
     return value;
+}
+/* Method : toTitleCase
+    Will convert the word to be titleCase
+    @Example :
+    this iS a String
+    becomes :
+    This Is A String
+* */
+export function toTitleCase ( str ) {
+    if ( str === null || str === undefined ) {
+        return str;
+    }
+    if ( ! isNaN( str ) ) {
+        return str;
+    }
+    return str.replace( /\w\S*/g , function( txt ) {
+        return txt.charAt( 0 ).toUpperCase() + txt.substr( 1 ).toLowerCase();
+    } );
 }

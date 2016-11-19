@@ -14,7 +14,7 @@ import { FormGroup } from '@angular/forms';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { AmpStatesComponent } from '../../../amp-dropdown';
 import { AmpCountryComponent } from '../../../amp-dropdown/components/amp-country/amp-country.component';
-import { addDashOrNothing } from '../../../amp-utils/functions.utils';
+import { addDashOrNothing , toTitleCase } from '../../../amp-utils/functions.utils';
 import { BasicUtils } from '../../../amp-utils/basic-utils';
 import { AmpFormGroup } from '../../../../base-control';
 @Component( {
@@ -117,7 +117,10 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
         } else {
             this.manualAddressCG = new FormGroup( {} );
         }
-        this.manualAddressCG.__fdn = this.controlGroup && this.controlGroup.__fdn ? [ ...this.controlGroup.__fdn , this.id ] : [
+        this.manualAddressCG.__fdn = this.controlGroup && this.controlGroup.__fdn ? [
+            ...this.controlGroup.__fdn ,
+            this.id
+        ] : [
             'default-fdn-for-' + this.id
         ];
     }
@@ -142,9 +145,13 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     public updateControls ( _formattedAddress : any ) {
         if ( _formattedAddress ) {
             this.addressCtrl.setValue( _formattedAddress.StreetType + _formattedAddress.StreetName );
-            this.suburbCtrl.setValue( _formattedAddress.Locality );
+            this.suburbCtrl.setValue( toTitleCase( _formattedAddress.Locality ) );
             this.stateCtrl.setValue( _formattedAddress.StateCode.toUpperCase() );
-            this.countryCtrl.setValue( _formattedAddress.Country );
+            if ( _formattedAddress.Country ) {
+                this.countryCtrl.setValue( toTitleCase( _formattedAddress.Country ) );
+            } else {
+                this.countryCtrl.setValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
+            }
             this.postCodeCtrl.setValue( _formattedAddress.Postcode );
         }
     }
