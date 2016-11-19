@@ -29,7 +29,7 @@ describe( 'amp-input component' , () => {
             let compiledLabel         = compiledTestComponent.query( By.css( '.first-name label' ) );
             expect( compiledLabel.name ).toBe( 'label' );
             expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Name' );
-            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( 'firstname' + '_' + Component.firstNameCmp._randomString + '-input' );
+            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.firstNameCmp.randomizedId + '-input' );
         } );
         it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -37,10 +37,10 @@ describe( 'amp-input component' , () => {
             let compiledTestComponent = fixture.debugElement;
             let Component             = fixture.componentInstance;
             let compiledInput         = compiledTestComponent.query( By.css( '.first-name input' ) );
-            expect( compiledInput.nativeElement.name ).toBe( 'firstname' + '_' + Component.firstNameCmp._randomString );
-            expect( compiledInput.nativeElement.id ).toBe( 'firstname' + '_' + Component.firstNameCmp._randomString + '-input' );
+            expect( compiledInput.nativeElement.name ).toBe( Component.firstNameCmp.randomizedId );
+            expect( compiledInput.nativeElement.id ).toBe( Component.firstNameCmp.randomizedId + '-input' );
             expect( compiledInput.nativeElement.type ).toBe( 'text' );
-            expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_firstname' + '_' + Component.firstNameCmp._randomString );
+            expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.firstNameCmp.randomizedId );
         } );
     } );
     describe( '"valDate" attribute should correctly validate date data' , () => {

@@ -17,6 +17,7 @@ import { BasicUtils } from '../../../amp-utils/basic-utils';
 import { AddressFormatTypes } from '../../services/amp-qas-address.service';
 import { AmpStreetTypesComponent } from '../../../amp-dropdown/components/amp-street-types/amp-street-types.component';
 import { AmpGroupButtonsComponent } from '../../../amp-group-buttons/components/amp-group-buttons/amp-group-buttons.component';
+import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector        : 'amp-manual-address-extended' ,
     template        : require( './amp-manual-address-extended.component.html' ) ,
@@ -41,7 +42,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
     @Input() isInSummaryState : boolean                    = false;
     @Input() keepControl : boolean                         = false;
     @Input() required : boolean                            = true;
-    @Input() controlGroup : FormGroup;
+    @Input() controlGroup : AmpFormGroup;
     @Input() suburb                                        = {
         id        : 'suburb' ,
         label     : 'Suburb' ,
@@ -153,6 +154,9 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
         } else {
             this.manualAddressCG = new FormGroup( {} );
         }
+        this.manualAddressCG.__fdn = this.controlGroup && this.controlGroup.__fdn ? [ ...this.controlGroup.__fdn , this.id ] : [
+            'default-fdn-for-' + this.id
+        ];
     }
 
     ngOnDestroy () : void {

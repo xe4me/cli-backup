@@ -71,6 +71,12 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     protected _optionsHidden : boolean        = true;
     protected clearSearchTimeout;
     protected searchStr                       = '';
+    private DO_NOT_FOCUS                      = false;
+    private DO_FOCUS                          = true;
+    private DO_MARK_FOR_CHECK                 = true;
+    private DO_NOT_MARK_FOR_CHECK             = false;
+    private DO_MARK_AS_TOUCHED                = true;
+    private DO_NOT_MARK_AS_TOUCHED            = false;
 
     constructor ( public _el : ElementRef , public _cd : ChangeDetectorRef , public _renderer : Renderer ) {
         super();
@@ -96,7 +102,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         // check if control has value ( it's been retrieved , and if so , do the select)
         if ( this.control.value !== undefined ) {
             setTimeout( () => {
-                this.findOptionAndSelect( this.control.value );
+                this.findOptionAndSelect( this.control.value , this.DO_NOT_FOCUS );
             } );
         }
     }
@@ -219,7 +225,8 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         return null;
     }
 
-    private selectOption ( option , $event : KeyboardEvent , doMarkForCheck ) : void {
+    private selectOption ( option , $event : KeyboardEvent , doMarkForCheck = false , doFocus = true ,
+                           doMarkAsTouched = false ) : void {
         if ( this.alreadySelectedThis( option ) ) {
             return;
         }
@@ -232,14 +239,16 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
             } );
             this.selectedControl.setValue( this.selectedOption[ this.fieldItemKey ] );
         }
-        if ( this.control.untouched ) {
+        if ( doMarkAsTouched && this.control.untouched ) {
             this.control.markAsTouched( {
                 onlySelf : false
             } );
         }
         this.selected.emit( this.selectedOption );
         this.close();
-        this.focusInput();
+        if ( doFocus === this.DO_FOCUS ) {
+            this.focusInput();
+        }
         if ( $event ) {
             $event.preventDefault();
         }
@@ -296,19 +305,19 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
                 this.control
                     .valueChanges
                     .subscribe( ( _change ) => {
-                        this.findOptionAndSelect( _change );
+                        this.findOptionAndSelect( _change , this.DO_NOT_FOCUS );
                     } );
         }
     }
 
-    private findOptionAndSelect ( _change : any ) {
+    private findOptionAndSelect ( _change : any , doFocus ) {
         if ( _change !== undefined ) {
             if ( _change === null ) {
-                return this.selectOption( _change , null , true );
+                return this.selectOption( _change , null , this.DO_MARK_FOR_CHECK , doFocus , this.DO_NOT_MARK_AS_TOUCHED );
             }
             for ( let i = 0 ; i < this.options.length ; i ++ ) {
-                if ( this.options[ i ][ this.fieldValueKey ] === _change ) {
-                    return this.selectOption( this.options[ i ] , null , true );
+                if ( this.options[ i ][ this.fieldValueKey ] === _change || this.options[ i ][ this.fieldItemKey ] === _change ) {
+                    return this.selectOption( this.options[ i ] , null , this.DO_MARK_FOR_CHECK , doFocus , this.DO_NOT_MARK_AS_TOUCHED );
                 }
             }
             // if the value inside the control is not in the options , set it to null !!!!

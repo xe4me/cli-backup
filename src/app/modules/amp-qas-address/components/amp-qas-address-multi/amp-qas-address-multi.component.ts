@@ -1,5 +1,6 @@
 import { Component , Input , ChangeDetectionStrategy , ChangeDetectorRef , OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector        : 'amp-qas-address-multi' ,
     template        : require( './amp-qas-address-multi.component.html' ) ,
@@ -7,8 +8,8 @@ import { FormGroup } from '@angular/forms';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpQasAddressMultiComponent implements OnInit {
-    @Input() id : string                   = 'default-qas-multi-id';
-    @Input() controlGroup : FormGroup;
+    @Input() id : string                   = 'qas-multi';
+    @Input() controlGroup : AmpFormGroup;
     @Input() required : boolean;
     @Input() index;
     @Input() extended : boolean            = true;
@@ -42,6 +43,9 @@ export class AmpQasAddressMultiComponent implements OnInit {
         } else {
             this.qasMultiCG = new FormGroup( {} );
         }
+        this.qasMultiCG.__fdn = this.controlGroup && this.controlGroup.__fdn ? [ ...this.controlGroup.__fdn , this.id ] : [
+            'default-fdn-for-' + this.id
+        ];
     }
 
     private onCheckboxSelect ( $event ) {

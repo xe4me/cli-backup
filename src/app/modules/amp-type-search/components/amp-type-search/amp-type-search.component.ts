@@ -158,9 +158,6 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 this.searchResult = result.json().payload;
                 if ( result.json().errorCode ) {
                   this.$errorCode.emit({ errorCode: result.json().errorCode });
-                }  else {
-                    /* Hardcoding in a not found option. This is only temporary.*/
-                    this.searchResult.push({ 'decisionWizard' : '------ Can\'t see your business name? Please try our decision wizard (coming soon). ------' });
                 }
                 this._cd.markForCheck();
                 this.ampInput.checkErrors();

@@ -36,8 +36,8 @@ describe( 'amp-radio-group-button component , multiple items usage' , () => {
         let multipleRadioGroup      = Element.querySelector( '#multiple-radio-group' );
         let Inputs                  = multipleRadioGroup.querySelectorAll( 'input' );
         let Form                    = Element.querySelector( 'form' );
-        expect( Inputs[ '0' ].name ).toBe( Component.radiosMultipleOptions.groupName + '_' + Component.radioGroupButtonCmp1._randomString );
-        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosMultipleOptions.buttons[ 0 ].id + '_' + Component.radioGroupButtonCmp1._randomString );
+        expect( Inputs[ '0' ].name ).toBe( Component.radioGroupButtonCmp1.randomizedId );
+        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radioGroupButtonCmp1.randomizedId + '_' + Component.radiosMultipleOptions.buttons[ 0 ].id );
         expect( Inputs.length ).toBe( 4 );
     } );
     it( 'Should update the control value after selecting the first radio option and this value should be null' +
@@ -95,8 +95,8 @@ describe( 'amp-radio-group-button component , single item usage' , () => {
         let multipleRadioGroup      = Element.querySelector( '#single-radio-group' );
         let Inputs                  = multipleRadioGroup.querySelectorAll( 'input' );
         let Form                    = Element.querySelector( 'form' );
-        expect( Inputs[ '0' ].name ).toBe( Component.radiosOneOption.groupName + '_' + Component.radioGroupButtonCmp2._randomString );
-        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radiosOneOption.buttons[ 0 ].id + '_' + Component.radioGroupButtonCmp2._randomString );
+        expect( Inputs[ '0' ].name ).toBe( Component.radioGroupButtonCmp2.randomizedId );
+        expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'radio_button_' + Component.radioGroupButtonCmp2.randomizedId + '_' + Component.radiosOneOption.buttons[ 0 ].id );
         expect( Inputs.length ).toBe( 1 );
     } );
     it( 'Should be able to preselect if there is only one option and autoSelectOnOne attr is set to true' , () => {

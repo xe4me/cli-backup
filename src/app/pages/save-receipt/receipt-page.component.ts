@@ -48,10 +48,12 @@ export class SaveReceiptPageComponent implements AfterViewInit {
         this.controlGroup.controls[ this.controlName ].setValue( this.route.snapshot.params[ 'email' ] );
         this.emailSentEvent.subscribe( ( message ) => {
             this.emailSentConfirmation = message;
+            this.emailSentErrorMessage = null;
             this._cd.markForCheck();
         } );
         this.emailSentErrorEvent.subscribe((errorMessage) => {
             this.emailSentErrorMessage = errorMessage;
+            this.emailSentConfirmation = null;
             this._cd.markForCheck();
         });
     }

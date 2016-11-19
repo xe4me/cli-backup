@@ -36,8 +36,8 @@ describe( 'amp-dropdown component' , () => {
         let dropdown        = Element.querySelector( 'select' );
         let options         = dropdown.children;
         expect( dropdown ).toBeDefined();
-        expect( dropdown.id ).toBe( 'Title' + '_' + Component.dropDownCmp._randomString );
-        expect( dropdown.getAttribute( 'data-automation-id' ) ).toBe( 'slt_Title' + '_' + Component.dropDownCmp._randomString );
+        expect( dropdown.id ).toBe( Component.dropDownCmp.randomizedId );
+        expect( dropdown.getAttribute( 'data-automation-id' ) ).toBe( 'slt_' + Component.dropDownCmp.randomizedId );
         expect( options ).toBeDefined();
         expect( options.length ).toBe( 6 );
         expect( options[ 0 ].value ).toEqual( '' );

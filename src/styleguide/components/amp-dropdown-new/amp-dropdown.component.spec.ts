@@ -159,15 +159,15 @@ describe( 'amp-dropdown component' , () => {
         } );
         it( 'Should contain 1 input field with proper data-automation-id and name attributes ' , () => {
             expect( Dropdown_input ).toBeDefined();
-            expect( Dropdown_input.id ).toBe( 'dropdown_Title' + '_' + TestComponent.fdnJoined );
-            expect( Dropdown_input.getAttribute( 'data-automation-id' ) ).toBe( 'dropdown_Title' + '_' + TestComponent.fdnJoined );
-            expect( Dropdown_input.getAttribute( 'name' ) ).toBe( 'dropdown_Title' + '_' + TestComponent.fdnJoined );
+            expect( Dropdown_input.id ).toBe( 'dropdown' + '_' + DropdownComponent.randomizedId );
+            expect( Dropdown_input.getAttribute( 'data-automation-id' ) ).toBe( 'dropdown' + '_' + DropdownComponent.randomizedId );
+            expect( Dropdown_input.getAttribute( 'name' ) ).toBe( 'dropdown' + '_' + DropdownComponent.randomizedId );
         } );
         it( 'Should contain 1 select field with proper data-automation-id and name attributes ' , () => {
             expect( Dropdown_select ).toBeDefined();
-            expect( Dropdown_select.id ).toBe( 'select_Title' + '_' + TestComponent.fdnJoined );
-            expect( Dropdown_select.getAttribute( 'data-automation-id' ) ).toBe( 'select_Title' + '_' + TestComponent.fdnJoined );
-            expect( Dropdown_select.getAttribute( 'name' ) ).toBe( 'select_Title' + '_' + TestComponent.fdnJoined );
+            expect( Dropdown_select.id ).toBe( 'select' + '_' + DropdownComponent.randomizedId );
+            expect( Dropdown_select.getAttribute( 'data-automation-id' ) ).toBe( 'select' + '_' + DropdownComponent.randomizedId );
+            expect( Dropdown_select.getAttribute( 'name' ) ).toBe( 'select' + '_' + DropdownComponent.randomizedId );
         } );
         it( 'Select should have options' , () => {
             expect( Select_Options ).toBeDefined();
@@ -209,6 +209,12 @@ describe( 'amp-dropdown component' , () => {
             Select_Options[ 1 ].click();
             tick();
             expect( CmpControlGroup.touched ).toBeTruthy();
+        } ) );
+        it( 'should not mark the controlGroup as touched if its pragmatically selected' , fakeAsync( () => {
+            expect( CmpControlGroup.touched ).toBeFalsy();
+            QueryControl.setValue( TitleOptions[ 0 ].label );
+            tick();
+            expect( CmpControlGroup.touched ).toBeFalsy();
         } ) );
         it( 'Setting the value to an option that is not in the list should not change the controls value (should not' +
             ' select)' , () => {
@@ -286,6 +292,9 @@ describe( 'amp-dropdown component' , () => {
             };
             expect( changes ).toEqual( selectedObject );
         } ) );
+        it( 'should not be marked as touched initially' , () => {
+            expect( CmpControlGroup.touched ).toBeFalsy();
+        } );
     } );
     describe( 'With retrieved controlGroup' , () => {
         beforeEach( () => {
@@ -300,6 +309,9 @@ describe( 'amp-dropdown component' , () => {
         it( 'should empty all the controls and selectedElement object' , () => {
             DropdownComponent.emptyAll();
             expectAllControlsToBeNull();
+        } );
+        it( 'should not be marked as touched initially' , () => {
+            expect( CmpControlGroup.touched ).toBeFalsy();
         } );
     } );
 } );
@@ -346,10 +358,6 @@ class AmpdropdownTest {
     constructor () {
         this.__controlGroup.__fdn          = this.FDN;
         this.__retrievedControlGroup.__fdn = this.FDN;
-    }
-
-    get fdnJoined () {
-        return [ ...this.FDN , 'Title' ].join( '-' );
     }
 
     get DropdownControlGroup () {

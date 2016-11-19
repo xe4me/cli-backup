@@ -5,12 +5,14 @@
             [attr.id]='"select_" + randomizedId'
             [attr.name]='"select_" + randomizedId'>
         <option value=''>{{ label }}</option>
-        <option (click)='selectOption(option,$event)' *ngFor='let option of options; let i = index'
+        <option (click)='selectOption(option,$event , DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
+                *ngFor='let option of options; let i = index'
                 value="{{ option[fieldValueKey] }}">
             {{ option[fieldValueKey] }}
         </option>
     </select>
     <input
+        readonly="true"
         #input
         class='sr-only amp-dropdown-control'
         [attr.data-automation-id]='"dropdown_" + randomizedId'
@@ -35,8 +37,8 @@
         (onTypeCharacter)='onTypeCharacter($event)'
         class='amp-dropdown-options'>
         <li #optionRef
-            (keydown.enter)='selectOption(option , $event)'
-            (click)='selectOption(option,$event)'
+            (keydown.enter)='selectOption(option , $event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
+            (click)='selectOption(option,$event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
             *ngFor='let option of options; let i = index'
             class='amp-dropdown-option'
             [class.amp-dropdown-active]='option[fieldItemKey] === selectedOption[fieldItemKey]'
