@@ -1,5 +1,8 @@
-import { Injectable, ChangeDetectorRef, OnInit } from '@angular/core';
-import { Headers , RequestOptions , Http } from '@angular/http';
+import { Injectable } from '@angular/core';
+import {
+    Headers,
+    RequestOptions
+} from '@angular/http';
 import { Observable } from 'rxjs';
 import { AmpHttpService } from '../../../../services/amp-http/amp-http.service';
 import { Environments } from '../../../../abstracts/environments/environments.abstract';
@@ -11,7 +14,7 @@ export class AmpGreenIdServices {
     // public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
     public static BASE_URL          = `${Environments.property.ApiCallsBaseUrl}/green-id`;
     public static DEFAULT_ERROR_TEXT = 'Server error';
-    public static VERFICATION_ENDPOINT = '/registerVerification';
+    public static VERIFICATION_ENDPOINT = '/registerVerification';
 
     private headers = new Headers( {
         'Content-Type' : 'application/json'
@@ -24,7 +27,7 @@ export class AmpGreenIdServices {
     public getTheToken  = ( modelValue : IGreenIdFormModel ) : Observable<any> => {
         let headers : Headers = this.headers;
         let options           = new RequestOptions( { headers : headers } );
-        let url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.VERFICATION_ENDPOINT;
+        let url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.VERIFICATION_ENDPOINT;
         let body              = JSON.stringify( modelValue );
 
         return this
@@ -34,7 +37,7 @@ export class AmpGreenIdServices {
                 let re = res.json();
                 return re;
             })
-         .catch( this.handleError );
+            .catch( this.handleError );
     };
 
     private handleError ( error : any ) {

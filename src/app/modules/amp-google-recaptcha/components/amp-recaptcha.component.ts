@@ -6,6 +6,8 @@ import {
     EventEmitter,
     ViewChild,
     ElementRef,
+    ChangeDetectorRef,
+    ChangeDetectionStrategy,
     NgZone
 } from '@angular/core';
 import { AmpReCaptchaService } from '../services/amp-recaptcha.service';
@@ -17,6 +19,7 @@ import { FormControl,
 import { Subscription } from 'rxjs/Rx';
 @Component({
    selector: 'amp-google-recaptcha',
+   changeDetection: ChangeDetectionStrategy.OnPush,
    template: `<div #recaptchaId></div>`
 
 })
@@ -57,6 +60,7 @@ export class AmpReCaptchaComponent implements OnInit {
 
     constructor(
         private zone : NgZone,
+        private _cd : ChangeDetectorRef,
         private captchaService : AmpReCaptchaService) {
     }
 
@@ -107,7 +111,6 @@ export class AmpReCaptchaComponent implements OnInit {
         } else {
             this.recaptchControlGroup = this.createRecaptchaControlGroup();
         }
-        this.recaptchControlGroup.markAsTouched();
     }
 
     private buildCaptchaOptions() {
@@ -132,6 +135,10 @@ export class AmpReCaptchaComponent implements OnInit {
             token : response,
             recaptcha : this
         });
+        // Mark control group as touched only when user has completed the captcha challenge.
+        // Pagesection container will have class 'visited' when a control group in it is marked as touched. Standalone navigation menu will become highlighted. 
+        this.recaptchControlGroup.markAsTouched();
+        this._cd.markForCheck();
     }
 
     private recaptchaExpiredCallback() {

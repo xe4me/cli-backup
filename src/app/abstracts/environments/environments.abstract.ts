@@ -51,6 +51,8 @@ export class RootEnvProperty {
         uiScriptUrl : string;
         styleUrl : string;
         environment : string;
+        accountId : string;
+        password : string;
     };
     // https://www.google.com/recaptcha/admin
     GoogleRecaptcha : {
