@@ -1,0 +1,25 @@
+<div class="container blocks-wrapper">
+    <div class="main">
+        <h1 class="heading">Before you can start using Bett3r...</h1>
+        <accounts-list>
+        </accounts-list>
+        <p class="description">We need to verify your identity. </p>
+        <div class="applicants">
+            <p *ngFor="let applicant of applicantList" class="description">
+                <span>{{applicant.name}}: </span>
+                <span>{{applicant.verified? 'Verified' : 'ID stil required'}}</span>
+            </p>
+        </div>
+        <p class="description">
+            Please send your <a href="{{verificatonDocUrl}}" target="_blank">ID verification documents</a> to AMP so you can access you accounts. Remember to download your account numbers and keep them handy.
+        </p>
+        <div class="finish-button-container">
+        <amp-button
+            [attr.theme]="'tools'"
+            [class]="'btn btn-secondary palm-1/1 tablet-1/1 tablet-and-up-mr'"
+            (click)="finish()">
+            Finish
+        </amp-button>
+        </div>
+    </div>
+</div>

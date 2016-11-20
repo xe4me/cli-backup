@@ -6,7 +6,12 @@ import { HttpModule } from '@angular/http';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
 import { NormalAccountPage } from './pages/confirmation/normal-account-page';
-import { PostnoneAccountPage } from './pages/confirmationWithCondition/postnone-account-page';
+import {
+    PostnoneSingleAccountPage
+} from './pages/confirmationWithConditionSingle/postnone-account-page';
+import {
+    PostnoneJointAccountPage
+} from './pages/confirmationWithConditionJoint/postnone-account-page';
 import { SubmitErrorPage } from './pages/submitError/submit-error-page';
 import {
     StickyProgressHeaderBlockComponent
@@ -65,7 +70,8 @@ const DECLARATIONS    = [
 const routes : Routes = [
     { path : '' , component : BetterFormComponent } ,
     { path : 'confirmation' , component : NormalAccountPage } ,
-    { path : 'confirmationWithCondition' , component : PostnoneAccountPage },
+    { path : 'confirmationWithConditionSingle' , component : PostnoneSingleAccountPage },
+    { path : 'confirmationWithConditionJoint' , component : PostnoneJointAccountPage },
     { path : 'submitError/:errorId', component : SubmitErrorPage }
 ];
 const IMPORTS         = [
