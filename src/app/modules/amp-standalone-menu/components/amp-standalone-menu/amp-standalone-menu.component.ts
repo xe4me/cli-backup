@@ -29,6 +29,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private domUtils : DomUtils           = null;
     private itemPrefix : string           = 'Item-'; // Prefix for the nav menu id.
     private isClassOpen : boolean         = false;
+    private currentSectionLabel : string = '';
     private tempScrollTop : number;
     private sectionObservable : Observable<any>;
     private mainHostContent; // get a reference to main content element so we can hide/show it when on mobile view
@@ -82,12 +83,14 @@ export class AmpStandAloneMenuComponent implements OnInit {
                 classes               = classes ? classes + ' active' : 'active';
                 this.currentSectionId = pageSectionId;
                 hasActiveClass        = true;
+                this.currentSectionLabel = label;
             }
             return {
                 label         : label ,
                 pageSectionId : pageSectionId ,
                 id            : menuItemId ,
-                state         : classes
+                state         : classes ,
+                anchorUrl     : window.location.href + '/#' + pageSectionId
             };
         } );
         if ( this.sections.length && hasActiveClass ) {
@@ -109,7 +112,8 @@ export class AmpStandAloneMenuComponent implements OnInit {
         window.scrollTo( 0 , this.tempScrollTop );
     }
 
-    private scrollToSection ( section ) {
+    private scrollToSection ( event , section ) {
+        event.preventDefault();
         this.showHostContent();
         this.isClassOpen      = false;
         this.currentSectionId = section.pageSectionId;
