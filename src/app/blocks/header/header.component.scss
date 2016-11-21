@@ -1,0 +1,35 @@
+@import '../../../styles/abstracts';
+
+
+:host {
+    .header-container {
+        background-color: $amp-colour-primary;
+    }
+    height:  80px;
+    amp-logo {
+        height : 50px;
+        margin-left : 71px;
+        img {
+            height: 50px;
+            margin-top: 14px;
+        }
+    }
+}
+
+
+@include media-query(tablet-and-down) {
+    :host {
+        height : 55px;
+        amp-logo {
+            padding-top: 9px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: block;
+            img {
+                height: 36px;
+                margin-top: auto;
+            }
+        }
+    }
+}
