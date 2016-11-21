@@ -2,7 +2,9 @@
 
 
 :host {
-    background-color: $amp-colour-primary;
+    .header-container {
+        background-color: $amp-colour-primary;
+    }
     height:  80px;
     amp-logo {
         height : 50px;
