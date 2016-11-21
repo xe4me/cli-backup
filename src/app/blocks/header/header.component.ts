@@ -6,10 +6,10 @@ import {
     Environments
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'header' ,
+    selector        : 'header-with-logo' ,
     templateUrl     : './header.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles : [ require( './header.component.scss').toString() ],
+    styles : [ require( './header.component.scss').toString() ]
 } )
 
 export class Header {
