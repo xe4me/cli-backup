@@ -290,19 +290,19 @@
                             "options": [
                                 {
                                     "value": "BI",
-                                    "label": "Business income e.g. regular deposits and withdrawals for expenses (mostly for non-individuals)"
+                                    "label": "Business income (e.g. regular deposits and withdrawals for expenses (mostly for non-individuals))"
                                 },
                                 {
                                     "value": "BW",
-                                    "label": "Building wealth e.g. large initial deposit, using investment returns to grow your wealth over time"
+                                    "label": "Building wealth (e.g. large initial deposit, using investment returns to grow your wealth over time)"
                                 },
                                 {
                                     "value": "EB",
-                                    "label": "Everyday banking e.g. regular deposits and withdrawals for everyday expenses"
+                                    "label": "Everyday banking (e.g. regular deposits and withdrawals for everyday expenses)"
                                 },
                                 {
                                     "value": "SAV",
-                                    "label": "Savings e.g. regular deposits with few withdrawals, earning interest to grow your balance"
+                                    "label": "Savings (e.g. regular deposits with few withdrawals, earning interest to grow your balance)"
                                 },
                                 {
                                     "value": "PUR",
