@@ -24,6 +24,9 @@ import {
     Header
 } from './blocks/header/header.component';
 import {
+    Footer
+} from './blocks/footer/footer.component';
+import {
     AmpTypeaheadModule ,
     AmpTooltipModule ,
     AmpPipesModule ,
@@ -70,7 +73,8 @@ const DECLARATIONS    = [
     AmpLoadingComponent ,
     StickyProgressHeaderBlockComponent,
     AccountsListBlock,
-    Header
+    Header,
+    Footer
 ];
 const routes : Routes = [
     { path : '' , component : BetterFormComponent } ,
