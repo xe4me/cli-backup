@@ -5,6 +5,8 @@ import {
     ViewChild ,
     ChangeDetectionStrategy ,
     OnInit ,
+    AfterViewInit ,
+    OnDestroy ,
     Input
 } from '@angular/core';
 import { FormSectionService } from '../../../../services/form-section/form-section.service';
@@ -19,7 +21,7 @@ import { Subscription } from 'rxjs';
     styles          : [ require( './amp-standalone-menu.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpStandAloneMenuComponent implements OnInit {
+export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDestroy {
     @ViewChild( 'menu' ) menu;
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
