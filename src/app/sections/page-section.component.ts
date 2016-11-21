@@ -22,12 +22,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
         '[tabindex]'      : '"-1"'
     } ,
     directives      : [ AmpBlockLoaderDirective ] ,
-    styles          : [`
-        :host {
-            display: block;
-            outline: none !important;
-        }
-    `] ,
+    styles   : [ require('./page-section.component.scss') ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PageSectionComponent {
