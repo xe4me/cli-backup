@@ -21,4 +21,5 @@ WORKDIR /code
 # Set user to node
 USER node
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "server:express" ]
+
