@@ -6,8 +6,8 @@
         <p class="description">We need to verify your identity. </p>
         <div class="applicants">
             <p *ngFor="let applicant of applicantList" class="description">
-                <span>{{applicant.name}}: </span>
-                <span>{{applicant.verified? 'Verified' : 'ID stil required'}}</span>
+                <strong>{{applicant.name}}: </strong>
+                <span>{{applicant.verified? 'Verified' : 'ID still required'}}</span>
             </p>
         </div>
         <p class="description">
