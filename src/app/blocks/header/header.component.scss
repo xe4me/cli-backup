@@ -15,6 +15,15 @@
             margin-bottom: 10px;
         }
     }
+
+    .title {
+        font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+        font-size: 14px;
+        color: white;
+        position: absolute;
+        top: 35px;
+        left: 249px;
+    }
 }
 
 
@@ -31,6 +40,9 @@
                 margin-top: 7px;
                 margin-bottom: 12px;
             }
+        }
+        .title {
+            display: none;
         }
     }
 }
