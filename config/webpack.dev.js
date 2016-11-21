@@ -154,15 +154,25 @@ module.exports = webpackMerge(commonConfig, {
     proxy: {
         '/ddc/public/*': {
             target: 'http://localhost:3001',
-            rewrite: function (req) {
+            pathRewrite: function (req) {
+                console.log('req.url',req.url);
                 req.url = req.url.replace(/^\/ddc\/public/, '/src/assets');
             }
         },
         '*/ddc/public/*': {
             target: 'http://localhost:3001',
-            rewrite: function (req) {
+            pathRewrite: function (req) {
+                console.log('req.url',req.url);
                 req.url = req.url.replace(/\/ddc\/public/, '/src/assets');
             }
+        },
+        '*/qas/**': {
+            //target: 'https://ddc-dev.digital-pilot.ampaws.com.au/ddc/public/api'
+            target: 'http://localhost:8082',
+            pathRewrite: function (path, req) {
+                req.url = req.url.replace('qas', 'ddc/public/api/qas');
+            },
+            logLevel: 'debug'
         }
     },
     outputPath: helpers.root('dist')
