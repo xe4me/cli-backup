@@ -18,9 +18,16 @@ import { ScrollService } from '../services/scroll/scroll.service';
         '[id]'            : 'getFdnJoined(__fdn)' ,
         '[class.visited]' : '__controlGroup.touched' ,
         '[class.done]'    : '__controlGroup.valid && __controlGroup.touched' ,
-        '[attr.label]'    : '__custom?.label'
+        '[attr.label]'    : '__custom?.label' ,
+        '[tabindex]'      : '"-1"'
     } ,
     directives      : [ AmpBlockLoaderDirective ] ,
+    styles          : [`
+        :host {
+            display: block;
+            outline: none !important;
+        }
+    `] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PageSectionComponent {

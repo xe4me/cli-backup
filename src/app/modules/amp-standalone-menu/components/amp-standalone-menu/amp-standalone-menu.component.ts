@@ -12,6 +12,7 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs';
 @Component( {
     selector        : 'amp-standalone-menu' ,
     template        : require( './amp-standalone-menu.component.html' ).toString() ,
@@ -19,11 +20,11 @@ import { Observable } from 'rxjs/Observable';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpStandAloneMenuComponent implements OnInit {
-    @ViewChild( 'nav' ) nav;
+    @ViewChild( 'menu' ) menu;
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number       = 0;
-    public showNavigation : boolean       = false;
+    public showMenu     : boolean       = false;
     private sections                      = [];
     private currentSectionId : string     = null;
     private domUtils : DomUtils           = null;
@@ -31,7 +32,10 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private isClassOpen : boolean         = false;
     private currentSectionLabel : string = '';
     private tempScrollTop : number;
+    private theme : string = '';
     private sectionObservable : Observable<any>;
+    private scrollSubscription : Subscription;
+    private menuScrolling : boolean = false;
     private mainHostContent; // get a reference to main content element so we can hide/show it when on mobile view
     constructor ( private dom : BrowserDomAdapter ,
                   private cd : ChangeDetectorRef ,
@@ -51,7 +55,12 @@ export class AmpStandAloneMenuComponent implements OnInit {
     }
 
     ngAfterViewInit () {
-        this.onResize( window , this.nav );
+        this.onResize( window , this.menu );
+        this.subscribeToScrollEvents();
+    }
+
+    ngOnDestroy () {
+        this.unSubscribeFromEvents();
     }
 
     private isStateDisabled ( state : string ) {
@@ -94,7 +103,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
             };
         } );
         if ( this.sections.length && hasActiveClass ) {
-            this.showNavigation = true;
+            this.showMenu = true;
         }
         this.cd.markForCheck();
     }
@@ -117,6 +126,7 @@ export class AmpStandAloneMenuComponent implements OnInit {
         this.showHostContent();
         this.isClassOpen      = false;
         this.currentSectionId = section.pageSectionId;
+        this.menuScrolling = true;
         this.scrollService.scrollToComponentSelector( section.pageSectionId );
     }
 
@@ -138,12 +148,38 @@ export class AmpStandAloneMenuComponent implements OnInit {
         }
     }
 
-    private onResize ( _window , nav : HTMLElement ) {
-        let menuHeight = nav && nav.getBoundingClientRect ? nav.getBoundingClientRect().height : 65;
+    private onResize ( _window , menu : HTMLElement ) {
+        let menuHeight = menu && menu.getBoundingClientRect ? menu.getBoundingClientRect().height : 65;
         if ( _window.innerWidth < 481 ) {
             this.scrollService.updateOffset( menuHeight );
         } else {
             this.scrollService.updateOffset( this.menuOffset );
+        }
+    }
+
+    private subscribeToScrollEvents () {
+        this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( component ) => {
+            if (this.menuScrolling) {
+                let body = this.dom.query( 'body' );
+                let section = this.dom.querySelector( body , '#' + component.componentSelector );
+                let tabindex = section.getAttribute('tabindex');
+
+                if (tabindex && tabindex !== '0') {
+                    section.focus();
+                } else {
+                    setTimeout(() => {
+                        this.dom.querySelector( body , 'a[href$="#' + component.componentSelector + '"]').focus();
+                    });
+                }
+
+                this.menuScrolling = false;
+            }
+        } );
+    }
+
+    private unSubscribeFromEvents () {
+        if ( this.scrollSubscription ) {
+            this.scrollSubscription.unsubscribe();
         }
     }
 }
