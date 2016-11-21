@@ -6,7 +6,11 @@
     height:  80px;
     amp-logo {
         height : 50px;
-        margin-left : 59px;
+        margin-left : 71px;
+        img {
+            height: 50px;
+            margin-top: 14px;
+        }
     }
 }
 
@@ -22,6 +26,7 @@
             display: block;
             img {
                 height: 36px;
+                margin-top: auto;
             }
         }
     }
