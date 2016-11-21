@@ -72,7 +72,7 @@ export abstract class Environments {
 
     public static get host () {
         if ( Environments.property.ENV === 'development' ) {
-            //return 'http://localhost:8882';
+            // return 'http://localhost:8882';
             return '';
         } else {
             /*
