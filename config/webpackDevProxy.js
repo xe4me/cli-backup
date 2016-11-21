@@ -1,3 +1,4 @@
+// Webpack is using a middleware which is in here https://github.com/chimurai/http-proxy-middleware#options
 module.exports = {
     '/ddc/public/*': {
         target: 'http://localhost:3001',
