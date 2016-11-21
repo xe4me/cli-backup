@@ -3,9 +3,9 @@
  */
 
 const helpers = require('./helpers');
+const proxies = require('./webpackDevProxy');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
-
 /**
  * Webpack Plugins
  */
@@ -151,30 +151,7 @@ module.exports = webpackMerge(commonConfig, {
       aggregateTimeout: 1000,
       poll: 1000
     },
-    proxy: {
-        '/ddc/public/*': {
-            target: 'http://localhost:3001',
-            pathRewrite: function (req) {
-                console.log('req.url',req.url);
-                req.url = req.url.replace(/^\/ddc\/public/, '/src/assets');
-            }
-        },
-        '*/ddc/public/*': {
-            target: 'http://localhost:3001',
-            pathRewrite: function (req) {
-                console.log('req.url',req.url);
-                req.url = req.url.replace(/\/ddc\/public/, '/src/assets');
-            }
-        },
-        '*/qas/**': {
-            //target: 'https://ddc-dev.digital-pilot.ampaws.com.au/ddc/public/api'
-            target: 'http://localhost:8082',
-            pathRewrite: function (path, req) {
-                req.url = req.url.replace('qas', 'ddc/public/api/qas');
-            },
-            logLevel: 'debug'
-        }
-    },
+    proxy: proxies,
     outputPath: helpers.root('dist')
   },
 
