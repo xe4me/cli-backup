@@ -1,22 +1,31 @@
-<nav (window:resize)='onResize($event.target , nav)'  #nav class="steps-nav" [class.open]="isClassOpen" *ngIf="showNavigation">
-    <div class="docked" *ngIf="isClassOpen" (click)="onClassClose()">
-        <span><span>Close</span></span>
-        <span class="icon icon--chevron-up" aria-hidden="true"></span>
-    </div>
-    <ul id="menu" class="progress skyblue">
-        <li *ngFor="let section of sections; let i=index" id="{{section.id}}" [ngClass]="section.state">
-            <span *ngIf="isStateDisabled(section.state)">
-                <div class="divider" [ngClass]="{first: i == 0}"></div>
-                <div class="step-intro node"></div>
-                <span><span>{{section.label}}</span></span>
-            </span>
-            <a *ngIf="!isStateDisabled(section.state)" (click)="scrollToSection($event.target = section)">
-                <div class="divider" [ngClass]="{first: i == 0}"></div>
-                <div class="step-intro node"></div>
-                <span><span>{{section.label}}</span></span>
-            </a>
-        </li>
-        <span class="icon icon--chevron-down" (click)="onClassOpen()" aria-hidden="true" *ngIf="!isClassOpen"></span>
-    </ul>
-</nav>
+<div
+    #menu
+    class="steps-menu steps-menu--{{ theme }}"
+    [class.steps-menu--open]="isClassOpen"
+    *ngIf="showMenu"
+    (window:resize)="onResize($event.target , menu)">
 
+    <button type="button" class="steps-menu__btn" *ngIf="!isClassOpen" (click)="onClassOpen()">
+        <span aria-hidden="true">{{ currentSectionLabel }}</span>
+        <span class="sr-only">Open menu</span>
+        <span class="steps-menu__btn-icon icon icon--chevron-down" aria-hidden="true"></span>
+    </button>
+
+    <button type="button" class="steps-menu__btn steps-menu__btn--docked" *ngIf="isClassOpen" (click)="onClassClose()">
+        Close<span class="sr-only">&nbsp; menu</span>
+        <span class="steps-menu__btn-icon icon icon--chevron-up" aria-hidden="true"></span>
+    </button>
+
+    <nav role="navigation">
+        <ul class="steps-menu__list">
+            <li *ngFor="let section of sections" id="{{ section.id }}" class="steps-menu__item" [ngClass]="section.state">
+                <span class="steps-menu__step" *ngIf="isStateDisabled(section.state)">
+                    {{ section.label }}
+                </span>
+                <a href="{{ section.anchorUrl }}" class="steps-menu__step" *ngIf="!isStateDisabled(section.state)" (click)="scrollToSection($event, section)">
+                    {{ section.label }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

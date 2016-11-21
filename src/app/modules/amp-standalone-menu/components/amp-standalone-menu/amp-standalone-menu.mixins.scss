@@ -1,0 +1,11 @@
+@mixin menu-state($state) {
+    .steps-menu__item.#{$state} & {
+        @content;
+    }
+}
+
+@mixin menu-theme($theme) {
+    .steps-menu--#{$theme} & {
+        @content;
+    }
+}

@@ -1,247 +1,213 @@
 @import '../../../../../styles/abstracts';
-@import 'themes/theme-form';
-@import 'themes/theme-tools';
-$amp-ddc-menu-height : 69px !default;
-:host {
-    .steps-nav {
-        transform: translate3d(0, 0, 0);
-        -webkit-transform: translate3d(0, 0, 0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        height: 220px;
-        top: 26%;
-        left: 50px;
-        -moz-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        position: fixed;
-        z-index: 100;
-        font-family: 'Open Sans';
-        font-weight: normal;
-        font-size: 14px;
-        @include media-query(palm) {
-            &.open {
-                position: absolute;
-                background: #eeeeee;
-                width: 100%;
-                left: 0;
-                top: 0;
-                height: 100%;
-                text-align: left;
-                padding-left: 50px;
-                padding-top: 40px;
-                overflow: auto;
-                >.skyblue {
-                    >li:not(.active) {
-                        display: block;
-                    }
-                    >li.active {
-                        padding-top: 0;
-                        .step-intro.node {
-                            display: inline-block;
-                        }
-                    }
-                }
-                >.progress li {
-                    height: 54px;
-                }
+@import './amp-standalone-menu.mixins';
 
-                >.progress .icon {
-                    display: none;
-                }
-                >.progress .active .divider {
-                    display: block;
-                    border-color: $amp-colour-sky-blue;
-                }
-            }
-            .docked {
-                display: block;
-                cursor: pointer;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                -moz-transform: translateY(0);
-                -o-transform: translateY(0);
-                -ms-transform: translateY(0);
-                -webkit-transform: translateY(0);
-                transform: translateY(0);
-                width: 100%;
-                height: $amp-ddc-menu-height;
-                background: $amp-colour-white;
-                text-align: center;
-                background: $amp-colour-grey-lightest;
-                border-bottom: $amp-colour-grey-darker;
-                color: $amp-colour-sky-blue;
-                font-weight: bold;
-                span {
-                    display: block;
-                    padding-top: 10px;
-                }
-                .icon {
-                    display: block;
-                    margin-top: -15px;
-                    margin-right: 0;
-                }
-            }
+$amp-ddc-menu-height: 70px !default;
+$amp-ddc-menu-border-width: 1px;
+$amp-ddc-menu-paddding-top: 20px;
+$amp-ddc-menu-paddding-bottom: 15px;
 
-        }
-        @include media-query(palm) {
-            position: fixed;
-            top: 0;
-            left: 0;
-            -moz-transform: translateY(0);
-            -o-transform: translateY(0);
-            -ms-transform: translateY(0);
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
-            width: 100%;
-            height: $amp-ddc-menu-height;
-            background: $amp-colour-white;
-            text-align: center;
-            background: $amp-colour-grey-lightest;
-            border-bottom: $amp-colour-grey-darker;
-        }
-    }
-    .docked {
-        display: none;
-    }    
-    .steps-nav .progress {
-        .node {
-            height: 12px;
-            width: 12px;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            background-clip: padding-box;
-            display: inline-block;
-        }
-        .icon {
-            display: none;
-            @include media-query(palm) {
-                display: block;
-                margin-top: 10px;
-                cursor: pointer;
-            }
-        }
-        .divider {
-            height: 40px;
-            width: 2px;
-            margin-left: 4px;
-            margin-top: 0px;
-            transition: all 800ms ease;
-        }
-        li {
-            list-style: none;
-            line-height: 1px;
-            @include media-query(palm) {
-                height: $amp-ddc-menu-height;
-            }
-        }
-    }
+$amp-ddc-menu-font-size: 14px;
+$amp-ddc-menu-step-spacing-bottom: 33px;
+$amp-ddc-menu-step-spacing-left: 15px;
+$amp-ddc-menu-line-width: 2px;
+$amp-ddc-menu-circle-width: 13px;
+$amp-ddc-menu-circle-stroke: 1px;
+$amp-ddc-menu-circle-inner-width: 6px;
+$amp-ddc-menu-circle-offset: 5px;
+
+$amp-ddc-menu-color-default: $amp-colour-sky-blue;
+$amp-ddc-menu-color-dark: $amp-colour-primary;
+
+.steps-menu {
+    @include amp-family($amp-font-open-sans-regular);
+    font-size: $amp-ddc-menu-font-size;
+    position: fixed;
+    top: 70px;
+    left: 40px;
+    z-index: 100;
+
     @include media-query(palm) {
-
-        .steps-nav .skyblue {
-            span.icon {
-                color: $amp-colour-sky-blue;
-                margin-top: -36px;
-            }
-            > li:not(.active) {
-                display: none;
-                >.divider {
-                    display: none;
-                }
-            }
-            > li.active {
-                pointer-events: none;
-                cursor: default;
-            }
-        }
-
+        background: $amp-colour-white;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
     }
-    .steps-nav .skyblue {
-        .divider.first {
-            border: none;
-        }
-        div {
-            background-color: transparent;
-            border: solid $amp-colour-grey-darker 1px;
-        }
-        span {
-            color: $amp-colour-grey-darker;
-        }
+
+    @include media-query(tablet-and-up) {
+        max-width: 180px;
+    }
+
+    &--open {
         @include media-query(palm) {
-            li:not(.active) {
+            height: 100%;
+            overflow: auto;
+            padding-bottom: $amp-ddc-menu-height;
+
+            .steps-menu__list {                
+                display: block;
+            }
+        }
+    }
+
+    &__btn {
+        @include amp-family($amp-font-open-sans-regular);
+        background: $amp-colour-grey-semiwhite;
+        border: 0;
+        border-bottom: $amp-ddc-menu-border-width solid $amp-colour-grey-dark;
+        color: $amp-ddc-menu-color-default;
+        cursor: pointer;
+        display: none;
+        font-size: $amp-ddc-menu-font-size;
+        font-weight: bold;
+        height: $amp-ddc-menu-height;
+        padding: $amp-ddc-menu-paddding-top $amp-ddc-menu-paddding-top $amp-ddc-menu-paddding-bottom $amp-ddc-menu-paddding-top;
+        text-align: center;
+        width: 100%;
+
+        @include media-query(palm) {
+            display: block;
+        }
+        
+        @include menu-theme(dark) {
+            color: $amp-ddc-menu-color-dark;
+        }
+
+        &-icon {
+            display: block;
+            line-height: 1;
+            margin: 0;
+        }
+
+        &--docked {  
+            border: 0;
+            border-top: 1px solid $amp-colour-grey-dark;       
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+        }
+    }
+
+    &__list {
+        list-style: none;
+        
+        @include media-query(palm) {
+            display: none;
+            margin: 40px 30px;
+        }
+    }
+
+    &__item {
+        color: $amp-colour-grey-darker;
+        padding-bottom: $amp-ddc-menu-step-spacing-bottom;
+        position: relative;
+
+        &:last-child {
+            padding-bottom: 0;
+
+            &:before {
                 display: none;
-                >.divider {
-                    display: none;
-                }
             }
         }
-        >li a {
-            cursor: pointer;
-            padding-left: 14px;
-            @include media-query(palm) {
-                padding-left: 0;
+
+        // Line between steps
+        &:before {
+            background: $amp-colour-grey-darker;
+            content: "";
+            display: block;
+            height: calc(100% - 10px);
+            position: absolute;
+            left: floor(($amp-ddc-menu-circle-width / 2) - ($amp-ddc-menu-line-width / 2));
+            top: $amp-ddc-menu-circle-width + $amp-ddc-menu-circle-offset - ($amp-ddc-menu-circle-stroke * 2);
+            width: $amp-ddc-menu-line-width;
+            z-index: 1;
+
+            @include menu-theme(dark) {
+                background: $amp-ddc-menu-color-dark !important;
             }
         }
-        >li {
-            border: none;
-            padding: 0;
+
+        &.done {
+            &:before {
+                background: $amp-ddc-menu-color-default;
+            }
+        }
+    }
+
+    &__step {
+        display: inline-block;
+        padding-left: $amp-ddc-menu-step-spacing-left + $amp-ddc-menu-circle-width;
+        position: relative;
+        
+        @include menu-state(active) {
+            font-weight: 600;
+        }
+
+        &:before,
+        &:after {
             background: transparent;
-            &.active { 
-                span {
-                    color: $amp-colour-sky-blue;
-                    font-weight: bold;
-                }
-                .divider {
-                    border-color: $amp-colour-sky-blue;
-                }
-                @include media-query(palm) {
-                    .divider {
-                        display: none;
-                    }
-                    padding-top: 26px;
-                }
-                .step-intro.node {
-                    border: solid 2px $amp-colour-sky-blue;
-                    height: 14px;
-                    width: 14px;
-                    margin-left: -2px;
-                    @include media-query(palm) {
-                        display: none;
-                    }
-                }              
-            } 
-            &.visited {
-                span {
-                    color: $amp-colour-sky-blue;
-                    font-weight: normal;
-                }
-                &.active span {
-                    font-weight: bold;
-                }
-                .step-intro.node {
-                    border: solid 2px $amp-colour-sky-blue;
-                    height: 14px;
-                    width: 14px;
-                    margin-left: -2px;
-                }                
+            border-radius: $amp-ddc-menu-circle-width;
+            content: "";
+            display: block;
+            position: absolute;
+            top: floor(($amp-ddc-menu-circle-width / 2) + $amp-ddc-menu-circle-offset);
+            left: floor($amp-ddc-menu-circle-width / 2);
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        // Outer circle for step
+        &:before {
+            border: $amp-ddc-menu-circle-stroke solid $amp-colour-grey-darker;
+            height: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
+            width: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
+
+            @include menu-theme(dark) {
+                border-color: $amp-ddc-menu-color-dark !important;
             }
-            &.done {
-                span {
-                    color: $amp-colour-sky-blue;
-                    font-weight: normal;
+
+            @include menu-state(done) {
+                background: $amp-ddc-menu-color-default;
+                border-color: $amp-ddc-menu-color-default;
+
+                @include menu-theme(dark) {
+                   background: $amp-ddc-menu-color-dark;
                 }
-                &.active span {
-                    font-weight: bold;
+            }
+
+            @include menu-state(active) {         
+                background: $amp-colour-white !important;       
+                border-color: $amp-ddc-menu-color-default;
+            }
+
+        }
+
+        // Inner circle for step
+        &:after {
+            @include menu-state(active) {
+                background: $amp-ddc-menu-color-default;
+                height: $amp-ddc-menu-circle-inner-width;
+                width: $amp-ddc-menu-circle-inner-width;
+                
+                @include menu-theme(dark) {
+                    background: $amp-ddc-menu-color-dark;
                 }
-                .divider {
-                    border-color: $amp-colour-sky-blue;
-                }
-                .step-intro.node {
-                    background-color: $amp-colour-sky-blue;
-                }                   
+            }
+        }
+
+        @at-root a#{&} {
+            color: $amp-ddc-menu-color-default;
+
+            @include menu-theme(dark) {
+                color: $amp-ddc-menu-color-dark;
+            }
+
+            &:focus,
+            &:hover {
+                color: $amp-ddc-menu-color-default !important;
             }
         }
     }
