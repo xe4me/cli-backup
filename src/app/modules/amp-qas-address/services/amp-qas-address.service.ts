@@ -3,6 +3,7 @@ import { Headers , RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Environments } from '../../../abstracts/environments/environments.abstract';
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
+import { escapeSlash } from '../../amp-utils/functions.utils';
 @Injectable()
 export class AmpQasAddressService {
     public static BASE_URL          = Environments.property.ApiCallsBaseUrl;
@@ -15,14 +16,14 @@ export class AmpQasAddressService {
         'Content-Type' : 'application/json' ,
         'caller'       : 'components'
     } );
-    // TODO : What needs to be set as caller ?
+
     constructor ( private http : AmpHttpService ) {
     }
 
     public query               = ( queryValue : string ) : Observable<any> => {
         let headers : Headers = this.headers;
         let options           = new RequestOptions( { body : '' , headers : headers } );
-        let url               = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( queryValue );
+        let url = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( escapeSlash( queryValue ) );
         return this
             .http
             .get( url , options )

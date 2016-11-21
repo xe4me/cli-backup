@@ -53,12 +53,12 @@ export function getQueryParam ( paramName : string ) : string {
     return value;
 }
 /* Method : toTitleCase
-    Will convert the word to be titleCase
-    @Example :
-    this iS a String
-    becomes :
-    This Is A String
-* */
+ Will convert the word to be titleCase
+ @Example :
+ this iS a String
+ becomes :
+ This Is A String
+ * */
 export function toTitleCase ( str ) {
     if ( str === null || str === undefined ) {
         return str;
@@ -69,4 +69,16 @@ export function toTitleCase ( str ) {
     return str.replace( /\w\S*/g , function( txt ) {
         return txt.charAt( 0 ).toUpperCase() + txt.substr( 1 ).toLowerCase();
     } );
+}
+/* Method : escapeSlash
+ Will replace the slash with the given string
+ * */
+export function escapeSlash ( str , del = ':::SLASH:::' ) {
+    if ( str === null || str === undefined ) {
+        return str;
+    }
+    if ( ! isNaN( str ) ) {
+        return str;
+    }
+    return str.replace( /\//g , del );
 }
