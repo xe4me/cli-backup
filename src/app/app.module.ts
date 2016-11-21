@@ -21,6 +21,9 @@ import {
     AccountsListBlock
 } from './blocks/accounts-list/accounts-list.component';
 import {
+    Header
+} from './blocks/header/header.component';
+import {
     AmpTypeaheadModule ,
     AmpTooltipModule ,
     AmpPipesModule ,
@@ -49,7 +52,8 @@ import {
     AmpStandAloneMenuModule ,
     AmpGreenidModule ,
     AMPGoogleAddressComponent ,
-    AmpGoogleRecaptchaModule
+    AmpGoogleRecaptchaModule,
+    AmpLogoModule
 } from 'amp-ddc-components';
 // the bellow import will be replaced with a proper one as soon as we completely remove amp-dropdown and moved to
 // the new one
@@ -65,7 +69,8 @@ const DECLARATIONS    = [
     AmpOverlayComponent ,
     AmpLoadingComponent ,
     StickyProgressHeaderBlockComponent,
-    AccountsListBlock
+    AccountsListBlock,
+    Header
 ];
 const routes : Routes = [
     { path : '' , component : BetterFormComponent } ,
@@ -93,6 +98,7 @@ const IMPORTS         = [
     AmpGroupButtonsModule ,
     AmpRadioButtonGroupModule ,
     AmpStandAloneMenuModule ,
+    AmpLogoModule ,
     BrowserModule ,
     FormsModule ,
     ReactiveFormsModule ,
