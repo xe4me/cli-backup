@@ -23,8 +23,9 @@ export class AmpStandAloneMenuComponent implements OnInit {
     @ViewChild( 'menu' ) menu;
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
-    @Input() menuOffset : number       = 0;
-    public showMenu     : boolean       = false;
+    @Input() menuOffset : number          = 0;
+    @Input() theme      : string          = '';
+    public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;
     private domUtils : DomUtils           = null;
@@ -32,7 +33,6 @@ export class AmpStandAloneMenuComponent implements OnInit {
     private isClassOpen : boolean         = false;
     private currentSectionLabel : string = '';
     private tempScrollTop : number;
-    private theme : string = '';
     private sectionObservable : Observable<any>;
     private scrollSubscription : Subscription;
     private menuScrolling : boolean = false;
@@ -164,6 +164,8 @@ export class AmpStandAloneMenuComponent implements OnInit {
                 let section = this.dom.querySelector( body , '#' + component.componentSelector );
                 let tabindex = section.getAttribute('tabindex');
 
+                this.menuScrolling = false;
+
                 if (tabindex && tabindex !== '0') {
                     section.focus();
                 } else {
@@ -171,8 +173,6 @@ export class AmpStandAloneMenuComponent implements OnInit {
                         this.dom.querySelector( body , 'a[href$="#' + component.componentSelector + '"]').focus();
                     });
                 }
-
-                this.menuScrolling = false;
             }
         } );
     }
