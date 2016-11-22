@@ -26,7 +26,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number          = 0;
-    @Input() theme      : string          = '';
+    @Input() theme      : string          = 'forms';
     public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;

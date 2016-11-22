@@ -70,7 +70,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             display: block;
         }
         
-        @include menu-theme(dark) {
+        @include menu-theme(forms) {
             color: $amp-ddc-menu-color-dark;
         }
 
@@ -124,7 +124,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             width: $amp-ddc-menu-line-width;
             z-index: 1;
 
-            @include menu-theme(dark) {
+            @include menu-theme(forms) {
                 background: $amp-ddc-menu-color-dark !important;
             }
         }
@@ -165,7 +165,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             height: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
             width: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
 
-            @include menu-theme(dark) {
+            @include menu-theme(forms) {
                 border-color: $amp-ddc-menu-color-dark !important;
             }
 
@@ -173,7 +173,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
                 background: $amp-ddc-menu-color-default;
                 border-color: $amp-ddc-menu-color-default;
 
-                @include menu-theme(dark) {
+                @include menu-theme(forms) {
                    background: $amp-ddc-menu-color-dark;
                 }
             }
@@ -192,7 +192,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
                 height: $amp-ddc-menu-circle-inner-width;
                 width: $amp-ddc-menu-circle-inner-width;
                 
-                @include menu-theme(dark) {
+                @include menu-theme(forms) {
                     background: $amp-ddc-menu-color-dark;
                 }
             }
@@ -201,7 +201,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         @at-root a#{&} {
             color: $amp-ddc-menu-color-default;
 
-            @include menu-theme(dark) {
+            @include menu-theme(forms) {
                 color: $amp-ddc-menu-color-dark;
             }
 
