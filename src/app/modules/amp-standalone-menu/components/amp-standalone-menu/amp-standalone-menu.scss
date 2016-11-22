@@ -182,7 +182,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             }
 
             @include menu-state(active) {         
-                background: $amp-colour-white !important;       
+                background: none !important;       
                 border-color: $amp-ddc-menu-color-default;
             }
 
