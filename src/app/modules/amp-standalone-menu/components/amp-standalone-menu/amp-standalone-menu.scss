@@ -12,7 +12,7 @@ $amp-ddc-menu-step-spacing-left: 15px;
 $amp-ddc-menu-line-width: 2px;
 $amp-ddc-menu-circle-width: 13px;
 $amp-ddc-menu-circle-stroke: 1px;
-$amp-ddc-menu-circle-inner-width: 6px;
+$amp-ddc-menu-circle-inner-width: floor($amp-ddc-menu-circle-width / 2);
 $amp-ddc-menu-circle-offset: 5px;
 
 $amp-ddc-menu-color-default: $amp-colour-sky-blue;
@@ -117,7 +117,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             background: $amp-colour-grey-darker;
             content: "";
             display: block;
-            height: calc(100% - 10px);
+            height: calc(100% - #{$amp-ddc-menu-circle-width - ($amp-ddc-menu-circle-stroke * 2)});
             position: absolute;
             left: floor(($amp-ddc-menu-circle-width / 2) - ($amp-ddc-menu-line-width / 2));
             top: $amp-ddc-menu-circle-width + $amp-ddc-menu-circle-offset - ($amp-ddc-menu-circle-stroke * 2);

@@ -38,7 +38,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     private sectionObservable : Observable<any>;
     private scrollSubscription : Subscription;
     private menuScrolling : boolean = false;
-    private mainHostContent; // get a reference to main content element so we can hide/show it when on mobile view
+    private html; // get a reference to html element so we can stop scrolling when menu open on mobile
     constructor ( private dom : BrowserDomAdapter ,
                   private cd : ChangeDetectorRef ,
                   private scrollService : ScrollService ) {
@@ -53,7 +53,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
                 this.updateSections( sectionName );
             } , 0 );
         } );
-        this.getMainHostElement();
+        this.html = this.dom.query( 'html' );
     }
 
     ngAfterViewInit () {
@@ -111,43 +111,31 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     }
 
     private onClassOpen () {
-        this.hideHostContent();
-        this.isClassOpen   = ! this.isClassOpen;
+        this.disableHtmlScrolling();
+        this.isClassOpen   = true;
         this.tempScrollTop = this.scrollService.scrollTop;
-        window.scrollTo( 0 , 1 );
     }
 
     private onClassClose () {
-        this.showHostContent();
-        this.isClassOpen = ! this.isClassOpen;
-        window.scrollTo( 0 , this.tempScrollTop );
+        this.allowHtmlScrolling();
+        this.isClassOpen = false;
     }
 
     private scrollToSection ( event , section ) {
         event.preventDefault();
-        this.showHostContent();
+        this.allowHtmlScrolling();
         this.isClassOpen      = false;
         this.currentSectionId = section.pageSectionId;
         this.menuScrolling = true;
         this.scrollService.scrollToComponentSelector( section.pageSectionId );
     }
 
-    // Helper methods for mobile view
-    private getMainHostElement () {
-        let body             = this.dom.query( 'body' );
-        this.mainHostContent = this.dom.querySelector( body , this.mainContentSelector );
+    private allowHtmlScrolling () {
+        this.html.style.overflow = '';
     }
 
-    private showHostContent () {
-        if ( this.mainHostContent ) {
-            this.mainHostContent.removeAttribute( 'hidden' );
-        }
-    }
-
-    private hideHostContent () {
-        if ( this.mainHostContent ) {
-            this.mainHostContent.setAttribute( 'hidden' , true );
-        }
+    private disableHtmlScrolling () {
+        this.html.style.overflow = 'hidden';
     }
 
     private onResize ( _window , menu : HTMLElement ) {
