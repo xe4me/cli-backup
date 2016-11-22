@@ -1,0 +1,12 @@
+<form #formModel='ngForm' class='nl-form p'>
+    <amp-street-types
+            #dropDown
+            [attr.theme]="themeService.theme.attr"
+            [id]='"street-types"'
+            [controlGroup]="controlGroup"
+            [required]="true">
+        <template let-option="option">
+            {{ option.label }}
+        </template>
+    </amp-street-types>
+</form>
