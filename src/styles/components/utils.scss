@@ -211,6 +211,26 @@
         &--inline {
             display: inline !important;
         }
+
+        &--hidden {
+            &-palm {
+                @include media-query('palm') {
+                    display: none !important;
+                }
+            }
+
+            &-tablet-and-down {
+                @include media-query('tablet-and-down') {
+                    display: none !important;
+                }
+            }
+
+            &-lap-and-up {
+                @include media-query('lap-and-up') {
+                    display: none !important;
+                }
+            }
+        }
     }
 
     &__align {
