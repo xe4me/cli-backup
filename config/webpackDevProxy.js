@@ -26,7 +26,7 @@ module.exports = {
     },
     '*/refdata/**': {
         target: 'https://ddc-dev.digital-pilot.ampaws.com.au',
-        //target: 'http://localhost:8082',
+        //target: 'http://localhost:8080',
         pathRewrite: function (path, req) {
             req.url = req.url.replace('refdata/countries', 'ddc/public/api/refdata/countries');
         },
