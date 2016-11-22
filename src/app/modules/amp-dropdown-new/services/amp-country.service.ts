@@ -11,7 +11,7 @@ export interface Country {
 export class AmpCountryService {
     public static BASE_URL    = Environments.property.ApiCallsBaseUrl;
     public static COUNTRY_URL = AmpCountryService.BASE_URL + '/refdata/countries';
-    private stream : Observable<Country[]>;
+    private stream ;
     private headers = new Headers( {
         'Content-Type' : 'application/json' ,
         'caller'       : Environments.property.experienceName || 'components'

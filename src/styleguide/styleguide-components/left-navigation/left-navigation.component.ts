@@ -121,7 +121,7 @@ export class LeftNavigationComponent implements AfterContentInit {
     }
 
     private openCloseDropdown ( i , length ) {
-        return this.activeAccordion === i || length == 1 ? "expanded" : "collapsed";
+        return this.activeAccordion === i || length === 1 ? 'expanded' : 'collapsed';
     }
 }
 export interface Theme {
