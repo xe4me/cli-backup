@@ -1,8 +1,18 @@
 const EXPERIENCE_NAME = 'components';
 var express = require('express');
-const DDC_API_URL = process.env.DDC_API_URL || 'https://ddc-dev.digital-pilot.ampaws.com.au/ddc/public/api';
 const ENV = process.env.ENV || 'development';
 var path = require('path');
+var proxy = require('http-proxy-middleware');
+var apiProxy = proxy({
+    target: 'https://ddc-dev.digital-pilot.ampaws.com.au',
+    pathRewrite: function (path, req) {
+        // Removing this header as it's not all the apis want it
+        delete req.headers['apikey'];
+    },
+    secure:false,
+    changeOrigin: true,             // for vhosted sites, changes host header to match to target's host
+    logLevel: 'debug'
+});
 module.exports = {
     init : function(app) {
 
@@ -12,7 +22,7 @@ module.exports = {
             res.status(200).send(
                 'var _process_env = ' + JSON.stringify(
                     {
-                        ApiCallsBaseUrl:DDC_API_URL ,
+                        ApiCallsBaseUrl:'ddc/public/api' ,
                         ENV: ENV,
                         experienceName: EXPERIENCE_NAME,
                         GoogleApiKey: '',
@@ -44,7 +54,17 @@ module.exports = {
 
         // Allow all static resources
         app.use(express.static(path.join(__dirname, '../dist')));
-
+    
+    
+    
+        /**
+         * Add the proxy for all the api request
+         * We want all the request that has ddc/public/api to be redirected to https://ddc-dev.digital-pilot.ampaws.com.au
+         * secure:false : to pass the ssl
+         *
+         */
+        app.use('/ddc/public/api', apiProxy);
+    
         // For all 404 item map it back to Angular app for HTML5 push state client URL resolution
         app.use(function(req, res) {
             res.status(200).sendfile('dist'  + '/index.html');

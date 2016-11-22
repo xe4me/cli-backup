@@ -18,6 +18,7 @@ module.exports = {
         target: 'https://ddc-dev.digital-pilot.ampaws.com.au',
         //target: 'http://localhost:8082',
         pathRewrite: function (path, req) {
+            delete req.headers['apikey'];
             req.url = req.url.replace('qas', 'ddc/public/api/qas');
         },
         secure :false, // to buypass the ssl
