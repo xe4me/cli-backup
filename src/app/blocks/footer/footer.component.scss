@@ -17,7 +17,7 @@ $amp-ddc-public-asset : '../../../assets/';
         clear: right;
         @include media-query(palm) {
             font-weight: 400;
-            font-size: 18px;
+            font-size: $font-size-small;
             margin-top: -50px;
             margin-left: 60px;
             float: left;
@@ -31,10 +31,12 @@ $amp-ddc-public-asset : '../../../assets/';
         font-size: $font-size-small;
         line-height: 26px;
         margin-top: 10px;
-        display: inline-block;
+        margin-left: 111px;
+        display: block;
         @include media-query(palm) {
+            display: inline-block;
             font-weight: 100;
-            font-size: 14px;
+            font-size: $font-size-tiny;
             margin-top: 10px;
             margin-left: 60px;
             line-height: 26px;
