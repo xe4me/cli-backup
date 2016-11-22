@@ -5,19 +5,22 @@ import {
     style ,
     transition ,
     trigger ,
-    AfterContentInit
+    AfterContentInit , ViewChild
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ThemeService } from '../../services/theme';
+import { Observable } from 'rxjs';
+import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
 @Component( {
     selector   : 'left-navigation' ,
     template   : `
     <div class='left-navigation'>
+            <amp-input #queryFilter class='1/1' [labelHidden]='true'></amp-input>
             <div class="option-group" (click)="navigate(['Index']);toggleAccordion(-1)" [class.option-group--active]='activeAccordion===INDEX_ID'>
                 <span class="icon icon--faqs "></span> Get started
             </div>
-            <div [@openClose]='activeAccordion===INDEX_ID?"expanded":"collapsed"' class="options">
+            <div [@openClose]='activeAccordion===INDEX_ID?"expanded":"collapsed"' class="options" *ngIf='!queryFilter.control?.value'>
                 <div class="option" *ngFor="let content of contentTable" 
                      (click)="scrollService.scrollToComponentSelector(content.link)" 
                      [class.option--active]='activeComponentId===content.link'>
@@ -32,12 +35,14 @@ import { ThemeService } from '../../services/theme';
                 </div>
             </div>
         </div>
-        <div *ngFor="let cpmGroup of componentsGrouped ; let i =index">
+        <div *ngFor="let cpmGroup of doFilterGroups(componentsGrouped , queryFilter.control?.value) ; let i =index">
             <div class="option-group" (click)="toggleAccordion(i)" [class.option-group--active]='activeAccordion===i'>
                 <span [ngClass]="{'icon--chevron-down':activeAccordion===i,'icon--chevron-right':activeAccordion!==i}" class="icon "></span>{{ cpmGroup.type }}
             </div>
-            <div [@openClose]='activeAccordion===i?"expanded":"collapsed"' class="options">
-                <div class="option" *ngFor="let cmp of cpmGroup.components" 
+            <div [@openClose]='openCloseDropdown(i)' class="options">
+                <div class="option" *ngFor="let cmp of doFilter(cpmGroup.components , queryFilter.control?.value); let 
+                i = 
+                index " 
                      (click)="navigate(['component', cmp.id])" 
                      [class.option--active]='activeComponentId===cmp.id'>
                     {{ cmp.name }}
@@ -47,7 +52,7 @@ import { ThemeService } from '../../services/theme';
         
     </div>
 ` ,
-    inputs     : [ 'components' , 'componentsGrouped' , 'contentTable' ] ,
+    inputs     : [ 'filter' , 'components' , 'componentsGrouped' , 'contentTable' ] ,
     styles     : [ require( './left-navigation.component.scss' ).toString() ] ,
     animations : [
         trigger(
@@ -60,6 +65,7 @@ import { ThemeService } from '../../services/theme';
     ]
 } )
 export class LeftNavigationComponent implements AfterContentInit {
+    @ViewChild( 'queryFilter' ) queryFilter;
     private activeComponentId = null;
     private INDEX_ID          = - 1;
     private activeAccordion   = this.INDEX_ID;
@@ -92,6 +98,29 @@ export class LeftNavigationComponent implements AfterContentInit {
 
     private changeTheme ( theme : Theme ) {
         this.themeService.theme = theme;
+    }
+
+    private doFilter ( items , query ) : Observable<any> {
+        return isPresent( query ) ? items.filter(
+            ( item ) => {
+                return item[ 'name' ] && item[ 'name' ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
+            }
+        ) : items;
+    }
+
+    private doFilterGroups ( items , query ) : Observable<any> {
+        return isPresent( query ) ? items.filter(
+            ( item ) => {
+                let filtered = item.components.filter( ( component ) => {
+                    return component[ 'name' ] && component[ 'name' ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
+                } );
+                return filtered && filtered.length > 0 ? filtered : false;
+            }
+        ) : items;
+    }
+
+    private openCloseDropdown ( i , length ) {
+        return this.activeAccordion === i || length == 1 ? "expanded" : "collapsed";
     }
 }
 export interface Theme {
