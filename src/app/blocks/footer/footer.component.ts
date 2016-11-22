@@ -2,9 +2,6 @@ import {
     Component,
     ChangeDetectionStrategy
 } from '@angular/core';
-import {
-    Environments
-} from 'amp-ddc-components';
 @Component( {
     selector        : 'footer' ,
     templateUrl     : './footer.component.html' ,
@@ -13,7 +10,6 @@ import {
 } )
 
 export class Footer {
-    private damContentUrl = `${Environments.property.DamContentUrl}amp/digitalhub/common/images/systems/ddc/`;
     constructor () {
     }
 }
