@@ -2,7 +2,11 @@
 $base-red: #cd2f3a;
 $border-color: $base-red;
 $font-color: $base-red;
+$header-color: #001E41;
 
+h1 {
+    color: $header-color;
+}
 
 .container.blocks-wrapper {
     padding-left: 230px;

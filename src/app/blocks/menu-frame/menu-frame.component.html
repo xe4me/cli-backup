@@ -7,9 +7,9 @@
     </sticky-progress-header-block>-->
     <div class="container blocks-wrapper">
         <main class="main">
-            <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form"></div>
+            <div [amp-block-loader]="__child_blocks" (loaded)="onBlocksLoaded()" [fdn]="__fdn" [form]="__form"></div>
         </main>
     </div>
 </div>
-<amp-standalone-menu>
+<amp-standalone-menu [sectionsToHide]="sectionsToHide">
 </amp-standalone-menu>

@@ -28,7 +28,7 @@ import { ViewChild } from '@angular/core';
 export class WelcomeBlockComponent extends FormBlock implements OnInit {
     @ViewChild( AmpIntroBlockComponent ) public ampIntro;
     private nextBlockChanged : boolean = false;
-
+    private newOrExistingControl : FormControl;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -41,12 +41,12 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     public ngOnInit () {
         this.__controlGroup
             .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.newOrExistingControl = <FormControl> this.__controlGroup.get(this.__custom.controls[0].id);
     }
 
     private onNewOrExisting ( newOrExisting : string ) {
-        const newOrExistingControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        newOrExistingControl.setValue( newOrExisting );
-        newOrExistingControl.markAsTouched();
+        this.newOrExistingControl.setValue( newOrExisting );
+        this.newOrExistingControl.markAsTouched();
         if ( this.nextBlockChanged ) {
             this.__removeNext( this.viewReference );
             this.nextBlockChanged = false;
