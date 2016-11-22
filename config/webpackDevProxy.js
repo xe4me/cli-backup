@@ -20,6 +20,7 @@ module.exports = {
         pathRewrite: function (path, req) {
             req.url = req.url.replace('qas', 'ddc/public/api/qas');
         },
+        secure :false, // to buypass the ssl
         logLevel: 'debug'
     },
     '*/refdata/**': {
@@ -28,6 +29,7 @@ module.exports = {
         pathRewrite: function (path, req) {
             req.url = req.url.replace('refdata/countries', 'ddc/public/api/refdata/countries');
         },
+        secure :false,// to buypass the ssl
         logLevel: 'debug'
     }
 };
