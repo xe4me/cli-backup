@@ -1,0 +1,8 @@
+@import "../../../styles/abstracts";
+
+amp-button[second-button] {
+    @include media-query(palm) {
+        margin-top : 20px !important;
+        display    : block;
+    }
+}
