@@ -4,23 +4,22 @@ $font-size-tin: $font-size-tiny;
 $font-size-lrg: $font-size-large;
 $font-size-heading-lrg: $font-size-heading-mobile;
 
-
 %#{$namespace}font-size-heading {
     font-size: $font-size-heading-lrg;
 }
 
 %#{$namespace}font-size-medium {
-  font-size: $font-size-med;
+    font-size: $font-size-med;
 }
 
 %#{$namespace}font-size-large {
-  font-size: $font-size-lrg;
+    font-size: $font-size-lrg;
 }
 
 %#{$namespace}font-size-small {
-  font-size: $font-size-sma;
+    font-size: $font-size-sma;
 }
 
 %#{$namespace}font-size-tiny {
-  font-size: $font-size-tin;
+    font-size: $font-size-tin;
 }

@@ -7,7 +7,6 @@
   "license": "PROPRIETARY",
   "scripts": {
     "rimraf": "rimraf",
-    "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
     "typedoc": "typedoc",
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
@@ -37,7 +36,9 @@
     "server:express": "node server.js",
     "webdriver:update": "npm run webdriver-manager update",
     "webdriver:start": "npm run webdriver-manager start",
-    "lint": "npm run tslint",
+    "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
+    "sasslint": "sass-lint --verbose --no-exit",
+    "lint": "npm run tslint && npm run sasslint",
     "pree2e": "npm run webdriver:update -- --standalone",
     "e2e": "npm run protractor",
     "e2e:live": "npm run e2e -- --elementExplorer",
@@ -52,8 +53,8 @@
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "jenkins-lint": "eslint-cli src -f checkstyle -o reports/eslintReport.xml; exit 0",
-    "jenkins-jscpd": "jscpd -p . -f '**/*.ts'  -e 'node_modules/**'  -o reports/jscpd-report.xml"
+    "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
+    "jenkins-jscpd": "jscpd -p . -f '**/*.ts' -e 'node_modules/**' -o reports/jscpd-report.xml"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.5",
@@ -118,7 +119,6 @@
     "ddcjs-server": "^1.0.10",
     "es6-promise-loader": "^1.0.1",
     "eslint": "^3.8.1",
-    "eslint-cli": "^1.1.0",
     "exports-loader": "^0.6.3",
     "expose-loader": "^0.7.1",
     "express": "^4.14.0",
@@ -147,6 +147,7 @@
     "raw-loader": "0.5.1",
     "remap-istanbul": "^0.6.3",
     "rimraf": "^2.5.2",
+    "sass-lint": "^1.9.1",
     "sass-loader": "^3.2.0",
     "source-map-loader": "^0.1.5",
     "stubby": "^0.3.1",

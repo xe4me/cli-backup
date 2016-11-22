@@ -1,0 +1,114 @@
+# Linter Options
+options:
+  # Don't merge default rules
+  merge-default-rules: false
+# Files
+files:
+    include: src/**/*.scss
+    ignore:
+      # TODO: This file is ignore due to an issue in the underlying Sass parsing library and so it should be un-ignored once the the fix has been released:
+      #       An issue has been raised: https://github.com/tonyganch/gonzales-pe/issues/210
+      #       And the fix has been merged but not released: https://github.com/tonyganch/gonzales-pe/pull/217
+      - 'src/styleguide/assets/font/font.scss'
+
+# Rule Configuration
+rules:
+    # Mixins
+    mixins-before-declarations: 0 # Should be turned into Error
+
+    # Line Spacing
+    one-declaration-per-line: 2
+    empty-line-between-blocks: 0 # Should be turned into Error
+    single-line-per-selector: 0 # Should be turned into Error
+
+    # Disallows
+    no-color-keywords: 0 # Should be turned into Error
+    no-color-literals: 0 # Warning # Look at making this an error
+    no-css-comments: 0 # Should be turned into Error
+    no-debug: 0 # Warning
+    no-duplicate-properties: 0 # Should be turned into Error
+    no-empty-rulesets: 0 # Should be turned into Error
+    no-extends: 0 # Warning # This needs to be investigated as if can be an error
+    no-ids: 0 # Should be turned into Error
+    no-important: 0
+    no-invalid-hex: 2
+    no-mergeable-selectors: 0 # Should be turned into Error
+    # no-misspelled-properties is set to no error as vendor prefixes are considered misspelled and
+    # currently no-vendor-prefixes is set to no error
+    no-misspelled-properties: 0
+    no-qualifying-elements: 0 # Should be turned into Error
+    no-trailing-zero: 2
+    no-transition-all: 0
+    no-url-protocols: 2
+    no-vendor-prefixes: 0
+    no-warn: 2
+    property-units: 0
+
+    # Nesting
+    force-attribute-nesting: 0
+    force-element-nesting: 0
+    force-pseudo-nesting: 0 # Should be turned into Error
+
+    # Name Formats
+    class-name-format:
+      - 0 # Should be turned into Error
+      -
+        convention: hyphenatedbem
+    function-name-format:
+      - 0 # Should be turned into Error
+      -
+        allow-leading-underscore: false
+        convention: hyphenatedlowercase
+    mixin-name-format:
+      - 0 # Should be turned into Error
+      -
+        allow-leading-underscore: false
+        convention: hyphenatedlowercase
+    placeholder-name-format:
+      - 2
+      -
+        allow-leading-underscore: false
+        convention: hyphenatedlowercase
+    variable-name-format:
+      - 0 # Should be turned into Error
+      -
+        allow-leading-underscore: false
+        convention: hyphenatedlowercase
+
+    # Style Guide
+    border-zero: 0 # Should be turned into Error
+    brace-style: 2
+    clean-import-paths: 0 # Should be turned into Error
+    empty-args: 0 # Should be turned into Error
+    hex-length: 0
+    hex-notation: 0 # Should be turned into Error
+    indentation:
+      - 2
+      -
+        size: 4
+    leading-zero: 0 # Should be turned into Error
+    nesting-depth:
+      - 2
+      -
+        max-depth: 4
+    property-sort-order: 0
+    pseudo-element: 0 # Should be turned into Error
+    quotes: 0 # Should be turned into Error
+    shorthand-values: 0 # Should be turned into Error
+    url-quotes: 2
+    variable-for-property: 0
+    zero-unit: 0 # Should be turned into Error
+
+    # Inner Spacing
+    space-after-comma: 2
+    space-before-colon: 0 # Need to decide as a team on if have vertically aligned colons fi not this should be an Error
+    space-after-colon: 0 # Should be turned into Error
+    space-before-brace: 0 # Should be turned into Error
+    space-before-bang: 2
+    space-after-bang: 2
+    space-between-parens: 2
+    space-around-operator: 0 # Should be turned into Error
+
+    # Final Items
+    trailing-semicolon: 0 # Should be turned into Error
+    final-newline: 0 # Should be turned into Error
