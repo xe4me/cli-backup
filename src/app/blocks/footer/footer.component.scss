@@ -21,6 +21,10 @@ $amp-ddc-public-asset : '../../../assets/';
             margin-top: -50px;
             margin-left: 60px;
             float: left;
+            .contact-call {
+                display: block;
+                clear: left;
+            }            
         }         
     }
     .contact-details {
@@ -60,12 +64,12 @@ $amp-ddc-public-asset : '../../../assets/';
         }
     }
     .separator {
-        display: inline-block;
         &::before {
             content: '|';
             margin: 0 25px;
             @include media-query(palm) {
                 content: ' ';
+                display: block;
                 margin: 0;
                 clear: both;
             }            
