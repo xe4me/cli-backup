@@ -1,4 +1,4 @@
-import { ViewEncapsulation , Component , ViewChild } from '@angular/core';
+import { ViewEncapsulation , Component } from '@angular/core';
 import { Store , provideStore } from '@ngrx/store';
 import { ComponentsService , IComponentMeta , IComponentGroupMeta } from './services/components';
 import { TableContentsService } from './services/content-table-service';
@@ -23,7 +23,6 @@ import { TableContentsService } from './services/content-table-service';
     encapsulation : ViewEncapsulation.None
 } )
 export class StyleGuideApp {
-
     public site : string                             = 'AMP DDC';
            version : string;
            components : IComponentMeta[]             = [];

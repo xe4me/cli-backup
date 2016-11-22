@@ -14,7 +14,7 @@ export class AmpQasAddressService {
     public static DEFAULT_ERROR_TEXT = 'Server error';
     private headers                  = new Headers( {
         'Content-Type' : 'application/json' ,
-        'caller'       : Environments.property.experienceName || 'components'
+        'caller'       : 'components'
     } );
 
     constructor ( private http : AmpHttpService ) {
@@ -23,7 +23,7 @@ export class AmpQasAddressService {
     public query               = ( queryValue : string ) : Observable<any> => {
         let headers : Headers = this.headers;
         let options           = new RequestOptions( { body : '' , headers : headers } );
-        let url               = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( escapeSlash( queryValue ) );
+        let url = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( escapeSlash( queryValue ) );
         return this
             .http
             .get( url , options )
