@@ -27,7 +27,6 @@ export class ApplicantGeneratorService {
         };
     }
 
-
     private findBlock ( sections , title , sectionIndex ) {
         return sections[sectionIndex].blocks.filter((item) => {
             return title === item.name;
