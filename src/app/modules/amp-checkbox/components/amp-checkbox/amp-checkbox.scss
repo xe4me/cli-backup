@@ -12,7 +12,7 @@ $checkbox-margin : 0;
 
 @include media-query(palm) {
     :host {
-        line-height : 35px;
+        line-height : 30px;
     }
 
     label {
@@ -30,25 +30,19 @@ $checkbox-margin : 0;
             }
         }
         .content {
-            @include rtl(margin-left, $checkbox-text-margin-palm + $checkbox-width-palm !important, 0);
-            @include rtl(margin-right, 0, $checkbox-text-margin-palm + $checkbox-width-palm !important);
+            @include rtl(margin-left, 40px !important, 0);
+            @include rtl(margin-right, 0, 40px !important);
         }
     }
 }
 
 :host {
     display     : block;
-    line-height : 45px;
+    line-height : 30px;
     @extend %#{$namespace}font-size-medium;
     margin      : $checkbox-margin;
     white-space : nowrap;
     position    : relative;
-
-    @include media-query(palm) {
-        margin-top    : 26px;
-        margin-bottom : 8px;
-    }
-
     &:nth-child(n+2) {
         margin-top : 23px;
     }
@@ -56,7 +50,7 @@ $checkbox-margin : 0;
         &:checked {
             + label {
                 .on {
-                    transform : scale(1) rotate(45deg);
+                    transform : scale(1) rotate(30deg);
                 }
             }
         }
@@ -144,8 +138,8 @@ $checkbox-margin : 0;
         .content {
             @include transition(margin .7s ease-in-out);
             transition-delay : 0s;
-            line-height      : 45px;
-            margin-top       : -7px;
+            line-height      : 30px;
+            margin-top       : -1px;
             display          : inline-block;
             vertical-align   : top;
             position         : relative;
@@ -157,7 +151,7 @@ $checkbox-margin : 0;
     }
 
     .label {
-        line-height    : 45px;
+        line-height    : 30px;
         margin-top     : -4px;
         display        : inline-block;
         vertical-align : top;
@@ -178,7 +172,7 @@ $checkbox-margin : 0;
         width          : auto;
         margin-left    : -20px;
         // @include rtl(margin-left, $radio-text-margin + $radio-width, 0);
-        @include rtl(margin-right, 0, $checkbox-text-margin + $checkbox-width);
+        @include rtl(margin-right, 0, 43);
 
     }
 }

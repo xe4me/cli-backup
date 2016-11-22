@@ -338,7 +338,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     }
 
     private calculateMaxWidth ( _windowWidth ) {
-        let maxWidth = _windowWidth - 40; // 40 is the paddings and margins ;
+        let maxWidth = _windowWidth - 55; // 40 is the paddings and margins ;
         this._renderer.setElementStyle( this._el.nativeElement , 'max-width' , maxWidth + 'px' );
     }
 }

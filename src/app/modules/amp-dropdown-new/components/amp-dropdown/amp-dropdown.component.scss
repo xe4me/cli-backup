@@ -37,6 +37,9 @@ $dropdown-font-size : 14px;
     @include media-query(lap-and-up) {
         min-width : 300px;
     }
+    @include media-query(palm) {
+        width : 100%;
+    }
     select {
         display : none !important;
     }
@@ -75,6 +78,13 @@ $padding-up : 20px;
 
 .amp-dropdown {
     position : relative;
+    @include media-query(lap-and-up) {
+        min-width  : 300px;
+        margin-top : 15px;
+    }
+    @include media-query(palm) {
+        margin-top : 30px;
+    }
 }
 
 .amp-dropdown-label {
@@ -84,6 +94,7 @@ $padding-up : 20px;
     max-height    : $amp-dropdown-select-height;
     border        : 1px solid $amp-colour-grey-dark;
     padding       : $padding-sides $padding-up;
+    padding-right : $padding-up +15;
     @include amp-family('open-sans-semibold');
     color         : $amp-colour-grey-darkest;
     display       : block;
