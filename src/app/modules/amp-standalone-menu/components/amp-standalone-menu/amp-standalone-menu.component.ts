@@ -27,6 +27,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number          = 0;
     @Input() theme      : string          = 'forms';
+    @Input() sectionsToHide : Array<string> = [];
     public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;
@@ -90,6 +91,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
             let menuItemId    = this.itemPrefix + section.id;
             let classes       = section.className;
             let label         = section.getAttribute( 'label' );
+            let hidden = this.sectionsToHide.indexOf(pageSectionId) !== -1;
             if ( ! hasActiveClass && currentSectionName && pageSectionId.indexOf( currentSectionName ) > - 1 ) {
                 classes               = classes ? classes + ' active' : 'active';
                 this.currentSectionId = pageSectionId;
@@ -101,7 +103,8 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
                 pageSectionId : pageSectionId ,
                 id            : menuItemId ,
                 state         : classes ,
-                anchorUrl     : window.location.href + '/#' + pageSectionId
+                anchorUrl     : window.location.href + '/#' + pageSectionId,
+                hidden        : hidden
             };
         } );
         if ( this.sections.length && hasActiveClass ) {
