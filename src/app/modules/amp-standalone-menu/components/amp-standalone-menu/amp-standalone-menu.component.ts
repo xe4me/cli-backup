@@ -27,6 +27,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number          = 0;
     @Input() theme      : string          = '';
+    @Input() sectionsToHide : Array<string> = [];
     public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;
@@ -38,7 +39,6 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     private sectionObservable : Observable<any>;
     private scrollSubscription : Subscription;
     private menuScrolling : boolean = false;
-    private sectionsToHide : Array<string> = [];
     private html; // get a reference to html element so we can stop scrolling when menu open on mobile
     constructor ( private dom : BrowserDomAdapter ,
                   private cd : ChangeDetectorRef ,
