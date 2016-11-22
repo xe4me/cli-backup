@@ -21,8 +21,9 @@ import {
     FormGroup,
     FormControl
 } from '@angular/forms';
-import { SharedFormDataService,
-         Constants
+import {
+    SharedFormDataService,
+    Constants
 } from '../../shared';
 import { StickyProgressHeaderBlockComponent } from
     '../sticky-progress-header-block/sticky-progress-header-block.component';
@@ -39,7 +40,6 @@ export class MenuFrameBlockComponent implements OnDestroy {
     private __form : FormGroup;
     private singleOrJointSubscription : Subscription;
     private sectionsToHide = [];
-    private __onChildsLoaded;
     constructor(
         private _el : ElementRef,
         private formModelService : FormModelService,
@@ -51,8 +51,8 @@ export class MenuFrameBlockComponent implements OnDestroy {
     }
 
     public onBlocksLoaded() {
-        const singleOfJointControl = this.sharedData.getSingleOrJointControl(this.__form);
-        this.singleOrJointSubscription = singleOfJointControl.valueChanges.subscribe((singleOrJoint) => {
+        const singleOrJointControl = this.sharedData.getSingleOrJointControl(this.__form);
+        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((singleOrJoint) => {
             if (singleOrJoint === Constants.singleApplicant) {
                 this.sectionsToHide = ['Application-Applicant1Section']
             } else {
