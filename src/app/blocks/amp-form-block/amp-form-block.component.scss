@@ -7,11 +7,11 @@
     position : relative;
 
     .FormBlocK {
-        padding-top : $default-margin;
+        padding-top : $tools-form-block-heading-top-padding;
         position    : relative;
 
         .heading-intro {
-            margin-bottom : $default-margin-w-offset;
+            margin-bottom : 40px;
 
             @include media-query('palm') {
                 font-size : 20px;
@@ -24,7 +24,7 @@
     }
     @include media-query(palm) {
         .FormBlocK {
-            padding-top : $default-margin/2;
+            padding-top : 50px;
         }
     }
 

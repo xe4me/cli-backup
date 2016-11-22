@@ -142,11 +142,6 @@ $small-button-width : 80px;
 }
 
 @include media-query(palm) {
-    label {
-        height      : 3em !important;
-        line-height : 3em !important;
-        font-size   : $font-size-tin !important;;
-    }
     :host {
         &[small] {
             .amp-group-button {

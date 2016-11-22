@@ -83,12 +83,12 @@ Button base class used by all
     line-height : $buttons-default-line-height;
     min-height  : $buttons-default-height;
     min-width   : $buttons-default-width;
-
+    padding: 0 30px;
     @include media-query(tablet-and-up) {
         margin-top : $btn-margin-top;
     }
     @include media-query(palm) {
-        margin-top : $btn-margin-top/2 !important;
+        margin-top : 0 !important;
     }
     @extend %#{$namespace}font-size-small;
     @include transition(color, background-color, $buttons-transition-time ease-in-out);

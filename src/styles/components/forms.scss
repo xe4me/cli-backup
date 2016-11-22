@@ -1,4 +1,3 @@
-
 /**
 
 Base form row styles
@@ -11,39 +10,39 @@ bolr styles
 
 .form__row {
     .form-row-label-full-width {
-        color: $amp-colour-grey-darker;
-        font-size: 24px;
-        margin: 2px 0 16px 0;
+        color     : $amp-colour-grey-darker;
+        font-size : 24px;
+        margin    : 2px 0 16px 0;
     }
     .form-row-label {
-        color: $amp-colour-grey-darker;
+        color : $amp-colour-grey-darker;
         @include media-query(tablet-and-up) {
             @extend %#{$namespace}font-size-medium;
-            margin: 44px 0 2px 0;
+            margin : 44px 0 2px 0;
         }
 
         @include media-query(palm) {
-            font-size: $font-size-heading-lrg;
-            margin-bottom: 2px;
-            margin-top: 20px;
+            font-size     : $font-size-heading-lrg;
+            margin-bottom : 2px;
+            margin-top    : 20px;
         }
     }
     .form-row-label-inline {
-        color: $amp-colour-grey-darker;
+        color : $amp-colour-grey-darker;
         @include media-query(tablet-and-up) {
             @extend %#{$namespace}font-size-medium;
-            margin: 30px 0 0 0;
+            margin : 30px 0 0 0;
         }
 
         @include media-query(palm) {
-            font-size: $font-size-heading-lrg;
-            margin: 20px 0 0 0;
+            font-size : $font-size-heading-lrg;
+            margin    : 20px 0 0 0;
         }
     }
     .form-row-label-checkbox {
-        font-size: $font-size-heading-lrg;
-        margin-top: 20px;
-        margin-bottom: 34px;
+        font-size     : $font-size-heading-lrg;
+        margin-top    : 20px;
+        margin-bottom : 34px;
     }
 
 }
@@ -59,10 +58,16 @@ bolr styles
 
 */
 
+@include media-query(palm) {
+    amp-form-row > .form__row > .grid__container > .grid__item_floated {
+        margin-top : $default-margin/1.5 !important;
+    }
+}
+
 amp-form-row > .form__row > .grid__container > .grid__item_floated {
-    margin-top: $default-margin;
+    margin-top : $default-margin;
 }
 
 .heading-intro + amp-form-row {
-    margin-top: -1 * $default-margin;
+    margin-top : -1 * $default-margin;
 }
