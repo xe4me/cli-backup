@@ -38,6 +38,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     private sectionObservable : Observable<any>;
     private scrollSubscription : Subscription;
     private menuScrolling : boolean = false;
+    private sectionsToHide : Array<string> = [];
     private mainHostContent; // get a reference to main content element so we can hide/show it when on mobile view
     constructor ( private dom : BrowserDomAdapter ,
                   private cd : ChangeDetectorRef ,
@@ -90,6 +91,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
             let menuItemId    = this.itemPrefix + section.id;
             let classes       = section.className;
             let label         = section.getAttribute( 'label' );
+            let hidden = this.sectionsToHide.indexOf(pageSectionId) !== -1;
             if ( ! hasActiveClass && currentSectionName && pageSectionId.indexOf( currentSectionName ) > - 1 ) {
                 classes               = classes ? classes + ' active' : 'active';
                 this.currentSectionId = pageSectionId;
@@ -101,7 +103,8 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
                 pageSectionId : pageSectionId ,
                 id            : menuItemId ,
                 state         : classes ,
-                anchorUrl     : window.location.href + '/#' + pageSectionId
+                anchorUrl     : window.location.href + '/#' + pageSectionId,
+                hidden        : hidden
             };
         } );
         if ( this.sections.length && hasActiveClass ) {
