@@ -184,6 +184,10 @@ Base64@~0.2.0:
   version "0.2.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/Base64/-/Base64-0.2.1.tgz#ba3a4230708e186705065e66babdd4c35cf60028"
 
+URIjs@^1.16.0:
+  version "1.16.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/URIjs/-/URIjs-1.16.1.tgz#edebc678b8b74b26b05d2b481e12383f5ae04b8b"
+
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
@@ -336,6 +340,10 @@ anymatch@^1.3.0:
     arrify "^1.0.0"
     micromatch "^2.1.5"
 
+append-field@^0.1.0:
+  version "0.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/append-field/-/append-field-0.1.0.tgz#6ddc58fa083c7bc545d3c5995b2830cc2366d44a"
+
 aproba@^1.0.3:
   version "1.0.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/aproba/-/aproba-1.0.4.tgz#2713680775e7614c8ba186c065d4e2e52d1072c0"
@@ -412,6 +420,10 @@ arrify@^1.0.0:
   version "1.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
+asap@~2.0.3:
+  version "2.0.5"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/asap/-/asap-2.0.5.tgz#522765b50c3510490e52d7dcfe085ef9ba96958f"
+
 asn1@~0.2.3:
   version "0.2.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
@@ -442,19 +454,19 @@ async@0.2.x, async@~0.2.6:
   version "0.2.10"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/async/-/async-0.2.10.tgz#b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
 
-async@1.5.2, async@1.x, async@>=0.2.7, async@^1.2.1, async@^1.3.0, async@^1.4.0:
+async@1.5.2, async@1.x, async@^1.2.1, async@^1.3.0, async@^1.4.0, async@^1.4.2, async@^1.5.0:
   version "1.5.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
-async@^0.9.0, async@~0.9.0:
-  version "0.9.2"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/async/-/async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d"
-
-async@^2.0.1:
+async@>=0.2.7, async@^2.0.0-rc.6, async@^2.0.1:
   version "2.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/async/-/async-2.1.2.tgz#612a4ab45ef42a70cde806bad86ee6db047e8385"
   dependencies:
     lodash "^4.14.0"
+
+async@^0.9.0, async@~0.9.0:
+  version "0.9.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/async/-/async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d"
 
 async@~1.0.0:
   version "1.0.0"
@@ -539,6 +551,18 @@ babel-runtime@^6.6.1, babel-runtime@^6.9.1:
 backo2@1.0.2:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/backo2/-/backo2-1.0.2.tgz#31ab1ac8b129363463e35b3ebb69f4dfcfba7947"
+
+bagpipes@^0.1.0:
+  version "0.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/bagpipes/-/bagpipes-0.1.0.tgz#d280050b4044928cc9c3dbb0321c1eb8abd0d7f0"
+  dependencies:
+    async "^1.4.2"
+    debug "^2.1.2"
+    jspath "^0.3.1"
+    lodash "^3.5.0"
+    machinepack-http "^2.3.0"
+    mustache "^2.1.3"
+    pipeworks "^1.3.0"
 
 balanced-match@^0.4.1, balanced-match@^0.4.2:
   version "0.4.2"
@@ -643,7 +667,7 @@ bluebird@^2.10.2, bluebird@^2.9.27:
   version "2.11.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/bluebird/-/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
 
-bluebird@^3.0.5, bluebird@^3.4.6:
+bluebird@^3.0.5, bluebird@^3.4.1, bluebird@^3.4.6:
   version "3.4.6"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
 
@@ -651,7 +675,21 @@ bluebird@~2.3.x:
   version "2.3.11"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/bluebird/-/bluebird-2.3.11.tgz#15bb78ed32abf27b090640c0f85e4b91f615c8b6"
 
-body-parser@^1.12.4:
+body-parser@1.12.4:
+  version "1.12.4"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/body-parser/-/body-parser-1.12.4.tgz#090700c4ba28862a8520ef378395fdee5f61c229"
+  dependencies:
+    bytes "1.0.0"
+    content-type "~1.0.1"
+    debug "~2.2.0"
+    depd "~1.0.1"
+    iconv-lite "0.4.8"
+    on-finished "~2.2.1"
+    qs "2.4.2"
+    raw-body "~2.0.1"
+    type-is "~1.6.2"
+
+body-parser@^1.12.4, body-parser@^1.14.1, body-parser@^1.15.0:
   version "1.15.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/body-parser/-/body-parser-1.15.2.tgz#d7578cf4f1d11d5f6ea804cef35dc7a7ff6dae67"
   dependencies:
@@ -756,9 +794,20 @@ bundle-loader@^0.5.4:
   dependencies:
     loader-utils "0.2.x"
 
+busboy@^0.2.11:
+  version "0.2.13"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/busboy/-/busboy-0.2.13.tgz#90fc4f6a3967d815616fc976bfa8e56aed0c58b6"
+  dependencies:
+    dicer "0.2.5"
+    readable-stream "1.1.x"
+
 bytes@1, bytes@1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/bytes/-/bytes-1.0.0.tgz#3569ede8ba34315fab99c3e92cb04c7220de1fa8"
+
+bytes@2.1.0:
+  version "2.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/bytes/-/bytes-2.1.0.tgz#ac93c410e2ffc9cc7cf4b464b38289067f5e47b4"
 
 bytes@2.3.0:
   version "2.3.0"
@@ -850,6 +899,10 @@ chalk@0.5.1, chalk@^0.5.0, chalk@^0.5.1:
     strip-ansi "^0.3.0"
     supports-color "^0.2.0"
 
+chance@~1.0.1:
+  version "1.0.4"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/chance/-/chance-1.0.4.tgz#2dbc3ea6ad0541f7f965bd0af25d1ca275c853c4"
+
 change-case@2.3.x:
   version "2.3.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/change-case/-/change-case-2.3.1.tgz#2c4fde3f063bb41d00cd68e0d5a09db61cbe894f"
@@ -898,7 +951,7 @@ charenc@~0.0.1:
   version "0.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/charenc/-/charenc-0.0.1.tgz#004cff9feaf102382ed12db58dd6f962796d6e88"
 
-chokidar@^1.0.0, chokidar@^1.4.1:
+chokidar@^1.0.0, chokidar@^1.4.1, chokidar@^1.4.3:
   version "1.6.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/chokidar/-/chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2"
   dependencies:
@@ -941,6 +994,10 @@ cli-table@^0.3.1:
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/cli-table/-/cli-table-0.3.1.tgz#f53b05266a8b1a0b934b3d0821e6e2dc5914ae23"
   dependencies:
     colors "1.0.3"
+
+cli-width@^1.0.1:
+  version "1.1.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/cli-width/-/cli-width-1.1.1.tgz#a4d293ef67ebb7b88d4a4d42c0ccf00c4d1e366d"
 
 cli-width@^2.0.0:
   version "2.1.0"
@@ -985,7 +1042,7 @@ clone@^0.2.0:
   version "0.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/clone/-/clone-0.2.0.tgz#c6126a90ad4f72dbf5acdb243cc37724fe93fc1f"
 
-clone@^1.0.0, clone@^1.0.2:
+clone@^1.0.0, clone@^1.0.2, clone@~1.0.2:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/clone/-/clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149"
 
@@ -1084,6 +1141,14 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@0.6.1:
+  version "0.6.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/commander/-/commander-0.6.1.tgz#fa68a14f6a945d54dbbe50d8cdb3320e9e3b1a06"
+
+commander@2.3.0:
+  version "2.3.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/commander/-/commander-2.3.0.tgz#fd430e889832ec353b9acd1de217c11cb3eef873"
+
 commander@2.6.0:
   version "2.6.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/commander/-/commander-2.6.0.tgz#9df7e52fb2a0cb0fb89058ee80c3104225f37e1d"
@@ -1094,7 +1159,7 @@ commander@2.8.x:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commander@2.9.0, commander@2.9.x, commander@^2.8.1, commander@^2.9.0:
+commander@2.9.0, commander@2.9.x, commander@^2.7.1, commander@^2.8.1, commander@^2.9.0:
   version "2.9.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/commander/-/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
   dependencies:
@@ -1108,7 +1173,7 @@ component-emitter@1.1.2:
   version "1.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/component-emitter/-/component-emitter-1.1.2.tgz#296594f2753daa63996d2af08d15a95116c9aec3"
 
-component-emitter@1.2.0:
+component-emitter@1.2.0, component-emitter@~1.2.0:
   version "1.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/component-emitter/-/component-emitter-1.2.0.tgz#ccd113a86388d06482d03de3fc7df98526ba8efe"
 
@@ -1131,7 +1196,7 @@ compression-webpack-plugin@^0.3.1:
   optionalDependencies:
     node-zopfli "^2.0.0"
 
-compression@^1.5.2:
+compression@^1.5.2, compression@^1.6.2:
   version "1.6.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/compression/-/compression-1.6.2.tgz#cceb121ecc9d09c52d7ad0c3350ea93ddd402bc3"
   dependencies:
@@ -1154,7 +1219,7 @@ concat-stream@1.5.0:
     readable-stream "~2.0.0"
     typedarray "~0.0.5"
 
-concat-stream@1.5.x, concat-stream@^1.4.1, concat-stream@^1.4.6:
+concat-stream@1.5.x, concat-stream@^1.4.1, concat-stream@^1.4.6, concat-stream@^1.5.0:
   version "1.5.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/concat-stream/-/concat-stream-1.5.2.tgz#708978624d856af41a5a741defdd261da752c266"
   dependencies:
@@ -1179,6 +1244,25 @@ concurrently@^2.0.0:
     lodash "^4.5.1"
     moment "^2.11.2"
     rx "2.3.24"
+
+config@^1.16.0:
+  version "1.24.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/config/-/config-1.24.0.tgz#553bc4d77637d6630a305b52c33cb6da2b9f42f0"
+  dependencies:
+    json5 "0.4.0"
+
+configstore@^1.0.0:
+  version "1.4.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/configstore/-/configstore-1.4.0.tgz#c35781d0501d268c25c54b8b17f6240e8a4fb021"
+  dependencies:
+    graceful-fs "^4.1.2"
+    mkdirp "^0.5.0"
+    object-assign "^4.0.1"
+    os-tmpdir "^1.0.0"
+    osenv "^0.1.0"
+    uuid "^2.0.1"
+    write-file-atomic "^1.1.2"
+    xdg-basedir "^2.0.0"
 
 connect-history-api-fallback@^1.3.0:
   version "1.3.0"
@@ -1225,9 +1309,20 @@ content-disposition@0.5.1:
   version "0.5.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/content-disposition/-/content-disposition-0.5.1.tgz#87476c6a67c8daa87e32e87616df883ba7fb071b"
 
-content-type@~1.0.2:
+content-type@~1.0.1, content-type@~1.0.2:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/content-type/-/content-type-1.0.2.tgz#b7d113aee7a8dd27bd21133c4dc2529df1721eed"
+
+convert-to-ecmascript-compatible-varname@^0.1.0:
+  version "0.1.5"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/convert-to-ecmascript-compatible-varname/-/convert-to-ecmascript-compatible-varname-0.1.5.tgz#f67a4938c5233443564250479c67014bac878499"
+
+cookie-parser@^1.4.1:
+  version "1.4.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/cookie-parser/-/cookie-parser-1.4.3.tgz#0fe31fa19d000b95f4aadf1f53fdc2b8a203baa5"
+  dependencies:
+    cookie "0.3.1"
+    cookie-signature "1.0.6"
 
 cookie-signature@1.0.6:
   version "1.0.6"
@@ -1236,6 +1331,10 @@ cookie-signature@1.0.6:
 cookie@0.3.1:
   version "0.3.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
+
+cookiejar@2.0.6:
+  version "2.0.6"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/cookiejar/-/cookiejar-2.0.6.tgz#0abf356ad00d1c5a219d88d44518046dd026acfe"
 
 copy-webpack-plugin@^3.0.1:
   version "3.0.1"
@@ -1256,12 +1355,11 @@ core-util-is@~1.0.0:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-cross-spawn-async@^2.1.9:
-  version "2.2.5"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/cross-spawn-async/-/cross-spawn-async-2.2.5.tgz#845ff0c0834a3ded9d160daca6d390906bb288cc"
+cors@^2.5.3, cors@^2.7.1:
+  version "2.8.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/cors/-/cors-2.8.1.tgz#6181aa56abb45a2825be3304703747ae4e9d2383"
   dependencies:
-    lru-cache "^4.0.0"
-    which "^1.2.8"
+    vary "^1"
 
 cross-spawn@^0.2.9:
   version "0.2.9"
@@ -1423,6 +1521,10 @@ d@^0.1.1, d@~0.1.1:
   dependencies:
     es5-ext "~0.10.2"
 
+dag-map@~1.0.0:
+  version "1.0.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/dag-map/-/dag-map-1.0.2.tgz#e8379f041000ed561fc515475c1ed2c85eece8d7"
+
 dashdash@^1.12.0:
   version "1.14.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/dashdash/-/dashdash-1.14.0.tgz#29e486c5418bf0f356034a993d51686a33e84141"
@@ -1440,15 +1542,54 @@ dateformat@^1.0.11, dateformat@^1.0.6, dateformat@^1.0.7-1.2.3:
     get-stdin "^4.0.1"
     meow "^3.3.0"
 
+ddcjs-logger@^1.0.0:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ddcjs-logger/-/ddcjs-logger-1.0.1.tgz#dd5268e0a0954ecd51af12b7175e22a404158ace"
+  dependencies:
+    debug-logger "^0.4.1"
+    util "^0.10.3"
+
+ddcjs-server@^1.0.10:
+  version "1.0.10"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ddcjs-server/-/ddcjs-server-1.0.10.tgz#2949c0dde9f784ba40aa6e9b405de087b105ab60"
+  dependencies:
+    async "^2.0.0-rc.6"
+    body-parser "^1.15.0"
+    compression "^1.6.2"
+    cookie-parser "^1.4.1"
+    cors "^2.7.1"
+    ddcjs-logger "^1.0.0"
+    dotenv "^2.0.0"
+    express "^4.13.4"
+    http "0.0.0"
+    json-refs "^2.1.6"
+    lodash "^4.6.1"
+    path "^0.12.7"
+    promise "^7.1.1"
+    ssl-root-cas "^1.1.10"
+    supertest "^1.2.0"
+    swagger "^0.7.5"
+    swagger-express-mw "^0.6.0"
+    swagger-tools "^0.10.1"
+    walk "^2.3.9"
+    yaml-js "^0.1.3"
+    yamljs "^0.2.8"
+
 deap@^1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/deap/-/deap-1.0.0.tgz#b148bf82430a27699b7483a03eb6b67585bfc888"
+
+debug-logger@^0.4.1:
+  version "0.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/debug-logger/-/debug-logger-0.4.1.tgz#e33849c369e3cd361b50b299d71ca5224baa1ae1"
+  dependencies:
+    debug "^2.1.0"
 
 debug@0.7.4:
   version "0.7.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
-debug@2, debug@^2.1.0, debug@^2.1.1, debug@^2.2.0:
+debug@2, debug@^2.1.0, debug@^2.1.1, debug@^2.1.2, debug@^2.1.3, debug@^2.2.0:
   version "2.3.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/debug/-/debug-2.3.2.tgz#94cb466ef7d6d2c7e5245cdd6e4104f2d0d70d30"
   dependencies:
@@ -1476,7 +1617,7 @@ deep-assign@^1.0.0:
   dependencies:
     is-obj "^1.0.0"
 
-deep-extend@~0.4.0:
+deep-extend@^0.4.0, deep-extend@~0.4.0:
   version "0.4.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/deep-extend/-/deep-extend-0.4.1.tgz#efe4113d08085f4e6f9687759810f807469e2253"
 
@@ -1529,6 +1670,10 @@ depd@0.4.5:
   version "0.4.5"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/depd/-/depd-0.4.5.tgz#1a664b53388b4a6573e8ae67b5f767c693ca97f1"
 
+depd@~1.0.1:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/depd/-/depd-1.0.1.tgz#80aec64c9d6d97e65cc2a9caa93c0aa6abf73aaa"
+
 depd@~1.1.0:
   version "1.1.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/depd/-/depd-1.1.0.tgz#e1bd82c6aab6ced965b97b88b17ed3e528ca18c3"
@@ -1536,6 +1681,12 @@ depd@~1.1.0:
 deprecated@^0.0.1:
   version "0.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/deprecated/-/deprecated-0.0.1.tgz#f9c9af5464afa1e7a971458a8bdef2aa94d5bb19"
+
+deref@~0.6.3:
+  version "0.6.4"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/deref/-/deref-0.6.4.tgz#bd5a96d45dbed3011bb81bdf68ddf54be8e1bd4e"
+  dependencies:
+    deep-extend "^0.4.0"
 
 destroy@~1.0.4:
   version "1.0.4"
@@ -1564,9 +1715,24 @@ di@^0.0.1:
   version "0.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/di/-/di-0.0.1.tgz#806649326ceaa7caa3306d75d985ea2748ba913c"
 
+dicer@0.2.5:
+  version "0.2.5"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/dicer/-/dicer-0.2.5.tgz#5996c086bb33218c812c090bddc09cd12facb70f"
+  dependencies:
+    readable-stream "1.1.x"
+    streamsearch "0.1.2"
+
+diff@1.4.0:
+  version "1.4.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/diff/-/diff-1.4.0.tgz#7f28d2eb9ee7b15a97efd89ce63dcfdaa3ccbabf"
+
 diff@^2.1.1, diff@^2.2.1:
   version "2.2.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/diff/-/diff-2.2.3.tgz#60eafd0d28ee906e4e8ff0a52c1229521033bf99"
+
+discontinuous-range@1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/discontinuous-range/-/discontinuous-range-1.0.0.tgz#e38331f0844bba49b9a9cb71c771585aab1bc65a"
 
 doctrine@^1.2.2:
   version "1.5.0"
@@ -1640,6 +1806,10 @@ dot-case@^2.1.0:
   dependencies:
     no-case "^2.2.0"
 
+dotenv@^2.0.0:
+  version "2.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/dotenv/-/dotenv-2.0.0.tgz#bd759c357aaa70365e01c96b7b0bec08a6e0d949"
+
 duplexer2@0.0.2, duplexer2@~0.0.2:
   version "0.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/duplexer2/-/duplexer2-0.0.2.tgz#c614dcf67e2fb14995a91711e5a617e8a60a31db"
@@ -1649,6 +1819,15 @@ duplexer2@0.0.2, duplexer2@~0.0.2:
 duplexer@~0.1.1:
   version "0.1.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
+
+duplexify@^3.2.0:
+  version "3.5.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/duplexify/-/duplexify-3.5.0.tgz#1aa773002e1578457e9d9d4a50b0ccaaebcbd604"
+  dependencies:
+    end-of-stream "1.0.0"
+    inherits "^2.0.1"
+    readable-stream "^2.0.0"
+    stream-shift "^1.0.0"
 
 each-async@^1.0.0:
   version "1.1.1"
@@ -1667,6 +1846,10 @@ ee-first@1.0.5:
   version "1.0.5"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ee-first/-/ee-first-1.0.5.tgz#8c9b212898d8cd9f1a9436650ce7be202c9e9ff0"
 
+ee-first@1.1.0:
+  version "1.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ee-first/-/ee-first-1.1.0.tgz#6a0d7c6221e490feefd92ec3f441c9ce8cd097f4"
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -1682,6 +1865,12 @@ emojis-list@^2.0.0:
 encodeurl@~1.0.1:
   version "1.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/encodeurl/-/encodeurl-1.0.1.tgz#79e3d58655346909fe6f0f45a5de68103b294d20"
+
+end-of-stream@1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/end-of-stream/-/end-of-stream-1.0.0.tgz#d4596e702734a93e40e9af864319eabd99ff2f0e"
+  dependencies:
+    once "~1.3.0"
 
 end-of-stream@~0.1.5:
   version "0.1.5"
@@ -1785,7 +1974,7 @@ es6-promise-loader@^1.0.1:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/es6-promise-loader/-/es6-promise-loader-1.0.2.tgz#71d47086eaf823ad179c12d0867cb8382050775d"
 
-es6-promise@^3.2.1:
+es6-promise@^3.0.2, es6-promise@^3.2.1:
   version "3.3.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"
 
@@ -1832,6 +2021,10 @@ es6-weak-map@^2.0.1:
 escape-html@~1.0.3:
   version "1.0.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
+
+escape-string-regexp@1.0.2:
+  version "1.0.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/escape-string-regexp/-/escape-string-regexp-1.0.2.tgz#4dbc2fe674e71949caf3fb2695ce7f2dc1d9a8d1"
 
 escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -1949,7 +2142,7 @@ event-emitter@~0.3.4:
     d "~0.1.1"
     es5-ext "~0.10.7"
 
-event-stream@^3.1.7:
+event-stream@^3.1.7, event-stream@~3.3.0:
   version "3.3.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/event-stream/-/event-stream-3.3.4.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
   dependencies:
@@ -2039,7 +2232,7 @@ expose-loader@^0.7.1:
   version "0.7.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/expose-loader/-/expose-loader-0.7.1.tgz#411ee89443aa682f8ea9d9111accf41bfd7e94d9"
 
-express@^4.13.3:
+express@^4.13.3, express@^4.13.4, express@^4.14.0:
   version "4.14.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/express/-/express-4.14.0.tgz#c1ee3f42cdc891fb3dc650a8922d51ec847d0d66"
   dependencies:
@@ -2070,7 +2263,7 @@ express@^4.13.3:
     utils-merge "1.0.0"
     vary "~1.1.0"
 
-extend@3, extend@^3.0.0, extend@~3.0.0:
+extend@3, extend@3.0.0, extend@^3.0.0, extend@~3.0.0:
   version "3.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
@@ -2100,6 +2293,10 @@ extsprintf@1.0.2:
 eyes@0.1.x:
   version "0.1.8"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/eyes/-/eyes-0.1.8.tgz#62cf120234c683785d902348a800ef3e0cc20bc0"
+
+faker@~3.1.0:
+  version "3.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/faker/-/faker-3.1.0.tgz#0f908faf4e6ec02524e54a57e432c5c013e08c9f"
 
 fancy-log@^1.0.0, fancy-log@^1.1.0:
   version "1.2.0"
@@ -2274,6 +2471,10 @@ for-own@^0.1.4:
   dependencies:
     for-in "^0.1.5"
 
+foreachasync@^3.0.0:
+  version "3.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/foreachasync/-/foreachasync-3.0.0.tgz#5502987dc8714be3392097f32e0071c9dee07cf6"
+
 forever-agent@~0.6.1:
   version "0.6.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
@@ -2281,6 +2482,14 @@ forever-agent@~0.6.1:
 fork-stream@~0.0.4:
   version "0.0.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/fork-stream/-/fork-stream-0.0.4.tgz#db849fce77f6708a5f8f386ae533a0907b54ae70"
+
+form-data@1.0.0-rc3:
+  version "1.0.0-rc3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/form-data/-/form-data-1.0.0-rc3.tgz#d35bc62e7fbc2937ae78f948aaa0d38d90607577"
+  dependencies:
+    async "^1.4.0"
+    combined-stream "^1.0.5"
+    mime-types "^2.1.3"
 
 form-data@~1.0.0-rc3, form-data@~1.0.0-rc4:
   version "1.0.1"
@@ -2301,6 +2510,10 @@ form-data@~2.1.1:
 format-number@^2.0.1:
   version "2.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/format-number/-/format-number-2.0.1.tgz#e9231a8743ca64b47d09555dce40296343be66eb"
+
+formidable@~1.0.14:
+  version "1.0.17"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/formidable/-/formidable-1.0.17.tgz#ef5491490f9433b705faa77249c99029ae348559"
 
 forwarded@~0.1.0:
   version "0.1.0"
@@ -2323,6 +2536,15 @@ fs-access@^1.0.0:
 fs-exists-sync@^0.1.0:
   version "0.1.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/fs-exists-sync/-/fs-exists-sync-0.1.0.tgz#982d6893af918e72d08dec9e8673ff2b5a8d6add"
+
+fs-extra@^0.24.0:
+  version "0.24.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/fs-extra/-/fs-extra-0.24.0.tgz#d4e4342a96675cb7846633a6099249332b539952"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^2.1.0"
+    path-is-absolute "^1.0.0"
+    rimraf "^2.2.8"
 
 fs-extra@^0.26.4, fs-extra@^0.26.5:
   version "0.26.7"
@@ -2487,6 +2709,13 @@ glob2base@^0.0.12:
   dependencies:
     find-index "^0.1.1"
 
+glob@3.2.11, glob@^3.2.11:
+  version "3.2.11"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/glob/-/glob-3.2.11.tgz#4a973f635b9190f715d10987d5c00fd2815ebe3d"
+  dependencies:
+    inherits "2"
+    minimatch "0.3"
+
 glob@5.x, glob@^5.0.15, glob@^5.0.3, glob@~5.0.0:
   version "5.0.15"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/glob/-/glob-5.0.15.tgz#1bc936b9e02f4a603fcc222ecf7633d30b8b93b1"
@@ -2507,13 +2736,6 @@ glob@>=5.0.x, glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
     minimatch "^3.0.2"
     once "^1.3.0"
     path-is-absolute "^1.0.0"
-
-glob@^3.2.11:
-  version "3.2.11"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/glob/-/glob-3.2.11.tgz#4a973f635b9190f715d10987d5c00fd2815ebe3d"
-  dependencies:
-    inherits "2"
-    minimatch "0.3"
 
 glob@^4.0.0, glob@^4.3.1:
   version "4.5.3"
@@ -2624,6 +2846,21 @@ glogg@^1.0.0:
   dependencies:
     sparkles "^1.0.0"
 
+got@^3.2.0:
+  version "3.3.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/got/-/got-3.3.1.tgz#e5d0ed4af55fc3eef4d56007769d98192bcb2eca"
+  dependencies:
+    duplexify "^3.2.0"
+    infinity-agent "^2.0.0"
+    is-redirect "^1.0.0"
+    is-stream "^1.0.0"
+    lowercase-keys "^1.0.0"
+    nested-error-stacks "^1.0.0"
+    object-assign "^3.0.0"
+    prepend-http "^1.0.0"
+    read-all-stream "^3.0.0"
+    timed-out "^2.0.0"
+
 graceful-fs@4.1.2, graceful-fs@^4.1.2:
   version "4.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/graceful-fs/-/graceful-fs-4.1.2.tgz#fe2239b7574972e67e41f808823f9bfa4a991e37"
@@ -2649,6 +2886,10 @@ graceful-fs@~2.0.0:
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
+
+growl@1.9.2:
+  version "1.9.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/growl/-/growl-1.9.2.tgz#0ea7743715db8d8de2c5ede1775e1b45ac85c02f"
 
 gulp-autoprefixer@^2.1.0:
   version "2.3.1"
@@ -2904,6 +3145,15 @@ handlebars@4.0.5, handlebars@^4.0.1:
   optionalDependencies:
     uglify-js "^2.6"
 
+handlebars@^3.0.3:
+  version "3.0.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/handlebars/-/handlebars-3.0.3.tgz#0e09651a2f0fb3c949160583710d551f92e6d2ad"
+  dependencies:
+    optimist "^0.6.1"
+    source-map "^0.1.40"
+  optionalDependencies:
+    uglify-js "~2.3"
+
 har-validator@~2.0.2, har-validator@~2.0.6:
   version "2.0.6"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/har-validator/-/har-validator-2.0.6.tgz#cdcbc08188265ad119b6a5a7c8ab70eecfb5d27d"
@@ -3076,7 +3326,7 @@ http-errors@~1.5.0:
     setprototypeof "1.0.1"
     statuses ">= 1.3.0 < 2"
 
-http-proxy-middleware@~0.17.1:
+http-proxy-middleware@^0.17.2, http-proxy-middleware@~0.17.1:
   version "0.17.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/http-proxy-middleware/-/http-proxy-middleware-0.17.2.tgz#572d517a6d2fb1063a469de294eed96066352007"
   dependencies:
@@ -3100,6 +3350,10 @@ http-signature@~1.1.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+http@0.0.0:
+  version "0.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/http/-/http-0.0.0.tgz#86e6326d29c5d039de9fac584a45689f929f4f72"
+
 https-browserify@0.0.0:
   version "0.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/https-browserify/-/https-browserify-0.0.0.tgz#b3ffdfe734b2a3d4a9efd58e8654c91fce86eafd"
@@ -3120,6 +3374,10 @@ iconv-lite@0.4.4:
   version "0.4.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/iconv-lite/-/iconv-lite-0.4.4.tgz#e95f2e41db0735fc21652f7827a5ee32e63c83a8"
 
+iconv-lite@0.4.8:
+  version "0.4.8"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/iconv-lite/-/iconv-lite-0.4.8.tgz#c6019a7595f2cefca702eab694a010bcd9298d20"
+
 icss-replace-symbols@^1.0.2:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/icss-replace-symbols/-/icss-replace-symbols-1.0.2.tgz#cb0b6054eb3af6edc9ab1d62d01933e2d4c8bfa5"
@@ -3131,6 +3389,10 @@ ie-shim@^0.1.0:
 ieee754@^1.1.4:
   version "1.1.8"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
+
+ignore-by-default@^1.0.0:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ignore-by-default/-/ignore-by-default-1.0.1.tgz#48ca6d72f6c6a3af00a9ad4ae6876be3889e2b09"
 
 ignore-loader@^0.1.1:
   version "0.1.2"
@@ -3169,6 +3431,10 @@ indexof@0.0.1:
   version "0.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/indexof/-/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
 
+infinity-agent@^2.0.0:
+  version "2.0.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/infinity-agent/-/infinity-agent-2.0.3.tgz#45e0e2ff7a9eb030b27d62b74b3744b7a7ac4216"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -3191,6 +3457,23 @@ inherits@2.0.1:
 ini@^1.3.4, ini@~1.3.0:
   version "1.3.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
+
+inquirer@^0.10.0:
+  version "0.10.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/inquirer/-/inquirer-0.10.1.tgz#ea25e4ce69ca145e05c99e46dcfec05e4012594a"
+  dependencies:
+    ansi-escapes "^1.1.0"
+    ansi-regex "^2.0.0"
+    chalk "^1.0.0"
+    cli-cursor "^1.0.1"
+    cli-width "^1.0.1"
+    figures "^1.3.5"
+    lodash "^3.3.1"
+    readline2 "^1.0.1"
+    run-async "^0.1.0"
+    rx-lite "^3.1.2"
+    strip-ansi "^3.0.0"
+    through "^2.3.6"
 
 inquirer@^0.12.0:
   version "0.12.0"
@@ -3307,6 +3590,12 @@ is-glob@^3.0.0:
   dependencies:
     is-extglob "^2.1.0"
 
+is-invalid-path@^0.1.0:
+  version "0.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-invalid-path/-/is-invalid-path-0.1.0.tgz#307a855b3cf1a938b44ea70d2c61106053714f34"
+  dependencies:
+    is-glob "^2.0.0"
+
 is-lower-case@^1.1.0:
   version "1.1.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-lower-case/-/is-lower-case-1.1.3.tgz#7e147be4768dc466db3bfb21cc60b31e6ad69393"
@@ -3321,6 +3610,10 @@ is-my-json-valid@^2.10.0, is-my-json-valid@^2.12.4:
     generate-object-property "^1.1.0"
     jsonpointer "^4.0.0"
     xtend "^4.0.0"
+
+is-npm@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-npm/-/is-npm-1.0.0.tgz#f2fb63a65e4905b406c86072765a1a4dc793b9f4"
 
 is-number@^0.1.1:
   version "0.1.1"
@@ -3368,6 +3661,10 @@ is-property@^1.0.0:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-property/-/is-property-1.0.2.tgz#57fe1c4e48474edd65b09911f26b1cd4095dda84"
 
+is-redirect@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-redirect/-/is-redirect-1.0.0.tgz#1d03dded53bd8db0f30c26e4f95d36fc7c87dc24"
+
 is-relative@^0.2.1:
   version "0.2.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-relative/-/is-relative-0.2.1.tgz#d27f4c7d516d175fb610db84bbeef23c3bc97aa5"
@@ -3380,7 +3677,7 @@ is-resolvable@^1.0.0:
   dependencies:
     tryit "^1.0.1"
 
-is-stream@^1.0.1, is-stream@^1.1.0:
+is-stream@^1.0.0, is-stream@^1.0.1, is-stream@^1.1.0:
   version "1.1.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
 
@@ -3409,6 +3706,12 @@ is-upper-case@^1.1.0:
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
+
+is-valid-path@^0.1.1:
+  version "0.1.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/is-valid-path/-/is-valid-path-0.1.1.tgz#110f9ff74c37f663e1ec7915eb451f2db93ac9df"
+  dependencies:
+    is-invalid-path "^0.1.0"
 
 is-windows@^0.2.0:
   version "0.2.0"
@@ -3494,6 +3797,13 @@ isutf8@>=1.0.11:
   version "2.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/isutf8/-/isutf8-2.0.0.tgz#8209e5545cff7b511e491a4347211130ceff5609"
 
+jade@0.26.3:
+  version "0.26.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/jade/-/jade-0.26.3.tgz#8f10d7977d8d79f2f6ff862a81b0513ccb25686c"
+  dependencies:
+    commander "0.6.1"
+    mkdirp "0.3.0"
+
 jasmine-core@~2.4.0:
   version "2.4.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/jasmine-core/-/jasmine-core-2.4.1.tgz#6f83ab3a0f16951722ce07d206c773d57cc838be"
@@ -3524,7 +3834,7 @@ js-tokens@^2.0.0:
   version "2.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/js-tokens/-/js-tokens-2.0.0.tgz#79903f5563ee778cc1162e6dcf1a0027c97f9cb5"
 
-js-yaml@3.x, js-yaml@>=1.0.1, js-yaml@>=3.4.x, js-yaml@^3.1.0, js-yaml@^3.2.6, js-yaml@^3.5.1:
+js-yaml@3.x, js-yaml@>=1.0.1, js-yaml@>=3.4.x, js-yaml@^3.1.0, js-yaml@^3.2.6, js-yaml@^3.3.0, js-yaml@^3.3.1, js-yaml@^3.5.1, js-yaml@^3.5.2:
   version "3.7.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/js-yaml/-/js-yaml-3.7.0.tgz#5c967ddd837a9bfdca5f2de84253abe8a1c03b80"
   dependencies:
@@ -3567,6 +3877,48 @@ json-loader@^0.5.4:
   version "0.5.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json-loader/-/json-loader-0.5.4.tgz#8baa1365a632f58a3c46d20175fc6002c96e37de"
 
+json-refs@^1.1.2:
+  version "1.3.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json-refs/-/json-refs-1.3.0.tgz#6cd18baa1147f27499533a37b64ab05808dd788c"
+  dependencies:
+    native-promise-only "^0.8.0-a"
+    path-loader "^0.2.0"
+    traverse "~0.6.6"
+
+json-refs@^2.1.5, json-refs@^2.1.6:
+  version "2.1.6"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json-refs/-/json-refs-2.1.6.tgz#855666f220d654d3405b23c3bbe4c491060b494d"
+  dependencies:
+    commander "^2.9.0"
+    js-yaml "^3.5.2"
+    native-promise-only "^0.8.1"
+    path-loader "^1.0.1"
+    slash "^1.0.0"
+    uri-js "^2.1.1"
+
+json-schema-deref-sync@^0.3.1:
+  version "0.3.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json-schema-deref-sync/-/json-schema-deref-sync-0.3.3.tgz#0d789a7f66cda4bbfb25fd17b064ba9d1e269faa"
+  dependencies:
+    clone "~1.0.2"
+    dag-map "~1.0.0"
+    is-valid-path "^0.1.1"
+    lodash "^4.7.0"
+    md5 "~2.2.0"
+    memory-cache "~0.1.5"
+    mpath "~0.2.1"
+    traverse "~0.6.6"
+    valid-url "~1.0.9"
+
+json-schema-faker@^0.2.0:
+  version "0.2.16"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json-schema-faker/-/json-schema-faker-0.2.16.tgz#51d3ca48955d8fe734f591d747b72453be5a78f2"
+  dependencies:
+    chance "~1.0.1"
+    deref "~0.6.3"
+    faker "~3.1.0"
+    randexp "~0.4.2"
+
 json-schema@0.2.3:
   version "0.2.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
@@ -3589,6 +3941,10 @@ json3@3.3.2, json3@^3.3.2:
   version "3.3.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json3/-/json3-3.3.2.tgz#3c0434743df93e2f5c42aee7b19bcb483575f4e1"
 
+json5@0.4.0:
+  version "0.4.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json5/-/json5-0.4.0.tgz#054352e4c4c80c86c0923877d449de176a732c8d"
+
 json5@^0.5.0:
   version "0.5.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/json5/-/json5-0.5.0.tgz#9b20715b026cbe3778fd769edccd822d8332a5b2"
@@ -3606,6 +3962,10 @@ jsonify@~0.0.0:
 jsonpointer@^4.0.0:
   version "4.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/jsonpointer/-/jsonpointer-4.0.0.tgz#6661e161d2fc445f19f98430231343722e1fcbd5"
+
+jspath@^0.3.1:
+  version "0.3.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/jspath/-/jspath-0.3.3.tgz#d1f3b4465529a397fe6d18b50d2403d6e3fe61c0"
 
 jsprim@^1.2.2:
   version "1.3.1"
@@ -3716,6 +4076,12 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
+latest-version@^1.0.0:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/latest-version/-/latest-version-1.0.1.tgz#72cfc46e3e8d1be651e1ebb54ea9f6ea96f374bb"
+  dependencies:
+    package-json "^1.0.0"
+
 lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
@@ -3770,6 +4136,10 @@ loader-utils@0.2.x, loader-utils@0.x.x, loader-utils@^0.2.11, loader-utils@^0.2.
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
+lodash-compat@^3.10.0:
+  version "3.10.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash-compat/-/lodash-compat-3.10.2.tgz#c6940128a9d30f8e902cd2cf99fd0cba4ecfc183"
+
 lodash._arraycopy@^3.0.0:
   version "3.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._arraycopy/-/lodash._arraycopy-3.0.0.tgz#76e7b7c1f1fb92547374878a562ed06a3e50f6e1"
@@ -3778,12 +4148,25 @@ lodash._arrayeach@^3.0.0:
   version "3.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._arrayeach/-/lodash._arrayeach-3.0.0.tgz#bab156b2a90d3f1bbd5c653403349e5e5933ef9e"
 
+lodash._arraypool@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._arraypool/-/lodash._arraypool-2.4.1.tgz#e88eecb92e2bb84c9065612fd958a0719cd47f94"
+
 lodash._baseassign@^3.0.0:
   version "3.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._baseassign/-/lodash._baseassign-3.2.0.tgz#8c38a099500f215ad09e59f1722fd0c52bfe0a4e"
   dependencies:
     lodash._basecopy "^3.0.0"
     lodash.keys "^3.0.0"
+
+lodash._basebind@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._basebind/-/lodash._basebind-2.4.1.tgz#e940b9ebdd27c327e0a8dab1b55916c5341e9575"
+  dependencies:
+    lodash._basecreate "~2.4.1"
+    lodash._setbinddata "~2.4.1"
+    lodash._slice "~2.4.1"
+    lodash.isobject "~2.4.1"
 
 lodash._basecallback@^3.0.0:
   version "3.3.1"
@@ -3794,9 +4177,48 @@ lodash._basecallback@^3.0.0:
     lodash.isarray "^3.0.0"
     lodash.pairs "^3.0.0"
 
+lodash._baseclone@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._baseclone/-/lodash._baseclone-2.4.1.tgz#30f823e57e17e3735d383bd62b60b387543b4186"
+  dependencies:
+    lodash._getarray "~2.4.1"
+    lodash._releasearray "~2.4.1"
+    lodash._slice "~2.4.1"
+    lodash.assign "~2.4.1"
+    lodash.foreach "~2.4.1"
+    lodash.forown "~2.4.1"
+    lodash.isarray "~2.4.1"
+    lodash.isobject "~2.4.1"
+
 lodash._basecopy@^3.0.0:
   version "3.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._basecopy/-/lodash._basecopy-3.0.1.tgz#8da0e6a876cf344c0ad8a54882111dd3c5c7ca36"
+
+lodash._basecreate@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._basecreate/-/lodash._basecreate-2.4.1.tgz#f8e6f5b578a9e34e541179b56b8eeebf4a287e08"
+  dependencies:
+    lodash._isnative "~2.4.1"
+    lodash.isobject "~2.4.1"
+    lodash.noop "~2.4.1"
+
+lodash._basecreatecallback@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._basecreatecallback/-/lodash._basecreatecallback-2.4.1.tgz#7d0b267649cb29e7a139d0103b7c11fae84e4851"
+  dependencies:
+    lodash._setbinddata "~2.4.1"
+    lodash.bind "~2.4.1"
+    lodash.identity "~2.4.1"
+    lodash.support "~2.4.1"
+
+lodash._basecreatewrapper@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._basecreatewrapper/-/lodash._basecreatewrapper-2.4.1.tgz#4d31f2e7de7e134fbf2803762b8150b32519666f"
+  dependencies:
+    lodash._basecreate "~2.4.1"
+    lodash._setbinddata "~2.4.1"
+    lodash._slice "~2.4.1"
+    lodash.isobject "~2.4.1"
 
 lodash._baseeach@^3.0.0:
   version "3.0.4"
@@ -3851,6 +4273,15 @@ lodash._createcompounder@^3.0.0:
     lodash.deburr "^3.0.0"
     lodash.words "^3.0.0"
 
+lodash._createwrapper@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._createwrapper/-/lodash._createwrapper-2.4.1.tgz#51d6957973da4ed556e37290d8c1a18c53de1607"
+  dependencies:
+    lodash._basebind "~2.4.1"
+    lodash._basecreatewrapper "~2.4.1"
+    lodash._slice "~2.4.1"
+    lodash.isfunction "~2.4.1"
+
 lodash._escapehtmlchar@~2.4.1:
   version "2.4.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._escapehtmlchar/-/lodash._escapehtmlchar-2.4.1.tgz#df67c3bb6b7e8e1e831ab48bfa0795b92afe899d"
@@ -3860,6 +4291,12 @@ lodash._escapehtmlchar@~2.4.1:
 lodash._escapestringchar@~2.4.1:
   version "2.4.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._escapestringchar/-/lodash._escapestringchar-2.4.1.tgz#ecfe22618a2ade50bfeea43937e51df66f0edb72"
+
+lodash._getarray@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._getarray/-/lodash._getarray-2.4.1.tgz#faf1f7f810fa985a251c2187404481094839e5ee"
+  dependencies:
+    lodash._arraypool "~2.4.1"
 
 lodash._getnative@^3.0.0:
   version "3.9.1"
@@ -3876,6 +4313,10 @@ lodash._isiterateecall@^3.0.0:
 lodash._isnative@~2.4.1:
   version "2.4.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._isnative/-/lodash._isnative-2.4.1.tgz#3ea6404b784a7be836c7b57580e1cdf79b14832c"
+
+lodash._maxpoolsize@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._maxpoolsize/-/lodash._maxpoolsize-2.4.1.tgz#9d482f463b8e66afbe59c2c14edb117060172334"
 
 lodash._objecttypes@~2.4.1:
   version "2.4.1"
@@ -3897,6 +4338,13 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
 
+lodash._releasearray@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._releasearray/-/lodash._releasearray-2.4.1.tgz#a6139630d76d1536b07ddc80962889b082f6a641"
+  dependencies:
+    lodash._arraypool "~2.4.1"
+    lodash._maxpoolsize "~2.4.1"
+
 lodash._reunescapedhtml@~2.4.1:
   version "2.4.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._reunescapedhtml/-/lodash._reunescapedhtml-2.4.1.tgz#747c4fc40103eb3bb8a0976e571f7a2659e93ba7"
@@ -3908,11 +4356,22 @@ lodash._root@^3.0.0:
   version "3.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._root/-/lodash._root-3.0.1.tgz#fba1c4524c19ee9a5f8136b4609f017cf4ded692"
 
+lodash._setbinddata@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._setbinddata/-/lodash._setbinddata-2.4.1.tgz#f7c200cd1b92ef236b399eecf73c648d17aa94d2"
+  dependencies:
+    lodash._isnative "~2.4.1"
+    lodash.noop "~2.4.1"
+
 lodash._shimkeys@~2.4.1:
   version "2.4.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._shimkeys/-/lodash._shimkeys-2.4.1.tgz#6e9cc9666ff081f0b5a6c978b83e242e6949d203"
   dependencies:
     lodash._objecttypes "~2.4.1"
+
+lodash._slice@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash._slice/-/lodash._slice-2.4.1.tgz#745cf41a53597b18f688898544405efa2b06d90f"
 
 lodash.assign@^3.0.0:
   version "3.2.0"
@@ -3926,15 +4385,37 @@ lodash.assign@^4.0.3, lodash.assign@^4.0.6, lodash.assign@^4.2.0:
   version "4.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
 
+lodash.assign@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.assign/-/lodash.assign-2.4.1.tgz#84c39596dd71181a97b0652913a7c9675e49b1aa"
+  dependencies:
+    lodash._basecreatecallback "~2.4.1"
+    lodash._objecttypes "~2.4.1"
+    lodash.keys "~2.4.1"
+
 lodash.assignwith@^4.0.7:
   version "4.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.assignwith/-/lodash.assignwith-4.2.0.tgz#127a97f02adc41751a954d24b0de17e100e038eb"
+
+lodash.bind@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.bind/-/lodash.bind-2.4.1.tgz#5d19fa005c8c4d236faf4742c7b7a1fcabe29267"
+  dependencies:
+    lodash._createwrapper "~2.4.1"
+    lodash._slice "~2.4.1"
 
 lodash.camelcase@^3.0.1:
   version "3.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.camelcase/-/lodash.camelcase-3.0.1.tgz#932c8b87f8a4377897c67197533282f97aeac298"
   dependencies:
     lodash._createcompounder "^3.0.0"
+
+lodash.clonedeep@^2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.clonedeep/-/lodash.clonedeep-2.4.1.tgz#f29203b40b12fee0a45d3631648259bebabc7868"
+  dependencies:
+    lodash._baseclone "~2.4.1"
+    lodash._basecreatecallback "~2.4.1"
 
 lodash.clonedeep@^4.3.2:
   version "4.5.0"
@@ -3945,6 +4426,13 @@ lodash.deburr@^3.0.0:
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.deburr/-/lodash.deburr-3.2.0.tgz#6da8f54334a366a7cf4c4c76ef8d80aa1b365ed5"
   dependencies:
     lodash._root "^3.0.0"
+
+lodash.defaults@^3.1.2:
+  version "3.1.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.defaults/-/lodash.defaults-3.1.2.tgz#c7308b18dbf8bc9372d701a73493c61192bd2e2c"
+  dependencies:
+    lodash.assign "^3.0.0"
+    lodash.restparam "^3.0.0"
 
 lodash.defaults@~2.4.1:
   version "2.4.1"
@@ -3978,6 +4466,29 @@ lodash.find@^3.2.1:
     lodash.isarray "^3.0.0"
     lodash.keys "^3.0.0"
 
+lodash.foreach@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.foreach/-/lodash.foreach-2.4.1.tgz#fe3fc3a34c86c94cab6f9522560282741e016309"
+  dependencies:
+    lodash._basecreatecallback "~2.4.1"
+    lodash.forown "~2.4.1"
+
+lodash.forown@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.forown/-/lodash.forown-2.4.1.tgz#78b41eafe1405fa966459ea4193fd502d084524b"
+  dependencies:
+    lodash._basecreatecallback "~2.4.1"
+    lodash._objecttypes "~2.4.1"
+    lodash.keys "~2.4.1"
+
+lodash.get@^4.1.2:
+  version "4.4.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+
+lodash.identity@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.identity/-/lodash.identity-2.4.1.tgz#6694cffa65fef931f7c31ce86c74597cf560f4f1"
+
 lodash.indexof@^4.0.5:
   version "4.0.5"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.indexof/-/lodash.indexof-4.0.5.tgz#53714adc2cddd6ed87638f893aa9b6c24e31ef3c"
@@ -3990,17 +4501,27 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
 
+lodash.isarray@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.isarray/-/lodash.isarray-2.4.1.tgz#b52a326c1f62f6d7da73a31d5401df6ef44f0fa1"
+  dependencies:
+    lodash._isnative "~2.4.1"
+
 lodash.isempty@^4.2.1:
   version "4.4.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
 
-lodash.isequal@^4.2.0:
+lodash.isequal@^4.2.0, lodash.isequal@^4.4.0:
   version "4.4.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.isequal/-/lodash.isequal-4.4.0.tgz#6295768e98e14dc15ce8d362ef6340db82852031"
 
 lodash.isfunction@^3.0.8:
   version "3.0.8"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.isfunction/-/lodash.isfunction-3.0.8.tgz#4db709fc81bc4a8fd7127a458a5346c5cdce2c6b"
+
+lodash.isfunction@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.isfunction/-/lodash.isfunction-2.4.1.tgz#2cfd575c73e498ab57e319b77fa02adef13a94d1"
 
 lodash.isobject@~2.4.1:
   version "2.4.1"
@@ -4075,6 +4596,10 @@ lodash.merge@^3.3.2:
     lodash.keysin "^3.0.0"
     lodash.toplainobject "^3.0.0"
 
+lodash.noop@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.noop/-/lodash.noop-2.4.1.tgz#4fb54f816652e5ae10e8f72f717a388c7326538a"
+
 lodash.pairs@^3.0.0:
   version "3.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.pairs/-/lodash.pairs-3.0.1.tgz#bbe08d5786eeeaa09a15c91ebf0dcb7d2be326a9"
@@ -4088,6 +4613,12 @@ lodash.pick@^4.2.1:
 lodash.restparam@^3.0.0:
   version "3.6.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
+
+lodash.support@~2.4.1:
+  version "2.4.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash.support/-/lodash.support-2.4.1.tgz#320e0b67031673c28d7a2bb5d9e0331a45240515"
+  dependencies:
+    lodash._isnative "~2.4.1"
 
 lodash.template@^2.4.1:
   version "2.4.1"
@@ -4148,17 +4679,21 @@ lodash.words@^3.0.0:
   dependencies:
     lodash._root "^3.0.0"
 
-lodash@^3.1.0, lodash@^3.3.0, lodash@^3.8.0:
+lodash@3.10.1, lodash@^3.1.0, lodash@^3.10.0, lodash@^3.3.0, lodash@^3.3.1, lodash@^3.5.0, lodash@^3.6.0, lodash@^3.8.0, lodash@^3.9.2:
   version "3.10.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.0.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.2, lodash@^4.16.4, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.0.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.2, lodash@^4.16.4, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1, lodash@^4.7.0:
   version "4.17.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash/-/lodash-4.17.0.tgz#93f4466e5ab73e5a1f1216c34eea11535f0a8df5"
 
 lodash@~1.0.1:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash/-/lodash-1.0.2.tgz#8f57560c83b59fc270bd3d561b690043430e2551"
+
+lodash@~2.4.1:
+  version "2.4.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
 
 lodash@~4.16.4:
   version "4.16.6"
@@ -4192,6 +4727,10 @@ lower-case@^1.1.0, lower-case@^1.1.1, lower-case@^1.1.2:
   version "1.1.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lower-case/-/lower-case-1.1.3.tgz#c92393d976793eee5ba4edb583cf8eae35bd9bfb"
 
+lowercase-keys@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lowercase-keys/-/lowercase-keys-1.0.0.tgz#4e3366b39e7f5457e35f1324bdf6f88d0bfc7306"
+
 lru-cache@2, lru-cache@^2.5.0:
   version "2.7.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
@@ -4200,7 +4739,7 @@ lru-cache@2.2.x:
   version "2.2.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lru-cache/-/lru-cache-2.2.4.tgz#6c658619becf14031d0d0b594b16042ce4dc063d"
 
-lru-cache@^4.0.0, lru-cache@^4.0.1:
+lru-cache@^4.0.1:
   version "4.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/lru-cache/-/lru-cache-4.0.1.tgz#1343955edaf2e37d9b9e7ee7241e27c4b9fb72be"
   dependencies:
@@ -4210,6 +4749,44 @@ lru-cache@^4.0.0, lru-cache@^4.0.1:
 macaddress@^0.2.8:
   version "0.2.8"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
+
+machine@^10.3.1:
+  version "10.4.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/machine/-/machine-10.4.0.tgz#9b562ce467821332828a377d190eb936b4e407b2"
+  dependencies:
+    convert-to-ecmascript-compatible-varname "^0.1.0"
+    debug "^2.1.1"
+    lodash "^3.8.0"
+    object-hash "~0.3.0"
+    rttc "^7.2.1"
+    switchback "^2.0.0"
+
+machine@^9.0.3:
+  version "9.1.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/machine/-/machine-9.1.2.tgz#84bf8fb7766a96aa65aa96d66e9509eb6a05a834"
+  dependencies:
+    convert-to-ecmascript-compatible-varname "^0.1.0"
+    debug "^2.1.1"
+    lodash "^3.8.0"
+    object-hash "~0.3.0"
+    rttc "^4.0.0"
+    switchback "^1.1.3"
+
+machinepack-http@^2.3.0:
+  version "2.4.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/machinepack-http/-/machinepack-http-2.4.0.tgz#0a785c17dc6b9c1b9ac40881beefae8ae74855e9"
+  dependencies:
+    lodash "^3.9.2"
+    machine "^10.3.1"
+    machinepack-urls "^4.0.0"
+    request "^2.55.0"
+
+machinepack-urls@^4.0.0:
+  version "4.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/machinepack-urls/-/machinepack-urls-4.1.0.tgz#d25e32e97c3c2cb89568ba8c98d229d5c305e391"
+  dependencies:
+    lodash "^3.9.2"
+    machine "^9.0.3"
 
 make-error@^1.1.1:
   version "1.2.1"
@@ -4241,7 +4818,7 @@ math-expression-evaluator@^1.2.14:
   dependencies:
     lodash.indexof "^4.0.5"
 
-md5@^2.0.0:
+md5@^2.0.0, md5@~2.2.0:
   version "2.2.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/md5/-/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
   dependencies:
@@ -4252,6 +4829,10 @@ md5@^2.0.0:
 media-typer@0.3.0:
   version "0.3.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
+
+memory-cache@~0.1.5:
+  version "0.1.6"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/memory-cache/-/memory-cache-0.1.6.tgz#2ed9933ed7a8c718249be7366f7ca8749acf8a24"
 
 memory-fs@^0.2.0:
   version "0.2.0"
@@ -4293,7 +4874,7 @@ merge@~1.2.0:
   version "1.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/merge/-/merge-1.2.0.tgz#7531e39d4949c281a66b8c5a6e0265e8b05894da"
 
-methods@~1.1.2:
+methods@1.x, methods@~1.1.1, methods@~1.1.2:
   version "1.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
 
@@ -4323,7 +4904,7 @@ mime-db@~1.12.0:
   version "1.12.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mime-db/-/mime-db-1.12.0.tgz#3d0c63180f458eb10d325aaa37d7c58ae312e9d7"
 
-mime-types@^2.1.11, mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.7:
+mime-types@^2.1.11, mime-types@^2.1.12, mime-types@^2.1.3, mime-types@~2.1.11, mime-types@~2.1.7:
   version "2.1.12"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mime-types/-/mime-types-2.1.12.tgz#152ba256777020dd4663f54c2e7bc26381e71729"
   dependencies:
@@ -4392,21 +4973,44 @@ minimist@^1.1.0, minimist@^1.1.3, minimist@^1.2.0:
   version "1.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
+mkdirp@0.3.0:
+  version "0.3.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mkdirp/-/mkdirp-0.3.0.tgz#1bbf5ab1ba827af23575143490426455f481fe1e"
+
 mkdirp@0.5.0:
   version "0.5.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mkdirp/-/mkdirp-0.5.0.tgz#1d73076a6df986cd9344e15e71fcc05a4c9abf12"
   dependencies:
     minimist "0.0.8"
 
-mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
+mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
 
+mocha@^2.2.1:
+  version "2.5.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mocha/-/mocha-2.5.3.tgz#161be5bdeb496771eb9b35745050b622b5aefc58"
+  dependencies:
+    commander "2.3.0"
+    debug "2.2.0"
+    diff "1.4.0"
+    escape-string-regexp "1.0.2"
+    glob "3.2.11"
+    growl "1.9.2"
+    jade "0.26.3"
+    mkdirp "0.5.1"
+    supports-color "1.2.0"
+    to-iso-string "0.0.2"
+
 moment@^2.11.2:
   version "2.16.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
+
+mpath@~0.2.1:
+  version "0.2.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mpath/-/mpath-0.2.1.tgz#3a4e829359801de96309c27a6b2e102e89f9e96e"
 
 ms@0.6.2:
   version "0.6.2"
@@ -4419,6 +5023,19 @@ ms@0.7.1:
 ms@0.7.2:
   version "0.7.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
+
+multer@^1.0.6, multer@^1.1.0:
+  version "1.2.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/multer/-/multer-1.2.0.tgz#5be1a45259fb04d2753d33c7c2a1caf5224705a2"
+  dependencies:
+    append-field "^0.1.0"
+    busboy "^0.2.11"
+    concat-stream "^1.5.0"
+    mkdirp "^0.5.1"
+    object-assign "^3.0.0"
+    on-finished "^2.3.0"
+    type-is "^1.6.4"
+    xtend "^4.0.0"
 
 multimatch@2.0.0:
   version "2.0.0"
@@ -4433,6 +5050,10 @@ multipipe@^0.1.0, multipipe@^0.1.2:
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/multipipe/-/multipipe-0.1.2.tgz#2a8f2ddf70eed564dff2d57f1e1a137d9f05078b"
   dependencies:
     duplexer2 "0.0.2"
+
+mustache@^2.1.3:
+  version "2.3.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/mustache/-/mustache-2.3.0.tgz#4028f7778b17708a489930a6e52ac3bca0da41d0"
 
 mute-stream@0.0.5:
   version "0.0.5"
@@ -4449,6 +5070,10 @@ mz@^2.3.1:
 nan@^2.0.0, nan@^2.3.0, nan@^2.3.2:
   version "2.4.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/nan/-/nan-2.4.0.tgz#fb3c59d45fe4effe215f0b890f8adf6eb32d2232"
+
+native-promise-only@^0.8.0-a, native-promise-only@^0.8.1:
+  version "0.8.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/native-promise-only/-/native-promise-only-0.8.1.tgz#20a318c30cb45f71fe7adfbf7b21c99c1472ef11"
 
 natives@^1.1.0:
   version "1.1.0"
@@ -4467,6 +5092,12 @@ ncname@1.0.x:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+nested-error-stacks@^1.0.0:
+  version "1.0.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/nested-error-stacks/-/nested-error-stacks-1.0.2.tgz#19f619591519f096769a5ba9a86e6eeec823c3cf"
+  dependencies:
+    inherits "~2.0.1"
 
 no-case@^2.2.0:
   version "2.3.0"
@@ -4541,27 +5172,9 @@ node-pre-gyp@^0.6.29, node-pre-gyp@^0.6.4:
     tar "~2.2.1"
     tar-pack "~3.3.0"
 
-node-sass@3.7.0:
-  version "3.7.0"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/node-sass/-/node-sass-3.7.0.tgz#09a1824b2f60eba5085998b73f2d60d41f209ffc"
-  dependencies:
-    async-foreach "^0.1.3"
-    chalk "^1.1.1"
-    cross-spawn-async "^2.1.9"
-    gaze "^1.0.0"
-    get-stdin "^4.0.1"
-    glob "^7.0.3"
-    in-publish "^2.0.0"
-    meow "^3.7.0"
-    mkdirp "^0.5.1"
-    nan "^2.3.2"
-    node-gyp "^3.3.1"
-    request "^2.61.0"
-    sass-graph "^2.1.1"
-
-node-sass@^3.4.2:
-  version "3.12.4"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/node-sass/-/node-sass-3.12.4.tgz#f234d4c879fb16ba71aa19469a9ac78be8bc0960"
+node-sass@3.12.2, node-sass@^3.4.2:
+  version "3.12.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/node-sass/-/node-sass-3.12.2.tgz#dc6dfe0463ec6968b8b7776f30d2c5d30a967b84"
   dependencies:
     async-foreach "^0.1.3"
     chalk "^1.1.1"
@@ -4607,9 +5220,30 @@ node.extend@^1.1.3:
   dependencies:
     is "^3.1.0"
 
+nodemon@^1.3.7:
+  version "1.11.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/nodemon/-/nodemon-1.11.0.tgz#226c562bd2a7b13d3d7518b49ad4828a3623d06c"
+  dependencies:
+    chokidar "^1.4.3"
+    debug "^2.2.0"
+    es6-promise "^3.0.2"
+    ignore-by-default "^1.0.0"
+    lodash.defaults "^3.1.2"
+    minimatch "^3.0.0"
+    ps-tree "^1.0.1"
+    touch "1.0.0"
+    undefsafe "0.0.3"
+    update-notifier "0.5.0"
+
 "nopt@2 || 3", nopt@3.x, nopt@~3.0.6:
   version "3.0.6"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/nopt/-/nopt-3.0.6.tgz#c6465dbf08abcd4db359317f79ac68a646b28ff9"
+  dependencies:
+    abbrev "1"
+
+nopt@~1.0.10:
+  version "1.0.10"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/nopt/-/nopt-1.0.10.tgz#6ddd21bd2a31417b92727dd585f8a6f37608ebee"
   dependencies:
     abbrev "1"
 
@@ -4695,6 +5329,10 @@ object-component@0.0.3:
   version "0.0.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/object-component/-/object-component-0.0.3.tgz#f0c69aa50efc95b866c186f400a33769cb2f1291"
 
+object-hash@~0.3.0:
+  version "0.3.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/object-hash/-/object-hash-0.3.0.tgz#548208e43b36a44e4da30bad6c56ac53b885e744"
+
 object.omit@^2.0.0:
   version "2.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/object.omit/-/object.omit-2.0.1.tgz#1a9c744829f39dbb858c76ca3579ae2a54ebd1fa"
@@ -4708,11 +5346,17 @@ on-finished@2.1.0:
   dependencies:
     ee-first "1.0.5"
 
-on-finished@~2.3.0:
+on-finished@^2.3.0, on-finished@~2.3.0:
   version "2.3.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
   dependencies:
     ee-first "1.1.1"
+
+on-finished@~2.2.1:
+  version "2.2.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/on-finished/-/on-finished-2.2.1.tgz#5c85c1cc36299f78029653f667f27b6b99ebc029"
+  dependencies:
+    ee-first "1.1.0"
 
 on-headers@~1.0.1:
   version "1.0.1"
@@ -4743,6 +5387,12 @@ optimist@>=0.3.4, optimist@^0.6.1, optimist@~0.6.0, optimist@~0.6.1:
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
   dependencies:
     minimist "~0.0.1"
+    wordwrap "~0.0.2"
+
+optimist@~0.3.5:
+  version "0.3.7"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/optimist/-/optimist-0.3.7.tgz#c90941ad59e4273328923074d2cf2e7cbc6ec0d9"
+  dependencies:
     wordwrap "~0.0.2"
 
 optionator@^0.8.1, optionator@^0.8.2:
@@ -4796,12 +5446,19 @@ os-tmpdir@^1.0.0:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
 
-osenv@0, osenv@^0.1.3:
+osenv@0, osenv@^0.1.0, osenv@^0.1.3:
   version "0.1.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/osenv/-/osenv-0.1.3.tgz#83cf05c6d6458fc4d5ac6362ea325d92f2754217"
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
+
+package-json@^1.0.0:
+  version "1.2.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/package-json/-/package-json-1.2.0.tgz#c8ecac094227cdf76a316874ed05e27cc939a0e0"
+  dependencies:
+    got "^3.2.0"
+    registry-url "^3.0.0"
 
 pako@~0.2.0:
   version "0.2.9"
@@ -4868,7 +5525,7 @@ parseuri@0.0.4:
   dependencies:
     better-assert "~1.0.0"
 
-parseurl@~1.3.0, parseurl@~1.3.1:
+parseurl@^1.3.0, parseurl@~1.3.0, parseurl@~1.3.1:
   version "1.3.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/parseurl/-/parseurl-1.3.1.tgz#c8ab8c9223ba34888aa64a297b28853bec18da56"
 
@@ -4922,6 +5579,20 @@ path-is-inside@^1.0.1:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path-is-inside/-/path-is-inside-1.0.2.tgz#365417dede44430d1c11af61027facf074bdfc53"
 
+path-loader@^0.2.0:
+  version "0.2.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path-loader/-/path-loader-0.2.1.tgz#73848b0374bfb66be54a3f70ecdb084b3263bc9d"
+  dependencies:
+    native-promise-only "^0.8.1"
+    superagent "^1.5.0"
+
+path-loader@^1.0.1:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path-loader/-/path-loader-1.0.1.tgz#88c9ece46f1f98b3ab40d0655f458be446556650"
+  dependencies:
+    native-promise-only "^0.8.1"
+    superagent "^1.6.1"
+
 path-root-regex@^0.1.0:
   version "0.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path-root-regex/-/path-root-regex-0.1.2.tgz#bfccdc8df5b12dc52c8b43ec38d18d72c04ba96d"
@@ -4936,6 +5607,12 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
+path-to-regexp@^1.2.0:
+  version "1.7.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
+  dependencies:
+    isarray "0.0.1"
+
 path-type@^1.0.0:
   version "1.1.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path-type/-/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -4947,6 +5624,13 @@ path-type@^1.0.0:
 path@^0.11.14:
   version "0.11.14"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path/-/path-0.11.14.tgz#cbc7569355cb3c83afeb4ace43ecff95231e5a7d"
+
+path@^0.12.7:
+  version "0.12.7"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/path/-/path-0.12.7.tgz#d4dc2a506c4ce2197eb481ebfcd5b36c0140b10f"
+  dependencies:
+    process "^0.11.1"
+    util "^0.10.3"
 
 pause-stream@0.0.11:
   version "0.0.11"
@@ -4993,6 +5677,10 @@ pinkie-promise@^2.0.0:
 pinkie@^2.0.0:
   version "2.0.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
+
+pipeworks@^1.3.0:
+  version "1.3.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/pipeworks/-/pipeworks-1.3.1.tgz#f8436f8565ed1d97bf3a80632a5397bfd353385f"
 
 pluralize@^1.2.1:
   version "1.2.1"
@@ -5275,13 +5963,19 @@ process-nextick-args@^1.0.6, process-nextick-args@~1.0.6:
   version "1.0.7"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
 
-process@^0.11.0, process@~0.11.0:
+process@^0.11.0, process@^0.11.1, process@~0.11.0:
   version "0.11.9"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/process/-/process-0.11.9.tgz#7bd5ad21aa6253e7da8682264f1e11d11c0318c1"
 
 progress@^1.1.8, progress@~1.1.8:
   version "1.1.8"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
+
+promise@^7.1.1:
+  version "7.1.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/promise/-/promise-7.1.1.tgz#489654c692616b8aa55b0724fa809bb7db49c5bf"
+  dependencies:
+    asap "~2.0.3"
 
 protractor@^3.2.2:
   version "3.3.0"
@@ -5309,6 +6003,12 @@ proxy-addr@~1.1.2:
 prr@~0.0.0:
   version "0.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/prr/-/prr-0.0.0.tgz#1a84b85908325501411853d0081ee3fa86e2926a"
+
+ps-tree@^1.0.1:
+  version "1.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ps-tree/-/ps-tree-1.1.0.tgz#b421b24140d6203f1ed3c76996b4427b08e8c014"
+  dependencies:
+    event-stream "~3.3.0"
 
 pseudomap@^1.0.1:
   version "1.0.2"
@@ -5341,6 +6041,14 @@ qs@2.2.4:
   version "2.2.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-2.2.4.tgz#2e9fbcd34b540e3421c924ecd01e90aa975319c8"
 
+qs@2.3.3:
+  version "2.3.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-2.3.3.tgz#e9e85adbe75da0bbe4c8e0476a086290f863b404"
+
+qs@2.4.2:
+  version "2.4.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-2.4.2.tgz#f7ce788e5777df0b5010da7f7c4e73ba32470f5a"
+
 qs@6.2.0, qs@~6.2.0:
   version "6.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-6.2.0.tgz#3b7848c03c2dece69a9522b0fae8c4126d745f3b"
@@ -5349,13 +6057,17 @@ qs@^1.2.1:
   version "1.2.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-1.2.2.tgz#19b57ff24dc2a99ce1f8bdf6afcda59f8ef61f88"
 
+qs@^4.0.0:
+  version "4.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-4.0.0.tgz#c31d9b74ec27df75e543a86c78728ed8d4623607"
+
+qs@^5.2.0, qs@~5.2.0:
+  version "5.2.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
+
 qs@~2.2.3:
   version "2.2.5"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-2.2.5.tgz#1088abaf9dcc0ae5ae45b709e6c6b5888b23923c"
-
-qs@~5.2.0:
-  version "5.2.1"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/qs/-/qs-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
 
 qs@~6.3.0:
   version "6.3.0"
@@ -5380,6 +6092,13 @@ querystringify@0.0.x:
   version "0.0.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/querystringify/-/querystringify-0.0.4.tgz#0cf7f84f9463ff0ae51c4c4b142d95be37724d9c"
 
+randexp@~0.4.2:
+  version "0.4.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/randexp/-/randexp-0.4.3.tgz#1712d4f9cdd57e0005c13064e0e208fba8e58d50"
+  dependencies:
+    discontinuous-range "1.0.0"
+    ret "~0.1.10"
+
 randomatic@^1.1.3:
   version "1.1.5"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/randomatic/-/randomatic-1.1.5.tgz#5e9ef5f2d573c67bd2b8124ae90b5156e457840b"
@@ -5398,6 +6117,13 @@ raw-body@1.3.0:
     bytes "1"
     iconv-lite "0.4.4"
 
+raw-body@~2.0.1:
+  version "2.0.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/raw-body/-/raw-body-2.0.2.tgz#a2c2f98c8531cee99c63d8d238b7de97bb659fca"
+  dependencies:
+    bytes "2.1.0"
+    iconv-lite "0.4.8"
+
 raw-body@~2.1.7:
   version "2.1.7"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/raw-body/-/raw-body-2.1.7.tgz#adfeace2e4fb3098058014d08c072dcc59758774"
@@ -5410,7 +6136,7 @@ raw-loader@0.5.1:
   version "0.5.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/raw-loader/-/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
 
-rc@~1.1.6:
+rc@^1.0.1, rc@~1.1.6:
   version "1.1.6"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/rc/-/rc-1.1.6.tgz#43651b76b6ae53b5c802f1151fa3fc3b059969c9"
   dependencies:
@@ -5418,6 +6144,13 @@ rc@~1.1.6:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
+
+read-all-stream@^3.0.0:
+  version "3.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/read-all-stream/-/read-all-stream-3.1.0.tgz#35c3e177f2078ef789ee4bfafa4373074eaef4fa"
+  dependencies:
+    pinkie-promise "^2.0.0"
+    readable-stream "^2.0.0"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -5443,7 +6176,16 @@ readable-stream@1.0, "readable-stream@>=1.0.33-1 <1.1.0-0", readable-stream@~1.0
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^1.0.27-1, readable-stream@^1.1.13, readable-stream@~1.1.9:
+readable-stream@1.0.27-1:
+  version "1.0.27-1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/readable-stream/-/readable-stream-1.0.27-1.tgz#6b67983c20357cefd07f0165001a16d710d91078"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
+
+readable-stream@1.1.x, readable-stream@^1.0.27-1, readable-stream@^1.1.13, readable-stream@~1.1.9:
   version "1.1.14"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
   dependencies:
@@ -5452,7 +6194,7 @@ readable-stream@^1.0.27-1, readable-stream@^1.1.13, readable-stream@~1.1.9:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2:
+readable-stream@^2.0.0, "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2:
   version "2.2.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/readable-stream/-/readable-stream-2.2.2.tgz#a9e6fec3c7dda85f8bb1b3ba7028604556fc825e"
   dependencies:
@@ -5517,6 +6259,10 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
+reduce-component@1.0.1:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/reduce-component/-/reduce-component-1.0.1.tgz#e0c93542c574521bea13df0f9488ed82ab77c5da"
+
 reduce-css-calc@^1.2.6:
   version "1.3.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/reduce-css-calc/-/reduce-css-calc-1.3.0.tgz#747c914e049614a4c9cfbba629871ad1d2927716"
@@ -5553,6 +6299,12 @@ regexpu-core@^1.0.0:
     regenerate "^1.2.1"
     regjsgen "^0.2.0"
     regjsparser "^0.1.4"
+
+registry-url@^3.0.0:
+  version "3.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/registry-url/-/registry-url-3.1.0.tgz#3d4ef870f73dde1d77f0cf9a381432444e174942"
+  dependencies:
+    rc "^1.0.1"
 
 regjsgen@^0.2.0:
   version "0.2.0"
@@ -5604,6 +6356,12 @@ repeat-string@^1.5.2:
   version "1.6.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
 
+repeating@^1.1.2:
+  version "1.1.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/repeating/-/repeating-1.1.3.tgz#3d4114218877537494f97f77f9785fab810fa4ac"
+  dependencies:
+    is-finite "^1.0.0"
+
 repeating@^2.0.0:
   version "2.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/repeating/-/repeating-2.0.1.tgz#5214c53a926d3552707527fbab415dbc08d06dda"
@@ -5624,32 +6382,7 @@ request-progress@~2.0.1:
   dependencies:
     throttleit "^1.0.0"
 
-request@2, request@^2.75.0:
-  version "2.78.0"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/request/-/request-2.78.0.tgz#e1c8dec346e1c81923b24acdb337f11decabe9cc"
-  dependencies:
-    aws-sign2 "~0.6.0"
-    aws4 "^1.2.1"
-    caseless "~0.11.0"
-    combined-stream "~1.0.5"
-    extend "~3.0.0"
-    forever-agent "~0.6.1"
-    form-data "~2.1.1"
-    har-validator "~2.0.6"
-    hawk "~3.1.3"
-    http-signature "~1.1.0"
-    is-typedarray "~1.0.0"
-    isstream "~0.1.2"
-    json-stringify-safe "~5.0.1"
-    mime-types "~2.1.7"
-    node-uuid "~1.4.7"
-    oauth-sign "~0.8.1"
-    qs "~6.3.0"
-    stringstream "~0.0.4"
-    tough-cookie "~2.3.0"
-    tunnel-agent "~0.4.1"
-
-request@^2.61.0, request@~2.74.0:
+request@2, request@^2.47.0, request@^2.61.0, request@~2.74.0:
   version "2.74.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/request/-/request-2.74.0.tgz#7693ca768bbb0ea5c8ce08c084a45efa05b892ab"
   dependencies:
@@ -5671,6 +6404,31 @@ request@^2.61.0, request@~2.74.0:
     node-uuid "~1.4.7"
     oauth-sign "~0.8.1"
     qs "~6.2.0"
+    stringstream "~0.0.4"
+    tough-cookie "~2.3.0"
+    tunnel-agent "~0.4.1"
+
+request@^2.55.0, request@^2.75.0:
+  version "2.78.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/request/-/request-2.78.0.tgz#e1c8dec346e1c81923b24acdb337f11decabe9cc"
+  dependencies:
+    aws-sign2 "~0.6.0"
+    aws4 "^1.2.1"
+    caseless "~0.11.0"
+    combined-stream "~1.0.5"
+    extend "~3.0.0"
+    forever-agent "~0.6.1"
+    form-data "~2.1.1"
+    har-validator "~2.0.6"
+    hawk "~3.1.3"
+    http-signature "~1.1.0"
+    is-typedarray "~1.0.0"
+    isstream "~0.1.2"
+    json-stringify-safe "~5.0.1"
+    mime-types "~2.1.7"
+    node-uuid "~1.4.7"
+    oauth-sign "~0.8.1"
+    qs "~6.3.0"
     stringstream "~0.0.4"
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
@@ -5745,6 +6503,10 @@ restore-cursor@^1.0.1:
     exit-hook "^1.0.0"
     onetime "^1.0.0"
 
+ret@~0.1.10:
+  version "0.1.12"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ret/-/ret-0.1.12.tgz#29348dc8b879393692dc47574494c38a26bf648f"
+
 right-align@^0.1.1:
   version "0.1.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/right-align/-/right-align-0.1.3.tgz#61339b722fe6a3515689210d24e14c96148613ef"
@@ -5760,6 +6522,18 @@ rimraf@2, rimraf@^2.2.8, rimraf@^2.3.3, rimraf@^2.4.4, rimraf@^2.5.2, rimraf@~2.
 ripemd160@0.2.0:
   version "0.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ripemd160/-/ripemd160-0.2.0.tgz#2bf198bde167cacfa51c0a928e84b68bbe171fce"
+
+rttc@^4.0.0:
+  version "4.5.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/rttc/-/rttc-4.5.2.tgz#ba6a3e92898b4274f123bbac49485d7616a37cbc"
+  dependencies:
+    lodash "^3.8.0"
+
+rttc@^7.2.1:
+  version "7.4.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/rttc/-/rttc-7.4.0.tgz#bc9cacd46add923deb62495a01934eb7ef619fb4"
+  dependencies:
+    lodash "^3.8.0"
 
 run-async@^0.1.0:
   version "0.1.0"
@@ -5791,6 +6565,12 @@ rxjs@5.0.0-beta.11:
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/rxjs/-/rxjs-5.0.0-beta.11.tgz#abac447d6f801c1bf066b7f0e49c65d2fee36ca2"
   dependencies:
     symbol-observable "^1.0.1"
+
+sanitize-filename@^1.3.0:
+  version "1.6.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/sanitize-filename/-/sanitize-filename-1.6.1.tgz#612da1c96473fa02dccda92dcd5b4ab164a6772a"
+  dependencies:
+    truncate-utf8-bytes "^1.0.0"
 
 sass-graph@^2.1.1:
   version "2.1.2"
@@ -5832,11 +6612,17 @@ selenium-webdriver@2.52.0:
     ws "^1.0.1"
     xml2js "0.4.4"
 
-"semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@~5.3.0:
+semver-diff@^2.0.0:
+  version "2.1.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/semver-diff/-/semver-diff-2.1.0.tgz#4bbb8437c8d37e4b0cf1a68fd726ec6d645d6d36"
+  dependencies:
+    semver "^5.0.3"
+
+"semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@~5.3.0:
   version "5.3.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
-semver@^4.1.0, semver@~4.3.3:
+"semver@2.x || 3.x || 4 || 5", semver@^4.1.0, semver@~4.3.3:
   version "4.3.6"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
 
@@ -5891,7 +6677,7 @@ serve-index@^1.7.2:
     mime-types "~2.1.11"
     parseurl "~1.3.1"
 
-serve-static@~1.11.1:
+serve-static@^1.10.0, serve-static@^1.9.2, serve-static@~1.11.1:
   version "1.11.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/serve-static/-/serve-static-1.11.1.tgz#d6cce7693505f733c759de57befc1af76c0f0805"
   dependencies:
@@ -5932,9 +6718,17 @@ signal-exit@^3.0.0:
   version "3.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/signal-exit/-/signal-exit-3.0.1.tgz#5a4c884992b63a7acd9badb7894c3ee9cfccad81"
 
+slash@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
+
 slice-ansi@0.0.4:
   version "0.0.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/slice-ansi/-/slice-ansi-0.0.4.tgz#edbf8903f66f7ce2f8eafd6ceed65e264c831b35"
+
+slide@^1.1.5:
+  version "1.1.6"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
 
 snake-case@^1.1.0:
   version "1.1.2"
@@ -6062,7 +6856,7 @@ source-map-url@~0.3.0:
   version "0.3.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/source-map-url/-/source-map-url-0.3.0.tgz#7ecaf13b57bcd09da8a40c5d269db33799d4aaf9"
 
-source-map@0.1.x, source-map@^0.1.38, source-map@^0.1.39, source-map@^0.1.41, source-map@~0.1.33:
+source-map@0.1.x, source-map@^0.1.38, source-map@^0.1.39, source-map@^0.1.40, source-map@^0.1.41, source-map@~0.1.33, source-map@~0.1.7:
   version "0.1.43"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/source-map/-/source-map-0.1.43.tgz#c24bc146ca517c1471f5dacbe2571b2b7f9e3346"
   dependencies:
@@ -6083,6 +6877,10 @@ source-map@~0.2.0:
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/source-map/-/source-map-0.2.0.tgz#dab73fbcfc2ba819b4de03bd6f6eaa48164b3f9d"
   dependencies:
     amdefine ">=0.0.4"
+
+spark-md5@^1.0.0:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/spark-md5/-/spark-md5-1.0.1.tgz#c4b9a8d41cf7b0845423a821824f8dffa0f51b7c"
 
 sparkles@^1.0.0:
   version "1.0.0"
@@ -6133,6 +6931,13 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
+ssl-root-cas@^1.1.10:
+  version "1.2.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/ssl-root-cas/-/ssl-root-cas-1.2.3.tgz#8f4ec5cecabe35e764f09d950c146afd1c905d21"
+  dependencies:
+    bluebird "^3.4.1"
+    request "^2.47.0"
+
 stack-trace@0.0.x:
   version "0.0.9"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/stack-trace/-/stack-trace-0.0.9.tgz#a8f6eaeca90674c333e7c43953f275b451510695"
@@ -6166,9 +6971,23 @@ stream-consume@~0.1.0:
   version "0.1.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/stream-consume/-/stream-consume-0.1.0.tgz#a41ead1a6d6081ceb79f65b061901b6d8f3d1d0f"
 
+stream-shift@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
+
+streamsearch@0.1.2:
+  version "0.1.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
+
 strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
+
+string-length@^1.0.0:
+  version "1.0.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/string-length/-/string-length-1.0.1.tgz#56970fb1c38558e9e70b728bf3de269ac45adfac"
+  dependencies:
+    strip-ansi "^3.0.0"
 
 string-width@^1.0.1:
   version "1.0.2"
@@ -6184,6 +7003,10 @@ string-width@^2.0.0:
   dependencies:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^3.0.0"
+
+string@^3.3.0:
+  version "3.3.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/string/-/string-3.3.3.tgz#5ea211cd92d228e184294990a6cc97b366a77cb0"
 
 string_decoder@~0.10.25, string_decoder@~0.10.x:
   version "0.10.31"
@@ -6253,6 +7076,33 @@ style-loader@^0.13.1:
   dependencies:
     loader-utils "^0.2.7"
 
+superagent@^1.2.0, superagent@^1.5.0, superagent@^1.6.1, superagent@^1.7.2:
+  version "1.8.4"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/superagent/-/superagent-1.8.4.tgz#68b2c8a400f1753ddb39410906899e42f420fd3a"
+  dependencies:
+    component-emitter "~1.2.0"
+    cookiejar "2.0.6"
+    debug "2"
+    extend "3.0.0"
+    form-data "1.0.0-rc3"
+    formidable "~1.0.14"
+    methods "~1.1.1"
+    mime "1.3.4"
+    qs "2.3.3"
+    readable-stream "1.0.27-1"
+    reduce-component "1.0.1"
+
+supertest@^1.2.0:
+  version "1.2.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/supertest/-/supertest-1.2.0.tgz#850a795f9068d2faf19e01799ff09962e0ce43be"
+  dependencies:
+    methods "1.x"
+    superagent "^1.7.2"
+
+supports-color@1.2.0:
+  version "1.2.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/supports-color/-/supports-color-1.2.0.tgz#ff1ed1e61169d06b3cf2d588e188b18d8847e17e"
+
 supports-color@^0.2.0:
   version "0.2.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/supports-color/-/supports-color-0.2.0.tgz#d92de2694eb3f67323973d7ae3d8b55b4c22190a"
@@ -6279,12 +7129,156 @@ svgo@^0.7.0:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
+swagger-converter@^0.1.7:
+  version "0.1.7"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-converter/-/swagger-converter-0.1.7.tgz#a097519c6f1ee4dd67e308d9b53ddc9c2b257f97"
+  dependencies:
+    lodash.clonedeep "^2.4.1"
+
+swagger-converter@^0.2.0:
+  version "0.2.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-converter/-/swagger-converter-0.2.0.tgz#354023cfc5ed3d4ef6895c310189067bbe66d616"
+  dependencies:
+    URIjs "^1.16.0"
+
+swagger-editor@^2.9.2:
+  version "2.10.4"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-editor/-/swagger-editor-2.10.4.tgz#cc4dade86259bc52e40d91e9f42ff565ece978ab"
+
+swagger-express-mw@^0.6.0:
+  version "0.6.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-express-mw/-/swagger-express-mw-0.6.0.tgz#7d3718067fee99e5afcea88f1449f4432d0de0b3"
+  dependencies:
+    swagger-node-runner "^0.6.1"
+
+swagger-node-runner@^0.6.1:
+  version "0.6.16"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-node-runner/-/swagger-node-runner-0.6.16.tgz#39496eff16d9c63097767e8b7eafffbf93ca0b43"
+  dependencies:
+    async "^1.5.0"
+    bagpipes "^0.1.0"
+    body-parser "^1.14.1"
+    config "^1.16.0"
+    cors "^2.5.3"
+    debug "^2.1.3"
+    js-yaml "^3.3.0"
+    lodash "^3.6.0"
+    multer "^1.0.6"
+    parseurl "^1.3.0"
+    qs "^5.2.0"
+    sway "^0.6.0"
+    type-is "^1.6.9"
+
+swagger-test-templates@^1.2.0:
+  version "1.3.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-test-templates/-/swagger-test-templates-1.3.0.tgz#fe5997234b999daaaf0bedb44d3001cbbc04ed08"
+  dependencies:
+    handlebars "^3.0.3"
+    json-schema-deref-sync "^0.3.1"
+    lodash "^3.10.0"
+    sanitize-filename "^1.3.0"
+    string "^3.3.0"
+
+swagger-tools@^0.10.1:
+  version "0.10.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-tools/-/swagger-tools-0.10.1.tgz#a455b257998ecf20de5b4e99bdcf1a709ab0fedc"
+  dependencies:
+    async "^1.3.0"
+    body-parser "1.12.4"
+    commander "^2.8.1"
+    debug "^2.2.0"
+    js-yaml "^3.3.1"
+    json-refs "^2.1.5"
+    lodash-compat "^3.10.0"
+    multer "^1.1.0"
+    parseurl "^1.3.0"
+    path-to-regexp "^1.2.0"
+    qs "^4.0.0"
+    serve-static "^1.10.0"
+    spark-md5 "^1.0.0"
+    string "^3.3.0"
+    superagent "^1.2.0"
+    swagger-converter "^0.1.7"
+    traverse "^0.6.6"
+    z-schema "^3.15.4"
+
+swagger-tools@^0.9.0:
+  version "0.9.16"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger-tools/-/swagger-tools-0.9.16.tgz#e39fae3d581d713682491e1926cd87bf2c209bfb"
+  dependencies:
+    async "^1.3.0"
+    body-parser "1.12.4"
+    commander "^2.8.1"
+    debug "^2.2.0"
+    js-yaml "^3.3.1"
+    json-refs "^2.1.5"
+    lodash-compat "^3.10.0"
+    multer "^1.1.0"
+    parseurl "^1.3.0"
+    path-to-regexp "^1.2.0"
+    qs "^4.0.0"
+    serve-static "^1.10.0"
+    spark-md5 "^1.0.0"
+    string "^3.3.0"
+    superagent "^1.2.0"
+    swagger-converter "^0.1.7"
+    traverse "^0.6.6"
+    z-schema "^3.15.4"
+
+swagger@^0.7.5:
+  version "0.7.5"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swagger/-/swagger-0.7.5.tgz#3be6ee3d392c3b006fc7a9b5b2d60c7e834860fd"
+  dependencies:
+    async "^1.2.1"
+    commander "^2.7.1"
+    connect "^3.3.5"
+    debug "^2.1.3"
+    fs-extra "^0.24.0"
+    inquirer "^0.10.0"
+    js-yaml "^3.3.0"
+    lodash "^3.10.0"
+    mocha "^2.2.1"
+    nodemon "^1.3.7"
+    serve-static "^1.9.2"
+    swagger-converter "^0.2.0"
+    swagger-editor "^2.9.2"
+    swagger-test-templates "^1.2.0"
+    swagger-tools "^0.9.0"
+
 swap-case@^1.1.0:
   version "1.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/swap-case/-/swap-case-1.1.2.tgz#c39203a4587385fad3c850a0bd1bcafa081974e3"
   dependencies:
     lower-case "^1.1.1"
     upper-case "^1.1.1"
+
+sway@^0.6.0:
+  version "0.6.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/sway/-/sway-0.6.0.tgz#ab3b507948fef9a4d940fe3d806d0b104fbd15a2"
+  dependencies:
+    debug "^2.2.0"
+    glob "^5.0.15"
+    js-base64 "^2.1.9"
+    js-yaml "^3.3.1"
+    json-refs "^1.1.2"
+    json-schema-faker "^0.2.0"
+    lodash "^3.10.0"
+    native-promise-only "^0.8.0-a"
+    path-loader "^0.2.0"
+    path-to-regexp "^1.2.0"
+    z-schema "^3.15.2"
+
+switchback@^1.1.3:
+  version "1.1.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/switchback/-/switchback-1.1.3.tgz#12c70109348d6a296f739ba910eeb853f8b6e631"
+  dependencies:
+    lodash "~2.4.1"
+
+switchback@^2.0.0:
+  version "2.0.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/switchback/-/switchback-2.0.2.tgz#96cf0e0d363b559d0bb7ff21b62a7aa910ec6079"
+  dependencies:
+    lodash "3.10.1"
 
 symbol-observable@^1.0.1:
   version "1.0.4"
@@ -6403,6 +7397,10 @@ time-stamp@^1.0.0:
   version "1.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/time-stamp/-/time-stamp-1.0.1.tgz#9f4bd23559c9365966f3302dbba2b07c6b99b151"
 
+timed-out@^2.0.0:
+  version "2.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/timed-out/-/timed-out-2.0.0.tgz#f38b0ae81d3747d628001f41dafc652ace671c0a"
+
 timers-browserify@^1.0.1:
   version "1.4.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/timers-browserify/-/timers-browserify-1.4.2.tgz#c9c58b575be8407375cb5e2462dacee74359f41d"
@@ -6442,6 +7440,10 @@ to-array@0.1.4:
   version "0.1.4"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/to-array/-/to-array-0.1.4.tgz#17e6c11f73dd4f3d74cda7a4ff3238e9ad9bf890"
 
+to-iso-string@0.0.2:
+  version "0.0.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/to-iso-string/-/to-iso-string-0.0.2.tgz#4dc19e664dfccbe25bd8db508b00c6da158255d1"
+
 to-string-loader@^1.1.4:
   version "1.1.5"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/to-string-loader/-/to-string-loader-1.1.5.tgz#7b7aa17891b7bb4947a7a11bfb03b5fde9c6e695"
@@ -6451,6 +7453,12 @@ to-string-loader@^1.1.4:
 toposort@^1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/toposort/-/toposort-1.0.0.tgz#b66cf385a1a8a8e68e45b8259e7f55875e8b06ef"
+
+touch@1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/touch/-/touch-1.0.0.tgz#449cbe2dbae5a8c8038e30d71fa0ff464947c4de"
+  dependencies:
+    nopt "~1.0.10"
 
 tough-cookie@~2.2.0:
   version "2.2.2"
@@ -6462,9 +7470,19 @@ tough-cookie@~2.3.0:
   dependencies:
     punycode "^1.4.1"
 
+traverse@^0.6.6, traverse@~0.6.6:
+  version "0.6.6"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/traverse/-/traverse-0.6.6.tgz#cbdf560fd7b9af632502fed40f918c157ea97137"
+
 trim-newlines@^1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/trim-newlines/-/trim-newlines-1.0.0.tgz#5887966bb582a4503a41eb524f7d35011815a613"
+
+truncate-utf8-bytes@^1.0.0:
+  version "1.0.2"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/truncate-utf8-bytes/-/truncate-utf8-bytes-1.0.2.tgz#405923909592d56f78a5818434b0b78489ca5f2b"
+  dependencies:
+    utf8-byte-length "^1.0.1"
 
 tryit@^1.0.1:
   version "1.0.3"
@@ -6539,19 +7557,19 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
+type-is@^1.6.4, type-is@^1.6.9, type-is@~1.6.13, type-is@~1.6.2:
+  version "1.6.13"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/type-is/-/type-is-1.6.13.tgz#6e83ba7bc30cd33a7bb0b7fb00737a2085bf9d08"
+  dependencies:
+    media-typer "0.3.0"
+    mime-types "~2.1.11"
+
 type-is@~1.5.1:
   version "1.5.7"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/type-is/-/type-is-1.5.7.tgz#b9368a593cc6ef7d0645e78b2f4c64cbecd05e90"
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.0.9"
-
-type-is@~1.6.13:
-  version "1.6.13"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/type-is/-/type-is-1.6.13.tgz#6e83ba7bc30cd33a7bb0b7fb00737a2085bf9d08"
-  dependencies:
-    media-typer "0.3.0"
-    mime-types "~2.1.11"
 
 typedarray@~0.0.5:
   version "0.0.6"
@@ -6580,9 +7598,9 @@ typescript@1.8.10:
   version "1.8.10"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/typescript/-/typescript-1.8.10.tgz#b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e"
 
-typescript@^2.0.2:
-  version "2.1.1"
-  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/typescript/-/typescript-2.1.1.tgz#41c2b64472f529331b2055c0424862b44ce58d42"
+typescript@2.0.10:
+  version "2.0.10"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/typescript/-/typescript-2.0.10.tgz#ccdd4ed86fd5550a407101a0814012e1b3fac3dd"
 
 uglify-js@2.6.4, uglify-js@2.6.x:
   version "2.6.4"
@@ -6601,6 +7619,14 @@ uglify-js@2.7.x, uglify-js@^2.6, uglify-js@~2.7.3:
     source-map "~0.5.1"
     uglify-to-browserify "~1.0.0"
     yargs "~3.10.0"
+
+uglify-js@~2.3:
+  version "2.3.6"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/uglify-js/-/uglify-js-2.3.6.tgz#fa0984770b428b7a9b2a8058f46355d14fef211a"
+  dependencies:
+    async "~0.2.6"
+    optimist "~0.3.5"
+    source-map "~0.1.7"
 
 uglify-save-license@^0.4.1:
   version "0.4.1"
@@ -6621,6 +7647,10 @@ ultron@1.0.x:
 unc-path-regex@^0.1.0:
   version "0.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/unc-path-regex/-/unc-path-regex-0.1.2.tgz#e73dd3d7b0d7c5ed86fbac6b0ae7d8c6a69d50fa"
+
+undefsafe@0.0.3:
+  version "0.0.3"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/undefsafe/-/undefsafe-0.0.3.tgz#ecca3a03e56b9af17385baac812ac83b994a962f"
 
 underscore.string@^3.3.4:
   version "3.3.4"
@@ -6655,6 +7685,18 @@ unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
 
+update-notifier@0.5.0:
+  version "0.5.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/update-notifier/-/update-notifier-0.5.0.tgz#07b5dc2066b3627ab3b4f530130f7eddda07a4cc"
+  dependencies:
+    chalk "^1.0.0"
+    configstore "^1.0.0"
+    is-npm "^1.0.0"
+    latest-version "^1.0.0"
+    repeating "^1.1.2"
+    semver-diff "^2.0.0"
+    string-length "^1.0.0"
+
 upper-case-first@^1.1.0, upper-case-first@^1.1.2:
   version "1.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/upper-case-first/-/upper-case-first-1.1.2.tgz#5d79bedcff14419518fd2edb0a0507c9b6859115"
@@ -6664,6 +7706,10 @@ upper-case-first@^1.1.0, upper-case-first@^1.1.2:
 upper-case@^1.0.3, upper-case@^1.1.0, upper-case@^1.1.1, upper-case@^1.1.3:
   version "1.1.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
+
+uri-js@^2.1.1:
+  version "2.1.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/uri-js/-/uri-js-2.1.1.tgz#eb3f8505f468969bf92cb79ce8ceaac2ed667661"
 
 urix@^0.1.0, urix@~0.1.0:
   version "0.1.0"
@@ -6717,6 +7763,10 @@ useragent@^2.1.6:
   dependencies:
     lru-cache "2.2.x"
 
+utf8-byte-length@^1.0.1:
+  version "1.0.4"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/utf8-byte-length/-/utf8-byte-length-1.0.4.tgz#f45f150c4c66eee968186505ab93fcbb8ad6bf61"
+
 util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -6725,7 +7775,7 @@ util-extend@^1.0.1:
   version "1.0.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/util-extend/-/util-extend-1.0.3.tgz#a7c216d267545169637b3b6edc6ca9119e2ff93f"
 
-util@0.10.3, util@~0.10.3:
+util@0.10.3, util@^0.10.3, util@~0.10.3:
   version "0.10.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/util/-/util-0.10.3.tgz#7afb1afe50805246489e3db7fe0ed379336ac0f9"
   dependencies:
@@ -6743,7 +7793,7 @@ utils-merge@1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/utils-merge/-/utils-merge-1.0.0.tgz#0294fb922bb9375153541c4f7096231f287c8af8"
 
-uuid@^2.0.2:
+uuid@^2.0.1, uuid@^2.0.2:
   version "2.0.3"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
@@ -6757,6 +7807,10 @@ v8flags@^2.0.2:
   dependencies:
     user-home "^1.1.1"
 
+valid-url@~1.0.9:
+  version "1.0.9"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/valid-url/-/valid-url-1.0.9.tgz#1c14479b40f1397a75782f115e4086447433a200"
+
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/validate-npm-package-license/-/validate-npm-package-license-3.0.1.tgz#2804babe712ad3379459acfbe24746ab2c303fbc"
@@ -6764,7 +7818,11 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-vary@~1.1.0:
+validator@^5.0.0:
+  version "5.7.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/validator/-/validator-5.7.0.tgz#7a87a58146b695ac486071141c0c49d67da05e5c"
+
+vary@^1, vary@~1.1.0:
   version "1.1.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/vary/-/vary-1.1.0.tgz#e1e5affbbd16ae768dd2674394b9ad3022653140"
 
@@ -6845,6 +7903,12 @@ vm-browserify@0.0.4:
 void-elements@^2.0.0:
   version "2.0.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
+
+walk@^2.3.9:
+  version "2.3.9"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/walk/-/walk-2.3.9.tgz#31b4db6678f2ae01c39ea9fb8725a9031e558a7b"
+  dependencies:
+    foreachasync "^3.0.0"
 
 watchpack@^0.2.1:
   version "0.2.9"
@@ -6958,7 +8022,7 @@ which-module@^1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/which-module/-/which-module-1.0.0.tgz#bba63ca861948994ff307736089e3b96026c2a4f"
 
-which@1, which@^1.1.1, which@^1.2.1, which@^1.2.10, which@^1.2.8, which@^1.2.9, which@~1.2.10:
+which@1, which@^1.1.1, which@^1.2.1, which@^1.2.10, which@^1.2.9, which@~1.2.10:
   version "1.2.12"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/which/-/which-1.2.12.tgz#de67b5e450269f194909ef23ece4ebe416fa1192"
   dependencies:
@@ -7019,6 +8083,14 @@ wrench@1.5.8:
   version "1.5.8"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/wrench/-/wrench-1.5.8.tgz#7a31c97f7869246d76c5cf2f5c977a1c4c8e5ab5"
 
+write-file-atomic@^1.1.2:
+  version "1.2.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/write-file-atomic/-/write-file-atomic-1.2.0.tgz#14c66d4e4cb3ca0565c28cf3b7a6f3e4d5938fab"
+  dependencies:
+    graceful-fs "^4.1.2"
+    imurmurhash "^0.1.4"
+    slide "^1.1.5"
+
 write@^0.2.1:
   version "0.2.1"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
@@ -7035,6 +8107,12 @@ ws@1.1.1, ws@^1.0.1:
 wtf-8@1.0.0:
   version "1.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/wtf-8/-/wtf-8-1.0.0.tgz#392d8ba2d0f1c34d1ee2d630f15d0efb68e1048a"
+
+xdg-basedir@^2.0.0:
+  version "2.0.0"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/xdg-basedir/-/xdg-basedir-2.0.0.tgz#edbc903cc385fc04523d966a335504b5504d1bd2"
+  dependencies:
+    os-homedir "^1.0.0"
 
 xml-char-classes@^1.0.0:
   version "1.0.0"
@@ -7083,6 +8161,17 @@ y18n@^3.2.0, y18n@^3.2.1:
 yallist@^2.0.0:
   version "2.0.0"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/yallist/-/yallist-2.0.0.tgz#306c543835f09ee1a4cb23b7bce9ab341c91cdd4"
+
+yaml-js@^0.1.3:
+  version "0.1.4"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/yaml-js/-/yaml-js-0.1.4.tgz#ac965488a94daad5b65a92cab28c262407730fc0"
+
+yamljs@^0.2.8:
+  version "0.2.8"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/yamljs/-/yamljs-0.2.8.tgz#ef23fb006e62f6ae07b406aa2a949561f336ea5c"
+  dependencies:
+    argparse "^1.0.7"
+    glob "^7.0.5"
 
 yargs-parser@^2.4.1:
   version "2.4.1"
@@ -7144,6 +8233,16 @@ yauzl@2.4.1:
 yeast@0.1.2:
   version "0.1.2"
   resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
+
+z-schema@^3.15.2, z-schema@^3.15.4:
+  version "3.18.1"
+  resolved "http://npm-registry-ddc.digital-pilot.ampaws.com.au/z-schema/-/z-schema-3.18.1.tgz#9cc3c65a30cf15570cc16f1f0647c72876eacf79"
+  dependencies:
+    lodash.get "^4.1.2"
+    lodash.isequal "^4.4.0"
+    validator "^5.0.0"
+  optionalDependencies:
+    commander "^2.7.1"
 
 zone.js@0.6.12:
   version "0.6.12"
