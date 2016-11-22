@@ -18,6 +18,9 @@ $amp-ddc-menu-circle-offset: 5px;
 $amp-ddc-menu-color-default: $amp-colour-sky-blue;
 $amp-ddc-menu-color-dark: $amp-colour-primary;
 
+.hidden {
+    display : none;
+}
 .steps-menu {
     @include amp-family($amp-font-open-sans-regular);
     font-size: $amp-ddc-menu-font-size;
