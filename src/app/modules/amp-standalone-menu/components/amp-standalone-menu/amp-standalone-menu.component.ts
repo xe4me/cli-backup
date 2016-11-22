@@ -53,7 +53,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
                 this.updateSections( sectionName );
             } , 0 );
         } );
-        this.getMainHostElement();
+        this.html = this.dom.query( 'html' );
     }
 
     ngAfterViewInit () {
@@ -111,40 +111,31 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     }
 
     private onClassOpen () {
-        this.hideHostContent();
+        this.disableHtmlScrolling();
         this.isClassOpen   = true;
         this.tempScrollTop = this.scrollService.scrollTop;
     }
 
     private onClassClose () {
-        this.showHostContent();
+        this.allowHtmlScrolling();
         this.isClassOpen = false;
     }
 
     private scrollToSection ( event , section ) {
         event.preventDefault();
-        this.showHostContent();
+        this.allowHtmlScrolling();
         this.isClassOpen      = false;
         this.currentSectionId = section.pageSectionId;
         this.menuScrolling = true;
         this.scrollService.scrollToComponentSelector( section.pageSectionId );
     }
 
-    // Helper methods for mobile view
-    private getMainHostElement () {
-        this.html = this.dom.query( 'html' );
+    private allowHtmlScrolling () {
+        this.html.style.overflow = '';
     }
 
-    private showHostContent () {
-        if ( this.html ) {
-            this.html.style.overflow = '';
-        }
-    }
-
-    private hideHostContent () {
-        if ( this.html ) {
-            this.html.style.overflow = 'hidden';
-        }
+    private disableHtmlScrolling () {
+        this.html.style.overflow = 'hidden';
     }
 
     private onResize ( _window , menu : HTMLElement ) {
