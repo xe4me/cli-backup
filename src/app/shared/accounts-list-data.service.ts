@@ -21,12 +21,12 @@ export class AccountsListDataService {
         let applicants = [];
         applicants.push({
             name : this.getApplicantFirstName(this.formModel.Application.Applicant1Section),
-            verified: false
+            verified: this.isVerified(this.formModel.Application.Applicant1Section)
         });
         if (this.formModel.Application.SingleOrJoint.SingleOrJoint === 'JointApplicant' ) {
             applicants.push({
                 name : this.getApplicantFirstName(this.formModel.Application.Applicant2Section),
-                verified: false
+                verified: this.isVerified(this.formModel.Application.Applicant2Section)
             });
         }
         return applicants;
@@ -40,12 +40,17 @@ export class AccountsListDataService {
             (this.isIndividual() ? 'confirmationWithConditionSingle' :
                                    'confirmationWithConditionJoint' );
     }
-    private getApplicantFirstName (applicant : any) {
+    private getApplicantFirstName (applicant : any) : string {
         return applicant.PersonalDetailsSection.BasicInfo.FirstName;
     }
 
     private isIndividual() : boolean {
         return this.formModel.Application.SingleOrJoint.SingleOrJoint === 'Individual';
+    }
+
+    private isVerified(applicant : any) : boolean {
+        let status = applicant.IdentitySection.IdCheck['green-id-identity-check'].verificationStatus;
+        return status === 'VERIFIED_WITH_CHANGES' || status === 'VERIFIED';
     }
 
     private isNormal() : boolean {

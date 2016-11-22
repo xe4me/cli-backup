@@ -8,7 +8,7 @@ $amp-ddc-public-asset : '../../../assets/';
         margin-bottom: 4em;
     }
     @include media-query(tablet-and-down) {
-        margin: 2.667em 0;
+        margin: 1.5em 0 2.667em 0;
         .pdf-button-container {
             margin-bottom: 2.667em;
             margin-top: 2em;
@@ -52,7 +52,7 @@ $amp-ddc-public-asset : '../../../assets/';
                         font-size: 1em;
                         padding: 6px 14px;
                         vertical-align: top;
-                        margin-right: 1.333em;
+                        margin-right: 1.2em;
                         width: 36px;
                         height: 36px;
                         @include border-radius(18px);

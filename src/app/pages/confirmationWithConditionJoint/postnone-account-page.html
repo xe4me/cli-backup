@@ -7,12 +7,12 @@
         <p class="description">We need to verify your identity. </p>
         <div class="applicants">
             <p *ngFor="let applicant of applicantList" class="description">
-                <span>{{applicant.name}}: </span>
-                <span>{{applicant.verified? 'Verified' : 'ID stil required'}}</span>
+                <strong>{{applicant.name}}: </strong>
+                <span>{{applicant.verified? 'Verified' : 'ID still required'}}</span>
             </p>
         </div>
         <p class="description">
-            Please send your <a href="{{verificatonDocUrl}}" target="_blank">ID verification documents</a> to AMP so you can access you accounts. Remember to download your account numbers and keep them handy.
+            Please send {{verifyRequiredPersonName}} <a href="{{verificatonDocUrl}}" target="_blank">ID verification documents</a> to AMP so you can access you accounts. Remember to download your account numbers and keep them handy.
         </p>
         <div class="finish-button-container">
         <amp-button
