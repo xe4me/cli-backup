@@ -1,0 +1,19 @@
+<header-with-logo></header-with-logo>
+<div class="container blocks-wrapper">
+    <div class="main">
+        <h1>Something went wrong...</h1>
+        <div class="error-container">
+            <span class="error-icon"></span>
+            <p class="error-summary">{{errorHeader}}</p>
+            <p class="error-body">{{errorBody}}</p>
+        </div>
+        <div class="finish-button-container">
+        <amp-button
+            [attr.theme]="'tools'"
+            [class]="'btn btn-secondary palm-1/1 tablet-1/1 tablet-and-up-mr'"
+            (click)="finish()">
+            Finish
+        </amp-button>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,8 @@ import {
 import {
     Constants,
     SharedFormDataService,
-    AccountsListDataService
+    AccountsListDataService,
+    SubmitErrors
 } from '../../shared';
 @Component( {
     selector        : 'last-step-block' ,
@@ -91,12 +92,22 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
             .subscribe((result) => {
                 this.submitInProgress = false;
                 if ( result.payload.resultStatus === 'SUCCESS' ) {
-                    this.accountsListDataService.setAccounts( result.payload.accounts );
-                    let navigateTo = this.accountsListDataService.isNormal() ?
-                        'confirmation' :
-                        'confirmationWithCondition';
+                    this.accountsListDataService
+                        .setAccountsData( referenceId.value, this.__form.value, result.payload.accounts );
+                    let navigateTo = this.accountsListDataService.navigateTo();
                     this.router.navigate([navigateTo]);
                 } else {
+                    if ( result.payload.resultStatus === 'FAILURE') {
+                        const errors = result.payload.errors;
+                        if (errors && errors.length > 0) {
+                            const error = errors[0].code;
+                            const navigateTo : string = 'submitError';
+                            if (error === SubmitErrors.customerHasBetter) {
+                                this.router.navigate([navigateTo, error]);
+                                return;
+                            }
+                        }
+                    }
                     this.submitErrorMessage = this.__custom.submitErrMsg;
                     this._cd.markForCheck();
                 }

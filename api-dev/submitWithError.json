@@ -1,0 +1,28 @@
+[ {
+    "request": {
+        "url": "ddc/public/api/bett3r/submitWithError",
+        "method": "POST",
+        "query": {
+            "id": "4172867194"
+        }
+    },
+    "response": {
+        "statusCode": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "latency": 100,
+        "body": {
+            "statusCode": 200,
+            "payload": {
+                "applicationId": "1675799694",
+                "applicationType": "JointApplicant",
+                "resultStatus": "FAILURE",
+                "errors": [ {
+                    "code": "CustomerHasBett3r",
+                    "message": "Customer with entityRef 933085 already has Bett3r accounts"
+                } ]
+            }
+        }
+    }
+} ]

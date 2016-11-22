@@ -1,6 +1,6 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
     <amp-form-row>
-            <div class="grid__item_floated palm-7/8 tablet-7/8 lap-and-up-4/12">
+            <div class="grid__item_floated palm-8/9 tablet-7/8 lap-and-up-4/12">
                 <amp-email
                         [id]="__custom.controls[0].id"
                         [controlGroup]="__controlGroup"
@@ -8,12 +8,12 @@
 
                 </amp-email>
             </div>
-            <div class="grid__item_floated palm-1/8 tablet-1/8 lap-and-up-2/12">
-                <amp-tooltip-cmp class="pt pl" message="Confirmation of your application will be sent to this email address."></amp-tooltip-cmp>
+            <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
+                <amp-tooltip-cmp class="mt" message="Confirmation of your application will be sent to this email address."></amp-tooltip-cmp>
             </div>
     </amp-form-row>
     <amp-form-row>
-        <div class="grid__item_floated palm-7/8 tablet-7/8 lap-and-up-4/12">
+        <div class="grid__item_floated palm-8/9 tablet-7/8 lap-and-up-4/12">
             <amp-mobile-number
                     [id]="__custom.controls[1].id"
                     [isInSummaryState]="isInSummaryState"
@@ -24,8 +24,8 @@
                     [errors]="{'pattern' : __custom.controls[1].errorMsg, 'required' : __custom.controls[1].requiredMsg }"
                     [required]="true"></amp-mobile-number>
         </div>
-        <div class="grid__item_floated palm-1/8 tablet-1/8 lap-and-up-2/12">
-            <amp-tooltip-cmp class="pt pl" message="A mobile phone number is required to allow AMP Bank to securely protect your account."></amp-tooltip-cmp>
+        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
+            <amp-tooltip-cmp class="mt" message="A mobile phone number is required to allow AMP Bank to securely protect your account."></amp-tooltip-cmp>
         </div>
     </amp-form-row>
     <amp-form-row>
