@@ -18,7 +18,7 @@
 
     <nav role="navigation">
         <ul class="steps-menu__list">
-            <li *ngFor="let section of sections" id="{{ section.id }}" class="steps-menu__item" [ngClass]="section.state">
+            <li *ngFor="let section of sections" id="{{ section.id }}" class="steps-menu__item" [ngClass]="section.state" [class.hidden]="section.hidden">
                 <span class="steps-menu__step" *ngIf="isStateDisabled(section.state)">
                     {{ section.label }}
                 </span>
