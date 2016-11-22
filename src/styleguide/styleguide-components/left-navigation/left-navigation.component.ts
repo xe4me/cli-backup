@@ -16,7 +16,7 @@ import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
     selector   : 'left-navigation' ,
     template   : `
     <div class='left-navigation'>
-            <amp-input #queryFilter class='1/1' [labelHidden]='true'></amp-input>
+            <amp-input #queryFilter class='1/1' label='Search here ...'></amp-input>
             <div class="option-group" (click)="navigate(['Index']);toggleAccordion(-1)" [class.option-group--active]='activeAccordion===INDEX_ID'>
                 <span class="icon icon--faqs "></span> Get started
             </div>
@@ -39,7 +39,7 @@ import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
             <div class="option-group" (click)="toggleAccordion(i)" [class.option-group--active]='activeAccordion===i'>
                 <span [ngClass]="{'icon--chevron-down':activeAccordion===i,'icon--chevron-right':activeAccordion!==i}" class="icon "></span>{{ cpmGroup.type }}
             </div>
-            <div [@openClose]='openCloseDropdown(i)' class="options">
+            <div [@openClose]='openCloseDropdown(i,filteredGroup.length)' class="options">
                 <div class="option" *ngFor="let cmp of doFilter(cpmGroup.components , queryFilter.control?.value); let 
                 i = 
                 index " 
@@ -69,6 +69,7 @@ export class LeftNavigationComponent implements AfterContentInit {
     private activeComponentId = null;
     private INDEX_ID          = - 1;
     private activeAccordion   = this.INDEX_ID;
+    private filteredGroup     = [];
 
     constructor ( private  themeService : ThemeService ,
                   public router : Router ,
@@ -109,7 +110,7 @@ export class LeftNavigationComponent implements AfterContentInit {
     }
 
     private doFilterGroups ( items , query ) : Observable<any> {
-        return isPresent( query ) ? items.filter(
+        return this.filteredGroup = isPresent( query ) ? items.filter(
             ( item ) => {
                 let filtered = item.components.filter( ( component ) => {
                     return component[ 'name' ] && component[ 'name' ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
