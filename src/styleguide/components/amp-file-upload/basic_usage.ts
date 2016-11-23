@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AmpFileUploadComponent } from '../../../app/modules/amp-file-upload/components/amp-file-upload.component';
-import { FormGroup } from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 
 @Component( {
     templateUrl : 'src/styleguide/components/amp-file-upload/basic_usage.html' ,
