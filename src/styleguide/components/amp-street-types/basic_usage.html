@@ -1,12 +1,12 @@
 <form #formModel='ngForm' class='nl-form p'>
-    <amp-titles
+    <amp-street-types
             #dropDown
             [attr.theme]="themeService.theme.attr"
-            [id]='"countries"'
+            [id]='"street-types"'
             [controlGroup]="controlGroup"
             [required]="true">
         <template let-option="option">
             {{ option.label }}
         </template>
-    </amp-titles>
+    </amp-street-types>
 </form>

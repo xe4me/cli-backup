@@ -36,14 +36,18 @@ export class AmpCountryComponent extends AmpDropdownComponent implements AfterVi
         if ( this.control.value === null ) {
             this.control.setValue( 'Australia' );
         }
-        this.ampCountryService
-            .getCountries()
-            .subscribe( ( res : any ) => {
-                this.options = res;
-                if ( this.control.value === null ) {
-                    this.control.setValue( 'Australia' );
-                }
-            } );
+        let subs =
+                this.ampCountryService
+                    .getCountries()
+                    .subscribe( ( res : any ) => {
+                        this.options = res;
+                        if ( this.control.value === null ) {
+                            this.control.setValue( 'Australia' );
+                        }
+                        if ( subs ) {
+                            subs.unsubscribe();
+                        }
+                    } );
         return undefined;
     }
 }
