@@ -12,6 +12,9 @@ $amp-ddc-public-asset : '../../../assets/';
         .pdf-button-container {
             margin-bottom: 2.667em;
             margin-top: 2em;
+            .btn {
+                padding: 0 20px !important;
+            }
         }
     }
     .accounts {
