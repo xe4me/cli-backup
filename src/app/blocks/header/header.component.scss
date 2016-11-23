@@ -4,14 +4,16 @@
 :host {
     .header-container {
         background-color: $amp-colour-primary;
+        @include media-query(lap-and-up) {
+            height : 70px;
+        }
     }
-    height:  80px;
     amp-logo {
         height : 50px;
         margin-left : 71px;
         img {
             height: 50px;
-            margin-top: 15px;
+            margin-top: 10px;
             margin-bottom: 10px;
         }
     }
@@ -21,7 +23,7 @@
         font-size: $font-size-tiny;
         color: $amp-colour-white;
         position: absolute;
-        top: 35px;
+        top: 29px;
         left: 249px;
     }
 }
