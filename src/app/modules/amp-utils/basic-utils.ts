@@ -43,22 +43,22 @@ export class BasicUtils {
         }
         if ( addressType === 'extended' ) {
             if ( addressObj.buildingName ) {
-                address += addressObj.buildingName;
+                address += addressObj.buildingName + ', ';
             }
             if ( addressObj.unitNumber ) {
-                address += ', ' + addressObj.unitNumber;
+                address += ' ' + addressObj.unitNumber;
             }
             if ( addressObj.streetNumber ) {
-                address += ', ' + addressObj.streetNumber;
+                address += ' ' + addressObj.streetNumber;
             }
             if ( addressObj.streetName ) {
-                address += ', ' + addressObj.streetName;
+                address += ' ' + addressObj.streetName;
             }
             if ( addressObj.streetTypeDropdown && addressObj.streetTypeDropdown.Query ) {
-                address += ', ' + addressObj.streetTypeDropdown.Query;
+                address += ' ' + addressObj.streetTypeDropdown.Query;
             }
             if ( addressObj.poBox ) {
-                address += ', ' + addressObj.poBox;
+                address += addressObj.poBox;
             }
             if ( addressObj.suburb ) {
                 address += ', ' + addressObj.suburb;
@@ -69,25 +69,23 @@ export class BasicUtils {
             if ( addressObj.postCode ) {
                 address += ' ' + addressObj.postCode;
             }
-            address += ', Australia.';
+            address += ', Australia';
             return address;
         }
         return addressObj.address ? address : '';
     }
 
     public static base64DatatoObject ( encodedString : string ,
-                                       order : string[] = ['name', 'email', 'state', 'customer_id'] ,
+                                       order : string[] = [ 'name' , 'email' , 'state' , 'customer_id' ] ,
                                        seperator : string = '#' ) : any {
-        let obj = {};
-        let decodedString = atob(encodedString);
-        let items = decodedString.split(seperator);
-
-        for (let i = 0; i < order.length; i++) {
-            if (!obj.hasOwnProperty(order[i])) {
-                obj[order[i]] = items[i];
+        let obj           = {};
+        let decodedString = atob( encodedString );
+        let items         = decodedString.split( seperator );
+        for ( let i = 0 ; i < order.length ; i ++ ) {
+            if ( ! obj.hasOwnProperty( order[ i ] ) ) {
+                obj[ order[ i ] ] = items[ i ];
             }
         }
-
         return obj;
     }
 }
