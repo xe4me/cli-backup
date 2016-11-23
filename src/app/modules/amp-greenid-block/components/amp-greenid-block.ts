@@ -69,6 +69,18 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     private environment : string = Environments.property.GreenId.environment;
     private accountId : string = Environments.property.GreenId.accountId;
     private password : string = Environments.property.GreenId.password;
+    private termsAndConditionsText : string = `
+        By accepting these terms and conditions you give consent for AMP Bank to disclose your name, residential
+        address and date of birth to a credit reporting agency and ask the credit reporting agency to provide an
+        assessment of whether the personal information so provided matches (in whole or in part) personal information
+        contained in a credit information file in the possession or control of the credit reporting agency to assist in
+        verifying your identity for the purposes of the Anti-Money Laundering and Counter-Terrorism Act 2006. The
+        credit reporting agency may prepare and provide AMP Bank with such an assessment and may use your personal
+        information including the names, residential addresses and dates of birth contained in credit information files
+        of you and other individuals for the purposes of preparing such an assessment. If you disagree with having your
+        identity verified by a credit reporting agency, please select another data source or contact AMP Bank so that
+        we can discuss other options with you.
+    `;
 
     constructor(
         private AmpGreenIdServices : AmpGreenIdServices,
@@ -148,19 +160,19 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     private loadApiScriptsHandler = (resolve, reject) => {
-            if (this.greenIdLoaded) {
-                resolve();
-                return;
-            }
-            if (!this.greenIdLoaded && this.configScriptUrl && this.uiScriptUrl) {
-                this.getScript(this.configScriptUrl)
-                    .then(() => this.getScript(this.uiScriptUrl))
-                    .then(() => {
-                        resolve();
-                    });
-                return;
-            }
-            reject('Script urls were not provided');
+        if (this.greenIdLoaded) {
+            resolve();
+            return;
+        }
+        if (!this.greenIdLoaded && this.configScriptUrl && this.uiScriptUrl) {
+            this.getScript(this.configScriptUrl)
+                .then(() => this.getScript(this.uiScriptUrl))
+                .then(() => {
+                    resolve();
+                });
+            return;
+        }
+        reject('Script urls were not provided');
     };
 
     /**
@@ -188,7 +200,10 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         let options = Object.assign(this.greenIdSettings, {
             sessionCompleteCallback: this.onSessionComplete
         });
-        window['greenidConfig'].setOverrides({'enable_save_and_complete_later' : false});
+        window['greenidConfig'].setOverrides({
+            'enable_save_and_complete_later' : false,
+            'dnb_tandc_text'                 : this.termsAndConditionsText
+        });
         window['greenidUI'].setup(options);
     }
 
