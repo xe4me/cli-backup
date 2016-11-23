@@ -16,7 +16,7 @@ import { AmpButton } from '../../../app/components/amp-button/amp-button.compone
     template   : `
             <div class='{{ selectorName }} ph+ tablet-and-down-ph' id='{{ selectorName }}' [class.hidden]='!isActive'>
                 <div class='grid__container 1/1 palm-1/1'>
-                    <div class='grid__item_floated utils__align&#45;&#45;left' >
+                    <div class='grid__item_floated utils__align--left' >
                                 <ng-content></ng-content>
                     </div>
                 </div>
@@ -28,16 +28,24 @@ import { AmpButton } from '../../../app/components/amp-button/amp-button.compone
             'slideUp' ,
             [
                 state( 'collapsed, void' , style( {
-                    height       : '0px' ,
-                    'min-height' : '0px' ,
-                    opacity      : '0' ,
-                    display      : 'none'
+                    height           : '0px' ,
+                    'min-height'     : '0px' ,
+                    opacity          : '0' ,
+                    'padding-left'   : '0px' ,
+                    'padding-right'  : '0px' ,
+                    'padding-bottom' : '0px' ,
+                    'padding-top'    : '0px' ,
+                    display          : 'none'
                 } ) ) ,
                 state( 'expanded' , style( {
-                    height       : '*' ,
-                    'min-height' : '*' ,
-                    opacity      : '1' ,
-                    display      : 'block'
+                    height           : '*' ,
+                    'min-height'     : '*' ,
+                    opacity          : '1' ,
+                    'padding-left'   : '*' ,
+                    'padding-right'  : '*' ,
+                    'padding-bottom' : '*' ,
+                    'padding-top'    : '*' ,
+                    display          : 'block'
                 } ) ) ,
                 transition(
                     'collapsed <=> expanded' , [ animate( 800 ) ] )
