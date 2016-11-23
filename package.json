@@ -29,7 +29,7 @@
     "rxjs": "5.0.0-beta.11",
     "ts-helpers": "^1.1.1",
     "zone.js": "0.6.12",
-
+    "web-animations-js": "^2.2.2",
     "amp-ddc-components": "^3.0.0",
     "amp-styleguide-core": "^1.0.0",
     "ddcjs-logger": "^1.0.0",
