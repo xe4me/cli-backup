@@ -19,6 +19,7 @@ import {
     AmpIntroBlockComponent
 } from 'amp-ddc-components';
 import { ViewChild } from '@angular/core';
+import { FDN } from '../../forms/better-form/Application.fdn';
 @Component( {
     selector        : 'welcome-block' ,
     templateUrl     : './welcome-block.component.html' ,
@@ -29,6 +30,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     @ViewChild( AmpIntroBlockComponent ) public ampIntro;
     private nextBlockChanged : boolean = false;
     private newOrExistingControl : FormControl;
+
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -41,7 +43,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     public ngOnInit () {
         this.__controlGroup
             .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
-        this.newOrExistingControl = <FormControl> this.__controlGroup.get(this.__custom.controls[0].id);
+        this.newOrExistingControl = <FormControl> this.__controlGroup.get( this.__custom.controls[ 0 ].id );
     }
 
     private onNewOrExisting ( newOrExisting : string ) {
@@ -56,15 +58,24 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
                 .then( () => {
                     this.ampIntro.proceed()
                         .then( () => {
-                            this.onNext();
+                            this.fireMockScrolledEvent();
                         } );
                 } );
             this.nextBlockChanged = true;
             return;
         }
+
         this.ampIntro.proceed()
             .then( () => {
-                this.onNext();
+                this.fireMockScrolledEvent();
             } );
+    }
+
+    private fireMockScrolledEvent () {
+        this.scrollService.$scrolled.emit( {
+            componentSelector : [ ...FDN.SingleOrJoint , 'block' ].join( '-' ) ,
+            section           : null
+        } );
+
     }
 }
