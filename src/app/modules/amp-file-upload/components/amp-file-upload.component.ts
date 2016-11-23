@@ -178,7 +178,6 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
     }
 
     private updateToken () : void {
-        this.fileInput.nativeElement.value = null;
         this.error = false;
         this.uploadCompleted = false;
         this.control.setErrors( {error : 'file upload pending'} );
