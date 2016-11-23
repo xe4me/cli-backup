@@ -6,9 +6,11 @@ options:
 files:
     include: src/**/*.scss
     ignore:
-      # TODO: This file is ignore due to an issue in the underlying Sass parsing library and so it should be un-ignored once the the fix has been released:
-      #       An issue has been raised: https://github.com/tonyganch/gonzales-pe/issues/210
-      #       And the fix has been merged but not released: https://github.com/tonyganch/gonzales-pe/pull/217
+      # TODO: This file is ignored due to an issue in the underlying gonzales-pe parsing library which sass-lint uses.
+      #       This issue has been fixed and released in the parser but sass-lint has not upgraded to this version yet
+      #       A PR for this has been opened in sass-lint: https://github.com/sasstools/sass-lint/pull/957
+      #       Once that PR has been merged then and gonzales-pe version is upgraded to > 4.0.2 then it should be
+      #       possible to remove this ignore
       - 'src/styleguide/assets/font/font.scss'
 
 # Rule Configuration
