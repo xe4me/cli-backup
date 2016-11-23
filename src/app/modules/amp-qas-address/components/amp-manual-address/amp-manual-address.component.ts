@@ -157,7 +157,7 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     public emptyControls () {
-        this.emptyAndResetStateControl();
+        this.stateCtrl.setValue( null );
         this.countryCtrl.setValue( AmpManualAddressComponent.DEFAULT_SELECTED_COUNTRY );
         this.suburbCtrl.reset( null );
         this.addressCtrl.reset( null );
@@ -167,17 +167,19 @@ export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     public emptyAndResetStateControl () {
-        this.stateCtrl.setValue( null );
+
         this.stateCtrl.markAsPristine();
     }
 
     private onCountrySelect ( _countryCode ) {
         if ( this.selectedCountry !== _countryCode.country ) {
-            // this.emptyAndResetStateControl();
-            // this.cityCtrl.reset( null );
-            // this.suburbCtrl.reset( null );
+            this.stateCtrl.setValue( null );
+            this.addressCtrl.reset( null );
+            this.postCodeCtrl.reset( null );
+            this.suburbCtrl.reset( null );
+            this.cityCtrl.reset( null );
             this.selectedCountry = _countryCode.country;
-            // this.killDelayedValidationForInputs();
+            this.killDelayedValidationForInputs();
             this._cd.detectChanges();
         }
     }
