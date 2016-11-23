@@ -12,3 +12,18 @@
         height: 100vh;
     }
 }
+
+.sidebar {
+    position: fixed;
+    width: $content-left-width;
+}
+
+.main {
+    display: block;
+
+    &--aside {
+        @include media-query('tablet-and-up') {
+            margin-left: $content-left-width + $content-left-margin;
+        }
+    }
+}

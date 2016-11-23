@@ -1,23 +1,5 @@
 @import "../../../../../styles/abstracts";
 
-// Border
-$border-default-color: #d4d4d4;
-
-
-
-// Todo list
-$todo-list-item-margin-bottom: 20px;
-$todo-list-item-color: #7f8082;
-$todo-list-item-active-color: #005890;
-$todo-list-item-hover-color: $amp-colour-sky-blue;
-
-$todo-list-icon-bg: $amp-colour-sky-blue;
-$todo-list-icon-color: $amp-colour-white;
-$todo-list-icon-size: 20px;
-
-$todo-list-margin-bottom: 40px;
-$todo-list-padding-bottom: $todo-list-margin-bottom;
-
 // Sticky
 $sticky-menu-height: 70px;
 $header-font-family: $amp-font-open-sans-regular;
@@ -59,40 +41,3 @@ $icons-transition-time: $ddc-buttons-and-icons-transition-time;
         margin-top : $sticky-menu-height;
     }
 }
-
-//
-// Todo List
-// --------------------------------
-
-.container {
-    margin: 0;
-    max-width: 1224px;
-    padding: 0 $content-padding-h;
-
-    @include media-query('lap-and-up') {
-        padding: 0 $content-padding-h-lap-and-up;
-    }
-
-    &--full-height {
-        position: relative;
-        height: 100vh;
-    }
-}
-
-.sidebar {
-    position: fixed;
-    width: $content-left-width;
-}
-
-/*
-.main {
-  display: block;
-  margin-left: $content-left-width + $content-left-margin;
-}
-*/
-
-/*
-.blocks-wrapper {
-  padding-top: $sticky-menu-margin-bottom;
-}
-*/
