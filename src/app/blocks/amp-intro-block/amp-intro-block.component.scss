@@ -9,6 +9,7 @@ $logo-width : 220px !default;
 $amp-ddc-public-asset : '../../../assets/';
 
 :host {
+    transform: translate3d(0, 0 ,0);
     /**
 
     Apologies in advance for the use of !important
