@@ -320,6 +320,46 @@
         "readme": "<p>Custom Block for Amp Titles Dropdown Component.</p>\n"
     },
     {
+        "name": "Amp States Dropdown",
+        "sources": [
+            "src/app/components/amp-states/amp-states.component.ts"
+        ],
+        "id": "AmpStatesComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-states/basic_usage.html",
+                "styles": "src/styleguide/components/amp-states/basic_usage.scss",
+                "source": "src/styleguide/components/amp-states/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-states/amp-states.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-states/amp-states.component.spec.ts",
+                "component": "amp-states-block-basic-usage",
+                "component_src_location": "components/amp-states/basic_usage",
+                "name": "Amp States Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for Amp States Dropdown Component.</p>\n"
+    },
+    {
+        "name": "Amp Street Types Dropdown",
+        "sources": [
+            "src/app/components/amp-street-types/amp-street-types.component.ts"
+        ],
+        "id": "AmpStreetTypesComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-street-types/basic_usage.html",
+                "styles": "src/styleguide/components/amp-street-types/basic_usage.scss",
+                "source": "src/styleguide/components/amp-street-types/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-street-types/amp-street-types.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-street-types/amp-street-types.component.spec.ts",
+                "component": "amp-street-types-block-basic-usage",
+                "component_src_location": "components/amp-street-types/basic_usage",
+                "name": "Amp StreetTypes Dropdown Basic Usage"
+            }
+        ],
+        "readme": "<p>Custom Block for Amp Street Types Dropdown Component.</p>\n"
+    },
+    {
         "name": "Amp Dropdown",
         "sources": [
             "src/app/components/amp-dropdown/amp-dropdown.component.ts"
