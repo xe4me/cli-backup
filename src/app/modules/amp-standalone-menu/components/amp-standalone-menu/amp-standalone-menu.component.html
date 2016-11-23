@@ -1,20 +1,10 @@
 <div
     #menu
     class="steps-menu steps-menu--{{ theme }}"
-    [class.steps-menu--open]="isClassOpen"
+    [class.steps-menu--open]="isOpen"
     *ngIf="showMenu"
-    (window:resize)="onResize($event.target , menu)">
-
-    <button type="button" class="steps-menu__btn" *ngIf="!isClassOpen" (click)="onClassOpen()">
-        <span aria-hidden="true">{{ currentSectionLabel }}</span>
-        <span class="sr-only">Open menu</span>
-        <span class="steps-menu__btn-icon icon icon--chevron-down" aria-hidden="true"></span>
-    </button>
-
-    <button type="button" class="steps-menu__btn steps-menu__btn--docked" *ngIf="isClassOpen" (click)="onClassClose()">
-        Close<span class="sr-only">&nbsp; menu</span>
-        <span class="steps-menu__btn-icon icon icon--chevron-up" aria-hidden="true"></span>
-    </button>
+    [@openClosed]="openClosed"
+    (window:resize)="onResize($event.target, menu)">
 
     <nav role="navigation">
         <ul class="steps-menu__list">
@@ -22,10 +12,22 @@
                 <span class="steps-menu__step" *ngIf="isStateDisabled(section.state)">
                     {{ section.label }}
                 </span>
-                <a href="{{ section.anchorUrl }}" class="steps-menu__step" *ngIf="!isStateDisabled(section.state)" (click)="scrollToSection($event, section)">
+                <a href="{{ section.anchorUrl }}" class="steps-menu__step" *ngIf="!isStateDisabled(section.state)" (click)="onSectionClick($event, section)">
                     {{ section.label }}
                 </a>
             </li>
         </ul>
     </nav>
+
+    <button type="button" class="steps-menu__btn" *ngIf="!isOpen" (click)="onOpenClick()">
+        <span aria-hidden="true">{{ currentSectionLabel }}</span>
+        <span class="sr-only">Open menu</span>
+        <span class="steps-menu__btn-icon icon icon--chevron-down" aria-hidden="true"></span>
+    </button>
+
+    <button type="button" class="steps-menu__btn steps-menu__btn--docked" *ngIf="isOpen" (click)="onCloseClick()">
+        Close<span class="sr-only">&nbsp;menu</span>
+        <span class="steps-menu__btn-icon icon icon--chevron-up" aria-hidden="true"></span>
+    </button>
+
 </div>

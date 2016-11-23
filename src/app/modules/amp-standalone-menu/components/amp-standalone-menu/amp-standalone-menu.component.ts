@@ -1,27 +1,44 @@
 import {
-    Component ,
-    ElementRef ,
-    ChangeDetectorRef ,
-    ViewChild ,
-    ChangeDetectionStrategy ,
-    OnInit ,
-    AfterViewInit ,
-    OnDestroy ,
-    Input
+    Component,
+    ChangeDetectorRef,
+    ViewChild,
+    ChangeDetectionStrategy,
+    OnInit,
+    AfterViewInit,
+    OnDestroy,
+    Input,
+    trigger,
+    state,
+    style,
+    animate,
+    transition
 } from '@angular/core';
-import { FormSectionService } from '../../../../services/form-section/form-section.service';
-import { ScrollService } from '../../../../services/scroll/scroll.service';
-import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
+import { ScrollService } from '../../../../services/scroll/scroll.service';
+import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
 @Component( {
-    selector        : 'amp-standalone-menu' ,
-    template        : require( './amp-standalone-menu.component.html' ).toString() ,
-    styles          : [ require( './amp-standalone-menu.scss' ).toString() ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    selector        : 'amp-standalone-menu',
+    template        : require( './amp-standalone-menu.component.html' ).toString(),
+    styles          : [ require( './amp-standalone-menu.scss' ).toString() ],
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    animations : [
+        trigger(
+            'openClosed',
+            [
+                state( 'closed, void', style( {
+                    height       : '*'
+                } ) ),
+                state( 'open', style( {
+                    height       : '100%'
+                } ) ),
+                transition(
+                    'closed <=> open', [ animate('450ms ease-in') ] )
+            ] )
+    ]
 } )
-export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDestroy {
+export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild( 'menu' ) menu;
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
@@ -33,15 +50,16 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
     private currentSectionId : string     = null;
     private domUtils : DomUtils           = null;
     private itemPrefix : string           = 'Item-'; // Prefix for the nav menu id.
-    private isClassOpen : boolean         = false;
+    private isOpen : boolean              = false;
     private currentSectionLabel : string = '';
     private tempScrollTop : number;
     private sectionObservable : Observable<any>;
     private scrollSubscription : Subscription;
     private menuScrolling : boolean = false;
+    private openClosed : string = 'closed';
     private html; // get a reference to html element so we can stop scrolling when menu open on mobile
-    constructor ( private dom : BrowserDomAdapter ,
-                  private cd : ChangeDetectorRef ,
+    constructor ( private dom : BrowserDomAdapter,
+                  private cd : ChangeDetectorRef,
                   private scrollService : ScrollService ) {
         this.domUtils          = new DomUtils();
         this.sectionObservable = scrollService.$scrolled;
@@ -52,13 +70,13 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
             let sectionName = blockchanges ? blockchanges.section : null;
             setTimeout( () => {
                 this.updateSections( sectionName );
-            } , 0 );
+            }, 0 );
         } );
         this.html = this.dom.query( 'html' );
     }
 
     ngAfterViewInit () {
-        this.onResize( window , this.menu );
+        this.onResize( window, this.menu );
         this.subscribeToScrollEvents();
     }
 
@@ -82,11 +100,10 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
      */
     private updateSections ( sectionName : string ) {
         let body               = this.dom.query( 'body' );
-        let sections           = this.dom.querySelectorAll( body , 'page-section' );
-        let mySections         = [];
+        let sections           = this.dom.querySelectorAll( body, 'page-section' );
         let hasActiveClass     = false;
         let currentSectionName = sectionName ? sectionName : this.currentSectionId;
-        this.sections          = Array.prototype.map.call( sections , ( section , index ) => {
+        this.sections          = Array.prototype.map.call( sections, ( section ) => {
             let pageSectionId = section.id;
             let menuItemId    = this.itemPrefix + section.id;
             let classes       = section.className;
@@ -99,10 +116,10 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
                 this.currentSectionLabel = label;
             }
             return {
-                label         : label ,
-                pageSectionId : pageSectionId ,
-                id            : menuItemId ,
-                state         : classes ,
+                label         : label,
+                pageSectionId : pageSectionId,
+                id            : menuItemId,
+                state         : classes,
                 anchorUrl     : window.location.href + '/#' + pageSectionId,
                 hidden        : hidden
             };
@@ -113,21 +130,34 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
         this.cd.markForCheck();
     }
 
-    private onClassOpen () {
+    private close () {
+        this.allowHtmlScrolling();
+        this.openClosed = 'closed';
+        this.isOpen = false;
+    }
+
+    private open () {
         this.disableHtmlScrolling();
-        this.isClassOpen   = true;
+        this.isOpen   = true;
+        this.openClosed = 'open';
         this.tempScrollTop = this.scrollService.scrollTop;
     }
 
-    private onClassClose () {
-        this.allowHtmlScrolling();
-        this.isClassOpen = false;
+    private onOpenClick () {
+        this.open();
     }
 
-    private scrollToSection ( event , section ) {
+    private onCloseClick () {
+        this.close();
+    }
+
+    private onSectionClick ( event, section ) {
         event.preventDefault();
-        this.allowHtmlScrolling();
-        this.isClassOpen      = false;
+        this.scrollToSection(section);
+        this.close();
+    }
+
+    private scrollToSection ( section ) {
         this.currentSectionId = section.pageSectionId;
         this.menuScrolling = true;
         this.scrollService.scrollToComponentSelector( section.pageSectionId );
@@ -141,7 +171,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
         this.html.style.overflow = 'hidden';
     }
 
-    private onResize ( _window , menu : HTMLElement ) {
+    private onResize ( _window, menu : HTMLElement ) {
         let menuHeight = menu && menu.getBoundingClientRect ? menu.getBoundingClientRect().height : 65;
         if ( _window.innerWidth < 481 ) {
             this.scrollService.updateOffset( menuHeight );
@@ -154,7 +184,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
         this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( component ) => {
             if (this.menuScrolling) {
                 let body = this.dom.query( 'body' );
-                let section = this.dom.querySelector( body , '#' + component.componentSelector );
+                let section = this.dom.querySelector( body, '#' + component.componentSelector );
                 let tabindex = section.getAttribute('tabindex');
 
                 this.menuScrolling = false;
@@ -163,7 +193,7 @@ export class AmpStandAloneMenuComponent implements OnInit , AfterViewInit , OnDe
                     section.focus();
                 } else {
                     setTimeout(() => {
-                        this.dom.querySelector( body , 'a[href$="#' + component.componentSelector + '"]').focus();
+                        this.dom.querySelector( body, 'a[href$="#' + component.componentSelector + '"]').focus();
                     });
                 }
             }
