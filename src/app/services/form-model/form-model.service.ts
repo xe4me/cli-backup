@@ -81,6 +81,7 @@ export class FormModelService {
         folderId              : null
     };
     public form : FormGroup                  = new FormGroup( {} );
+    public autoSave : boolean                = true; // this is used in form block
     private _apiBaseURL                      = Environments.property.ApiCallsBaseUrl;
     private _practiceBaseURL                 = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
     private _contactDetailsUrl               = this._practiceBaseURL + '/profile';
