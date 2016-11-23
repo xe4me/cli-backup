@@ -27,16 +27,13 @@
             </amp-country>
         </div>
     </amp-form-row>
-    <p class="mt-60">
-
-        <label>
-            Are you a United States resident or citizen for tax purposes?
-            <amp-tooltip-cmp
-                message='We are required to identify any US citizens or residents for tax purposes. If you are a US citizen or resident for tax purposes (even if you are also a taxpayer in Australia) you should complete this section. We may then ask you for your US tax identification number.'></amp-tooltip-cmp>
-        </label>
-    </p>
+    <div class="mt-60 heading-contxtual-label">
+        Are you a United States resident or citizen for tax purposes?
+        <amp-tooltip-cmp
+            message='We are required to identify any US citizens or residents for tax purposes. If you are a US citizen or resident for tax purposes (even if you are also a taxpayer in Australia) you should complete this section. We may then ask you for your US tax identification number.'></amp-tooltip-cmp>
+    </div>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-9/12">
+        <div class="mt grid__item_floated palm-1/1 tablet-1/1 lap-and-up-9/12">
             <amp-group-buttons
                 #usTaxResidency
                 [required]="true"

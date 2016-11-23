@@ -26,12 +26,14 @@ import {
 @Component( {
     selector        : 'single-or-joint-block' ,
     templateUrl     : './single-or-joint-block.component.html' ,
+    styles          : [ require( './single-or-joint-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
+
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -45,10 +47,10 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public ngOnInit () {
         this.singleApplicantKey = Constants.singleApplicant;
-        this.jointApplicantKey = Constants.jointApplicant;
+        this.jointApplicantKey  = Constants.jointApplicant;
         this.__controlGroup.addControl(
-                this.__custom.controls[ 0 ].id,
-                new FormControl( null , Validators.required));
+            this.__custom.controls[ 0 ].id ,
+            new FormControl( null , Validators.required ) );
         this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
         this.formModelService.saveResponse.subscribe( ( result ) => {
             if ( result.payload.meta && result.payload.meta.id ) {
@@ -57,7 +59,6 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         } );
         // load applicant 1
         this.__loadAt( this.applicantGenerator.getApplicantSection( 1 ) , 2 );
-
         // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
         // then go next
         // The reason is if you don't do this , when you start with a Single applicant and finish the form and go
