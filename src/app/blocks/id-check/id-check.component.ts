@@ -89,6 +89,9 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
         const applicant = this.__form.get(['Application', `Applicant${applicantIndex}Section` ]).value;
         const personalDetails = applicant.PersonalDetailsSection;
         const residentialAddress = personalDetails.Address.Address.residentialAddress.manualAddress;
+        const state = residentialAddress.stateDropdown ? residentialAddress.stateDropdown.SelectedItem : '';
+        const streetType = residentialAddress.streetTypeDropdown
+                                ? residentialAddress.streetTypeDropdown.SelectedItem : '';
 
         this.greenIdModel = {
             firstName : personalDetails.BasicInfo.FirstName,
@@ -102,13 +105,13 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
             verificationStatus : '',
             address : {
                 country : 'AU',
-                state : residentialAddress.state,
+                state : state,
                 streetName : residentialAddress.streetName || '',
                 flatNumber : residentialAddress.unitNumber || '',
                 streetNumber : residentialAddress.streetNumber || '',
                 suburb : residentialAddress.suburb,
                 postcode : residentialAddress.postCode,
-                streetType : residentialAddress.streetType || ''
+                streetType : streetType
             }
         };
     }
