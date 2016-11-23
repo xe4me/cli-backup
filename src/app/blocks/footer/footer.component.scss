@@ -6,7 +6,7 @@ $amp-ddc-public-asset : '../../../assets/';
     color: $amp-colour-white;
     background: $amp-colour-primary;
     padding: 60px 30px 60px 254px;
-    @include media-query(palm) {
+    @include media-query(tablet-and-down) {
         padding: 30px;
     }
 }
@@ -14,17 +14,17 @@ $amp-ddc-public-asset : '../../../assets/';
 .contact-heading {
     font-size: 32px;
     margin-bottom: 5px;
-    display: inline-block;
+    display: block;
     margin-top: -10px;
-    clear: right;
-    @include media-query(palm) {
+    margin-left: 111px;
+    @include media-query(tablet-and-down) {
         font-weight: 400;
-        font-size: $font-size-small;
-        margin-top: -50px;
+        font-size: $font-size-heading-mobile;
         margin-left: 60px;
-        float: left;
+    }    
+    @include media-query(palm) {
+        font-size: $font-size-small;
         .contact-call {
-            display: block;
             clear: left;
         }
     }
@@ -36,12 +36,15 @@ $amp-ddc-public-asset : '../../../assets/';
     margin-top: 10px;
     margin-left: 111px;
     display: block;
+    @include media-query(tablet-and-down) {
+        font-size: $font-size-tiny;
+        font-weight: 100;
+        margin-left: 60px;
+        margin-top: 0;
+    }        
     @include media-query(palm) {
         display: inline-block;
-        font-weight: 100;
-        font-size: $font-size-tiny;
         margin-top: 10px;
-        margin-left: 60px;
         line-height: 26px;
     }
 }
@@ -51,12 +54,13 @@ $amp-ddc-public-asset : '../../../assets/';
         content: ' ';
         float: left;
         margin-right: 50px;
+        margin-top: 10px;
         top: 0;
         width: 61px;
         height: 75px;
         background-repeat: no-repeat;
         background-size: 100%;
-        @include media-query(palm) {
+        @include media-query(tablet-and-down) {
             width: 35px;
             height: 44px;
             margin-right: 30px;
@@ -74,6 +78,9 @@ $amp-ddc-public-asset : '../../../assets/';
     &::before {
         content: '|';
         margin: 0 25px;
+        @include media-query(tablet) {
+            margin: 0 5px;
+        }            
         @include media-query(palm) {
             content: ' ';
             display: block;
