@@ -85,8 +85,49 @@ describe( 'Basic Util functions test' , () => {
         customer_id: '12345678'
     };
 
-    it( 'Get user data from base64 encoded string' , () => {
+    it( 'Get user data from base64 encoded string - Standard usage' , () => {
             expect( BasicUtils.base64DatatoObject( base64Input ) ).toEqual( base64Output );
+        }
+    );
+
+    // Different Seperator
+
+    let base64InputSeperator = btoa('James/j.bond@gmail.com/NSW/12345678');
+
+    it( 'Get user data from base64 encoded string - Different Seperator' , () => {
+            expect( BasicUtils.base64DatatoObject( base64InputSeperator , ['name', 'email', 'state', 'customer_id'] , '/' ) ).toEqual( base64Output );
+        }
+    );
+
+    // Different Order
+
+    let base64InputDifferentOrder = btoa('12345678#j.bond@gmail.com#NSW#James');
+
+    let base64OutputDifferentOrder = {
+        customer_id: '12345678',
+        email: 'j.bond@gmail.com',
+        state: 'NSW',
+        name: 'James'
+    };
+
+    it( 'Get user data from base64 encoded string - Different order' , () => {
+            expect( BasicUtils.base64DatatoObject( base64InputDifferentOrder , ['customer_id', 'email', 'state', 'name'] ) ).toEqual( base64OutputDifferentOrder );
+        }
+    );
+
+    // Not enough data passed into encoded string
+
+    let base64InputInvalid = btoa('James#12345678');
+
+    it( 'Get user data from base64 encoded string - Invalid data' , () => {
+            expect( BasicUtils.base64DatatoObject( base64InputInvalid ) ).toEqual( {} );
+        }
+    );
+
+    // Invalid encoded string
+
+    it( 'Get user data from base64 encoded string - Invalid encoded string' , () => {
+            expect( BasicUtils.base64DatatoObject( 'SmF3asdTIzNDU2Nzg' ) ).toEqual( {} );
         }
     );
 } );
