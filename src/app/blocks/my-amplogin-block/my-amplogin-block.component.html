@@ -18,10 +18,13 @@
             </amp-input>
         </div>
     </amp-form-row>
-    <div class='errors' *ngIf="hasLoginError">
+    <div class="mt mb" >
+        Forgot your <a href='/wps/portal/sec/ForgotUsername/'>username</a> or <a href='/wps/portal/sec/ForgotPassword/'>password</a>?
+    </div>
+    <div class='errors' *ngIf="errorCode">
         <div class="error-item">
             <span class='icon icon--close icon-errors' aria-hidden='true'></span>
-            <span [innerHtml]='__custom.loginFailedMsg'></span>
+            <span>{{ errorCode | i18nSelect: __custom.errorCodeMap }}</span>
         </div>
     </div>
 </amp-form-block>
