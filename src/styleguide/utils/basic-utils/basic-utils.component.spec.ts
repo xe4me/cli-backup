@@ -1,4 +1,5 @@
 import { BasicUtils } from '../../../app/modules/amp-utils/basic-utils';
+
 describe( 'Basic Util functions test' , () => {
     let valueAsString : string     = '2,000,00';
     let valueAsInt : number        = 200000;
@@ -72,9 +73,13 @@ describe( 'Basic Util functions test' , () => {
         }
     );
 
-    //
-    // Base64 Data to Object
-    //
+});
+
+//
+// Base64 Data to Object
+//
+
+describe( 'Get user data from base64 encoded string' , () => {
 
     let base64Input = btoa('James#j.bond@gmail.com#NSW#12345678');
 
@@ -85,17 +90,8 @@ describe( 'Basic Util functions test' , () => {
         customer_id: '12345678'
     };
 
-    it( 'Get user data from base64 encoded string - Standard usage' , () => {
+    it( 'should split a base64 string and store parts in an object' , () => {
             expect( BasicUtils.base64DatatoObject( base64Input ) ).toEqual( base64Output );
-        }
-    );
-
-    // Different Separator
-
-    let base64InputSeparator = btoa('James/j.bond@gmail.com/NSW/12345678');
-
-    it( 'Get user data from base64 encoded string - Different Separator' , () => {
-            expect( BasicUtils.base64DatatoObject( base64InputSeparator , ['name', 'email', 'state', 'customer_id'] , '/' ) ).toEqual( base64Output );
         }
     );
 
@@ -110,8 +106,17 @@ describe( 'Basic Util functions test' , () => {
         name: 'James'
     };
 
-    it( 'Get user data from base64 encoded string - Different order' , () => {
+    it( 'should split a base64 string and store parts in an object when passed a custom property ordering' , () => {
             expect( BasicUtils.base64DatatoObject( base64InputDifferentOrder , ['customer_id', 'email', 'state', 'name'] ) ).toEqual( base64OutputDifferentOrder );
+        }
+    );
+
+    // Different Separator
+
+    let base64InputSeparator = btoa('James/j.bond@gmail.com/NSW/12345678');
+
+    it( 'should split a base64 string and store parts in an object using a custom separator' , () => {
+            expect( BasicUtils.base64DatatoObject( base64InputSeparator , ['name', 'email', 'state', 'customer_id'] , '/' ) ).toEqual( base64Output );
         }
     );
 
@@ -119,14 +124,14 @@ describe( 'Basic Util functions test' , () => {
 
     let base64InputInvalid = btoa('James#12345678');
 
-    it( 'Get user data from base64 encoded string - Invalid data' , () => {
+    it( 'should return empty object when string does not contain enough data' , () => {
             expect( BasicUtils.base64DatatoObject( base64InputInvalid ) ).toEqual( {} );
         }
     );
 
     // Invalid encoded string
 
-    it( 'Get user data from base64 encoded string - Invalid encoded string' , () => {
+    it( 'should return empty object when passed invalid encoded string' , () => {
             expect( BasicUtils.base64DatatoObject( 'SmF3asdTIzNDU2Nzg' ) ).toEqual( {} );
         }
     );
