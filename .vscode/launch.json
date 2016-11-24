@@ -6,8 +6,11 @@
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:3000/ddc/public/ui/bett3r/",
-            "webRoot": "${workspaceRoot}/src/app",
-            "sourceMaps": true
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///C:*":"C:/*"
+            }
         }
     ]
 }
