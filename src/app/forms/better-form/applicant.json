@@ -138,7 +138,7 @@
         ]
     },
     {
-        "name": "FinalQuesitonsSection",
+        "name": "FinalQuestionsSection",
         "blockType": "PageSectionComponent",
         "blockLayout": "SECTION",
         "commonBlock": true,
