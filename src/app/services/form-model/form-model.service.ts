@@ -81,6 +81,7 @@ export class FormModelService {
         folderId              : null
     };
     public form : FormGroup                  = new FormGroup( {} );
+    public autoSave : boolean                = true; // this is used in form block
     private _apiBaseURL                      = Environments.property.ApiCallsBaseUrl;
     private _practiceBaseURL                 = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
     private _contactDetailsUrl               = this._practiceBaseURL + '/profile';
@@ -338,6 +339,7 @@ export class FormModelService {
     }
 
     public saveAndSubmitApplication(model, submitUrl, referenceId) : Observable<any> {
+        // http://stackoverflow.com/questions/33675155/creating-and-returning-observable-from-angular-2-service
         let resultSubject = new ReplaySubject(1);
 
         this.saveModel(model).subscribe((saveResult) => {
