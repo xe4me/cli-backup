@@ -20,6 +20,10 @@ $amp-ddc-public-asset : '../../../assets/';
         .intro-message-heading {
             margin-bottom: 0;
         }
+        @media screen and (min-width: 1821px) {
+            background-size: 100%;
+            min-height: 1262px;
+        }
         @include media-query(palm) {
             padding: 0 8px;
             background-position: left top;
