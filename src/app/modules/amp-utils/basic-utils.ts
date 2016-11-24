@@ -77,15 +77,30 @@ export class BasicUtils {
 
     public static base64DatatoObject ( encodedString : string ,
                                        order : string[] = [ 'name' , 'email' , 'state' , 'customer_id' ] ,
-                                       seperator : string = '#' ) : any {
+                                       separator : string = '#' ) : any {
         let obj           = {};
-        let decodedString = atob( encodedString );
-        let items         = decodedString.split( seperator );
+        let decodedString = '';
+        let items         = [];
+
+        // Return empty object if cannot decode string
+        try {
+            decodedString = atob( encodedString );
+            items = decodedString.split( separator );
+        } catch (err) {
+            return obj;
+        }
+
+        // Return empty object if decoded string doesn't contain enough values
+        if ( decodedString.split(separator).length < order.length ) {
+            return obj;
+        }
+
         for ( let i = 0 ; i < order.length ; i ++ ) {
             if ( ! obj.hasOwnProperty( order[ i ] ) ) {
                 obj[ order[ i ] ] = items[ i ];
             }
         }
+
         return obj;
     }
 }
