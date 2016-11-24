@@ -1,0 +1,13 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "Launch localhost with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000/ddc/public/ui/bett3r/",
+            "webRoot": "${workspaceRoot}/src/app",
+            "sourceMaps": true
+        }
+    ]
+}
