@@ -2,6 +2,7 @@
     "type": "experience",
     "port": 8080,
     "protocol": "HTTP",
+    "angularCliProj": "false",
 
     "environment": {
         "dev": {
