@@ -113,5 +113,40 @@
             </highlight>
         </p>
     </article>
+
+    <article class="article mt">
+        <h2 class="mb-">Icon buttons</h2>
+    </article>
+    <article class="article">
+        <div class='title'>Default and small</div>
+        <div class='content'>
+            <amp-button [attr.theme]="themeService.theme.attr" [class]="'btn btn-ok btn-icon'">
+                <i class="icon icon--phone" aria-hidden="true"></i>
+                <span class="sr-only">Contact us</span>
+            </amp-button>
+
+            <amp-button [attr.theme]="themeService.theme.attr" [class]="'btn btn-ok btn-icon btn-icon--small'">
+                <i class="icon icon--phone" aria-hidden="true"></i>
+                <span class="sr-only">Contact us</span>
+            </amp-button>
+        </div>
+    </article>
+    <article class="article">
+        <p class="para mt">Sample implementation below:</p>
+        <p class="para">
+            <highlight color-default>
+               <pre class="pre">
+                    <code class="highlight-override">
+                        <strong class="strong">
+                            &#60;amp-button [attr.theme]="'tools'" [class]="'btn btn-ok btn-icon'"&#62;
+                                &#60;i class="icon icon--phone" aria-hidden="true">&#60;/i>
+                                &#60;span class="sr-only">Contact us&#60;/span>
+                            &#60;/amp-button&#62;
+                        </strong>
+                    </code>
+               </pre>
+            </highlight>
+        </p>
+    </article>
 </section>
 
