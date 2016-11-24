@@ -720,6 +720,26 @@
         "readme": "<p>AMP natural language phone number"
     },
     {
+        "name": "Amp Pop Down",
+        "sources": [
+            "src/app/components/amp-pop-down/amp-pop-down.component.ts"
+        ],
+        "id": "AmpPopDownComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-pop-down/basic_usage.html",
+                "styles": "src/styleguide/components/amp-pop-down/basic_usage.scss",
+                "source": "src/styleguide/components/amp-pop-down/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-pop-down/amp-pop-down.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-pop-down/amp-pop-down.component.spec.ts",
+                "component": "amp-pop-down-block-basic-usage",
+                "component_src_location": "components/amp-pop-down/basic_usage",
+                "name": "Amp Pop Down Basic Usage"
+            }
+        ],
+        "readme": "<p>Amp Pop Down component.</p>\n"
+    },
+    {
         "name": "Amp Qas Address",
         "sources": [
             "src/app/components/amp-qas-address/amp-qas-address.component.ts"

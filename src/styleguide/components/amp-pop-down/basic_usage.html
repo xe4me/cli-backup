@@ -1,0 +1,25 @@
+<section class="section p">
+
+    <h2 class="mb">Default</h2>
+
+    <button type="button" amp-pop-down-toggle="#defaultPopDownId">Toggle Pop Down</button>
+
+    <amp-pop-down [id]="'defaultPopDownId'">
+        <h3 class="amp-pop-down__heading">This is a heading</h3>
+        This is the first pop down on the page!
+    </amp-pop-down>
+
+</section>
+
+<section class="section p" style="text-align: right">
+
+    <h2 class="mb">Default</h2>
+
+    <button type="button" amp-pop-down-toggle="#defaultPopDownId2">Toggle Pop Down 2</button>
+
+    <amp-pop-down [id]="'defaultPopDownId2'" [align]="'right'">
+        <h3 class="amp-pop-down__heading">This is a heading</h3>
+        This pop down is aligned to the right of its parent.
+    </amp-pop-down>
+
+</section>
