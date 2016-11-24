@@ -4,6 +4,22 @@
  */
 export class DomUtils {
 
+    public hide (el : any) {
+        el.setAttribute('hidden', '');
+    }
+
+    public show (el : any) {
+        el.removeAttribute('hidden');
+    }
+
+    public toggle (el : any) {
+        if ( this.isVisible(el) ) {
+            this.hide(el);
+        } else {
+            this.show(el);
+        }
+    }
+
     public addClass (el : any, className : string) {
         if (el.classList) {
             el.classList.add(className);
