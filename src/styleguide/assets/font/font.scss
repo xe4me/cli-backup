@@ -6,10 +6,10 @@ $md-font-url: '/src/styleguide/assets/font/' !default;
     font-weight: 400;
     src: url($md-font-url + 'MaterialIcons-Regular.eot'); /* For IE6-8 */
     src: local($md-font-url + 'Material Icons'),
-    local($md-font-url + 'MaterialIcons-Regular'),
-    url($md-font-url + 'MaterialIcons-Regular.woff2') format('woff2'),
-    url($md-font-url + 'MaterialIcons-Regular.woff') format('woff'),
-    url($md-font-url + 'MaterialIcons-Regular.ttf') format('truetype');
+         local($md-font-url + 'MaterialIcons-Regular'),
+         url($md-font-url + 'MaterialIcons-Regular.woff2') format('woff2'),
+         url($md-font-url + 'MaterialIcons-Regular.woff') format('woff'),
+         url($md-font-url + 'MaterialIcons-Regular.ttf') format('truetype');
 }
 .material-icons {
     font-family: 'Material Icons';

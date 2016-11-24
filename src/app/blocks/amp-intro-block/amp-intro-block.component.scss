@@ -9,7 +9,7 @@ $logo-width : 220px !default;
 $amp-ddc-public-asset : '../../../assets/';
 
 :host {
-    transform: translate3d(0, 0 ,0);
+    transform: translate3d(0, 0, 0);
     /**
 
     Apologies in advance for the use of !important
@@ -30,10 +30,10 @@ $amp-ddc-public-asset : '../../../assets/';
             margin-left : 210px;
         }
         @include media-query(tablet) {
-            margin-left : 0px;
+            margin-left : 0;
         }
         @include media-query(palm) {
-            margin-left : 0px;
+            margin-left : 0;
         }
     }
 
@@ -65,7 +65,7 @@ $amp-ddc-public-asset : '../../../assets/';
         }
 
         /*
-            Logos seperated for stylistic purposes only
+            Logos separated for stylistic purposes only
         */
 
         &.amp-financial-logo-blue-text-bg {
@@ -230,10 +230,9 @@ $amp-ddc-public-asset : '../../../assets/';
         .md-input div.md-input-wrapper .md-input-placeholder {
             color : $amp-colour-white;
         }
+
         md-input.md-input div.md-input-wrapper {
             margin-top : 20px;
         }
-
     }
-
 }
