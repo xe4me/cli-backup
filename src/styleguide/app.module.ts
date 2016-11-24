@@ -35,6 +35,7 @@ import { AmpGreenidModule } from '../app/modules/amp-greenid-block/amp-greenid.m
 import { AmpGoogleRecaptchaModule } from '../app/modules/amp-google-recaptcha/amp-google-recaptcha.module';
 import { AmpLogoModule } from '../app/modules/amp-logo/amp-logo.module';
 import { AmpCardsModule } from '../app/modules/amp-cards/amp-cards.module';
+import { AmpPopDownModule } from '../app/modules/amp-pop-down/amp-pop-down.module';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -68,6 +69,7 @@ const IMPORTS                               = [
     AmpLogoModule,
     AmpGoogleRecaptchaModule,
     AmpCardsModule,
+    AmpPopDownModule,
     PortalModule ,
     BrowserModule ,
     FormsModule ,
