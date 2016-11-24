@@ -1,59 +1,39 @@
-[
-    {
-        "request": {
-            "url": "ddc/public/api/qas/doGetAddress/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
-            "method": "GET"
+[ {
+    "request": {
+        "url": "ddc/public/api/qas/doGetAddress/COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
+        "method": "GET"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
         },
-        "response": {
-            "status": 200,
-            "headers": {
-                "Content-Type": "application/json"
+        "latency": 100,
+        "body": {
+            "meta": {
+                "url": "/ddc/public/api/qas/doGetAddress/AUS%7C464179f9-5fdd-479a-8072-e7d064f7f178%7C0fOAUSHAfgBwAAAAAIAwEAAAAAV11CwAAAAAAAAAAA..9kAAAAAP....8AAAAAAAAAAAAAAAAAcHltAA--",
+                "method": "GET",
+                "responseTimeMs": 349,
+                "requestId": "f74ca91f-d46f-40be-bec1-bb1cc73b2326",
+                "count": 1
             },
-            "latency": 100,
-            "body": {
-                "meta": {
-                    "url": "",
-                    "method": "GET",
-                    "responseTimeMs": 59,
-                    "requestId": "cf5371f9-9d3c-4014-a74b-963976a3c39c",
-                    "count": 1
-                },
-                "payload": {
-                    "siebel": {
-                        "Locality": "MILLTHORPE",
-                        "State code": "NSW",
-                        "Postcode": "2798",
-                        "Country": "Australia",
-                        "DPID/DID": "66898785",
-                        "AUSBAR.": "1301012020223022212212311113230110113"
-                    },
-                    "crm": {
-                        "Street Address": "MILLTHORPE",
-                        "Suburb": "Pymble",
-                        "State": "NSW",
-                        "Postcode": "2798",
-                        "Country": "Australia",
-                        "DPID": "66898785",
-                        "Barcode": "1301012020223022212212311113230110113"
-                    },
-                    "bank": {
-                        "All postal delivery types": "",
-                        "Building level": "",
-                        "Flat/Unit": "",
-                        "Building number": "1",
-                        "Building name": "",
-                        "Street (Name)": "33 alfred street",
-                        "Street (Type)": "St",
-                        "Locality": "MILLTHORPE",
-                        "State code": "NSW",
-                        "Postcode": "2798",
-                        "Country": "Australia",
-                        "DPID/DID": "66898785",
-                        "AUSBAR.": "1301012020223022212212311113230110113"
-                    }
+            "payload": {
+                "DDC": {
+                    "All postal delivery types": "",
+                    "Building level": "",
+                    "Flat/Unit": "",
+                    "Building number": "20-64",
+                    "Building name": "Pymble Ladies College",
+                    "Street (Name)": "Avon",
+                    "Street (Type)": "Rd",
+                    "Locality": "PYMBLE",
+                    "State code": "NSW",
+                    "Postcode": "2073",
+                    "Country": "AUSTRALIA",
+                    "DPID/DID": "49408259",
+                    "AUSBAR.": "1301011130110022021230322023100100113"
                 }
             }
         }
     }
-]
-
+} ]
