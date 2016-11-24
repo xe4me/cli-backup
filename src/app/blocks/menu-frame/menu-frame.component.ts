@@ -2,7 +2,8 @@ import {
     Component,
     ElementRef,
     ChangeDetectorRef,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    OnDestroy
 } from '@angular/core';
 import {
     AmpBlockLoaderDirective,
@@ -13,7 +14,17 @@ import {
     FormModelService,
     ScrollService
 } from 'amp-ddc-components';
-import { FormGroup } from '@angular/forms';
+import {
+    Subscription
+} from 'rxjs';
+import {
+    FormGroup,
+    FormControl
+} from '@angular/forms';
+import {
+    SharedFormDataService,
+    Constants
+} from '../../shared';
 import { StickyProgressHeaderBlockComponent } from
     '../sticky-progress-header-block/sticky-progress-header-block.component';
 @Component({
@@ -22,17 +33,39 @@ import { StickyProgressHeaderBlockComponent } from
     styles: [require('./menu-frame.component.scss')],
     changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class MenuFrameBlockComponent {
+export class MenuFrameBlockComponent implements OnDestroy {
     private calculatedProgress = 0;
     private stickyAnimatedIntoView = false;
     private dialogIsVisible = true;
     private __form : FormGroup;
+    private singleOrJointSubscription : Subscription;
+    private sectionsToHide = [];
     constructor(
         private _el : ElementRef,
         private formModelService : FormModelService,
         private progressObserver : ProgressObserverService,
         public formSectionService : FormSectionService,
         private _cd : ChangeDetectorRef,
-        private scrollService : ScrollService) {
+        private scrollService : ScrollService,
+        private sharedData : SharedFormDataService) {
+    }
+
+    public onBlocksLoaded() {
+        const singleOrJointControl = this.sharedData.getSingleOrJointControl(this.__form);
+        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((singleOrJoint) => {
+            if (singleOrJoint === Constants.singleApplicant) {
+                this.sectionsToHide = ['Application-Applicant1Section']
+            } else {
+                this.sectionsToHide = [];
+            }
+            this._cd.markForCheck();
+        });
+    }
+
+
+    public ngOnDestroy() {
+        if (this.singleOrJointSubscription ) {
+            this.singleOrJointSubscription.unsubscribe();
+        }
     }
 }

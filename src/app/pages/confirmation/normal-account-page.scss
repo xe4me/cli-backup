@@ -3,6 +3,9 @@
 :host {
     .container {
         padding: 4em 0 2em 15.3333em;
+        .heading {
+            color: $amp-colour-secondary-darkest
+        }
         amp-button {
             margin-top: 0 !important;
             .btn {
@@ -24,6 +27,15 @@
                 margin-top: 0 !important;
                 .btn {
                     margin-top: 0 !important;
+                }
+            }
+            .heading {
+                font-size: 1.75em;
+            }
+            .app-buttons img{
+                max-width: 46%;
+                &.apple-store-button {
+                    margin-right: 5%;
                 }
             }
             .description{

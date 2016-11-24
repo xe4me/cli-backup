@@ -2,6 +2,15 @@
 
 $amp-ddc-public-asset : '../../../assets/';
 :host {
+    width            : 100%;
+    display          : block;
+    header-with-logo {
+        position : absolute;
+        width    : 100%;
+        display  : block;
+        left     : 0;
+        top      : 0;
+    }
     amp-intro-block {
         background-image  : url('assets/images/Intro-background_96DPI.jpg');
         background-repeat : no-repeat;
@@ -10,6 +19,10 @@ $amp-ddc-public-asset : '../../../assets/';
         padding-top       : 69px;
         .intro-message-heading {
             margin-bottom: 0;
+        }
+        @media screen and (min-width: 1821px) {
+            background-size: 100%;
+            min-height: 1262px;
         }
         @include media-query(palm) {
             padding: 0 8px;
@@ -57,7 +70,7 @@ $amp-ddc-public-asset : '../../../assets/';
                             }
                         }
                         &.icon  {
-                            
+
                             &::before {
                                  content: ' ';
                                 float: left;
@@ -67,23 +80,23 @@ $amp-ddc-public-asset : '../../../assets/';
                                 width: 36px;
                                 height: 37px;
                                 background-repeat: no-repeat;
-                                background-size: 100%;                                
+                                background-size: 100%;
                             }
 
                             &.time-clock-icon {
-                                &::before {           
+                                &::before {
                                     background-image : url('assets/images/time_clock.png');
-                                }                                
+                                }
                             }
-                            
+
                             &.eighteen-plus-icon {
-                                &::before {           
+                                &::before {
                                     background-image : url('assets/images/18+.png');
                                 }
                             }
 
                             &.id-check-icon {
-                                &::before {           
+                                &::before {
                                     height : 33px;
                                     background-image : url('assets/images/id.png');
                                 }

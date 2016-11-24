@@ -2,5 +2,8 @@
 module.exports = {
     "/ddc/public/ui/bett3r/config.js" : {
         target : "http://localhost:8882"
+    },
+    "/ddc/public/api" : {
+        target : "http://localhost:8882"
     }
 };

@@ -19,7 +19,7 @@ import {
     AmpIntroBlockComponent
 } from 'amp-ddc-components';
 import { ViewChild } from '@angular/core';
-import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
+import { FDN } from '../../forms/better-form/Application.fdn';
 @Component( {
     selector        : 'welcome-block' ,
     templateUrl     : './welcome-block.component.html' ,
@@ -29,6 +29,7 @@ import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 export class WelcomeBlockComponent extends FormBlock implements OnInit {
     @ViewChild( AmpIntroBlockComponent ) public ampIntro;
     private nextBlockChanged : boolean = false;
+    private newOrExistingControl : FormControl;
 
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
@@ -42,12 +43,12 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     public ngOnInit () {
         this.__controlGroup
             .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
+        this.newOrExistingControl = <FormControl> this.__controlGroup.get( this.__custom.controls[ 0 ].id );
     }
 
     private onNewOrExisting ( newOrExisting : string ) {
-        const newOrExistingControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        newOrExistingControl.setValue( newOrExisting );
-        newOrExistingControl.markAsTouched();
+        this.newOrExistingControl.setValue( newOrExisting );
+        this.newOrExistingControl.markAsTouched();
         if ( this.nextBlockChanged ) {
             this.__removeNext( this.viewReference );
             this.nextBlockChanged = false;
@@ -57,18 +58,20 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
                 .then( () => {
                     this.ampIntro.proceed()
                         .then( () => {
-                            this.onNext();
+                            this.fireMockScrolledEvent();
                         } );
                 } );
             this.nextBlockChanged = true;
             return;
         }
+
         this.ampIntro.proceed()
             .then( () => {
-                this.onNext();
+                this.fireMockScrolledEvent();
             } );
     }
 
+<<<<<<< HEAD
     private onMyAMPLogin () {
         // TODO: Not sure if this is the correct entry point, only have a 2 min chat with Cheryl.
         // As per above, hack the newOrExistingControl
@@ -87,5 +90,13 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
         return;
 
         
+=======
+    private fireMockScrolledEvent () {
+        this.scrollService.$scrolled.emit( {
+            componentSelector : [ ...FDN.SingleOrJoint , 'block' ].join( '-' ) ,
+            section           : null
+        } );
+
+>>>>>>> develop
     }
 }

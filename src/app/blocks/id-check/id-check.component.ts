@@ -31,10 +31,6 @@ import {
 } )
 export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
     private greenIdModel : IGreenIdFormModel;
-    private configScriptUrl = Environments.property.GreenId.configScriptUrl;
-    private uiScriptUrl     = Environments.property.GreenId.uiScriptUrl;
-    private styleUrl        = Environments.property.GreenId.styleUrl;
-    private environment     = Environments.property.GreenId.environment;
     private checkboxLabel : string;
     @ViewChild(AmpGreenIdBlockComponent)
     private greenIdComponent : AmpGreenIdBlockComponent;
@@ -66,7 +62,9 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
     }
 
     public ngOnDestroy() {
-        this.verificationStatusSubscription.unsubscribe();
+        if (this.verificationStatusSubscription) {
+            this.verificationStatusSubscription.unsubscribe();
+        }
         super.ngOnDestroy();
     }
 
@@ -81,6 +79,7 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
                 this.greenIdPassed = false;
                 this.__custom.blockTitle = this.__custom['blockTitle_unverified'];
             }
+            this.scrollService.scrollToNextUndoneBlock(this.__form);
             this._cd.markForCheck();
         });
     }
@@ -90,6 +89,9 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
         const applicant = this.__form.get(['Application', `Applicant${applicantIndex}Section` ]).value;
         const personalDetails = applicant.PersonalDetailsSection;
         const residentialAddress = personalDetails.Address.Address.residentialAddress.manualAddress;
+        const state = residentialAddress.stateDropdown ? residentialAddress.stateDropdown.SelectedItem : '';
+        const streetType = residentialAddress.streetTypeDropdown
+                                ? residentialAddress.streetTypeDropdown.SelectedItem : '';
 
         this.greenIdModel = {
             firstName : personalDetails.BasicInfo.FirstName,
@@ -103,13 +105,13 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
             verificationStatus : '',
             address : {
                 country : 'AU',
-                state : residentialAddress.state,
+                state : state,
                 streetName : residentialAddress.streetName || '',
                 flatNumber : residentialAddress.unitNumber || '',
                 streetNumber : residentialAddress.streetNumber || '',
                 suburb : residentialAddress.suburb,
                 postcode : residentialAddress.postCode,
-                streetType : residentialAddress.streetType || ''
+                streetType : streetType
             }
         };
     }
