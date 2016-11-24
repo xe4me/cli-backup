@@ -90,12 +90,12 @@ describe( 'Basic Util functions test' , () => {
         }
     );
 
-    // Different Seperator
+    // Different Separator
 
-    let base64InputSeperator = btoa('James/j.bond@gmail.com/NSW/12345678');
+    let base64InputSeparator = btoa('James/j.bond@gmail.com/NSW/12345678');
 
-    it( 'Get user data from base64 encoded string - Different Seperator' , () => {
-            expect( BasicUtils.base64DatatoObject( base64InputSeperator , ['name', 'email', 'state', 'customer_id'] , '/' ) ).toEqual( base64Output );
+    it( 'Get user data from base64 encoded string - Different Separator' , () => {
+            expect( BasicUtils.base64DatatoObject( base64InputSeparator , ['name', 'email', 'state', 'customer_id'] , '/' ) ).toEqual( base64Output );
         }
     );
 
