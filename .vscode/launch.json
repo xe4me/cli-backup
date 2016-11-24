@@ -9,7 +9,6 @@
             "webRoot": "${workspaceRoot}",
             "sourceMaps": true,
             "sourceMapPathOverrides": {
-                // "webpack:///C:/Users/TNGML2/Work/Projects/amp-ddc/experience-bett3r/*": "${workspaceRoot}/*"
                 "webpack:///C:*":"C:/*"
             }
         }
