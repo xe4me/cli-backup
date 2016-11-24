@@ -19,6 +19,7 @@ export * from './src/app/modules/amp-inputs';
 export * from './src/app/modules/amp-error';
 export * from './src/app/modules/amp-logo';
 export * from './src/app/modules/amp-cards';
+export * from './src/app/modules/amp-pop-down';
 export * from './src/app/modules/amp-directives';
 export * from './src/app/modules/amp-checkbox';
 export * from './src/app/modules/amp-dropdown';
