@@ -51,9 +51,6 @@
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
     "start": "npm run server:con",
     "start:hmr": "npm run server:dev:hmr",
-    "preversion": "npm test",
-    "version": "npm run build",
-    "postversion": "git push && git push --tags",
     "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
     "jenkins-jscpd": "jscpd -p . -f '**/*.ts' -e 'node_modules/**' -o reports/jscpd-report.xml"
   },
