@@ -69,8 +69,7 @@ export class FormUtils {
 
     public static isWithinTimes( startTime : string , endTime : string ) : boolean {
 
-        if ( startTime.indexOf(':') < 0 ||
-             endTime.indexOf(':') < 0 ) {
+        if ( startTime.indexOf(':') < 0 || endTime.indexOf(':') < 0 ) {
             return false;
         }
 
@@ -81,18 +80,11 @@ export class FormUtils {
             };
         };
 
-        let date = new Date();
-        let hour = date.getHours();
-        let minutes = date.getMinutes();
         let start = getHoursAndMinutes(startTime);
         let end = getHoursAndMinutes(endTime);
+        let startMoment = moment().hours(start.hour).minutes(start.minutes).seconds(0);
+        let endMoment = moment().hours(end.hour).minutes(end.minutes).seconds(0);
 
-        if ((hour > start.hour && hour < end.hour) ||
-            (hour === start.hour && minutes >= start.minutes) ||
-            (hour === end.hour && minutes <= end.minutes )) {
-            return true;
-        } else {
-            return false;
-        }
+        return moment().isBetween( startMoment , endMoment );
     }
 }
