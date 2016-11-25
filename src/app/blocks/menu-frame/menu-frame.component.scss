@@ -81,7 +81,7 @@ $content-padding-h-lap-and-up: 44px;
         @include media-query(palm) {
             margin-top: 80px;
             padding-top: 40px;
-            border-top: 1px solid #cccccc;
+            border-top: 1px solid $amp-colour-gray-neutral;
         }
     }
 }
