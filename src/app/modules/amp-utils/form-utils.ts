@@ -66,4 +66,33 @@ export class FormUtils {
                 && _date.match(/^\d{2}\/\d{2}\/\d{4}$/)
                 && moment( _date , 'DD/MM/YYYY' ).isValid();
     }
+
+    public static isWithinTimes( startTime : string , endTime : string ) : boolean {
+
+        if ( startTime.indexOf(':') < 0 ||
+             endTime.indexOf(':') < 0 ) {
+            return false;
+        }
+
+        const getHoursAndMinutes = function( time : string ) : any {
+            return {
+                hour: parseInt(time.split(':')[0], 10),
+                minutes: parseInt(time.split(':')[1], 10)
+            };
+        };
+
+        let date = new Date();
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
+        let start = getHoursAndMinutes(startTime);
+        let end = getHoursAndMinutes(endTime);
+
+        if ((hour > start.hour && hour < end.hour) ||
+            (hour === start.hour && minutes >= start.minutes) ||
+            (hour === end.hour && minutes <= end.minutes )) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
