@@ -74,9 +74,10 @@ export class FormUtils {
         }
 
         const getHoursAndMinutes = function( time : string ) : any {
+            let timeParts = time.split(':');
             return {
-                hour: parseInt(time.split(':')[0], 10),
-                minutes: parseInt(time.split(':')[1], 10)
+                hour: parseInt(timeParts[0], 10),
+                minutes: parseInt(timeParts[1], 10)
             };
         };
 
