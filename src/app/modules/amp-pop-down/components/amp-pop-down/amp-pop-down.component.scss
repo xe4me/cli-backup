@@ -2,10 +2,12 @@
 
 $amp-pop-down-bg: $amp-colour-white;
 $amp-pop-down-border-color: $amp-colour-grey-lightest;
-$amp-pop-down-padding-width: 30px;
+$amp-pop-down-padding: 30px;
 $amp-pop-down-border-width: 1px;
 $amp-pop-down-arrow-height: 6px;
 $amp-pop-down-arrow-x-offset: 20px;
+$amp-pop-down-margin-x: 20px;
+$amp-pop-down-margin-y: 30px;
 
 amp-pop-down {
     display: block;
@@ -18,8 +20,8 @@ amp-pop-down {
     box-shadow: 0 2px 15px 0px rgba(0, 0, 0, 0.2);
     color: $amp-colour-grey-darkest;
     font-size: 12px;
-    margin: 13px 0;
-    max-width: 100%;
+    margin: $amp-pop-down-margin-y 0;
+    max-width: calc(100vw - #{$amp-pop-down-margin-x * 2});
     text-align: center;
     position: absolute;
     left: 0;
@@ -50,7 +52,7 @@ amp-pop-down {
     }
 
     &--inner-padding {
-        padding: $amp-pop-down-padding-width;
+        padding: $amp-pop-down-padding;
     }
 
     &--align-right {
