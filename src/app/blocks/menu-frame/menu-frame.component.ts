@@ -3,7 +3,8 @@ import {
     ElementRef,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    OnDestroy
+    OnDestroy,
+    ViewChild
 } from '@angular/core';
 import {
     AmpBlockLoaderDirective,
@@ -25,6 +26,9 @@ import {
     SharedFormDataService,
     Constants
 } from '../../shared';
+import {
+    StickySaveButton
+} from '../../components/sticky-save-button/sticky-save-button';
 @Component({
     selector: 'menu-frame',
     templateUrl: './menu-frame.component.html',
@@ -39,6 +43,7 @@ export class MenuFrameBlockComponent implements OnDestroy {
     private singleOrJointSubscription : Subscription;
     private sectionsToHide = [];
     private hideStickyButton = true;
+    @ViewChild(StickySaveButton) private saveButton : StickySaveButton;
     constructor(
         private _el : ElementRef,
         private formModelService : FormModelService,
@@ -60,6 +65,10 @@ export class MenuFrameBlockComponent implements OnDestroy {
             this.hideStickyButton = false;
             this._cd.markForCheck();
         });
+    }
+
+    public onSave() {
+        this.saveButton.onSave();
     }
 
 

@@ -1,5 +1,9 @@
 @import '../../../styles/abstracts';
 
+@include media-query(tab-and-down) {
+    display : none;
+}
+
 @include media-query(lap-and-up) {
     .sticky {
         position: fixed;
