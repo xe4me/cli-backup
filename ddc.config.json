@@ -9,6 +9,7 @@
     "jobTemplateVersion": "staging",
     "buildScriptBranch": "speed-improvments",
     "skipNPMPublish": false,
+    "skipLint": true,
 
     "environment": {
         "dev": {
