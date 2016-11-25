@@ -9,11 +9,11 @@ describe('Form Util functions test', () => {
             return moment.hours() + ':' + moment.minutes();
         };
 
-        it('First argument should be colon separated time', () => {
+        it('should return false when first argument is not a valid time time (HH:MM)', () => {
             expect( FormUtils.isWithinTimes( '08.30', '17:00' ) ).toEqual(false);
         });
 
-        it('Second argument should be colon separated time', () => {
+        it('should return false when second argument is not a valid time time (HH:MM)', () => {
             expect( FormUtils.isWithinTimes( '08:30', '17.00' ) ).toEqual(false);
         });
 
