@@ -1,10 +1,6 @@
 <div class="frame frame--sticky frame--mt">
-    <!-- Hide the sticky header block as requested.-->
-    <!--<sticky-progress-header-block
-        class="sticky-progressbar"
-        [form]="__form"
-        formType="application">
-    </sticky-progress-header-block>-->
+    <sticky-save-button [hidden]="hideStickyButton" [form]="__form">
+    </sticky-save-button>
     <div class="container blocks-wrapper">
         <main class="main">
             <div [amp-block-loader]="__child_blocks" (loaded)="onBlocksLoaded()" [fdn]="__fdn" [form]="__form"></div>
