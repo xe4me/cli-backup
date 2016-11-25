@@ -71,7 +71,6 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
             } );
     }
 
-<<<<<<< HEAD
     private onMyAMPLogin () {
         // TODO: Not sure if this is the correct entry point, only have a 2 min chat with Cheryl.
         // As per above, hack the newOrExistingControl
@@ -88,15 +87,13 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
             } );
         this.nextBlockChanged = true;
         return;
+    }
 
-        
-=======
     private fireMockScrolledEvent () {
         this.scrollService.$scrolled.emit( {
             componentSelector : [ ...FDN.SingleOrJoint , 'block' ].join( '-' ) ,
             section           : null
         } );
 
->>>>>>> develop
     }
 }

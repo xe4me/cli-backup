@@ -76,6 +76,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
     }
 
     public ngOnDestroy () {
+        super.ngOnDestroy();
         // Remove the listen
         if (this.myAmpLoginFrameListenFunc) {
             this.myAmpLoginFrameListenFunc();
@@ -94,11 +95,11 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
                 let hiddenFormDiv = document.createElement('div');
                 hiddenFormDiv.style.display = 'none';
                 hiddenFormDiv.innerHTML =
-                    '<form action="/eam/login" method="post">' +
-                        '<input id="userid" name="userid"/>' +
-                        '<input id="password" name="password" type="password"/>' +
-                        '<button id="myAmpLoginBtn" type="submit" formtarget="myamploginframe"></button>' +
-                    '</form><iframe name="myamploginframe" id="myamploginframe"></iframe>';
+                    `<form action="/eam/login" method="post">
+                        <input id="userid" name="userid"/>
+                        <input id="password" name="password" type="password"/>
+                        <button id="myAmpLoginBtn" type="submit" formtarget="myamploginframe"></button>
+                    </form><iframe name="myamploginframe" id="myamploginframe"></iframe>`;
                 document.body.appendChild(hiddenFormDiv);
 
                 // Bind the onload event of the iframe back into angular to get the response of the login
