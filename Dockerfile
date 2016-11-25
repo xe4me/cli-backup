@@ -19,7 +19,5 @@ WORKDIR /code
 # Set user to node
 USER node
 
-COPY node_modules /code/node_modules
-
 # Copy app source
-COPY code/ /code/
+COPY . /code/

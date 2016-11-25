@@ -5,6 +5,11 @@
     "angularCliProj": false,
     "skipNPMPublish": false,
 
+    "dockerBuildSpeedOptimisation": true,
+    "jobTemplateVersion": "staging",
+    "buildScriptBranch": "speed-improvments",
+    "skipNPMPublish": false,
+
     "environment": {
         "dev": {
             "DDC_API_URL": "https://ddc-dev.digital-pilot.ampaws.com.au",
