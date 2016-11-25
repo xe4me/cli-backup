@@ -21,7 +21,10 @@ import {
     By,
     BrowserModule
 } from '@angular/platform-browser';
-import { fakeAsync , tick } from '@angular/core/testing/fake_async';
+import {
+    fakeAsync,
+    tick
+} from '@angular/core/testing/fake_async';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import {
     AmpTypeaheadModule ,
@@ -117,6 +120,7 @@ describe( 'Component: MyAMPLoginBlock' , () => {
             let compiledInput         = compiledTestComponent.query(
                 By.css( '.myAmp-login input[name=Application-MyAMPLoginBlock-userId]' ) );
 
+            expect( compiledInput ).toBeDefined();
             expect( compiledInput.nativeElement.name )
                 .toBe( 'Application-MyAMPLoginBlock-userId' );
             expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value )
@@ -131,6 +135,7 @@ describe( 'Component: MyAMPLoginBlock' , () => {
             let compiledInput         = compiledTestComponent.query(
                 By.css( '.myAmp-login input[name=Application-MyAMPLoginBlock-password]' ) );
 
+            expect( compiledInput ).toBeDefined();
             expect( compiledInput.nativeElement.name )
                 .toBe( 'Application-MyAMPLoginBlock-password' );
             expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value )
