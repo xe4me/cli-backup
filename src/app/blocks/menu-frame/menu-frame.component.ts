@@ -25,8 +25,6 @@ import {
     SharedFormDataService,
     Constants
 } from '../../shared';
-import { StickyProgressHeaderBlockComponent } from
-    '../sticky-progress-header-block/sticky-progress-header-block.component';
 @Component({
     selector: 'menu-frame',
     templateUrl: './menu-frame.component.html',
@@ -40,6 +38,7 @@ export class MenuFrameBlockComponent implements OnDestroy {
     private __form : FormGroup;
     private singleOrJointSubscription : Subscription;
     private sectionsToHide = [];
+    private hideStickyButton = true;
     constructor(
         private _el : ElementRef,
         private formModelService : FormModelService,
@@ -58,6 +57,7 @@ export class MenuFrameBlockComponent implements OnDestroy {
             } else {
                 this.sectionsToHide = [];
             }
+            this.hideStickyButton = false;
             this._cd.markForCheck();
         });
     }

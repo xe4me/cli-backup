@@ -52,8 +52,8 @@ import {
 } from './pages/confirmationWithConditionJoint/postnone-account-page';
 import { SubmitErrorPage } from './pages/submitError/submit-error-page';
 import {
-    StickyProgressHeaderBlockComponent
-} from './blocks/sticky-progress-header-block/sticky-progress-header-block.component';
+    StickySaveButton
+} from './components/sticky-save-button/sticky-save-button';
 import { BetterFormComponent } from './forms/better-form/better-form.component';
 import {
     AccountsListBlock
@@ -71,7 +71,7 @@ const DECLARATIONS    = [
     AmpFormBlockComponent ,
     AmpOverlayComponent ,
     AmpLoadingComponent ,
-    StickyProgressHeaderBlockComponent,
+    StickySaveButton,
     AccountsListBlock,
     Header,
     Footer

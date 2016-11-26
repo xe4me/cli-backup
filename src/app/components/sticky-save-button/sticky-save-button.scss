@@ -1,0 +1,11 @@
+@import '../../../styles/abstracts';
+
+@include media-query(lap-and-up) {
+    .sticky {
+        position: fixed;
+        float: right;
+        top: -19px;
+        right: 40px;
+        z-index: 9999;
+    }
+}
