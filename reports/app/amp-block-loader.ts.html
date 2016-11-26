@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/amp-block-loader.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">app/</a> amp-block-loader.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.66% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>39/209</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.45% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/48</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.66% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>39/209</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+(function (BlockLayout) {
+    BlockLayout[BlockLayout["INLINE"] = 0] = "INLINE";
+    BlockLayout[BlockLayout["PAGE"] = 1] = "PAGE";
+    BlockLayout[BlockLayout["SECTION"] = 2] = "SECTION";
+})(exports.BlockLayout || (exports.BlockLayout = {}));
+var BlockLayout = exports.BlockLayout;
+(function (RequireMethod) {
+    RequireMethod[RequireMethod["ALL"] = 0] = "ALL";
+    RequireMethod[RequireMethod["IN_ORDER"] = 1] = "IN_ORDER";
+})(exports.RequireMethod || (exports.RequireMethod = {}));
+var RequireMethod = exports.RequireMethod;
+var AmpBlockLoader = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpBlockLoader(viewContainer, compiler, componentFactoryResolver) {</span>
+<span class="cstat-no" title="statement not covered" >        this.viewContainer = viewContainer;</span>
+<span class="cstat-no" title="statement not covered" >        this.compiler = compiler;</span>
+<span class="cstat-no" title="statement not covered" >        this.componentFactoryResolver = componentFactoryResolver;</span>
+<span class="cstat-no" title="statement not covered" >        this.fdn = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.requireMethod = RequireMethod[RequireMethod.IN_ORDER];</span>
+<span class="cstat-no" title="statement not covered" >        this.loaded = new core_1.EventEmitter();</span>
+<span class="cstat-no" title="statement not covered" >        this.$childsLoaded = new core_1.EventEmitter();</span>
+<span class="cstat-no" title="statement not covered" >        this.blocksCount = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this.retrievedFiles = [];</span>
+<span class="cstat-no" title="statement not covered" >        this._blocks = [];</span>
+    }
+    Object.defineProperty(AmpBlockLoader.prototype, "form", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._form;</span>
+        },
+        set: <span class="fstat-no" title="function not covered" >function (_form) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!this._form) {</span>
+<span class="cstat-no" title="statement not covered" >                this._form = _form;</span>
+<span class="cstat-no" title="statement not covered" >                this.reload();</span>
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AmpBlockLoader.prototype.clear = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.viewContainer.clear();</span>
+    };
+    AmpBlockLoader.prototype.reload = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.loadAndCreate(this.blockLoader, this.requireMethod);</span>
+    };
+    AmpBlockLoader.prototype.createComponent = <span class="fstat-no" title="function not covered" >function (_loadedComponent, _index) {</span>
+<span class="cstat-no" title="statement not covered" >        var factory = this.componentFactoryResolver</span>
+            .resolveComponentFactory(_loadedComponent);
+<span class="cstat-no" title="statement not covered" >        return this.viewContainer.createComponent(factory, _index);</span>
+    };
+    AmpBlockLoader.prototype.removeAt = <span class="fstat-no" title="function not covered" >function (_index) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >            _this.viewContainer.remove(_index);</span>
+<span class="cstat-no" title="statement not covered" >            resolve(_index);</span>
+        });
+    };
+    AmpBlockLoader.prototype.loadAt = <span class="fstat-no" title="function not covered" >function (_def, _index) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var waitForChunk = _this.requireFile(_def);</span>
+<span class="cstat-no" title="statement not covered" >            if (!waitForChunk) {</span>
+<span class="cstat-no" title="statement not covered" >                return reject('waitForChunk is empty  ');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            waitForChunk(<span class="fstat-no" title="function not covered" >function (file) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var keys = Object.keys(file);</span>
+<span class="cstat-no" title="statement not covered" >                var componentRef = _this.createComponent(file[keys[0]], _index);</span>
+<span class="cstat-no" title="statement not covered" >                if (_index === (_this._blocks.length - 1)) {</span>
+<span class="cstat-no" title="statement not covered" >                    _this.emitLoadedAll();</span>
+                }
+<span class="cstat-no" title="statement not covered" >                resolve(_this.copyFormBlockDefProperty(componentRef, _def));</span>
+            });
+        });
+    };
+    /*
+     * @method : emitChildLoaded
+     * This is a public method that should only be called by the nested blocks that are loading blocks
+     * A simple scenario is when you have a block , inside blocks and that block is using a amp-block-loaded , sometimes
+     * you want to notice you parent block that you've finished loading , so then you can call this function and if
+     * any parent block is interested , can pass a callback and then get notified when all DIRECT childs are loaded
+     * */
+    AmpBlockLoader.prototype.emitChildLoaded = <span class="fstat-no" title="function not covered" >function (_loadedBlockInfo) {</span>
+<span class="cstat-no" title="statement not covered" >        this.$childsLoaded.emit(_loadedBlockInfo);</span>
+    };
+    AmpBlockLoader.prototype.getCommonBundle = <span class="fstat-no" title="function not covered" >function (path) {</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >            return require('bundle!amp-ddc-components/src/app/' + path + '\.ts');</span>
+        }
+        catch (err) {
+<span class="cstat-no" title="statement not covered" >            console.log('Oops!! Trying to load components from node_modules but not components found.');</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+    };
+    AmpBlockLoader.prototype.loadAndCreate = <span class="fstat-no" title="function not covered" >function (formDef, _requireMethod) {</span>
+<span class="cstat-no" title="statement not covered" >        if (formDef.blockLayout === BlockLayout[BlockLayout.SECTION]) {</span>
+<span class="cstat-no" title="statement not covered" >            this._sectionName = formDef.name;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._blocks = formDef.blocks;</span>
+<span class="cstat-no" title="statement not covered" >        if (!this._blocks) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.blocksCount = this._blocks.length;</span>
+<span class="cstat-no" title="statement not covered" >        var _blockName = formDef.name;</span>
+<span class="cstat-no" title="statement not covered" >        if (_blockName &amp;&amp; this.fdn.indexOf(_blockName) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this.fdn.push(_blockName);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        for (var _index = 0; _index &lt; this._blocks.length; _index++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (_requireMethod === RequireMethod.ALL) {</span>
+<span class="cstat-no" title="statement not covered" >                this.loadAllSync(this._blocks[_index], _index);</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                this.loadAt(this._blocks[_index], _index);</span>
+            }
+        }
+    };
+    AmpBlockLoader.prototype.copyFormBlockDefProperty = <span class="fstat-no" title="function not covered" >function (_componentRef, _blockDef) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var childsLoadedsubscription;</span>
+<span class="cstat-no" title="statement not covered" >            var _fdn = _this.fdn.concat(_blockDef.name ? [_blockDef.name] : []);</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__child_blocks = _blockDef;</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__form = _this.form;</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__fdn = _fdn;</span>
+<span class="cstat-no" title="statement not covered" >            if (_blockDef.name) {</span>
+<span class="cstat-no" title="statement not covered" >                var _form_1 = _componentRef.instance.__form;</span>
+<span class="cstat-no" title="statement not covered" >                for (var i = 0; i &lt; _this.fdn.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (_form_1.controls[_this.fdn[i]]) {</span>
+<span class="cstat-no" title="statement not covered" >                        _form_1 = _form_1.controls[_this.fdn[i]];</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                if (_form_1.contains(_blockDef.name)) {</span>
+<span class="cstat-no" title="statement not covered" >                    _componentRef.instance.__controlGroup = _form_1.get(_blockDef.name);</span>
+<span class="cstat-no" title="statement not covered" >                    _componentRef.instance.__isRetrieved = true;</span>
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    _componentRef.instance.__controlGroup = new forms_1.FormGroup({});</span>
+<span class="cstat-no" title="statement not covered" >                    _form_1.addControl(_blockDef.name, _componentRef.instance.__controlGroup);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                _componentRef.instance.__controlGroup.__fdn = _fdn;</span>
+<span class="cstat-no" title="statement not covered" >                _componentRef.onDestroy(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    _form_1.removeControl(_blockDef.name);</span>
+<span class="cstat-no" title="statement not covered" >                    if (childsLoadedsubscription) {</span>
+<span class="cstat-no" title="statement not covered" >                        childsLoadedsubscription.unsubscribe();</span>
+                    }
+                });
+            }
+<span class="cstat-no" title="statement not covered" >            if (_blockDef.blockLayout === BlockLayout[BlockLayout.SECTION]) {</span>
+<span class="cstat-no" title="statement not covered" >                if (_componentRef.instance.__controlGroup) {</span>
+<span class="cstat-no" title="statement not covered" >                    _componentRef.instance.__controlGroup.custom = _blockDef.custom;</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__path = _blockDef.path;</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__blockType = _blockDef.blockType;</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__blockLayout = _blockDef.blockLayout;</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__name = _blockDef.name;</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__sectionName = _this._sectionName;</span>
+<span class="cstat-no" title="statement not covered" >            if (_blockDef.blockLayout === BlockLayout[BlockLayout.PAGE]) {</span>
+<span class="cstat-no" title="statement not covered" >                _componentRef.instance.__page = _blockDef.page;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__custom = _blockDef.custom;</span>
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__loadNext = <span class="fstat-no" title="function not covered" >function (_def, _viewContainerRef) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.loadNext(_def, _viewContainerRef);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__loadAt = <span class="fstat-no" title="function not covered" >function (_def, index) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.loadAt(_def, index);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__removeAt = <span class="fstat-no" title="function not covered" >function (index) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.removeAt(index);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__removeNext = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.removeNext(_viewContainerRef);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__removeAllAfterIndex = <span class="fstat-no" title="function not covered" >function (index) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.removeAllAfterIndex(index);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__removeAllAfter = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.removeAllAfter(_viewContainerRef);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__loadAllNext = <span class="fstat-no" title="function not covered" >function (_def, _viewContainerRef) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.loadAllNext(_def, _viewContainerRef);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__getIndex = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return _this.getIndex(_viewContainerRef);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__onChildsLoaded = <span class="fstat-no" title="function not covered" >function (cb) {</span></span>
+<span class="cstat-no" title="statement not covered" >                childsLoadedsubscription = _this.$childsLoaded.subscribe(<span class="fstat-no" title="function not covered" >function (_loadedBlockInfo) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    cb(_loadedBlockInfo);</span>
+                });
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.instance.__emitChildLoaded = <span class="fstat-no" title="function not covered" >function (_loadedBlockInfo) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _this.emitChildLoaded(_loadedBlockInfo);</span>
+            };
+<span class="cstat-no" title="statement not covered" >            _componentRef.changeDetectorRef.detectChanges();</span>
+<span class="cstat-no" title="statement not covered" >            resolve(_componentRef);</span>
+        });
+    };
+    AmpBlockLoader.prototype.loadAllSync = <span class="fstat-no" title="function not covered" >function (_def, _index) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this.retrievedFiles[_index] = null;</span>
+<span class="cstat-no" title="statement not covered" >        var waitForChunk = this.requireFile(_def);</span>
+<span class="cstat-no" title="statement not covered" >        waitForChunk(<span class="fstat-no" title="function not covered" >function (file) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var keys = Object.keys(file);</span>
+<span class="cstat-no" title="statement not covered" >            _this.storeFile(file[keys[0]], _def, _index);</span>
+<span class="cstat-no" title="statement not covered" >            if (_this.retrievedFiles.length === _this.blocksCount) {</span>
+<span class="cstat-no" title="statement not covered" >                _this.createAllRecursively(0);</span>
+            }
+        });
+    };
+    AmpBlockLoader.prototype.requireFile = <span class="fstat-no" title="function not covered" >function (_def) {</span>
+<span class="cstat-no" title="statement not covered" >        var myChunk = null;</span>
+<span class="cstat-no" title="statement not covered" >        var waitForChunk = null;</span>
+<span class="cstat-no" title="statement not covered" >        if (_def.commonBlock) {</span>
+<span class="cstat-no" title="statement not covered" >            if (_def.blockLayout) {</span>
+<span class="cstat-no" title="statement not covered" >                waitForChunk = this.getCommonBundle(_def.path);</span>
+            }
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            myChunk = this.getCustomBundle(_def.path);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (myChunk) {</span>
+<span class="cstat-no" title="statement not covered" >            return <span class="fstat-no" title="function not covered" >function (_callback) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _callback(myChunk);</span>
+            };
+        }
+<span class="cstat-no" title="statement not covered" >        return waitForChunk;</span>
+    };
+    AmpBlockLoader.prototype.storeFile = <span class="fstat-no" title="function not covered" >function (file, block, _index) {</span>
+<span class="cstat-no" title="statement not covered" >        this.retrievedFiles[_index] = {</span>
+            file: file,
+            blockDef: block
+        };
+    };
+    AmpBlockLoader.prototype.createAllRecursively = <span class="fstat-no" title="function not covered" >function (_index) {</span>
+<span class="cstat-no" title="statement not covered" >        var componentRef = this.createComponent(this.retrievedFiles[_index].file, _index);</span>
+<span class="cstat-no" title="statement not covered" >        if (_index === (this._blocks.length - 1)) {</span>
+<span class="cstat-no" title="statement not covered" >            this.emitLoadedAll();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.copyFormBlockDefProperty(componentRef, this.retrievedFiles[_index].blockDef);</span>
+<span class="cstat-no" title="statement not covered" >        _index += 1;</span>
+<span class="cstat-no" title="statement not covered" >        if (_index &lt; this.blocksCount) {</span>
+<span class="cstat-no" title="statement not covered" >            this.createAllRecursively(_index);</span>
+        }
+    };
+    AmpBlockLoader.prototype.emitLoadedAll = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            _this.loaded.emit('loaded');</span>
+<span class="cstat-no" title="statement not covered" >            _this.retrievedFiles = [];</span>
+        });
+    };
+    AmpBlockLoader.prototype.getViewRefOfViewContainerRef = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span>
+<span class="cstat-no" title="statement not covered" >        return _viewContainerRef._element.parentView.ref;</span>
+    };
+    AmpBlockLoader.prototype.getIndex = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.getIndexOfComponent(_viewContainerRef);</span>
+    };
+    AmpBlockLoader.prototype.removeAllAfter = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span>
+<span class="cstat-no" title="statement not covered" >        var index = this.getIndex(_viewContainerRef);</span>
+<span class="cstat-no" title="statement not covered" >        return this.removeAllAfterIndex(index);</span>
+    };
+    AmpBlockLoader.prototype.removeAllAfterIndex = <span class="fstat-no" title="function not covered" >function (_index) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var initialLength = _this.viewContainer.length - 1;</span>
+<span class="cstat-no" title="statement not covered" >            if (_index !== undefined &amp;&amp; initialLength &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >                while (_this.viewContainer.length &gt; (_index + 1)) {</span>
+<span class="cstat-no" title="statement not covered" >                    _this.removeAt(_this.viewContainer.length - 1);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                resolve({</span>
+                    removed: initialLength - _index,
+                    length: _this.viewContainer.length
+                });
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                reject('index undefined');</span>
+            }
+        });
+    };
+    AmpBlockLoader.prototype.loadNext = <span class="fstat-no" title="function not covered" >function (_def, _viewContainerRef) {</span>
+<span class="cstat-no" title="statement not covered" >        var index = this.getIndex(_viewContainerRef);</span>
+<span class="cstat-no" title="statement not covered" >        if (index !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            index++;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return this.loadAt(_def, index);</span>
+    };
+    AmpBlockLoader.prototype.loadAllNext = <span class="fstat-no" title="function not covered" >function (_def, _viewContainerRef) {</span>
+<span class="cstat-no" title="statement not covered" >        var promises = [];</span>
+<span class="cstat-no" title="statement not covered" >        if (_def &amp;&amp; _def.length) {</span>
+<span class="cstat-no" title="statement not covered" >            var index = this.getIndex(_viewContainerRef);</span>
+<span class="cstat-no" title="statement not covered" >            if (index !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                index++;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            for (var _i = 0, _def_1 = _def; _i &lt; _def_1.length; _i++) {</span>
+<span class="cstat-no" title="statement not covered" >                var def = _def_1[_i];</span>
+<span class="cstat-no" title="statement not covered" >                promises.push(this.loadAt(def, index));</span>
+<span class="cstat-no" title="statement not covered" >                index++;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return Promise.all(promises);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return Promise.reject('def is empty');</span>
+    };
+    AmpBlockLoader.prototype.getIndexOfComponent = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span>
+<span class="cstat-no" title="statement not covered" >        var viewRef = this.getViewRefOfViewContainerRef(_viewContainerRef);</span>
+<span class="cstat-no" title="statement not covered" >        return this.viewContainer.indexOf(viewRef);</span>
+    };
+    AmpBlockLoader.prototype.removeNext = <span class="fstat-no" title="function not covered" >function (_viewContainerRef) {</span>
+<span class="cstat-no" title="statement not covered" >        var index = this.getIndexOfComponent(_viewContainerRef);</span>
+<span class="cstat-no" title="statement not covered" >        if (index !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            index++;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return this.removeAt(index);</span>
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object), 
+        __metadata('design:paramtypes', [Object])
+    ], AmpBlockLoader.prototype, "form", null);
+    return AmpBlockLoader;
+}());
+exports.AmpBlockLoader = AmpBlockLoader;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWJsb2NrLWxvYWRlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC1ibG9jay1sb2FkZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQVFPLGVBQWUsQ0FBQyxDQUFBO0FBQ3ZCLHNCQUEwQixnQkFBZ0IsQ0FBQyxDQUFBO0FBRTNDLFdBQVksV0FBVztJQUFHLGlEQUFNLENBQUE7SUFBRSw2Q0FBSSxDQUFBO0lBQUUsbURBQU8sQ0FBQTtBQUFDLENBQUMsRUFBckMsbUJBQVcsS0FBWCxtQkFBVyxRQUEwQjtBQUFqRCxJQUFZLFdBQVcsR0FBWCxtQkFBcUMsQ0FBQTtBQUNqRCxXQUFZLGFBQWE7SUFBRywrQ0FBRyxDQUFBO0lBQUUseURBQVEsQ0FBQTtBQUFDLENBQUMsRUFBL0IscUJBQWEsS0FBYixxQkFBYSxRQUFrQjtBQUEzQyxJQUFZLGFBQWEsR0FBYixxQkFBK0IsQ0FBQTtBQUszQztJQVlJLHdCQUFvQixhQUFnQyxFQUNoQyxRQUFtQixFQUNuQix3QkFBbUQ7UUFGbkQsa0JBQWEsR0FBYixhQUFhLENBQW1CO1FBQ2hDLGFBQVEsR0FBUixRQUFRLENBQVc7UUFDbkIsNkJBQXdCLEdBQXhCLHdCQUF3QixDQUEyQjtRQVpoRSxRQUFHLEdBQUcsRUFBRSxDQUFDO1FBQ1Qsa0JBQWEsR0FBRyxhQUFhLENBQUUsYUFBYSxDQUFDLFFBQVEsQ0FBRSxDQUFDO1FBQ3hELFdBQU0sR0FBdUIsSUFBSSxtQkFBWSxFQUFPLENBQUM7UUFDckQsa0JBQWEsR0FBdUIsSUFBSSxtQkFBWSxFQUFPLENBQUM7UUFDM0QsZ0JBQVcsR0FBWSxDQUFDLENBQUM7UUFDekIsbUJBQWMsR0FBRyxFQUFFLENBQUM7UUFDcEIsWUFBTyxHQUFzQixFQUFFLENBQUM7SUFPeEMsQ0FBQztJQUVRLHNCQUFJLGdDQUFJO2FBT2pCO1lBQ0ksTUFBTSxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUM7UUFDdEIsQ0FBQzthQVRRLFVBQVUsS0FBSztZQUNwQixFQUFFLENBQUMsQ0FBRSxDQUFDLElBQUksQ0FBQyxLQUFNLENBQUMsQ0FBQyxDQUFDO2dCQUNoQixJQUFJLENBQUMsS0FBSyxHQUFHLEtBQUssQ0FBQztnQkFDbkIsSUFBSSxDQUFDLE1BQU0sRUFBRSxDQUFDO1lBQ2xCLENBQUM7UUFDTCxDQUFDOzs7T0FBQTtJQU1ELDhCQUFLLEdBQUw7UUFDSSxJQUFJLENBQUMsYUFBYSxDQUFDLEtBQUssRUFBRSxDQUFDO0lBQy9CLENBQUM7SUFFRCwrQkFBTSxHQUFOO1FBQ0ksSUFBSSxDQUFDLGFBQWEsQ0FBRSxJQUFJLENBQUMsV0FBVyxFQUFFLElBQUksQ0FBQyxhQUFhLENBQUUsQ0FBQztJQUMvRCxDQUFDO0lBRUQsd0NBQWUsR0FBZixVQUFpQixnQkFBa0MsRUFBRSxNQUFlO1FBQ2hFLElBQUksT0FBTyxHQUFHLElBQUksQ0FBQyx3QkFBd0I7YUFDdEMsdUJBQXVCLENBQUUsZ0JBQWdCLENBQUUsQ0FBQztRQUNqRCxNQUFNLENBQUMsSUFBSSxDQUFDLGFBQWEsQ0FBQyxlQUFlLENBQUUsT0FBTyxFQUFFLE1BQU0sQ0FBRSxDQUFDO0lBQ2pFLENBQUM7SUFFRCxpQ0FBUSxHQUFSLFVBQVUsTUFBZTtRQUF6QixpQkFLQztRQUpHLE1BQU0sQ0FBQyxJQUFJLE9BQU8sQ0FBRSxVQUFFLE9BQU8sRUFBRSxNQUFNO1lBQ2pDLEtBQUksQ0FBQyxhQUFhLENBQUMsTUFBTSxDQUFFLE1BQU0sQ0FBRSxDQUFDO1lBQ3BDLE9BQU8sQ0FBRSxNQUFNLENBQUUsQ0FBQztRQUN0QixDQUFDLENBQUUsQ0FBQztJQUNSLENBQUM7SUFFRCwrQkFBTSxHQUFOLFVBQVEsSUFBcUIsRUFBRSxNQUFlO1FBQTlDLGlCQWVDO1FBZEcsTUFBTSxDQUFDLElBQUksT0FBTyxDQUFFLFVBQUUsT0FBTyxFQUFFLE1BQU07WUFDakMsSUFBSSxZQUFZLEdBQUcsS0FBSSxDQUFDLFdBQVcsQ0FBRSxJQUFJLENBQUUsQ0FBQztZQUM1QyxFQUFFLENBQUMsQ0FBRSxDQUFDLFlBQWEsQ0FBQyxDQUFDLENBQUM7Z0JBQ2xCLE1BQU0sQ0FBQyxNQUFNLENBQUUseUJBQXlCLENBQUUsQ0FBQztZQUMvQyxDQUFDO1lBQ0QsWUFBWSxDQUFFLFVBQUUsSUFBSTtnQkFDaEIsSUFBSSxJQUFJLEdBQUcsTUFBTSxDQUFDLElBQUksQ0FBRSxJQUFJLENBQUUsQ0FBQztnQkFDL0IsSUFBSSxZQUFZLEdBQUcsS0FBSSxDQUFDLGVBQWUsQ0FBRSxJQUFJLENBQUUsSUFBSSxDQUFFLENBQUMsQ0FBRSxDQUFFLEVBQUUsTUFBTSxDQUFFLENBQUM7Z0JBQ3JFLEVBQUUsQ0FBQyxDQUFFLE1BQU0sS0FBSyxDQUFFLEtBQUksQ0FBQyxPQUFPLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBRyxDQUFDLENBQUMsQ0FBQztvQkFDM0MsS0FBSSxDQUFDLGFBQWEsRUFBRSxDQUFDO2dCQUN6QixDQUFDO2dCQUNELE9BQU8sQ0FBRSxLQUFJLENBQUMsd0JBQXdCLENBQUUsWUFBWSxFQUFFLElBQUksQ0FBRSxDQUFFLENBQUM7WUFDbkUsQ0FBQyxDQUFFLENBQUM7UUFDUixDQUFDLENBQUUsQ0FBQztJQUNSLENBQUM7SUFFRDs7Ozs7O1NBTUs7SUFDTCx3Q0FBZSxHQUFmLFVBQWlCLGdCQUFrQztRQUMvQyxJQUFJLENBQUMsYUFBYSxDQUFDLElBQUksQ0FBRSxnQkFBZ0IsQ0FBRSxDQUFDO0lBQ2hELENBQUM7SUF5QlMsd0NBQWUsR0FBekIsVUFBMkIsSUFBYTtRQUNwQyxJQUFJLENBQUM7WUFDRCxNQUFNLENBQUMsT0FBTyxDQUFFLG9DQUFvQyxHQUFHLElBQUksR0FBRyxNQUFNLENBQUUsQ0FBQztRQUMzRSxDQUFFO1FBQUEsS0FBSyxDQUFDLENBQUUsR0FBSSxDQUFDLENBQUMsQ0FBQztZQUNiLE9BQU8sQ0FBQyxHQUFHLENBQUUsOEVBQThFLENBQUUsQ0FBQztRQUNsRyxDQUFDO1FBQ0QsTUFBTSxDQUFDLElBQUksQ0FBQztJQUNoQixDQUFDO0lBRU8sc0NBQWEsR0FBckIsVUFBdUIsT0FBd0IsRUFBRSxjQUFjO1FBQzNELEVBQUUsQ0FBQyxDQUFFLE9BQU8sQ0FBQyxXQUFXLEtBQUssV0FBVyxDQUFFLFdBQVcsQ0FBQyxPQUFPLENBQUcsQ0FBQyxDQUFDLENBQUM7WUFDL0QsSUFBSSxDQUFDLFlBQVksR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDO1FBQ3JDLENBQUM7UUFDRCxJQUFJLENBQUMsT0FBTyxHQUFHLE9BQU8sQ0FBQyxNQUFNLENBQUM7UUFDOUIsRUFBRSxDQUFDLENBQUUsQ0FBQyxJQUFJLENBQUMsT0FBUSxDQUFDLENBQUMsQ0FBQztZQUNsQixNQUFNLENBQUM7UUFDWCxDQUFDO1FBQ0QsSUFBSSxDQUFDLFdBQVcsR0FBRyxJQUFJLENBQUMsT0FBTyxDQUFDLE1BQU0sQ0FBQztRQUN2QyxJQUFJLFVBQVUsR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDO1FBQzlCLEVBQUUsQ0FBQyxDQUFFLFVBQVUsSUFBSSxJQUFJLENBQUMsR0FBRyxDQUFDLE9BQU8sQ0FBRSxVQUFVLENBQUUsR0FBRyxDQUFFLENBQUMsQ0FBQyxDQUFDO1lBQ3JELElBQUksQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFFLFVBQVUsQ0FBRSxDQUFDO1FBQ2hDLENBQUM7UUFDRCxHQUFHLENBQUMsQ0FBRSxJQUFJLE1BQU0sR0FBRyxDQUFDLEVBQUUsTUFBTSxHQUFHLElBQUksQ0FBQyxPQUFPLENBQUMsTUFBTSxFQUFFLE1BQU0sRUFBRSxFQUFHLENBQUM7WUFDNUQsRUFBRSxDQUFDLENBQUUsY0FBYyxLQUFLLGFBQWEsQ0FBQyxHQUFJLENBQUMsQ0FBQyxDQUFDO2dCQUN6QyxJQUFJLENBQUMsV0FBVyxDQUFFLElBQUksQ0FBQyxPQUFPLENBQUUsTUFBTSxDQUFFLEVBQUUsTUFBTSxDQUFFLENBQUM7WUFDdkQsQ0FBQztZQUFDLElBQUksQ0FBQyxDQUFDO2dCQUNKLElBQUksQ0FBQyxNQUFNLENBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBRSxNQUFNLENBQUUsRUFBRSxNQUFNLENBQUUsQ0FBQztZQUNsRCxDQUFDO1FBQ0wsQ0FBQztJQUNMLENBQUM7SUFFTyxpREFBd0IsR0FBaEMsVUFBa0MsYUFBaUMsRUFDakMsU0FBMEI7UUFENUQsaUJBa0ZDO1FBaEZHLE1BQU0sQ0FBQyxJQUFJLE9BQU8sQ0FBRSxVQUFFLE9BQU8sRUFBRSxNQUFNO1lBQ2pDLElBQUksd0JBQXdCLENBQUM7WUFDN0IsSUFBSSxJQUFJLEdBQUcsS0FBSSxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUUsU0FBUyxDQUFDLElBQUksR0FBRyxDQUFFLFNBQVMsQ0FBQyxJQUFJLENBQUUsR0FBRyxFQUFFLENBQUUsQ0FBQztZQUN2RSxhQUFhLENBQUMsUUFBUSxDQUFDLGNBQWMsR0FBRyxTQUFTLENBQUM7WUFDbEQsYUFBYSxDQUFDLFFBQVEsQ0FBQyxNQUFNLEdBQUcsS0FBSSxDQUFDLElBQUksQ0FBQztZQUMxQyxhQUFhLENBQUMsUUFBUSxDQUFDLEtBQUssR0FBRyxJQUFJLENBQUM7WUFDcEMsRUFBRSxDQUFDLENBQUUsU0FBUyxDQUFDLElBQUssQ0FBQyxDQUFDLENBQUM7Z0JBQ25CLElBQUksT0FBSyxHQUFHLGFBQWEsQ0FBQyxRQUFRLENBQUMsTUFBTSxDQUFDO2dCQUMxQyxHQUFHLENBQUMsQ0FBRSxJQUFJLENBQUMsR0FBRyxDQUFDLEVBQUUsQ0FBQyxHQUFHLEtBQUksQ0FBQyxHQUFHLENBQUMsTUFBTSxFQUFFLENBQUMsRUFBRSxFQUFHLENBQUM7b0JBQ3pDLEVBQUUsQ0FBQyxDQUFFLE9BQUssQ0FBQyxRQUFRLENBQUUsS0FBSSxDQUFDLEdBQUcsQ0FBRSxDQUFDLENBQUUsQ0FBRyxDQUFDLENBQUMsQ0FBQzt3QkFDcEMsT0FBSyxHQUFHLE9BQUssQ0FBQyxRQUFRLENBQUUsS0FBSSxDQUFDLEdBQUcsQ0FBRSxDQUFDLENBQUUsQ0FBRSxDQUFDO29CQUM1QyxDQUFDO2dCQUNMLENBQUM7Z0JBQ0QsRUFBRSxDQUFDLENBQUUsT0FBSyxDQUFDLFFBQVEsQ0FBRSxTQUFTLENBQUMsSUFBSSxDQUFHLENBQUMsQ0FBQyxDQUFDO29CQUNyQyxhQUFhLENBQUMsUUFBUSxDQUFDLGNBQWMsR0FBRyxPQUFLLENBQUMsR0FBRyxDQUFFLFNBQVMsQ0FBQyxJQUFJLENBQUUsQ0FBQztvQkFDcEUsYUFBYSxDQUFDLFFBQVEsQ0FBQyxhQUFhLEdBQUcsSUFBSSxDQUFDO2dCQUNoRCxDQUFDO2dCQUFDLElBQUksQ0FBQyxDQUFDO29CQUNKLGFBQWEsQ0FBQyxRQUFRLENBQUMsY0FBYyxHQUFHLElBQUksaUJBQVMsQ0FBRSxFQUFFLENBQUUsQ0FBQztvQkFDNUQsT0FBSyxDQUFDLFVBQVUsQ0FBRSxTQUFTLENBQUMsSUFBSSxFQUFFLGFBQWEsQ0FBQyxRQUFRLENBQUMsY0FBYyxDQUFFLENBQUM7Z0JBQzlFLENBQUM7Z0JBQ0QsYUFBYSxDQUFDLFFBQVEsQ0FBQyxjQUFjLENBQUMsS0FBSyxHQUFHLElBQUksQ0FBQztnQkFDbkQsYUFBYSxDQUFDLFNBQVMsQ0FBRTtvQkFDckIsT0FBSyxDQUFDLGFBQWEsQ0FBRSxTQUFTLENBQUMsSUFBSSxDQUFFLENBQUM7b0JBQ3RDLEVBQUUsQ0FBQyxDQUFFLHdCQUF5QixDQUFDLENBQUMsQ0FBQzt3QkFDN0Isd0JBQXdCLENBQUMsV0FBVyxFQUFFLENBQUM7b0JBQzNDLENBQUM7Z0JBQ0wsQ0FBQyxDQUFFLENBQUM7WUFDUixDQUFDO1lBQ0QsRUFBRSxDQUFDLENBQUUsU0FBUyxDQUFDLFdBQVcsS0FBSyxXQUFXLENBQUUsV0FBVyxDQUFDLE9BQU8sQ0FBRyxDQUFDLENBQUMsQ0FBQztnQkFDakUsRUFBRSxDQUFDLENBQUUsYUFBYSxDQUFDLFFBQVEsQ0FBQyxjQUFlLENBQUMsQ0FBQyxDQUFDO29CQUMxQyxhQUFhLENBQUMsUUFBUSxDQUFDLGNBQWMsQ0FBQyxNQUFNLEdBQUcsU0FBUyxDQUFDLE1BQU0sQ0FBQztnQkFDcEUsQ0FBQztZQUNMLENBQUM7WUFDRCxhQUFhLENBQUMsUUFBUSxDQUFDLE1BQU0sR0FBRyxTQUFTLENBQUMsSUFBSSxDQUFDO1lBQy9DLGFBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxHQUFHLFNBQVMsQ0FBQyxTQUFTLENBQUM7WUFDekQsYUFBYSxDQUFDLFFBQVEsQ0FBQyxhQUFhLEdBQUcsU0FBUyxDQUFDLFdBQVcsQ0FBQztZQUM3RCxhQUFhLENBQUMsUUFBUSxDQUFDLE1BQU0sR0FBRyxTQUFTLENBQUMsSUFBSSxDQUFDO1lBQy9DLGFBQWEsQ0FBQyxRQUFRLENBQUMsYUFBYSxHQUFHLEtBQUksQ0FBQyxZQUFZLENBQUM7WUFDekQsRUFBRSxDQUFDLENBQUUsU0FBUyxDQUFDLFdBQVcsS0FBSyxXQUFXLENBQUUsV0FBVyxDQUFDLElBQUksQ0FBRyxDQUFDLENBQUMsQ0FBQztnQkFDOUQsYUFBYSxDQUFDLFFBQVEsQ0FBQyxNQUFNLEdBQUcsU0FBUyxDQUFDLElBQUksQ0FBQztZQUNuRCxDQUFDO1lBQ0QsYUFBYSxDQUFDLFFBQVEsQ0FBQyxRQUFRLEdBQUcsU0FBUyxDQUFDLE1BQU0sQ0FBQztZQUNuRCxhQUFhLENBQUMsUUFBUSxDQUFDLFVBQVUsR0FBRyxVQUFFLElBQXFCLEVBQ3JCLGlCQUFvQztnQkFDdEUsTUFBTSxDQUFDLEtBQUksQ0FBQyxRQUFRLENBQUUsSUFBSSxFQUFFLGlCQUFpQixDQUFFLENBQUM7WUFDcEQsQ0FBQyxDQUFDO1lBQ0YsYUFBYSxDQUFDLFFBQVEsQ0FBQyxRQUFRLEdBQUcsVUFBRSxJQUFxQixFQUNyQixLQUFjO2dCQUM5QyxNQUFNLENBQUMsS0FBSSxDQUFDLE1BQU0sQ0FBRSxJQUFJLEVBQUUsS0FBSyxDQUFFLENBQUM7WUFDdEMsQ0FBQyxDQUFDO1lBQ0YsYUFBYSxDQUFDLFFBQVEsQ0FBQyxVQUFVLEdBQUcsVUFBRSxLQUFjO2dCQUNoRCxNQUFNLENBQUMsS0FBSSxDQUFDLFFBQVEsQ0FBRSxLQUFLLENBQUUsQ0FBQztZQUNsQyxDQUFDLENBQUM7WUFDRixhQUFhLENBQUMsUUFBUSxDQUFDLFlBQVksR0FBRyxVQUFFLGlCQUFvQztnQkFDeEUsTUFBTSxDQUFDLEtBQUksQ0FBQyxVQUFVLENBQUUsaUJBQWlCLENBQUUsQ0FBQztZQUNoRCxDQUFDLENBQUM7WUFDRixhQUFhLENBQUMsUUFBUSxDQUFDLHFCQUFxQixHQUFHLFVBQUUsS0FBYztnQkFDM0QsTUFBTSxDQUFDLEtBQUksQ0FBQyxtQkFBbUIsQ0FBRSxLQUFLLENBQUUsQ0FBQztZQUM3QyxDQUFDLENBQUM7WUFDRixhQUFhLENBQUMsUUFBUSxDQUFDLGdCQUFnQixHQUFHLFVBQUUsaUJBQW9DO2dCQUM1RSxNQUFNLENBQUMsS0FBSSxDQUFDLGNBQWMsQ0FBRSxpQkFBaUIsQ0FBRSxDQUFDO1lBQ3BELENBQUMsQ0FBQztZQUNGLGFBQWEsQ0FBQyxRQUFRLENBQUMsYUFBYSxHQUFHLFVBQUUsSUFBdUIsRUFDdkIsaUJBQW9DO2dCQUN6RSxNQUFNLENBQUMsS0FBSSxDQUFDLFdBQVcsQ0FBRSxJQUFJLEVBQUUsaUJBQWlCLENBQUUsQ0FBQztZQUN2RCxDQUFDLENBQUM7WUFDRixhQUFhLENBQUMsUUFBUSxDQUFDLFVBQVUsR0FBRyxVQUFFLGlCQUFvQztnQkFDdEUsTUFBTSxDQUFDLEtBQUksQ0FBQyxRQUFRLENBQUUsaUJBQWlCLENBQUUsQ0FBQztZQUM5QyxDQUFDLENBQUM7WUFDRixhQUFhLENBQUMsUUFBUSxDQUFDLGdCQUFnQixHQUFHLFVBQUUsRUFBRTtnQkFDMUMsd0JBQXdCLEdBQUcsS0FBSSxDQUFDLGFBQWEsQ0FBQyxTQUFTLENBQUUsVUFBRSxnQkFBa0M7b0JBQ3pGLEVBQUUsQ0FBRSxnQkFBZ0IsQ0FBRSxDQUFDO2dCQUMzQixDQUFDLENBQUUsQ0FBQztZQUNSLENBQUMsQ0FBQztZQUNGLGFBQWEsQ0FBQyxRQUFRLENBQUMsaUJBQWlCLEdBQUcsVUFBRSxnQkFBa0M7Z0JBQzNFLEtBQUksQ0FBQyxlQUFlLENBQUUsZ0JBQWdCLENBQUUsQ0FBQztZQUM3QyxDQUFDLENBQUM7WUFDRixhQUFhLENBQUMsaUJBQWlCLENBQUMsYUFBYSxFQUFFLENBQUM7WUFDaEQsT0FBTyxDQUFFLGFBQWEsQ0FBRSxDQUFDO1FBQzdCLENBQUMsQ0FBRSxDQUFDO0lBQ1IsQ0FBQztJQUVPLG9DQUFXLEdBQW5CLFVBQXFCLElBQXFCLEVBQUUsTUFBZTtRQUEzRCxpQkFVQztRQVRHLElBQUksQ0FBQyxjQUFjLENBQUUsTUFBTSxDQUFFLEdBQUcsSUFBSSxDQUFDO1FBQ3JDLElBQUksWUFBWSxHQUFHLElBQUksQ0FBQyxXQUFXLENBQUUsSUFBSSxDQUFFLENBQUM7UUFDNUMsWUFBWSxDQUFFLFVBQUUsSUFBSTtZQUNoQixJQUFJLElBQUksR0FBRyxNQUFNLENBQUMsSUFBSSxDQUFFLElBQUksQ0FBRSxDQUFDO1lBQy9CLEtBQUksQ0FBQyxTQUFTLENBQUUsSUFBSSxDQUFFLElBQUksQ0FBRSxDQUFDLENBQUUsQ0FBRSxFQUFFLElBQUksRUFBRSxNQUFNLENBQUUsQ0FBQztZQUNsRCxFQUFFLENBQUMsQ0FBRSxLQUFJLENBQUMsY0FBYyxDQUFDLE1BQU0sS0FBSyxLQUFJLENBQUMsV0FBWSxDQUFDLENBQUMsQ0FBQztnQkFDcEQsS0FBSSxDQUFDLG9CQUFvQixDQUFFLENBQUMsQ0FBRSxDQUFDO1lBQ25DLENBQUM7UUFDTCxDQUFDLENBQUUsQ0FBQztJQUNSLENBQUM7SUFFTyxvQ0FBVyxHQUFuQixVQUFxQixJQUFxQjtRQUN0QyxJQUFJLE9BQU8sR0FBRyxJQUFJLENBQUM7UUFDbkIsSUFBSSxZQUFZLEdBQUcsSUFBSSxDQUFDO1FBQ3hCLEVBQUUsQ0FBQyxDQUFFLElBQUksQ0FBQyxXQUFZLENBQUMsQ0FBQyxDQUFDO1lBQ3JCLEVBQUUsQ0FBQyxDQUFFLElBQUksQ0FBQyxXQUFZLENBQUMsQ0FBQyxDQUFDO2dCQUNyQixZQUFZLEdBQUcsSUFBSSxDQUFDLGVBQWUsQ0FBRSxJQUFJLENBQUMsSUFBSSxDQUFFLENBQUM7WUFDckQsQ0FBQztRQUNMLENBQUM7UUFBQyxJQUFJLENBQUMsQ0FBQztZQUNKLE9BQU8sR0FBRyxJQUFJLENBQUMsZUFBZSxDQUFFLElBQUksQ0FBQyxJQUFJLENBQUUsQ0FBQztRQUNoRCxDQUFDO1FBQ0QsRUFBRSxDQUFDLENBQUUsT0FBUSxDQUFDLENBQUMsQ0FBQztZQUNaLE1BQU0sQ0FBQyxVQUFFLFNBQVM7Z0JBQ2QsU0FBUyxDQUFFLE9BQU8sQ0FBRSxDQUFDO1lBQ3pCLENBQUMsQ0FBQztRQUNOLENBQUM7UUFDRCxNQUFNLENBQUMsWUFBWSxDQUFDO0lBQ3hCLENBQUM7SUFFTyxrQ0FBUyxHQUFqQixVQUFtQixJQUFVLEVBQUUsS0FBc0IsRUFBRSxNQUFlO1FBQ2xFLElBQUksQ0FBQyxjQUFjLENBQUUsTUFBTSxDQUFFLEdBQUc7WUFDNUIsSUFBSSxFQUFHLElBQUk7WUFDWCxRQUFRLEVBQUcsS0FBSztTQUNuQixDQUFDO0lBQ04sQ0FBQztJQUVPLDZDQUFvQixHQUE1QixVQUE4QixNQUFlO1FBQ3pDLElBQUksWUFBWSxHQUFHLElBQUksQ0FBQyxlQUFlLENBQUUsSUFBSSxDQUFDLGNBQWMsQ0FBRSxNQUFNLENBQUUsQ0FBQyxJQUFJLEVBQUUsTUFBTSxDQUFFLENBQUM7UUFDdEYsRUFBRSxDQUFDLENBQUUsTUFBTSxLQUFLLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxNQUFNLEdBQUcsQ0FBQyxDQUFFLENBQUMsQ0FBQyxDQUFDO1lBQ3pDLElBQUksQ0FBQyxhQUFhLEVBQUUsQ0FBQztRQUN6QixDQUFDO1FBQ0QsSUFBSSxDQUFDLHdCQUF3QixDQUFFLFlBQVksRUFBRSxJQUFJLENBQUMsY0FBYyxDQUFFLE1BQU0sQ0FBRSxDQUFDLFFBQVEsQ0FBRSxDQUFDO1FBQ3RGLE1BQU0sSUFBSSxDQUFDLENBQUM7UUFDWixFQUFFLENBQUMsQ0FBRSxNQUFNLEdBQUcsSUFBSSxDQUFDLFdBQVksQ0FBQyxDQUFDLENBQUM7WUFDOUIsSUFBSSxDQUFDLG9CQUFvQixDQUFFLE1BQU0sQ0FBRSxDQUFDO1FBQ3hDLENBQUM7SUFDTCxDQUFDO0lBRU8sc0NBQWEsR0FBckI7UUFBQSxpQkFLQztRQUpHLFVBQVUsQ0FBRTtZQUNSLEtBQUksQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFFLFFBQVEsQ0FBRSxDQUFDO1lBQzdCLEtBQUksQ0FBQyxjQUFjLEdBQUcsRUFBRSxDQUFDO1FBQzdCLENBQUMsQ0FBRSxDQUFDO0lBQ1IsQ0FBQztJQUVPLHFEQUE0QixHQUFwQyxVQUFzQyxpQkFBb0M7UUFDdEUsTUFBTSxDQUFrQixpQkFBa0IsQ0FBQyxRQUFRLENBQUMsVUFBVSxDQUFDLEdBQUcsQ0FBQztJQUN2RSxDQUFDO0lBRU8saUNBQVEsR0FBaEIsVUFBa0IsaUJBQW9DO1FBQ2xELE1BQU0sQ0FBQyxJQUFJLENBQUMsbUJBQW1CLENBQUUsaUJBQWlCLENBQUUsQ0FBQztJQUN6RCxDQUFDO0lBRU8sdUNBQWMsR0FBdEIsVUFBd0IsaUJBQW9DO1FBQ3hELElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxRQUFRLENBQUUsaUJBQWlCLENBQUUsQ0FBQztRQUMvQyxNQUFNLENBQUMsSUFBSSxDQUFDLG1CQUFtQixDQUFFLEtBQUssQ0FBRSxDQUFDO0lBQzdDLENBQUM7SUFFTyw0Q0FBbUIsR0FBM0IsVUFBNkIsTUFBZTtRQUE1QyxpQkFlQztRQWRHLE1BQU0sQ0FBQyxJQUFJLE9BQU8sQ0FBRSxVQUFFLE9BQU8sRUFBRSxNQUFNO1lBQ2pDLElBQUksYUFBYSxHQUFHLEtBQUksQ0FBQyxhQUFhLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBQztZQUNsRCxFQUFFLENBQUMsQ0FBRSxNQUFNLEtBQUssU0FBUyxJQUFJLGFBQWEsR0FBRyxDQUFDLENBQUUsQ0FBQyxDQUFDLENBQUM7Z0JBQy9DLE9BQVEsS0FBSSxDQUFDLGFBQWEsQ0FBQyxNQUFNLEdBQUcsQ0FBQyxNQUFNLEdBQUcsQ0FBQyxDQUFDLEVBQUcsQ0FBQztvQkFDaEQsS0FBSSxDQUFDLFFBQVEsQ0FBRSxLQUFJLENBQUMsYUFBYSxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUUsQ0FBQztnQkFDbkQsQ0FBQztnQkFDRCxPQUFPLENBQUU7b0JBQ0wsT0FBTyxFQUFHLGFBQWEsR0FBRyxNQUFNO29CQUNoQyxNQUFNLEVBQUcsS0FBSSxDQUFDLGFBQWEsQ0FBQyxNQUFNO2lCQUNyQyxDQUFFLENBQUM7WUFDUixDQUFDO1lBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQ0osTUFBTSxDQUFFLGlCQUFpQixDQUFFLENBQUM7WUFDaEMsQ0FBQztRQUNMLENBQUMsQ0FBRSxDQUFDO0lBQ1IsQ0FBQztJQUVPLGlDQUFRLEdBQWhCLFVBQWtCLElBQXFCLEVBQUUsaUJBQW9DO1FBQ3pFLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxRQUFRLENBQUUsaUJBQWlCLENBQUUsQ0FBQztRQUMvQyxFQUFFLENBQUMsQ0FBRSxLQUFLLEtBQUssU0FBVSxDQUFDLENBQUMsQ0FBQztZQUN4QixLQUFLLEVBQUUsQ0FBQztRQUNaLENBQUM7UUFDRCxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBRSxJQUFJLEVBQUUsS0FBSyxDQUFFLENBQUM7SUFDdEMsQ0FBQztJQUVPLG9DQUFXLEdBQW5CLFVBQXFCLElBQXVCLEVBQ3ZCLGlCQUFvQztRQUNyRCxJQUFJLFFBQVEsR0FBRyxFQUFFLENBQUM7UUFDbEIsRUFBRSxDQUFDLENBQUUsSUFBSSxJQUFJLElBQUksQ0FBQyxNQUFPLENBQUMsQ0FBQyxDQUFDO1lBQ3hCLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxRQUFRLENBQUUsaUJBQWlCLENBQUUsQ0FBQztZQUMvQyxFQUFFLENBQUMsQ0FBRSxLQUFLLEtBQUssU0FBVSxDQUFDLENBQUMsQ0FBQztnQkFDeEIsS0FBSyxFQUFFLENBQUM7WUFDWixDQUFDO1lBQ0QsR0FBRyxDQUFDLENBQWEsVUFBSSxFQUFKLGFBQUksRUFBSixrQkFBSSxFQUFKLElBQUssQ0FBQztnQkFBakIsSUFBSSxHQUFHLGFBQUE7Z0JBQ1QsUUFBUSxDQUFDLElBQUksQ0FBRSxJQUFJLENBQUMsTUFBTSxDQUFFLEdBQUcsRUFBRSxLQUFLLENBQUUsQ0FBRSxDQUFDO2dCQUMzQyxLQUFLLEVBQUUsQ0FBQzthQUNYO1lBQ0QsTUFBTSxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUUsUUFBUSxDQUFFLENBQUM7UUFDbkMsQ0FBQztRQUNELE1BQU0sQ0FBQyxPQUFPLENBQUMsTUFBTSxDQUFFLGNBQWMsQ0FBRSxDQUFDO0lBQzVDLENBQUM7SUFFTyw0Q0FBbUIsR0FBM0IsVUFBNkIsaUJBQW9DO1FBQzdELElBQUksT0FBTyxHQUFHLElBQUksQ0FBQyw0QkFBNEIsQ0FBRSxpQkFBaUIsQ0FBRSxDQUFDO1FBQ3JFLE1BQU0sQ0FBQyxJQUFJLENBQUMsYUFBYSxDQUFDLE9BQU8sQ0FBRSxPQUFPLENBQUUsQ0FBQztJQUNqRCxDQUFDO0lBRU8sbUNBQVUsR0FBbEIsVUFBb0IsaUJBQW9DO1FBQ3BELElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxtQkFBbUIsQ0FBRSxpQkFBaUIsQ0FBRSxDQUFDO1FBQzFELEVBQUUsQ0FBQyxDQUFFLEtBQUssS0FBSyxTQUFVLENBQUMsQ0FBQyxDQUFDO1lBQ3hCLEtBQUssRUFBRSxDQUFDO1FBQ1osQ0FBQztRQUNELE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFFLEtBQUssQ0FBRSxDQUFDO0lBQ2xDLENBQUM7SUFoVUQ7UUFBQyxZQUFLLEVBQUU7Ozs4Q0FBQTtJQWlVWixxQkFBQztBQUFELENBQUMsQUFsVkQsSUFrVkM7QUFsVnFCLHNCQUFjLGlCQWtWbkMsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

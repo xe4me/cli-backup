@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-textarea/components/amp-textarea/amp-textarea.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-textarea/components/amp-textarea/</a> amp-textarea.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">82.35% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>42/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>13/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.64% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">82.35% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>42/51</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var amp_utils_1 = require('../../../../modules/amp-utils');
+var base_control_1 = require('../../../../base-control');
+var AmpTextareaComponent = (function (_super) {
+    __extends(AmpTextareaComponent, _super);
+    function AmpTextareaComponent(_cd, el) {
+        _super.call(this);
+        this._cd = _cd;
+        this.el = el;
+        this.keepControl = false;
+        this.hasFocus = false;
+        this.spellCheck = false;
+        this.onAdjustWidth = new core_1.EventEmitter();
+    }
+    AmpTextareaComponent.prototype.updateValidators = function () {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.control) {
+            this.control.validator = forms_1.Validators.compose([
+                amp_utils_1.RequiredValidator.requiredValidation(this._required),
+                amp_utils_1.MinLengthValidator.minLengthValidation(this._minLength),
+                amp_utils_1.MaxLengthValidator.maxLengthValidation(this._maxLength),
+                this.customValidator()
+            ]);
+            this.control.updateValueAndValidity({ emitEvent: false });
+        }
+    };
+    AmpTextareaComponent.prototype.ngAfterViewInit = function () {
+        var componentHeight = this.el.nativeElement.scrollHeight;
+        var textarea = this.el.nativeElement.querySelector('textarea');
+        this.initialTextareaHeight = textarea.style.height || textarea.scrollHeight;
+        this.componentHeightOffset = componentHeight - (this.initialTextareaHeight + 4);
+        this.initialComponentHeight = this.initialTextareaHeight + this.componentHeightOffset;
+        this.adjustHeight(textarea);
+        this.updateValidators();
+        this._cd.detectChanges();
+        return undefined;
+    };
+    AmpTextareaComponent.prototype.adjustHeight = function (element) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.control.value === null || <span class="branch-1 cbranch-no" title="branch not covered" >this.control.value.trim() === '')</span> {
+            element.style.height = this.initialTextareaHeight + 'px';
+            this.el.nativeElement.style.height = this.initialComponentHeight + 'px';
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            element.style.height = '1px';</span>
+<span class="cstat-no" title="statement not covered" >            element.style.height = (4 + element.scrollHeight) + 'px';</span>
+<span class="cstat-no" title="statement not covered" >            this.el.nativeElement.style.height = (this.componentHeightOffset + element.scrollHeight) + 'px';</span>
+        }
+    };
+    Object.defineProperty(AmpTextareaComponent.prototype, "minLength", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._minLength;</span>
+        },
+        set: <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >            this._minLength = value;</span>
+<span class="cstat-no" title="statement not covered" >            this.updateValidators();</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpTextareaComponent.prototype, "maxLength", {
+        get: function () {
+            return this._maxLength;
+        },
+        set: function (value) {
+            this._maxLength = value;
+            this.updateValidators();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AmpTextareaComponent.prototype.trimValue = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this.control.value ? this.control.setValue(this.control.value.trim()) : '';</span>
+    };
+    AmpTextareaComponent.prototype.setHasFocus = <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >        this.hasFocus = value;</span>
+    };
+    AmpTextareaComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-textarea',
+            template: require('./amp-textarea.component.html'),
+            styles: [require('./amp-textarea.scss').toString()],
+            inputs: [
+                'errors',
+                'id',
+                'controlGroup',
+                'isInSummaryState',
+                'customValidator',
+                'index',
+                'label',
+                'placeholder',
+                'maxLength',
+                'minLength',
+                'required',
+                'hostClassesRemove',
+                'keepControl',
+                'spellCheck'
+            ],
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_b = typeof core_1.ElementRef !== 'undefined' &amp;&amp; core_1.ElementRef) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpTextareaComponent);
+    return AmpTextareaComponent;
+<span class="cstat-no" title="statement not covered" >    var _a, _b;</span>
+}(base_control_1.BaseControl));
+exports.AmpTextareaComponent = AmpTextareaComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXRleHRhcmVhLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC10ZXh0YXJlYS5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQU9PLGVBQWUsQ0FBQyxDQUFBO0FBQ3ZCLHNCQUEyQixnQkFBZ0IsQ0FBQyxDQUFBO0FBQzVDLDBCQUE0RSwrQkFBK0IsQ0FBQyxDQUFBO0FBQzVHLDZCQUE0QiwwQkFBMEIsQ0FBQyxDQUFBO0FBd0J2RDtJQUEwQyx3Q0FBVztJQWNqRCw4QkFBc0IsR0FBdUIsRUFDdkIsRUFBZTtRQUNqQyxpQkFBTyxDQUFDO1FBRlUsUUFBRyxHQUFILEdBQUcsQ0FBb0I7UUFDdkIsT0FBRSxHQUFGLEVBQUUsQ0FBYTtRQWQ5QixnQkFBVyxHQUFhLEtBQUssQ0FBQztRQVU3QixhQUFRLEdBQWUsS0FBSyxDQUFDO1FBQzdCLGVBQVUsR0FBYSxLQUFLLENBQUM7UUFLakMsSUFBSSxDQUFDLGFBQWEsR0FBRyxJQUFJLG1CQUFZLEVBQUUsQ0FBQztJQUM1QyxDQUFDO0lBRUQsK0NBQWdCLEdBQWhCO1FBQ0ksRUFBRSxDQUFDLENBQUUsSUFBSSxDQUFDLE9BQVEsQ0FBQyxDQUFDLENBQUM7WUFDakIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxTQUFTLEdBQUcsa0JBQVUsQ0FBQyxPQUFPLENBQUU7Z0JBQ3pDLDZCQUFpQixDQUFDLGtCQUFrQixDQUFFLElBQUksQ0FBQyxTQUFTLENBQUU7Z0JBQ3RELDhCQUFrQixDQUFDLG1CQUFtQixDQUFFLElBQUksQ0FBQyxVQUFVLENBQUU7Z0JBQ3pELDhCQUFrQixDQUFDLG1CQUFtQixDQUFFLElBQUksQ0FBQyxVQUFVLENBQUU7Z0JBQ3pELElBQUksQ0FBQyxlQUFlLEVBQUU7YUFDekIsQ0FBRSxDQUFDO1lBQ0osSUFBSSxDQUFDLE9BQU8sQ0FBQyxzQkFBc0IsQ0FBRSxFQUFFLFNBQVMsRUFBRyxLQUFLLEVBQUUsQ0FBRSxDQUFDO1FBQ2pFLENB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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

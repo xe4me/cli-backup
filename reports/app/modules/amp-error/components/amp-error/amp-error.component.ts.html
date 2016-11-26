@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-error/components/amp-error/amp-error.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-error/components/amp-error/</a> amp-error.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.74% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>18/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.74% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>18/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">142×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var AmpErrorItemComponent = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpErrorItemComponent() {</span>
+    }
+    __decorate([
+        core_1.Input('selector'), 
+        __metadata('design:type', Object)
+    ], AmpErrorItemComponent.prototype, "selector", void 0);
+    __decorate([
+        core_1.Input('error'), 
+        __metadata('design:type', Object)
+    ], AmpErrorItemComponent.prototype, "error", void 0);
+    AmpErrorItemComponent = __decorate([
+        core_1.Component({
+            selector: 'error-item',
+            template: '&lt;ng-content *ngIf="error===selector"&gt;&lt;/ng-content&gt;'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpErrorItemComponent);
+    return AmpErrorItemComponent;
+}());
+exports.AmpErrorItemComponent = AmpErrorItemComponent;
+var AmpErrorComponent = (function () {
+    function AmpErrorComponent(_cd) {
+        this._cd = _cd;
+    }
+    /*
+     * TODO : We need to change the changeDetectionStrategy of this component to be OnPush
+     * But the problem is then how should this component should be notified of updates ?
+     * Below is one way that I coult work out , but I need more time to spend to make it 100 working , thus I won't
+     * remove the com
+     * */
+    AmpErrorComponent.prototype.ngOnInit = function () {
+        // if ( this.controlGroup ) {
+        //     this.controlGroup
+        //         .statusChanges
+        //         .subscribe( (changes)=&gt; {
+        //             console.log('changes',changes);
+        //             this._cd.markForCheck();
+        //         } )
+        // }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', (typeof (_a = typeof forms_1.FormGroup !== 'undefined' &amp;&amp; forms_1.FormGroup) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpErrorComponent.prototype, "controlGroup", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpErrorComponent.prototype, "controlId", void 0);
+    AmpErrorComponent = __decorate([
+        core_1.Component({
+            queries: {
+                itemTemplate: new core_1.ContentChild(core_1.TemplateRef)
+            },
+            selector: 'amp-error',
+            template: require('./amp-error.component.html'),
+            styles: [require('./amp-error.component.scss').toString()]
+        }), 
+        __metadata('design:paramtypes', [(typeof (_b = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpErrorComponent);
+    return AmpErrorComponent;
+<span class="cstat-no" title="statement not covered" >    var _a, _b;</span>
+}());
+exports.AmpErrorComponent = AmpErrorComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWVycm9yLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC1lcnJvci5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQUdPLGVBQWUsQ0FBQyxDQUFBO0FBQ3ZCLHNCQUEwQixnQkFBZ0IsQ0FBQyxDQUFBO0FBSzNDO0lBQUE7SUFHQSxDQUFDO0lBRkc7UUFBQyxZQUFLLENBQUUsVUFBVSxDQUFFOzsyREFBQTtJQUNwQjtRQUFDLFlBQUssQ0FBRSxPQUFPLENBQUU7O3dEQUFBO0lBTnJCO1FBQUMsZ0JBQVMsQ0FBRTtZQUNSLFFBQVEsRUFBRyxZQUFZO1lBQ3ZCLFFBQVEsRUFBRyxvREFBb0Q7U0FDbEUsQ0FBRTs7NkJBQUE7SUFJSCw0QkFBQztBQUFELENBQUMsQUFIRCxJQUdDO0FBSFksNkJBQXFCLHdCQUdqQyxDQUFBO0FBVUQ7SUFJSSwyQkFBc0IsR0FBdUI7UUFBdkIsUUFBRyxHQUFILEdBQUcsQ0FBb0I7SUFDN0MsQ0FBQztJQUVEOzs7OztTQUtLO0lBQ0wsb0NBQVEsR0FBUjtRQUNJLDZCQUE2QjtRQUM3Qix3QkFBd0I7UUFDeEIseUJBQXlCO1FBQ3pCLG9DQUFvQztRQUNwQyw4Q0FBOEM7UUFDOUMsdUNBQXVDO1FBQ3ZDLGNBQWM7UUFDZCxJQUFJO0lBQ1IsQ0FBQztJQXJCRDtRQUFDLFlBQUssRUFBRTs7MkRBQUE7SUFDUjtRQUFDLFlBQUssRUFBRTs7d0RBQUE7SUFYWjtRQUFDLGdCQUFTLENBQ047WUFDSSxPQUFPLEVBQUk7Z0JBQ1AsWUFBWSxFQUFHLElBQUksbUJBQVksQ0FBRSxrQkFBVyxDQUFFO2FBQ2pEO1lBQ0QsUUFBUSxFQUFHLFdBQVc7WUFDdEIsUUFBUSxFQUFHLE9BQU8sQ0FBRSw0QkFBNEIsQ0FBRTtZQUNsRCxNQUFNLEVBQUssQ0FBRSxPQUFPLENBQUUsNEJBQTRCLENBQUUsQ0FBQyxRQUFRLEVBQUUsQ0FBRTtTQUNwRSxDQUFFOzt5QkFBQTtJQXdCUCx3QkFBQzs7QUFBRCxDQUFDLEFBdkJELElBdUJDO0FBdkJZLHlCQUFpQixvQkF1QjdCLENBQUEifQ==
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

@@ -1,9 +1,4 @@
-import {
-    Component ,
-    ViewContainerRef ,
-    ChangeDetectorRef
-} from '@angular/core';
-import { AmpBlockLoaderDirective } from '../amp-block-loader.directive';
+import { Component , ViewContainerRef , ChangeDetectorRef } from '@angular/core';
 import { FormSectionService } from '../../app/services/form-section/form-section.service';
 import { FormModelService } from '../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../app/services/progress-observer/progress-observer.service';
@@ -23,9 +18,7 @@ import { ProgressObserverService } from '../../app/services/progress-observer/pr
       display: none;
     }
   `
-    ] ,
-    directives : [ AmpBlockLoaderDirective ]
-    // encapsulation: ViewEncapsulation.Emulated
+    ]
 } )
 export class PageSectionComponent {
     public CLASS_NAME = 'PageSectionComponent';

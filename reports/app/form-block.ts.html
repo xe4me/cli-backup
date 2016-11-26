@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/form-block.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">app/</a> form-block.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.25% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/80</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.88% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.25% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>17/80</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var amp_utils_1 = require('./modules/amp-utils');
+var FormBlock = (function () {
+<span class="fstat-no" title="function not covered" >    function FormBlock(formModelService, elementRef, _cd, progressObserver, scrollService) {</span>
+<span class="cstat-no" title="statement not covered" >        this.formModelService = formModelService;</span>
+<span class="cstat-no" title="statement not covered" >        this.elementRef = elementRef;</span>
+<span class="cstat-no" title="statement not covered" >        this._cd = _cd;</span>
+<span class="cstat-no" title="statement not covered" >        this.progressObserver = progressObserver;</span>
+<span class="cstat-no" title="statement not covered" >        this.scrollService = scrollService;</span>
+<span class="cstat-no" title="statement not covered" >        this.isInSummaryState = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.isActive = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.hasClickedOnOkButton = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.selectorName = 'default-form-block-selector-name';</span>
+<span class="cstat-no" title="statement not covered" >        this.noScroll = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.visibleFlag = 'defaultIsVisible';</span>
+<span class="cstat-no" title="statement not covered" >        this.doneFlag = 'defaultIsDone';</span>
+<span class="cstat-no" title="statement not covered" >        this.domUtils = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.domUtils = new amp_utils_1.DomUtils();</span>
+    }
+    FormBlock.prototype.context = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    };
+    FormBlock.prototype.ngAfterViewInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.selectorName = amp_utils_1.arrayJoinByDash(this.__fdn) + '-block';</span>
+<span class="cstat-no" title="statement not covered" >        this.visibleFlag = this.selectorName + 'IsVisible';</span>
+<span class="cstat-no" title="statement not covered" >        this.doneFlag = this.selectorName + 'IsDone';</span>
+<span class="cstat-no" title="statement not covered" >        this.subscribeToScrollEvents();</span>
+<span class="cstat-no" title="statement not covered" >        if (this.__isRetrieved) {</span>
+<span class="cstat-no" title="statement not covered" >            this.setToTouchedAndSummaryState();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._cd.markForCheck();</span>
+    };
+    FormBlock.prototype.ngOnDestroy = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.unSubscribeFromEvents();</span>
+    };
+    FormBlock.prototype.updateSelectorName = <span class="fstat-no" title="function not covered" >function (_customString) {</span>
+<span class="cstat-no" title="statement not covered" >        this.selectorName += '-' + _customString;</span>
+    };
+    FormBlock.prototype.autoFocus = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (_this.autoFocusOn) {</span>
+<span class="cstat-no" title="statement not covered" >                _this.autoFocusOn.focus();</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                var inputs = _this.elementRef.nativeElement.getElementsByTagName('input');</span>
+<span class="cstat-no" title="statement not covered" >                if (!inputs) {</span>
+<span class="cstat-no" title="statement not covered" >                    inputs = _this.elementRef.nativeElement.getElementsByTagName('textarea');</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (inputs &amp;&amp; inputs.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    for (var i = 0; i &lt; inputs.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (_this.domUtils.isVisible(inputs[i])) {</span>
+<span class="cstat-no" title="statement not covered" >                            inputs[i].focus();</span>
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+                        }
+                    }
+                }
+            }
+        }, 100);
+    };
+    FormBlock.prototype.onEdit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.isInSummaryState = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.scrollService.$scrolled.emit(this.selectorName);</span>
+    };
+    FormBlock.prototype.setToTouchedAndSummaryState = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.__controlGroup.markAsTouched();</span>
+<span class="cstat-no" title="statement not covered" >        this.isInSummaryState = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.isActive = true;</span>
+    };
+    FormBlock.prototype.onNext = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.canGoNext) {</span>
+<span class="cstat-no" title="statement not covered" >            this.scrollService.scrollToNextUndoneBlock(this.__form);</span>
+<span class="cstat-no" title="statement not covered" >            this.progressObserver.onProgress(this.__fdn);</span>
+<span class="cstat-no" title="statement not covered" >            if (this.formModelService.autoSave) {</span>
+<span class="cstat-no" title="statement not covered" >                this.formModelService.save(this.__form.value);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var onNextScrolled_1 = this.scrollService.$scrolled.subscribe(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                _this.isInSummaryState = true;</span>
+<span class="cstat-no" title="statement not covered" >                _this._cd.markForCheck();</span>
+<span class="cstat-no" title="statement not covered" >                onNextScrolled_1.unsubscribe();</span>
+            });
+        }
+    };
+    Object.defineProperty(FormBlock.prototype, "canGoNext", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.__controlGroup.valid;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FormBlock.prototype.subscribeToScrollEvents = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        if (!this.noScroll) {</span>
+<span class="cstat-no" title="statement not covered" >            this.scrollSubscription = this.scrollService.$scrolled.subscribe(<span class="fstat-no" title="function not covered" >function (changes) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (changes.componentSelector &amp;&amp; changes.componentSelector === _this.selectorName) {</span>
+<span class="cstat-no" title="statement not covered" >                    _this.isInSummaryState = false;</span>
+<span class="cstat-no" title="statement not covered" >                    _this.isActive = true;</span>
+<span class="cstat-no" title="statement not covered" >                    _this.autoFocus();</span>
+<span class="cstat-no" title="statement not covered" >                    _this._cd.markForCheck();</span>
+                }
+            });
+        }
+    };
+    FormBlock.prototype.resetBlock = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.isInSummaryState = false;</span>
+    };
+    FormBlock.prototype.unSubscribeFromEvents = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.scrollSubscription) {</span>
+<span class="cstat-no" title="statement not covered" >            this.scrollSubscription.unsubscribe();</span>
+        }
+    };
+    return FormBlock;
+}());
+exports.FormBlock = FormBlock;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9ybS1ibG9jay5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImZvcm0tYmxvY2sudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQVFBLDBCQUEyQyxxQkFBcUIsQ0FBQyxDQUFBO0FBT2pFO0lBK0dJLG1CQUF3QixnQkFBbUMsRUFDbkMsVUFBdUIsRUFDdkIsR0FBdUIsRUFDdkIsZ0JBQTBDLEVBQzFDLGFBQTZCO1FBSjdCLHFCQUFnQixHQUFoQixnQkFBZ0IsQ0FBbUI7UUFDbkMsZUFBVSxHQUFWLFVBQVUsQ0FBYTtRQUN2QixRQUFHLEdBQUgsR0FBRyxDQUFvQjtRQUN2QixxQkFBZ0IsR0FBaEIsZ0JBQWdCLENBQTBCO1FBQzFDLGtCQUFhLEdBQWIsYUFBYSxDQUFnQjtRQWpIM0MscUJBQWdCLEdBQWlCLEtBQUssQ0FBQztRQUN2QyxhQUFRLEdBQXlCLEtBQUssQ0FBQztRQUN2Qyx5QkFBb0IsR0FBYSxLQUFLLENBQUM7UUFDdkMsaUJBQVksR0FBcUIsa0NBQWtDLENBQUM7UUFDcEUsYUFBUSxHQUF5QixLQUFLLENBQUM7UUFvR3ZDLGdCQUFXLEdBQVksa0JBQWtCLENBQUM7UUFDMUMsYUFBUSxHQUFlLGVBQWUsQ0FBQztRQUV6QyxhQUFRLEdBQWlCLElBQUksQ0FBQztRQU9sQyxJQUFJLENBQUMsUUFBUSxHQUFHLElBQUksb0JBQVEsRUFBRSxDQUFDO0lBQ25DLENBQUM7SUFFRCwyQkFBTyxHQUFQO1FBQ0ksTUFBTSxDQUFDLElBQUksQ0FBQztJQUNoQixDQUFDO0lBRUQsbUNBQWUsR0FBZjtRQUNJLElBQUksQ0FBQyxZQUFZLEdBQUcsMkJBQWUsQ0FBRSxJQUFJLENBQUMsS0FBSyxDQUFFLEdBQUcsUUFBUSxDQUFDO1FBQzdELElBQUksQ0FBQyxXQUFXLEdBQUksSUFBSSxDQUFDLFlBQVksR0FBRyxXQUFXLENBQUM7UUFDcEQsSUFBSSxDQUFDLFFBQVEsR0FBTyxJQUFJLENBQUMsWUFBWSxHQUFHLFFBQVEsQ0FBQztRQUNqRCxJQUFJLENB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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,39 +1,31 @@
 import {
-    Input ,
-    ViewContainerRef ,
-    Directive ,
-    ComponentResolver ,
-    Output ,
-    EventEmitter ,
-    Compiler
+    Input,
+    ViewContainerRef,
+    Directive,
+    Output,
+    EventEmitter,
+    Compiler,
+    ComponentFactoryResolver
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormSectionService } from './services/form-section/form-section.service';
-import { AmpBlockLoader } from './amp-block-loader';
-export enum BlockLayout { INLINE , PAGE , SECTION }
-export enum RequireMethod { ALL , IN_ORDER }
-export interface LoadedBlockInfo {
-    fdn : (string|number)[];
-    name : string;
-}
+import { AmpBlockLoader, RequireMethod } from './amp-block-loader';
 @Directive( {
     selector : '[amp-block-loader]'
 } )
 export class AmpBlockLoaderDirective extends AmpBlockLoader {
     @Input( 'amp-block-loader' ) blockLoader;
-    @Input( 'fdn' ) fdn                     = [];
+    @Input( 'fdn' ) fdn = [];
     @Input( 'form' ) form : FormGroup;
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
-    @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
+    @Output() loaded : EventEmitter<any> = new EventEmitter<any>();
 
-    constructor ( public viewContainer : ViewContainerRef ,
-                  public compiler : Compiler ,
-                  public formSectionService : FormSectionService ,
-                  public componentResolver : ComponentResolver ) {
-        super( viewContainer , compiler , formSectionService , componentResolver );
+    constructor( public viewContainer : ViewContainerRef,
+                 public compiler : Compiler,
+                 public componentFactoryResolver : ComponentFactoryResolver ) {
+        super( viewContainer, compiler, componentFactoryResolver );
     }
 
-    protected getCustomBundle ( path : string ) : any {
+    protected getCustomBundle( path : string ) : any {
         try {
             return require( '../../../../src/app/' + path + '\.ts' );
         } catch ( err ) {

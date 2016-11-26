@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-button/components/amp-button/amp-button.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-button/components/amp-button/</a> amp-button.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.91% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>30/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>18/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.91% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>30/33</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var browser_adapter_1 = require('@angular/platform-browser/src/browser/browser_adapter');
+var AmpButton = (function () {
+    function AmpButton(elementRef, _cd, renderer) {
+        this.elementRef = elementRef;
+        this._cd = _cd;
+        this.renderer = renderer;
+        this.disabled = false;
+        this._dataAutomationId = 'default-btn';
+        renderer.setElementAttribute(elementRef.nativeElement, 'class', null);
+        this.domAdatper = new browser_adapter_1.BrowserDomAdapter();
+    }
+    AmpButton.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            var contentStr = _this.domAdatper.getText(_this.elementRef.nativeElement);
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (contentStr) {
+                contentStr = contentStr.trim();
+            }
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (!_this.dataAutomationId || <span class="branch-1 cbranch-no" title="branch not covered" >!_this.dataAutomationId.length)</span> {
+                _this._dataAutomationId = 'btn-' + (contentStr ? contentStr.replace(/\s+/g, '') : <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (_this.context &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >_this.context.__fdn)</span> {
+<span class="cstat-no" title="statement not covered" >                    _this._dataAutomationId = 'btn-' + _this.context.__fdn.join('-') + '-' + contentStr;</span>
+                }
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                _this._dataAutomationId = _this.dataAutomationId;</span>
+            }
+            _this._cd.markForCheck();
+        });
+    };
+    __decorate([
+        core_1.Input('chevron'), 
+        __metadata('design:type', String)
+    ], AmpButton.prototype, "_chevron", void 0);
+    __decorate([
+        core_1.Input('context'), 
+        __metadata('design:type', Object)
+    ], AmpButton.prototype, "context", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpButton.prototype, "click", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpButton.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input('class'), 
+        __metadata('design:type', String)
+    ], AmpButton.prototype, "_class", void 0);
+    __decorate([
+        core_1.Input('data-automation-id'), 
+        __metadata('design:type', String)
+    ], AmpButton.prototype, "dataAutomationId", void 0);
+    AmpButton = __decorate([
+        core_1.Component({
+            selector: 'amp-button',
+            template: "\n    &lt;button\n        [attr.data-automation-id]='_dataAutomationId'\n        type='button'\n        [attr.chevron]='_chevron'\n        (click)='click'\n        [disabled]='disabled'\n        [class]='_class'&gt;\n        &lt;ng-content&gt;&lt;/ng-content&gt;\n    &lt;/button&gt;",
+            styles: [require('./amp-button.component.scss').toString()],
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof core_1.ElementRef !== 'undefined' &amp;&amp; core_1.ElementRef) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_b = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_c = typeof core_1.Renderer !== 'undefined' &amp;&amp; core_1.Renderer) === 'function' &amp;&amp; _c) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpButton);
+    return AmpButton;
+<span class="cstat-no" title="statement not covered" >    var _a, _b, _c;</span>
+}());
+exports.AmpButton = AmpButton;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWJ1dHRvbi5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbXAtYnV0dG9uLmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBYU8sZUFBZSxDQUFDLENBQUE7QUFDdkIsZ0NBQWtDLHVEQUF1RCxDQUFDLENBQUE7QUFnQjFGO0lBWUksbUJBQXNCLFVBQXVCLEVBQ3ZCLEdBQXVCLEVBQ3ZCLFFBQW1CO1FBRm5CLGVBQVUsR0FBVixVQUFVLENBQWE7UUFDdkIsUUFBRyxHQUFILEdBQUcsQ0FBb0I7UUFDdkIsYUFBUSxHQUFSLFFBQVEsQ0FBVztRQVZoQyxhQUFRLEdBQUcsS0FBSyxDQUFDO1FBS2xCLHNCQUFpQixHQUFZLGFBQWEsQ0FBQztRQU0vQyxRQUFRLENBQUMsbUJBQW1CLENBQUUsVUFBVSxDQUFDLGFBQWEsRUFBRyxPQUFPLEVBQUcsSUFBSSxDQUFFLENBQUM7UUFDMUUsSUFBSSxDQUFDLFVBQVUsR0FBRyxJQUFJLG1DQUFpQixFQUFFLENBQUM7SUFDOUMsQ0FBQztJQUVELG1DQUFlLEdBQWY7UUFBQSxpQkFnQkM7UUFmRyxVQUFVLENBQUU7WUFDUixJQUFJLFVBQVUsR0FBRyxLQUFJLENBQUMsVUFBVSxDQUFDLE9BQU8sQ0FBRSxLQUFJLENBQUMsVUFBVSxDQUFDLGFBQWEsQ0FBRSxDQUFDO1lBQzFFLEVBQUUsQ0FBQyxDQUFFLFVBQVcsQ0FBQyxDQUFDLENBQUM7Z0JBQ2YsVUFBVSxHQUFHLFVBQVUsQ0FBQyxJQUFJLEVBQUUsQ0FBQztZQUNuQyxDQUFDO1lBQ0QsRUFBRSxDQUFDLENBQUUsQ0FBRSxLQUFJLENBQUMsZ0JBQWdCLElBQUksQ0FBRSxLQUFJLENBQUMsZ0JBQWdCLENBQUMsTUFBTyxDQUFDLENBQUMsQ0FBQztnQkFDOUQsS0FBSSxDQUFDLGlCQUFpQixHQUFHLE1BQU0sR0FBRyxDQUFDLFVBQVUsR0FBRyxVQUFVLENBQUMsT0FBTyxDQUFFLE1BQU0sRUFBRyxFQUFFLENBQUUsR0FBRyxFQUFFLENBQUMsQ0FBQztnQkFDeEYsRUFBRSxDQUFDLENBQUUsS0FBSSxDQUFDLE9BQU8sSUFBSSxLQUFJLENBQUMsT0FBTyxDQUFDLEtBQU0sQ0FBQyxDQUFDLENBQUM7b0JBQ3ZDLEtBQUksQ0FBQyxpQkFBaUIsR0FBRyxNQUFNLEdBQUcsS0FBSSxDQUFDLE9BQU8sQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFFLEdBQUcsQ0FBRSxHQUFHLEdBQUcsR0FBRyxVQUFVLENBQUM7Z0JBQ3hGLENBQUM7WUFDTCxDQUFDO1lBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQ0osS0FBSSxDQUFDLGlCQUFpQixHQUFHLEtBQUksQ0FBQyxnQkFBZ0IsQ0FBQztZQUNuRCxDQUFDO1lBQ0QsS0FBSSxDQUFDLEdBQUcsQ0FBQyxZQUFZLEVBQUUsQ0FBQztRQUM1QixDQUFDLENBQUUsQ0FBQztJQUNSLENBQUM7SUFsQ0Q7UUFBQyxZQUFLLENBQUUsU0FBUyxDQUFFOzsrQ0FBQTtJQUNuQjtRQUFDLFlBQUssQ0FBRSxTQUFTLENBQUU7OzhDQUFBO0lBQ25CO1FBQUMsWUFBSyxFQUFFOzs0Q0FBQTtJQUNSO1FBQUMsWUFBSyxFQUFFOzsrQ0FBQTtJQUNSO1FBQUMsWUFBSyxDQUFFLE9BQU8sQ0FBRTs7NkNBQUE7SUFHakI7UUFBQyxZQUFLLENBQUUsb0JBQW9CLENBQUU7O3VEQUFBO0lBdkJsQztRQUFDLGdCQUFTLENBQUU7WUFDUixRQUFRLEVBQVUsWUFBWTtZQUM5QixRQUFRLEVBQVUscVFBU1I7WUFDVixNQUFNLEVBQVksQ0FBRSxPQUFPLENBQUUsNkJBQTZCLENBQUUsQ0FBQyxRQUFRLEVBQUUsQ0FBRTtZQUN6RSxlQUFlLEVBQUcsOEJBQXVCLENBQUMsTUFBTTtTQUNuRCxDQUFFOztpQkFBQTtJQXFDSCxnQkFBQzs7QUFBRCxDQUFDLEFBcENELElBb0NDO0FBcENZLGlCQUFTLFlBb0NyQixDQUFBIn0=
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

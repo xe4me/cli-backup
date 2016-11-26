@@ -35,7 +35,6 @@ import { BaseControl } from '../../../../base-control';
 export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     public keepControl : boolean = false;
     private label : string;
-    private isInSummaryState : boolean;
     private placeholder : string;
     private onAdjustWidth : EventEmitter<any>;
     private hostClassesRemove;

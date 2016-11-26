@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/services/validation/validation.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/services/validation/</a> validation.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">39.13% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.29% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">39.13% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var ValidationService = (function () {
+<span class="fstat-no" title="function not covered" >    function ValidationService() {</span>
+    }
+    ValidationService.getValidatorErrorMessage = <span class="fstat-no" title="function not covered" >function (code) {</span>
+<span class="cstat-no" title="statement not covered" >        var config = {</span>
+            'required': 'Required',
+            'invalidPhone': 'Phone is Invalid',
+            'invalidCreditCard': 'Is invalid credit card number',
+            'invalidEmailAddress': 'Invalid email address',
+            'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.'
+        };
+<span class="cstat-no" title="statement not covered" >        return config[code];</span>
+    };
+    ValidationService.creditCardValidator = <span class="fstat-no" title="function not covered" >function (control) {</span>
+        // Visa, MasterCard, American Express, Diners Club, Discover, JCB
+<span class="cstat-no" title="statement not covered" >        if (control.value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return { 'invalidCreditCard': true };</span>
+        }
+    };
+    ValidationService.emailValidator = <span class="fstat-no" title="function not covered" >function (control) {</span>
+        // RFC 2822 compliant regex
+<span class="cstat-no" title="statement not covered" >        if (control.value.match(/[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return { 'invalidEmailAddress': true };</span>
+        }
+    };
+    ValidationService.phoneValidator = <span class="fstat-no" title="function not covered" >function (control) {</span>
+        // RFC 2822 compliant regex
+<span class="cstat-no" title="statement not covered" >        if (control.value.match(/^([0-9])*$/)) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return { 'invalidPhone': true };</span>
+        }
+    };
+    ValidationService.passwordValidator = <span class="fstat-no" title="function not covered" >function (control) {</span>
+        // {6,100}           - Assert password is between 6 and 100 characters
+        // (?=.*[0-9])       - Assert a string has at least one number
+<span class="cstat-no" title="statement not covered" >        if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&amp;*]{6,100}$/)) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return { 'invalidPassword': true };</span>
+        }
+    };
+    return ValidationService;
+}());
+exports.ValidationService = ValidationService;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmFsaWRhdGlvbi5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsidmFsaWRhdGlvbi5zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTtJQUFBO0lBZ0RBLENBQUM7SUEvQ1UsMENBQXdCLEdBQS9CLFVBQWtDLElBQWE7UUFDM0MsSUFBSSxNQUFNLEdBQUc7WUFDVCxVQUFVLEVBQWEsVUFBVTtZQUNqQyxjQUFjLEVBQVMsa0JBQWtCO1lBQ3pDLG1CQUFtQixFQUFJLCtCQUErQjtZQUN0RCxxQkFBcUIsRUFBRSx1QkFBdUI7WUFDOUMsaUJBQWlCLEVBQU0sc0ZBQXNGO1NBQ2hILENBQUM7UUFDRixNQUFNLENBQUMsTUFBTSxDQUFFLElBQUksQ0FBRSxDQUFDO0lBQzFCLENBQUM7SUFFTSxxQ0FBbUIsR0FBMUIsVUFBNkIsT0FBTztRQUNoQyxpRUFBaUU7UUFDakUsRUFBRSxDQUFDLENBQUUsT0FBTyxDQUFDLEtBQUssQ0FBQyxLQUFLLENBQUcsdUpBQXVKLENBQUcsQ0FBQyxDQUFDLENBQUM7WUFDcEwsTUFBTSxDQUFDLElBQUksQ0FBQztRQUNoQixDQUFDO1FBQUMsSUFBSSxDQUFDLENBQUM7WUFDSixNQUFNLENBQUMsRUFBRSxtQkFBbUIsRUFBRSxJQUFJLEVBQUUsQ0FBQztRQUN6QyxDQUFDO0lBQ0wsQ0FBQztJQUVNLGdDQUFjLEdBQXJCLFVBQXdCLE9BQU87UUFDM0IsMkJBQTJCO1FBQzNCLEVBQUUsQ0FBQyxDQUFFLE9BQU8sQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFHLHVJQUF1SSxDQUFHLENBQUMsQ0FBQyxDQUFDO1lBQ3BLLE1BQU0sQ0FBQyxJQUFJLENBQUM7UUFDaEIsQ0FBQztRQUFDLElBQUksQ0FBQyxDQUFDO1lBQ0osTUFBTSxDQUFDLEVBQUUscUJBQXFCLEVBQUUsSUFBSSxFQUFFLENBQUM7UUFDM0MsQ0FBQztJQUNMLENBQUM7SUFFTSxnQ0FBYyxHQUFyQixVQUF3QixPQUFPO1FBQzNCLDJCQUEyQjtRQUMzQixFQUFFLENBQUMsQ0FBRSxPQUFPLENBQUMsS0FBSyxDQUFDLEtBQUssQ0FBRyxZQUFZLENBQUcsQ0FBQyxDQUFDLENBQUM7WUFDekMsTUFBTSxDQUFDLElBQUksQ0FBQztRQUNoQixDQUFDO1FBQUMsSUFBSSxDQUFDLENBQUM7WUFDSixNQUFNLENBQUMsRUFBRSxjQUFjLEVBQUUsSUFBSSxFQUFFLENBQUM7UUFDcEMsQ0FBQztJQUNMLENBQUM7SUFFTSxtQ0FBaUIsR0FBeEIsVUFBMkIsT0FBTztRQUM5QixzRUFBc0U7UUFDdEUsOERBQThEO1FBQzlELEVBQUUsQ0FBQyxDQUFFLE9BQU8sQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFHLHlDQUF5QyxDQUFHLENBQUMsQ0FBQyxDQUFDO1lBQ3RFLE1BQU0sQ0FBQyxJQUFJLENBQUM7UUFDaEIsQ0FBQztRQUFDLElBQUksQ0FBQyxDQUFDO1lBQ0osTUFBTSxDQUFDLEVBQUUsaUJBQWlCLEVBQUUsSUFBSSxFQUFFLENBQUM7UUFDdkMsQ0FBQztJQUNMLENBQUM7SUFDTCx3QkFBQztBQUFELENBQUMsQUFoREQsSUFnREM7QUFoRFkseUJBQWlCLG9CQWdEN0IsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

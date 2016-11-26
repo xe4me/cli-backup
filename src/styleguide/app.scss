@@ -1,10 +1,6 @@
 @import "../styles/require";
 @import "../styleguide/assets/font/font";
-@import '../../node_modules/@angular2-material/core/style/core';
-@import "../../node_modules/@angular2-material/core/style/_variables";
-@import "../../node_modules/@angular2-material/core/style/_mixins";
-@import "../../node_modules/@angular2-material/core/style/_theme-functions";
-@import "../../node_modules/@angular2-material/core/style/_default-theme";
+
 .example-inside{
     padding: 20px;
 }
@@ -20,7 +16,7 @@
         border: 1px solid $amp-colour-secondary-lightest;
         height: 100%;
         padding-left: 45px;
-        
+
         .show-menu & {
             margin-left: 260px;
             padding-left: 0;
@@ -29,7 +25,7 @@
 
     &--menu {
         display: none;
-        
+
         .show-menu & {
             display: block;
         }

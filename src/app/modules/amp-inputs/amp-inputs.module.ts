@@ -10,26 +10,27 @@ import { AmpMobileNumberComponent } from './components/amp-mobile-number/amp-mob
 import { AmpWorkNumberComponent } from './components/amp-work-number/amp-work-number.component';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpAccountNumberComponent } from './components/amp-account-number/amp-account-number.component';
-import { MdInputModule } from '@angular2-material/input';
+import { MdInputModule } from '@angular/material';
+
 const DECLARATIONS = [
-    AmpInputComponent ,
-    AmpContactNumberComponent ,
-    AmpEmailComponent ,
-    AmpFirstNameComponent ,
-    AmpHomeNumberComponent ,
-    AmpLastNameComponent ,
-    AmpMobileNumberComponent ,
-    AmpPasswordComponent ,
+    AmpInputComponent,
+    AmpContactNumberComponent,
+    AmpEmailComponent,
+    AmpFirstNameComponent,
+    AmpHomeNumberComponent,
+    AmpLastNameComponent,
+    AmpMobileNumberComponent,
+    AmpPasswordComponent,
     AmpWorkNumberComponent,
     AmpAccountNumberComponent
 ];
 @NgModule( {
-    declarations : DECLARATIONS ,
-    imports      : [
-        AmpSharedRootModule ,
+    declarations : DECLARATIONS,
+    imports : [
+        AmpSharedRootModule,
         MdInputModule
-    ] ,
-    exports      : DECLARATIONS
+    ],
+    exports : DECLARATIONS
 } )
 export class AmpInputsModule {
 }

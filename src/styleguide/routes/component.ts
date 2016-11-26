@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OnInit } from '@angular/core';
 import { ComponentsService , IComponentMeta } from '../services/components';
 import { NavigationService } from '../services/navigation';
-import { ExampleComponent } from '../example';
 @Component( {
     selector   : 'component-page' ,
     template   : `
@@ -12,8 +10,7 @@ import { ExampleComponent } from '../example';
         <p class='examples-intro example-readme' *ngIf='value.readme' [innerHtml]='value.readme'></p>
         <example *ngFor='let example of value.examples' [model]='example'></example>
     </div>
-` ,
-    directives : [ ExampleComponent ]
+`
 } )
 export class ComponentPage implements OnInit {
     public id : string;

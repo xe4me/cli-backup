@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-utils/basic-utils.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/modules/amp-utils/</a> basic-utils.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">67.16% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>45/67</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">43.55% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>27/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65.63% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>42/64</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var amp_currency_pipe_1 = require('../amp-pipes/pipes/currency/amp-currency.pipe');
+var BasicUtils = (function () {
+<span class="fstat-no" title="function not covered" >    function BasicUtils() {</span>
+    }
+    BasicUtils.formatCurrency = function (amount) {
+        var currencyPipe = new amp_currency_pipe_1.AmpCurrencyPipe();
+        <span class="missing-if-branch" title="if path not taken" >I</span>if ((typeof amount !== 'string')) {
+<span class="cstat-no" title="statement not covered" >            amount = amount.toString();</span>
+        }
+        return currencyPipe.transform(amount, 2, 3);
+    };
+    BasicUtils.formatStringToNumber = function (str) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (str &amp;&amp; str.indexOf(',') &gt; -1) {
+            str = str.replace(/,/g, '');
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(str) || str === '') {
+<span class="cstat-no" title="statement not covered" >            return 0;</span>
+        }
+        return +str;
+    };
+    BasicUtils.formatAddress = function (addressObj, addressType) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (addressType === void 0) { addressType = 'normal'; }
+        var address = '';
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (addressType === 'normal') {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (addressObj.address) {
+                address += addressObj.address;
+            }
+            if (addressObj.suburb) {
+                address += ', ' + addressObj.suburb;
+            }
+            if (addressObj.city) {
+                address += ', ' + addressObj.city;
+            }
+            if (addressObj.stateDropdown &amp;&amp; addressObj.stateDropdown.Query) {
+                address += ' ' + addressObj.stateDropdown.Query;
+            }
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (addressObj.postCode) {
+                address += ' ' + addressObj.postCode;
+            }
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (addressObj.countryDropdown &amp;&amp; addressObj.countryDropdown.Query) {
+                address += ', ' + addressObj.countryDropdown.Query;
+            }
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (addressType === 'extended') {
+<span class="cstat-no" title="statement not covered" >            if (addressObj.buildingName) {</span>
+<span class="cstat-no" title="statement not covered" >                address += addressObj.buildingName + ', ';</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.unitNumber) {</span>
+<span class="cstat-no" title="statement not covered" >                address += ' ' + addressObj.unitNumber;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.streetNumber) {</span>
+<span class="cstat-no" title="statement not covered" >                address += ' ' + addressObj.streetNumber;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.streetName) {</span>
+<span class="cstat-no" title="statement not covered" >                address += ' ' + addressObj.streetName;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.streetTypeDropdown &amp;&amp; addressObj.streetTypeDropdown.Query) {</span>
+<span class="cstat-no" title="statement not covered" >                address += ' ' + addressObj.streetTypeDropdown.Query;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.poBox) {</span>
+<span class="cstat-no" title="statement not covered" >                address += addressObj.poBox;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.suburb) {</span>
+<span class="cstat-no" title="statement not covered" >                address += ', ' + addressObj.suburb;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.stateDropdown &amp;&amp; addressObj.stateDropdown.Query) {</span>
+<span class="cstat-no" title="statement not covered" >                address += ' ' + addressObj.stateDropdown.Query;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (addressObj.postCode) {</span>
+<span class="cstat-no" title="statement not covered" >                address += ' ' + addressObj.postCode;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            address += ', Australia';</span>
+<span class="cstat-no" title="statement not covered" >            return address;</span>
+        }
+        return addressObj.address ? address : <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
+    };
+    BasicUtils.base64DatatoObject = function (encodedString, order, seperator) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (order === void 0) { order = ['name', 'email', 'state', 'customer_id']; }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (seperator === void 0) { seperator = '#'; }
+        var obj = {};
+        var decodedString = atob(encodedString);
+        var items = decodedString.split(seperator);
+        for (var i = 0; i &lt; order.length; i++) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (!obj.hasOwnProperty(order[i])) {
+                obj[order[i]] = items[i];
+            }
+        }
+        return obj;
+    };
+    return BasicUtils;
+}());
+exports.BasicUtils = BasicUtils;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmFzaWMtdXRpbHMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJiYXNpYy11dGlscy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsa0NBQWdDLCtDQUErQyxDQUFDLENBQUE7QUFFaEY7SUFBQTtJQXdGQSxDQUFDO0lBdkZpQix5QkFBYyxHQUE1QixVQUErQixNQUFZO1FBQ3ZDLElBQUksWUFBWSxHQUFxQixJQUFJLG1DQUFlLEVBQUUsQ0FBQztRQUMzRCxFQUFFLENBQUMsQ0FBRSxDQUFDLE9BQU8sTUFBTSxLQUFLLFFBQVEsQ0FBRSxDQUFDLENBQUMsQ0FBQztZQUNqQyxNQUFNLEdBQUcsTUFBTSxDQUFDLFFBQVEsRUFBRSxDQUFDO1FBQy9CLENBQUM7UUFDRCxNQUFNLENBQUMsWUFBWSxDQUFDLFNBQVMsQ0FBRSxNQUFNLEVBQUcsQ0FBQyxFQUFHLENBQUMsQ0FBRSxDQUFDO0lBQ3BELENBQUM7SUFFYSwrQkFBb0IsR0FBbEMsVUFBcUMsR0FBUztRQUMxQyxFQUFFLENBQUMsQ0FBRSxHQUFHLElBQUksR0FBRyxDQUFDLE9BQU8sQ0FBRSxHQUFHLENBQUUsR0FBRyxDQUFFLENBQUUsQ0FBQyxDQUFDLENBQUM7WUFDcEMsR0FBRyxHQUFHLEdBQUcsQ0FBQyxPQUFPLENBQUUsSUFBSSxFQUFHLEVBQUUsQ0FBRSxDQUFDO1FBQ25DLENBQUM7UUFDRCxFQUFFLENBQUMsQ0FBRSxLQUFLLENBQUUsR0FBRyxDQUFFLElBQUksR0FBRyxLQUFLLEVBQUcsQ0FBQyxDQUFDLENBQUM7WUFDL0IsTUFBTSxDQUFDLENBQUMsQ0FBQztRQUNiLENBQUM7UUFDRCxNQUFNLENBQUMsQ0FBRSxHQUFHLENBQUM7SUFDakIsQ0FBQztJQUVhLHdCQUFhLEdBQTNCLFVBQThCLFVBQWdCLEVBQUcsV0FBc0I7UUFBdEIsMkJBQXNCLEdBQXRCLHNCQUFzQjtRQUNuRSxJQUFJLE9BQU8sR0FBRyxFQUFFLENBQUM7UUFDakIsRUFBRSxDQUFDLENBQUUsV0FBVyxLQUFL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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

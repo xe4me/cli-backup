@@ -1,19 +1,12 @@
-import {
-    Directive ,
-    Input
-} from '@angular/core';
-import { Control } from '@angular/common';
+import { Directive } from '@angular/core';
 @Directive( {
-    selector : '[amp-number-only]' ,
-    host     : {
-        '(input)' : 'onInputChange()'
+    selector : '[amp-number-only]',
+    host : {
+        '(input)' : 'onInputChange($event)'
     }
 } )
 export class AmpNumberDirective {
-    @Input( 'amp-number-only' ) inputControl : Control;
-
-    onInputChange () {
-        let newValue = this.inputControl.value.replace( /\D/g , '' );
-        this.inputControl.updateValue( newValue );
+    onInputChange( $event ) {
+        $event.target.value = $event.target.value.replace( /\D/g, '' );
     }
 }

@@ -2,7 +2,6 @@ import {
     Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy , ViewContainerRef , ViewRef , ComponentRef ,
     ViewChild
 } from '@angular/core';
-import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
@@ -52,7 +51,6 @@ import { AutoFocusOnDirective } from '../../../../app/modules/amp-directives/dir
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {

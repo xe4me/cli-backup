@@ -12,7 +12,6 @@ the whole block remains untouched.
     (keyup)='onKeyupEvent($event)'
     (keyup.enter)='markAsTouched()'
     (blur)='onBlured($event)'
-    [disabled]='isInSummaryState || disabled'
     class='md-input'
     [class.amp-input-focused]='inputFocus'
     [class.label-hidden]='labelHidden'
@@ -21,9 +20,9 @@ the whole block remains untouched.
     [type]='type'
     [id]='randomizedId'
     [tabIndex]='isActive?tabindex:-1'
-    [maxLength]='maxLength'
+    [maxlength]='maxLength'
     [formControl]='control'
-    [autoComplete]='autoComplete'
+    [autocomplete]='autoComplete'
     [placeholder]='required || !showOptional ? label : label + " (optional)"'>
     <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
     <span *ngIf="!isInSummaryState" md-suffix><ng-content></ng-content></span>

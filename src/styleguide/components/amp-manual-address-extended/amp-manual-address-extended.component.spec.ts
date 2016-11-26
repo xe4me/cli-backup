@@ -1,179 +1,179 @@
-import { async , TestBed } from '@angular/core/testing';
-import { Component , Injector , Injectable , ViewChild , ChangeDetectionStrategy } from '@angular/core';
-import { FormsModule , ReactiveFormsModule , FormGroup , FormBuilder } from '@angular/forms';
-import { Observable , BehaviorSubject } from 'rxjs';
+import { async, TestBed } from '@angular/core/testing';
+import { Component, Injector, Injectable, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { AmpQasAddressModule } from '../../../app/modules/amp-qas-address';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { AmpCountryService } from '../../../app/modules/amp-dropdown-new/services/amp-country.service';
+import { AmpCountryService } from '../../../app/modules/amp-dropdown/services/amp-country.service';
 import { By } from '@angular/platform-browser';
 import { AmpManualAddressComponent } from '../../../app/modules/amp-qas-address/components/amp-manual-address/amp-manual-address.component';
-import { fakeAsync , tick } from '@angular/core/testing/fake_async';
+import { fakeAsync, tick } from '@angular/core/testing/fake_async';
 @Injectable()
 export class MockAmpCountryService {
     public static _countries = [
         {
-            countryCode : 'AUS' ,
-            country     : 'Australia'
-        } ,
+            countryCode : 'AUS',
+            country : 'Australia'
+        },
         {
-            countryCode : 'NZL' ,
-            country     : 'New Zealand'
-        } ,
+            countryCode : 'NZL',
+            country : 'New Zealand'
+        },
         {
-            countryCode : 'AFG' ,
-            country     : 'Afghanistan'
-        } ,
+            countryCode : 'AFG',
+            country : 'Afghanistan'
+        },
         {
-            countryCode : 'ALB' ,
-            country     : 'Albania'
-        } ,
+            countryCode : 'ALB',
+            country : 'Albania'
+        },
         {
-            countryCode : 'DZA' ,
-            country     : 'Algeria'
-        } ,
+            countryCode : 'DZA',
+            country : 'Algeria'
+        },
         {
-            countryCode : 'ASM' ,
-            country     : 'American Samoa'
-        } ,
+            countryCode : 'ASM',
+            country : 'American Samoa'
+        },
         {
-            countryCode : 'AND' ,
-            country     : 'Andorra'
-        } ,
+            countryCode : 'AND',
+            country : 'Andorra'
+        },
         {
-            countryCode : 'AGO' ,
-            country     : 'Angola'
-        } ,
+            countryCode : 'AGO',
+            country : 'Angola'
+        },
         {
-            countryCode : 'AIA' ,
-            country     : 'Anguilla'
-        } ,
+            countryCode : 'AIA',
+            country : 'Anguilla'
+        },
         {
-            countryCode : 'ATA' ,
-            country     : 'Antarctica'
-        } ,
+            countryCode : 'ATA',
+            country : 'Antarctica'
+        },
         {
-            countryCode : 'ATG' ,
-            country     : 'Antigua and Barbuda'
-        } ,
+            countryCode : 'ATG',
+            country : 'Antigua and Barbuda'
+        },
         {
-            countryCode : 'ARG' ,
-            country     : 'Argentina'
-        } ,
+            countryCode : 'ARG',
+            country : 'Argentina'
+        },
         {
-            countryCode : 'ARM' ,
-            country     : 'Armenia'
-        } ,
+            countryCode : 'ARM',
+            country : 'Armenia'
+        },
         {
-            countryCode : 'ABW' ,
-            country     : 'Aruba'
-        } ,
+            countryCode : 'ABW',
+            country : 'Aruba'
+        },
         {
-            countryCode : 'AUT' ,
-            country     : 'Austria'
-        } ,
+            countryCode : 'AUT',
+            country : 'Austria'
+        },
         {
-            countryCode : 'AZE' ,
-            country     : 'Azerbaijan'
-        } ,
+            countryCode : 'AZE',
+            country : 'Azerbaijan'
+        },
         {
-            countryCode : 'BHS' ,
-            country     : 'Bahamas'
-        } ,
+            countryCode : 'BHS',
+            country : 'Bahamas'
+        },
         {
-            countryCode : 'BHR' ,
-            country     : 'Bahrain'
-        } ,
+            countryCode : 'BHR',
+            country : 'Bahrain'
+        },
         {
-            countryCode : 'BGD' ,
-            country     : 'Bangladesh'
-        } ,
+            countryCode : 'BGD',
+            country : 'Bangladesh'
+        },
         {
-            countryCode : 'BRB' ,
-            country     : 'Barbados'
-        } ,
+            countryCode : 'BRB',
+            country : 'Barbados'
+        },
         {
-            countryCode : 'BLR' ,
-            country     : 'Belarus'
-        } ,
+            countryCode : 'BLR',
+            country : 'Belarus'
+        },
         {
-            countryCode : 'BEL' ,
-            country     : 'Belgium'
-        } ,
+            countryCode : 'BEL',
+            country : 'Belgium'
+        },
         {
-            countryCode : 'BLZ' ,
-            country     : 'Belize'
-        } ,
+            countryCode : 'BLZ',
+            country : 'Belize'
+        },
         {
-            countryCode : 'BEN' ,
-            country     : 'Benin'
-        } ,
+            countryCode : 'BEN',
+            country : 'Benin'
+        },
         {
-            countryCode : 'BMU' ,
-            country     : 'Bermuda'
-        } ,
+            countryCode : 'BMU',
+            country : 'Bermuda'
+        },
         {
-            countryCode : 'BTN' ,
-            country     : 'Bhutan'
-        } ,
+            countryCode : 'BTN',
+            country : 'Bhutan'
+        },
         {
-            countryCode : 'BOL' ,
-            country     : 'Bolivia'
-        } ,
+            countryCode : 'BOL',
+            country : 'Bolivia'
+        },
         {
-            countryCode : 'BIH' ,
-            country     : 'Bosnia and Herzegowina'
-        } ,
+            countryCode : 'BIH',
+            country : 'Bosnia and Herzegowina'
+        },
         {
-            countryCode : 'BWA' ,
-            country     : 'Botswana'
-        } ,
+            countryCode : 'BWA',
+            country : 'Botswana'
+        },
         {
-            countryCode : 'BVT' ,
-            country     : 'Bouvet Island'
-        } ,
+            countryCode : 'BVT',
+            country : 'Bouvet Island'
+        },
         {
-            countryCode : 'BRA' ,
-            country     : 'Brazil'
-        } ,
+            countryCode : 'BRA',
+            country : 'Brazil'
+        },
         {
-            countryCode : 'IOT' ,
-            country     : 'British Indian Ocean Territory'
-        } ,
+            countryCode : 'IOT',
+            country : 'British Indian Ocean Territory'
+        },
         {
-            countryCode : 'BRN' ,
-            country     : 'Brunei Darussalam'
-        } ,
+            countryCode : 'BRN',
+            country : 'Brunei Darussalam'
+        },
         {
-            countryCode : 'BGR' ,
-            country     : 'Bulgaria'
-        } ,
+            countryCode : 'BGR',
+            country : 'Bulgaria'
+        },
         {
-            countryCode : 'BFA' ,
-            country     : 'Burkina Faso'
-        } ,
+            countryCode : 'BFA',
+            country : 'Burkina Faso'
+        },
         {
-            countryCode : 'BDI' ,
-            country     : 'Burundi'
-        } ,
+            countryCode : 'BDI',
+            country : 'Burundi'
+        },
         {
-            countryCode : 'HRV' ,
-            country     : 'CROATIA (Local Name: Hrvatska)'
-        } ,
+            countryCode : 'HRV',
+            country : 'CROATIA (Local Name: Hrvatska)'
+        },
         {
-            countryCode : 'KHM' ,
-            country     : 'Cambodia'
-        } ,
+            countryCode : 'KHM',
+            country : 'Cambodia'
+        },
         {
-            countryCode : 'CMR' ,
-            country     : 'Cameroon'
+            countryCode : 'CMR',
+            country : 'Cameroon'
         }
     ];
-    private subject          = new BehaviorSubject( MockAmpCountryService._countries );
-    public getCountries      = () : Observable<any> => {
+    private subject = new BehaviorSubject( MockAmpCountryService._countries );
+    public getCountries = () : Observable<any> => {
         return this.subject.asObservable();
     };
 }
-describe( 'amp-qas-address component' , () => {
+describe( 'amp-qas-address component', () => {
     let _fixture;
     let _compInjector : Injector;
     let _comp;
@@ -190,50 +190,50 @@ describe( 'amp-qas-address component' , () => {
     let _postCodeCtrl : any;
     let _cityCtrl : any;
     let _manualAddressCmp;
-    const COUNTRY_AUS    = 'Australia';
+    const COUNTRY_AUS = 'Australia';
     const COUNTRY_OTHERS = 'Iran';
-    const COUNTRY_NZ     = 'New Zealand';
+    const COUNTRY_NZ = 'New Zealand';
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            declarations : [ AmpManualAddressComponentTest ] ,
-            providers    : [
+            declarations : [ AmpManualAddressComponentTest ],
+            providers : [
                 {
-                    provide  : AmpCountryService ,
+                    provide : AmpCountryService,
                     useClass : MockAmpCountryService
-                } ,
-                { provide : ComponentFixtureAutoDetect , useValue : true }
-            ] ,
-            imports      : [ FormsModule , ReactiveFormsModule , AmpQasAddressModule ]
+                },
+                { provide : ComponentFixtureAutoDetect, useValue : true }
+            ],
+            imports : [ FormsModule, ReactiveFormsModule, AmpQasAddressModule ]
         } );
         _fixture = TestBed.createComponent( AmpManualAddressComponentTest );
         _fixture.detectChanges();
         _compInjector = _fixture.debugElement.injector;
-        _comp         = _fixture.componentInstance;
+        _comp = _fixture.componentInstance;
         _debugElement = _fixture.debugElement;
-        _element      = _fixture.nativeElement;
+        _element = _fixture.nativeElement;
     } ) );
     beforeEach( () => {
         _testComponentControlGroup = _comp.__controlGroup;
-        _manualAddressCmp          = _comp.manualAddressCmp;
+        _manualAddressCmp = _comp.manualAddressCmp;
     } );
     // Lets get all the elements we need
     beforeEach( () => {
         _countryDropdownFixture = _debugElement.query( By.css( 'amp-country' ) );
         _countryDropdownElement = _countryDropdownFixture.nativeElement;
-        _countryDropdownCmp     = _countryDropdownFixture.componentInstance;
-        _addressCtrl            = _manualAddressCmp.addressCtrl;
-        _stateCtrl              = _manualAddressCmp.stateCtrl;
-        _countryCtrl            = _manualAddressCmp.countryCtrl;
-        _suburbCtrl             = _manualAddressCmp.suburbCtrl;
-        _postCodeCtrl           = _manualAddressCmp.postCodeCtrl;
-        _cityCtrl               = _manualAddressCmp.cityCtrl;
+        _countryDropdownCmp = _countryDropdownFixture.componentInstance;
+        _addressCtrl = _manualAddressCmp.addressCtrl;
+        _stateCtrl = _manualAddressCmp.stateCtrl;
+        _countryCtrl = _manualAddressCmp.countryCtrl;
+        _suburbCtrl = _manualAddressCmp.suburbCtrl;
+        _postCodeCtrl = _manualAddressCmp.postCodeCtrl;
+        _cityCtrl = _manualAddressCmp.cityCtrl;
     } );
-    function selectNewZealand () {
+    function selectNewZealand() {
         _manualAddressCmp.manualCountryCmp.setSelectValue( AmpManualAddressComponent.COUNTRY_NZ );
         _fixture.detectChanges();
     }
 
-    function selectOtherCountries () {
+    function selectOtherCountries() {
         _manualAddressCmp.manualCountryCmp.setSelectValue( MockAmpCountryService._countries[ 5 ].countryCode );
         _countryCtrl.updateValueAndValidity( {
             emitEvent : true
@@ -241,13 +241,13 @@ describe( 'amp-qas-address component' , () => {
         _fixture.detectChanges();
     }
 
-    it( 'testComponentControlGroup should be defined ' , () => {
+    it( 'testComponentControlGroup should be defined ', () => {
         expect( _testComponentControlGroup ).toBeDefined();
     } );
-    it( '_manualAddressCmp should be defined ' , () => {
+    it( '_manualAddressCmp should be defined ', () => {
         expect( _manualAddressCmp ).toBeDefined();
     } );
-    it( 'controls to be defined' , () => {
+    it( 'controls to be defined', () => {
         expect( _addressCtrl ).toBeDefined();
         expect( _stateCtrl ).toBeDefined();
         expect( _countryCtrl ).toBeDefined();
@@ -255,22 +255,22 @@ describe( 'amp-qas-address component' , () => {
         expect( _postCodeCtrl ).toBeDefined();
         expect( _cityCtrl ).toBeDefined();
     } );
-    it( 'controls value to be null initially except Country control' , () => {
+    it( 'controls value to be null initially except Country control', () => {
         expect( _addressCtrl.value ).toBeNull();
         expect( _stateCtrl.value ).toBeNull();
         expect( _suburbCtrl.value ).toBeNull();
         expect( _postCodeCtrl.value ).toBeNull();
         expect( _cityCtrl.value ).toBeNull();
     } );
-    it( 'It should have the country dropdown always, preselected with Australia and the value should be' + COUNTRY_AUS , () => {
+    it( 'It should have the country dropdown always, preselected with Australia and the value should be' + COUNTRY_AUS, () => {
         expect( _countryDropdownElement ).toBeDefined();
         expect( _countryDropdownCmp ).toBeDefined();
         expect( _countryDropdownCmp.control ).toBeDefined();
         expect( _countryDropdownCmp.control.value ).toBe( COUNTRY_AUS );
     } );
-    describe( 'When selected Australia' , () => {
+    describe( 'When selected Australia', () => {
         it( 'it should have Street address , Suburb , State and Postcode visible and' +
-            ' mandatory' , () => {
+            ' mandatory', () => {
             expect( _addressCtrl.errors.required ).toBeDefined();
             expect( _addressCtrl.errors.required.text ).toBe( _manualAddressCmp.address.errors.required );
             expect( _suburbCtrl.errors.required ).toBeDefined();
@@ -280,32 +280,32 @@ describe( 'amp-qas-address component' , () => {
             expect( _postCodeCtrl.errors.required ).toBeDefined();
             expect( _postCodeCtrl.errors.required.text ).toBe( _manualAddressCmp.postCode.errors.required );
         } );
-        it( ' City should be defined but not visible and not mandatory' , () => {
+        it( ' City should be defined but not visible and not mandatory', () => {
             expect( _cityCtrl.errors ).toBeNull();
             expect( _cityCtrl.valid ).toBeTruthy();
             let cityComponent = _debugElement.query( By.css( '#' + _manualAddressCmp.city.id ) );
             expect( cityComponent ).toBeNull();
         } );
-        it( ' Suburb should have a label of suburb' , () => {
+        it( ' Suburb should have a label of suburb', () => {
             expect( _manualAddressCmp.manualSuburbCmp.label ).toBe( _manualAddressCmp.suburb.label );
         } );
     } );
-    xdescribe( 'When selected NewZealand' , () => {
+    xdescribe( 'When selected NewZealand', () => {
         beforeEach( () => {
             selectNewZealand();
         } );
-        it( 'Suburb should not be required and should be valid (should be optional)' , fakeAsync( () => {
+        it( 'Suburb should not be required and should be valid (should be optional)', fakeAsync( () => {
             _fixture.detectChanges();
             tick( 1000 );
             expect( _suburbCtrl.valid ).toBeTruthy();
             expect( _suburbCtrl.errors ).toBeNull();
         } ) );
     } );
-    xdescribe( 'When selected not Australia and not NewZealand' , () => {
+    xdescribe( 'When selected not Australia and not NewZealand', () => {
         beforeEach( () => {
             selectOtherCountries();
         } );
-        it( 'Postcode should not be required and should be valid (should be optional)' , () => {
+        it( 'Postcode should not be required and should be valid (should be optional)', () => {
             expect( _postCodeCtrl.valid ).toBeFalsy();
             expect( _postCodeCtrl.errors ).toBeNull();
         } );
@@ -317,7 +317,7 @@ describe( 'amp-qas-address component' , () => {
     } );
 } );
 @Component( {
-    template        : `
+    template : `
         <form [formGroup]='form' class='nl-form'>
             <amp-manual-address
                 #manualAddressCmp
@@ -326,16 +326,16 @@ describe( 'amp-qas-address component' , () => {
                 [isInSummaryState]='isInSummaryState'>
             </amp-manual-address>
         </form>
-    ` ,
+    `,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 class AmpManualAddressComponentTest {
     @ViewChild( 'manualAddressCmp' ) manualAddressCmp;
-    public __controlGroup    = new FormGroup( {} );
-    public __custom          = {
+    public __controlGroup = new FormGroup( {} );
+    public __custom = {
         controls : [
             {
-                id       : 'amp-qas-manual' ,
+                id : 'amp-qas-manual',
                 required : true
             }
         ]
@@ -343,7 +343,7 @@ class AmpManualAddressComponentTest {
     private isInSummaryState = false;
     private form : FormGroup;
 
-    constructor ( private _builder : FormBuilder ) {
+    constructor( private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );
     }
 }

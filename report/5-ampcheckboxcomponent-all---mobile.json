@@ -1,0 +1,63 @@
+{
+  "testId" : "5-ampcheckboxcomponent-all---mobile",
+  "name" : "AmpCheckboxComponent: All - Mobile",
+  "report" : {
+    "nodes" : [ {
+      "name" : "selenium chrome http://localhost:3001/#/components/AmpCheckboxComponent 320x800",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec --include \"mobile\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec included tags: mobile",
+          "status" : "info",
+          "time" : 1463025601528,
+          "includedTags" : [ "mobile" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "Text Input base",
+            "objects" : [ {
+              "name" : "checkboxBox",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec",
+                  "lineNumber" : 10
+                },
+                "name" : "css width           is      \"30px\"",
+                "highlight" : [ "checkboxBox" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec",
+                  "lineNumber" : 11
+                },
+                "name" : "css height          is      \"30px\"",
+                "highlight" : [ "checkboxBox" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec",
+                  "lineNumber" : 12
+                },
+                "name" : "css border-color    is      \"rgb(204, 204, 204)\"",
+                "highlight" : [ "checkboxBox" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "checkboxBox" : {
+              "area" : [ 128, 546, 30, 30 ]
+            }
+          },
+          "screenshot" : "layout-5-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1463025601064,
+        "type" : "node"
+      } ],
+      "time" : 1463025597587,
+      "type" : "node"
+    } ]
+  }
+}

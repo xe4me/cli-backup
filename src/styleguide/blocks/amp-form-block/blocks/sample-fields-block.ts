@@ -2,7 +2,6 @@ import {
     Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy , Input ,
     AfterViewInit
 } from '@angular/core';
-import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
@@ -10,7 +9,6 @@ import { FormModelService } from '../../../../app/services/form-model/form-model
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
 import { FDN } from '../Application.fdn';
 import { StoreService } from '../../../../app/redux/services/store/store.service';
-import { FormService } from '../../../../app/services/form/form.service';
 @Component( {
     selector        : 'sample-fields-block' ,
     template        : `
@@ -165,7 +163,6 @@ import { FormService } from '../../../../app/services/form/form.service';
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     styles          : [ require( '../basic_usage.scss' ).toString() ] ,
 } )
@@ -177,7 +174,6 @@ export class SampleFieldsBlock extends FormBlock {
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   private storeService : StoreService ,
-                  private formService : FormService ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {

@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/component-groups/amp-google-address-group/amp-google-address-group.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/component-groups/amp-google-address-group/</a> amp-google-address-group.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.75% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>27/80</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">36.36% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>27/80</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+require('rxjs/add/operator/do');
+require('rxjs/add/operator/debounceTime');
+require('rxjs/add/operator/distinctUntilChanged');
+var amp_google_address_component_1 = require('../../components/amp-google-address/amp-google-address.component');
+var forms_1 = require('@angular/forms');
+var amp_inputs_1 = require('../../modules/amp-inputs');
+var amp_error_1 = require('../../modules/amp-error');
+var AMPGoogleAddressComponentGroup = (function () {
+<span class="fstat-no" title="function not covered" >    function AMPGoogleAddressComponentGroup(_cd) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._cd = _cd;</span>
+<span class="cstat-no" title="statement not covered" >        this.index = '';</span>
+<span class="cstat-no" title="statement not covered" >        this.googleAddress = {</span>
+            id: 'googleAddress',
+            label: '',
+            placeholder: '',
+            errors: {
+                invalid: 'Address is invalid.',
+                required: 'Address is a required field.'
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        this.address = {</span>
+            id: 'address',
+            label: 'Address',
+            regex: '',
+            maxLength: 200,
+            minLength: 5,
+            errors: {
+                required: 'Address is a required field.'
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        this.suburb = {</span>
+            id: 'suburb',
+            label: 'Suburb',
+            regex: '',
+            maxLength: 50,
+            minLength: 3,
+            errors: {
+                required: 'Suburb is required.'
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        this.state = {</span>
+            id: 'state',
+            label: 'State',
+            regex: '^(ACT|NSW|NT|QLD|SA|TAS|VIC|WA)$',
+            errors: {
+                required: 'State is required.',
+                pattern: 'State is not valid.'
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        this.postcode = {</span>
+            id: 'postcode',
+            label: 'Postcode',
+            maxLength: 10,
+            minLength: 4,
+            regex: '^[0-9]*$',
+            errors: {
+                required: 'Post code is required.',
+                pattern: 'Post code is not valid.',
+                maxLength: 'Post code is not valid.',
+                minLength: 'Post code is not valid.'
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        this.required = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.manualEntryRequired = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.isInSummaryState = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.showManualAddrEntry = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.showNoPredictionError = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.manualInputGridItemClass = 'u-width-auto';</span>
+<span class="cstat-no" title="statement not covered" >        this.controlGroup = new forms_1.FormGroup({});</span>
+<span class="cstat-no" title="statement not covered" >        this.manualAddressControlGroup = new forms_1.FormGroup({});</span>
+        // Need to binding this validator into a specific context
+<span class="cstat-no" title="statement not covered" >        this.googleAddressCustomValidator = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return <span class="fstat-no" title="function not covered" >function (c) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!c.valid) {</span>
+<span class="cstat-no" title="statement not covered" >                    return c.errors;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (_this.addressComponent &amp;&amp; _this.addressComponent.addrPlace) {</span>
+<span class="cstat-no" title="statement not covered" >                    return null;</span>
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    return {</span>
+                        invalidAddress: {
+                            text: 'Address is invalid.'
+                        }
+                    };
+                }
+            };
+        };
+    }
+    Object.defineProperty(AMPGoogleAddressComponentGroup.prototype, "googleAddressCtrl", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.controlGroup.controls[this.googleAddress.id + '_' + this.index];</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AMPGoogleAddressComponentGroup.prototype, "stateCtrl", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.manualAddressControlGroup.controls[this.state.id + '_' + this.index];</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AMPGoogleAddressComponentGroup.prototype, "addressCtrl", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.manualAddressControlGroup.controls[this.address.id + '_' + this.index];</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AMPGoogleAddressComponentGroup.prototype, "suburbCtrl", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.manualAddressControlGroup.controls[this.suburb.id + '_' + this.index];</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AMPGoogleAddressComponentGroup.prototype, "postcodeCtrl", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.manualAddressControlGroup.controls[this.postcode.id + '_' + this.index];</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AMPGoogleAddressComponentGroup.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.controlGroup) {</span>
+<span class="cstat-no" title="statement not covered" >            this.controlGroup.addControl('manualEntryAddress', this.manualAddressControlGroup);</span>
+        }
+        // this.googleAddressCtrl
+        //     .valueChanges
+        //     .subscribe( () =&gt; {
+        //     } );
+    };
+    AMPGoogleAddressComponentGroup.prototype.updateAddressFields = <span class="fstat-no" title="function not covered" >function (googleAddress) {</span>
+<span class="cstat-no" title="statement not covered" >        this.resetManualEntryControls();</span>
+<span class="cstat-no" title="statement not covered" >        if (googleAddress &amp;&amp; googleAddress.address_components) {</span>
+<span class="cstat-no" title="statement not covered" >            this.addressCtrl.setValue(amp_google_address_component_1.AMPGoogleAddressComponent.getAddressComponent([</span>
+                'street_number',
+                'route'
+            ], true, googleAddress.address_components));
+<span class="cstat-no" title="statement not covered" >            this.suburbCtrl.setValue(amp_google_address_component_1.AMPGoogleAddressComponent.getAddressComponent([</span>
+                'locality',
+                'sublocality'
+            ], true, googleAddress.address_components));
+<span class="cstat-no" title="statement not covered" >            this.stateCtrl.setValue(amp_google_address_component_1.AMPGoogleAddressComponent.getAddressComponent(['administrative_area_level_1'], true, googleAddress.address_components));</span>
+<span class="cstat-no" title="statement not covered" >            this.postcodeCtrl.setValue(amp_google_address_component_1.AMPGoogleAddressComponent.getAddressComponent(['postal_code'], true, googleAddress.address_components));</span>
+        }
+    };
+    AMPGoogleAddressComponentGroup.prototype.showManualAddrForm = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.showManualAddrEntry = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.resetManualEntryControls();</span>
+    };
+    AMPGoogleAddressComponentGroup.prototype.onGoogleAddressChanged = <span class="fstat-no" title="function not covered" >function (googleAddress) {</span>
+<span class="cstat-no" title="statement not covered" >        this.updateAddressFields(googleAddress);</span>
+    };
+    AMPGoogleAddressComponentGroup.prototype.onGoogleAddressPredictionsChanged = <span class="fstat-no" title="function not covered" >function (predictions) {</span>
+<span class="cstat-no" title="statement not covered" >        this.showNoPredictionError = (predictions === null ? true : false);</span>
+<span class="cstat-no" title="statement not covered" >        if (this.showNoPredictionError) {</span>
+<span class="cstat-no" title="statement not covered" >            this.resetManualEntryControls();</span>
+        }
+    };
+    AMPGoogleAddressComponentGroup.prototype.manualInputGridItemClasses = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return !this.isInSummaryState ? this.manualInputGridItemClass : 'u-width-auto';</span>
+    };
+    AMPGoogleAddressComponentGroup.prototype.resetManualEntryControls = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.addressCtrl.setValue(null);</span>
+<span class="cstat-no" title="statement not covered" >        this.addressCtrl.markAsUntouched();</span>
+<span class="cstat-no" title="statement not covered" >        this.suburbCtrl.setValue(null);</span>
+<span class="cstat-no" title="statement not covered" >        this.suburbCtrl.markAsUntouched();</span>
+<span class="cstat-no" title="statement not covered" >        this.stateCtrl.setValue(null);</span>
+<span class="cstat-no" title="statement not covered" >        this.stateCtrl.markAsUntouched();</span>
+<span class="cstat-no" title="statement not covered" >        this.postcodeCtrl.setValue(null);</span>
+<span class="cstat-no" title="statement not covered" >        this.postcodeCtrl.markAsUntouched();</span>
+<span class="cstat-no" title="statement not covered" >        this.manualState.checkErrors();</span>
+    };
+    __decorate([
+        core_1.ViewChild('ampGoogleAddress'), 
+        __metadata('design:type', (typeof (_a = typeof amp_google_address_component_1.AMPGoogleAddressComponent !== 'undefined' &amp;&amp; amp_google_address_component_1.AMPGoogleAddressComponent) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AMPGoogleAddressComponentGroup.prototype, "addressComponent", void 0);
+    __decorate([
+        core_1.ViewChild('manualState'), 
+        __metadata('design:type', (typeof (_b = typeof amp_inputs_1.AmpInputComponent !== 'undefined' &amp;&amp; amp_inputs_1.AmpInputComponent) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AMPGoogleAddressComponentGroup.prototype, "manualState", void 0);
+    AMPGoogleAddressComponentGroup = __decorate([
+        core_1.Component({
+            selector: 'amp-google-address-group',
+            template: require('./amp-google-address-group.component.html'),
+            inputs: [
+                'index',
+                'controlGroup',
+                'googleAddress',
+                'address',
+                'state',
+                'suburb',
+                'postcode',
+                'isInSummaryState',
+                'required',
+                'manualInputGridItemClass'
+            ],
+            styles: [require('./amp-google-address-group.component.scss').toString()],
+            directives: [amp_google_address_component_1.AMPGoogleAddressComponent, amp_inputs_1.AmpInputComponent, amp_error_1.AmpErrorComponent]
+        }), 
+        __metadata('design:paramtypes', [(typeof (_c = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _c) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AMPGoogleAddressComponentGroup);
+    return AMPGoogleAddressComponentGroup;
+<span class="cstat-no" title="statement not covered" >    var _a, _b, _c;</span>
+}());
+exports.AMPGoogleAddressComponentGroup = AMPGoogleAddressComponentGroup;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 23 2016 16:55:25 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

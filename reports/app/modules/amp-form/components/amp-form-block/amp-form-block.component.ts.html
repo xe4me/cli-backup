@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-form/components/amp-form-block/amp-form-block.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-form/components/amp-form-block/</a> amp-form-block.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65.22% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>15/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65.22% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>15/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var AmpFormBlockComponent = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpFormBlockComponent() {</span>
+<span class="cstat-no" title="statement not covered" >        this.withOkButton = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.withOverlay = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.headingClass = '';</span>
+    }
+    AmpFormBlockComponent.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (!this.context) {</span>
+<span class="cstat-no" title="statement not covered" >            console.error('Most of the amp-form-block functionalities would not be working because you have not' +</span>
+                ' passed in the context ');
+        }
+<span class="cstat-no" title="statement not covered" >        return undefined;</span>
+    };
+    AmpFormBlockComponent.prototype.onKeyupEnter = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        if (event.target.tagName.toLowerCase() !== 'textarea') {</span>
+<span class="cstat-no" title="statement not covered" >            this.context.onNext();</span>
+        }
+    };
+    __decorate([
+        core_1.Input('context'), 
+        __metadata('design:type', Object)
+    ], AmpFormBlockComponent.prototype, "context", void 0);
+    __decorate([
+        core_1.Input('noError'), 
+        __metadata('design:type', Object)
+    ], AmpFormBlockComponent.prototype, "noError", void 0);
+    __decorate([
+        core_1.Input('withOkButton'), 
+        __metadata('design:type', Object)
+    ], AmpFormBlockComponent.prototype, "withOkButton", void 0);
+    __decorate([
+        core_1.Input('withOverlay'), 
+        __metadata('design:type', Object)
+    ], AmpFormBlockComponent.prototype, "withOverlay", void 0);
+    __decorate([
+        core_1.Input('theme'), 
+        __metadata('design:type', Object)
+    ], AmpFormBlockComponent.prototype, "theme", void 0);
+    __decorate([
+        core_1.Input('buttonsTheme'), 
+        __metadata('design:type', Object)
+    ], AmpFormBlockComponent.prototype, "buttonsTheme", void 0);
+    __decorate([
+        core_1.Input('headingClass'), 
+        __metadata('design:type', String)
+    ], AmpFormBlockComponent.prototype, "headingClass", void 0);
+    AmpFormBlockComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-form-block',
+            host: {
+                '[attr.id]': 'context?.selectorName',
+                '[attr.data-section]': 'context?.__sectionName'
+            },
+            template: "\n      &lt;div (keyup.enter)=\"onKeyupEnter($event)\" class=\"FormBlocK\"&gt;\n            &lt;amp-overlay [active]='!context?.isActive' *ngIf=\"withOverlay\"&gt;&lt;/amp-overlay&gt;\n            &lt;h2 class=\"heading heading-intro {{ headingClass }}\" [innerHtml]=\"context?.__custom.blockTitle\"&gt;&lt;/h2&gt;\n            &lt;ng-content&gt;&lt;/ng-content&gt;\n             &lt;div *ngIf=\"!noError\"&gt;\n                &lt;amp-error [controlGroup]=\"context?.__controlGroup\"&gt;&lt;/amp-error&gt;\n             &lt;/div&gt;\n             &lt;div class=\"block-buttons mt-60 \" *ngIf=\"withOkButton\"&gt;\n                 &lt;amp-button\n                    [context]=\"context\"\n                    *ngIf='!context?.isInSummaryState'\n                    [attr.theme]=\" buttonsTheme || theme\"\n                    (click)='context.onNext()'\n                    [disabled]='!context?.canGoNext' class='btn btn-ok'&gt;\n                    OK\n                &lt;/amp-button&gt;\n                &lt;amp-button\n                    [context]=\"context\"\n                    *ngIf='context?.isInSummaryState'\n                    [attr.theme]=\"buttonsTheme || theme\"\n                    (click)='context.onEdit()'\n                    class='btn btn-change palm-m0'&gt;\n                    Change\n                &lt;/amp-button&gt;\n            &lt;/div&gt;\n            &lt;div class='hr-block-divider'&gt;&lt;/div&gt;\n        &lt;/div&gt;\n    ",
+            styles: [require('./amp-form-block.component.scss').toString()]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpFormBlockComponent);
+    return AmpFormBlockComponent;
+}());
+exports.AmpFormBlockComponent = AmpFormBlockComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWZvcm0tYmxvY2suY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW1wLWZvcm0tYmxvY2suY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFBMkMsZUFBZSxDQUFDLENBQUE7QUFzQzNEO0lBQUE7UUFHNkIsaUJBQVksR0FBWSxJQUFJLENBQUM7UUFDOUIsZ0JBQVcsR0FBYyxJQUFJLENBQUM7UUFHN0IsaUJBQVksR0FBWSxFQUFFLENBQUM7SUFleEQsQ0FBQztJQWJHLHdDQUFRLEdBQVI7UUFDSSxFQUFFLENBQUMsQ0FBRSxDQUFFLElBQUksQ0FBQyxPQUFRLENBQUMsQ0FBQyxDQUFDO1lBQ25CLE9BQU8sQ0FBQyxLQUFLLENBQUUsc0ZBQXNGO2dCQUNqRyx5QkFBeUIsQ0FBRSxDQUFDO1FBQ3BDLENBQUM7UUFDRCxNQUFNLENBQUMsU0FBUyxDQUFDO0lBQ3JCLENBQUM7SUFFRCw0Q0FBWSxHQUFaLFVBQWUsS0FBSztRQUNoQixFQUFFLENBQUMsQ0FBRSxLQUFLLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxXQUFXLEVBQUUsS0FBSyxVQUFXLENBQUMsQ0FBQyxDQUFDO1lBQ3RELElBQUksQ0FBQyxPQUFPLENBQUMsTUFBTSxFQUFFLENBQUM7UUFDMUIsQ0FBQztJQUNMLENBQUM7SUFwQkQ7UUFBQyxZQUFLLENBQUUsU0FBUyxDQUFFOzswREFBQTtJQUNuQjtRQUFDLFlBQUssQ0FBRSxTQUFTLENBQUU7OzBEQUFBO0lBQ25CO1FBQUMsWUFBSyxDQUFFLGNBQWMsQ0FBRTs7K0RBQUE7SUFDeEI7UUFBQyxZQUFLLENBQUUsYUFBYSxDQUFFOzs4REFBQTtJQUN2QjtRQUFDLFlBQUssQ0FBRSxPQUFPLENBQUU7O3dEQUFBO0lBQ2pCO1FBQUMsWUFBSyxDQUFFLGNBQWMsQ0FBRTs7K0RBQUE7SUFDeEI7UUFBQyxZQUFLLENBQUUsY0FBYyxDQUFFOzsrREFBQTtJQTVDNUI7UUFBQyxnQkFBUyxDQUFFO1lBQ1IsUUFBUSxFQUFHLGdCQUFnQjtZQUMzQixJQUFJLEVBQU87Z0JBQ1AsV0FBVyxFQUFhLHVCQUF1QjtnQkFDL0MscUJBQXFCLEVBQUcsd0JBQXdCO2FBQ25EO1lBQ0QsUUFBUSxFQUFLLHEwQ0E0Qlo7WUFDRCxNQUFNLEVBQU8sQ0FBRSxPQUFPLENBQUUsaUNBQWlDLENBQUUsQ0FBQyxRQUFRLEVBQUUsQ0FBRTtTQUMzRSxDQUFFOzs2QkFBQTtJQXVCSCw0QkFBQztBQUFELENBQUMsQUF0QkQsSUFzQkM7QUF0QlksNkJBQXFCLHdCQXNCakMsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

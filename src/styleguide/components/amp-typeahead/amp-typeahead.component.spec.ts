@@ -1,11 +1,10 @@
-import { async , TestBed } from '@angular/core/testing';
-import { Component , Injector , ViewChild } from '@angular/core';
-import { FormsModule , ReactiveFormsModule , FormGroup , FormBuilder } from '@angular/forms';
-import { AmpTypeaheadModule , AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead';
+import { async, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { Component, Injector, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { AmpTypeaheadModule, AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead';
 import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { fakeAsync } from '@angular/core/testing/fake_async';
-describe( 'amp-typeahead component' , () => {
+describe( 'amp-typeahead component', () => {
     let _fixture;
     let _testCmpInjector : Injector;
     let _typeAheadCmp;
@@ -17,36 +16,36 @@ describe( 'amp-typeahead component' , () => {
     let _inputElement;
     let _btnElement;
 
-    function getAlltheLis () {
+    function getAlltheLis() {
         return _debugElement.queryAll( By.css( 'li' ) );
     }
 
-    function getAlltheUls () {
+    function getAlltheUls() {
         return _debugElement.queryAll( By.css( 'ul' ) );
     }
 
-    function focusOnInput () {
+    function focusOnInput() {
         _inputElement.focus();
         _inputElement.dispatchEvent( new Event( 'input' ) );
         _fixture.detectChanges();
     }
 
-    function focusOut () {
+    function focusOut() {
         _btnElement.click();
         _fixture.detectChanges();
     }
 
-    function selectFirstItem () {
+    function selectFirstItem() {
         selectItemByIndex( 0 );
     }
 
-    function selectItemByIndex ( _index ) {
+    function selectItemByIndex( _index ) {
         let liElements = getAlltheLis();
         liElements[ _index ].nativeElement.click();
         _fixture.detectChanges();
     }
 
-    function updateInputText ( text : string ) {
+    function updateInputText( text : string ) {
         _inputElement.value = text;
         _inputElement.dispatchEvent( new Event( 'input' ) );
         _fixture.detectChanges();
@@ -54,66 +53,66 @@ describe( 'amp-typeahead component' , () => {
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            declarations : [ AmpTypeaheadComponentTest ] ,
-            providers    : [
-                { provide : ComponentFixtureAutoDetect , useValue : true }
-            ] ,
-            imports      : [ FormsModule , ReactiveFormsModule , AmpTypeaheadModule ]
+            declarations : [ AmpTypeaheadComponentTest ],
+            providers : [
+                { provide : ComponentFixtureAutoDetect, useValue : true }
+            ],
+            imports : [ FormsModule, ReactiveFormsModule, AmpTypeaheadModule ]
         } );
-        _fixture         = TestBed.createComponent( AmpTypeaheadComponentTest );
+        _fixture = TestBed.createComponent( AmpTypeaheadComponentTest );
         _testCmpInjector = _fixture.debugElement.injector;
-        _testCmp         = _fixture.componentInstance;
-        _typeAheadCmp    = _testCmp.typeAheadComponent;
-        _debugElement    = _fixture.debugElement;
-        _element         = _fixture.nativeElement;
+        _testCmp = _fixture.componentInstance;
+        _typeAheadCmp = _testCmp.typeAheadComponent;
+        _debugElement = _fixture.debugElement;
+        _element = _fixture.nativeElement;
         _fixture.detectChanges();
     } ) );
     beforeEach( () => {
         _testCmpControlGroup = _testCmp.__controlGroup;
-        _cmpControlGroup     = _testCmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
-        _inputElement        = _debugElement.query( By.css( 'input' ) ).nativeElement;
-        _btnElement          = _debugElement.query( By.css( '#btn' ) ).nativeElement;
+        _cmpControlGroup = _testCmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
+        _inputElement = _debugElement.query( By.css( 'input' ) ).nativeElement;
+        _btnElement = _debugElement.query( By.css( '#btn' ) ).nativeElement;
     } );
-    describe( 'controlGroup and controls ' , () => {
-        it( 'testComponentControlGroup should be defined ' , () => {
+    describe( 'controlGroup and controls ', () => {
+        it( 'testComponentControlGroup should be defined ', () => {
             expect( _testCmpControlGroup ).toBeDefined();
         } );
-        it( '_cmpControlGroup should be defined ' , () => {
+        it( '_cmpControlGroup should be defined ', () => {
             expect( _cmpControlGroup ).toBeDefined();
         } );
         it( '_cmpControlGroup should should have two controls one for the input and one for the selected' +
-            ' item ' , () => {
+            ' item ', () => {
             expect( Object.keys( _cmpControlGroup.controls ).length ).toBe( 2 );
             expect( _cmpControlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ) ).toBeTruthy();
             expect( _cmpControlGroup.contains( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ) ).toBeTruthy();
         } );
-        it( '_cmpControlGroup value should have null values initially  ' , () => {
-            let groupValue                                                           = {};
+        it( '_cmpControlGroup value should have null values initially  ', () => {
+            let groupValue = {};
             groupValue[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ] = null;
-            groupValue[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ]          = null;
+            groupValue[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ] = null;
             expect( _cmpControlGroup.value ).toEqual( groupValue );
         } );
     } );
-    describe( 'Component native elements and tags' , () => {
-        it( 'should not have any ul element initially and should isOptionsHidden be true    ' , () => {
+    describe( 'Component native elements and tags', () => {
+        it( 'should not have any ul element initially and should isOptionsHidden be true    ', () => {
             let ulElements = getAlltheUls();
             expect( ulElements.length ).toBe( 0 );
             expect( _typeAheadCmp.isOptionsHidden ).toBeTruthy();
         } );
-        it( 'should open the search result after focus on the input , if the options are provided ' , () => {
+        it( 'should open the search result after focus on the input , if the options are provided ', () => {
             focusOnInput();
             let ulElements = getAlltheUls();
             expect( ulElements.length ).toBe( 1 );
             expect( _typeAheadCmp.isOptionsHidden ).toBeFalsy();
         } );
         it( 'should have as many list element as provider options , after focusing without typing' +
-            ' typing(filtering)' , () => {
+            ' typing(filtering)', () => {
             focusOnInput();
             let liElements = getAlltheLis();
             expect( liElements.length ).toBe( _testCmp.options.length );
         } );
         it( 'should close the dropdown upon clicking oputside of the typeahead' +
-            ' typing(filtering)' , () => {
+            ' typing(filtering)', () => {
             focusOnInput();
             let liElements = getAlltheLis();
             expect( liElements.length ).toBe( _testCmp.options.length );
@@ -125,25 +124,26 @@ describe( 'amp-typeahead component' , () => {
             expect( liElements.length ).toBe( 0 );
             expect( _typeAheadCmp.isOptionsHidden ).toBeTruthy();
         } );
-        it( 'should have a Dropdown of maxheight:250px which represents the 5 item visible' , fakeAsync( () => {
+        it( 'should have a Dropdown of maxheight:250px which represents the 5 item visible', fakeAsync( () => {
             focusOnInput();
             let ulElements = getAlltheUls();
-            let maxHeight  = ulElements[ 0 ].nativeElement.offsetHeight;
-            let padding    = 5;
-            expect( maxHeight ).toBeLessThan( _testCmp.__custom.controls[ 0 ].maxHeight.replace( 'px' , '' ) + padding );
+            let maxHeight = ulElements[ 0 ].nativeElement.offsetHeight;
+            let padding = 5;
+            tick(2000);
+            expect( maxHeight ).toBeLessThan( _testCmp.__custom.controls[ 0 ].maxHeight.replace( 'px', '' ) + padding );
         } ) );
     } );
-    describe( 'Typing and updating controls' , () => {
-        it( 'should update the AmpTypeahead control and controlGroup when typing inside the search input' , () => {
+    describe( 'Typing and updating controls', () => {
+        it( 'should update the AmpTypeahead control and controlGroup when typing inside the search input', () => {
             let text = 'im searching ';
             updateInputText( text );
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( text );
-            let groupValue                                                           = {};
+            let groupValue = {};
             groupValue[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ] = text;
-            groupValue[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ]          = null;
+            groupValue[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ] = null;
             expect( _cmpControlGroup.value ).toEqual( groupValue );
         } );
-        it( 'should update the AmpTypeahead control and selectedControl and controlGroup after selecting an option' , () => {
+        it( 'should update the AmpTypeahead control and selectedControl and controlGroup after selecting an option', () => {
             _inputElement.focus();
             _inputElement.dispatchEvent( new Event( 'input' ) );
             _fixture.detectChanges();
@@ -152,29 +152,31 @@ describe( 'amp-typeahead component' , () => {
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( _testCmp.options[ 0 ][ _testCmp.__custom.controls[ 0 ].selectedItemIdentifier ] );
         } );
-        it( 'control group should be valid if select an option' , () => {
+        it( 'control group should be valid if select an option', () => {
             focusOnInput();
             selectFirstItem();
             expect( _cmpControlGroup.valid ).toBeTruthy();
         } );
-        it( 'should empty the selectedControl after selecting an option and typing again ' , () => {
+        it( 'should empty the selectedControl after selecting an option and typing again ', fakeAsync( () => {
             focusOnInput();
             selectFirstItem();
+            tick();
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title );
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( _testCmp.options[ 0 ][ _testCmp.__custom.controls[ 0 ].selectedItemIdentifier ] );
             let text = 'this text will be added to the end of the curent text';
             updateInputText( _inputElement.value + text );
+            tick(2000);
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].value ).toBe( _testCmp.options[ 0 ].title + text );
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ].value ).toBe( null );
-        } );
-        it( 'control should have an invalidSearch error if update the input after selecting an option' , () => {
+        } ) );
+        it( 'control should have an invalidSearch error if update the input after selecting an option', () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( 'dymmy text' );
             expect( _cmpControlGroup.valid ).toBeFalsy();
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeDefined();
         } );
-        it( 'controlGroup should be valid after selecting , updating , selecting again !!! ' , () => {
+        it( 'controlGroup should be valid after selecting , updating , selecting again !!! ', () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( 'dymmy text' );
@@ -185,7 +187,7 @@ describe( 'amp-typeahead component' , () => {
             expect( _cmpControlGroup.valid ).toBeTruthy();
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors ).toBeNull();
         } );
-        it( 'control should only have required error after selecting and the removing the text ' , () => {
+        it( 'control should only have required error after selecting and the removing the text ', () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( '' );
@@ -193,7 +195,7 @@ describe( 'amp-typeahead component' , () => {
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.required ).toBeDefined();
             expect( _cmpControlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX ].errors.invalidSearch ).toBeUndefined();
         } );
-        it( 'control should only have invalidSearch error after updating the text but not selecting' , () => {
+        it( 'control should only have invalidSearch error after updating the text but not selecting', () => {
             focusOnInput();
             selectFirstItem();
             updateInputText( 'dummy text' );
@@ -229,146 +231,146 @@ describe( 'amp-typeahead component' , () => {
 } )
 class AmpTypeaheadComponentTest {
     @ViewChild( 'typeAheadComponent' ) typeAheadComponent;
-    public __controlGroup : FormGroup                   = new FormGroup( {} );
-    public __custom                                     = {
+    public __controlGroup : FormGroup = new FormGroup( {} );
+    public __custom = {
         controls : [
             {
-                id                          : 'amp-typeahead' ,
-                label                       : 'This is a type ahead label' ,
-                required                    : true ,
-                maxHeight                   : '250px' ,
-                selectedItemIdentifier      : 'id' ,
-                dropDownLabel               : 'drop down first label' ,
+                id : 'amp-typeahead',
+                label : 'This is a type ahead label',
+                required : true,
+                maxHeight : '250px',
+                selectedItemIdentifier : 'id',
+                dropDownLabel : 'drop down first label',
                 selectedItemValueIdentifier : 'title'
             }
         ]
     };
-                                       isInSummaryState = false;
-    private options                                     = [
+    isInSummaryState = false;
+    private options = [
         {
-            'id'       : 1 ,
-            'title'    : 'Professional (medical)' ,
-            'IPClass'  : 'MP' ,
+            'id' : 1,
+            'title' : 'Professional (medical)',
+            'IPClass' : 'MP',
             'TPDClass' : 'A'
-        } ,
+        },
         {
-            'id'       : 2 ,
-            'title'    : 'White collar professional (specialist)' ,
-            'IPClass'  : 'AA' ,
+            'id' : 2,
+            'title' : 'White collar professional (specialist)',
+            'IPClass' : 'AA',
             'TPDClass' : 'A'
-        } ,
+        },
         {
-            'id'       : 903 ,
-            'title'    : 'University - tutor (degree qualified)' ,
-            'IPClass'  : 'AA' ,
+            'id' : 903,
+            'title' : 'University - tutor (degree qualified)',
+            'IPClass' : 'AA',
             'TPDClass' : 'A'
-        } ,
+        },
         {
-            'id'       : 905 ,
-            'title'    : 'Upholsterer' ,
-            'IPClass'  : 'C' ,
+            'id' : 905,
+            'title' : 'Upholsterer',
+            'IPClass' : 'C',
             'TPDClass' : 'C'
-        } ,
+        },
         {
-            'id'       : 906 ,
-            'title'    : 'Urologist (registered)' ,
-            'IPClass'  : 'AA' ,
+            'id' : 906,
+            'title' : 'Urologist (registered)',
+            'IPClass' : 'AA',
             'TPDClass' : 'A'
-        } ,
+        },
         {
-            'id'       : 907 ,
-            'title'    : 'Valuer (registered)' ,
-            'IPClass'  : 'A' ,
+            'id' : 907,
+            'title' : 'Valuer (registered)',
+            'IPClass' : 'A',
             'TPDClass' : 'A'
-        } ,
+        },
         {
-            'id'       : 908 ,
-            'title'    : 'Vending machine serviceman' ,
-            'IPClass'  : 'B' ,
+            'id' : 908,
+            'title' : 'Vending machine serviceman',
+            'IPClass' : 'B',
             'TPDClass' : 'B'
-        } ,
+        },
         {
-            'id'       : 909 ,
-            'title'    : 'Veterinarian - domestic pets (registered)' ,
-            'IPClass'  : 'MP' ,
+            'id' : 909,
+            'title' : 'Veterinarian - domestic pets (registered)',
+            'IPClass' : 'MP',
             'TPDClass' : 'A'
-        } ,
+        },
         {
-            'id'       : 910 ,
-            'title'    : 'Veterinarian - other' ,
-            'IPClass'  : 'B' ,
+            'id' : 910,
+            'title' : 'Veterinarian - other',
+            'IPClass' : 'B',
             'TPDClass' : 'B'
-        } ,
+        },
         {
-            'id'       : 911 ,
-            'title'    : 'Veterinary surgeon - city practice (registered)' ,
-            'IPClass'  : 'MP' ,
+            'id' : 911,
+            'title' : 'Veterinary surgeon - city practice (registered)',
+            'IPClass' : 'MP',
             'TPDClass' : 'A'
-        } ,
+        },
         {
-            'id'       : 912 ,
-            'title'    : 'Veterinary surgeon - country practice' ,
-            'IPClass'  : 'B' ,
+            'id' : 912,
+            'title' : 'Veterinary surgeon - country practice',
+            'IPClass' : 'B',
             'TPDClass' : 'B'
-        } ,
+        },
         {
-            'id'       : 913 ,
-            'title'    : 'Vigneron/winemaker (minimal manual work)' ,
-            'IPClass'  : 'C' ,
+            'id' : 913,
+            'title' : 'Vigneron/winemaker (minimal manual work)',
+            'IPClass' : 'C',
             'TPDClass' : 'B'
-        } ,
+        },
         {
-            'id'       : 914 ,
-            'title'    : 'Waiter/waitress - bar duties incuded' ,
-            'IPClass'  : 'CY' ,
+            'id' : 914,
+            'title' : 'Waiter/waitress - bar duties incuded',
+            'IPClass' : 'CY',
             'TPDClass' : 'C'
-        } ,
+        },
         {
-            'id'       : 915 ,
-            'title'    : 'Waiter/waitress - table service only' ,
-            'IPClass'  : 'B' ,
+            'id' : 915,
+            'title' : 'Waiter/waitress - table service only',
+            'IPClass' : 'B',
             'TPDClass' : 'B'
-        } ,
+        },
         {
-            'id'       : 916 ,
-            'title'    : 'Wardrobe - film/theatre' ,
-            'IPClass'  : 'C' ,
+            'id' : 916,
+            'title' : 'Wardrobe - film/theatre',
+            'IPClass' : 'C',
             'TPDClass' : 'C'
         }
     ];
     private selectedOption;
     private form : FormGroup;
 
-    constructor ( private _builder : FormBuilder ) {
+    constructor( private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );
     }
 
-    private onChange ( option ) {
+    private onChange( option ) {
         this.selectedOption = option;
     }
 
-    get searchControlGroup () : any {
+    get searchControlGroup() : any {
         if ( this.__controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ] ) {
             return this.__controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
         }
     }
 
-    get control () {
+    get control() {
         if ( this.searchControlGroup ) {
             return this.searchControlGroup.controls[ this.id ];
         }
     }
 
-    get selectControl () {
+    get selectControl() {
         if ( this.searchControlGroup ) {
             return this.searchControlGroup.controls[ this.id + AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX ];
         }
     }
 
-    get id () {
+    get id() {
         return this.__custom.controls[ 0 ].id;
     }
 
-    private onAcknowledgeSelect ( value ) {
+    private onAcknowledgeSelect( value ) {
     }
 }

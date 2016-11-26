@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-
 @Component( {
     selector    : 'tables' ,
-    templateUrl : 'src/styleguide/layout/tables/tables.html' ,
-    styles      : [ require( './tables.scss' ).toString() ] ,
-    directives  : []
+    templateUrl : './tables.html' ,
+    styles      : [ require( './tables.scss' ).toString() ]
 } )
 
-export default class Tables {
+export default class TablesBasicUsage {
 }

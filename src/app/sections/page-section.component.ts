@@ -1,10 +1,4 @@
-import {
-    Component ,
-    ViewContainerRef ,
-    ChangeDetectorRef ,
-    ChangeDetectionStrategy
-} from '@angular/core';
-import { AmpBlockLoaderDirective , LoadedBlockInfo } from '../amp-block-loader.directive';
+import { Component , ViewContainerRef , ChangeDetectorRef , ChangeDetectionStrategy } from '@angular/core';
 import { FormSectionService } from '../services/form-section/form-section.service';
 import { FormModelService } from '../services/form-model/form-model.service';
 import { ProgressObserverService } from '../services/progress-observer/progress-observer.service';
@@ -21,8 +15,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
         '[attr.label]'    : '__custom?.label' ,
         '[tabindex]'      : '"-1"'
     } ,
-    directives      : [ AmpBlockLoaderDirective ] ,
-    styles   : [ require('./page-section.component.scss') ] ,
+    styles   : [ require('./page-section.component.scss').toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PageSectionComponent {

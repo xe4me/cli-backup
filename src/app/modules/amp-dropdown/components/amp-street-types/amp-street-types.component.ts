@@ -1,16 +1,12 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { ViewChild , ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef , Renderer , ElementRef } from '@angular/core';
 import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
 @AmpComponent( {
     selector : 'amp-street-types'
 } )
 export class AmpStreetTypesComponent extends AmpDropdownComponent {
-    @ViewChild( 'selectEl' ) selectEl;
-    @ViewChild( 'optionsEl' ) optionsEl;
-    @ViewChild( 'dropdownEl' ) dropDownEl;
-
-    constructor ( public _cd : ChangeDetectorRef ) {
-        super( _cd );
+    constructor ( public _el : ElementRef , public _cd : ChangeDetectorRef , public _renderer : Renderer ) {
+        super( _el , _cd , _renderer );
         this.options = [
             { value : 'ALLY' , label : 'Alley' } ,
             { value : 'ARC' , label : 'Arcade' } ,
@@ -40,6 +36,6 @@ export class AmpStreetTypesComponent extends AmpDropdownComponent {
             { value : 'ST' , label : 'Street' } ,
             { value : 'TCE' , label : 'Terrace' }
         ];
-        this.label = 'Street type';
+        this.label   = 'Street type';
     }
 }

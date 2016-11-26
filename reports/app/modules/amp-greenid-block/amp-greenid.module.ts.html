@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-greenid-block/amp-greenid.module.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/modules/amp-greenid-block/</a> amp-greenid.module.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/12</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var amp_greenid_service_1 = require('../../modules/amp-greenid-block/components/services/amp-greenid-service');
+var amp_greenid_block_1 = require('../../modules/amp-greenid-block/components/amp-greenid-block');
+var forms_1 = require('@angular/forms');
+var http_1 = require('@angular/http');
+var amp_shared_root_module_1 = require('../amp-shared-root/amp-shared-root.module');
+var DECLARATIONS = [
+    amp_greenid_block_1.AmpGreenIdBlockComponent
+];
+var AmpGreenIdModule = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpGreenIdModule() {</span>
+    }
+    AmpGreenIdModule = __decorate([
+        core_1.NgModule({
+            declarations: DECLARATIONS,
+            imports: [
+                amp_shared_root_module_1.AmpSharedRootModule,
+                // AmpButtonModule ,
+                // AmpCheckboxModule ,
+                // AmpErrorModule ,
+                forms_1.FormsModule
+            ],
+            providers: [amp_greenid_service_1.AmpGreenIdServices, http_1.Http],
+            exports: DECLARATIONS
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpGreenIdModule);
+    return AmpGreenIdModule;
+}());
+exports.AmpGreenIdModule = AmpGreenIdModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWdyZWVuaWQubW9kdWxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW1wLWdyZWVuaWQubW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFBeUIsZUFBZSxDQUFDLENBQUE7QUFDekMsb0NBQW1DLHlFQUF5RSxDQUFDLENBQUE7QUFDN0csa0NBQXlDLDhEQUE4RCxDQUFDLENBQUE7QUFDeEcsc0JBQTRCLGdCQUFnQixDQUFDLENBQUE7QUFDN0MscUJBQXFCLGVBQWUsQ0FBQyxDQUFBO0FBQ3JDLHVDQUFvQywyQ0FBMkMsQ0FBQyxDQUFBO0FBRWhGLElBQU0sWUFBWSxHQUFHO0lBQ2pCLDRDQUF3QjtDQUMzQixDQUFDO0FBYUY7SUFBQTtJQUNBLENBQUM7SUFiRDtRQUFDLGVBQVEsQ0FBRTtZQUNQLFlBQVksRUFBRyxZQUFZO1lBQzNCLE9BQU8sRUFBRztnQkFDTiw0Q0FBbUI7Z0JBQ25CLG9CQUFvQjtnQkFDcEIsc0JBQXNCO2dCQUN0QixtQkFBbUI7Z0JBQ25CLG1CQUFXO2FBQ2Q7WUFDRCxTQUFTLEVBQUcsQ0FBRSx3Q0FBa0IsRUFBRSxXQUFJLENBQUU7WUFDeEMsT0FBTyxFQUFHLFlBQVk7U0FDekIsQ0FBRTs7d0JBQUE7SUFFSCx1QkFBQztBQUFELENBQUMsQUFERCxJQUNDO0FBRFksd0JBQWdCLG1CQUM1QixDQUFBIn0=
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,22 +1,24 @@
 @import "../../../styles/abstracts";
 
 .title {
-    font-size: 14px;
-    font-weight: 600;
-    padding: 20px 0;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 20px 0;
 }
 
 .highlight-override {
-    text-align: left;
-    display: flex;
-    > .strong {
-        white-space: pre-line;
-    }
+  text-align: left;
+  display: flex;
+  > .strong {
+    white-space: pre-line;
+  }
 }
+
 .pre {
-    display: inline;
+  display: inline;
 }
+
 .unordered-list {
-    list-style-type: none;
+  list-style-type: none;
 }
 

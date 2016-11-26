@@ -380,26 +380,6 @@
         "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
     },
     {
-        "name": "Amp Dropdown",
-        "sources": [
-            "src/app/components/amp-dropdown/amp-dropdown.component.ts"
-        ],
-        "id": "AmpDropdownNewComponent",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-dropdown-new/basic_usage.html",
-                "styles": "src/styleguide/components/amp-dropdown-new/basic_usage.scss",
-                "source": "src/styleguide/components/amp-dropdown-new/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-dropdown-new/amp-dropdown.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-dropdown-new/amp-dropdown.component.spec.ts",
-                "component": "amp-dropdown-block-basic-usage",
-                "component_src_location": "components/amp-dropdown-new/basic_usage",
-                "name": "Amp Dropdown Basic Usage"
-            }
-        ],
-        "readme": "<p>Custom Block for AmpDropdownComponent.</p>\n"
-    },
-    {
         "name": "Amp Email",
         "sources": [
             "src/app/components/amp-inputs/components"
@@ -458,26 +438,6 @@
             }
         ],
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
-    },
-    {
-        "name": "Amp Google Address",
-        "sources": [
-            "src/app/components/amp-google-address/amp-google-address.component.ts"
-        ],
-        "id": "AMPGoogleAddress",
-        "examples": [
-            {
-                "template": "src/styleguide/components/amp-google-address/basic_usage.html",
-                "styles": "src/styleguide/components/amp-google-address/basic_usage.scss",
-                "source": "src/styleguide/components/amp-google-address/basic_usage.ts",
-                "galen": "src/styleguide/components/amp-google-address/amp-google-address.component.test.spec",
-                "jasmine": "src/styleguide/components/amp-google-address/amp-google-address.component.spec.ts",
-                "component": "amp-google-address-basic-usage",
-                "component_src_location": "components/amp-google-address/basic_usage",
-                "name": "Basic Usage"
-            }
-        ],
-        "readme": "<p>AMP google address input search box</p>\n"
     },
     {
         "name": "Amp Google Recaptcha",

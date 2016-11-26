@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-tooltip/components/amp-tooltip/amp-tooltip.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-tooltip/components/amp-tooltip/</a> amp-tooltip.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.67% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/15</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var AmpTooltipTemplateComponent = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpTooltipTemplateComponent() {</span>
+<span class="cstat-no" title="statement not covered" >        this.extraClasses = '';</span>
+<span class="cstat-no" title="statement not covered" >        this.hide = <span class="fstat-no" title="function not covered" >function () {</span></span>
+        };
+    }
+    AmpTooltipTemplateComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-tooltip-template',
+            template: "\n        &lt;div [clicked-outside]='hide' class=\"amp-tooltip {{ extraClasses }}\" role=\"tooltip\" &gt;\n            &lt;div class=\"tooltip-content \" [innerHtml]='message'&gt;&lt;/div&gt;\n        &lt;/div&gt;\n    ",
+            styles: [require('./amp-tooltip-template.component.scss').toString()],
+            encapsulation: core_1.ViewEncapsulation.None
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpTooltipTemplateComponent);
+    return AmpTooltipTemplateComponent;
+}());
+exports.AmpTooltipTemplateComponent = AmpTooltipTemplateComponent;
+var AmpTooltipComponent = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpTooltipComponent() {</span>
+    }
+    __decorate([
+        core_1.Input('message'), 
+        __metadata('design:type', Object)
+    ], AmpTooltipComponent.prototype, "message", void 0);
+    __decorate([
+        core_1.Input('autoHideDelay'), 
+        __metadata('design:type', Object)
+    ], AmpTooltipComponent.prototype, "autoHideDelay", void 0);
+    AmpTooltipComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-tooltip-cmp',
+            template: "\n        &lt;span #tooltip='tooltip'\n                [autoHideDelay]='autoHideDelay'\n                [amp-tooltip-dir]=\"message\" \n                class=\"icon icon--announcement icon-amp-tooltip\"&gt;\n        &lt;/span&gt;\n    ",
+            styles: [require('./amp-tooltip-cmp.component.scss').toString()]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpTooltipComponent);
+    return AmpTooltipComponent;
+}());
+exports.AmpTooltipComponent = AmpTooltipComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXRvb2x0aXAuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW1wLXRvb2x0aXAuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFBc0QsZUFBZSxDQUFDLENBQUE7QUFXdEU7SUFBQTtRQUNZLGlCQUFZLEdBQUcsRUFBRSxDQUFDO1FBQ2xCLFNBQUksR0FBVztRQUN2QixDQUFDLENBQUM7SUFDTixDQUFDO0lBZEQ7UUFBQyxnQkFBUyxDQUFFO1lBQ1IsUUFBUSxFQUFRLHNCQUFzQjtZQUN0QyxRQUFRLEVBQVEscU1BSWY7WUFDRCxNQUFNLEVBQVUsQ0FBRSxPQUFPLENBQUUsdUNBQXVDLENBQUUsQ0FBQyxRQUFRLEVBQUUsQ0FBRTtZQUNqRixhQUFhLEVBQUcsd0JBQWlCLENBQUMsSUFBSTtTQUN6QyxDQUFFOzttQ0FBQTtJQUtILGtDQUFDO0FBQUQsQ0FBQyxBQUpELElBSUM7QUFKWSxtQ0FBMkIsOEJBSXZDLENBQUE7QUFZRDtJQUFBO0lBR0EsQ0FBQztJQUZHO1FBQUMsWUFBSyxDQUFFLFNBQVMsQ0FBRTs7d0RBQUE7SUFDbkI7UUFBQyxZQUFLLENBQUUsZUFBZSxDQUFFOzs4REFBQTtJQWI3QjtRQUFDLGdCQUFTLENBQUU7WUFDUixRQUFRLEVBQUcsaUJBQWlCO1lBQzVCLFFBQVEsRUFBRyxpT0FNVjtZQUNELE1BQU0sRUFBSyxDQUFFLE9BQU8sQ0FBRSxrQ0FBa0MsQ0FBRSxDQUFDLFFBQVEsRUFBRSxDQUFFO1NBQzFFLENBQUU7OzJCQUFBO0lBSUgsMEJBQUM7QUFBRCxDQUFDLEFBSEQsSUFHQztBQUhZLDJCQUFtQixzQkFHL0IsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

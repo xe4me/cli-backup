@@ -87,7 +87,6 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected _valDate : boolean;
     protected _pattern : string;
     protected label : string             = '';
-    protected isInSummaryState : boolean = false;
     protected showLabel : boolean        = true;
     protected tolowerCase : boolean      = false;
     protected toupperCase : boolean      = false;

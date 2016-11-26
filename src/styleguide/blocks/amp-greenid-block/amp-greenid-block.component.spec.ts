@@ -3,13 +3,13 @@ import { async , ComponentFixture , TestBed, inject } from '@angular/core/testin
 // import {tick, fakeAsync} from '@angular/core/esm/testing/fake_async';
 import { MockBackend } from '@angular/http/testing';
 import { Http, ConnectionBackend, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
-import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable, Output } from '@angular/core';
+import { Component , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable, Output } from '@angular/core';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { By } from '@angular/platform-browser';
 import { AmpGreenIdServices } from '../../../app/modules/amp-greenid-block/components/services/amp-greenid-service';
 import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
-import { AmpGreenidModule } from '../../../app/modules/amp-greenid-block/amp-greenid.module';
+import { AmpGreenIdModule } from '../../../app/modules/amp-greenid-block/amp-greenid.module';
 import { AmpGreenIdBlockComponent } from '../../../app/modules/amp-greenid-block/components/amp-greenid-block';
 
 describe( 'Green id unit tests' , () => {

@@ -1,7 +1,7 @@
-import { ControlGroup } from '@angular/common';
+import { FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 export class FormUtils {
-    public static getControlByName ( _parentGroup : ControlGroup , _controlName : string ) : any {
+    public static getControlByName ( _parentGroup : FormGroup , _controlName : string ) : any {
         return _parentGroup.controls[ _controlName ];
     }
 

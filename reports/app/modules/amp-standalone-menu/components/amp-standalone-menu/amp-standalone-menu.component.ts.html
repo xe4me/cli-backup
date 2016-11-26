@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-standalone-menu/components/amp-standalone-menu/amp-standalone-menu.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-standalone-menu/components/amp-standalone-menu/</a> amp-standalone-menu.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.96% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>31/115</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.09% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.17% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.96% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>31/115</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var browser_adapter_1 = require('@angular/platform-browser/src/browser/browser_adapter');
+var scroll_service_1 = require('../../../../services/scroll/scroll.service');
+var dom_utils_1 = require('../../../../../app/modules/amp-utils/dom-utils');
+var AmpStandAloneMenuComponent = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpStandAloneMenuComponent(dom, cd, scrollService) {</span>
+<span class="cstat-no" title="statement not covered" >        this.dom = dom;</span>
+<span class="cstat-no" title="statement not covered" >        this.cd = cd;</span>
+<span class="cstat-no" title="statement not covered" >        this.scrollService = scrollService;</span>
+        // Selector of the main page content to show/hide content in mobile view.
+<span class="cstat-no" title="statement not covered" >        this.mainContentSelector = 'main';</span>
+<span class="cstat-no" title="statement not covered" >        this.menuOffset = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this.theme = 'forms';</span>
+<span class="cstat-no" title="statement not covered" >        this.sectionsToHide = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.showMenu = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.sections = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.currentSectionId = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.domUtils = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.itemPrefix = 'Item-'; </span>// Prefix for the nav menu id.
+<span class="cstat-no" title="statement not covered" >        this.isOpen = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.currentSectionLabel = '';</span>
+<span class="cstat-no" title="statement not covered" >        this.menuScrolling = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.openClosed = 'closed';</span>
+<span class="cstat-no" title="statement not covered" >        this.domUtils = new dom_utils_1.DomUtils();</span>
+<span class="cstat-no" title="statement not covered" >        this.sectionObservable = scrollService.$scrolled;</span>
+    }
+    AmpStandAloneMenuComponent.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this.sectionObservable.subscribe(<span class="fstat-no" title="function not covered" >function (blockchanges) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var sectionName = blockchanges ? blockchanges.section : null;</span>
+<span class="cstat-no" title="statement not covered" >            setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                _this.updateSections(sectionName);</span>
+            }, 0);
+        });
+<span class="cstat-no" title="statement not covered" >        this.html = this.dom.query('html');</span>
+    };
+    AmpStandAloneMenuComponent.prototype.ngAfterViewInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.onResize(window, this.menu);</span>
+<span class="cstat-no" title="statement not covered" >        this.subscribeToScrollEvents();</span>
+    };
+    AmpStandAloneMenuComponent.prototype.ngOnDestroy = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.unSubscribeFromEvents();</span>
+    };
+    AmpStandAloneMenuComponent.prototype.isStateDisabled = <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >        return state.indexOf('visited') === -1 &amp;&amp; state.indexOf('active') === -1;</span>
+    };
+    AmpStandAloneMenuComponent.prototype.isStateActive = <span class="fstat-no" title="function not covered" >function (state) {</span>
+<span class="cstat-no" title="statement not covered" >        return state.indexOf('active') &gt; -1;</span>
+    };
+    /**
+     *
+     * On scrolled event, update the sections and then put them into the collection along with the custom names for the menu.
+     * This function will look for all the page sections which has a custom label defined in the DOM and it
+     * parses and stores in the component sections array object.
+     */
+    AmpStandAloneMenuComponent.prototype.updateSections = <span class="fstat-no" title="function not covered" >function (sectionName) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        var body = this.dom.query('body');</span>
+<span class="cstat-no" title="statement not covered" >        var sections = this.dom.querySelectorAll(body, 'page-section');</span>
+<span class="cstat-no" title="statement not covered" >        var hasActiveClass = false;</span>
+<span class="cstat-no" title="statement not covered" >        var currentSectionName = sectionName ? sectionName : this.currentSectionId;</span>
+<span class="cstat-no" title="statement not covered" >        this.sections = Array.prototype.map.call(sections, <span class="fstat-no" title="function not covered" >function (section) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var pageSectionId = section.id;</span>
+<span class="cstat-no" title="statement not covered" >            var menuItemId = _this.itemPrefix + section.id;</span>
+<span class="cstat-no" title="statement not covered" >            var classes = section.className;</span>
+<span class="cstat-no" title="statement not covered" >            var label = section.getAttribute('label');</span>
+<span class="cstat-no" title="statement not covered" >            var hidden = _this.sectionsToHide.indexOf(pageSectionId) !== -1;</span>
+<span class="cstat-no" title="statement not covered" >            if (!hasActiveClass &amp;&amp; currentSectionName &amp;&amp; pageSectionId.indexOf(currentSectionName) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >                classes = classes ? classes + ' active' : 'active';</span>
+<span class="cstat-no" title="statement not covered" >                _this.currentSectionId = pageSectionId;</span>
+<span class="cstat-no" title="statement not covered" >                hasActiveClass = true;</span>
+<span class="cstat-no" title="statement not covered" >                _this.currentSectionLabel = label;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return {</span>
+                label: label,
+                pageSectionId: pageSectionId,
+                id: menuItemId,
+                state: classes,
+                anchorUrl: window.location.href + '/#' + pageSectionId,
+                hidden: hidden
+            };
+        });
+<span class="cstat-no" title="statement not covered" >        if (this.sections.length &amp;&amp; hasActiveClass) {</span>
+<span class="cstat-no" title="statement not covered" >            this.showMenu = true;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.cd.markForCheck();</span>
+    };
+    AmpStandAloneMenuComponent.prototype.close = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.allowHtmlScrolling();</span>
+<span class="cstat-no" title="statement not covered" >        this.openClosed = 'closed';</span>
+<span class="cstat-no" title="statement not covered" >        this.isOpen = false;</span>
+    };
+    AmpStandAloneMenuComponent.prototype.open = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.disableHtmlScrolling();</span>
+<span class="cstat-no" title="statement not covered" >        this.isOpen = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.openClosed = 'open';</span>
+<span class="cstat-no" title="statement not covered" >        this.tempScrollTop = this.scrollService.scrollTop;</span>
+    };
+    AmpStandAloneMenuComponent.prototype.onOpenClick = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.open();</span>
+    };
+    AmpStandAloneMenuComponent.prototype.onCloseClick = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.close();</span>
+    };
+    AmpStandAloneMenuComponent.prototype.onSectionClick = <span class="fstat-no" title="function not covered" >function (event, section) {</span>
+<span class="cstat-no" title="statement not covered" >        event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        this.scrollToSection(section);</span>
+<span class="cstat-no" title="statement not covered" >        this.close();</span>
+    };
+    AmpStandAloneMenuComponent.prototype.scrollToSection = <span class="fstat-no" title="function not covered" >function (section) {</span>
+<span class="cstat-no" title="statement not covered" >        this.currentSectionId = section.pageSectionId;</span>
+<span class="cstat-no" title="statement not covered" >        this.menuScrolling = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.scrollService.scrollToComponentSelector(section.pageSectionId);</span>
+    };
+    AmpStandAloneMenuComponent.prototype.allowHtmlScrolling = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.html.style.overflow = '';</span>
+    };
+    AmpStandAloneMenuComponent.prototype.disableHtmlScrolling = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.html.style.overflow = 'hidden';</span>
+    };
+    AmpStandAloneMenuComponent.prototype.onResize = <span class="fstat-no" title="function not covered" >function (_window, menu) {</span>
+<span class="cstat-no" title="statement not covered" >        var menuHeight = menu &amp;&amp; menu.getBoundingClientRect ? menu.getBoundingClientRect().height : 65;</span>
+<span class="cstat-no" title="statement not covered" >        if (_window.innerWidth &lt; 481) {</span>
+<span class="cstat-no" title="statement not covered" >            this.scrollService.updateOffset(menuHeight);</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this.scrollService.updateOffset(this.menuOffset);</span>
+        }
+    };
+    AmpStandAloneMenuComponent.prototype.subscribeToScrollEvents = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this.scrollSubscription = this.scrollService.$scrolled.subscribe(<span class="fstat-no" title="function not covered" >function (component) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (_this.menuScrolling) {</span>
+<span class="cstat-no" title="statement not covered" >                var body_1 = _this.dom.query('body');</span>
+<span class="cstat-no" title="statement not covered" >                var section = _this.dom.querySelector(body_1, '#' + component.componentSelector);</span>
+<span class="cstat-no" title="statement not covered" >                var tabindex = section.getAttribute('tabindex');</span>
+<span class="cstat-no" title="statement not covered" >                _this.menuScrolling = false;</span>
+<span class="cstat-no" title="statement not covered" >                if (tabindex &amp;&amp; tabindex !== '0') {</span>
+<span class="cstat-no" title="statement not covered" >                    section.focus();</span>
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        _this.dom.querySelector(body_1, 'a[href$="#' + component.componentSelector + '"]').focus();</span>
+                    });
+                }
+            }
+        });
+    };
+    AmpStandAloneMenuComponent.prototype.unSubscribeFromEvents = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.scrollSubscription) {</span>
+<span class="cstat-no" title="statement not covered" >            this.scrollSubscription.unsubscribe();</span>
+        }
+    };
+    __decorate([
+        core_1.ViewChild('menu'), 
+        __metadata('design:type', Object)
+    ], AmpStandAloneMenuComponent.prototype, "menu", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpStandAloneMenuComponent.prototype, "mainContentSelector", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], AmpStandAloneMenuComponent.prototype, "menuOffset", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpStandAloneMenuComponent.prototype, "theme", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpStandAloneMenuComponent.prototype, "sectionsToHide", void 0);
+    AmpStandAloneMenuComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-standalone-menu',
+            template: require('./amp-standalone-menu.component.html').toString(),
+            styles: [require('./amp-standalone-menu.scss').toString()],
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
+            animations: [
+                core_1.trigger('openClosed', [
+                    core_1.state('closed, void', core_1.style({
+                        height: '*'
+                    })),
+                    core_1.state('open', core_1.style({
+                        height: '100%'
+                    })),
+                    core_1.transition('closed &lt;=&gt; open', [core_1.animate('450ms ease-in')])
+                ])
+            ]
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof browser_adapter_1.BrowserDomAdapter !== 'undefined' &amp;&amp; browser_adapter_1.BrowserDomAdapter) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_b = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_c = typeof scroll_service_1.ScrollService !== 'undefined' &amp;&amp; scroll_service_1.ScrollService) === 'function' &amp;&amp; _c) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpStandAloneMenuComponent);
+    return AmpStandAloneMenuComponent;
+<span class="cstat-no" title="statement not covered" >    var _a, _b, _c;</span>
+}());
+exports.AmpStandAloneMenuComponent = AmpStandAloneMenuComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXN0YW5kYWxvbmUtbWVudS5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbXAtc3RhbmRhbG9uZS1tZW51LmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBY08sZUFBZSxDQUFDLENBQUE7QUFDdkIsZ0NBQWtDLHVEQUF1RCxDQUFDLENBQUE7QUFHMUYsK0JBQThCLDRDQUE0QyxDQUFDLENBQUE7QUFDM0UsMEJBQXlCLGdEQUFnRCxDQUFDLENBQUE7QUFxQjFFO0lBb0JJLG9DQUFzQixHQUF1QixFQUN2QixFQUFzQixFQUN0QixhQUE2QjtRQUY3QixRQUFHLEdBQUgsR0FBRyxDQUFvQjtRQUN2QixPQUFFLEdBQUYsRUFBRSxDQUFvQjtRQUN0QixrQkFBYSxHQUFiLGFBQWEsQ0FBZ0I7UUFwQm5ELHlFQUF5RTtRQUNoRSx3QkFBbUIsR0FBWSxNQUFNLENBQUM7UUFDdEMsZUFBVSxHQUFxQixDQUFDLENBQUM7UUFDakMsVUFBSyxHQUEwQixPQUFPLENBQUM7UUFDdkMsbUJBQWMsR0FBbUIsRUFBRSxDQUFDO1FBQ3RDLGFBQVEsR0FBeUIsS0FBSyxDQUFDO1FBQ3RDLGFBQVEsR0FBd0IsRUFBRSxDQUFDO1FBQ25DLHFCQUFnQixHQUFnQixJQUFJLENBQUM7UUFDckMsYUFBUSxHQUF3QixJQUFJLENBQUM7UUFDckMsZUFBVSxHQUFzQixPQUFPLENBQUMsQ0FBQyw4QkFBOEI7UUFDdkUsV0FBTSxHQUEwQixLQUFLLENBQUM7UUFDdEMsd0JBQW1CLEdBQVksRUFBRSxDQUFDO1FBSWxDLGtCQUFhLEdBQWEsS0FBSyxDQUFDO1FBQ2hDLGVBQVUsR0FBWSxRQUFRLENBQUM7UUFLbkMsSUFBSSxDQUFDLFFBQVEsR0FBWSxJQUFJLG9CQUFRLEVBQUUsQ0FBQztRQUN4QyxJQUFJLENBQUMsaUJBQWlCLEdBQUcsYUFBYSxDQUFDLFNBQVMsQ0FBQztJQUNyRCxDQUFDO0lBRUQsNkNBQVEsR0FBUjtRQUFBLGlC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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for modules/amp-utils/form-utils.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">modules/amp-utils/</a> form-utils.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.66% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.66% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/47</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var moment = require('moment');
+var FormUtils = (function () {
+<span class="fstat-no" title="function not covered" >    function FormUtils() {</span>
+    }
+    FormUtils.getControlByName = <span class="fstat-no" title="function not covered" >function (_parentGroup, _controlName) {</span>
+<span class="cstat-no" title="statement not covered" >        return _parentGroup.controls[_controlName];</span>
+    };
+    FormUtils.getSelectorNameOfClassName = <span class="fstat-no" title="function not covered" >function (className) {</span>
+<span class="cstat-no" title="statement not covered" >        var split = this.splitStringByCapital(className);</span>
+<span class="cstat-no" title="statement not covered" >        split.pop();</span>
+<span class="cstat-no" title="statement not covered" >        return split.join('-').toLowerCase();</span>
+    };
+    FormUtils.splitStringByCapital = <span class="fstat-no" title="function not covered" >function (str) {</span>
+<span class="cstat-no" title="statement not covered" >        return str.split(/(?=[A-Z])/);</span>
+    };
+    FormUtils.stringToDate = <span class="fstat-no" title="function not covered" >function (_date, _format, _delimiter) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_date === null) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var formatLowerCase = _format.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >        var formatItems = formatLowerCase.split(_delimiter);</span>
+<span class="cstat-no" title="statement not covered" >        var dateItems = _date.split(_delimiter);</span>
+<span class="cstat-no" title="statement not covered" >        if (dateItems.length &lt; 3) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; dateItems.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (isNaN(dateItems[i])) {</span>
+<span class="cstat-no" title="statement not covered" >                return null;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        var monthIndex = formatItems.indexOf('mm');</span>
+<span class="cstat-no" title="statement not covered" >        var dayIndex = formatItems.indexOf('dd');</span>
+<span class="cstat-no" title="statement not covered" >        var yearIndex = formatItems.indexOf('yyyy');</span>
+<span class="cstat-no" title="statement not covered" >        var month = parseInt(dateItems[monthIndex], 10) - 1;</span>
+<span class="cstat-no" title="statement not covered" >        return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);</span>
+    };
+    ;
+    FormUtils.getDatesDiff = <span class="fstat-no" title="function not covered" >function (fromDate, toDate) {</span>
+<span class="cstat-no" title="statement not covered" >        var date1 = this.stringToDate(fromDate, 'dd/MM/yyyy', '/');</span>
+<span class="cstat-no" title="statement not covered" >        var date2 = this.stringToDate(toDate, 'dd/MM/yyyy', '/');</span>
+<span class="cstat-no" title="statement not covered" >        var timeDiff = Math.abs(date2.getTime() - date1.getTime());</span>
+<span class="cstat-no" title="statement not covered" >        return Math.ceil(timeDiff / (1000 * 3600 * 24));</span>
+    };
+    ;
+    FormUtils.getAge = <span class="fstat-no" title="function not covered" >function (birthday) {</span>
+<span class="cstat-no" title="statement not covered" >        var birthdayDate = moment(birthday, 'DD/MM/YYYY');</span>
+<span class="cstat-no" title="statement not covered" >        var age = moment().diff(birthdayDate, 'years');</span>
+<span class="cstat-no" title="statement not covered" >        return age;</span>
+    };
+    FormUtils.getAgeDays = <span class="fstat-no" title="function not covered" >function (_todate) {</span>
+<span class="cstat-no" title="statement not covered" >        var date1 = new Date();</span>
+<span class="cstat-no" title="statement not covered" >        var date2 = this.stringToDate(_todate, 'dd/MM/yyyy', '/');</span>
+<span class="cstat-no" title="statement not covered" >        if (!date2) {</span>
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var timeDiff = date2.getTime() - date1.getTime();</span>
+<span class="cstat-no" title="statement not covered" >        return Math.ceil(timeDiff / (1000 * 3600 * 24));</span>
+    };
+    FormUtils.isValidDate = <span class="fstat-no" title="function not covered" >function (_date) {</span>
+<span class="cstat-no" title="statement not covered" >        return _date</span>
+            &amp;&amp; typeof _date === 'string'
+            &amp;&amp; _date.match(/^\d{2}\/\d{2}\/\d{4}$/)
+            &amp;&amp; moment(_date, 'DD/MM/YYYY').isValid();
+    };
+    return FormUtils;
+}());
+exports.FormUtils = FormUtils;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9ybS11dGlscy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImZvcm0tdXRpbHMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLElBQVksTUFBTSxXQUFNLFFBQVEsQ0FBQyxDQUFBO0FBQ2pDO0lBQUE7SUFrRUEsQ0FBQztJQWpFaUIsMEJBQWdCLEdBQTlCLFVBQWlDLFlBQXdCLEVBQUcsWUFBcUI7UUFDN0UsTUFBTSxDQUFDLFlBQVksQ0FBQyxRQUFRLENBQUUsWUFBWSxDQUFFLENBQUM7SUFDakQsQ0FBQztJQUVhLG9DQUEwQixHQUF4QyxVQUEyQyxTQUFTO1FBQ2hELElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxvQkFBb0IsQ0FBRSxTQUFTLENBQUUsQ0FBQztRQUNuRCxLQUFLLENBQUMsR0FBRyxFQUFFLENBQUM7UUFDWixNQUFNLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBRSxHQUFHLENBQUUsQ0FBQyxXQUFXLEVBQUUsQ0FBQztJQUMzQyxDQUFDO0lBRWEsOEJBQW9CLEdBQWxDLFVBQXFDLEdBQVk7UUFDN0MsTUFBTSxDQUFDLEdBQUcsQ0FBQyxLQUFLLENBQUUsV0FBVyxDQUFFLENBQUM7SUFDcEMsQ0FBQztJQUVhLHNCQUFZLEdBQTFCLFVBQTZCLEtBQUssRUFBRyxPQUFPLEVBQUcsVUFBVTtRQUNyRCxFQUFFLENBQUMsQ0FBRSxLQUFLLEtBQUssSUFBSyxDQUFDLENBQUMsQ0FBQztZQUNuQixNQUFNLENBQUMsSUFBSSxDQUFDO1FBQ2hCLENBQUM7UUFDRCxJQUFJLGVBQWUsR0FBRyxPQUFPLENBQUMsV0FBVyxFQUFFLENBQUM7UUFDNUMsSUFBSSxXQUFXLEdBQU8sZUFBZSxDQUFDLEtBQUssQ0FBRSxVQUFVLENBQUUsQ0FBQztRQUMxRCxJQUFJLFNBQVMsR0FBUyxLQUFLLENBQUMsS0FBSyxDQUFFLFVBQVUsQ0FBRSxDQUFDO1FBQ2hELEVBQUUsQ0FBQyxDQUFFLFNBQVMsQ0FBQyxNQUFNLEdBQUcsQ0FBRSxDQUFDLENBQUMs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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:10:48 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

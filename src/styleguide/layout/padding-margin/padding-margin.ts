@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 
 @Component( {
     selector    : 'padding-margin' ,
-    templateUrl : 'src/styleguide/layout/padding-margin/padding-margin.html' ,
-    styles      : [ require( './padding-margin.scss' ).toString() ] ,
-    directives  : []
+    templateUrl : './padding-margin.html' ,
+    styles      : [ require( './padding-margin.scss' ).toString() ]
 } )
 
-export default class PaddingMargin {
+export default class PaddingMarginBasicUsage {
 }

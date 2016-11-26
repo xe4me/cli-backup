@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 2.1.1 (Mac OS X 0.0.0)" package="" timestamp="2016-11-26T13:17:57" id="0" hostname="milads-MacBook-Pro.local" tests="178" errors="0" failures="0" time="50.631">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
+  </properties>
+  <testcase name="Amp File Upload service Should return a valid token url" time="0.003" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Amp File Upload service"/>
+  <testcase name="Amp File Upload service Should return a valid upload url" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Amp File Upload service"/>
+  <testcase name="AmpCurrencyPipe transforms 10 to $10" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).AmpCurrencyPipe"/>
+  <testcase name="AmpCurrencyPipe transforms 10 to $10.00" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).AmpCurrencyPipe"/>
+  <testcase name="AmpCurrencyPipe transforms 10000 to $10,000" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).AmpCurrencyPipe"/>
+  <testcase name="QAS address service  Query should have a method called query" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).QAS address service "/>
+  <testcase name="QAS address service  Query it should always return an Observable" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).QAS address service "/>
+  <testcase name="QAS address service  Query it should return an observable of the search result if the search term is Pymble" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).QAS address service "/>
+  <testcase name="QAS address service  Query if should return and Observable of null if the search term is NOTPymble" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).QAS address service "/>
+  <testcase name="QAS address service  Query it should return an observable of error if the server error is not formatted , that contains Server error" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).QAS address service "/>
+  <testcase name="QAS address service  Query it should return an observable of error if the QAS server is not responding" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).QAS address service "/>
+  <testcase name="Utils  toTitleCase  should convert all the words in the string to be title case" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Utils "/>
+  <testcase name="Utils  toTitleCase  should convert single word to title case" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Utils "/>
+  <testcase name="Utils  toTitleCase  should return null if the word is null" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Utils "/>
+  <testcase name="Utils  toTitleCase  should return the number if the word is a number" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Utils "/>
+  <testcase name="Model Reducer UPDATE should return the state untouched if the action is undefined" time="0.027" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Model"/>
+  <testcase name="Model Reducer UPDATE should update the contactNumber in the model based on the fully distinguished name provider (fdn), object lookup only" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Model"/>
+  <testcase name="Model Reducer UPDATE should update the phone in telehpnes array in the model based on the fully distinguished name provider (fdn) , array and object lookups" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Model"/>
+  <testcase name="Model Reducer PUSH should Add an item to the specified array in the provider fdn" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Model"/>
+  <testcase name="Model Reducer REMOVE should Remove specified item from the specified array in the provider fdn" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Model"/>
+  <testcase name="Model Reducer REMOVE should Remove all the items from the specified array in the provider fdn" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Model"/>
+  <testcase name="Store Service Select it should get section corresponded to fdn from the store" time="0.185" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Store Service"/>
+  <testcase name="Store Service Select it should update the store and then the subscriber should get that change" time="0.087" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Store Service"/>
+  <testcase name="Store Service Select subscriber to the store should only called once if the update has not met debounceTime" time="0.074" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Store Service"/>
+  <testcase name="Store Service Select subscriber to the store should only called once if the update has not actually changed the model" time="0.039" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Store Service"/>
+  <testcase name="Fetch advisor profile from server gets the profile with an http call to /profile." time="0.034" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Fetch advisor profile from server"/>
+  <testcase name="AmpDate public date methods Should have a &quot;today&quot; getter which provides today's date in the dd/mm/yyyy format" time="0.019" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).AmpDate public date methods"/>
+  <testcase name="AmpDate public date methods Should return a number which is the different between 2 dates that is provided to the function " time="0.021" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).AmpDate public date methods"/>
+  <testcase name="AmpDate public date methods Should return a Date object created from the date string in the provided format" time="0.01" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).AmpDate public date methods"/>
+  <testcase name="AmpDate public date methods Should return null if the string provided is null or not in the correct date format" time="0.014" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).AmpDate public date methods"/>
+  <testcase name="Fetch context from server gets the context with an http call to /usersession." time="0.048" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Fetch context from server"/>
+  <testcase name="Save model to the server Saves the model with an http POST call to /saveTheWorld." time="0.034" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Save model to the server"/>
+  <testcase name="Save model to the server Fails to save the model with an http POST call to /saveTheWorld." time="0.05" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Save model to the server"/>
+  <testcase name="Save model to the server Throws an exception because no URL was set." time="0.056" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Save model to the server"/>
+  <testcase name="amp-review Item Item with a label AND value BUT NO frequency Should display the label AND value" time="0.189" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Item"/>
+  <testcase name="amp-review Item Item with a label AND value AND frequency Should display the label AND value WITH the frequency" time="0.14" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Item"/>
+  <testcase name="amp-review Item Item with a label but NO value OR frequency Should display the label AND a dash (-) for the value" time="0.115" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Item"/>
+  <testcase name="amp-review Item Item with a label AND frequency BUT NO value Should display the label AND a dash (-) for the value BUT NOT display a frequency" time="0.094" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Item"/>
+  <testcase name="amp-review Section Section WITH a title AND content inside the tags Should add a title if one is supplied" time="0.13" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Section"/>
+  <testcase name="amp-review Section Section WITH a title AND content inside the tags Should wrap any html that is placed inside of the element tags (ie transcluded)" time="0.098" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Section"/>
+  <testcase name="amp-review Section Section WITHOUT a title Should NOT display a title if title is NOT supplied" time="0.111" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Section"/>
+  <testcase name="amp-review Section Section WITH change link Should display a change link" time="0.103" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Section"/>
+  <testcase name="amp-review Section Section WITH change link Should call the change callback with the callback target WHEN the link is clicked" time="0.106" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Section"/>
+  <testcase name="amp-review Section Section WITHOUT change link Should NOT display a change link" time="0.095" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Section"/>
+  <testcase name="amp-review Total Total with a label AND value BUT NO frequency Should display the label AND value" time="0.092" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Total"/>
+  <testcase name="amp-review Total Item with a label AND value AND frequency Should display the label AND value WITH the frequency" time="0.096" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Total"/>
+  <testcase name="amp-review Total Item with a label but NO value OR frequency Should display the label AND a dash (-) for the value" time="0.079" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Total"/>
+  <testcase name="amp-review Total Item with a label AND frequency BUT NO value Should display the label AND a dash (-) for the value BUT NOT display a frequency" time="0.096" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-review Total"/>
+  <testcase name="amp-account-number component should contain an input text element with the correct name, max value, id and data-automation-id attribute" time="0.327" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-account-number component"/>
+  <testcase name="amp-account-number component should be invalid if longer than 9 digits" time="0.306" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-account-number component"/>
+  <testcase name="amp-account-number component should be invalid if shorter than 9 digits" time="0.278" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-account-number component"/>
+  <testcase name="amp-account-number component should be valid if exactly 9 digits" time="0.306" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-account-number component"/>
+  <testcase name="amp-account-number component should be invalid if contains non-numeric characters" time="0.306" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-account-number component"/>
+  <testcase name="amp-checkbox component Should contain 1 checkbox input field with proper data-automation-id and name attributes " time="0.1" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-checkbox component"/>
+  <testcase name="amp-checkbox component Should be required initially when required attr has set to true and the control should be invalid " time="0.076" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-checkbox component"/>
+  <testcase name="amp-checkbox component Should have the control with validity as true ,  after setting the required attr to false " time="0.078" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-checkbox component"/>
+  <testcase name="amp-checkbox component Should be checked initially if the checked attr has set to true" time="0.095" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-checkbox component"/>
+  <testcase name="amp-checkbox component Should be in summary mode if isInSummaryState is set to true " time="0.083" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-checkbox component"/>
+  <testcase name="amp-checkbox component Should emit a select event to the parent component after clicking on the checkbox " time="0.086" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-checkbox component"/>
+  <testcase name="amp-checkbox component Should update the control value to true after clicking on the checkbox " time="0.092" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-checkbox component"/>
+  <testcase name="amp-contact-number component should contain a label as Contact Number" time="0.488" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-contact-number component"/>
+  <testcase name="amp-contact-number component should contain an input text element with the correct name, id and data-automation-id attribute" time="0.451" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-contact-number component"/>
+  <testcase name="amp-contact-number component should be required it it is empty" time="0.479" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-contact-number component"/>
+  <testcase name="amp-contact-number component should have pattern error if the length is less than 8 character" time="0.541" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-contact-number component"/>
+  <testcase name="amp-contact-number component should have maxLength error if the length is less than 20 character" time="0.503" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-contact-number component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Dropdown component should be defiend" time="0.435" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Should contain 1 input field with proper data-automation-id and name attributes " time="0.44" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Should contain 1 select field with proper data-automation-id and name attributes " time="0.444" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Select should have options" time="0.424" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Should have a controlGroup which has two controls" time="0.485" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Click on the first item should set query control and selectedControl and should select the dropdown" time="0.43" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Click on the deselect button should empty the query control and selectedControl inside the dropdown" time="0.461" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Click on the first option of the hidden select should select the item " time="0.456" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup should mark the controlGroup as touched as soon as selected an item " time="0.505" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup should not mark the controlGroup as touched if its pragmatically selected" time="0.413" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup Setting the value to an option that is not in the list should not change the controls value (should not select)" time="0.478" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup should fire an $selected event up to parent component when seleing an item " time="0.46" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup should not fire a selected event if selecting the same option" time="0.417" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup should fire selected event after setting the value pragmatically" time="0.481" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup should fire selected event after setting the value to null " time="0.384" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With empty controlGroup should not be marked as touched initially" time="0.438" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With retrieved controlGroup it should be preselected if the controlGroup has values initially" time="0.389" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With retrieved controlGroup should empty all the controls and selectedElement object" time="0.428" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-dropdown component With retrieved controlGroup should not be marked as touched initially" time="0.418" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-dropdown component"/>
+  <testcase name="amp-email component should contain a label as Email" time="0.285" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-email component"/>
+  <testcase name="amp-email component should contain an input text element with the correct name, id and data-automation-id attribute" time="0.294" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-email component"/>
+  <testcase name="amp-email component should be required" time="0.282" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-email component"/>
+  <testcase name="amp-email component should be invalid if it has wrong value " time="0.258" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-email component"/>
+  <testcase name="amp-email component should be invalid if it has correct email but is more than 50 character" time="0.264" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-email component"/>
+  <testcase name="amp-email component should be valid if its passed required test and has a lower than 50 character length email" time="0.289" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-email component"/>
+  <testcase name="amp-file-upload component &quot;File Upload&quot; button Should contain a button" time="0.23" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-file-upload component"/>
+  <testcase name="amp-file-upload component &quot;File Upload&quot; button Button should contain &quot;File Upload&quot; text" time="0.208" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-file-upload component"/>
+  <testcase name="amp-file-upload component File input element should contain a file input element" time="0.213" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-file-upload component"/>
+  <testcase name="amp-file-upload component File input element Function &quot;updateToken&quot; should get called on click of &quot;input&quot; element" time="0.218" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-file-upload component"/>
+  <testcase name="amp-google-recaptcha component Should create the amp google recaptcha component" time="0.044" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-google-recaptcha component"/>
+  <testcase name="amp-group-buttons directive Should contain 2 radio input field  with proper data-automation-id and name attributes " time="0.08" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-group-buttons directive"/>
+  <testcase name="amp-group-buttons directive Should contain 2 label field with proper text " time="0.112" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-group-buttons directive"/>
+  <testcase name="amp-group-buttons directive Should update component control value to full after clicking on Full button" time="0.084" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-group-buttons directive"/>
+  <testcase name="amp-group-buttons directive Should make the Full button checked after the Component programmatically updated its control value" time="0.069" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-group-buttons directive"/>
+  <testcase name="amp-group-buttons directive Should make all the inputs unchecked " time="0.095" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-group-buttons directive"/>
+  <testcase name="amp-input component correct attributes should be set should contain a label element with name as value and firstname as for attribute" time="0.275" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-input component"/>
+  <testcase name="amp-input component correct attributes should be set should contain an input text element with the correct name, id and data-automation-id attribute" time="0.288" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-input component"/>
+  <testcase name="amp-input component &quot;valDate&quot; attribute should correctly validate date data should be invalid if not invalid date and &quot;valDate&quot; property is set" time="0.279" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-input component"/>
+  <testcase name="amp-input component &quot;valDate&quot; attribute should correctly validate date data should be valid if valid date and &quot;valDate&quot; property is set" time="0.273" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-input component"/>
+  <testcase name="amp-qas-address component testComponentControlGroup should be defined " time="0.721" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component _manualAddressCmp should be defined " time="0.722" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component controls to be defined" time="0.733" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component controls value to be null initially except Country control" time="0.716" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component It should have the country dropdown always, preselected with Australia and the value should beAustralia" time="0.671" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected Australia it should have Street address , Suburb , State and Postcode visible and mandatory" time="0.66" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected Australia  City should be defined but not visible and not mandatory" time="0.787" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected Australia  Suburb should have a label of suburb" time="0.94" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected NewZealand Suburb should not be required and should be valid (should be optional)" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component">
+    <skipped/>
+  </testcase>
+  <testcase name="amp-qas-address component When selected not Australia and not NewZealand Postcode should not be required and should be valid (should be optional)" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component">
+    <skipped/>
+  </testcase>
+  <testcase name="amp-qas-address component testComponentControlGroup should be defined " time="0.808" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component _manualAddressCmp should be defined " time="0.732" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component controls to be defined" time="0.682" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component controls value to be null initially except Country control" time="0.829" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component It should have the country dropdown always, preselected with Australia and the value should beAustralia" time="0.854" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected Australia it should have Street address , Suburb , State and Postcode visible and mandatory" time="1.132" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected Australia  City should be defined but not visible and not mandatory" time="1.348" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected Australia  Suburb should have a label of suburb" time="0.864" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected NewZealand Suburb should not be required and should be valid (should be optional)" time="0.82" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected not Australia and not NewZealand Postcode should not be required and should be valid (should be optional)" time="0.901" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component When selected not Australia and not NewZealand Suburb should NOT be required " time="1.038" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-password component correct attributes should be set should contain a label element with name as value and password as for attribute" time="0.591" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-password component"/>
+  <testcase name="amp-password component correct attributes should be set should contain an input text element with the correct name, id and data-automation-id attribute" time="0.491" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-password component"/>
+  <testcase name="amp-qas-address component testComponentControlGroup should be defined " time="1.089" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component testComponentControlGroup should have a  controlGroup named search" time="1.006" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component qas controlGroup should have two controls corresponding to the ids provided " time="0.833" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-qas-address component should have a amp-error component that has the same controlGroup as qasAddressComponent" time="0.812" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-qas-address component"/>
+  <testcase name="amp-radio-group-button component , multiple items usage Should contain 4 radio input fields with proper data-automation-id and name attributes " time="0.105" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-radio-group-button component , multiple items usage"/>
+  <testcase name="amp-radio-group-button component , multiple items usage Should update the control value after selecting the first radio option and this value should be null initially" time="0.1" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-radio-group-button component , multiple items usage"/>
+  <testcase name="amp-radio-group-button component , multiple items usage Should emit a &quot;select&quot; event to it's parent after selecting one of the radio options " time="0.083" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-radio-group-button component , multiple items usage"/>
+  <testcase name="amp-radio-group-button component , single item usage Should contain 1 radio input field with proper data-automation-id and name attributes " time="0.116" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-radio-group-button component , single item usage"/>
+  <testcase name="amp-radio-group-button component , single item usage Should be able to preselect if there is only one option and autoSelectOnOne attr is set to true" time="0.09" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-radio-group-button component , single item usage"/>
+  <testcase name="amp-radio-group-button component , single item usage Should have one label field with the correct text" time="0.094" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-radio-group-button component , single item usage"/>
+  <testcase name="amp standalone menu tests amp-standalone-menu check for shown element " time="0.099" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp standalone menu tests"/>
+  <testcase name="amp-street-types component Should contain 1 dropdown input field with proper data-automation-id and name attributes " time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-street-types component">
+    <skipped/>
+  </testcase>
+  <testcase name="amp-textarea component Should contain 1 textarea input field with proper data-automation-id and name attributes " time="0.172" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-textarea component"/>
+  <testcase name="amp-textarea component Should contain a label with for attribute pointed to the id" time="0.152" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-textarea component"/>
+  <testcase name="amp-textarea component Should not show the character count if the maxLength is not provided or if it's 0" time="0.171" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-textarea component"/>
+  <testcase name="amp-typeahead component controlGroup and controls  testComponentControlGroup should be defined " time="0.344" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component controlGroup and controls  _cmpControlGroup should be defined " time="0.403" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component controlGroup and controls  _cmpControlGroup should should have two controls one for the input and one for the selected item " time="0.402" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component controlGroup and controls  _cmpControlGroup value should have null values initially  " time="0.454" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Component native elements and tags should not have any ul element initially and should isOptionsHidden be true    " time="0.515" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Component native elements and tags should open the search result after focus on the input , if the options are provided " time="0.573" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Component native elements and tags should have as many list element as provider options , after focusing without typing typing(filtering)" time="0.453" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Component native elements and tags should close the dropdown upon clicking oputside of the typeahead typing(filtering)" time="0.496" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Component native elements and tags should have a Dropdown of maxheight:250px which represents the 5 item visible" time="0.461" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls should update the AmpTypeahead control and controlGroup when typing inside the search input" time="0.473" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls should update the AmpTypeahead control and selectedControl and controlGroup after selecting an option" time="0.45" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls control group should be valid if select an option" time="0.411" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls should empty the selectedControl after selecting an option and typing again " time="0.429" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls control should have an invalidSearch error if update the input after selecting an option" time="0.375" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls controlGroup should be valid after selecting , updating , selecting again !!! " time="0.417" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls control should only have required error after selecting and the removing the text " time="0.405" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-typeahead component Typing and updating controls control should only have invalidSearch error after updating the text but not selecting" time="0.392" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-typeahead component"/>
+  <testcase name="amp-number-only directive Input element should exist" time="0.381" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-number-only directive"/>
+  <testcase name="amp-number-only directive Input element should allow numeric values" time="0.356" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-number-only directive"/>
+  <testcase name="amp-number-only directive Input element should not allow non-numeric values" time="0.377" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-number-only directive"/>
+  <testcase name="amp-number-only directive Input element should only strip non-numeric characters leaving the numeric characters" time="0.369" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).amp-number-only directive"/>
+  <testcase name="Basic Util functions test Format String to Number" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Basic Util functions test"/>
+  <testcase name="Basic Util functions test Prefix currency symbol to string" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Basic Util functions test"/>
+  <testcase name="Basic Util functions test Format Australian address correctly" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Basic Util functions test"/>
+  <testcase name="Basic Util functions test Format New Zealand address correctly" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Basic Util functions test"/>
+  <testcase name="Basic Util functions test Format UK address correctly" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Basic Util functions test"/>
+  <testcase name="Basic Util functions test Get user data from base64 encoded string" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Basic Util functions test"/>
+  <testcase name="Dom Utils functions test Dom Utils check if the div is found" time="0.038" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Dom Utils functions test"/>
+  <testcase name="Dom Utils functions test Dom Utils check if the div is found and has a class on it" time="0.042" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Dom Utils functions test"/>
+  <testcase name="Dom Utils functions test Dom Utils check if the div is found and we can add a class to it" time="0.036" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Dom Utils functions test"/>
+  <testcase name="Dom Utils functions test Dom Utils check if the div is found and we have removed classes" time="0.038" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Dom Utils functions test"/>
+  <testcase name="Dom Utils functions test Dom Utils check if the div is visible (display property)" time="0.125" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Dom Utils functions test"/>
+  <testcase name="Dom Utils functions test Dom Utils check if the div is visible (opacity property)" time="0.043" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Dom Utils functions test"/>
+  <testcase name="Dom Utils functions test Dom Utils check if the div is visible (height property)" time="0.031" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Dom Utils functions test"/>
+  <testcase name="Functions tests String Template works correctly with object literal" time="0.001" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Functions tests"/>
+  <testcase name="Functions tests String Template works correctly with array" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Functions tests"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

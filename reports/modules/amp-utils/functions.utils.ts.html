@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for modules/amp-utils/functions.utils.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">modules/amp-utils/</a> functions.utils.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">45.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>32/70</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.13% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">46.27% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>31/67</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">85×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+<span class="fstat-no" title="function not covered" >function isPresent(_thing) {</span>
+<span class="cstat-no" title="statement not covered" >    return _thing &amp;&amp; _thing !== null;</span>
+}
+exports.isPresent = isPresent;
+<span class="fstat-no" title="function not covered" >function isTrue(value) {</span>
+<span class="cstat-no" title="statement not covered" >    return isPresent(value) &amp;&amp; (value === true || value === 'true' || false);</span>
+}
+exports.isTrue = isTrue;
+<span class="fstat-no" title="function not covered" >function generateRandomString() {</span>
+<span class="cstat-no" title="statement not covered" >    return Math.random().toString(36).substr(2, 9) + (new Date()).getTime().toString(32);</span>
+}
+exports.generateRandomString = generateRandomString;
+<span class="fstat-no" title="function not covered" >function arrayJoinByDash(_array) {</span>
+<span class="cstat-no" title="statement not covered" >    return _array.join('-');</span>
+}
+exports.arrayJoinByDash = arrayJoinByDash;
+function getIn(_fdn, _state, _deep) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (_deep === void 0) { _deep = 1; }
+    for (var i = 0; i &lt; (_fdn.length - _deep); i++) {
+        _state = _state[_fdn[i]];
+    }
+    return _state;
+}
+exports.getIn = getIn;
+function clone(_obj) {
+    return JSON.parse(JSON.stringify(_obj));
+}
+exports.clone = clone;
+<span class="fstat-no" title="function not covered" >function addDashOrNothing(_thing) {</span>
+<span class="cstat-no" title="statement not covered" >    return _thing !== undefined ? ('_' + _thing) : '';</span>
+}
+exports.addDashOrNothing = addDashOrNothing;
+<span class="fstat-no" title="function not covered" >function stringTemplate(_string, _data) {</span>
+<span class="cstat-no" title="statement not covered" >    if (_data === void 0) { <span class="cstat-no" title="statement not covered" >_data = {}; </span>}</span>
+<span class="cstat-no" title="statement not covered" >    return _string.replace(/\{([0-9a-zA-Z_]+)\}/g, <span class="fstat-no" title="function not covered" >function (match, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return _data.hasOwnProperty(key) ? _data[key] : match;</span>
+    });
+}
+exports.stringTemplate = stringTemplate;
+<span class="fstat-no" title="function not covered" >function humanizeBytes(bytes) {</span>
+<span class="cstat-no" title="statement not covered" >    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];</span>
+<span class="cstat-no" title="statement not covered" >    if (bytes === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return '0 Byte';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var base = 1024;</span>
+<span class="cstat-no" title="statement not covered" >    var exponent = Math.floor(Math.log(bytes) / Math.log(base));</span>
+<span class="cstat-no" title="statement not covered" >    return parseFloat((bytes / Math.pow(base, exponent)).toFixed(2)) + ' ' + sizes[exponent];</span>
+}
+exports.humanizeBytes = humanizeBytes;
+<span class="fstat-no" title="function not covered" >function applyCss(property, element, transformValue) {</span>
+<span class="cstat-no" title="statement not covered" >    element.style[property] = transformValue.trim();</span>
+}
+exports.applyCss = applyCss;
+<span class="fstat-no" title="function not covered" >function getQueryParam(paramName) {</span>
+<span class="cstat-no" title="statement not covered" >    var query = decodeURIComponent(window.location.search.substring(1));</span>
+<span class="cstat-no" title="statement not covered" >    var params = query.split('&amp;');</span>
+<span class="cstat-no" title="statement not covered" >    var value = '';</span>
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; params.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        var pair = params[i].split('=');</span>
+<span class="cstat-no" title="statement not covered" >        if (pair[0] === paramName) {</span>
+<span class="cstat-no" title="statement not covered" >            value = pair[1];</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    return value;</span>
+}
+exports.getQueryParam = getQueryParam;
+/* Method : toTitleCase
+ Will convert the word to be titleCase
+ @Example :
+ this iS a String
+ becomes :
+ This Is A String
+ * */
+<span class="fstat-no" title="function not covered" >function toTitleCase(str) {</span>
+<span class="cstat-no" title="statement not covered" >    if (str === null || str === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        return str;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (!isNaN(str)) {</span>
+<span class="cstat-no" title="statement not covered" >        return str;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return str.replace(/\w\S*/g, <span class="fstat-no" title="function not covered" >function (txt) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();</span>
+    });
+}
+exports.toTitleCase = toTitleCase;
+/* Method : escapeSlash
+ Will replace the slash with the given string
+ * */
+<span class="fstat-no" title="function not covered" >function escapeSlash(str, del) {</span>
+<span class="cstat-no" title="statement not covered" >    if (del === void 0) { <span class="cstat-no" title="statement not covered" >del = ':::SLASH:::'; </span>}</span>
+<span class="cstat-no" title="statement not covered" >    if (str === null || str === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        return str;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (!isNaN(str)) {</span>
+<span class="cstat-no" title="statement not covered" >        return str;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return str.replace(/\//g, del);</span>
+}
+exports.escapeSlash = escapeSlash;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZnVuY3Rpb25zLnV0aWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZnVuY3Rpb25zLnV0aWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxtQkFBNEIsTUFBTTtJQUM5QixNQUFNLENBQUMsTUFBTSxJQUFJLE1BQU0sS0FBSyxJQUFJLENBQUM7QUFDckMsQ0FBQztBQUZlLGlCQUFTLFlBRXhCLENBQUE7QUFDRCxnQkFBeUIsS0FBSztJQUMxQixNQUFNLENBQUMsU0FBUyxDQUFFLEtBQUssQ0FBRSxJQUFJLENBQUMsS0FBSyxLQUFLLElBQUksSUFBSSxLQUFLLEtBQUssTUFBTSxJQUFJLEtBQUssQ0FBQyxDQUFDO0FBQy9FLENBQUM7QUFGZSxjQUFNLFNBRXJCLENBQUE7QUFDRDtJQUNJLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxFQUFFLENBQUMsUUFBUSxDQUFFLEVBQUUsQ0FBRSxDQUFDLE1BQU0sQ0FBRSxDQUFDLEVBQUcsQ0FBQyxDQUFFLEdBQUcsQ0FBQyxJQUFJLElBQUksRUFBRSxDQUFDLENBQUMsT0FBTyxFQUFFLENBQUMsUUFBUSxDQUFFLEVBQUUsQ0FBRSxDQUFDO0FBQ2hHLENBQUM7QUFGZSw0QkFBb0IsdUJBRW5DLENBQUE7QUFDRCx5QkFBa0MsTUFBTTtJQUNwQyxNQUFNLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBRSxHQUFHLENBQUUsQ0FBQztBQUM5QixDQUFDO0FBRmUsdUJBQWUsa0JBRTlCLENBQUE7QUFDRCxlQUF3QixJQUF3QixFQUFHLE1BQVksRUFBRyxLQUFrQjtJQUFsQixxQkFBa0IsR0FBbEIsU0FBa0I7SUFDaEYsR0FBRyxDQUFDLENBQUUsSUFBSSxDQUFDLEdBQUcsQ0FBQyxFQUFHLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxNQUFNLEdBQUcsS0FBSyxDQUFDLEVBQUcsQ0FBQyxFQUFHLEVBQUcsQ0FBQztRQUNsRCxNQUFNLEdBQUcsTUFBTSxDQUFFLElBQUksQ0FBRSxDQUFDLENBQUUsQ0FBRSxDQUFDO0lBQ2pDLENBQUM7SUFDRCxNQUFNLENBQUMsTUFBTSxDQUFDO0FBQ2xCLENBQUM7QUFMZSxhQUFLLFFBS3BCLENBQUE7QUFDRCxlQUF3QixJQUFVO0lBQzlCLE1BQU0sQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFFLElBQUksQ0FBQyxTQUFTLENBQUUsSUFBSSxDQUFFLENBQUUsQ0FBQztBQUNoRCxDQUFDO0FBRmUsYUFBSyxRQUVwQixDQUFBO0FBQ0QsMEJBQW1DLE1BQU07SUFDckMsTUFBTSxDQUFDLE1BQU0sS0FBSyxTQUFTLEdBQUcsQ0FBQyxHQUFHLEdBQUcsTUFBTSxDQUFDLEdBQUcsRUFBRSxDQUFDO0FBQ3RELENBQUM7QUFGZSx3QkFBZ0IsbUJBRS9CLENBQUE7QUFDRCx3QkFBaUMsT0FBZ0IsRUFBRyxLQUFnQjtJQUFoQixxQkFBZ0IsR0FBaEIsVUFBZ0I7SUFDaEUsTUFBTSxDQUFDLE9BQU8sQ0FBQyxPQUFPLENBQUUsc0JBQXNCLEVBQUcsVUFBRSxLQUFLLEVBQUcsR0FBRztRQUMxRCxNQUFNLENBQUMsS0FBSyxDQUFDLGNBQWMsQ0FBRSxHQUFHLENBQUUsR0FBRyxLQUFLLENBQUUsR0FBRyxDQUFFLEdBQUcsS0FBSyxDQUFDO0lBQzlELENBQUMsQ0FBRSxDQUFDO0FBQ1IsQ0FBQztBQUplLHNCQUFjLGlCQUk3QixDQUFBO0FBQ0QsdUJBQWdDLEtBQWM7SUFDMUMsSUFBSSxLQUFLLEdBQWMsQ0FBRSxPQUFPLEVBQUcsSUFBSSxFQUFHLElBQUksRUFBRyxJQUFJLEVBQUcsSUFBSSxFQUFHLElBQUksQ0FBRSxDQUFDO0lBQ3RFLEVBQUUsQ0FBQyxDQUFFLEtBQUssS0FBSyxDQUFFLENBQUMsQ0FBQyxDQUFDO1FBQ2hCLE1BQU0sQ0FBQyxRQUFRLENBQUM7SUFDcEIsQ0FBQztJQUNELElBQUksSUFBSSxHQUFnQixJQUFJLENBQUM7SUFDN0IsSUFBSSxRQUFRLEdBQVksSUFBSSxDQUFDLEtBQUssQ0FBRSxJQUFJLENBQUMsR0FBRyxDQUFFLEtBQUssQ0FBRSxHQUFHLElBQUksQ0FBQyxHQUFHLENBQUUsSUFBSSxDQUFFLENBQUUsQ0FBQztJQUMzRSxNQUFNLENBQUMsVUFBVSxDQUFFLENBQUUsS0FBSyxHQUFHLElBQUksQ0FBQyxHQUFHLENBQUUsSUFBSSxFQUFHLFFBQVEsQ0FBRSxDQUFFLENBQUMsT0FBTyxDQUFFLENBQUMsQ0FBRSxDQUFFLEdBQUcsR0FBRyxHQUFHLEtBQUssQ0FBRSxRQUFRLENBQUUsQ0FBQztBQUN4RyxDQUFDO0FBUmUscUJBQWEsZ0JBUTVCLENBQUE7QUFDRCxrQkFBMkIsUUFBUSxFQUFHLE9BQU8sRUFBRyxjQUFjO0lBQzFELE9BQU8sQ0FBQyxLQUFLLENBQUUsUUFBUSxDQUFFLEdBQUcsY0FBYyxDQUFDLElBQUksRUFBRSxDQUFDO0FBQ3RELENBQUM7QUFGZSxnQkFBUSxXQUV2QixDQUFBO0FBQ0QsdUJBQWdDLFNBQWtCO0lBQzlDLElBQUksS0FBSyxHQUFJLGtCQUFrQixDQUFFLE1BQU0sQ0FBQyxRQUFRLENBQUMsTUFBTSxDQUFDLFNBQVMsQ0FBRSxDQUFDLENBQUUsQ0FBRSxDQUFDO0lBQ3pFLElBQUksTUFBTSxHQUFHLEtBQUssQ0FBQyxLQUFLLENBQUUsR0FBRyxDQUFFLENBQUM7SUFDaEMsSUFBSSxLQUFLLEdBQUksRUFBRSxDQUFDO0lBQ2hCLEdBQUcsQ0FBQyxDQUFFLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRyxDQUFDLEdBQUcsTUFBTSxDQUFDLE1BQU0sRUFBRyxDQUFDLEVBQUcsRUFBRyxDQUFDO1FBQzFDLElBQUksSUFBSSxHQUFHLE1BQU0sQ0FBRSxDQUFDLENBQUUsQ0FBQyxLQUFLLENBQUUsR0FBRyxDQUFFLENBQUM7UUFDcEMsRUFBRSxDQUFDLENBQUUsSUFBSSxDQUFFLENBQUMsQ0FBRSxLQUFLLFNBQVUsQ0FBQyxDQUFDLENBQUM7WUFDNUIsS0FBSyxHQUFHLElBQUksQ0FBRSxDQUFDLENBQUUsQ0FBQztZQUNsQixLQUFLLENBQUM7UUFDVixDQUFDO0lBQ0wsQ0FBQztJQUNELE1BQU0sQ0FBQyxLQUFLLENBQUM7QUFDakIsQ0FBQztBQVplLHFCQUFhLGdCQVk1QixDQUFBO0FBQ0Q7Ozs7OztLQU1LO0FBQ0wscUJBQThCLEdBQUc7SUFDN0IsRUFBRSxDQUFDLENBQUUsR0FBRyxLQUFLLElBQUksSUFBSSxHQUFHLEtBQUssU0FBVSxDQUFDLENBQUMsQ0FBQztRQUN0QyxNQUFNLENBQUMsR0FBRyxDQUFDO0lBQ2YsQ0FBQztJQUNELEVBQUUsQ0FBQyxDQUFFLENBQUUsS0FBSyxDQUFFLEdBQUcsQ0FBRyxDQUFDLENBQUMsQ0FBQztRQUNuQixNQUFNLENBQUMsR0FBRyxDQUFDO0lBQ2YsQ0FBQztJQUNELE1BQU0sQ0FBQyxHQUFHLENBQUMsT0FBTyxDQUFFLFFBQVEsRUFBRyxVQUFVLEdBQUc7UUFDeEMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUUsQ0FBQyxDQUFFLENBQUMsV0FBVyxFQUFFLEdBQUcsR0FBRyxDQUFDLE1BQU0sQ0FBRSxDQUFDLENBQUUsQ0FBQyxXQUFXLEVBQUUsQ0FBQztJQUN6RSxDQUFDLENBQUUsQ0FBQztBQUNSLENBQUM7QUFWZSxtQkFBVyxjQVUxQixDQUFBO0FBQ0Q7O0tBRUs7QUFDTCxxQkFBOEIsR0FBRyxFQUFHLEdBQW1CO0lBQW5CLG1CQUFtQixHQUFuQixtQkFBbUI7SUFDbkQsRUFBRSxDQUFDLENBQUUsR0FBRyxLQUFLLElBQUksSUFBSSxHQUFHLEtBQUssU0FBVSxDQUFDLENBQUMsQ0FBQztRQUN0QyxNQUFNLENBQUMsR0FBRyxDQUFDO0lBQ2YsQ0FBQztJQUNELEVBQUUsQ0FBQyxDQUFFLENBQUUsS0FBSyxDQUFFLEdBQUcsQ0FBRyxDQUFDLENBQUMsQ0FBQztRQUNuQixNQUFNLENBQUMsR0FBRyxDQUFDO0lBQ2YsQ0FBQztJQUNELE1BQU0sQ0FBQyxHQUFHLENBQUMsT0FBTyxDQUFFLEtBQUssRUFBRyxHQUFHLENBQUUsQ0FBQztBQUN0QyxDQUFDO0FBUmUsbUJBQVcsY0FRMUIsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:10:48 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

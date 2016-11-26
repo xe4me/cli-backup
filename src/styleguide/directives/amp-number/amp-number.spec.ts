@@ -7,7 +7,7 @@ import { FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
-import { AmpNumberDirective } from '../../../app/modules/amp-directives/directives/number/amp-number.directive';
+import { AmpDirectivesModule } from '../../../app/modules/amp-directives/amp-directives.module';
 describe( 'amp-number-only directive' , () => {
     let _fixture : any;
     let _debugElement : any;
@@ -22,10 +22,9 @@ describe( 'amp-number-only directive' , () => {
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule , AmpInputsModule ] ,
+            imports      : [ FormsModule , ReactiveFormsModule , AmpInputsModule, AmpDirectivesModule ] ,
             declarations : [
-                TestComponent ,
-                AmpNumberDirective
+                TestComponent
             ] ,
             providers    : [
                 { provide : Window , useClass : window } ,
@@ -59,11 +58,10 @@ describe( 'amp-number-only directive' , () => {
     template        : `
     <form  #formModel='ngForm' class='nl-form'>
         <amp-input
-            #inputNumeric
             [id]='__custom.controls[0].id'
             [label]='__custom.controls[0].label'
             [controlGroup]='__controlGroup'
-            [amp-number-only]="inputNumeric.control"
+            amp-number-only
             [required]='__custom.controls[0].required'
             [maxLength]='__custom.controls[0].maxLength'>
         </amp-input>

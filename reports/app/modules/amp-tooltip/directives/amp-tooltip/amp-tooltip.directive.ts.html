@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-tooltip/directives/amp-tooltip/amp-tooltip.directive.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-tooltip/directives/amp-tooltip/</a> amp-tooltip.directive.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.6% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>27/125</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>16/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.35% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.6% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>27/125</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var amp_tooltip_component_1 = require('../../components/amp-tooltip/amp-tooltip.component');
+var material_1 = require('@angular/material');
+var functions_utils_1 = require('../../../amp-utils/functions.utils');
+material_1.ConnectedPositionStrategy.prototype._setElementPosition = <span class="fstat-no" title="function not covered" >function (element, overlayPoint) {</span>
+<span class="cstat-no" title="statement not covered" >    var offsetForMargin = 40;</span>
+<span class="cstat-no" title="statement not covered" >    var offsetForUx = offsetForMargin + 12;</span>
+<span class="cstat-no" title="statement not covered" >    var elementRec = element.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >    var elementWidth = elementRec.width;</span>
+<span class="cstat-no" title="statement not covered" >    var scrollPos = this._viewportRuler.getViewportScrollPosition();</span>
+<span class="cstat-no" title="statement not covered" >    var viewportRect = this._viewportRuler.getViewportRect();</span>
+<span class="cstat-no" title="statement not covered" >    var overlayOriginRight = viewportRect.width - overlayPoint.x;</span>
+<span class="cstat-no" title="statement not covered" >    var overlayOriginLeft = overlayPoint.x;</span>
+<span class="cstat-no" title="statement not covered" >    var y = overlayPoint.y + scrollPos.top - 5;</span>
+    // if there is no room right
+<span class="cstat-no" title="statement not covered" >    if (elementWidth &gt;= overlayOriginRight) {</span>
+<span class="cstat-no" title="statement not covered" >        if (elementWidth &gt;= overlayOriginLeft) {</span>
+<span class="cstat-no" title="statement not covered" >            putInCenterX(y);</span>
+        }
+        else {
+            // if there is enough room in left
+<span class="cstat-no" title="statement not covered" >            putInLeft(overlayOriginLeft - elementWidth + offsetForUx, y);</span>
+        }
+    }
+    else {
+<span class="cstat-no" title="statement not covered" >        var transofrm = overlayOriginLeft + scrollPos.left;</span>
+        // check if there is room in left for uxOfsset other wise no uxoffset but we still need to get rid of margin
+<span class="cstat-no" title="statement not covered" >        if (overlayOriginLeft &gt; offsetForUx) {</span>
+<span class="cstat-no" title="statement not covered" >            transofrm = transofrm - offsetForUx;</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            transofrm = transofrm - offsetForMargin;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        putInOriginalPos(transofrm, y);</span>
+    }
+<span class="fstat-no" title="function not covered" >    function putInCenterX(transformY) {</span>
+<span class="cstat-no" title="statement not covered" >        material_1.applyCssTransform(element, 'translateX(-50%) translateY(' + transformY + 'px)');</span>
+<span class="cstat-no" title="statement not covered" >        functions_utils_1.applyCss('left', element, '50%');</span>
+    }
+<span class="fstat-no" title="function not covered" >    function putInOriginalPos(transformX, transformY) {</span>
+<span class="cstat-no" title="statement not covered" >        material_1.applyCssTransform(element, 'translateX(' + transformX + 'px) translateY(' + transformY + 'px)');</span>
+<span class="cstat-no" title="statement not covered" >        functions_utils_1.applyCss('left', element, 'initial');</span>
+    }
+<span class="fstat-no" title="function not covered" >    function putInLeft(transformX, transformY) {</span>
+<span class="cstat-no" title="statement not covered" >        material_1.applyCssTransform(element, 'translateX(' + (transformX) + 'px) translateY(' + transformY + 'px)');</span>
+<span class="cstat-no" title="statement not covered" >        functions_utils_1.applyCss('left', element, 'initial');</span>
+    }
+};
+var AmpTooltipDirective = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpTooltipDirective(_overlay, _elementRef, _viewContainerRef, _changeDetectionRef) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._overlay = _overlay;</span>
+<span class="cstat-no" title="statement not covered" >        this._elementRef = _elementRef;</span>
+<span class="cstat-no" title="statement not covered" >        this._viewContainerRef = _viewContainerRef;</span>
+<span class="cstat-no" title="statement not covered" >        this._changeDetectionRef = _changeDetectionRef;</span>
+<span class="cstat-no" title="statement not covered" >        this.extraClasses = '';</span>
+<span class="cstat-no" title="statement not covered" >        this.visible = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._position = 'above';</span>
+        /**
+         * Hides the tooltip and returns a promise that will resolve when the tooltip is hidden
+         */
+<span class="cstat-no" title="statement not covered" >        this.hide = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (_this.visible &amp;&amp; _this._overlayRef &amp;&amp; _this._overlayRef.hasAttached()) {</span>
+<span class="cstat-no" title="statement not covered" >                _this.visible = false;</span>
+<span class="cstat-no" title="statement not covered" >                return _this._overlayRef.detach();</span>
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        this._handleClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (_this.visible) {</span>
+<span class="cstat-no" title="statement not covered" >                    _this.hide();</span>
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    _this.show();</span>
+                }
+            });
+        };
+    }
+    Object.defineProperty(AmpTooltipDirective.prototype, "message", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._message;</span>
+        },
+        set: <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >            this._message = value;</span>
+<span class="cstat-no" title="statement not covered" >            this._updatePosition();</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpTooltipDirective.prototype, "position", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._position;</span>
+        },
+        set: <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >            if (value !== this._position) {</span>
+<span class="cstat-no" title="statement not covered" >                this._position = value;</span>
+<span class="cstat-no" title="statement not covered" >                this._createOverlay();</span>
+<span class="cstat-no" title="statement not covered" >                this._updatePosition();</span>
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AmpTooltipDirective.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this._createOverlay();</span>
+    };
+    /**
+     * Shows the tooltip and returns a promise that will resolve when the tooltip is visible
+     */
+    AmpTooltipDirective.prototype.show = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        if (!this.visible &amp;&amp; this._overlayRef &amp;&amp; !this._overlayRef.hasAttached()) {</span>
+<span class="cstat-no" title="statement not covered" >            this.visible = true;</span>
+<span class="cstat-no" title="statement not covered" >            var portal = new material_1.ComponentPortal(amp_tooltip_component_1.AmpTooltipTemplateComponent, this._viewContainerRef);</span>
+<span class="cstat-no" title="statement not covered" >            var tooltipRef = this._overlayRef.attach(portal);</span>
+<span class="cstat-no" title="statement not covered" >            tooltipRef.instance.message = this.message;</span>
+<span class="cstat-no" title="statement not covered" >            tooltipRef.instance.hide = this.hide;</span>
+<span class="cstat-no" title="statement not covered" >            tooltipRef.instance.extraClasses = this.extraClasses;</span>
+<span class="cstat-no" title="statement not covered" >            tooltipRef.changeDetectorRef.detectChanges();</span>
+<span class="cstat-no" title="statement not covered" >            this._updatePosition();</span>
+<span class="cstat-no" title="statement not covered" >            if (this.autoHideDelay) {</span>
+<span class="cstat-no" title="statement not covered" >                clearTimeout(this.autoHideDelatTimeoutRef);</span>
+<span class="cstat-no" title="statement not covered" >                this.autoHideDelatTimeoutRef = setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    _this.hide();</span>
+                }, this.autoHideDelay);
+            }
+        }
+    };
+    /**
+     * Shows/hides the tooltip and returns a promise that will resolve when it is done
+     */
+    AmpTooltipDirective.prototype.toggle = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.visible) {</span>
+<span class="cstat-no" title="statement not covered" >            this.hide();</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this.show();</span>
+        }
+    };
+    /**
+     * Create the overlay config and position strategy
+     */
+    AmpTooltipDirective.prototype._createOverlay = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._overlayRef) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.visible) {</span>
+                // if visible, hide before destroying
+<span class="cstat-no" title="statement not covered" >                this.hide();</span>
+<span class="cstat-no" title="statement not covered" >                this._createOverlay();</span>
+            }
+            else {
+                // if not visible, dispose and recreate
+<span class="cstat-no" title="statement not covered" >                this._overlayRef.dispose();</span>
+<span class="cstat-no" title="statement not covered" >                this._overlayRef = null;</span>
+<span class="cstat-no" title="statement not covered" >                this._createOverlay();</span>
+            }
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            var origin = this._getOrigin();</span>
+<span class="cstat-no" title="statement not covered" >            var position = this._getOverlayPosition();</span>
+<span class="cstat-no" title="statement not covered" >            var strategy = this._overlay.position().connectedTo(this._elementRef, origin, position);</span>
+<span class="cstat-no" title="statement not covered" >            var config = new material_1.OverlayState();</span>
+<span class="cstat-no" title="statement not covered" >            config.positionStrategy = strategy;</span>
+<span class="cstat-no" title="statement not covered" >            this._overlayRef = this._overlay.create(config);</span>
+        }
+    };
+    /**
+     * Returns the origin position based on the user's position preference
+     */
+    AmpTooltipDirective.prototype._getOrigin = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        switch (this.position) {</span>
+            case 'before':
+<span class="cstat-no" title="statement not covered" >                return { originX: 'start', originY: 'center' };</span>
+            case 'after':
+<span class="cstat-no" title="statement not covered" >                return { originX: 'end', originY: 'center' };</span>
+            case 'above':
+<span class="cstat-no" title="statement not covered" >                return { originX: 'start', originY: 'top' };</span>
+            case 'below':
+<span class="cstat-no" title="statement not covered" >                return { originX: 'center', originY: 'bottom' };</span>
+            default:
+<span class="cstat-no" title="statement not covered" >                return { originX: 'start', originY: 'top' };</span>
+        }
+    };
+    /**
+     * Returns the overlay position based on the user's preference
+     */
+    AmpTooltipDirective.prototype._getOverlayPosition = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        switch (this.position) {</span>
+            case 'before':
+<span class="cstat-no" title="statement not covered" >                return { overlayX: 'end', overlayY: 'center' };</span>
+            case 'after':
+<span class="cstat-no" title="statement not covered" >                return { overlayX: 'start', overlayY: 'center' };</span>
+            case 'above':
+<span class="cstat-no" title="statement not covered" >                return { overlayX: 'start', overlayY: 'bottom' };</span>
+            case 'below':
+<span class="cstat-no" title="statement not covered" >                return { overlayX: 'center', overlayY: 'top' };</span>
+            default:
+<span class="cstat-no" title="statement not covered" >                return { overlayX: 'start', overlayY: 'bottom' };</span>
+        }
+    };
+    AmpTooltipDirective.prototype._updatePosition = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._overlayRef) {</span>
+<span class="cstat-no" title="statement not covered" >            this._changeDetectionRef.detectChanges();</span>
+<span class="cstat-no" title="statement not covered" >            this._overlayRef.updatePosition();</span>
+        }
+    };
+    AmpTooltipDirective.prototype._handleMouseEnter = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        this.show();</span>
+    };
+    AmpTooltipDirective.prototype._handleMouseLeave = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >        this.hide();</span>
+    };
+    __decorate([
+        core_1.Input('extraClasses'), 
+        __metadata('design:type', Object)
+    ], AmpTooltipDirective.prototype, "extraClasses", void 0);
+    __decorate([
+        core_1.Input('autoHideDelay'), 
+        __metadata('design:type', Object)
+    ], AmpTooltipDirective.prototype, "autoHideDelay", void 0);
+    __decorate([
+        core_1.Input('amp-tooltip-dir'), 
+        __metadata('design:type', Object)
+    ], AmpTooltipDirective.prototype, "message", null);
+    AmpTooltipDirective = __decorate([
+        core_1.Directive({
+            selector: '[amp-tooltip-dir]',
+            host: {
+                // '(mouseenter)' : '_handleMouseEnter($event)' ,
+                // '(mouseleave)' : '_handleMouseLeave($event)' ,
+                '(click)': '_handleClick($event)',
+                '(touch)': '_handleClick($event)',
+                '[class.amp-tooltip-up-arrow]': 'visible',
+            },
+            exportAs: 'tooltip'
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof material_1.Overlay !== 'undefined' &amp;&amp; material_1.Overlay) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_b = typeof core_1.ElementRef !== 'undefined' &amp;&amp; core_1.ElementRef) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_c = typeof core_1.ViewContainerRef !== 'undefined' &amp;&amp; core_1.ViewContainerRef) === 'function' &amp;&amp; _c) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_d = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _d) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpTooltipDirective);
+    return AmpTooltipDirective;
+<span class="cstat-no" title="statement not covered" >    var _a, _b, _c, _d;</span>
+}());
+exports.AmpTooltipDirective = AmpTooltipDirective;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXRvb2x0aXAuZGlyZWN0aXZlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW1wLXRvb2x0aXAuZGlyZWN0aXZlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFBa0YsZUFBZSxDQUFDLENBQUE7QUFDbEcsc0NBQTRDLG9EQUFvRCxDQUFDLENBQUE7QUFDakcseUJBU08sbUJBQW1CLENBQUMsQ0FBQTtBQUMzQixnQ0FBeUIsb0NBQW9DLENBQUMsQ0FBQTtBQUN2RCxvQ0FBMEIsQ0FBQyxTQUFTLENBQUMsbUJBQW1CLEdBQUcsVUFBVyxPQUFPLEVBQUUsWUFBWTtJQUM5RixJQUFJLGVBQWUsR0FBRyxFQUFFLENBQUM7SUFDekIsSUFBSSxXQUFXLEdBQUcsZUFBZSxHQUFHLEVBQUUsQ0FBQztJQUN2QyxJQUFJLFVBQVUsR0FBRyxPQUFPLENBQUMscUJBQXFCLEVBQUUsQ0FBQztJQUNqRCxJQUFJLFlBQVksR0FBRyxVQUFVLENBQUMsS0FBSyxDQUFDO0lBQ3BDLElBQUksU0FBUyxHQUFHLElBQUksQ0FBQyxjQUFjLENBQUMseUJBQXlCLEVBQUUsQ0FBQztJQUNoRSxJQUFJLFlBQVksR0FBRyxJQUFJLENBQUMsY0FBYyxDQUFDLGVBQWUsRUFBRSxDQUFDO0lBQ3pELElBQUksa0JBQWtCLEdBQUcsWUFBWSxDQUFDLEtBQUssR0FBRyxZQUFZLENBQUMsQ0FBQyxDQUFDO0lBQzdELElBQUksaUJBQWlCLEdBQUcsWUFBWSxDQUFDLENBQUMsQ0FBQztJQUN2QyxJQUFJLENBQUMsR0FBRyxZQUFZLENBQUMsQ0FBQyxHQUFHLFNBQVMsQ0FBQyxHQUFHLEdBQUcsQ0FBQyxDQUFDO0lBQzNDLDRCQUE0QjtJQUM1QixFQUFFLENBQUMsQ0FBRSxZQUFZLElBQUksa0JBQW1CLENBQUMsQ0FBQyxDQUFDO1FBQ3ZDLEVBQUUsQ0FBQyxDQUFFLFlBQVksSUFBSSxpQkFBa0IsQ0FBQyxDQUFDLENBQUM7WUFDdEMsWUFBWSxDQUFFLENBQUMsQ0FBRSxD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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

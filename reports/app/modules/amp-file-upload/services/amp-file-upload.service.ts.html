@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-file-upload/services/amp-file-upload.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-file-upload/services/</a> amp-file-upload.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">39.22% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>40/102</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">38.71% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.43% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">39.22% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>40/102</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var upload_status_class_1 = require('./upload-status.class');
+var functions_utils_1 = require('../../../modules/amp-utils/functions.utils');
+var environments_abstract_1 = require('../../../abstracts/environments/environments.abstract');
+var amp_http_service_1 = require('../../../services/amp-http/amp-http.service');
+var AmpFileUploadService = (function () {
+    function AmpFileUploadService(http, ampHttp) {
+        this.http = http;
+        this.ampHttp = ampHttp;
+        this.onUpload = new core_1.EventEmitter();
+        this._tokenUrl = AmpFileUploadService.BASE_URL + '/upload/token';
+        this._uploadUrl = AmpFileUploadService.BASE_URL + '/upload/upload';
+        this._deleteUrl = AmpFileUploadService.BASE_URL + '/upload/delete';
+        this._errorMessage = 'Error in uploading the file. Please try again';
+        this._queue = [];
+    }
+    Object.defineProperty(AmpFileUploadService.prototype, "tokenUrl", {
+        get: function () {
+            return this._tokenUrl;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AmpFileUploadService.prototype.setTokenUrl = <span class="fstat-no" title="function not covered" >function (url) {</span>
+<span class="cstat-no" title="statement not covered" >        this._tokenUrl = url;</span>
+    };
+    Object.defineProperty(AmpFileUploadService.prototype, "uploadUrl", {
+        get: function () {
+            return this._uploadUrl;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpFileUploadService.prototype, "deleteUrl", {
+        get: function () {
+            return this._deleteUrl;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpFileUploadService.prototype, "errorMessage", {
+        get: function () {
+            return this._errorMessage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AmpFileUploadService.prototype.updateUrl = <span class="fstat-no" title="function not covered" >function (url) {</span>
+<span class="cstat-no" title="statement not covered" >        this._uploadUrl = url;</span>
+    };
+    AmpFileUploadService.prototype.updateFormDetails = function (formName, formId) {
+        this._formName = formName;
+        this._formId = formId;
+    };
+    AmpFileUploadService.prototype.retrieveNewToken = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var headers = new http_1.Headers({</span>
+            'Content-Type': 'application/json',
+            'caller': 'components'
+        });
+<span class="cstat-no" title="statement not covered" >        var options = new http_1.RequestOptions({</span>
+            body: '',
+            headers: headers
+        });
+<span class="cstat-no" title="statement not covered" >        return this.ampHttp.get(this.tokenUrl, options)</span>
+            .map(<span class="fstat-no" title="function not covered" >function (res) {</span> <span class="cstat-no" title="statement not covered" >return res.json(); </span>});
+    };
+    AmpFileUploadService.prototype.addFilesToQueue = <span class="fstat-no" title="function not covered" >function (files) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._queue = [];</span>
+<span class="cstat-no" title="statement not covered" >        files.forEach(<span class="fstat-no" title="function not covered" >function (file) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (_this.isFile(file)) {</span>
+<span class="cstat-no" title="statement not covered" >                _this._queue.push(file);</span>
+            }
+        });
+<span class="cstat-no" title="statement not covered" >        this.uploadFilesInQueue();</span>
+    };
+    AmpFileUploadService.prototype.uploadFilesInQueue = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._queue.forEach(<span class="fstat-no" title="function not covered" >function (f) {</span></span>
+<span class="cstat-no" title="statement not covered" >            _this.uploadFile(f);</span>
+        });
+    };
+    ;
+    AmpFileUploadService.prototype.deleteFile = <span class="fstat-no" title="function not covered" >function (fileName, formName, formId) {</span>
+<span class="cstat-no" title="statement not covered" >        var deleteUrlwithParms;</span>
+<span class="cstat-no" title="statement not covered" >        deleteUrlwithParms = this._deleteUrl + "?fileName=" + fileName + "&amp;formName=" + formName + "&amp;id=" + formId;</span>
+<span class="cstat-no" title="statement not covered" >        return this.ampHttp.post(deleteUrlwithParms, {}, {})</span>
+            .map(<span class="fstat-no" title="function not covered" >function (res) {</span> <span class="cstat-no" title="statement not covered" >return res.json(); </span>});
+    };
+    AmpFileUploadService.prototype.isFile = <span class="fstat-no" title="function not covered" >function (file) {</span>
+<span class="cstat-no" title="statement not covered" >        return file !== null &amp;&amp; (file instanceof Blob || (file.name &amp;&amp; file.size));</span>
+    };
+    AmpFileUploadService.prototype.uploadFile = <span class="fstat-no" title="function not covered" >function (file) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        var xhr = new XMLHttpRequest();</span>
+<span class="cstat-no" title="statement not covered" >        var form = new FormData();</span>
+<span class="cstat-no" title="statement not covered" >        form.append('file', file, file.name);</span>
+<span class="cstat-no" title="statement not covered" >        var uploadingFile = new upload_status_class_1.UploadStatus(file.name, file.size);</span>
+<span class="cstat-no" title="statement not covered" >        var time = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >        var load = 0;</span>
+<span class="cstat-no" title="statement not covered" >        var speed = 0;</span>
+<span class="cstat-no" title="statement not covered" >        var speedHumanized = null;</span>
+<span class="cstat-no" title="statement not covered" >        xhr.upload.onprogress = <span class="fstat-no" title="function not covered" >function (e) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (e.lengthComputable) {</span>
+<span class="cstat-no" title="statement not covered" >                time = new Date().getTime() - time;</span>
+<span class="cstat-no" title="statement not covered" >                load = e.loaded - load;</span>
+<span class="cstat-no" title="statement not covered" >                speed = load / time * 1000;</span>
+<span class="cstat-no" title="statement not covered" >                speed = parseInt(speed, 10);</span>
+<span class="cstat-no" title="statement not covered" >                speedHumanized = functions_utils_1.humanizeBytes(speed);</span>
+<span class="cstat-no" title="statement not covered" >                var percent = Math.round(e.loaded / e.total * 100);</span>
+<span class="cstat-no" title="statement not covered" >                var progressStatus = {</span>
+                    total: e.total,
+                    loaded: e.loaded,
+                    percent: percent
+                };
+<span class="cstat-no" title="statement not covered" >                if (speed !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    Object.assign(progressStatus, {</span>
+                        speed: speed,
+                        speedHumanized: speedHumanized
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                uploadingFile.setProgress(progressStatus);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            _this.onUpload.emit(uploadingFile);</span>
+        };
+<span class="cstat-no" title="statement not covered" >        xhr.upload.onabort = <span class="fstat-no" title="function not covered" >function (e) {</span></span>
+<span class="cstat-no" title="statement not covered" >            uploadingFile.setAbort();</span>
+<span class="cstat-no" title="statement not covered" >            _this.onUpload.emit(uploadingFile);</span>
+        };
+<span class="cstat-no" title="statement not covered" >        xhr.upload.onerror = <span class="fstat-no" title="function not covered" >function (e) {</span></span>
+<span class="cstat-no" title="statement not covered" >            uploadingFile.setError();</span>
+<span class="cstat-no" title="statement not covered" >            _this.onUpload.emit(uploadingFile);</span>
+        };
+<span class="cstat-no" title="statement not covered" >        xhr.onreadystatechange = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (xhr.readyState === XMLHttpRequest.DONE) {</span>
+<span class="cstat-no" title="statement not covered" >                uploadingFile.onFinished(xhr.status, xhr.statusText, xhr.response);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            _this.onUpload.emit(uploadingFile);</span>
+        };
+<span class="cstat-no" title="statement not covered" >        var BASIC_AUTH_BEARER = 'Bearer ';</span>
+<span class="cstat-no" title="statement not covered" >        xhr.open('POST', this._uploadUrl, true);</span>
+<span class="cstat-no" title="statement not covered" >        xhr.setRequestHeader('Cache-Control', 'no-cache');</span>
+<span class="cstat-no" title="statement not covered" >        xhr.setRequestHeader('caller', 'components');</span>
+<span class="cstat-no" title="statement not covered" >        if (this._uploadUrl.indexOf(environments_abstract_1.Environments.property.GwPracticeService.Path) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >            xhr.setRequestHeader('apikey', BASIC_AUTH_BEARER + environments_abstract_1.Environments.property.GwPracticeService.ApiKey);</span>
+        }
+        else <span class="cstat-no" title="statement not covered" >if (this._uploadUrl.indexOf(environments_abstract_1.Environments.property.GwDDCService.Path) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >            xhr.setRequestHeader('apikey', BASIC_AUTH_BEARER + environments_abstract_1.Environments.property.GwDDCService.ApiKey);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        xhr.send(form);</span>
+    };
+    AmpFileUploadService.BASE_URL = environments_abstract_1.Environments.property.ApiCallsBaseUrl;
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', (typeof (_a = typeof core_1.EventEmitter !== 'undefined' &amp;&amp; core_1.EventEmitter) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpFileUploadService.prototype, "onUpload", void 0);
+    AmpFileUploadService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [(typeof (_b = typeof http_1.Http !== 'undefined' &amp;&amp; http_1.Http) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_c = typeof amp_http_service_1.AmpHttpService !== 'undefined' &amp;&amp; amp_http_service_1.AmpHttpService) === 'function' &amp;&amp; _c) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpFileUploadService);
+    return AmpFileUploadService;
+<span class="cstat-no" title="statement not covered" >    var _a, _b, _c;</span>
+}());
+exports.AmpFileUploadService = AmpFileUploadService;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWZpbGUtdXBsb2FkLnNlcnZpY2UuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbXAtZmlsZS11cGxvYWQuc2VydmljZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBR08sZUFBZSxDQUFDLENBQUE7QUFDdkIscUJBSU8sZUFBZSxDQUFDLENBQUE7QUFDdkIsb0NBQTZCLHVCQUF1QixDQUFDLENBQUE7QUFDckQsZ0NBQThCLDRDQUE0QyxDQUFDLENBQUE7QUFDM0Usc0NBQTZCLHVEQUF1RCxDQUFDLENBQUE7QUFFckYsaUNBQStCLDZDQUE2QyxDQUFDLENBQUE7QUFHN0U7SUFjSSw4QkFBc0IsSUFBVyxFQUNYLE9BQXdCO1FBRHhCLFNBQUksR0FBSixJQUFJLENBQU87UUFDWCxZQUFPLEdBQVAsT0FBTyxDQUFpQjtRQVpwQyxhQUFRLEdBQXVCLElBQUksbUJBQVksRUFBRSxDQUFDO1FBRXJELGNBQVMsR0FBWSxvQkFBb0IsQ0FBQyxRQUFRLEdBQUcsZUFBZSxDQUFDO1FBQ3JFLGVBQVUsR0FBWSxvQkFBb0IsQ0FBQyxRQUFRLEdBQUcsZ0JBQWdCLENBQUM7UUFDdkUsZUFBVSxHQUFZLG9CQUFvQixDQUFDLFFBQVEsR0FBRyxnQkFBZ0IsQ0FBQztRQUN2RSxrQkFBYSxHQUFZLCtDQUErQyxDQUFDO1FBSXhFLFdBQU0sR0FBVyxFQUFFLENBQUM7SUFJNUIsQ0FBQztJQUVELHNCQUFXLDBDQUFRO2FBQW5CO1lBQ0ksTUFBTSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUM7UUFDMUIsQ0FBQzs7O09BQUE7SUFFTSwwQ0FBVyxHQUFsQixVQUFxQixHQUFZO1FBQzdCLElBQUksQ0FBQyxTQUFTLEdBQUcsR0FBRyxDQUFDO0lBQ3pCLENBQUM7SUFFRCxzQkFBVywyQ0FBUzthQUFwQjtZQUNJLE1BQU0sQ0FBQyxJQUFJLENBQUMsVUFBVSxDQUFDO1FBQzNCLENBQUM7OztPQUFBO0lBRUQsc0JBQVcsMkNBQVM7YUFBcEI7WUFDSSxNQUFN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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

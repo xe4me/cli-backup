@@ -1,60 +1,52 @@
-<div
-        #dropdownEl
-        class='amp-dropdown'
-        [class.amp-dropdown--has-selection]='hasSelection'
-        [class.amp-dropdown--animate]='animateSelection'
-        [class.amp-dropdown--summary-state]='isInSummaryState'
-        [class.amp-dropdown--is-open]='optionsShown'
-        [clicked-outside]='hideOptions'
-        (window:resize)="onResize($event)">
-
-    <label class='sr-only' [attr.for]='randomizedId'>
-        {{ label }}
-    </label>
-    <select
-            #selectEl
-            class='sr-only'
-            [attr.id]='randomizedId'
-            [formControl]='control'
-            (keydown)='onKeypressEvent($event)'
-            (change)='onChangeEvent()'
-            (focus)='onFocusEvent($event)'
-            [attr.data-automation-id]='"slt_" + randomizedId'
-            [attr.disabled]='(disabled || isInSummaryState) ? "disabled" : null'>
-
-        <option value='' selected [attr.disabled]='currentOption > 0 ? "disabled" : null'></option>
-
-        <option *ngFor='let option of options | slice:0:_limitTo; let i=index'
-                [value]='option[fieldValueKey]'>
-            {{ option[fieldItemKey] }}
+<div class='amp-dropdown-title mb-' [class.invisible]='!selectedOption[fieldValueKey]'>{{ label }}</div>
+<div (window:resize)="onResize($event)" [clicked-outside]='close' class='amp-dropdown'>
+    <select [formControl]='control' class='sr-only'
+            [attr.data-automation-id]='"select_" + randomizedId'
+            [attr.id]='"select_" + randomizedId'
+            [attr.name]='"select_" + randomizedId'>
+        <option value=''>{{ label }}</option>
+        <option (click)='selectOption(option,$event , DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
+                *ngFor='let option of options; let i = index'
+                value="{{ option[fieldValueKey] }}">
+            {{ option[fieldValueKey] }}
         </option>
-
     </select>
-
-    <div class='amp-dropdown__select' (click)='toggleOptions()' aria-hidden='true'>
-        <div class='amp-dropdown__label' aria-hidden='true' *ngIf='!labelHidden'>{{ label }} <span *ngIf='!required'>(optional)</span></div>
-        <span class='amp-dropdown__icon icon icon--chevron-down' aria-hidden='true'></span>
-
-        <span class='amp-dropdown__select-value' aria-hidden='true'>{{ selectedOption[fieldItemKey] }}</span>&nbsp;
-    </div>
-
-    <div
-            #optionsEl
-            class='amp-dropdown__options amp-dropdown__options--{{ numOptions }}'
-            [class.amp-dropdown__options--hidden]='!optionsShown'
-            aria-hidden='true'>
-
-        <div
-                *ngFor='let option of options | slice:0:_limitTo; let i=index'
-                class='amp-dropdown__option'
-                [class.amp-dropdown__option--active]='option[fieldValueKey] == selectedOption[fieldValueKey]'
-                (click)='setSelectValue(option[fieldValueKey])'
-                aria-hidden='true'
-                tabindex='-1'
-                [attr.data-option-val]='option[fieldValueKey]'>
-
-            {{ option[fieldItemKey] }}
-
-        </div>
-    </div>
+    <input
+        readonly="true"
+        #input
+        class='sr-only amp-dropdown-control'
+        [attr.data-automation-id]='"dropdown_" + randomizedId'
+        [attr.id]='"dropdown_" + randomizedId'
+        [attr.name]='"dropdown_" + randomizedId'
+        (keydown)='onKeydown($event)'
+        focuser>
+    <label class='amp-dropdown-label'
+           [class.active]='!isOptionsHidden'
+           [class.selected]='selectedOption[fieldItemKey] && isOptionsHidden'
+           [class.disabled]='isInSummaryState || control.disabled'
+           (click)='!disabled && !isInSummaryState && toggleOptions($event)'
+           [attr.id]='"dropdown_" + randomizedId'>
+        <span>{{ selectedOption[fieldValueKey] || label }}</span>&nbsp;
+        <span class='amp-dropdown-icon icon icon--chevron-{{ isOptionsHidden?"down":"up" }}' aria-hidden='true'></span>
+    </label>
+    <ul
+        [hidden]='options===null || isOptionsHidden'
+        focuser='list'
+        [ngStyle]='{"max-height":maxHeight}'
+        (focusOut)='focusInput()'
+        (onTypeCharacter)='onTypeCharacter($event)'
+        class='amp-dropdown-options'>
+        <li #optionRef
+            (keydown.enter)='selectOption(option , $event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
+            (click)='selectOption(option,$event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
+            *ngFor='let option of options; let i = index'
+            class='amp-dropdown-option'
+            [class.amp-dropdown-active]='option[fieldItemKey] === selectedOption[fieldItemKey]'
+            [attr.tabindex]='i+1'>
+            <template
+                [ngTemplateOutlet]='itemTemplate'
+                [ngOutletContext]='{ option: option, index: index }'>
+            </template>
+        </li>
+    </ul>
 </div>

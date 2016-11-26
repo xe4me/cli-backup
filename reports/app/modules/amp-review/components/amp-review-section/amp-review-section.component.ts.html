@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-review/components/amp-review-section/amp-review-section.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-review/components/amp-review-section/</a> amp-review-section.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>14/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>14/14</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var AmpReviewSectionComponent = (function () {
+    function AmpReviewSectionComponent() {
+    }
+    AmpReviewSectionComponent.prototype.onChangeClick = function () {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof this.changeCallback === 'function') {
+            this.changeCallback(this.changeTarget);
+        }
+    };
+    Object.defineProperty(AmpReviewSectionComponent.prototype, "shouldShowChangeLink", {
+        get: function () {
+            return typeof this.changeCallback === 'function';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpReviewSectionComponent.prototype, "changeCallback", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpReviewSectionComponent.prototype, "title", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpReviewSectionComponent.prototype, "changeTarget", void 0);
+    AmpReviewSectionComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-review-section',
+            template: "\n          &lt;div class=\"grid amp-review-section pv\"&gt;\n            &lt;div class=\"grid__item_floated\" *ngIf=\"title\"&gt;\n              &lt;h3 class=\"amp-review-section__title mb-10\"&gt;\n                {{title}}\n              &lt;/h3&gt;\n            &lt;/div&gt;\n            &lt;div class=\"amp-review-section__change-link\" *ngIf=\"shouldShowChangeLink\"&gt;\n              &lt;amp-button (click)='onChangeClick()' class='btn btn-anchor'&gt;\n                Change\n              &lt;/amp-button&gt;\n            &lt;/div&gt;\n            &lt;ng-content&gt;&lt;/ng-content&gt;\n          &lt;/div&gt;\n        ",
+            styles: [require('./amp-review-section.scss').toString()]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpReviewSectionComponent);
+    return AmpReviewSectionComponent;
+}());
+exports.AmpReviewSectionComponent = AmpReviewSectionComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXJldmlldy1zZWN0aW9uLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC1yZXZpZXctc2VjdGlvbi5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQUFrQyxlQUFlLENBQUMsQ0FBQTtBQXNCbEQ7SUFBQTtJQWNBLENBQUM7SUFUVyxpREFBYSxHQUFyQjtRQUNJLEVBQUUsQ0FBQyxDQUFDLE9BQU8sSUFBSSxDQUFDLGNBQWMsS0FBSyxVQUFVLENBQUMsQ0FBQyxDQUFDO1lBQzVDLElBQUksQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDO1FBQzNDLENBQUM7SUFDTCxDQUFDO0lBRUQsc0JBQVksMkRBQW9CO2FBQWhDO1lBQ0ksTUFBTSxDQUFDLE9BQU8sSUFBSSxDQUFDLGNBQWMsS0FBSyxVQUFVLENBQUM7UUFDckQsQ0FBQzs7O09BQUE7SUFaRDtRQUFDLFlBQUssRUFBRTs7cUVBQUE7SUFDUjtRQUFDLFlBQUssRUFBRTs7NERBQUE7SUFDUjtRQUFDLFlBQUssRUFBRTs7bUVBQUE7SUF4Qlo7UUFBQyxnQkFBUyxDQUNOO1lBQ0ksUUFBUSxFQUFRLG9CQUFvQjtZQUNwQyxRQUFRLEVBQVEsK2lCQWNmO1lBQ0QsTUFBTSxFQUFVLENBQUUsT0FBTyxDQUFFLDJCQUEyQixDQUFFLENBQUMsUUFBUSxFQUFFLENBQUU7U0FDeEUsQ0FBRTs7aUNBQUE7SUFnQlAsZ0NBQUM7QUFBRCxDQUFDLEFBZEQsSUFjQztBQWRZLGlDQUF5Qiw0QkFjckMsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for redux/amp-redux.module.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">redux/</a> amp-redux.module.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.47% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.47% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>17/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var compose_1 = require('@ngrx/core/compose');
+var amp_redux_component_1 = require('./components/amp-redux/amp-redux.component');
+var model_reducer_1 = require('./reducers/model/model.reducer');
+var model_action_1 = require('./actions/model/model.action');
+var store_1 = require('@ngrx/store');
+var store_service_1 = require('./services/store/store.service');
+<span class="missing-if-branch" title="if path not taken" >I</span>if (!Array.prototype.last) {
+<span class="cstat-no" title="statement not covered" >    Array.prototype.last = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        return this[this.length - 1];</span>
+    };
+}
+var ACTIONS = [
+    model_action_1.ModelActions
+];
+var AmpReduxModule = (function () {
+    function AmpReduxModule() {
+    }
+    AmpReduxModule.provideAmpStore = function (_initialState, _reducers) {
+        var composedReducers = _reducers ? <span class="branch-0 cbranch-no" title="branch not covered" >compose_1.compose(_reducers, model_reducer_1.default) </span>: model_reducer_1.default;
+        return store_1.StoreModule.provideStore(composedReducers, _initialState);
+    };
+    AmpReduxModule = __decorate([
+        core_1.NgModule({
+            declarations: [
+                amp_redux_component_1.AmpReduxComponent
+            ],
+            providers: [ACTIONS, store_service_1.StoreService],
+            exports: [amp_redux_component_1.AmpReduxComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpReduxModule);
+    return AmpReduxModule;
+}());
+exports.AmpReduxModule = AmpReduxModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXJlZHV4Lm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC1yZWR1eC5tb2R1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQUF5QixlQUFlLENBQUMsQ0FBQTtBQUN6Qyx3QkFBd0Isb0JBQW9CLENBQUMsQ0FBQTtBQUM3QyxvQ0FBa0MsNENBQTRDLENBQUMsQ0FBQTtBQUMvRSw4QkFBcUIsZ0NBQWdDLENBQUMsQ0FBQTtBQUN0RCw2QkFBNkIsOEJBQThCLENBQUMsQ0FBQTtBQUM1RCxzQkFBb0MsYUFBYSxDQUFDLENBQUE7QUFDbEQsOEJBQTZCLGdDQUFnQyxDQUFDLENBQUE7QUFPOUQsRUFBRSxDQUFDLENBQUUsQ0FBUyxLQUFLLENBQUMsU0FBVSxDQUFDLElBQUssQ0FBQyxDQUFDLENBQUM7SUFDNUIsS0FBSyxDQUFDLFNBQVUsQ0FBQyxJQUFJLEdBQUc7UUFDM0IsTUFBTSxDQUFDLElBQUksQ0FBRSxJQUFJLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBRSxDQUFDO0lBQ25DLENBQUMsQ0FBQztBQUNOLENBQUM7QUFDRCxJQUFNLE9BQU8sR0FBRztJQUNaLDJCQUFZO0NBQ2YsQ0FBQztBQVFGO0lBQUE7SUFLQSxDQUFDO0lBSmlCLDhCQUFlLEdBQTdCLFVBQWdDLGFBQWEsRUFBRyxTQUFVO1FBQ3RELElBQUksZ0JBQWdCLEdBQUcsU0FBUyxHQUFHLGlCQUFPLENBQUUsU0FBUyxFQUFHLHVCQUFRLENBQUUsR0FBRyx1QkFBUSxDQUFDO1FBQzlFLE1BQU0sQ0FBQyxtQkFBVyxDQUFDLFlBQVksQ0FBRSxnQkFBZ0IsRUFBRyxhQUFhLENBQUUsQ0FBQztJQUN4RSxDQUFDO0lBWEw7UUFBQyxlQUFRLENBQUU7WUFDUCxZQUFZLEVBQUc7Z0JBQ1gsdUNBQWlCO2FBQ3BCO1lBQ0QsU0FBUyxFQUFNLENBQUUsT0FBTyxFQUFHLDRCQUFZLENBQUU7WUFDekMsT0FBTyxFQUFRLENBQUUsdUNBQWlCLENBQUU7U0FDdkMsQ0FBRTs7c0JBQUE7SUFNSCxxQkFBQztBQUFELENBQUMsQUFMRCxJQUtDO0FBTFksc0JBQWMsaUJBSzFCLENBQUEifQ==
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:10:48 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

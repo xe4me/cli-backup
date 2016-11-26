@@ -3,7 +3,6 @@
 # Logs
 logs
 *.log
-*.log.*
 
 # Runtime data
 pids
@@ -15,9 +14,6 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-reports
-# Report directory used by tools like Galen
-report
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -31,7 +27,7 @@ build/Release
 # OS generated files #
 .DS_Store
 ehthumbs.db
-
+Icon?
 Thumbs.db
 
 # Node Files #
@@ -41,15 +37,11 @@ npm-debug.log
 
 # Coverage #
 /coverage/
-# Report #
-/report/
 
 # Typing #
 /src/typings/tsd/
 /typings/
 /tsd_typings/
-# Do not incorporate typings configuration because it can be different based on end user
-.typingsrc
 
 # Dist #
 /dist
@@ -59,6 +51,7 @@ npm-debug.log
 /public/dist/
 /src/*/dist/
 /dist/**
+/.awcache
 .webpack.json
 
 # Doc #
@@ -67,4 +60,3 @@ npm-debug.log
 # IDE #
 .idea/
 *.swp
-/.project

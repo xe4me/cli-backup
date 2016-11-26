@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-
 @Component( {
     selector    : 'text' ,
-    templateUrl : 'src/styleguide/layout/text/text.html' ,
-    styles      : [ require( './text.scss' ).toString() ] ,
-    directives  : []
+    templateUrl : './text.html' ,
+    styles      : [ require( './text.scss' ).toString() ]
 } )
 
-export default class Text {
+export default class TextBasicUsage {
 }

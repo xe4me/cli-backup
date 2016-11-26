@@ -1,40 +1,40 @@
-import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 @Component( {
-    selector    : 'amp-group-buttons-block-basic-usage' ,
-    templateUrl : 'src/styleguide/components/amp-group-buttons/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ]
+    selector : 'amp-group-buttons-block-basic-usage',
+    templateUrl : './basic_usage.html',
+    styles : [ require( './basic_usage.scss' ).toString() ]
 } )
 
 export default class AmpGroupButtonComponentBasicUsage {
-    controlGroup : FormGroup     = new FormGroup( {} );
-    private required             = true;
+    controlGroup : FormGroup = new FormGroup( {} );
+    private required = true;
     private fullOrPartialButtons = {
-        buttons       : [
+        buttons : [
             {
-                id    : 'fullId' ,
-                value : 'full' ,
+                id : 'fullId',
+                value : 'full',
                 label : 'Full sale'
-            } ,
+            },
             {
-                id    : 'partialId' ,
-                value : 'partial' ,
+                id : 'partialId',
+                value : 'partial',
                 label : 'Partial sale'
             }
-        ] ,
+        ],
         fullOrPartial : 'fullOrPartial'
     };
-    private color                = 'red';
+    private color = 'red';
 
-    constructor ( private  themeService : ThemeService ) {
+    constructor( private  themeService : ThemeService ) {
     }
 
-    private get control () {
+    private get control() {
         return this.controlGroup.controls[ 'fullOrPartial' ];
     }
 
-    private onButtonClick () {
+    private onButtonClick() {
         if ( this.color === 'red' ) {
             this.color = 'blue';
         } else {

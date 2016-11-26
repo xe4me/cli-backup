@@ -1,0 +1,46 @@
+@import '../../../../../styles/abstracts';
+@import 'block-base';
+@import '/themes/theme-tools';
+
+:host {
+    display  : block;
+    position : relative;
+
+    .FormBlocK {
+        padding-top : $tools-form-block-heading-top-padding;
+        position    : relative;
+
+        .heading-intro {
+            margin-bottom : 40px;
+
+            @include media-query('palm') {
+                font-size : 20px;
+            }
+        }
+
+        .hr-block-divider {
+            margin : $default-margin 0 0;
+        }
+    }
+    @include media-query(palm) {
+        .FormBlocK {
+            padding-top : 50px;
+        }
+    }
+
+    &[theme='tools'] {
+        .FormBlocK {
+            padding-top   : $tools-form-block-heading-top-padding;
+            padding-left  : $tools-form-block-left-padding;
+            padding-right : $tools-form-block-right-padding;
+
+            .heading-intro {
+                margin-bottom : 18px;
+            }
+
+            .hr-block-divider {
+                margin : $default-margin 0 0;
+            }
+        }
+    }
+}

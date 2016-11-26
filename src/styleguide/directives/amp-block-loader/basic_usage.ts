@@ -1,13 +1,10 @@
-import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
+import { Component , ChangeDetectorRef } from '@angular/core';
 import { FormControl , FormBuilder } from '@angular/forms';
-import { AmpBlockLoaderDirective } from '../../amp-block-loader.directive';
-import{ Highlight } from '../../highlight';
 import { FormSectionService } from '../../../app/services/form-section/form-section.service';
 @Component( {
     providers   : [ FormSectionService , FormBuilder ] ,
-    directives  : [ Highlight , AmpBlockLoaderDirective ] ,
     selector    : 'amp-block-loader-basic-usage' ,
-    templateUrl : 'src/styleguide/directives/amp-block-loader/basic_usage.html' ,
+    templateUrl : './basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ]
 } )
 

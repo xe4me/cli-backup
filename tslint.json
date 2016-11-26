@@ -1,49 +1,54 @@
 {
-    "extends": "tslint:recommended",
-    "rules": {
-        // Overrides of tslint:recommended
-        "arrow-parens": true,
-        "max-line-length": [
-            true,
-            400 // TODO: Aim to bring this number down to between 120 - 140
-        ],
-        "no-empty": false,
-        "no-string-literal": false, // This is needed for accessing Angular Controls
-        "no-unused-variable": false,
-        "no-var-requires": false, // Allow for .json files to be required
-        "object-literal-sort-keys": false,
-        "quotemark": [
-            true,
-            "single"
-        ],
-        "trailing-comma": false,
-        "typedef-whitespace": [
-            true,
-            {
-                "call-signature": "space",
-                "index-signature": "space",
-                "parameter": "space",
-                "property-declaration": "space",
-                "variable-declaration": "space"
-            }, {
-                "call-signature": "onespace",
-                "index-signature": "onespace",
-                "parameter": "onespace",
-                "property-declaration": "onespace",
-                "variable-declaration": "onespace"
-            }
-        ],
-        "variable-name": [true,
-            "ban-keywords",
-            // "check-format", // TODO: This rule should be re-enabled
-            "allow-leading-underscore",
-            "allow-pascal-case"
-        ],
-
-        // TODO: Overrides for recommended that we don't actually want to do so aim to remove
-        "interface-name": false,
-        "member-access": false,
-        "no-console": false,
-        "one-line": false // This is excluded due to a bug in tslint. This line can be removed once TSLint is upgraded to v4 (when it is released)
-    }
+  "extends": "tslint:recommended",
+  "rules": {
+    // Overrides of tslint:recommended
+    "arrow-parens": true,
+    "max-line-length": [
+      true,
+      400
+      // TODO: Aim to bring this number down to between 120 - 140
+    ],
+    "no-empty": false,
+    "no-string-literal": false,
+    // This is needed for accessing Angular Controls
+    "no-unused-variable": false,
+    "no-var-requires": false,
+    // Allow for .json files to be required
+    "object-literal-sort-keys": false,
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "trailing-comma": false,
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "space",
+        "index-signature": "space",
+        "parameter": "space",
+        "property-declaration": "space",
+        "variable-declaration": "space"
+      },
+      {
+        "call-signature": "onespace",
+        "index-signature": "onespace",
+        "parameter": "onespace",
+        "property-declaration": "onespace",
+        "variable-declaration": "onespace"
+      }
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      // "check-format", // TODO: This rule should be re-enabled
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ],
+    // TODO: Overrides for recommended that we don't actually want to do so aim to remove
+    "interface-name": false,
+    "member-access": false,
+    "no-console": false,
+    "one-line": false
+    // This is excluded due to a bug in tslint. This line can be removed once TSLint is upgraded to v4 (when it is released)
+  }
 }

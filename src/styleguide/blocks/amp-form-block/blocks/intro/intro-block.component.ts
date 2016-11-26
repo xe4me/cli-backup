@@ -4,10 +4,8 @@ import { FormModelService } from '../../../../../app/services/form-model/form-mo
 import { ProgressObserverService } from '../../../../../app/services/progress-observer/progress-observer.service';
 import { ThemeService } from '../../../../services/theme';
 import { FormBlock } from '../../../../../app/form-block';
-import { AmpButton } from '../../../../../app/components/amp-button/amp-button.component';
 @Component( {
     selector        : 'intro-block' ,
-    directives      : [ AmpButton ] ,
     template        : `
         <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class='intro-logo mb+'></div>

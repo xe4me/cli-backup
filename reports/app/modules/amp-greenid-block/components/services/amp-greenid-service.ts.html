@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-greenid-block/components/services/amp-greenid-service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-greenid-block/components/services/</a> amp-greenid-service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>14/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">44.44% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>14/28</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var rxjs_1 = require('rxjs');
+var amp_http_service_1 = require('../../../../services/amp-http/amp-http.service');
+var environments_abstract_1 = require('../../../../abstracts/environments/environments.abstract');
+var AmpGreenIdServices = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpGreenIdServices(http) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this.http = http;</span>
+<span class="cstat-no" title="statement not covered" >        this.headers = new http_1.Headers({</span>
+            'Content-Type': 'application/json'
+        });
+<span class="cstat-no" title="statement not covered" >        this.getTheToken = <span class="fstat-no" title="function not covered" >function (modelValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var headers = _this.headers;</span>
+<span class="cstat-no" title="statement not covered" >            var options = new http_1.RequestOptions({ headers: headers });</span>
+<span class="cstat-no" title="statement not covered" >            var url = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.VERIFICATION_ENDPOINT;</span>
+<span class="cstat-no" title="statement not covered" >            var body = JSON.stringify(modelValue);</span>
+<span class="cstat-no" title="statement not covered" >            return _this</span>
+                .http
+                .post(url, body, options)
+                .map(<span class="fstat-no" title="function not covered" >function (res) {</span>
+<span class="cstat-no" title="statement not covered" >                var re = res.json();</span>
+<span class="cstat-no" title="statement not covered" >                return re;</span>
+            })
+                .catch(_this.handleError);
+        };
+    }
+    AmpGreenIdServices.prototype.handleError = <span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >        var errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;</span>
+<span class="cstat-no" title="statement not covered" >        return rxjs_1.Observable.throw(errMsg);</span>
+    };
+    // Note: For local development uncomment the line line below and comment out the other BASE_URL variable
+    // public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
+    AmpGreenIdServices.BASE_URL = environments_abstract_1.Environments.property.ApiCallsBaseUrl + "/green-id";
+    AmpGreenIdServices.DEFAULT_ERROR_TEXT = 'Server error';
+    AmpGreenIdServices.VERIFICATION_ENDPOINT = '/registerVerification';
+    AmpGreenIdServices = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof amp_http_service_1.AmpHttpService !== 'undefined' &amp;&amp; amp_http_service_1.AmpHttpService) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpGreenIdServices);
+    return AmpGreenIdServices;
+<span class="cstat-no" title="statement not covered" >    var _a;</span>
+}());
+exports.AmpGreenIdServices = AmpGreenIdServices;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWdyZWVuaWQtc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC1ncmVlbmlkLXNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQUEyQixlQUFlLENBQUMsQ0FBQTtBQUMzQyxxQkFHTyxlQUFlLENBQUMsQ0FBQTtBQUN2QixxQkFBMkIsTUFBTSxDQUFDLENBQUE7QUFDbEMsaUNBQStCLGdEQUFnRCxDQUFDLENBQUE7QUFDaEYsc0NBQTZCLDBEQUEwRCxDQUFDLENBQUE7QUFHeEY7SUFZSSw0QkFBc0IsSUFBcUI7UUFaL0MsaUJBcUNDO1FBekJ5QixTQUFJLEdBQUosSUFBSSxDQUFpQjtRQUpuQyxZQUFPLEdBQUcsSUFBSSxjQUFPLENBQUU7WUFDM0IsY0FBYyxFQUFHLGtCQUFrQjtTQUN0QyxDQUFFLENBQUM7UUFNRyxnQkFBVyxHQUFJLFVBQUUsVUFBOEI7WUFDbEQsSUFBSSxPQUFPLEdBQWEsS0FBSSxDQUFDLE9BQU8sQ0FBQztZQUNyQyxJQUFJLE9BQU8sR0FBYSxJQUFJLHFCQUFjLENBQUUsRUFBRSxPQUFPLEVBQUcsT0FBTyxFQUFFLENBQUUsQ0FBQztZQUNwRSxJQUFJLEdBQUcsR0FBaUIsa0JBQWtCLENBQUMsUUFBUSxHQUFHLGtCQUFrQixDQUFDLHFCQUFxQixDQUFDO1lBQy9GLElBQUksSUFBSSxHQUFnQixJQUFJLENBQUMsU0FBUyxDQUFFLFVBQVUsQ0FBRSxDQUFDO1lBRXJELE1BQU0sQ0FBQyxLQUFJO2lCQUNOLElBQUk7aUJBQ0osSUFBSSxDQUFFLEdBQUcsRUFBRSxJQUFJLEVBQUUsT0FBTyxDQUFFO2lCQUMxQixHQUFHLENBQUUsVUFBRSxHQUFHO2dCQUNQLElBQUksRUFBRSxHQUFHLEdBQUcsQ0FBQyxJQUFJLEVBQUUsQ0FBQztnQkFDcEIsTUFBTSxDQUFDLEVBQUUsQ0FBQztZQUNkLENBQUMsQ0FBQztpQkFDRCxLQUFLLENBQUUsS0FBSSxDQUFDLFdBQVcsQ0FBRSxDQUFDO1FBQ25DLENBQUMsQ0FBQztJQWhCRixDQUFDO0lBa0JPLHdDQUFXLEdBQW5CLFVBQXNCLEtBQVc7UUFDN0IsSUFBSSxNQUFNLEdBQUcsQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLEdBQUcsS0FBSyxDQUFDLE9BQU8sR0FBRyxLQUFLLENBQUMsTUFBTSxHQUFHLEtBQUssQ0FBQyxNQUFNLEdBQUcsa0JBQWtCLENBQUMsa0JBQWtCLENBQUM7UUFDbkgsTUFBTSxDQUFDLGlCQUFVLENBQUMsS0FBSyxDQUFFLE1BQU0sQ0FBRSxDQUFDO0lBQ3RDLENBQUM7SUFqQ0Qsd0dBQXdHO0lBQ3hHLHFGQUFxRjtJQUN2RSwyQkFBUSxHQUFlLG9DQUFZLENBQUMsUUFBUSxDQUFDLGVBQWUsY0FBVyxDQUFDO0lBQ3hFLHFDQUFrQixHQUFHLGNBQWMsQ0FBQztJQUNwQyx3Q0FBcUIsR0FBRyx1QkFBdUIsQ0FBQztJQVBsRTtRQUFDLGlCQUFVLEVBQUU7OzBCQUFBO0lBc0NiLHlCQUFDOztBQUFELENBQUMsQUFyQ0QsSUFxQ0M7QUFyQ1ksMEJBQWtCLHFCQXFDOUIsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

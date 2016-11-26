@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-google-recaptcha/services/amp-recaptcha.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-google-recaptcha/services/</a> amp-recaptcha.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.15% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>25/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>6/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>24/25</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var Rx_1 = require('rxjs/Rx');
+/*
+* This component responsible for loading Google ReCaptcha API once
+*/
+var AmpReCaptchaService = (function () {
+    function AmpReCaptchaService(zone) {
+        var _this = this;
+        this.scriptLoaded = false;
+        // see http://reactivex.io/documentation/subject.html
+        this.readySubject = new Rx_1.BehaviorSubject(false);
+        // the onloadCallback needs to exist before API is loaded
+        window['reCaptchaOnloadCallback'] = (function () { return zone.run(_this.onloadCallback.bind(_this)); });
+    }
+    AmpReCaptchaService.prototype.loadScript = function (language) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.scriptLoaded) {
+            this.scriptLoaded = true;
+            var body = document.body;
+            var script = document.createElement('script');
+            script.innerHTML = '';
+            script.src = 'https://www.google.com/recaptcha/api.js?onload=reCaptchaOnloadCallback&amp;render=explicit' +
+                (language ? <span class="branch-0 cbranch-no" title="branch not covered" >'&amp;hl=' + language </span>: '');
+            script.async = true;
+            script.defer = true;
+            body.appendChild(script);
+        }
+        return this.readySubject.asObservable();
+    };
+    AmpReCaptchaService.prototype.onloadCallback = function () {
+        this.readySubject.next(true);
+    };
+    AmpReCaptchaService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof core_1.NgZone !== 'undefined' &amp;&amp; core_1.NgZone) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpReCaptchaService);
+    return AmpReCaptchaService;
+<span class="cstat-no" title="statement not covered" >    var _a;</span>
+}());
+exports.AmpReCaptchaService = AmpReCaptchaService;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXJlY2FwdGNoYS5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW1wLXJlY2FwdGNoYS5zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFHTyxlQUFlLENBQUMsQ0FBQTtBQUN2QixtQkFHTyxTQUFTLENBQUMsQ0FBQTtBQUVqQjs7RUFFRTtBQUVGO0lBTUksNkJBQVksSUFBYTtRQU43QixpQkE2QkM7UUEzQlcsaUJBQVksR0FBYSxLQUFLLENBQUM7UUFDdkMscURBQXFEO1FBQzdDLGlCQUFZLEdBQThCLElBQUksb0JBQWUsQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUd6RSx5REFBeUQ7UUFDekQsTUFBTSxDQUFPLHlCQUF5QixDQUFDLEdBQVMsQ0FBRSxjQUFNLE9BQUEsSUFBSSxDQUFDLEdBQUcsQ0FBQyxLQUFJLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxLQUFJLENBQUMsQ0FBQyxFQUF4QyxDQUF3QyxDQUFFLENBQUM7SUFDdkcsQ0FBQztJQUVNLHdDQUFVLEdBQWpCLFVBQWtCLFFBQWlCO1FBQy9CLEVBQUUsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDLENBQUM7WUFDckIsSUFBSSxDQUFDLFlBQVksR0FBRyxJQUFJLENBQUM7WUFDekIsSUFBSSxJQUFJLEdBQW9CLFFBQVEsQ0FBQyxJQUFJLENBQUM7WUFDMUMsSUFBSSxNQUFNLEdBQUcsUUFBUSxDQUFDLGFBQWEsQ0FBQyxRQUFRLENBQUMsQ0FBQztZQUM5QyxNQUFNLENBQUMsU0FBUyxHQUFHLEVBQUUsQ0FBQztZQUN0QixNQUFNLENBQUMsR0FBRyxHQUFHLHdGQUF3RjtnQkFDakcsQ0FBQyxRQUFRLEdBQUcsTUFBTSxHQUFHLFFBQVEsR0FBRyxFQUFFLENBQUMsQ0FBQztZQUN4QyxNQUFNLENBQUMsS0FBSyxHQUFHLElBQUksQ0FBQztZQUNwQixNQUFNLENBQUMsS0FBSyxHQUFHLElBQUksQ0FBQztZQUNwQixJQUFJLENBQUMsV0FBVyxDQUFDLE1BQU0sQ0FBQyxDQUFDO1FBQzdCLENBQUM7UUFDRCxNQUFNLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxZQUFZLEVBQUUsQ0FBQztJQUM1QyxDQUFDO0lBRU8sNENBQWMsR0FBdEI7UUFDSSxJQUFJLENBQUMsWUFBWSxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztJQUNqQyxDQUFDO0lBN0JMO1FBQUMsaUJBQVUsRUFBRTs7MkJBQUE7SUE4QmIsMEJBQUM7O0FBQUQsQ0FBQyxBQTdCRCxJQTZCQztBQTdCWSwyQkFBbUIsc0JBNkIvQixDQUFBIn0=
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

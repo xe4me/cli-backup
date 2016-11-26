@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-inputs/amp-inputs.module.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/modules/amp-inputs/</a> amp-inputs.module.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>19/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>19/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var amp_input_component_1 = require('./components/amp-input/amp-input.component');
+var amp_contact_number_component_1 = require('./components/amp-contact-number/amp-contact-number.component');
+var amp_email_component_1 = require('./components/amp-email/amp-email.component');
+var amp_first_name_component_1 = require('./components/amp-first-name/amp-first-name.component');
+var amp_home_number_component_1 = require('./components/amp-home-number/amp-home-number.component');
+var amp_last_name_component_1 = require('./components/amp-last-name/amp-last-name.component');
+var amp_password_component_1 = require('./components/amp-password/amp-password.component');
+var amp_mobile_number_component_1 = require('./components/amp-mobile-number/amp-mobile-number.component');
+var amp_work_number_component_1 = require('./components/amp-work-number/amp-work-number.component');
+var amp_shared_root_module_1 = require('../amp-shared-root/amp-shared-root.module');
+var amp_account_number_component_1 = require('./components/amp-account-number/amp-account-number.component');
+var material_1 = require('@angular/material');
+var DECLARATIONS = [
+    amp_input_component_1.AmpInputComponent,
+    amp_contact_number_component_1.AmpContactNumberComponent,
+    amp_email_component_1.AmpEmailComponent,
+    amp_first_name_component_1.AmpFirstNameComponent,
+    amp_home_number_component_1.AmpHomeNumberComponent,
+    amp_last_name_component_1.AmpLastNameComponent,
+    amp_mobile_number_component_1.AmpMobileNumberComponent,
+    amp_password_component_1.AmpPasswordComponent,
+    amp_work_number_component_1.AmpWorkNumberComponent,
+    amp_account_number_component_1.AmpAccountNumberComponent
+];
+var AmpInputsModule = (function () {
+    function AmpInputsModule() {
+    }
+    AmpInputsModule = __decorate([
+        core_1.NgModule({
+            declarations: DECLARATIONS,
+            imports: [
+                amp_shared_root_module_1.AmpSharedRootModule,
+                material_1.MdInputModule
+            ],
+            exports: DECLARATIONS
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AmpInputsModule);
+    return AmpInputsModule;
+}());
+exports.AmpInputsModule = AmpInputsModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWlucHV0cy5tb2R1bGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbXAtaW5wdXRzLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBQXlCLGVBQWUsQ0FBQyxDQUFBO0FBQ3pDLG9DQUFrQyw0Q0FBNEMsQ0FBQyxDQUFBO0FBQy9FLDZDQUEwQyw4REFBOEQsQ0FBQyxDQUFBO0FBQ3pHLG9DQUFrQyw0Q0FBNEMsQ0FBQyxDQUFBO0FBQy9FLHlDQUFzQyxzREFBc0QsQ0FBQyxDQUFBO0FBQzdGLDBDQUF1Qyx3REFBd0QsQ0FBQyxDQUFBO0FBQ2hHLHdDQUFxQyxvREFBb0QsQ0FBQyxDQUFBO0FBQzFGLHVDQUFxQyxrREFBa0QsQ0FBQyxDQUFBO0FBQ3hGLDRDQUF5Qyw0REFBNEQsQ0FBQyxDQUFBO0FBQ3RHLDBDQUF1Qyx3REFBd0QsQ0FBQyxDQUFBO0FBQ2hHLHVDQUFvQywyQ0FBMkMsQ0FBQyxDQUFBO0FBQ2hGLDZDQUEwQyw4REFBOEQsQ0FBQyxDQUFBO0FBQ3pHLHlCQUE4QixtQkFBbUIsQ0FBQyxDQUFBO0FBRWxELElBQU0sWUFBWSxHQUFHO0lBQ2pCLHVDQUFpQjtJQUNqQix3REFBeUI7SUFDekIsdUNBQWlCO0lBQ2pCLGdEQUFxQjtJQUNyQixrREFBc0I7SUFDdEIsOENBQW9CO0lBQ3BCLHNEQUF3QjtJQUN4Qiw2Q0FBb0I7SUFDcEIsa0RBQXNCO0lBQ3RCLHdEQUF5QjtDQUM1QixDQUFDO0FBU0Y7SUFBQTtJQUNBLENBQUM7SUFURDtRQUFDLGVBQVEsQ0FBRTtZQUNQLFlBQVksRUFBRyxZQUFZO1lBQzNCLE9BQU8sRUFBRztnQkFDTiw0Q0FBbUI7Z0JBQ25CLHdCQUFhO2FBQ2hCO1lBQ0QsT0FBTyxFQUFHLFlBQVk7U0FDekIsQ0FBRTs7dUJBQUE7SUFFSCxzQkFBQztBQUFELENBQUMsQUFERCxJQUNDO0FBRFksdUJBQWUsa0JBQzNCLENBQUEifQ==
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

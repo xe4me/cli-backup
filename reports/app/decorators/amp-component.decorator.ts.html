@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/decorators/amp-component.decorator.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/decorators/</a> amp-component.decorator.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.12% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>16/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.12% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/17</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">234×</span>
+<span class="cline-any cline-yes">87×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">87×</span>
+<span class="cline-any cline-yes">74×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var util_1 = require('util');
+var core_1 = require('@angular/core');
+var decorators_1 = require('@angular/core/src/util/decorators');
+function AmpComponent(annotation) {
+    return function (target) {
+        var parentTarget = Object.getPrototypeOf(target.prototype).constructor;
+        var parentAnnotations = Reflect.getMetadata('annotations', parentTarget);
+        var parentAnnotation = parentAnnotations[0];
+        Object.keys(parentAnnotation).forEach(function (key) {
+            if (parentAnnotation[key]) {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (util_1.isArray(annotation[key])) {
+<span class="cstat-no" title="statement not covered" >                    annotation[key] = annotation[key].concat(parentAnnotation[key]);</span>
+                }
+                else {
+                    if (key !== 'selector') {
+                        annotation[key.replace('_', '')] = parentAnnotation[key];
+                    }
+                }
+            }
+        });
+        var metadata = decorators_1.makeDecorator('AmpComponent', annotation, core_1.Component);
+        Reflect.defineMetadata('annotations', [new metadata()], target);
+    };
+}
+exports.AmpComponent = AmpComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLWNvbXBvbmVudC5kZWNvcmF0b3IuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbXAtY29tcG9uZW50LmRlY29yYXRvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBQXdCLE1BQU0sQ0FBQyxDQUFBO0FBQy9CLHFCQUEwQixlQUFlLENBQUMsQ0FBQTtBQUMxQywyQkFBOEIsbUNBQW1DLENBQUMsQ0FBQTtBQUNsRSxzQkFBOEIsVUFBZ0I7SUFDMUMsTUFBTSxDQUFDLFVBQVcsTUFBaUI7UUFDL0IsSUFBSSxZQUFZLEdBQUcsTUFBTSxDQUFDLGNBQWMsQ0FBRSxNQUFNLENBQUMsU0FBUyxDQUFFLENBQUMsV0FBVyxDQUFDO1FBQ3pFLElBQUksaUJBQWlCLEdBQVUsT0FBUSxDQUFDLFdBQVcsQ0FBRSxhQUFhLEVBQUUsWUFBWSxDQUFFLENBQUM7UUFDbkYsSUFBSSxnQkFBZ0IsR0FBRyxpQkFBaUIsQ0FBRSxDQUFDLENBQUUsQ0FBQztRQUM5QyxNQUFNLENBQUMsSUFBSSxDQUFFLGdCQUFnQixDQUFFLENBQUMsT0FBTyxDQUFFLFVBQUUsR0FBRztZQUMxQyxFQUFFLENBQUMsQ0FBRSxnQkFBZ0IsQ0FBRSxHQUFHLENBQUcsQ0FBQyxDQUFDLENBQUM7Z0JBQzVCLEVBQUUsQ0FBQyxDQUFFLGNBQU8sQ0FBRSxVQUFVLENBQUUsR0FBRyxDQUFFLENBQUcsQ0FBQyxDQUFDLENBQUM7b0JBQ2pDLFVBQVUsQ0FBRSxHQUFHLENBQUUsR0FBRyxVQUFVLENBQUUsR0FBRyxDQUFFLENBQUMsTUFBTSxDQUFFLGdCQUFnQixDQUFFLEdBQUcsQ0FBRSxDQUFFLENBQUM7Z0JBQzVFLENBQUM7Z0JBQUMsSUFBSSxDQUFDLENBQUM7b0JBQ0osRUFBRSxDQUFDLENBQUUsR0FBRyxLQUFLLFVBQVcsQ0FBQyxDQUFDLENBQUM7d0JBQ3ZCLFVBQVUsQ0FBRSxHQUFHLENBQUMsT0FBTyxDQUFFLEdBQUcsRUFBRSxFQUFFLENBQUUsQ0FBRSxHQUFHLGdCQUFnQixDQUFFLEdBQUcsQ0FBRSxDQUFDO29CQUNuRSxDQUFDO2dCQUNMLENBQUM7WUFDTCxDQUFDO1FBQ0wsQ0FBQyxDQUFFLENBQUM7UUFFSixJQUFJLFFBQVEsR0FBUywwQkFBYSxDQUFFLGNBQWMsRUFBRSxVQUFVLEVBQUUsZ0JBQVMsQ0FBRSxDQUFDO1FBQ3JFLE9BQVEsQ0FBQyxjQUFjLENBQUUsYUFBYSxFQUFFLENBQUUsSUFBSSxRQUFRLEVBQUUsQ0FBRSxFQUFFLE1BQU0sQ0FBRSxDQUFDO0lBQ2hGLENBQUMsQ0FBQztBQUNOLENBQUM7QUFwQmUsb0JBQVksZUFvQjNCLENBQUEifQ==
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

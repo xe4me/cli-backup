@@ -1,19 +1,17 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { ViewChild , OnInit , ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef , Renderer , AfterViewInit , ElementRef } from '@angular/core';
 import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
 import { AmpCountryService } from '../../services/amp-country.service';
 @AmpComponent( {
     selector : 'amp-country'
 } )
-export class AmpCountryComponent extends AmpDropdownComponent implements OnInit {
-    @ViewChild( 'selectEl' ) selectEl;
-    @ViewChild( 'optionsEl' ) optionsEl;
-    @ViewChild( 'dropdownEl' ) dropDownEl;
-
-    constructor ( public _cd : ChangeDetectorRef , public ampCountryService : AmpCountryService ) {
-        super( _cd );
-        this.fieldItemKey  = 'country';
-        this.fieldValueKey = 'countryCode';
+export class AmpCountryComponent extends AmpDropdownComponent implements AfterViewInit {
+    constructor ( public _el : ElementRef , public _cd : ChangeDetectorRef ,
+                  public ampCountryService : AmpCountryService ,
+                  public _renderer : Renderer ) {
+        super( _el , _cd , _renderer );
+        this.fieldItemKey  = 'countryCode';
+        this.fieldValueKey = 'country';
         this.options       = [
             {
                 countryCode : 'AUS' ,
@@ -31,15 +29,25 @@ export class AmpCountryComponent extends AmpDropdownComponent implements OnInit 
         };
     }
 
-    ngOnInit () : any {
-        super.ngOnInit();
-        this.preselect = this.control.value || 'AUS';
-        this.ampCountryService
-            .getCountries()
-            .subscribe( ( res : any ) => {
-                this.options   = res;
-                this.preselect = this.control.value || 'AUS';
-            } );
+    ngAfterViewInit () : any {
+        super.ngAfterViewInit();
+        // pre selecting as per requirements , it should always be Australia if it does not have value (hasn't been
+        // retrieved)
+        if ( this.control.value === null ) {
+            this.control.setValue( 'Australia' );
+        }
+        let subs =
+                this.ampCountryService
+                    .getCountries()
+                    .subscribe( ( res : any ) => {
+                        this.options = res;
+                        if ( this.control.value === null ) {
+                            this.control.setValue( 'Australia' );
+                        }
+                        if ( subs ) {
+                            subs.unsubscribe();
+                        }
+                    } );
         return undefined;
     }
 }

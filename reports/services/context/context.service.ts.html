@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for services/context/context.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">services/context/</a> context.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">68.97% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>20/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">68.97% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var amp_http_service_1 = require('../amp-http/amp-http.service');
+var environments_abstract_1 = require('../../abstracts/environments/environments.abstract');
+var ContextService = (function () {
+    function ContextService(http) {
+        this.http = http;
+        this.$contextChanged = new core_1.EventEmitter();
+        this._context = { initialized: false };
+        this._contextUrl = environments_abstract_1.Environments.property.TamServicePath + environments_abstract_1.Environments.property.GwDDCService.EnvPath + environments_abstract_1.Environments.property.GwDDCService.Path + '/usersession';
+    }
+    Object.defineProperty(ContextService.prototype, "context", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._context;</span>
+        },
+        set: <span class="fstat-no" title="function not covered" >function (ctx) {</span>
+<span class="cstat-no" title="statement not covered" >            Object.assign(this._context, ctx);</span>
+<span class="cstat-no" title="statement not covered" >            this._context.initialized = true;</span>
+<span class="cstat-no" title="statement not covered" >            this.$contextChanged.emit(this._context);</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ContextService.prototype.fetchContext = function () {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers, body: '' });
+        return this.http.get(this._contextUrl, options)
+            .map(function (res) { return res.json(); });
+    };
+    ContextService.prototype.whenReady = <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!this.context.initialized) {</span>
+<span class="cstat-no" title="statement not covered" >            this.$contextChanged.subscribe(<span class="fstat-no" title="function not covered" >function (newContext) {</span></span>
+<span class="cstat-no" title="statement not covered" >                cb();</span>
+            });
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            cb();</span>
+        }
+    };
+    ContextService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof amp_http_service_1.AmpHttpService !== 'undefined' &amp;&amp; amp_http_service_1.AmpHttpService) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], ContextService);
+    return ContextService;
+<span class="cstat-no" title="statement not covered" >    var _a;</span>
+}());
+exports.ContextService = ContextService;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udGV4dC5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiY29udGV4dC5zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFBeUMsZUFBZSxDQUFDLENBQUE7QUFFekQscUJBR1EsZUFBZSxDQUFDLENBQUE7QUFDeEIsaUNBQStCLDhCQUE4QixDQUFDLENBQUE7QUFDOUQsc0NBQStCLG9EQUFvRCxDQUFDLENBQUE7QUFHcEY7SUFPSSx3QkFBcUIsSUFBcUI7UUFBckIsU0FBSSxHQUFKLElBQUksQ0FBaUI7UUFMbkMsb0JBQWUsR0FBdUIsSUFBSSxtQkFBWSxFQUFPLENBQUM7UUFFN0QsYUFBUSxHQUFNLEVBQUUsV0FBVyxFQUFFLEtBQUssRUFBRSxDQUFDO1FBQ3JDLGdCQUFXLEdBQUcsb0NBQVksQ0FBQyxRQUFRLENBQUMsY0FBYyxHQUFHLG9DQUFZLENBQUMsUUFBUSxDQUFDLFlBQVksQ0FBQyxPQUFPLEdBQUcsb0NBQVksQ0FBQyxRQUFRLENBQUMsWUFBWSxDQUFDLElBQUksR0FBRyxjQUFjLENBQUM7SUFHbkssQ0FBQztJQUVELHNCQUFJLG1DQUFPO2FBQVg7WUFDSSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQztRQUN6QixDQUFDO2FBRUQsVUFBYSxHQUFHO1lBQ1osTUFBTSxDQUFDLE1BQU0sQ0FBRSxJQUFJLENBQUMsUUFBUSxFQUFHLEdBQUcsQ0FBRSxDQUFDO1lBQ3JDLElBQUksQ0FBQyxRQUFRLENBQUMsV0FBVyxHQUFHLElBQUksQ0FBQztZQUNqQyxJQUFJLENBQUMsZUFBZSxDQUFDLElBQUksQ0FBRSxJQUFJLENBQUMsUUFBUSxDQUFFLENBQUM7UUFDL0MsQ0FBQzs7O09BTkE7SUFRTSxxQ0FBWSxHQUFuQjtRQUNJLElBQUksT0FBTyxHQUFHLElBQUksY0FBTyxDQUFFLEVBQUUsY0FBYyxFQUFFLGtCQUFrQixFQUFFLENBQUUsQ0FBQztRQUNwRSxJQUFJLE9BQU8sR0FBRyxJQUFJLHFCQUFjLENBQUUsRUFBRSxPQUFPLEVBQUUsT0FBTyxFQUFHLElBQUksRUFBRSxFQUFFLEVBQUUsQ0FBRSxDQUFDO1FBQ3BFLE1BQU0sQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBRSxJQUFJLENBQUMsV0FBVyxFQUFHLE9BQU8sQ0FBRTthQUNqQyxHQUFHLENBQUUsVUFBQyxHQUFHLElBQUssT0FBQSxHQUFHLENBQUMsSUFBSSxFQUFFLEVBQVYsQ0FBVSxDQUFFLENBQUM7SUFDaEQsQ0FBQztJQUVNLGtDQUFTLEdBQWhCLFVBQWtCLEVBQUU7UUFDaEIsRUFBRSxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxDQUFDLENBQUM7WUFDNUIsSUFBSSxDQUFDLGVBQWUsQ0FBQyxTQUFTLENBQUUsVUFBQyxVQUFVO2dCQUN2QyxFQUFFLEVBQUUsQ0FBQztZQUNULENBQUMsQ0FBQyxDQUFDO1FBQ1AsQ0FBQztRQUFDLElBQUksQ0FBQyxDQUFDO1lBQ0osRUFBRSxFQUFFLENBQUM7UUFDVCxDQUFDO0lBQ0wsQ0FBQztJQXBDTDtRQUFDLGlCQUFVLEVBQUU7O3NCQUFBO0lBcUNiLHFCQUFDOztBQUFELENBQUMsQUFwQ0QsSUFvQ0M7QUFwQ1ksc0JBQWMsaUJBb0MxQixDQUFBIn0=
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:00:43 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

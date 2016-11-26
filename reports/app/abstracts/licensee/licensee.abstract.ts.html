@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/abstracts/licensee/licensee.abstract.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/abstracts/licensee/</a> licensee.abstract.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.9% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/21</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var LicenseesAbstract = (function () {
+<span class="fstat-no" title="function not covered" >    function LicenseesAbstract() {</span>
+    }
+    Object.defineProperty(LicenseesAbstract, "licenseeBuybackFacilities", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._licenseeBuybackFacilities;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LicenseesAbstract.getLicenseeBuybackFacility = <span class="fstat-no" title="function not covered" >function (name) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this._licenseeBuybackFacilities.hasOwnProperty(name)) {</span>
+<span class="cstat-no" title="statement not covered" >            return this._licenseeBuybackFacilities[name];</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            return 'licensee not exist';</span>
+        }
+    };
+    Object.defineProperty(LicenseesAbstract, "licensees", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._licensees;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LicenseesAbstract.getLicensee = <span class="fstat-no" title="function not covered" >function (name) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.hasLicensee(name) ? this.licensees[name] : 'licensee does not exist';</span>
+    };
+    LicenseesAbstract.hasLicensee = <span class="fstat-no" title="function not covered" >function (name) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.licensees.hasOwnProperty(name);</span>
+    };
+    Object.defineProperty(LicenseesAbstract, "licenseeImages", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._licenseeImages;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LicenseesAbstract._licensees = {
+        DEA_AMPFP: 'AMP Financial Planning',
+        DEA_HILLROSS: 'Hillross',
+        DEA_CHARTER: 'Charter',
+        DEA_ASSURED: 'AMP Financial Planning'
+    };
+    LicenseesAbstract._licenseeBuybackFacilities = {
+        DEA_AMPFP: 'Buyer of last resort',
+        DEA_HILLROSS: 'Licensee / Enhanced buyback',
+        DEA_CHARTER: 'Buy out option',
+        DEA_ASSURED: 'Buyer of last resort'
+    };
+    LicenseesAbstract._licenseeImages = {
+        AMP: {
+            name: 'AMP',
+            forms: 'amp-white.png',
+            forms_transparent: 'amp.svg',
+            tools: 'amp-blue.png',
+            tools_transparent: 'amp_rev_fc.svg'
+        },
+        DEA_AMPFP: {
+            forms: 'ampfp-white.png',
+            forms_transparent: 'amp_fp.svg',
+            tools: 'ampfp-blue.png'
+        },
+        DEA_ASSURED: {
+            forms: 'ampfp-white.png',
+            forms_transparent: 'amp_fp.svg',
+            tools: 'ampfp-blue.png'
+        },
+        DEA_CHARTER: {
+            forms: 'charter-white.png',
+            forms_transparent: 'charter_fp.svg',
+            tools: 'charter-blue.png'
+        },
+        DEA_HILLROSS: {
+            forms: 'hillross-white.png',
+            forms_transparent: 'hillross.svg',
+            tools: 'hillross-blue.png',
+            tools_transparent: 'hillross_rev_fc.svg'
+        }
+    };
+    return LicenseesAbstract;
+}());
+exports.LicenseesAbstract = LicenseesAbstract;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGljZW5zZWUuYWJzdHJhY3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJsaWNlbnNlZS5hYnN0cmFjdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7SUFBQTtJQXlFQSxDQUFDO0lBeEVHLHNCQUFrQiw4Q0FBeUI7YUFBM0M7WUFDSSxNQUFNLENBQUMsSUFBSSxDQUFDLDBCQUEwQixDQUFDO1FBQzNDLENBQUM7OztPQUFBO0lBRWMsNENBQTBCLEdBQXpDLFVBQTRDLElBQUk7UUFDNUMsRUFBRSxDQUFDLENBQUUsSUFBSSxDQUFDLDBCQUEwQixDQUFDLGNBQWMsQ0FBRSxJQUFJLENBQUcsQ0FBQyxDQUFDLENBQUM7WUFDM0QsTUFBTSxDQUFDLElBQUksQ0FBQywwQkFBMEIsQ0FBRSxJQUFJLENBQUUsQ0FBQztRQUNuRCxDQUFDO1FBQUMsSUFBSSxDQUFDLENBQUM7WUFDSixNQUFNLENBQUMsb0JBQW9CLENBQUM7UUFDaEMsQ0FBQztJQUNMLENBQUM7SUFFRCxzQkFBa0IsOEJBQVM7YUFBM0I7WUFDSSxNQUFNLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQztRQUMzQixDQUFDOzs7T0FBQTtJQUVhLDZCQUFXLEdBQXpCLFVBQTRCLElBQUk7UUFDNUIsTUFBTSxDQUFDLElBQUksQ0FBQyxXQUFXLENBQUUsSUFBSSxDQUFFLEdBQUcsSUFBSSxDQUFDLFNBQVMsQ0FBRSxJQUFJLENBQUUsR0FBRyx5QkFBeUIsQ0FBQztJQUN6RixDQUFDO0lBRWEsNkJBQVcsR0FBekIsVUFBNEIsSUFBSTtRQUM1QixNQUFNLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxjQUFjLENBQUUsSUFBSSxDQUFFLENBQUM7SUFDakQsQ0FBQztJQStDRCxzQkFBa0IsbUNBQWM7YUFBaEM7WUFDSSxNQUFNLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQztRQUNoQyxDQUFDOzs7T0FBQTtJQS9DYyw0QkFBVSxHQUF5QjtRQUM5QyxTQUFTLEVBQUssd0JBQXdCO1FBQ3RDLFlBQVksRUFBRSxVQUFVO1FBQ3hCLFdBQVcsRUFBRyxTQUFTO1FBQ3ZCLFdBQVcsRUFBRyx3QkFBd0I7S0FDekMsQ0FBQztJQUVhLDRDQUEwQixHQUFTO1FBQzlDLFNBQVMsRUFBSyxzQkFBc0I7UUFDcEMsWUFBWSxFQUFFLDZCQUE2QjtRQUMzQyxXQUFXLEVBQUcsZ0JBQWdCO1FBQzlCLFdBQVcsRUFBRyxzQkFBc0I7S0FDdkMsQ0FBQztJQUVhLGlDQUFlLEdBQVM7UUFDbkMsR0FBRyxFQUFFO1lBQ0QsSUFBSSxFQUFFLEtBQUs7WUFDWCxLQUFLLEVBQUUsZUFBZTtZQUN0QixpQkFBaUIsRUFBRSxTQUFTO1lBQzVCLEtBQUssRUFBRSxjQUFjO1lBQ3JCLGlCQUFpQixFQUFFLGdCQUFnQjtTQUN0QztRQUNELFNBQVMsRUFBRTtZQUNQLEtBQUssRUFBRSxpQkFBaUI7WUFDeEIsaUJBQWlCLEVBQUUsWUFBWTtZQUMvQixLQUFLLEVBQUUsZ0JBQWdCO1NBQzFCO1FBQ0QsV0FBVyxFQUFFO1lBQ1QsS0FBSyxFQUFFLGlCQUFpQjtZQUN4QixpQkFBaUIsRUFBRSxZQUFZO1lBQy9CLEtBQUssRUFBRSxnQkFBZ0I7U0FDMUI7UUFDRCxXQUFXLEVBQUU7WUFDVCxLQUFLLEVBQUUsbUJBQW1CO1lBQzFCLGlCQUFpQixFQUFFLGdCQUFnQjtZQUNuQyxLQUFLLEVBQUUsa0JBQWtCO1NBQzVCO1FBQ0QsWUFBWSxFQUFFO1lBQ1YsS0FBSyxFQUFFLG9CQUFvQjtZQUMzQixpQkFBaUIsRUFBRSxjQUFjO1lBQ2pDLEtBQUssRUFBRSxtQkFBbUI7WUFDMUIsaUJBQWlCLEVBQUUscUJBQXFCO1NBQzNDO0tBQ0osQ0FBQztJQUtOLHdCQUFDO0FBQUQsQ0FBQyxBQXpFRCxJQXlFQztBQXpFcUIseUJBQWlCLG9CQXlFdEMsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

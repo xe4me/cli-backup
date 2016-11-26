@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/abstracts/association-length/association-length.abstract.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/abstracts/association-length/</a> association-length.abstract.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.37% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.29% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.37% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var AssociationLengthAbstract = (function () {
+<span class="fstat-no" title="function not covered" >    function AssociationLengthAbstract() {</span>
+    }
+    Object.defineProperty(AssociationLengthAbstract, "timeframes", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.associationLengthRadios;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AssociationLengthAbstract.getOptionsByLicensee = <span class="fstat-no" title="function not covered" >function (licensee) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.associationLengthRadios.getOptions(licensee);</span>
+    };
+    AssociationLengthAbstract.getLabel = <span class="fstat-no" title="function not covered" >function (licensee, value) {</span>
+<span class="cstat-no" title="statement not covered" >        var options = this.getOptionsByLicensee(licensee);</span>
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; options.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            var item = options[i];</span>
+<span class="cstat-no" title="statement not covered" >            if (item.value === value) {</span>
+<span class="cstat-no" title="statement not covered" >                return item.label.toLowerCase();</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return '';</span>
+    };
+    Object.defineProperty(AssociationLengthAbstract, "groupName", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.associationLengthRadios.groupName;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AssociationLengthAbstract.associationLengthRadios = {
+        buttons: {
+            DEA_AMPFP: [
+                {
+                    id: 'at_least_fifteen',
+                    value: 'at_least_fifteen',
+                    label: 'At least 15 years'
+                },
+                {
+                    id: 'at_least_four_years_but_fewer_than_15_years',
+                    value: 'at_least_four_years_but_fewer_than_15_years',
+                    label: 'At least four years but fewer than 15 years.'
+                },
+                {
+                    id: 'fewer_than_four_years',
+                    value: 'fewer_than_four_years',
+                    label: 'Fewer than four years.'
+                }
+            ],
+            DEA_ASSURED: [
+                {
+                    id: 'at_least_fifteen',
+                    value: 'at_least_fifteen',
+                    label: 'At least 15 years'
+                },
+                {
+                    id: 'at_least_four_years_but_fewer_than_15_years',
+                    value: 'at_least_four_years_but_fewer_than_15_years',
+                    label: 'At least four years but fewer than 15 years.'
+                },
+                {
+                    id: 'fewer_than_four_years',
+                    value: 'fewer_than_four_years',
+                    label: 'Fewer than four years.'
+                }
+            ],
+            DEA_HILLROSS: [
+                {
+                    id: 'at_least_five_years',
+                    value: 'at_least_five_years',
+                    label: 'At least five years.'
+                },
+                {
+                    id: 'fewer_than_five_years',
+                    value: 'fewer_than_five_years',
+                    label: 'Fewer than five years (subject to exceptional circumstances)'
+                }
+            ],
+            DEA_CHARTER: [
+                {
+                    id: 'at_least_five_years',
+                    value: 'at_least_five_years',
+                    label: 'At least five years.'
+                },
+                {
+                    id: 'fewer_than_five_years',
+                    value: 'fewer_than_five_years',
+                    label: 'Fewer than five years (subject to exceptional circumstances)'
+                }
+            ]
+        },
+        groupName: 'associationLength',
+        getOptions: <span class="fstat-no" title="function not covered" >function (licensee) {</span>
+<span class="cstat-no" title="statement not covered" >            return this.buttons[licensee] || [];</span>
+        }
+    };
+    return AssociationLengthAbstract;
+}());
+exports.AssociationLengthAbstract = AssociationLengthAbstract;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXNzb2NpYXRpb24tbGVuZ3RoLmFic3RyYWN0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYXNzb2NpYXRpb24tbGVuZ3RoLmFic3RyYWN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTtJQUFBO0lBMEZBLENBQUM7SUF6Rkcsc0JBQWtCLHVDQUFVO2FBQTVCO1lBQ0ksTUFBTSxDQUFDLElBQUksQ0FBQyx1QkFBdUIsQ0FBQztRQUN4QyxDQUFDOzs7T0FBQTtJQUVhLDhDQUFvQixHQUFsQyxVQUFxQyxRQUFpQjtRQUNsRCxNQUFNLENBQUMsSUFBSSxDQUFDLHVCQUF1QixDQUFDLFVBQVUsQ0FBRSxRQUFRLENBQUUsQ0FBQztJQUMvRCxDQUFDO0lBRWEsa0NBQVEsR0FBdEIsVUFBeUIsUUFBaUIsRUFBRyxLQUFjO1FBQ3ZELElBQUksT0FBTyxHQUFHLElBQUksQ0FBQyxvQkFBb0IsQ0FBRSxRQUFRLENBQUUsQ0FBQztRQUNwRCxHQUFHLENBQUMsQ0FBRSxJQUFJLENBQUMsR0FBRyxDQUFDLEVBQUcsQ0FBQyxHQUFHLE9BQU8sQ0FBQyxNQUFNLEVBQUcsQ0FBQyxFQUFHLEVBQUcsQ0FBQztZQUMzQyxJQUFJLElBQUksR0FBRyxPQUFPLENBQUUsQ0FBQyxDQUFFLENBQUM7WUFDeEIsRUFBRSxDQUFDLENBQUUsSUFBSSxDQUFDLEtBQUssS0FBSyxLQUFNLENBQUMsQ0FBQyxDQUFDO2dCQUN6QixNQUFNLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxXQUFXLEVBQUUsQ0FBQztZQUNwQyxDQUFDO1FBQ0wsQ0FBQztRQUNELE1BQU0sQ0FBQyxFQUFFLENBQUM7SUFDZCxDQUFDO0lBRUQsc0JBQWtCLHNDQUFTO2FBQTNCO1lBQ0ksTUFBTSxDQUFDLElBQUksQ0FBQyx1QkFBdUIsQ0FBQyxTQUFTLENBQUM7UUFDbEQsQ0FBQzs7O09BQUE7SUFFYyxpREFBdUIsR0FBRztRQUNyQyxPQUFPLEVBQUs7WUFDUixTQUFTLEVBQUs7Z0JBQ1Y7b0JBQ0ksRUFBRSxFQUFLLGtCQUFrQjtvQkFDekIsS0FBSyxFQUFFLGtCQUFrQjtvQkFDekIsS0FBSyxFQUFFLG1CQUFtQjtpQkFDN0I7Z0JBQ0Q7b0JBQ0ksRUFBRSxFQUFLLDZDQUE2QztvQkFDcEQsS0FBSyxFQUFFLDZDQUE2QztvQkFDcEQsS0FBSyxFQUFFLDhDQUE4QztpQkFDeEQ7Z0JBQ0Q7b0JBQ0ksRUFBRSxFQUFLLHVCQUF1QjtvQkFDOUIsS0FBSyxFQUFFLHVCQUF1QjtvQkFDOUIsS0FBSyxFQUFFLHdCQUF3QjtpQkFDbEM7YUFDSjtZQUNELFdBQVcsRUFBSztnQkFDWjtvQkFDSSxFQUFFLEVBQUssa0JBQWtCO29CQUN6QixLQUFLLEVBQUUsa0JBQWtCO29CQUN6QixLQUFLLEVBQUUsbUJBQW1CO2lCQUM3QjtnQkFDRDtvQkFDSSxFQUFFLEVBQUssNkNBQTZDO29CQUNwRCxLQUFLLEVBQUUsNkNBQTZDO29CQUNwRCxLQUFLLEVBQUUsOENBQThDO2lCQUN4RDtnQkFDRDtvQkFDSSxFQUFFLEVBQUssdUJBQXVCO29CQUM5QixLQUFLLEVBQUUsdUJBQXVCO29CQUM5QixLQUFLLEVBQUUsd0JBQXdCO2lCQUNsQzthQUNKO1lBQ0QsWUFBWSxFQUFFO2dCQUNWO29CQUNJLEVBQUUsRUFBSyxxQkFBcUI7b0JBQzVCLEtBQUssRUFBRSxxQkFBcUI7b0JBQzVCLEtBQUssRUFBRSxzQkFBc0I7aUJBQ2hDO2dCQUNEO29CQUNJLEVBQUUsRUFBSyx1QkFBdUI7b0JBQzlCLEtBQUssRUFBRSx1QkFBdUI7b0JBQzlCLEtBQUssRUFBRSw4REFBOEQ7aUJBQ3hFO2FBQ0o7WUFDRCxXQUFXLEVBQUc7Z0JBQ1Y7b0JBQ0ksRUFBRSxFQUFLLHFCQUFxQjtvQkFDNUIsS0FBSyxFQUFFLHFCQUFxQjtvQkFDNUIsS0FBSyxFQUFFLHNCQUFzQjtpQkFDaEM7Z0JBQ0Q7b0JBQ0ksRUFBRSxFQUFLLHVCQUF1QjtvQkFDOUIsS0FBSyxFQUFFLHVCQUF1QjtvQkFDOUIsS0FBSyxFQUFFLDhEQUE4RDtpQkFDeEU7YUFDSjtTQUNKO1FBQ0QsU0FBUyxFQUFHLG1CQUFtQjtRQUMvQixVQUFVLEVBQUUsVUFBVSxRQUFRO1lBQzFCLE1BQU0sQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFFLFFBQVEsQ0FBRSxJQUFJLEVBQUUsQ0FBQztRQUMxQyxDQUFDO0tBQ0osQ0FBQztJQUNOLGdDQUFDO0FBQUQsQ0FBQyxBQTFGRCxJQTBGQztBQTFGcUIsaUNBQXlCLDRCQTBGOUMsQ0FBQSJ9
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

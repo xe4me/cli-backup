@@ -9,11 +9,11 @@
     </div>
     <div class="p">
         <amp-google-recaptcha #myRecaptcha (captchaResponse)="handleCaptchaResponse($event)"
-            data-theme="light"
-            [controlGroup]='__controlGroup'
-            [sitekey]="sitekey"></amp-google-recaptcha>        
+                              data-theme="light"
+                              [controlGroup]='__controlGroup'
+                              [sitekey]="sitekey"></amp-google-recaptcha>
     </div>
 
-    <amp-button class='btn btn-ok' [disabled]='!__controlGroup.valid'>Go Next </amp-button>
+    <amp-button class='btn btn-ok' [disabled]='!__controlGroup.valid'>Go Next</amp-button>
     <amp-button class='btn btn-ok' (click)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
 </form>

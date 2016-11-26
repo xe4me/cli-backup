@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-type-search/components/amp-type-search/amp-type-search.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-type-search/components/amp-type-search/</a> amp-type-search.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.58% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>58/178</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>20/75</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.94% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.58% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>58/178</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var Rx_1 = require('rxjs/Rx');
+var amp_utils_1 = require('../../../amp-utils');
+var amp_directives_1 = require('../../../amp-directives');
+var amp_inputs_1 = require('../../../amp-inputs');
+var scroll_service_1 = require('../../../../services/scroll/scroll.service');
+var AmpTypeSearchComponent = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpTypeSearchComponent(_cd, scrollService) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this._cd = _cd;</span>
+<span class="cstat-no" title="statement not covered" >        this.scrollService = scrollService;</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedControl = new forms_1.FormControl();</span>
+<span class="cstat-no" title="statement not covered" >        this.searchControlGroup = new forms_1.FormGroup({});</span>
+<span class="cstat-no" title="statement not covered" >        this.isSearching = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.$selected = new core_1.EventEmitter();</span>
+<span class="cstat-no" title="statement not covered" >        this.$deSelected = new core_1.EventEmitter();</span>
+<span class="cstat-no" title="statement not covered" >        this.$errorCode = new core_1.EventEmitter();</span>
+<span class="cstat-no" title="statement not covered" >        this.$showResults = new core_1.EventEmitter();</span>
+<span class="cstat-no" title="statement not covered" >        this.maxHeight = '400px';</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedItemIdentifier = 'id';</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedItemValueIdentifier = 'label';</span>
+<span class="cstat-no" title="statement not covered" >        this.isInSummaryState = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.minTriggerLength = 50;</span>
+<span class="cstat-no" title="statement not covered" >        this.maxLength = 50;</span>
+<span class="cstat-no" title="statement not covered" >        this.errors = {};</span>
+<span class="cstat-no" title="statement not covered" >        this.selectLabel = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.options = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.showNoResults = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.INPUT_FOCUSER = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this.LIST_FOCUSER = 1;</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedOption = {};</span>
+<span class="cstat-no" title="statement not covered" >        this._required = false;</span>
+<span class="cstat-no" title="statement not covered" >        this._optionsHidden = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.doApiQuery = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.filteredList = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.customValidator = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return <span class="fstat-no" title="function not covered" >function (c) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (c.value &amp;&amp; c.value.length &gt;= _this.minTriggerLength) {</span>
+<span class="cstat-no" title="statement not covered" >                    return _this.selectedControl.value ? null : {</span>
+                        invalidSearch: {
+                            text: c._ampErrors &amp;&amp; c._ampErrors.invalidSearch ? c._ampErrors.invalidSearch : 'please' +
+                                ' select a search result'
+                        }
+                    };
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    return null;</span>
+                }
+            };
+        };
+<span class="cstat-no" title="statement not covered" >        this.queryServiceCall = <span class="fstat-no" title="function not covered" >function (queryValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return new Rx_1.Observable();</span>
+        };
+<span class="cstat-no" title="statement not covered" >        this.close = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            _this._optionsHidden = true;</span>
+<span class="cstat-no" title="statement not covered" >            _this.showNoResults = false;</span>
+        };
+    }
+    Object.defineProperty(AmpTypeSearchComponent.prototype, "required", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._required;</span>
+        },
+        set: <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >            this._required = value;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpTypeSearchComponent.prototype, "resultList_id", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.id + '-resultList';</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpTypeSearchComponent.prototype, "control", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.searchControlGroup &amp;&amp; this.searchControlGroup.contains(this.id)) {</span>
+<span class="cstat-no" title="statement not covered" >                return this.searchControlGroup.controls[this.id];</span>
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpTypeSearchComponent.prototype, "searchResult", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.control) {</span>
+<span class="cstat-no" title="statement not covered" >                return this.control.searchResult;</span>
+            }
+        },
+        set: <span class="fstat-no" title="function not covered" >function (_result) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.control) {</span>
+<span class="cstat-no" title="statement not covered" >                this.control.searchResult = _result;</span>
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AmpTypeSearchComponent.prototype, "isOptionsHidden", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this._optionsHidden;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AmpTypeSearchComponent.prototype.ngAfterViewInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedOption[this.selectedItemValueIdentifier] = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.searchControlGroup.addControl(this.id + AmpTypeSearchComponent.SELECTED_CONTROL_ID_POSTFIX, this.selectedControl);</span>
+<span class="cstat-no" title="statement not covered" >        this.controlGroup.addControl(AmpTypeSearchComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME, this.searchControlGroup);</span>
+<span class="cstat-no" title="statement not covered" >        this.initForApi();</span>
+<span class="cstat-no" title="statement not covered" >        return undefined;</span>
+    };
+    AmpTypeSearchComponent.prototype.ngOnDestroy = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.subscription) {</span>
+<span class="cstat-no" title="statement not covered" >            this.subscription.unsubscribe();</span>
+        }
+    };
+    AmpTypeSearchComponent.prototype.onClick = <span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >        if (e.target.className.includes('icon--search')) {</span>
+<span class="cstat-no" title="statement not covered" >            this.doSearchIconClick();</span>
+        }
+    };
+    AmpTypeSearchComponent.prototype.doSearchIconClick = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this.isSearching = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.searchIconClick(this.control.value || '')</span>
+            .subscribe(<span class="fstat-no" title="function not covered" >function (result) {</span>
+<span class="cstat-no" title="statement not covered" >            _this.isSearching = false;</span>
+<span class="cstat-no" title="statement not covered" >            _this.clearSelectedItem();</span>
+<span class="cstat-no" title="statement not covered" >            _this.open();</span>
+<span class="cstat-no" title="statement not covered" >            _this.searchResult = result.json().payload;</span>
+<span class="cstat-no" title="statement not covered" >            if (result.json().errorCode) {</span>
+<span class="cstat-no" title="statement not covered" >                _this.$errorCode.emit({ errorCode: result.json().errorCode });</span>
+            }
+<span class="cstat-no" title="statement not covered" >            _this._cd.markForCheck();</span>
+<span class="cstat-no" title="statement not covered" >            _this.ampInput.checkErrors();</span>
+        }, <span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >            _this.isSearching = false;</span>
+<span class="cstat-no" title="statement not covered" >            _this.clearSelectedItem();</span>
+<span class="cstat-no" title="statement not covered" >            _this.close();</span>
+<span class="cstat-no" title="statement not covered" >            _this.searchResult = null;</span>
+<span class="cstat-no" title="statement not covered" >            _this._cd.markForCheck();</span>
+<span class="cstat-no" title="statement not covered" >            _this.ampInput.checkErrors();</span>
+        });
+    };
+    AmpTypeSearchComponent.prototype.open = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.isInSummaryState) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._optionsHidden = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.$showResults.emit(!this._optionsHidden);</span>
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            _this.scrollService.scrollToComponentSelector(_this.resultList_id);</span>
+        });
+    };
+    ;
+    AmpTypeSearchComponent.prototype.onListFocusOut = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.focusInput();</span>
+    };
+    AmpTypeSearchComponent.prototype.onKeydown = <span class="fstat-no" title="function not covered" >function ($event) {</span>
+<span class="cstat-no" title="statement not covered" >        var keyCode = $event.keyCode;</span>
+<span class="cstat-no" title="statement not covered" >        if (keyCode === amp_utils_1.KeyCodes.DOWN || keyCode === amp_utils_1.KeyCodes.UP) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!this.isOptionsHidden) {</span>
+<span class="cstat-no" title="statement not covered" >                this.onDownKeyPressed(keyCode);</span>
+<span class="cstat-no" title="statement not covered" >                $event.preventDefault();</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        if (amp_utils_1.KeyCodes.ENTER === keyCode) {</span>
+<span class="cstat-no" title="statement not covered" >            this.doSearchIconClick();</span>
+        }
+    };
+    AmpTypeSearchComponent.prototype.selectOption = <span class="fstat-no" title="function not covered" >function (option) {</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedOption = Object.assign({}, option);</span>
+<span class="cstat-no" title="statement not covered" >        this.control.setValue(this.selectedOption[this.selectedItemValueIdentifier].trim().substring(0, 50));</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedControl.setValue(JSON.stringify(this.selectedOption));</span>
+<span class="cstat-no" title="statement not covered" >        this.ampInput.checkErrors();</span>
+<span class="cstat-no" title="statement not covered" >        this.$selected.emit(this.selectedOption);</span>
+<span class="cstat-no" title="statement not covered" >        this.close();</span>
+<span class="cstat-no" title="statement not covered" >        this.focusInput();</span>
+    };
+    AmpTypeSearchComponent.prototype.onDownKeyPressed = <span class="fstat-no" title="function not covered" >function (_direction) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.focusers.toArray()[this.LIST_FOCUSER]) {</span>
+<span class="cstat-no" title="statement not covered" >            this.focusers.toArray()[this.LIST_FOCUSER].focus(_direction);</span>
+<span class="cstat-no" title="statement not covered" >            this.markInputAsUnDirty(); </span>// otherwise it shows the error because of the focus ou of the input
+        }
+    };
+    AmpTypeSearchComponent.prototype.filter = <span class="fstat-no" title="function not covered" >function (items, identifier, query, doFilter) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.filteredList = doFilter &amp;&amp; amp_utils_1.isPresent(query) ? items.filter(<span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return item[identifier] &amp;&amp; item[identifier].toLowerCase().indexOf(query.toLowerCase()) !== -1;</span>
+        }) : items;
+    };
+    AmpTypeSearchComponent.prototype.focusInput = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.focusers.toArray()[this.INPUT_FOCUSER]) {</span>
+<span class="cstat-no" title="statement not covered" >            this.focusers.toArray()[this.INPUT_FOCUSER].focus(-1);</span>
+        }
+    };
+    AmpTypeSearchComponent.prototype.initForApi = <span class="fstat-no" title="function not covered" >function () {</span>
+        // this.searchResult = null;
+<span class="cstat-no" title="statement not covered" >        this.doApiQuery = true;</span>
+        // return this.subscription =
+        //     this.control
+        //         .valueChanges
+        //         .distinctUntilChanged()
+        //         .do( ( queryString ) =&gt; {
+        //             if ( ! queryString ) {
+        //                 this.clearSelectedItem();
+        //                 this.searchResult = null;
+        //             }
+        //         } )
+        //         .filter(
+        //             ( x ) =&gt; x &amp;&amp; x.length &gt;= this.minTriggerLength &amp;&amp; x.trim() !== this.selectedOption[ this.selectedItemValueIdentifier ] )
+        //         .switchMap( ( queryString ) =&gt; this.queryServiceCall( queryString ) )
+        //         .subscribe( ( result ) =&gt; {
+        //             this.clearSelectedItem();
+        //             this.open();
+        //             this.searchResult = result;
+        //             this._cd.markForCheck();
+        //             this.ampInput.checkErrors();
+        //         } , ( error ) =&gt; {
+        //             this.clearSelectedItem();
+        //             this.close();
+        //             this.searchResult = null;
+        //             this._cd.markForCheck();
+        //             this.ampInput.checkErrors();
+        //         } );
+<span class="cstat-no" title="statement not covered" >        return undefined;</span>
+    };
+    AmpTypeSearchComponent.prototype.markInputAsUnDirty = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            _this.control._dirty = false;</span>
+<span class="cstat-no" title="statement not covered" >            _this.control.updateValueAndValidity({</span>
+                onlySelf: false,
+                emitEvent: true
+            });
+        });
+    };
+    AmpTypeSearchComponent.prototype.clearSelectedItem = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedControl.setValue(null);</span>
+<span class="cstat-no" title="statement not covered" >        this.selectedOption[this.selectedItemValueIdentifier] = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.$deSelected.emit(null);</span>
+    };
+    AmpTypeSearchComponent.prototype.initForOptions = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        this.searchResult = this.options;</span>
+<span class="cstat-no" title="statement not covered" >        this.doApiQuery = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.control</span>
+            .valueChanges
+            .distinctUntilChanged()
+            .subscribe(<span class="fstat-no" title="function not covered" >function (queryString) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!queryString || queryString !== _this.selectedOption[_this.selectedItemValueIdentifier]) {</span>
+<span class="cstat-no" title="statement not covered" >                _this.clearSelectedItem();</span>
+<span class="cstat-no" title="statement not covered" >                _this.ampInput.checkErrors();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            _this.open();</span>
+        });
+    };
+    AmpTypeSearchComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME = 'searchControls';
+    AmpTypeSearchComponent.SELECTED_CONTROL_ID_POSTFIX = '-selected-item';
+    __decorate([
+        core_1.ViewChildren(amp_directives_1.FocuserDirective), 
+        __metadata('design:type', (typeof (_a = typeof core_1.QueryList !== 'undefined' &amp;&amp; core_1.QueryList) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpTypeSearchComponent.prototype, "focusers", void 0);
+    __decorate([
+        core_1.ViewChild('input'), 
+        __metadata('design:type', (typeof (_b = typeof amp_inputs_1.AmpInputComponent !== 'undefined' &amp;&amp; amp_inputs_1.AmpInputComponent) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpTypeSearchComponent.prototype, "ampInput", void 0);
+    __decorate([
+        core_1.Output('selected'), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "$selected", void 0);
+    __decorate([
+        core_1.Output('deSelected'), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "$deSelected", void 0);
+    __decorate([
+        core_1.Output('errorCode'), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "$errorCode", void 0);
+    __decorate([
+        core_1.Output('showResults'), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "$showResults", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpTypeSearchComponent.prototype, "maxHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "selectedItemIdentifier", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "selectedItemValueIdentifier", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "isInSummaryState", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "minTriggerLength", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "maxLength", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "errors", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "selectLabel", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', (typeof (_c = typeof forms_1.FormGroup !== 'undefined' &amp;&amp; forms_1.FormGroup) === 'function' &amp;&amp; _c) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpTypeSearchComponent.prototype, "controlGroup", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "placeholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "isActive", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "searchIconClick", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "customValidator", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpTypeSearchComponent.prototype, "queryServiceCall", void 0);
+    __decorate([
+        core_1.Input('required'), 
+        __metadata('design:type', Boolean), 
+        __metadata('design:paramtypes', [Boolean])
+    ], AmpTypeSearchComponent.prototype, "required", null);
+    AmpTypeSearchComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-type-search',
+            queries: {
+                itemTemplate: new core_1.ContentChild(core_1.TemplateRef)
+            },
+            template: require('./amp-type-search.component.html'),
+            styles: [require('./amp-type-search.component.scss').toString()],
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }), 
+        __metadata('design:paramtypes', [(typeof (_d = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _d) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_e = typeof scroll_service_1.ScrollService !== 'undefined' &amp;&amp; scroll_service_1.ScrollService) === 'function' &amp;&amp; _e) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpTypeSearchComponent);
+    return AmpTypeSearchComponent;
+<span class="cstat-no" title="statement not covered" >    var _a, _b, _c, _d, _e;</span>
+}());
+exports.AmpTypeSearchComponent = AmpTypeSearchComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXR5cGUtc2VhcmNoLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC10eXBlLXNlYXJjaC5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQWVPLGVBQWUsQ0FBQyxDQUFBO0FBQ3ZCLHNCQUF3QyxnQkFBZ0IsQ0FBQyxDQUFBO0FBQ3pELG1CQUEwQyxTQUFTLENBQUMsQ0FBQTtBQUNwRCwwQkFBcUMsb0JBQW9CLENBQUMsQ0FBQTtBQUMxRCwrQkFBaUMseUJBQXlCLENBQUMsQ0FBQTtBQUMzRCwyQkFBa0MscUJBQXFCLENBQUMsQ0FBQTtBQUN4RCwrQkFBOEIsNENBQTRDLENBQUMsQ0FBQTtBQVUzRTtJQXNDSSxnQ0FBc0IsR0FBdUIsRUFDdkIsYUFBNkI7UUF2Q3ZELGlCQXdRQztRQWxPeUIsUUFBRyxHQUFILEdBQUcsQ0FBb0I7UUFDdkIsa0JBQWEsR0FBYixhQUFhLENBQWdCO1FBcEM1QyxvQkFBZSxHQUE0QixJQUFJLG1CQUFXLEVBQUUsQ0FBQztRQUM3RCx1QkFBa0IsR0FBeUIsSUFBSSxpQkFBUyxDQUFFLEVBQUUsQ0FBRSxDQUFDO1FBQy9ELGdCQUFXLEdBQWdDLEtBQUssQ0FBQztRQUdsQyxjQUFTLEdBQW1CLElBQUksbUJBQVksRUFBTyxDQUFDO1FBQ2xELGdCQUFXLEdBQWUsSUFBSSxtQkFBWSxFQUFPLENBQUM7UUFDbkQsZUFBVSxHQUFpQixJQUFJLG1CQUFZLEVBQU8sQ0FBQztRQUNqRCxpQkFBWSxHQUFhLElBQUksbUJBQVksRUFBTyxDQUFDO1FBRWpFLGNBQVMsR0FBZ0MsT0FBTyxDQUFDO1FBRWpELDJCQUFzQixHQUFtQixJQUFJLENBQUM7UUFDOUMsZ0NBQTJCLEdBQWMsT0FBTyxDQUFDO1FBQ2pELHFCQUFnQixHQUF5QixLQUFLLENBQUM7UUFDL0MscUJBQWdCLEdBQXlCLEVBQUUsQ0FBQztRQUM1QyxjQUFTLEdBQWdDLEVBQUUsQ0FBQztRQUM1QyxXQUFNLEdBQW1D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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

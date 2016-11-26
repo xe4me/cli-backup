@@ -1,0 +1,318 @@
+{
+  "tests" : [ {
+    "name" : "bolr-intro-block: All - Desk",
+    "startedAt" : 1463030536924,
+    "endedAt" : 1463030549999,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "1-bolr-intro-block-all---desk",
+    "failed" : true,
+    "duration" : 13075,
+    "groups" : [ "ddc", "bolr-intro-block" ]
+  }, {
+    "name" : "bolr-intro-block: All - Laptop",
+    "startedAt" : 1463030550000,
+    "endedAt" : 1463030562301,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "2-bolr-intro-block-all---laptop",
+    "failed" : true,
+    "duration" : 12301,
+    "groups" : [ "ddc", "bolr-intro-block" ]
+  }, {
+    "name" : "bolr-intro-block: All - Tablet",
+    "startedAt" : 1463030562301,
+    "endedAt" : 1463030574773,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "3-bolr-intro-block-all---tablet",
+    "failed" : true,
+    "duration" : 12472,
+    "groups" : [ "ddc", "bolr-intro-block" ]
+  }, {
+    "name" : "bolr-intro-block: All - Palm",
+    "startedAt" : 1463030574773,
+    "endedAt" : 1463030586821,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "4-bolr-intro-block-all---palm",
+    "failed" : true,
+    "duration" : 12048,
+    "groups" : [ "ddc", "bolr-intro-block" ]
+  }, {
+    "name" : "bolr-intro-block: All - Mobile",
+    "startedAt" : 1463030586821,
+    "endedAt" : 1463030599474,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "5-bolr-intro-block-all---mobile",
+    "failed" : true,
+    "duration" : 12653,
+    "groups" : [ "ddc", "bolr-intro-block" ]
+  }, {
+    "name" : "AmpCheckboxComponent: All - Desk",
+    "startedAt" : 1463030599474,
+    "endedAt" : 1463030604423,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 3,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 3
+    },
+    "testId" : "6-ampcheckboxcomponent-all---desk",
+    "failed" : false,
+    "duration" : 4949,
+    "groups" : [ "ddc", "amp-checkbox" ]
+  }, {
+    "name" : "AmpCheckboxComponent: All - Laptop",
+    "startedAt" : 1463030604423,
+    "endedAt" : 1463030609044,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 3,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 3
+    },
+    "testId" : "7-ampcheckboxcomponent-all---laptop",
+    "failed" : false,
+    "duration" : 4621,
+    "groups" : [ "ddc", "amp-checkbox" ]
+  }, {
+    "name" : "AmpCheckboxComponent: All - Tablet",
+    "startedAt" : 1463030609044,
+    "endedAt" : 1463030613590,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 3,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 3
+    },
+    "testId" : "8-ampcheckboxcomponent-all---tablet",
+    "failed" : false,
+    "duration" : 4546,
+    "groups" : [ "ddc", "amp-checkbox" ]
+  }, {
+    "name" : "AmpCheckboxComponent: All - Palm",
+    "startedAt" : 1463030613590,
+    "endedAt" : 1463030618245,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 3,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 3
+    },
+    "testId" : "9-ampcheckboxcomponent-all---palm",
+    "failed" : false,
+    "duration" : 4655,
+    "groups" : [ "ddc", "amp-checkbox" ]
+  }, {
+    "name" : "AmpCheckboxComponent: All - Mobile",
+    "startedAt" : 1463030618247,
+    "endedAt" : 1463030623853,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 3,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 3
+    },
+    "testId" : "10-ampcheckboxcomponent-all---mobile",
+    "failed" : false,
+    "duration" : 5606,
+    "groups" : [ "ddc", "amp-checkbox" ]
+  }, {
+    "name" : "AMPGoogleAddress: All - Desk",
+    "startedAt" : 1463030623853,
+    "endedAt" : 1463030623853,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "11-ampgoogleaddress-all---desk",
+    "failed" : false,
+    "duration" : 0,
+    "groups" : [ "ddc", "amp-google-address" ]
+  }, {
+    "name" : "AMPGoogleAddress: All - Laptop",
+    "startedAt" : 1463030623853,
+    "endedAt" : 1463030623853,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "12-ampgoogleaddress-all---laptop",
+    "failed" : false,
+    "duration" : 0,
+    "groups" : [ "ddc", "amp-google-address" ]
+  }, {
+    "name" : "AMPGoogleAddress: All - Tablet",
+    "startedAt" : 1463030623853,
+    "endedAt" : 1463030623853,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "13-ampgoogleaddress-all---tablet",
+    "failed" : false,
+    "duration" : 0,
+    "groups" : [ "ddc", "amp-google-address" ]
+  }, {
+    "name" : "AMPGoogleAddress: All - Palm",
+    "startedAt" : 1463030623853,
+    "endedAt" : 1463030623853,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "14-ampgoogleaddress-all---palm",
+    "failed" : false,
+    "duration" : 0,
+    "groups" : [ "ddc", "amp-google-address" ]
+  }, {
+    "name" : "AMPGoogleAddress: All - Mobile",
+    "startedAt" : 1463030623853,
+    "endedAt" : 1463030623853,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "15-ampgoogleaddress-all---mobile",
+    "failed" : false,
+    "duration" : 0,
+    "groups" : [ "ddc", "amp-google-address" ]
+  }, {
+    "name" : "MyMdInput: All - Desk",
+    "startedAt" : 1463030623853,
+    "endedAt" : 1463030633439,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "16-mymdinput-all---desk",
+    "failed" : false,
+    "duration" : 9586,
+    "groups" : [ "ddc", "my-md-input" ]
+  }, {
+    "name" : "MyMdInput: All - Desk",
+    "startedAt" : 1463030633439,
+    "endedAt" : 1463030646365,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "17-mymdinput-all---desk",
+    "failed" : true,
+    "duration" : 12926,
+    "groups" : [ "ddc", "my-md-input" ]
+  }, {
+    "name" : "MyMdInput: All - Laptop",
+    "startedAt" : 1463030646365,
+    "endedAt" : 1463030659939,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "18-mymdinput-all---laptop",
+    "failed" : true,
+    "duration" : 13574,
+    "groups" : [ "ddc", "my-md-input" ]
+  }, {
+    "name" : "MyMdInput: All - Tablet",
+    "startedAt" : 1463030659939,
+    "endedAt" : 1463030672972,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "19-mymdinput-all---tablet",
+    "failed" : true,
+    "duration" : 13033,
+    "groups" : [ "ddc", "my-md-input" ]
+  }, {
+    "name" : "MyMdInput: All - Palm",
+    "startedAt" : 1463030672972,
+    "endedAt" : 1463030690361,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "20-mymdinput-all---palm",
+    "failed" : true,
+    "duration" : 17389,
+    "groups" : [ "ddc", "my-md-input" ]
+  }, {
+    "name" : "MyMdInput: All - Mobile",
+    "startedAt" : 1463030690361,
+    "endedAt" : 1463030706570,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "21-mymdinput-all---mobile",
+    "failed" : true,
+    "duration" : 16209,
+    "groups" : [ "ddc", "my-md-input" ]
+  } ]
+}

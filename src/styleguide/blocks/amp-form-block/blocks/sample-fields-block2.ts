@@ -1,5 +1,4 @@
 import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy } from '@angular/core';
-import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
@@ -28,7 +27,6 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives      : [ AmpFormBlockComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     styles          : [ require( '../basic_usage.scss' ).toString() ] ,
 } )

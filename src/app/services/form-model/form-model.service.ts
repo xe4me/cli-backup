@@ -1,7 +1,6 @@
 import { Injectable , EventEmitter } from '@angular/core';
 import { Headers , RequestOptions , Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { AmpHttpService } from '../amp-http/amp-http.service.ts';
 import { Environments } from '../../abstracts/environments/environments.abstract.ts';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
 import 'rxjs/add/operator/catch';
@@ -9,6 +8,7 @@ import 'rxjs/add/observable/throw';
 import { FormGroup , FormBuilder } from '@angular/forms';
 import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
 import { ReplaySubject } from 'rxjs/Rx';
+import { AmpHttpService } from '../../services/amp-http/amp-http.service';
 
 @Injectable()
 export class FormModelService {

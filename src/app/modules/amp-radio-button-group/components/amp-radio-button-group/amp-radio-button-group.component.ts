@@ -40,7 +40,6 @@ import { Validators } from '@angular/forms';
 export class AmpRadioButtonGroupComponent extends BaseControl implements AfterViewInit {
     public keepControl : boolean       = false;
     private _selected : string         = null;
-    private isInSummaryState : boolean = false;
     private defaultValue;
     private select                     = new EventEmitter<any>();
     private buttons;
@@ -105,7 +104,7 @@ export class AmpRadioButtonGroupComponent extends BaseControl implements AfterVi
     }
 
     private onSelect ( $event , value , shouldScroll ) {
-        if ( this.disabled === true ) {
+        if ( this.control.disabled === true ) {
             if ( $event !== null ) {
                 $event.stopPropagation();
             }

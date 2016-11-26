@@ -1,5 +1,4 @@
 import { Component , ElementRef , OnInit , ChangeDetectionStrategy , ChangeDetectorRef } from '@angular/core';
-import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
@@ -40,7 +39,6 @@ import { AmpButton } from '../../../../app/components/amp-button/amp-button.comp
            </amp-button>
         </amp-form-block>
     ` ,
-    directives      : [ AmpButton , AmpFormBlockComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleArrayExperienceBlock extends FormBlock implements OnInit {

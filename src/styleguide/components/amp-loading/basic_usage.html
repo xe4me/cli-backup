@@ -9,7 +9,8 @@
 
     <h3 class="heading heading-contxtual-label">Can show and hide </h3>
     <button class="btn btn-ok" (click)="setloadingAnother()">show loading {{ loadingAnother }}</button>
-    <amp-loading [attr.theme]="themeService.theme.attr" mode="indeterminate" [showLoading]="loadingAnother"></amp-loading>
+    <amp-loading [attr.theme]="themeService.theme.attr" mode="indeterminate"
+                 [showLoading]="loadingAnother"></amp-loading>
 
     <hr class="hr--solid">
     <h3 class="mt+ heading heading-intro">Determinate loading </h3>

@@ -4,7 +4,7 @@
 
 @@ parameterized
     | subtask    | spec                                                      |
-    | All        | src/styleguide/components/amp-linear-progress-bar/amp-linear-progress-bar.test.spec    |
+    | All        | ./amp-linear-progress-bar/amp-linear-progress-bar.test.spec    |
 
 @@ parameterized
     | browser    |

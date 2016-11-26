@@ -1,53 +1,43 @@
 import {
-    Component,
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-    OnInit,
-    ChangeDetectorRef,
-    ChangeDetectionStrategy,
-    Renderer,
-    Input,
-    OnDestroy,
-    ViewEncapsulation
+  Component ,
+  trigger ,
+  state ,
+  style ,
+  animate ,
+  transition ,
+  OnInit ,
+  ChangeDetectorRef ,
+  ChangeDetectionStrategy ,
+  Renderer ,
+  Input ,
+  OnDestroy ,
+  ViewEncapsulation
 } from '@angular/core';
-import {
-    FormControl,
-    FormGroup,
-    FormBuilder,
-    Validators
-} from '@angular/forms';
-import {
-    SafeResourceUrl,
-    DomSanitizationService
-} from '@angular/platform-browser';
-import { DomAdapter } from '@angular/platform-browser/esm/src/dom/dom_adapter';
+import { FormControl , FormGroup , FormBuilder , Validators } from '@angular/forms';
+import { SafeResourceUrl , DomSanitizer } from '@angular/platform-browser';
 import { Environments } from '../../../../../';
 import { AmpGreenIdServices } from './services/amp-greenid-service';
 import { ResponseObject } from './interfaces/responseObject';
 import { IGreenIdFormModel } from './interfaces/formModel';
-
 @Component({
     selector: 'amp-greenid-block',
-    host: {
-        '[@slideUp]': 'slideUp'
-    },
-    providers: [AmpGreenIdServices],
+    // host: { // @TODO : Animation has never been used/defined in this component ,wtf/????
+    //     '[@slideUp]': 'slideUp'
+    // },
+    providers: [AmpGreenIdServices], // @TODO : Why are we providing the service here and at module level ?
     changeDetection: ChangeDetectionStrategy.OnPush,
     template : require( './amp-greenid-block.html' ),
     styles: [require('./amp-greenid-block.component.scss').toString()],
-    animations: [
-        trigger(
-            'slideUp',
-            [
-                state('collapsed, void', style({ height: '0px', opacity: '0', display: 'none' })),
-                state('expanded', style({ height: '*', opacity: '1', display: 'block' })),
-                transition(
-                    'collapsed <=> expanded', [animate(800)])
-            ])
-    ],
+    // animations: [
+    //     trigger(
+    //         'slideUp',
+    //         [
+    //             state('collapsed, void', style({ height: '0px', opacity: '0', display: 'none' })),
+    //             state('expanded', style({ height: '*', opacity: '1', display: 'block' })),
+    //             transition(
+    //                 'collapsed <=> expanded', [animate(800)])
+    //         ])
+    // ],
     encapsulation : ViewEncapsulation.None
 })
 export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
@@ -57,14 +47,13 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     @Input() controlGroup : FormGroup;
     @Input() checkboxLabel : string;
     @Input() showOnReady = false;
+    @Input() configScriptUrl : string = Environments.property.GreenId.configScriptUrl;
+    @Input() uiScriptUrl : string = Environments.property.GreenId.uiScriptUrl;
+    @Input() styleUrl : string = Environments.property.GreenId.styleUrl;
     private greenIdControlGroup : FormGroup;
     private loadApiScripts : Promise<any>;
-    private domAdapter : DomAdapter;
     private greenIdShowing : boolean = true;
     private greenIdSettings : any;
-    private configScriptUrl : string = Environments.property.GreenId.configScriptUrl;
-    private uiScriptUrl : string = Environments.property.GreenId.uiScriptUrl;
-    private styleUrl : string = Environments.property.GreenId.styleUrl;
     private safeStyleUrl : SafeResourceUrl;
     private environment : string = Environments.property.GreenId.environment;
     private accountId : string = Environments.property.GreenId.accountId;
@@ -87,7 +76,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         private fb : FormBuilder,
         private _cd : ChangeDetectorRef,
         private _render : Renderer,
-        private sanitizer : DomSanitizationService) {
+        private sanitizer : DomSanitizer) {
     }
 
     public getGreenIdControlGroup() : FormGroup {

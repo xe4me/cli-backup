@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-qas-address/components/amp-qas-address-multi/amp-qas-address-multi.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-qas-address/components/amp-qas-address-multi/</a> amp-qas-address-multi.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.73% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>21/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.73% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>21/44</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var base_control_1 = require('../../../../base-control');
+var AmpQasAddressMultiComponent = (function () {
+<span class="fstat-no" title="function not covered" >    function AmpQasAddressMultiComponent(_cd) {</span>
+<span class="cstat-no" title="statement not covered" >        this._cd = _cd;</span>
+<span class="cstat-no" title="statement not covered" >        this.id = 'qas-multi';</span>
+<span class="cstat-no" title="statement not covered" >        this.extended = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.isInSummaryState = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.keepControl = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.postalAddress = {</span>
+            id: 'postalAddress',
+            label: 'Postal address'
+        };
+<span class="cstat-no" title="statement not covered" >        this.residentialAddress = {</span>
+            id: 'residentialAddress',
+            label: 'Residential address'
+        };
+<span class="cstat-no" title="statement not covered" >        this.postalAndResidentialAreSame = {</span>
+            id: 'postalAndResidentialAreSame'
+        };
+<span class="cstat-no" title="statement not covered" >        this.arePostalAndResidentialTheSame = true;</span>
+    }
+    AmpQasAddressMultiComponent.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.controlGroup) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.controlGroup.contains(this.id)) {</span>
+<span class="cstat-no" title="statement not covered" >                this.qasMultiCG = this.controlGroup.get(this.id);</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                this.qasMultiCG = new forms_1.FormGroup({});</span>
+<span class="cstat-no" title="statement not covered" >                this.controlGroup.addControl(this.id, this.qasMultiCG);</span>
+            }
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this.qasMultiCG = new forms_1.FormGroup({});</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.qasMultiCG.__fdn = this.controlGroup &amp;&amp; this.controlGroup.__fdn ? this.controlGroup.__fdn.concat([this.id]) : [</span>
+            'default-fdn-for-' + this.id
+        ];
+    };
+    AmpQasAddressMultiComponent.prototype.onCheckboxSelect = <span class="fstat-no" title="function not covered" >function ($event) {</span>
+<span class="cstat-no" title="statement not covered" >        this.arePostalAndResidentialTheSame = $event.target.checked;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.arePostalAndResidentialTheSame) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.qasMultiCG.contains(this.postalAddress.id)) {</span>
+<span class="cstat-no" title="statement not covered" >                this.qasMultiCG.removeControl(this.postalAddress.id);</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        this._cd.detectChanges();</span>
+    };
+    Object.defineProperty(AmpQasAddressMultiComponent.prototype, "isPostalAndResidentialAreSameRequired", {
+        get: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return this.required &amp;&amp; this.arePostalAndResidentialTheSame;</span>
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpQasAddressMultiComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', (typeof (_a = typeof base_control_1.AmpFormGroup !== 'undefined' &amp;&amp; base_control_1.AmpFormGroup) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpQasAddressMultiComponent.prototype, "controlGroup", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], AmpQasAddressMultiComponent.prototype, "required", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpQasAddressMultiComponent.prototype, "index", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], AmpQasAddressMultiComponent.prototype, "extended", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], AmpQasAddressMultiComponent.prototype, "isInSummaryState", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], AmpQasAddressMultiComponent.prototype, "keepControl", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpQasAddressMultiComponent.prototype, "postalAddress", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpQasAddressMultiComponent.prototype, "residentialAddress", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpQasAddressMultiComponent.prototype, "postalAndResidentialAreSame", void 0);
+    AmpQasAddressMultiComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-qas-address-multi',
+            template: require('./amp-qas-address-multi.component.html'),
+            styles: [require('./amp-qas-address-multi.component.scss').toString()],
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }), 
+        __metadata('design:paramtypes', [(typeof (_b = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpQasAddressMultiComponent);
+    return AmpQasAddressMultiComponent;
+<span class="cstat-no" title="statement not covered" >    var _a, _b;</span>
+}());
+exports.AmpQasAddressMultiComponent = AmpQasAddressMultiComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXFhcy1hZGRyZXNzLW11bHRpLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFtcC1xYXMtYWRkcmVzcy1tdWx0aS5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLHFCQUF5RixlQUFlLENBQUMsQ0FBQTtBQUN6RyxzQkFBMEIsZ0JBQWdCLENBQUMsQ0FBQTtBQUMzQyw2QkFBNkIsMEJBQTBCLENBQUMsQ0FBQTtBQU94RDtJQXNCSSxxQ0FBc0IsR0FBdUI7UUFBdkIsUUFBRyxHQUFILEdBQUcsQ0FBb0I7UUFyQnBDLE9BQUUsR0FBOEIsV0FBVyxDQUFDO1FBSTVDLGFBQVEsR0FBd0IsSUFBSSxDQUFDO1FBQ3JDLHFCQUFnQixHQUFnQixLQUFLLENBQUM7UUFDdEMsZ0JBQVcsR0FBcUIsS0FBSyxDQUFDO1FBQ3RDLGtCQUFhLEdBQW1CO1lBQ3JDLEVBQUUsRUFBTSxlQUFlO1lBQ3ZCLEtBQUssRUFBRyxnQkFBZ0I7U0FDM0IsQ0FBQztRQUNPLHVCQUFrQixHQUFjO1lBQ3JDLEVBQUUsRUFBTSxvQkFBb0I7WUFDNUIsS0FBSyxFQUFHLHFCQUFxQjtTQUNoQyxDQUFDO1FBQ08sZ0NBQTJCLEdBQUs7WUFDckMsRUFBRSxFQUFHLDZCQUE2QjtTQUNyQyxDQUFDO1FBQ00sbUNBQThCLEdBQUcsSUFBSSxDQUFDO0lBSTlDLENBQUM7SUFFRCw4Q0FBUSxHQUFSO1FBQ0ksRUFBRSxDQUFDLENBQUUsSUFBSSxDQUFDLFlBQWEsQ0FBQyxDQUFDLENBQUM7WUFDdEIsRUFBRSxDQUFDLENBQUUsSUFBSSxDQUFDLFlBQVksQ0FBQyxRQUFRLENBQUUsSUFBSSxDQUFDLEVBQUUsQ0FBRyxDQUFDLENBQUMsQ0FBQztnQkFDMUMsSUFBSSxDQUFDLFVBQVUsR0FBRyxJQUFJLENBQUMsWUFBWSxDQUFDLEdBQUcsQ0FBRSxJQUFJLENBQUMsRUFBRSxDQUFFLENBQUM7WUFDdkQsQ0FBQztZQUFDLElBQUksQ0FBQyxDQUFDO2dCQUNKLElBQUksQ0FBQyxVQUFVLEdBQUcsSUFBSSxpQkFBUyxDQUFFLEVBQUUsQ0FBRSxDQUFDO2dCQUN0QyxJQUFJLENBQUMsWUFBWSxDQUFDLFVBQVUsQ0FBRSxJQUFJLENBQUMsRUFBRSxFQUFHLElBQUksQ0FBQyxVQUFVLENBQUUsQ0FBQztZQUM5RCxDQUFDO1FBQ0wsQ0FBQztRQUFDLElBQUksQ0FBQyxDQUFDO1lBQ0osSUFBSSxDQUFDLFVBQVUsR0FBRyxJQUFJLGlCQUFTLENBQUUsRUFBRSxDQUFFLENBQUM7UUFDMUMsQ0FBQztRQUNELElBQUksQ0FBQyxVQUFVLENBQUMsS0FBSyxHQUFHLElBQUksQ0FBQyxZQUFZLElBQUksSUFBSSxDQUFDLFlBQVksQ0FBQyxLQUFLLEdBQVEsSUFBSSxDQUFDLFlBQVksQ0FBQyxLQUFLLFNBQUcsSUFBSSxDQUFDLEVBQUUsRUFBRSxHQUFHO1lBQzlHLGtCQUFrQixHQUFHLElBQUksQ0FBQyxFQUFFO1NBQy9CLENBQUM7SUFDTixDQUFDO0lBRU8sc0RBQWdCLEdBQXhCLFVBQTJCLE1BQU07UUFDN0IsSUFBSSxDQUFDLDhCQUE4QixHQUFHLE1BQU0sQ0FBQyxNQUFNLENBQUMsT0FBTyxDQUFDO1FBQzVELEVBQUUsQ0FBQyxDQUFFLElBQUksQ0FBQyw4QkFBK0IsQ0FBQyxDQUFDLENBQUM7WUFDeEMsRUFBRSxDQUFDLENBQUUsSUFBSSxDQUFDLFVBQVUsQ0FBQyxRQUFRLENBQUUsSUFBSSxDQUFDLGFBQWEsQ0FBQyxFQUFFLENBQUcsQ0FBQyxDQUFDLENBQUM7Z0JBQ3RELElBQUksQ0FBQyxVQUFVLENBQUMsYUFBYSxDQUFFLElBQUksQ0FBQyxhQUFhLENBQUMsRUFBRSxDQUFFLENBQUM7WUFDM0QsQ0FBQztRQUNMLENBQUM7UUFDRCxJQUFJLENBQUMsR0FBRyxDQUFDLGFBQWEsRUFBRSxDQUFDO0lBQzdCLENBQUM7SUFFRCxzQkFBSSw4RUFBcUM7YUFBekM7WUFDSSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsSUFBSSxJQUFJLENBQUMsOEJBQThCLENBQUM7UUFDaEUsQ0FBQzs7O09BQUE7SUFwREQ7UUFBQyxZQUFLLEVBQUU7OzJEQUFBO0lBQ1I7UUFBQyxZQUFLLEVBQUU7O3FFQUFBO0lBQ1I7UUFBQyxZQUFLLEVBQUU7O2lFQUFBO0lBQ1I7UUFBQyxZQUFLLEVBQUU7OzhEQUFBO0lBQ1I7UUFBQyxZQUFLLEVBQUU7O2lFQUFBO0lBQ1I7UUFBQyxZQUFLLEVBQUU7O3lFQUFBO0lBQ1I7UUFBQyxZQUFLLEVBQUU7O29FQUFBO0lBQ1I7UUFBQyxZQUFLLEVBQUU7O3NFQUFBO0lBSVI7UUFBQyxZQUFLLEVBQUU7OzJFQUFBO0lBSVI7UUFBQyxZQUFLLEVBQUU7O29GQUFBO0lBdEJaO1FBQUMsZ0JBQVMsQ0FBRTtZQUNSLFFBQVEsRUFBVSx1QkFBdUI7WUFDekMsUUFBUSxFQUFVLE9BQU8sQ0FBRSx3Q0FBd0MsQ0FBRTtZQUNyRSxNQUFNLEVBQVksQ0FBRSxPQUFPLENBQUUsd0NBQXdDLENBQUUsQ0FBQyxRQUFRLEVBQUUsQ0FBRTtZQUNwRixlQUFlLEVBQUcsOEJBQXVCLENBQUMsTUFBTTtTQUNuRCxDQUFFOzttQ0FBQTtJQXVESCxrQ0FBQzs7QUFBRCxDQUFDLEFBdERELElBc0RDO0FBdERZLG1DQUEyQiw4QkFzRHZDLENBQUEifQ==
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

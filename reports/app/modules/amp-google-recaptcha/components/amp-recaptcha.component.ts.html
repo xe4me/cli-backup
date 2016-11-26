@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/modules/amp-google-recaptcha/components/amp-recaptcha.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">app/modules/amp-google-recaptcha/components/</a> amp-recaptcha.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.83% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>48/83</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.17% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>24/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.71% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">59.26% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>48/81</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var core_1 = require('@angular/core');
+var amp_recaptcha_service_1 = require('../services/amp-recaptcha.service');
+var forms_1 = require('@angular/forms');
+var AmpReCaptchaComponent = (function () {
+    function AmpReCaptchaComponent(zone, _cd, captchaService) {
+        this.zone = zone;
+        this._cd = _cd;
+        this.captchaService = captchaService;
+        // Get the site id key at https://www.google.com/recaptcha/admin
+        // for ddc dev sitekey: 6LeqZgsUAAAAAD9-le6RQUkUv5MTjhsSM-SldWKq
+        // for localhost sitekey: 6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W
+        this.id = 'amp-google-recaptcha-check';
+        this.sitekey = null;
+        this.theme = 'light'; // light|dark
+        this.type = 'image'; // image|audio
+        this.size = 'normal'; // compact|normal
+        this.tabindex = 0;
+        this.language = null; // see available language at https://developers.google.com/recaptcha/docs/language
+        this.keepControl = false;
+        this.captchaResponse = new core_1.EventEmitter();
+        this.captchaExpired = new core_1.EventEmitter();
+        this.widgetId = null;
+    }
+    AmpReCaptchaComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // this.createControls();
+        this.myScriptLoaded = this.captchaService.loadScript(this.language)
+            .subscribe(function (loaded) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (loaded) {
+<span class="cstat-no" title="statement not covered" >                var captchaOptions = _this.buildCaptchaOptions();</span>
+                // console.log('captchaOptions', captchaOptions);
+<span class="cstat-no" title="statement not covered" >                _this.widgetId = window.grecaptcha.render(_this.recaptchaRef.nativeElement, captchaOptions);</span>
+<span class="cstat-no" title="statement not covered" >                _this.createControls();</span>
+            }
+        });
+    };
+    AmpReCaptchaComponent.prototype.ngOnDestroy = function () {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.keepControl &amp;&amp; this.controlGroup &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >this.id)</span> {
+<span class="cstat-no" title="statement not covered" >            this.controlGroup.removeControl(this.id);</span>
+        }
+        this.myScriptLoaded.unsubscribe();
+    };
+    AmpReCaptchaComponent.prototype.reset = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (!!this.widgetId) {</span>
+<span class="cstat-no" title="statement not covered" >            window.grecaptcha.reset(this.widgetId);</span>
+        }
+    };
+    AmpReCaptchaComponent.prototype.getResponse = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (!!this.widgetId) {</span>
+<span class="cstat-no" title="statement not covered" >            return window.grecaptcha.getResponse(this.recaptchaRef.nativeElement);</span>
+        }
+    };
+    AmpReCaptchaComponent.prototype.createRecaptchaControlGroup = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        return new forms_1.FormGroup({ verificationStatus: new forms_1.FormControl(null, forms_1.Validators.required) });</span>
+    };
+    AmpReCaptchaComponent.prototype.createControls = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.controlGroup) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.controlGroup.contains(this.id)) {</span>
+<span class="cstat-no" title="statement not covered" >                this.recaptchControlGroup = this.controlGroup.get(this.id);</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                this.recaptchControlGroup = this.createRecaptchaControlGroup();</span>
+<span class="cstat-no" title="statement not covered" >                this.controlGroup.addControl(this.id, this.recaptchControlGroup);</span>
+            }
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            this.recaptchControlGroup = this.createRecaptchaControlGroup();</span>
+        }
+    };
+    AmpReCaptchaComponent.prototype.buildCaptchaOptions = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        var captchaOptions = {};</span>
+<span class="cstat-no" title="statement not covered" >        captchaOptions['sitekey'] = this.sitekey;</span>
+<span class="cstat-no" title="statement not covered" >        captchaOptions['theme'] = this.theme;</span>
+<span class="cstat-no" title="statement not covered" >        captchaOptions['type'] = this.type;</span>
+<span class="cstat-no" title="statement not covered" >        captchaOptions['size'] = this.size;</span>
+<span class="cstat-no" title="statement not covered" >        captchaOptions['tabindex'] = this.tabindex;</span>
+<span class="cstat-no" title="statement not covered" >        captchaOptions['callback'] = (<span class="fstat-no" title="function not covered" >function (response) {</span> <span class="cstat-no" title="statement not covered" >return _this.zone.run(_this.recaptchaCallback.bind(_this, response)); </span>});</span>
+<span class="cstat-no" title="statement not covered" >        captchaOptions['expired-callback'] = (<span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return _this.zone.run(_this.recaptchaExpiredCallback.bind(_this)); </span>});</span>
+<span class="cstat-no" title="statement not covered" >        return captchaOptions;</span>
+    };
+    AmpReCaptchaComponent.prototype.recaptchaCallback = <span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >        var success = response != null &amp;&amp; response.length ? true : false;</span>
+<span class="cstat-no" title="statement not covered" >        this.recaptchControlGroup.controls['verificationStatus'].setValue(success ? 'verified' : '');</span>
+<span class="cstat-no" title="statement not covered" >        this.captchaResponse.emit({</span>
+            success: success,
+            token: response,
+            recaptcha: this
+        });
+        // Mark control group as touched only when user has completed the captcha challenge.
+        // Pagesection container will have class 'visited' when a control group in it is marked as touched. Standalone navigation menu will become highlighted. 
+<span class="cstat-no" title="statement not covered" >        this.recaptchControlGroup.markAsTouched();</span>
+<span class="cstat-no" title="statement not covered" >        this._cd.markForCheck();</span>
+    };
+    AmpReCaptchaComponent.prototype.recaptchaExpiredCallback = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.recaptchControlGroup.controls['verificationStatus'].setValue(null);</span>
+<span class="cstat-no" title="statement not covered" >        this.captchaExpired.emit();</span>
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpReCaptchaComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpReCaptchaComponent.prototype, "sitekey", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpReCaptchaComponent.prototype, "theme", void 0);
+    __decorate([
+        // light|dark
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpReCaptchaComponent.prototype, "type", void 0);
+    __decorate([
+        // image|audio
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], AmpReCaptchaComponent.prototype, "size", void 0);
+    __decorate([
+        // compact|normal
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], AmpReCaptchaComponent.prototype, "tabindex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], AmpReCaptchaComponent.prototype, "language", void 0);
+    __decorate([
+        // see available language at https://developers.google.com/recaptcha/docs/language
+        core_1.Input(), 
+        __metadata('design:type', (typeof (_a = typeof forms_1.FormGroup !== 'undefined' &amp;&amp; forms_1.FormGroup) === 'function' &amp;&amp; _a) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpReCaptchaComponent.prototype, "controlGroup", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], AmpReCaptchaComponent.prototype, "keepControl", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], AmpReCaptchaComponent.prototype, "captchaResponse", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], AmpReCaptchaComponent.prototype, "captchaExpired", void 0);
+    __decorate([
+        core_1.ViewChild('recaptchaId'), 
+        __metadata('design:type', (typeof (_b = typeof core_1.ElementRef !== 'undefined' &amp;&amp; core_1.ElementRef) === 'function' &amp;&amp; _b) || <span class="branch-2 cbranch-no" title="branch not covered" >Object)</span>
+    ], AmpReCaptchaComponent.prototype, "recaptchaRef", void 0);
+    AmpReCaptchaComponent = __decorate([
+        core_1.Component({
+            selector: 'amp-google-recaptcha',
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
+            template: "&lt;div #recaptchaId&gt;&lt;/div&gt;"
+        }), 
+        __metadata('design:paramtypes', [(typeof (_c = typeof core_1.NgZone !== 'undefined' &amp;&amp; core_1.NgZone) === 'function' &amp;&amp; _c) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_d = typeof core_1.ChangeDetectorRef !== 'undefined' &amp;&amp; core_1.ChangeDetectorRef) === 'function' &amp;&amp; _d) || <span class="branch-2 cbranch-no" title="branch not covered" >Object,</span> (typeof (_e = typeof amp_recaptcha_service_1.AmpReCaptchaService !== 'undefined' &amp;&amp; amp_recaptcha_service_1.AmpReCaptchaService) === 'function' &amp;&amp; _e) || <span class="branch-2 cbranch-no" title="branch not covered" >Object]</span>)
+    ], AmpReCaptchaComponent);
+    return AmpReCaptchaComponent;
+<span class="cstat-no" title="statement not covered" >    var _a, _b, _c, _d, _e;</span>
+}());
+exports.AmpReCaptchaComponent = AmpReCaptchaComponent;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW1wLXJlY2FwdGNoYS5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbXAtcmVjYXB0Y2hhLmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBV08sZUFBZSxDQUFDLENBQUE7QUFDdkIsc0NBQW9DLG1DQUFtQyxDQUFDLENBQUE7QUFDeEUsc0JBSU8sZ0JBQWdCLENBQUMsQ0FBQTtBQVF4QjtJQW1DSSwrQkFDWSxJQUFhLEVBQ2IsR0FBdUIsRUFDdkIsY0FBb0M7UUFGcEMsU0FBSSxHQUFKLElBQUksQ0FBUztRQUNiLFFBQUcsR0FBSCxHQUFHLENBQW9CO1FBQ3ZCLG1CQUFjLEdBQWQsY0FBYyxDQUFzQjtRQXJDaEQsZ0VBQWdFO1FBQ2hFLGdFQUFnRTtRQUNoRSxrRUFBa0U7UUFFbEUsT0FBRSxHQUFZLDRCQUE0QixDQUFDO1FBRTNDLFlBQU8sR0FBWSxJQUFJLENBQUM7UUFFeEIsVUFBSyxHQUFZLE9BQU8sQ0FBQyxDQUFDLGFBQWE7UUFFdkMsU0FBSSxHQUFZLE9BQU8sQ0FBQyxDQUFDLGNBQWM7UUFFdkMsU0FBSSxHQUFHLFFBQVEsQ0FBQyxDQUFDLGlCQUFpQjtRQUVsQyxhQUFRLEdBQVksQ0FBQyxDQUFDO1FBRXRCLGFBQVEsR0FBWSxJQUFJLENBQUMsQ0FBQyxrRkFBa0Y7UUFLNUcsZ0JBQVcsR0FBYSxLQUFLLENBQUM7UUFHOUIsb0JBQWUsR0FBRyxJQUFJLG1CQUFZLEVBQU8sQ0FBQztRQUUxQyxtQkFBYyxHQUFHLElBQUksbUJBQVksRUFBRSxDQUFDO1FBR3BDLGFBQVEsR0FBUyxJQUFJLENBQUM7SUFTdEIsQ0FBQztJQUVNLHdDQUFRLEdBQWY7UUFBQSxpQkFXQztRQVZHLHlCQUF5QjtRQUN6QixJQUFJLENBQUMsY0FBYyxHQUFHLElBQUksQ0FBQyxjQUFjLENBQUMsVUFBVSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUM7YUFDOUQsU0FBUyxDQUFDLFVBQUMsTUFBTTtZQUNkLEVBQUUs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
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Nov 27 2016 00:18:58 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>
