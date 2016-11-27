@@ -1,15 +1,13 @@
 @import '../../../styles/abstracts';
 
-@include media-query(tab-and-down) {
-    display : none;
-}
+.sticky {
+    position: fixed;
+    float: right;
+    top: -19px;
+    right: 40px;
+    z-index: 9999;
 
-@include media-query(lap-and-up) {
-    .sticky {
-        position: fixed;
-        float: right;
-        top: -19px;
-        right: 40px;
-        z-index: 9999;
+    @include media-query(palm) {
+         display : none;
     }
 }
