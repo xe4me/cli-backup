@@ -29,8 +29,8 @@ module.exports = {
       .replace(/-(.)/g, (_, l) => ' ' + l.toUpperCase())
       .replace(/^./, (l) => l.toUpperCase());
 
-    // Take the last portion of the name as the identifier (i.e. 'abc' from XX-XX-abc) 
-    const appId = options.entity.name.split('-').pop();
+    // Remove 'experience-' from the project name (i.e. 'abc' from experience-abc) 
+    const appId = options.entity.name.replace('experience-', '');
 
     const localVars = {
       appId: appId,

@@ -35,7 +35,7 @@ thus, this repo should be very light in size.
 
 
 ### Quick start
-Before you can proceed you will need to configure your proxy settings properly.
+Before you can proceed you will need to configure your proxy settings properly and complete the steps in Getting Started.
 Recommended way is to setup a [local proxy](http://stackoverflow.com/questions/18569054/npm-behind-ntlm-proxy) on your laptop.
 
 
@@ -128,6 +128,8 @@ Once you have those, you should install these globals with `npm install --global
 * `protractor` (`npm install --global protractor`)
 * `typings` (`npm install --global typings`)
 * `typescript` (`npm install --global typescript`)
+
+Once you have installed the above, you need to install amp-angular-cli with `npm install -g amp-angular-cli`.
 
 ## Installing
 * `fork` this repo
