@@ -8,7 +8,7 @@
                     #isItPoBoxCmp
                     class="1/4 mt+ palm-1/1"
                     (select)='onPoBoxButtonsChange($event)'
-                    [required]="true"
+                    [required]="required"
                     [disabled]='isInSummaryState'
                     [buttons]='isItPoBoxButtons.buttons'
                     [controlGroup]='controlGroup'
@@ -91,7 +91,7 @@
                         [label]='streetName.label'
                         [index]='index'
                         [controlGroup]='manualAddressCG'
-                        [required]='!isItPoBox'
+                        [required]='required && !isItPoBox'
                         [maxLength]='streetName.maxLength'
                         [errors]='streetName.errors'>
                     </amp-input>
@@ -106,6 +106,7 @@
                         class="utils__display--block-palm"
                         #manualStreetTypeCmp
                         [id]='streetType.id'
+                        [required]="required"
                         [index]='index'
                         [controlGroup]='manualAddressCG'>
                         <template let-option="option">
@@ -130,7 +131,7 @@
                     [label]='poBox.label'
                     [index]='index'
                     [controlGroup]='manualAddressCG'
-                    [required]='isItPoBox'
+                    [required]='required && isItPoBox'
                     [maxLength]='poBox.maxLength'
                     [errors]='poBox.errors'>
                 </amp-input>
@@ -151,7 +152,7 @@
                     [index]='index'
                     [controlGroup]='manualAddressCG'
                     [pattern]='suburb.regex'
-                    [required]='true'
+                    [required]='required'
                     [maxLength]='suburb.maxLength'
                     [minLength]='suburb.minLength'
                     [errors]='suburb.errors'>
@@ -168,7 +169,7 @@
                     [label]='postCode.label'
                     [index]='index'
                     [controlGroup]='manualAddressCG'
-                    [required]='true'
+                    [required]='required'
                     [pattern]='postCode.regex'
                     [maxLength]='postCode.maxLength'
                     [errors]='postCode.errors'
@@ -190,7 +191,7 @@
                     [id]='state.id'
                     [index]='index'
                     [errors]='state.errors'
-                    [required]='true'
+                    [required]='required'
                     [controlGroup]='manualAddressCG'>
                     <template let-option="option">
                         {{ option.value }}
