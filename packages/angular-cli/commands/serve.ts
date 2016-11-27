@@ -3,8 +3,8 @@ import * as denodeify from 'denodeify';
 const Command = require('../ember-cli/lib/models/command');
 const SilentError = require('silent-error');
 const PortFinder = require('portfinder');
-import ServeWebpackTask from '../tasks/serve-webpack.ts';
-import StubbyTask from '../tasks/stubby.ts';
+import ServeWebpackTask from '../tasks/serve-webpack';
+import StubbyTask from '../tasks/stubby';
 PortFinder.basePort = 49152;
 
 const getPort = <any>denodeify(PortFinder.getPort);

@@ -1,4 +1,4 @@
-const Task = require('ember-cli/lib/models/task');
+const Task = require('../ember-cli/lib/models/task');
 const fs = require('fs');
 import * as path from 'path';
 
