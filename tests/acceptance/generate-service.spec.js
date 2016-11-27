@@ -7,8 +7,7 @@ var expect = require('chai').expect;
 var path = require('path');
 var tmp = require('../helpers/tmp');
 var root = process.cwd();
-var conf = require('ember-cli/tests/helpers/conf');
-var Promise = require('ember-cli/lib/ext/promise');
+var Promise = require('angular-cli/ember-cli/lib/ext/promise');
 var SilentError = require('silent-error');
 const denodeify = require('denodeify');
 
@@ -16,10 +15,6 @@ const readFile = denodeify(fs.readFile);
 
 
 describe('Acceptance: ng generate service', function () {
-  before(conf.setup);
-
-  after(conf.restore);
-
   beforeEach(function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
@@ -37,10 +32,32 @@ describe('Acceptance: ng generate service', function () {
   it('ng generate service my-svc', function () {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-svc.service.ts');
+    const testSpecPath = path.join(appRoot, 'src/app/my-svc.service.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
     return ng(['generate', 'service', 'my-svc'])
-      .then(() => expect(existsSync(testPath)).to.equal(true))
+      .then(() => {
+        expect(existsSync(testPath)).to.equal(true);
+        expect(existsSync(testSpecPath)).to.equal(true);
+      })
+      .then(() => readFile(appModulePath, 'utf-8'))
+      .then(content => {
+        expect(content).not.to.matches(/import.*\MySvcService\b.*from '.\/my-svc.service';/);
+        expect(content).not.to.matches(/providers:\s*\[MySvcService\]/m);
+      });
+  });
+
+  it('ng generate service my-svc --no-spec', function () {
+    const appRoot = path.join(root, 'tmp/foo');
+    const testPath = path.join(appRoot, 'src/app/my-svc.service.ts');
+    const testSpecPath = path.join(appRoot, 'src/app/my-svc.service.spec.ts');
+    const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
+
+    return ng(['generate', 'service', 'my-svc', '--no-spec'])
+      .then(() => {
+        expect(existsSync(testPath)).to.equal(true);
+        expect(existsSync(testSpecPath)).to.equal(false);
+      })
       .then(() => readFile(appModulePath, 'utf-8'))
       .then(content => {
         expect(content).not.to.matches(/import.*\MySvcService\b.*from '.\/my-svc.service';/);

@@ -1,3 +1,209 @@
+<a name="1.0.0-beta.21"></a>
+# [1.0.0-beta.21](https://github.com/angular/angular-cli/compare/v1.0.0-beta.20-1...v1.0.0-beta.21) (2016-11-23)
+
+
+### Bug Fixes
+
+* **angular-cli:** add necessary dependencies. ([#3152](https://github.com/angular/angular-cli/issues/3152)) ([8f574e4](https://github.com/angular/angular-cli/commit/8f574e4)), closes [#3148](https://github.com/angular/angular-cli/issues/3148)
+* **angular-cli:** add necessary dependency. ([f7704b0](https://github.com/angular/angular-cli/commit/f7704b0))
+* **angular-cli:** change version of webpack plugin. ([07e96ea](https://github.com/angular/angular-cli/commit/07e96ea))
+* **aot:** lock the angular version to 2.2.1. ([#3242](https://github.com/angular/angular-cli/issues/3242)) ([6e8a848](https://github.com/angular/angular-cli/commit/6e8a848))
+* **editorconfig:** use off instead of 0 for max line length ([#3186](https://github.com/angular/angular-cli/issues/3186)) ([f833d25](https://github.com/angular/angular-cli/commit/f833d25))
+* **generate:** revert change to component dir in generate module, as it caused component declaration to go to parent module ([#3158](https://github.com/angular/angular-cli/issues/3158)) ([71bf855](https://github.com/angular/angular-cli/commit/71bf855))
+* **github-pages-deploy:** Show more accurate url ([#3160](https://github.com/angular/angular-cli/issues/3160)) ([a431389](https://github.com/angular/angular-cli/commit/a431389))
+
+
+### Features
+
+* **build:** add sourcemap option ([#3113](https://github.com/angular/angular-cli/issues/3113)) ([6f9d2c1](https://github.com/angular/angular-cli/commit/6f9d2c1))
+
+
+
+<a name="1.0.0-beta.20"></a>
+# [1.0.0-beta.20](https://github.com/angular/angular-cli/compare/v1.0.0-beta.19...v1.0.0-beta.20-1) (2016-11-16)
+
+
+### Bug Fixes
+
+* **@ngtools/webpack:** fixed relative path for AoT. ([#3114](https://github.com/angular/angular-cli/issues/3114)) ([27a034d](https://github.com/angular/angular-cli/commit/27a034d))
+* **aot:** exclude spec files from aot ([#2758](https://github.com/angular/angular-cli/issues/2758)) ([215e555](https://github.com/angular/angular-cli/commit/215e555))
+* **aot:** output the sources in the sourcemap. ([#3107](https://github.com/angular/angular-cli/issues/3107)) ([7127dba](https://github.com/angular/angular-cli/commit/7127dba))
+* **aot:** remove the genDir plugin option. ([0e91dfe](https://github.com/angular/angular-cli/commit/0e91dfe)), closes [#2849](https://github.com/angular/angular-cli/issues/2849) [#2876](https://github.com/angular/angular-cli/issues/2876)
+* **aot:** Use the proper path when statically analyzing lazy routes. ([#2992](https://github.com/angular/angular-cli/issues/2992)) ([88131a0](https://github.com/angular/angular-cli/commit/88131a0)), closes [#2452](https://github.com/angular/angular-cli/issues/2452) [#2735](https://github.com/angular/angular-cli/issues/2735) [#2900](https://github.com/angular/angular-cli/issues/2900)
+* **build:** correct forkChecker option for ATS. ([#3011](https://github.com/angular/angular-cli/issues/3011)) ([a987cf5](https://github.com/angular/angular-cli/commit/a987cf5))
+* **build:** enable chunkhash in inline.js ([30cc482](https://github.com/angular/angular-cli/commit/30cc482)), closes [#2899](https://github.com/angular/angular-cli/issues/2899)
+* **build:** show full error stats ([#2879](https://github.com/angular/angular-cli/issues/2879)) ([d59fa1f](https://github.com/angular/angular-cli/commit/d59fa1f))
+* **deps:** explicitely add portfinder ([#2831](https://github.com/angular/angular-cli/issues/2831)) ([2d8f162](https://github.com/angular/angular-cli/commit/2d8f162)), closes [#2755](https://github.com/angular/angular-cli/issues/2755) [#2769](https://github.com/angular/angular-cli/issues/2769)
+* **e2e:** fix broken test pipeline ([#2999](https://github.com/angular/angular-cli/issues/2999)) ([37a1225](https://github.com/angular/angular-cli/commit/37a1225))
+* **generate:** fix module component path if module is created in child folder ([#3066](https://github.com/angular/angular-cli/issues/3066)) ([38d5f2c](https://github.com/angular/angular-cli/commit/38d5f2c)), closes [#3063](https://github.com/angular/angular-cli/issues/3063)
+* **generate:** stop default browser error from ng new --routing ([a45a1f2](https://github.com/angular/angular-cli/commit/a45a1f2)), closes [#2794](https://github.com/angular/angular-cli/issues/2794)
+* **package:** add some more metadata to webpack package.json ([c2dbf88](https://github.com/angular/angular-cli/commit/c2dbf88)), closes [#2854](https://github.com/angular/angular-cli/issues/2854)
+* **serve:** added accept html headers option to webpack-dev-server ([#2990](https://github.com/angular/angular-cli/issues/2990)) ([86f2a1b](https://github.com/angular/angular-cli/commit/86f2a1b)), closes [#2989](https://github.com/angular/angular-cli/issues/2989)
+* **test:** catches module loading errors ([f09439c](https://github.com/angular/angular-cli/commit/f09439c)), closes [#2640](https://github.com/angular/angular-cli/issues/2640) [#2785](https://github.com/angular/angular-cli/issues/2785)
+* **version:** update version of [@angular](https://github.com/angular) packages. ([#3145](https://github.com/angular/angular-cli/issues/3145)) ([a2f0a1a](https://github.com/angular/angular-cli/commit/a2f0a1a))
+* bypass Watchman check ([#2846](https://github.com/angular/angular-cli/issues/2846)) ([9aa1099](https://github.com/angular/angular-cli/commit/9aa1099)), closes [#2791](https://github.com/angular/angular-cli/issues/2791)
+
+
+### Features
+
+* **build:** add loaders for fonts ([3497373](https://github.com/angular/angular-cli/commit/3497373)), closes [#1765](https://github.com/angular/angular-cli/issues/1765)
+* **build:** use appConfig.index to set output index file ([d3fd8b0](https://github.com/angular/angular-cli/commit/d3fd8b0)), closes [#2241](https://github.com/angular/angular-cli/issues/2241) [#2767](https://github.com/angular/angular-cli/issues/2767)
+* **build:** use static files for css ([a6415cc](https://github.com/angular/angular-cli/commit/a6415cc)), closes [#2148](https://github.com/angular/angular-cli/issues/2148) [#2020](https://github.com/angular/angular-cli/issues/2020) [#2826](https://github.com/angular/angular-cli/issues/2826) [#2646](https://github.com/angular/angular-cli/issues/2646)
+* **serve:** allow CORS access while running ng serve ([#2872](https://github.com/angular/angular-cli/issues/2872)) ([#3009](https://github.com/angular/angular-cli/issues/3009)) ([7c834a8](https://github.com/angular/angular-cli/commit/7c834a8))
+
+
+### BREAKING CHANGES
+
+* aot: Using relative paths might lead to path clashing. We
+now properly output an error in this case.
+
+
+
+<a name="1.0.0-beta.19"></a>
+# [1.0.0-beta.19](https://github.com/angular/angular-cli/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2016-10-28)
+
+
+### Bug Fixes
+
+* **appveyor:** add workaround for webdriver bug ([#2862](https://github.com/angular/angular-cli/issues/2862)) ([2b17b46](https://github.com/angular/angular-cli/commit/2b17b46))
+* **compiler:** update codegen API ([#2919](https://github.com/angular/angular-cli/issues/2919)) ([b50c121](https://github.com/angular/angular-cli/commit/b50c121)), closes [#2917](https://github.com/angular/angular-cli/issues/2917)
+* **e2e:** fix travis e2e ([#2914](https://github.com/angular/angular-cli/issues/2914)) ([b62b996](https://github.com/angular/angular-cli/commit/b62b996))
+
+
+### Features
+
+* **test:** make code coverage and lint optional ([#2840](https://github.com/angular/angular-cli/issues/2840)) ([8944d04](https://github.com/angular/angular-cli/commit/8944d04)), closes [#1799](https://github.com/angular/angular-cli/issues/1799)
+
+
+
+<a name="1.0.0-beta.18"></a>
+# [1.0.0-beta.18](https://github.com/angular/angular-cli/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2016-10-20)
+
+
+### Bug Fixes
+
+* **#1875:** Support npm linked libraries ([#2291](https://github.com/angular/angular-cli/issues/2291)) ([8bf69d9](https://github.com/angular/angular-cli/commit/8bf69d9))
+* **aot-tools:** add missing tsc-wrapped dep ([1587c1b](https://github.com/angular/angular-cli/commit/1587c1b)), closes [#2498](https://github.com/angular/angular-cli/issues/2498) [#2598](https://github.com/angular/angular-cli/issues/2598)
+* **build:** add react minification support ([e23e0fe](https://github.com/angular/angular-cli/commit/e23e0fe)), closes [#2110](https://github.com/angular/angular-cli/issues/2110) [#2754](https://github.com/angular/angular-cli/issues/2754)
+* **build:** fix sourcemap in prod ([d292eac](https://github.com/angular/angular-cli/commit/d292eac)), closes [#2533](https://github.com/angular/angular-cli/issues/2533) [#2519](https://github.com/angular/angular-cli/issues/2519)
+* **build:** set tls and net node builtins to empty ([7424795](https://github.com/angular/angular-cli/commit/7424795)), closes [#1696](https://github.com/angular/angular-cli/issues/1696) [#2626](https://github.com/angular/angular-cli/issues/2626)
+* **build:** use outputPath from config ([ec0cdb5](https://github.com/angular/angular-cli/commit/ec0cdb5)), closes [#2511](https://github.com/angular/angular-cli/issues/2511) [#2611](https://github.com/angular/angular-cli/issues/2611)
+* **doc:** update invalid link ([e17d4a8](https://github.com/angular/angular-cli/commit/e17d4a8)), closes [#2553](https://github.com/angular/angular-cli/issues/2553)
+* **docs:** Correct the usage of redirecting the output from `ng completion`. ([2225027](https://github.com/angular/angular-cli/commit/2225027)), closes [#2635](https://github.com/angular/angular-cli/issues/2635)
+* **generate:** show error when no name is specified ([249ccf7](https://github.com/angular/angular-cli/commit/249ccf7)), closes [#2684](https://github.com/angular/angular-cli/issues/2684)
+* **init:** ignore favicon ([699ebba](https://github.com/angular/angular-cli/commit/699ebba)), closes [#2274](https://github.com/angular/angular-cli/issues/2274) [#2617](https://github.com/angular/angular-cli/issues/2617)
+* override ui write level ([4608445](https://github.com/angular/angular-cli/commit/4608445)), closes [#2540](https://github.com/angular/angular-cli/issues/2540) [#2627](https://github.com/angular/angular-cli/issues/2627)
+* **init:** throw when called with mobile flag ([#2753](https://github.com/angular/angular-cli/issues/2753)) ([9b1c3e0](https://github.com/angular/angular-cli/commit/9b1c3e0)), closes [#2679](https://github.com/angular/angular-cli/issues/2679)
+* **karma:** Add cli config poll option to karma default config ([#2486](https://github.com/angular/angular-cli/issues/2486)) ([63023ae](https://github.com/angular/angular-cli/commit/63023ae))
+* **new:** add prefix to spec name ([1307dc8](https://github.com/angular/angular-cli/commit/1307dc8)), closes [/github.com/angular/angular-cli/commit/06976f4f07a6d6065124a819b95634bddaac4598#commitcomment-19241601](https://github.com//github.com/angular/angular-cli/commit/06976f4f07a6d6065124a819b95634bddaac4598/issues/commitcomment-19241601) [#2595](https://github.com/angular/angular-cli/issues/2595)
+* **new:** fix relativeRootPath for typeRoots ([eb2f939](https://github.com/angular/angular-cli/commit/eb2f939)), closes [#2206](https://github.com/angular/angular-cli/issues/2206) [#2597](https://github.com/angular/angular-cli/issues/2597)
+* **serve:** enable routes with dots ([#2535](https://github.com/angular/angular-cli/issues/2535)) ([6f8b1b5](https://github.com/angular/angular-cli/commit/6f8b1b5)), closes [#2168](https://github.com/angular/angular-cli/issues/2168)
+* **set:** output value for additional props ([f7bf0aa](https://github.com/angular/angular-cli/commit/f7bf0aa)), closes [#1900](https://github.com/angular/angular-cli/issues/1900) [#2614](https://github.com/angular/angular-cli/issues/2614)
+
+
+### Features
+
+* **build:** add gzip to serve --prod ([7c13cc5](https://github.com/angular/angular-cli/commit/7c13cc5)), closes [#2028](https://github.com/angular/angular-cli/issues/2028) [#2621](https://github.com/angular/angular-cli/issues/2621)
+* **build:** add support for assets array ([#2570](https://github.com/angular/angular-cli/issues/2570)) ([de3c275](https://github.com/angular/angular-cli/commit/de3c275))
+* **build:** added postcss-discard-comments ([883fe46](https://github.com/angular/angular-cli/commit/883fe46)), closes [#2593](https://github.com/angular/angular-cli/issues/2593)
+* **generate:** specify class type via dot notation ([#2707](https://github.com/angular/angular-cli/issues/2707)) ([c2dd94c](https://github.com/angular/angular-cli/commit/c2dd94c)), closes [#2155](https://github.com/angular/angular-cli/issues/2155)
+* **serve:** implement open browser option ([8bddabe](https://github.com/angular/angular-cli/commit/8bddabe)), closes [#1081](https://github.com/angular/angular-cli/issues/1081) [#2489](https://github.com/angular/angular-cli/issues/2489)
+* **ssl:** add support for the ssl options of the ng serve task: --ssl, --ssl-cert, and --ssl-key ([#2792](https://github.com/angular/angular-cli/issues/2792)) ([ba414ab](https://github.com/angular/angular-cli/commit/ba414ab))
+
+
+### BREAKING CHANGES
+
+* generate: The ability to specify a class type via an additional arg has been replaced by combining the name and type args separated by a dot
+
+
+
+<a name="1.0.0-beta.17"></a>
+# [1.0.0-beta.17](https://github.com/angular/angular-cli/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2016-10-07)
+
+
+### Bug Fixes
+
+* **build:** remove html-loader ([#2537](https://github.com/angular/angular-cli/issues/2537)) ([afb36e8](https://github.com/angular/angular-cli/commit/afb36e8))
+* **build:** use baseUrl and paths from tsconfig ([#2470](https://github.com/angular/angular-cli/issues/2470)) ([32e60b7](https://github.com/angular/angular-cli/commit/32e60b7))
+* **cli:** fix `completion` and `make-this-awesome` command invalid problem([#1889](https://github.com/angular/angular-cli/issues/1889)) ([4b36ecf](https://github.com/angular/angular-cli/commit/4b36ecf)), closes [#1890](https://github.com/angular/angular-cli/issues/1890)
+* **generate:** use prefix when initializing app ([#2046](https://github.com/angular/angular-cli/issues/2046)) ([#2367](https://github.com/angular/angular-cli/issues/2367)) ([06976f4](https://github.com/angular/angular-cli/commit/06976f4))
+* **typo:** fixed typo in README ([#2383](https://github.com/angular/angular-cli/issues/2383)) ([f6a39b2](https://github.com/angular/angular-cli/commit/f6a39b2))
+* **webpack:** Added ContextReplacementPlugin to remove ng test warning ([c2f4b37](https://github.com/angular/angular-cli/commit/c2f4b37)), closes [#2362](https://github.com/angular/angular-cli/issues/2362)
+* check for old version of the CLI on empty project ([2b6bfe7](https://github.com/angular/angular-cli/commit/2b6bfe7)), closes [#2135](https://github.com/angular/angular-cli/issues/2135) [#2178](https://github.com/angular/angular-cli/issues/2178)
+
+
+### Features
+
+* **aot:** adding README and type checking. ([8a5b265](https://github.com/angular/angular-cli/commit/8a5b265)), closes [#2527](https://github.com/angular/angular-cli/issues/2527)
+* **aot:** creating files in a virtual fs. ([#2464](https://github.com/angular/angular-cli/issues/2464)) ([790a1b4](https://github.com/angular/angular-cli/commit/790a1b4))
+* **aot:** do not populate the whole filesystem if nothing changed ([#2490](https://github.com/angular/angular-cli/issues/2490)) ([b5771df](https://github.com/angular/angular-cli/commit/b5771df))
+* **template:** issue template look better ([#2384](https://github.com/angular/angular-cli/issues/2384)) ([398cfb3](https://github.com/angular/angular-cli/commit/398cfb3))
+
+
+
+<a name="1.0.0-beta.16"></a>
+# [1.0.0-beta.16](https://github.com/angular/angular-cli/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2016-09-28)
+
+
+### Bug Fixes
+
+* **build:** fail ng build on error ([#2360](https://github.com/angular/angular-cli/issues/2360)) ([aa48c30](https://github.com/angular/angular-cli/commit/aa48c30)), closes [#2014](https://github.com/angular/angular-cli/issues/2014)
+* **build:** use config output path as default ([#2158](https://github.com/angular/angular-cli/issues/2158)) ([49a120b](https://github.com/angular/angular-cli/commit/49a120b))
+* **generate:** Update directive.spec.ts blueprint to fix incorret import ([#1940](https://github.com/angular/angular-cli/issues/1940)) ([93da512](https://github.com/angular/angular-cli/commit/93da512))
+* **karma:** set defaults for karma.conf.js ([#1837](https://github.com/angular/angular-cli/issues/1837)) ([e2e94a5](https://github.com/angular/angular-cli/commit/e2e94a5))
+* **test:** correctly report packages spec failures ([#2238](https://github.com/angular/angular-cli/issues/2238)) ([3102453](https://github.com/angular/angular-cli/commit/3102453))
+
+
+### Features
+
+* **webpackDevServer:** Add watchOptions for webpackDevServer ([#1814](https://github.com/angular/angular-cli/issues/1814)) ([ce03088](https://github.com/angular/angular-cli/commit/ce03088))
+
+
+
+<a name="1.0.0-beta.15"></a>
+# [1.0.0-beta.15](https://github.com/angular/angular-cli/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2016-09-20)
+
+
+### Bug Fixes
+
+* **help:** fix a bug where help was not available inside a project. ([#2146](https://github.com/angular/angular-cli/issues/2146)) ([5b880b2](https://github.com/angular/angular-cli/commit/5b880b2))
+* pin beta package versions ([#2236](https://github.com/angular/angular-cli/issues/2236)) ([638a54b](https://github.com/angular/angular-cli/commit/638a54b)), closes [#2234](https://github.com/angular/angular-cli/issues/2234)
+
+
+
+<a name="1.0.0-beta.14"></a>
+# [1.0.0-beta.14](https://github.com/angular/angular-cli/compare/v1.0.0-beta.11-webpack.2...v1.0.0-beta.14) (2016-09-15)
+
+
+### Bug Fixes
+
+* **config:** change css regex which causes error ([#2069](https://github.com/angular/angular-cli/issues/2069)) ([7096cc9](https://github.com/angular/angular-cli/commit/7096cc9)), closes [angular/angular#11445](https://github.com/angular/angular/issues/11445)
+* **init:** fix link and npm install ([#2086](https://github.com/angular/angular-cli/issues/2086)) ([7a39162](https://github.com/angular/angular-cli/commit/7a39162))
+
+
+
+<a name="1.0.0-beta.11-webpack.9"></a>
+# [1.0.0-beta.11-webpack.9](https://github.com/angular/angular-cli/compare/v1.0.0-beta.11-webpack.2...v1.0.0-beta.11-webpack.9) (2016-09-13)
+
+
+### Bug Fixes
+
+* add ast-tools as a direct dependency to angular-cli ([bf18f4d](https://github.com/angular/angular-cli/commit/bf18f4d))
+* **bootstrap:** fix windows node_modules path ([#2037](https://github.com/angular/angular-cli/issues/2037)) ([c41600a](https://github.com/angular/angular-cli/commit/c41600a))
+* **find-lazy-modules:** Allow for any valid keys/value to be used ([#1987](https://github.com/angular/angular-cli/issues/1987)) ([caa3142](https://github.com/angular/angular-cli/commit/caa3142)), closes [#1891](https://github.com/angular/angular-cli/issues/1891) [#1960](https://github.com/angular/angular-cli/issues/1960)
+* **lint:** Updated the main.ts's blueprint to fix the ng lint failure ([#1903](https://github.com/angular/angular-cli/issues/1903)) ([#1904](https://github.com/angular/angular-cli/issues/1904)) ([0d9d646](https://github.com/angular/angular-cli/commit/0d9d646))
+* add loader for gif ([#2066](https://github.com/angular/angular-cli/issues/2066)) ([126c82b](https://github.com/angular/angular-cli/commit/126c82b)), closes [#1878](https://github.com/angular/angular-cli/issues/1878)
+* lazy loading now works as expected with latest webpack ([#2038](https://github.com/angular/angular-cli/issues/2038)) ([33c9c73](https://github.com/angular/angular-cli/commit/33c9c73))
+* **test:** add build environment to karma ([#2074](https://github.com/angular/angular-cli/issues/2074)) ([b6a2165](https://github.com/angular/angular-cli/commit/b6a2165))
+
+
+### Features
+
+* **module:** add ability to generate a routing file for new modules ([#1971](https://github.com/angular/angular-cli/issues/1971)) ([9ddba69](https://github.com/angular/angular-cli/commit/9ddba69))
+* **module:** select module to add generations to for declaration ([#1966](https://github.com/angular/angular-cli/issues/1966)) ([a647e51](https://github.com/angular/angular-cli/commit/a647e51))
+
+
+
 <a name="1.0.0-beta.11-webpack.3"></a>
 # [1.0.0-beta.11-webpack.3](https://github.com/angular/angular-cli/compare/v1.0.0-beta.11-webpack.2...v1.0.0-beta.11-webpack.3) (2016-08-29)
 
@@ -131,7 +337,7 @@ Oh, almost forgot. Also:
 * **e2e:** prevent chrome race condition (#1141) ([9df0ffe](https://github.com/angular/angular-cli/commit/9df0ffe))
 * **init:** don't replace live reload script on diffs (#1128) ([e97fd9f](https://github.com/angular/angular-cli/commit/e97fd9f)), closes [#1122](https://github.com/angular/angular-cli/issues/1122)
 * **lint:** add missing rulesDirectory (#1108) ([1690a82](https://github.com/angular/angular-cli/commit/1690a82)), closes [#1094](https://github.com/angular/angular-cli/issues/1094)
-* **mobile:** partially fix dep problem (#1151) ([4b638c8](https://github.com/angular/angular-cli/commit/4b638c8)), closes [(#1151](https://github.com/(/issues/1151)
+* **mobile:** partially fix dep problem (#1151) ([4b638c8](https://github.com/angular/angular-cli/commit/4b638c8)), closes [#1151](https://github.com/angular/angular-cli/issues/1151)
 
 ### Features
 
@@ -147,7 +353,7 @@ Oh, almost forgot. Also:
 
 * **admin:** added support for non Administrator CLI user ([0bc3d94](https://github.com/angular/angular-cli/commit/0bc3d94)), closes [#905](https://github.com/angular/angular-cli/issues/905) [#886](https://github.com/angular/angular-cli/issues/886) [#370](https://github.com/angular/angular-cli/issues/370)
 * **barrel:** alphabetized barrel exports ([67b577d](https://github.com/angular/angular-cli/commit/67b577d)), closes [#582](https://github.com/angular/angular-cli/issues/582)
-* **deploy:** Fix base href for user pages (#965) ([424cff2](https://github.com/angular/angular-cli/commit/424cff2)), closes [(#965](https://github.com/(/issues/965)
+* **deploy:** Fix base href for user pages (#965) ([424cff2](https://github.com/angular/angular-cli/commit/424cff2)), closes [#965](https://github.com/angular/angular-cli/issues/965)
 * **e2e:** return exit codes on failure of e2e tests ([d0c07ac](https://github.com/angular/angular-cli/commit/d0c07ac)), closes [#1017](https://github.com/angular/angular-cli/issues/1017) [#1025](https://github.com/angular/angular-cli/issues/1025) [#1044](https://github.com/angular/angular-cli/issues/1044)
 * **generator:** --dry-run no longer modifies files ([6efc8ee](https://github.com/angular/angular-cli/commit/6efc8ee))
 * Persist style extension config at project creation. ([85c9aec](https://github.com/angular/angular-cli/commit/85c9aec)), closes [#780](https://github.com/angular/angular-cli/issues/780)
@@ -182,7 +388,7 @@ Oh, almost forgot. Also:
 
 ### Bug Fixes
 
-* **build:** fix broken sourcemaps (#839) ([234de2b](https://github.com/angular/angular-cli/commit/234de2b)), closes [(#839](https://github.com/(/issues/839)
+* **build:** fix broken sourcemaps (#839) ([234de2b](https://github.com/angular/angular-cli/commit/234de2b)), closes [#839](https://github.com/angular/angular-cli/issues/839)
 
 ### Features
 
@@ -201,9 +407,9 @@ Oh, almost forgot. Also:
 
 ### Bug Fixes
 
-* **build:** fix infinite loop on ng serve (#775) ([285db13](https://github.com/angular/angular-cli/commit/285db13)), closes [(#775](https://github.com/(/issues/775)
-* **deploy:** fix file copy, index tag rewrite (#772) ([a34aca8](https://github.com/angular/angular-cli/commit/a34aca8)), closes [(#772](https://github.com/(/issues/772)
-* **index:** fix live reload file path (#774) ([be718cb](https://github.com/angular/angular-cli/commit/be718cb)), closes [(#774](https://github.com/(/issues/774)
+* **build:** fix infinite loop on ng serve (#775) ([285db13](https://github.com/angular/angular-cli/commit/285db13)), closes [#775](https://github.com/angular/angular-cli/issues/775)
+* **deploy:** fix file copy, index tag rewrite (#772) ([a34aca8](https://github.com/angular/angular-cli/commit/a34aca8)), closes [#772](https://github.com/angular/angular-cli/issues/772)
+* **index:** fix live reload file path (#774) ([be718cb](https://github.com/angular/angular-cli/commit/be718cb)), closes [#774](https://github.com/angular/angular-cli/issues/774)
 * **mobile:** don't import system-config in system-import.js (#794) ([7ab7d72](https://github.com/angular/angular-cli/commit/7ab7d72))
 * **mobile:** make app-shell compilation synchronous ([9ed28ba](https://github.com/angular/angular-cli/commit/9ed28ba))
 * **mobile:** prevent already-bundled JS from getting cached by Service Worker ([9d18f74](https://github.com/angular/angular-cli/commit/9d18f74))
