@@ -43,7 +43,7 @@
     "e2e": "npm run protractor",
     "e2e:live": "npm run e2e -- --elementExplorer",
     "pretest": "npm run lint",
-    "test": "karma start",
+    "test": "amp-ng test --watch false",
     "test:ui": "runGalen",
     "test:ui-unix": "galen test ./src/styleguide/ --htmlreport report --recursive",
     "prepush": "npm run lint",
