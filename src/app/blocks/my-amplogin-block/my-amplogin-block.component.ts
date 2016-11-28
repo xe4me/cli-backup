@@ -83,8 +83,18 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
         }
     }
 
+    public removeLoginAndProceed() {
+        this.cleanUp();
+
+        super.onNext();
+    }
+
+    public onNext() {
+        this.login();
+    }
+
     // TODO: Check with design if the OK / Change buttons are the right ones to use
-    public onNext () {
+    public login () {
         if ( this.canGoNext ) {
             // Clear error message
             this.errorCode = null;
@@ -118,6 +128,24 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
         }
     }
 
+    private cleanUp() {
+        // Remove page level username/password for security concerns
+        this.__controlGroup.get(this.__custom.controls[0].id).reset();
+        this.__controlGroup.get(this.__custom.controls[1].id).reset();
+
+        // Remove username/password from formGroup for security concerns
+        this.__controlGroup.removeControl(this.__custom.controls[0].id);
+        this.__controlGroup.removeControl(this.__custom.controls[1].id);
+
+        // Clear the errorCode
+        this.errorCode = null;
+
+        // Remove the listener, once we have successfully logged in
+        if (this.myAmpLoginFrameListenFunc) {
+            this.myAmpLoginFrameListenFunc();
+        }
+    }
+
     private submitCallback : Function = (event) => {
         try {
             let landingURL = this.dom.query('#myamploginframe').contentWindow.location.href;
@@ -146,12 +174,8 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
 
     private onLoginSuccess () {
         // TODO: Maybe trigger the prepopulation api based on the scvId we get back from TAM
-        super.onNext();
 
-        // Remove the listener, once we have successfully logged in
-        if (this.myAmpLoginFrameListenFunc) {
-            this.myAmpLoginFrameListenFunc();
-        }
+        this.removeLoginAndProceed();
     }
 
     private onLoginFail (errorCode? : String) {
