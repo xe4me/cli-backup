@@ -12,6 +12,7 @@
                     #manualCountryCmp
                     [id]='country.id'
                     [index]='index'
+                    [required]='required'
                     [controlGroup]='manualAddressCG'>
                     <template let-option="option">
                         {{ option.country }}
@@ -56,7 +57,7 @@
                         [index]='index'
                         [controlGroup]='manualAddressCG'
                         [pattern]='suburb.regex'
-                        [required]='isCountryAUS'
+                        [required]='required && isCountryAUS'
                         [maxLength]='suburb.maxLength'
                         [minLength]='suburb.minLength'
                         [errors]='suburb.errors'>
@@ -77,7 +78,7 @@
                     [id]='state.id'
                     [index]='index'
                     [errors]='state.errors'
-                    [required]='isCountryAUS'
+                    [required]='required && isCountryAUS'
                     [controlGroup]='manualAddressCG'>
                     <template let-option="option">
                         {{ option.value }}
@@ -95,7 +96,7 @@
                     [id]='city.id'
                     [label]='getCityLabel()'
                     [index]='index'
-                    [required]='!isCountryAUS'
+                    [required]='required && !isCountryAUS'
                     [maxLength]='city.maxLength'
                     [errors]='city.errors'
                     [minLength]="city.minLength"
@@ -115,7 +116,7 @@
                     [label]='postCode.label'
                     [index]='index'
                     [controlGroup]='manualAddressCG'
-                    [required]='isCountryAUS || isCountryNZ'
+                    [required]='required && (isCountryAUS || isCountryNZ)'
                     [pattern]='getPostcodeRegex()'
                     [maxLength]='getPostcodeMaxLength()'
                     [errors]='postCode.errors'

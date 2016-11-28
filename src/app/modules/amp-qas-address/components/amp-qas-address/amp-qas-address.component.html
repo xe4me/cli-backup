@@ -5,7 +5,7 @@
                     #typeaheadCmp
                     class='1/1'
                     [controlGroup]='qasControlGroup'
-                    [required]='!searchOrManualControl.value'
+                    [required]='required && !searchOrManualControl.value'
                     [errors]='errors'
                     [keepControl]='keepControl'
                     [minTriggerLength]='minTriggerLength'
@@ -46,6 +46,7 @@
         <amp-manual-address
                 (onGoBack)='goBack()'
                 #manualAddressCmp
+                [required]='required'
                 [keepControl]='keepControl'
                 [controlGroup]='qasControlGroup'
                 id='ManualAddress'
@@ -57,6 +58,7 @@
         <amp-manual-address-extended
                 #manualAddressCmp
                 (onGoBack)='goBack()'
+                [required]='required'
                 [keepControl]='keepControl'
                 [controlGroup]='qasControlGroup'
                 id='ManualAddressExtended'
