@@ -3,10 +3,12 @@ import {
     Input ,
     ChangeDetectionStrategy ,
     ViewChild ,
-    ViewEncapsulation
+    ViewEncapsulation ,
+    OnInit
 } from '@angular/core';
 
 import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
+import { DeviceService } from '../../../../../app/services/device/device.service';
 
 @Component( {
     selector        : 'amp-pop-down' ,
@@ -16,16 +18,22 @@ import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
     encapsulation   : ViewEncapsulation.None
 } )
 
-export class AmpPopDownComponent {
+export class AmpPopDownComponent implements OnInit {
     @ViewChild( 'popDown' ) popDown;
     @Input( 'id' ) id : string = '';
     @Input( 'innerPadding' ) innerPadding : boolean = true;
+    @Input( 'fullWidth' ) fullWidth : boolean = true;
     @Input( 'align' ) align : string = 'left';
 
     private domUtils = null;
+    private isMobile = false;
 
-    constructor() {
+    constructor( private deviceService : DeviceService ) {
        this.domUtils = new DomUtils();
+    }
+
+    public ngOnInit () {
+        this.isMobile = this.deviceService.isMobile();
     }
 
     private hide = () : void => {

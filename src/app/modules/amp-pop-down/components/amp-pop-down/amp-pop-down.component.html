@@ -2,7 +2,9 @@
     #popDown
     [id]="id"
     class="amp-pop-down amp-pop-down--align-{{ align }}"
+    [class.amp-pop-down--full-width]="fullWidth"
     [class.amp-pop-down--inner-padding]="innerPadding"
+    [class.amp-pop-down--is-mobile]="isMobile"
     [clicked-outside]="hide"
     hidden>
     <ng-content></ng-content>

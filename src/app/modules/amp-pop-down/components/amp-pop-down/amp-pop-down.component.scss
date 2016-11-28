@@ -21,11 +21,11 @@ amp-pop-down {
     color: $amp-colour-grey-darkest;
     font-size: 12px;
     margin: $amp-pop-down-margin-y 0;
-    max-width: calc(100vw - #{$amp-pop-down-margin-x * 2});
+    max-width: calc(100vw - #{($amp-pop-down-margin-x * 2) + 20px});
     text-align: center;
     position: absolute;
     left: 0;
-    width: 300px;
+    width: 400px;
     z-index: 1;
 
     &::before,
@@ -53,6 +53,14 @@ amp-pop-down {
 
     &--inner-padding {
         padding: $amp-pop-down-padding;
+    }
+
+    &--full-width {
+        width: 100vw;
+    }
+
+    &--is-mobile {
+        max-width: calc(100vw - #{$amp-pop-down-margin-x * 2});
     }
 
     &--align-right {
