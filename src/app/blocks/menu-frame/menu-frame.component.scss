@@ -3,70 +3,64 @@
 // App Frame
 // --------------------------------
 // Content
-$content-left-width : 155px;
-$content-left-margin : 55px;
-$content-padding-h : 20px;
-$content-padding-h-lap-and-up : 44px;
-
-.frame {
-  .sticky-progressbar {
-    display    : block;
-    height     : 0;
-    opacity    : 0;
-    transition : opacity 1s, height 1s, cubic-bezier(0.3, 0.06, 0.91, 0.45);
-    width      : 100%;
-    z-index    : 100;
-  }
-
-  &--sticky {
-    .sticky-progressbar {
-      height   : $sticky-menu-height !important;
-      position : fixed;
-      top      : 0;
-      opacity  : 1;
-      z-index  : 99999;
-      @include media-query('palm') {
-        display : none;
-      }
-    }
-  }
-}
+$content-left-width: 155px;
+$content-left-margin: 55px;
+$content-padding-h: 20px;
+$content-padding-h-lap-and-up: 44px;
 
 //
 // Todo List
 // --------------------------------
-
 .container {
-  margin    : 0;
-  max-width : 1224px;
-  padding   : 0 $content-padding-h;
-
-  @include media-query('lap-and-up') {
-    padding : 0 $content-padding-h-lap-and-up;
-  }
-
-  &--full-height {
-    position : relative;
-    height   : 100vh;
-  }
+    margin: 0;
+    max-width: 1224px;
+    padding: 0 $content-padding-h;
+    @include media-query('lap-and-up') {
+        padding: 0 $content-padding-h-lap-and-up;
+    }
+    &--full-height {
+        position: relative;
+        height: 100vh;
+    }
 }
-
 .sidebar {
-  position : fixed;
-  width    : $content-left-width;
+    position: fixed;
+    width: $content-left-width;
 }
-
 .main {
-  display     : block;
-  margin-left : $content-left-width + $content-left-margin;
-  @include media-query('palm') {
-    margin-left : 0;
-  }
+    display: block;
+    margin-left: $content-left-width + $content-left-margin;
+    @include media-query('palm') {
+        margin-left: 0;
+    }
+}
+.blocks-wrapper {
+    padding-top: $sticky-menu-margin-bottom;
+    @include media-query('palm') {
+        padding-top: $sticky-menu-margin-bottom/3;
+    }
 }
 
-.blocks-wrapper {
-  padding-top : $sticky-menu-margin-bottom;
-  @include media-query('palm') {
-    padding-top : $sticky-menu-margin-bottom/3;
-  }
+:host /deep/ { // sass-lint: ignore
+    amp-button {
+        .mobile-only {
+            display: none;
+            @include media-query(palm) {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                position: relative;
+                top : 40px;
+                width: 80% !important;
+            }
+        }
+    }
+
+    ul.steps-menu__list {
+        @include media-query(palm) {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid $amp-colour-gray-neutral;
+        }
+    }
 }
