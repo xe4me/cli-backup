@@ -46,6 +46,11 @@ export function getWebpackCommonConfig(
 
     return {
         devtool: sourcemap ? 'source-map' : false,
+        resolveLoader: {
+            alias: {
+                'fdn-loader': require.resolve('./fdn-loader.js')
+            }
+        },
         resolve: {
             extensions: ['.ts', '.js'],
             modules: [nodeModules]

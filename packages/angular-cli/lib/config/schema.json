@@ -177,6 +177,10 @@
               "type": "boolean",
               "default": true
             },
+            "block": {
+              "type": "boolean",
+              "default": true
+            },
             "directive": {
               "type": "boolean",
               "default": true

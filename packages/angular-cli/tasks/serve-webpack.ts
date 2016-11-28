@@ -92,7 +92,6 @@ export default Task.extend({
       webpackDevServerConfiguration.key = sslKey;
       webpackDevServerConfiguration.cert = sslCert;
     }
-    console.log('config',config);
     ui.writeLine(chalk.green(oneLine`
       **
       NG Live Development Server is running on
