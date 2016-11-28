@@ -21,8 +21,8 @@ import { DeviceService } from '../../../../../app/services/device/device.service
 export class AmpPopDownComponent implements OnInit {
     @ViewChild( 'popDown' ) popDown;
     @Input( 'id' ) id : string = '';
-    @Input( 'innerPadding' ) innerPadding : boolean = true;
-    @Input( 'fullWidth' ) fullWidth : boolean = true;
+    @Input( 'hasInnerPadding' ) hasInnerPadding : boolean = true;
+    @Input( 'isFullWidth' ) isFullWidth : boolean = true;
     @Input( 'align' ) align : string = 'left';
 
     private domUtils = null;
