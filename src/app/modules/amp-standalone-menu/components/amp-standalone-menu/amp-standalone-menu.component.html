@@ -5,7 +5,7 @@
     *ngIf="showMenu"
     [@openClosed]="openClosed"
     (window:resize)="onResize($event.target, menu)">
-
+    <ng-content></ng-content>
     <nav role="navigation">
         <ul class="steps-menu__list">
             <li *ngFor="let section of sections" id="{{ section.id }}" class="steps-menu__item" [ngClass]="section.state" [class.hidden]="section.hidden">
