@@ -2,64 +2,52 @@
 @import './themes/theme-form';
 @import './themes/theme-tools';
 
-$autoc-primary-theme : $amp-colour-primary;
-$autoc-line-height : 1;
-$autoc-border-box-font-familty : 'inherit';
-$autoc-search-result-item-height : 40px;
-$autoc-search-result-item-lineheight : 40px;
-$autoc-search-menu-items-height : 60px;
-$autoc-search-menu-items-width : 138px;
+// Dropdown basic settings
+$dropdown-width                                : 300px;
+$dropdown-height                               : 50px;
+$dropdown-color                                : $amp-colour-grey-darkest;
+$dropdown-title-color                          : $dropdown-color;
+$dropdown-font-size                            : 14px;
+$dropdown-padding                              : 15px 20px;
+$dropdown-border                               : 2px solid $amp-colour-grey-dark;
+$dropdown-chev-color                           : $amp-colour-sky-blue;
 
-// dropdown
-$amp-dropdown-input-border-width : 1px;
+// Dropdown active settings
+$dropdown-active-border-color                  : $amp-colour-sky-blue;
+$dropdown-active-border                        : 2px solid $dropdown-active-border-color;
 
-$amp-dropdown-select-height : 50px;
+// Dropdown options-container settings
+$dropdown-options-container-border              : $dropdown-border;
+$dropdown-options-container-background-color    : $amp-colour-white;
 
-$amp-dropdown-options-border-width : 2px;
+// Dropdown option settings
+$dropdown-option-color                         : $amp-colour-grey-darkest;
+$dropdown-option-font-size                     : $dropdown-font-size;
+$dropdown-option-padding                       : $dropdown-padding;
+$dropdown-option-height                        : $dropdown-height;
+$dropdown-option-border-top                    : $dropdown-border;
+$dropdown-option-padding-right-hidden          : 4em;
+$dropdown-option-hover-color                   : $amp-colour-primary;
+$dropdown-option-hover-background-color        : $amp-colour-grey-semiwhite;
+$dropdown-option-selected-background-color     : $amp-colour-grey-semiwhite;
 
-$amp-dropdown-number-options : 4;
-
-$amp-dropdown-option-border-width : 1px;
-$amp-dropdown-option-line-height : 1.5em;
-$amp-dropdown-option-min-height : 46px;
-$amp-dropdown-option-padding-top : 12px;
-$amp-dropdown-option-padding-bottom : $amp-dropdown-option-padding-top;
-$amp-dropdown-option-padding-right : 30px;
-$amp-dropdown-option-padding-right-hidden : 4em;
-$amp-dropdown-option-padding-left : 20px;
-
-$dropdown-width : 300px;
-$dropdown-font-size : 14px;
+// Dropdown disabled settings
+$dropdown-disabled-color                       : $amp-colour-grey-darkest;
+$dropdown-chev-disabled-color                  : $amp-colour-grey-darkest;
 
 :host {
     display  : block;
     position : relative;
-    @include media-query(lap-and-up) {
-        min-width : 300px;
-    }
-    @include media-query(palm) {
-        width : 100%;
-    }
     select {
-        display : none !important;
+        display : none;
     }
 }
 
 @mixin border-active {
-    border-color : $amp-colour-sky-blue;
-    @include box-shadow(inset 0 0 0 1px $amp-colour-sky-blue);
+    border-color : $dropdown-active-border-color;
+    @include box-shadow(inset 0 0 0 1px $dropdown-active-border-color);
 }
 
-// This will make sure in IOS zoom won't happen
-@media screen and (-webkit-min-device-pixel-ratio : 0) {
-    select,
-    input {
-        font-size : 16px;
-    }
-}
-
-$padding-sides : 15px;
-$padding-up : 20px;
 .amp-dropdown-control {
     &:focus + .amp-dropdown-label {
         @include border-active();
@@ -67,52 +55,43 @@ $padding-up : 20px;
 }
 
 .amp-dropdown-title {
+    margin-bottom : 20px;
+    color         : $dropdown-title-color;
+    @include amp-family('open-sans-semibold');
     &.invisible {
         visibility : hidden;
     }
-    margin-bottom : 20px;
-    @include amp-family('open-sans-semibold');
-    color         : $amp-colour-grey-darkest;
-
 }
 
 .amp-dropdown {
     position : relative;
-    @include media-query(lap-and-up) {
-        min-width  : 300px;
-        margin-top : 15px;
-    }
-    @include media-query(palm) {
-        margin-top : 30px;
-    }
+    min-width  : $dropdown-width;
+    margin-top : 15px;
 }
 
 .amp-dropdown-label {
+    font-size     : $dropdown-font-size;
     white-space   : nowrap;
     overflow      : hidden;
     text-overflow : ellipsis;
-    max-height    : $amp-dropdown-select-height;
-    border        : 1px solid $amp-colour-grey-dark;
-    padding       : $padding-sides $padding-up;
-    padding-right : $padding-up +15;
+    text-align    : left;
+    max-height    : $dropdown-height;
+    border        : $dropdown-border;
+    padding       : $dropdown-padding;
     @include amp-family('open-sans-semibold');
-    color         : $amp-colour-grey-darkest;
+    color         : $dropdown-color;
     display       : block;
-    height        : 50px;
     cursor        : pointer;
 
     .amp-dropdown-icon {
-        color       : $amp-colour-sky-blue;
+        color       : $dropdown-chev-color;
         font-size   : $dropdown-font-size;
         line-height : 0;
         margin      : 0;
         position    : absolute;
-        top         : $padding-up;
-        right       : $padding-sides;
+        top         : 20px;
+        right       : 15px;
         z-index     : 3;
-    }
-    &.active {
-        @include border-active();
     }
     &.selected {
         color : $amp-colour-sky-blue;
@@ -124,18 +103,18 @@ $padding-up : 20px;
     }
     &.disabled {
         cursor : default;
-        color  : $amp-colour-grey-darkest;
+        color  : $dropdown-disabled-color;
         .amp-dropdown-icon {
-            color : $amp-colour-grey-darkest;
+            color : $dropdown-chev-disabled-color;
         }
     }
-
 }
 
-.amp-dropdown-options {
-    background             : #fff;
-    border                 : 2px solid $amp-colour-grey-dark;
-    font-size              : 15px;
+.amp-dropdown-options-container {
+    background             : $dropdown-options-container-background-color;
+    border                 : $dropdown-options-container-border;
+    border-top             : none;
+    font-size              : $dropdown-option-font-size;
     opacity                : 1;
     overflow-x             : hidden;
     overflow-y             : auto;
@@ -172,35 +151,31 @@ $padding-up : 20px;
         visibility    : hidden;
 
         .amp-dropdown-option {
-            padding-right : $amp-dropdown-option-padding-right-hidden;
+            padding-right : $dropdown-option-padding-right-hidden;
             white-space   : nowrap;
         }
     }
-    border-top             : none;
-
 }
 
 .amp-dropdown-option {
     @include amp-family('open-sans-semibold');
-    color       : $amp-colour-grey-darkest;
+    color       : $dropdown-option-color;
+    border-top  : $dropdown-option-border-top;
+    line-height : 1.5em;
+    min-height  : $dropdown-option-height;
+    padding     : $dropdown-option-padding;
+    width       : auto;
     &:not([disabled]) {
         cursor : pointer;
         @include hover-focus {
-            background : $amp-colour-grey-semiwhite;
+            background : $dropdown-option-hover-background-color;
             outline    : none;
-            color      : $amp-colour-primary;
+            color      : $dropdown-option-hover-color;
         }
     }
     &.amp-dropdown-active {
-        background : $amp-colour-grey-semiwhite;
+        background : $dropdown-option-selected-background-color;
     }
-    & + & {
-        border-top : $amp-dropdown-option-border-width solid $amp-colour-grey-dark;
-    }
-    line-height : $amp-dropdown-option-line-height;
-    min-height  : $amp-dropdown-option-min-height;
-    padding     : $amp-dropdown-option-padding-top $amp-dropdown-option-padding-right $amp-dropdown-option-padding-bottom $amp-dropdown-option-padding-left;
-    width       : auto;
     &:first-child {
         border-top : none;
     }
