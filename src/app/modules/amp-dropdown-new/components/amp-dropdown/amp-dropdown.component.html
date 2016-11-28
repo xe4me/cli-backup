@@ -35,7 +35,7 @@
         [ngStyle]='{"max-height":maxHeight}'
         (focusOut)='focusInput()'
         (onTypeCharacter)='onTypeCharacter($event)'
-        class='amp-dropdown-options'>
+        class='amp-dropdown-options-container'>
         <li #optionRef
             (keydown.enter)='selectOption(option , $event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
             (click)='selectOption(option,$event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
