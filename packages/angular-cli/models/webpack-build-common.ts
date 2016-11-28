@@ -123,10 +123,6 @@ export function getWebpackCommonConfig(
       ]
     },
     plugins: [
-
-// TODO: Need to work out what this does and how does it affect the ComponentFactoryResolver      
-//      new webpack.ContextReplacementPlugin(/.*/, appRoot, lazyModules),
-      new atl.ForkCheckerPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(appRoot, appConfig.index),
         filename: path.resolve(appConfig.outDir, appConfig.index),
