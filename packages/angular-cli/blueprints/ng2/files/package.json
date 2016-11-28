@@ -46,10 +46,10 @@
     "@angular/compiler-cli": "2.2.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
+    "@types/hammerjs": "^2.0.33",
     "amp-angular-cli": "/Users/xe4me/Desktop/Dev/AMP/amp-angular-cli",
     "codelyzer": "~1.0.0-beta.3",
     "jasmine-core": "2.5.2",
-
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
     "karma-chrome-launcher": "^2.0.0",

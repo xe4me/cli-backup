@@ -71,7 +71,12 @@ export const getWebpackProdConfigPartial = function(projectRoot: string, appConf
         options: {
           postcss: [
             require('postcss-discard-comments')
-          ]
+          ],
+        tslint: {
+            emitErrors: true,
+            failOnHint: true,
+            resourcePath: path.resolve(projectRoot, appConfig.root)
+        }
         }
       })
     ]

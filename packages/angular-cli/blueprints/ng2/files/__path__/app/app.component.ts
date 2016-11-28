@@ -9,7 +9,7 @@ import { APP_SHELL_DIRECTIVES } from '@angular/app-shell';<% } %>
   </h1>
   `,<% } else { %>
   templateUrl: './app.component.html',<% } %><% if (inlineStyle) { %>
-    styles: [ require( '../styles/all.scss' ).toString() ]<% } else { %>
+    styles: [ require( '../styles/all.scss' ) ]<% } else { %>
   styleUrls: ['./app.component.<%= styleExt %>']<% } %>
 })
 export class AppComponent {

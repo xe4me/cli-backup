@@ -57,7 +57,8 @@ module.exports = {
       isMobile: options.mobile,
       routing: options.routing,
       inlineStyle: options.inlineStyle,
-      inlineTemplate: options.inlineTemplate
+      inlineTemplate: options.inlineTemplate,
+        __dirname: __dirname
     };
   },
 
