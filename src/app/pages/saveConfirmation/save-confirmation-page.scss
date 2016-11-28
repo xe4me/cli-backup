@@ -14,12 +14,6 @@
         }
         @include media-query(tablet-and-down) {
             padding: 2.667em 2em;
-            amp-button {
-                margin-top: 0 !important;
-                .btn {
-                    margin-top: 0 !important;
-                }
-            }
             .heading {
                 font-size: 1.75em;
             }
