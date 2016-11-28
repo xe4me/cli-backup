@@ -1,13 +1,8 @@
 {
     "Application": {
-        "Welcome": {
-            "NewOrExisting": null
-        },
-        "SingleOrJoint": {
-            "SingleOrJoint": null
-        },
-        "BetterChoice": {
-            "BetterChoice": null
+        "MyAMPLoginBlock": {
+            "userId": null,
+            "password": null
         }
     },
     "ContinueApplicationBlock": {

@@ -7,12 +7,13 @@ module.exports = function (config) {
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
       require('karma-jasmine'),
-//      require('karma-chrome-launcher'),
+      // require('karma-chrome-launcher'),
       require('karma-phantomjs-launcher'),
       require('karma-remap-istanbul'),
       require('amp-angular-cli/plugins/karma')
     ],
     files: [
+      './src/testProcessEnv.js',
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {

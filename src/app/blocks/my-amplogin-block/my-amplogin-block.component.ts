@@ -1,0 +1,163 @@
+import {
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    ChangeDetectionStrategy,
+    NgZone,
+    Renderer,
+    OnDestroy } from '@angular/core';
+import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
+import {
+    FormBlock,
+    ScrollService,
+    FormModelService,
+    ProgressObserverService
+} from 'amp-ddc-components';
+
+/**
+ * Thin login interface to MyAMP via TAM.
+ * 
+ * 'Thin' refers to credential management aspect, like forgot password, reset account, etc...
+ * these features remains on the MyAMP main web application.
+ * 
+ * Prerequisite: Experience must be in the same domain as MyAMP for this component to work 
+ * (i.e. In Production the DDC experience must have a domain of https://secure.amp.com.au/ddc/XYZ)
+ * 
+ * Example login:-
+ *  PRF:  208715776061
+ * 
+ * Assumptions:-
+ * Form Definition
+ *   {
+ *       'name': 'MyAMPLoginBlock',
+ *       'blockType': 'MyAMPLoginBlockComponent',
+ *       'blockLayout': 'INLINE',
+ *       'commonBlock': true,
+ *       'path': 'blocks/my-amplogin-block/my-amplogin-block.component',
+ *       'custom': {
+ *           'blockTitle': 'Please login',
+ *           'loginFailedMsg': 'Incorrect username/password combination, please try again.',
+ *           'controls': [
+ *               {
+ *                   'id': 'userId',
+ *                   'label': 'User Id'
+ *               },
+ *               {
+ *                   'id': 'password',
+ *                   'label': 'Password'
+ *               }
+ *           ]
+ *       }
+ *   }
+ *
+ * 
+ * 
+ */
+@Component({
+    selector        : 'my-amplogin-block',
+    templateUrl     : './my-amplogin-block.component.html',
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles          : [require ( './my-amplogin-block.component.scss' )]
+})
+export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
+    private errorCode : String = null;
+    private myAmpLoginFrameListenFunc : Function;
+
+    constructor(
+        formModelService : FormModelService,
+        elementRef : ElementRef,
+        _cd : ChangeDetectorRef,
+        scrollService : ScrollService,
+        progressObserver : ProgressObserverService,
+        private zone : NgZone,
+        private renderer : Renderer,
+        private dom : BrowserDomAdapter) {
+        super( formModelService, elementRef, _cd, progressObserver, scrollService );
+    }
+
+    public ngOnDestroy () {
+        super.ngOnDestroy();
+        // Remove the listen
+        if (this.myAmpLoginFrameListenFunc) {
+            this.myAmpLoginFrameListenFunc();
+        }
+    }
+
+    // TODO: Check with design if the OK / Change buttons are the right ones to use
+    public onNext () {
+        if ( this.canGoNext ) {
+            // Clear error message
+            this.errorCode = null;
+
+            // Check if we already have a login form already
+            if (!this.dom.query('#myamploginframe')) {
+                // Generate hidden MyAMP TAM Login form/iframe
+                let hiddenFormDiv = document.createElement('div');
+                hiddenFormDiv.style.display = 'none';
+                hiddenFormDiv.innerHTML =
+                    `<form action="/eam/login" method="post">
+                        <input id="userid" name="userid"/>
+                        <input id="password" name="password" type="password"/>
+                        <button id="myAmpLoginBtn" type="submit" formtarget="myamploginframe"></button>
+                    </form><iframe name="myamploginframe" id="myamploginframe"></iframe>`;
+                document.body.appendChild(hiddenFormDiv);
+
+                // Bind the onload event of the iframe back into angular to get the response of the login
+                this.myAmpLoginFrameListenFunc =
+                    this.renderer.listen(this.dom.query('#myamploginframe'), 'load', this.submitCallback);
+            }
+
+            // Sync login details from the block to the generated hidden form.
+            this.renderer.setElementProperty(
+                this.dom.query('#userid'), 'value', this.__controlGroup.get(this.__custom.controls[0].id).value);
+            this.renderer.setElementProperty(
+                this.dom.query('#password'), 'value', this.__controlGroup.get(this.__custom.controls[1].id).value);
+
+            // Finally, submit the form to TAM
+            this.renderer.invokeElementMethod(this.dom.query('#myAmpLoginBtn'), 'click');
+        }
+    }
+
+    private submitCallback : Function = (event) => {
+        try {
+            let landingURL = this.dom.query('#myamploginframe').contentWindow.location.href;
+
+            if (landingURL) {
+                let errorCodeStartIndex = landingURL.indexOf('errorCode=');
+                if (errorCodeStartIndex > -1) {
+                    let tamErrorCode = landingURL.substring(errorCodeStartIndex + 10);
+                    this.onLoginFail(tamErrorCode);
+                } else if (landingURL.indexOf('wps/myportal/sec/xseed/dashboard/mywealth/') > -1) {
+                    this.onLoginSuccess();
+                } else {
+                    this.onLoginFail();
+                }
+            } else {
+                this.onLoginFail();
+            }
+
+        } catch (err) {
+            this.onLoginFail();
+            // Not very likely, as prerequisite states we must be in the same this.domain.
+        }
+
+        this._cd.markForCheck();
+    }
+
+    private onLoginSuccess () {
+        // TODO: Maybe trigger the prepopulation api based on the scvId we get back from TAM
+        super.onNext();
+
+        // Remove the listener, once we have successfully logged in
+        if (this.myAmpLoginFrameListenFunc) {
+            this.myAmpLoginFrameListenFunc();
+        }
+    }
+
+    private onLoginFail (errorCode? : String) {
+        this.errorCode = errorCode;
+        if (!errorCode) {
+            this.errorCode = 'default';
+        }
+    }
+}
