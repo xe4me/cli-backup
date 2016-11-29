@@ -1,4 +1,5 @@
 {
     "type": "library",
-    "buildToolsImage": "amp-nodejs-buildtools:latest-node6",
+    "buildToolsImage": "amp-nodejs-buildtools:latest",
+    "ignoreNSPCheck": true
 }
