@@ -1,5 +1,6 @@
 {
     "type": "library",
     "buildToolsImage": "amp-nodejs-buildtools:latest",
-    "ignoreNSPCheck": true
+    "ignoreNSPCheck": true,
+    "skipTest": true
 }
