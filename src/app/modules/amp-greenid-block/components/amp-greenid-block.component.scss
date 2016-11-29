@@ -23,7 +23,7 @@ amp-greenid-block #greenid-container {
 
     @include media-query('palm') {
         #greenid-source-list-container{
-            margin-left: 0px;
+            margin-left: 0;
         }
     }
 
@@ -60,7 +60,7 @@ amp-greenid-block #greenid-container {
             background-color: $amp-colour-primary !important;
             color: $amp-colour-white;
         }
-        border-radius : 0px;
+        border-radius : 0;
         border: none;
         color: $amp-colour-white;
         &.btn-primary {
@@ -134,7 +134,7 @@ amp-greenid-block #greenid-container {
 }
 
 .medicaredvsrefnumvalidation {
-    margin-top: -41px !important ;
+    margin-top: -41px !important;
 }
 
 .greenid-tooltip {
