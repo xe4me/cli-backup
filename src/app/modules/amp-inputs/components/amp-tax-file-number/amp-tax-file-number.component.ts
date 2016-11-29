@@ -34,7 +34,7 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
         };
     }
 
-    protected customValidator = () : any => {
+    public customValidator = () : any => {
         return ( c ) => {
             if (c.value && c.value.length === this.maxLength) {
                return this.isDigitValidationOk(c.value) ? null : { checkDigitValidation: { text: this.errors.checkDigitValidation } };
