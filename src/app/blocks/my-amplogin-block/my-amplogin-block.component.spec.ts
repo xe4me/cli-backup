@@ -161,7 +161,7 @@ describe( 'Component: MyAMPLoginBlock' , () => {
         } ));
     });
     describe ( 'onLoginSuccess', () => {
-        it( 'should call super.onNext' , <any> fakeAsync(() => {
+        it( 'should call removeLoginAndProceed' , <any> fakeAsync(() => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             tick(1);

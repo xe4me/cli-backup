@@ -11,7 +11,7 @@ amp-form-block {
 
 
 .error-container {
-    font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+    @include amp-family($amp-font-open-sans-regular);
     color: $font-color;
     border: 1px solid $border-color;
     padding: 40px 70px 40px 85px;
