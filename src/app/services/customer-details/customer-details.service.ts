@@ -21,8 +21,8 @@ export class CustomerDetailsService {
 
     public $customerDetailsChanged : EventEmitter<any> = new EventEmitter<any>();
 
-    private _customerDetails : Promise<any>;
-    private _apiCustomerUrl =
+    private customerDetails : Promise<any>;
+    private apiCustomerUrl =
         Environments.property.TamServicePath +
         Environments.property.GwDDCService.EnvPath +
         Environments.property.GwDDCService.Path +
@@ -33,18 +33,18 @@ export class CustomerDetailsService {
 
     public getCustomerDetails ( useCache = true ) : Promise<any> {
         // Use cache if it has valid value and requested so
-        if (!this._customerDetails || !useCache) {
-            this._customerDetails = this.fetchCustomerDetails().toPromise();
-            this.$customerDetailsChanged.emit(this._customerDetails);
+        if (!this.customerDetails || !useCache) {
+            this.customerDetails = this.fetchCustomerDetails().toPromise();
+            this.$customerDetailsChanged.emit(this.customerDetails);
         }
 
-        return this._customerDetails;
+        return this.customerDetails;
     }
 
     public fetchCustomerDetails () : Observable<any> {
         let headers = new Headers( { 'Content-Type': 'application/json' } );
         let options = new RequestOptions( { headers: headers , body: '' } );
-        return this.http.get( this._apiCustomerUrl , options )
+        return this.http.get( this.apiCustomerUrl , options )
                         .map( (res) => res.json() );
     }
 }
