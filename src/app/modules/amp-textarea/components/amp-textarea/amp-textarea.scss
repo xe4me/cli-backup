@@ -382,7 +382,7 @@ md-input-container {
                 background-image : none;
                 cursor           : default;
                 &:hover {
-                    border-bottom : 1px solid transparent !important
+                    border-bottom : 1px solid transparent !important;
                 }
             }
         }
@@ -400,7 +400,8 @@ md-input-container {
             border-color : $amp-colour-alert-danger;
         }
 
-        &:hover:not(.ng-invalid), &:hover.ng-pristine {
+        &:hover:not(.ng-invalid),
+        &:hover.ng-pristine {
             border-color : $amp-colour-sky-blue;
         }
 
@@ -424,7 +425,9 @@ md-input-container {
         color            : $amp-colour-grey-darkest;
     }
 
-    &:not(.md-input-invalid).md-input-has-value, &:not(.md-input-invalid).md-input-focused, &.md-input-has-value {
+    &:not(.md-input-invalid).md-input-has-value,
+    &:not(.md-input-invalid).md-input-focused,
+    &.md-input-has-value {
         label {
             @include amp-family($amp-font-open-sans-semibold);
             color : $amp-colour-grey-darkest;

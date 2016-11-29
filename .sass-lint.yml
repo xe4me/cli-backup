@@ -103,7 +103,7 @@ rules:
 
     # Inner Spacing
     space-after-comma: 2
-    space-before-colon: 0 # Need to decide as a team on if have vertically aligned colons fi not this should be an Error
+    space-before-colon: 0 # Need to decide as a team on if have vertically aligned colons if not this should be an Error
     space-after-colon: 0 # Should be turned into Error
     space-before-brace: 0 # Should be turned into Error
     space-before-bang: 2
@@ -112,5 +112,5 @@ rules:
     space-around-operator: 0 # Should be turned into Error
 
     # Final Items
-    trailing-semicolon: 0 # Should be turned into Error
+    trailing-semicolon: 2
     final-newline: 0 # Should be turned into Error
