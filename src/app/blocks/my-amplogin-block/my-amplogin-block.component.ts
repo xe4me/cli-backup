@@ -61,7 +61,7 @@ import {
 })
 export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
     private errorCode : String = null;
-    private myAmpLoginFrameListenFunc : Function = () => {
+    private removeLoginFrameListener : Function = () => {
         return;
     };
 
@@ -79,8 +79,8 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
 
     public ngOnDestroy () {
         super.ngOnDestroy();
-        // Remove the listen
-        this.myAmpLoginFrameListenFunc();
+
+        this.removeLoginFrameListener();
     }
 
     public removeLoginAndProceed() {
@@ -113,7 +113,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
                 document.body.appendChild(hiddenFormDiv);
 
                 // Bind the onload event of the iframe back into angular to get the response of the login
-                this.myAmpLoginFrameListenFunc =
+                this.removeLoginFrameListener =
                     this.renderer.listen(this.dom.query('#myamploginframe'), 'load', this.submitCallback);
             }
 
@@ -140,8 +140,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
         // Clear the errorCode
         this.errorCode = null;
 
-        // Remove the listener, once we have successfully logged in
-        this.myAmpLoginFrameListenFunc();
+        this.removeLoginFrameListener();
     }
 
     private submitCallback : Function = (event) => {
