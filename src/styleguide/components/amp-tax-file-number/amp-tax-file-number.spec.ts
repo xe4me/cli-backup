@@ -47,7 +47,7 @@ describe( 'amp-tax-file-number component' , () => {
         expect( TFNInput.id ).toBe( Component.tfnCmp.randomizedId + '-input');
         expect( TFNInput.getAttribute( 'data-automation-id' ) ).toBe( 'text_' + Component.tfnCmp.randomizedId );
     } );
-    it( 'Should contain 1 invalid tax-file-number and have an error on control' , () => {
+    it( 'Should display an error when an INVALID tax-file-number is entered' , () => {
         const expectedError = { checkDigitValidation: { text: 'You have entered an invalid tax file number.' } };
         let fixture : ComponentFixture<AmpTFNTest> = TestBed.createComponent( AmpTFNTest );
         fixture.detectChanges();
@@ -56,7 +56,7 @@ describe( 'amp-tax-file-number component' , () => {
         fixture.detectChanges();
         expect( ampTFNTest.control.errors ).toEqual( expectedError );
     } );
-    it( 'Should contain 1 valid tax-file-number and no error on control' , () => {
+    it( 'Should NOT display an error when a VALID tax-file-number is entered' , () => {
         const expectedError = null;
         let fixture : ComponentFixture<AmpTFNTest> = TestBed.createComponent( AmpTFNTest );
         fixture.detectChanges();
