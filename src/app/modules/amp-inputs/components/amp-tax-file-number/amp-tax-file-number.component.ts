@@ -38,19 +38,18 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
     private onKeyupEvent ( event ) {
         let newValue = this.control.value.replace( /\D/g , '' );
         this.control.updateValue( newValue );
-        if(newValue && newValue.length === this.maxLength){
+        if (newValue && newValue.length === this.maxLength) {
             this.checkErrors(false);
             this.markControlAsDirty();
-        }   
+        }
     }
-
 
     private customValidator = () : any => {
         return ( c ) => {
             if (c.value && c.value.length === this.maxLength) {
                return this.isDigitValidationOk(c.value) ? null : { checkDigitValidation: { text: this.errors.checkDigitValidation } };
             }
-           return null;
+            return null;
         };
     };
 
@@ -65,9 +64,7 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
                 + ( digits[6] * this.weights[6] )
                 + ( digits[7] * this.weights[7] )
                 + ( digits[8] * this.weights[8] );
-        
         const remainder = sum % 11;
-        
         return remainder === 0;
     }
 
