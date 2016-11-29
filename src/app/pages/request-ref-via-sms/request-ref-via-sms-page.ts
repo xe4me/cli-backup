@@ -7,7 +7,9 @@ import {
     AfterViewInit
 } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,
+         Router
+} from '@angular/router';
 import { FormControl , FormGroup } from '@angular/forms';
 import {
     SaveReceiptPageComponent,
@@ -29,7 +31,8 @@ export class RequestRefViaSMSPage implements AfterViewInit {
     private controlGroup : FormGroup = new FormGroup( {} );
     constructor (private http : AmpHttpService,
                  private _cd : ChangeDetectorRef,
-                 private route : ActivatedRoute) {
+                 private route : ActivatedRoute,
+                 private router : Router) {
     }
 
     public ngAfterViewInit() {
@@ -41,13 +44,13 @@ export class RequestRefViaSMSPage implements AfterViewInit {
 
     private back() {
         // call the form save and retrieve to navigate back to the first incomplete block
-        window.open( 'https://www.amp.com.au/bett3r', '_self' );
+        this.router.navigate(['']);
     }
 
     private sendSMS() {
         if (this.controlGroup.valid) {
             const mobileNumber = this.controlGroup.value[this.mobileNumberCtrlId];
-            // console.log('Send SMS with referenceId',  this.referenceId, 'to mobile number', mobileNumber);
+            this.router.navigate(['saveConfirmation', this.referenceId]);
         }
     }
 }
