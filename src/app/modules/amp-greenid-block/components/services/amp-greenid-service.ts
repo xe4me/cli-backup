@@ -14,7 +14,7 @@ export class AmpGreenIdServices {
     // public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
     public static BASE_URL          = `${Environments.property.ApiCallsBaseUrl}/green-id`;
     public static DEFAULT_ERROR_TEXT = 'Server error';
-    public static VERIFICATION_ENDPOINT = '/registerVerification';
+    public static VERIFICATION_ENDPOINT = '/register';
 
     private headers = new Headers( {
         'Content-Type' : 'application/json'
