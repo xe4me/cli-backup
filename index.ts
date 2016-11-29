@@ -41,9 +41,9 @@ export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise
 // Services
 export { ScrollService } from './src/app/services/scroll/scroll.service';
 export { PdfService } from './src/app/services/pdf/pdf.service';
-export { FormModelService } from './src/app/services/form-model/form-model.service.ts';
+export { FormModelService } from './src/app/services/form-model/form-model.service';
 export { DeviceService } from './src/app/services/device/device.service';
-export { AmpHttpService } from './src/app/services/amp-http/amp-http.service.ts';
+export { AmpHttpService } from './src/app/services/amp-http/amp-http.service';
 export { ValidationService } from './src/app/services/validation/validation.service';
 export { ProgressObserverService } from './src/app/services/progress-observer/progress-observer.service';
 export { AmpDateService } from './src/app/services/amp-date/amp-date.service';

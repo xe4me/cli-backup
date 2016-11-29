@@ -3,6 +3,7 @@ import { Environments } from '../../abstracts/environments/environments.abstract
 import { RequestOptions , Headers } from '@angular/http';
 import { DeviceService } from '../device/device.service';
 import { AmpHttpService } from '../amp-http/amp-http.service';
+import { Observable } from "rxjs/Observable"
 @Injectable()
 export class PdfService {
     public static BASE_URL        = Environments.property.ApiCallsBaseUrl;

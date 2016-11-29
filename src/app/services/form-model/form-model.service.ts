@@ -1,7 +1,7 @@
 import { Injectable , EventEmitter } from '@angular/core';
 import { Headers , RequestOptions , Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Environments } from '../../abstracts/environments/environments.abstract.ts';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';

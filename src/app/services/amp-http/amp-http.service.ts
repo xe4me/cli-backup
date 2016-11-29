@@ -1,4 +1,4 @@
-import { Environments } from '../../abstracts/environments/environments.abstract.ts';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 import { Http , BaseRequestOptions , Headers , Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { Injectable } from '@angular/core';

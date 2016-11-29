@@ -5,6 +5,7 @@ import reducers from './reducers/model/model.reducer';
 import { ModelActions } from './actions/model/model.action';
 import { StoreModule , Store } from '@ngrx/store';
 import { StoreService } from './services/store/store.service';
+import { ModuleWithProviders } from '@angular/core';
 /*
  * TODO : Where is the best place to put bellow code ?
  * */
