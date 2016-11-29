@@ -1,5 +1,3 @@
-import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { AmpInputComponent } from '../amp-input/amp-input.component';
 import {
     HostListener,
     ChangeDetectorRef,
@@ -8,6 +6,8 @@ import {
     ViewChild
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { AmpComponent } from '../../../../decorators/amp-component.decorator';
+import { AmpInputComponent } from '../amp-input/amp-input.component';
 
 @AmpComponent({
     selector : 'amp-tax-file-number'
@@ -15,7 +15,6 @@ import { FormControl } from '@angular/forms';
 
 export class AmpTaxFileNumberComponent extends AmpInputComponent {
 
-    @HostListener('input')  onKeyupEvent;
     @ViewChild( 'input' ) inputCmp;
 
     private weights = [ 1, 4, 3, 7, 5, 8, 6, 9, 10 ];
@@ -35,16 +34,7 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
         };
     }
 
-    private onKeyupEvent ( event ) {
-        let newValue = this.control.value.replace( /\D/g , '' );
-        this.control.updateValue( newValue );
-        if (newValue && newValue.length === this.maxLength) {
-            this.checkErrors(false);
-            this.markControlAsDirty();
-        }
-    }
-
-    private customValidator = () : any => {
+    protected customValidator = () : any => {
         return ( c ) => {
             if (c.value && c.value.length === this.maxLength) {
                return this.isDigitValidationOk(c.value) ? null : { checkDigitValidation: { text: this.errors.checkDigitValidation } };
@@ -52,6 +42,16 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
             return null;
         };
     };
+
+    @HostListener('input')
+    private checkValue ( event ) {
+        let newValue = this.control.value.replace( /\D/g , '' );
+        this.control.updateValue( newValue );
+        if (newValue && newValue.length === this.maxLength) {
+            this.checkErrors(false);
+            this.markControlAsDirty();
+        }
+    }
 
     private isDigitValidationOk ( tfn ) {
         const digits = tfn.split('');
