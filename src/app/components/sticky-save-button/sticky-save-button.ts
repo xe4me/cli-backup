@@ -6,6 +6,7 @@ import {
     ChangeDetectionStrategy,
     Input
 } from '@angular/core';
+import { Router } from '@angular/router';
 import {
     FormGroup,
     FormControl
@@ -22,11 +23,25 @@ import {
     })
 export class StickySaveButton {
     @Input() private form : FormGroup;
-    constructor(private _cd : ChangeDetectorRef, private formModelService : FormModelService) {
+    constructor(
+        private _cd : ChangeDetectorRef,
+        private router : Router,
+        private formModelService : FormModelService) {
     }
 
     public onSave() {
-        this.formModelService.save(this.form.value);
+        this.formModelService.saveModel(this.form.value).subscribe( (result) => {
+            const applicationId = this.form.get([
+                'Application',
+                'referenceId']).value;
+            const mobileNumber = this.form.get([
+                'Application',
+                'Applicant1Section',
+                'PersonalDetailsSection',
+                'ContactDetails',
+                'MobileNumber']).value;
+            this.router.navigate( ['requestsms', applicationId, mobileNumber === null ? '' : mobileNumber] );
+        });
     }
 
 }

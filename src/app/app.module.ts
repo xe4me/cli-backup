@@ -69,6 +69,9 @@ import {
     Header
 } from './blocks/header/header.component';
 import {
+    RequestRefViaSMSPage
+} from './pages/request-ref-via-sms/request-ref-via-sms-page';
+import {
     SharedFormDataService ,
     ApplicantGeneratorService ,
     AccountsListDataService
@@ -84,11 +87,12 @@ const DECLARATIONS    = [
     Footer
 ];
 const routes : Routes = [
-    { path : '' , component : BetterFormComponent } ,
-    { path : 'confirmation' , component : NormalAccountPage } ,
+    { path : '' , component : BetterFormComponent },
+    { path : 'confirmation' , component : NormalAccountPage },
     { path : 'confirmationWithConditionSingle' , component : PostnoneSingleAccountPage },
     { path : 'confirmationWithConditionJoint' , component : PostnoneJointAccountPage },
     { path : 'submitError/:errorId', component : SubmitErrorPage },
+    { path : 'requestsms/:referenceId/:mobileNumber' , component : RequestRefViaSMSPage },
     { path : 'saveConfirmation/:ref', component : SaveConfirmationPage}
 ];
 const IMPORTS         = [
