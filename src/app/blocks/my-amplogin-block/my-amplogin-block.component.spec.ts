@@ -142,8 +142,8 @@ describe( 'Component: MyAMPLoginBlock' , () => {
                 .toBe( 'text_Application-MyAMPLoginBlock-password' );
         } ));
     });
-    describe ( 'onLoginSuccess', () => {
-        it( 'should call super.onNext' , <any> fakeAsync(() => {
+    describe ( 'removeLoginAndProceed', () => {
+        it( 'should cleanUp and then call super.onNext' , <any> fakeAsync(() => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             tick(1);
@@ -151,11 +151,29 @@ describe( 'Component: MyAMPLoginBlock' , () => {
             let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
             let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            spyOn(FormBlock.prototype, 'onNext').and.callThrough();
-            expect( FormBlock.prototype.onNext ).not.toHaveBeenCalled();
+            spyOn(myAMPLoginBlockComponent, 'cleanUp').and.callThrough();
+            spyOn(FormBlock.prototype, 'onNext').and.returnValue(true);
+
+            myAMPLoginBlockComponent.removeLoginAndProceed();
+
+            expect( myAMPLoginBlockComponent['cleanUp'] ).toHaveBeenCalled();
+            expect( FormBlock.prototype.onNext ).toHaveBeenCalled();
+        } ));
+    });
+    describe ( 'onLoginSuccess', () => {
+        it( 'should call removeLoginAndProceed' , <any> fakeAsync(() => {
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+            fixture.detectChanges();
+            tick(1);
+
+            let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
+            let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
+
+            spyOn(myAMPLoginBlockComponent, 'removeLoginAndProceed').and.returnValue(true);
 
             myAMPLoginBlockComponent['onLoginSuccess']();
-            expect( FormBlock.prototype.onNext ).toHaveBeenCalled();
+
+            expect( myAMPLoginBlockComponent.removeLoginAndProceed ).toHaveBeenCalled();
         } ));
     });
     describe ( 'onLoginFail', () => {
