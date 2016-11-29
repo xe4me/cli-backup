@@ -119,7 +119,7 @@ describe('AmpGreenIdServices - getTheToken', () => {
         fakeAsync(inject([AmpGreenIdServices, MockBackend], (ampGreenIdServices : AmpGreenIdServices, mockBackend : MockBackend) => {
             let res : Response;
             mockBackend.connections.subscribe(( c ) => {
-                expect(c.request.url).toContain('/green-id/registerVerification');
+                expect(c.request.url).toContain('/green-id/register');
                 let response = new ResponseOptions({body: `[{"verificationId": "M1Crf19U", "verificationToken": "fee72af1cf0f1ccd0a7f7a2af8a69ecfb40da449"}]`});
                 c.mockRespond(new Response(response));
             });
