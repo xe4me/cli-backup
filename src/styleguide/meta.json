@@ -820,6 +820,26 @@
         "readme": "<p>Stand alone menu component</p>\n"
     },
     {
+        "name": "Amp Tax File Number",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpTaxFileNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-tax-file-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-tax-file-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-tax-file-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-tax-file-number/amp-tax-file-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-tax-file-number/amp-tax-file-number.spec.ts",
+                "component": "amp-tax-file-number-basic-usage",
+                "component_src_location": "components/amp-tax-file-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP tax file number input with check digit validation.</p>\n"
+    },
+    {
         "name": "Amp Textarea",
         "sources": [
             "src/app/components/amp-textarea/amp-textarea.component.ts"
