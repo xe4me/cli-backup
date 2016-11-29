@@ -24,9 +24,13 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
  * Webpack Constants
  */
 const HMR = helpers.hasProcessFlag('hot');
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3001;
 const METADATA = {
     title: 'AMP Components library',
     baseUrl: '/',
+    host: HOST,
+    port: PORT,
     stubbyBaseUrl: 'http://localhost:1234',
     isDevServer: helpers.isWebpackDevServer()
 };
