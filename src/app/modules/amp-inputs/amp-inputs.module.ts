@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MdInputModule } from '@angular2-material/input';
 import { AmpInputComponent } from './components/amp-input/amp-input.component';
 import { AmpContactNumberComponent } from './components/amp-contact-number/amp-contact-number.component';
 import { AmpEmailComponent } from './components/amp-email/amp-email.component';
@@ -10,7 +11,8 @@ import { AmpMobileNumberComponent } from './components/amp-mobile-number/amp-mob
 import { AmpWorkNumberComponent } from './components/amp-work-number/amp-work-number.component';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpAccountNumberComponent } from './components/amp-account-number/amp-account-number.component';
-import { MdInputModule } from '@angular2-material/input';
+import { AmpTaxFileNumberComponent } from './components/amp-tax-file-number/amp-tax-file-number.component';
+
 const DECLARATIONS = [
     AmpInputComponent ,
     AmpContactNumberComponent ,
@@ -21,7 +23,8 @@ const DECLARATIONS = [
     AmpMobileNumberComponent ,
     AmpPasswordComponent ,
     AmpWorkNumberComponent,
-    AmpAccountNumberComponent
+    AmpAccountNumberComponent,
+    AmpTaxFileNumberComponent
 ];
 @NgModule( {
     declarations : DECLARATIONS ,
