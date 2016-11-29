@@ -46,6 +46,38 @@
                                         }
                                     ]
                                 }
+                            },
+                            {
+                                "name": "MyAMPLoginBlock",
+                                "blockType": "MyAMPLoginBlockComponent",
+                                "blockLayout": "INLINE",
+                                "commonBlock": false,
+                                "path": "blocks/my-amplogin-block/my-amplogin-block.component",
+                                "custom": {
+                                    "blockTitle": "To get started, enter your My AMP Username and password",
+                                    "errorCodeMap": {
+                                        "logon.disabled": "We're sorry you can't access your My AMP account.  We have a technical issue that is impacting your account, we should have this resolved in the next 2 business days, please try again then. For urgent queries, please call us on 1300 657 801 (8am - 8pm Monday to Friday). We apologise for any inconvenience.",
+                                        "logon.invalid": "Invalid username or password",
+                                        "logon.locked": "Your account has been locked, please click the 'Forgot Password' link below or contact AMP e-Services on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST) to unlock your account.",
+                                        "logon.unavailable": "AMP is currently performing system maintenance which is affecting customers logging into their portal.",
+                                        "logon.service.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                                        "logon.unauthorized": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                                        "logon.forbidden": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                                        "logon.unknown.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                                        "logon.internal.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                                        "default": "Incorrect username/password combination, please try again."
+                                    },
+                                    "controls": [
+                                        {
+                                            "id": "userId",
+                                            "label": "Username"
+                                        },
+                                        {
+                                            "id": "password",
+                                            "label": "Password"
+                                        }
+                                    ]
+                                }
                             }
                         ]
                     }

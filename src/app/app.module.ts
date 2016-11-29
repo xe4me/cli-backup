@@ -50,11 +50,18 @@ import {
 import {
     PostnoneJointAccountPage
 } from './pages/confirmationWithConditionJoint/postnone-account-page';
-import { SubmitErrorPage } from './pages/submitError/submit-error-page';
+import {
+    SaveConfirmationPage
+} from './pages/saveConfirmation/save-confirmation-page';
+import {
+    SubmitErrorPage
+} from './pages/submitError/submit-error-page';
 import {
     StickySaveButton
 } from './components/sticky-save-button/sticky-save-button';
-import { BetterFormComponent } from './forms/better-form/better-form.component';
+import {
+    BetterFormComponent
+} from './forms/better-form/better-form.component';
 import {
     AccountsListBlock
 } from './blocks/accounts-list/accounts-list.component';
@@ -85,7 +92,8 @@ const routes : Routes = [
     { path : 'confirmationWithConditionSingle' , component : PostnoneSingleAccountPage },
     { path : 'confirmationWithConditionJoint' , component : PostnoneJointAccountPage },
     { path : 'submitError/:errorId', component : SubmitErrorPage },
-    { path : 'requestsms/:referenceId/:mobileNumber' , component : RequestRefViaSMSPage }
+    { path : 'requestsms/:referenceId/:mobileNumber' , component : RequestRefViaSMSPage },
+    { path : 'saveConfirmation/:ref', component : SaveConfirmationPage}
 ];
 const IMPORTS         = [
     AmpRowRepeaterModule ,

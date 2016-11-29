@@ -71,6 +71,24 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
             } );
     }
 
+    private onMyAMPLogin () {
+        // TODO: Not sure if this is the correct entry point, only have a 2 min chat with Cheryl.
+        // As per above, hack the newOrExistingControl
+        const newOrExistingControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+        newOrExistingControl.setValue( 'hackingTheWelcomeBlock' );
+        newOrExistingControl.markAsTouched();
+
+        this.__loadNext( this.__custom.optionalBlocks[ 1 ] , this.viewReference )
+            .then( () => {
+                this.ampIntro.proceed()
+                    .then( () => {
+                        this.onNext();
+                    } );
+            } );
+        this.nextBlockChanged = true;
+        return;
+    }
+
     private fireMockScrolledEvent () {
         this.scrollService.$scrolled.emit( {
             componentSelector : [ ...FDN.SingleOrJoint , 'block' ].join( '-' ) ,
