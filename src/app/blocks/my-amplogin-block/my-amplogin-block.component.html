@@ -1,4 +1,4 @@
-<amp-form-block [context]="context()" buttonsTheme='tools' [withOkButton]="false">
+<amp-form-block [context]="context()" buttonsTheme="'tools'" [withOkButton]="false">
     <div class="error-container" *ngIf="errorCode">
         <span class="error-icon"></span>
         <p class="error-body">{{ errorCode | i18nSelect: __custom.errorCodeMap }}</p>
@@ -29,23 +29,24 @@
         </div>
     </amp-form-row>
     <div class="mb mt palm-1/1 tablet-1/1 lap-and-up-3/12">
-        Forgot your <a href='/wps/portal/sec/ForgotUsername/' target="_blank">username</a> or <a href='/wps/portal/sec/ForgotPassword/' target="_blank">password</a>?
+        Forgot your <a href="/wps/portal/sec/ForgotUsername/" target="_blank">username</a> or <a href="/wps/portal/sec/ForgotPassword/" target="_blank">password</a>?
     </div>
     <div class="block-buttons mt+ palm-mt0">
         <amp-button
             [context]="context()"
-            *ngIf='!isInSummaryState'
+            *ngIf="!isInSummaryState"
             [attr.theme]="'tools'"
-            (click)='login()'
-            [disabled]='!canGoNext' class='btn btn-ok palm-mr0 mr'>
+            (click)="login()"
+            [disabled]="!canGoNext"
+            class="btn btn-ok palm-mr0 mr">
             Login &amp; continue
         </amp-button>
         <amp-button
             [context]="context()"
-            *ngIf='!isInSummaryState'
+            *ngIf="!isInSummaryState"
             [attr.theme]="'tools'"
-            (click)='removeLoginAndProceed()'
-            class='btn btn-secondary btn-change btn-ok-margin-top palm-m0'>
+            (click)="removeLoginAndProceed()"
+            class="btn btn-secondary btn-change btn-ok-margin-top palm-m0">
             Continue without logging in
         </amp-button>
     </div>
