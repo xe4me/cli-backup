@@ -46,7 +46,8 @@ export class RequestRefViaSMSPage implements AfterViewInit {
 
     private sendSMS() {
         if (this.controlGroup.valid) {
-            console.log('Sending SMS to ', this.controlGroup.value[this.mobileNumberCtrlId], 'referenceId', this.referenceId);
+            const mobileNumber = this.controlGroup.value[this.mobileNumberCtrlId];
+            // console.log('Send SMS with referenceId',  this.referenceId, 'to mobile number', mobileNumber);
         }
     }
 }

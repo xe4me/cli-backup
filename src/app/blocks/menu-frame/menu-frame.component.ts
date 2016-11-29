@@ -58,7 +58,7 @@ export class MenuFrameBlockComponent implements OnDestroy {
         const singleOrJointControl = this.sharedData.getSingleOrJointControl(this.__form);
         this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((singleOrJoint) => {
             if (singleOrJoint === Constants.singleApplicant) {
-                this.sectionsToHide = ['Application-Applicant1Section']
+                this.sectionsToHide = ['Application-Applicant1Section'];
             } else {
                 this.sectionsToHide = [];
             }
@@ -70,7 +70,6 @@ export class MenuFrameBlockComponent implements OnDestroy {
     public onSave() {
         this.saveButton.onSave();
     }
-
 
     public ngOnDestroy() {
         if (this.singleOrJointSubscription ) {
