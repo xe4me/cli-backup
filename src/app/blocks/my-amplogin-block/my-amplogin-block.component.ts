@@ -61,7 +61,9 @@ import {
 })
 export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
     private errorCode : String = null;
-    private myAmpLoginFrameListenFunc : Function;
+    private myAmpLoginFrameListenFunc : Function = () => {
+        return;
+    };
 
     constructor(
         formModelService : FormModelService,
@@ -78,9 +80,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
     public ngOnDestroy () {
         super.ngOnDestroy();
         // Remove the listen
-        if (this.myAmpLoginFrameListenFunc) {
-            this.myAmpLoginFrameListenFunc();
-        }
+        this.myAmpLoginFrameListenFunc();
     }
 
     public removeLoginAndProceed() {
@@ -141,9 +141,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
         this.errorCode = null;
 
         // Remove the listener, once we have successfully logged in
-        if (this.myAmpLoginFrameListenFunc) {
-            this.myAmpLoginFrameListenFunc();
-        }
+        this.myAmpLoginFrameListenFunc();
     }
 
     private submitCallback : Function = (event) => {
