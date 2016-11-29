@@ -21,7 +21,7 @@ import { AmpInputsModule } from '../../../app/modules/amp-inputs/amp-inputs.modu
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
-fdescribe( 'amp-tax-file-number component' , () => {
+describe( 'amp-tax-file-number component' , () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports      : [ FormsModule , ReactiveFormsModule , AmpInputsModule ] ,
