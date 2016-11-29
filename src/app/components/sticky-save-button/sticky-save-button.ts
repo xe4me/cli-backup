@@ -40,8 +40,6 @@ export class StickySaveButton {
                 'PersonalDetailsSection',
                 'ContactDetails',
                 'MobileNumber']).value;
-            // Store in flight data
-            this.formModelService.storeModel( this.form.value );
             this.router.navigate( ['requestsms', applicationId, mobileNumber === null ? '' : mobileNumber] );
         });
     }
