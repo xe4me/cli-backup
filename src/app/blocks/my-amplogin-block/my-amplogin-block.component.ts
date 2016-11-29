@@ -61,9 +61,6 @@ import {
 })
 export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
     private errorCode : String = null;
-    private removeLoginFrameListener : Function = () => {
-        return;
-    };
 
     constructor(
         formModelService : FormModelService,
@@ -127,6 +124,10 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
             this.renderer.invokeElementMethod(this.dom.query('#myAmpLoginBtn'), 'click');
         }
     }
+
+    private removeLoginFrameListener : Function = () => {
+        return;
+    };
 
     private cleanUp() {
         // Remove page level username/password for security concerns
