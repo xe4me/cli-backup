@@ -13,7 +13,7 @@ import {
   styles          : [ require( './<%= dasherizedModuleName %>.component.scss' ) ] ,
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class <%= classifiedModuleName %>Block  extends FormBlock {
+export class <%= classifiedModuleName %>BlockComponent  extends FormBlock {
 
     constructor ( formModelService : FormModelService ,
         elementRef : ElementRef ,
