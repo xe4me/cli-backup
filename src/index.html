@@ -24,19 +24,27 @@
     <link rel="stylesheet" href="https://www.amp.com.au/etc/designs/amp/clientLibraries/icons-libs.min.css"
           type="text/css"/>
 
-    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/scss.min.js"></script>-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/typescript.min.js"></script>-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/stylus.min.js"></script>-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/scss.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/typescript.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/stylus.min.js"></script>
 
-    <!--<script>hljs.initHighlightingOnLoad();</script>-->
-    <!--<script src="<%= htmlWebpackPlugin.options.stubbyBaseUrl %>/config.js"></script>-->
-    <% if (htmlWebpackPlugin.options.ENV === 'production') { %>
-    <script src='config.js'></script>
-    <% } %>
-      <% console.log('htmlWebpackPlugin.options',htmlWebpackPlugin.options); if (htmlWebpackPlugin.options.ENV === 'development') { %>
-    <script>
+
+
+
+    <script>(function(){
+        var intervalRef = setInterval(function(){
+            if(hljs){
+                hljs.initHighlightingOnLoad();
+                clearInterval(intervalRef);
+            }
+        },1);
+    })();</script>
+
+
+
+       <script>
       var _process_env = {
         ENV: 'development',
         ApiCallsBaseUrl: '',
@@ -65,6 +73,11 @@
         DamContentUrl: 'https://www.amp.com.au/content/dam/'
       };
     </script>
+
+      <% if (htmlWebpackPlugin.options.ENV === 'production') { %>
+      <script>
+          _process_env.ApiCallsBaseUrl = 'ddc/public/api';
+      </script>
       <% } %>
   </head>
 
@@ -75,7 +88,7 @@
 
     <% if (htmlWebpackPlugin.options.ENV === 'development') { %>
     <!-- Webpack Dev Server reload -->
-    <script src="http://<%= htmlWebpackPlugin.options.host %>:<%= htmlWebpackPlugin.options.port %>/webpack-dev-server.js">
+    <script src="http://<%= htmlWebpackPlugin.options.metadata.host %>:<%= htmlWebpackPlugin.options.metadata.port %>/webpack-dev-server.js">
     </script>
     <% } %>
 
