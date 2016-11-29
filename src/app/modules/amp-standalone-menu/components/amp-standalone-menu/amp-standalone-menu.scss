@@ -25,10 +25,9 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
     @include amp-family($amp-font-open-sans-regular);
     font-size: $amp-ddc-menu-font-size;
     position: fixed;
-    top: 50%;
+    top: 70px;
     left: 40px;
     z-index: 100;
-    @include transform(translateY(-50%));
 
     @include media-query(palm) {
         background: $amp-colour-white;
