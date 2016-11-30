@@ -117,9 +117,9 @@ export abstract class AmpBlockLoader {
 
     protected getCommonBundle( path : string ) : any {
         try {
-            return require( 'bundle!amp-ddc-components/src/app/' + path + '\.ts' );
+            return require( 'bundle-loader!amp-ddc-components/src/app/' + path + '\.ts' );
         } catch ( err ) {
-            console.log( 'Oops!! Trying to load components from node_modules but not components found.' );
+            console.log( 'Oops!! Trying to load ' + 'bundle!amp-ddc-components/src/app/' + path + '\.ts' + ' from node_modules but not components found.' );
         }
         return null;
     }
@@ -169,6 +169,7 @@ export abstract class AmpBlockLoader {
                     _form.addControl( _blockDef.name, _componentRef.instance.__controlGroup );
                 }
                 _componentRef.instance.__controlGroup.__fdn = _fdn;
+                _componentRef.instance.__controlGroup.__prettyName = _blockDef.prettyName || _blockDef.name;
                 _componentRef.onDestroy( () => {
                     _form.removeControl( _blockDef.name );
                     if ( childsLoadedsubscription ) {
