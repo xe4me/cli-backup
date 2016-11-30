@@ -42,8 +42,8 @@
                                     "blockTitle": "Where did we leave off?",
                                     "controls": [
                                         {
-                                            "id": "ExistingApplicationId",
-                                            "requiredErrMsg" : "Reference id is a required field."
+                                            "id": "ReferenceCode",
+                                            "requiredErrMsg" : "Reference code is a required field."
                                         },
                                         {
                                             "id" : "LastName",
