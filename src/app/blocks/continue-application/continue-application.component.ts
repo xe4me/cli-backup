@@ -14,4 +14,9 @@ export class ContinueApplicationBlock extends FormBlock {
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
+
+    public onNext() {
+        //TODO retrieve application
+        super.onNext();
+    }
 }
