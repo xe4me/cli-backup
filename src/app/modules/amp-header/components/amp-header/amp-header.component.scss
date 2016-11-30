@@ -4,6 +4,10 @@ $menu-height-desktop: 100px;
 $menu-height-mobile: 65px;
 
 :host {
+    @include media-query('palm') {
+        padding-top : $menu-height-mobile;
+    }
+
     display: block;
 
     .amp-logo__image {
