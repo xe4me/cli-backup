@@ -58,7 +58,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
                 .then( () => {
                     this.ampIntro.proceed()
                         .then( () => {
-                            this.fireMockScrolledEvent();
+                            this.onNext();
                         } );
                 } );
             this.nextBlockChanged = true;
