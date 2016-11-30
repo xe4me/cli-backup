@@ -1,5 +1,8 @@
 @import '../../../styles/abstracts';
 .container {
+    .referenceNo {
+        font-weight: 400;
+    }
     margin-left: 210px;
     @include media-query(tablet-and-down) {
         margin-left: 0;
