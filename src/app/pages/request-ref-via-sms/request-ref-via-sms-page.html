@@ -31,6 +31,16 @@
         </div>
     </amp-form-row>
     <amp-form-row>
+        <div class="sms-sent_message mt" *ngIf="smsSentErrorMessage">
+            <div class="errors">
+                <div class="error-item">
+                    <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+                    <span>{{smsSentErrorMessage}}</span>
+                </div>
+            </div>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
         <div class="grid__item_floated mt+ lap-and-up-1/3 tablet-1/3 palm-1/1 palm-mr0 mr palm-pt0">
             <amp-button
                 theme="tools"
