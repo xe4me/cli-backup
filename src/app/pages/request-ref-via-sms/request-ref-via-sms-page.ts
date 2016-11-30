@@ -27,7 +27,8 @@ import { Constants } from '../../shared/constants';
 export class RequestRefViaSMSPage implements AfterViewInit {
     private mobileNumberCtrlId : string = 'mobileNumber';
     private acceptPrivacyCtrlId : string = 'acceptPrivacy';
-    private referenceId : string;
+    private referenceId : string = null;
+    private smsSentErrorMessage : string = null;
     private controlGroup : FormGroup = new FormGroup( {} );
     constructor (private http : AmpHttpService,
                  private _cd : ChangeDetectorRef,
@@ -50,7 +51,20 @@ export class RequestRefViaSMSPage implements AfterViewInit {
     private sendSMS() {
         if (this.controlGroup.valid) {
             const mobileNumber = this.controlGroup.value[this.mobileNumberCtrlId];
-            this.router.navigate(['saveConfirmation', this.referenceId]);
+            const queryUrl : string = encodeURI(`${Constants.smsPostUrl}`);
+            const data = {
+                'smsMessage': `You can continue your saved AMP Bett3r application using ${this.referenceId}`,
+                'mobile': `${mobileNumber}`
+            };
+            const options = {};
+            // this.smsSentErrorMessage = `Request SMS could not be sent to ${mobileNumber}`;
+            this.http.post(queryUrl, data, options)
+                    .subscribe( (result) => {
+                        this.router.navigate(['saveConfirmation', this.referenceId]);
+                    },
+                    (error) => {
+                        this.smsSentErrorMessage = `Request SMS could not be sent to ${mobileNumber}`;
+                    });
         }
     }
 }
