@@ -2,11 +2,9 @@
 <div class="container">
     <h1 class="mt++ mb-30">Reference number sent</h1>
     <p class="mt">
-        Here is your application reference number and we have sent you an SMS. This application will be saved for 30 days.
+        Here is your application reference number:  <span class="referenceNo">{{ referenceNumber }}</span>
     </p>
-    <p class="mt+">
-        {{ referenceNumber }}
-    </p>
+    <p class="mt+">We have sent you an SMS. This application will be saved for 30 days.</p>
     <amp-form-row>
         <amp-button [attr.theme]="'tools'"
                     class="btn btn-secondary palm-1/1 tablet-1/1 tablet-and-up-mr mt-50"
