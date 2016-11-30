@@ -33,7 +33,7 @@ export class AmpHeaderComponent {
     private availability : string       = 'Monday to Friday, 8:30am - 7:00pm (AEST)';
     private contactUsText : string      = 'Contact us';
     private officeHoursStart : string   = '08:30';
-    private officeHoursEnd : string     = '08:30';
+    private officeHoursEnd : string     = '19:00';
     private experienceTitle : string    = 'Choice of Fund';
     private isOfficeHours : boolean     = false;
 
