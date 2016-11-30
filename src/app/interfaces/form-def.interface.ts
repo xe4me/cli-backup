@@ -6,6 +6,7 @@ export  class FormDefinition {
     commonBlock : boolean;
     path : string;
     custom? : any;
+    prettyName? : string;
     blocks? : FormDefinition[];
     optionalBlocks? : FormDefinition[];
 }

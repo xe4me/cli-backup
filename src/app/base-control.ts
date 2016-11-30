@@ -13,8 +13,9 @@ export class BaseControl implements OnDestroy {
     public createdAndJoinedControl = false;
     public index;
     public _required : boolean = false;
+    public _disabled : boolean = false;
     public _randomString = 'default_random_id';
-    public _isInSummaryState : boolean = false;
+    public isInSummaryState : boolean = false;
     public _customValidator : Function = () => {
     };
 
@@ -77,33 +78,12 @@ export class BaseControl implements OnDestroy {
         }
     }
 
+    get disabled() : boolean {
+        return (this.isInSummaryState || this._disabled) ? true : null;
+    }
+
     set disabled( value ) {
-        if ( isTrue( value ) ) {
-            this.control.disable( {
-                emitEvent : false
-            } );
-        } else {
-            this.control.enable( {
-                emitEvent : false
-            } );
-        }
-    }
-
-    get isInSummaryState() {
-        return this._isInSummaryState;
-    }
-
-    set isInSummaryState( value ) {
-        if ( isTrue( value ) ) {
-            this.control.disable( {
-                emitEvent : false
-            } );
-        } else {
-            this.control.enable( {
-                emitEvent : false
-            } );
-        }
-        this._isInSummaryState = isTrue( value );
+        this._disabled = isTrue( value );
     }
 
     get required() {

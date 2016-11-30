@@ -1,0 +1,74 @@
+<form  class="nl-form p+">
+    <h1 class="heading heading-intro">Exclusive input created for Account Number that has the right error messages and
+        validation</h1>
+
+    <amp-row-repeater
+            [controlGroup]="__controlGroup"
+            [id]="'EquityHolders'"
+            [context]="context()"
+            [addBtn]="'Add another one'"
+            [maxRows]="5"
+            [removeBtn]="'Remove'"
+            [isInSummaryState]="isInSummaryState"
+            [colLeftClass]="'tablet-2/3 lap-and-up-6/12'">
+
+        <template let-index="index" let-controlGroup="controlGroup">
+            <h2 class="heading heading-intro" [ngClass]="{'mt-30': index }">
+                Row {{ index + 1 }}
+            </h2>
+
+            <amp-form-row>
+                <div class="grid__item_floated lap-and-up-1/2 lap-and-up-pr">
+                    <amp-first-name
+                            [id]="'firstname'"
+                            [keepControl]='true'
+                            [controlGroup]="controlGroup"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-first-name>
+                </div>
+                <div class="grid__item_floated lap-and-up-1/2">
+                    <amp-last-name
+                            [id]="'lastname'"
+                            [keepControl]='true'
+                            [controlGroup]="controlGroup"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-last-name>
+                </div>
+            </amp-form-row>
+            <div class="grid__container 1/1">
+                <div class="grid__item_floated">
+                    <amp-qas-address
+                            [controlGroup]="controlGroup"
+                            [id]="'qas-address'"
+                            [keepControl]='true'
+                            [required]="true"
+                            [label]="'Search here '"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-qas-address>
+                </div>
+            </div>
+            <amp-form-row>
+                <div class="grid__item_floated lap-and-up-1/2">
+                    <amp-contact-number
+                            [id]="'contact-number'"
+                            [keepControl]='true'
+                            [controlGroup]="controlGroup"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-contact-number>
+                </div>
+            </amp-form-row>
+            <amp-form-row>
+                <div class="grid__item_floated">
+                    <amp-email
+                            [id]="'email'"
+                            [keepControl]='true'
+                            [controlGroup]="controlGroup"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-email>
+                </div>
+            </amp-form-row>
+
+            <amp-error [controlGroup]="__controlGroup"></amp-error>
+        </template>
+    </amp-row-repeater>
+</form>

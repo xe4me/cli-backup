@@ -1,5 +1,6 @@
 import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
+import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
 import AMPButtonComponentBasicUsage from './components/amp-button/basic_usage';
 import AMPCardComponentBasicUsage from './components/amp-card/basic_usage';
 import AMPCardsComponentBasicUsage from './components/amp-cards/basic_usage';
@@ -51,6 +52,7 @@ import TextBasicUsage from './layout/text/text';
 export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpGroupButtonComponentBasicUsage,
     AmpAccountNumberBasicUsage,
+    AmpRowRepeaterBasicUsage,
     AMPButtonComponentBasicUsage,
     AMPCardComponentBasicUsage,
     AMPCardsComponentBasicUsage,

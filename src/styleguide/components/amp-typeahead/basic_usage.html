@@ -32,12 +32,12 @@
             </highlight>
             value :
             <highlight color-default>
-                {{ control?.value }}
+                {{ control?.getRawValue() }}
             </highlight>
 
             selected value ( should be an object):
             <highlight color-default>
-                {{ selectControl?.value | json }}
+                {{ selectControl?.getRawValue() | json }}
             </highlight>
         </p>
         <p>

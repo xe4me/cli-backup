@@ -104,7 +104,7 @@ export class AmpRadioButtonGroupComponent extends BaseControl implements AfterVi
     }
 
     private onSelect ( $event , value , shouldScroll ) {
-        if ( this.control.disabled === true ) {
+        if ( this.disabled === true ) {
             if ( $event !== null ) {
                 $event.stopPropagation();
             }

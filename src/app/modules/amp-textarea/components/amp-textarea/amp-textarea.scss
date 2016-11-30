@@ -2,444 +2,144 @@
 @import './themes/theme-form';
 @import './themes/theme-tools';
 
+$input-border: $amp-colour-grey-dark;
+$input-border-color: $amp-colour-grey;
+$input-height: 3rem;
+$input-focus-color: $amp-colour-sky-blue;
+$input-success-color: $amp-colour-sky-blue;
+$input-error-color: $amp-colour-alert-danger;
+$input-font-size: 24px;
+$input-margin: 0 0 20px 0 !default;
+$input-padding: 0 !default;
+$input-transition: all .3s !default;
+$input-disabled-color: rgba(0, 0, 0, .26) !default;
+$input-disabled-solid-color: #BDBDBD !default;
+$input-disabled-border: 1px dotted $input-disabled-color !default;
+$input-invalid-border: 1px solid $amp-colour-alert-danger !default;
+$placeholder-text-color: lighten($input-border-color, 20%) !default;
 :host {
-    display       : block;
-    box-sizing    : content-box;
-    padding-right : 0 !important;
-    width         : 100%;
-    overflow      : hidden;
-}
-
-$summary-state-color : $amp-colour-sky-blue;
-$summary-state-font-family : $amp-font-open-sans-regular;
-$summary-state-font-weight : 300;
-.summary-state {
-    @include amp-family($summary-state-font-family);
-    color          : $amp-colour-sky-blue;
-    font-weight    : $summary-state-font-weight;
-    vertical-align : bottom;
-    line-height    : 43px;
-    font-size      : $ddc-input-field-font-size;
-}
-
-.summary-text {
-    @include amp-family($summary-state-font-family);
-    color       : $amp-colour-sky-blue;
-    font-weight : $summary-state-font-weight;
-    font-size   : $ddc-input-field-font-size;
-    white-space : nowrap;
-    visibility  : hidden;
+  margin-top: 20px;
+  display: block;
+  position: relative;
 }
 
 .invisible {
-    display : none !important;
+  visibility: hidden;
 }
 
-$font-size : $amp-base-font-size;
-
-$md-sky-blue : (
-    50: $amp-colour-grey-dark,
-    100: $amp-colour-grey-dark,
-    200: $amp-colour-grey-dark,
-    300: $amp-colour-grey-dark,
-    400: $amp-colour-grey-dark,
-    500: $amp-colour-grey-dark,
-    600: $amp-colour-grey-dark,
-    700: $amp-colour-grey-dark,
-    800: $amp-colour-grey-dark,
-    900: $amp-colour-grey-dark,
-    A100: $amp-colour-grey-dark,
-    A200: $amp-colour-grey-dark,
-    A400: $amp-colour-grey-dark,
-    A700: $amp-colour-grey-dark,
-);
-
-$md-sky-blue-palettes : (
-    $md-sky-blue: (
-        50: $amp-colour-grey-dark,
-        100: $amp-colour-grey-dark,
-        200: $amp-colour-grey-dark,
-        300: $amp-colour-grey-dark,
-        400: $amp-colour-grey-dark,
-        500: $amp-colour-grey-dark,
-        600: $amp-colour-grey-dark,
-        700: $amp-colour-grey-dark,
-        800: $amp-colour-grey-dark,
-        900: $amp-colour-grey-dark,
-        A100: $amp-colour-grey-dark,
-        A200: $amp-colour-grey-dark,
-        A400: $amp-colour-grey-dark,
-        A700: $amp-colour-grey-dark,
-    )
-);
-
-// Custom foreground colors
-$md-grep-darkest-theme : (
-    divider: $amp-colour-grey-dark,
-    dividers: $amp-colour-grey-dark,
-    disabled: $amp-colour-grey-dark,
-    disabled-text: $amp-colour-grey-dark,
-    hint-text: $amp-colour-grey-dark,
-    secondary-text: $amp-colour-grey-dark,
-    icon: $amp-colour-grey-dark,
-    icons: $amp-colour-grey-dark,
-    text: $amp-colour-grey-dark
-);
-
-$md-grep-darkest-theme-palettes : (
-    $md-grep-darkest-theme : (
-        divider: $amp-colour-grey-dark,
-        dividers: $amp-colour-grey-dark,
-        disabled: $amp-colour-grey-dark,
-        disabled-text: $amp-colour-grey-dark,
-        hint-text: $amp-colour-grey-dark,
-        secondary-text: $amp-colour-grey-dark,
-        icon: $amp-colour-grey-dark,
-        icons: $amp-colour-grey-dark,
-        text: $amp-colour-grey-dark
-    )
-);
-
-$input-container-padding : 2px !default;
-
-$input-label-default-offset : $amp-base-font-size * 4 !default; // 60 px
-$input-label-default-scale : 0.5 !default;
-$input-label-float-offset : $amp-base-font-size * 1.66 !default;
-$input-label-float-scale : 0.5 !default;
-
-$input-placeholder-offset : $input-label-default-offset !default;
-
-$input-border-width-default : 1px !default;
-$input-border-width-focused : 1px !default;
-$input-line-height : $amp-base-font-size * 2 !default;
-$input-padding-top : 2px !default;
-
-$input-full-width-line-height : $amp-base-font-size * 2 !default;
-$input-full-width-padding-top : $amp-base-font-size * 2 !default;
-
-$input-error-font-size : $amp-base-font-size !default;
-$input-error-height : $amp-base-font-size * 1.5 !default;
-$input-error-line-height : $input-error-font-size + 2px;
-$error-padding-top : ($input-error-height - $input-error-line-height) / 2;
-
-$icon-offset : 36px !default;
-
-$icon-float-focused-top : -8px !default;
-
-$input-padding-bottom : 15px !default;
-$input-height : $input-line-height * 1.5; // Don't like Materialize CSS rule 'height: $input-line-height + ($input-padding-top * 2);'
-
-@mixin input-placeholder-color($color) {
-    &::-webkit-input-placeholder,
-    &::-moz-placeholder, /* Firefox 19+ */
-    &:-moz-placeholder, /* Firefox 18- */
-    &:-ms-input-placeholder {
-        color : $color;
-    }
+.hidden-div {
+  font-size: $input-font-size;
+  position: absolute;
+  top: -10000px;
+  left: -10000px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-@mixin rtl($prop, $value, $rtl-value) {
-    #{$prop}: $value;
-
-    html[dir=rtl] & {
-        #{$prop}     : $rtl-value;
-        unicode-bidi : embed;
-    }
-    body[dir=rtl] & {
-        #{$prop}     : $rtl-value;
-        unicode-bidi : embed;
-    }
-
-    bdo[dir=rtl] {
-        direction    : rtl;
-        unicode-bidi : bidi-override;
-    }
-    bdo[dir=ltr] {
-        direction    : ltr;
-        unicode-bidi : bidi-override;
-    }
-
+.float-label {
+  top: 7px;
+  transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-size: $input-placeholder-font-size;
+  font-weight: 700;
+  pointer-events: none;
+  color: $input-placeholder-color;
 }
 
-$swift-ease-out-timing-function : cubic-bezier(0.25, 0.8, 0.25, 1) !default;
-
-md-input-container {
-    // @include pie-clearfix();
-    display        : inline-block;
-    position       : relative;
-    padding        : $input-container-padding;
-    margin         : 18px 0;
-    vertical-align : middle;
-
-    textarea,
-    input[type="text"],
-    input[type="password"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="date"],
-    input[type="month"],
-    input[type="time"],
-    input[type="week"],
-    input[type="number"],
-    input[type="email"],
-    input[type="url"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="color"] {
-        /* remove default appearance from all input/textarea */
-        -moz-appearance    : none;
-        -webkit-appearance : none;
-    }
-    input[type="date"],
-    input[type="datetime-local"],
-    input[type="month"],
-    input[type="time"],
-    input[type="week"] {
-        min-height : $input-line-height;
-    }
-    textarea {
-        resize   : none;
-        overflow : hidden;
-    }
-
-    textarea.md-input {
-        min-height              : $input-line-height;
-        -ms-flex-preferred-size : auto; //IE fix
-    }
-
-    label:not(.md-container-ignore) {
-        position : absolute;
-        bottom   : 100%;
-        @include rtl(left, 0, auto);
-        @include rtl(right, auto, 0);
-    }
-
-    label:not(.md-no-float):not(.md-container-ignore),
-    .md-placeholder {
-        order                  : 1;
-        pointer-events         : none;
-        -webkit-font-smoothing : antialiased;
-        @include rtl(padding-left, $input-container-padding + 1px, 0);
-        @include rtl(padding-right, 0, $input-container-padding + 1px);
-        z-index                : 1;
-        transform              : translate3d(0, $input-label-default-offset + 4, 0) scale($input-label-default-scale);
-        transition             : transform $swift-ease-out-timing-function 0.25s;
-
-        @include rtl(transform-origin, left top, right top);
-
-        @include media-query(tablet-and-up) {
-            display : none;
-        }
-
-        @include media-query(palm) {
-            display : none;
-        }
-    }
-    &.md-input-focused .md-placeholder {
-        opacity   : 1;
-        transform : translate3d(0, $input-placeholder-offset, 0);
-    }
-    // Placeholder should immediately disappear when the user starts typing
-    &.md-input-has-value .md-placeholder {
-        transition : none;
-        opacity    : 0;
-    }
-
-    &:not( .md-input-has-value ) input:not( :focus ),
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-ampm-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-day-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-hour-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-millisecond-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-minute-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-month-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-second-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-week-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-year-field,
-    &:not( .md-input-has-value ) input:not( :focus )::-webkit-datetime-edit-text {
-        color : transparent;
-    }
-
-    /*
-     * The .md-input class is added to the input/textarea
-     */
-    .md-input {
-        order                   : 2;
-        display                 : block;
-        margin-top              : 0;
-
-        background              : none;
-        padding-top             : $input-padding-top;
-        padding-bottom          : $input-border-width-focused - $input-border-width-default;
-        padding-left            : 2px;
-        padding-right           : 2px;
-        border-width            : 0 0 $input-border-width-default 0;
-        line-height             : $input-line-height;
-        height                  : $input-line-height + ($input-padding-top * 2);
-        -ms-flex-preferred-size : $input-line-height; //IE fix
-        border-radius           : 0;
-        border-style            : solid; // Firefox fix
-
-        // Fix number inputs in Firefox to be full-width
-        width                   : 100%;
-        box-sizing              : border-box;
-
-        // Hacky fix to force vertical alignment between `input` and `textarea`
-        // Input and textarea do not align by default:
-        // http://jsbin.com/buqomevage/1/edit?html,css,js,output
-        @include rtl(float, left, right);
-
-        &:focus {
-            outline : none;
-        }
-        &:invalid {
-            outline    : none;
-            box-shadow : none;
-        }
-
-        &.md-no-flex {
-            flex : none !important;
-        }
-    }
-
-    &.md-input-focused,
-    &.md-input-has-placeholder,
-    &.md-input-has-value {
-        label:not(.md-no-float) {
-            transform : translate3d(0, $input-label-float-offset, 0) scale($input-label-float-scale);
-        }
-    }
-
-    // If we have an existing value; don't animate the transform as it happens on page load and
-    // causes erratic/unnecessary animation
-    &.md-input-has-value {
-        label {
-            transition : none;
-        }
-    }
-
-    // Use wide border in error state or in focused state
-    &.md-input-focused .md-input,
-    .md-input.ng-invalid.ng-dirty {
-        padding-bottom : 0; // Increase border width by 1px, decrease padding by 1
-        border-width   : 0 0 $input-border-width-focused 0;
-    }
-
-    .md-input {
-        &[disabled],
-        [disabled] & {
-            background-position : 0 bottom;
-            // This background-size is coordinated with a linear-gradient set in input-theme.scss
-            // to create a dotted line under the input.
-            background-size     : 4px 1px;
-            background-repeat   : repeat-x;
-            margin-bottom       : -1px; // Shift downward so dotted line is positioned the same as other bottom borders
-        }
-    }
+label {
+  position: absolute;
+  color: $amp-colour-sky-blue;
+  font-size: 14px;
+  font-weight: 300;
+  @include transition(300ms ease all);
 }
 
-md-input-container {
-    .md-input {
-
-        border-color : $amp-colour-grey-dark;
-
-    }
-
+.summary-texts {
+  @include amp-family($amp-font-open-sans-regular);
+  font-weight: 400;
+  color: $amp-colour-sky-blue;
+  font-size: 24px;
+  width: 100%;
 }
 
-@function pt2px($pt) {
-    @return decimal-round($pt * 1.3333, 2) + px;
+textarea {
+  resize: none;
+  ::-webkit-input-placeholder {
+    color: $amp-colour-sky-blue;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $amp-colour-sky-blue;
+  }
 
-}
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $amp-colour-sky-blue;
+  }
 
-md-input-container {
+  :-ms-input-placeholder {
+    color: $amp-colour-sky-blue;
+  }
+  background-color: transparent;
+  border: none;
+  border-bottom: $input-border 1px solid;
+  border-radius: 0;
+  outline: none;
+  height: $input-height;
+  width: 100%;
+  font-size: $input-font-size;
+  @include amp-family($amp-font-open-sans-regular);
+  font-weight: 300;
+  margin: $input-margin;
+  padding: $input-padding;
+  box-shadow: none;
+  box-sizing: content-box;
+  &.has-value ~ .float-label,
+  &.has-focus ~ .float-label {
+    top: -18px;
+  }
+  // Disabled input style
+  &:disabled,
+  &[readonly="readonly"] {
+    //color: $input-disabled-color;
+    //border-bottom: $input-disabled-border;
+  }
 
-    @include transition(height .3s ease-out);
-    box-sizing : border-box;;
-    display    : inline-block;
-    flex       : none;
-    cursor     : pointer;
-    height     : $input-line-height * 1.5;
-    width      : 100%;
-    &.gone {
-        visibility : hidden;
-        width      : 0 !important;
-        height     : 0 !important;
-    }
-    label:not(.md-container-ignore) {
-        bottom : 101% !important;
-    }
-    .md-input {
-        padding     : 0 !important;
-        line-height : 45px !important;
-        @include media-query(palm) {
-            line-height : 30px !important;
-        }
-        font-size   : $ddc-input-field-font-size;
-        &[disabled] {
-            &.summary-state {
-                border-bottom    : 1px solid transparent !important;
-                color            : #00AAE0;
-                background-image : none;
-                cursor           : default;
-                &:hover {
-                    border-bottom : 1px solid transparent !important
-                }
-            }
-        }
-        margin-top  : -8px !important;
-        display     : inline;
-        flex        : none;
-        cursor      : pointer;
-        height      : $input-height*1.1;
-        color       : $amp-colour-sky-blue;
-        @include amp-family($amp-font-open-sans-regular);
-        font-weight : 300;
+  // Disabled label style
+  &:disabled + label,
+  &[readonly="readonly"] + label {
+    //color: $input-disabled-color;
+  }
 
-        &.ng-invalid:not(.ng-pristine) {
-            color        : $amp-colour-alert-danger;
-            border-color : $amp-colour-alert-danger;
-        }
+  // Focused input style
+  &.has-focus:not([readonly]) {
+    border-bottom: 1px solid $input-focus-color;
+    box-shadow: 0 1px 0 0 $input-focus-color;
+  }
 
-        &:hover:not(.ng-invalid), &:hover.ng-pristine {
-            border-color : $amp-colour-sky-blue;
-        }
 
-        &:focus {
-            color : $amp-colour-black;
-        }
-    }
 
-    label {
+  // Invalid Input Style
+  &.ng-invalid.ng-dirty{
+    border-bottom: $input-invalid-border;
+    box-shadow: 0 1px 0 0 $input-error-color;
+  }
 
-        &.summary {
-            @include transition(padding .2s linear !important);
-            transition-delay : 1.2s !important;
-            padding-left     : 0 !important;
-        }
-        @include transition(padding .7s linear);
-        transition-delay : 0s;
-
-        min-width        : 350px;
-        @include amp-family($amp-font-open-sans-semibold);
-        color            : $amp-colour-grey-darkest;
-    }
-
-    &:not(.md-input-invalid).md-input-has-value, &:not(.md-input-invalid).md-input-focused, &.md-input-has-value {
-        label {
-            @include amp-family($amp-font-open-sans-semibold);
-            color : $amp-colour-grey-darkest;
-        }
-    }
-
+  // Form Message Shared Styles
+  & + label:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 60px;
+    opacity: 0;
+    transition: .2s opacity ease-out, .2s color ease-out;
+  }
+  &.summary-view {
+    border: none;
+  }
 }
 
 .char-left {
-    float       : right;
-    @extend %#{$namespace}font-size-tiny;
-    @include amp-family($errors-font-family);
-    font-weight : 600;
-    color       : #333333;
-    &.error {
-        color : $errors-text-colors;
-    }
+  float: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: $amp-colour-sky-blue
 }

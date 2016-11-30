@@ -95,8 +95,8 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     }
 
     get control() : FormControl {
-        if ( this.searchControlGroup && this.searchControlGroup.contains( this.queryControlId + addDashOrNothing( this.index ) ) ) {
-            return (<FormControl> this.searchControlGroup.controls[ this.queryControlId + addDashOrNothing( this.index ) ]);
+        if ( this.ampInput ) {
+            return this.ampInput.control;
         }
     }
 

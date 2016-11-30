@@ -1,21 +1,13 @@
-import {
-    ContentChild ,
-    Component ,
-    TemplateRef ,
-    ChangeDetectionStrategy ,
-    Input ,
-    OnInit ,
-    OnDestroy
-} from '@angular/core';
+import { ContentChild, Component, TemplateRef, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { AmpFormGroup } from '../../../../base-control';
 @Component( {
-    selector        : 'amp-row-repeater' ,
-    queries         : {
+    selector : 'amp-row-repeater',
+    queries : {
         itemTemplate : new ContentChild( TemplateRef )
-    } ,
-    template        : `
-        <div class="grid__container 1/1 mt-60" *ngFor="let controlGroup of controlArray.controls ; let i = index;">
+    },
+    template : `
+        <div class="grid__container 1/1 mt-60" *ngFor="let controlGroup of controlArray?.controls ; let i = index;">
             <div class="row-repeated__col-left utils__push--left {{ colLeftClass }}">
                 <template
                     [ngTemplateOutlet]="itemTemplate"
@@ -41,8 +33,8 @@ import { AmpFormGroup } from '../../../../base-control';
             class="btn btn-anchor btn-inline">
             <span class="icon icon--plus-filled" aria-hidden="true"></span> {{ addBtn }}
         </amp-button>
-    ` ,
-    styles          : [ require( './amp-row-repeater.scss' ).toString() ] ,
+    `,
+    styles : [ require( './amp-row-repeater.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
@@ -51,64 +43,64 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'id' ) id;
     @Input( 'removeBtn' ) removeBtn;
     @Input( 'addBtn' ) addBtn;
-    @Input( 'maxRows' ) maxRows : number                    = 9999;
+    @Input( 'maxRows' ) maxRows : number = 9999;
     @Input( 'isInSummaryState' ) isInSummaryState : boolean = false;
-    @Input( 'colLeftClass' ) colLeftClass : string          = '';
-    @Input( 'colRightClass' ) colRightClass : string        = '';
+    @Input( 'colLeftClass' ) colLeftClass : string = '';
+    @Input( 'colRightClass' ) colRightClass : string = '';
     private controlArray : FormArray;
 
-    ngOnInit () : void {
+    ngOnInit() : void {
         if ( this.controlGroup && this.id ) {
             if ( this.controlGroup.contains( this.id ) ) {
                 this.controlArray = <FormArray> this.controlGroup.get( this.id );
             } else {
                 this.controlArray = new FormArray( [] );
-                this.controlGroup.addControl( this.id , this.controlArray );
+                this.controlGroup.addControl( this.id, this.controlArray );
             }
         }
         this.init();
     }
 
-    ngOnDestroy () : void {
+    ngOnDestroy() : void {
         if ( this.controlGroup && this.id && this.controlGroup.contains( this.id ) ) {
             this.controlGroup.removeControl( this.id );
         }
     }
 
-    private init () {
+    private init() {
         if ( this.rowCount === 0 ) {
             this.add();
         }
     }
 
-    private add () {
-        let formGroupForArray   = new AmpFormGroup( {} );
-        formGroupForArray.__fdn = this.controlGroup ? [
-            ...this.controlGroup.__fdn ,
-            this.id ,
+    private add() {
+        let formGroupForArray = new AmpFormGroup( {} );
+        formGroupForArray.__fdn = this.controlGroup && this.controlGroup.__fdn ? [
+            ...this.controlGroup.__fdn,
+            this.id,
             this.controlArray.length
         ] : [
-            'default-fdn-for-' + this.id ,
+            'default-fdn-for-' + this.id,
             this.controlArray.length
         ];
         this.controlArray.push( formGroupForArray );
     }
 
-    private remove ( _index : number ) {
+    private remove( _index : number ) {
         this.controlArray.removeAt( _index );
     }
 
-    private reset () {
+    private reset() {
         while ( this.controlArray.length ) {
             this.controlArray.removeAt( 0 );
         }
     }
 
-    private get rowCount () {
-        return this.controlArray.controls.length;
+    private get rowCount() {
+        return this.controlArray ? this.controlArray.controls.length : 0;
     }
 
-    private get addBtnDisabled () {
+    private get addBtnDisabled() {
         return (this.maxRows === this.rowCount) || this.isInSummaryState;
     }
 }

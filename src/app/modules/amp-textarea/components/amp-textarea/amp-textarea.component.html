@@ -1,30 +1,25 @@
-<!--<md-input-container-->
-        <!--[class.md-input-has-value]='control.value'-->
-        <!--[class.md-input-focused]='hasFocus'-->
-        <!--[ngClass]='{"md-input-has-placeholder" : placeholder,"summary" : isInSummaryState}'-->
-        <!--flex-gt-sm=''>-->
-    <label
-            [ngClass]='{"summary" : isInSummaryState}'
-            *ngIf='!isInSummaryState' [attr.for]='randomizedId'>{{label}}</label><!--
-        --><textarea
-        #textarea
-        (keyup)='adjustHeight($event.target)'
-        (blur)='adjustHeight($event.target)'
-        (blur)='trimValue()'
-        (blur)='setHasFocus(false)'
-        (focus)='setHasFocus(true)'
-        [class.summary-state]='isInSummaryState'
-        class='md-input'
-        [attr.name]='randomizedId'
-        [attr.id]='randomizedId'
-        [attr.maxlength]='maxLength'
-        [attr.data-automation-id]='"textarea_" + randomizedId'
-        [formControl]='control'
-        [attr.placeholder]='placeholder'
-        [attr.spellcheck]='spellCheck'>
-            </textarea>
-    <!--<span class='char-left'-->
-          <!--*ngIf='maxLength && maxLength>0 && !isInSummaryState'>{{textarea.value.length }} / {{ maxLength }}</span>-->
-    <!--<span class='summary-text'>{{ control.value }}</span>-->
-    <!--<ng-content></ng-content>-->
-<!--</md-input-container>-->
+<div class="amp-textarea">
+    <textarea
+            #textarea
+            [class.has-value]="control.value && control.value.length>0"
+            (keyup)='adjustHeight($event.target)'
+            (keyup.enter)='adjustHeight($event.target)'
+            (blur)='onBlur($event)'
+            (focus)='onFocus($event)'
+            [attr.disabled]='disabled'
+            [attr.maxlength]='maxLength'
+            [formControl]='control'
+            [class.summary-view]="isInSummaryState"
+            [class.has-focus]="hasFocus"
+            [attr.placeholder]='placeholder'
+            [attr.name]='randomizedId'
+            [attr.id]='randomizedId'
+            [attr.data-automation-id]='"textarea_" + randomizedId'
+            [attr.spellcheck]='spellCheck'>
+    </textarea>
+    <label class='float-label' [attr.for]='randomizedId'>{{label}}</label>
+    <span [class.invisible]="isInSummaryState" class='char-left' *ngIf='maxLength && maxLength>0'>{{textarea.value.length }} / {{ maxLength }}</span>
+    <ng-content></ng-content>
+    <div #hiddenDiv class="hidden-div" [innerHtml]='hiddenDivText'></div>
+</div>
+

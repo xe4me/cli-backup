@@ -14,6 +14,7 @@
     <input
         readonly="true"
         #input
+        [attr.disabled]='disabled'
         class='sr-only amp-dropdown-control'
         [attr.data-automation-id]='"dropdown_" + randomizedId'
         [attr.id]='"dropdown_" + randomizedId'
@@ -23,7 +24,7 @@
     <label class='amp-dropdown-label'
            [class.active]='!isOptionsHidden'
            [class.selected]='selectedOption[fieldItemKey] && isOptionsHidden'
-           [class.disabled]='isInSummaryState || control.disabled'
+           [class.disabled]='disabled'
            (click)='!disabled && !isInSummaryState && toggleOptions($event)'
            [attr.id]='"dropdown_" + randomizedId'>
         <span>{{ selectedOption[fieldValueKey] || label }}</span>&nbsp;

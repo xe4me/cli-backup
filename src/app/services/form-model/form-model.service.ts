@@ -1,177 +1,177 @@
-import { Injectable , EventEmitter } from '@angular/core';
-import { Headers , RequestOptions , Response } from '@angular/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Environments } from '../../abstracts/environments/environments.abstract';
 import { LicenseesAbstract } from '../../abstracts/licensee/licensee.abstract';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { FormGroup , FormBuilder } from '@angular/forms';
-import 'rxjs/Rx';  // use this line if you want to be lazy, otherwise:
+import { FormGroup, FormBuilder } from '@angular/forms';
+import 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs/Rx';
 import { AmpHttpService } from '../../services/amp-http/amp-http.service';
 
 @Injectable()
 export class FormModelService {
     // Save
-    public saveMe : EventEmitter<any>       = new EventEmitter();
+    public saveMe : EventEmitter<any> = new EventEmitter();
     public saveResponse : EventEmitter<any> = new EventEmitter();
-    public saveError : EventEmitter<any>    = new EventEmitter();
+    public saveError : EventEmitter<any> = new EventEmitter();
 
     // H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O
-    public $hydrateForm : EventEmitter<any>          = new EventEmitter(); // H2O
+    public $hydrateForm : EventEmitter<any> = new EventEmitter(); // H2O
     // H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O, H2O
 
     public _formDefinition;
     public $flags : EventEmitter<any>;
     public dynamicFormLoaded : EventEmitter<boolean>;
     // Actual form model that gets saved along with the formDefinition should represent
-    public model                             = {
-        currentBlockClassName : 'IntroBlockComponent' ,
-        fatalErrors           : [] ,
-        errors                : [] ,
-        currentBlockID        : null ,         // Defaults to the first block on the current page
-        context               : {
-            initialized                : false ,
-            licensee                   : null ,
-            practicePrincipalFirstName : null ,
-            practicePrincipalLastName  : null ,
-            payeeID                    : null ,
-            practiceName               : null ,
-            realUser                   : null ,
-            actingAsUser               : null ,
-            impersonatedUser           : null ,
-            isPrincipal                : false ,
-            iat                        : 1460707004 ,
-            exp                        : 1465891004 ,
-            jwt_realUserFirstName      : null ,
-            jwt_realUserLastName       : null ,
-            jwt_actingAsUserFirstName  : null ,
-            jwt_actingAsUserLastName   : null ,
-            jwt_realUser               : null ,
-            jwt_actingAsUser           : null ,
-            jwt_iss                    : null ,
-            jwt_saleid                 : null ,
-            jwt_impersonatedUser       : null
-        } ,
-        contactDetails        : {
-            workPhoneNumber : null ,
-            emailAddress    : null
-        } ,
-        advisers              : [] ,
-        flags                 : {
-            dialogIsVisible              : true ,
-            introIsDone                  : false ,
-            contactDetailsIsDone         : false ,
-            addressIsDone                : false ,
-            partnershipIsDone            : false ,
-            equityHoldersIsDone          : false ,
-            fullOrPartialIsDone          : false ,
-            saleReasonIsDone             : false ,
-            practiceAssociationIsDone    : false ,
-            exerciseDateIsDone           : false ,
-            isOveralOverlayActive        : false ,
-            practiceAssociationIsVisible : false ,
-            saleReasonIsVisible          : false ,
-            acknowledgeIsDone            : false ,
-            reviewBlockIsDone            : false ,
-            confirmationIsVisible        : false ,
-            reviewIsVisible              : false
-        } ,
-        formId                : null ,
-        folderId              : null
+    public model = {
+        currentBlockClassName : 'IntroBlockComponent',
+        fatalErrors : [],
+        errors : [],
+        currentBlockID : null,         // Defaults to the first block on the current page
+        context : {
+            initialized : false,
+            licensee : null,
+            practicePrincipalFirstName : null,
+            practicePrincipalLastName : null,
+            payeeID : null,
+            practiceName : null,
+            realUser : null,
+            actingAsUser : null,
+            impersonatedUser : null,
+            isPrincipal : false,
+            iat : 1460707004,
+            exp : 1465891004,
+            jwt_realUserFirstName : null,
+            jwt_realUserLastName : null,
+            jwt_actingAsUserFirstName : null,
+            jwt_actingAsUserLastName : null,
+            jwt_realUser : null,
+            jwt_actingAsUser : null,
+            jwt_iss : null,
+            jwt_saleid : null,
+            jwt_impersonatedUser : null
+        },
+        contactDetails : {
+            workPhoneNumber : null,
+            emailAddress : null
+        },
+        advisers : [],
+        flags : {
+            dialogIsVisible : true,
+            introIsDone : false,
+            contactDetailsIsDone : false,
+            addressIsDone : false,
+            partnershipIsDone : false,
+            equityHoldersIsDone : false,
+            fullOrPartialIsDone : false,
+            saleReasonIsDone : false,
+            practiceAssociationIsDone : false,
+            exerciseDateIsDone : false,
+            isOveralOverlayActive : false,
+            practiceAssociationIsVisible : false,
+            saleReasonIsVisible : false,
+            acknowledgeIsDone : false,
+            reviewBlockIsDone : false,
+            confirmationIsVisible : false,
+            reviewIsVisible : false
+        },
+        formId : null,
+        folderId : null
     };
-    public form : FormGroup                  = new FormGroup( {} );
-    public autoSave : boolean                = true; // this is used in form block
-    private _apiBaseURL                      = Environments.property.ApiCallsBaseUrl;
-    private _practiceBaseURL                 = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
-    private _contactDetailsUrl               = this._practiceBaseURL + '/profile';
-    private _advisersUrl                     = this._practiceBaseURL + '/advisors';
-    private _submitUrl                       = this._apiBaseURL + 'bolrnotification';
-    private _contextUrl                      = this._apiBaseURL + 'usersession';
-    private _saveRelativeUrl                 = null;
-    private _headers                         = new Headers( { 'Content-Type' : 'application/json' } );
-    private _httpOptions                     = new RequestOptions( { headers : this._headers } );
+    public form : FormGroup = new FormGroup( {} );
+    public autoSave : boolean = true; // this is used in form block
+    private _apiBaseURL = Environments.property.ApiCallsBaseUrl;
+    private _practiceBaseURL = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
+    private _contactDetailsUrl = this._practiceBaseURL + '/profile';
+    private _advisersUrl = this._practiceBaseURL + '/advisors';
+    private _submitUrl = this._apiBaseURL + 'bolrnotification';
+    private _contextUrl = this._apiBaseURL + 'usersession';
+    private _saveRelativeUrl = null;
+    private _headers = new Headers( { 'Content-Type' : 'application/json' } );
+    private _httpOptions = new RequestOptions( { headers : this._headers } );
     private _savedModel;
 
-    constructor ( private http : AmpHttpService , private builder : FormBuilder ) {
-        this.$flags            = new EventEmitter();
+    constructor( private http : AmpHttpService, private builder : FormBuilder ) {
+        this.$flags = new EventEmitter();
         this.dynamicFormLoaded = new EventEmitter<boolean>();
         this.subscribeToSave();
     }
 
-    public hydrateForm ( newModel : any = this._savedModel ) : FormGroup {
-        if ( ! newModel ) {
+    public hydrateForm( newModel : any = this._savedModel ) : FormGroup {
+        if ( !newModel ) {
             return this.form;
         }
         let stringified = JSON.stringify( newModel );
-        let magic       = stringified
-            .replace( /\[/g , 'this.builder.array([' )
-            .replace( /\]/g , '])' )
-            .replace( /{"/g , 'this.builder.group({"' )
-            .replace( /}/g , '})' )
-            .replace( /\{\}\)/g , 'this.builder.group({})' );
+        let magic = stringified
+            .replace( /\[/g, 'this.builder.array([' )
+            .replace( /\]/g, '])' )
+            .replace( /{"/g, 'this.builder.group({"' )
+            .replace( /}/g, '})' )
+            .replace( /\{\}\)/g, 'this.builder.group({})' );
         // tslint:disable-next-line:no-eval
-        this.form       = eval( magic );
+        this.form = eval( magic );
         this.$hydrateForm.emit( this.form );
         return this.form;
     }
 
-    public storeModel ( _model ) {
+    public storeModel( _model ) {
         this._savedModel = _model;
     }
 
-    public get savedModel () {
+    public get savedModel() {
         return this._savedModel;
     }
 
-    public storeModelAndHydtrateForm ( _model ) {
+    public storeModelAndHydtrateForm( _model ) {
         this.storeModel( _model );
         this.hydrateForm( _model );
     }
 
-    public get licensee () {
+    public get licensee() {
         return this.model.context.licensee;
     }
 
-    get formDefinition () {
+    get formDefinition() {
         return this._formDefinition;
     }
 
-    get advisers () {
+    get advisers() {
         return this.model.advisers;
     }
 
-    get context () {
+    get context() {
         return this.model.context;
     }
 
-    set formDefinition ( formDef ) {
-        this._formDefinition      = formDef;
+    set formDefinition( formDef ) {
+        this._formDefinition = formDef;
         this.model.currentBlockID = this._formDefinition.blocks[ 0 ]._id;
     }
 
     /**
      * SAM - State methods
      */
-    getModel () {
+    getModel() {
         return this.model;
     }
 
-    getFlags ( flag ) {
+    getFlags( flag ) {
         return this.model.flags[ flag ];
     }
 
     /**
      * Generic context validation methods
      */
-    isContextValid () {
+    isContextValid() {
         if ( this.getModel().context[ 'x-jwt-assertion' ] ) {
             return true;
         }
         return false;
     }
 
-    isPlannerContextValid () {
+    isPlannerContextValid() {
         if ( this.getModel().context.realUser ) {
 
             // TODO: uncomment this when x-jwt-assertion is implemented by TAM
@@ -183,7 +183,7 @@ export class FormModelService {
 
     // Used at the start of the buy back form to make sure that the JWT context provided is valid
     // **7/6/2017 relaxing the validity rule to allow practices without a recorded specified officer to coming and add those details themselve.
-    isPracticeContextValid () {
+    isPracticeContextValid() {
         // Added rules to filter unauthorized licensee
         if ( this.getModel().context.licensee &&
             this.getModel().context.payeeID &&
@@ -196,53 +196,53 @@ export class FormModelService {
     /**
      * SAM - Action methods
      */
-    present ( data ) {
+    present( data ) {
         if ( data ) {
             switch ( data.action ) {
                 case 'next':
                     // this.model.currentBlockID = FormDefinition.getNextBlockID(this._formDefinition, data.blockId);
                     break;
                 case 'setContext':
-                    Object.assign( this.model.context , data.context.data );
+                    Object.assign( this.model.context, data.context.data );
                     // Indicator to capture that the state is after the all important context call
                     this.model.context.initialized = true;
                     break;
                 case 'setFlag':
                     this.model.flags[ data.flag ] = data.flagValue;
-                    let flag                      = {};
-                    flag[ data.flag ]             = data.flagValue;
+                    let flag = {};
+                    flag[ data.flag ] = data.flagValue;
                     this.$flags.emit( flag );
                     break;
                 case 'setContactDetails':
                     // Object.assign( this.model.contactDetails , data.contactDetails.data );
                     if ( data.contactDetails.data.specifiedOfficer && this.model.advisers && this.model.advisers.length ) {
                         // Assume that setAdvisers is called before here.
-                        let specifiedOfficer                      = this.model.advisers.find( function( adviser ) {
+                        let specifiedOfficer = this.model.advisers.find( function ( adviser ) {
                             return (adviser.ownernum === data.contactDetails.data.specifiedOfficer);
                         } );
                         this.model.contactDetails.workPhoneNumber = specifiedOfficer.workPhoneNumber;
-                        this.model.contactDetails.emailAddress    = specifiedOfficer.emailAddress;
+                        this.model.contactDetails.emailAddress = specifiedOfficer.emailAddress;
                     }
                     break;
                 case 'setAdvisers':
-                    Object.assign( this.model.advisers , data.advisers.data );
+                    Object.assign( this.model.advisers, data.advisers.data );
                     break;
                 case 'goToReceiptPage':
                     this.model.flags[ 'confirmationIsVisible' ] = true;
-                    this.model.flags[ 'dialogIsVisible' ]       = false;
-                    this.model.flags[ 'reviewIsVisible' ]       = false;
-                    flag                                        = {};
-                    flag[ 'confirmationIsVisible' ]             = true;
-                    flag[ 'dialogIsVisible' ]                   = false;
-                    flag[ 'reviewIsVisible' ]                   = false;
+                    this.model.flags[ 'dialogIsVisible' ] = false;
+                    this.model.flags[ 'reviewIsVisible' ] = false;
+                    flag = {};
+                    flag[ 'confirmationIsVisible' ] = true;
+                    flag[ 'dialogIsVisible' ] = false;
+                    flag[ 'reviewIsVisible' ] = false;
                     this.$flags.emit( flag );
                     break;
                 case 'submitted':
-                    this.model.formId   = data.data.formId;
+                    this.model.formId = data.data.formId;
                     this.model.folderId = data.data.folderId;
                     break;
                 case 'failedSubmission':
-                    this.model.formId   = data.data.error.save._id;
+                    this.model.formId = data.data.error.save._id;
                     this.model.folderId = data.data.error.caseStart.folderId;
                 case 'error':
                     this.model.errors = this.model.errors.concat( data.errors );
@@ -250,142 +250,142 @@ export class FormModelService {
                 case 'fatalError':
                     // Indicator to capture that the state is after the all important context call
                     this.model.context.initialized = true;
-                    this.model.fatalErrors         = this.model.fatalErrors.concat( data.errors );
+                    this.model.fatalErrors = this.model.fatalErrors.concat( data.errors );
                     break;
                 default:
-                    console.error( 'Got undefined SAM action' , data.action );
+                    console.error( 'Got undefined SAM action', data.action );
             }
         } else {
-            console.error( 'Got null SAM action data structure' , data );
+            console.error( 'Got null SAM action data structure', data );
         }
     }
 
     /**
      * Service calls
      */
-    getContext () : Observable<string> {
+    getContext() : Observable<string> {
         let headers = new Headers(
             {
-                'Content-Type' : 'application/json' ,
+                'Content-Type' : 'application/json',
             } );
         let options = new RequestOptions( { headers : headers } );
-        return this.http.get( this._contextUrl , options )
-                   .map( ( res ) => res.json() );
-    }
-
-    getContactDetails () : Observable<string> {
-        let headers = new Headers(
-            {
-                'Content-Type' : 'application/json' ,
-            } );
-        let options = new RequestOptions( {
-            headers : headers , body : '' ,
-        } );
-        return this
-            .http
-            .get( this._contactDetailsUrl , options )
+        return this.http.get( this._contextUrl, options )
             .map( ( res ) => res.json() );
     }
 
-    getAdvisers () : Observable<string> {
+    getContactDetails() : Observable<string> {
         let headers = new Headers(
             {
-                'Content-Type' : 'application/json' ,
+                'Content-Type' : 'application/json',
             } );
         let options = new RequestOptions( {
-            headers : headers , body : '' ,
+            headers : headers, body : '',
         } );
-        return this.http
-                   .get( this._advisersUrl , options )
-                   .map( function( x , idx ) {
-                       let data = x.json();
-                       if ( data && data.data && data.data.length ) {
-                           data.data = data.data.filter( function( adviser ) {
-                               return (adviser.personalTitle && adviser.personalTitle.length);
-                           } );
-                       }
-                       return data;
-                   } );
+        return this
+            .http
+            .get( this._contactDetailsUrl, options )
+            .map( ( res ) => res.json() );
     }
 
-    public setSaveRelativeUrl ( relativeUrl : string ) {
+    getAdvisers() : Observable<string> {
+        let headers = new Headers(
+            {
+                'Content-Type' : 'application/json',
+            } );
+        let options = new RequestOptions( {
+            headers : headers, body : '',
+        } );
+        return this.http
+            .get( this._advisersUrl, options )
+            .map( function ( x, idx ) {
+                let data = x.json();
+                if ( data && data.data && data.data.length ) {
+                    data.data = data.data.filter( function ( adviser ) {
+                        return (adviser.personalTitle && adviser.personalTitle.length);
+                    } );
+                }
+                return data;
+            } );
+    }
+
+    public setSaveRelativeUrl( relativeUrl : string ) {
         this._saveRelativeUrl = relativeUrl;
     }
 
-    public getSaveRelativeUrl () {
+    public getSaveRelativeUrl() {
         return this._saveRelativeUrl;
     }
 
-    public overrideApiBaseUrl ( baseUrl : string ) {
+    public overrideApiBaseUrl( baseUrl : string ) {
         this._apiBaseURL = baseUrl;
     }
 
-    public overrideSaveOptions ( options : RequestOptions ) {
+    public overrideSaveOptions( options : RequestOptions ) {
         this._httpOptions = options;
     }
 
-    public save ( model : any ) {
+    public save( model : any ) {
         this.saveMe.emit( model );
     }
 
-    public submitApplication(submitUrl, referenceId) : Observable<Response> {
+    public submitApplication( submitUrl, referenceId ) : Observable<Response> {
         let sendUrl = this._apiBaseURL + submitUrl;
         let params : string = `id=${referenceId}`;
-        const queryUrl : string = encodeURI(`${sendUrl}?${params}`);
+        const queryUrl : string = encodeURI( `${sendUrl}?${params}` );
 
-        return this.http.post(queryUrl, JSON.stringify({}), this._httpOptions);
+        return this.http.post( queryUrl, JSON.stringify( {} ), this._httpOptions );
     }
 
-    public saveAndSubmitApplication(model, submitUrl, referenceId) : Observable<any> {
+    public saveAndSubmitApplication( model, submitUrl, referenceId ) : Observable<any> {
         // http://stackoverflow.com/questions/33675155/creating-and-returning-observable-from-angular-2-service
-        let resultSubject = new ReplaySubject(1);
+        let resultSubject = new ReplaySubject( 1 );
 
-        this.saveModel(model).subscribe((saveResult) => {
-            if (saveResult.json().statusCode === 200) {
+        this.saveModel( model ).subscribe( ( saveResult ) => {
+            if ( saveResult.json().statusCode === 200 ) {
                 // Save ok
-                this.submitApplication(submitUrl, referenceId)
-                    .subscribe((submitResult) => {
-                        if (submitResult.json().statusCode === 200) {
+                this.submitApplication( submitUrl, referenceId )
+                    .subscribe( ( submitResult ) => {
+                        if ( submitResult.json().statusCode === 200 ) {
 
                             // Submit ok
-                            resultSubject.next(submitResult.json());
+                            resultSubject.next( submitResult.json() );
                         } else {
                             // Submit status is not 200
-                            resultSubject.error('Submit application failed');
+                            resultSubject.error( 'Submit application failed' );
                         }
-                    }, (error) => {
+                    }, ( error ) => {
                         // Submit failed
-                        resultSubject.error(error.json());
-                    });
+                        resultSubject.error( error.json() );
+                    } );
             } else {
                 // Save status is not 200
-                resultSubject.error('Save application failed');
+                resultSubject.error( 'Save application failed' );
             }
-        }, (error) => {
+        }, ( error ) => {
             // Save failed
-            resultSubject.error(error.json());
-        });
+            resultSubject.error( error.json() );
+        } );
 
         return resultSubject.asObservable();
     }
 
-    public saveModel(model) : Observable<Response> {
-        return this.http.post(this._apiBaseURL + this._saveRelativeUrl, JSON.stringify(model), this._httpOptions);
+    public saveModel( model ) : Observable<Response> {
+        return this.http.post( this._apiBaseURL + this._saveRelativeUrl, JSON.stringify( model ), this._httpOptions );
     }
 
     private subscribeToSave() {
-        this.saveMe.subscribe((model) => {
-            if (!this._saveRelativeUrl) {
-                throw new Error('Relative URL not set in FormModelService for save!');
+        this.saveMe.subscribe( ( model ) => {
+            if ( !this._saveRelativeUrl ) {
+                throw new Error( 'Relative URL not set in FormModelService for save!' );
             }
-            this.saveModel(model)
-                .subscribe((response) => {
-                    this.saveResponse.emit(response.json());
-                }, (error) => {
-                    if (error) {
-                        this.saveError.emit(error);
+            this.saveModel( model )
+                .subscribe( ( response ) => {
+                    this.saveResponse.emit( response.json() );
+                }, ( error ) => {
+                    if ( error ) {
+                        this.saveError.emit( error );
                     }
-                });
-        });
+                } );
+        } );
     }
 }

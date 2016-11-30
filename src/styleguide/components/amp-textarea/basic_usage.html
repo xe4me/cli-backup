@@ -7,10 +7,11 @@
                 [isInSummaryState]='isInSummaryState'
                 id='textarea'
                 label='A label '
-                [required]='isTextAreaRequired'
+                [required]='true'
                 [controlGroup]='controlGroup'
                 maxLength='100'>
         </amp-textarea>
+        <amp-error [controlGroup]="controlGroup"></amp-error>
         <!-- End copy at here -->
         <br><br>
         validity : {{ control.valid }}

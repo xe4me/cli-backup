@@ -17,7 +17,7 @@
                 {{ option.label }}
             </template>
         </amp-dropdown>
-
+        <amp-button (click)="isInSummaryState=!isInSummaryState">Disabled {{ isInSummaryState }}</amp-button>
         Errros :
         <pre>
             {{ TitleControl?.errors | json }}
