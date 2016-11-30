@@ -42,7 +42,16 @@
                                     "blockTitle": "Where did we leave off?",
                                     "controls": [
                                         {
-                                            "id": "ExistingApplicationId"
+                                            "id": "ExistingApplicationId",
+                                            "requiredErrMsg" : "Reference id is a required field."
+                                        },
+                                        {
+                                            "id" : "LastName",
+                                            "requiredErrMsg" : "Last name is a reuqired field."
+                                        },
+                                        {
+                                            "id" : "DateOfBirth",
+                                            "requiredErrMsg" : "Date of birth is a required field."
                                         }
                                     ]
                                 }
