@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {
+    FormModelService
+} from 'amp-ddc-components';
 import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 const formDef = require('./form-def.def.json');
 @Component({
@@ -13,7 +16,7 @@ export class BetterFormComponent {
     private childBlocks = formDef;
     private form : FormGroup;
 
-    constructor(private _builder : FormBuilder) {
-        this.form = this._builder.group({});
+    constructor(private _builder : FormBuilder, private formModelService : FormModelService ) {
+        this.form = this.formModelService.hydrateForm();
     }
 }
