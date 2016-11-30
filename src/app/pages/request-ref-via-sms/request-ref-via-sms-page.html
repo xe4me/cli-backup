@@ -14,9 +14,6 @@
                 [errors]="{'pattern' : 'Mobile number must be in the format 04nnnnnnnn.', 'required' : 'Mobile number is a required field.' }"
                 [required]="true"></amp-mobile-number>
         </div>
-        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
-            <amp-tooltip-cmp class="mt" message="A mobile phone number is required to send application reference id via SMS."></amp-tooltip-cmp>
-        </div>
     </amp-form-row>
     <amp-form-row>
         <amp-error [controlGroup]="controlGroup"
@@ -34,12 +31,7 @@
         </div>
     </amp-form-row>
     <amp-form-row>
-        <amp-error [controlGroup]="controlGroup"
-                   [controlId]="acceptPrivacyCtrlId">
-        </amp-error>
-    </amp-form-row>
-    <amp-form-row>
-        <div class="grid__item_floated mt0 lap-and-up-1/3 tablet-1/3 palm-1/1 palm-mr0 mr palm-pt0">
+        <div class="grid__item_floated mt+ lap-and-up-1/3 tablet-1/3 palm-1/1 palm-mr0 mr palm-pt0">
             <amp-button
                 theme="tools"
                 (click)="sendSMS()"
@@ -48,7 +40,7 @@
                 Continue
             </amp-button>
         </div>
-        <div class="grid__item_floated mt0 lap-and-up-1/3 tablet-1/3 palm-1/1 palm-pt0">
+        <div class="grid__item_floated mt+ lap-and-up-1/3 tablet-1/3 palm-1/1 palm-pt0">
             <amp-button
                 theme="tools"
                 (click)="back()"
