@@ -1,4 +1,5 @@
 import { FormUtils } from './form-utils';
+import * as moment from 'moment';
 export class RequiredValidator {
     public static requiredValidation ( required , booleanValue = false , isCheckbox = false ) {
         return ( c ) => {
@@ -91,26 +92,6 @@ export class PatterValidator {
         };
     }
 }
-export class MaxDateValidator {
-    public static maxDateValidator ( pattern , datePattern ) {
-        return ( c ) => {
-            if ( pattern !== undefined ) {
-                let diff = FormUtils.getAgeDays( c.value );
-                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || ! diff || diff <= pattern ) {
-                    return null;
-                }
-                return {
-                    maxDate : {
-                        text : c._ampErrors && c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This date should not be' +
-                        ' greater' +
-                        ' than ' + pattern + ' .'
-                    }
-                };
-            }
-            return null;
-        };
-    }
-}
 export class DateValidator {
     public static dateValidator ( pattern , datePattern ) {
         return ( c ) => {
@@ -134,14 +115,33 @@ export class MinDateValidator {
         return ( c ) => {
             if ( pattern !== undefined ) {
                 let diff = FormUtils.getAgeDays( c.value );
-                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || diff === null || diff === undefined || diff >= pattern ) {
+                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || diff === null || diff === undefined || diff >= pattern || ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
                     minDate : {
                         text : c._ampErrors && c._ampErrors.minDate ? c._ampErrors.minDate : 'This date should be' +
-                        ' greater' +
-                        ' than ' + pattern + ' .'
+                        ' later than ' + moment().add((pattern - 1), 'days').format('DD/MM/YYYY') + '.'
+                    }
+                };
+            }
+            return null;
+        };
+    }
+}
+export class MaxDateValidator {
+    public static maxDateValidator ( pattern , datePattern ) {
+        return ( c ) => {
+            if ( pattern !== undefined ) {
+                let diff = FormUtils.getAgeDays( c.value );
+                console.log(diff, pattern);
+                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || ! diff || diff <= pattern || ! FormUtils.isValidDate( c.value )  ) {
+                    return null;
+                }
+                return {
+                    maxDate : {
+                        text : c._ampErrors && c._ampErrors.maxDate ? c._ampErrors.maxDate : 'This date should not be' +
+                        ' later than ' + moment().add(pattern, 'days').format('DD/MM/YYYY') + '.'
                     }
                 };
             }
@@ -169,6 +169,44 @@ export class MaxFloatValidator {
                         }
                     }
                 }
+            }
+            return null;
+        };
+    }
+}
+export class MinAgeValidator {
+    public static minAgeValidator ( minAge , datePattern ) {
+        return ( c ) => {
+            if ( minAge !== undefined ) {
+                let age = FormUtils.getAge( c.value );
+                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || age === null || age === undefined || age > minAge || ! FormUtils.isValidDate( c.value )  ) {
+                    return null;
+                }
+                return {
+                    minAge : {
+                        text : c._ampErrors && c._ampErrors.minAge ? c._ampErrors.minAge : 'You must be older than than ' +
+                        minAge + ' years old.'
+                    }
+                };
+            }
+            return null;
+        };
+    }
+}
+export class MaxAgeValidator {
+    public static maxAgeValidator ( maxAge , datePattern ) {
+        return ( c ) => {
+            if ( maxAge !== undefined ) {
+                let age = FormUtils.getAge( c.value );
+                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || age === null || age === undefined || age < maxAge || ! FormUtils.isValidDate( c.value )  ) {
+                    return null;
+                }
+                return {
+                    maxAge : {
+                        text : c._ampErrors && c._ampErrors.maxAge ? c._ampErrors.maxAge : 'You must be younger than than ' +
+                        maxAge + ' years old.'
+                    }
+                };
             }
             return null;
         };

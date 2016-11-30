@@ -1,41 +1,123 @@
 <form #formModel="ngForm" class="nl-form">
-    isvalid {{ control.valid }}
-    <br/>
-    <amp-form-row>
-        <amp-input
-                [attr.theme]="themeService.theme.attr"
-                [id]="'firstname'"
-                [label]="'Name'"
-                [controlGroup]="controlGroup"
-                [required]="true"
-                [pattern]="'^([0-9])*$'"
-                [maxLength]="'12'"
-                [minLength]="'4'"
-                [currency]="'$'">
-        </amp-input>
-    </amp-form-row>
-    <amp-form-row class='mt+'>
-        <amp-input
-                #inputNumeric
-                [amp-number-only]="inputNumeric.control"
-                [attr.theme]="themeService.theme.attr"
-                [id]="'number'"
-                [label]="'Number'"
-                [controlGroup]="controlGroup"
-                [required]="true"
-                [maxLength]="'12'"
-                [minLength]="'4'">
-        </amp-input>
-        <amp-error [controlGroup]="controlGroup"></amp-error>
-    </amp-form-row>
-    <amp-form-row class='mt+'>
-        <amp-input
-                [id]="'date'"
-                [label]="'Date'"
-                [controlGroup]="dateControlGroup"
-                [required]="true"
-                [valDate]="true">
-        </amp-input>
-        <amp-error [controlGroup]="dateControlGroup"></amp-error>
-    </amp-form-row>
+
+    <section class="section ph pv">
+
+        <h2>Default</h2>
+
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        [id]="'input'"
+                        [label]="'Default input'"
+                        [required]="true"
+                        [controlGroup]="defaultControlGroup">
+                </amp-input>
+            </div>
+        </amp-form-row>
+        <amp-error [controlGroup]="defaultControlGroup"></amp-error>
+    </section>
+
+    <section class="section ph pv">
+
+        <h2>Currency</h2>
+        isvalid: {{ control.valid }}
+        <br/>
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'currency'"
+                        [label]="'Amount'"
+                        [controlGroup]="currencyControlGroup"
+                        [required]="true"
+                        [pattern]="'^([0-9])*$'"
+                        [maxLength]="'12'"
+                        [minLength]="'4'"
+                        [currency]="'$'">
+                </amp-input>
+            </div>
+        </amp-form-row>
+        <amp-error [controlGroup]="currencyControlGroup"></amp-error>
+    </section>
+
+    <section class="section ph pv">
+
+        <h2>Number</h2>
+
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        #inputNumeric
+                        [amp-number-only]="inputNumeric.control"
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'number'"
+                        [label]="'Number'"
+                        [controlGroup]="NumberControlGroup"
+                        [required]="true"
+                        [maxLength]="'12'"
+                        [minLength]="'4'">
+                </amp-input>
+            </div>
+        </amp-form-row>
+        <amp-error [controlGroup]="NumberControlGroup"></amp-error>
+    </section>
+
+    <section class="section ph pv">
+
+        <h2>Date <small>(with min date)</small></h2>
+
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        [id]="'minDate'"
+                        [label]="'Date'"
+                        [controlGroup]="minDateControlGroup"
+                        [required]="true"
+                        [valDate]="true"
+                        [minDate]="'today'">
+                </amp-input>
+            </div>
+        </amp-form-row>
+        <amp-error [controlGroup]="minDateControlGroup"></amp-error>
+    </section>
+
+    <section class="section ph pv">
+
+        <h2>Date <small>(with max date)</small></h2>
+
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        [id]="'maxDate'"
+                        [label]="'Date'"
+                        [controlGroup]="maxDateControlGroup"
+                        [required]="true"
+                        [valDate]="true"
+                        [maxDate]="'today'">
+                </amp-input>
+            </div>
+        </amp-form-row>
+        <amp-error [controlGroup]="maxDateControlGroup"></amp-error>
+    </section>
+
+    <section class="section ph pv">
+
+        <h2>Date of birth <small>(with min/max age)</small></h2>
+
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        [id]="'dob'"
+                        [label]="'Date of birth'"
+                        [controlGroup]="dobControlGroup"
+                        [required]="true"
+                        [valDate]="true"
+                        [minAge]="18"
+                        [maxAge]="100">
+                </amp-input>
+            </div>
+        </amp-form-row>
+        <amp-error [controlGroup]="dobControlGroup"></amp-error>
+    </section>
+
 </form>

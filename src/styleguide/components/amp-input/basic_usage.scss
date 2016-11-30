@@ -1,1 +1,5 @@
 @import "../../../styles/abstracts";
+
+:host amp-form-row > .form__row > .grid__container > .grid__item_floated {
+    margin-top: 20px;
+}

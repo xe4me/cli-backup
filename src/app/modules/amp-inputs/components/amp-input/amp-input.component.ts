@@ -17,6 +17,8 @@ import {
     DateValidator ,
     MaxDateValidator ,
     MinDateValidator ,
+    MinAgeValidator ,
+    MaxAgeValidator ,
     PatterValidator ,
     MaxFloatValidator
 } from '../../../amp-utils';
@@ -44,6 +46,8 @@ import { BaseControl } from '../../../../base-control';
             'pattern' ,
             'maxDate' ,
             'minDate' ,
+            'minAge' ,
+            'maxAge' ,
             'maxFloat' ,
             'valDate' ,
             'minFloat' ,
@@ -82,6 +86,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected _maxLength : number;
     protected _maxDate : string;
     protected _minDate : string;
+    protected _minAge : number;
+    protected _maxAge : number;
     protected _maxFloat : number;
     protected _minFloat : number;
     protected _valDate : boolean;
@@ -133,6 +139,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
             MaxLengthValidator.maxLengthValidation( this._maxLength ) ,
             MaxDateValidator.maxDateValidator( this._maxDate , this.pattern ) ,
             MinDateValidator.minDateValidator( this._minDate , this.pattern ) ,
+            MinAgeValidator.minAgeValidator( this._minAge , this.pattern ) ,
+            MaxAgeValidator.maxAgeValidator( this._maxAge , this.pattern ) ,
             PatterValidator.patternValidator( this.pattern ) ,
             MaxFloatValidator.maxFloatValidator( this._maxFloat ) ,
             DateValidator.dateValidator( this._valDate , this.pattern ) ,
@@ -233,9 +241,12 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected humanDate ( value : any ) {
         switch ( value ) {
             case 'yesterday':
-                value = - 1;
+                value = -1;
                 break;
             case 'now':
+                value = 0;
+                break;
+            case 'today':
                 value = 0;
                 break;
             case 'tomorrow':
@@ -262,6 +273,24 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
 
     set maxDate ( value : any ) {
         this._maxDate = this.humanDate( value );
+        this.updateValidators();
+    }
+
+    get minAge () {
+        return this._minAge;
+    }
+
+    set minAge ( value : any ) {
+        this._minAge = parseInt( value, 10 );
+        this.updateValidators();
+    }
+
+    get maxAge () {
+        return this._maxAge;
+    }
+
+    set maxAge ( value : any ) {
+        this._maxAge = parseInt( value, 10 );
         this.updateValidators();
     }
 
