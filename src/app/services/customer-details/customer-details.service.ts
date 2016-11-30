@@ -19,7 +19,7 @@ import { Environments } from '../../abstracts/environments/environments.abstract
 @Injectable()
 export class CustomerDetailsService {
 
-    public $customerDetailsChanged : EventEmitter<any> = new EventEmitter<any>();
+    public customerDetailsChanged : EventEmitter<any> = new EventEmitter<any>();
 
     private customerDetails : Promise<any>;
     private apiCustomerUrl =
@@ -35,7 +35,7 @@ export class CustomerDetailsService {
         // Use cache if it has valid value and requested so
         if (!this.customerDetails || !useCache) {
             this.customerDetails = this.fetchCustomerDetails().toPromise();
-            this.$customerDetailsChanged.emit(this.customerDetails);
+            this.customerDetailsChanged.emit(this.customerDetails);
         }
 
         return this.customerDetails;
