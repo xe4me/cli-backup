@@ -1,0 +1,59 @@
+<header class="header">
+    <div class="header__inner">
+        <amp-logo licensee="AMP" theme="tools" class="grid__item 1/3"></amp-logo>
+        <div class="header__contact-info grid__item 1/2">{{experienceTitle}}</div>
+    </div>
+
+    <div class="header__inner header__contact">
+        <div class="utils__display--hidden-tablet-and-down">
+            <div class="header__contact-info">
+                <i class="icon icon--phone icon--color-blue" aria-hidden="true"></i>
+                {{ contactUsText }} <span class="header__contact-info__number">{{ phoneNumber }}</span>
+            </div>
+
+            <div class="header__contact-sub">
+                {{ availability }}
+            </div>
+        </div>
+
+        <div class="utils__display--hidden-lap-and-up">
+
+            <amp-button
+                *ngIf="isOfficeHours && isMobile"
+                [attr.theme]="'tools'"
+                [class]="'btn btn-ok btn-icon btn-icon--small'"
+                (click)="onCall($event)">
+                <i class="icon icon--phone" aria-hidden="true"></i>
+                <span class="sr-only">Call us</span>
+            </amp-button>
+
+            <amp-button
+                *ngIf="!isOfficeHours || !isMobile"
+                [attr.theme]="'tools'"
+                [class]="'btn btn-ok btn-icon btn-icon--small'"
+                amp-pop-down-toggle="#{{ popDownId }}">
+                <i class="icon icon--phone" aria-hidden="true"></i>
+                <span class="sr-only">Contact us</span>
+            </amp-button>
+
+            <amp-pop-down [id]="popDownId" [align]="'right'">
+
+                <div *ngIf="isMobile">
+                    <h3 class="amp-pop-down__heading">{{ unavailableHeading }}</h3>
+                    {{ unavailableMessage }}
+                </div>
+
+                <div *ngIf="!isMobile">
+                    <h3 class="amp-pop-down__heading">{{ contactUsText }}</h3>
+                    <p class="mb">
+                        <i class="icon icon--phone icon--color-blue" aria-hidden="true"></i>
+                        <span class="header__contact-info__number">{{ phoneNumber }}</span>
+                    </p>
+                    {{ availability }}
+                </div>
+
+            </amp-pop-down>
+
+        </div>
+    </div>
+</header>

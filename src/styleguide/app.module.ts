@@ -36,6 +36,7 @@ import { AmpGoogleRecaptchaModule } from '../app/modules/amp-google-recaptcha/am
 import { AmpLogoModule } from '../app/modules/amp-logo/amp-logo.module';
 import { AmpCardsModule } from '../app/modules/amp-cards/amp-cards.module';
 import { AmpPopDownModule } from '../app/modules/amp-pop-down/amp-pop-down.module';
+import { AmpHeaderModule } from '../app/modules/amp-header/amp-header.module';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -75,6 +76,7 @@ const IMPORTS                               = [
     FormsModule ,
     ReactiveFormsModule ,
     HttpModule ,
+    AmpHeaderModule ,
     RouterModule.forRoot( ROUTES , { useHash : false } )
 ];
 /**
