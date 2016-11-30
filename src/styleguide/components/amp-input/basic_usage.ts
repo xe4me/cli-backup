@@ -11,18 +11,18 @@ import { AmpCurrencyPipe } from '../../../app/modules/amp-pipes/pipes/currency/a
     } )
 export default class AmpInputBasicUsage {
     toggleFlag : boolean;
-    private controlGroup : FormGroup     = new FormGroup( {} );
-    private dateControlGroup : FormGroup = new FormGroup( {} );
+    private defaultControlGroup : FormGroup = new FormGroup( {} );
+    private currencyControlGroup : FormGroup = new FormGroup( {} );
+    private NumberControlGroup : FormGroup  = new FormGroup( {} );
+    private minDateControlGroup : FormGroup = new FormGroup( {} );
+    private maxDateControlGroup : FormGroup = new FormGroup( {} );
+    private dobControlGroup : FormGroup     = new FormGroup( {} );
     private currencySymbol                  = AmpCurrencyPipe.currencySymbol;
     private currencyPipe                    = new AmpCurrencyPipe();
     constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
     }
 
     get control () {
-        return this.controlGroup.controls[ 'firstname' ];
-    }
-
-    get dateControl () {
-        return this.dateControlGroup.controls[ 'date' ];
+        return this.currencyControlGroup.controls[ 'currency' ];
     }
 }
