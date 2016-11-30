@@ -134,7 +134,6 @@ export class MaxDateValidator {
         return ( c ) => {
             if ( pattern !== undefined ) {
                 let diff = FormUtils.getAgeDays( c.value );
-                console.log(diff, pattern);
                 if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || ! diff || diff <= pattern || ! FormUtils.isValidDate( c.value )  ) {
                     return null;
                 }
