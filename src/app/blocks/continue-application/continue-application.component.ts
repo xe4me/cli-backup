@@ -16,7 +16,7 @@ export class ContinueApplicationBlock extends FormBlock {
     }
 
     public onNext() {
-        //TODO retrieve application
+        // TODO retrieve application
         super.onNext();
     }
 }
