@@ -1,0 +1,24 @@
+[
+    {
+        "request": {
+            "url": "ddc/public/api/bett3r/retrieve",
+            "method": "POST"
+        },
+        "response": {
+            "statusCode": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "statusCode": 200,
+                "payload": {
+                    "meta": {
+                        "id": "4172867194",
+                        "name": "BETT3R"
+                    }
+                }
+            }
+        }
+    }
+]
