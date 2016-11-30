@@ -47,7 +47,7 @@
                                         },
                                         {
                                             "id" : "LastName",
-                                            "requiredErrMsg" : "Last name is a reuqired field."
+                                            "requiredErrMsg" : "Last name is a required field."
                                         },
                                         {
                                             "id" : "DateOfBirth",
