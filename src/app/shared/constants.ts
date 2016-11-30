@@ -1,11 +1,12 @@
 import { Environments } from 'amp-ddc-components';
 
 export class Constants {
-    public static baseBett3rUrl            = '/bett3r';
-    public static saveUrl                  = Constants.baseBett3rUrl + '/save';
-    public static submitUrl                = Constants.baseBett3rUrl + '/submit';
-    public static accountsPdfUrl           = Constants.baseBett3rUrl + '/pdf/accounts';
-    public static smsPostUrl               = Environments.property.ApiCallsBaseUrl + '/sms/postMessage';
+    public static baseBett3rUrl : string = '/bett3r';
+    public static saveUrl : string = `${Constants.baseBett3rUrl}/save`;
+    public static submitUrl : string = `${Constants.baseBett3rUrl}/submit`;
+    public static accountsPdfUrl : string = `${Constants.baseBett3rUrl}/pdf/accounts`;
+    public static retrieveUrl : string = `${Constants.baseBett3rUrl}/retrieve`;
+    public static smsPostUrl : string = `${Environments.property.ApiCallsBaseUrl}/sms/postMessage`;
     public static singleApplicant : string = 'Individual';
     public static jointApplicant : string = 'JointApplicant';
     public static onlineIdCheck : string = 'online';

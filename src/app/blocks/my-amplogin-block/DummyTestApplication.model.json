@@ -6,7 +6,9 @@
         }
     },
     "ContinueApplicationBlock": {
-        "ExistingApplicationId": null
+        "ReferenceCode": null,
+        "LastName": null,
+        "DateOfBirth": null
     },
     "MyAMPLoginBlock": {
         "userId": null,
