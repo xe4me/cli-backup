@@ -115,7 +115,12 @@ export class MinDateValidator {
         return ( c ) => {
             if ( pattern !== undefined ) {
                 let diff = FormUtils.getAgeDays( c.value );
-                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || diff === null || diff === undefined || diff >= pattern || ! FormUtils.isValidDate( c.value ) ) {
+                if ( ! c.value ||
+                     ! new RegExp( datePattern ).test( c.value ) ||
+                     diff === null ||
+                     diff === undefined ||
+                     diff >= pattern ||
+                     ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
@@ -134,7 +139,11 @@ export class MaxDateValidator {
         return ( c ) => {
             if ( pattern !== undefined ) {
                 let diff = FormUtils.getAgeDays( c.value );
-                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || ! diff || diff <= pattern || ! FormUtils.isValidDate( c.value )  ) {
+                if ( ! c.value ||
+                     ! new RegExp( datePattern ).test( c.value ) ||
+                     ! diff ||
+                     diff <= pattern ||
+                     ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
@@ -178,7 +187,12 @@ export class MinAgeValidator {
         return ( c ) => {
             if ( minAge !== undefined ) {
                 let age = FormUtils.getAge( c.value );
-                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || age === null || age === undefined || age > minAge || ! FormUtils.isValidDate( c.value )  ) {
+                if ( ! c.value ||
+                     ! new RegExp( datePattern ).test( c.value ) ||
+                     age === null ||
+                     age === undefined ||
+                     age > minAge ||
+                     ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
@@ -197,7 +211,12 @@ export class MaxAgeValidator {
         return ( c ) => {
             if ( maxAge !== undefined ) {
                 let age = FormUtils.getAge( c.value );
-                if ( ! c.value || ! new RegExp( datePattern ).test( c.value ) || age === null || age === undefined || age < maxAge || ! FormUtils.isValidDate( c.value )  ) {
+                if ( ! c.value ||
+                     ! new RegExp( datePattern ).test( c.value ) ||
+                     age === null ||
+                     age === undefined ||
+                     age < maxAge ||
+                     ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
