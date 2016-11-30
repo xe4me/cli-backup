@@ -37,6 +37,19 @@ $list-nested-margin: 20px;
             margin-bottom: 5px;
         }
     }
+
+    &--dense {
+        > li {
+            margin-bottom: $list-default-item-margin / 2;
+        }
+    }
+
+    &--spaced {
+        > li {
+            margin-bottom: $list-default-item-margin * 1.5;
+        }
+    }
+
 }
 
 .#{$namespace}list,
