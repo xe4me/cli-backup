@@ -1,7 +1,6 @@
 import { Environments } from 'amp-ddc-components';
 
 export class Constants {
-    public static baseBett3rUrl            = '/bett3r';
     public static baseBett3rUrl : string = '/bett3r';
     public static saveUrl : string = `${Constants.baseBett3rUrl}/save`;
     public static submitUrl : string = `${Constants.baseBett3rUrl}/submit`;
