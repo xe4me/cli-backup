@@ -8,7 +8,6 @@
     "start": "amp-ng serve",
     "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
     "lint": "npm run tslint",
-    "pretest": "npm run lint",
     "test": "amp-ng test --watch false",
     "pree2e": "webdriver-manager update",
     "e2e": "amp-ng e2e",
