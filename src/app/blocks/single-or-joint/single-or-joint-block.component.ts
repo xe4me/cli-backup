@@ -112,7 +112,8 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             this.formModelService.setSaveRelativeUrl( Constants.saveUrl + '?id=' + referenceId );
         }
     }
-    // TODO move this to a service - this component is getting bloated - Issue #1
+    // TODO move this to a service - this component is getting bloated
+    // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/1
     private prepopCustomerDetails () {
         let isLoggedIn = false; // Default assumption is that we are not logged in.
                                 // TODO: This will have to change if we start the journey from
