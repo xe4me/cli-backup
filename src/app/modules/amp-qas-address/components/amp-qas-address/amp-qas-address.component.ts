@@ -37,9 +37,9 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
     @Input() keepControl : boolean                      = false;
     @Input() extended : boolean                         = false;
     @Output( 'selected' ) $selected : EventEmitter<any> = new EventEmitter<any>();
+    public qasControlGroup : AmpFormGroup;
     private _selectedControl;
     private maxHeight : string                          = '250px';
-    private qasControlGroup : AmpFormGroup;
     private searchOrManualControl : FormControl;
 
     constructor ( private _cd : ChangeDetectorRef , private _ampQasAddressService : AmpQasAddressService ) {
