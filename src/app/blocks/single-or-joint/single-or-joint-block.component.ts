@@ -112,14 +112,14 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             this.formModelService.setSaveRelativeUrl( Constants.saveUrl + '?id=' + referenceId );
         }
     }
-
+    // TODO move this to a service - this component is getting bloated
     private prepopCustomerDetails () {
         let isLoggedIn = false; // Default assumption is that we are not logged in.
-                                // TODO: This will have to change if we start the journey from 
+                                // TODO: This will have to change if we start the journey from
                                 //       MyAMP and never went thru myAMPLoginBlock
         // Lets check the myAMPLoginBlock loginResult
-        if ( (<FormGroup> this.__form.get(FDN.MyAMPLoginBlock))
-            .contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )) {
+        let ampLoginBlock = (<FormGroup> this.__form.get(FDN.MyAMPLoginBlock));
+        if ( ampLoginBlock && ampLoginBlock.contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )) {
             let loginResultControl = <FormControl> this.__form.get(
                 FDN.MyAMPLoginBlock.concat(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME));
             isLoggedIn = Constants.loginSuccess === loginResultControl.value;
@@ -140,7 +140,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
                             // Lets do some prepopulation
                             PrepopMappingService.prepopBasicInfo(basicInfo, data.payload);
-                            // TODO: For December release, do not prepopulate addresses as we cannot easily 
+                            // TODO: For December release, do not prepopulate addresses as we cannot easily
                             // map them to the required fields
                             // this.prepopAddresses(data.payload);
                             PrepopMappingService.prepopContactDetails(contactDetails, data.payload);
