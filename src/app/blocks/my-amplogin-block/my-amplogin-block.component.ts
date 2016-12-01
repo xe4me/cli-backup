@@ -4,8 +4,10 @@ import {
     ElementRef,
     ChangeDetectionStrategy,
     NgZone,
+    OnInit,
     Renderer,
     OnDestroy } from '@angular/core';
+    import {FormControl} from '@angular/forms';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import {
     FormBlock,
@@ -13,19 +15,21 @@ import {
     FormModelService,
     ProgressObserverService
 } from 'amp-ddc-components';
-
+import {
+    Constants
+} from '../../shared';
 /**
  * Thin login interface to MyAMP via TAM.
- * 
+ *
  * 'Thin' refers to credential management aspect, like forgot password, reset account, etc...
  * these features remains on the MyAMP main web application.
- * 
- * Prerequisite: Experience must be in the same domain as MyAMP for this component to work 
+ *
+ * Prerequisite: Experience must be in the same domain as MyAMP for this component to work
  * (i.e. In Production the DDC experience must have a domain of https://secure.amp.com.au/ddc/XYZ)
- * 
+ *
  * Example login:-
  *  PRF:  208715776061
- * 
+ *
  * Assumptions:-
  * Form Definition
  *   {
@@ -50,8 +54,8 @@ import {
  *       }
  *   }
  *
- * 
- * 
+ *
+ *
  */
 @Component({
     selector        : 'my-amplogin-block',
@@ -59,9 +63,10 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [require ( './my-amplogin-block.component.scss' )]
 })
-export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
+export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , OnInit {
+    public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
     private errorCode : String = null;
-
+    private loginResultControl :FormControl;
     constructor(
         formModelService : FormModelService,
         elementRef : ElementRef,
@@ -74,6 +79,17 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
         super( formModelService, elementRef, _cd, progressObserver, scrollService );
     }
 
+
+    public ngOnInit () {
+        if( this.__controlGroup.contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )){
+            this.loginResultControl =
+                <FormControl> this.__controlGroup.get(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME);
+        }else{
+            this.loginResultControl = new FormControl();
+            this.__controlGroup
+                .addControl(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME , this.loginResultControl);
+        }
+    }
     public ngOnDestroy () {
         super.ngOnDestroy();
 
@@ -172,11 +188,12 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy {
 
     private onLoginSuccess () {
         // TODO: Maybe trigger the prepopulation api based on the scvId we get back from TAM
-
+        this.loginResultControl.setValue(Constants.loginSuccess);
         this.removeLoginAndProceed();
     }
 
     private onLoginFail (errorCode? : String) {
+        this.loginResultControl.setValue(Constants.loginFailed);
         this.errorCode = errorCode;
         if (!errorCode) {
             this.errorCode = 'default';

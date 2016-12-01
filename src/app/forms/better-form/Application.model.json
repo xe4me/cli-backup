@@ -1,7 +1,10 @@
 {
     "Application": {
         "Welcome": {
-            "NewOrExisting": null
+            "NewOrExistingCustomer": null
+        },
+        "NewOrContinueApplicationBlock": {
+            "NewOrContinueApplication": null
         },
         "SingleOrJoint": {
             "SingleOrJoint": null
