@@ -1,35 +1,33 @@
 .btn-ok-margin-top {
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 .summary-state {
-    @include amp-family($summary-state-font-family);
-    color: $amp-colour-sky-blue;
-    font-weight: $summary-state-font-weight;
-    vertical-align: bottom;
-    line-height: 43px;
-    font-size: $ddc-input-field-font-size;
+  @include amp-family($summary-state-font-family);
+  color: $amp-colour-sky-blue;
+  font-weight: $summary-state-font-weight;
+  vertical-align: bottom;
+  line-height: 43px;
+  font-size: $ddc-input-field-font-size;
 }
 
 .calculated-total {
-    color: $amp-colour-sky-blue;
-}
-
-.bolr-right-padding {
-    padding-right: $bolr-right-padding;
-}
-
-.bolr-left-margin {
-    margin-left: $bolr-left-margin;
+  color: $amp-colour-sky-blue;
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.icon--close {
+  &:before {
+    margin-left: -5px;
+  }
 }

@@ -10,16 +10,15 @@
                         [id]="'input'"
                         [label]="'Default input'"
                         [required]="true"
-                        [controlGroup]="defaultControlGroup">
+                        [controlGroup]="controlGroup">
                 </amp-input>
             </div>
         </amp-form-row>
-        <amp-error [controlGroup]="defaultControlGroup"></amp-error>
     </section>
 
     <section class="section ph pv">
 
-        <h2>Currency</h2>
+        <h2>Currency <small>(with max length of "12" and min length of "4")</small></h2>
         isvalid: {{ control.valid }}
         <br/>
         <amp-form-row>
@@ -28,7 +27,7 @@
                         [attr.theme]="themeService.theme.attr"
                         [id]="'currency'"
                         [label]="'Amount'"
-                        [controlGroup]="currencyControlGroup"
+                        [controlGroup]="controlGroup"
                         [required]="true"
                         [pattern]="'^([0-9])*$'"
                         [maxLength]="'12'"
@@ -37,12 +36,11 @@
                 </amp-input>
             </div>
         </amp-form-row>
-        <amp-error [controlGroup]="currencyControlGroup"></amp-error>
     </section>
 
     <section class="section ph pv">
 
-        <h2>Number</h2>
+        <h2>Number <small>(with max length of "12" and min length of "4"</small></h2>
 
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
@@ -52,64 +50,61 @@
                         [attr.theme]="themeService.theme.attr"
                         [id]="'number'"
                         [label]="'Number'"
-                        [controlGroup]="NumberControlGroup"
+                        [controlGroup]="controlGroup"
                         [required]="true"
                         [maxLength]="'12'"
                         [minLength]="'4'">
                 </amp-input>
             </div>
         </amp-form-row>
-        <amp-error [controlGroup]="NumberControlGroup"></amp-error>
     </section>
 
     <section class="section ph pv">
 
-        <h2>Date <small>(with min date)</small></h2>
+        <h2>Date <small>(with min date of "today")</small></h2>
 
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
                         [id]="'minDate'"
                         [label]="'Date'"
-                        [controlGroup]="minDateControlGroup"
+                        [controlGroup]="controlGroup"
                         [required]="true"
                         [valDate]="true"
                         [minDate]="'today'">
                 </amp-input>
             </div>
         </amp-form-row>
-        <amp-error [controlGroup]="minDateControlGroup"></amp-error>
     </section>
 
     <section class="section ph pv">
 
-        <h2>Date <small>(with max date)</small></h2>
+        <h2>Date <small>(with max date of "today")</small></h2>
 
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
                         [id]="'maxDate'"
                         [label]="'Date'"
-                        [controlGroup]="maxDateControlGroup"
+                        [controlGroup]="controlGroup"
                         [required]="true"
                         [valDate]="true"
                         [maxDate]="'today'">
                 </amp-input>
             </div>
         </amp-form-row>
-        <amp-error [controlGroup]="maxDateControlGroup"></amp-error>
     </section>
 
     <section class="section ph pv">
 
-        <h2>Date of birth <small>(with min/max age)</small></h2>
+        <h2>Date of birth <small>(with min age of "18" and max age of "100" )</small></h2>
 
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
                         [id]="'dob'"
                         [label]="'Date of birth'"
-                        [controlGroup]="dobControlGroup"
+                        [controlGroup]="controlGroup"
                         [required]="true"
                         [valDate]="true"
                         [minAge]="18"
@@ -117,7 +112,6 @@
                 </amp-input>
             </div>
         </amp-form-row>
-        <amp-error [controlGroup]="dobControlGroup"></amp-error>
     </section>
 
 </form>

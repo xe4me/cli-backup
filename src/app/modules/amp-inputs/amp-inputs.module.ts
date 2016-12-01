@@ -10,6 +10,7 @@ import { AmpPasswordComponent } from './components/amp-password/amp-password.com
 import { AmpMobileNumberComponent } from './components/amp-mobile-number/amp-mobile-number.component';
 import { AmpWorkNumberComponent } from './components/amp-work-number/amp-work-number.component';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
+import { AmpErrorModule } from '../amp-error/amp-error.module';
 import { AmpAccountNumberComponent } from './components/amp-account-number/amp-account-number.component';
 import { AmpTaxFileNumberComponent } from './components/amp-tax-file-number/amp-tax-file-number.component';
 
@@ -30,6 +31,7 @@ const DECLARATIONS = [
     declarations : DECLARATIONS ,
     imports      : [
         AmpSharedRootModule ,
+        AmpErrorModule ,
         MdInputModule
     ] ,
     exports      : DECLARATIONS

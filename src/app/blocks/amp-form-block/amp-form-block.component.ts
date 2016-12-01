@@ -1,5 +1,4 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { AmpErrorComponent } from '../../modules/amp-error';
 import { AmpButton } from '../../components/amp-button/amp-button.component';
 import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.component';
 @Component( {
@@ -13,9 +12,6 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
             <amp-overlay [active]='!context?.isActive' *ngIf="withOverlay"></amp-overlay>
             <h2 class="heading heading-intro {{ headingClass }}" [innerHtml]="context?.__custom.blockTitle"></h2>
             <ng-content></ng-content>
-             <div *ngIf="!noError">
-                <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
-             </div>
              <div class="block-buttons mt-60 " *ngIf="withOkButton">
                  <amp-button
                     [context]="context"
@@ -37,12 +33,11 @@ import { AmpOverlayComponent } from '../../components/amp-overlay/amp-overlay.co
             <div class='hr-block-divider'></div>
         </div>
     ` ,
-    directives : [ AmpButton , AmpErrorComponent , AmpOverlayComponent ] ,
+    directives : [ AmpButton , AmpOverlayComponent ] ,
     styles     : [ require( './amp-form-block.component.scss' ).toString() ]
 } )
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
-    @Input( 'noError' ) noError;
     @Input( 'withOkButton' ) withOkButton          = true;
     @Input( 'withOverlay' ) withOverlay            = true;
     @Input( 'theme' ) theme;
