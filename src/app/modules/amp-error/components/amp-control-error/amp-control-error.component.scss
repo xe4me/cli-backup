@@ -3,11 +3,12 @@
 @import './themes/theme-tools';
 
 :host {
-  display: block;
-  position: relative;
+    display: block;
+    position: relative;
 }
+
 .error-item {
-  &:nth-of-type(n+2) {
-    margin-top: 15px;
-  }
+    &:nth-of-type(n+2) {
+        margin-top: 15px;
+    }
 }

@@ -1,6 +1,5 @@
 <form #formModel='ngForm' class='nl-form p'>
     <div>
-        <button (click)="check()">Check / Uncheck</button>
         <amp-checkbox
                 [attr.theme]="themeService.theme.attr"
                 [isInSummaryState]='isInSummaryState'
@@ -29,13 +28,18 @@
             checked , should be valid
         </p>
 
-        <button (click)='isInSummaryState=!isInSummaryState'>Toggle Summary mode {{ isInSummaryState }}</button>
-        <br>
-        <button (click)='acknowledge.checked=!acknowledge.checked'>Toggle Checked {{ acknowledge.checked}}</button>
-        <br>
-        <button (click)='acknowledge.disabled=!acknowledge.disabled'>Toggle Disabled {{ acknowledge.disabled }}</button>
-        <br>
-        <button (click)='acknowledge.required=!acknowledge.required'>Toggle Required {{ acknowledge.required }}</button>
-        <br>
+        <amp-button class="btn btn-ok" (click)='isInSummaryState=!isInSummaryState'>Toggle Summary mode {{
+            isInSummaryState }}
+        </amp-button>
+        <amp-button class="btn btn-ok" (click)='acknowledge.checked=!acknowledge.checked'>Toggle Checked {{
+            acknowledge.checked}}
+        </amp-button>
+        <amp-button class="btn btn-ok" (click)='acknowledge.disabled=!acknowledge.disabled'>Toggle Disabled {{
+            acknowledge.disabled }}
+        </amp-button>
+        <amp-button class="btn btn-ok" (click)='acknowledge.required=!acknowledge.required'>Toggle Required {{
+            acknowledge.required }}
+        </amp-button>
+        <amp-button class="btn btn-ok" (click)="check()">Check / Uncheck</amp-button>
     </div>
 </form>
