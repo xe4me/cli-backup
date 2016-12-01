@@ -1,0 +1,185 @@
+[
+    {
+        "request": {
+            "url": "/customer/customer-details",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "meta": {
+                    "url": "/ddc/secure/api/customer/customer-details",
+                    "method": "GET",
+                    "responseTimeMs": 718
+                },
+                "payload": {
+                    "title": "Mr.",
+                    "givenName": "Utirv",
+                    "firstMiddleName": "Btrapubly",
+                    "familyName": "Rbpkaqvff",
+                    "genderType": "M",
+                    "birthDate": "1949-09-24",
+                    "contactDetails": {
+                        "businessAddress": {
+                            "scrubbedAddressIndicator": true,
+                            "addressId": "793543928346847101",
+                            "suburbName": "South Turramurra",
+                            "cityName": "Not Available",
+                            "stateCode": "NSW",
+                            "countryCode": "9",
+                            "country": "Australia",
+                            "postcode": "2074",
+                            "addressLine1": "10 Balmaringa Ave"
+                        },
+                        "postalAddress": {
+                            "scrubbedAddressIndicator": true,
+                            "addressId": "132843949186341001",
+                            "suburbName": "S Turramurra",
+                            "cityName": "Not Available",
+                            "stateCode": "NSW",
+                            "countryCode": "9",
+                            "country": "Australia",
+                            "postcode": "2074",
+                            "addressLine1": "10 Balmaringa Ave"
+                        },
+                        "emailAddress": "XBIL_B_FAPXLVE@BCX.RDC.BI",
+                        "workPhone": "02 94030714",
+                        "homePhone": "02 94030714",
+                        "mobilePhone": "0411245314"
+                    },
+                    "contracts": [
+                        {
+                            "productSystemCode": "U2",
+                            "productCode": "FPL",
+                            "productName": "AMP Flexible Super - Retirement account",
+                            "contractComponents": [
+                                {
+                                    "contractComponentType": "ContractAddress",
+                                    "contractLocationUsage": "Contract Correspondence Address",
+                                    "wrongContractLocationIndicator": false,
+                                    "contractLocation": {
+                                        "scrubbedAddressIndicator": true,
+                                        "addressId": "793543928346847101",
+                                        "suburbName": "South Turramurra",
+                                        "cityName": "Not Available",
+                                        "stateCode": "NSW",
+                                        "countryCode": "9",
+                                        "country": "Australia",
+                                        "postcode": "2074",
+                                        "addressLine1": "10 Balmaringa Ave"
+                                    }
+                                }
+                            ],
+                            "pasContractId": "M946634485",
+                            "displayContractId": "946634485"
+                        },
+                        {
+                            "productSystemCode": "BK",
+                            "productCode": "5000",
+                            "productName": "Flexible Loan Account",
+                            "contractComponents": [
+                                {
+                                    "contractComponentType": "ContractAddress",
+                                    "contractLocationUsage": "Contract Correspondence Address",
+                                    "wrongContractLocationIndicator": false,
+                                    "contractLocation": {
+                                        "scrubbedAddressIndicator": true,
+                                        "addressId": "793543928346847101",
+                                        "suburbName": "South Turramurra",
+                                        "cityName": "Not Available",
+                                        "stateCode": "NSW",
+                                        "countryCode": "9",
+                                        "country": "Australia",
+                                        "postcode": "2074",
+                                        "addressLine1": "10 Balmaringa Ave"
+                                    }
+                                }
+                            ],
+                            "pasContractId": "018611400",
+                            "displayContractId": "018611400"
+                        },
+                        {
+                            "productSystemCode": "BK",
+                            "productCode": "1253",
+                            "productName": "AMP FIRST",
+                            "contractComponents": [
+                                {
+                                    "contractComponentType": "ContractAddress",
+                                    "contractLocationUsage": "Contract Correspondence Address",
+                                    "wrongContractLocationIndicator": false,
+                                    "contractLocation": {
+                                        "scrubbedAddressIndicator": true,
+                                        "addressId": "132843949186341001",
+                                        "suburbName": "S Turramurra",
+                                        "cityName": "Not Available",
+                                        "stateCode": "NSW",
+                                        "countryCode": "9",
+                                        "country": "Australia",
+                                        "postcode": "2074",
+                                        "addressLine1": "10 Balmaringa Ave"
+                                    }
+                                }
+                            ],
+                            "pasContractId": "559334420",
+                            "displayContractId": "559334420"
+                        },
+                        {
+                            "productSystemCode": "BK",
+                            "productCode": "3010",
+                            "productName": "All Options Variable Rate - Principal & Interest",
+                            "contractComponents": [
+                                {
+                                    "contractComponentType": "ContractAddress",
+                                    "contractLocationUsage": "Contract Correspondence Address",
+                                    "wrongContractLocationIndicator": false,
+                                    "contractLocation": {
+                                        "scrubbedAddressIndicator": true,
+                                        "addressId": "793543928346847101",
+                                        "suburbName": "South Turramurra",
+                                        "cityName": "Not Available",
+                                        "stateCode": "NSW",
+                                        "countryCode": "9",
+                                        "country": "Australia",
+                                        "postcode": "2074",
+                                        "addressLine1": "10 Balmaringa Ave"
+                                    }
+                                }
+                            ],
+                            "pasContractId": "018609800",
+                            "displayContractId": "018609800"
+                        },
+                        {
+                            "productSystemCode": "SH",
+                            "productCode": "AMPSHARES",
+                            "contractComponents": [
+                                {
+                                    "contractComponentType": "ContractAddress",
+                                    "contractLocationUsage": "Contract Correspondence Address",
+                                    "wrongContractLocationIndicator": false,
+                                    "contractLocation": {
+                                        "scrubbedAddressIndicator": true,
+                                        "addressId": "793543928346847101",
+                                        "suburbName": "South Turramurra",
+                                        "cityName": "Not Available",
+                                        "stateCode": "NSW",
+                                        "countryCode": "9",
+                                        "country": "Australia",
+                                        "postcode": "2074",
+                                        "addressLine1": "10 Balmaringa Ave"
+                                    }
+                                }
+                            ],
+                            "pasContractId": "8I514VXQ4IBMD0X9G4K02BGMMT0",
+                            "displayContractId": "8I514VXQ4IBMD0X9G4K02BGMMT0"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]
+
