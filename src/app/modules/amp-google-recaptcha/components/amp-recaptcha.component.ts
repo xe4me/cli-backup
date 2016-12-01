@@ -55,7 +55,7 @@ export class AmpReCaptchaComponent implements OnInit {
     @ViewChild('recaptchaId') recaptchaRef : ElementRef;
     widgetId : any = null;
 
-    private recaptchControlGroup : FormGroup;
+    private recaptchaControlGroup : FormGroup;
     private myScriptLoaded : Subscription;
 
     constructor(
@@ -97,19 +97,22 @@ export class AmpReCaptchaComponent implements OnInit {
     }
 
     private createRecaptchaControlGroup() {
-        return new FormGroup({ verificationStatus: new FormControl(null, Validators.required) });
+        return new FormGroup({
+            verificationStatus: new FormControl(null, Validators.required),
+            verificationToken: new FormControl(null, Validators.required)
+        });
     }
 
     private createControls() {
         if (this.controlGroup) {
             if (this.controlGroup.contains(this.id)) {
-                this.recaptchControlGroup = <FormGroup> this.controlGroup.get(this.id);
+                this.recaptchaControlGroup = <FormGroup> this.controlGroup.get(this.id);
             } else {
-                this.recaptchControlGroup = this.createRecaptchaControlGroup();
-                this.controlGroup.addControl(this.id, this.recaptchControlGroup);
+                this.recaptchaControlGroup = this.createRecaptchaControlGroup();
+                this.controlGroup.addControl(this.id, this.recaptchaControlGroup);
             }
         } else {
-            this.recaptchControlGroup = this.createRecaptchaControlGroup();
+            this.recaptchaControlGroup = this.createRecaptchaControlGroup();
         }
     }
 
@@ -129,7 +132,8 @@ export class AmpReCaptchaComponent implements OnInit {
 
     private recaptchaCallback(response : string) {
         let success = response != null && response.length ? true : false;
-        this.recaptchControlGroup.controls['verificationStatus'].setValue(success ? 'verified' : '');
+        this.recaptchaControlGroup.controls['verificationStatus'].setValue(success ? 'verified' : '');
+        this.recaptchaControlGroup.controls['verificationToken'].setValue(response);
         this.captchaResponse.emit({
             success : success,
             token : response,
@@ -137,12 +141,19 @@ export class AmpReCaptchaComponent implements OnInit {
         });
         // Mark control group as touched only when user has completed the captcha challenge.
         // Pagesection container will have class 'visited' when a control group in it is marked as touched. Standalone navigation menu will become highlighted. 
-        this.recaptchControlGroup.markAsTouched();
+        this.recaptchaControlGroup.markAsTouched();
         this._cd.markForCheck();
     }
 
     private recaptchaExpiredCallback() {
-        this.recaptchControlGroup.controls['verificationStatus'].setValue(null);
+        if (this.controlGroup && this.id) {
+            if (!this.keepControl || this.recaptchaControlGroup.controls['verificationStatus'].value !== 'verified') {
+                this.recaptchaControlGroup.controls['verificationStatus'].setValue(null);
+            }
+        }
+        else {
+            this.recaptchaControlGroup.controls['verificationStatus'].setValue(null);
+        }
         this.captchaExpired.emit();
     }
 }
