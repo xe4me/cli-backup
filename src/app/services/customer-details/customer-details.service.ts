@@ -42,7 +42,7 @@ export class CustomerDetailsService {
     }
 
     public fetchCustomerDetails () : Observable<any> {
-        let headers = new Headers( { 
+        let headers = new Headers( {
             'Content-Type': 'application/json',
             'caller'       : Environments.property.experienceName || 'components'
         } );
