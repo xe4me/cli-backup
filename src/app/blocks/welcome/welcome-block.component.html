@@ -4,18 +4,13 @@
         <h3 class="intro-message-heading heading heading-intro">Welcome <span class="heading-intro-light">to the smarter way to manage your money</span>
         </h3>
         <div class="mb palm-mt- intro-block-button-container">
-            <amp-button (click)="onNewOrExisting('new')"
+            <amp-button (click)="onNewOrExisting(Constants.newCustomer)"
                         class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/2 tablet-and-up-mr">
-                New application
+                I'm new here
             </amp-button>
-            <!-- Commented out as requested -->
-            <amp-button (click)="onNewOrExisting('existing')" theme="tools"
+            <amp-button (click)="onNewOrExisting(Constants.existingCustomer)"
                         class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
-                Continue application
-            </amp-button>
-
-            <amp-button (click)="onMyAMPLogin()" class="btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/1 tablet-and-up-mr">
-                Login to MyAMP
+                Already with AMP
             </amp-button>
         </div>
         <div class="intro-list-container">

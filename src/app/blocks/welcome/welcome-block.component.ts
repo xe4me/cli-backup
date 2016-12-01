@@ -19,6 +19,7 @@ import {
     AmpIntroBlockComponent
 } from 'amp-ddc-components';
 import { ViewChild } from '@angular/core';
+import { Constants } from '../../shared';
 import { FDN } from '../../forms/better-form/Application.fdn';
 @Component( {
     selector        : 'welcome-block' ,
@@ -29,8 +30,8 @@ import { FDN } from '../../forms/better-form/Application.fdn';
 export class WelcomeBlockComponent extends FormBlock implements OnInit {
     @ViewChild( AmpIntroBlockComponent ) public ampIntro;
     private nextBlockChanged : boolean = false;
-    private newOrExistingControl : FormControl;
-
+    private newOrExistingCustomerControl : FormControl;
+    private Constants = Constants;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -41,24 +42,28 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup
-            .addControl( this.__custom.controls[ 0 ].id , new FormControl( null , Validators.required ) );
-        this.newOrExistingControl = <FormControl> this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+        if ( this.__controlGroup.contains( this.__custom.controls[ 0 ].id )){
+            this.newOrExistingCustomerControl = <FormControl> this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+        }else{
+            this.newOrExistingCustomerControl = new FormControl( null , Validators.required );
+            this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, this.newOrExistingCustomerControl );
+        }
     }
 
-    private onNewOrExisting ( newOrExisting : string ) {
-        this.newOrExistingControl.setValue( newOrExisting );
-        this.newOrExistingControl.markAsTouched();
+
+    private onNewOrExisting ( newOrExistingCustomer : string ) {
+        this.newOrExistingCustomerControl.setValue( newOrExistingCustomer );
+        this.newOrExistingCustomerControl.markAsTouched();
         if ( this.nextBlockChanged ) {
             this.__removeNext( this.viewReference );
             this.nextBlockChanged = false;
         }
-        if ( newOrExisting === 'existing' ) {
+        if ( newOrExistingCustomer === Constants.existingCustomer ) {
             this.__loadNext( this.__custom.optionalBlocks[ 0 ] , this.viewReference )
                 .then( () => {
                     this.ampIntro.proceed()
                         .then( () => {
-                            this.onNext();
+                            this.fireMockScrolledEvent([ 'Application' , 'MyAMPLoginBlock' ]);
                         } );
                 } );
             this.nextBlockChanged = true;
@@ -67,31 +72,13 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
 
         this.ampIntro.proceed()
             .then( () => {
-                this.fireMockScrolledEvent();
+                this.fireMockScrolledEvent(FDN.NewOrContinueApplicationBlock);
             } );
     }
 
-    private onMyAMPLogin () {
-        // TODO: Not sure if this is the correct entry point, only have a 2 min chat with Cheryl.
-        // As per above, hack the newOrExistingControl
-        const newOrExistingControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        newOrExistingControl.setValue( 'hackingTheWelcomeBlock' );
-        newOrExistingControl.markAsTouched();
-
-        this.__loadNext( this.__custom.optionalBlocks[ 1 ] , this.viewReference )
-            .then( () => {
-                this.ampIntro.proceed()
-                    .then( () => {
-                        this.onNext();
-                    } );
-            } );
-        this.nextBlockChanged = true;
-        return;
-    }
-
-    private fireMockScrolledEvent () {
+    private fireMockScrolledEvent (fdn) {
         this.scrollService.$scrolled.emit( {
-            componentSelector : [ ...FDN.SingleOrJoint , 'block' ].join( '-' ) ,
+            componentSelector : [ ...fdn, 'block' ].join( '-' ) ,
             section           : null
         } );
 

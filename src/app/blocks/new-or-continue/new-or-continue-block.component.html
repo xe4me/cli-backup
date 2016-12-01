@@ -1,0 +1,16 @@
+<amp-form-block [context]="context()" [withOkButton]="false">
+    <amp-button
+            theme="tools"
+            [context]="context()"
+            class="btn btn-ok palm-1/1 1/4 tablet-1/1 palm-mr0 mr"
+            (click)="onNewOrContinue(newApplicationKey)">
+        New application
+    </amp-button>
+    <amp-button
+            theme="tools"
+            [context]="context()"
+            class="btn btn-ok palm-1/1 1/4 tablet-1/1 "
+            (click)="onNewOrContinue(continueApplicationKey)">
+        Continue application
+    </amp-button>
+</amp-form-block>
