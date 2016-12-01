@@ -114,7 +114,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     }
 
     private prepopCustomerDetails () {
-        let isLoggedIn = true; // Default assumption is that we are not logged in.
+        let isLoggedIn = false; // Default assumption is that we are not logged in.
                                 // TODO: This will have to change if we start the journey from 
                                 //       MyAMP and never went thru myAMPLoginBlock
         // Lets check the myAMPLoginBlock loginResult
@@ -122,7 +122,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             .contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )) {
             let loginResultControl = <FormControl> this.__form.get(
                 FDN.MyAMPLoginBlock.concat(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME));
-            isLoggedIn = Constants.loginSuccess === loginResultControl.value();
+            isLoggedIn = Constants.loginSuccess === loginResultControl.value;
         }
         if (isLoggedIn) {
             // Trigger the prepopulation from CMDM
