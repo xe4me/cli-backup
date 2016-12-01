@@ -14,7 +14,7 @@ amp-greenid-block #greenid-container {
     }
 
     #greenid-source-content {
-        border-top : none;
+        border-top : 0;
     }
 
     #greenid-source-list-container{
@@ -61,7 +61,7 @@ amp-greenid-block #greenid-container {
             color: $amp-colour-white;
         }
         border-radius : 0;
-        border: none;
+        border: 0;
         color: $amp-colour-white;
         &.btn-primary {
             min-height : 58px;

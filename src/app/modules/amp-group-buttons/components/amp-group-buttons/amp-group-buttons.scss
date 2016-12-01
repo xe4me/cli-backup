@@ -75,7 +75,7 @@ $switch-disabled-selected-background-color : $amp-colour-grey-darkest;
         display       : table-cell;
         margin-left   : -2px;
         &:nth-child(n+1) label {
-            border-left : none;
+            border-left : 0;
         }
         &:first-child label {
             border-left : solid $switch-border-color $switch-border-width;

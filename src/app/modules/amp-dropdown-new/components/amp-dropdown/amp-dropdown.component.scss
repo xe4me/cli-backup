@@ -113,7 +113,7 @@ $dropdown-chev-disabled-color                  : $amp-colour-grey-darkest;
 .amp-dropdown-options-container {
     background             : $dropdown-options-container-background-color;
     border                 : $dropdown-options-container-border;
-    border-top             : none;
+    border-top             : 0;
     font-size              : $dropdown-option-font-size;
     opacity                : 1;
     overflow-x             : hidden;
@@ -177,6 +177,6 @@ $dropdown-chev-disabled-color                  : $amp-colour-grey-darkest;
         background : $dropdown-option-selected-background-color;
     }
     &:first-child {
-        border-top : none;
+        border-top : 0;
     }
 }
