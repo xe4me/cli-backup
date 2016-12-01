@@ -157,6 +157,8 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
         this.errorCode = null;
 
         this.removeLoginFrameListener();
+        this.__controlGroup.markAsTouched();
+        
     }
 
     private submitCallback : Function = (event) => {
