@@ -123,7 +123,6 @@ describe( 'Store Service' , function() {
                     };
                     storeService.select( fdn ).subscribe( ( contactNumber ) => {
                         if ( updated ) {
-                            console.log( '********* called' , called );
                             called ++;
                             expect( contactNumber ).toEqual( payload.query );
                             expect( called ).toBe( 1 );
