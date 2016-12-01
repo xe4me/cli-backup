@@ -42,7 +42,10 @@ export class CustomerDetailsService {
     }
 
     public fetchCustomerDetails () : Observable<any> {
-        let headers = new Headers( { 'Content-Type': 'application/json' } );
+        let headers = new Headers( {
+            'Content-Type': 'application/json',
+            'caller'       : Environments.property.experienceName || 'components'
+        } );
         let options = new RequestOptions( { headers: headers , body: '' } );
         return this.http.get( this.apiCustomerUrl , options )
                         .map( (res) => res.json() );
