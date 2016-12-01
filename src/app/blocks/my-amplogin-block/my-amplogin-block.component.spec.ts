@@ -151,7 +151,7 @@ describe( 'Component: MyAMPLoginBlock' , () => {
             let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
             let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            spyOn(myAMPLoginBlockComponent, 'cleanUp').and.callThrough();
+            spyOn(myAMPLoginBlockComponent, 'cleanUp').and.returnValue(true);
             spyOn(FormBlock.prototype, 'onNext').and.returnValue(true);
 
             myAMPLoginBlockComponent.removeLoginAndProceed();
