@@ -78,7 +78,7 @@ rules:
         convention: hyphenatedlowercase
 
     # Style Guide
-    border-zero: 0 # Should be turned into Error
+    border-zero: 2
     brace-style: 2
     clean-import-paths: 0 # Should be turned into Error
     empty-args: 0 # Should be turned into Error
