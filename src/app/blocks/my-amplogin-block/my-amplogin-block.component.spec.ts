@@ -151,7 +151,7 @@ describe( 'Component: MyAMPLoginBlock' , () => {
             let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
             let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            spyOn(myAMPLoginBlockComponent, 'cleanUp').and.callThrough();
+            spyOn(myAMPLoginBlockComponent, 'cleanUp').and.returnValue(true);
             spyOn(FormBlock.prototype, 'onNext').and.returnValue(true);
 
             myAMPLoginBlockComponent.removeLoginAndProceed();
@@ -203,9 +203,6 @@ describe( 'Component: MyAMPLoginBlock' , () => {
             let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
             let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            // Check listener is null
-            expect(myAMPLoginBlockComponent['myAmpLoginFrameListenFunc']).toBeUndefined();
-
             spyOn(myAMPLoginBlockComponent, 'canGoNext').and.returnValue(true);
 
             myAMPLoginBlockComponent['__controlGroup'] = new FormGroup({
@@ -226,14 +223,14 @@ describe( 'Component: MyAMPLoginBlock' , () => {
             expect(window.frames.length).toBe(1);
 
             // Check listener is not null
-            expect(myAMPLoginBlockComponent['myAmpLoginFrameListenFunc']).not.toBeUndefined();
-            spyOn(myAMPLoginBlockComponent, 'myAmpLoginFrameListenFunc').and.callThrough();
+            expect(myAMPLoginBlockComponent['removeLoginFrameListener']).not.toBeUndefined();
+            spyOn(myAMPLoginBlockComponent, 'removeLoginFrameListener').and.callThrough();
 
             // Invoke the destroy
             myAMPLoginBlockComponent.ngOnDestroy();
 
             // Check remove listener func is invoked
-            expect(myAMPLoginBlockComponent['myAmpLoginFrameListenFunc']).toHaveBeenCalled();
+            expect(myAMPLoginBlockComponent['removeLoginFrameListener']).toHaveBeenCalled();
         } ));
     });
 } );
