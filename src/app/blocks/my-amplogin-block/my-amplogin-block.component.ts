@@ -66,6 +66,7 @@ import {
 export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , OnInit {
     public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
     private errorCode : String = null;
+    private hideThisBlock = false;
     private loginResultControl : FormControl;
     constructor(
         formModelService : FormModelService,
@@ -158,7 +159,8 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
 
         this.removeLoginFrameListener();
         this.__controlGroup.markAsTouched();
-        
+
+        this.hideThisBlock = true;
     }
 
     private submitCallback : Function = (event) => {

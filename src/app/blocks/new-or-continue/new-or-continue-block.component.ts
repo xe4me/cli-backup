@@ -33,6 +33,7 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
     private newApplicationKey : string = Constants.newApplication;
     private continueApplicationKey : string = Constants.existingApplication;
     private nextBlockChanged = false;
+    private hideThisBlock = false;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -66,6 +67,7 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
         this.addOrRemoveContinueSection( newOrContinue ).then((actualComponent) => {
             setTimeout(() => {
                 this.onNext();
+                this.hideThisBlock = true;
             }, 0);
         });
     }
