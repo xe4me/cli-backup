@@ -1,10 +1,31 @@
 @import '../../../styles/abstracts';
+
 .container {
-    .referenceNo {
-        font-weight: 400;
-    }
     margin-left: 210px;
     @include media-query(tablet-and-down) {
         margin-left: 0;
+    }
+    h1 {
+        margin-top: 90px;
+    }
+    @include media-query(palm) {
+        h1 {
+            margin-top: 40px;
+        }
+    }
+    .referenceNo {
+        font-weight: 600;
+    }
+    .content {
+        font-size: $font-size-small;
+        line-height: 30px;
+    }
+    .heading {
+        &.heading-intro {
+            margin-top: 80px;
+            @include media-query(palm) {
+                margin-top: 40px;
+            }
+        }
     }
 }
