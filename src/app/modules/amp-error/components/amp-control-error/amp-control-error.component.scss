@@ -12,3 +12,8 @@
         margin-top: 15px;
     }
 }
+.icon--close {
+    &:before {
+        margin-left: -2px;
+    }
+}
