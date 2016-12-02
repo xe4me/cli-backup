@@ -43,6 +43,7 @@ import {
 import { AmpDropdownNewModule } from 'amp-ddc-components/src/app/modules/amp-dropdown-new';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
+import { Bett3rBannerBlock } from './blocks/bett3r-banner/bett3r-banner.component';
 import { NormalAccountPage } from './pages/confirmation/normal-account-page';
 import {
     PostnoneSingleAccountPage
@@ -50,6 +51,9 @@ import {
 import {
     PostnoneJointAccountPage
 } from './pages/confirmationWithConditionJoint/postnone-account-page';
+import {
+    TransitioningAccountPage
+} from './pages/confirmationFromTransitioning/transitioning-account-page';
 import {
     SaveConfirmationPage
 } from './pages/saveConfirmation/save-confirmation-page';
@@ -83,6 +87,7 @@ const DECLARATIONS    = [
     AmpLoadingComponent ,
     StickySaveButton,
     AccountsListBlock,
+    Bett3rBannerBlock,
     Header,
     Footer
 ];
@@ -91,6 +96,7 @@ const routes : Routes = [
     { path : 'confirmation' , component : NormalAccountPage },
     { path : 'confirmationWithConditionSingle' , component : PostnoneSingleAccountPage },
     { path : 'confirmationWithConditionJoint' , component : PostnoneJointAccountPage },
+    { path : 'confirmationTransitioning' , component : TransitioningAccountPage },
     { path : 'submitError/:errorId', component : SubmitErrorPage },
     { path : 'requestsms/:referenceId/:mobileNumber' , component : RequestRefViaSMSPage },
     { path : 'saveConfirmation/:ref', component : SaveConfirmationPage}
