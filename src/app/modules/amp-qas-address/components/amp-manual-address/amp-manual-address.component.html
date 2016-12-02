@@ -6,42 +6,36 @@
         <amp-form-row>
             <div class='grid__item_floated 1/1'>
                 <amp-country
-                    [keepControl]='keepControl'
-                    class="1/2 palm-1/1 utils__display--block-palm"
-                    (selected)='onCountrySelect($event)'
-                    #manualCountryCmp
-                    [id]='country.id'
-                    [index]='index'
-                    [required]='required'
-                    [controlGroup]='manualAddressCG'>
+                        [keepControl]='keepControl'
+                        class="1/2 palm-1/1 utils__display--block-palm"
+                        (selected)='onCountrySelect($event)'
+                        #manualCountryCmp
+                        [id]='country.id'
+                        [index]='index'
+                        [required]='required'
+                        [controlGroup]='manualAddressCG'>
                     <template let-option="option">
                         {{ option.country }}
                     </template>
                 </amp-country>
-                <amp-error [controlGroup]='manualAddressCG'
-                           [controlId]="country.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
-
         <amp-form-row>
             <div class='grid__item_floated 1/1'>
                 <amp-input
-                    [keepControl]='keepControl'
-                    #manualAddressCmp
-                    class='1/1'
-                    noPadding='true'
-                    [id]='address.id'
-                    [label]='address.label'
-                    [index]='index'
-                    [controlGroup]='manualAddressCG'
-                    [required]='required'
-                    [errors]='address.errors'
-                    [maxLength]='address.maxLength'
-                    [minLength]='address.minLength'>
+                        [keepControl]='keepControl'
+                        #manualAddressCmp
+                        class='1/1'
+                        noPadding='true'
+                        [id]='address.id'
+                        [label]='address.label'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'
+                        [required]='required'
+                        [errors]='address.errors'
+                        [maxLength]='address.maxLength'
+                        [minLength]='address.minLength'>
                 </amp-input>
-
-                <amp-error [controlGroup]='manualAddressCG'
-                           [controlId]="address.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
 
@@ -49,22 +43,19 @@
             <amp-form-row>
                 <div class='grid__item_floated 1/1'>
                     <amp-input
-                        [keepControl]='keepControl'
-                        #manualSuburbCmp
-                        class='1/1'
-                        [id]='suburb.id'
-                        [label]='suburb.label'
-                        [index]='index'
-                        [controlGroup]='manualAddressCG'
-                        [pattern]='suburb.regex'
-                        [required]='required && isCountryAUS'
-                        [maxLength]='suburb.maxLength'
-                        [minLength]='suburb.minLength'
-                        [errors]='suburb.errors'>
+                            [keepControl]='keepControl'
+                            #manualSuburbCmp
+                            class='1/1'
+                            [id]='suburb.id'
+                            [label]='suburb.label'
+                            [index]='index'
+                            [controlGroup]='manualAddressCG'
+                            [pattern]='suburb.regex'
+                            [required]='required && isCountryAUS'
+                            [maxLength]='suburb.maxLength'
+                            [minLength]='suburb.minLength'
+                            [errors]='suburb.errors'>
                     </amp-input>
-
-                    <amp-error [controlGroup]='manualAddressCG'
-                               [controlId]="suburb.id+addDashOrNothing(index)"></amp-error>
                 </div>
             </amp-form-row>
         </div>
@@ -72,59 +63,52 @@
         <amp-form-row>
             <div class='grid__item_floated 1/1 palm-1/1' [hidden]='!isCountryAUS'>
                 <amp-states
-                    [keepControl]='keepControl'
-                    class="utils__display--block-tablet-and-down"
-                    #manualStatesCmp
-                    [id]='state.id'
-                    [index]='index'
-                    [errors]='state.errors'
-                    [required]='required && isCountryAUS'
-                    [controlGroup]='manualAddressCG'>
+                        [keepControl]='keepControl'
+                        class="utils__display--block-tablet-and-down"
+                        #manualStatesCmp
+                        [id]='state.id'
+                        [index]='index'
+                        [errors]='state.errors'
+                        [required]='required && isCountryAUS'
+                        [controlGroup]='manualAddressCG'>
                     <template let-option="option">
                         {{ option.value }}
                     </template>
                 </amp-states>
-
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="state.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
         <amp-form-row>
             <div class='grid__item_floated tablet-and-up-1/2' [hidden]='isCountryAUS'>
                 <amp-input
-                    [keepControl]='keepControl'
-                    #manualCityCmp
-                    [id]='city.id'
-                    [label]='getCityLabel()'
-                    [index]='index'
-                    [required]='required && !isCountryAUS'
-                    [maxLength]='city.maxLength'
-                    [errors]='city.errors'
-                    [minLength]="city.minLength"
-                    [controlGroup]='manualAddressCG'>
+                        [keepControl]='keepControl'
+                        #manualCityCmp
+                        [id]='city.id'
+                        [label]='getCityLabel()'
+                        [index]='index'
+                        [required]='required && !isCountryAUS'
+                        [maxLength]='city.maxLength'
+                        [errors]='city.errors'
+                        [minLength]="city.minLength"
+                        [controlGroup]='manualAddressCG'>
                 </amp-input>
-
-                <amp-error [controlGroup]='manualAddressCG' [controlId]="city.id+addDashOrNothing(index)"></amp-error>
             </div>
 
             <div class='grid__item_floated tablet-and-up-1/2'>
                 <amp-input
-                    [keepControl]='keepControl'
-                    #manualPostcodeCmp
-                    noPadding='true'
-                    class='1/1'
-                    [id]='postCode.id'
-                    [label]='postCode.label'
-                    [index]='index'
-                    [controlGroup]='manualAddressCG'
-                    [required]='required && (isCountryAUS || isCountryNZ)'
-                    [pattern]='getPostcodeRegex()'
-                    [maxLength]='getPostcodeMaxLength()'
-                    [errors]='postCode.errors'
-                    [minLength]="getPostcodeMinLength()">
+                        [keepControl]='keepControl'
+                        #manualPostcodeCmp
+                        noPadding='true'
+                        class='1/1'
+                        [id]='postCode.id'
+                        [label]='postCode.label'
+                        [index]='index'
+                        [controlGroup]='manualAddressCG'
+                        [required]='required && (isCountryAUS || isCountryNZ)'
+                        [pattern]='getPostcodeRegex()'
+                        [maxLength]='getPostcodeMaxLength()'
+                        [errors]='postCode.errors'
+                        [minLength]="getPostcodeMinLength()">
                 </amp-input>
-
-                <amp-error [controlGroup]='manualAddressCG'
-                           [controlId]="postCode.id+addDashOrNothing(index)"></amp-error>
             </div>
         </amp-form-row>
     </div>

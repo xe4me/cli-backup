@@ -50,4 +50,4 @@
         </li>
     </ul>
 </div>
-<amp-control-error [control]="control"></amp-control-error>
+<amp-control-error *ngIf="showErrorComponent" [control]="control"></amp-control-error>

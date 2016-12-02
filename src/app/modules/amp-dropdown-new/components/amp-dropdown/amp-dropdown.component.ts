@@ -42,6 +42,7 @@ export interface SelectActions {
         'fieldItemKey',
         'fieldValueKey',
         'isInSummaryState',
+        'showErrorComponent',
         'customValidator',
         'label',
         'required',
@@ -75,6 +76,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     protected LIST_FOCUSER : number = 1;
     protected selectedOption = {};
     protected _optionsHidden : boolean = true;
+    protected showErrorComponent : boolean = true;
     protected clearSearchTimeout;
     protected searchStr = '';
     private DO_NOT_FOCUS = false;

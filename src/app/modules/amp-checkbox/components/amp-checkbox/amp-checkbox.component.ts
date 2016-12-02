@@ -33,6 +33,7 @@ import { BaseControl } from '../../../../base-control';
         'index' ,
         'tabindex' ,
         'keepControl' ,
+        'showErrorComponent' ,
         'isInSummaryState'
     ] ,
     outputs         : [ 'select' ] ,
@@ -43,6 +44,7 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
     private _checked : boolean         = false;
     private _tabindex : number;
     private isInSummaryState : boolean = false;
+    private showErrorComponent : boolean = true;
     private scrollOutUnless : any;
     private scrollOutOn : any;
     /*
