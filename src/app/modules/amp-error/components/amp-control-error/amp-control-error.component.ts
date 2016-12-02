@@ -12,7 +12,7 @@ import { FormGroup } from '@angular/forms';
     },
     selector : 'amp-control-error',
     template : require( './amp-control-error.component.html' ),
-    styles : [ require( './amp-control-error.component.scss' ) ]
+    styles : [ require( './amp-control-error.component.scss' ).toString() ]
 } )
 export class AmpControlErrorComponent {
     @Input() control : FormGroup;
