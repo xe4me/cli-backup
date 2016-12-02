@@ -25,6 +25,7 @@ export class NotARobotBlock extends FormBlock {
     private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
     private showCaptchaBlock : boolean = true;
     private verified : boolean = false;
+    private keepControl : boolean = true;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
