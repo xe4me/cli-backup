@@ -1,4 +1,4 @@
-<amp-form-block [context]="context()" buttonsTheme="'tools'" [withOkButton]="false">
+<amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="'tools'" [withOkButton]="false">
     <div class="error-container" *ngIf="errorCode">
         <span class="error-icon"></span>
         <p class="error-body">{{ errorCode | i18nSelect: __custom.errorCodeMap }}</p>
