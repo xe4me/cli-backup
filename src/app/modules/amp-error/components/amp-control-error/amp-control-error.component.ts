@@ -1,4 +1,9 @@
-import { Component, ContentChild, TemplateRef, Input } from '@angular/core';
+import {
+    Component,
+    ContentChild,
+    TemplateRef,
+    Input
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component( {
@@ -7,7 +12,7 @@ import { FormGroup } from '@angular/forms';
     },
     selector : 'amp-control-error',
     template : require( './amp-control-error.component.html' ),
-    styles : [ require( './amp-control-error.component.scss' ).toString() ]
+    styles : [ require( './amp-control-error.component.scss' ) ]
 } )
 export class AmpControlErrorComponent {
     @Input() control : FormGroup;

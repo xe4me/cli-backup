@@ -1,4 +1,7 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import {
+    Component,
+    ChangeDetectorRef
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 import { AmpCurrencyPipe } from '../../../app/modules/amp-pipes/pipes/currency/amp-currency.pipe';

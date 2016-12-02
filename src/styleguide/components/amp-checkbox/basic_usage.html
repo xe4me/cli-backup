@@ -27,18 +27,17 @@
         <p>Note that if the control is requried and is not checked it should be invalid , but if is not required and not
             checked , should be valid
         </p>
-
-        <amp-button class="btn btn-ok" (click)='isInSummaryState=!isInSummaryState'>Toggle Summary mode {{
-            isInSummaryState }}
+        <amp-button class="btn btn-ok" (click)='isInSummaryState=!isInSummaryState'>
+            Toggle Summary mode {{ isInSummaryState }}
         </amp-button>
-        <amp-button class="btn btn-ok" (click)='acknowledge.checked=!acknowledge.checked'>Toggle Checked {{
-            acknowledge.checked}}
+        <amp-button class="btn btn-ok" (click)='acknowledge.checked=!acknowledge.checked'>
+            Toggle Checked {{ acknowledge.checked}}
         </amp-button>
-        <amp-button class="btn btn-ok" (click)='acknowledge.disabled=!acknowledge.disabled'>Toggle Disabled {{
-            acknowledge.disabled }}
+        <amp-button class="btn btn-ok" (click)='acknowledge.disabled=!acknowledge.disabled'>
+            Toggle Disabled {{ acknowledge.disabled }}
         </amp-button>
-        <amp-button class="btn btn-ok" (click)='acknowledge.required=!acknowledge.required'>Toggle Required {{
-            acknowledge.required }}
+        <amp-button class="btn btn-ok" (click)='acknowledge.required=!acknowledge.required'>
+            Toggle Required {{ acknowledge.required }}
         </amp-button>
         <amp-button class="btn btn-ok" (click)="check()">Check / Uncheck</amp-button>
     </div>
