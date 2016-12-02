@@ -2,28 +2,3 @@
 @import './abstracts';
 //All the components
 @import './components';
-
-$content-padding-h-lap-and-up: 44px;
-
-.first-steps-container {
-    margin: 0;
-    max-width: 1224px;
-    padding: 0 $content-padding-h;
-    @include media-query('lap-and-up') {
-        padding: 0 $content-padding-h-lap-and-up;
-    }
-    &--full-height {
-        position: relative;
-        height: 100vh;
-    }
-}
-
-amp-form-block.first-steps-container {
-    @include media-query('tablet-and-up') {
-        margin-left : 210px;
-        margin-top: 60px;
-    }
-    @include media-query('palm') {
-        margin-left: 20px;
-    }
-}

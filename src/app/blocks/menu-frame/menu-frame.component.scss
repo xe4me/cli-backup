@@ -1,45 +1,4 @@
 @import "../../../styles/abstracts";
-//
-// App Frame
-// --------------------------------
-// Content
-$content-left-width: 155px;
-$content-left-margin: 55px;
-$content-padding-h: 20px;
-$content-padding-h-lap-and-up: 44px;
-
-//
-// Todo List
-// --------------------------------
-.container {
-    margin: 0;
-    max-width: 1224px;
-    padding: 0 $content-padding-h;
-    @include media-query('lap-and-up') {
-        padding: 0 $content-padding-h-lap-and-up;
-    }
-    &--full-height {
-        position: relative;
-        height: 100vh;
-    }
-}
-.sidebar {
-    position: fixed;
-    width: $content-left-width;
-}
-.main {
-    display: block;
-    margin-left: $content-left-width + $content-left-margin;
-    @include media-query('palm') {
-        margin-left: 0;
-    }
-}
-.blocks-wrapper {
-    padding-top: $sticky-menu-margin-bottom;
-    @include media-query('palm') {
-        padding-top: $sticky-menu-margin-bottom/3;
-    }
-}
 
 :host /deep/ { // sass-lint: ignore
     amp-button {
