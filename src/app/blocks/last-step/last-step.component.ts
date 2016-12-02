@@ -79,7 +79,6 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
         this.isJointApplication = singleOrJoint === Constants.jointApplicant;
     }
 
-
     private submitForm() {
         if (this.__form.invalid) {
             // Scroll to the first invalid block
@@ -94,8 +93,7 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
             .subscribe((result) => {
                 this.submitInProgress = false;
                 if ( result.payload.resultStatus === 'SUCCESS' ) {
-                    // this.isBPMS = result.payload.caseType === 'BPMS';
-                    this.isBPMS = true;
+                    this.isBPMS = result.payload.caseType === 'BPMS';
                     if (this.isBPMS) {
                         this.router.navigate(['confirmationTransitioning']);
                     } else {
