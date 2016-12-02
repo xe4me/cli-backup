@@ -35,10 +35,10 @@ import { FDN } from '../../forms/better-form/Application.fdn';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
+    private static secondApplicantSectionIndex : number = 2;
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
-    private secondApplicantSectionIndex = 2;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
