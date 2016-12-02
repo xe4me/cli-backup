@@ -38,7 +38,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
-
+    private secondApplicantSectionIndex = 2;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -83,11 +83,11 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
         if ( ! this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
-            this.__loadNext( this.applicantGenerator.getApplicantSection( 2 ), this.viewContainerRef);
+            this.__loadAt( this.applicantGenerator.getApplicantSection( 2 ), this.secondApplicantSectionIndex);
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
-            this.__removeNext(this.viewContainerRef).then( () => {
+            this.__removeAt(this.secondApplicantSectionIndex).then( () => {
                 this.applicant2Added = false;
                 this.onNext();
             } );
