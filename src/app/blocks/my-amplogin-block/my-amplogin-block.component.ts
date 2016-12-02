@@ -66,7 +66,8 @@ import {
 export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , OnInit {
     public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
     private errorCode : String = null;
-    private loginResultControl :FormControl;
+    private hideThisBlock = false;
+    private loginResultControl : FormControl;
     constructor(
         formModelService : FormModelService,
         elementRef : ElementRef,
@@ -79,12 +80,11 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
         super( formModelService, elementRef, _cd, progressObserver, scrollService );
     }
 
-
     public ngOnInit () {
-        if( this.__controlGroup.contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )){
+        if ( this.__controlGroup.contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )) {
             this.loginResultControl =
                 <FormControl> this.__controlGroup.get(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME);
-        }else{
+        } else {
             this.loginResultControl = new FormControl();
             this.__controlGroup
                 .addControl(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME , this.loginResultControl);
@@ -158,6 +158,9 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
         this.errorCode = null;
 
         this.removeLoginFrameListener();
+        this.__controlGroup.markAsTouched();
+
+        this.hideThisBlock = true;
     }
 
     private submitCallback : Function = (event) => {
@@ -187,7 +190,6 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
     }
 
     private onLoginSuccess () {
-        // TODO: Maybe trigger the prepopulation api based on the scvId we get back from TAM
         this.loginResultControl.setValue(Constants.loginSuccess);
         this.removeLoginAndProceed();
     }

@@ -4,12 +4,6 @@ $border-color: $base-red;
 $font-color: $base-red;
 $header-color: #001E41;
 
-amp-form-block {
-    margin-left : 210px;
-    margin-top: 60px;
-}
-
-
 .error-container {
     @include amp-family($amp-font-open-sans-regular);
     color: $font-color;

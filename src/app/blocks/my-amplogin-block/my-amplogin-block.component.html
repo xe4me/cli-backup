@@ -1,54 +1,57 @@
-<amp-form-block [context]="context()" buttonsTheme="'tools'" [withOkButton]="false">
-    <div class="error-container" *ngIf="errorCode">
-        <span class="error-icon"></span>
-        <p class="error-body">{{ errorCode | i18nSelect: __custom.errorCodeMap }}</p>
+<div class="container" [hidden]="hideThisBlock">
+    <div class="main main--aside">
+        <amp-form-block [context]="context()" buttonsTheme="'tools'" [withOkButton]="false">
+            <div class="error-container" *ngIf="errorCode">
+                <span class="error-icon"></span>
+                <p class="error-body">{{ errorCode | i18nSelect: __custom.errorCodeMap }}</p>
+            </div>
+            <amp-form-row>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                    <amp-input
+                            [id]="__custom.controls[0].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="__custom.controls[0].label"
+                            [required]="true"
+                            [isInSummaryState]="isInSummaryState"
+                            [errors]="{'required' : __custom.controls[0].requiredMsg }">
+                    </amp-input>
+                </div>
+            </amp-form-row>
+            <amp-form-row>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                    <amp-input
+                            [id]="__custom.controls[1].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="__custom.controls[1].label"
+                            [required]="true"
+                            [isInSummaryState]="isInSummaryState"
+                            [type]="'password'"
+                            [errors]="{'required' : __custom.controls[1].requiredMsg }">
+                    </amp-input>
+                </div>
+            </amp-form-row>
+            <div class="mb mt palm-1/1 tablet-1/1 lap-and-up-3/12">
+                Forgot your <a href="/wps/portal/sec/ForgotUsername/" target="_blank">username</a> or <a href="/wps/portal/sec/ForgotPassword/" target="_blank">password</a>?
+            </div>
+            <div class="block-buttons mt+ palm-mt0">
+                <amp-button
+                    [context]="context()"
+                    *ngIf="!isInSummaryState"
+                    [attr.theme]="'tools'"
+                    (click)="login()"
+                    [disabled]="!canGoNext"
+                    class="btn btn-ok palm-mr0 mr">
+                    Login &amp; continue
+                </amp-button>
+                <amp-button
+                    [context]="context()"
+                    *ngIf="!isInSummaryState"
+                    [attr.theme]="'tools'"
+                    (click)="removeLoginAndProceed()"
+                    class="btn btn-secondary btn-change btn-ok-margin-top palm-m0">
+                    Continue without logging in
+                </amp-button>
+            </div>
+        </amp-form-block>
     </div>
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
-            <amp-input
-                    [id]="__custom.controls[0].id"
-                    [controlGroup]="__controlGroup"
-                    [label]="__custom.controls[0].label"
-                    [required]="true"
-                    [isInSummaryState]="isInSummaryState"
-                    [errors]="{'required' : __custom.controls[0].requiredMsg }">
-            </amp-input>
-        </div>
-    </amp-form-row>
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
-            <amp-input
-                    [id]="__custom.controls[1].id"
-                    [controlGroup]="__controlGroup"
-                    [label]="__custom.controls[1].label"
-                    [required]="true"
-                    [isInSummaryState]="isInSummaryState"
-                    [type]="'password'"
-                    [errors]="{'required' : __custom.controls[1].requiredMsg }">
-            </amp-input>
-        </div>
-    </amp-form-row>
-    <div class="mb mt palm-1/1 tablet-1/1 lap-and-up-3/12">
-        Forgot your <a href="/wps/portal/sec/ForgotUsername/" target="_blank">username</a> or <a href="/wps/portal/sec/ForgotPassword/" target="_blank">password</a>?
-    </div>
-    <div class="block-buttons mt+ palm-mt0">
-        <amp-button
-            [context]="context()"
-            *ngIf="!isInSummaryState"
-            [attr.theme]="'tools'"
-            (click)="login()"
-            [disabled]="!canGoNext"
-            class="btn btn-ok palm-mr0 mr">
-            Login &amp; continue
-        </amp-button>
-        <amp-button
-            [context]="context()"
-            *ngIf="!isInSummaryState"
-            [attr.theme]="'tools'"
-            (click)="removeLoginAndProceed()"
-            class="btn btn-secondary btn-change btn-ok-margin-top palm-m0">
-            Continue without logging in
-        </amp-button>
-    </div>
-
-</amp-form-block>
+</div>

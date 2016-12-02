@@ -1,38 +1,42 @@
-<amp-form-block [context]="context()" buttonsTheme='tools'>
-    <div class="mt mb">
-        Enter the reference code that we sent you by SMS, as well as your last name and date of birth
+<div class="container">
+    <div class="main main--aside">
+        <amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="tools">
+            <p>
+                Enter the reference code that we sent you by SMS, as well as your last name and date of birth
+            </p>
+            <amp-form-row>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+                    <amp-input
+                            [id]="__custom.controls[0].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="'Reference code'"
+                            [required]="true"
+                            [errors]="{ required : __custom.controls[0].requiredErrMsg }"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-input>
+                </div>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+                    <amp-input
+                            [id]="__custom.controls[1].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="'Last name'"
+                            [required]="true"
+                            [errors]="{ required : __custom.controls[1].requiredErrMsg }"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-input>
+                </div>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+                    <amp-input
+                            [id]="__custom.controls[2].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="'Date of birth'"
+                            [required]="true"
+                            [valDate]="true"
+                            [errors]="{ required : __custom.controls[2].requiredErrMsg}"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-input>
+                </div>
+            </amp-form-row>
+        </amp-form-block>
     </div>
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
-            <amp-input
-                    [id]="__custom.controls[0].id"
-                    [controlGroup]="__controlGroup"
-                    [label]="'Reference code'"
-                    [required]="true"
-                    [errors]="{ required : __custom.controls[0].requiredErrMsg }"
-                    [isInSummaryState]="isInSummaryState">
-            </amp-input>
-        </div>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
-            <amp-input
-                    [id]="__custom.controls[1].id"
-                    [controlGroup]="__controlGroup"
-                    [label]="'Last name'"
-                    [required]="true"
-                    [errors]="{ required : __custom.controls[1].requiredErrMsg }"
-                    [isInSummaryState]="isInSummaryState">
-            </amp-input>
-        </div>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
-            <amp-input
-                    [id]="__custom.controls[2].id"
-                    [controlGroup]="__controlGroup"
-                    [label]="'Date of birth'"
-                    [required]="true"
-                    [valDate]="true"
-                    [errors]="{ required : __custom.controls[2].requiredErrMsg}"
-                    [isInSummaryState]="isInSummaryState">
-            </amp-input>
-        </div>
-    </amp-form-row>
-</amp-form-block>
+</div>

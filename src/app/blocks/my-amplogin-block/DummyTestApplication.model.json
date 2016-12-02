@@ -5,14 +5,14 @@
             "password": null
         }
     },
+    "MyAMPLoginBlock": {
+        "userId": null,
+        "password": null
+    },
     "ContinueApplicationBlock": {
         "ReferenceCode": null,
         "LastName": null,
         "DateOfBirth": null
-    },
-    "MyAMPLoginBlock": {
-        "userId": null,
-        "password": null
     },
     "LoanOffset": {
         "LoanOffsetAccountNumber": null
