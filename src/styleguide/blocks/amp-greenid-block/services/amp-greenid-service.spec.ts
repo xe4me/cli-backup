@@ -22,20 +22,21 @@ xdescribe('AmpGreenIdService', () => {
         firstName: 'John',
         lastName: 'Smith',
         middleNames: 'Danger',
-        honorific: 'Mr',
-        dateOfBirth2: '27/11/2013',
-        dateOfBirth:  '2001-04-12',
+        title: 'Mr',
+        dateOfBirth: '27/11/2013',
         email: 'sample@test.com',
-        verificationId: 'fred',
-        verificationToken: 'fred',
-        verificationStatus: 'fred',
+        verificationId: 'M1Crf19U',
+        verificationToken: 'fee72af1cf0f1ccd0a7f7a2af8a69ecfb40da449',
+        verificationStatus: 'VERIFIED',
         address: {
             country: 'AU',
             state: 'NSW',
-            streetName: 'SMITH',
             flatNumber: 'U 2',
+            streetName: 'SURF',
             streetNumber: '53-57',
-            suburb: 'SYDNEY'
+            suburb: 'SYDNEY',
+            postcode: '2000',
+            streetType: 'RD'
         }
     };
 
