@@ -34,7 +34,7 @@ export class AmpHeaderComponent {
     private contactUsText : string      = 'Contact us';
     private officeHoursStart : string   = '08:30';
     private officeHoursEnd : string     = '19:00';
-    private experienceTitle : string    = 'Choice of Fund';
+    private experienceTitle : string    = '';
     private isOfficeHours : boolean     = false;
 
     constructor ( private deviceService : DeviceService ) {

@@ -4,6 +4,7 @@ import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { DeviceService } from '../../services/device/device.service';
 import { AmpLogoModule } from '../amp-logo';
 import { AmpPopDownModule } from '../amp-pop-down';
+import { AmpButtonModule } from '../amp-button';
 
 const DECLARATIONS = [ AmpHeaderComponent ];
 @NgModule( {
@@ -12,6 +13,7 @@ const DECLARATIONS = [ AmpHeaderComponent ];
         AmpSharedRootModule,
         AmpPopDownModule,
         AmpLogoModule,
+        AmpButtonModule
     ] ,
     providers     : [
         DeviceService
