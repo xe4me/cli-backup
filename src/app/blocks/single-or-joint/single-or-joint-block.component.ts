@@ -35,6 +35,7 @@ import { FDN } from '../../forms/better-form/Application.fdn';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
+    private static secondApplicantSectionIndex : number = 2;
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
@@ -83,11 +84,12 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
         if ( ! this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
-            this.__loadNext( this.applicantGenerator.getApplicantSection( 2 ), this.viewContainerRef);
+            let applicant2Sections = this.applicantGenerator.getApplicantSection( 2 );
+            this.__loadAt( applicant2Sections , SingleOrJointBlockComponent.secondApplicantSectionIndex);
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
-            this.__removeNext(this.viewContainerRef).then( () => {
+            this.__removeAt(SingleOrJointBlockComponent.secondApplicantSectionIndex).then( () => {
                 this.applicant2Added = false;
                 this.onNext();
             } );
