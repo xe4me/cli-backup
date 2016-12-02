@@ -6,6 +6,7 @@
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12">
             <amp-google-recaptcha
                 [controlGroup]="__controlGroup"
+                [keepControl]="keepControl"
                 (captchaResponse)="handleCaptchaResponse($event)"
                 (captchaExpired)="handleCaptchaExpired($event)"
                 [sitekey]="sitekey">
