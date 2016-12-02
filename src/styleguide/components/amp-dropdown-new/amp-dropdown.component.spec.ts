@@ -210,6 +210,19 @@ describe( 'amp-dropdown component' , () => {
             tick();
             expect( CmpControlGroup.touched ).toBeTruthy();
         } ) );
+        it( 'should mark the QueryControl as dirty as soon as selected an item not with setValue ' , fakeAsync( () => {
+            expect( QueryControl.dirty ).toBeFalsy();
+            expectAllControlsToBeNull();
+            Select_Options[ 1 ].click();
+            tick();
+            expect( QueryControl.dirty ).toBeTruthy();
+        } ) );
+        it( 'should not mark the QueryControl as dirty if selecting with setValue ' , fakeAsync( () => {
+            expect( QueryControl.dirty ).toBeFalsy();
+            QueryControl.setValue( TitleOptions[ 0 ].label );
+            tick();
+            expect( QueryControl.dirty ).toBeFalsy();
+        } ) );
         it( 'should not mark the controlGroup as touched if its pragmatically selected' , fakeAsync( () => {
             expect( CmpControlGroup.touched ).toBeFalsy();
             QueryControl.setValue( TitleOptions[ 0 ].label );
