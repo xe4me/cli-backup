@@ -83,7 +83,8 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
         if ( ! this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
-            this.__loadAt( this.applicantGenerator.getApplicantSection( 2 ), this.secondApplicantSectionIndex);
+            let applicant2Sections = this.applicantGenerator.getApplicantSection( 2 );
+            this.__loadAt( applicant2Sections , this.secondApplicantSectionIndex);
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
