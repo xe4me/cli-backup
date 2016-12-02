@@ -13,9 +13,202 @@
             "body": {
                 "statusCode": 200,
                 "payload": {
-                    "meta": {
-                        "id": "4172867194",
-                        "name": "BETT3R"
+                    "status": "success",
+                    "application": {
+                        "Application": {
+                            "Welcome": {
+                                "NewOrExistingCustomer": "NewCustomer"
+                            },
+                            "NewOrContinueApplicationBlock": {
+                                "NewOrContinueApplication": "NewApplication"
+                            },
+                            "SingleOrJoint": {
+                                "SingleOrJoint": "JointApplicant"
+                            },
+                            "BetterChoice": {},
+                            "Applicant1Section": {
+                                "PersonalDetailsSection": {
+                                    "BasicInfo": {
+                                        "TitleDropdown": {
+                                            "SelectedItem": "Mr",
+                                            "Query": "Mr"
+                                        },
+                                        "FirstName": "Peter",
+                                        "MiddleName": "Danger",
+                                        "LastName": "Parker",
+                                        "DateOfBirth": "11/11/1911"
+                                    },
+                                    "Address": {
+                                        "Address": {
+                                            "residentialAddress": {
+                                                "isManualSearch": false,
+                                                "search": {
+                                                    "selectedItem": "COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
+                                                    "query": "Pym Street, MILLTHORPE  NSW  2798"
+                                                },
+                                                "manualAddress": {
+                                                    "buildingName": "Pymble Ladies College",
+                                                    "unitNumber": "",
+                                                    "streetNumber": "20-64",
+                                                    "streetName": "Avon",
+                                                    "streetTypeDropdown": {
+                                                        "SelectedItem": "RD",
+                                                        "Query": "Road"
+                                                    },
+                                                    "poBox": null,
+                                                    "suburb": "PYMBLE",
+                                                    "postCode": "2073",
+                                                    "stateDropdown": {
+                                                        "SelectedItem": "NSW",
+                                                        "Query": "NSW"
+                                                    }
+                                                },
+                                                "isItPoBox": false
+                                            },
+                                            "postalAndResidentialAreSame": true
+                                        }
+                                    },
+                                    "ContactDetails": {
+                                        "EmailAddress": null,
+                                        "MobileNumber": null,
+                                        "HomeNumber": null
+                                    },
+                                    "NotARobot": {
+                                        "amp-google-recaptcha-check": {
+                                            "verificationStatus": null
+                                        }
+                                    }
+                                },
+                                "IdentitySection": {
+                                    "OnlineOrOfflineIdCheck": {
+                                        "OnlineIDCheck": null
+                                    }
+                                },
+                                "FinalQuestionsSection": {
+                                    "TaxFileNumber": {
+                                        "HasTaxFileNumber": null
+                                    },
+                                    "SourceOfFunding": {
+                                        "PrimarySourceOfWealthDropdown": {
+                                            "SelectedItem": null,
+                                            "Query": null
+                                        },
+                                        "SourceOfFundsForAccountDropdown": {
+                                            "SelectedItem": null,
+                                            "Query": null
+                                        },
+                                        "ReasonForOpeningAccountDropdown": {
+                                            "SelectedItem": null,
+                                            "Query": null
+                                        }
+                                    },
+                                    "Residency": {
+                                        "CountryOfCitizenshipDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "CountryOfResidencyDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "USTaxCitizen": null
+                                    },
+                                    "LastStep": {
+                                        "AcceptPrivacyDeclaration": null,
+                                        "AcceptTandCs": null
+                                    }
+                                }
+                            },
+                            "referenceId": "4172867194",
+                            "Applicant2Section": {
+                                "PersonalDetailsSection": {
+                                    "BasicInfo": {
+                                        "TitleDropdown": {
+                                            "SelectedItem": null,
+                                            "Query": null
+                                        },
+                                        "FirstName": null,
+                                        "MiddleName": null,
+                                        "LastName": null,
+                                        "DateOfBirth": null
+                                    },
+                                    "Address": {
+                                        "Address": {
+                                            "residentialAddress": {
+                                                "isManualSearch": false,
+                                                "search": {
+                                                    "selectedItem": null,
+                                                    "query": null
+                                                },
+                                                "manualAddress": {
+                                                    "buildingName": null,
+                                                    "unitNumber": null,
+                                                    "streetNumber": null,
+                                                    "streetName": null,
+                                                    "streetTypeDropdown": {
+                                                        "SelectedItem": null,
+                                                        "Query": null
+                                                    },
+                                                    "poBox": null,
+                                                    "suburb": null,
+                                                    "postCode": null,
+                                                    "stateDropdown": {
+                                                        "SelectedItem": null,
+                                                        "Query": null
+                                                    }
+                                                },
+                                                "isItPoBox": null
+                                            },
+                                            "postalAndResidentialAreSame": true
+                                        }
+                                    },
+                                    "ContactDetails": {
+                                        "EmailAddress": null,
+                                        "MobileNumber": null,
+                                        "HomeNumber": null
+                                    }
+                                },
+                                "IdentitySection": {
+                                    "OnlineOrOfflineIdCheck": {
+                                        "OnlineIDCheck": null
+                                    }
+                                },
+                                "FinalQuestionsSection": {
+                                    "TaxFileNumber": {
+                                        "HasTaxFileNumber": null
+                                    },
+                                    "SourceOfFunding": {
+                                        "PrimarySourceOfWealthDropdown": {
+                                            "SelectedItem": null,
+                                            "Query": null
+                                        },
+                                        "SourceOfFundsForAccountDropdown": {
+                                            "SelectedItem": null,
+                                            "Query": null
+                                        },
+                                        "ReasonForOpeningAccountDropdown": {
+                                            "SelectedItem": null,
+                                            "Query": null
+                                        }
+                                    },
+                                    "Residency": {
+                                        "CountryOfCitizenshipDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "CountryOfResidencyDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "USTaxCitizen": null
+                                    },
+                                    "LastStep": {
+                                        "AcceptPrivacyDeclaration": null,
+                                        "AcceptTandCs": null
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
