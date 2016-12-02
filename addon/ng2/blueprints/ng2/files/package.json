@@ -12,6 +12,7 @@
     "test:watch": "amp-ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "amp-ng e2e",
+    "prepush": "npm run lint",
     "build:prod": "amp-ng build --prod",
     "server:express": "node index.js"
   },
@@ -60,7 +61,7 @@
     "ts-node": "1.2.1",
     "tslint": "^3.13.0",
     "typescript": "2.0.0",
-
+    "husky": "^0.11.9",
     "bundle-loader": "^0.5.4",
     "concurrently": "^2.0.0",
     "karma-phantomjs-launcher": "^1.0.0",
