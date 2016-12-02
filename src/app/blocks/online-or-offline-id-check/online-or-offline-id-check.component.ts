@@ -41,8 +41,9 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     }
 
     public ngOnInit () {
-        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id ,
-                                        new FormControl( null , Validators.required ) );
+        if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
+            this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
+        }
     }
 
     private addOrRemoveOnlineIdCheck(typeOfCheck : string) {

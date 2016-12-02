@@ -55,9 +55,11 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     public ngOnInit () {
         this.singleApplicantKey = Constants.singleApplicant;
         this.jointApplicantKey  = Constants.jointApplicant;
-        this.__controlGroup.addControl(
-            this.__custom.controls[ 0 ].id ,
-            new FormControl( null , Validators.required ) );
+
+        if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
+            this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
+        }
+
         this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
         this.formModelService.saveResponse.subscribe( ( result ) => {
             if ( result.payload.meta && result.payload.meta.id ) {

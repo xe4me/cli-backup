@@ -6,7 +6,8 @@ import {
 } from '@angular/core';
 import {
     Headers,
-    RequestOptions
+    RequestOptions,
+    Response
 } from '@angular/http';
 import {
     FormBlock,
@@ -41,20 +42,30 @@ export class ContinueApplicationBlock extends FormBlock {
         if (!this.__controlGroup.valid) {
             return;
         }
+
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         const referenceId = this.__controlGroup.get(this.__custom.controls[0].id).value;
-        const dob = this.__controlGroup.get(this.__custom.controls[1].id).value;
-        const surname = this.__controlGroup.get(this.__custom.controls[2].id).value;
+        const surname = this.__controlGroup.get(this.__custom.controls[1].id).value;
+        const dob = this.__controlGroup.get(this.__custom.controls[2].id).value;
 
         this.http.post(`${Environments.property.ApiCallsBaseUrl}${Constants.retrieveUrl}`, {
-            'surname' : surname,
-            'dob' : dob,
-            'id' : referenceId
-        }, options).subscribe((response) => {
-            // TODO form hyrdration
-            super.onNext();
-        });
+                'surname' : surname,
+                'dob' : dob,
+                'id' : referenceId
+            }, options)
+            .map((res : Response) => res.json())
+            .subscribe((response) => {
+                // TODO:
+                // - Handle error states
+                const payload = response.payload;
+
+                if (payload.status === 'success') {
+                    this.formModelService.storeModelAndHydtrateForm(payload.application);
+
+                    super.onNext();
+                }
+            });
     }
 }
