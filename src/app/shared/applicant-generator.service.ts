@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { clone } from 'amp-ddc-components';
 const applicantJSON = require( '../forms/better-form/applicant.json' );
 const captchBlockJSON = require('../forms/better-form/capcha-block.json');
+const bett3rChoiceBlockJSON = require('../forms/better-form/better-choice-block.json');
 
 @Injectable()
 export class ApplicantGeneratorService {
@@ -12,6 +13,7 @@ export class ApplicantGeneratorService {
 
         if (index === 1) {
             this.addCaptchaBlock(applicantSections);
+            this.addBett3rChoiceBlock(applicantSections);
         }
 
         return {
@@ -36,6 +38,11 @@ export class ApplicantGeneratorService {
     private addCaptchaBlock( sections ) {
         let captchBlock = clone(captchBlockJSON);
         sections[0].blocks.push(captchBlock);
+    }
+
+    private addBett3rChoiceBlock( sections ) {
+        let bett3rChoiceBlock = clone(bett3rChoiceBlockJSON);
+        sections[0].blocks.push(bett3rChoiceBlock);
     }
 
     private addApplicantIdToSectionBlocks (sections, index : number ) : void {

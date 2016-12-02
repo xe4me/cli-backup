@@ -1,10 +1,10 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
-    <div class="mt mb">
+    <p class="heading-contxtual-label">
         {{ description }}
-    </div>
-    <div class="mt mb" *ngIf="__custom.additional_instruction">
+    </p>
+    <p class="mt mb heading-contxtual-label" *ngIf="__custom.additional_instruction">
         {{ __custom.additional_instruction }}
-    </div>
+    </p>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
             <amp-account-number

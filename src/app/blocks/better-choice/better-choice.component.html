@@ -1,7 +1,7 @@
-<amp-form-block [context]="context()" *ngIf="existingCustomer" buttonsTheme='tools'>
-    <div class="mt mb">
+<amp-form-block [context]="context()" [hidden]="!existingCustomer" buttonsTheme='tools'>
+    <p class="mt-60 mb-60 heading-contxtual-label">
         Tell us how we can help you out today
-    </div>
+    </p>
     <amp-form-row>
         <amp-radio-button-group
                 class="grid__item 1/1"
@@ -12,7 +12,7 @@
                 [required]="true">
         </amp-radio-button-group>
     </amp-form-row>
-    <div class="mt mb">
+    <p class="mt-60 mb-60 heading-contxtual-label">
         For more information on eligible accounts, please click <a href="javascript:void;">here</a>
-    </div>
+    </p>
 </amp-form-block>
