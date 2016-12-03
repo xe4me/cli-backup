@@ -1,6 +1,10 @@
 @import "../../../styles/abstracts";
 
 :host {
+    .content {
+        font-size: $font-size-small;
+        line-height: 30px;
+    }
     @include media-query('lap-and-up') {
         amp-form-block {
             overflow-x: hidden;
