@@ -35,6 +35,7 @@ import { FDN } from '../../forms/better-form/Application.fdn';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
+    private static secondApplicantSectionIndex : number = 2;
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
@@ -64,7 +65,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
             }
         } );
         // load applicant 1
-        this.__loadAt( this.applicantGenerator.getApplicantSection( 1 ) , 2 );
+        this.__loadNext( this.applicantGenerator.getApplicantSection( 1 ), this.viewContainerRef);
         // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
         // then go next
         // The reason is if you don't do this , when you start with a Single applicant and finish the form and go
@@ -83,11 +84,12 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
 
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
         if ( ! this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
-            this.__loadAt( this.applicantGenerator.getApplicantSection( 2 ) , 3 );
+            let applicant2Sections = this.applicantGenerator.getApplicantSection( 2 );
+            this.__loadAt( applicant2Sections , SingleOrJointBlockComponent.secondApplicantSectionIndex);
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
-            this.__removeAt( 3 ).then( () => {
+            this.__removeAt(SingleOrJointBlockComponent.secondApplicantSectionIndex).then( () => {
                 this.applicant2Added = false;
                 this.onNext();
             } );

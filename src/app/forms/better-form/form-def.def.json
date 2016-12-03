@@ -1,212 +1,141 @@
 {
-    "id": "Application",
-    "fdnClassPath": "src/app/forms/better-form",
-    "fdnModelPath": "src/app/forms/better-form",
-    "version": "0.0.1",
-    "path": "/application",
-    "status": "NEW",
-    "blocks": [ {
-        "blockType": "DetailsPage",
-        "name": "Application",
-        "blockLayout": "PAGE",
-        "commonBlock": false,
-        "path": "pages/details-page",
-        "page": {
-            "pageId": null,
-            "nextPageId": null,
-            "prevPageId": null,
-            "routeName": "ApplicationFormComponent"
-        },
-        "blocks": [ {
-                "name": "Welcome",
-                "blockType": "WelcomeBlockComponent",
-                "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/welcome/welcome-block.component",
-                "custom": {
-                    "controls": [ {
-                        "id": "NewOrExistingCustomer"
-                    } ],
-                    "optionalBlocks": [ {
-                        "name": "MyAMPLoginBlock",
-                        "blockType": "MyAMPLoginBlockComponent",
-                        "blockLayout": "INLINE",
-                        "commonBlock": false,
-                        "path": "blocks/my-amplogin-block/my-amplogin-block.component",
-                        "custom": {
-                            "blockTitle": "To get started, enter your My AMP username and password",
-                            "errorCodeMap": {
-                                "logon.disabled": "We're sorry you can't access your My AMP account.  We have a technical issue that is impacting your account, we should have this resolved in the next 2 business days, please try again then. For urgent queries, please call us on 1300 657 801 (8am - 8pm Monday to Friday). We apologise for any inconvenience.",
-                                "logon.invalid": "Invalid username or password",
-                                "logon.locked": "Your account has been locked, please click the 'Forgot Password' link below or contact AMP e-Services on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST) to unlock your account.",
-                                "logon.unavailable": "AMP is currently performing system maintenance which is affecting customers logging into their portal.",
-                                "logon.service.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
-                                "logon.unauthorized": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
-                                "logon.forbidden": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
-                                "logon.unknown.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
-                                "logon.internal.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
-                                "logon.disabled.super": "MyAMP is currently undergoing maintenance and will be back online within 24-48 hours. If you have any urgent enquiries or you are still having problems logging in after this period please call 1300 657 801. We thank you for your patience.",
-                                "logon.locked.super": "Your account has been locked to preserve the security of your account and information, please call AMP on 1300 300 465, 8am to 8pm Monday to Friday, and 9am to 5pm Saturday and Sunday (Sydney time)",
-                                "default": "Incorrect username/password combination, please try again."
-                            },
-                            "controls": [ {
-                                "id": "userId",
-                                "label": "Username",
-                                "requiredMsg": "Username is a required field"
-                            }, {
-                                "id": "password",
-                                "label": "Password",
-                                "requiredMsg": "Password is a required field"
-                            } ]
-                        }
-                    } ]
-                }
-            },
-            {
-                "name": "NewOrContinueApplicationBlock",
-                "blockType": "NewOrContinueApplicationBlock",
-                "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/new-or-continue/new-or-continue-block.component",
-                "custom": {
-                    "blockTitle" : "Please choose how you would like to continue",
-                    "controls": [
-                        {
-                            "id": "NewOrContinueApplication"
-                        }
-                    ],
-                    "optionalBlocks": [
-                        {
-                            "name": "ContinueApplicationBlock",
-                            "blockType": "ContinueApplicationBlock",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/continue-application/continue-application.component",
-                            "custom": {
-                                "blockTitle": "Where did we leave off?",
-                                "controls": [
-                                    {
-                                        "id": "ReferenceCode",
-                                        "requiredErrMsg": "Reference code is a required field."
-                                    },
-                                    {
-                                        "id": "LastName",
-                                        "requiredErrMsg": "Last name is a required field."
-                                    },
-                                    {
-                                        "id": "DateOfBirth",
-                                        "requiredErrMsg": "Date of birth is a required field."
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                }
-            },
-
-            {
-                "blockType": "MenuFrameBlockComponent",
-                "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/menu-frame/menu-frame.component",
-                "blocks": [ {
-                    "name": "SingleOrJoint",
-                    "blockType": "SingleOrJointBlockComponent",
-                    "blockLayout": "INLINE",
-                    "commonBlock": false,
-                    "path": "blocks/single-or-joint/single-or-joint-block.component",
-                    "custom": {
-                        "blockTitle": "Who's this account for?",
-                        "controls": [ {
-                            "id": "SingleOrJoint"
-                        } ]
-                    }
-                }, {
-                    "name": "BetterChoice",
-                    "blockType": "BetterChoiceBlock",
-                    "blockLayout": "INLINE",
-                    "commonBlock": false,
-                    "path": "blocks/better-choice/better-choice.component",
-                    "custom": {
-                        "blockTitle": "How can we make your life Bett3r?",
-                        "controls": [ {
-                            "id": "BetterChoice",
-                            "buttons": [ {
-                                "id": "new_deposit_account",
-                                "value": "new_deposit_account",
-                                "label_single": "I would like to set up a new deposit account",
-                                "label_joint": "We would like to set up a new deposit account"
-                            }, {
-                                "id": "new_offset_account",
-                                "value": "new_offset_account",
-                                "label_single": "I would like to set up a new offset account on an existing eligble AMP home loan",
-                                "label_joint": "We would like to set up a new offset account on an existing eligible AMP home loan"
-                            }, {
-                                "id": "convert_deposit_account",
-                                "value": "convert_deposit_account",
-                                "label_single": "I would like to convert an existing eligible deposit account",
-                                "label_joint": "We would like to convert an existing eligible deposit account"
-                            }, {
-                                "id": "convert_offset_account",
-                                "value": "convert_offset_account",
-                                "label_single": "I would like to convert an existing eligible offset account",
-                                "label_joint": "We would like to convert an existing eligible offset account"
-                            } ]
-                        } ],
-                        "optionalBlocks": {
-                            "new_offset_account": {
-                                "name": "LoanOffset",
-                                "blockType": "LoanOffsetBlock",
-                                "blockLayout": "INLINE",
-                                "commonBlock": false,
-                                "path": "blocks/loan-offset/loan-offset.component",
-                                "custom": {
-                                    "blockTitle": "Offsetting your loan",
-                                    "controls": [ {
-                                        "id": "LoanOffsetAccountNumber"
-                                    } ],
-                                    "description_single": "Please enter the loan account number that you would like Bett3r to offset.",
-                                    "description_joint": "Please enter the joint loan account number that you would like Bett3r to offset. Please note that both applicants must be holders of the loan."
-                                }
-                            },
-                            "convert_deposit_account": {
-                                "name": "DepositTransition",
-                                "blockType": "DepositTransitionBlock",
-                                "blockLayout": "INLINE",
-                                "commonBlock": false,
-                                "path": "blocks/deposit-transition/deposit-transition.component",
-                                "custom": {
-                                    "blockTitle": "Switching your account",
-                                    "controls": [ {
-                                        "id": "DepositTransitionAccountNumber",
-                                        "label": "Deposit Account Number"
-                                    } ],
-                                    "description_single": "When switching, your existing deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances.",
-                                    "description_joint": "When switching, your existing joint deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances.",
-                                    "additional_instruction": "Please enter the deposit account number that you would like to become your Bett3r Pay account."
-                                }
-                            },
-                            "convert_offset_account": {
-                                "name": "OffsetTransition",
-                                "blockType": "OffsetTransitionBlock",
-                                "blockLayout": "INLINE",
-                                "commonBlock": false,
-                                "path": "blocks/offset-transition/offset-transition.component",
-                                "custom": {
-                                    "blockTitle": "Switching your offset",
-                                    "controls": [ {
-                                        "id": "OffsetTransitionAccountNumber",
-                                        "label": "Offset Account Number"
-                                    } ],
-                                    "description_single": "When switching, your existing offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances.",
-                                    "description_joint": "When switching, your existing joint offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances.",
-                                    "additional_instruction": "Please enter the offset account number that you would like to become your Bett3r Pay account."
-                                }
-                            }
-                        }
-                    }
-                } ]
-            }
-        ]
-    } ]
+	"id": "Application",
+	"fdnClassPath": "src/app/forms/better-form",
+	"fdnModelPath": "src/app/forms/better-form",
+	"version": "0.0.1",
+	"path": "/application",
+	"status": "NEW",
+	"blocks": [
+		{
+			"blockType": "DetailsPage",
+			"name": "Application",
+			"blockLayout": "PAGE",
+			"commonBlock": false,
+			"path": "pages/details-page",
+			"page": {
+				"pageId": null,
+				"nextPageId": null,
+				"prevPageId": null,
+				"routeName": "ApplicationFormComponent"
+			},
+			"blocks": [
+				{
+					"name": "Welcome",
+					"blockType": "WelcomeBlockComponent",
+					"blockLayout": "INLINE",
+					"commonBlock": false,
+					"path": "blocks/welcome/welcome-block.component",
+					"custom": {
+						"controls": [
+							{
+								"id": "NewOrExistingCustomer"
+							}
+						],
+						"optionalBlocks": [
+							{
+								"name": "MyAMPLoginBlock",
+								"blockType": "MyAMPLoginBlockComponent",
+								"blockLayout": "INLINE",
+								"commonBlock": false,
+								"path": "blocks/my-amplogin-block/my-amplogin-block.component",
+								"custom": {
+									"blockTitle": "To get started, enter your My AMP username and password",
+									"errorCodeMap": {
+										"logon.disabled": "We're sorry you can't access your My AMP account.  We have a technical issue that is impacting your account, we should have this resolved in the next 2 business days, please try again then. For urgent queries, please call us on 1300 657 801 (8am - 8pm Monday to Friday). We apologise for any inconvenience.",
+										"logon.invalid": "Invalid username or password",
+										"logon.locked": "Your account has been locked, please click the 'Forgot Password' link below or contact AMP e-Services on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST) to unlock your account.",
+										"logon.unavailable": "AMP is currently performing system maintenance which is affecting customers logging into their portal.",
+										"logon.service.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+										"logon.unauthorized": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+										"logon.forbidden": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+										"logon.unknown.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+										"logon.internal.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+										"logon.disabled.super": "MyAMP is currently undergoing maintenance and will be back online within 24-48 hours. If you have any urgent enquiries or you are still having problems logging in after this period please call 1300 657 801. We thank you for your patience.",
+										"logon.locked.super": "Your account has been locked to preserve the security of your account and information, please call AMP on 1300 300 465, 8am to 8pm Monday to Friday, and 9am to 5pm Saturday and Sunday (Sydney time)",
+										"default": "Incorrect username/password combination, please try again."
+									},
+									"controls": [
+										{
+											"id": "userId",
+											"label": "Username",
+											"requiredMsg": "Username is a required field"
+										},
+										{
+											"id": "password",
+											"label": "Password",
+											"requiredMsg": "Password is a required field"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "NewOrContinueApplicationBlock",
+					"blockType": "NewOrContinueApplicationBlock",
+					"blockLayout": "INLINE",
+					"commonBlock": false,
+					"path": "blocks/new-or-continue/new-or-continue-block.component",
+					"custom": {
+						"blockTitle": "Please choose how you would like to continue",
+						"controls": [
+							{
+								"id": "NewOrContinueApplication"
+							}
+						],
+						"optionalBlocks": [
+							{
+								"name": "ContinueApplicationBlock",
+								"blockType": "ContinueApplicationBlock",
+								"blockLayout": "INLINE",
+								"commonBlock": false,
+								"path": "blocks/continue-application/continue-application.component",
+								"custom": {
+									"blockTitle": "Where did we leave off?",
+									"controls": [
+										{
+											"id": "ReferenceCode",
+											"requiredErrMsg": "Reference code is a required field."
+										},
+										{
+											"id": "LastName",
+											"requiredErrMsg": "Last name is a required field."
+										},
+										{
+											"id": "DateOfBirth",
+											"requiredErrMsg": "Date of birth is a required field."
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"blockType": "MenuFrameBlockComponent",
+					"blockLayout": "INLINE",
+					"commonBlock": false,
+					"path": "blocks/menu-frame/menu-frame.component",
+					"blocks": [
+						{
+							"name": "SingleOrJoint",
+							"blockType": "SingleOrJointBlockComponent",
+							"blockLayout": "INLINE",
+							"commonBlock": false,
+							"path": "blocks/single-or-joint/single-or-joint-block.component",
+							"custom": {
+								"blockTitle": "Who's this account for?",
+								"controls": [
+									{
+										"id": "SingleOrJoint"
+									}
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	]
 }
