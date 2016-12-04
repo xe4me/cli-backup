@@ -75,7 +75,7 @@ $amp-dropdown-from-top : $amp-dropdown-select-height - $amp-dropdown-input-borde
             font-size : $input-font-size-mobile;
         }
 
-        &:after {
+        &::after {
             border-top : 1px solid $input-border-color-default;
             content    : "";
             display    : block;
@@ -85,8 +85,8 @@ $amp-dropdown-from-top : $amp-dropdown-select-height - $amp-dropdown-input-borde
             width      : 100%;
         }
 
-        select:not([disabled]) + &:hover:after,
-        select:focus + &:after {
+        select:not([disabled]) + &:hover::after,
+        select:focus + &::after {
             border-color : $input-border-color-hover;
             border-width : $amp-dropdown-input-border-width-hover;
             bottom       : -$amp-dropdown-input-border-width-hover;
@@ -112,12 +112,12 @@ $amp-dropdown-from-top : $amp-dropdown-select-height - $amp-dropdown-input-borde
         .amp-dropdown--summary-state & {
             cursor : default;
 
-            &:after {
+            &::after {
                 display : none;
             }
         }
 
-        .ng-invalid.ng-dirty:not(:focus) + &:after {
+        .ng-invalid.ng-dirty:not(:focus) + &::after {
             border-color : $amp-colour-alert-danger !important;
         }
 

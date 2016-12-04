@@ -113,7 +113,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         }
 
         // Line between steps
-        &:before {
+        &::before {
             background: $amp-colour-grey-darker;
             content: "";
             display: block;
@@ -130,7 +130,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         }
 
         &.done {
-            &:before {
+            &::before {
                 background: $amp-ddc-menu-color-default;
             }
         }
@@ -145,8 +145,8 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             font-weight: 600;
         }
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             background: transparent;
             border-radius: $amp-ddc-menu-circle-width;
             content: "";
@@ -159,7 +159,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         }
 
         // Outer circle for step
-        &:before {
+        &::before {
             border: $amp-ddc-menu-circle-stroke solid $amp-colour-grey-darker;
             height: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
             width: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
@@ -185,7 +185,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         }
 
         // Inner circle for step
-        &:after {
+        &::after {
             @include menu-state(active) {
                 background: $amp-ddc-menu-color-default;
                 height: $amp-ddc-menu-circle-inner-width;
