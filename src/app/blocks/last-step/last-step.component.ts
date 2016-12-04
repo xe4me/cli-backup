@@ -35,6 +35,7 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
     private isJointApplication : boolean = false;
     private submitInProgress : boolean = false;
     private singleOrJointSubscription : Subscription;
+    private isBPMS : boolean = false;
 
     constructor ( formModelService : FormModelService,
                   elementRef : ElementRef,
@@ -92,10 +93,15 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
             .subscribe((result) => {
                 this.submitInProgress = false;
                 if ( result.payload.resultStatus === 'SUCCESS' ) {
-                    this.accountsListDataService
-                        .setAccountsData( referenceId.value, this.__form.value, result.payload.accounts );
-                    let navigateTo = this.accountsListDataService.navigateTo();
-                    this.router.navigate([navigateTo]);
+                    this.isBPMS = result.payload.caseType === 'BPMS';
+                    if (this.isBPMS) {
+                        this.router.navigate(['confirmationTransitioning']);
+                    } else {
+                        this.accountsListDataService
+                            .setAccountsData( referenceId.value, this.__form.value, result.payload.accounts );
+                        let navigateTo = this.accountsListDataService.navigateTo();
+                        this.router.navigate([navigateTo]);
+                    }
                 } else {
                     if ( result.payload.resultStatus === 'FAILURE') {
                         const errors = result.payload.errors;

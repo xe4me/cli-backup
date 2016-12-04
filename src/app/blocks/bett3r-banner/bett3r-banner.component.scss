@@ -1,0 +1,12 @@
+@import '../../../styles/abstracts';
+
+:host {
+    img {
+        display: block;
+        width: 100%;
+        margin-bottom: 3em;
+        @include media-query(tablet-and-down) {
+            display: none;
+        }
+    }
+}
