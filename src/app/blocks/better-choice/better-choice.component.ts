@@ -36,10 +36,12 @@ import {
 export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
     private singleOrJointSubscription : Subscription;
     private betterChoiceSubscription : Subscription;
+    private newOrExistingCustomerSubscription : Subscription;
     private loadedDynamicBlock : string = '';
     private existingCustomer : boolean = false;
 
-    constructor ( formModelService : FormModelService ,
+     constructor (
+                  formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
@@ -79,36 +81,48 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
 
     public ngOnInit () {
         this.setButtonLabels( 'single' );
-        this.route.queryParams
-            .map( ( params ) => {
-                return params[ 'existingCustomer' ];
-            } )
-            .subscribe( ( existingCustomer ) => {
-                this.existingCustomer = existingCustomer === 'true';
-            } );
     }
 
-    public ngAfterViewInit () {
-        if ( this.existingCustomer ) {
+    public subscribeToBett3rChoice() {
+        if (!this.betterChoiceSubscription) {
             const betterChoiceControl = this.__controlGroup.get(this.__custom.controls[0].id);
-            const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
-
             this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe((val) => {
                 this.setNextBlock(val);
             });
+        }
+    }
 
-            this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((val) => {
+    public ngAfterViewInit () {
+        const newOrExistingCustomerControl =
+                this.sharedFormDataService.getNewOrExistingCustomerControl(this.__form);
+        this.newOrExistingCustomerSubscription =
+                newOrExistingCustomerControl
+                    .valueChanges
+                    .subscribe((newOrExisting) => {
+                        if (newOrExisting === Constants.existingCustomer) {
+                            this.existingCustomer = true;
+                            this._cd.markForCheck();
+                            this.subscribeToBett3rChoice();
+                        }
+                    });
+        const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
+        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((val) => {
+            if (this.existingCustomer) {
                 this.setButtonLabels(val);
                 this._cd.markForCheck();
-            });
-        }
+            }
+        });
         super.ngAfterViewInit();
     }
 
     public ngOnDestroy () {
-        if ( this.existingCustomer ) {
-            this.singleOrJointSubscription.unsubscribe();
-            this.betterChoiceSubscription.unsubscribe();
+        let subscriptions = [this.singleOrJointSubscription,
+                             this.betterChoiceSubscription,
+                             this.newOrExistingCustomerSubscription];
+        for (let subscription of subscriptions) {
+            if (subscription) {
+                subscription.unsubscribe();
+            }
         }
         super.ngOnDestroy();
     }
