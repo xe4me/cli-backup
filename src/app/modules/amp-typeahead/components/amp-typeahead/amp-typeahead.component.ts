@@ -53,6 +53,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() options;
     @Input() isActive;
     @Input() index;
+    @Input() showErrorComponent = true;
     @Input() keepControl : boolean                     = false;
     private subscription : Subscription;
     private showNoResults : boolean                    = false;

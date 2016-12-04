@@ -19,6 +19,7 @@ import { BaseControl } from '../../../../base-control';
             'id' ,
             'controlGroup' ,
             'isInSummaryState' ,
+            'showErrorComponent' ,
             'customValidator' ,
             'index' ,
             'label' ,
@@ -33,6 +34,7 @@ import { BaseControl } from '../../../../base-control';
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
+    public showErrorComponent : boolean = true;
     public keepControl : boolean = false;
     private label : string;
     private isInSummaryState : boolean;
@@ -80,11 +82,11 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     private adjustHeight ( element ) {
         if ( this.control.value === null || this.control.value.trim() === '' ) {
             element.style.height               = this.initialTextareaHeight + 'px';
-            this.el.nativeElement.style.height = this.initialComponentHeight + 'px';
+            this.el.nativeElement.querySelector('.amp-textarea').style.height = this.initialComponentHeight + 'px';
         } else {
             element.style.height               = '1px';
             element.style.height               = (4 + element.scrollHeight) + 'px';
-            this.el.nativeElement.style.height = (this.componentHeightOffset + element.scrollHeight) + 'px';
+            this.el.nativeElement.querySelector('.amp-textarea').style.height = (this.componentHeightOffset + element.scrollHeight) + 'px';
         }
     }
 

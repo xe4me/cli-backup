@@ -4,7 +4,7 @@ import { ThemeService } from '../../services/theme';
 import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown-new';
 import { AmpFormGroup } from '../../../app/base-control';
 @Component( {
-    templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
+    templateUrl : 'src/styleguide/components/amp-dropdown-new/basic_usage.html' ,
     styles      : [ require( './basic_usage.scss' ).toString() ] ,
     selector    : 'amp-dropdown-new-basic-usage'
 } )

@@ -1,65 +1,55 @@
-<form #formModel='ngForm' class='nl-form'>
-    <div class='p palm-p0'>
+<form #formModel="ngForm" class="nl-form">
+    <div class="p palm-p0">
+        <amp-form-row>
+            <amp-dropdown
+                    class='1/3'
+                    #dropDown
+                    [attr.theme]="themeService.theme.attr"
+                    [isInSummaryState]='isInSummaryState'
+                    [id]="'Title'"
+                    [label]="'Title'"
+                    [fieldItemKey]="'value'"
+                    [fieldValueKey]="'label'"
+                    [options]='titleOptions'
+                    [controlGroup]="controlGroup"
+                    [required]="true">
+                <template let-option="option">
+                    {{ option.label }}
+                </template>
+            </amp-dropdown>
 
-        <amp-dropdown
-            class='1/3'
-            #dropDown
-            [attr.theme]="themeService.theme.attr"
-            [isInSummaryState]='isInSummaryState'
-            [id]='"Title"'
-            [label]='"Title"'
-            [fieldItemKey]='"value"'
-            [fieldValueKey]='"label"'
-            [options]='titleOptions'
-            [controlGroup]="controlGroup"
-            [required]="true">
-            <template let-option="option">
-                {{ option.label }}
-            </template>
-        </amp-dropdown>
+            <amp-button class="btn btn-ok" (click)="setTo('Mrs')">Set to Mrs</amp-button>
+            <amp-button class="btn btn-ok" (click)="setTo('Milad')">Set to Milad</amp-button>
+            <amp-button class="btn btn-ok" (click)="setTo(null)">Deselect</amp-button>
+            <amp-button class="btn btn-ok" (click)="isInSummaryState=!isInSummaryState">isInSummaryState</amp-button>
+        </amp-form-row>
+        <amp-form-row class="mt">
+            <h2>
+                Pre selected
+                <small>( retrieved ).</small>
+            </h2>
+            <amp-country
+                    class="2/3"
+                    #dropDown
+                    [attr.theme]="themeService.theme.attr"
+                    [isInSummaryState]="isInSummaryState"
+                    [id]="'Country'"
+                    [controlGroup]="retrievedControlGroup"
+                    [required]="true">
+                <template let-option="option">
+                    {{ option.country }}
+                </template>
+            </amp-country>
+        </amp-form-row>
+        <amp-form-row class="mt">
+            <highlight>
+                amp-dropdown
+                {{ controlGroup.value | json }}
 
-        Errros :
-        <pre>
-            {{ TitleControl?.errors | json }}
-        </pre>
-        <amp-button [disabled]='controlGroup.invalid' class='btn btn-ok'>isValid </amp-button>
-        value <br>
-        <pre>
-            {{ controlGroup.value | json }}
-        </pre>
-        <button (click)='setTo("Mrs")'>Set to Mr</button>
-        <button (click)='setTo("Milad")'>Set to Milad</button>
-        <button (click)='setTo(null)'>Deselect</button>
-        <button (click)='isInSummaryState=!isInSummaryState'>isInSummaryState</button>
-
-        <h2 class="heading heading-checkbox">
-            Pre selected ( retrieved ).
-        </h2>
-        <amp-country
-            class='2/3'
-            #dropDown
-            [attr.theme]="themeService.theme.attr"
-            [isInSummaryState]='isInSummaryState'
-            [id]='"Country"'
-            [controlGroup]="retrievedControlGroup"
-            [required]="true">
-            <template let-option="option">
-                {{ option.country }}
-            </template>
-        </amp-country>
-        <pre>
-            {{ retrievedControlGroup.value | json }}
-        </pre>
-        <br>
-        <!--<div style='; text-align:left; background-color: lightblue'>-->
-        <!--value : {{ control.value }}-->
-        <!--</div>-->
-
-        <!--<div style='; text-align:left ; background-color: lightgrey'>-->
-        <!--Control is valid : {{ control.valid }}-->
-        <!--</div>-->
-
-
-
+                amp-country
+                {{ retrievedControlGroup.value | json }}
+            </highlight>
+        </amp-form-row>
+        <amp-button [disabled]="controlGroup.invalid" class="btn btn-ok">Continue</amp-button>
     </div>
 </form>

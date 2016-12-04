@@ -9,6 +9,7 @@ import { AmpDirectivesModule } from '../amp-directives';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpCountryService } from './services/amp-country.service';
 import { AmpInputsModule } from '../amp-inputs/amp-inputs.module';
+import { AmpErrorModule } from '../amp-error/amp-error.module';
 const DECLARATIONS = [
     AmpTitlesComponent ,
     AmpStreetTypesComponent ,
@@ -19,6 +20,7 @@ const DECLARATIONS = [
 @NgModule( {
     declarations : DECLARATIONS ,
     imports      : [
+        AmpErrorModule ,
         AmpInputsModule ,
         AmpDirectivesModule ,
         AmpSharedRootModule

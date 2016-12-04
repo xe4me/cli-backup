@@ -32,3 +32,4 @@ the whole block remains untouched.
 <span (click)='handleIconRightClick()' *ngIf='showIconRight && iconRight && !isInSummaryState'
       class="icon icon--{{ iconRight }} icon-right"></span>
 <span class='summary-text' [innerHTML]='input.value'></span>
+<amp-control-error *ngIf="showErrorComponent" [control]="control"></amp-control-error>

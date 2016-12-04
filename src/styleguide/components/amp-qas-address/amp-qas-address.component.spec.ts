@@ -336,12 +336,11 @@ describe( 'amp-qas-address component' , () => {
     } );
     it( 'should have a amp-error component that has the same controlGroup as qasAddressComponent' , fakeAsync( () => {
         _fixture.detectChanges();
-        let ErrorEl = _debugElement.query( By.css( 'amp-error' ) );
+        let ErrorEl = _debugElement.query( By.css( 'amp-control-error' ) );
         expect( ErrorEl ).toBeDefined();
         tick( 2000 );
         let ErrorComponent = ErrorEl.componentInstance;
-        expect( ErrorComponent.controlGroup ).toBeDefined();
-        expect( ErrorComponent.controlGroup ).toEqual( _qasComponentControlGroup );
+        expect( ErrorComponent.control ).toBeDefined();
     } ) );
 } );
 @Component( {
