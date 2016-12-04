@@ -23,6 +23,11 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 module.exports = {
 
   /**
+   * Ensure webpack will fail when an error is encountered
+   */
+  bail: true,
+
+  /**
    * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
    *
    * Do not change, leave as is or it wont work.
