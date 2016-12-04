@@ -18,14 +18,5 @@
         "ReferenceCode": null,
         "LastName": null,
         "DateOfBirth": null
-    },
-    "LoanOffset": {
-        "LoanOffsetAccountNumber": null
-    },
-    "DepositTransition": {
-        "DepositTransitionAccountNumber": null
-    },
-    "OffsetTransition": {
-        "OffsetTransitionAccountNumber": null
     }
 }
