@@ -145,6 +145,9 @@ fdescribe( 'Service: PrepopMappingService' , () => {
                 PrepopMappingService.prepopContactDetails(contactDetails, cmdmData);
                 expect(contactDetails.get('MobileNumber').value).toBeNull();
 
+                cmdmData.contactDetails.mobilePhone = '1234567890';
+                PrepopMappingService.prepopContactDetails(contactDetails, cmdmData);
+                expect(contactDetails.get('MobileNumber').value).toBeNull();
             });
         });
         it( 'should map all contact details' , () => {
