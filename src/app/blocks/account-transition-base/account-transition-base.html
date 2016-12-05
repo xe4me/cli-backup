@@ -5,8 +5,8 @@
     <p class="mt mb heading-contxtual-label" *ngIf="__custom.additional_instruction">
         {{ __custom.additional_instruction }}
     </p>
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+    <amp-form-row [class.mt-40]="__custom.additional_instruction">
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12" [class.mt0]="__custom.additional_instruction">
             <amp-account-number
                     #depositAccount
                     [id]="__custom.controls[0].id"
