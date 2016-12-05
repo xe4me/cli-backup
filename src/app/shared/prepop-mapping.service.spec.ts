@@ -37,22 +37,22 @@ fdescribe( 'Service: PrepopMappingService' , () => {
         it( 'should not throw error if the prepop data is empty' , () => {
             expect(function () { PrepopMappingService.prepopBasicInfo(basicInfo, null); }).not.toThrow();
         } );
-        it( 'should populate FirstName as the other data are undefined' , () => {
+        it( 'should populate FirstName, even when other data are undefined' , () => {
             let cmdmData = { 'givenName' : 'Bob' };
             PrepopMappingService.prepopBasicInfo(basicInfo, cmdmData);
             expect(basicInfo.get('FirstName').value).toBe(cmdmData.givenName);
         } );
-        it( 'should populate MiddleName as the other data are undefined' , () => {
+        it( 'should populate MiddleName, even when other data are undefined' , () => {
             let cmdmData = { 'firstMiddleName' : 'Bob' };
             PrepopMappingService.prepopBasicInfo(basicInfo, cmdmData);
             expect(basicInfo.get('MiddleName').value).toBe(cmdmData.firstMiddleName);
         } );
-        it( 'should populate LastName as the other data are undefined' , () => {
+        it( 'should populate LastName, even when other data are undefined' , () => {
             let cmdmData = { 'familyName' : 'Bob' };
             PrepopMappingService.prepopBasicInfo(basicInfo, cmdmData);
             expect(basicInfo.get('LastName').value).toBe(cmdmData.familyName);
         } );
-        it( 'should populate DateOfBirth as the other data are undefined' , () => {
+        it( 'should populate DateOfBirth, even when other data are undefined' , () => {
             let cmdmData = { 'birthDate' : '1980-01-30' };
             PrepopMappingService.prepopBasicInfo(basicInfo, cmdmData);
             expect(basicInfo.get('DateOfBirth').value).toBe('30/01/1980');
@@ -76,7 +76,7 @@ fdescribe( 'Service: PrepopMappingService' , () => {
         it( 'should not throw error if the prepop data is empty' , () => {
             PrepopMappingService.prepopContactDetails(contactDetails, null);
         } );
-        it( 'should populate EmailAddress as the other data are undefined' , () => {
+        it( 'should populate EmailAddress, even when other data are undefined' , () => {
             let cmdmData = {
                 'contactDetails' : {
                     'emailAddress' : 'test@amp.com.au'
@@ -85,7 +85,7 @@ fdescribe( 'Service: PrepopMappingService' , () => {
             PrepopMappingService.prepopContactDetails(contactDetails, cmdmData);
             expect(contactDetails.get('EmailAddress').value).toBe(cmdmData.contactDetails.emailAddress);
         } );
-        it( 'should populate HomeNumber as the other data are undefined' , () => {
+        it( 'should populate HomeNumber, even when other data are undefined' , () => {
             let cmdmData = {
                 'contactDetails' : {
                     'homePhone' : '07 12341234'
@@ -94,7 +94,7 @@ fdescribe( 'Service: PrepopMappingService' , () => {
             PrepopMappingService.prepopContactDetails(contactDetails, cmdmData);
             expect(contactDetails.get('HomeNumber').value).toBe(cmdmData.contactDetails.homePhone);
         } );
-        it( 'should populate MobileNumber as the other data are undefined' , () => {
+        it( 'should populate MobileNumber when valid, even when other data are undefined' , () => {
             let cmdmData = {
                 'contactDetails' : {
                     'mobilePhone' : '0413123123'
@@ -105,8 +105,8 @@ fdescribe( 'Service: PrepopMappingService' , () => {
         } );
         // Note: Google i18n looks like a good option is we need start trying to get too smart
         // https://github.com/googlei18n/libphonenumber/tree/master/javascript/i18n/phonenumbers
-        describe ( 'mobile number', () => {
-            it( 'should parse and format mobile number replace whitespace', () => {
+        describe ( 'mobile number parse and format', () => {
+            it( 'should replace whitespace', () => {
                 let cmdmData = {
                     'contactDetails' : {
                         'mobilePhone' : '0413 123 123'
@@ -119,7 +119,7 @@ fdescribe( 'Service: PrepopMappingService' , () => {
                 PrepopMappingService.prepopContactDetails(contactDetails, cmdmData);
                 expect(contactDetails.get('MobileNumber').value).toBe('0413123123');
             });
-            it( 'should parse and format mobile number replace +61 with 0', () => {
+            it( 'shouldreplace +61 with 0', () => {
                 let cmdmData = {
                     'contactDetails' : {
                         'mobilePhone' : '+61413123123'
@@ -132,7 +132,7 @@ fdescribe( 'Service: PrepopMappingService' , () => {
                 PrepopMappingService.prepopContactDetails(contactDetails, cmdmData);
                 expect(contactDetails.get('MobileNumber').value).toBe('0413123123');
             });
-            it( 'should prepopulate only is processed number pass regular express 04nnnnnnnn', () => {
+            it( 'should prepopulate only when processed number pass regular express 04nnnnnnnn', () => {
                 let cmdmData = {
                     'contactDetails' : {
                         'mobilePhone' : '41+613123123'

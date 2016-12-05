@@ -21,9 +21,9 @@ export class PrepopMappingService {
         basicInfoFormGroup.get('LastName').setValue(customerDetails.familyName);
 
         // Convert from yyyy-mm-dd to dd/mm/yyyy
-        if (moment(customerDetails.birthDate, 'YYYY-MM-DD').isValid()) {
-            basicInfoFormGroup.get('DateOfBirth').setValue(
-                moment(customerDetails.birthDate, 'YYYY-MM-DD').format('DD/MM/YYYY'));
+        let parsedDOB = moment(customerDetails.birthDate, 'YYYY-MM-DD');
+        if (parsedDOB.isValid()) {
+            basicInfoFormGroup.get('DateOfBirth').setValue(parsedDOB.format('DD/MM/YYYY'));
         }
 
         // According to https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824 the title value

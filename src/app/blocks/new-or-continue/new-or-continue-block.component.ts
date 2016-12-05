@@ -95,7 +95,7 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
                 FDN.MyAMPLoginBlock.concat(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME));
             isLoggedIn = Constants.loginSuccess === loginResultControl.value;
         }
-        if (isLoggedIn || true) {
+        if (isLoggedIn) {
             // Trigger the prepopulation from CMDM
             this.customerDetailsService
                     .getCustomerDetails()
