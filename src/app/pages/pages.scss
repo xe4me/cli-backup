@@ -1,0 +1,27 @@
+@import '../../../styles/abstracts';
+
+.container {
+    margin-left: 210px;
+    @include media-query(tablet-and-down) {
+        margin-left: 0;
+    }
+    .content {
+        font-size: $font-size-small;
+        line-height: 30px;
+        width: 75%;
+        @include media-query(palm) {
+           width: 100%;
+        }
+        clear: both;
+    }
+    .heading {
+        &.heading-intro {
+            margin-top: 80px;
+            @include media-query(tablet-and-down) {
+                margin-top: 40px;
+                font-size: 20px;
+                line-height: 30px;
+            }
+        }
+    }
+}

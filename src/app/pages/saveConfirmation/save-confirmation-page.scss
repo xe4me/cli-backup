@@ -1,23 +1,7 @@
-@import '../../../styles/abstracts';
+@import '../pages';
 
 .container {
-    margin-left: 210px;
-    @include media-query(tablet-and-down) {
-        margin-left: 0;
-    }
     .referenceNo {
         font-weight: 600;
-    }
-    .content {
-        font-size: $font-size-small;
-        line-height: 30px;
-    }
-    .heading {
-        &.heading-intro {
-            margin-top: 80px;
-            @include media-query(palm) {
-                margin-top: 40px;
-            }
-        }
     }
 }
