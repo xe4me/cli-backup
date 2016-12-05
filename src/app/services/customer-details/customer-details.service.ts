@@ -18,8 +18,16 @@ import { Environments } from '../../abstracts/environments/environments.abstract
  */
 @Injectable()
 export class CustomerDetailsService {
-
     public customerDetailsChanged : EventEmitter<any> = new EventEmitter<any>();
+
+    // Flags to indicate whether the data retieved were used to prepopulate
+    // the form due to data quality issues.
+    public isMobilePrepop : Boolean = false;
+    public isTitlePrepop : Boolean = false;
+    public isFirstNamePrepop : Boolean = false;
+    public isMiddleNamePrepop : Boolean = false;
+    public isLastNamePrepop : Boolean = false;
+    public isDOBPrepop : Boolean = false;
 
     private customerDetails : Promise<any>;
     private apiCustomerUrl =
@@ -28,7 +36,7 @@ export class CustomerDetailsService {
         Environments.property.GwDDCService.Path +
         '/customer/customer-details';
 
-    constructor( private http : AmpHttpService ){
+    constructor( private http : AmpHttpService ) {
     }
 
     public getCustomerDetails ( useCache = true ) : Promise<any> {
