@@ -123,6 +123,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     protected doneFlag : string    = 'defaultIsDone';
     private scrollSubscription : Subscription;
     private domUtils : DomUtils    = null;
+    private autoSave : boolean     = true;
 
     constructor ( protected formModelService : FormModelService ,
                   protected elementRef : ElementRef ,
@@ -141,7 +142,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         this.visibleFlag  = this.selectorName + 'IsVisible';
         this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
-        if ( this.__isRetrieved ) {
+        if ( this.__isRetrieved && this.__controlGroup.valid ) {
             this.setToTouchedAndSummaryState();
         }
         this._cd.markForCheck();
@@ -196,7 +197,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
             this.progressObserver.onProgress( this.__fdn );
-            if (this.formModelService.autoSave) {
+            if (this.formModelService.autoSave && this.autoSave) {
                 this.formModelService.save( this.__form.value );
             }
             let onNextScrolled = this.scrollService.$scrolled.subscribe( () => {
@@ -209,6 +210,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     get canGoNext () {
         return this.__controlGroup.valid;
+    }
+
+    protected disableAutoSave () {
+        this.autoSave = false;
+    }
+
+    protected enableAutoSave () {
+        this.autoSave = true;
     }
 
     protected subscribeToScrollEvents () {
