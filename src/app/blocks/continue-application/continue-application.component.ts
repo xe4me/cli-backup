@@ -27,6 +27,7 @@ import {
     styles: [require('./continue-application.component.scss').toString()]
 })
 export class ContinueApplicationBlock extends FormBlock {
+    private hideThisBlock = false;
     constructor(
         formModelService : FormModelService,
         elementRef : ElementRef,
@@ -36,6 +37,7 @@ export class ContinueApplicationBlock extends FormBlock {
         private http : AmpHttpService
     ) {
         super(formModelService, elementRef, _cd, progressObserver, scrollService);
+        this.disableAutoSave();
     }
 
     public onNext() {
@@ -63,8 +65,10 @@ export class ContinueApplicationBlock extends FormBlock {
 
                 if (payload.status === 'success') {
                     this.formModelService.storeModelAndHydtrateForm(payload.application);
-
-                    super.onNext();
+                    setTimeout(() => {
+                        super.onNext();
+                        this.hideThisBlock = true;
+                    }, 0);
                 }
             });
     }

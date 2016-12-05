@@ -44,6 +44,8 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
                   private sharedDataService : SharedFormDataService,
                   private viewReference : ViewContainerRef ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
+
+        this.disableAutoSave();
     }
 
     public ngOnInit () {
@@ -73,5 +75,4 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
             }, 0);
         });
     }
-
 }
