@@ -15,7 +15,8 @@ import {
     FormModelService ,
     ProgressObserverService ,
     AutoFocusOnDirective ,
-    Environments
+    Environments ,
+    CustomerDetailsService
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'basic-info-block' ,
@@ -32,7 +33,8 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
-                  progressObserver : ProgressObserverService ) {
+                  progressObserver : ProgressObserverService ,
+                  private customerDetailsService : CustomerDetailsService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
@@ -54,5 +56,21 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
                 return null;
             };
         };
+    }
+
+    get isTitleInSummaryState () {
+        return this.customerDetailsService.isTitlePrepop || this.isInSummaryState;
+    }
+    get isFirstNameInSummaryState () {
+        return this.customerDetailsService.isFirstNamePrepop || this.isInSummaryState;
+    }
+    get isMiddleNameInSummaryState () {
+        return this.customerDetailsService.isMiddleNamePrepop || this.isInSummaryState;
+    }
+    get isLastNameInSummaryState () {
+        return this.customerDetailsService.isLastNamePrepop || this.isInSummaryState;
+    }
+    get isDOBInSummaryState () {
+        return this.customerDetailsService.isDOBPrepop || this.isInSummaryState;
     }
 }

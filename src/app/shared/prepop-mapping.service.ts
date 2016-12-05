@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormGroup , FormControl , AbstractControl } from '@angular/forms';
+import * as moment from 'moment';
 import { FDN } from '../forms/better-form/Application.fdn';
 import { Constants } from '../shared';
-
+import { CustomerDetailsService } from 'amp-ddc-components';
 /**
  * All methods here are static, no need for instantiation therefore not an injectable
  */
@@ -10,26 +11,40 @@ export class PrepopMappingService {
     /**
      * Maps customer-details prepop data into the BasicInfo object of the Application Model
      */
-    public static prepopBasicInfo(basicInfoFormGroup, customerDetails) {
+    public static prepopBasicInfo(
+        basicInfoFormGroup : FormGroup,
+        customerDetails,
+        customerDetailsService : CustomerDetailsService) {
+
         if (!customerDetails) {
             return;
         }
 
         basicInfoFormGroup.get('FirstName').setValue(customerDetails.givenName);
+        customerDetailsService.isFirstNamePrepop = true;
         basicInfoFormGroup.get('MiddleName').setValue(customerDetails.firstMiddleName);
+        customerDetailsService.isMiddleNamePrepop = true;
         basicInfoFormGroup.get('LastName').setValue(customerDetails.familyName);
+        customerDetailsService.isLastNamePrepop = true;
+
         // Convert from yyyy-mm-dd to dd/mm/yyyy
-        let dob = (customerDetails.birthDate ? customerDetails.birthDate.split('-') : null);
-        if (dob && dob.length === 3) {
-            basicInfoFormGroup.get('DateOfBirth').setValue(dob[2] + '/' + dob[1] + '/' + dob[0]);
+        let parsedDOB = moment(customerDetails.birthDate, 'YYYY-MM-DD');
+        if (parsedDOB.isValid()) {
+            basicInfoFormGroup.get('DateOfBirth').setValue(parsedDOB.format('DD/MM/YYYY'));
+            // Potentially we can use DISABLED one day 
+            // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/2
+            customerDetailsService.isDOBPrepop = true;
         }
+
         // According to https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824 the title value
         // can be something other than one of the drop down value but still let it thru.
-        basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').setValue(customerDetails.title);
-        basicInfoFormGroup.get('TitleDropdown').get('Query').setValue(customerDetails.title);
+        let parsedTitle = PrepopMappingService.parseTitle(customerDetails.title);
+        basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').setValue(parsedTitle);
+        basicInfoFormGroup.get('TitleDropdown').get('Query').setValue(parsedTitle);
+        customerDetailsService.isTitlePrepop = true;
     }
 
-    public static prepopAddresses(addressFormGroup, customerDetails) {
+    public static prepopAddresses(addressFormGroup : FormGroup, customerDetails) {
         if (!customerDetails.contactDetails ||
             (!customerDetails.contactDetails.residentialAddress &&
              !customerDetails.contactDetails.postalAddress)) {
@@ -42,7 +57,7 @@ export class PrepopMappingService {
 
         // Prepop residential if available
         if (customerDetails.contactDetails.residentialAddress) {
-            this.prepopAddress(addressFormGroup.get('residentialAddress'),
+            this.prepopAddress(<FormGroup> addressFormGroup.get('residentialAddress'),
                 customerDetails.contactDetails.residentialAddress);
         }
 
@@ -81,21 +96,22 @@ export class PrepopMappingService {
                     }),
                     'isItPoBox': new FormControl()
                 }));
-                this.prepopAddress(addressFormGroup.get('postalAddress'), customerDetails.contactDetails.postalAddress);
+                this.prepopAddress(
+                    <FormGroup> addressFormGroup.get('postalAddress'),
+                    customerDetails.contactDetails.postalAddress);
             }
         }
     }
 
-    public static prepopAddress(addressFormGroup, prepopAddress) {
+    public static prepopAddress(addressFormGroup : FormGroup, prepopAddress) {
         addressFormGroup.get('isItPoBox').setValue(false);
         addressFormGroup.get('isManualSearch').setValue(false);
-        addressFormGroup.get('manualAddress').get('postCode').setValue(prepopAddress.postcode);
-        addressFormGroup.get('manualAddress').get('streetName').setValue(prepopAddress.addressLine1);
-        addressFormGroup.get('manualAddress').get('suburb').setValue(prepopAddress.suburbName);
-        addressFormGroup.get('manualAddress').get('stateDropdown').get('Query')
-            .setValue(prepopAddress.stateCode);
-        addressFormGroup.get('manualAddress').get('stateDropdown').get('SelectedItem')
-            .setValue(prepopAddress.stateCode);
+        let mAddrFG = addressFormGroup.get('manualAddress');
+        mAddrFG.get('postCode').setValue(prepopAddress.postcode);
+        mAddrFG.get('streetName').setValue(prepopAddress.addressLine1);
+        mAddrFG.get('suburb').setValue(prepopAddress.suburbName);
+        mAddrFG.get('stateDropdown').get('Query').setValue(prepopAddress.stateCode);
+        mAddrFG.get('stateDropdown').get('SelectedItem').setValue(prepopAddress.stateCode);
         addressFormGroup.get('search').get('query').setValue(
             prepopAddress.addressLine1 + ', ' +
             prepopAddress.suburbName + ' ' +
@@ -103,13 +119,54 @@ export class PrepopMappingService {
             prepopAddress.postcode);
     }
 
-    public static prepopContactDetails(contactDetailsFormGroup, customerDetails) {
+    public static prepopContactDetails(
+        contactDetailsFormGroup : FormGroup,
+        customerDetails,
+        customerDetailsService : CustomerDetailsService) {
         if (!customerDetails || !customerDetails.contactDetails) {
             return;
         }
 
         contactDetailsFormGroup.get('EmailAddress').setValue(customerDetails.contactDetails.emailAddress);
         contactDetailsFormGroup.get('HomeNumber').setValue(customerDetails.contactDetails.homePhone);
-        contactDetailsFormGroup.get('MobileNumber').setValue(customerDetails.contactDetails.mobilePhone);
+        let parsedMobile = PrepopMappingService.parseMobileNumber(customerDetails.contactDetails.mobilePhone);
+        if (parsedMobile) {
+            contactDetailsFormGroup.get('MobileNumber').setValue(parsedMobile);
+            // Update the flag to indicate this form control was populated via prepop
+            // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/2
+            customerDetailsService.isMobilePrepop = true;
+        }
+    }
+
+    /**
+     * Rules so far is remove white spaces and replace +61 with 0 according to JIRA
+     * https://teamtools.amp.com.au/jira/browse/BET-3979
+     * 
+     * But if we get too smart, do take a look at Google i18n
+     * https://github.com/googlei18n/libphonenumber/tree/master/javascript/i18n/phonenumbers
+     */
+    private static parseMobileNumber (mobile : string ) {
+        let validMobileRegex = /^04\d{8}$/;
+        if (mobile) {
+            let parseMobile = mobile.replace(/ /g, '');
+            if (parseMobile) {
+                parseMobile = parseMobile.replace('+61', '0');
+            }
+
+            if (validMobileRegex.test(parseMobile)) {
+                return parseMobile;
+            }
+        }
+        return null;
+    }
+
+    private static parseTitle (title : string ) {
+        if (title) {
+            let parsedTitle = title.replace(/\./g, '');
+            if (parsedTitle) {
+                return parsedTitle;
+            }
+        }
+        return title;
     }
 }

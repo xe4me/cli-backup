@@ -6,7 +6,8 @@ import {
     FormBlock ,
     ScrollService ,
     FormModelService ,
-    ProgressObserverService
+    ProgressObserverService ,
+    CustomerDetailsService
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'contact-details-block' ,
@@ -18,7 +19,13 @@ export class ContactDetailsBlock extends FormBlock {
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
                   scrollService : ScrollService ,
-                  progressObserver : ProgressObserverService ) {
+                  progressObserver : ProgressObserverService,
+                  private customerDetailsService : CustomerDetailsService) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    }
+
+    get isMobileInSummaryState () {
+        // Disable the input if mobile is prepopulated.
+        return this.customerDetailsService.isMobilePrepop || this.isInSummaryState;
     }
 }

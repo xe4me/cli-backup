@@ -13,8 +13,7 @@ import {
     ProgressObserverService ,
     FormBlock ,
     FormModelService ,
-    ScrollService,
-    CustomerDetailsService
+    ScrollService
 } from 'amp-ddc-components';
 import {
     Validators ,
@@ -24,11 +23,8 @@ import {
 import {
     Constants ,
     ApplicantGeneratorService ,
-    SharedFormDataService ,
-    PrepopMappingService
+    SharedFormDataService
 } from '../../shared';
-import { MyAMPLoginBlockComponent } from '../my-amplogin-block/my-amplogin-block.component';
-import { FDN } from '../../forms/better-form/Application.fdn';
 @Component( {
     selector        : 'single-or-joint-block' ,
     templateUrl     : './single-or-joint-block.component.html' ,
@@ -46,7 +42,6 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
                   _cd : ChangeDetectorRef ,
                   elementRef : ElementRef ,
                   progressObserver : ProgressObserverService ,
-                  private customerDetailsService : CustomerDetailsService,
                   private applicantGenerator : ApplicantGeneratorService ,
                   private viewContainerRef : ViewContainerRef ,
                   private sharedDataService : SharedFormDataService ) {
@@ -126,8 +121,6 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
     }
 
     private setUpApplication (singleJointIndicator : string ) {
-        // Trigger the customer detail pre-population logic
-        this.prepopCustomerDetails();
         const singleOrJoint = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         singleOrJoint.setValue( singleJointIndicator );
         singleOrJoint.markAsTouched();
@@ -145,50 +138,4 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
 
         this.formModelService.setSaveRelativeUrl( Constants.saveUrl + '?id=' + referenceId );
     }
-
-    // TODO move this to a service - this component is getting bloated
-    // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/1
-    private prepopCustomerDetails () {
-        let isLoggedIn = false; // Default assumption is that we are not logged in.
-                                // TODO: This will have to change if we start the journey from
-                                //       MyAMP and never went thru myAMPLoginBlock
-        // Lets check the myAMPLoginBlock loginResult
-        let ampLoginBlock = (<FormGroup> this.__form.get(FDN.MyAMPLoginBlock));
-        if ( ampLoginBlock && ampLoginBlock.contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )) {
-            let loginResultControl = <FormControl> this.__form.get(
-                FDN.MyAMPLoginBlock.concat(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME));
-            isLoggedIn = Constants.loginSuccess === loginResultControl.value;
-        }
-        if (isLoggedIn) {
-            // Trigger the pre-population from CMDM
-            this.customerDetailsService
-                    .getCustomerDetails()
-                        .then((data) => {
-                            let FDN_Applicant1_PersonalDetailsSection = [
-                                'Application' , 'Applicant1Section' , 'PersonalDetailsSection' ];
-
-                            let basicInfo = this.__form.get(
-                                FDN_Applicant1_PersonalDetailsSection.concat('BasicInfo'));
-
-                            let contactDetails = this.__form.get(
-                                FDN_Applicant1_PersonalDetailsSection.concat('ContactDetails'));
-
-                            // Lets do some prepopulation
-                            PrepopMappingService.prepopBasicInfo(basicInfo, data.payload);
-                            // TODO: For December release, do not prepopulate addresses as we cannot easily
-                            // map them to the required fields
-                            // this.prepopAddresses(data.payload);
-                            PrepopMappingService.prepopContactDetails(contactDetails, data.payload);
-
-                            // TODO: Make sure we load the special prepop block and not the manual entry blocks
-                        }).catch((err) => {
-                            console.error('Failed to customer details', err);
-                            // According to the mapping rules if the single CMDM call fails there is no need to retry
-                            // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824
-
-                            // TODO: Make sure we load the manual entry path
-                        });
-        }
-    }
-
 }
