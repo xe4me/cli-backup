@@ -110,11 +110,14 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
                                 FDN_Applicant1_PersonalDetailsSection.concat('ContactDetails'));
 
                             // Lets do some prepopulation
-                            PrepopMappingService.prepopBasicInfo(basicInfo, data.payload);
+                            PrepopMappingService.prepopBasicInfo(basicInfo, data.payload, this.customerDetailsService);
                             // TODO: For December release, do not prepopulate addresses as we cannot easily
                             // map them to the required fields
                             // this.prepopAddresses(data.payload);
-                            PrepopMappingService.prepopContactDetails(contactDetails, data.payload);
+                            PrepopMappingService.prepopContactDetails(
+                                contactDetails,
+                                data.payload,
+                                this.customerDetailsService);
 
                             // TODO: Make sure we load the special prepop block and not the manual entry blocks
                         }).catch((err) => {

@@ -4,7 +4,7 @@
             <amp-titles
                 auto-focus-on='input'
                 class='palm-mt'
-                [isInSummaryState]="isInSummaryState"
+                [isInSummaryState]="isTitleInSummaryState"
                 [id]="__custom.controls[0].id"
                 [controlGroup]="__controlGroup"
                 [required]="true">
@@ -19,7 +19,7 @@
             <amp-first-name
                 [id]="__custom.controls[1].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState"
+                [isInSummaryState]="isFirstNameInSummaryState"
                 [required]="true">
             </amp-first-name>
         </div>
@@ -31,14 +31,14 @@
                 [required]="false"
                 [maxLength]="30"
                 [showOptional]="false"
-                [isInSummaryState]="isInSummaryState">
+                [isInSummaryState]="isMiddleNameInSummaryState">
             </amp-input>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
             <amp-last-name
                 [id]="__custom.controls[3].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState"
+                [isInSummaryState]="isLastNameInSummaryState"
                 [required]="true">
             </amp-last-name>
         </div>
@@ -52,7 +52,7 @@
                 [valDate]="true"
                 [required]="true"
                 [customValidator]="ageValidator"
-                [isInSummaryState]="isInSummaryState"
+                [isInSummaryState]="isDOBInSummaryState"
                 [errors]="{ 'required' : __custom.controls[4].requiredMsg }">
             </amp-input>
         </div>
