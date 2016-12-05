@@ -44,7 +44,7 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
     public ngOnInit () {
         if ( this.__controlGroup.contains( this.__custom.controls[ 0 ].id )) {
             this.newOrExistingCustomerControl = <FormControl> this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        }else {
+        } else {
             this.newOrExistingCustomerControl = new FormControl( null , Validators.required );
             this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, this.newOrExistingCustomerControl );
         }

@@ -18,7 +18,8 @@ export class SharedFormDataService {
     public getReferenceIdControl ( form : FormGroup ) : AbstractControl {
         const formGroup        = <FormGroup> form.controls[ 'Application' ];
         let referenceIdControl = formGroup.controls[ Constants.referenceIdName ];
-        if ( ! referenceIdControl ) {
+
+        if ( !referenceIdControl ) {
             referenceIdControl = new FormControl();
             formGroup.addControl( Constants.referenceIdName , referenceIdControl );
         }
