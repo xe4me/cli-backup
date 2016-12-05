@@ -1,16 +1,19 @@
 <div class="container">
     <div class="main main--aside">
-        <amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="tools" [hidden]="hideThisBlock">
+        <amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="tools">
             <p class="heading-contxtual-label">
                 Enter the reference code that we sent you by SMS, as well as your last name and date of birth
             </p>
             <amp-form-row>
                 <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
                     <amp-input
+                            #refCode
                             [id]="__custom.controls[0].id"
                             [controlGroup]="__controlGroup"
                             [label]="'Reference code'"
                             [required]="true"
+                            [maxLength]="10"
+                            [amp-number-only]="refCode.control"
                             [errors]="{ required : __custom.controls[0].requiredErrMsg }"
                             [isInSummaryState]="isInSummaryState">
                     </amp-input>
@@ -37,6 +40,12 @@
                     </amp-input>
                 </div>
             </amp-form-row>
+            <div class="errors" *ngIf="responseError">
+                <div class="error-item">
+                    <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+                    <span>{{responseError}}</span>
+                </div>
+            </div>
         </amp-form-block>
     </div>
 </div>

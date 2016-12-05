@@ -27,7 +27,12 @@ import {
     styles: [require('./continue-application.component.scss').toString()]
 })
 export class ContinueApplicationBlock extends FormBlock {
+    public static notFoundErrorMsg = 'Sorry, we cannot find your application';
+    public static closedErrorMsg = 'This application has already been submitted';
+    public static genericErrorMsg = 'An unexpected error has occurred.';
     private hideThisBlock = false;
+    private responseError : string;
+
     constructor(
         formModelService : FormModelService,
         elementRef : ElementRef,
@@ -38,6 +43,17 @@ export class ContinueApplicationBlock extends FormBlock {
     ) {
         super(formModelService, elementRef, _cd, progressObserver, scrollService);
         this.disableAutoSave();
+    }
+
+    public getErrorMessage(status) : string {
+        switch (status) {
+            case 'notFound' :
+                return ContinueApplicationBlock.notFoundErrorMsg;
+            case 'closed' :
+                return ContinueApplicationBlock.closedErrorMsg;
+            default :
+                return ContinueApplicationBlock.genericErrorMsg;
+        };
     }
 
     public onNext() {
@@ -59,8 +75,6 @@ export class ContinueApplicationBlock extends FormBlock {
             }, options)
             .map((res : Response) => res.json())
             .subscribe((response) => {
-                // TODO:
-                // - Handle error states
                 const payload = response.payload;
 
                 if (payload.status === 'success') {
@@ -69,7 +83,13 @@ export class ContinueApplicationBlock extends FormBlock {
                         super.onNext();
                         this.hideThisBlock = true;
                     }, 0);
+                } else {
+                    this.responseError = this.getErrorMessage(payload.status);
+                    this._cd.markForCheck();
                 }
+            }, (error) => {
+                this.responseError = ContinueApplicationBlock.genericErrorMsg;
+                this._cd.markForCheck();
             });
     }
 }
