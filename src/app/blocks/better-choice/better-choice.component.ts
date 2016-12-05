@@ -102,7 +102,9 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
                         if (newOrExisting === Constants.existingCustomer) {
                             this.existingCustomer = true;
                             this._cd.markForCheck();
-                            this.subscribeToBett3rChoice();
+                            setTimeout(() => {
+                                this.subscribeToBett3rChoice();
+                            });
                         }
                     });
         const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
