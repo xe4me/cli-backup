@@ -1,0 +1,14 @@
+@import '../pages';
+
+.container {
+    .applicants {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    @include media-query(tablet-and-down) {
+        .applicants {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}

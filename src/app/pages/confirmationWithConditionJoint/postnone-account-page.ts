@@ -13,7 +13,7 @@ import {
 @Component( {
     selector    : 'postnone-account-page' ,
     template : require( './postnone-account-page.html' ),
-    styles: [ require( './../confirmationWithConditionSingle/postnone-account-page.scss' ) ],
+    styles: [ require( './postnone-account-page.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PostnoneJointAccountPage implements OnInit {

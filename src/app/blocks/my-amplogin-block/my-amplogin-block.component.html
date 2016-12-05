@@ -30,17 +30,17 @@
                     </amp-input>
                 </div>
             </amp-form-row>
-            <div class="mb mt palm-1/1 tablet-1/1 lap-and-up-3/12">
+            <div class="mb mt palm-1/1 tablet-1/1 lap-and-up-1/2">
                 Forgot your <a href="/wps/portal/sec/ForgotUsername/" target="_blank">username</a> or <a href="/wps/portal/sec/ForgotPassword/" target="_blank">password</a>?
             </div>
-            <div class="block-buttons mt+ palm-mt0">
+            <div class="block-buttons mt-60">
                 <amp-button
                     [context]="context()"
                     *ngIf="!isInSummaryState"
                     [attr.theme]="'tools'"
                     (click)="login()"
                     [disabled]="!canGoNext"
-                    class="btn btn-ok palm-mr0 mr">
+                    class="btn btn-ok palm-mr0 mr mt0 mb0 palm-1/1">
                     Login &amp; continue
                 </amp-button>
                 <amp-button
@@ -48,7 +48,7 @@
                     *ngIf="!isInSummaryState"
                     [attr.theme]="'tools'"
                     (click)="removeLoginAndProceed()"
-                    class="btn btn-secondary btn-change btn-ok-margin-top palm-m0">
+                    class="btn btn-secondary mt0 mb0 palm-1/1 palm-mt">
                     Continue without logging in
                 </amp-button>
             </div>
