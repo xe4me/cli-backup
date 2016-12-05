@@ -1,5 +1,5 @@
-<amp-form-block [context]="context()" [hidden]="!existingCustomer" buttonsTheme='tools'>
-    <p class="mt-60 mb-60 heading-contxtual-label">
+<amp-form-block [context]="context()" *ngIf="existingCustomer" buttonsTheme='tools'>
+    <p class="heading-contxtual-label mb-40">
         Tell us how we can help you out today
     </p>
     <amp-form-row>
@@ -9,10 +9,10 @@
                 [controlGroup]="__controlGroup"
                 [groupName]="__custom.controls[0].id"
                 [isInSummaryState]="isInSummaryState"
-                [required]="existingCustomer">
+                [required]="true">
         </amp-radio-button-group>
     </amp-form-row>
-    <p class="mt-60 mb-60 heading-contxtual-label">
+    <p class="heading-contxtual-label mt-60">
         For more information on eligible accounts, please click <a href="javascript:void;">here</a>
     </p>
 </amp-form-block>
