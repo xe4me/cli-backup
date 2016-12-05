@@ -16,7 +16,7 @@
             }, {
                 "id": "new_offset_account",
                 "value": "new_offset_account",
-                "label_single": "I would like to set up a new offset account on an existing eligble AMP home loan",
+                "label_single": "I would like to set up a new offset account on an existing eligible AMP home loan",
                 "label_joint": "We would like to set up a new offset account on an existing eligible AMP home loan"
             }, {
                 "id": "convert_deposit_account",
