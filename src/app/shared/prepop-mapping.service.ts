@@ -160,10 +160,6 @@ export class PrepopMappingService {
         return null;
     }
 
-    /**
-     * All we are doing here is to remove '.',
-     * we are not validating the enum.
-     */
     private static parseTitle (title : String ) {
         if (title) {
             let parsedTitle = title.replace(/\./g, '');
