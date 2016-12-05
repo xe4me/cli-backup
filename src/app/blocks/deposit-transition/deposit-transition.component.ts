@@ -5,7 +5,8 @@ import { AccountTransitionBaseBlock } from '../account-transition-base/account-t
 @Component( {
     selector        : 'deposit-transition-block' ,
     templateUrl     : '../account-transition-base/account-transition-base.html' ,
-    changeDetection : ChangeDetectionStrategy.OnPush
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles : [require('../account-transition-base/account-transition-base.scss')]
 } )
 export class DepositTransitionBlock extends AccountTransitionBaseBlock {
     constructor ( formModelService : FormModelService ,
