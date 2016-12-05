@@ -2,6 +2,7 @@
     "type": "experience",
     "port": 8080,
     "protocol": "HTTP",
+    "nodePort": 30007,
     "angularCliProj": false,
     "skipNPMPublish": false,
 
