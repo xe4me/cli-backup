@@ -19,8 +19,7 @@ import {
     Subscription
 } from 'rxjs';
 import {
-    FormGroup,
-    FormControl
+    FormGroup
 } from '@angular/forms';
 import {
     SharedFormDataService,
@@ -36,14 +35,15 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class MenuFrameBlockComponent implements OnDestroy {
-    private calculatedProgress = 0;
-    private stickyAnimatedIntoView = false;
-    private dialogIsVisible = true;
     private __form : FormGroup;
     private singleOrJointSubscription : Subscription;
+    private hydrationSubscription : Subscription;
     private sectionsToHide = [];
     private hideStickyButton = true;
+
+    @ViewChild( AmpBlockLoaderDirective ) private loader;
     @ViewChild(StickySaveButton) private saveButton : StickySaveButton;
+
     constructor(
         private _el : ElementRef,
         private formModelService : FormModelService,
@@ -52,9 +52,23 @@ export class MenuFrameBlockComponent implements OnDestroy {
         private _cd : ChangeDetectorRef,
         private scrollService : ScrollService,
         private sharedData : SharedFormDataService) {
+
+        this.hydrationSubscription = this.formModelService.$hydrateForm
+            .subscribe( ( _hydratedForm : any ) => {
+                this.loader.clear();
+                let keys = Object.keys( _hydratedForm.controls.Application.controls );
+                keys.map( ( _controlGroupName ) => {
+                    if ( _controlGroupName !== 'Welcome' && _controlGroupName !== 'Retrieve' ) {
+                        (<any> this.__form.controls).Application.addControl( _controlGroupName ,
+                            _hydratedForm.controls.Application.controls[ _controlGroupName ] );
+                    }
+                } );
+                this.loader.reload();
+            });
     }
 
     public onBlocksLoaded() {
+
         const singleOrJointControl = this.sharedData.getSingleOrJointControl(this.__form);
         this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((singleOrJoint) => {
             if (singleOrJoint === Constants.singleApplicant) {
@@ -72,7 +86,8 @@ export class MenuFrameBlockComponent implements OnDestroy {
     }
 
     public ngOnDestroy() {
-        if (this.singleOrJointSubscription ) {
+        this.hydrationSubscription.unsubscribe();
+        if (this.singleOrJointSubscription) {
             this.singleOrJointSubscription.unsubscribe();
         }
     }

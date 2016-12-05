@@ -4,6 +4,7 @@ import {
     ElementRef ,
     ChangeDetectionStrategy ,
     OnInit ,
+    AfterViewInit ,
     ViewContainerRef
 } from '@angular/core';
 import {
@@ -30,7 +31,7 @@ import {
     styles          : [ require( './single-or-joint-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
+export class SingleOrJointBlockComponent extends FormBlock implements OnInit, AfterViewInit {
     private static secondApplicantSectionIndex : number = 2;
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
@@ -50,10 +51,17 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
     public ngOnInit () {
         this.singleApplicantKey = Constants.singleApplicant;
         this.jointApplicantKey  = Constants.jointApplicant;
-        this.__controlGroup.addControl(
-            this.__custom.controls[ 0 ].id ,
-            new FormControl( null , Validators.required ) );
-        this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
+
+        if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
+            this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
+        }
+
+        if (this.__isRetrieved) {
+            this.storeReferenceIdInModel();
+        } else {
+            this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
+        }
+
         this.formModelService.saveResponse.subscribe( ( result ) => {
             if ( result.payload.meta && result.payload.meta.id ) {
                 this.storeReferenceIdInModel( result.payload.meta.id );
@@ -67,7 +75,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         // and change to Joint applicant and click on Joint , it will take you to the submit page , where as it
         // should've taken you to the first block in Applicant2 !!!
         // It was happening because we don't know how long it might take to load Applicant2 but we where doing
-        // onNext nevertheless , which is wrong, because if it takes 2 mintue to load , we should wait and then go
+        // onNext nevertheless , which is wrong, because if it takes 2 minute to load , we should wait and then go
         // to next undone block , which is inside the applicant2Section
         this.__onChildsLoaded( ( _loadedComponent : LoadedBlockInfo ) => {
             if ( _loadedComponent.name === 'Applicant2Section' ) {
@@ -75,6 +83,17 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
                 this.onNext();
             }
         } );
+    }
+
+    public ngAfterViewInit () {
+        super.ngAfterViewInit();
+
+        if (this.__isRetrieved) {
+            let singleJointControl = this.__controlGroup.get(this.__custom.controls[0].id);
+            if ( singleJointControl && singleJointControl.value === this.jointApplicantKey ) {
+                this.onJointApplication();
+            }
+        }
     }
 
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
@@ -93,18 +112,30 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit {
         this.onNext();
     }
 
-    private onSingleJoint ( singleJointIndicator : string ) {
+    private onSingleApplication () {
+        this.setUpApplication(this.singleApplicantKey);
+    }
+
+    private onJointApplication () {
+        this.setUpApplication(this.jointApplicantKey);
+    }
+
+    private setUpApplication (singleJointIndicator : string ) {
         const singleOrJoint = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         singleOrJoint.setValue( singleJointIndicator );
         singleOrJoint.markAsTouched();
         this.addOrRemoveJointApplicantSection( singleJointIndicator );
     }
 
-    private storeReferenceIdInModel ( referenceId ) {
+    private storeReferenceIdInModel ( referenceId? : string ) {
         let referenceIdControl = this.sharedDataService.getReferenceIdControl( this.__form );
-        if ( ! referenceIdControl.value ) {
-            referenceIdControl.setValue( referenceId );
-            this.formModelService.setSaveRelativeUrl( Constants.saveUrl + '?id=' + referenceId );
+
+        if (referenceId) {
+            referenceIdControl.setValue(referenceId);
+        } else {
+            referenceId = referenceIdControl.value;
         }
+
+        this.formModelService.setSaveRelativeUrl( Constants.saveUrl + '?id=' + referenceId );
     }
 }

@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { Component } from '@angular/core';
+import {
+    FormGroup,
+    FormBuilder
+} from '@angular/forms';
 import {
     FormModelService
 } from 'amp-ddc-components';
 import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
+
 const formDef = require('./form-def.def.json');
+
 @Component({
     selector: 'better-form',
     directives: [AmpBlockLoaderDirective],

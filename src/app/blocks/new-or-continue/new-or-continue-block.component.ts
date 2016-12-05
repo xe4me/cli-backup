@@ -50,10 +50,14 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
                   private sharedDataService : SharedFormDataService,
                   private viewReference : ViewContainerRef ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
+
+        this.disableAutoSave();
     }
 
     public ngOnInit () {
-        this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, new FormControl( null , Validators.required ) );
+        if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
+            this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
+        }
         this.__controlGroup.markAsTouched();
     }
 
@@ -129,5 +133,4 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
                         });
         }
     }
-
 }
