@@ -78,6 +78,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
         private renderer : Renderer,
         private dom : BrowserDomAdapter) {
         super( formModelService, elementRef, _cd, progressObserver, scrollService );
+        this.disableAutoSave();
     }
 
     public ngOnInit () {
