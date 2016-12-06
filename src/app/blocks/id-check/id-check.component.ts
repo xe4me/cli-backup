@@ -5,7 +5,8 @@ import {
     OnInit,
     ChangeDetectionStrategy,
     ViewChild,
-    AfterViewInit
+    AfterViewInit,
+    OnDestroy
 } from '@angular/core';
 import {
     FormControl
@@ -29,7 +30,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles : [require('./id-check-component.scss').toString()]
 } )
-export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
+export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
     private greenIdModel : IGreenIdFormModel;
     private checkboxLabel : string;
     @ViewChild(AmpGreenIdBlockComponent)
@@ -38,6 +39,13 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
     private greenIdCompleted = false;
     private greenIdPassed = false;
     private verificationStatusSubscription : Subscription;
+    private scrolledSubscription : Subscription;
+    private greenIdStatii = {
+        verified: 'VERIFIED',
+        verifiedWithChanges: 'VERIFIED_WITH_CHANGES',
+        inProgress: 'IN_PROGRESS'
+    };
+
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
@@ -48,40 +56,69 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit {
 
     public ngOnInit() {
         this.updateGreenIdModel();
-        let scrolledSubscription = this.scrollService.$scrolled.subscribe((scrollEvent) => {
+    }
+
+    public ngAfterViewInit() {
+        if ( this.__isRetrieved ) {
+            let verificationStatusControl : FormControl;
+            verificationStatusControl = this.greenIdComponent.getVerificationStatusControl();
+            this.onVerificationStatusChange(verificationStatusControl.value);
+        }
+
+        this.scrolledSubscription = this.scrollService.$scrolled.subscribe((scrollEvent) => {
             if (scrollEvent.componentSelector
-                        && scrollEvent.componentSelector.replace('-block', '') === this.__fdn.join('-')) {
-                if (!this.greenIdShown) {
+                && scrollEvent.componentSelector.replace('-block', '') === this.__fdn.join('-')) {
+                if (!this.greenIdCompleted && !this.greenIdShown) {
                     this.greenIdComponent.showGreenId();
                     this.subscribeToVerificationStatus();
                     this.greenIdShown = true;
-                    scrolledSubscription.unsubscribe();
+                    this.scrolledSubscription.unsubscribe();
                 }
             }
         });
+        super.ngAfterViewInit();
     }
 
     public ngOnDestroy() {
         if (this.verificationStatusSubscription) {
             this.verificationStatusSubscription.unsubscribe();
         }
+        if (this.scrolledSubscription) {
+            this.scrolledSubscription.unsubscribe();
+        }
         super.ngOnDestroy();
     }
 
     public subscribeToVerificationStatus() {
         let verificationStatusControl : FormControl = this.greenIdComponent.getVerificationStatusControl();
-        this.verificationStatusSubscription = verificationStatusControl.valueChanges.subscribe((verificationStatus) => {
-            this.greenIdCompleted = true;
-            if (verificationStatus === 'VERIFIED' || verificationStatus === 'VERIFIED_WITH_CHANGES') {
-                this.greenIdPassed = true;
-                this.__custom.blockTitle = this.__custom['blockTitle_verified'];
-            } else {
-                this.greenIdPassed = false;
-                this.__custom.blockTitle = this.__custom['blockTitle_unverified'];
-            }
-            this.scrollService.scrollToNextUndoneBlock(this.__form);
-            this._cd.markForCheck();
-        });
+        this.verificationStatusSubscription = verificationStatusControl.valueChanges
+                                                                       .subscribe(this.onVerificationStatusChange);
+    }
+
+    private onVerificationStatusChange = ( verificationStatus : string ) => {
+        if (!verificationStatus || verificationStatus === this.greenIdStatii.inProgress) {
+            return;
+        }
+
+        this.verificationComplete(verificationStatus);
+    };
+
+    private verificationComplete( verificationStatus : string ) {
+        this.greenIdCompleted = true;
+
+        if (this.isCompleteStatus(verificationStatus)) {
+            this.greenIdPassed = true;
+            this.__custom.blockTitle = this.__custom['blockTitle_verified'];
+        } else {
+            this.greenIdPassed = false;
+            this.__custom.blockTitle = this.__custom['blockTitle_unverified'];
+        }
+        this.scrollService.scrollToNextUndoneBlock(this.__form);
+        this._cd.markForCheck();
+    }
+
+    private isCompleteStatus( verificationStatus : string ) {
+        return [this.greenIdStatii.verified, this.greenIdStatii.verifiedWithChanges].includes(verificationStatus);
     }
 
     private updateGreenIdModel() {

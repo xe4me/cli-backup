@@ -53,7 +53,7 @@ export class ContinueApplicationBlock extends FormBlock {
                 return ContinueApplicationBlock.closedErrorMsg;
             default :
                 return ContinueApplicationBlock.genericErrorMsg;
-        };
+        }
     }
 
     public onNext() {

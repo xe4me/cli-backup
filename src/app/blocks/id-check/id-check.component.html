@@ -2,7 +2,9 @@
     <amp-greenid-block [form]="greenIdModel"
                        [controlGroup]="__controlGroup"
                        [checkboxLabel]="__custom.checkboxLabel"
-                       [showOnReady]="false">
+                       [showOnReady]="false"
+                       [keepControl]="true"
+                       *ngIf="!greenIdCompleted">
     </amp-greenid-block>
     <div *ngIf="greenIdCompleted && greenIdPassed">
         <p>Your ID has been verified.  Please continue.</p>
