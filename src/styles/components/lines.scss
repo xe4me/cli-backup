@@ -3,7 +3,7 @@ $line-vertical-color-gray: $amp-colour-grey-darkest-most;
 .#{$namespace}line-vertical-text-wrap,
 %#{$namespace}line-vertical-text-wrap {
     margin: 0 15px;
-    &:after {
+    &::after {
         content: '';
         border-left: 0.5px solid;
 
@@ -16,7 +16,7 @@ $line-vertical-color-gray: $amp-colour-grey-darkest-most;
         //top: 25%;
     }
     &-gray {
-        &:after {
+        &::after {
             border-color: $line-vertical-color-gray;
         }
     }
@@ -25,7 +25,7 @@ $line-vertical-color-gray: $amp-colour-grey-darkest-most;
 .#{$namespace}line-vertical-full-height,
 %#{$namespace}line-vertical-full-height {
     margin: 0 15px;
-    &:after {
+    &::after {
         content: '';
         height: 50%;
         position: absolute;
@@ -34,7 +34,7 @@ $line-vertical-color-gray: $amp-colour-grey-darkest-most;
         top: 25%;
     }
     &-gray {
-        &:after {
+        &::after {
             border-color: $line-vertical-color-gray;
         }
     }

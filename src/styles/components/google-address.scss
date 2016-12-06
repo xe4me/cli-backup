@@ -2,7 +2,7 @@
 // Override the 'powered by Google' logo at the bottom of the search results (pac-logo:after)
 .pac-container {
     &.pac-logo {
-        &:after {
+        &::after {
             background-image: none;
             height: 0;
         }

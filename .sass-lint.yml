@@ -94,7 +94,7 @@ rules:
       -
         max-depth: 4
     property-sort-order: 0
-    pseudo-element: 0 # Should be turned into Error
+    pseudo-element: 2
     quotes: 0 # Should be turned into Error
     shorthand-values: 0 # Should be turned into Error
     url-quotes: 2
