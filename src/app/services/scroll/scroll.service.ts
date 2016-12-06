@@ -1,4 +1,10 @@
-import { Injectable , ElementRef , Renderer , EventEmitter }     from '@angular/core';
+import {
+    Injectable,
+    ElementRef,
+    Renderer,
+    EventEmitter,
+    NgZone
+}     from '@angular/core';
 import { FormModelService } from '../form-model/form-model.service';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Injectable()
@@ -10,7 +16,8 @@ export class ScrollService {
     private _window          = window;
     private _offset : number = 0;
 
-    constructor ( private _dom : BrowserDomAdapter ,
+    constructor ( private _dom : BrowserDomAdapter,
+                  private zone : NgZone,
                   private _renderer : Renderer ) {
         this.$scrolled  = new EventEmitter();
         this.$scrolling = new EventEmitter();
@@ -159,6 +166,14 @@ export class ScrollService {
             // this.formModelService.setCurrentBlock( CLASS_NAME );
         }
         return isInView;
+    }
+
+    public scrollToZero () {
+        this.zone.runOutsideAngular( () => {
+            setTimeout( () => {
+                window.scrollTo( 0 , 0 );
+            } , 0 );
+        } );
     }
 
     private scrollToLastBlock ( components ) {
