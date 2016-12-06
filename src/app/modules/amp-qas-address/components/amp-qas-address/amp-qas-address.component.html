@@ -24,15 +24,11 @@
                     {{ option.PartialAddress }}
                 </template>
             </amp-typeahead>
-
-            <amp-control-error [control]='typeaheadCmp.control'>
-                <template let-error='error'>
-                    <error-item [error]='error' selector='addressNotFound'>
-                        Enter your {{ addressType }} address manually by clicking <a href="javascript:void(0);"
-                                                                                     (click)='showManualAddrForm()'>here</a>.
-                    </error-item>
-                </template>
-            </amp-control-error>
+            <amp-control-error [control]='typeaheadCmp.control'></amp-control-error>
+            <div class="mt">
+                Can't find your address? <a href="javascript:void(0);"
+                                            (click)='showManualAddrForm()'>Click here </a>to manually enter your address.
+            </div>
             <div *ngIf='showResidentialAddressCannotBePoBoxError' class='errors'>
                 <div class='error-item'>
                     <span class='icon icon--close icon-errors' aria-hidden='true'></span>You've selected a po box address, please select a residential address.
