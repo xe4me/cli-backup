@@ -45,7 +45,7 @@ export class RequestRefViaSMSPage implements AfterViewInit {
 
     private back() {
         // call the form save and retrieve to navigate back to the first incomplete block
-        this.router.navigate(['']);
+        history.back();
     }
 
     private sendSMS() {

@@ -4,6 +4,7 @@ import {
     ElementRef ,
     ChangeDetectionStrategy ,
     OnInit ,
+    AfterViewInit ,
     ViewContainerRef
 } from '@angular/core';
 import {
@@ -34,7 +35,7 @@ import { MyAMPLoginBlockComponent } from '../my-amplogin-block/my-amplogin-block
     styles          : [ require( './new-or-continue-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
+export class NewOrContinueApplicationBlock extends FormBlock implements OnInit, AfterViewInit {
     private newApplicationKey : string = Constants.newApplication;
     private continueApplicationKey : string = Constants.existingApplication;
     private nextBlockChanged = false;
@@ -59,6 +60,13 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit {
             this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
         }
         this.__controlGroup.markAsTouched();
+    }
+
+    public ngAfterViewInit() {
+        super.ngAfterViewInit();
+        if (this.__isRetrieved) {
+            this.onNewOrContinue(this.__controlGroup.get( this.__custom.controls[ 0 ].id ).value);
+        }
     }
 
     private addOrRemoveContinueSection(newOrContinue : string) : Promise<any> {

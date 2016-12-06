@@ -4,6 +4,7 @@ import {
     ElementRef ,
     ChangeDetectionStrategy ,
     OnInit ,
+    AfterViewInit,
     ViewContainerRef
 } from '@angular/core';
 import {
@@ -27,7 +28,7 @@ import { FDN } from '../../forms/better-form/Application.fdn';
     changeDetection : ChangeDetectionStrategy.OnPush ,
     styles          : [ require( './welcome-block.component.scss' ) ]
 } )
-export class WelcomeBlockComponent extends FormBlock implements OnInit {
+export class WelcomeBlockComponent extends FormBlock implements OnInit, AfterViewInit {
     @ViewChild( AmpIntroBlockComponent ) public ampIntro;
     private nextBlockChanged : boolean = false;
     private newOrExistingCustomerControl : FormControl;
@@ -47,6 +48,14 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit {
         } else {
             this.newOrExistingCustomerControl = new FormControl( null , Validators.required );
             this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, this.newOrExistingCustomerControl );
+        }
+
+    }
+
+    public ngAfterViewInit() {
+        super.ngAfterViewInit();
+        if (this.__isRetrieved) {
+            this.onNewOrExisting(this.newOrExistingCustomerControl.value);
         }
     }
 

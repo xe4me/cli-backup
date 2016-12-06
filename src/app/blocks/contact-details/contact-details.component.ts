@@ -28,7 +28,7 @@ export class ContactDetailsBlock extends FormBlock {
 
     get isMobileInSummaryState () {
         // Disable the input if mobile is prepopulated.
-        return ( this.customerDetailsService.isMobilePrepop || this.isInSummaryState ) 
+        return ( this.customerDetailsService.isMobilePrepop || this.isInSummaryState )
             && this.__fdn[1] === Constants.applicant1Section;
     }
 }

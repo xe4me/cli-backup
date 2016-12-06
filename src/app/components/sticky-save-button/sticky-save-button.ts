@@ -31,6 +31,12 @@ export class StickySaveButton {
 
     public onSave() {
         this.formModelService.saveModel(this.form.value).subscribe( (result) => {
+
+            /*
+            * Store the model in form model service in here so we can retrieve it when we press back button !
+            * */
+            this.formModelService.storeModel( this.form.value );
+
             const applicationId = this.form.get([
                 'Application',
                 'referenceId']).value;
