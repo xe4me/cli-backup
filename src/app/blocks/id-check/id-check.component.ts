@@ -96,7 +96,8 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
     }
 
     private onVerificationStatusChange = ( verificationStatus : string ) => {
-        if (!verificationStatus || verificationStatus === this.greenIdStatii.inProgress) {
+
+        if (!verificationStatus || (verificationStatus === this.greenIdStatii.inProgress)) {
             return;
         }
 
