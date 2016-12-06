@@ -64,6 +64,8 @@ export class MenuFrameBlockComponent implements OnDestroy {
                     }
                 } );
                 this.loader.reload();
+                this.hideStickyButton = false;
+                this._cd.markForCheck();
             });
     }
 
