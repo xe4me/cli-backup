@@ -43,6 +43,10 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     public ngOnInit () {
         if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
             this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
+        } else {
+            const control = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+            control.setValidators(Validators.required);
+            control.updateValueAndValidity({onlySelf: false});
         }
     }
 
