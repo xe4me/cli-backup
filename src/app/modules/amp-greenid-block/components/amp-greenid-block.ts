@@ -145,6 +145,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         if (this.controlGroup) {
             if (this.controlGroup.contains(this.id)) {
                 this.greenIdControlGroup = <FormGroup> this.controlGroup.get(this.id);
+                this.revalidateControlGroup(this.greenIdControlGroup);
             } else {
                 this.greenIdControlGroup = this.createGreenIdControlGroup();
                 this.controlGroup.addControl(this.id, this.greenIdControlGroup);
@@ -153,6 +154,14 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
             this.greenIdControlGroup = this.createGreenIdControlGroup();
         }
         this.greenIdControlGroup.markAsTouched();
+    }
+
+    private revalidateControlGroup( controlGroup : FormGroup ) {
+        Object.keys(controlGroup.controls).map( (key) => {
+            let control = controlGroup.controls[key];
+            control.setValidators(Validators.required);
+            control.updateValueAndValidity({onlySelf: false});
+        });
     }
 
     private showGreenIdInternal() {
