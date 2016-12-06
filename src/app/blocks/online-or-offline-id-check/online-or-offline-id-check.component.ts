@@ -47,12 +47,14 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             const control = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
             control.setValidators(Validators.required);
             control.updateValueAndValidity({onlySelf: false});
+            this.setupControlGroups(control.value);
         }
     }
 
-    private addOrRemoveOnlineIdCheck(typeOfCheck : string) {
+    private addOrRemoveOnlineIdCheck ( typeOfCheck : string ) {
         const optionalBlocks = clone(this.__custom.optionalBlocks);
-        if (typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded) {
+
+        if ( typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded ) {
             for (let optionalBlock of optionalBlocks) {
                 optionalBlock.custom.applicantIndex = this.__custom.applicantIndex;
             }
@@ -64,18 +66,26 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             this.isOnlineCheckLoaded = true;
             return;
         }
-        if (typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
+
+        if ( typeOfCheck === Constants.offlineIdCheck && this.isOnlineCheckLoaded ) {
             for ( let i = 0; i <= optionalBlocks.length; i++ ) {
                 this.__removeNext(this.viewContainerRef);
             }
             this.isOnlineCheckLoaded = false;
-            this.onNext();
-            return;
         }
+
         this.onNext();
     }
 
-    private onIdCheckSelection ( typeOfCheck : string ) {
+    private onOnlineCheckSelection () {
+        this.setupControlGroups(this.onlineCheckKey);
+    }
+
+    private onOfflineCheckSelection () {
+        this.setupControlGroups(this.offlineCheckKey);
+    }
+
+    private setupControlGroups (typeOfCheck : string ) {
         const onlineOrOffline = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         onlineOrOffline.setValue( typeOfCheck );
         onlineOrOffline.markAsTouched();

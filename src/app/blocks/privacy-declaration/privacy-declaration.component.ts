@@ -1,14 +1,14 @@
-import { Component,
-         ChangeDetectorRef,
-         ElementRef,
-         ChangeDetectionStrategy } from '@angular/core';
-import { FormControl,
-         Validators
-} from '@angular/forms';
-import { FormBlock,
-         ScrollService,
-         FormModelService,
-         ProgressObserverService
+import {
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    ChangeDetectionStrategy
+} from '@angular/core';
+import {
+    FormBlock,
+    ScrollService,
+    FormModelService,
+    ProgressObserverService
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'privacy-declaration-block' ,
