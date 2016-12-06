@@ -18,6 +18,7 @@ import {
     Environments ,
     CustomerDetailsService
 } from 'amp-ddc-components';
+import { Constants } from '../../shared';
 @Component( {
     selector        : 'basic-info-block' ,
     templateUrl     : './basic-info.component.html' ,
@@ -59,18 +60,23 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
     }
 
     get isTitleInSummaryState () {
-        return this.customerDetailsService.isTitlePrepop || this.isInSummaryState;
+        return ( this.customerDetailsService.isTitlePrepop || this.isInSummaryState ) 
+            && this.__fdn[1] === Constants.applicant1Section;
     }
     get isFirstNameInSummaryState () {
-        return this.customerDetailsService.isFirstNamePrepop || this.isInSummaryState;
+        return ( this.customerDetailsService.isFirstNamePrepop || this.isInSummaryState ) 
+            && this.__fdn[1] === Constants.applicant1Section;
     }
     get isMiddleNameInSummaryState () {
-        return this.customerDetailsService.isMiddleNamePrepop || this.isInSummaryState;
+        return ( this.customerDetailsService.isMiddleNamePrepop || this.isInSummaryState ) 
+            && this.__fdn[1] === Constants.applicant1Section;
     }
     get isLastNameInSummaryState () {
-        return this.customerDetailsService.isLastNamePrepop || this.isInSummaryState;
+        return ( this.customerDetailsService.isLastNamePrepop || this.isInSummaryState ) 
+            && this.__fdn[1] === Constants.applicant1Section;
     }
     get isDOBInSummaryState () {
-        return this.customerDetailsService.isDOBPrepop || this.isInSummaryState;
+        return ( this.customerDetailsService.isDOBPrepop || this.isInSummaryState ) 
+            && this.__fdn[1] === Constants.applicant1Section;
     }
 }

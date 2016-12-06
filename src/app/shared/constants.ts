@@ -18,4 +18,5 @@ export class Constants {
     public static referenceIdName : string = 'referenceId';
     public static loginSuccess = 'SUCCESS';
     public static loginFailed = 'FAILED';
+    public static applicant1Section = 'Applicant1Section';
 }
