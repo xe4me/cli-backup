@@ -3,9 +3,7 @@ import {
     ChangeDetectorRef ,
     ElementRef ,
     ChangeDetectionStrategy ,
-    Input ,
-    AfterViewInit ,
-    ViewChild
+    OnInit
 } from '@angular/core';
 import {
     FormBlock ,
@@ -19,9 +17,9 @@ import {
     selector        : 'not-a-robot-block' ,
     templateUrl     : './not-a-robot.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles :  [ require('./not-a-robot.component.scss')]
+    styles :  [ require('./not-a-robot.component.scss') ]
 } )
-export class NotARobotBlock extends FormBlock {
+export class NotARobotBlock extends FormBlock implements OnInit {
     private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
     private showCaptchaBlock : boolean = true;
     private verified : boolean = false;
@@ -35,6 +33,12 @@ export class NotARobotBlock extends FormBlock {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
+    public ngOnInit () {
+        if ( this.__isRetrieved ) {
+            this.hideBlock();
+        }
+    }
+
     private handleCaptchaResponse(response) {
         this.verified = response.success;
     }
@@ -42,8 +46,12 @@ export class NotARobotBlock extends FormBlock {
     private handleCaptchaExpired(event) {
         // BET-3872: Remove captcha block after successfully verified
         if (this.verified) {
-            this.showCaptchaBlock = false;
+            this.hideBlock();
         }
         this._cd.markForCheck();
+    }
+
+    private hideBlock () {
+        this.showCaptchaBlock = false;
     }
 }
