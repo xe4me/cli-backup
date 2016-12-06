@@ -46,7 +46,8 @@ module.exports = {
                         GoogleRecaptcha: {
                             sitekey: '6LeqZgsUAAAAAD9-le6RQUkUv5MTjhsSM-SldWKq'
                         },
-                        DamContentUrl: 'https://www.amp.com.au/content/dam/'
+                        DamContentUrl: 'https://www.amp.com.au/content/dam/',
+                        AmpRootUrl : 'https://www.amp.com.au/'
                     }
                 )
             );
@@ -54,9 +55,9 @@ module.exports = {
 
         // Allow all static resources
         app.use(express.static(path.join(__dirname, '../dist')));
-    
-    
-    
+
+
+
         /**
          * Add the proxy for all the api request
          * We want all the request that has ddc/public/api to be redirected to https://ddc-dev.digital-pilot.ampaws.com.au
@@ -64,7 +65,7 @@ module.exports = {
          *
          */
         app.use('/ddc/public/api', apiProxy);
-    
+
         // For all 404 item map it back to Angular app for HTML5 push state client URL resolution
         app.use(function(req, res) {
             res.status(200).sendfile('dist'  + '/index.html');

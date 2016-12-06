@@ -46,6 +46,7 @@ export class RootEnvProperty {
     ApiCallsBaseUrl : string;
     experienceName : string; // like : buyback , or nio , or cwc
     DamContentUrl : string; // https://www.amp.com.au
+    AmpRootUrl : string; // https://www.amp.com.au
     GreenId : {
         configScriptUrl : string;
         uiScriptUrl : string;
