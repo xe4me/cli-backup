@@ -12,6 +12,7 @@
                             [controlGroup]="__controlGroup"
                             [label]="'Reference code'"
                             [required]="true"
+                            [minLength]="10"
                             [maxLength]="10"
                             [amp-number-only]="refCode.control"
                             [errors]="{ required : __custom.controls[0].requiredErrMsg }"
