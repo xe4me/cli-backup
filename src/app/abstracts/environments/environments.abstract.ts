@@ -31,7 +31,7 @@ export class RootEnvProperty {
     //         Path: GW_DDC_SERVICE_PATH,
     //     }
     // }
-    
+
     // Tam customer domain url, configured in Kubernates, available to all experiences. e.g. https://secure-uat.amp.com.au
     TamCustomerDomain : string;
     // For Google Address component, this is the Google MAP API key
