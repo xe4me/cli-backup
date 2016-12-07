@@ -191,6 +191,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         if ( this.isInSummaryState ) {
             return;
         }
+        this.ampInput.doOnBlurDirty = false;
         this._optionsHidden = false;
     };
 
