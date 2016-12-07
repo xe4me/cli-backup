@@ -32,6 +32,8 @@ export class RootEnvProperty {
     //     }
     // }
 
+    // Tam customer domain url, configured in Kubernates, available to all experiences. e.g. https://secure-uat.amp.com.au
+    TamCustomerDomain : string;
     // For Google Address component, this is the Google MAP API key
     GoogleApiKey : string;
     // TAM portion of the URL (i.e. /services/secure) [https://teamtools.amp.com.au/confluence/display/EH/API+Gateway+traffic+flow+with+TAM]
