@@ -33,7 +33,7 @@ const DECLARATIONS = [
         AmpErrorModule ,
         AmpTypeaheadModule
     ] ,
-    providers    : [ AmpQasAddressService , Http ] ,
+    providers    : [ Http ] ,
     exports      : DECLARATIONS
 } )
 export class AmpQasAddressModule {

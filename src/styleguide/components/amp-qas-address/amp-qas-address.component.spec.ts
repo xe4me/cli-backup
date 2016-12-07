@@ -8,6 +8,8 @@ import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { fakeAsync , tick } from '@angular/core/testing/fake_async';
 import { AmpCountryService } from '../../../app/modules/amp-dropdown-new/services/amp-country.service';
+import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
+import { HttpModule } from '@angular/http';
 @Injectable()
 export class MockAmpQasAddressService {
     public static sampleSearchTerm = 'Pymble';
@@ -112,12 +114,16 @@ export class MockAmpQasAddressService {
             'Score'          : '20'
         }
     ];
+    public residentialOnly = 'false';
     private subject                = new BehaviorSubject( this.sampleResponse );
     private nullSubject            = new BehaviorSubject( null );
     public query                   = ( queryValue : string ) : Observable<any> => {
         return queryValue === MockAmpQasAddressService.sampleSearchTerm ? this.subject.asObservable() : this.nullSubject.asObservable();
         // .catch(this.handleError);
     };
+    public setUrlForResidential () {
+        this.residentialOnly = 'true';
+    }
 }
 @Injectable()
 export class MockAmpCountryService {
@@ -297,6 +303,7 @@ describe( 'amp-qas-address component' , () => {
         TestBed.configureTestingModule( {
             declarations : [ AmpQasAddressComponentTest ] ,
             providers    : [
+                AmpHttpService,
                 {
                     provide  : AmpQasAddressService ,
                     useClass : MockAmpQasAddressService
@@ -307,7 +314,7 @@ describe( 'amp-qas-address component' , () => {
                 } ,
                 { provide : ComponentFixtureAutoDetect , useValue : true }
             ] ,
-            imports      : [ FormsModule , ReactiveFormsModule , AmpQasAddressModule ]
+            imports      : [ FormsModule , ReactiveFormsModule , AmpQasAddressModule , HttpModule ]
         } );
         _fixture = TestBed.createComponent( AmpQasAddressComponentTest );
         _fixture.detectChanges();

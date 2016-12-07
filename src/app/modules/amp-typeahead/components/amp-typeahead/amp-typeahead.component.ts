@@ -44,6 +44,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() selectedItemIdentifier                    = 'id';
     @Input() selectedItemValueIdentifier               = 'label';
     @Input() isInSummaryState                          = false;
+    @Input() apiCallDebounceTime                       = 0;
     @Input() minTriggerLength                          = 0;
     @Input() errors                                    = {};
     @Input() selectLabel;
@@ -256,6 +257,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         return this.subscription =
             this.control
                 .valueChanges
+                .debounceTime(this.apiCallDebounceTime)
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
                     if ( ! queryString ) {
