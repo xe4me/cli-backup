@@ -56,7 +56,7 @@ xdescribe('AmpGreenIdService', () => {
         });
     });
 
-    it('getTheToken - should get the token via the services',
+    it('registerUser - should get the token via the services',
         fakeAsync(inject([AmpGreenIdServices, MockBackend], (ampGreenIdServices : AmpGreenIdServices, mockBackend : MockBackend) => {
             let res : Response;
             mockBackend.connections.subscribe(( c ) => {
@@ -64,7 +64,7 @@ xdescribe('AmpGreenIdService', () => {
                 let response = new ResponseOptions({body: `[{"verificationId": "M1Crf19U", "verificationToken": "fee72af1cf0f1ccd0a7f7a2af8a69ecfb40da449"}]`});
                 c.mockRespond(new Response(response));
             });
-            ampGreenIdServices.getTheToken(modelValue).subscribe((response) => {
+            ampGreenIdServices.registerUser(modelValue).subscribe((response) => {
                 res = response;
             });
             tick();

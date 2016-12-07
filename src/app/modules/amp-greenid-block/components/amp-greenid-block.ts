@@ -51,6 +51,15 @@ import { IGreenIdFormModel } from './interfaces/formModel';
     encapsulation : ViewEncapsulation.None
 })
 export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
+    public static verificationStatuses = {
+        VERIFIED: 'VERIFIED',
+        VERIFIED_WITH_CHANGES: 'VERIFIED_WITH_CHANGES',
+        VERIFIED_ADMIN: 'VERIFIED_ADMIN',
+        IN_PROGRESS: 'IN_PROGRESS',
+        PENDING: 'PENDING',
+        LOCKED_OUT: 'LOCKED_OUT'
+    };
+
     @Input() id : string = 'green-id-identity-check';
     @Input() form : IGreenIdFormModel; // form model input
     @Input() keepControl : boolean = false;
@@ -108,19 +117,23 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
             this.safeStyleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
         }
         this.createControls();
-        this.loadApiScripts = new Promise<any>(this.loadApiScriptsHandler).then(() => {
-            this.setupGreenId();
-            this.AmpGreenIdServices
-                .getTheToken(this.form)
-                .subscribe((response) => {
-                    if (response) {
-                        this.updateModel(response.payload);
-                        if (this.showOnReady) {
-                            this.showGreenId();
-                        }
-                    }
-                });
-        });
+
+        const verificationStatus = this.greenIdControlGroup.controls['verificationStatus'];
+
+        if (!verificationStatus.value ||
+            verificationStatus.value === AmpGreenIdBlockComponent.verificationStatuses.PENDING) {
+
+            this.loadApiScripts = new Promise<any>(this.loadApiScriptsHandler).then(() => {
+                this.setupGreenId();
+
+                const verificationId = this.greenIdControlGroup.controls['verificationId'];
+                const isAlreadyRegistered = !!verificationId.value;
+
+                if (!isAlreadyRegistered) {
+                    this.registerUser();
+                }
+            });
+        }
     }
 
     public ngOnDestroy() {
@@ -164,6 +177,19 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         });
     }
 
+    private registerUser() {
+        this.AmpGreenIdServices
+            .registerUser(this.form)
+            .subscribe((response) => {
+                if (response) {
+                    this.updateModel(response.payload);
+                    if (this.showOnReady) {
+                        this.showGreenId();
+                    }
+                }
+            });
+    }
+
     private showGreenIdInternal() {
         window['greenidUI'].show(this.accountId, this.password, this.greenIdControlGroup.controls['verificationToken'].value);
     }
@@ -184,9 +210,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         reject('Script urls were not provided');
     };
 
-    /**
-     * Update the model with the verification ID
-     */
     private onSessionComplete = (token : string, verificationStatus : string) => {
         this.greenIdControlGroup.controls['verificationStatus'].setValue(verificationStatus);
         this.greenIdShowing = false;
