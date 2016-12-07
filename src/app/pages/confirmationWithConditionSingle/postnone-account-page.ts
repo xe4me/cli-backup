@@ -16,8 +16,4 @@ export class PostnoneSingleAccountPage {
     private verificatonDocUrl : string =
         Environments.property.DamContentUrl
         + 'amp/digitalhub/common/Documents/Find%20a%20form/Forms/NS3297_Identification_Verfication_Form.PDF';
-
-    private finish() : void {
-        window.open( 'https://www.amp.com.au/bett3r', '_self' );
-    }
 }

@@ -15,7 +15,4 @@ import {
 export class TransitioningAccountPage {
     constructor () {
     }
-    private finish() : void {
-        window.open( 'https://www.amp.com.au/bett3r', '_self' );
-    }
 }
