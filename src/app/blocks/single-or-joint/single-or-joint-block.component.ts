@@ -61,8 +61,8 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
             let saveSubscribe = this.formModelService.saveResponse.subscribe((result) => {
                 if (result.payload.meta && result.payload.meta.id) {
                     this.storeReferenceIdInModel(result.payload.meta.id);
+                    saveSubscribe.unsubscribe();
                 }
-                saveSubscribe.unsubscribe();
             });
 
         }
