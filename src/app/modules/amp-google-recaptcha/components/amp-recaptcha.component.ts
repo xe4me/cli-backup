@@ -1,6 +1,7 @@
 import {
     Component,
     OnInit,
+    OnDestroy,
     Input,
     Output,
     EventEmitter,
@@ -11,10 +12,11 @@ import {
     NgZone
 } from '@angular/core';
 import { AmpReCaptchaService } from '../services/amp-recaptcha.service';
-import { FormControl,
-         FormGroup,
-         FormBuilder,
-         Validators
+import {
+    FormControl,
+    FormGroup,
+    FormBuilder,
+    Validators
 } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
 @Component({
@@ -23,7 +25,7 @@ import { Subscription } from 'rxjs/Rx';
    template: `<div #recaptchaId></div>`
 
 })
-export class AmpReCaptchaComponent implements OnInit {
+export class AmpReCaptchaComponent implements OnInit, OnDestroy {
     // Get the site id key at https://www.google.com/recaptcha/admin
     // for ddc dev sitekey: 6LeqZgsUAAAAAD9-le6RQUkUv5MTjhsSM-SldWKq
     // for localhost sitekey: 6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W
@@ -96,6 +98,22 @@ export class AmpReCaptchaComponent implements OnInit {
         }
     }
 
+    public getVerificationStatusControl() : FormControl {
+        return <FormControl> this.recaptchaControlGroup.controls['verificationStatus'];
+    }
+
+    public getVerificationTokenControl() : FormControl {
+        return <FormControl> this.recaptchaControlGroup.controls['verificationToken'];
+    }
+
+    private revalidateControlGroup( controlGroup : FormGroup ) {
+        Object.keys(controlGroup.controls).map( (key) => {
+            let control = controlGroup.controls[key];
+            control.setValidators(Validators.required);
+            control.updateValueAndValidity({onlySelf: false});
+        });
+    }
+
     private createRecaptchaControlGroup() {
         return new FormGroup({
             verificationStatus: new FormControl(null, Validators.required),
@@ -107,6 +125,7 @@ export class AmpReCaptchaComponent implements OnInit {
         if (this.controlGroup) {
             if (this.controlGroup.contains(this.id)) {
                 this.recaptchaControlGroup = <FormGroup> this.controlGroup.get(this.id);
+                this.revalidateControlGroup(this.recaptchaControlGroup);
             } else {
                 this.recaptchaControlGroup = this.createRecaptchaControlGroup();
                 this.controlGroup.addControl(this.id, this.recaptchaControlGroup);
