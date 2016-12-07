@@ -5,8 +5,12 @@ import {
     ChangeDetectionStrategy ,
     OnInit ,
     AfterViewInit ,
-    ViewContainerRef
+    ViewContainerRef,
+    OnDestroy
 } from '@angular/core';
+import {
+    Subscription
+} from 'rxjs';
 import {
     LoadedBlockInfo ,
     AmpButton ,
@@ -31,11 +35,12 @@ import {
     styles          : [ require( './single-or-joint-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class SingleOrJointBlockComponent extends FormBlock implements OnInit, AfterViewInit {
+export class SingleOrJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
     private static secondApplicantSectionIndex : number = 2;
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
+    private saveSubscription : Subscription;
 
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
@@ -58,10 +63,10 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
 
         if (!this.__isRetrieved) {
             this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
-            let saveSubscribe = this.formModelService.saveResponse.subscribe((result) => {
+            this.saveSubscription = this.formModelService.saveResponse.subscribe((result) => {
                 if (result.payload.meta && result.payload.meta.id) {
                     this.storeReferenceIdInModel(result.payload.meta.id);
-                    saveSubscribe.unsubscribe();
+                    this.saveSubscription.unsubscribe();
                 }
             });
 
@@ -95,6 +100,12 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
             if ( singleJointControl && singleJointControl.value === this.jointApplicantKey ) {
                 this.onJointApplication();
             }
+        }
+    }
+
+    public ngOnDestroy () {
+        if (this.saveSubscription && !this.saveSubscription.closed) {
+            this.saveSubscription.unsubscribe();
         }
     }
 
