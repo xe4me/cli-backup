@@ -85,7 +85,7 @@
                             [label]='streetName.label'
                             [index]='index'
                             [controlGroup]='manualAddressCG'
-                            [required]='required && !isItPoBox'
+                            [required]='required && isItPoBox===false'
                             [maxLength]='streetName.maxLength'
                             [errors]='streetName.errors'>
                     </amp-input>
