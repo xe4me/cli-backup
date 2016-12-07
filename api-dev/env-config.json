@@ -11,7 +11,7 @@
                 "Content-Type": "application/javascript"
             },
             "latency": 10,
-            "body": "var _process_env = {ENV:'development',ApiCallsBaseUrl:'/ddc/public/api',GoogleApiKey: '',TamServicePath: 'http://localhost:8882',GwPracticeService: {ApiKey: '',EnvPath: '',Path: '',},GwDDCService: {ApiKey: '',EnvPath: '',Path: '',}, GreenId:{configScriptUrl:'https://test2.edentiti.com/df/javascripts/greenidConfig.js', uiScriptUrl:'https://test2.edentiti.com/df/javascripts/greenidui.min.js', styleUrl: 'https://test2.edentiti.com/df/assets/stylesheets/greenid.css', environment: 'test', accountId: 'amp_au', password: '69h-xEt-PSW-vGn'}, GoogleRecaptcha : { sitekey:'6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W'}, DamContentUrl : 'https://www.amp.com.au/content/dam/' };"
+            "body": "var _process_env = {ENV:'development',ApiCallsBaseUrl:'/ddc/public/api',GoogleApiKey: '',TamServicePath: 'http://localhost:8882',GwPracticeService: {ApiKey: '',EnvPath: '',Path: '',},GwDDCService: {ApiKey: '',EnvPath: '',Path: '',}, GreenId:{configScriptUrl:'https://test2.edentiti.com/df/javascripts/greenidConfig.js', uiScriptUrl:'https://test2.edentiti.com/df/javascripts/greenidui.min.js', styleUrl: 'https://test2.edentiti.com/df/assets/stylesheets/greenid.css', environment: 'test', accountId: 'amp_au', password: '69h-xEt-PSW-vGn'}, GoogleRecaptcha : { sitekey:'6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W'}, DamContentUrl : 'https://www.amp.com.au/content/dam/', AmpRootUrl : 'https://www-amp-com-au-dev.digital-pilot.ampaws.com.au/' };"
         }
     }
 ]

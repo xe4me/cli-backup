@@ -11,20 +11,11 @@
             <div *ngFor="let applicant of applicantList" class="mv">
                 <strong>{{applicant?.name}}: </strong>
                 <span>{{applicant.verified? 'Verified' : 'ID still required'}}</span>
-            </div>         
+            </div>
             <div class="mv">
                 Please send through {{verifyRequiredPersonName}} <a href="{{verificatonDocUrl}}" target="_blank">ID verification documents</a> to AMP Bank so we can do this as soon as possible. Remember to download your account numbers and keep them handy.
             </div>
         </div>
-        <amp-form-row>
-            <div class="mv+">
-                <amp-button
-                    [attr.theme]="'tools'"
-                    [class]="'btn btn-secondary 1/5 palm-1/1 tablet-1/1'"
-                    (click)="finish()">
-                    Finish
-              </amp-button>            
-            </div>
-        </amp-form-row>
+        <bett3r-exit></bett3r-exit>
     </div>
 </div>

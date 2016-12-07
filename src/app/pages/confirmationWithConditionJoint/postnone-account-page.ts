@@ -44,8 +44,4 @@ export class PostnoneJointAccountPage implements OnInit {
             return `${name}'s`;
         }
     }
-
-    private finish() : void {
-        window.open( 'https://www.amp.com.au/bett3r', '_self' );
-    }
 }

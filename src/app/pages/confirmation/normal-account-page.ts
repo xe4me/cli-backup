@@ -14,10 +14,4 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class NormalAccountPage {
-    private getAccountPDF() : void {
-
-    }
-    private finish() : void {
-        window.open( 'https://www.amp.com.au/bett3r', '_self' );
-    }
 }

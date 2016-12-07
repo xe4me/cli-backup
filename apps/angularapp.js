@@ -11,6 +11,7 @@ const GW_PRACTICE_SERVICE_PATH = process.env.GW_PRACTICE_SERVICE_PATH;  // https
 const GW_DDC_API_KEY = process.env.GW_DDC_API_KEY;
 const GW_DDC_SERVICE_PATH = process.env.GW_DDC_SERVICE_PATH; // https://teamtools.amp.com.au/confluence/display/EH/Dynamic+Data+Capture+%28DDC%29+API
 const DAM_CONTENT_URL = process.env.DAM_CONTENT_URL;
+const AMP_ROOT_URL = process.env.AMP_ROOT_URL;
 const GOOGLE_RECAPTCHA_SITEKEY = process.env.GOOGLE_RECAPTCHA_SITEKEY;
 const GREEN_ID_CONFIG = process.env.GREEN_ID_CONFIG;
 const GREEN_ID_UI = process.env.GREEN_ID_UI;
@@ -59,7 +60,8 @@ module.exports = {
                         GoogleRecaptcha : {
                             sitekey : GOOGLE_RECAPTCHA_SITEKEY
                         },
-                        DamContentUrl : DAM_CONTENT_URL
+                        DamContentUrl : DAM_CONTENT_URL,
+                        AmpRootUrl : AMP_ROOT_URL
                     }
                 )
             );
