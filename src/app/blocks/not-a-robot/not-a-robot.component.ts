@@ -3,7 +3,7 @@ import {
     ChangeDetectorRef ,
     ElementRef ,
     ChangeDetectionStrategy ,
-    OnInit
+    AfterViewInit
 } from '@angular/core';
 import {
     FormBlock ,
@@ -19,7 +19,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles :  [ require('./not-a-robot.component.scss') ]
 } )
-export class NotARobotBlock extends FormBlock implements OnInit {
+export class NotARobotBlock extends FormBlock implements AfterViewInit {
     private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
     private showCaptchaBlock : boolean = true;
     private verified : boolean = false;
@@ -33,8 +33,9 @@ export class NotARobotBlock extends FormBlock implements OnInit {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
-    public ngOnInit () {
-        if ( this.__isRetrieved ) {
+    public ngAfterViewInit() {
+        super.ngAfterViewInit();
+        if (this.__isRetrieved && this.__controlGroup.valid) {
             this.hideBlock();
         }
     }
