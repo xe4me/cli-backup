@@ -40,11 +40,6 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
     private greenIdPassed = false;
     private verificationStatusSubscription : Subscription;
     private scrolledSubscription : Subscription;
-    private greenIdStatii = {
-        verified: 'VERIFIED',
-        verifiedWithChanges: 'VERIFIED_WITH_CHANGES',
-        inProgress: 'IN_PROGRESS'
-    };
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -97,7 +92,7 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
 
     private onVerificationStatusChange = ( verificationStatus : string ) => {
 
-        if (!verificationStatus || (verificationStatus === this.greenIdStatii.inProgress)) {
+        if (!verificationStatus || (verificationStatus === AmpGreenIdBlockComponent.verificationStatuses.IN_PROGRESS)) {
             return;
         }
 
@@ -119,7 +114,10 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
     }
 
     private isCompleteStatus( verificationStatus : string ) {
-        return [this.greenIdStatii.verified, this.greenIdStatii.verifiedWithChanges].includes(verificationStatus);
+        return [
+            AmpGreenIdBlockComponent.verificationStatuses.VERIFIED,
+            AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_WITH_CHANGES
+        ].includes(verificationStatus);
     }
 
     private updateGreenIdModel() {
