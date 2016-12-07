@@ -4,15 +4,6 @@ $border-color: $base-red;
 $font-color: $base-red;
 $header-color: #001E41;
 
-
-@include media-query(palm) {
-    /deep/ .heading-intro {
-        line-height : 30px;
-        + amp-form-row {
-            margin-top:  -30px;
-        }
-    }
-}
 .error-container {
     @include amp-family($amp-font-open-sans-regular);
     color: $font-color;
