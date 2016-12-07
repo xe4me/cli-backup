@@ -56,17 +56,18 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
             this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
         }
 
-        if (this.__isRetrieved) {
-            this.storeReferenceIdInModel();
-        } else {
+        if (!this.__isRetrieved) {
             this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
+            let saveSubscribe = this.formModelService.saveResponse.subscribe((result) => {
+                if (result.payload.meta && result.payload.meta.id) {
+                    this.storeReferenceIdInModel(result.payload.meta.id);
+                }
+                saveSubscribe.unsubscribe();
+            });
+
         }
 
-        this.formModelService.saveResponse.subscribe( ( result ) => {
-            if ( result.payload.meta && result.payload.meta.id ) {
-                this.storeReferenceIdInModel( result.payload.meta.id );
-            }
-        } );
+
         // load applicant 1
         this.__loadNext( this.applicantGenerator.getApplicantSection( 1 ), this.viewContainerRef);
         // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
@@ -89,6 +90,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
         super.ngAfterViewInit();
 
         if (this.__isRetrieved) {
+            this.storeReferenceIdInModel();
             let singleJointControl = this.__controlGroup.get(this.__custom.controls[0].id);
             if ( singleJointControl && singleJointControl.value === this.jointApplicantKey ) {
                 this.onJointApplication();
