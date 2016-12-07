@@ -3,65 +3,61 @@
         <div class='grid__item_floated  1/1'>
             <amp-typeahead
                     #typeaheadCmp
-                    class='1/1'
-                    [controlGroup]='qasControlGroup'
-                    [required]='required && !searchOrManualControl.value'
-                    [errors]='errors'
-                    [keepControl]='keepControl'
-                    [minTriggerLength]='minTriggerLength'
-                    [customValidator]='customValidator'
-                    [showErrorComponent]='false'
-                    [queryServiceCall]='_ampQasAddressService.query'
-                    [maxHeight]='maxHeight'
-                    [isInSummaryState]='isInSummaryState'
-                    id='TypeAhead'
-                    [index]='index'
-                    (selected)='onOptionSelect($event)'
-                    [selectedItemIdentifier]='"Moniker"'
-                    [selectedItemValueIdentifier]='"PartialAddress"'
-                    [label]='label'>
-                <template let-option='option'>
+                    class="1/1"
+                    [controlGroup]="qasControlGroup"
+                    [required]="required && !searchOrManualControl.value"
+                    [errors]="errors"
+                    [keepControl]="keepControl"
+                    [minTriggerLength]="minTriggerLength"
+                    [customValidator]="customValidator"
+                    [showErrorComponent]="false"
+                    [apiCallDebounceTime]="apiCallDebounceTime"
+                    [queryServiceCall]="_ampQasAddressService.query"
+                    [maxHeight]="maxHeight"
+                    [isInSummaryState]="isInSummaryState"
+                    id="TypeAhead"
+                    [index]="index"
+                    (selected)="onOptionSelect($event)"
+                    [selectedItemIdentifier]="'Moniker'"
+                    [selectedItemValueIdentifier]="'PartialAddress'"
+                    [label]="label">
+                <template let-option="option">
                     {{ option.PartialAddress }}
                 </template>
             </amp-typeahead>
-            <amp-control-error [control]='typeaheadCmp.control'></amp-control-error>
+            <amp-control-error [control]="typeaheadCmp.control"></amp-control-error>
             <div class="mt">
                 Can't find your address? <a href="javascript:void(0);"
                                             (click)='showManualAddrForm()'>Click here </a>to manually enter your address.
-            </div>
-            <div *ngIf='showResidentialAddressCannotBePoBoxError' class='errors'>
-                <div class='error-item'>
-                    <span class='icon icon--close icon-errors' aria-hidden='true'></span>You've selected a po box address, please select a residential address.
-                </div>
             </div>
         </div>
     </amp-form-row>
 </div>
 
-<div [hidden]='!searchOrManualControl.value'>
-    <div *ngIf='!extended'>
+<div [hidden]="!searchOrManualControl.value">
+    <div *ngIf="!extended">
         <amp-manual-address
-                (onGoBack)='goBack()'
+                (onGoBack)="goBack()"
                 #manualAddressCmp
-                [required]='required'
-                [keepControl]='keepControl'
-                [controlGroup]='qasControlGroup'
-                id='ManualAddress'
-                [index]='index'
-                [isInSummaryState]='isInSummaryState'>
+                [required]="required"
+                [keepControl]="keepControl"
+                [controlGroup]="qasControlGroup"
+                id="ManualAddress"
+                [index]="index"
+                [isInSummaryState]="isInSummaryState">
         </amp-manual-address>
     </div>
-    <div *ngIf='extended'>
+    <div *ngIf="extended">
         <amp-manual-address-extended
                 #manualAddressCmp
-                (onGoBack)='goBack()'
-                [required]='required'
-                [keepControl]='keepControl'
-                [controlGroup]='qasControlGroup'
-                id='ManualAddressExtended'
-                [addressType]='addressType'
-                [index]='index'
-                [isInSummaryState]='isInSummaryState'>
+                (onGoBack)="goBack()"
+                [required]="required"
+                [keepControl]="keepControl"
+                [controlGroup]="qasControlGroup"
+                id="ManualAddressExtended"
+                [addressType]="addressType"
+                [index]="index"
+                [isInSummaryState]="isInSummaryState">
         </amp-manual-address-extended>
     </div>
 </div>
