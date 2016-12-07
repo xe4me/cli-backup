@@ -185,15 +185,12 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
         this._optionsHidden = true;
         this.showNoResults  = false;
-        this.showErrorComponent = true;
-
     };
 
     private open () {
         if ( this.isInSummaryState ) {
             return;
         }
-        this.showErrorComponent = false;
         this._optionsHidden = false;
     };
 
