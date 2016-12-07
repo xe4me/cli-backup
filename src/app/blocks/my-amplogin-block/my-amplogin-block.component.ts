@@ -5,6 +5,7 @@ import {
     ChangeDetectionStrategy,
     NgZone,
     OnInit,
+    AfterViewInit,
     Renderer,
     OnDestroy } from '@angular/core';
     import {FormControl} from '@angular/forms';
@@ -63,7 +64,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [require ( './my-amplogin-block.component.scss' )]
 })
-export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , OnInit {
+export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , OnInit, AfterViewInit {
     public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
     private errorCode : String = null;
     private hideThisBlock = false;
@@ -91,6 +92,14 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
                 .addControl(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME , this.loginResultControl);
         }
     }
+
+    public ngAfterViewInit() {
+        super.ngAfterViewInit();
+        if (this.__isRetrieved) {
+            this.cleanUp();
+        }
+    }
+
     public ngOnDestroy () {
         super.ngOnDestroy();
 
