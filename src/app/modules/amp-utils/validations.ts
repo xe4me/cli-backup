@@ -79,7 +79,17 @@ export class PatterValidator {
     public static patternValidator ( pattern ) {
         return ( c ) => {
             if ( pattern ) {
-                if ( ! c.value || new RegExp( pattern , 'ig' ).test( c.value ) ) {
+                // if regex is like : ^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$i
+                // we can extract i from the end of the regex and use it as flags
+                // the reason is I couldn't find any way to put a ignorecase flag inside the string to be constructed with new Regex
+                let lastIndexOfDollar = pattern.lastIndexOf('$');
+                let regex = pattern;
+                let flags = 'g';
+                if ( lastIndexOfDollar > -1 ){
+                    regex = pattern.substring( 0 , lastIndexOfDollar + 1 ) ;
+                    flags = pattern.substring( lastIndexOfDollar + 1 ) || flags;
+                }
+                if ( ! c.value || new RegExp( regex , flags ).test( c.value ) ) {
                     return null;
                 }
                 return {
@@ -116,11 +126,11 @@ export class MinDateValidator {
             if ( minDate !== undefined ) {
                 let diff = FormUtils.getAgeDays( c.value );
                 if ( ! c.value ||
-                     ! new RegExp( datePattern ).test( c.value ) ||
-                     diff === null ||
-                     diff === undefined ||
-                     diff >= minDate ||
-                     ! FormUtils.isValidDate( c.value ) ) {
+                    ! new RegExp( datePattern ).test( c.value ) ||
+                    diff === null ||
+                    diff === undefined ||
+                    diff >= minDate ||
+                    ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
@@ -141,10 +151,10 @@ export class MaxDateValidator {
             if ( maxDate !== undefined ) {
                 let diff = FormUtils.getAgeDays( c.value );
                 if ( ! c.value ||
-                     ! new RegExp( datePattern ).test( c.value ) ||
-                     ! diff ||
-                     diff <= maxDate ||
-                     ! FormUtils.isValidDate( c.value ) ) {
+                    ! new RegExp( datePattern ).test( c.value ) ||
+                    ! diff ||
+                    diff <= maxDate ||
+                    ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
@@ -189,11 +199,11 @@ export class MinAgeValidator {
             if ( minAge !== undefined ) {
                 let age = FormUtils.getAge( c.value );
                 if ( ! c.value ||
-                     ! new RegExp( datePattern ).test( c.value ) ||
-                     age === null ||
-                     age === undefined ||
-                     age > minAge ||
-                     ! FormUtils.isValidDate( c.value ) ) {
+                    ! new RegExp( datePattern ).test( c.value ) ||
+                    age === null ||
+                    age === undefined ||
+                    age > minAge ||
+                    ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
@@ -214,11 +224,11 @@ export class MaxAgeValidator {
             if ( maxAge !== undefined ) {
                 let age = FormUtils.getAge( c.value );
                 if ( ! c.value ||
-                     ! new RegExp( datePattern ).test( c.value ) ||
-                     age === null ||
-                     age === undefined ||
-                     age < maxAge ||
-                     ! FormUtils.isValidDate( c.value ) ) {
+                    ! new RegExp( datePattern ).test( c.value ) ||
+                    age === null ||
+                    age === undefined ||
+                    age < maxAge ||
+                    ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
                 return {
