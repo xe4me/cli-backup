@@ -71,7 +71,7 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
     }
 
     public ngAfterViewInit(){
-        if( this.formModelService.savedModel ){ // means we're coming from receipt page
+        if ( this.formModelService.savedModel ){ // means we're coming from receipt page
             let singleOrJoint = this.sharedData.getSingleOrJointControl(this.__form).value;
             this.onSingleJoint(singleOrJoint);
         }
