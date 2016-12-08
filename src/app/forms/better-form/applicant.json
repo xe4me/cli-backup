@@ -24,14 +24,14 @@
                         },
                         {
                             "id": "FirstName",
-                            "pattern":"^[A-Za-z][A-Z|a-z|'| |-]*[a-z]{1,}$",
+                            "pattern":"^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$",
                             "errors":{
                               "pattern":"First name has an invalid value."
                             }
                         },
                         {
                             "id": "MiddleName",
-                            "pattern":"^[A-Za-z][A-Z|a-z|'| |-]*[a-z]{1,}$",
+                            "pattern":"^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$",
                             "errors":{
                               "pattern":"Middle name has an invalid value."
                             }
@@ -39,7 +39,7 @@
                         },
                         {
                             "id": "LastName",
-                            "pattern":"^[A-Za-z][A-Z|a-z|'| |-]*[a-z]{1,}$",
+                            "pattern":"^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$",
                             "errors":{
                               "pattern":"last name has an invalid value."
                             }
