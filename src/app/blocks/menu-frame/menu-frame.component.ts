@@ -3,6 +3,7 @@ import {
     ElementRef,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
+    AfterViewInit,
     OnDestroy,
     ViewChild
 } from '@angular/core';
@@ -34,7 +35,7 @@ import {
     styles: [require('./menu-frame.component.scss')],
     changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class MenuFrameBlockComponent implements OnDestroy {
+export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
     private __form : FormGroup;
     private singleOrJointSubscription : Subscription;
     private hydrationSubscription : Subscription;
@@ -69,6 +70,12 @@ export class MenuFrameBlockComponent implements OnDestroy {
             });
     }
 
+    public ngAfterViewInit(){
+        if( this.formModelService.savedModel ){ // means we're coming from receipt page
+            this.hideStickyButton = false;
+        }
+    }
+
     public onBlocksLoaded() {
 
         const singleOrJointControl = this.sharedData.getSingleOrJointControl(this.__form);
@@ -93,4 +100,8 @@ export class MenuFrameBlockComponent implements OnDestroy {
             this.singleOrJointSubscription.unsubscribe();
         }
     }
+    private context(){
+        return this;
+    }
+
 }
