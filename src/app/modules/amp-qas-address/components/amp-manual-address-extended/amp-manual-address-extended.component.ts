@@ -138,7 +138,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
         ] ,
         groupName : 'isItPoBox'
     };
-
+    private shouldClearThePoBoxFields                      = true;
     constructor ( private _cd : ChangeDetectorRef ) {
     }
 
@@ -146,6 +146,8 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
         if ( this.controlGroup ) {
             if ( this.controlGroup.contains( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) ) ) {
                 this.manualAddressCG = this.controlGroup.get( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) );
+                this.shouldClearThePoBoxFields = false;
+                // When this controls are retrieved (hydrated), we don't want to clear them out !
             } else {
                 this.manualAddressCG = new FormGroup( {} );
                 this.controlGroup.addControl( AmpManualAddressExtendedComponent.MANUAL_ARRES_GROUP_NAME + addDashOrNothing( this.index ) , this.manualAddressCG );
@@ -193,9 +195,10 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
     public onPoBoxButtonsChange ( $event ) {
         if ( $event !== null && ! this.isResidentialAddress ) {
             this.isItPoBox = $event;
-            if ( !this.isItPoBox ){
+            if ( this.shouldClearThePoBoxFields ){
                 this.emptyPoBoxDependantFields();
             }
+            this.shouldClearThePoBoxFields = true;
         }
     }
 

@@ -26,7 +26,7 @@
                 </template>
             </amp-typeahead>
             <amp-control-error [control]="typeaheadCmp.control"></amp-control-error>
-            <div class="mt">
+            <div class="mt" *ngIf="!isInSummaryState">
                 Can't find your address? <a href="javascript:void(0);"
                                             (click)='showManualAddrForm()'>Click here </a>to manually enter your address.
             </div>
