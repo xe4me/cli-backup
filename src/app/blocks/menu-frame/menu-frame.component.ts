@@ -66,12 +66,14 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
                 } );
                 this.loader.reload();
                 this.hideStickyButton = false;
+                let singleOrJoint = this.__form.get([ 'Application', 'SingleOrJoint', 'SingleOrJoint']);
+                this.onSingleJoint(singleOrJoint ? singleOrJoint.value : null);
                 this._cd.markForCheck();
             });
     }
 
-    public ngAfterViewInit(){
-        if ( this.formModelService.savedModel ){ // means we're coming from receipt page
+    public ngAfterViewInit() {
+        if ( this.formModelService.savedModel ) { // means we're coming from receipt page
             let singleOrJoint = this.sharedData.getSingleOrJointControl(this.__form).value;
             this.onSingleJoint(singleOrJoint);
         }
