@@ -72,22 +72,24 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
 
     public ngAfterViewInit(){
         if( this.formModelService.savedModel ){ // means we're coming from receipt page
-            this.hideStickyButton = false;
+            let singleOrJoint = this.sharedData.getSingleOrJointControl(this.__form).value;
+            this.onSingleJoint(singleOrJoint);
         }
     }
 
-    public onBlocksLoaded() {
+    public onSingleJoint : (singleOrJoint : string) => void = (singleOrJoint : string) => {
+        if (singleOrJoint === Constants.singleApplicant) {
+            this.sectionsToHide = ['Application-Applicant1Section'];
+        } else {
+            this.sectionsToHide = [];
+        }
+        this.hideStickyButton = false;
+        this._cd.markForCheck();
+    }
 
+    public onBlocksLoaded() {
         const singleOrJointControl = this.sharedData.getSingleOrJointControl(this.__form);
-        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((singleOrJoint) => {
-            if (singleOrJoint === Constants.singleApplicant) {
-                this.sectionsToHide = ['Application-Applicant1Section'];
-            } else {
-                this.sectionsToHide = [];
-            }
-            this.hideStickyButton = false;
-            this._cd.markForCheck();
-        });
+        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe(this.onSingleJoint);
     }
 
     public onSave() {
