@@ -14,7 +14,9 @@
     "e2e": "amp-ng e2e",
     "prepush": "npm run lint",
     "build:prod": "amp-ng build --prod",
-    "server:express": "node index.js"
+    "server:express": "node index.js",
+    "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
+    "jenkins-jscpd": "jscpd -p . -f '**/*.ts'  -e 'node_modules/**'  -o reports/jscpd-report.xml"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +59,8 @@
     "karma-chrome-launcher": "0.2.3",
     "karma-jasmine": "0.3.8",
     "karma-remap-istanbul": "^0.2.1",
+    "karma-coverage": "^1.0.0",
+    "karma-junit-reporter": "^1.1.0",
     "protractor": "4.0.3",
     "ts-node": "1.2.1",
     "tslint": "^3.13.0",
