@@ -95,12 +95,12 @@ export class PatterValidator {
     }
 
     public static parsePattern ( pattern , needle = 'FLAGS:' ) {
-        // if regex is like : ^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$/i
+        // if regex is like : ^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$FLAGS:i
         // we can extract i from the end of the regex and use it as flags
         // the reason is I couldn't find any way to put a ignorecase flag inside the string to be constructed with new Regex
         let lastIndexOfSlash = pattern.lastIndexOf( needle );
         let regex = pattern;
-        let flags ;
+        let flags;
         let tempFlags  = pattern.substring( lastIndexOfSlash + needle.length );
         if ( lastIndexOfSlash > -1 && tempFlags && tempFlags.match(/[img]{1,3}$/) ){
             regex = pattern.substring( 0 , lastIndexOfSlash );
