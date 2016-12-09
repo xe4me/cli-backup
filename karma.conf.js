@@ -10,7 +10,9 @@ module.exports = function (config) {
       // require('karma-chrome-launcher'),
       require('karma-phantomjs-launcher'),
       require('karma-remap-istanbul'),
-      require('amp-angular-cli/plugins/karma')
+      require('amp-angular-cli/plugins/karma'),
+      require('karma-coverage'),
+      require('karma-junit-reporter')
     ],
     files: [
       './src/testProcessEnv.js',
@@ -26,12 +28,25 @@ module.exports = function (config) {
       }
     },
     angularCliConfig: './angular-cli.json',
-    reporters: ['progress', 'karma-remap-istanbul'],
+    reporters: ['progress', 'karma-remap-istanbul', 'coverage', 'junit'],
+    coverageReporter: {
+      dir : 'reports/',
+      reporters: [
+        { type: 'text-summary', subdir: '.' },
+        { type: 'json', subdir: '.' },
+        { type: 'html', subdir: '.' },
+        { type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml' }
+      ]
+    },
+    //junit reporting
+    junitReporter: {
+        outputFile: '../reports/mocha-report.xml'
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['PhantomJS'],
-    singleRun: false
+    singleRun: true
   });
 };
