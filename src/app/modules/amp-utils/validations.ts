@@ -79,17 +79,9 @@ export class PatterValidator {
     public static patternValidator ( pattern ) {
         return ( c ) => {
             if ( pattern ) {
-                // if regex is like : ^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$i
-                // we can extract i from the end of the regex and use it as flags
-                // the reason is I couldn't find any way to put a ignorecase flag inside the string to be constructed with new Regex
-                let lastIndexOfDollar = pattern.lastIndexOf('$');
-                let regex = pattern;
-                let flags = 'g';
-                if ( lastIndexOfDollar > -1 ){
-                    regex = pattern.substring( 0 , lastIndexOfDollar + 1 ) ;
-                    flags = pattern.substring( lastIndexOfDollar + 1 ) || flags;
-                }
-                if ( ! c.value || new RegExp( regex , flags ).test( c.value ) ) {
+                let flags = 'ig'; // to make sure we're not breaking the existing code.
+                let parsedPattern = PatterValidator.parsePattern( pattern );
+                if ( ! c.value || new RegExp( parsedPattern.regex , parsedPattern.flags || flags ).test( c.value ) ) {
                     return null;
                 }
                 return {
@@ -99,6 +91,24 @@ export class PatterValidator {
                 };
             }
             return null;
+        };
+    }
+
+    public static parsePattern ( pattern , needle = 'FLAGS:' ) {
+        // if regex is like : ^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$/i
+        // we can extract i from the end of the regex and use it as flags
+        // the reason is I couldn't find any way to put a ignorecase flag inside the string to be constructed with new Regex
+        let lastIndexOfSlash = pattern.lastIndexOf( needle );
+        let regex = pattern;
+        let flags ;
+        let tempFlags  = pattern.substring( lastIndexOfSlash + needle.length );
+        if ( lastIndexOfSlash > -1 && tempFlags && tempFlags.match(/[img]{1,3}$/) ){
+            regex = pattern.substring( 0 , lastIndexOfSlash );
+            flags = tempFlags;
+        }
+        return {
+            regex,
+            flags
         };
     }
 }
