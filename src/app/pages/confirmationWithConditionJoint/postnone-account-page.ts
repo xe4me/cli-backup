@@ -21,13 +21,14 @@ export class PostnoneJointAccountPage implements OnInit {
         Environments.property.DamContentUrl
         + 'amp/digitalhub/common/Documents/Find%20a%20form/Forms/NS3297_Identification_Verfication_Form.PDF';
     private applicantList : Array<any> ;
-    private verifyRequiredPersonName : string;
+    private verifyRequiredPersonName : string = '';
     constructor ( private accountsListDataService : AccountsListDataService ) {
     }
 
     public ngOnInit () : any {
         this.applicantList = this.accountsListDataService.getApplicantList();
         this.verifyRequiredPersonName = this.getVerifyRequiredPersonName();
+        console.log(this.getVerifyRequiredPersonName());
     }
 
     private getVerifyRequiredPersonName() : string {

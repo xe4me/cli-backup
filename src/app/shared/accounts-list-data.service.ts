@@ -20,15 +20,16 @@ export class AccountsListDataService {
     public getApplicantList() : Array<any> {
         let applicants = [];
         applicants.push({
-            name : this.getApplicantFirstName(this.formModel.Application.Applicant1Section),
+            name : this.getApplicantName(this.formModel.Application.Applicant1Section),
             verified: this.isVerified(this.formModel.Application.Applicant1Section)
         });
         if (this.formModel.Application.SingleOrJoint.SingleOrJoint === 'JointApplicant' ) {
             applicants.push({
-                name : this.getApplicantFirstName(this.formModel.Application.Applicant2Section),
+                name : this.getApplicantName(this.formModel.Application.Applicant2Section),
                 verified: this.isVerified(this.formModel.Application.Applicant2Section)
             });
         }
+        console.log(applicants[0]);
         return applicants;
     }
 
@@ -40,8 +41,9 @@ export class AccountsListDataService {
             (this.isIndividual() ? 'confirmationWithConditionSingle' :
                                    'confirmationWithConditionJoint' );
     }
-    private getApplicantFirstName (applicant : any) : string {
-        return applicant.PersonalDetailsSection.BasicInfo.FirstName;
+    private getApplicantName (applicant : any) : string {
+        const BasicInfo = applicant.PersonalDetailsSection.BasicInfo;
+        return `${BasicInfo.FirstName} ${BasicInfo.LastName}`;
     }
 
     private isIndividual() : boolean {
@@ -49,8 +51,12 @@ export class AccountsListDataService {
     }
 
     private isVerified(applicant : any) : boolean {
-        let status = applicant.IdentitySection.IdCheck['green-id-identity-check'].verificationStatus;
-        return status === 'VERIFIED_WITH_CHANGES' || status === 'VERIFIED';
+        if ( applicant.IdentitySection.OnlineOrOfflineIdCheck.OnlineIDCheck === 'online' ) {
+            let status = applicant.IdentitySection.IdCheck['green-id-identity-check'].verificationStatus;
+            return status === 'VERIFIED_WITH_CHANGES' || status === 'VERIFIED';
+        } else {
+            return false;
+        }
     }
 
     private isNormal() : boolean {
