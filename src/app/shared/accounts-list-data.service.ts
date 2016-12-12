@@ -43,7 +43,7 @@ export class AccountsListDataService {
     }
     private getApplicantName (applicant : any) : string {
         const BasicInfo = applicant.PersonalDetailsSection.BasicInfo;
-        return `${BasicInfo.FirstName} ${BasicInfo.LastName}`;
+        return `${BasicInfo.FirstName}${BasicInfo.MiddleName? ' ' + BasicInfo.MiddleName + ' ' : ' '}${BasicInfo.LastName}`;
     }
 
     private isIndividual() : boolean {
