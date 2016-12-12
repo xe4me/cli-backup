@@ -28,6 +28,8 @@ import {
 } )
 export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
     private isOnlineCheckLoaded = false;
+    private DONT_GO_NEXT  = false;
+    private DONT_MARK_AS_TOUCHED  = false;
     private offlineCheckKey = Constants.offlineIdCheck;
     private onlineCheckKey = Constants.onlineIdCheck;
 
@@ -47,11 +49,11 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             const control = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
             control.setValidators(Validators.required);
             control.updateValueAndValidity({onlySelf: false});
-            this.setupControlGroups(control.value);
+            this.setupControlGroups(control.value , this.DONT_GO_NEXT, this.DONT_MARK_AS_TOUCHED);
         }
     }
 
-    private addOrRemoveOnlineIdCheck ( typeOfCheck : string ) {
+    private addOrRemoveOnlineIdCheck ( typeOfCheck : string, goNext:boolean=true ) {
         const optionalBlocks = clone(this.__custom.optionalBlocks);
 
         if ( typeOfCheck === Constants.onlineIdCheck && !this.isOnlineCheckLoaded ) {
@@ -60,7 +62,9 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             }
             this.__loadAllNext(optionalBlocks, this.viewContainerRef).then(() => {
                 setTimeout(() => {
-                    this.onNext();
+                    if(goNext){
+                        this.onNext();
+                    }
                 }, 0);
             });
             this.isOnlineCheckLoaded = true;
@@ -73,8 +77,9 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
             }
             this.isOnlineCheckLoaded = false;
         }
-
-        this.onNext();
+        if(goNext){
+            this.onNext();
+        }
     }
 
     private onOnlineCheckSelection () {
@@ -85,10 +90,12 @@ export class OnlineOrOfflineIdCheckBlock extends FormBlock implements OnInit {
         this.setupControlGroups(this.offlineCheckKey);
     }
 
-    private setupControlGroups (typeOfCheck : string ) {
+    private setupControlGroups (typeOfCheck : string , goNext:boolean=true , markAsTouched:boolean=true ) {
         const onlineOrOffline = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         onlineOrOffline.setValue( typeOfCheck );
-        onlineOrOffline.markAsTouched();
-        this.addOrRemoveOnlineIdCheck( typeOfCheck );
+        if(markAsTouched){
+            onlineOrOffline.markAsTouched();
+        }
+        this.addOrRemoveOnlineIdCheck( typeOfCheck , goNext );
     }
 }
