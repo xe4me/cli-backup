@@ -41,7 +41,7 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
     private hydrationSubscription : Subscription;
     private sectionsToHide = [];
     private hideStickyButton = true;
-
+    private ADDRESS_BLOCK_COMPONENT_SELECTOR = 'Application-Applicant1Section-PersonalDetailsSection-Address-block';
     @ViewChild( AmpBlockLoaderDirective ) private loader;
     @ViewChild(StickySaveButton) private saveButton : StickySaveButton;
 
@@ -67,27 +67,34 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
                 this.loader.reload();
                 this.hideStickyButton = false;
                 let singleOrJoint = this.__form.get([ 'Application', 'SingleOrJoint', 'SingleOrJoint']);
-                this.onSingleJoint(singleOrJoint ? singleOrJoint.value : null);
+                this.onSingleJoint(singleOrJoint ? singleOrJoint.value : null , false);
                 this._cd.markForCheck();
             });
+        let onNextScrolled = this.scrollService.$scrolled.subscribe( (fdn) => {
+            if(fdn.componentSelector===this.ADDRESS_BLOCK_COMPONENT_SELECTOR){
+                this.hideStickyButton = false;
+                onNextScrolled.unsubscribe();
+            }
+        } );
     }
 
     public ngAfterViewInit() {
         if ( this.formModelService.savedModel ) { // means we're coming from receipt page
             let singleOrJoint = this.sharedData.getSingleOrJointControl(this.__form).value;
-            this.onSingleJoint(singleOrJoint);
+            this.onSingleJoint(singleOrJoint , false);
         }
     }
-
-    public onSingleJoint : (singleOrJoint : string) => void = (singleOrJoint : string) => {
+    public onSingleJoint = (singleOrJoint : string, hideStickyButton=true ) : void =>{
         if (singleOrJoint === Constants.singleApplicant) {
             this.sectionsToHide = ['Application-Applicant1Section'];
         } else {
             this.sectionsToHide = [];
         }
-        this.hideStickyButton = false;
+        if(hideStickyButton===false){
+            this.hideStickyButton = hideStickyButton;
+        }
         this._cd.markForCheck();
-    }
+    };
 
     public onBlocksLoaded() {
         const singleOrJointControl = this.sharedData.getSingleOrJointControl(this.__form);

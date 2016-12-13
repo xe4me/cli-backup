@@ -28,11 +28,9 @@ import { FDN } from '../../forms/better-form/Application.fdn';
     changeDetection : ChangeDetectionStrategy.OnPush ,
     styles          : [ require( './welcome-block.component.scss' ) ]
 } )
-export class WelcomeBlockComponent extends FormBlock implements OnInit, AfterViewInit {
+export class WelcomeBlockComponent extends FormBlock implements AfterViewInit {
     @ViewChild( AmpIntroBlockComponent ) public ampIntro;
-    private nextBlockChanged : boolean = false;
-    private newOrExistingCustomerControl : FormControl;
-    private Constants = Constants;
+    private loadedNextBlock : boolean = false;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
                   _cd : ChangeDetectorRef ,
@@ -42,45 +40,32 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit, AfterVie
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
-    public ngOnInit () {
-        if ( this.__controlGroup.contains( this.__custom.controls[ 0 ].id )) {
-            this.newOrExistingCustomerControl = <FormControl> this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        } else {
-            this.newOrExistingCustomerControl = new FormControl( null , Validators.required );
-            this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, this.newOrExistingCustomerControl );
-        }
-
-    }
-
     public ngAfterViewInit() {
         super.ngAfterViewInit();
-        if (this.__isRetrieved) {
-            this.onNewOrExisting(this.newOrExistingCustomerControl.value);
+        if ( this.__isRetrieved ) {
+            this.onNewApplication(); // don't show the retrieve block if is hydrated
         }
     }
 
-    private onNewOrExisting ( newOrExistingCustomer : string ) {
-        this.newOrExistingCustomerControl.setValue( newOrExistingCustomer );
-        this.newOrExistingCustomerControl.markAsTouched();
-        if ( this.nextBlockChanged ) {
-            this.__removeNext( this.viewReference );
-            this.nextBlockChanged = false;
-        }
-        if ( newOrExistingCustomer === Constants.existingCustomer ) {
-            this.__loadNext( this.__custom.optionalBlocks[ 0 ] , this.viewReference )
-                .then( () => {
-                    this.ampIntro.proceed()
+    private onContinueApplication(){
+        if( !this.loadedNextBlock ){
+            this.__loadNext( this.__custom.optionalBlocks.ContinueApplicationBlock , this.viewReference )
+                .then( (componentRef) => {
+                    this.ampIntro
+                        .proceed()
                         .then( () => {
-                            this.fireMockScrolledEvent([ 'Application' , 'MyAMPLoginBlock' ]);
+                            this.fireMockScrolledEvent(componentRef.instance.__fdn);
                         } );
                 } );
-            this.nextBlockChanged = true;
-            return;
         }
+        this.loadedNextBlock = true;
+    }
 
-        this.ampIntro.proceed()
+    private onNewApplication(){
+        this.ampIntro
+            .proceed()
             .then( () => {
-                this.fireMockScrolledEvent(FDN.NewOrContinueApplicationBlock);
+                this.fireMockScrolledEvent(FDN.NewOrExistingCustomer);
             } );
     }
 
@@ -89,6 +74,5 @@ export class WelcomeBlockComponent extends FormBlock implements OnInit, AfterVie
             componentSelector : [ ...fdn, 'block' ].join( '-' ) ,
             section           : null
         } );
-
     }
 }

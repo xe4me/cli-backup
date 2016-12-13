@@ -6,6 +6,7 @@ import {
     NgZone,
     OnInit,
     AfterViewInit,
+    ViewContainerRef,
     Renderer,
     OnDestroy } from '@angular/core';
     import {FormControl} from '@angular/forms';
@@ -76,6 +77,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
         scrollService : ScrollService,
         progressObserver : ProgressObserverService,
         private zone : NgZone,
+        private vcf : ViewContainerRef,
         private renderer : Renderer,
         private dom : BrowserDomAdapter) {
         super( formModelService, elementRef, _cd, progressObserver, scrollService );
@@ -108,7 +110,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
 
     public removeLoginAndProceed() {
         this.cleanUp();
-
+        //this.__removeAt(this.__getIndex(this.vcf));
         super.onNext();
     }
 

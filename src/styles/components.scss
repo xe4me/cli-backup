@@ -1,1 +1,7 @@
 @import '../../node_modules/amp-ddc-components/src/styles/require';
+.better-header{
+    line-height: 64px;
+    font-size: 52px;
+    @include amp-family($amp-font-archer-pro-light);
+    color: #001e41;
+}
