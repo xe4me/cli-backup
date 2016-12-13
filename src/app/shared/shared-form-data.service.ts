@@ -5,7 +5,7 @@ import { Constants } from '../shared';
 @Injectable()
 export class SharedFormDataService {
     private singleOrJointFdn : (string|number)[] = [ ...FDN.SingleOrJoint , 'SingleOrJoint' ];
-    private newOrExistingCustomerFdn : (string|number)[] = [ ...FDN.Welcome, 'NewOrExistingCustomer'];
+    private newOrExistingCustomerFdn : (string|number)[] = [ ...FDN.NewOrExistingCustomer, 'NewOrExistingCustomer'];
 
     public getSingleOrJointControl ( form : FormGroup ) {
         return <FormControl> form.get( this.singleOrJointFdn );

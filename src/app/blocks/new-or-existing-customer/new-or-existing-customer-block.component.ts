@@ -30,15 +30,13 @@ import {
 import { FDN } from '../../forms/better-form/Application.fdn';
 import { MyAMPLoginBlockComponent } from '../my-amplogin-block/my-amplogin-block.component';
 @Component( {
-    selector        : 'new-or-continue-block' ,
-    templateUrl     : './new-or-continue-block.component.html' ,
-    styles          : [ require( './new-or-continue-block.component.scss' ).toString() ] ,
+    selector        : 'new-or-existing-customer-block' ,
+    templateUrl     : './new-or-existing-customer-block.component.html' ,
+    styles          : [ require( './new-or-existing-customer-block.component.scss' ).toString() ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class NewOrContinueApplicationBlock extends FormBlock implements OnInit, AfterViewInit {
-    private newApplicationKey : string = Constants.newApplication;
-    private continueApplicationKey : string = Constants.existingApplication;
-    private nextBlockChanged = false;
+export class NewOrExistingCustomerBlock extends FormBlock implements OnInit, AfterViewInit {
+    private loadedLoginBlock = false;
     private hideThisBlock = false;
     constructor ( formModelService : FormModelService ,
                   scrollService : ScrollService ,
@@ -51,7 +49,6 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit, 
                   private sharedDataService : SharedFormDataService,
                   private viewReference : ViewContainerRef ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
-
         this.disableAutoSave();
     }
 
@@ -65,35 +62,47 @@ export class NewOrContinueApplicationBlock extends FormBlock implements OnInit, 
     public ngAfterViewInit() {
         super.ngAfterViewInit();
         if (this.__isRetrieved) {
-            this.onNewOrContinue(this.__controlGroup.get( this.__custom.controls[ 0 ].id ).value);
+            this.hideThisBlock =true;
+            setTimeout(()=>{
+                this.newOrLogin(this.__controlGroup.get( this.__custom.controls[ 0 ].id ).value);
+            },10);
         }
     }
 
-    private addOrRemoveContinueSection(newOrContinue : string) : Promise<any> {
-        if ( newOrContinue === this.continueApplicationKey && !this.nextBlockChanged) {
-            this.nextBlockChanged = true;
-            return this.__loadNext( this.__custom.optionalBlocks[ 0 ] , this.viewReference );
+    private addOrRemoveContinueSection(newOrLoginToMyAmp : string) : Promise<any> {
+        const loginBlockControlGroup = this.__form.get(['Application','MyAMPLoginBlock']);
+        if ( newOrLoginToMyAmp === Constants.existingCustomer && !loginBlockControlGroup) {
+            this.loadedLoginBlock = true;
+            return this.__loadNext( this.__custom.optionalBlocks.MyAMPLoginBlock , this.viewReference );
+        }
+        if ( newOrLoginToMyAmp === Constants.newCustomer && loginBlockControlGroup) {
+            this.loadedLoginBlock = false;
+            return this.__removeNext( this.viewReference );
         }
 
         // New application, so do prepop
         this.prepopCustomerDetails();
-
-        let promise = new Promise((resolve) => resolve() );
-        return promise;
+        return new Promise((resolve) => resolve() );;
     }
 
-    private onNewOrContinue ( newOrContinue : string ) {
-        const newOrContinueControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        newOrContinueControl.setValue( newOrContinue );
-        newOrContinueControl.markAsTouched();
-        this.addOrRemoveContinueSection( newOrContinue ).then((actualComponent) => {
+    private newOrLogin ( newOrLoginToMyAmp : string ) {
+        const newOrLoginToMyAmpControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+        newOrLoginToMyAmpControl.setValue( newOrLoginToMyAmp );
+        newOrLoginToMyAmpControl.markAsTouched();
+        this.addOrRemoveContinueSection( newOrLoginToMyAmp ).then((actualComponent) => {
             setTimeout(() => {
                 this.onNext();
-                this.hideThisBlock = true;
             }, 0);
         });
     }
 
+    private newApplication(){
+        this.newOrLogin(Constants.newCustomer);
+    }
+
+    private loginToMyAmp(){
+        this.newOrLogin(Constants.existingCustomer);
+    }
     // TODO move this to a service - this component is getting bloated
     // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/1
     private prepopCustomerDetails () {
