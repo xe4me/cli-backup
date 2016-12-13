@@ -203,7 +203,17 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         });
     }
 
+    private replaceAddressNullValues ( form : IGreenIdFormModel ){
+        // greenId api would not accept null for address parts , but accepts empty string !!! ( strange)
+        if ( form && form.address ){
+            Object.keys( form.address ).map( (key) => {
+                form.address[ key ] = form.address[ key ] === null ? '' : form.address[ key ];
+            });
+        }
+    }
+
     private registerUser() {
+        this.replaceAddressNullValues(this.form);
         return this.ampGreenIdServices
             .registerUser(this.form);
     }
