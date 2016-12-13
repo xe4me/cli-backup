@@ -137,7 +137,6 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
             dateOfBirth : personalDetails.BasicInfo.DateOfBirth,
             email : personalDetails.ContactDetails.EmailAddress,
             verificationId : '',
-            verificationToken : '',
             verificationStatus : '',
             address : {
                 country : 'AU',
