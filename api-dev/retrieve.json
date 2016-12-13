@@ -1,0 +1,216 @@
+[
+  {
+    "request": {
+      "url": "ddc/public/api/bett3r/retrieve",
+      "method": "POST"
+    },
+    "response": {
+      "statusCode": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "latency": 100,
+      "body": {
+        "statusCode": 200,
+        "payload": {
+          "status": "success",
+          "application": {
+            "Application": {
+              "Welcome": {},
+              "NewOrExistingCustomer": {
+                "NewOrExistingCustomer": "NewCustomer"
+              },
+              "SingleOrJoint": {
+                "SingleOrJoint": "JointApplicant"
+              },
+              "Applicant1Section": {
+                "PersonalDetailsSection": {
+                  "BasicInfo": {
+                    "TitleDropdown": {
+                      "SelectedItem": "Mrs",
+                      "Query": "Mrs"
+                    },
+                    "FirstName": "Milad",
+                    "MiddleName": "asda",
+                    "LastName": "Hosseini",
+                    "DateOfBirth": "10/10/1987"
+                  },
+                  "Address": {
+                    "Address": {
+                      "residentialAddress": {
+                        "isManualSearch": false,
+                        "search": {
+                          "selectedItem": "COAUSHAfgBwMAAQAARkumQAAAAAAAFAA-",
+                          "query": "Pym Street, MILLTHORPE  NSW  2798"
+                        },
+                        "manualAddress": {
+                          "buildingName": "Pymble Ladies College",
+                          "unitNumber": "",
+                          "streetNumber": "20-64",
+                          "streetName": "Avon",
+                          "streetTypeDropdown": {
+                            "SelectedItem": "RD",
+                            "Query": "Road"
+                          },
+                          "poBox": null,
+                          "suburb": "PYMBLE",
+                          "postCode": "2073",
+                          "stateDropdown": {
+                            "SelectedItem": "NSW",
+                            "Query": "NSW"
+                          }
+                        },
+                        "isItPoBox": false
+                      },
+                      "postalAndResidentialAreSame": true
+                    }
+                  },
+                  "ContactDetails": {
+                    "EmailAddress": "sdfsd@sd.coom",
+                    "MobileNumber": "0402095291",
+                    "HomeNumber": null
+                  },
+                  "NotARobot": {
+                    "amp-google-recaptcha-check": {
+                      "verificationStatus": null,
+                      "verificationToken": null
+                    }
+                  },
+                  "BetterChoice": {}
+                },
+                "IdentitySection": {
+                  "OnlineOrOfflineIdCheck": {
+                    "OnlineIDCheck": null
+                  }
+                },
+                "FinalQuestionsSection": {
+                  "TaxFileNumber": {
+                    "HasTaxFileNumber": null
+                  },
+                  "SourceOfFunding": {
+                    "PrimarySourceOfWealthDropdown": {
+                      "SelectedItem": null,
+                      "Query": null
+                    },
+                    "SourceOfFundsForAccountDropdown": {
+                      "SelectedItem": null,
+                      "Query": null
+                    },
+                    "ReasonForOpeningAccountDropdown": {
+                      "SelectedItem": null,
+                      "Query": null
+                    }
+                  },
+                  "Residency": {
+                    "CountryOfCitizenshipDropdown": {
+                      "SelectedItem": "AUS",
+                      "Query": "Australia"
+                    },
+                    "CountryOfResidencyDropdown": {
+                      "SelectedItem": "AUS",
+                      "Query": "Australia"
+                    },
+                    "USTaxCitizen": null
+                  },
+                  "LastStep": {
+                    "AcceptPrivacyDeclaration": null,
+                    "AcceptTandCs": null
+                  }
+                }
+              },
+              "Applicant2Section": {
+                "PersonalDetailsSection": {
+                  "BasicInfo": {
+                    "TitleDropdown": {
+                      "SelectedItem": null,
+                      "Query": null
+                    },
+                    "FirstName": null,
+                    "MiddleName": null,
+                    "LastName": null,
+                    "DateOfBirth": null
+                  },
+                  "Address": {
+                    "Address": {
+                      "residentialAddress": {
+                        "isManualSearch": false,
+                        "search": {
+                          "selectedItem": null,
+                          "query": null
+                        },
+                        "manualAddress": {
+                          "buildingName": null,
+                          "unitNumber": null,
+                          "streetNumber": null,
+                          "streetName": null,
+                          "streetTypeDropdown": {
+                            "SelectedItem": null,
+                            "Query": null
+                          },
+                          "poBox": null,
+                          "suburb": null,
+                          "postCode": null,
+                          "stateDropdown": {
+                            "SelectedItem": null,
+                            "Query": null
+                          }
+                        },
+                        "isItPoBox": null
+                      },
+                      "postalAndResidentialAreSame": true
+                    }
+                  },
+                  "ContactDetails": {
+                    "EmailAddress": null,
+                    "MobileNumber": null,
+                    "HomeNumber": null
+                  }
+                },
+                "IdentitySection": {
+                  "OnlineOrOfflineIdCheck": {
+                    "OnlineIDCheck": null
+                  }
+                },
+                "FinalQuestionsSection": {
+                  "TaxFileNumber": {
+                    "HasTaxFileNumber": null
+                  },
+                  "SourceOfFunding": {
+                    "PrimarySourceOfWealthDropdown": {
+                      "SelectedItem": null,
+                      "Query": null
+                    },
+                    "SourceOfFundsForAccountDropdown": {
+                      "SelectedItem": null,
+                      "Query": null
+                    },
+                    "ReasonForOpeningAccountDropdown": {
+                      "SelectedItem": null,
+                      "Query": null
+                    }
+                  },
+                  "Residency": {
+                    "CountryOfCitizenshipDropdown": {
+                      "SelectedItem": "AUS",
+                      "Query": "Australia"
+                    },
+                    "CountryOfResidencyDropdown": {
+                      "SelectedItem": "AUS",
+                      "Query": "Australia"
+                    },
+                    "USTaxCitizen": null
+                  },
+                  "LastStep": {
+                    "AcceptPrivacyDeclaration": null,
+                    "AcceptTandCs": null
+                  }
+                }
+              },
+              "referenceId": "4172867194"
+            }
+          }
+        }
+      }
+    }
+  }
+]
