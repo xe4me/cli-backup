@@ -15,8 +15,6 @@ export class Constants {
     public static onlineIdCheck : string = 'online';
     public static offlineIdCheck : string = 'offline';
     public static referenceIdName : string = 'referenceId';
-    public static loginSuccess = 'SUCCESS';
-    public static loginFailed = 'FAILED';
     public static applicant1Section = 'Applicant1Section';
     public static MyAMPLoginBlockFDN  = ['Application','MyAMPLoginBlock'];
 }
