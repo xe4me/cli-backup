@@ -6,7 +6,6 @@ export interface IGreenIdFormModel {
     dateOfBirth : string;
     email : string;
     verificationId : string;
-    verificationToken : string;
     verificationStatus : string;
     address : {
         country : string;
