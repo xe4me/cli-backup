@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container" [hidden]="!showRetrieveBlock">
     <div class="main main--aside">
-        <amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="tools" [hidden]="hideThisBlock">
+        <amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="tools" [withOkButton]='false'>
             <p class="heading-contxtual-label">
                 Enter the reference code that we sent you by SMS, as well as your last name and date of birth
             </p>
             <amp-form-row>
-                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+                <div auto-focus-on="div" class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
                     <amp-input
                             #refCode
                             [id]="__custom.controls[0].id"
                             [controlGroup]="__controlGroup"
                             [label]="'Reference code'"
-                            [required]="true"
+                            [required]="fieldsAreRequired"
                             [minLength]="10"
                             [maxLength]="10"
                             [amp-number-only]="refCode.control"
@@ -24,7 +24,7 @@
                             [id]="__custom.controls[1].id"
                             [controlGroup]="__controlGroup"
                             [label]="'Last name'"
-                            [required]="true"
+                            [required]="fieldsAreRequired"
                             [errors]="{ required : __custom.controls[1].requiredErrMsg }"
                             [isInSummaryState]="isInSummaryState">
                     </amp-input>
@@ -34,7 +34,7 @@
                             [id]="__custom.controls[2].id"
                             [controlGroup]="__controlGroup"
                             [label]="'Date of birth'"
-                            [required]="true"
+                            [required]="fieldsAreRequired"
                             [valDate]="true"
                             [errors]="{ required : __custom.controls[2].requiredErrMsg}"
                             [isInSummaryState]="isInSummaryState">
@@ -46,6 +46,23 @@
                     <span class='icon icon--close icon-errors' aria-hidden='true'></span>
                     <span>{{responseError}}</span>
                 </div>
+            </div>
+            <div class="mt-60">
+                <amp-button
+                        theme='tools'
+                        [disabled]="!canGoNext"
+                        [context]="context()"
+                        class="1/4  btn btn-ok palm-1/1 tablet-1/1 palm-mr0 mr"
+                        (click)="retrieve()">
+                    Retrieve
+                </amp-button>
+                <amp-button
+                        theme='tools'
+                        [context]="context()"
+                        class="1/4 btn btn-ok palm-1/1 tablet-1/1 "
+                        (click)="onNewApplication()">
+                    New application
+                </amp-button>
             </div>
         </amp-form-block>
     </div>

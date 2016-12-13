@@ -90,7 +90,9 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
         } else {
             this.sectionsToHide = [];
         }
-        this.hideStickyButton = hideStickyButton;
+        if(hideStickyButton===false){
+            this.hideStickyButton = hideStickyButton;
+        }
         this._cd.markForCheck();
     };
 
