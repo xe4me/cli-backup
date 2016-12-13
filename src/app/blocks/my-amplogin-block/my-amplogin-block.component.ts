@@ -9,16 +9,20 @@ import {
     ViewContainerRef,
     Renderer,
     OnDestroy } from '@angular/core';
-    import {FormControl} from '@angular/forms';
+    import {
+    FormControl,
+        FormGroup
+    } from '@angular/forms';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import {
     FormBlock,
     ScrollService,
     FormModelService,
-    ProgressObserverService
+    ProgressObserverService,
+    CustomerDetailsService
 } from 'amp-ddc-components';
 import {
-    Constants
+    PrepopMappingService
 } from '../../shared';
 /**
  * Thin login interface to MyAMP via TAM.
@@ -65,16 +69,17 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [require ( './my-amplogin-block.component.scss' )]
 })
-export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , OnInit, AfterViewInit {
+export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , AfterViewInit {
     public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
     private errorCode : String = null;
     private hideThisBlock = false;
-    private loginResultControl : FormControl;
+
     constructor(
         formModelService : FormModelService,
         elementRef : ElementRef,
         _cd : ChangeDetectorRef,
         scrollService : ScrollService,
+        private customerDetailsService : CustomerDetailsService,
         progressObserver : ProgressObserverService,
         private zone : NgZone,
         private vcf : ViewContainerRef,
@@ -82,17 +87,6 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
         private dom : BrowserDomAdapter) {
         super( formModelService, elementRef, _cd, progressObserver, scrollService );
         this.disableAutoSave();
-    }
-
-    public ngOnInit () {
-        if ( this.__controlGroup.contains(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME )) {
-            this.loginResultControl =
-                <FormControl> this.__controlGroup.get(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME);
-        } else {
-            this.loginResultControl = new FormControl();
-            this.__controlGroup
-                .addControl(MyAMPLoginBlockComponent.LOGIN_STATUS_CONTROL_NAME , this.loginResultControl);
-        }
     }
 
     public ngAfterViewInit() {
@@ -178,7 +172,6 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
     private submitCallback : Function = (event) => {
         try {
             let landingURL = this.dom.query('#myamploginframe').contentWindow.location.href;
-
             if (landingURL) {
                 let errorCodeStartIndex = landingURL.indexOf('errorCode=');
                 if (errorCodeStartIndex > -1) {
@@ -199,15 +192,55 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , O
         }
 
         this._cd.markForCheck();
-    }
+    };
 
     private onLoginSuccess () {
-        this.loginResultControl.setValue(Constants.loginSuccess);
+        this.prepopCustomerDetails(true);
         this.removeLoginAndProceed();
     }
 
+    // TODO move this to a service - this component is getting bloated
+    // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/1
+    private prepopCustomerDetails (isLoggedIn = false) {// Default assumption is that we are not logged in.
+        // TODO: This will have to change if we start the journey from
+        //       MyAMP and never went thru myAMPLoginBlock
+        // Lets check the myAMPLoginBlock loginResult
+
+        if (isLoggedIn) {
+            // Trigger the prepopulation from CMDM
+            this.customerDetailsService
+                .getCustomerDetails()
+                .then((data) => {
+                    let FDN_Applicant1_PersonalDetailsSection = [
+                        'Application' , 'Applicant1Section' , 'PersonalDetailsSection' ];
+
+                    let basicInfo = <FormGroup> this.__form.get(
+                        FDN_Applicant1_PersonalDetailsSection.concat('BasicInfo'));
+
+                    let contactDetails = <FormGroup> this.__form.get(
+                        FDN_Applicant1_PersonalDetailsSection.concat('ContactDetails'));
+
+                    // Lets do some prepopulation
+                    PrepopMappingService.prepopBasicInfo(basicInfo, data.payload, this.customerDetailsService);
+                    // TODO: For December release, do not prepopulate addresses as we cannot easily
+                    // map them to the required fields
+                    // this.prepopAddresses(data.payload);
+                    PrepopMappingService.prepopContactDetails(
+                        contactDetails,
+                        data.payload,
+                        this.customerDetailsService);
+
+                    // TODO: Make sure we load the special prepop block and not the manual entry blocks
+                }).catch((err) => {
+                console.error('Failed to customer details', err);
+                // According to the mapping rules if the single CMDM call fails there is no need to retry
+                // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824
+
+                // TODO: Make sure we load the manual entry path
+            });
+        }
+    }
     private onLoginFail (errorCode? : String) {
-        this.loginResultControl.setValue(Constants.loginFailed);
         this.errorCode = errorCode;
         if (!errorCode) {
             this.errorCode = 'default';
