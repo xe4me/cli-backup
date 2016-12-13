@@ -107,7 +107,6 @@ export class ContinueApplicationBlock extends FormBlock {
     }
 
     public retrieve() {
-        console.log('retrieve');
         if (!this.__controlGroup.valid) {
             return;
         }
