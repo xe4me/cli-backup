@@ -1,5 +1,6 @@
 import {
-    Component
+    Component,
+    Input
 } from '@angular/core';
 import {
     Environments
@@ -11,7 +12,7 @@ import {
 } )
 
 export class Bett3rExitBlock {
-
+    @Input( 'name' ) name : string = 'finish';
     private finish() : void {
         window.open( `${Environments.property.AmpRootUrl}bett3r`, '_self' );
     }
