@@ -23,6 +23,7 @@ import {
     FormModelService,
     ProgressObserverService,
     AmpHttpService,
+    AmpFormBlockComponent,
     AutoFocusOnDirective,
     Environments
 } from 'amp-ddc-components';
@@ -71,6 +72,7 @@ import {
 })
 export class ContinueApplicationBlock extends FormBlock {
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
+    @ViewChild( AmpFormBlockComponent ) public AmpFormBlockComponent;
     public static notFoundErrorMsg = 'Sorry, we cannot find your application';
     public static closedErrorMsg = 'This application has already been submitted';
     public static genericErrorMsg = 'An unexpected error has occurred.';
@@ -105,7 +107,13 @@ export class ContinueApplicationBlock extends FormBlock {
                 return ContinueApplicationBlock.genericErrorMsg;
         }
     }
-
+    public ngAfterViewInit(){
+        super.ngAfterViewInit();
+        this.AmpFormBlockComponent.onKeyupEnter = (event)=>{
+            this.retrieve();
+            event.preventDefault();
+        }
+    }
     public retrieve() {
         if (!this.__controlGroup.valid) {
             return;
@@ -128,6 +136,7 @@ export class ContinueApplicationBlock extends FormBlock {
                 const payload = response.payload;
                 if (payload.status === 'success') {
                     this.showRetrieveBlock = false;
+                    this._cd.markForCheck();
                     this.formModelService.storeModelAndHydtrateForm(payload.application);
                 } else {
                     this.responseError = this.getErrorMessage(payload.status);
