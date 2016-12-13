@@ -36,7 +36,7 @@ import {
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
-    private static secondApplicantSectionIndex : number = 2;
+    private static secondApplicantSectionIndex : number = 3;
     public applicant2Added : boolean = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
@@ -112,6 +112,12 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
         if ( ! this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
             let applicant2Sections = this.applicantGenerator.getApplicantSection( 2 );
+            const loginBlockControlGroup = this.__form.get(Constants.MyAMPLoginBlockFDN);
+            if( loginBlockControlGroup ){
+                SingleOrJointBlockComponent.secondApplicantSectionIndex = 4;
+            }else{
+                SingleOrJointBlockComponent.secondApplicantSectionIndex = 3;
+            }
             this.__loadAt( applicant2Sections , SingleOrJointBlockComponent.secondApplicantSectionIndex);
             return;
         }

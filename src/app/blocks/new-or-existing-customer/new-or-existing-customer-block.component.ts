@@ -70,7 +70,7 @@ export class NewOrExistingCustomerBlock extends FormBlock implements OnInit, Aft
     }
 
     private addOrRemoveContinueSection(newOrLoginToMyAmp : string) : Promise<any> {
-        const loginBlockControlGroup = this.__form.get(['Application','MyAMPLoginBlock']);
+        const loginBlockControlGroup = this.__form.get(Constants.MyAMPLoginBlockFDN);
         if ( newOrLoginToMyAmp === Constants.existingCustomer && !loginBlockControlGroup) {
             this.loadedLoginBlock = true;
             return this.__loadNext( this.__custom.optionalBlocks.MyAMPLoginBlock , this.viewReference );
@@ -90,6 +90,7 @@ export class NewOrExistingCustomerBlock extends FormBlock implements OnInit, Aft
         newOrLoginToMyAmpControl.setValue( newOrLoginToMyAmp );
         newOrLoginToMyAmpControl.markAsTouched();
         this.addOrRemoveContinueSection( newOrLoginToMyAmp ).then((actualComponent) => {
+            this.hideThisBlock = true;
             setTimeout(() => {
                 this.onNext();
             }, 0);
