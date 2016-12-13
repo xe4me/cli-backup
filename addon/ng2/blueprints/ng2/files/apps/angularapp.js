@@ -5,6 +5,7 @@ const EXPERIENCE_NAME = '<%=appId%>';
 // Wrapped in config module
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const TAM_SERVICE_PATH = process.env.TAM_SERVICE_PATH;       // https://teamtools.amp.com.au/confluence/display/EH/API+Gateway+traffic+flow+with+TAM
+const TAM_CUSTOMER_DOMAIN = process.env.TAM_CUSTOMER_DOMAIN;
 const GW_ENV_SERVICE_PATH = process.env.GW_ENV_SERVICE_PATH; // Only necessary for Dev and SYS, how to nullified in UAT, PRD, DR.
 const GW_PRACTICE_API_KEY = process.env.GW_PRACTICE_API_KEY;
 const GW_PRACTICE_SERVICE_PATH = process.env.GW_PRACTICE_SERVICE_PATH;  // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=40576204
@@ -39,6 +40,7 @@ module.exports = {
                     {
                         GoogleApiKey: GOOGLE_API_KEY,
                         TamServicePath: TAM_SERVICE_PATH,
+                        TamCustomerDomain: TAM_CUSTOMER_DOMAIN,
                         GwPracticeService: {
                             ApiKey: GW_PRACTICE_API_KEY,
                             EnvPath: GW_ENV_SERVICE_PATH,
