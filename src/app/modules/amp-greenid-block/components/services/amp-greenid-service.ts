@@ -15,6 +15,7 @@ export class AmpGreenIdServices {
     public static BASE_URL          = `${Environments.property.ApiCallsBaseUrl}/green-id`;
     public static DEFAULT_ERROR_TEXT = 'Server error';
     public static REGISTER_ENDPOINT = '/register';
+    public static TOKEN_ENDPOINT = '/token';
 
     private headers = new Headers( {
         'Content-Type' : 'application/json'
@@ -24,7 +25,7 @@ export class AmpGreenIdServices {
 
     }
 
-    public registerUser  = (modelValue : IGreenIdFormModel ) : Observable<any> => {
+    public registerUser  = ( modelValue : IGreenIdFormModel ) : Observable<any> => {
         const headers : Headers = this.headers;
         const options           = new RequestOptions( { headers : headers } );
         const url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.REGISTER_ENDPOINT;
@@ -33,6 +34,21 @@ export class AmpGreenIdServices {
         return this
             .http
             .post( url, body, options )
+            .map( ( res ) => {
+                return res.json();
+            })
+            .catch( this.handleError );
+    };
+
+    public getToken  = ( verificationId : string ) : Observable<any> => {
+        const headers : Headers = this.headers;
+        const options           = new RequestOptions( { headers, body : '' } ) ;
+        const url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.TOKEN_ENDPOINT;
+        const urlParams         = `verificationId=${verificationId}`;
+
+        return this
+            .http
+            .get( `${url}?${urlParams}`, options )
             .map( ( res ) => {
                 return res.json();
             })

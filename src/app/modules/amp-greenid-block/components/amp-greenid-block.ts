@@ -92,7 +92,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     `;
 
     constructor(
-        private AmpGreenIdServices : AmpGreenIdServices,
+        private ampGreenIdServices : AmpGreenIdServices,
         private fb : FormBuilder,
         private _cd : ChangeDetectorRef,
         private _render : Renderer,
@@ -104,7 +104,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     public getVerificationStatusControl() : FormControl {
-        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
+        return <FormControl> this.verificationStatusControl;
     }
 
     public ngOnInit() : any {
@@ -113,24 +113,27 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
             frameId: 'greenid-div',
             enableBackButtonWarning: false
         };
+
         if (this.styleUrl) {
             this.safeStyleUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.styleUrl);
         }
+
         this.createControls();
 
-        const verificationStatus = this.greenIdControlGroup.controls['verificationStatus'];
-
-        if (!verificationStatus.value ||
-            verificationStatus.value === AmpGreenIdBlockComponent.verificationStatuses.PENDING) {
-
+        if (this.isVerificationRequired) {
             this.loadApiScripts = new Promise<any>(this.loadApiScriptsHandler).then(() => {
                 this.setupGreenId();
+                if (!this.isAlreadyRegistered) {
+                    this.registerUser()
+                        .subscribe((response) => {
+                            if (response) {
+                                this.updateModel(response.payload);
 
-                const verificationId = this.greenIdControlGroup.controls['verificationId'];
-                const isAlreadyRegistered = !!verificationId.value;
-
-                if (!isAlreadyRegistered) {
-                    this.registerUser();
+                                if (this.showOnReady) {
+                                    this.showGreenId();
+                                }
+                            }
+                        });
                 }
             });
         }
@@ -143,15 +146,38 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     public showGreenId() : void {
-        const verificationToken = this.greenIdControlGroup.controls['verificationToken'];
-        if (verificationToken.value) {
-            this.showGreenIdInternal();
-        } else {
-            let changes = verificationToken.valueChanges.subscribe(() => {
-                this.showGreenIdInternal();
-                changes.unsubscribe();
+        this.getToken()
+            .subscribe((response) => {
+                if (response) {
+                    const verificationToken = response.payload.verificationToken;
+
+                    if (verificationToken) {
+                        this.showGreenIdInternal(verificationToken);
+                    } else {
+                        // TODO: Some error handling
+                        // GitLab Issue: https://gitlab.ccoe.ampaws.com.au/DDC/components/issues/6
+                    }
+                }
             });
-        }
+    }
+
+    private get verificationStatusControl() : FormControl {
+        return <FormControl> this.greenIdControlGroup.controls['verificationStatus'];
+    }
+
+    private get verificationIdControl() : FormControl {
+        return <FormControl> this.greenIdControlGroup.controls['verificationId'];
+    }
+
+    private get isVerificationRequired() : boolean {
+        const verificationStatus = this.verificationStatusControl;
+
+        return !verificationStatus.value ||
+            verificationStatus.value === AmpGreenIdBlockComponent.verificationStatuses.PENDING;
+    }
+
+    private get isAlreadyRegistered() : boolean {
+        return !!this.verificationIdControl.value;
     }
 
     private createControls() {
@@ -178,30 +204,17 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     private registerUser() {
-        this.replaceAddressNullValues(this.form);
-        this.AmpGreenIdServices
-            .registerUser(this.form)
-            .subscribe((response) => {
-                if (response) {
-                    this.updateModel(response.payload);
-                    if (this.showOnReady) {
-                        this.showGreenId();
-                    }
-                }
-            });
+        return this.ampGreenIdServices
+            .registerUser(this.form);
     }
 
-    private replaceAddressNullValues ( form : IGreenIdFormModel ){
-        // greenId api would not accept null for address parts , but accepts empty string !!! ( strange)
-        if ( form && form.address ){
-            Object.keys( form.address ).map( (key) => {
-                form.address[ key ] = form.address[ key ] === null ? '' : form.address[ key ];
-            });
-        }
+    private getToken() {
+        return this.ampGreenIdServices
+            .getToken(this.verificationIdControl.value);
     }
 
-    private showGreenIdInternal() {
-        window['greenidUI'].show(this.accountId, this.password, this.greenIdControlGroup.controls['verificationToken'].value);
+    private showGreenIdInternal(verificationToken : string) {
+        window['greenidUI'].show(this.accountId, this.password, verificationToken);
     }
 
     private loadApiScriptsHandler = (resolve, reject) => {
@@ -221,7 +234,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     };
 
     private onSessionComplete = (token : string, verificationStatus : string) => {
-        this.greenIdControlGroup.controls['verificationStatus'].setValue(verificationStatus);
+        this.getVerificationStatusControl().setValue(verificationStatus);
         this.greenIdShowing = false;
         this._cd.markForCheck();
     };
@@ -229,7 +242,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     private createGreenIdControlGroup() {
         return new FormGroup({
             verificationId: new FormControl(null, Validators.required),
-            verificationToken: new FormControl(null, Validators.required),
             verificationStatus: new FormControl(null, Validators.required),
         });
     }
@@ -268,7 +280,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     private updateModel(response : ResponseObject) : void {
-        this.greenIdControlGroup.controls['verificationId'].setValue(response.verificationId);
-        this.greenIdControlGroup.controls['verificationToken'].setValue(response.verificationToken);
+        this.verificationIdControl.setValue(response.verificationId);
     }
 }
