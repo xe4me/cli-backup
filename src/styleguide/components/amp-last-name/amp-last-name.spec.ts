@@ -38,7 +38,7 @@ describe( 'amp-last-name component' , () => {
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
             const lastNameControl     = compiledTestComponent.componentInstance.lastNameControl.controls[ 'lastName' ];
-            lastNameControl.setValue( '    ' );
+            lastNameControl.setValue( '   ' );
             expect( lastNameControl._status ).toBe( 'INVALID' );
         } );
 
