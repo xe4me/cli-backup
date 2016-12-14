@@ -146,6 +146,15 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     public showGreenId() : void {
+        if (this.verificationIdControl.value === null) {
+            this.verificationIdControl
+                .valueChanges
+                .subscribe( () => {
+                    this.showGreenId();
+                } );
+            return;
+        }
+
         this.getToken()
             .subscribe((response) => {
                 if (response) {
@@ -203,7 +212,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         });
     }
 
-    private replaceAddressNullValues ( form : IGreenIdFormModel ){
+    private replaceAddressNullValues ( form : IGreenIdFormModel ) {
         // greenId api would not accept null for address parts , but accepts empty string !!! ( strange)
         if ( form && form.address ){
             Object.keys( form.address ).map( (key) => {
