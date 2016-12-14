@@ -41,7 +41,12 @@ export class PrepopMappingService {
         let parsedTitle = PrepopMappingService.parseTitle(customerDetails.title);
         basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').setValue(parsedTitle);
         basicInfoFormGroup.get('TitleDropdown').get('Query').setValue(parsedTitle);
-        customerDetailsService.isTitlePrepop = true;
+        // if the title is not one of the accepted title , ( like Mr and ... ) , title dropdown's gonna bail
+        // and it'll make the control to be null , so isTitlePrepop is only true , if it really has value after setValue
+        if(basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').value===parsedTitle){
+            customerDetailsService.isTitlePrepop = true;
+        }
+
     }
 
     public static prepopAddresses(addressFormGroup : FormGroup, customerDetails) {
