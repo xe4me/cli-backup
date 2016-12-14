@@ -15,7 +15,16 @@ describe( 'amp-first-name component' , () => {
 
     describe( 'Pattern validation' , () => {
 
-        it( 'should allow certain characters in first name' , () => {
+        it( 'should allow letters in first name' , () => {
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+            fixture.detectChanges();
+            let compiledTestComponent = fixture.debugElement;
+            const firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
+            firstNameControl.setValue( 'John' );
+            expect( firstNameControl._status ).toBe( 'VALID' );
+        } );
+
+        it( 'should allow full stops, spaces, hyphens and single quotes in first name' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
@@ -33,7 +42,7 @@ describe( 'amp-first-name component' , () => {
             expect( firstNameControl._status ).toBe( 'INVALID' );
         } );
 
-        it( 'should not allow only spaces as first name' , () => {
+        it( 'should NOT allow only spaces as first name' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
@@ -42,7 +51,7 @@ describe( 'amp-first-name component' , () => {
             expect( firstNameControl._status ).toBe( 'INVALID' );
         } );
 
-        it( 'should not allow number in first name' , () => {
+        it( 'should NOT allow number in first name' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;

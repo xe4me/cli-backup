@@ -15,7 +15,16 @@ describe( 'amp-last-name component' , () => {
 
     describe( 'Pattern validation' , () => {
 
-        it( 'should allow certain characters in last name' , () => {
+        it( 'should allow letters in last name' , () => {
+            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+            fixture.detectChanges();
+            let compiledTestComponent = fixture.debugElement;
+            const lastNameControl     = compiledTestComponent.componentInstance.lastNameControl.controls[ 'lastName' ];
+            lastNameControl.setValue( 'Smith' );
+            expect( lastNameControl._status ).toBe( 'VALID' );
+        } );
+
+        it( 'should allow full stops, spaces, hyphens and single quotes in last name' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
@@ -33,7 +42,7 @@ describe( 'amp-last-name component' , () => {
             expect( lastNameControl._status ).toBe( 'INVALID' );
         } );
 
-        it( 'should not allow only spaces as last name' , () => {
+        it( 'should NOT allow only spaces as last name' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
@@ -42,7 +51,7 @@ describe( 'amp-last-name component' , () => {
             expect( lastNameControl._status ).toBe( 'INVALID' );
         } );
 
-        it( 'should not allow number in last name' , () => {
+        it( 'should NOT allow number in last name' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
