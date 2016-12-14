@@ -81,12 +81,16 @@ export class NewOrExistingCustomerBlock extends FormBlock implements OnInit, Aft
         const newOrLoginToMyAmpControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         newOrLoginToMyAmpControl.setValue( newOrLoginToMyAmp );
         newOrLoginToMyAmpControl.markAsTouched();
-        this.addOrRemoveContinueSection( newOrLoginToMyAmp ).then((actualComponent) => {
-            this.hideThisBlock = true;
-            setTimeout(() => {
-                this.onNext();
-            }, 0);
-        });
+        if(!this.__isRetrieved){
+            this.addOrRemoveContinueSection( newOrLoginToMyAmp ).then((actualComponent) => {
+                this.hideThisBlock = true;
+                setTimeout(() => {
+                    this.onNext();
+                }, 0);
+            });
+        }else{
+            this.onNext();
+        }
     }
 
     private newApplication(){
