@@ -10,6 +10,7 @@ export class AmpLastNameComponent extends AmpInputComponent {
                   _el : ElementRef ,
                   _renderer : Renderer ) {
         super( _cd , _el , _renderer );
+        this.pattern   = '^[a-zA-Z][a-zA-Z\\s\'.-]*$';
         this.maxLength = 20;
         this.required  = true;
         this.label     = 'Last name';
