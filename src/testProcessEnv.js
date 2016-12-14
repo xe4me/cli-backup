@@ -1,7 +1,7 @@
 // Used for amp-ng test only.
-// If you need to customize this for your tests..which I'd be surprise but 
+// If you need to customize this for your tests..which I'd be surprise but
 // in a good way, feel free to, you just need a way to reload the Environment object somehow
-var _process_env = {
+const _process_env = {
     ENV: 'development',
     ApiCallsBaseUrl: 'http://localhost:1234',
     experienceName: 'components',
