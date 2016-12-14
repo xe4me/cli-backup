@@ -60,23 +60,21 @@ export class BasicInfoBlock extends FormBlock implements OnInit {
     }
 
     get isTitleInSummaryState () {
-        return ( this.customerDetailsService.isTitlePrepop || this.isInSummaryState )
-            && this.__fdn[1] === Constants.applicant1Section;
+        return ( this.customerDetailsService.isTitlePrepop && this.isThisApplicantOne ) || this.isInSummaryState;
     }
     get isFirstNameInSummaryState () {
-        return ( this.customerDetailsService.isFirstNamePrepop || this.isInSummaryState )
-            && this.__fdn[1] === Constants.applicant1Section;
+        return ( this.customerDetailsService.isFirstNamePrepop && this.isThisApplicantOne ) || this.isInSummaryState;
     }
     get isMiddleNameInSummaryState () {
-        return ( this.customerDetailsService.isMiddleNamePrepop || this.isInSummaryState )
-            && this.__fdn[1] === Constants.applicant1Section;
+        return ( this.customerDetailsService.isMiddleNamePrepop && this.isThisApplicantOne ) || this.isInSummaryState;
     }
     get isLastNameInSummaryState () {
-        return ( this.customerDetailsService.isLastNamePrepop || this.isInSummaryState )
-            && this.__fdn[1] === Constants.applicant1Section;
+        return ( this.customerDetailsService.isLastNamePrepop && this.isThisApplicantOne ) || this.isInSummaryState;
     }
     get isDOBInSummaryState () {
-        return ( this.customerDetailsService.isDOBPrepop || this.isInSummaryState )
-            && this.__fdn[1] === Constants.applicant1Section;
+        return ( this.customerDetailsService.isDOBPrepop && this.isThisApplicantOne ) || this.isInSummaryState;
+    }
+    get isThisApplicantOne(){
+        return this.__fdn[1] === Constants.applicant1Section;
     }
 }
