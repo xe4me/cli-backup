@@ -14,48 +14,41 @@ describe( 'amp-first-name component' , () => {
     } ) );
 
     describe( 'Pattern validation' , () => {
+        let firstNameControl;
 
-        it( 'should allow letters in first name' , () => {
+        beforeEach( async( () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
-            const firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
+            firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
+        } ) );
+
+        it( 'should allow letters in first name' , () => {
             firstNameControl.setValue( 'John' );
             expect( firstNameControl._status ).toBe( 'VALID' );
         } );
 
         it( 'should allow full stops, spaces, hyphens and single quotes in first name' , () => {
-            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-            fixture.detectChanges();
-            let compiledTestComponent = fixture.debugElement;
-            const firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
             firstNameControl.setValue( 'John-Paul\'o Jr.' );
             expect( firstNameControl._status ).toBe( 'VALID' );
         } );
 
+        it( 'should NOT allow any other special characters in first name' , () => {
+            firstNameControl.setValue( 'John$' );
+            expect( firstNameControl._status ).toBe( 'INVALID' );
+        } );
+
         it( 'should start with a letter' , () => {
-            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-            fixture.detectChanges();
-            let compiledTestComponent = fixture.debugElement;
-            const firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
             firstNameControl.setValue( '.John' );
             expect( firstNameControl._status ).toBe( 'INVALID' );
         } );
 
         it( 'should NOT allow only spaces as first name' , () => {
-            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-            fixture.detectChanges();
-            let compiledTestComponent = fixture.debugElement;
-            const firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
             firstNameControl.setValue( '    ' );
             expect( firstNameControl._status ).toBe( 'INVALID' );
         } );
 
         it( 'should NOT allow number in first name' , () => {
-            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-            fixture.detectChanges();
-            let compiledTestComponent = fixture.debugElement;
-            const firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
             firstNameControl.setValue( 'John1' );
             expect( firstNameControl._status ).toBe( 'INVALID' );
         } );
