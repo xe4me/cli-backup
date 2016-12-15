@@ -53,6 +53,7 @@ amp-loading {
     position               : absolute;
     width                  : 100%;
     z-index                : 10;
+    top                    : $input-height;
 
     // IE Scrollbar
     scrollbar-base-color   : $amp-colour-sky-blue;
