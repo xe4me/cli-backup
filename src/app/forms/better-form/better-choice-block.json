@@ -72,23 +72,6 @@
                     "description": "You can either switch your existing deposit account to become a Bett3r Pay account or choose to create a new account",
                     "additional_instruction": "Please enter the deposit account number you want to switch to become your Bett3r Pay account."
                 }
-            },
-            "convert_offset_account": {
-                "name": "OffsetTransition",
-                "blockType": "OffsetTransitionBlock",
-                "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/offset-transition/offset-transition.component",
-                "custom": {
-                    "blockTitle": "Switching your offset",
-                    "controls": [ {
-                        "id": "OffsetTransitionAccountNumber",
-                        "label": "Offset Account Number"
-                    } ],
-                    "description_single": "When switching, your existing offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances.",
-                    "description_joint": "When switching, your existing joint offset account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend offset account to help manage your finances.",
-                    "additional_instruction": "Please enter the offset account number that you would like to become your Bett3r Pay account."
-                }
             }
         }
     }
