@@ -7,60 +7,70 @@
     "custom": {
         "blockTitle": "How can we make your life Bett3r?",
         "controls": [ {
-            "id": "BetterChoice",
+            "id": "TransitChoice",
             "buttons": [ {
-                "id": "new_deposit_account",
-                "value": "new_deposit_account",
-                "label_single": "I would like to set up a new deposit account",
-                "label_joint": "We would like to set up a new deposit account"
+                "id": "deposit_account",
+                "value": "deposit_account",
+                "label": "Create a new or transition an existing deposit account"
             }, {
-                "id": "new_offset_account",
-                "value": "new_offset_account",
-                "label_single": "I would like to set up a new offset account on an existing eligible AMP home loan",
-                "label_joint": "We would like to set up a new offset account on an existing eligible AMP home loan"
-            }, {
-                "id": "convert_deposit_account",
-                "value": "convert_deposit_account",
-                "label_single": "I would like to convert an existing eligible deposit account",
-                "label_joint": "We would like to convert an existing eligible deposit account"
-            }, {
-                "id": "convert_offset_account",
-                "value": "convert_offset_account",
-                "label_single": "I would like to convert an existing eligible offset account",
-                "label_joint": "We would like to convert an existing eligible offset account"
+                "id": "offset_account",
+                "value": "offset_account",
+                "label": "Create a new or transition an existing offset account"
             } ]
         } ],
         "optionalBlocks": {
-            "new_offset_account": {
+            "offset_account": {
                 "name": "LoanOffset",
                 "blockType": "LoanOffsetBlock",
                 "blockLayout": "INLINE",
                 "commonBlock": false,
                 "path": "blocks/loan-offset/loan-offset.component",
                 "custom": {
-                    "blockTitle": "Offsetting your loan",
+                    "blockTitle": "Your offset account",
                     "controls": [ {
+                        "id" : "BetterChoice",
+                        "buttons" : [{
+                            "id": "convert_offset_account",
+                            "value": "convert_offset_account",
+                            "label": "Switch account"
+                        }, {
+                            "id": "new_offset_account",
+                            "value": "new_offset_account",
+                            "label": "Create new account"
+                        }]
+                    }, {
                         "id": "LoanOffsetAccountNumber"
-                    } ],
-                    "description_single": "Please enter the loan account number that you would like Bett3r to offset.",
-                    "description_joint": "Please enter the joint loan account number that you would like Bett3r to offset. Please note that both applicants must be holders of the loan."
+                    }
+                    ],
+                    "description": "You can either switch your existing offset account to become a Bett3r Pay account or choose to create a new account.",
+                    "additional_instruction": "Please enter the offset account number you want to switch to become your Bett3r Pay account."
                 }
             },
-            "convert_deposit_account": {
+            "deposit_account": {
                 "name": "DepositTransition",
                 "blockType": "DepositTransitionBlock",
                 "blockLayout": "INLINE",
                 "commonBlock": false,
                 "path": "blocks/deposit-transition/deposit-transition.component",
                 "custom": {
-                    "blockTitle": "Switching your account",
+                    "blockTitle": "Your deposit account",
                     "controls": [ {
-                        "id": "DepositTransitionAccountNumber",
+                        "id" : "BetterChoice",
+                        "buttons" : [{
+                                "id": "convert_deposit_account",
+                                "value": "convert_deposit_account",
+                                "label": "Switch account"
+                            }, {
+                                "id": "new_deposit_account",
+                                "value": "new_deposit_account",
+                                "label": "Create new account"
+                        }]
+                    }, {
+                        "id": "DepositAccountNumber",
                         "label": "Deposit Account Number"
                     } ],
-                    "description_single": "When switching, your existing deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances.",
-                    "description_joint": "When switching, your existing joint deposit account will become your Bett3r Pay account. We will also set up a Bett3r Save and Bett3r Spend account to help manage your finances.",
-                    "additional_instruction": "Please enter the deposit account number that you would like to become your Bett3r Pay account."
+                    "description": "You can either switch your existing deposit account to become a Bett3r Pay account or choose to create a new account",
+                    "additional_instruction": "Please enter the deposit account number you want to switch to become your Bett3r Pay account."
                 }
             },
             "convert_offset_account": {

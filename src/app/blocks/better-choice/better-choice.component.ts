@@ -52,14 +52,6 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
-    public setButtonLabels ( singleOrJoint : string ) {
-        const mappedLabel = singleOrJoint === Constants.singleApplicant ? 'single' : 'joint';
-        for ( const button of this.__custom.controls[ 0 ].buttons ) {
-            button.label = button[ 'label_' + mappedLabel ];
-        }
-        this.__custom.controls[ 0 ].buttons = clone( this.__custom.controls[ 0 ].buttons );
-    }
-
     public setNextBlock ( betterChoiceId : string ) {
         const nextBlock = this.__custom.optionalBlocks[ betterChoiceId ];
         if ( this.loadedDynamicBlock === betterChoiceId ) {
@@ -80,7 +72,7 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
     }
 
     public ngOnInit () {
-        this.setButtonLabels( 'single' );
+
     }
 
     public subscribeToBett3rChoice() {
@@ -107,13 +99,6 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
                             });
                         }
                     });
-        const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
-        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe((val) => {
-            if (this.existingCustomer) {
-                this.setButtonLabels(val);
-                this._cd.markForCheck();
-            }
-        });
         super.ngAfterViewInit();
     }
 

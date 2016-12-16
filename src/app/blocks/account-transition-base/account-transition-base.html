@@ -1,15 +1,27 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
-    <p class="heading-contxtual-label">
-        {{ description }}
-    </p>
-    <p class="mt mb heading-contxtual-label" *ngIf="__custom.additional_instruction">
-        {{ __custom.additional_instruction }}
-    </p>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
+            <p class="mb heading-contxtual-label">
+                {{ description }}
+            </p>
+            <amp-group-buttons
+                class="grid__item 1/1 lap-and-up-8/12"
+                [buttons]="__custom.controls[0].buttons"
+                [isInSummaryState]="isInSummaryState"
+                [controlGroup]="__controlGroup"
+                [groupName]="__custom.controls[0].id"
+                [required]="true">
+            </amp-group-buttons>
+            <p class="mt mb heading-contxtual-label" *ngIf="__custom.additional_instruction">
+                {{ __custom.additional_instruction }}
+            </p>
+        </div>
+    </amp-form-row>
     <amp-form-row [class.mt-40]="__custom.additional_instruction">
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12" [class.mt0]="__custom.additional_instruction">
             <amp-account-number
                     #depositAccount
-                    [id]="__custom.controls[0].id"
+                    [id]="__custom.controls[1].id"
                     [controlGroup]="__controlGroup"
                     [amp-number-only]="depositAccount.control"
                     [isInSummaryState]="isInSummaryState"

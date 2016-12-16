@@ -5,7 +5,7 @@ import { SharedFormDataService } from '../../shared/shared-form-data.service';
 import { Constants } from '../../shared';
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
     public description : string = null;
-    public singleOrJointSubscription : Subscription;
+    //public singleOrJointSubscription : Subscription;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -16,23 +16,13 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         super( formModelService , elementRef , _cd , progressObserver , scrollService );
     }
 
-    public setDescription ( singleOrJoint : string ) {
-        const mappedLabel = singleOrJoint === Constants.singleApplicant ? 'single' : 'joint';
-        this.description  = this.__custom[ 'description_' + mappedLabel ];
-        this._cd.markForCheck();
-    }
-
     public ngAfterViewInit () {
-        const singleOrJointControl = this.sharedFormDataService.getSingleOrJointControl( this.__form );
-        this.setDescription( singleOrJointControl.value );
-        this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe( ( val ) => {
-            this.setDescription( val );
-        } );
+        this.description  = this.__custom[ 'description'];
+        this._cd.markForCheck();
         super.ngAfterViewInit();
     }
 
     public ngOnDestroy () {
-        this.singleOrJointSubscription.unsubscribe();
         super.ngOnDestroy();
     }
 }
