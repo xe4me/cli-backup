@@ -91,12 +91,9 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
     }
 
     private onVerificationStatusChange = ( verificationStatus : string ) => {
-
-        if (!verificationStatus || (verificationStatus === AmpGreenIdBlockComponent.verificationStatuses.IN_PROGRESS)) {
-            return;
+        if (this.hasVerificationCompleted(verificationStatus)) {
+            this.verificationComplete(verificationStatus);
         }
-
-        this.verificationComplete(verificationStatus);
     };
 
     private verificationComplete( verificationStatus : string ) {
@@ -113,11 +110,16 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
         this._cd.markForCheck();
     }
 
-    private isCompleteStatus( verificationStatus : string ) {
+    private isCompleteStatus( verificationStatus : string ) : boolean {
         return [
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED,
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_WITH_CHANGES
         ].includes(verificationStatus);
+    }
+
+    private hasVerificationCompleted(verificationStatus : string ) : boolean {
+        return verificationStatus &&
+            (verificationStatus !== AmpGreenIdBlockComponent.verificationStatuses.IN_PROGRESS);
     }
 
     private updateGreenIdModel() {

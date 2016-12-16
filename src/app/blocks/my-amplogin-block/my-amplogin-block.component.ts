@@ -104,7 +104,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
 
     public removeLoginAndProceed() {
         this.cleanUp();
-        //this.__removeAt(this.__getIndex(this.vcf));
+        this.__removeAt(this.__getIndex(this.vcf));
         super.onNext();
     }
 

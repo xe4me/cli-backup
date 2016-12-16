@@ -130,7 +130,7 @@
                                         "id": "AcceptIdentityCheckPrivacyDeclaration"
                                     }
                                 ],
-                                "checkboxLabel": "I agree that by opening an AMP Bett3r Account, I authorise AMP to check my identity against personal information held by a credit bureau and I consent to my personal information being used and disclosed as set out in the <a href=\"https://www.amp.com.au/depositprivacy\" target=\"_blank\">privacy information</a> document."
+                                "checkboxLabel": " I authorise AMP to check only my identity against personal information held by a credit bureau."
                             }
                         },
                         {
