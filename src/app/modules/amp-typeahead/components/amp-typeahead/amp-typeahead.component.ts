@@ -73,7 +73,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() customValidator  = () : Function => {
         return ( c ) => {
             if ( c.value && c.value.length >= this.minTriggerLength ) {
-                return this.selectedControl.value ? null : {
+                return (this.selectedControl.value !== null) ? null : {
                     invalidSearch : {
                         text : c._ampErrors && c._ampErrors.invalidSearch ? c._ampErrors.invalidSearch : 'please' +
                         ' select a search result'
