@@ -1,0 +1,21 @@
+[
+    {
+        "request": {
+            "url": "/ddc/public/api/green-id/register",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "payload": {
+                    "verificationId": "DG2se7YA"
+                }
+            }
+        }
+    }
+]
+

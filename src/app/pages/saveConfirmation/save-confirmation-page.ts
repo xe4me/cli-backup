@@ -26,7 +26,4 @@ export class SaveConfirmationPage {
         });
     }
 
-    private finish() : void {
-        window.open( 'https://www.amp.com.au/bett3r', '_self' );
-    }
 }

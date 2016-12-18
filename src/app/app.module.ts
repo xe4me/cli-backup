@@ -43,7 +43,7 @@ import { AmpDropdownNewModule } from 'amp-ddc-components/src/app/modules/amp-dro
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
 import { Bett3rBannerBlock } from './blocks/bett3r-banner/bett3r-banner.component';
-import { Bett3rExitBlock } from './blocks/bett3r-exit/bett3r-exit.component';
+import { Bett3rExitButtonComponent } from './blocks/bett3r-exit-button/bett3r-exit-button.component';
 import { NormalAccountPage } from './pages/confirmation/normal-account-page';
 import {
     PostnoneSingleAccountPage
@@ -88,7 +88,7 @@ const DECLARATIONS    = [
     StickySaveButton,
     AccountsListBlock,
     Bett3rBannerBlock,
-    Bett3rExitBlock,
+    Bett3rExitButtonComponent,
     Header,
     Footer
 ];
