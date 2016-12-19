@@ -29,6 +29,7 @@ import {
 import {
     StickySaveButton
 } from '../../components/sticky-save-button/sticky-save-button';
+import { FDN } from '../../forms/better-form/Application.fdn';
 @Component({
     selector: 'menu-frame',
     templateUrl: './menu-frame.component.html',
@@ -59,14 +60,12 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
                 this.loader.clear();
                 let keys = Object.keys( _hydratedForm.controls.Application.controls );
                 keys.map( ( _controlGroupName ) => {
-                    if ( _controlGroupName !== 'Welcome' && _controlGroupName !== 'Retrieve' ) {
-                        (<any> this.__form.controls).Application.addControl( _controlGroupName ,
-                            _hydratedForm.controls.Application.controls[ _controlGroupName ] );
-                    }
+                    (<any> this.__form.controls).Application.addControl( _controlGroupName ,
+                        _hydratedForm.controls.Application.controls[ _controlGroupName ] );
                 } );
                 this.loader.reload();
                 this.hideStickyButton = false;
-                let singleOrJoint = this.__form.get([ 'Application', 'SingleOrJoint', 'SingleOrJoint']);
+                let singleOrJoint = this.__form.get([...FDN.SingleOrJoint,'SingleOrJoint']);
                 this.onSingleJoint(singleOrJoint ? singleOrJoint.value : null , false);
                 this._cd.markForCheck();
             });
