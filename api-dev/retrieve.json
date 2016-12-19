@@ -17,6 +17,11 @@
           "application": {
             "Application": {
               "Welcome": {},
+              "ContinueApplicationBlock": {
+                "ReferenceCode": "3242342342",
+                "LastName": "sdfsdf",
+                "DateOfBirth": "10/10/1987"
+              },
               "NewOrExistingCustomer": {
                 "NewOrExistingCustomer": "NewCustomer"
               },
@@ -27,11 +32,11 @@
                 "PersonalDetailsSection": {
                   "BasicInfo": {
                     "TitleDropdown": {
-                      "SelectedItem": "Mrs",
-                      "Query": "Mrs"
+                      "SelectedItem": "Mr",
+                      "Query": "Mr"
                     },
                     "FirstName": "Milad",
-                    "MiddleName": "asda",
+                    "MiddleName": null,
                     "LastName": "Hosseini",
                     "DateOfBirth": "10/10/1987"
                   },
@@ -66,39 +71,49 @@
                     }
                   },
                   "ContactDetails": {
-                    "EmailAddress": "sdfsd@sd.coom",
-                    "MobileNumber": "0402095291",
+                    "EmailAddress": "smiladhi@gmail.com",
+                    "MobileNumber": "0402095294",
                     "HomeNumber": null
                   },
                   "NotARobot": {
                     "amp-google-recaptcha-check": {
-                      "verificationStatus": null,
-                      "verificationToken": null
+                      "verificationStatus": "verified",
+                      "verificationToken": "03AHJ_Vus3sGwg1Ls_VuX4wbc69-2244RcndSasVr5uUjML8Q26zJVlIYn3OAuXtR6VoKub0oeP97Whcn34SVKqY3tXTvAJL2-UCKWYmpfc5YuURTuh41FEwtFZDH1b65SXZowyoRrKoz8I52Nvo1ZxX2Yx3ULGw2KYl_V_bEPQuxPdqPCyQ6nNgj7-6n3cHq1b_eSxtrnQKeEtRYHClFccSaUy96uatvC0Y-SzEF85afUHNMVjE5TD2iO8N9YQ-8lgkxEC6eX1eduP8NcMsGxiLSwzIPVDIu8FLS8Q1a-QzelWb0L-QrcIQlRw7MqkD6ngu6XB1Alb52XuLyMhkQO0GL5KptAs6ybRBWb1WUmdP6hABEzFUEe1YjpTh4g1VCIvN6_q789rRW35KNzb23kannlcS0bVQHT_70bpT2O5ey17n8BWk4eJwrvwar3cGkWni2hyxQV_pN-ovJTQfPZ172DDQR8BQOZpR7AQaa5ObXBj38q8edQt_CAKGGja0Wgh6IPmTxUKoTPS7IohHjoL2TP8TQDVUFiuB6Q75RMhJ-FvfXNspcjJj3R5MmiTxHIlroxCwJRogNn3VApfOK6D4a6uiKUkxbZ4zvAyk9hJxPQnDQgIMB8KMKuBkxvNA_bNJDFL5RZosxiRqrt_e3lkSBI4d4_der-ll0UqsSHFBT_1x2MbQqr7vdAmLyaPl3paL4UgthZhe9uYxr5T9yw5K3-hiQljED7WpiDogw9ckgDpPW7QSS9hhQRUaljwWqSAdOa0pyoiXGDlWNu_HRjoPoC82NPXK8YDy8HwrFeqlmsKdXjQ-fKNJlcdIWqu9Z1k-bmZ43Q0DpMP96h59ezVPE119GJywilOBFZGAK0dTtNk7KluIR9ob95Rvjfwblb1l3ROUohzfD9_pmyouZKYhauvL6AizZBydOw90yWnWqxAwfnjz639ea9BkMfNsvZrEXMJvWdYgni"
                     }
                   },
                   "BetterChoice": {}
                 },
                 "IdentitySection": {
                   "OnlineOrOfflineIdCheck": {
-                    "OnlineIDCheck": null
+                    "OnlineIDCheck": "online"
+                  },
+                  "IdentiyCheckPrivacyDeclaration": {
+                    "AcceptIdentityCheckPrivacyDeclaration": true
+                  },
+                  "IdCheck": {
+                    "green-id-identity-check": {
+                      "verificationId": null,
+                      "verificationStatus": null
+                    }
                   }
                 },
                 "FinalQuestionsSection": {
                   "TaxFileNumber": {
-                    "HasTaxFileNumber": null
+                    "HasTaxFileNumber": true,
+                    "TaxFileNumber": null
                   },
                   "SourceOfFunding": {
                     "PrimarySourceOfWealthDropdown": {
-                      "SelectedItem": null,
-                      "Query": null
+                      "SelectedItem": "WSA",
+                      "Query": "Sale of assets (e.g. shares, property)"
                     },
                     "SourceOfFundsForAccountDropdown": {
-                      "SelectedItem": null,
-                      "Query": null
+                      "SelectedItem": "FSA",
+                      "Query": "Sale of assets (e.g. shares, property)"
                     },
                     "ReasonForOpeningAccountDropdown": {
-                      "SelectedItem": null,
-                      "Query": null
+                      "SelectedItem": "SAV",
+                      "Query": "Savings (e.g. regular deposits with few withdrawals, earning interest to grow your balance)"
                     }
                   },
                   "Residency": {
@@ -107,14 +122,16 @@
                       "Query": "Australia"
                     },
                     "CountryOfResidencyDropdown": {
-                      "SelectedItem": "AUS",
-                      "Query": "Australia"
+                      "SelectedItem": "NZL",
+                      "Query": "New Zealand"
                     },
-                    "USTaxCitizen": null
+                    "USTaxCitizen": true,
+                    "SSN": null,
+                    "TIN": "324234234"
                   },
                   "LastStep": {
-                    "AcceptPrivacyDeclaration": null,
-                    "AcceptTandCs": null
+                    "AcceptPrivacyDeclaration": true,
+                    "AcceptTandCs": true
                   }
                 }
               },
