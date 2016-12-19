@@ -113,5 +113,23 @@
             </div>
         </amp-form-row>
     </section>
-
+    <section class="section ph pv">
+        <h2>Updating the <small>minAge</small> error </h2>
+        <br/>
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        #inputWithAgeError
+                        [id]="'dob-2'"
+                        [label]="'Date of birth'"
+                        [controlGroup]="controlGroup"
+                        [required]="true"
+                        [valDate]="true"
+                        [minAge]="18"
+                        [errors]="dynamicErrors">
+                </amp-input>
+            </div>
+        </amp-form-row>
+        <amp-button class="btn btn-ok" (click)="updateError()">Update error</amp-button>
+    </section>
 </form>

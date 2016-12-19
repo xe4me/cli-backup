@@ -1,4 +1,5 @@
 import {
+    ViewChild,
     Component,
     ChangeDetectorRef
 } from '@angular/core';
@@ -12,7 +13,12 @@ import { AmpCurrencyPipe } from '../../../app/modules/amp-pipes/pipes/currency/a
         styles : [ require( './basic_usage.scss' ).toString() ]
     } )
 export default class AmpInputBasicUsage {
+    @ViewChild('inputWithAgeError') inputWithAgeError;
     toggleFlag : boolean;
+    dynamicErrors = {
+        minAge: 'You should be older than 18.'
+    };
+
     private controlGroup : FormGroup = new FormGroup( {} );
 
     private currencySymbol = AmpCurrencyPipe.currencySymbol;
@@ -23,5 +29,10 @@ export default class AmpInputBasicUsage {
 
     get control() {
         return this.controlGroup.controls[ 'currency' ];
+    }
+
+    private updateError(){
+        this.dynamicErrors.minAge = 'You\'re still bellow 18 man :)';
+        this.inputWithAgeError.setAmpErrors();
     }
 }
