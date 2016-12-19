@@ -26,8 +26,6 @@ xdescribe('AmpGreenIdService', () => {
         title: 'Mr',
         dateOfBirth: '27/11/2013',
         email: 'sample@test.com',
-        verificationId: 'M1Crf19U',
-        verificationStatus: 'VERIFIED',
         address: {
             country: 'AU',
             state: 'NSW',

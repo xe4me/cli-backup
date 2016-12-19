@@ -5,8 +5,6 @@ export interface IGreenIdFormModel {
     title : string;
     dateOfBirth : string;
     email : string;
-    verificationId : string;
-    verificationStatus : string;
     address : {
         country : string;
         state : string;
