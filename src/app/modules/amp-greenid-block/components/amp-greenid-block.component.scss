@@ -1,6 +1,17 @@
 @import '../../../../styles/abstracts';
 $tooltip-background : #003C6D;
 $small-font-size : 15px;
+
+.id-check-icon {
+    background-image : url($amp-ddc-components-public-asset + 'images/greenid-complete.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+}
+
 amp-greenid-block #greenid-container {
     font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
     font-size: $small-font-size;
@@ -14,7 +25,7 @@ amp-greenid-block #greenid-container {
     }
 
     #greenid-source-content {
-        border-top : none;
+        border-top : 0;
     }
 
     #greenid-source-list-container{
@@ -23,7 +34,7 @@ amp-greenid-block #greenid-container {
 
     @include media-query('palm') {
         #greenid-source-list-container{
-            margin-left: 0px;
+            margin-left: 0;
         }
     }
 
@@ -60,8 +71,8 @@ amp-greenid-block #greenid-container {
             background-color: $amp-colour-primary !important;
             color: $amp-colour-white;
         }
-        border-radius : 0px;
-        border: none;
+        border-radius : 0;
+        border: 0;
         color: $amp-colour-white;
         &.btn-primary {
             min-height : 58px;
@@ -101,7 +112,6 @@ amp-greenid-block #greenid-container {
             min-height : 58px;
             font-size: 18px;
         }
-
     }
 
     .greenid-alert {
@@ -134,7 +144,7 @@ amp-greenid-block #greenid-container {
 }
 
 .medicaredvsrefnumvalidation {
-    margin-top: -41px !important ;
+    margin-top: -41px !important;
 }
 
 .greenid-tooltip {
@@ -152,7 +162,7 @@ amp-greenid-block #greenid-container {
         background-color : #003C6D !important;
     }
 
-    .tooltip-arrow{
+    .tooltip-arrow {
         display : none;
     }
 }

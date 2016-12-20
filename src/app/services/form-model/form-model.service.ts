@@ -333,7 +333,9 @@ export class FormModelService {
         let params : string = `id=${referenceId}`;
         const queryUrl : string = encodeURI( `${sendUrl}?${params}` );
 
-        return this.http.post( queryUrl, JSON.stringify( {} ), this._httpOptions );
+        return this.http.post(queryUrl, JSON.stringify({}), this._httpOptions)
+                        .map((res) => res.json())
+                        .catch((error) => Observable.throw(error) );
     }
 
     public saveAndSubmitApplication( model, submitUrl, referenceId ) : Observable<any> {
@@ -344,18 +346,19 @@ export class FormModelService {
             if ( saveResult.json().statusCode === 200 ) {
                 // Save ok
                 this.submitApplication( submitUrl, referenceId )
-                    .subscribe( ( submitResult ) => {
-                        if ( submitResult.json().statusCode === 200 ) {
+                    .subscribe((submitResult : any) => {
+                        if (submitResult.statusCode === 200) {
 
                             // Submit ok
-                            resultSubject.next( submitResult.json() );
+                            resultSubject.next(submitResult);
                         } else {
                             // Submit status is not 200
                             resultSubject.error( 'Submit application failed' );
                         }
                     }, ( error ) => {
                         // Submit failed
-                        resultSubject.error( error.json() );
+                        const errorResult = error && error.json ? error.json() : error;
+                        resultSubject.error(errorResult);
                     } );
             } else {
                 // Save status is not 200
@@ -363,7 +366,8 @@ export class FormModelService {
             }
         }, ( error ) => {
             // Save failed
-            resultSubject.error( error.json() );
+            const errorResult = error && error.json ? error.json() : error;
+            resultSubject.error(errorResult);
         } );
 
         return resultSubject.asObservable();

@@ -1,0 +1,18 @@
+{
+    "type": "experience",
+    "port": 8080,
+    "protocol": "HTTP",
+    "nodePort": 30007,
+    "angularCliProj": false,
+    "skipNPMPublish": false,
+
+    "dockerBuildSpeedOptimisation": true,
+
+    "environment": {
+        "dev": {
+            "DDC_API_URL": "https://ddc-dev.digital-pilot.ampaws.com.au",
+            "ENV": "production",
+            "HTTP_PROXY": "http://c2proxy.ampaws.com.au:8080"
+        }
+    }
+}

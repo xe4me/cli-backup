@@ -22,6 +22,16 @@ export class BaseControl implements OnDestroy {
     public updateValidators() {
     }
 
+    public setAmpErrors () {
+        if ( !this.errors ) {
+            this.errors = {};
+        }
+        this.control[ '_ampErrors' ] = {};
+        Object.keys( this.errors ).map( ( errorName, i ) => {
+            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
+        } );
+    }
+
     set errors( errors ) {
         this._errors = errors;
     }
@@ -114,15 +124,5 @@ export class BaseControl implements OnDestroy {
         } else {
             this._randomString = generateRandomString();
         }
-    }
-
-    protected setAmpErrors() {
-        if ( !this.errors ) {
-            this.errors = {};
-        }
-        this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName, i ) => {
-            (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
-        } );
     }
 }

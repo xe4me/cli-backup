@@ -4,6 +4,9 @@ import { AmpGreenIdBlockComponent } from '../../modules/amp-greenid-block/compon
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
+import { AmpButtonModule } from '../amp-button/amp-button.module';
+import { AmpFormModule } from '../amp-form/amp-form.module';
+import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
 
 const DECLARATIONS = [
     AmpGreenIdBlockComponent
@@ -11,10 +14,10 @@ const DECLARATIONS = [
 @NgModule( {
     declarations : DECLARATIONS,
     imports : [
-        AmpSharedRootModule, // @TODO : Why are we importing bellow modules if we're not using them?
-        // AmpButtonModule ,
-        // AmpCheckboxModule ,
-        // AmpErrorModule ,
+        AmpSharedRootModule,
+        AmpButtonModule,
+        AmpCheckboxModule,
+        AmpFormModule,
         FormsModule
     ],
     providers : [ AmpGreenIdServices, Http ],

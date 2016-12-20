@@ -1,4 +1,6 @@
 $namespace : '';
+$amp-ddc-blocks-public-asset: '../../../assets/';
+$amp-ddc-components-public-asset: '../../../../assets/';
 $summary-state-color : $amp-colour-sky-blue;
 $summary-state-font-family : $amp-font-open-sans-regular;
 $summary-state-font-weight : 300;
@@ -24,6 +26,9 @@ $bolr-left-margin : 20%;
 $ddc-log-height : 60px;
 $amp-logo-height : 60px;
 $ddc-buttons-and-icons-transition-time : 300ms;
+
+//Colours
+$amp-colour-gray-neutral: #CCCCCC;
 
 // Content
 $content-left-width : 155px;

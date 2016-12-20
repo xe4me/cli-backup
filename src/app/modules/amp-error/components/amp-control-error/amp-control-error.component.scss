@@ -1,0 +1,19 @@
+@import '../../../../../styles/abstracts';
+@import './themes/theme-form';
+@import './themes/theme-tools';
+
+:host {
+    display: block;
+    position: relative;
+}
+
+.error-item {
+    &:nth-of-type(n+2) {
+        margin-top: 15px;
+    }
+}
+.icon--close {
+    &::before {
+        margin-left: -2px;
+    }
+}

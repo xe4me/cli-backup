@@ -1,4 +1,44 @@
-<div class="grid__container 1/1 palm-1/1" *ngIf="greenIdShowing">
-    <div id="greenid-div"></div>
-    <link *ngIf="safeStyleUrl" type="text/css" media="screen" rel="stylesheet" [href]="safeStyleUrl">
+<div class="grid__container 1/1 palm-1/1">
+    <div *ngIf="!hasConsentBeenPassed">
+        <amp-form-row class="mt+">
+            <amp-checkbox
+                [controlGroup]="controlGroup"
+                [id]="creditHeaderCheckboxId">
+                <span [innerHTML]="creditHeaderCheckboxLabel"></span>
+            </amp-checkbox>
+            <p class="heading-contxtual-label mt+">
+                By proceeding I consent to my personal information being used and disclosed as set out in
+                the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a> document.
+            </p>
+            <div class="mt-60">
+                <amp-button
+                    theme="tools"
+                    class="btn btn-ok mr palm-1/1 palm-mr0"
+                    (click)="onHeaderCheckOkClick()">
+                    OK
+                </amp-button>
+            </div>
+        </amp-form-row>
+    </div>
+
+    <div *ngIf="hasConsentBeenPassed">
+        <div *ngIf="!isVerificationCompleted">
+            <div id="greenid-div"></div>
+            <link *ngIf="safeStyleUrl" type="text/css" media="screen" rel="stylesheet" [href]="safeStyleUrl">
+        </div>
+
+        <div *ngIf="isVerificationCompleted">
+            <div *ngIf="verificationWasSuccessful">
+                <h2>Thanks</h2>
+                <p>Your ID has been verified. Please continue.</p>
+            </div>
+            <div *ngIf="!verificationWasSuccessful">
+                <h2>Your ID was unable to be verified</h2>
+                <p>But please still continue and you can provide your ID using the paper forms available at the end of your application.</p>
+            </div>
+            <div>
+                <span class="id-check-icon mt-60"></span>
+            </div>
+        </div>
+    </div>
 </div>

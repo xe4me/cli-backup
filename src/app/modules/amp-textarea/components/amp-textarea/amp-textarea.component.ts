@@ -9,7 +9,11 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { RequiredValidator, MinLengthValidator, MaxLengthValidator } from '../../../../modules/amp-utils';
+import {
+    RequiredValidator,
+    MinLengthValidator,
+    MaxLengthValidator
+} from '../../../../modules/amp-utils';
 import { BaseControl } from '../../../../base-control';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Component(
@@ -22,6 +26,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
             'id',
             'controlGroup',
             'isInSummaryState',
+            'showErrorComponent',
             'customValidator',
             'index',
             'label',
@@ -38,6 +43,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
 export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     @ViewChild( 'hiddenDiv' ) hiddenDiv;
     @ViewChild( 'textarea' ) textarea;
+    public showErrorComponent : boolean = true;
     public keepControl : boolean = false;
     private label : string;
     private placeholder : string;
@@ -53,15 +59,15 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     private domAdapter : BrowserDomAdapter;
     private hiddenDivText = 'Some dummy text';
 
-    constructor( private _cd : ChangeDetectorRef,
-                 private _renderer : Renderer,
-                 private el : ElementRef ) {
+    constructor ( private _cd : ChangeDetectorRef,
+                  private _renderer : Renderer,
+                  private el : ElementRef ) {
         super();
         this.domAdapter = new BrowserDomAdapter();
         this.onAdjustWidth = new EventEmitter();
     }
 
-    updateValidators() {
+    updateValidators () {
         if ( this.control ) {
             this.control.validator = Validators.compose( [
                 RequiredValidator.requiredValidation( this._required ),
@@ -73,7 +79,7 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
         }
     }
 
-    ngAfterViewInit() : any {
+    ngAfterViewInit () : any {
         setTimeout( () => {
             this.setHiddenDivPadding();
         } );
@@ -82,73 +88,73 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
         return undefined;
     }
 
-    public markControlAsDirty() {
+    public markControlAsDirty () {
         this.control.markAsDirty( {
             onlySelf : false
         } );
     }
 
-    public markControlAsNotDirty() {
+    public markControlAsNotDirty () {
         this.control.markAsPristine( {
             onlySelf : false
         } );
     }
 
-    public getElHeightPx( dom, _el ) {
+    public getElHeightPx ( dom, _el ) {
         return dom.getComputedStyle( _el ).height;
     }
 
-    public getElHeightDecimal( dom, _el : any ) {
+    public getElHeightDecimal ( dom, _el : any ) {
         return this.getElHeightPx( dom, _el ).replace( 'px', '' ) * 1;
     }
 
-    get hiddenDivElem() {
+    get hiddenDivElem () {
         return this.hiddenDiv.nativeElement;
     }
 
-    get textAreaElem() {
+    get textAreaElem () {
         return this.textarea.nativeElement;
     }
 
-    get minLength() {
+    get minLength () {
         return this._minLength;
     }
 
-    set minLength( value : number ) {
+    set minLength ( value : number ) {
         this._minLength = value;
         this.updateValidators();
     }
 
-    get maxLength() {
+    get maxLength () {
         return this._maxLength;
     }
 
-    set maxLength( value : number ) {
+    set maxLength ( value : number ) {
         this._maxLength = value;
         this.updateValidators();
     }
 
-    private trimValue() {
+    private trimValue () {
         return this.control.value ? this.control.setValue( this.control.value.trim() ) : '';
     }
 
-    private onBlur( $event ) {
+    private onBlur ( $event ) {
         this.trimValue();
         this.adjustHeight( $event.target );
         this.setHasFocus( false );
         this.markControlAsDirty();
     }
 
-    private onFocus( $event ) {
+    private onFocus ( $event ) {
         this.setHasFocus( true );
         this.markControlAsNotDirty();
     }
 
-    private setHasFocus( value ) {
+    private setHasFocus ( value ) {
         this.hasFocus = value;
     }
 
-    private adjustHeight( $event ) {
+    private adjustHeight ( $event ) {
         let fontFamily = this.domAdapter.getStyle( this.textAreaElem, 'font-family' );
         let fontSize = this.domAdapter.getStyle( this.textAreaElem, 'font-size' );
         let lineHeight = this.domAdapter.getStyle( this.textAreaElem, 'line-height' );
@@ -169,13 +175,13 @@ export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
         this.adjustWithHiddenDiv( this.hiddenDivText );
     }
 
-    private adjustWithHiddenDiv( _hiddenDivText ) {
+    private adjustWithHiddenDiv ( _hiddenDivText ) {
         this.hiddenDivText = _hiddenDivText.replace( /\n/g, '<br>' );
         let height = this.getElHeightPx( this.domAdapter, this.hiddenDiv.nativeElement );
         this._renderer.setElementStyle( this.textarea.nativeElement, 'height', height );
     }
 
-    private setHiddenDivPadding() {
+    private setHiddenDivPadding () {
         let textAreaHeight = this.getElHeightDecimal( this.domAdapter, this.textAreaElem );
         let hiddenDivHeight = this.getElHeightDecimal( this.domAdapter, this.hiddenDivElem );
         let diff = textAreaHeight - hiddenDivHeight;

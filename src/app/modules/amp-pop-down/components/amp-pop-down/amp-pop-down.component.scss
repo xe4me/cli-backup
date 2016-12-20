@@ -1,0 +1,90 @@
+@import '../../../../../styles/abstracts';
+
+$amp-pop-down-bg: $amp-colour-white;
+$amp-pop-down-border-color: $amp-colour-grey-lightest;
+$amp-pop-down-padding: 30px;
+$amp-pop-down-border-width: 1px;
+$amp-pop-down-arrow-height: 6px;
+$amp-pop-down-arrow-x-offset: 20px;
+$amp-pop-down-margin-x: 20px;
+$amp-pop-down-margin-y: 30px;
+
+amp-pop-down {
+    display: block;
+    position: relative;
+}
+
+.amp-pop-down {
+    background: $amp-pop-down-bg;
+    border: $amp-pop-down-border-width solid $amp-pop-down-border-color;
+    box-shadow: 0 2px 15px 0px rgba(0, 0, 0, 0.2);
+    color: $amp-colour-grey-darkest;
+    font-size: 12px;
+    margin: $amp-pop-down-margin-y 0;
+    max-width: calc(100vw - #{($amp-pop-down-margin-x * 2) + 20px});
+    text-align: center;
+    position: absolute;
+    left: 0;
+    width: 400px;
+    z-index: 200;
+
+    &::before,
+    &::after {
+        border: solid transparent;
+        border-color: transparent;
+        border-bottom-color: $amp-pop-down-bg;
+        border-width: $amp-pop-down-arrow-height;
+        content: "";
+        display: block;
+        height: 0;
+        position: absolute;
+        bottom: 100%;
+        left: $amp-pop-down-arrow-x-offset;
+        pointer-events: none;
+        width: 0;
+        z-index: 2;
+    }
+
+    &::before {
+        border-bottom-color: $amp-pop-down-border-color;
+        border-width: $amp-pop-down-arrow-height + $amp-pop-down-border-width;
+        left: $amp-pop-down-arrow-x-offset - $amp-pop-down-border-width;
+    }
+
+    &--inner-padding {
+        padding: $amp-pop-down-padding;
+    }
+
+    &--full-width {
+        width: 100vw;
+    }
+
+    &--is-mobile {
+        max-width: calc(100vw - #{$amp-pop-down-margin-x * 2});
+    }
+
+    &--align-right {
+        left: auto;
+        right: 0;
+
+        &::before,
+        &::after {
+            left: auto;
+            right: $amp-pop-down-arrow-x-offset;
+        }
+
+        &::before {
+            right: $amp-pop-down-arrow-x-offset - $amp-pop-down-border-width;
+        }
+    }
+
+    &-wrapper {
+        display: inline-block;
+    }
+
+    &__heading {
+        color: $amp-colour-primary;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+}

@@ -48,7 +48,7 @@ describe( 'amp-checkbox component', () => {
         let Component = ampCheckboxTest.componentInstance;
         let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
         let Labels = Element.querySelector( 'label' );
-        expect( Component.checkbox.required ).toBeTruthy();
+        expect( Component.checkbox.required ).toBe(true);
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
@@ -63,7 +63,7 @@ describe( 'amp-checkbox component', () => {
         let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
         let Labels = Element.querySelector( 'label' );
         fixture.detectChanges();
-        expect( Component.checkbox.required ).toBeTruthy();
+        expect( Component.checkbox.required ).toBe(true);
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
@@ -71,7 +71,7 @@ describe( 'amp-checkbox component', () => {
         let ToggleRequired = Element.querySelector( '#toggleRequired' );
         ToggleRequired.click();
         fixture.detectChanges();
-        expect( Component.control.valid ).toBeTruthy();
+        expect( Component.control.valid ).toBe(true);
         expect( Component.control.errors ).toBeNull();
     } );
     it( 'Should be checked initially if the checked attr has set to true', () => {
@@ -91,8 +91,8 @@ describe( 'amp-checkbox component', () => {
         let ToggleChecked = Element.querySelector( '#toggleChecked' );
         ToggleChecked.click();
         fixture.detectChanges();
-        expect( Component.checkbox.checked ).toBeTruthy();
-        expect( Component.control.valid ).toBeTruthy();
+        expect( Component.checkbox.checked ).toBe(true);
+        expect( Component.control.valid ).toBe(true);
         expect( Component.control.errors ).toBeNull();
     } );
     it( 'Should be in summary mode if isInSummaryState is set to true ', () => {
@@ -111,7 +111,7 @@ describe( 'amp-checkbox component', () => {
         ToggleSummary.click();
         fixture.detectChanges();
         /// Let's check again
-        expect( Component.isInSummaryState ).toBeTruthy();
+        expect( Component.isInSummaryState ).toBe(true);
     } );
     it( 'Should emit a select event to the parent component after clicking on the checkbox ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
@@ -122,10 +122,10 @@ describe( 'amp-checkbox component', () => {
         let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
         let Label = Element.querySelector( 'label' );
         let ContainerElem = Element.querySelector( '.container' );
-        expect( Component.clickedOnTheCheckbox ).toBeUndefined();
+        expect( Component.checkboxEmittedValue ).toBeUndefined();
         Label.click();
         fixture.detectChanges();
-        expect( Component.clickedOnTheCheckbox ).toBeTruthy();
+        expect( Component.checkboxEmittedValue ).toBe(true);
     } );
     it( 'Should update the control value to true after clicking on the checkbox ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
@@ -139,8 +139,8 @@ describe( 'amp-checkbox component', () => {
         expect( Component.control.value ).toBeFalsy();
         Label.click();
         fixture.detectChanges();
-        expect( Component.clickedOnTheCheckbox ).toBeTruthy();
-        expect( Component.control.value ).toBeTruthy();
+        expect( Component.checkboxEmittedValue ).toBe(true);
+        expect( Component.control.value ).toBe(true);
     } );
 } );
 @Component( {
@@ -156,7 +156,7 @@ describe( 'amp-checkbox component', () => {
                     [errors]='checkbox.errors'
                     [scrollOutOn]='checkbox.scrollOutOn'
                     [id]='checkbox.id'
-                    (select)='onAcknowledgeSelect($event)'>
+                    (change)='onAcknowledgeSelect($event)'>
                 <div class='heading heading-contxtual-label'>
                     I agree to advertising my practice's register internally, and for to seek out
                     practices that
@@ -180,7 +180,7 @@ class AmpCheckboxTest {
     }
 
     isInSummaryState = false;
-    clickedOnTheCheckbox;
+    checkboxEmittedValue;
     private checkbox = {
         id : 'anId',
         disabled : false,
@@ -194,7 +194,7 @@ class AmpCheckboxTest {
         scrollOutOn : null
     };
 
-    private onAcknowledgeSelect( value ) {
-        this.clickedOnTheCheckbox = value;
+    private onAcknowledgeSelect( $event) {
+        this.checkboxEmittedValue = $event.target.checked;
     }
 }

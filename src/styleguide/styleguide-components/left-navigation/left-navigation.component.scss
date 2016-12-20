@@ -63,6 +63,7 @@ $amp-dropdown-option-padding-left: 20px;
 
 .option {
     cursor: pointer;
+    display: block;
     line-height: $amp-dropdown-option-line-height;
     min-height: $amp-dropdown-option-min-height;
     padding: 10px;
@@ -70,13 +71,17 @@ $amp-dropdown-option-padding-left: 20px;
     @include transition(all 200ms linear);
     color: $amp-colour-primary;
     &--active,
-    &:hover {
+
+    &:hover,
+    &:focus {
         font-weight: 600;
+        outline: none;
     }
 
     &:focus {
-        outline: none;
+        color: $amp-colour-sky-blue;
     }
+
     &:last-child {
         border-bottom: $amp-dropdown-option-border-width solid #CCD2D9;
     }
@@ -84,20 +89,30 @@ $amp-dropdown-option-padding-left: 20px;
 }
 
 .option-group {
+    border: 0;
     cursor: pointer;
+    display: block;
+    font-size: 15px;
     line-height: $amp-dropdown-option-line-height;
     min-height: $amp-dropdown-option-min-height;
+    text-align: left;
     padding: 15px 10px;
-    width: auto;
+    width: 100%;
     @include transition(all 200ms linear);
+
     &--active,
-    &:hover {
+    &:hover,
+    &:focus {
         background: $amp-colour-secondary;
         color: #fff;
+        outline: none;
     }
 
-    &:focus {
-        outline: none;
+    &--active {
+        &:hover,
+        &:focus {
+            background: darken($amp-colour-secondary, 5%);
+        }
     }
 
 }

@@ -21,8 +21,8 @@ import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
                 <span class="icon icon--faqs "></span> Get started
             </div>
             <div [@openClose]='activeAccordion===INDEX_ID?"expanded":"collapsed"' class="options" *ngIf='!queryFilter.control?.value'>
-                <div class="option" *ngFor="let content of contentTable" 
-                     (click)="scrollService.scrollToComponentSelector(content.link)" 
+                <div class="option" *ngFor="let content of contentTable"
+                     (click)="scrollService.scrollToComponentSelector(content.link)"
                      [class.option--active]='activeComponentId===content.link'>
                     {{ content.title }}
                 </div>
@@ -36,20 +36,20 @@ import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
             </div>
         </div>
         <div *ngFor="let cpmGroup of doFilterGroups(componentsGrouped , queryFilter.control?.value) ; let i =index">
-            <div class="option-group" (click)="toggleAccordion(i)" [class.option-group--active]='activeAccordion===i'>
+            <button type="button" class="option-group" (click)="toggleAccordion(i)" [class.option-group--active]='activeAccordion===i'>
                 <span [ngClass]="{'icon--chevron-down':activeAccordion===i,'icon--chevron-right':activeAccordion!==i}" class="icon "></span>{{ cpmGroup.type }}
-            </div>
+            </button>
             <div [@openClose]='openCloseDropdown(i,filteredGroup.length)' class="options">
-                <div class="option" *ngFor="let cmp of doFilter(cpmGroup.components , queryFilter.control?.value); let 
-                i = 
-                index " 
-                     (click)="navigate(['component', cmp.id])" 
+                <a href="javascript:void(0);" class="option" *ngFor="let cmp of doFilter(cpmGroup.components , queryFilter.control?.value); let
+                i =
+                index "
+                     (click)="navigate(['component', cmp.id])"
                      [class.option--active]='activeComponentId===cmp.id'>
                     {{ cmp.name }}
-                </div>
+                </a>
             </div>
         </div>
-        
+
     </div>
 ` ,
     inputs     : [ 'filter' , 'components' , 'componentsGrouped' , 'contentTable' ] ,

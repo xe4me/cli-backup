@@ -18,128 +18,128 @@ $input-disabled-border: 1px dotted $input-disabled-color !default;
 $input-invalid-border: 1px solid $amp-colour-alert-danger !default;
 $placeholder-text-color: lighten($input-border-color, 20%) !default;
 :host {
-  margin-top: 20px;
-  display: block;
-  position: relative;
+    margin-top: 20px;
+    display: block;
+    position: relative;
 }
 
 .invisible {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .hidden-div {
-  font-size: $input-font-size;
-  position: absolute;
-  top: -10000px;
-  left: -10000px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+    font-size: $input-font-size;
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .float-label {
-  top: 7px;
-  transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  font-size: $input-placeholder-font-size;
-  font-weight: 700;
-  pointer-events: none;
-  color: $input-placeholder-color;
+    top: 7px;
+    transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: $input-placeholder-font-size;
+    font-weight: 700;
+    pointer-events: none;
+    color: $input-placeholder-color;
 }
 
 label {
-  position: absolute;
-  color: $amp-colour-sky-blue;
-  font-size: 14px;
-  font-weight: 300;
-  @include transition(300ms ease all);
+    position: absolute;
+    color: $amp-colour-sky-blue;
+    font-size: 14px;
+    font-weight: 300;
+    @include transition(300ms ease all);
 }
 
 .summary-texts {
-  @include amp-family($amp-font-open-sans-regular);
-  font-weight: 400;
-  color: $amp-colour-sky-blue;
-  font-size: 24px;
-  width: 100%;
+    @include amp-family($amp-font-open-sans-regular);
+    font-weight: 400;
+    color: $amp-colour-sky-blue;
+    font-size: 24px;
+    width: 100%;
 }
 
 textarea {
-  resize: none;
-  ::-webkit-input-placeholder {
-    color: $amp-colour-sky-blue;
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    color: $amp-colour-sky-blue;
-  }
+    resize: none;
+    ::-webkit-input-placeholder {
+        color: $amp-colour-sky-blue;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+        color: $amp-colour-sky-blue;
+    }
 
-  ::-moz-placeholder { /* Firefox 19+ */
-    color: $amp-colour-sky-blue;
-  }
+    ::-moz-placeholder { /* Firefox 19+ */
+        color: $amp-colour-sky-blue;
+    }
 
-  :-ms-input-placeholder {
-    color: $amp-colour-sky-blue;
-  }
-  background-color: transparent;
-  border: none;
-  border-bottom: $input-border 1px solid;
-  border-radius: 0;
-  outline: none;
-  height: $input-height;
-  width: 100%;
-  font-size: $input-font-size;
-  @include amp-family($amp-font-open-sans-regular);
-  font-weight: 300;
-  margin: $input-margin;
-  padding: $input-padding;
-  box-shadow: none;
-  box-sizing: content-box;
-  &.has-value ~ .float-label,
-  &.has-focus ~ .float-label {
-    top: -18px;
-  }
-  // Disabled input style
-  &:disabled,
-  &[readonly="readonly"] {
-    //color: $input-disabled-color;
-    //border-bottom: $input-disabled-border;
-  }
-
-  // Disabled label style
-  &:disabled + label,
-  &[readonly="readonly"] + label {
-    //color: $input-disabled-color;
-  }
-
-  // Focused input style
-  &.has-focus:not([readonly]) {
-    border-bottom: 1px solid $input-focus-color;
-    box-shadow: 0 1px 0 0 $input-focus-color;
-  }
-
-
-
-  // Invalid Input Style
-  &.ng-invalid.ng-dirty{
-    border-bottom: $input-invalid-border;
-    box-shadow: 0 1px 0 0 $input-error-color;
-  }
-
-  // Form Message Shared Styles
-  & + label:after {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 60px;
-    opacity: 0;
-    transition: .2s opacity ease-out, .2s color ease-out;
-  }
-  &.summary-view {
+    :-ms-input-placeholder {
+        color: $amp-colour-sky-blue;
+    }
+    background-color: transparent;
     border: none;
-  }
+    border-bottom: $input-border 1px solid;
+    border-radius: 0;
+    outline: none;
+    height: $input-height;
+    width: 100%;
+
+    font-size: $input-font-size;
+    @include amp-family($amp-font-open-sans-regular);
+    font-weight: 300;
+    margin: $input-margin;
+    padding: $input-padding;
+    box-shadow: none;
+    box-sizing: content-box;
+    &.has-value ~ .float-label,
+    &.has-focus ~ .float-label {
+        top: -18px;
+    }
+
+    // Disabled input style
+    &:disabled,
+    &[readonly="readonly"] {
+        //color: $input-disabled-color;
+        //border-bottom: $input-disabled-border;
+    }
+
+    // Disabled label style
+    &:disabled + label,
+    &[readonly="readonly"] + label {
+        //color: $input-disabled-color;
+    }
+
+    // Focused input style
+    &.has-focus:not([readonly]) {
+        border-bottom: 1px solid $input-focus-color;
+        box-shadow: 0 1px 0 0 $input-focus-color;
+    }
+
+    // Invalid Input Style
+    &.ng-invalid.ng-dirty {
+        border-bottom: $input-invalid-border;
+        box-shadow: 0 1px 0 0 $input-error-color;
+    }
+
+    // Form Message Shared Styles
+    & + label:after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 60px;
+        opacity: 0;
+        transition: .2s opacity ease-out, .2s color ease-out;
+    }
+    &.summary-view {
+        border: none;
+    }
 }
 
 .char-left {
-  float: right;
-  font-size: 14px;
-  font-weight: 600;
-  color: $amp-colour-sky-blue
+    float: right;
+    font-size: 14px;
+    font-weight: 600;
+    color: $amp-colour-sky-blue
 }

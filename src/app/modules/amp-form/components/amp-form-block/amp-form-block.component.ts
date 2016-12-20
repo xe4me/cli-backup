@@ -10,9 +10,6 @@ import { Component , Input , OnInit } from '@angular/core';
             <amp-overlay [active]='!context?.isActive' *ngIf="withOverlay"></amp-overlay>
             <h2 class="heading heading-intro {{ headingClass }}" [innerHtml]="context?.__custom.blockTitle"></h2>
             <ng-content></ng-content>
-             <div *ngIf="!noError">
-                <amp-error [controlGroup]="context?.__controlGroup"></amp-error>
-             </div>
              <div class="block-buttons mt-60 " *ngIf="withOkButton">
                  <amp-button
                     [context]="context"
@@ -38,7 +35,6 @@ import { Component , Input , OnInit } from '@angular/core';
 } )
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;
-    @Input( 'noError' ) noError;
     @Input( 'withOkButton' ) withOkButton          = true;
     @Input( 'withOverlay' ) withOverlay            = true;
     @Input( 'theme' ) theme;

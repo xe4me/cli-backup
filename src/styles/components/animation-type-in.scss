@@ -11,7 +11,7 @@
 
 @-webkit-keyframes typing {
     from {
-        width: 0
+        width: 0;
     }
     to {
         width: initial;
@@ -20,27 +20,27 @@
 
 @-moz-keyframes typing {
     from {
-        width: 0
+        width: 0;
     }
     to {
-        width: 16.3em
+        width: 16.3em;
     }
 }
 
 @-webkit-keyframes blink-caret {
     from, to {
-        border-color: transparent
+        border-color: transparent;
     }
     50% {
-        border-color: #fff
+        border-color: #fff;
     }
 }
 
 @-moz-keyframes blink-caret {
     from, to {
-        border-color: transparent
+        border-color: transparent;
     }
     50% {
-        border-color: #fff
+        border-color: #fff;
     }
 }

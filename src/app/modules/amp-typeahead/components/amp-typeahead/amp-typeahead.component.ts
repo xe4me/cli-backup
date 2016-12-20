@@ -44,6 +44,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() selectedItemIdentifier = 'id';
     @Input() selectedItemValueIdentifier = 'label';
     @Input() isInSummaryState = false;
+    @Input() apiCallDebounceTime                       = 0;
     @Input() minTriggerLength = 0;
     @Input() errors = {};
     @Input() selectLabel;
@@ -53,6 +54,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() options;
     @Input() isActive;
     @Input() index;
+    @Input() showErrorComponent = true;
     @Input() keepControl : boolean = false;
     private subscription : Subscription;
     private showNoResults : boolean = false;
@@ -71,7 +73,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() customValidator = () : Function => {
         return ( c ) => {
             if ( c.value && c.value.length >= this.minTriggerLength ) {
-                return this.selectedControl.value ? null : {
+                return (this.selectedControl.value !== null) ? null : {
                     invalidSearch : {
                         text : c._ampErrors && c._ampErrors.invalidSearch ? c._ampErrors.invalidSearch : 'please' +
                         ' select a search result'
@@ -190,6 +192,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         if ( this.isInSummaryState ) {
             return;
         }
+        this.ampInput.doOnBlurDirty = false;
         this._optionsHidden = false;
     };
 
@@ -257,6 +260,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         return this.subscription =
             this.control
                 .valueChanges
+                .debounceTime(this.apiCallDebounceTime)
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
                     if ( !queryString ) {

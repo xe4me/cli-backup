@@ -22,4 +22,5 @@
     <ng-content></ng-content>
     <div #hiddenDiv class="hidden-div" [innerHtml]='hiddenDivText'></div>
 </div>
+<amp-control-error *ngIf="showErrorComponent" [control]="control"></amp-control-error>
 

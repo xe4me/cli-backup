@@ -33,6 +33,7 @@ import { BaseControl } from '../../../../base-control';
         'index',
         'tabindex',
         'keepControl',
+        'showErrorComponent' ,
         'isInSummaryState'
     ],
     outputs : [ 'select' ],
@@ -42,15 +43,9 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
     public keepControl : boolean = false;
     private _checked : boolean = false;
     private _tabindex : number;
+    private showErrorComponent : boolean = true;
     private scrollOutUnless : any;
     private scrollOutOn : any;
-    /*
-     * @Deprecated :
-     * Select should be removed in the next version of component , it doesn't do anything
-     * Why ?
-     * Component propagates the change event anyway, so we don't need to create our own!!!
-     * */
-    private select : EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor( private _cd : ChangeDetectorRef,
                  private elem : ElementRef,
@@ -103,17 +98,12 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
         this.control.setValue( this._checked );
     }
 
-    /*
-     * @Deprecated :
-     * this.select.emit should be removed in the next version of component , it doesn't do anything
-     * */
     private onChange( $event ) {
         let change = $event.target.checked;
         if ( this.control.disabled === true || this.isInSummaryState === true ) {
             $event.stopPropagation();
             return;
         }
-        this.select.emit( change );
         this.onScroll( change );
     }
 

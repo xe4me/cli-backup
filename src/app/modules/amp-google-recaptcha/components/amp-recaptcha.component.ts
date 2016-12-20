@@ -1,6 +1,7 @@
 import {
     Component,
     OnInit,
+    OnDestroy,
     Input,
     Output,
     EventEmitter,
@@ -11,10 +12,11 @@ import {
     NgZone
 } from '@angular/core';
 import { AmpReCaptchaService } from '../services/amp-recaptcha.service';
-import { FormControl,
-         FormGroup,
-         FormBuilder,
-         Validators
+import {
+    FormControl,
+    FormGroup,
+    FormBuilder,
+    Validators
 } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
 @Component({
@@ -23,7 +25,7 @@ import { Subscription } from 'rxjs/Rx';
    template: `<div #recaptchaId></div>`
 
 })
-export class AmpReCaptchaComponent implements OnInit {
+export class AmpReCaptchaComponent implements OnInit, OnDestroy {
     // Get the site id key at https://www.google.com/recaptcha/admin
     // for ddc dev sitekey: 6LeqZgsUAAAAAD9-le6RQUkUv5MTjhsSM-SldWKq
     // for localhost sitekey: 6LcWZwsUAAAAABf92GVXFx5XqcINVs8vBfK_fx1W
@@ -55,7 +57,7 @@ export class AmpReCaptchaComponent implements OnInit {
     @ViewChild('recaptchaId') recaptchaRef : ElementRef;
     widgetId : any = null;
 
-    private recaptchControlGroup : FormGroup;
+    private recaptchaControlGroup : FormGroup;
     private myScriptLoaded : Subscription;
 
     constructor(
@@ -96,20 +98,40 @@ export class AmpReCaptchaComponent implements OnInit {
         }
     }
 
+    public getVerificationStatusControl() : FormControl {
+        return <FormControl> this.recaptchaControlGroup.controls['verificationStatus'];
+    }
+
+    public getVerificationTokenControl() : FormControl {
+        return <FormControl> this.recaptchaControlGroup.controls['verificationToken'];
+    }
+
+    private revalidateControlGroup( controlGroup : FormGroup ) {
+        Object.keys(controlGroup.controls).map( (key) => {
+            let control = controlGroup.controls[key];
+            control.setValidators(Validators.required);
+            control.updateValueAndValidity({onlySelf: false});
+        });
+    }
+
     private createRecaptchaControlGroup() {
-        return new FormGroup({ verificationStatus: new FormControl(null, Validators.required) });
+        return new FormGroup({
+            verificationStatus: new FormControl(null, Validators.required),
+            verificationToken: new FormControl(null, Validators.required)
+        });
     }
 
     private createControls() {
         if (this.controlGroup) {
             if (this.controlGroup.contains(this.id)) {
-                this.recaptchControlGroup = <FormGroup> this.controlGroup.get(this.id);
+                this.recaptchaControlGroup = <FormGroup> this.controlGroup.get(this.id);
+                this.revalidateControlGroup(this.recaptchaControlGroup);
             } else {
-                this.recaptchControlGroup = this.createRecaptchaControlGroup();
-                this.controlGroup.addControl(this.id, this.recaptchControlGroup);
+                this.recaptchaControlGroup = this.createRecaptchaControlGroup();
+                this.controlGroup.addControl(this.id, this.recaptchaControlGroup);
             }
         } else {
-            this.recaptchControlGroup = this.createRecaptchaControlGroup();
+            this.recaptchaControlGroup = this.createRecaptchaControlGroup();
         }
     }
 
@@ -129,7 +151,8 @@ export class AmpReCaptchaComponent implements OnInit {
 
     private recaptchaCallback(response : string) {
         let success = response != null && response.length ? true : false;
-        this.recaptchControlGroup.controls['verificationStatus'].setValue(success ? 'verified' : '');
+        this.recaptchaControlGroup.controls['verificationStatus'].setValue(success ? 'verified' : '');
+        this.recaptchaControlGroup.controls['verificationToken'].setValue(response);
         this.captchaResponse.emit({
             success : success,
             token : response,
@@ -137,12 +160,19 @@ export class AmpReCaptchaComponent implements OnInit {
         });
         // Mark control group as touched only when user has completed the captcha challenge.
         // Pagesection container will have class 'visited' when a control group in it is marked as touched. Standalone navigation menu will become highlighted. 
-        this.recaptchControlGroup.markAsTouched();
+        this.recaptchaControlGroup.markAsTouched();
         this._cd.markForCheck();
     }
 
     private recaptchaExpiredCallback() {
-        this.recaptchControlGroup.controls['verificationStatus'].setValue(null);
+        if (this.controlGroup && this.id) {
+            if (!this.keepControl || this.recaptchaControlGroup.controls['verificationStatus'].value !== 'verified') {
+                this.recaptchaControlGroup.controls['verificationStatus'].setValue(null);
+            }
+        }
+        else {
+            this.recaptchaControlGroup.controls['verificationStatus'].setValue(null);
+        }
         this.captchaExpired.emit();
     }
 }

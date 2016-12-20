@@ -1,7 +1,8 @@
-<form [formGroup]="form" class='nl-form'>
+<form [formGroup]="form" class='nl-form p'>
     <div class="p">
-        <h4 class='heading heading-checkbox'>Locally only search for "pym"</h4>
+        <h2>Search</h2>
         <amp-qas-address
+                #qas
                 class="1/3"
                 [controlGroup]="__controlGroup"
                 [id]="__custom.controls[0].id"
@@ -11,7 +12,18 @@
                 [label]="__custom.controls[0].label">
         </amp-qas-address>
     </div>
-    <amp-button class='btn btn-ok' (clicl)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
-    <amp-button class='btn btn-ok' [disabled]='!__controlGroup.valid'>Go Next</amp-button>
-    <amp-button class='btn btn-ok' (click)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
+    <div class="p" *ngIf="summaryAddress">
+        <h2>This is how the Review would look like</h2>
+        <amp-form-row>
+            <div class='grid__item_floated 1/1 summary-state'>
+                {{ summaryAddress }}
+            </div>
+        </amp-form-row>
+    </div>
+
+    <amp-form-row>
+        <amp-button class='btn btn-ok' (clicl)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
+        <amp-button class='btn btn-ok' [disabled]='!__controlGroup.valid'>Go Next</amp-button>
+        <amp-button class='btn btn-ok' (click)='isInSummaryState=!isInSummaryState'>Summary</amp-button>
+    </amp-form-row>
 </form>

@@ -67,7 +67,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     ngOnInit () : any {
         this.sectionObservable.subscribe( ( blockchanges ) => {
-            let sectionName = blockchanges ? blockchanges.section : null;
+            let sectionName = blockchanges ? blockchanges.componentSelector : null;
             setTimeout( () => {
                 this.updateSections( sectionName );
             }, 0 );
@@ -109,7 +109,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
             let classes       = section.className;
             let label         = section.getAttribute( 'label' );
             let hidden = this.sectionsToHide.indexOf(pageSectionId) !== -1;
-            if ( ! hasActiveClass && currentSectionName && pageSectionId.indexOf( currentSectionName ) > - 1 ) {
+            if ( ! hasActiveClass && currentSectionName && currentSectionName.indexOf( pageSectionId ) > - 1 ) {
                 classes               = classes ? classes + ' active' : 'active';
                 this.currentSectionId = pageSectionId;
                 hasActiveClass        = true;

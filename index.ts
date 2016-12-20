@@ -16,6 +16,7 @@ export * from './src/app/modules/amp-inputs';
 export * from './src/app/modules/amp-error';
 export * from './src/app/modules/amp-logo';
 export * from './src/app/modules/amp-cards';
+export * from './src/app/modules/amp-pop-down';
 export * from './src/app/modules/amp-directives';
 export * from './src/app/modules/amp-checkbox';
 export * from './src/app/modules/amp-dropdown';
@@ -30,9 +31,11 @@ export * from './src/app/modules/amp-tooltip';
 export * from './src/app/modules/amp-greenid-block';
 export * from './src/app/modules/amp-submit-receipt';
 export * from './src/app/modules/amp-google-recaptcha';
+
 export * from './src/app/modules/amp-progress-bars';
 export * from './src/app/modules/amp-overlay';
-export { AmpOverlayComponent } from './src/app/modules/amp-overlay/components/amp-overlay/amp-overlay.component';
+export * from './src/app/modules/amp-header';
+
 // Constants
 export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';
 export { LicenseesAbstract } from './src/app/abstracts/licensee/licensee.abstract';
@@ -51,6 +54,7 @@ export { AmpConfirmationDialogService } from './src/app/services/amp-confirmatio
 export { FormSectionService } from './src/app/services/form-section/form-section.service';
 export { ContextService } from './src/app/services/context/context.service';
 export { ProfileService } from './src/app/services/adviser-profile/profile.service';
+export { CustomerDetailsService } from './src/app/services/customer-details/customer-details.service';
 export { Environments } from './src/app/abstracts/environments/environments.abstract'
 // Pages
 export { ErrorPageComponent } from './src/app/pages/error/error-page.component';

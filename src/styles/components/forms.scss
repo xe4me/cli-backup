@@ -70,4 +70,7 @@ amp-form-row > .form__row > .grid__container > .grid__item_floated {
 
 .heading-intro + amp-form-row {
     margin-top : -1 * $default-margin;
+    @include media-query(palm) {
+        margin-top : -30px;
+    }
 }

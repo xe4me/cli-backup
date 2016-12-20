@@ -2,7 +2,7 @@
 
 .amp-card {
     background: #fff;
-    box-shadow: 1px 1px 6px  rgba(0,0,0,0.25);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, .25);
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
@@ -12,7 +12,7 @@
     position: relative;
     width: 253px;
 
-    &:after {
+    &::after {
         background: $amp-colour-secondary;
         content: "";
         display: block;
@@ -29,7 +29,7 @@
     &:focus {
         color: $amp-colour-secondary;
 
-        &:after {
+        &::after {
             opacity: 1;
         }
     }

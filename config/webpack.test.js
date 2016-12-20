@@ -27,6 +27,11 @@ module.exports = function (options) {
     return {
 
         /**
+   * Ensure webpack will fail when an error is encountered
+   */
+  bail: true,
+
+  /**
          * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
          *
          * Do not change, leave as is or it wont work.
@@ -149,7 +154,10 @@ module.exports = function (options) {
                     loader: 'raw-loader',
                     exclude: [helpers.root('src/index.html')]
                 },
-
+                {
+                    test: /\.(jpg|png|gif)$/,
+                    use: 'file-loader'
+                },
                 /**
                  * Instruments JS files with Istanbul for subsequent code coverage reporting.
                  * Instrument only testing sources.

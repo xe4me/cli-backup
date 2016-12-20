@@ -31,8 +31,6 @@
     "pree2e": "npm run webdriver:update -- --standalone",
     "preversion": "npm test",
     "protractor": "protractor",
-
-
     "rimraf": "rimraf",
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
     "server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch --content-base src/",
@@ -42,11 +40,14 @@
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "start": "npm run server:con",
+    "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
+    "sasslint": "sass-lint --verbose --no-exit",
+
     "pretest": "npm run lint",
     "test": "karma start",
     "test:ui": "runGalen",
     "test:ui-unix": "galen test ./src/styleguide/ --htmlreport report --recursive",
-    "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
+
     "typedoc": "typedoc",
     "version": "npm run build",
     "watch:dev:hmr": "npm run watch:dev -- --hot",
@@ -58,7 +59,10 @@
     "webdriver:start": "npm run webdriver-manager start",
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "prepush": "npm run lint",
+    "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
+    "jenkins-jscpd": "jscpd -p . -f '**/*.ts' -e 'node_modules/**' -o reports/jscpd-report.xml"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
@@ -103,7 +107,6 @@
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.26.0",
     "eslint": "^3.8.1",
-    "eslint-cli": "^1.1.0",
     "exports-loader": "^0.6.3",
     "expose-loader": "^0.7.1",
     "express": "^4.14.0",
@@ -111,6 +114,8 @@
     "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.21.0",
     "http-proxy-middleware": "^0.17.2",
+    "husky": "^0.11.9",
+    "ignore-loader": "^0.1.1",
     "imports-loader": "^0.6.5",
     "istanbul-instrumenter-loader": "0.2.0",
     "json-loader": "^0.5.4",
@@ -131,6 +136,8 @@
     "protractor": "^4.0.10",
     "raw-loader": "0.5.1",
     "rimraf": "~2.5.4",
+    "remap-istanbul": "^0.6.3",
+    "sass-lint": "^1.9.1",
     "sass-loader": "^3.2.0",
     "script-ext-html-webpack-plugin": "^1.3.2",
     "source-map-loader": "^0.1.5",

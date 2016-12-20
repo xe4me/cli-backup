@@ -28,6 +28,7 @@ export class AmpQasAddressMultiComponent implements OnInit {
     };
     private arePostalAndResidentialTheSame = true;
     private qasMultiCG;
+    private isChecked : boolean             = true;
 
     constructor ( private _cd : ChangeDetectorRef ) {
     }
@@ -36,6 +37,11 @@ export class AmpQasAddressMultiComponent implements OnInit {
         if ( this.controlGroup ) {
             if ( this.controlGroup.contains( this.id ) ) {
                 this.qasMultiCG = this.controlGroup.get( this.id );
+                let checkBoxControl = this.qasMultiCG.get(this.postalAndResidentialAreSame.id);
+                if ( checkBoxControl && checkBoxControl.value !== null ){
+                    this.isChecked = checkBoxControl.value;
+                    this.arePostalAndResidentialTheSame = this.isChecked;
+                }
             } else {
                 this.qasMultiCG = new FormGroup( {} );
                 this.controlGroup.addControl( this.id , this.qasMultiCG );

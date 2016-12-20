@@ -500,6 +500,26 @@
         "readme": "<p>Custom Block for AmpGroupButtonComponent.</p>\n"
     },
     {
+        "name": "Amp Header",
+        "sources": [
+            "src/app/modules/amp-header/components"
+        ],
+        "id": "AmpHeader",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-header/basic_usage.html",
+                "styles": "src/styleguide/components/amp-header/basic_usage.scss",
+                "source": "src/styleguide/components/amp-header/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-header/amp-header.test.spec",
+                "jasmine": "src/styleguide/components/amp-header/amp-header.spec.ts",
+                "component": "amp-header-basic-usage",
+                "component_src_location": "components/amp-header/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP standard header for experience projects"
+    },
+    {
         "name": "Amp Home Number",
         "sources": [
             "src/app/components/amp-inputs/components"
@@ -700,6 +720,26 @@
         "readme": "<p>AMP natural language phone number"
     },
     {
+        "name": "Amp Pop Down",
+        "sources": [
+            "src/app/components/amp-pop-down/amp-pop-down.component.ts"
+        ],
+        "id": "AmpPopDownComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-pop-down/basic_usage.html",
+                "styles": "src/styleguide/components/amp-pop-down/basic_usage.scss",
+                "source": "src/styleguide/components/amp-pop-down/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-pop-down/amp-pop-down.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-pop-down/amp-pop-down.component.spec.ts",
+                "component": "amp-pop-down-block-basic-usage",
+                "component_src_location": "components/amp-pop-down/basic_usage",
+                "name": "Amp Pop Down Basic Usage"
+            }
+        ],
+        "readme": "<p>Amp Pop Down component.</p>\n"
+    },
+    {
         "name": "Amp Qas Address",
         "sources": [
             "src/app/components/amp-qas-address/amp-qas-address.component.ts"
@@ -778,6 +818,26 @@
             }
         ],
         "readme": "<p>Stand alone menu component</p>\n"
+    },
+    {
+        "name": "Amp Tax File Number",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpTaxFileNumber",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-tax-file-number/basic_usage.html",
+                "styles": "src/styleguide/components/amp-tax-file-number/basic_usage.scss",
+                "source": "src/styleguide/components/amp-tax-file-number/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-tax-file-number/amp-tax-file-number.test.spec",
+                "jasmine": "src/styleguide/components/amp-tax-file-number/amp-tax-file-number.spec.ts",
+                "component": "amp-tax-file-number-basic-usage",
+                "component_src_location": "components/amp-tax-file-number/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP tax file number input with check digit validation.</p>\n"
     },
     {
         "name": "Amp Textarea",

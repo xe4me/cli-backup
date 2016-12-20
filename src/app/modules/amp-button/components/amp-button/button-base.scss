@@ -12,6 +12,7 @@ $buttons-default-width : 128px;
 $buttons-default-height : 58px;
 $buttons-default-line-height : 22px;
 $buttons-default-margin-top : 4px;
+$buttons-small-height : 33px;
 $disabled-text-color : #9f9f9f;
 $disabled-background-color : #cbd2dc;
 $btn-margin-top : 60px;
@@ -84,12 +85,7 @@ Button base class used by all
     min-height  : $buttons-default-height;
     min-width   : $buttons-default-width;
     padding: 0 30px;
-    @include media-query(tablet-and-up) {
-        margin-top : $btn-margin-top;
-    }
-    @include media-query(palm) {
-        margin-top : 0 !important;
-    }
+
     @extend %#{$namespace}font-size-small;
     @include transition(color, background-color, $buttons-transition-time ease-in-out);
 
@@ -117,5 +113,32 @@ Button base class used by all
     > .icon {
         font-size     : 18px;
         padding-right : 4px;
+    }
+}
+
+:host {
+    .btn-icon {
+        border-radius: $buttons-default-height;
+        text-align: center;
+        line-height: $buttons-default-height;
+        min-width: 0;
+        padding: 0;
+        width: $buttons-default-height;
+
+        > .icon {
+            font-size: round($buttons-default-height * 0.5);
+            line-height: 1;
+            margin: 0;
+        }
+
+        &--small {
+            line-height: $buttons-small-height;
+            min-height: $buttons-small-height;
+            width: $buttons-small-height;
+
+            > .icon {
+                font-size: round($buttons-small-height * 0.5);
+            }
+        }
     }
 }

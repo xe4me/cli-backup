@@ -14,7 +14,8 @@ export class AmpGreenIdServices {
     // public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
     public static BASE_URL          = `${Environments.property.ApiCallsBaseUrl}/green-id`;
     public static DEFAULT_ERROR_TEXT = 'Server error';
-    public static VERIFICATION_ENDPOINT = '/registerVerification';
+    public static REGISTER_ENDPOINT = '/register';
+    public static TOKEN_ENDPOINT = '/token';
 
     private headers = new Headers( {
         'Content-Type' : 'application/json'
@@ -24,24 +25,38 @@ export class AmpGreenIdServices {
 
     }
 
-    public getTheToken  = ( modelValue : IGreenIdFormModel ) : Observable<any> => {
-        let headers : Headers = this.headers;
-        let options           = new RequestOptions( { headers : headers } );
-        let url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.VERIFICATION_ENDPOINT;
-        let body              = JSON.stringify( modelValue );
+    public registerUser  = ( modelValue : IGreenIdFormModel ) : Observable<any> => {
+        const headers : Headers = this.headers;
+        const options           = new RequestOptions( { headers : headers } );
+        const url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.REGISTER_ENDPOINT;
+        const body              = JSON.stringify( modelValue );
 
         return this
             .http
             .post( url, body, options )
             .map( ( res ) => {
-                let re = res.json();
-                return re;
+                return res.json();
+            })
+            .catch( this.handleError );
+    };
+
+    public getToken  = ( verificationId : string ) : Observable<any> => {
+        const headers : Headers = this.headers;
+        const options           = new RequestOptions( { headers, body : '' } ) ;
+        const url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.TOKEN_ENDPOINT;
+        const urlParams         = `verificationId=${verificationId}`;
+
+        return this
+            .http
+            .get( `${url}?${urlParams}`, options )
+            .map( ( res ) => {
+                return res.json();
             })
             .catch( this.handleError );
     };
 
     private handleError ( error : any ) {
-        let errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
+        const errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;
         return Observable.throw( errMsg );
     }
 

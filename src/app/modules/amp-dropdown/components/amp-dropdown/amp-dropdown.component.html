@@ -5,7 +5,7 @@
             [attr.id]='"select_" + randomizedId'
             [attr.name]='"select_" + randomizedId'>
         <option value=''>{{ label }}</option>
-        <option (click)='selectOption(option,$event , DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
+        <option (click)='selectOption(option,$event , { doMarkAsTouched : true , doMarkAsDirty:true})'
                 *ngFor='let option of options; let i = index'
                 value="{{ option[fieldValueKey] }}">
             {{ option[fieldValueKey] }}
@@ -14,7 +14,6 @@
     <input
         readonly="true"
         #input
-        [attr.disabled]='disabled'
         class='sr-only amp-dropdown-control'
         [attr.data-automation-id]='"dropdown_" + randomizedId'
         [attr.id]='"dropdown_" + randomizedId'
@@ -24,7 +23,7 @@
     <label class='amp-dropdown-label'
            [class.active]='!isOptionsHidden'
            [class.selected]='selectedOption[fieldItemKey] && isOptionsHidden'
-           [class.disabled]='disabled'
+           [class.disabled]='isInSummaryState || disabled'
            (click)='!disabled && !isInSummaryState && toggleOptions($event)'
            [attr.id]='"dropdown_" + randomizedId'>
         <span>{{ selectedOption[fieldValueKey] || label }}</span>&nbsp;
@@ -36,10 +35,10 @@
         [ngStyle]='{"max-height":maxHeight}'
         (focusOut)='focusInput()'
         (onTypeCharacter)='onTypeCharacter($event)'
-        class='amp-dropdown-options'>
+        class='amp-dropdown-options-container'>
         <li #optionRef
-            (keydown.enter)='selectOption(option , $event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
-            (click)='selectOption(option,$event, DO_NOT_MARK_FOR_CHECK , DO_FOCUS , DO_MARK_AS_TOUCHED )'
+            (keydown.enter)='selectOption(option,$event , { doMarkAsTouched : true , doMarkAsDirty:true })'
+            (click)='selectOption(option,$event , { doMarkAsTouched : true , doMarkAsDirty:true  })'
             *ngFor='let option of options; let i = index'
             class='amp-dropdown-option'
             [class.amp-dropdown-active]='option[fieldItemKey] === selectedOption[fieldItemKey]'
@@ -51,3 +50,4 @@
         </li>
     </ul>
 </div>
+<amp-control-error *ngIf="showErrorComponent" [control]="control"></amp-control-error>

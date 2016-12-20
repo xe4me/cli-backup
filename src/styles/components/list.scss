@@ -14,7 +14,7 @@ $list-nested-margin: 20px;
         font-weight: 300;
         margin-bottom: $list-default-item-margin;
 
-        &:before {
+        &::before {
             background: $amp-colour-sky-blue;
             border-radius: 100%;
             content: "";
@@ -37,6 +37,19 @@ $list-nested-margin: 20px;
             margin-bottom: 5px;
         }
     }
+
+    &--dense {
+        > li {
+            margin-bottom: $list-default-item-margin / 2;
+        }
+    }
+
+    &--spaced {
+        > li {
+            margin-bottom: $list-default-item-margin * 1.5;
+        }
+    }
+
 }
 
 .#{$namespace}list,
@@ -47,7 +60,7 @@ $list-nested-margin: 20px;
     li {
         padding-left: 1em;
         text-indent: -.7em;
-        &:before {
+        &::before {
             content: "• ";
             font-size: 20px;
             color: $amp-colour-secondary;

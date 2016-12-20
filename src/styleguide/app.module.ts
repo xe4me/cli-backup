@@ -1,10 +1,23 @@
-import { NgModule, ApplicationRef } from '@angular/core';
-import { MaterialModule, PortalModule } from '@angular/material';
+import {
+    NgModule,
+    ApplicationRef
+} from '@angular/core';
+import {
+    MaterialModule,
+    PortalModule
+} from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import {
+    removeNgStyles,
+    createNewHosts,
+    createInputTransfer
+} from '@angularclass/hmr';
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 import { StyleGuideApp } from './app.component';
@@ -12,15 +25,25 @@ import { LeftNavigationComponent } from './styleguide-components';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
-import { AppState, InternalStateType } from './app.service';
+import {
+    AppState,
+    InternalStateType
+} from './app.service';
 import { Highlight } from '../../../components/src/styleguide/highlight';
 import { AmpBlockLoaderDirective } from './amp-block-loader.directive';
 import { StickyProgressHeaderBlockComponent } from './blocks/amp-form-block/sticky-progress-header-block/sticky-progress-header-block.component';
 import { AmpSubmitReceiptComponent } from '../app/modules/amp-submit-receipt/components/amp-submit-receipt/amp-submit-receipt.component';
-import { ExampleComponent, ExampleDirective } from './example';
+import {
+    ExampleComponent,
+    ExampleDirective
+} from './example';
 import { DYNAMICALLY_LOADED_COMPONENTS } from './app.entry-components';
 import { AMP_MODULES } from './app.modules';
 import { PageSectionComponent } from '../app/sections/page-section.component';
+import { AmpLoadingComponent } from '../app/components/amp-loading/amp-loading.component';
+import { AmpDropdownNewModule } from './.';
+import { AmpFormRowModule } from '../app/modules/amp-form-row/amp-form-row.module';
+import { AmpHeaderModule } from '../app/modules/amp-header/amp-header.module';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -46,7 +69,9 @@ const shouldBeReplacedWithModulesComponents = [
     Highlight
 ];
 const IMPORTS = [
+
     ...AMP_MODULES,
+
     PortalModule,
     MaterialModule.forRoot(),
     BrowserModule,
@@ -54,6 +79,9 @@ const IMPORTS = [
     ReactiveFormsModule,
     HttpModule,
     // RouterModule.forRoot( ROUTES , { useHash : false , preloadingStrategy : PreloadAllModules } )
+
+    AmpHeaderModule,
+
     RouterModule.forRoot( ROUTES, { useHash : false } )
 ];
 
@@ -75,12 +103,12 @@ const IMPORTS = [
     ]
 } )
 export class StyleGuideAppModule {
-    constructor( public appRef : ApplicationRef, public appState : AppState ) {
+    constructor ( public appRef : ApplicationRef, public appState : AppState ) {
     }
 
-    hmrOnInit( store : StoreType ) {
+    hmrOnInit ( store : StoreType ) {
         if ( !store || !store.state ) {
-            return ;
+            return;
         }
         console.log( 'HMR store', JSON.stringify( store, null, 2 ) );
         // set state
@@ -95,7 +123,7 @@ export class StyleGuideAppModule {
         delete store.restoreInputValues;
     }
 
-    hmrOnDestroy( store : StoreType ) {
+    hmrOnDestroy ( store : StoreType ) {
         const cmpLocation = this.appRef.components.map( ( cmp ) => cmp.location.nativeElement );
         // save state
         const state = this.appState._state;
@@ -108,7 +136,7 @@ export class StyleGuideAppModule {
         removeNgStyles();
     }
 
-    hmrAfterDestroy( store : StoreType ) {
+    hmrAfterDestroy ( store : StoreType ) {
         // display new elements
         store.disposeOldHosts();
         delete store.disposeOldHosts;

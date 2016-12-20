@@ -37,7 +37,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         left: 0;
         width: 100%;
         height: 70px;
-        transform: translate3d(0, 0 ,0);
+        @include transform(translate3d(0, 0 , 0));
     }
 
     @include media-query(tablet-and-up) {
@@ -113,7 +113,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         }
 
         // Line between steps
-        &:before {
+        &::before {
             background: $amp-colour-grey-darker;
             content: "";
             display: block;
@@ -130,7 +130,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         }
 
         &.done {
-            &:before {
+            &::before {
                 background: $amp-ddc-menu-color-default;
             }
         }
@@ -145,8 +145,8 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             font-weight: 600;
         }
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             background: transparent;
             border-radius: $amp-ddc-menu-circle-width;
             content: "";
@@ -154,13 +154,12 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             position: absolute;
             top: floor(($amp-ddc-menu-circle-width / 2) + $amp-ddc-menu-circle-offset);
             left: floor($amp-ddc-menu-circle-width / 2);
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+            @include transform(translate(-50%, -50%));
             z-index: 2;
         }
 
         // Outer circle for step
-        &:before {
+        &::before {
             border: $amp-ddc-menu-circle-stroke solid $amp-colour-grey-darker;
             height: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
             width: $amp-ddc-menu-circle-width - $amp-ddc-menu-circle-stroke;
@@ -186,7 +185,7 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
         }
 
         // Inner circle for step
-        &:after {
+        &::after {
             @include menu-state(active) {
                 background: $amp-ddc-menu-color-default;
                 height: $amp-ddc-menu-circle-inner-width;

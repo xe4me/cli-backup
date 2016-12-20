@@ -1,23 +1,26 @@
 <form #formModel="ngForm" class="nl-form">
     <br><br>
-    <div style='text-align: left ; padding: 20px;'>
+    <div style="text-align: left ; padding: 20px;">
         <!-- Start copy from here -->
         <amp-textarea
                 [attr.theme]="themeService.theme.attr"
                 [isInSummaryState]='isInSummaryState'
                 id='textarea'
                 label='A label '
-                [required]='true'
+                [required]='isTextAreaRequired'
                 [controlGroup]='controlGroup'
                 maxLength='100'>
         </amp-textarea>
-        <amp-error [controlGroup]="controlGroup"></amp-error>
         <!-- End copy at here -->
         <br><br>
         validity : {{ control.valid }}
         <br>
-        <button (click)='isInSummaryState=!isInSummaryState'>Toggle summary mode</button>
-        <button (click)='isInSummaryState=!isInSummaryState'>Toggle Required</button>
+        <button (click)="isInSummaryState=!isInSummaryState">
+            isInSummaryState {{ isInSummaryState }}
+        </button>
+        <button (click)="isTextAreaRequired=!isTextAreaRequired">
+            Required {{ isTextAreaRequired }}
+        </button>
     </div>
 </form>
 

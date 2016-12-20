@@ -1,0 +1,11 @@
+<div
+    #popDown
+    [id]="id"
+    class="amp-pop-down amp-pop-down--align-{{ align }}"
+    [class.amp-pop-down--full-width]="isFullWidth"
+    [class.amp-pop-down--inner-padding]="hasInnerPadding"
+    [class.amp-pop-down--is-mobile]="isMobile"
+    [clicked-outside]="hide"
+    hidden>
+    <ng-content></ng-content>
+</div>

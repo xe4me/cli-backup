@@ -1,17 +1,17 @@
 @import '../../../../styles/abstracts';
 
 .overlay {
-    position: relative
+    position: relative;
 }
 
 input {
     position: absolute;
-    top: 61px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 2;
     opacity: 0;
     width: auto;
-    height: 55px;
+    height: 60px;
 }
 
 .progress {

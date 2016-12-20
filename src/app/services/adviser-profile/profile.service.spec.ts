@@ -54,7 +54,8 @@ describe( 'Fetch advisor profile from server', () => {
             providers : [ BaseRequestOptions,
                 ProfileService,
                 MockBackend,
-                AmpHttpService, mockHttpProvider ]
+                AmpHttpService,
+                mockHttpProvider ]
         } );
         TestBed.compileComponents();
     } ) );

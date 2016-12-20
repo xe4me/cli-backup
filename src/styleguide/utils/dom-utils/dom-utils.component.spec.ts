@@ -77,6 +77,50 @@ describe( 'Dom Utils functions test' , () => {
         let domUtils = new DomUtils();
         expect( domUtils.isVisible( compiledDiv.nativeElement )).toBe(false);
     } );
+
+    it( 'Dom Utils check if the div is visible (hidden attribute)' , () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv = fixture.debugElement;
+        let compiledDiv = compiledTestComponentDiv.query( By.css( 'div.test-isvisibile-4' ) );
+        let domUtils = new DomUtils();
+        expect( domUtils.isVisible( compiledDiv.nativeElement )).toBe(false);
+    } );
+
+    it( 'Dom Utils hide element' , () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv = fixture.debugElement;
+        let compiledDiv = compiledTestComponentDiv.query( By.css( 'div.thisisaclass' ) );
+        let domUtils = new DomUtils();
+        domUtils.hide( compiledDiv.nativeElement );
+        expect( domUtils.isVisible( compiledDiv.nativeElement )).toBe(false);
+    } );
+
+    it( 'Dom Utils show element' , () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv = fixture.debugElement;
+        let compiledDiv = compiledTestComponentDiv.query( By.css( 'div.test-isvisibile-4' ) );
+        let domUtils = new DomUtils();
+        domUtils.show( compiledDiv.nativeElement );
+        expect( domUtils.isVisible( compiledDiv.nativeElement )).toBe(true);
+    } );
+
+    it( 'Dom Utils toggle hiding element' , () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv = fixture.debugElement;
+        let compiledDiv = compiledTestComponentDiv.query( By.css( 'div.test-toggle-hide' ) );
+        let domUtils = new DomUtils();
+        domUtils.toggle( compiledDiv.nativeElement );
+        expect( domUtils.isVisible( compiledDiv.nativeElement )).toBe(false);
+    } );
+
+    it( 'Dom Utils toggle showing element' , () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv = fixture.debugElement;
+        let compiledDiv = compiledTestComponentDiv.query( By.css( 'div.test-toggle-show' ) );
+        let domUtils = new DomUtils();
+        domUtils.toggle( compiledDiv.nativeElement );
+        expect( domUtils.isVisible( compiledDiv.nativeElement )).toBe(true);
+    } );
 } );
 
 @Component( {
@@ -85,6 +129,9 @@ describe( 'Dom Utils functions test' , () => {
     <div class="test-isvisibile-1" style="display: none">hi, i'm a div</div>
     <div class="test-isvisibile-2" style="opacity: 0">hi, i'm a div</div>
     <div class="test-isvisibile-3" style="height: 0">hi, i'm a div</div>
+    <div class="test-isvisibile-4" hidden>hi, i'm a div</div>
+    <div class="test-toggle-hide">hi, i'm a div</div>
+    <div class="test-toggle-show" hidden>hi, i'm a div</div>
     `
 } )
 class TestComponent2 {

@@ -22,7 +22,7 @@ highlight {
     }
 }
 
-highlight:before {
+highlight::before {
     content: attr(lang);
     display: block;
     background: #1C5792;
@@ -33,7 +33,7 @@ highlight:before {
 }
 
 highlight {
-    &.no-header:before {
+    &.no-header::before {
         display: none;
     }
     pre {

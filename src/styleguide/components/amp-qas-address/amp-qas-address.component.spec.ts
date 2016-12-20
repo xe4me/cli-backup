@@ -1,13 +1,38 @@
-import { async, TestBed } from '@angular/core/testing';
-import { Component, Injector, Injectable, ViewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { AmpQasAddressModule, AmpQasAddressService } from '../../../app/modules/amp-qas-address';
+import {
+    async,
+    TestBed
+} from '@angular/core/testing';
+import {
+    Component,
+    Injector,
+    Injectable,
+    ViewChild
+} from '@angular/core';
+import {
+    FormsModule,
+    ReactiveFormsModule,
+    FormGroup,
+    FormBuilder
+} from '@angular/forms';
+import {
+    Observable,
+    BehaviorSubject
+} from 'rxjs';
+import {
+    AmpQasAddressModule,
+    AmpQasAddressService
+} from '../../../app/modules/amp-qas-address';
 import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead';
 import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { fakeAsync, tick } from '@angular/core/testing/fake_async';
+import {
+    fakeAsync,
+    tick
+} from '@angular/core/testing/fake_async';
 import { AmpCountryService } from '../../../app/modules/amp-dropdown/services/amp-country.service';
+import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
+import { HttpModule } from '@angular/http';
+
 @Injectable()
 export class MockAmpQasAddressService {
     public static sampleSearchTerm = 'Pymble';
@@ -112,12 +137,17 @@ export class MockAmpQasAddressService {
             'Score' : '20'
         }
     ];
+    public residentialOnly = 'false';
     private subject = new BehaviorSubject( this.sampleResponse );
     private nullSubject = new BehaviorSubject( null );
     public query = ( queryValue : string ) : Observable<any> => {
         return queryValue === MockAmpQasAddressService.sampleSearchTerm ? this.subject.asObservable() : this.nullSubject.asObservable();
         // .catch(this.handleError);
     };
+
+    public setUrlForResidential () {
+        this.residentialOnly = 'true';
+    }
 }
 @Injectable()
 export class MockAmpCountryService {
@@ -297,6 +327,7 @@ describe( 'amp-qas-address component', () => {
         TestBed.configureTestingModule( {
             declarations : [ AmpQasAddressComponentTest ],
             providers : [
+                AmpHttpService,
                 {
                     provide : AmpQasAddressService,
                     useClass : MockAmpQasAddressService
@@ -307,7 +338,7 @@ describe( 'amp-qas-address component', () => {
                 },
                 { provide : ComponentFixtureAutoDetect, useValue : true }
             ],
-            imports : [ FormsModule, ReactiveFormsModule, AmpQasAddressModule ]
+            imports : [ FormsModule, ReactiveFormsModule, AmpQasAddressModule, HttpModule ]
         } );
         _fixture = TestBed.createComponent( AmpQasAddressComponentTest );
         _fixture.detectChanges();
@@ -336,12 +367,11 @@ describe( 'amp-qas-address component', () => {
     } );
     it( 'should have a amp-error component that has the same controlGroup as qasAddressComponent', fakeAsync( () => {
         _fixture.detectChanges();
-        let ErrorEl = _debugElement.query( By.css( 'amp-error' ) );
+        let ErrorEl = _debugElement.query( By.css( 'amp-control-error' ) );
         expect( ErrorEl ).toBeDefined();
         tick( 2000 );
         let ErrorComponent = ErrorEl.componentInstance;
-        expect( ErrorComponent.controlGroup ).toBeDefined();
-        expect( ErrorComponent.controlGroup ).toEqual( _qasComponentControlGroup );
+        expect( ErrorComponent.control ).toBeDefined();
     } ) );
 } );
 @Component( {
@@ -373,17 +403,17 @@ class AmpQasAddressComponentTest {
     };
     private form : FormGroup;
 
-    constructor( private _builder : FormBuilder ) {
+    constructor ( private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );
     }
 
-    get controlGroup() : any {
+    get controlGroup () : any {
         if ( this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
             return this.__controlGroup.controls[ this.__custom.controls[ 0 ].id ];
         }
     }
 
-    get searchControlGroup() {
+    get searchControlGroup () {
         if ( this.controlGroup ) {
             return this.controlGroup.controls[ AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ];
         }
