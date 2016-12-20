@@ -1,13 +1,11 @@
-.id-check-icon {
-    background-image : url('assets/images/id.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100px 100px;
-    display : inline-block;
-    height : 100px;
-    width: 100px;
-}
+@import '../../../styles/abstracts';
 
-:host .heading.heading-intro {
-    margin-bottom: 30px;
+:host {
+    /deep/ .id-check-icon {
+        background-image: url($amp-ddc-components-public-asset + 'images/greenid-complete.png');
+    }
+
+    .heading.heading-intro {
+        margin-bottom: 30px;
+    }
 }

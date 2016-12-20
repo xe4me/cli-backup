@@ -31,7 +31,7 @@
     "ts-helpers": "^1.1.1",
     "zone.js": "0.6.12",
     "web-animations-js": "^2.2.2",
-    "amp-ddc-components": "^3.0.0",
+    "amp-ddc-components": "3.0.381-BET-4072",
     "amp-styleguide-core": "^1.0.0",
     "ddcjs-logger": "^1.0.0",
     "ddcjs-server": "^1.0.0"
