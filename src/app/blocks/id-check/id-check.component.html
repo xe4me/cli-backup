@@ -1,18 +1,17 @@
-<amp-form-block [context]="context()">
-    <amp-greenid-block [form]="greenIdModel"
+<amp-form-block [context]="context()"
+                [withOkButton]="false">
+    <amp-greenid-block [model]="mappedGreenIdModel"
                        [controlGroup]="__controlGroup"
-                       [checkboxLabel]="__custom.checkboxLabel"
-                       [showOnReady]="false"
-                       [keepControl]="true"
-                       *ngIf="!greenIdCompleted">
+                       (complete)="onVerificationComplete($event)">
     </amp-greenid-block>
-    <div *ngIf="greenIdCompleted && greenIdPassed">
-        <p>Your ID has been verified.  Please continue.</p>
-    </div>
-    <div *ngIf="greenIdCompleted && !greenIdPassed">
-        <p>But please still continue and you can provide your ID using the paper forms available at the end of your application.</p>
-    </div>
-    <div *ngIf="greenIdCompleted">
-        <span class="id-check-icon mt-60"></span>
+
+    <div class="mt-60">
+        <amp-button
+            theme="tools"
+            class="btn btn-ok mr palm-1/1 palm-mr0"
+            *ngIf="showOkButton"
+            (click)="onOkClick()">
+            OK
+        </amp-button>
     </div>
 </amp-form-block>
