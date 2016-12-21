@@ -5,9 +5,9 @@ import { AmpFormGroup } from '../../../../base-control';
     selector : 'amp-row-repeater',
     queries : {
         itemTemplate : new ContentChild( TemplateRef )
-    },
-    template : `
-        <div class="grid__container 1/1 mt-60" *ngFor="let controlGroup of controlArray?.controls ; let i = index;">
+    } ,
+    template        : `
+        <div class="grid__container 1/1" [class.mt-60]="hasMarginTop" *ngFor="let controlGroup of controlArray.controls ; let i = index;">
             <div class="row-repeated__col-left utils__push--left {{ colLeftClass }}">
                 <template
                     [ngTemplateOutlet]="itemTemplate"
@@ -15,9 +15,9 @@ import { AmpFormGroup } from '../../../../base-control';
                 </template>
             </div>
             <div class="row-repeated__col-right utils__push--left {{ colRightClass }}">
-                <amp-button 
-                    *ngIf="rowCount > 1" 
-                    [context]="context" 
+                <amp-button
+                    *ngIf="rowCount > 1"
+                    [context]="context"
                     (click)="remove(i)"
                     [disabled]="isInSummaryState"
                     class="btn btn-anchor row-repeated__btn-remove">
@@ -45,8 +45,9 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'addBtn' ) addBtn;
     @Input( 'maxRows' ) maxRows : number = 9999;
     @Input( 'isInSummaryState' ) isInSummaryState : boolean = false;
-    @Input( 'colLeftClass' ) colLeftClass : string = '';
-    @Input( 'colRightClass' ) colRightClass : string = '';
+    @Input( 'colLeftClass' ) colLeftClass : string          = '';
+    @Input( 'colRightClass' ) colRightClass : string        = '';
+    @Input( 'hasMarginTop' ) hasMarginTop : boolean         = true;
     private controlArray : FormArray;
 
     ngOnInit() : void {
