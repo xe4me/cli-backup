@@ -11,7 +11,6 @@ import { AmpWorkNumberComponent } from './components/amp-work-number/amp-work-nu
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpErrorModule } from '../amp-error/amp-error.module';
 import { AmpAccountNumberComponent } from './components/amp-account-number/amp-account-number.component';
-import { MdInputModule } from '@angular/material';
 import { AmpTaxFileNumberComponent } from './components/amp-tax-file-number/amp-tax-file-number.component';
 
 const DECLARATIONS = [
@@ -31,8 +30,7 @@ const DECLARATIONS = [
     declarations : DECLARATIONS,
     imports : [
         AmpSharedRootModule,
-        AmpErrorModule,
-        MdInputModule
+        AmpErrorModule
     ],
     exports : DECLARATIONS
 } )

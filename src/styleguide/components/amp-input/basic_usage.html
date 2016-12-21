@@ -7,6 +7,7 @@
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
+                        [isInSummaryState]="isInSummaryState"
                         [id]="'input'"
                         [label]="'Default input'"
                         [required]="true"
@@ -18,54 +19,63 @@
 
     <section class="section ph pv">
 
-        <h2>Currency <small>(with max length of "12" and min length of "4")</small></h2>
+        <h2>Currency
+            <small>(with max length of "12" and min length of "4")</small>
+        </h2>
         isvalid: {{ control.valid }}
-    <br/>
-    <amp-form-row>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
-        <amp-input
-                [attr.theme]="themeService.theme.attr"
-                        [id]="'currency'"
-                        [label]="'Amount'"
-                [controlGroup]="controlGroup"
-                [required]="true"
-                [pattern]="'^([0-9])*$'"
-                [maxLength]="'12'"
-                [minLength]="'4'"
-                [currency]="'$'">
-        </amp-input>
-            </div>
-    </amp-form-row>
-    </section>
-
-    <section class="section ph pv">
-
-        <h2>Number <small>(with max length of "12" and min length of "4"</small></h2>
-
+        <br/>
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
-        <amp-input
-                #inputNumeric
-                amp-number-only
-                [attr.theme]="themeService.theme.attr"
-                [id]="'number'"
-                [label]="'Number'"
-                [controlGroup]="controlGroup"
-                [required]="true"
-                [maxLength]="'12'"
-                [minLength]="'4'">
-        </amp-input>
+                <amp-input
+                        [isInSummaryState]="isInSummaryState"
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'currency'"
+                        [label]="'Amount'"
+                        [controlGroup]="controlGroup"
+                        [required]="true"
+                        [pattern]="'^([0-9])*$'"
+                        [maxLength]="'12'"
+                        [minLength]="'4'"
+                        [currency]="'$'">
+                </amp-input>
             </div>
         </amp-form-row>
     </section>
 
     <section class="section ph pv">
 
-        <h2>Date <small>(with min date of "today")</small></h2>
+        <h2>Number
+            <small>(with max length of "12" and min length of "4"</small>
+        </h2>
 
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
+                        [isInSummaryState]="isInSummaryState"
+                        #inputNumeric
+                        amp-number-only
+                        [attr.theme]="themeService.theme.attr"
+                        [id]="'number'"
+                        [label]="'Number'"
+                        [controlGroup]="controlGroup"
+                        [required]="true"
+                        [maxLength]="'12'"
+                        [minLength]="'4'">
+                </amp-input>
+            </div>
+        </amp-form-row>
+    </section>
+
+    <section class="section ph pv">
+
+        <h2>Date
+            <small>(with min date of "today")</small>
+        </h2>
+
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        [isInSummaryState]="isInSummaryState"
                         [id]="'minDate'"
                         [label]="'Date'"
                         [controlGroup]="controlGroup"
@@ -74,18 +84,21 @@
                         [minDate]="'today'">
                 </amp-input>
             </div>
-    </amp-form-row>
+        </amp-form-row>
     </section>
 
     <section class="section ph pv">
 
-        <h2>Date <small>(with max date of "today")</small></h2>
+        <h2>Date
+            <small>(with max date of "today")</small>
+        </h2>
 
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
-        <amp-input
+                <amp-input
+                        [isInSummaryState]="isInSummaryState"
                         [id]="'maxDate'"
-                [label]="'Date'"
+                        [label]="'Date'"
                         [controlGroup]="controlGroup"
                         [required]="true"
                         [valDate]="true"
@@ -97,11 +110,14 @@
 
     <section class="section ph pv">
 
-        <h2>Date of birth <small>(with min age of "18" and max age of "100" )</small></h2>
+        <h2>Date of birth
+            <small>(with min age of "18" and max age of "100" )</small>
+        </h2>
 
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
+                        [isInSummaryState]="isInSummaryState"
                         [id]="'dob'"
                         [label]="'Date of birth'"
                         [controlGroup]="controlGroup"
@@ -114,22 +130,49 @@
         </amp-form-row>
     </section>
     <section class="section ph pv">
-        <h2>Updating the <small>minAge</small> error </h2>
+
+        <h2>Search
+            <small>(with icon in right)</small>
+        </h2>
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input
+                        [isInSummaryState]="isInSummaryState"
+                        [id]="'search'"
+                        [label]="'Looking for something?'"
+                        [controlGroup]="controlGroup"
+                        [required]="true"
+                        iconRight="search"
+                        [iconRightClickHandler]="iconRightClickHandler"
+                        [valDate]="true"
+                        [minAge]="18"
+                        [maxAge]="100">
+                </amp-input>
+            </div>
+        </amp-form-row>
+    </section>
+    <section class="section ph pv">
+        <h2>Updating the
+            <small>minAge</small>
+            error
+        </h2>
         <br/>
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
+                        [isInSummaryState]="isInSummaryState"
                         #inputWithAgeError
                         [id]="'dob-2'"
                         [label]="'Date of birth'"
                         [controlGroup]="controlGroup"
-                [required]="true"
+                        [required]="true"
                         [valDate]="true"
                         [minAge]="18"
                         [errors]="dynamicErrors">
-        </amp-input>
+                </amp-input>
             </div>
-    </amp-form-row>
-        <amp-button class="btn btn-ok" (click)="updateError()">Update error</amp-button>
+        </amp-form-row>
+        <amp-button class="btn btn-ok mt" (click)="updateError()">Update error</amp-button>
+        <amp-button class="btn btn-ok mt" (click)="isInSummaryState = !isInSummaryState">isInSummaryState</amp-button>
     </section>
 </form>

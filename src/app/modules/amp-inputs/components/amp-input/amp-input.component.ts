@@ -1,8 +1,6 @@
 import {
     ElementRef,
-    OnChanges,
     Component,
-    ViewEncapsulation,
     ChangeDetectorRef,
     AfterViewInit,
     EventEmitter,
@@ -22,7 +20,6 @@ import {
     PatterValidator,
     MaxFloatValidator
 } from '../../../amp-utils';
-import { isTrue } from '../../../amp-utils/functions.utils';
 import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
 @Component(
@@ -56,8 +53,6 @@ import { BaseControl } from '../../../../base-control';
             'tabindex',
             'isActive',
             'required',
-            'hostClassesRemove',
-            'showLabel',
             'tolowerCase',
             'idleTimeOut',
             'toupperCase',
@@ -65,24 +60,17 @@ import { BaseControl } from '../../../../base-control';
             'iconRight',
             'labelHidden',
             'keepControl',
-            'autoShrink',
             'showIconRight',
             'iconRightClickHandler',
             'autoComplete',
             'showOptional'
         ],
-        encapsulation : ViewEncapsulation.None,
         outputs : [ 'onEnter', 'onBlur', 'onKeyup' ],
-        host : {
-            '[class.md-input-has-value]' : 'control.value',
-            '[class.summary]' : 'isInSummaryState'
-        },
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
-export class AmpInputComponent extends BaseControl implements AfterViewInit, OnChanges {
+export class AmpInputComponent extends BaseControl implements AfterViewInit {
     @ViewChild( 'input' ) inputCmp;
     public doOnBlurDirty = true;
-    protected inputWidth : number;
     protected type : string = 'text';
     protected _minLength : number;
     protected _maxLength : number;
@@ -95,11 +83,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected _valDate : boolean;
     protected _pattern : string;
     protected label : string = '';
-    protected showLabel : boolean = true;
     protected tolowerCase : boolean = false;
     protected toupperCase : boolean = false;
-    protected autoShrink : boolean = true;
-    protected showErrorComponent : boolean = true;
     protected iconRight : boolean = false;
     protected isActive : boolean = true;
     protected showIconRight : boolean = true;
@@ -107,9 +92,6 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected defaultValue : any = null;
     protected currency : string = null;
     protected placeholder : string;
-    protected onAdjustWidth : EventEmitter<any>;
-    protected hostClassesRemove;
-    protected tempClassNames;
     protected onEnter : EventEmitter<any>;
     protected onBlur : EventEmitter<any>;
     protected onFocus : EventEmitter<any>;
@@ -120,22 +102,19 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
     protected idleTimeoutId;
     protected autoComplete : string = 'off';
     protected iconRightClickHandler;
-    protected _inputElement;
-    protected inputFocus = false;
     protected showOptional = true;
 
-    constructor( private _cd : ChangeDetectorRef,
-                 protected el : ElementRef,
-                 protected renderer : Renderer ) {
+    constructor ( private _cd : ChangeDetectorRef,
+                  protected el : ElementRef,
+                  protected renderer : Renderer ) {
         super();
-        this.onAdjustWidth = new EventEmitter();
         this.onEnter = new EventEmitter();
         this.onBlur = new EventEmitter();
         this.onFocus = new EventEmitter();
         this.onKeyup = new EventEmitter();
     }
 
-    updateValidators() {
+    updateValidators () {
         let validators = [
             RequiredValidator.requiredValidation( this._required ),
             MinLengthValidator.minLengthValidation( this._minLength ),
@@ -153,68 +132,23 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         this.checkErrors( true );
     }
 
-    handleIconRightClick() {
+    handleIconRightClick () {
         if ( this.iconRightClickHandler ) {
+            this.doOnBlurDirty = false;
             this.iconRightClickHandler( this.inputCmp, this.control );
         }
     }
 
-    ngAfterViewInit() : any {
-        this.inputWidth = this.el.nativeElement.offsetWidth;
-        if ( this.inputWidth === 0 ) {
-            this.inputWidth = 300;
-        }
-        this.tempClassNames = this.el.nativeElement.className;
-        if ( this.autoShrink ) {
-            this.renderer.setElementAttribute( this.el.nativeElement, 'class', '' );
-            this.renderer.setElementStyle( this.el.nativeElement, 'width', this.inputWidth + 'px' );
-            this.el.nativeElement.className = this.tempClassNames;
-        }
+    ngAfterViewInit () : any {
         this.updateValidators();
         this.addDelayedValidation();
         this.setDefaultValue();
-        // Artificially inject the data-automation-id into the internals of @angular-material md-input
-        this.renderer.setElementAttribute( this.inputElement, 'data-automation-id', 'text_' + this.randomizedId );
-        // Artificially inject the placeholder property into the input element of the md-input directive.
-        this.renderer.setElementAttribute( this.inputElement, 'placeholder', this.placeholder );
         this._cd.detectChanges();
         this._cd.markForCheck();
         return undefined;
     }
 
-    set disabled( value ) {
-        this._disabled = isTrue( value );
-        if ( this.inputElement ) {
-            this.renderer.setElementAttribute( this.inputElement, 'disabled', isTrue( value ) ? value : null );
-        }
-    }
-
-    set isInSummaryState( value ) {
-        if ( this.inputElement ) {
-            this.renderer.setElementAttribute( this.inputElement, 'disabled', isTrue( value ) ? value : null );
-        }
-    }
-
-    get inputElement() {
-        if ( this._inputElement ) {
-            return this._inputElement;
-        } else {
-            return this._inputElement = this.el ? this.el.nativeElement.querySelector( 'input' ) : null;
-        }
-    }
-
-    ngOnChanges( changes ) : any {
-        if ( changes.hasOwnProperty( 'isInSummaryState' ) ) {
-            if ( changes.isInSummaryState.currentValue === true ) {
-                this.shrink();
-            } else {
-                this.initiateInputWidth();
-            }
-        }
-        return undefined;
-    }
-
-    public checkErrors( killTimer = false ) {
+    public checkErrors ( killTimer = false ) {
         if ( this.control ) {
             this.control.setErrors( this.validate( this.control ), { emitEvent : true } );
             if ( killTimer ) {
@@ -224,45 +158,45 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         }
     }
 
-    public markControlAsDirty() {
+    public markControlAsDirty () {
         this.control.markAsDirty( {
             onlySelf : false
         } );
     }
 
-    get pattern() {
+    get pattern () {
         return this._pattern;
     }
 
-    set pattern( value : string ) {
+    set pattern ( value : string ) {
         this._pattern = value;
         this.updateValidators();
     }
 
-    get minLength() {
+    get minLength () {
         return this._minLength;
     }
 
-    set minLength( value : number ) {
+    set minLength ( value : number ) {
         this._minLength = value;
         this.updateValidators();
     }
 
-    set valDate( value : boolean ) {
+    set valDate ( value : boolean ) {
         this._valDate = value;
         this.updateValidators();
     }
 
-    get maxLength() {
+    get maxLength () {
         return this._maxLength;
     }
 
-    set maxLength( value : number ) {
+    set maxLength ( value : number ) {
         this._maxLength = value;
         this.updateValidators();
     }
 
-    protected humanDate( value : any ) {
+    protected humanDate ( value : any ) {
         switch ( value ) {
             case 'yesterday':
                 value = -1;
@@ -282,77 +216,68 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         return value;
     }
 
-    get minDate() {
+    get minDate () {
         return this._minDate;
     }
 
-    set minDate( value : any ) {
+    set minDate ( value : any ) {
         this._minDate = this.humanDate( value );
         this.updateValidators();
     }
 
-    get maxDate() {
+    get maxDate () {
         return this._maxDate;
     }
 
-    set maxDate( value : any ) {
+    set maxDate ( value : any ) {
         this._maxDate = this.humanDate( value );
         this.updateValidators();
     }
 
-    get minAge() {
+    get minAge () {
         return this._minAge;
     }
 
-    set minAge( value : any ) {
+    set minAge ( value : any ) {
         this._minAge = parseInt( value, 10 );
         this.updateValidators();
     }
 
-    get maxAge() {
+    get maxAge () {
         return this._maxAge;
     }
 
-    set maxAge( value : any ) {
+    set maxAge ( value : any ) {
         this._maxAge = parseInt( value, 10 );
         this.updateValidators();
     }
 
-    get maxFloat() {
+    get maxFloat () {
         return this._maxFloat;
     }
 
-    set maxFloat( value : any ) {
+    get isItDisabled () {
+        return (this.disabled || this.isInSummaryState) ? true : null;
+    }
+
+    set maxFloat ( value : any ) {
         this._maxFloat = value;
         this.updateValidators();
     }
 
-    protected onEnterClick( event ) {
+    protected onEnterClick ( event ) {
         if ( event.keyCode === 13 ) {
             this.onEnter.emit( 'enter' );
         }
     }
 
-    protected onFocused( event ) {
+    protected onFocused ( event ) {
         this.resetIdleTimeOut();
         this.doOnBlurDirty = true;
         this.onFocus.emit( event );
-        this.inputFocus = true;
     }
 
-    protected initiateInputWidth() {
-        this.renderer.setElementStyle( this.el.nativeElement, 'width', this.inputWidth + 'px' );
-    }
-
-    protected shrink() {
-        let offset = 5;
-        if ( this.currency ) {
-            offset = 25;
-        }
-        this.renderer.setElementStyle( this.el.nativeElement, 'width', this.el.nativeElement.children[ 1 ].offsetWidth + offset + 'px' );
-    }
-
-    protected onBlured( $event ) {
+    protected onBlured ( $event ) {
         this.checkErrors();
         clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
@@ -368,15 +293,15 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
             notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
-        this.inputFocus = false;
+
     }
 
-    protected onKeyupEvent( $event ) {
+    protected onKeyupEvent ( $event ) {
         this.onEnterClick( $event );
         this.onKeyup.emit( $event );
     }
 
-    protected addDelayedValidation() {
+    protected addDelayedValidation () {
         this.control
             .valueChanges
             .subscribe( ( changes ) => {
@@ -385,7 +310,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         this.checkErrors();
     }
 
-    protected resetIdleTimeOut() {
+    protected resetIdleTimeOut () {
         this.checkErrors();
         this.markControlAsUndirty();
         clearTimeout( this.idleTimeoutId );
@@ -397,23 +322,23 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit, OnC
         }, this.idleTimeOut );
     }
 
-    protected markControlAsUndirty() {
+    protected markControlAsUndirty () {
         this.control.markAsPristine( {
             onlySelf : false
         } );
     }
 
-    protected setDefaultValue() {
+    protected setDefaultValue () {
         if ( this.defaultValue && this.control ) {
             this.control.setValue( this.defaultValue );
         }
     }
 
-    protected controlIsEmpty() {
+    protected controlIsEmpty () {
         return !this.control.value && this.control.value !== 'false' && this.control.value !== 0;
     }
 
-    protected markAsTouched() {
+    protected markAsTouched () {
         this.control.markAsTouched();
     }
 }

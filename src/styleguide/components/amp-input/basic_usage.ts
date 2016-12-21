@@ -15,6 +15,7 @@ import { AmpCurrencyPipe } from '../../../app/modules/amp-pipes/pipes/currency/a
 export default class AmpInputBasicUsage {
     @ViewChild( 'inputWithAgeError' ) inputWithAgeError;
     toggleFlag : boolean;
+    isInSummaryState : boolean = false;
     dynamicErrors = {
         minAge : 'You should be older than 18.'
     };
@@ -29,6 +30,10 @@ export default class AmpInputBasicUsage {
 
     get control () {
         return this.controlGroup.controls[ 'currency' ];
+    }
+
+    private iconRightClickHandler = () : void => {
+        alert( 'Clicked on right icon ' );
     }
 
     private updateError () {
