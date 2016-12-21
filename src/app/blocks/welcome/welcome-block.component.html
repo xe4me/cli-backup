@@ -11,13 +11,16 @@
                 </li>
             </ul>
         </div>
-        <div class="mb palm-mt- intro-block-button-container">
-            <amp-button (click)="onNewApplication()"
-                        class="1/4 btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/2 tablet-and-up-mr">
+        <div class="mt+ mb palm-mt- intro-block-button-container">
+            <amp-button
+                    (click)="onNewApplication()"
+                    [attr.theme]="'tools'"
+                    class="1/4 btn btn-ok palm-1/1 tablet-1/2 tablet-and-up-mr">
                 New application
             </amp-button>
             <amp-button (click)="onContinueApplication()"
-                        class="1/4 btn btn-secondary btn-intro-chevron palm-1/1 tablet-1/2 tablet-and-up-mr">
+                        [attr.theme]="'tools'"
+                        class="1/4 btn btn-ok palm-1/1 palm-mt- tablet-1/2 tablet-and-up-mr">
                 Continue application
             </amp-button>
         </div>

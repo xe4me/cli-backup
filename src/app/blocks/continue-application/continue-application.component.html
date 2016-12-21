@@ -49,7 +49,7 @@
             </div>
             <div class="mt-60">
                 <amp-button
-                        theme='tools'
+                        [attr.theme]="'tools'"
                         [disabled]="!canGoNext"
                         [context]="context()"
                         class="1/4  btn btn-ok palm-1/1 tablet-1/1 palm-mr0 mr"
@@ -57,9 +57,9 @@
                     Retrieve
                 </amp-button>
                 <amp-button
-                        theme='tools'
+                        [attr.theme]="'tools'"
                         [context]="context()"
-                        class="1/4 btn btn-ok palm-1/1 tablet-1/1 "
+                        class="1/4 btn btn-ok palm-1/1 palm-mt- tablet-1/1 "
                         (click)="onNewApplication()">
                     New application
                 </amp-button>

@@ -1,34 +1,31 @@
 @import '../../../styles/abstracts';
 
-
-:host {
-    .header-container {
-        background-color: $amp-colour-primary;
-        @include media-query(lap-and-up) {
-            height : 70px;
-        }
-    }
-    amp-logo {
-        height : 50px;
-        margin-left : 71px;
-        img {
-            height: 42px;
-            width: 150px;
-            margin-top: 12px;
-            margin-bottom: 10px;
-        }
-    }
-
-    h1.title {
-        @include amp-family($amp-font-open-sans-regular);
-        font-size: $font-size-tiny;
-        color: $amp-colour-white;
-        position: absolute;
-        top: 28px;
-        left: 249px;
+.header-container {
+    background-color: $amp-colour-primary;
+    @include media-query(lap-and-up) {
+        height: 70px;
     }
 }
 
+amp-logo {
+    height: 50px;
+    margin-left: 71px;
+    img {
+        height: 42px;
+        width: 150px;
+        margin-top: 12px;
+        margin-bottom: 10px;
+    }
+}
+
+h1.title {
+    @include amp-family($amp-font-open-sans-regular);
+    font-size: $font-size-tiny;
+    color: $amp-colour-white;
+    position: absolute;
+    top: 28px;
+    left: 249px;
+}
 
 @include media-query(tablet-and-down) {
     :host {

@@ -10,7 +10,7 @@
         </ul>
     </div>
     <amp-button
-            theme="tools"
+            [attr.theme]="'tools'"
             [context]="context()"
             class="btn btn-ok mr palm-1/1 palm-mr0"
             (click)="onOnlineCheckSelection()">
@@ -18,7 +18,7 @@
     </amp-button>
     <!--Uncomment following line for local dev:-->
     <!--<amp-button
-            theme='tools'
+            [attr.theme]="'tools'"
             [context]="context()"
             class="btn btn-ok palm-1/1"
             (click)="onOfflineCheckSelection()">

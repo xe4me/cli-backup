@@ -7,21 +7,22 @@
     <amp-form-row>
         <div class="mt+ palm-8/9 tablet-7/8 lap-and-up-4/12">
             <amp-mobile-number
-                [id]="mobileNumberCtrlId"
-                [controlGroup]="controlGroup"
-                [pattern]="'^04(\\d){8}$'"
-                [maxLength]="10"
-                [errors]="{'pattern' : 'Mobile number must be in the format 04nnnnnnnn.', 'required' : 'Mobile number is a required field.' }"
-                [required]="true"></amp-mobile-number>
+                    [id]="mobileNumberCtrlId"
+                    [controlGroup]="controlGroup"
+                    [pattern]="'^04(\\d){8}$'"
+                    [maxLength]="10"
+                    [errors]="{'pattern' : 'Mobile number must be in the format 04nnnnnnnn.', 'required' : 'Mobile number is a required field.' }"
+                    [required]="true"></amp-mobile-number>
         </div>
     </amp-form-row>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
             <amp-checkbox
-                [id]="acceptPrivacyCtrlId"
-                [controlGroup]="controlGroup"
-                [required]="true">
-                I have read the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a> and confirm the statements in the 'Declarations when applying for an AMP Bett3r Account' section
+                    [id]="acceptPrivacyCtrlId"
+                    [controlGroup]="controlGroup"
+                    [required]="true">
+                I have read the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a>
+                and confirm the statements in the 'Declarations when applying for an AMP Bett3r Account' section
             </amp-checkbox>
         </div>
     </amp-form-row>
@@ -38,16 +39,16 @@
     <amp-form-row>
         <div class="mt-60">
             <amp-button
-                theme="tools"
-                (click)="sendSMS()"
-                [disabled]="controlGroup.invalid"
-                class="btn btn-submit palm-1/1 1/5 tablet-1/1 palm-mr0 mr">
+                    [attr.theme]="'tools'"
+                    (click)="sendSMS()"
+                    [disabled]="controlGroup.invalid"
+                    class="btn btn-submit palm-1/1 1/5 tablet-1/1 palm-mr0 mr">
                 Continue
             </amp-button>
             <amp-button
-                theme="tools"
-                (click)="back()"
-                class="btn btn-secondary palm-1/1 1/5 tablet-1/1 tablet-and-down-mt">
+                    [attr.theme]="'tools'"
+                    (click)="back()"
+                    class="btn btn-secondary palm-1/1 1/5 tablet-1/1 tablet-and-down-mt">
                 Back
             </amp-button>
         </div>

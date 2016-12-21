@@ -1,15 +1,15 @@
 <amp-form-block [context]="context()" [withOkButton]='false'>
     <amp-button
-            theme='tools'
+            [attr.theme]="'tools'"
             [context]="context()"
             class="btn btn-ok palm-1/1 1/3 tablet-1/1 palm-mr0 mr"
             (click)="onSingleApplication()">
         Just me
     </amp-button>
     <amp-button
-            theme='tools'
+            [attr.theme]="'tools'"
             [context]="context()"
-            class="btn btn-ok palm-1/1 1/3 tablet-1/1 "
+            class="btn btn-ok palm-1/1 palm-mt- 1/3 tablet-1/1 "
             (click)="onJointApplication()">
         Me and someone else
     </amp-button>

@@ -37,11 +37,11 @@
             <amp-button
                 (click)="submitForm()"
                 [disabled]="__controlGroup.invalid || submitInProgress"
-                theme="tools"
+                [attr.theme]="'tools'"
                 [class]="'btn btn-submit palm-1/1'">
                 Submit
                 <div class="submit-in-progress" *ngIf="submitInProgress">
-                    <amp-loading [attr.theme]="tools" mode="indeterminate" size="small"></amp-loading>
+                    <amp-loading [attr.theme]="'tools'" mode="indeterminate" size="small"></amp-loading>
                 </div>
             </amp-button>
 

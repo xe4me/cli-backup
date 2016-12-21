@@ -1,15 +1,15 @@
 <amp-form-block [context]="context()" [withOkButton]="false" [hidden]="hideThisBlock">
     <amp-button
-            theme="tools"
+            [attr.theme]="'tools'"
             [context]="context()"
             class="btn btn-ok palm-1/1 1/4 tablet-1/1 palm-mr0 mr"
             (click)="newApplication()">
         I'm new here
     </amp-button>
     <amp-button
-            theme="tools"
+            [attr.theme]="'tools'"
             [context]="context()"
-            class="btn btn-ok btn-secondary palm-1/1 1/4 tablet-1/1"
+            class="btn btn-ok btn-secondary palm-1/1 palm-mt- 1/4 tablet-1/1"
             (click)="loginToMyAmp()">
         Login to My AMP
     </amp-button>
