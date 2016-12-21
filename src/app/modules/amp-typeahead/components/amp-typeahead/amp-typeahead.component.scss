@@ -35,13 +35,15 @@ amp-loading {
 }
 
 :host {
-    my-md-input {
+    amp-input {
         width : 100% !important;
     }
     display  : block;
     position : relative;
 }
-
+.amp-typeahead-list{
+    position: relative;
+}
 .amp-typeahead-options {
     background             : #fff;
     border                 : $amp-dropdown-options-border-width solid $amp-colour-sky-blue;
@@ -53,7 +55,7 @@ amp-loading {
     position               : absolute;
     width                  : 100%;
     z-index                : 10;
-    top                    : $input-height;
+    top                    : 0;
 
     // IE Scrollbar
     scrollbar-base-color   : $amp-colour-sky-blue;

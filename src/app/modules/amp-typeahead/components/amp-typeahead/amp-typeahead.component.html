@@ -10,7 +10,7 @@
                 [autoFocus]='isActive'
                 [errors]='errors'
                 [label]='label'
-                [showErrorComponent]='showErrorComponent'
+                [showErrorComponent]='showErrorComponent && isOptionsHidden'
                 [keepControl]='keepControl'
                 [index]='index'
                 [showIconRight]='input.control.value'
@@ -24,31 +24,33 @@
                 [required]='required'>
         </amp-input>
     </div>
-    <ul
-            *ngIf='searchResult!==null && !isOptionsHidden'
-            focuser='list'
-            [ngStyle]='{"max-height":maxHeight}'
-            (focusOut)='onListFocusOut()'
+    <div class="amp-typeahead-list">
+        <ul
+                *ngIf='searchResult!==null && !isOptionsHidden'
+                focuser='list'
+                [ngStyle]='{"max-height":maxHeight}'
+                (focusOut)='onListFocusOut()'
+                class='amp-typeahead-options'>
+            <li *ngIf='selectLabel && filteredList.length>0' class='amp-typeahead-option' tabindex='-1'>
+                <strong>{{ selectLabel }}</strong>
+            </li>
+            <li (keydown.enter)='selectOption(option)'
+                (click)='selectOption(option)'
+                *ngFor='let option of filter(searchResult,selectedItemValueIdentifier,control.value,!doApiQuery); let i = index'
+                class='amp-typeahead-option'
+                [class.amp-typeahead-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
+                [attr.tabindex]='i+1'>
+                <template
+                        [ngTemplateOutlet]='itemTemplate'
+                        [ngOutletContext]='{ option: option, index: index }'>
+                </template>
+            </li>
+        </ul>
+        <ul *ngIf='!doApiQuery && !isOptionsHidden && control.value && filteredList.length===0'
             class='amp-typeahead-options'>
-        <li *ngIf='selectLabel && filteredList.length>0' class='amp-typeahead-option' tabindex='-1'>
-            <strong>{{ selectLabel }}</strong>
-        </li>
-        <li (keydown.enter)='selectOption(option)'
-            (click)='selectOption(option)'
-            *ngFor='let option of filter(searchResult,selectedItemValueIdentifier,control.value,!doApiQuery); let i = index'
-            class='amp-typeahead-option'
-            [class.amp-typeahead-active]='option[selectedItemIdentifier] === selectedOption[selectedItemIdentifier]'
-            [attr.tabindex]='i+1'>
-            <template
-                    [ngTemplateOutlet]='itemTemplate'
-                    [ngOutletContext]='{ option: option, index: index }'>
-            </template>
-        </li>
-    </ul>
-    <ul *ngIf='!doApiQuery && !isOptionsHidden && control.value && filteredList.length===0'
-        class='amp-typeahead-options'>
-        <li class='amp-typeahead-option' disabled>
-            <strong>No results found</strong>
-        </li>
-    </ul>
+            <li class='amp-typeahead-option' disabled>
+                <strong>No results found</strong>
+            </li>
+        </ul>
+    </div>
 </div>
