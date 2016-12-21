@@ -174,5 +174,6 @@
         </amp-form-row>
         <amp-button class="btn btn-ok mt" (click)="updateError()">Update error</amp-button>
         <amp-button class="btn btn-ok mt" (click)="isInSummaryState = !isInSummaryState">isInSummaryState</amp-button>
+        <amp-button class="btn btn-secondary mt" [disabled]="controlGroup.invalid">Next</amp-button>
     </section>
 </form>
