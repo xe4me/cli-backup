@@ -20,7 +20,7 @@ $amp-ddc-public-asset : '../../../assets/';
         .intro-message-heading {
             margin-bottom: 0;
         }
-        @include media-query(tabled-and-up) {
+        @include media-query(tablet-and-up) {
           // buttons have a !important margin-top and we somehow need to override them in this case
           #title-scenario{
             margin-bottom: -25px;
