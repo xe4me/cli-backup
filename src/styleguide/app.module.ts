@@ -3,8 +3,7 @@ import {
     ApplicationRef
 } from '@angular/core';
 import {
-    MaterialModule,
-    PortalModule
+    MaterialModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -69,10 +68,7 @@ const shouldBeReplacedWithModulesComponents = [
     Highlight
 ];
 const IMPORTS = [
-
     ...AMP_MODULES,
-
-    PortalModule,
     MaterialModule.forRoot(),
     BrowserModule,
     FormsModule,

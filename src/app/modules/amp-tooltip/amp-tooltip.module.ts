@@ -10,7 +10,7 @@ const DECLARATIONS = [ AmpTooltipDirective, AmpTooltipComponent ];
     providers : [ Overlay ],
     imports : [
         AmpDirectivesModule,
-        OverlayModule,
+        OverlayModule.forRoot(),
         AmpSharedRootModule
     ],
     exports : DECLARATIONS,
