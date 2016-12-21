@@ -27,7 +27,7 @@ describe( 'amp-contact-number component', () => {
         let compiledLabel = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Contact number' );
-        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.contactNumberCmp.randomizedId + '-input' );
+        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.contactNumberCmp.randomizedId);
     } );
     it( 'should contain an input text element with the correct name, id and data-automation-id attribute', () => {
         _fixture.detectChanges();
@@ -35,7 +35,7 @@ describe( 'amp-contact-number component', () => {
         let Component = _fixture.componentInstance;
         let compiledInput = compiledTestComponent.query( By.css( 'input' ) );
         expect( compiledInput.nativeElement.name ).toBe( Component.contactNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.id ).toBe( Component.contactNumberCmp.randomizedId + '-input' );
+        expect( compiledInput.nativeElement.id ).toBe( Component.contactNumberCmp.randomizedId );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_' + Component.contactNumberCmp.randomizedId );
     } );

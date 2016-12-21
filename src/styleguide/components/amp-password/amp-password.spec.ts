@@ -27,7 +27,7 @@ describe( 'amp-password component', () => {
             let compiledLabel = compiledTestComponent.query( By.css( '.password label' ) );
             expect( compiledLabel.name ).toBe( 'label' );
             expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Password' );
-            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.passwordCmp.randomizedId + '-input' );
+            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.passwordCmp.randomizedId);
         } );
         it( 'should contain an input text element with the correct name, id and data-automation-id attribute', () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -36,7 +36,7 @@ describe( 'amp-password component', () => {
             let Component = fixture.componentInstance;
             let compiledInput = compiledTestComponent.query( By.css( '.password input' ) );
             expect( compiledInput.nativeElement.name ).toBe( Component.passwordCmp.randomizedId );
-            expect( compiledInput.nativeElement.id ).toBe( Component.passwordCmp.randomizedId + '-input' );
+            expect( compiledInput.nativeElement.id ).toBe( Component.passwordCmp.randomizedId);
             expect( compiledInput.nativeElement.type ).toBe( 'password' );
             expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.passwordCmp.randomizedId );
         } );

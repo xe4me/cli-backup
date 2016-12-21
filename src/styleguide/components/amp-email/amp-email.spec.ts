@@ -27,7 +27,7 @@ describe( 'amp-email component', () => {
         let compiledLabel = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Email' );
-        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.emailCmp.randomizedId + '-input' );
+        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.emailCmp.randomizedId );
     } );
     it( 'should contain an input text element with the correct name, id and data-automation-id attribute', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
@@ -36,7 +36,7 @@ describe( 'amp-email component', () => {
         let compiledInput = compiledTestComponent.query( By.css( 'input' ) );
         let Component = fixture.componentInstance;
         expect( compiledInput.nativeElement.name ).toBe( Component.emailCmp.randomizedId );
-        expect( compiledInput.nativeElement.id ).toBe( Component.emailCmp.randomizedId + '-input' );
+        expect( compiledInput.nativeElement.id ).toBe( Component.emailCmp.randomizedId );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.emailCmp.randomizedId );
     } );

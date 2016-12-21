@@ -26,7 +26,7 @@ describe( 'amp-account-number component', () => {
         let compiledInput = compiledTestComponent.query( By.css( 'input' ) );
         let Component = fixture.componentInstance;
         expect( compiledInput.nativeElement.name ).toBe( Component.accountNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.id ).toBe( Component.accountNumberCmp.randomizedId + '-input' );
+        expect( compiledInput.nativeElement.id ).toBe( Component.accountNumberCmp.randomizedId );
         expect( compiledInput.nativeElement.attributes[ 'maxlength' ].value ).toBe( '9' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.accountNumberCmp.randomizedId );

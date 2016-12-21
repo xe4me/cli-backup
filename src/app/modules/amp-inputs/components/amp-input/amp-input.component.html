@@ -16,11 +16,11 @@ the whole block remains untouched.
            [class.has-value]='!controlIsEmpty()'
            [class.has-prefix]='currency'
            [attr.aria-label]='randomizedId'
-           [attr.data-automation-id]="text_+randomizedId"
+           [attr.data-automation-id]="'text_'+randomizedId"
            [attr.disabled]="isItDisabled"
            [attr.name]='randomizedId'
            [attr.type]='type'
-           [attr.id]='randomizedId'
+           [attr.id]="randomizedId"
            [attr.maxlength]='maxLength'
            [attr.autocomplete]='autoComplete'
            [attr.placeholder]="placeholder && !label ?placeholder:''"

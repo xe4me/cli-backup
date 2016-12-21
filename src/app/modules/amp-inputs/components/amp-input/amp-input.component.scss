@@ -52,10 +52,9 @@ input::-ms-clear {
     padding: 0;
     background-color: transparent;
     box-shadow: none;
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid $amp-colour-grey-dark;
     padding-bottom: 5px;
     &:not([disabled]) {
-        border-bottom: 2px solid $amp-colour-sky-blue;
         @include hover-focus {
             border-color: $amp-colour-sky-blue;
             outline: none;
@@ -79,7 +78,7 @@ input::-ms-clear {
         }
     }
     &.ng-invalid.ng-dirty {
-        border-bottom: 2px solid $amp-colour-alert-danger;
+        border-color: $amp-colour-alert-danger;
         ~ .bar:before, ~ .bar:after {
             background: $amp-colour-alert-danger;
             height: 2px;
