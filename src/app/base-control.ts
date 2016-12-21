@@ -16,6 +16,7 @@ export class BaseControl implements OnDestroy {
     public _disabled : boolean = false;
     public _randomString = 'default_random_id';
     public isInSummaryState : boolean = false;
+    public showErrorComponent : boolean = true;
     public _customValidator : Function = () => {
     };
 

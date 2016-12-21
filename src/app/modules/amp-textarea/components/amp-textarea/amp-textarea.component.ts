@@ -43,7 +43,6 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
 export class AmpTextareaComponent extends BaseControl implements AfterViewInit {
     @ViewChild( 'hiddenDiv' ) hiddenDiv;
     @ViewChild( 'textarea' ) textarea;
-    public showErrorComponent : boolean = true;
     public keepControl : boolean = false;
     private label : string;
     private placeholder : string;

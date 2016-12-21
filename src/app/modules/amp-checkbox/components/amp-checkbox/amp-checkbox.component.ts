@@ -43,7 +43,6 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
     public keepControl : boolean = false;
     private _checked : boolean = false;
     private _tabindex : number;
-    private showErrorComponent : boolean = true;
     private scrollOutUnless : any;
     private scrollOutOn : any;
 
