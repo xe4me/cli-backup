@@ -8,7 +8,7 @@ import { AccountTransitionBaseBlock } from '../account-transition-base/account-t
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles : [require('../account-transition-base/account-transition-base.scss')]
 } )
-export class DepositTransitionBlock extends AccountTransitionBaseBlock {
+export class OffsetTransitionBlock extends AccountTransitionBaseBlock {
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,

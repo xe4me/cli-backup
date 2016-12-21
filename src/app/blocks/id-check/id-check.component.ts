@@ -8,32 +8,26 @@ import {
     AfterViewInit,
     OnDestroy
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import {
-    FormControl
-} from '@angular/forms';
-import {
-    Subscription
-} from 'rxjs';
-import {
-    FormBlock ,
-    ScrollService ,
-    FormModelService ,
-    ProgressObserverService ,
-    FormService,
+    FormBlock,
+    ScrollService,
+    FormModelService,
+    ProgressObserverService,
     IGreenIdFormModel,
-    AmpGreenIdBlockComponent,
-    Environments
+    AmpGreenIdBlockComponent
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'id-check-block' ,
-    templateUrl     : './id-check.component.html' ,
+    selector : 'id-check-block',
+    templateUrl : './id-check.component.html',
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles : [require('./id-check-component.scss').toString()]
+    styles : [ require( './id-check-component.scss' ).toString() ]
 } )
 export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
     private greenIdModel : IGreenIdFormModel;
     private checkboxLabel : string;
-    @ViewChild(AmpGreenIdBlockComponent)
+    @ViewChild( AmpGreenIdBlockComponent )
     private greenIdComponent : AmpGreenIdBlockComponent;
     private greenIdShown = false;
     private greenIdCompleted = false;
@@ -41,95 +35,95 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
     private verificationStatusSubscription : Subscription;
     private scrolledSubscription : Subscription;
 
-    constructor ( formModelService : FormModelService ,
-                  elementRef : ElementRef ,
-                  _cd : ChangeDetectorRef ,
-                  scrollService : ScrollService ,
+    constructor ( formModelService : FormModelService,
+                  elementRef : ElementRef,
+                  _cd : ChangeDetectorRef,
+                  scrollService : ScrollService,
                   progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , _cd , progressObserver , scrollService );
+        super( formModelService, elementRef, _cd, progressObserver, scrollService );
     }
 
-    public ngOnInit() {
+    public ngOnInit () {
         this.updateGreenIdModel();
     }
 
-    public ngAfterViewInit() {
+    public ngAfterViewInit () {
         if ( this.__isRetrieved ) {
             let verificationStatusControl : FormControl;
             verificationStatusControl = this.greenIdComponent.getVerificationStatusControl();
-            this.onVerificationStatusChange(verificationStatusControl.value);
+            this.onVerificationStatusChange( verificationStatusControl.value );
         }
 
-        this.scrolledSubscription = this.scrollService.$scrolled.subscribe((scrollEvent) => {
-            if (scrollEvent.componentSelector
-                && scrollEvent.componentSelector.replace('-block', '') === this.__fdn.join('-')) {
-                if (!this.greenIdCompleted && !this.greenIdShown) {
-                    this.greenIdComponent.showGreenId();
+        this.scrolledSubscription = this.scrollService.$scrolled.subscribe( ( scrollEvent ) => {
+            if ( scrollEvent.componentSelector
+                && scrollEvent.componentSelector.replace( '-block', '' ) === this.__fdn.join( '-' ) ) {
+                if ( !this.greenIdCompleted && !this.greenIdShown ) {
+                    //this.greenIdComponent.showGreenId();
                     this.subscribeToVerificationStatus();
                     this.greenIdShown = true;
                     this.scrolledSubscription.unsubscribe();
                 }
             }
-        });
+        } );
         super.ngAfterViewInit();
     }
 
-    public ngOnDestroy() {
-        if (this.verificationStatusSubscription) {
+    public ngOnDestroy () {
+        if ( this.verificationStatusSubscription ) {
             this.verificationStatusSubscription.unsubscribe();
         }
-        if (this.scrolledSubscription) {
+        if ( this.scrolledSubscription ) {
             this.scrolledSubscription.unsubscribe();
         }
         super.ngOnDestroy();
     }
 
-    public subscribeToVerificationStatus() {
+    public subscribeToVerificationStatus () {
         let verificationStatusControl : FormControl = this.greenIdComponent.getVerificationStatusControl();
         this.verificationStatusSubscription = verificationStatusControl.valueChanges
-                                                                       .subscribe(this.onVerificationStatusChange);
+                                                                       .subscribe( this.onVerificationStatusChange );
     }
 
     private onVerificationStatusChange = ( verificationStatus : string ) => {
-        if (this.hasVerificationCompleted(verificationStatus)) {
-            this.verificationComplete(verificationStatus);
+        if ( this.hasVerificationCompleted( verificationStatus ) ) {
+            this.verificationComplete( verificationStatus );
         }
     };
 
-    private verificationComplete( verificationStatus : string ) {
+    private verificationComplete ( verificationStatus : string ) {
         this.greenIdCompleted = true;
 
-        if (this.isCompleteStatus(verificationStatus)) {
+        if ( this.isCompleteStatus( verificationStatus ) ) {
             this.greenIdPassed = true;
-            this.__custom.blockTitle = this.__custom['blockTitle_verified'];
+            this.__custom.blockTitle = this.__custom[ 'blockTitle_verified' ];
         } else {
             this.greenIdPassed = false;
-            this.__custom.blockTitle = this.__custom['blockTitle_unverified'];
+            this.__custom.blockTitle = this.__custom[ 'blockTitle_unverified' ];
         }
-        this.scrollService.scrollToNextUndoneBlock(this.__form);
+        this.scrollService.scrollToNextUndoneBlock( this.__form );
         this._cd.markForCheck();
     }
 
-    private isCompleteStatus( verificationStatus : string ) : boolean {
+    private isCompleteStatus ( verificationStatus : string ) : boolean {
         return [
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED,
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_WITH_CHANGES
-        ].includes(verificationStatus);
+        ].includes( verificationStatus );
     }
 
-    private hasVerificationCompleted(verificationStatus : string ) : boolean {
+    private hasVerificationCompleted ( verificationStatus : string ) : boolean {
         return verificationStatus &&
             (verificationStatus !== AmpGreenIdBlockComponent.verificationStatuses.IN_PROGRESS);
     }
 
-    private updateGreenIdModel() {
+    private updateGreenIdModel () {
         const applicantIndex = this.__custom.applicantIndex;
-        const applicant = this.__form.get(['Application', `Applicant${applicantIndex}Section` ]).value;
+        const applicant = this.__form.get( [ 'Application', `Applicant${applicantIndex}Section` ] ).value;
         const personalDetails = applicant.PersonalDetailsSection;
         const residentialAddress = personalDetails.Address.Address.residentialAddress.manualAddress;
         const state = residentialAddress.stateDropdown ? residentialAddress.stateDropdown.SelectedItem : '';
         const streetType = residentialAddress.streetTypeDropdown
-                                ? residentialAddress.streetTypeDropdown.SelectedItem : '';
+            ? residentialAddress.streetTypeDropdown.SelectedItem : '';
 
         this.greenIdModel = {
             firstName : personalDetails.BasicInfo.FirstName,
@@ -138,8 +132,8 @@ export class IdCheckBlock extends FormBlock implements OnInit, AfterViewInit, On
             title : personalDetails.BasicInfo.Title,
             dateOfBirth : personalDetails.BasicInfo.DateOfBirth,
             email : personalDetails.ContactDetails.EmailAddress,
-            verificationId : '',
-            verificationStatus : '',
+            //verificationId : '', // is this removed ?
+            //verificationStatus : '', // is this removed ?
             address : {
                 country : 'AU',
                 state : state,

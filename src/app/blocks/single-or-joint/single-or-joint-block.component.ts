@@ -75,7 +75,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
 
         // load applicant 1
         this.__loadNext( this.applicantGenerator.getApplicantSection( 1 ), this.viewContainerRef);
-        // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
+        // Subscribe to notify when all the milad that are inside of ApplicantSection are successfully loaded ,
         // then go next
         // The reason is if you don't do this , when you start with a Single applicant and finish the form and go
         // and change to Joint applicant and click on Joint , it will take you to the submit page , where as it

@@ -19,7 +19,6 @@ import {
     ScrollService,
     FormModelService,
     ProgressObserverService,
-    FormService,
     clone
 } from 'amp-ddc-components';
 import {

@@ -12,7 +12,6 @@ const formDef = require('./form-def.def.json');
 
 @Component({
     selector: 'better-form',
-    directives: [AmpBlockLoaderDirective],
     templateUrl: 'better-form.component.html',
     styles: [require('./better-form.component.scss')]
 })

@@ -6,8 +6,7 @@ import { AmpBlockLoaderDirective } from 'amp-ddc-components';
     <div class="Landing">
         <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form" ></div>
     </div>
-  ` ,
-    directives : [ AmpBlockLoaderDirective ]
+  `
 } )
 export class DetailsPage {
     public static CLASS_NAME = 'DetailsPage';

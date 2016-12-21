@@ -43,7 +43,7 @@ import {
  *       'blockType': 'MyAMPLoginBlockComponent',
  *       'blockLayout': 'INLINE',
  *       'commonBlock': true,
- *       'path': 'blocks/my-amplogin-block/my-amplogin-block.component',
+ *       'path': 'milad/my-amplogin-block/my-amplogin-block.component',
  *       'custom': {
  *           'blockTitle': 'Please login',
  *           'loginFailedMsg': 'Incorrect username/password combination, please try again.',
@@ -230,7 +230,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
                         data.payload,
                         this.customerDetailsService);
 
-                    // TODO: Make sure we load the special prepop block and not the manual entry blocks
+                    // TODO: Make sure we load the special prepop block and not the manual entry milad
                 }).catch((err) => {
                 console.error('Failed to customer details', err);
                 // According to the mapping rules if the single CMDM call fails there is no need to retry

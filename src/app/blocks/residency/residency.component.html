@@ -54,7 +54,7 @@
                 [label]="'SSN'"
                 [isInSummaryState]="isInSummaryState"
                 [required]="tin && tin.control && !tin.control.value"
-                [amp-number-only]="ssn.control"
+                amp-number-only
                 [maxLength]="9"
                 [errors]="{ required : __custom.ssnRequiredMsg }">
             </amp-input>
@@ -70,7 +70,7 @@
                 [label]="'TIN'"
                 [required]="ssn && ssn.control && !ssn.control.value"
                 [isInSummaryState]="isInSummaryState"
-                [amp-number-only]="tin.control"
+                amp-number-only
                 [maxLength]="9"
                 [errors]="{ required : __custom.ssnRequiredMsg }">
 

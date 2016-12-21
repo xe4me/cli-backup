@@ -10,16 +10,12 @@ import {
     Constants,
     AccountsListDataService
 } from '../../shared';
-import {
-    AccountsListPipe
-} from './accounts-list.pipe';
 
 @Component( {
     selector        : 'accounts-list' ,
     templateUrl     : './accounts-list.component.html' ,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles : [ require( './accounts-list.component.scss').toString() ],
-    pipes: [AccountsListPipe]
+    styles : [ require( './accounts-list.component.scss').toString() ]
 } )
 
 export class AccountsListBlock implements OnInit {

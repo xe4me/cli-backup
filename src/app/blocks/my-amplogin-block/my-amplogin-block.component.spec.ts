@@ -27,97 +27,88 @@ import {
 } from '@angular/core/testing/fake_async';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import {
-    AmpTypeaheadModule ,
-    AmpTooltipModule ,
-    AmpPipesModule ,
-    AmpDirectivesModule ,
-    AmpQasAddressModule ,
-    AmpInputsModule ,
-    AmpCheckboxModule ,
-    AmpTextareaModule ,
-    AmpGroupButtonsModule ,
-    AmpRadioButtonGroupModule ,
-    AmpErrorModule ,
-    AmpButtonModule ,
-    FormBlock ,
-    ScrollService ,
-    FormModelService ,
-    ProgressObserverService ,
-    AmpFormBlockComponent ,
-    AMPGoogleAddressComponentGroup ,
-    AmpFormRowComponent ,
-    AmpButton ,
-    AmpOverlayComponent ,
-    AmpIntroBlockComponent ,
-    AmpLoadingComponent ,
-    AmpRowRepeaterModule ,
-    AmpFormRowModule ,
-    AmpStandAloneMenuModule ,
-    AmpGreenidModule,
-    AmpHttpService ,
+    AmpTypeaheadModule,
+    AmpTooltipModule,
+    AmpPipesModule,
+    AmpDirectivesModule,
+    AmpQasAddressModule,
+    AmpInputsModule,
+    AmpCheckboxModule,
+    AmpTextareaModule,
+    AmpGroupButtonsModule,
+    AmpRadioButtonGroupModule,
+    AmpErrorModule,
+    AmpButtonModule,
+    FormBlock,
+    ScrollService,
+    FormModelService,
+    ProgressObserverService,
+    AmpFormBlockComponent,
+    AmpOverlayComponent,
+    AmpIntroBlockComponent,
+    AmpLoadingComponent,
+    AmpRowRepeaterModule,
+    AmpStandAloneMenuModule,
+    AmpHttpService,
     FormSectionService
 } from 'amp-ddc-components';
-import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 import { MyAMPLoginBlockComponent } from './my-amplogin-block.component';
-import { AppModule } from '../../app.module';
 let formDef = require( './DummyTest-form-def.def.json' );
 
 // Load the implementations that should be tested
-describe( 'Component: MyAMPLoginBlock' , () => {
+describe( 'Component: MyAMPLoginBlock', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [
-                AmpRowRepeaterModule ,
-                AmpFormRowModule ,
-                AmpTooltipModule ,
-                AmpButtonModule ,
-                AmpTypeaheadModule ,
-                AmpPipesModule ,
-                AmpDirectivesModule ,
-                AmpQasAddressModule ,
-                AmpGreenidModule ,
-                AmpInputsModule ,
-                AmpErrorModule ,
-                AmpCheckboxModule ,
-                AmpTextareaModule ,
-                AmpGroupButtonsModule ,
-                AmpRadioButtonGroupModule ,
-                AmpStandAloneMenuModule ,
-                BrowserModule ,
-                FormsModule ,
-                ReactiveFormsModule ,
+            imports : [
+                AmpRowRepeaterModule,
+                AmpTooltipModule,
+                AmpButtonModule,
+                AmpTypeaheadModule,
+                AmpPipesModule,
+                AmpDirectivesModule,
+                AmpQasAddressModule,
+                AmpInputsModule,
+                AmpErrorModule,
+                AmpCheckboxModule,
+                AmpTextareaModule,
+                AmpGroupButtonsModule,
+                AmpRadioButtonGroupModule,
+                AmpStandAloneMenuModule,
+                BrowserModule,
+                FormsModule,
+                ReactiveFormsModule,
                 HttpModule
-             ] ,
+            ],
             declarations : [
                 TestComponent,
-                AmpIntroBlockComponent ,
-                AmpFormBlockComponent ,
-                AmpOverlayComponent ,
+                AmpIntroBlockComponent,
+                AmpFormBlockComponent,
+                AmpOverlayComponent,
                 AmpLoadingComponent
-            ] ,
-            providers    : [
-                { provide : ElementRef , useClass : MockElementRef } ,
-                { provide : Window , useClass : window } ,
-                { provide : ComponentFixtureAutoDetect , useValue : true },
-                { provide : FormModelService , useClass : FormModelService },
-                { provide : ScrollService , useClass : ScrollService },
-                { provide : ProgressObserverService , useClass : ProgressObserverService },
-                { provide : AmpHttpService , useClass : AmpHttpService },
-                { provide : FormSectionService , useClass : FormSectionService },
+            ],
+            providers : [
+                { provide : ElementRef, useClass : MockElementRef },
+                { provide : Window, useClass : window },
+                { provide : ComponentFixtureAutoDetect, useValue : true },
+                { provide : FormModelService, useClass : FormModelService },
+                { provide : ScrollService, useClass : ScrollService },
+                { provide : ProgressObserverService, useClass : ProgressObserverService },
+                { provide : AmpHttpService, useClass : AmpHttpService },
+                { provide : FormSectionService, useClass : FormSectionService },
                 BrowserDomAdapter,
                 Renderer
             ]
         } );
         TestBed.compileComponents();
     } ) );
-    describe ( 'UI', () => {
-        it( 'should contain an input for username' , <any> fakeAsync(() => {
+    describe( 'UI', () => {
+        it( 'should contain an input for username', <any> fakeAsync( () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
-            tick(1);
+            tick( 1 );
             let compiledTestComponent = fixture.debugElement;
-            let Component             = fixture.componentInstance;
-            let compiledInput         = compiledTestComponent.query(
+            let Component = fixture.componentInstance;
+            let compiledInput = compiledTestComponent.query(
                 By.css( '.myAmp-login input[name=Application-MyAMPLoginBlock-userId]' ) );
 
             expect( compiledInput ).toBeDefined();
@@ -125,14 +116,14 @@ describe( 'Component: MyAMPLoginBlock' , () => {
                 .toBe( 'Application-MyAMPLoginBlock-userId' );
             expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value )
                 .toBe( 'text_Application-MyAMPLoginBlock-userId' );
-        } ));
-        it( 'should contain an input for password' , <any> fakeAsync(() => {
+        } ) );
+        it( 'should contain an input for password', <any> fakeAsync( () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
-            tick(1);
+            tick( 1 );
             let compiledTestComponent = fixture.debugElement;
-            let Component             = fixture.componentInstance;
-            let compiledInput         = compiledTestComponent.query(
+            let Component = fixture.componentInstance;
+            let compiledInput = compiledTestComponent.query(
                 By.css( '.myAmp-login input[name=Application-MyAMPLoginBlock-password]' ) );
 
             expect( compiledInput ).toBeDefined();
@@ -140,99 +131,99 @@ describe( 'Component: MyAMPLoginBlock' , () => {
                 .toBe( 'Application-MyAMPLoginBlock-password' );
             expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value )
                 .toBe( 'text_Application-MyAMPLoginBlock-password' );
-        } ));
-    });
-    describe ( 'removeLoginAndProceed', () => {
-        it( 'should cleanUp and then call super.onNext' , <any> fakeAsync(() => {
+        } ) );
+    } );
+    describe( 'removeLoginAndProceed', () => {
+        it( 'should cleanUp and then call super.onNext', <any> fakeAsync( () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
-            tick(1);
+            tick( 1 );
 
-            let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
+            let myAMPLoginBlockComponentFixture = fixture.debugElement.query( By.directive( MyAMPLoginBlockComponent ) );
             let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            spyOn(myAMPLoginBlockComponent, 'cleanUp').and.returnValue(true);
-            spyOn(FormBlock.prototype, 'onNext').and.returnValue(true);
+            spyOn( myAMPLoginBlockComponent, 'cleanUp' ).and.returnValue( true );
+            spyOn( FormBlock.prototype, 'onNext' ).and.returnValue( true );
 
             myAMPLoginBlockComponent.removeLoginAndProceed();
 
-            expect( myAMPLoginBlockComponent['cleanUp'] ).toHaveBeenCalled();
+            expect( myAMPLoginBlockComponent[ 'cleanUp' ] ).toHaveBeenCalled();
             expect( FormBlock.prototype.onNext ).toHaveBeenCalled();
-        } ));
-    });
-    describe ( 'onLoginSuccess', () => {
-        it( 'should call removeLoginAndProceed' , <any> fakeAsync(() => {
+        } ) );
+    } );
+    describe( 'onLoginSuccess', () => {
+        it( 'should call removeLoginAndProceed', <any> fakeAsync( () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
-            tick(1);
+            tick( 1 );
 
-            let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
+            let myAMPLoginBlockComponentFixture = fixture.debugElement.query( By.directive( MyAMPLoginBlockComponent ) );
             let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            spyOn(myAMPLoginBlockComponent, 'removeLoginAndProceed').and.returnValue(true);
+            spyOn( myAMPLoginBlockComponent, 'removeLoginAndProceed' ).and.returnValue( true );
 
-            myAMPLoginBlockComponent['onLoginSuccess']();
+            myAMPLoginBlockComponent[ 'onLoginSuccess' ]();
 
             expect( myAMPLoginBlockComponent.removeLoginAndProceed ).toHaveBeenCalled();
-        } ));
-    });
-    describe ( 'onLoginFail', () => {
-        it( 'should indicate there is an error' , <any> fakeAsync(() => {
+        } ) );
+    } );
+    describe( 'onLoginFail', () => {
+        it( 'should indicate there is an error', <any> fakeAsync( () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
-            tick(1);
+            tick( 1 );
 
-            let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
+            let myAMPLoginBlockComponentFixture = fixture.debugElement.query( By.directive( MyAMPLoginBlockComponent ) );
             let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            expect (myAMPLoginBlockComponent['errorCode']).toBeNull();
+            expect( myAMPLoginBlockComponent[ 'errorCode' ] ).toBeNull();
 
-            myAMPLoginBlockComponent['onLoginFail']();
+            myAMPLoginBlockComponent[ 'onLoginFail' ]();
 
-            expect (myAMPLoginBlockComponent['errorCode']).toBe('default');
-        } ));
-    });
-    describe ( 'onNext and ngOnDestroy', () => {
-        it( 'should create the hidden iframe, attach listener, submit and clean up the listener on destroy' ,
-            <any> fakeAsync(() => {
+            expect( myAMPLoginBlockComponent[ 'errorCode' ] ).toBe( 'default' );
+        } ) );
+    } );
+    describe( 'onNext and ngOnDestroy', () => {
+        it( 'should create the hidden iframe, attach listener, submit and clean up the listener on destroy',
+            <any> fakeAsync( () => {
 
-            let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-            fixture.detectChanges();
-            tick(1);
+                let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+                fixture.detectChanges();
+                tick( 1 );
 
-            let myAMPLoginBlockComponentFixture = fixture.debugElement.query(By.directive(MyAMPLoginBlockComponent));
-            let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
+                let myAMPLoginBlockComponentFixture = fixture.debugElement.query( By.directive( MyAMPLoginBlockComponent ) );
+                let myAMPLoginBlockComponent = <MyAMPLoginBlockComponent> myAMPLoginBlockComponentFixture.componentInstance;
 
-            spyOn(myAMPLoginBlockComponent, 'canGoNext').and.returnValue(true);
+                spyOn( myAMPLoginBlockComponent, 'canGoNext' ).and.returnValue( true );
 
-            myAMPLoginBlockComponent['__controlGroup'] = new FormGroup({
-                'userId': new FormControl('dummy'),
-                'password': new FormControl('dummy')
-            });
+                myAMPLoginBlockComponent[ '__controlGroup' ] = new FormGroup( {
+                    'userId' : new FormControl( 'dummy' ),
+                    'password' : new FormControl( 'dummy' )
+                } );
 
-            expect(window.frames.length).toBe(0);
-            // spyOn(myAMPLoginBlockComponent, 'submitCallback').and.callThrough();
+                expect( window.frames.length ).toBe( 0 );
+                // spyOn(myAMPLoginBlockComponent, 'submitCallback').and.callThrough();
 
-            // Invoke the login, which creates the listener
-            myAMPLoginBlockComponent.onNext();
+                // Invoke the login, which creates the listener
+                myAMPLoginBlockComponent.onNext();
 
-            // Check that the form was submitted and the result got loaded in the iframe
-            // expect(myAMPLoginBlockComponent['submitCallback']).toHaveBeenCalled();
+                // Check that the form was submitted and the result got loaded in the iframe
+                // expect(myAMPLoginBlockComponent['submitCallback']).toHaveBeenCalled();
 
-            // Should have hidden form and iframe created and submitted
-            expect(window.frames.length).toBe(1);
+                // Should have hidden form and iframe created and submitted
+                expect( window.frames.length ).toBe( 1 );
 
-            // Check listener is not null
-            expect(myAMPLoginBlockComponent['removeLoginFrameListener']).not.toBeUndefined();
-            spyOn(myAMPLoginBlockComponent, 'removeLoginFrameListener').and.callThrough();
+                // Check listener is not null
+                expect( myAMPLoginBlockComponent[ 'removeLoginFrameListener' ] ).not.toBeUndefined();
+                spyOn( myAMPLoginBlockComponent, 'removeLoginFrameListener' ).and.callThrough();
 
-            // Invoke the destroy
-            myAMPLoginBlockComponent.ngOnDestroy();
+                // Invoke the destroy
+                myAMPLoginBlockComponent.ngOnDestroy();
 
-            // Check remove listener func is invoked
-            expect(myAMPLoginBlockComponent['removeLoginFrameListener']).toHaveBeenCalled();
-        } ));
-    });
+                // Check remove listener func is invoked
+                expect( myAMPLoginBlockComponent[ 'removeLoginFrameListener' ] ).toHaveBeenCalled();
+            } ) );
+    } );
 } );
 
 class MockElementRef implements ElementRef {
@@ -241,7 +232,6 @@ class MockElementRef implements ElementRef {
 
 // Create a test component to test directives
 @Component( {
-    directives: [AmpBlockLoaderDirective],
     template : `
         <form [formGroup]="form" class='nl-form myAmp-login'>
             <div [amp-block-loader]="childBlocks" 
