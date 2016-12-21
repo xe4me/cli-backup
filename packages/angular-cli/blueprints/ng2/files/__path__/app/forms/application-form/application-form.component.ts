@@ -10,9 +10,9 @@ let formDefinition = require( './form-def.def.json' );
 export class ApplicationFormComponent {
     private form : FormGroup;
     private formDef                      = formDefinition;
+    private fullyDistinguishedName                      = [];
     constructor( private _builder : FormBuilder,
                  private formModelService : FormModelService ) {
         this.form = this.formModelService.hydrateForm();
     }
-
 }

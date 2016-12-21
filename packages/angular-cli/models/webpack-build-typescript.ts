@@ -16,8 +16,7 @@ export const getWebpackNonAotConfigPartial = function ( projectRoot : string, ap
                     test: /\.ts$/,
                     use: [
                         'awesome-typescript-loader',
-                        'angular2-template-loader',
-                        'angular2-router-loader'
+                        'angular2-template-loader'
                     ],
                     exclude: [/\.(e2e)\.ts$/]
                 }

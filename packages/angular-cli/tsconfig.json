@@ -13,7 +13,7 @@
     "sourceMap": true,
     "sourceRoot": "/",
     "target": "es5",
-    "lib": ["es6"],
+    "lib": ["es7"],
     "skipLibCheck": true,
     "typeRoots": [
       "../../node_modules/@types"

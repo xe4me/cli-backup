@@ -8,9 +8,9 @@ import { APP_SHELL_DIRECTIVES } from '@angular/app-shell';<% } %>
     {{title}}
   </h1>
   `,<% } else { %>
-  templateUrl: './app.component.html',<% } %><% if (inlineStyle) { %>
-    styles: [ require( '../styles/all.scss' ) ]<% } else { %>
-  styleUrls: ['./app.component.<%= styleExt %>']<% } %>
+  templateUrl: './app.component.html',<% } %>
+    styles: [ require( '../styles/all.scss' ) ]  ,
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = '<%= prefix %> , welcome to your new DDC experience!';

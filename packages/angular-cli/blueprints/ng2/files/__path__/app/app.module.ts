@@ -1,6 +1,9 @@
 import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {
+    NgModule,
+    Renderer
+} from '@angular/core';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
@@ -28,6 +31,7 @@ import { AppRoutingModule } from './app.routes';
     entryComponents:DYNAMIC_BLOCKS,
     providers : [
         ...AMP_DDC_PROVIDERS,
+        <any>Renderer,
         BrowserDomAdapter
     ],
     bootstrap : [ AppComponent ]
