@@ -1,0 +1,10 @@
+@import '../../../../../styles/abstracts';
+
+:host {
+    @include media-query('lap-and-up') {
+        amp-form-block {
+            overflow-x: hidden;
+        }
+    }
+}
+

@@ -1,0 +1,62 @@
+<amp-form-block [context]="context()" buttonsTheme='tools'>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 palm-mt+ pr-- palm-p0">
+            <amp-titles
+                auto-focus-on='input'
+                class='palm-mt'
+                [id]="__custom.controls[0].id"
+                [controlGroup]="__controlGroup"
+                [required]="__custom.controls[0].required">
+                <template let-option="option">
+                    {{ option.label }}
+                </template>
+            </amp-titles>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 lap-and-up-pr">
+            <amp-first-name
+                [id]="__custom.controls[1].id"
+                [controlGroup]="__controlGroup"
+                [required]="__custom.controls[1].required"
+                [pattern]="__custom.controls[1].pattern"
+                [errors]="__custom.controls[1].errors">
+            </amp-first-name>
+        </div>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 lap-and-up-pr">
+            <amp-input
+                [id]="__custom.controls[2].id"
+                [controlGroup]="__controlGroup"
+                [label]="'Middle name'"
+                [required]="__custom.controls[2].required"
+                [maxLength]="__custom.controls[2].maxlength"
+                [pattern]="__custom.controls[2].pattern"
+                [errors]="__custom.controls[2].errors"
+                [showOptional]="__custom.controls[2].showOptional">
+            </amp-input>
+        </div>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+            <amp-last-name
+                [id]="__custom.controls[3].id"
+                [controlGroup]="__controlGroup"
+                [required]="__custom.controls[3].required"
+                [pattern]="__custom.controls[3].pattern"
+                [errors]="__custom.controls[3].errors">
+            </amp-last-name>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+            <amp-input
+                [id]="__custom.controls[4].id"
+                [controlGroup]="__controlGroup"
+                [label]="'Date of birth'"
+                [required]="__custom.controls[4].required"
+                [maxLength]="__custom.controls[4].maxlength"
+                [pattern]="__custom.controls[4].pattern"
+                [errors]="__custom.controls[4].errors"
+                [showOptional]="__custom.controls[4].showOptional">
+            </amp-input>
+        </div>
+    </amp-form-row>
+</amp-form-block>
