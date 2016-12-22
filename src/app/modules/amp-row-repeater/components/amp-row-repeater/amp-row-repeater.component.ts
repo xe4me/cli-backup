@@ -1,4 +1,12 @@
-import { ContentChild, Component, TemplateRef, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import {
+    ContentChild,
+    Component,
+    TemplateRef,
+    ChangeDetectionStrategy,
+    Input,
+    OnInit,
+    OnDestroy
+} from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { AmpFormGroup } from '../../../../base-control';
 @Component( {
@@ -7,7 +15,7 @@ import { AmpFormGroup } from '../../../../base-control';
         itemTemplate : new ContentChild( TemplateRef )
     },
     template : `
-        <div class="grid__container 1/1 mt-60" *ngFor="let controlGroup of controlArray?.controls ; let i = index;">
+        <div class="grid__container 1/1" [class.mt-60]="hasMarginTop" *ngFor="let controlGroup of controlArray.controls ; let i = index;">
             <div class="row-repeated__col-left utils__push--left {{ colLeftClass }}">
                 <template
                     [ngTemplateOutlet]="itemTemplate"
@@ -15,9 +23,9 @@ import { AmpFormGroup } from '../../../../base-control';
                 </template>
             </div>
             <div class="row-repeated__col-right utils__push--left {{ colRightClass }}">
-                <amp-button 
-                    *ngIf="rowCount > 1" 
-                    [context]="context" 
+                <amp-button
+                    *ngIf="rowCount > 1"
+                    [context]="context"
                     (click)="remove(i)"
                     [disabled]="isInSummaryState"
                     class="btn btn-anchor row-repeated__btn-remove">
@@ -34,7 +42,7 @@ import { AmpFormGroup } from '../../../../base-control';
             <span class="icon icon--plus-filled" aria-hidden="true"></span> {{ addBtn }}
         </amp-button>
     `,
-    styles : [ require( './amp-row-repeater.scss' ).toString() ],
+    styles : [ require( './amp-row-repeater.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
@@ -47,9 +55,11 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'isInSummaryState' ) isInSummaryState : boolean = false;
     @Input( 'colLeftClass' ) colLeftClass : string = '';
     @Input( 'colRightClass' ) colRightClass : string = '';
+    @Input( 'hasMarginTop' ) hasMarginTop : boolean = true;
+
     private controlArray : FormArray;
 
-    ngOnInit() : void {
+    public ngOnInit () : void {
         if ( this.controlGroup && this.id ) {
             if ( this.controlGroup.contains( this.id ) ) {
                 this.controlArray = <FormArray> this.controlGroup.get( this.id );
@@ -61,19 +71,19 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         this.init();
     }
 
-    ngOnDestroy() : void {
+    public ngOnDestroy () : void {
         if ( this.controlGroup && this.id && this.controlGroup.contains( this.id ) ) {
             this.controlGroup.removeControl( this.id );
         }
     }
 
-    private init() {
+    private init () {
         if ( this.rowCount === 0 ) {
             this.add();
         }
     }
 
-    private add() {
+    private add () {
         let formGroupForArray = new AmpFormGroup( {} );
         formGroupForArray.__fdn = this.controlGroup && this.controlGroup.__fdn ? [
             ...this.controlGroup.__fdn,
@@ -86,21 +96,21 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         this.controlArray.push( formGroupForArray );
     }
 
-    private remove( _index : number ) {
+    private remove ( _index : number ) {
         this.controlArray.removeAt( _index );
     }
 
-    private reset() {
+    private reset () {
         while ( this.controlArray.length ) {
             this.controlArray.removeAt( 0 );
         }
     }
 
-    private get rowCount() {
+    private get rowCount () {
         return this.controlArray ? this.controlArray.controls.length : 0;
     }
 
-    private get addBtnDisabled() {
+    private get addBtnDisabled () {
         return (this.maxRows === this.rowCount) || this.isInSummaryState;
     }
 }
