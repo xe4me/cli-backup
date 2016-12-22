@@ -18,7 +18,6 @@ import { NewOrExistingCustomerBlock } from './blocks/new-or-existing-customer/ne
 import { NotARobotBlock } from './blocks/not-a-robot/not-a-robot.component';
 import { OffsetTransitionBlock } from './blocks/offset-transition/offset-transition.component';
 import { OnlineOrOfflineIdCheckBlock } from './blocks/online-or-offline-id-check/online-or-offline-id-check.component';
-import { PrivacyDeclarationBlock } from './blocks/privacy-declaration/privacy-declaration.component';
 import { ResidencyBlock } from './blocks/residency/residency.component';
 import { SingleOrJointBlockComponent } from './blocks/single-or-joint/single-or-joint-block.component';
 import { SourceOfFundingBlock } from './blocks/source-of-funding/source-of-funding.component';
@@ -53,7 +52,6 @@ export const DYNAMIC_BLOCKS = [
     NotARobotBlock,
     OffsetTransitionBlock,
     OnlineOrOfflineIdCheckBlock,
-    PrivacyDeclarationBlock,
     ResidencyBlock,
     SingleOrJointBlockComponent,
     SourceOfFundingBlock,

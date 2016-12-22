@@ -1,20 +1,20 @@
 {
     "Application": {
         "Welcome": {},
+        "ContinueApplicationBlock": {
+            "ReferenceCode": null,
+            "LastName": null,
+            "DateOfBirth": null
+        },
         "NewOrExistingCustomer": {
             "NewOrExistingCustomer": null
+        },
+        "MyAMPLoginBlock": {
+            "userId": null,
+            "password": null
         },
         "SingleOrJoint": {
             "SingleOrJoint": null
         }
-    },
-    "ContinueApplicationBlock": {
-        "ReferenceCode": null,
-        "LastName": null,
-        "DateOfBirth": null
-    },
-    "MyAMPLoginBlock": {
-        "userId": null,
-        "password": null
     }
 }

@@ -116,36 +116,25 @@
                             "id": "OnlineIDCheck"
                         }
                     ],
-                    "optionalBlocks": [
-                        {
-                            "name": "IdentiyCheckPrivacyDeclaration",
-                            "blockType": "PrivacyDeclarationBlock",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/privacy-declaration/privacy-declaration.component",
-                            "custom": {
-                                "blockTitle": "Before we do that, just to confirm...",
-                                "controls": [
-                                    {
-                                        "id": "AcceptIdentityCheckPrivacyDeclaration"
-                                    }
-                                ],
-                                "checkboxLabel": " I authorise AMP to check only my identity against personal information held by a credit bureau."
-                            }
-                        },
-                        {
+                    "optionalBlocks": {
+                        "IdCheckBlock": {
                             "name": "IdCheck",
                             "blockType": "IdCheckBlock",
                             "blockLayout": "INLINE",
                             "commonBlock": false,
                             "path": "blocks/id-check/id-check.component",
                             "custom": {
+                                "controls": [
+                                    {
+                                        "id": "AcceptIdentityCheckPrivacyDeclaration"
+                                    }
+                                ],
                                 "blockTitle": "Checking your ID",
-                                "blockTitle_verified" : "Thanks",
-                                "blockTitle_unverified" : "Your ID was unable to be verified"
+                                "blockTitle_verified": "Thanks",
+                                "blockTitle_unverified": "Your ID was unable to be verified"
                             }
                         }
-                    ]
+                    }
                 }
             }
         ]
