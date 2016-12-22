@@ -1,26 +1,26 @@
 @import "../../../styles/abstracts";
 
 .styleguide-app {
+  md-toolbar {
+    margin-left: 210px;
+  }
+  #sample-static-content {
+    margin-left: 210px;
+  }
+
+  @include media-query(palm) {
     md-toolbar {
-        margin-left: 210px;
+      display: block;
+      margin-left: 0;
     }
     #sample-static-content {
-        margin-left: 210px;
+      display: block;
+      margin-left: 0;
     }
-
-    @include media-query(palm) {
-        md-toolbar {
-            display:block;
-            margin-left: 0;
-        }
-        #sample-static-content {
-            display:block;
-            margin-left: 0;
-        }
-    }
+  }
 }
 
 page-section {
-    display: block;
-    outline: none !important;
+  display: block;
+  outline: none !important;
 }

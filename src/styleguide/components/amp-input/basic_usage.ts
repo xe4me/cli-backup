@@ -9,14 +9,15 @@ import { AmpCurrencyPipe } from '../../../app/modules/amp-pipes/pipes/currency/a
 @Component(
     {
         selector : 'amp-input-basic-usage',
-        templateUrl : 'src/styleguide/components/amp-input/basic_usage.html',
+        templateUrl : './basic_usage.html',
         styles : [ require( './basic_usage.scss' ).toString() ]
     } )
 export default class AmpInputBasicUsage {
-    @ViewChild('inputWithAgeError') inputWithAgeError;
+    @ViewChild( 'inputWithAgeError' ) inputWithAgeError;
     toggleFlag : boolean;
+    isInSummaryState : boolean = false;
     dynamicErrors = {
-        minAge: 'You should be older than 18.'
+        minAge : 'You should be older than 18.'
     };
 
     private controlGroup : FormGroup = new FormGroup( {} );
@@ -24,14 +25,18 @@ export default class AmpInputBasicUsage {
     private currencySymbol = AmpCurrencyPipe.currencySymbol;
     private currencyPipe = new AmpCurrencyPipe();
 
-    constructor( private  themeService : ThemeService, private _cd : ChangeDetectorRef ) {
+    constructor ( private  themeService : ThemeService, private _cd : ChangeDetectorRef ) {
     }
 
-    get control() {
+    get control () {
         return this.controlGroup.controls[ 'currency' ];
     }
 
-    private updateError(){
+    private iconRightClickHandler = () : void => {
+        alert( 'Clicked on right icon ' );
+    }
+
+    private updateError () {
         this.dynamicErrors.minAge = 'You\'re still bellow 18 man :)';
         this.inputWithAgeError.setAmpErrors();
     }

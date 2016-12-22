@@ -4,7 +4,7 @@
 
 @@ parameterized
     | subtask    | spec                                                      |
-    | All        | src/styleguide/components/amp-checkbox/amp-checkbox.component.test.spec    |
+    | All        | ./amp-checkbox/amp-checkbox.component.test.spec    |
 
 @@ parameterized
     | browser       |

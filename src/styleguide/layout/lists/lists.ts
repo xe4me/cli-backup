@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-
 @Component( {
     selector    : 'lists' ,
-    templateUrl : 'src/styleguide/layout/lists/lists.html' ,
-    styles      : [ require( './lists.scss' ).toString() ] ,
-    directives  : []
+    templateUrl : './lists.html' ,
+    styles      : [ require( './lists.scss' ).toString() ]
 } )
 
-export default class Lists {
+export default class ListsBasicUsage {
 }

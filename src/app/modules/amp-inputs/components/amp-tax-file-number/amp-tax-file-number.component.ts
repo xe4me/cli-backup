@@ -46,7 +46,7 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
     @HostListener('input')
     private checkValue ( event ) {
         let newValue = this.control.value.replace( /\D/g , '' );
-        this.control.updateValue( newValue );
+        this.control.setValue( newValue );
         if (newValue && newValue.length === this.maxLength) {
             this.checkErrors(false);
             this.markControlAsDirty();

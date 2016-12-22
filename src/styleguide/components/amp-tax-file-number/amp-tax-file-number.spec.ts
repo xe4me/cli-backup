@@ -44,7 +44,7 @@ describe( 'amp-tax-file-number component' , () => {
         let TFNInput        = Element.querySelector( 'input[type="text"]' );
         expect( TFNInput ).toBeDefined();
         expect( TFNInput.name ).toBe( Component.tfnCmp.randomizedId );
-        expect( TFNInput.id ).toBe( Component.tfnCmp.randomizedId + '-input');
+        expect( TFNInput.id ).toBe( Component.tfnCmp.randomizedId );
         expect( TFNInput.getAttribute( 'data-automation-id' ) ).toBe( 'text_' + Component.tfnCmp.randomizedId );
     } );
     it( 'Should display an error when an INVALID tax-file-number is entered' , () => {

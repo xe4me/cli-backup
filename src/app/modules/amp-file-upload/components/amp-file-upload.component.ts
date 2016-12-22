@@ -1,23 +1,17 @@
 import {
-    Component ,
-    ChangeDetectorRef ,
-    Input ,
-    ViewChild ,
-    AfterViewInit ,
-    Output ,
-    EventEmitter
+  Component ,
+  ChangeDetectorRef ,
+  Input ,
+  ViewChild ,
+  AfterViewInit ,
+  Output ,
+  EventEmitter
 } from '@angular/core';
-
-import {
-    FormControl
-} from '@angular/forms';
-
+import { FormControl } from '@angular/forms';
 import { AmpFileUploadService } from '../services/amp-file-upload.service';
 import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
-import { AmpLinearProgressBarComponent } from '../../../components/amp-linear-progress-bar/amp-linear-progress-bar.component';
 import { Observable } from 'rxjs';
 import { BaseControl } from '../../../../app/base-control';
-
 @Component({
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
@@ -26,8 +20,7 @@ import { BaseControl } from '../../../../app/base-control';
         'id' ,
         'controlGroup'
     ] ,
-    providers   : [ AmpFileUploadService ] ,
-    directives  : [ AmpLinearProgressBarComponent ]
+    providers   : [ AmpFileUploadService ]
 })
 export class AmpFileUploadComponent extends BaseControl implements AfterViewInit {
     @ViewChild('fileInput') fileInput;
@@ -122,7 +115,7 @@ export class AmpFileUploadComponent extends BaseControl implements AfterViewInit
 
     private initControl(name) : FormControl {
         let aControl = null;
-        if ( !this.controlGroup.contains(name) ) {
+        if ( this.controlGroup && !this.controlGroup.contains(name) ) {
             aControl = new FormControl();
             this.controlGroup.addControl(name, aControl);
         } else {

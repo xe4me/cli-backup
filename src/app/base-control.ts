@@ -1,6 +1,6 @@
-import { FormControl , FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { OnDestroy } from '@angular/core';
-import { addDashOrNothing , isTrue , generateRandomString } from './modules/amp-utils/functions.utils';
+import { addDashOrNothing, isTrue, generateRandomString } from './modules/amp-utils/functions.utils';
 export class AmpFormGroup extends FormGroup {
     __fdn : (number|string)[];
 }
@@ -8,17 +8,19 @@ export class BaseControl implements OnDestroy {
     public _controlGroup : AmpFormGroup;
     public control : FormControl;
     public _errors;
-    public _id                         = 'default';
+    public _id = 'default';
     public keepControl : boolean;
-    public createdAndJoinedControl     = false;
+    public createdAndJoinedControl = false;
     public index;
-    public _required : boolean         = false;
-    public _disabled : boolean         = false;
-    public _randomString          = 'default_random_id';
+    public _required : boolean = false;
+    public _disabled : boolean = false;
+    public _randomString = 'default_random_id';
+    public isInSummaryState : boolean = false;
+    public showErrorComponent : boolean = true;
     public _customValidator : Function = () => {
     };
 
-    public updateValidators () {
+    public updateValidators() {
     }
 
     public setAmpErrors () {
@@ -31,45 +33,45 @@ export class BaseControl implements OnDestroy {
         } );
     }
 
-    set errors ( errors ) {
+    set errors( errors ) {
         this._errors = errors;
     }
 
-    get errors () {
+    get errors() {
         return this._errors;
     }
 
-    set id ( value ) {
+    set id( value ) {
         this._id = value;
     }
 
-    get id () {
+    get id() {
         return this._id + addDashOrNothing( this.index );
     }
 
-    set controlGroup ( _cg ) {
+    set controlGroup( _cg ) {
         this._controlGroup = _cg;
         this.createAndJoinControl();
     }
 
-    get controlGroup () {
+    get controlGroup() {
         return this._controlGroup;
     }
 
-    ngOnInit () {
+    ngOnInit() {
         this.createAndJoinControl();
     }
 
-    ngOnDestroy () : any {
-        if ( ! this.keepControl ) {
+    ngOnDestroy() : any {
+        if ( !this.keepControl ) {
             if ( this.controlGroup && this.controlGroup.contains( this.id ) ) {
                 this.controlGroup.removeControl( this.id );
             }
         }
     }
 
-    createAndJoinControl () {
-        if ( ! this.createdAndJoinedControl ) {
+    createAndJoinControl() {
+        if ( !this.createdAndJoinedControl ) {
             // if we have the fdn provided by controlGroup , use it otherwise generate a radnom string
             this.createRandomId();
             if ( this.controlGroup ) {
@@ -77,7 +79,7 @@ export class BaseControl implements OnDestroy {
                     this.control = <FormControl> this.controlGroup.get( this.id );
                 } else {
                     this.control = new FormControl();
-                    this.controlGroup.addControl( this.id , this.control );
+                    this.controlGroup.addControl( this.id, this.control );
                 }
             } else {
                 this.control = new FormControl();
@@ -87,39 +89,39 @@ export class BaseControl implements OnDestroy {
         }
     }
 
-    get disabled () {
-        return this._disabled;
+    get disabled() : boolean {
+        return (this.isInSummaryState || this._disabled) ? true : null;
     }
 
-    set disabled ( value ) {
+    set disabled( value ) {
         this._disabled = isTrue( value );
     }
 
-    get required () {
+    get required() {
         return this._required;
     }
 
-    set required ( value ) {
+    set required( value ) {
         this._required = isTrue( value );
         this.updateValidators();
     }
 
-    set customValidator ( customValidator : Function ) {
+    set customValidator( customValidator : Function ) {
         this._customValidator = customValidator;
         this.updateValidators();
     }
 
-    get customValidator () {
+    get customValidator() {
         return this._customValidator;
     }
 
-    get randomizedId () {
+    get randomizedId() {
         return this._randomString;
     }
 
-    protected createRandomId () {
+    protected createRandomId() {
         if ( this.controlGroup && this.controlGroup.__fdn ) {
-            this._randomString = [ ...this.controlGroup.__fdn , this.id ].join( '-' );
+            this._randomString = [ ...this.controlGroup.__fdn, this.id ].join( '-' );
         } else {
             this._randomString = generateRandomString();
         }

@@ -1,11 +1,8 @@
-import { async , ComponentFixture , TestBed, inject } from '@angular/core/testing';
-import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable, Output } from '@angular/core';
-import { FormControl , FormsModule , ReactiveFormsModule , FormGroup, FormBuilder } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ElementRef, EventEmitter, Input, Injectable } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { MockScrollService } from '../../services/mock-scroll.service';
-import { MockFormModelService } from '../../services/mock-form-mode.service';
-import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { FormSectionService } from '../../../app/services/form-section/form-section.service';
 import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
@@ -18,26 +15,26 @@ class ScrollService1 {
 
     public $scrolled : EventEmitter<any>;
 
-    constructor () {
-        this.$scrolled  = new EventEmitter();
+    constructor() {
+        this.$scrolled = new EventEmitter();
     }
- }
-describe( 'amp standalone menu tests' , () => {
+}
+describe( 'amp standalone menu tests', () => {
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule , AmpStandAloneMenuModule ] ,
+            imports : [ FormsModule, ReactiveFormsModule, AmpStandAloneMenuModule ],
             declarations : [
                 TestComponent,
                 TestComponent1,
                 TestComponent2
-            ] ,
-            providers    : [
-                { provide : ElementRef , useClass : MockElementRef } ,
-                { provide : Window , useClass : window } ,
-                { provide : ComponentFixtureAutoDetect , useValue : true },
-                { provide : ScrollService , useClass: ScrollService1 },
-                { provide : AmpStandAloneMenuComponent , useClass: TestComponent2 },
+            ],
+            providers : [
+                { provide : ElementRef, useClass : MockElementRef },
+                { provide : Window, useClass : window },
+                { provide : ComponentFixtureAutoDetect, useValue : true },
+                { provide : ScrollService, useClass : ScrollService1 },
+                { provide : AmpStandAloneMenuComponent, useClass : TestComponent2 },
                 ProgressObserverService,
                 BrowserDomAdapter,
                 FormSectionService,
@@ -46,7 +43,7 @@ describe( 'amp standalone menu tests' , () => {
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'amp-standalone-menu check for shown element ' , () => {
+    it( 'amp-standalone-menu check for shown element ', () => {
         let fixture : ComponentFixture<TestComponent1> = TestBed.createComponent( TestComponent1 );
         let compiledTestComponentNav = fixture.debugElement;
         let compiledNav = compiledTestComponentNav.query( By.css( 'nav' ) );
@@ -70,9 +67,9 @@ class MockElementRef implements ElementRef {
 class TestComponent {
     private form : FormGroup;
 
-    constructor(private _builder : FormBuilder,
-                private scrollService : ScrollService) {
-        this.form = this._builder.group({ });
+    constructor( private _builder : FormBuilder,
+                 private scrollService : ScrollService ) {
+        this.form = this._builder.group( {} );
     }
 }
 // test to see if the shown flag is triggered
@@ -81,7 +78,7 @@ class TestComponent {
     <nav *ngIf="showNavigation">This element is visible</nav>
     `
 } )
-class TestComponent1  {
+class TestComponent1 {
     public showNavigation : boolean = false;
 
     constructor() {
@@ -97,10 +94,10 @@ class TestComponent1  {
 class TestComponent2 {
     public form : FormGroup;
 
-    constructor(private _builder : FormBuilder,
-                private scrollService : ScrollService) {
+    constructor( private _builder : FormBuilder,
+                 private scrollService : ScrollService ) {
 
-        this.form = this._builder.group({ });
+        this.form = this._builder.group( {} );
     }
 
 }

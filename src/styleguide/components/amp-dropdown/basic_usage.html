@@ -1,28 +1,28 @@
 <form #formModel='ngForm' class='nl-form'>
-    <div class='p palm-p0' >
+    <div class='p palm-p0'>
 
         <amp-dropdown
-            class='1/3 palm-1/1'
-            #dropDown
-            [attr.theme]="themeService.theme.attr"
-            [isInSummaryState]='isInSummaryState'
-            [id]='"Title"'
-            [label]='"Title"'
-            [fieldItemKey]='"value"'
-            [fieldValueKey]='"label"'
-            [options]='titleOptions'
-            [controlGroup]="controlGroup"
-            [required]="true">
+                class='1/3'
+                #dropDown
+                [attr.theme]="themeService.theme.attr"
+                [isInSummaryState]='isInSummaryState'
+                [id]='"Title"'
+                [label]='"Title"'
+                [fieldItemKey]='"value"'
+                [fieldValueKey]='"label"'
+                [options]='titleOptions'
+                [controlGroup]="controlGroup"
+                [required]="true">
             <template let-option="option">
                 {{ option.label }}
             </template>
         </amp-dropdown>
-
+        <amp-button (click)="isInSummaryState=!isInSummaryState">Disabled {{ isInSummaryState }}</amp-button>
         Errros :
         <pre>
             {{ TitleControl?.errors | json }}
         </pre>
-        <amp-button [disabled]='controlGroup.invalid' class='btn btn-ok'>isValid </amp-button>
+        <amp-button [disabled]='controlGroup.invalid' class='btn btn-ok'>isValid</amp-button>
         value <br>
         <pre>
             {{ controlGroup.value | json }}
@@ -36,13 +36,13 @@
             Pre selected ( retrieved ).
         </h2>
         <amp-country
-            class='2/3'
-            #dropDown
-            [attr.theme]="themeService.theme.attr"
-            [isInSummaryState]='isInSummaryState'
-            [id]='"Country"'
-            [controlGroup]="retrievedControlGroup"
-            [required]="true">
+                class='2/3'
+                #dropDown
+                [attr.theme]="themeService.theme.attr"
+                [isInSummaryState]='isInSummaryState'
+                [id]='"Country"'
+                [controlGroup]="retrievedControlGroup"
+                [required]="true">
             <template let-option="option">
                 {{ option.country }}
             </template>
@@ -58,7 +58,6 @@
         <!--<div style='; text-align:left ; background-color: lightgrey'>-->
         <!--Control is valid : {{ control.valid }}-->
         <!--</div>-->
-
 
 
     </div>

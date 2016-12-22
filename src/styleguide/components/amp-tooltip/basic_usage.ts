@@ -1,15 +1,13 @@
-import { Component , AfterViewInit , ChangeDetectorRef , ViewChild , ViewEncapsulation } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
+import { Component, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { ThemeService } from '../../services/theme';
-import { ScrollService } from '../../../app/services/scroll/scroll.service';
 @Component( {
-    templateUrl   : 'src/styleguide/components/amp-tooltip/basic_usage.html' ,
-    styles        : [ require( './basic_usage.scss' ).toString() ] ,
-    selector      : 'amp-tooltip-basic-usage' ,
+    templateUrl : './basic_usage.html',
+    styles : [ require( './basic_usage.scss' ).toString() ],
+    selector : 'amp-tooltip-basic-usage',
     encapsulation : ViewEncapsulation.None
 } )
 
 export default class AmpTooltipComponentBasicUsage {
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
+    constructor( private  themeService : ThemeService, private _cd : ChangeDetectorRef ) {
     }
 }

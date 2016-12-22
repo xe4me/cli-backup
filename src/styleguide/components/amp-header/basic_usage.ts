@@ -4,7 +4,7 @@ import { ThemeService } from '../../services/theme';
 @Component(
     {
         selector    : 'amp-header-basic-usage' ,
-        templateUrl : 'src/styleguide/components/amp-header/basic_usage.html' ,
+        templateUrl : './basic_usage.html' ,
         styles      : [ require( './basic_usage.scss' ).toString() ] ,
     } )
 export default class AmpHeaderBasicUsage {

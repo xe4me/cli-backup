@@ -1,18 +1,7 @@
-import {
-    Component ,
-    ViewContainerRef ,
-    ChangeDetectorRef ,
-    Input ,
-    ElementRef ,
-    OnInit
-} from '@angular/core';
-import { AmpBlockLoaderDirective } from '../../amp-block-loader.directive';
+import { Component , ViewContainerRef , ChangeDetectorRef , ElementRef , OnInit } from '@angular/core';
 import { FormSectionService } from '../../services/form-section/form-section.service';
 import { FormModelService } from '../../services/form-model/form-model.service';
 import { ProgressObserverService } from '../../services/progress-observer/progress-observer.service';
-import { AmpReviewItem } from '../../blocks/amp-review/amp-review-item/amp-review-item.component';
-import { AmpReviewSection } from '../../blocks/amp-review/amp-review-section/amp-review-section.component';
-import { AmpStickyOnScrollDirective } from '../../modules/amp-directives/directives/auto-sticky-on-scroll/amp-sticky-on-scroll.directive';
 import { ScrollService } from '../../services/scroll/scroll.service';
 @Component( {
     selector   : 'review-section' ,
@@ -44,12 +33,7 @@ import { ScrollService } from '../../services/scroll/scroll.service';
         </div>
     </div>  
  ` ,
-    styles   : [ require('./review-section.component.scss') ] ,
-    directives : [
-        AmpBlockLoaderDirective,
-        AmpReviewItem,
-        AmpStickyOnScrollDirective
-    ]
+    styles   : [ require('./review-section.component.scss') ]
 } )
 export class ReviewSectionComponent implements OnInit {
 

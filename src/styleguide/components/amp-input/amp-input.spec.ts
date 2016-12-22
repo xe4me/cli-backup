@@ -33,7 +33,7 @@ describe( 'amp-input component' , () => {
             let compiledLabel         = compiledTestComponent.query( By.css( '.first-name label' ) );
             expect( compiledLabel.name ).toBe( 'label' );
             expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Name' );
-            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.firstNameCmp.randomizedId + '-input' );
+            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.firstNameCmp.randomizedId );
         } );
 
         it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
@@ -43,7 +43,7 @@ describe( 'amp-input component' , () => {
             let Component             = fixture.componentInstance;
             let compiledInput         = compiledTestComponent.query( By.css( '.first-name input' ) );
             expect( compiledInput.nativeElement.name ).toBe( Component.firstNameCmp.randomizedId );
-            expect( compiledInput.nativeElement.id ).toBe( Component.firstNameCmp.randomizedId + '-input' );
+            expect( compiledInput.nativeElement.id ).toBe( Component.firstNameCmp.randomizedId );
             expect( compiledInput.nativeElement.type ).toBe( 'text' );
             expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.firstNameCmp.randomizedId );
         } );

@@ -1,25 +1,25 @@
-import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , ViewChild } from '@angular/core';
-import { ReactiveFormsModule , FormsModule } from '@angular/forms';
-import { AmpDropdownNewModule } from '../../../app/modules/amp-dropdown-new';
-xdescribe( 'amp-street-types component' , () => {
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AmpDropdownModule } from '../../../app/modules/amp-dropdown';
+xdescribe( 'amp-street-types component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ ReactiveFormsModule , FormsModule , AmpDropdownNewModule ] ,
+            imports : [ ReactiveFormsModule, FormsModule, AmpDropdownModule ],
             declarations : [
                 AmpdropdownTest
             ]
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'Should contain 1 dropdown input field with proper data-automation-id and name attributes ' , () => {
+    it( 'Should contain 1 dropdown input field with proper data-automation-id and name attributes ', () => {
         let fixture : ComponentFixture<AmpdropdownTest> = TestBed.createComponent( AmpdropdownTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampdropdownTest = fixture.debugElement;
-        let Component       = ampdropdownTest.componentInstance;
-        let dropdown        = Element.querySelector( 'select' );
-        let options         = dropdown.children;
+        let Component = ampdropdownTest.componentInstance;
+        let dropdown = Element.querySelector( 'select' );
+        let options = dropdown.children;
         expect( dropdown ).toBeDefined();
         expect( dropdown.id ).toBe( Component.dropDownCmp.randomizedId );
         expect( dropdown.getAttribute( 'data-automation-id' ) ).toBe( 'slt_' + Component.dropDownCmp.randomizedId );
@@ -43,14 +43,14 @@ xdescribe( 'amp-street-types component' , () => {
 class AmpdropdownTest {
     @ViewChild( 'dropDownCmp' ) dropDownCmp;
 
-    get control () {
+    get control() {
         return this.dropDownCmp.control;
     }
 
     isInSummaryState = false;
     clickedOnThedropdown;
 
-    private onAcknowledgeSelect ( value ) {
+    private onAcknowledgeSelect( value ) {
         this.clickedOnThedropdown = value;
     }
 }

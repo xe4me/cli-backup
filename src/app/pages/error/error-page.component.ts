@@ -1,16 +1,6 @@
 import { Component } from '@angular/core';
-
-import {
-    Router ,
-    CanDeactivate ,
-    ActivatedRouteSnapshot ,
-    RouterStateSnapshot
-} from '@angular/router';
-
+import { CanDeactivate , ActivatedRouteSnapshot , RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-
-import { AmpLogoComponent } from '../../modules/amp-logo/components/amp-logo/amp-logo.component';
-
 @Component( {
     selector : 'error-page' ,
     template : `
@@ -36,8 +26,7 @@ import { AmpLogoComponent } from '../../modules/amp-logo/components/amp-logo/amp
         'headline' ,
         'message' ,
         'logoImage'
-    ],
-    directives : [ AmpLogoComponent ]
+    ]
 } )
 export class ErrorPageComponent implements CanDeactivate<ErrorPageComponent> {
     static CLASS_NAME = 'ErrorPageComponent';

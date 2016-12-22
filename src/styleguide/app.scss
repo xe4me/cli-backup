@@ -1,10 +1,6 @@
 @import "../styles/require";
 @import "../styleguide/assets/font/font";
-@import '../../node_modules/@angular2-material/core/style/core';
-@import "../../node_modules/@angular2-material/core/style/_variables";
-@import "../../node_modules/@angular2-material/core/style/_mixins";
-@import "../../node_modules/@angular2-material/core/style/_theme-functions";
-@import "../../node_modules/@angular2-material/core/style/_default-theme";
+
 .example-inside{
     padding: 20px;
 }

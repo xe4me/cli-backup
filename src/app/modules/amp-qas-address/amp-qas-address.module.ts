@@ -8,11 +8,11 @@ import { AmpTypeaheadModule } from '../amp-typeahead/amp-typeahead.module';
 import { AmpErrorModule } from '../amp-error/amp-error.module';
 import { Http } from '@angular/http';
 import { AmpInputsModule } from '../amp-inputs';
-import { AmpDropdownNewModule } from '../amp-dropdown-new/amp-dropdown.module';
+import { AmpDropdownModule } from '../amp-dropdown/amp-dropdown.module';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpButtonModule } from '../amp-button/amp-button.module';
 import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
-import { AmpFormRowModule } from '../amp-form-row/amp-form-row.module';
+import { AmpFormModule } from '../amp-form/amp-form.module';
 import { AmpGroupButtonsModule } from '../amp-group-buttons/amp-group-buttons.module';
 const DECLARATIONS = [
     AmpQasAddressComponent ,
@@ -23,13 +23,13 @@ const DECLARATIONS = [
 @NgModule( {
     declarations : [ ...DECLARATIONS ] ,
     imports      : [
-        AmpFormRowModule ,
+        AmpFormModule ,
         AmpSharedRootModule ,
         AmpGroupButtonsModule ,
         AmpButtonModule ,
         AmpInputsModule ,
         AmpCheckboxModule ,
-        AmpDropdownNewModule ,
+        AmpDropdownModule ,
         AmpErrorModule ,
         AmpTypeaheadModule
     ] ,

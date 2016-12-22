@@ -1,67 +1,73 @@
-import { Component , AfterViewInit , ChangeDetectorRef , ViewChild } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
+import { Component, AfterViewInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
-import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown-new';
+import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown';
+import { AmpFormGroup } from '../../../app/base-control';
 @Component( {
-    templateUrl : 'src/styleguide/components/amp-dropdown/basic_usage.html' ,
-    styles   : [ require( './basic_usage.scss' ).toString() ] ,
-    selector : 'amp-dropdown-new-basic-usage'
+    templateUrl : './basic_usage.html',
+    styles : [ require( './basic_usage.scss' ).toString() ],
+    selector : 'amp-dropdown-basic-usage'
 } )
 
-export default class AMPDropDownNewComponentBasicUsage implements AfterViewInit {
+export default class AMPDropDownComponentBasicUsage implements AfterViewInit {
     @ViewChild( 'dropDown' ) dropDown : AmpDropdownComponent;
-    private controlGroup : FormGroup          = new FormGroup( {} );
-    private retrievedControlGroup : FormGroup = new FormGroup( {
-        'CountryDropdown' : new FormGroup( {
-            'SelectedItem' : new FormControl( 'AUS' ) ,
-            'Query'        : new FormControl( 'Australia' )
+    private controlGroup : AmpFormGroup = new AmpFormGroup( {} );
+    private retrievedControlGroup : AmpFormGroup = new AmpFormGroup( {
+        'CountryDropdown' : new AmpFormGroup( {
+            'SelectedItem' : new FormControl( 'AUS' ),
+            'Query' : new FormControl( 'Australia' )
         } )
     } );
-    private isInSummaryState                  = false;
-    private titleOptions                      = [
-        { value : 'mr' , label : 'Mr' } ,
-        { value : 'mrs' , label : 'Mrs' } ,
-        { value : 'miss' , label : 'Miss' } ,
-        { value : 'ms' , label : 'Ms' } ,
-        { value : 'dr' , label : 'Dr' }
+    private isInSummaryState = false;
+    private titleOptions = [
+        { value : 'mr', label : 'Mr' },
+        { value : 'mrs', label : 'Mrs' },
+        { value : 'miss', label : 'Miss' },
+        { value : 'ms', label : 'Ms' },
+        {
+            value : 'aLongLabel', label : 'Rather than continue building infrastructure around the npm client, we' +
+        ' decided to try looking at the problem more holistically. '
+        }
     ];
-    private acknowledge                       = {
-        id          : 'acknowledge' ,
-        disabled    : false ,
-        required    : true ,
-        checked     : false ,
+    private acknowledge = {
+        id : 'acknowledge',
+        disabled : false,
+        required : true,
+        checked : false,
         scrollOutOn : null
     };
 
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ) {
+    constructor( private  themeService : ThemeService, private _cd : ChangeDetectorRef ) {
+        this.controlGroup.__fdn = [ 'Application', 'ContactDetails' ];
+        this.retrievedControlGroup.__fdn = [ 'Application', 'ContactDetails' ];
     }
 
-    ngAfterViewInit () {
+    ngAfterViewInit() {
 
         // To prevent the ExpressionChangedAfterHasBeenCheckedException, new Change Detection rule
         this._cd.detectChanges();
     }
 
-    get TitleDropdownControlGroup () {
-        return <FormGroup> this.controlGroup.controls[ 'Title' + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME ];
+    get TitleDropdownControlGroup() {
+        return <AmpFormGroup> this.controlGroup.controls[ 'Title' + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME ];
     }
 
-    get CountryDropdownControlGroup () {
-        return <FormGroup> this.controlGroup.controls[ 'Country' + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME ];
+    get CountryDropdownControlGroup() {
+        return <AmpFormGroup> this.controlGroup.controls[ 'Country' + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME ];
     }
 
-    get TitleControl () {
+    get TitleControl() {
         return this.TitleDropdownControlGroup.controls[ AmpDropdownComponent.QUERY_CONTROL_NAME ];
     }
 
-    get CountryControl () {
+    get CountryControl() {
         return this.CountryDropdownControlGroup.controls[ AmpDropdownComponent.QUERY_CONTROL_NAME ];
     }
 
-    private setTo ( _value ) {
+    private setTo( _value ) {
         this.TitleControl.setValue( _value );
     }
 
-    private onAcknowledgeSelect ( value ) {
+    private onAcknowledgeSelect( value ) {
     }
 }

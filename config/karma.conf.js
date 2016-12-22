@@ -3,7 +3,7 @@
  */
 
 module.exports = function(config) {
-  var testWebpackConfig = require('./webpack.test.js');
+  var testWebpackConfig = require('./webpack.test.js')({env: 'test'});
 
   var configuration = {
 
@@ -25,7 +25,11 @@ module.exports = function(config) {
      *
      * we are building the test environment in ./spec-bundle.js
      */
-    files: [ { pattern: './config/spec-bundle.js', watched: false } ],
+    files: [
+
+        { pattern: './config/_process_env.js', watched: false },
+        { pattern: './config/spec-bundle.js', watched: false }
+    ],
 
     /*
      * preprocess matching files before serving them to the browser
@@ -36,18 +40,24 @@ module.exports = function(config) {
     // Webpack Config at ./webpack.test.js
     webpack: testWebpackConfig,
 
-    coverageReporter: {
+  coverageReporter: {
       dir : 'reports/',
       reporters: [
-        { type: 'text-summary', subdir: '.' },
-        { type: 'json', subdir: '.' },
-        { type: 'html', subdir: '.' },
-        { type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml' }
+          { type: 'text-summary', subdir: '.' },
+          { type: 'json', subdir: '.' },
+          { type: 'html', subdir: '.' },
+          { type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml' }
       ]
+  },
+
+    remapCoverageReporter: {
+      'text-summary': null,
+      json: './coverage/coverage.json',
+      html: './coverage/html'
     },
 
     // Webpack please don't spam the console when running in karma!
-    webpackServer: { noInfo: true },
+    webpackMiddleware: { stats: 'errors-only'},
 
     /*
      * test results reporter to use
@@ -55,12 +65,12 @@ module.exports = function(config) {
      * possible values: 'dots', 'progress'
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-    reporters: [ 'mocha', 'coverage', 'dots', 'junit' ],
+    reporters: [ 'mocha', 'coverage', 'remap-coverage','dots', 'junit' ],
 
-    //junit reporting
-    junitReporter: {
-        outputFile: '../reports/mocha-report.xml'
-    },
+  //junit reporting
+  junitReporter: {
+      outputFile: '../reports/mocha-report.xml'
+  },
 
     // web server port
     port: 9876,
@@ -86,7 +96,7 @@ module.exports = function(config) {
     ],
 
     customLaunchers: {
-      Chrome_travis_ci: {
+      ChromeTravisCi: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
@@ -99,8 +109,10 @@ module.exports = function(config) {
     singleRun: true
   };
 
-  if(process.env.TRAVIS){
-    configuration.browsers = ['Chrome_travis_ci'];
+  if (process.env.TRAVIS){
+    configuration.browsers = [
+      'ChromeTravisCi'
+    ];
   }
 
   config.set(configuration);

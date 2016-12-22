@@ -17,7 +17,6 @@
                 {{ option.title }}
             </template>
         </amp-typeahead>
-        <amp-error [controlGroup]="searchControlGroup"></amp-error>
         <br>
         controlGroup value
         <highlight color-default>
@@ -32,12 +31,12 @@
             </highlight>
             value :
             <highlight color-default>
-                {{ control?.value }}
+                {{ control?.getRawValue() }}
             </highlight>
 
             selected value ( should be an object):
             <highlight color-default>
-                {{ selectControl?.value | json }}
+                {{ selectControl?.getRawValue() | json }}
             </highlight>
         </p>
         <p>

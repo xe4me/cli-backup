@@ -6,14 +6,11 @@ import {
     FormGroup,
     FormBuilder
 } from '@angular/forms';
-import { Highlight } from '../../highlight';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
+
 @Component( {
-    templateUrl : 'src/styleguide/components/amp-qas-address-multi/basic_usage.html',
+    templateUrl : './basic_usage.html',
     styles : [ require( './basic_usage.scss' ).toString() ],
-    directives : [
-        Highlight
-    ],
     selector : 'amp-qas-address-multi-basic-usage'
 } )
 

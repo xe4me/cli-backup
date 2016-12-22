@@ -1,256 +1,180 @@
 @import '../../../../../styles/abstracts';
-@import './themes/theme-form';
-@import './themes/theme-tools';
 
-$amp-dropdown-input-border-width : 1px;
-$amp-dropdown-input-border-width-hover : 2px;
+// Dropdown basic settings
+$dropdown-width                                : 300px;
+$dropdown-height                               : 50px;
+$dropdown-color                                : $amp-colour-grey-darkest;
+$dropdown-title-color                          : $dropdown-color;
+$dropdown-font-size                            : 14px;
+$dropdown-padding                              : 15px 20px;
+$dropdown-border                               : 2px solid $amp-colour-grey-dark;
+$dropdown-chev-color                           : $amp-colour-sky-blue;
 
-$amp-dropdown-select-height : $input-height;
+// Dropdown active settings
+$dropdown-active-border-color                  : $amp-colour-sky-blue;
+$dropdown-active-border                        : 2px solid $dropdown-active-border-color;
 
-$amp-dropdown-label-font-size : $input-placeholder-font-size;
+// Dropdown options-container settings
+$dropdown-options-container-border              : $dropdown-border;
+$dropdown-options-container-background-color    : $amp-colour-white;
 
-$amp-dropdown-options-border-width : 2px;
+// Dropdown option settings
+$dropdown-option-color                         : $amp-colour-grey-darkest;
+$dropdown-option-font-size                     : $dropdown-font-size;
+$dropdown-option-padding                       : $dropdown-padding;
+$dropdown-option-height                        : $dropdown-height;
+$dropdown-option-border-top                    : $dropdown-border;
+$dropdown-option-padding-right-hidden          : 4em;
+$dropdown-option-hover-color                   : $amp-colour-primary;
+$dropdown-option-hover-background-color        : $amp-colour-grey-semiwhite;
+$dropdown-option-selected-background-color     : $amp-colour-grey-semiwhite;
 
-$amp-dropdown-number-options : 4;
-
-$amp-dropdown-option-border-width : 1px;
-$amp-dropdown-option-line-height : 1.5em;
-$amp-dropdown-option-min-height : 46px;
-$amp-dropdown-option-padding-top : 12px;
-$amp-dropdown-option-padding-bottom : $amp-dropdown-option-padding-top;
-$amp-dropdown-option-padding-right : 30px;
-$amp-dropdown-option-padding-right-hidden : 4em;
-$amp-dropdown-option-padding-left : 20px;
-
-$amp-dropdown-from-bottom : 10px;
-$amp-dropdown-from-top : $amp-dropdown-select-height - $amp-dropdown-input-border-width - $amp-dropdown-label-font-size - $amp-dropdown-from-bottom;
+// Dropdown disabled settings
+$dropdown-disabled-color                       : $amp-colour-grey-darkest;
+$dropdown-chev-disabled-color                  : $amp-colour-grey-darkest;
 
 :host {
-    display        : inline-block;
-    vertical-align : bottom;
-    @include media-query('tablet-and-up') {
-        max-width : 600px;
+    display  : block;
+    position : relative;
+    select {
+        display : none;
     }
-    @include media-query('palm') {
-        max-width : 280px; // there are some paddings around always , this is for that
-        width     : 100%;
+}
+
+@mixin border-active {
+    border-color : $dropdown-active-border-color;
+    @include box-shadow(inset 0 0 0 1px $dropdown-active-border-color);
+}
+
+.amp-dropdown-control {
+    &:focus + .amp-dropdown-label {
+        @include border-active();
+    }
+}
+
+.amp-dropdown-title {
+    margin-bottom : 20px;
+    color         : $dropdown-title-color;
+    @include amp-family('open-sans-semibold');
+    &.invisible {
+        visibility : hidden;
     }
 }
 
 .amp-dropdown {
-    min-width           : 140px;
-    position            : relative;
+    position : relative;
+    min-width  : $dropdown-width;
+    margin-top : 15px;
+}
 
-    -webkit-user-select : none;
-    -moz-user-select    : none;
-    -ms-user-select     : none;
-    user-select         : none;
+.amp-dropdown-label {
+    font-size     : $dropdown-font-size;
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+    text-align    : left;
+    max-height    : $dropdown-height;
+    border        : $dropdown-border;
+    padding       : $dropdown-padding;
+    @include amp-family('open-sans-semibold');
+    color         : $dropdown-color;
+    display       : block;
+    cursor        : pointer;
 
-    &--summary-state {
-        min-width           : auto;
-        -webkit-user-select : text;
-        -moz-user-select    : text;
-        -ms-user-select     : text;
-        user-select         : text;
-    }
-
-    * {
-        box-sizing : border-box;
-    }
-
-    &__select {
-        border-bottom : $amp-dropdown-input-border-width solid transparent;
-        color         : $amp-colour-sky-blue;
-        cursor        : pointer;
-        font-family   : "Open Sans", "Helvetica", "Arial", sans-serif;
-        font-size     : $input-font-size;
-        font-weight   : 300;
-        line-height   : 1.2em;
-        min-height    : $amp-dropdown-select-height;
-        padding       : 25px 25px 0 0;
-        position      : relative;
-        z-index       : 1;
-
-        @include media-query('palm') {
-            font-size : $input-font-size-mobile;
-        }
-
-        &::after {
-            border-top : 1px solid $input-border-color-default;
-            content    : "";
-            display    : block;
-            height     : $amp-dropdown-input-border-width;
-            position   : absolute;
-            bottom     : -$amp-dropdown-input-border-width;
-            width      : 100%;
-        }
-
-        select:not([disabled]) + &:hover::after,
-        select:focus + &::after {
-            border-color : $input-border-color-hover;
-            border-width : $amp-dropdown-input-border-width-hover;
-            bottom       : -$amp-dropdown-input-border-width-hover;
-        }
-
-        &-value {
-            opacity        : 0;
-            vertical-align : bottom;
-
-            @include media-query('palm') {
-                line-height : 1;
-            }
-
-            .amp-dropdown--has-selection & {
-                opacity : 1;
-            }
-
-            .amp-dropdown--animate & {
-                transition : opacity 0.4s 0.2s ease;
-            }
-        }
-
-        .amp-dropdown--summary-state & {
-            cursor : default;
-
-            &::after {
-                display : none;
-            }
-        }
-
-        .ng-invalid.ng-dirty:not(:focus) + &::after {
-            border-color : $amp-colour-alert-danger !important;
-        }
-
-        .amp-dropdown--is-open & {
-            color : $input-color-focus;
-        }
-
-        select[disabled] ~ & {
-            color : $disabled-color !important;
-        }
-    }
-
-    &__label {
-        color            : $input-placeholder-color;
-        font-size        : $amp-dropdown-label-font-size;
-        font-weight      : 700;
-        line-height      : $amp-dropdown-label-font-size;
-        position         : absolute;
-        top              : $amp-dropdown-from-top;
-        left             : 0;
-        visibility       : visible;
-        pointer-events   : none;
-        transform-origin : 0 0;
-        z-index          : 3;
-
-        .amp-dropdown--has-selection & {
-            top : 0;
-        }
-
-        .amp-dropdown--animate & {
-            transition : top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-    }
-
-    &__icon {
-        color       : #004983;
-        font-size   : 18px;
+    .amp-dropdown-icon {
+        color       : $dropdown-chev-color;
+        font-size   : $dropdown-font-size;
         line-height : 0;
         margin      : 0;
         position    : absolute;
-        top         : $amp-dropdown-from-top;
-        right       : 0;
+        top         : 20px;
+        right       : 15px;
         z-index     : 3;
-
-        .ng-invalid.ng-dirty:not(:focus) + div > & {
-            color : $amp-colour-alert-danger;
-        }
-
-        .amp-dropdown--is-open & {
-            color : #004983 !important;
-        }
-
-        .amp-dropdown--summary-state & {
-            display : none;
+    }
+    &.selected {
+        color : $amp-colour-sky-blue;
+    }
+    &:not(.disabled) {
+        @include hover-focus-active {
+            @include border-active();
         }
     }
-
-    &__options {
-        background             : #fff;
-        border                 : $amp-dropdown-options-border-width solid $amp-colour-sky-blue;
-        font-size              : 15px;
-        margin-top             : -$amp-dropdown-input-border-width;
-        opacity                : 1;
-        overflow-x             : hidden;
-        overflow-y             : auto;
-        position               : absolute;
-        width                  : 100%;
-        z-index                : 15;
-
-        // IE Scrollbar
-        scrollbar-base-color   : $amp-colour-sky-blue;
-        scrollbar-track-color  : #f4f4f4;
-        scrollbar-arrow-color  : $amp-colour-sky-blue;
-        scrollbar-shadow-color : $amp-colour-sky-blue;
-
-        // Webkit Scrollbar
-        &::-webkit-scrollbar {
-            width : 6px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background : #f4f4f4;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background : $amp-colour-sky-blue;
-        }
-
-        @for $i from 1 through 10 {
-
-            &--#{$i} {
-                max-height : ($amp-dropdown-option-min-height * $i) + ($amp-dropdown-option-border-width * ($i - 1)) + ($amp-dropdown-options-border-width * 2);
-            }
-        }
-
-        &--hidden {
-            border-top    : 0;
-            border-bottom : 0;
-            height        : 0;
-            margin        : 0;
-            padding-right : 18px; // Scrollbar offset
-            position      : relative;
-            visibility    : hidden;
-
-            .amp-dropdown__option {
-                padding-right : $amp-dropdown-option-padding-right-hidden;
-                white-space   : nowrap;
-            }
-        }
-
-        select[disabled] ~ & {
-            display : none !important;
+    &.disabled {
+        cursor : default;
+        color  : $dropdown-disabled-color;
+        .amp-dropdown-icon {
+            color : $dropdown-chev-disabled-color;
         }
     }
+}
 
-    &__option {
-        cursor      : pointer;
-        line-height : $amp-dropdown-option-line-height;
-        min-height  : $amp-dropdown-option-min-height;
-        padding     : $amp-dropdown-option-padding-top $amp-dropdown-option-padding-right $amp-dropdown-option-padding-bottom $amp-dropdown-option-padding-left;
-        width       : auto;
+.amp-dropdown-options-container {
+    background             : $dropdown-options-container-background-color;
+    border                 : $dropdown-options-container-border;
+    border-top             : 0;
+    font-size              : $dropdown-option-font-size;
+    opacity                : 1;
+    overflow-x             : hidden;
+    overflow-y             : auto;
+    position               : absolute;
+    width                  : 100%;
+    z-index                : 10;
 
-        &--active,
-        &:hover {
-            background : #e5ecf2;
+    // IE Scrollbar
+    scrollbar-base-color   : $amp-colour-sky-blue;
+    scrollbar-track-color  : #f4f4f4;
+    scrollbar-arrow-color  : $amp-colour-sky-blue;
+    scrollbar-shadow-color : $amp-colour-sky-blue;
+
+    // Webkit Scrollbar
+    &::-webkit-scrollbar {
+        width : 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background : #f4f4f4;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background : $amp-colour-sky-blue;
+    }
+
+    &.amp-dropdown-hidden {
+        border-top    : 0;
+        border-bottom : 0;
+        height        : 0;
+        margin        : 0;
+        padding-right : 18px; // Scrollbar offset
+        position      : relative;
+        visibility    : hidden;
+
+        .amp-dropdown-option {
+            padding-right : $dropdown-option-padding-right-hidden;
+            white-space   : nowrap;
         }
+    }
+}
 
-        &:focus {
-            outline : none;
+.amp-dropdown-option {
+    @include amp-family('open-sans-semibold');
+    color       : $dropdown-option-color;
+    border-top  : $dropdown-option-border-top;
+    line-height : 1.5em;
+    min-height  : $dropdown-option-height;
+    padding     : $dropdown-option-padding;
+    width       : auto;
+    &:not([disabled]) {
+        cursor : pointer;
+        @include hover-focus {
+            background : $dropdown-option-hover-background-color;
+            outline    : none;
+            color      : $dropdown-option-hover-color;
         }
-
-        & + & {
-            border-top : $amp-dropdown-option-border-width solid #CCD2D9;
-        }
+    }
+    &.amp-dropdown-active {
+        background : $dropdown-option-selected-background-color;
+    }
+    &:first-child {
+        border-top : 0;
     }
 }

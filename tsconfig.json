@@ -5,23 +5,21 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-     "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "baseUrl": "./src",
-    "paths": [
-    ],
+    "paths": {
+    },
     "lib": [
       "dom",
-      "es6"
+      "es7"
     ],
     "types": [
-      "core-js",
       "hammerjs",
       "jasmine",
       "node",
-      "protractor",
       "selenium-webdriver",
       "source-map",
       "uglify-js",

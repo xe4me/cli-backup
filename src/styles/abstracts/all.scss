@@ -1,3 +1,190 @@
 @import './defaults';
-@import './mixins';
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content : " "; // 1
+    display : table; // 2
+  }
+  &:after {
+    clear : both;
+  }
+}
+
+@mixin transition($args...) {
+  -webkit-transition : $args;
+  -moz-transition    : $args;
+  -ms-transition     : $args;
+  -o-transition      : $args;
+  transition         : $args;
+}
+
+@mixin ptToPx($ptSize) {
+  font-size : $ptSize* (1.33) px;
+}
+
+@mixin rtl($prop, $value, $rtl-value) {
+  #{$prop}: $value;
+
+  html[dir=rtl] & {
+    #{$prop}     : $rtl-value;
+    unicode-bidi : embed;
+  }
+  body[dir=rtl] & {
+    #{$prop}     : $rtl-value;
+    unicode-bidi : embed;
+  }
+
+  bdo[dir=rtl] {
+    direction    : rtl;
+    unicode-bidi : bidi-override;
+  }
+  bdo[dir=ltr] {
+    direction    : ltr;
+    unicode-bidi : bidi-override;
+  }
+
+}
+
+%blue-background {
+  background : rgb(173, 216, 240);
+  background : -moz-linear-gradient(left, rgba(173, 216, 240, 1) 0%, rgba(156, 211, 241, 1) 84%);
+  background : -webkit-linear-gradient(left, rgba(173, 216, 240, 1) 0%, rgba(156, 211, 241, 1) 84%);
+  background : linear-gradient(to right, rgba(173, 216, 240, 1) 0%, rgba(156, 211, 241, 1) 84%);
+  filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#add8f0', endColorstr='#9cd3f1', GradientType=1);
+}
+
+%dark-blue-background {
+  background : rgb(2, 31, 64);
+  background : -moz-linear-gradient(left, rgba(2, 31, 64, 1) 24%, rgba(4, 43, 87, 1) 80%);
+  background : -webkit-linear-gradient(left, rgba(2, 31, 64, 1) 24%, rgba(4, 43, 87, 1) 80%);
+  background : linear-gradient(to right, rgba(2, 31, 64, 1) 24%, rgba(4, 43, 87, 1) 80%);
+  filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#021f40', endColorstr='#042b57', GradientType=1);
+}
+
+@mixin media-small {
+  @media screen and (max-width : 320px) {
+    @content;
+  }
+}
+
+@mixin media-desk-amp {
+
+  @media screen and (max-width : 1280px) and (min-width : 1024.1px) {
+    @content;
+  }
+}
+
+@mixin opacity($opacity) {
+  filter         : alpha(opacity=$opacity);
+  -moz-opacity   : $opacity;
+  -khtml-opacity : $opacity;
+  opacity        : $opacity;
+}
+
+@mixin transform($transforms) {
+  -moz-transform    : $transforms;
+  -o-transform      : $transforms;
+  -ms-transform     : $transforms;
+  -webkit-transform : $transforms;
+  transform         : $transforms;
+}
+
+@mixin box-shadow($shaddow) {
+  -webkit-box-shadow : $shaddow;
+  -moz-box-shadow    : $shaddow;
+  box-shadow         : $shaddow;
+  -o-box-shadow      : $shaddow;
+}
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing : $box-model; // Safari <= 5
+  -moz-box-sizing    : $box-model; // Firefox <= 19
+  box-sizing         : $box-model;
+}
+
+@mixin border-radius($radius , $where:"") {
+  -webkit-border#{$where}-radius : $radius;
+  border#{$where}-radius         : $radius;
+  background-clip                : padding-box; /* stops bg color from leaking outside the border: */
+}
+
+@mixin webkit-translate-zero() {
+  transform                   : translate3d(0, 0, 0);
+  -webkit-transform           : translate3d(0, 0, 0);
+  -webkit-backface-visibility : hidden;
+  backface-visibility         : hidden;
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation : #{$str};
+  animation         : #{$str};
+  -moz-animation    : #{$str};
+  -o-animation      : #{$str};
+}
+
+@mixin hover {
+  &:hover {
+    @content
+  }
+}
+
+@mixin hover-focus {
+
+  &:focus,
+  &:hover {
+    @content
+  }
+
+}
+
+@mixin plain-hover-focus {
+
+  &,
+  &:focus,
+  &:hover {
+    @content
+  }
+
+}
+
+@mixin hover-focus-active {
+
+  &:focus,
+  &:active,
+  &:hover {
+    @content
+  }
+
+}
+
+@mixin reset-text {
+
+                  // We deliberately do NOT reset font-size or word-wrap.
+  font-style      : normal;
+  font-weight     : normal;
+  letter-spacing  : normal;
+  line-break      : auto;
+
+  text-align      : left; // Fallback for where `start` is not supported
+  text-align      : start;
+  text-decoration : none;
+  text-shadow     : none;
+  text-transform  : none;
+  white-space     : normal;
+  word-break      : normal;
+  word-spacing    : normal;
+}
+
 @import './font-sizes';

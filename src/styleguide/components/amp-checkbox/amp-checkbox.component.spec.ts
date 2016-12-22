@@ -1,6 +1,6 @@
-import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , ElementRef , ViewChild } from '@angular/core';
-import { FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
@@ -10,60 +10,60 @@ import { AmpCheckboxModule } from '../../../app/modules/amp-checkbox';
 class MockElementRef implements ElementRef {
     nativeElement = {};
 }
-describe( 'amp-checkbox component' , () => {
+describe( 'amp-checkbox component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule , AmpCheckboxModule ] ,
+            imports : [ FormsModule, ReactiveFormsModule, AmpCheckboxModule ],
             declarations : [
                 AmpCheckboxTest
-            ] ,
-            providers    : [
-                { provide : FormModelService , useClass : MockFormModelService } ,
-                { provide : ElementRef , useClass : MockElementRef } ,
-                { provide : ScrollService , useClass : MockScrollService } ,
-                ProgressObserverService ,
-                { provide : Window , useClass : window }
+            ],
+            providers : [
+                { provide : FormModelService, useClass : MockFormModelService },
+                { provide : ElementRef, useClass : MockElementRef },
+                { provide : ScrollService, useClass : MockScrollService },
+                ProgressObserverService,
+                { provide : Window, useClass : window }
             ]
         } );
         TestBed.compileComponents();
     } ) );
-    it( 'Should contain 1 checkbox input field with proper data-automation-id and name attributes ' , () => {
+    it( 'Should contain 1 checkbox input field with proper data-automation-id and name attributes ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampCheckboxTest = fixture.debugElement;
-        let Component       = ampCheckboxTest.componentInstance;
-        let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
-        let Labels          = Element.querySelector( 'label' );
+        let Component = ampCheckboxTest.componentInstance;
+        let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
+        let Labels = Element.querySelector( 'label' );
         expect( Checkbox ).toBeDefined();
         expect( Checkbox.name ).toBe( Component.checkboxCmp.randomizedId );
         expect( Checkbox.id ).toBe( Component.checkboxCmp.randomizedId );
         expect( Checkbox.getAttribute( 'data-automation-id' ) ).toBe( 'checkbox_' + Component.checkboxCmp.randomizedId );
     } );
-    it( 'Should be required initially when required attr has set to true and the control should be invalid ' , () => {
+    it( 'Should be required initially when required attr has set to true and the control should be invalid ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampCheckboxTest = fixture.debugElement;
-        let Component       = ampCheckboxTest.componentInstance;
-        let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
-        let Labels          = Element.querySelector( 'label' );
-        expect( Component.checkbox.required ).toBeTruthy();
+        let Component = ampCheckboxTest.componentInstance;
+        let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
+        let Labels = Element.querySelector( 'label' );
+        expect( Component.checkbox.required ).toBe(true);
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
         expect( Component.control.errors.required.toString() ).toEqual( Component.checkbox.errors.required.toString() );
     } );
-    it( 'Should have the control with validity as true ,  after setting the required attr to false ' , () => {
+    it( 'Should have the control with validity as true ,  after setting the required attr to false ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampCheckboxTest = fixture.debugElement;
-        let Component       = ampCheckboxTest.componentInstance;
-        let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
-        let Labels          = Element.querySelector( 'label' );
+        let Component = ampCheckboxTest.componentInstance;
+        let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
+        let Labels = Element.querySelector( 'label' );
         fixture.detectChanges();
-        expect( Component.checkbox.required ).toBeTruthy();
+        expect( Component.checkbox.required ).toBe(true);
         expect( Component.control.valid ).toBeFalsy();
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
@@ -71,17 +71,17 @@ describe( 'amp-checkbox component' , () => {
         let ToggleRequired = Element.querySelector( '#toggleRequired' );
         ToggleRequired.click();
         fixture.detectChanges();
-        expect( Component.control.valid ).toBeTruthy();
+        expect( Component.control.valid ).toBe(true);
         expect( Component.control.errors ).toBeNull();
     } );
-    it( 'Should be checked initially if the checked attr has set to true' , () => {
+    it( 'Should be checked initially if the checked attr has set to true', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampCheckboxTest = fixture.debugElement;
-        let Component       = ampCheckboxTest.componentInstance;
-        let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
-        let Labels          = Element.querySelector( 'label' );
+        let Component = ampCheckboxTest.componentInstance;
+        let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
+        let Labels = Element.querySelector( 'label' );
         fixture.detectChanges();
         expect( Component.checkbox.checked ).toBeFalsy();
         expect( Component.control.valid ).toBeFalsy();
@@ -91,56 +91,56 @@ describe( 'amp-checkbox component' , () => {
         let ToggleChecked = Element.querySelector( '#toggleChecked' );
         ToggleChecked.click();
         fixture.detectChanges();
-        expect( Component.checkbox.checked ).toBeTruthy();
-        expect( Component.control.valid ).toBeTruthy();
+        expect( Component.checkbox.checked ).toBe(true);
+        expect( Component.control.valid ).toBe(true);
         expect( Component.control.errors ).toBeNull();
     } );
-    it( 'Should be in summary mode if isInSummaryState is set to true ' , () => {
+    it( 'Should be in summary mode if isInSummaryState is set to true ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampCheckboxTest = fixture.debugElement;
-        let Component       = ampCheckboxTest.componentInstance;
-        let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
-        let Labels          = Element.querySelector( 'label' );
-        let ContainerElem   = Element.querySelector( '.container' );
-        expect( (' ' + ContainerElem.className + ' ').indexOf( ' hidden ' ) ).toBe( - 1 );
+        let Component = ampCheckboxTest.componentInstance;
+        let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
+        let Labels = Element.querySelector( 'label' );
+        let ContainerElem = Element.querySelector( '.container' );
+        expect( (' ' + ContainerElem.className + ' ').indexOf( ' hidden ' ) ).toBe( -1 );
         expect( Component.isInSummaryState ).toBeFalsy();
         // Let's change the checked to true
         let ToggleSummary = Element.querySelector( '#toggleSummary' );
         ToggleSummary.click();
         fixture.detectChanges();
         /// Let's check again
-        expect( Component.isInSummaryState ).toBeTruthy();
+        expect( Component.isInSummaryState ).toBe(true);
     } );
-    it( 'Should emit a select event to the parent component after clicking on the checkbox ' , () => {
+    it( 'Should emit a select event to the parent component after clicking on the checkbox ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampCheckboxTest = fixture.debugElement;
-        let Component       = ampCheckboxTest.componentInstance;
-        let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
-        let Label           = Element.querySelector( 'label' );
-        let ContainerElem   = Element.querySelector( '.container' );
-        expect( Component.clickedOnTheCheckbox ).toBeUndefined();
+        let Component = ampCheckboxTest.componentInstance;
+        let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
+        let Label = Element.querySelector( 'label' );
+        let ContainerElem = Element.querySelector( '.container' );
+        expect( Component.checkboxEmittedValue ).toBeUndefined();
         Label.click();
         fixture.detectChanges();
-        expect( Component.clickedOnTheCheckbox ).toBeTruthy();
+        expect( Component.checkboxEmittedValue ).toBe(true);
     } );
-    it( 'Should update the control value to true after clicking on the checkbox ' , () => {
+    it( 'Should update the control value to true after clicking on the checkbox ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
         fixture.detectChanges();
-        let Element         = fixture.nativeElement;
+        let Element = fixture.nativeElement;
         let ampCheckboxTest = fixture.debugElement;
-        let Component       = ampCheckboxTest.componentInstance;
-        let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
-        let Label           = Element.querySelector( 'label' );
-        let ContainerElem   = Element.querySelector( '.container' );
+        let Component = ampCheckboxTest.componentInstance;
+        let Checkbox = Element.querySelector( 'input[type="checkbox"]' );
+        let Label = Element.querySelector( 'label' );
+        let ContainerElem = Element.querySelector( '.container' );
         expect( Component.control.value ).toBeFalsy();
         Label.click();
         fixture.detectChanges();
-        expect( Component.clickedOnTheCheckbox ).toBeTruthy();
-        expect( Component.control.value ).toBeTruthy();
+        expect( Component.checkboxEmittedValue ).toBe(true);
+        expect( Component.control.value ).toBe(true);
     } );
 } );
 @Component( {
@@ -156,7 +156,7 @@ describe( 'amp-checkbox component' , () => {
                     [errors]='checkbox.errors'
                     [scrollOutOn]='checkbox.scrollOutOn'
                     [id]='checkbox.id'
-                    (select)='onAcknowledgeSelect($event)'>
+                    (change)='onAcknowledgeSelect($event)'>
                 <div class='heading heading-contxtual-label'>
                     I agree to advertising my practice's register internally, and for to seek out
                     practices that
@@ -173,28 +173,28 @@ describe( 'amp-checkbox component' , () => {
 } )
 class AmpCheckboxTest {
     @ViewChild( 'checkboxCmp' ) checkboxCmp;
-                                controlGroup : FormGroup = new FormGroup( {} );
+    controlGroup : FormGroup = new FormGroup( {} );
 
-    get control () {
+    get control() {
         return this.controlGroup.controls[ 'anId' ];
     }
 
     isInSummaryState = false;
-    clickedOnTheCheckbox;
+    checkboxEmittedValue;
     private checkbox = {
-        id          : 'anId' ,
-        disabled    : false ,
-        errors      : {
+        id : 'anId',
+        disabled : false,
+        errors : {
             required : {
                 text : 'Checkbox field is required'
             }
-        } ,
-        required    : true ,
-        checked     : false ,
+        },
+        required : true,
+        checked : false,
         scrollOutOn : null
     };
 
-    private onAcknowledgeSelect ( value ) {
-        this.clickedOnTheCheckbox = value;
+    private onAcknowledgeSelect( $event) {
+        this.checkboxEmittedValue = $event.target.checked;
     }
 }

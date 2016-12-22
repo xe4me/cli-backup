@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MdInputModule } from '@angular2-material/input';
 import { AmpInputComponent } from './components/amp-input/amp-input.component';
 import { AmpContactNumberComponent } from './components/amp-contact-number/amp-contact-number.component';
 import { AmpEmailComponent } from './components/amp-email/amp-email.component';
@@ -15,26 +14,25 @@ import { AmpAccountNumberComponent } from './components/amp-account-number/amp-a
 import { AmpTaxFileNumberComponent } from './components/amp-tax-file-number/amp-tax-file-number.component';
 
 const DECLARATIONS = [
-    AmpInputComponent ,
-    AmpContactNumberComponent ,
-    AmpEmailComponent ,
-    AmpFirstNameComponent ,
-    AmpHomeNumberComponent ,
-    AmpLastNameComponent ,
-    AmpMobileNumberComponent ,
-    AmpPasswordComponent ,
+    AmpInputComponent,
+    AmpContactNumberComponent,
+    AmpEmailComponent,
+    AmpFirstNameComponent,
+    AmpHomeNumberComponent,
+    AmpLastNameComponent,
+    AmpMobileNumberComponent,
+    AmpPasswordComponent,
     AmpWorkNumberComponent,
     AmpAccountNumberComponent,
     AmpTaxFileNumberComponent
 ];
 @NgModule( {
-    declarations : DECLARATIONS ,
-    imports      : [
-        AmpSharedRootModule ,
-        AmpErrorModule ,
-        MdInputModule
-    ] ,
-    exports      : DECLARATIONS
+    declarations : DECLARATIONS,
+    imports : [
+        AmpSharedRootModule,
+        AmpErrorModule
+    ],
+    exports : DECLARATIONS
 } )
 export class AmpInputsModule {
 }

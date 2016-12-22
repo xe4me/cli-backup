@@ -1,5 +1,5 @@
 import { async , ComponentFixture , TestBed, inject } from '@angular/core/testing';
-import { Component , provide , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable, Output } from '@angular/core';
+import { Component  , ElementRef, ViewChild, Injector, EventEmitter, Input, Injectable, Output } from '@angular/core';
 import { DomUtils } from '../../../app/modules/amp-utils/dom-utils';
 import { By } from '@angular/platform-browser';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';

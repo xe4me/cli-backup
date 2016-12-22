@@ -20,8 +20,7 @@ import { FormGroup } from '@angular/forms';
 @Component( {
     selector   : 'menu-frame' ,
     template   : require( './menu-frame.application.component.html' ) ,
-    styles     : [ require( './menu-frame.application.component.scss' ).toString() ] ,
-    directives : [ StickyProgressHeaderBlockComponent , AmpButton , AmpBlockLoaderDirective ]
+    styles     : [ require( './menu-frame.application.component.scss' ).toString() ]
 } )
 export class MenuFrameApplicationBlockComponent {
     static CLASS_NAME              = 'MenuFrameApplicationBlockComponent';

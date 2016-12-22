@@ -3,33 +3,38 @@
 This is needed because in IE the if the block only has one input and you type in the input
 and press enter , the input still remains untouched and the scroller wont go next because
 the whole block remains untouched.
-
 -->
-<md-input
-    #input
-    [class.has-value]='isInSummaryState && controlIsEmpty()'
-    (focus)='onFocused($event)'
-    (keyup)='onKeyupEvent($event)'
-    (keyup.enter)='markAsTouched()'
-    (blur)='onBlured($event)'
-    [disabled]='isInSummaryState || disabled'
-    class='md-input'
-    [class.amp-input-focused]='inputFocus'
-    [class.label-hidden]='labelHidden'
-    [aria-label]='randomizedId'
-    [name]='randomizedId'
-    [type]='type'
-    [id]='randomizedId'
-    [tabIndex]='isActive?tabindex:-1'
-    [maxLength]='maxLength'
-    [formControl]='control'
-    [autoComplete]='autoComplete'
-    [placeholder]='required || !showOptional ? label : label + " (optional)"'>
-    <span class="currency" *ngIf='currency' md-prefix>{{currency}}&nbsp;</span>
-    <span *ngIf="!isInSummaryState" md-suffix><ng-content></ng-content></span>
-</md-input>
+<div class="amp-input">
+    <span class="currency" *ngIf='currency'>{{currency}}&nbsp;</span>
+    <input class="control"
+           #input
+           (focus)='onFocused($event)'
+           (keyup)='onKeyupEvent($event)'
+           (keyup.enter)='markAsTouched()'
+           (blur)='onBlured($event)'
+           [class.label-hidden]='labelHidden'
+           [class.has-value]='!controlIsEmpty()'
+           [class.has-prefix]='currency'
+           [attr.aria-label]='randomizedId'
+           [attr.data-automation-id]="'text_'+randomizedId"
+           [attr.disabled]="isItDisabled"
+           [attr.name]='randomizedId'
+           [attr.type]='type'
+           [attr.id]="randomizedId"
+           [attr.maxlength]='maxLength'
+           [attr.autocomplete]='autoComplete'
+           [attr.placeholder]="placeholder && !label ?placeholder:''"
+           [formControl]='control'>
+    <span><ng-content></ng-content></span>
+    <span (click)='handleIconRightClick()'
+          *ngIf='showIconRight && iconRight && !isInSummaryState'
+          class="icon icon--{{ iconRight }} icon-right">
+    </span>
+    <span class="bar"></span>
+    <label class="label" [attr.for]="randomizedId">
+        {{ required || !showOptional ? label:label + " (optional)" }}
+    </label>
+</div>
+
 <span *ngIf='isInSummaryState && controlIsEmpty()' class='empty-line'>---</span>
-<span (click)='handleIconRightClick()' *ngIf='showIconRight && iconRight && !isInSummaryState'
-      class="icon icon--{{ iconRight }} icon-right"></span>
-<span class='summary-text' [innerHTML]='input.value'></span>
 <amp-control-error *ngIf="showErrorComponent" [control]="control"></amp-control-error>

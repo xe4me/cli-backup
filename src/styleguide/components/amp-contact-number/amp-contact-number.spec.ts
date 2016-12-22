@@ -1,51 +1,51 @@
-import { async , ComponentFixture , TestBed } from '@angular/core/testing';
-import { Component , ElementRef , ViewChild } from '@angular/core';
-import { FormsModule , ReactiveFormsModule , FormGroup } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-describe( 'amp-contact-number component' , () => {
+describe( 'amp-contact-number component', () => {
     let _fixture : ComponentFixture<TestComponent>;
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule , ReactiveFormsModule , AmpInputsModule ] ,
+            imports : [ FormsModule, ReactiveFormsModule, AmpInputsModule ],
             declarations : [
                 TestComponent
-            ] ,
-            providers    : [
-                { provide : ComponentFixtureAutoDetect , useValue : true }
+            ],
+            providers : [
+                { provide : ComponentFixtureAutoDetect, useValue : true }
             ]
         } );
         TestBed.compileComponents();
         _fixture = TestBed.createComponent( TestComponent );
         _fixture.detectChanges();
     } ) );
-    it( 'should contain a label as Contact Number' , () => {
+    it( 'should contain a label as Contact Number', () => {
         _fixture.detectChanges();
         let compiledTestComponent = _fixture.debugElement;
-        let Component             = _fixture.componentInstance;
-        let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
+        let Component = _fixture.componentInstance;
+        let compiledLabel = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Contact number' );
-        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.contactNumberCmp.randomizedId + '-input' );
+        expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.contactNumberCmp.randomizedId);
     } );
-    it( 'should contain an input text element with the correct name, id and data-automation-id attribute' , () => {
+    it( 'should contain an input text element with the correct name, id and data-automation-id attribute', () => {
         _fixture.detectChanges();
         let compiledTestComponent = _fixture.debugElement;
-        let Component             = _fixture.componentInstance;
-        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        let Component = _fixture.componentInstance;
+        let compiledInput = compiledTestComponent.query( By.css( 'input' ) );
         expect( compiledInput.nativeElement.name ).toBe( Component.contactNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.id ).toBe( Component.contactNumberCmp.randomizedId + '-input' );
+        expect( compiledInput.nativeElement.id ).toBe( Component.contactNumberCmp.randomizedId );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_' + Component.contactNumberCmp.randomizedId );
     } );
-    it( 'should be required it it is empty' , () => {
+    it( 'should be required it it is empty', () => {
         _fixture.detectChanges();
         const ComponentInstance = _fixture.componentInstance;
         expect( <any> ComponentInstance.control.errors ).not.toBeNull();
         expect( (<any> ComponentInstance.control.errors).required ).toBeDefined();
     } );
-    it( 'should have pattern error if the length is less than 8 character' , () => {
+    it( 'should have pattern error if the length is less than 8 character', () => {
         _fixture.detectChanges();
         const ComponentInstance = _fixture.componentInstance;
         ComponentInstance.control.setValue( '12345' );
@@ -53,7 +53,7 @@ describe( 'amp-contact-number component' , () => {
         expect( (<any> ComponentInstance.control.errors).required ).toBeUndefined();
         expect( (<any> ComponentInstance.control.errors).pattern ).toBeDefined();
     } );
-    it( 'should have maxLength error if the length is less than 20 character' , () => {
+    it( 'should have maxLength error if the length is less than 20 character', () => {
         _fixture.detectChanges();
         const ComponentInstance = _fixture.componentInstance;
         ComponentInstance.control.setValue( '1234567890123456789000' );
@@ -80,10 +80,10 @@ class MockElementRef implements ElementRef {
 } )
 class TestComponent {
     @ViewChild( 'contactNumberCmp' ) contactNumberCmp;
-                                     id                       = 'contact-number';
-                                     controlGroup : FormGroup = new FormGroup( {} );
+    id = 'contact-number';
+    controlGroup : FormGroup = new FormGroup( {} );
 
-    get control () {
+    get control() {
         return this.controlGroup.controls[ this.id ];
     }
 }

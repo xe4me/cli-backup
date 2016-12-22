@@ -35,7 +35,7 @@ v 3.0.0
 
           "amp-ddc-ui-core": "^2.0.0",
           "amp-styleguide-core": "^1.0.0",
-          
+
         Add the following in devDependencies
             "bundle-loader": "^0.5.4",
             "compression-webpack-plugin": "^0.3.1",
@@ -47,3 +47,9 @@ v 3.0.0
             "phantomjs-prebuilt": "^2.1.7",
     # Converted Control, ControlGroup, ControlArray, FormBuilder from @angular/common to @angular/forms
     # Outstanding items. 1, Existing issue with amp-block-loader console error. 2, amp group button and amp radio group button throws 'More than one custom value accessor matches from control with unspecified name attribute'
+
+
+v 4.0.0
+  - Upgrade Angular from RC5 to 2.2.1
+  - componentResolver ==> componentFactoryResolver
+  - resolveComponent  ==> resolveComponentFactory

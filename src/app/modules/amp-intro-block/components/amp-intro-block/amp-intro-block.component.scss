@@ -1,0 +1,236 @@
+@import '../../../../../styles/abstracts';
+@import 'intro-block-buttons';
+
+$font-size : $amp-base-font-size * 2 / 5 !default;
+
+$logo-height : 60px !default;
+$logo-width : 220px !default;
+
+:host {
+    @include transform(translate3d(0, 0 ,0));
+    /**
+
+    Apologies in advance for the use of !important
+
+    */
+    padding          : 26px 80px 60px 0;
+    width            : 100%;
+    display          : block;
+    background-color : $amp-colour-white;
+    color            : #fff;
+    overflow         : hidden;
+    @include media-query(lap) {
+        padding-right : 0;
+    }
+
+    .intro-container {
+        @include media-query(lap-and-up) {
+            margin-left : 210px;
+        }
+        @include media-query(tablet) {
+            margin-left : 0;
+        }
+        @include media-query(palm) {
+            margin-left : 0;
+        }
+    }
+
+    @include media-query(tablet) {
+        padding-right : 0;
+    }
+
+    @include media-query(palm) {
+        padding-right  : 0;
+        padding-bottom : 40px;
+    }
+
+    @include media-query(palm) {
+        div.md-input-wrapper {
+            margin : 10px 0;
+        }
+    }
+
+    .intro-logo {
+        background-position   : left bottom;
+        background-attachment : scroll;
+        background-repeat     : no-repeat;
+        background-size       : 90%;
+        margin-bottom         : 10px;
+        min-height            : 60px;
+
+        @include media-query(palm) {
+            margin-bottom : 30px;
+        }
+
+        /*
+            Logos separated for stylistic purposes only
+        */
+
+        &.amp-financial-logo-blue-text-bg {
+            width : $logo-width;
+        }
+
+        &.amp-hillross-logo-black-text-bg {
+            width : $logo-width;
+        }
+
+        &.amp-charter-logo-blue-text-bg {
+            width : $logo-width;
+        }
+
+        &.amp-logo-white-text-bg {
+            width : $logo-width;
+        }
+
+        &.amp-logo-blue-text-bg {
+            width : $logo-width;
+        }
+
+        &.amp-charter-logo-blue-text-bg {
+            width : $logo-width;
+        }
+
+        &.amp-hillross-logo-white-text-bg {
+            width : $logo-width;
+        }
+    }
+
+    .intro-block-button-container {
+        > .btn {
+            width : 100%;
+        }
+    }
+
+    .intro-article {
+        @include media-query(tablet-and-up) {
+            margin : 60px 0 44px 0;
+        }
+
+        @include media-query(palm) {
+            margin-bottom : 24px;
+        }
+    }
+
+    .intro-list {
+        color                   : $amp-colour-grey-darkest;
+        font-size               : $font-size-medium;
+        padding                 : 0;
+        margin                  : 0;
+        list-style              : none;
+        display                 : -ms-flexbox;
+        display                 : -webkit-flex;
+        display                 : flex;
+        -webkit-flex-direction  : row;
+        -ms-flex-direction      : row;
+        flex-direction          : row;
+        -webkit-flex-wrap       : wrap;
+        -ms-flex-wrap           : wrap;
+        flex-wrap               : wrap;
+        -webkit-justify-content : flex-start;
+        -ms-flex-pack           : start;
+        justify-content         : flex-start;
+        -webkit-align-content   : stretch;
+        -ms-flex-line-pack      : stretch;
+        align-content           : stretch;
+        -webkit-align-items     : flex-start;
+        -ms-flex-align          : start;
+        align-items             : flex-start;
+
+        > .list-item {
+            display      : flex;
+            flex-grow    : 1;
+            margin-right : 34px;
+            @include media-query(lap) {
+                margin-right : 0;
+            }
+            > .intro-label {
+                flex           : 1;
+                display        : flex;
+                flex-direction : row;
+            }
+            > .intro-label {
+                padding : 0 12px 0 0;
+            }
+        }
+    }
+
+    .intro-message-heading {
+        margin-bottom : 46px;
+
+        @include media-query(palm) {
+            margin-bottom : 24px;
+        }
+
+    }
+
+    .intro-tagline {
+        color         : $amp-colour-grey-darkest-most;
+        margin-bottom : 0;
+
+        @include media-query(palm) {
+            //  margin-bottom: 38px;
+        }
+
+    }
+
+    .intro-para {
+        color         : $amp-colour-grey-darkest-most;
+        margin-bottom : 40px;
+        line-height   : 30px;
+    }
+
+    label {
+        display : inline-block !important;
+        float   : left;
+        .label {
+            color : $amp-colour-grey-darkest;
+        }
+    }
+
+    md-input.md-input div.md-input-wrapper {
+        margin-top : 20px;
+    }
+
+    /* Theming */
+
+    &[theme='tools'] {
+        padding          : 60px 0;
+        background-color : $amp-colour-primary;
+
+        .intro-list {
+            color : $amp-colour-white;
+        }
+
+        .heading-intro {
+            color : $amp-colour-white;
+        }
+
+        .intro-tagline {
+            color : $amp-colour-white;
+        }
+        .intro-para {
+            color : $amp-colour-white;
+        }
+
+        //.intro-logo {
+        //    background-image : url($amp-ddc-blocks-public-asset + 'images/logo/AMP-Logo-primary.svg');
+        //}
+
+        label .container .off {
+            border-color : $amp-colour-white !important;
+        }
+
+        .label {
+            color       : $amp-colour-white;
+            margin-left : 4px;
+        }
+
+        .md-input div.md-input-wrapper .md-input-placeholder {
+            color : $amp-colour-white;
+        }
+
+        md-input.md-input div.md-input-wrapper {
+            margin-top : 20px;
+        }
+    }
+}

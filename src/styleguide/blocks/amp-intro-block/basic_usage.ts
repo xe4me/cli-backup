@@ -1,23 +1,18 @@
-import { Component , ChangeDetectorRef , ElementRef , Input , ViewChild } from '@angular/core';
-import { ScrollService } from '../../../app/services/scroll/scroll.service';
-import { FormModelService } from '../../../app/services/form-model/form-model.service';
-import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
+import { Component, ChangeDetectorRef, ElementRef, Input, ViewChild } from '@angular/core';
 import { AmpButton } from '../../../app/components/amp-button/amp-button.component';
-import { AmpIntroBlockComponent } from '../../../app/blocks/amp-intro-block/amp-intro-block.component';
-import { FormBlock } from '../../../app/form-block';
 import { ThemeService } from '../../services/theme';
+import { AmpIntroBlockComponent } from 'app/modules/amp-intro-block/components/amp-intro-block/amp-intro-block.component';
 @Component( {
-    selector    : 'intro-block-basic-usage' ,
-    directives  : [ AmpButton , AmpIntroBlockComponent ] ,
-    templateUrl : 'src/styleguide/blocks/amp-intro-block/basic_usage.html' ,
-    styles      : [ require( './basic_usage.scss' ).toString() ]
+    selector : 'intro-block-basic-usage',
+    templateUrl : './basic_usage.html',
+    styles : [ require( './basic_usage.scss' ).toString() ]
 } )
 
 export default class IntroBlockBasicUsage {
     /**
      * import the context from the amp-intro-block
      */
-    @ViewChild( AmpIntroBlockComponent ) ampIntro;
+    @ViewChild( 'intro' ) ampIntro : AmpIntroBlockComponent;
     /**
      * Use this property to set custom styles for the block.
      *
@@ -38,25 +33,25 @@ export default class IntroBlockBasicUsage {
     /**
      * THIS CODE IS A SAMPLE ONLY
      */
-    constructor ( private  themeService : ThemeService , private _cd : ChangeDetectorRef ,
-                  private elementRef : ElementRef ) {
+    constructor( private  themeService : ThemeService, private _cd : ChangeDetectorRef,
+                 private elementRef : ElementRef ) {
     }
 
     @Input()
-    set style ( style : string ) {
+    set style( style : string ) {
         this._style = (style && style.trim()) || '';
     }
 
-    get style () {
+    get style() {
         return this._style;
     }
 
     @Input()
-    set title ( title : string ) {
+    set title( title : string ) {
         this._title = (title && title.trim()) || '';
     }
 
-    get title () {
+    get title() {
         return this._title;
     }
 
@@ -64,26 +59,26 @@ export default class IntroBlockBasicUsage {
      * This code is just to set focus on an element and is not for general use.
      */
 
-    autoFocus () {
+    autoFocus() {
         setTimeout( () => {
             let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
             if ( inputs && inputs.length > 0 ) {
                 inputs[ 2 ].focus();
             }
-        } , 100 );
+        }, 100 );
     }
 
-    ngAfterViewInit () {
+    ngAfterViewInit() {
         this.autoFocus();
     }
 
     /**
      * create a method to trigger the intro blocks' method, then on next inside the FormBlock itself
      */
-    private proceed () {
-        this.ampIntro.proceed(); // call the method from the amp-in
-        setTimeout( () => {
+    private proceed() {
+        this.ampIntro.proceed().then( () => {
+            alert( 'intro animated ' );
             // this.onNext(); implement form block to call this method
-        } , 800 );
+        } );
     }
 }

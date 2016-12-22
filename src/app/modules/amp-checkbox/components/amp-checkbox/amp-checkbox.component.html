@@ -1,11 +1,11 @@
 <input
-        [disabled]='disabled || isInSummaryState'
         type='checkbox'
         [attr.data-automation-id]='"checkbox_" + randomizedId'
         class='sr-only'
         [checked]='checked'
         (change)='onChange($event)'
         [attr.id]='randomizedId'
+        [attr.disabled]='disabled'
         [attr.name]='randomizedId'
         [formControl]='control'/>
 <label [attr.for]='randomizedId'>
@@ -16,5 +16,4 @@
     <div class="content">
         <ng-content></ng-content>
     </div>
-</label>
-<amp-control-error *ngIf="showErrorComponent" [control]="control"></amp-control-error>
+</label><amp-control-error *ngIf="showErrorComponent" [control]="control"></amp-control-error>

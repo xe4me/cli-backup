@@ -1,52 +1,52 @@
 import {
-    QueryList ,
-    Component ,
-    ViewChildren ,
-    ContentChild ,
-    TemplateRef ,
-    EventEmitter ,
-    Input ,
-    Output ,
-    ChangeDetectionStrategy ,
-    ChangeDetectorRef ,
-    AfterViewInit ,
-    ViewChild ,
+    QueryList,
+    Component,
+    ViewChildren,
+    ContentChild,
+    TemplateRef,
+    EventEmitter,
+    Input,
+    Output,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    AfterViewInit,
+    ViewChild,
     OnDestroy
 } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
-import { Observable , Subscription } from 'rxjs/Rx';
-import { isPresent , KeyCodes } from '../../../amp-utils';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subscription } from 'rxjs/Rx';
+import { isPresent, KeyCodes } from '../../../amp-utils';
 import { FocuserDirective } from '../../../amp-directives';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 import { AmpFormGroup } from '../../../../base-control';
 @Component( {
-    selector        : 'amp-typeahead' ,
-    queries         : {
+    selector : 'amp-typeahead',
+    queries : {
         itemTemplate : new ContentChild( TemplateRef )
-    } ,
-    template        : require( './amp-typeahead.component.html' ) ,
-    styles          : [ require( './amp-typeahead.component.scss' ).toString() ] ,
+    },
+    template : require( './amp-typeahead.component.html' ),
+    styles : [ require( './amp-typeahead.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
-    public static SEARCH_ADDRESS_CONTROL_GROUP_NAME    = 'search';
+    public static SEARCH_ADDRESS_CONTROL_GROUP_NAME = 'search';
     public static SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX = 'query';
-    public static SELECTED_CONTROL_ID_POSTFIX          = 'selectedItem';
+    public static SELECTED_CONTROL_ID_POSTFIX = 'selectedItem';
     public selectedControl;
     public searchControlGroup;
     @ViewChildren( FocuserDirective ) focusers : QueryList<FocuserDirective>;
     @ViewChild( 'input' ) ampInput : AmpInputComponent;
-    @Output( 'selected' ) $selected                    = new EventEmitter<any>();
-    @Output( 'deSelected' ) $deSelected                = new EventEmitter<any>();
-    @Input() maxHeight : string                        = '400px';
+    @Output( 'selected' ) $selected = new EventEmitter<any>();
+    @Output( 'deSelected' ) $deSelected = new EventEmitter<any>();
+    @Input() maxHeight : string = '400px';
     @Input() id;
-    @Input() selectedItemIdentifier                    = 'id';
-    @Input() selectedItemValueIdentifier               = 'label';
-    @Input() isInSummaryState                          = false;
+    @Input() selectedItemIdentifier = 'id';
+    @Input() selectedItemValueIdentifier = 'label';
+    @Input() isInSummaryState = false;
     @Input() apiCallDebounceTime                       = 0;
-    @Input() minTriggerLength                          = 0;
-    @Input() errors                                    = {};
+    @Input() minTriggerLength = 0;
+    @Input() errors = {};
     @Input() selectLabel;
     @Input() label;
     @Input() controlGroup : AmpFormGroup;
@@ -55,22 +55,22 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
     @Input() isActive;
     @Input() index;
     @Input() showErrorComponent = true;
-    @Input() keepControl : boolean                     = false;
+    @Input() keepControl : boolean = false;
     private subscription : Subscription;
-    private showNoResults : boolean                    = false;
-    private INPUT_FOCUSER : number                     = 0;
-    private LIST_FOCUSER : number                      = 1;
-    private selectedOption                             = {};
-    private _required : boolean                        = false;
-    private _id : string                               = 'default';
-    private _optionsHidden : boolean                   = true;
-    private doApiQuery : boolean                       = false;
-    private filteredList : any[]                       = [];
+    private showNoResults : boolean = false;
+    private INPUT_FOCUSER : number = 0;
+    private LIST_FOCUSER : number = 1;
+    private selectedOption = {};
+    private _required : boolean = false;
+    private _id : string = 'default';
+    private _optionsHidden : boolean = true;
+    private doApiQuery : boolean = false;
+    private filteredList : any[] = [];
 
-    constructor ( private _cd : ChangeDetectorRef ) {
+    constructor( private _cd : ChangeDetectorRef ) {
     }
 
-    @Input() customValidator  = () : Function => {
+    @Input() customValidator = () : Function => {
         return ( c ) => {
             if ( c.value && c.value.length >= this.minTriggerLength ) {
                 return (this.selectedControl.value !== null) ? null : {
@@ -88,41 +88,41 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         return new Observable<any>();
     };
 
-    @Input( 'required' ) set required ( value : boolean ) {
+    @Input( 'required' ) set required( value : boolean ) {
         this._required = value;
     }
 
-    get required () {
+    get required() {
         return this._required;
     }
 
-    get control () : FormControl {
-        if ( this.searchControlGroup && this.searchControlGroup.contains( this.queryControlId + addDashOrNothing( this.index ) ) ) {
-            return (<FormControl> this.searchControlGroup.controls[ this.queryControlId + addDashOrNothing( this.index ) ]);
+    get control() : FormControl {
+        if ( this.ampInput ) {
+            return this.ampInput.control;
         }
     }
 
-    get queryControlId () {
+    get queryControlId() {
         return AmpTypeaheadComponent.SEARCH_ADDRESS_QUERY_CONTROL_POSTFIX;
     }
 
-    set searchResult ( _result ) {
+    set searchResult( _result ) {
         if ( this.control ) {
             (<any> this.control).searchResult = _result;
         }
     }
 
-    get searchResult () {
+    get searchResult() {
         if ( this.control ) {
             return (<any> this.control).searchResult;
         }
     }
 
-    get isOptionsHidden () : boolean {
+    get isOptionsHidden() : boolean {
         return this._optionsHidden;
     }
 
-    ngAfterViewInit () : any {
+    ngAfterViewInit() : any {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
         if ( this.options ) {
             this.initForOptions();
@@ -132,13 +132,13 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         return undefined;
     }
 
-    ngOnInit () : void {
+    ngOnInit() : void {
         if ( this.controlGroup ) {
             if ( this.controlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) ) ) {
                 this.searchControlGroup = this.controlGroup.get( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) );
             } else {
                 this.searchControlGroup = new FormGroup( {} );
-                this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ) , this.searchControlGroup );
+                this.controlGroup.addControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME + addDashOrNothing( this.index ), this.searchControlGroup );
             }
         } else {
             this.searchControlGroup = new FormGroup( {} );
@@ -148,47 +148,47 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                 this.selectedControl = this.searchControlGroup.get( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) );
             } else {
                 this.selectedControl = new FormControl();
-                this.searchControlGroup.addControl( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ) , this.selectedControl );
+                this.searchControlGroup.addControl( AmpTypeaheadComponent.SELECTED_CONTROL_ID_POSTFIX + addDashOrNothing( this.index ), this.selectedControl );
             }
         } else {
             this.selectedControl = new FormControl();
         }
         this.searchControlGroup.__fdn = this.controlGroup && this.controlGroup.__fdn ? [
-            ...this.controlGroup.__fdn ,
+            ...this.controlGroup.__fdn,
             this.id
         ] : [
-            'default-fdn-for-' + this.id ,
+            'default-fdn-for-' + this.id,
             this.label
         ];
     }
 
-    ngOnDestroy () : void {
+    ngOnDestroy() : void {
         if ( this.subscription ) {
             this.subscription.unsubscribe();
         }
-        if ( ! this.keepControl ) {
+        if ( !this.keepControl ) {
             if ( this.controlGroup.contains( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME ) ) {
                 this.controlGroup.removeControl( AmpTypeaheadComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME );
             }
         }
     }
 
-    iconRightClickHandler ( inputCmp : AmpInputComponent , control : FormControl ) {
+    iconRightClickHandler( inputCmp : AmpInputComponent, control : FormControl ) {
         inputCmp.doOnBlurDirty = false;
         control.setValue( null );
     }
 
     private close = () : void => {
-        if ( ! this._optionsHidden ) { // when we close , we want to make sure the validation has happened for input
+        if ( !this._optionsHidden ) { // when we close , we want to make sure the validation has happened for input
             // because we manipulated the dirtyness of the input of keydown
             this.ampInput.checkErrors( true );
             this.ampInput.markControlAsDirty();
         }
         this._optionsHidden = true;
-        this.showNoResults  = false;
+        this.showNoResults = false;
     };
 
-    private open () {
+    private open() {
         if ( this.isInSummaryState ) {
             return;
         }
@@ -196,15 +196,15 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         this._optionsHidden = false;
     };
 
-    private onListFocusOut () {
+    private onListFocusOut() {
         this.focusInput();
     }
 
-    private onKeydown ( $event ) : void {
+    private onKeydown( $event ) : void {
         let keyCode = $event.keyCode;
         if ( keyCode === KeyCodes.DOWN || keyCode === KeyCodes.UP ) {
-            if ( ! this.isOptionsHidden ) {
-                this.onDownKeyPressed( keyCode , $event );
+            if ( !this.isOptionsHidden ) {
+                this.onDownKeyPressed( keyCode, $event );
                 $event.preventDefault();
             } else {
                 this.open();
@@ -212,18 +212,21 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    private selectOption ( option ) : void {
-        this.selectedOption = Object.assign( {} , option );
-        this.control.setValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim() );
-        // this.selectedControl.setValue( JSON.stringify( this.selectedOption ) );
-        this.selectedControl.setValue( this.selectedOption[ this.selectedItemIdentifier ] );
+    private selectOption( option ) : void {
+        this.selectedOption = Object.assign( {}, option );
+        this.control.setValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim(), {
+            emitEvent : false
+        } );
+        this.selectedControl.setValue( this.selectedOption[ this.selectedItemIdentifier ], {
+            emitEvent : false
+        } );
         this.ampInput.checkErrors();
         this.$selected.emit( this.selectedOption );
         this.close();
         this.focusInput();
     }
 
-    private onDownKeyPressed ( _direction , $event ) : void {
+    private onDownKeyPressed( _direction, $event ) : void {
         if ( this.focusers.toArray()[ this.LIST_FOCUSER ] ) {
             this.focusers.toArray()[ this.LIST_FOCUSER ].focus( _direction );
             this.control.markAsPristine( {
@@ -234,23 +237,23 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    private filter ( items , identifier , query , doFilter ) : Observable<any> {
+    private filter( items, identifier, query, doFilter ) : Observable<any> {
         return this.filteredList = doFilter && isPresent( query ) ? items.filter(
             ( item ) => {
-                return item[ identifier ] && item[ identifier ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
+                return item[ identifier ] && item[ identifier ].toLowerCase().indexOf( query.toLowerCase() ) !== -1;
             }
         ) : items;
     }
 
-    private focusInput () : void {
+    private focusInput() : void {
         if ( this.focusers.toArray()[ this.INPUT_FOCUSER ] ) {
-            this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( - 1 );
+            this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( -1 );
         }
     }
 
-    private initForApi () : Subscription {
+    private initForApi() : Subscription {
         this.searchResult = null;
-        this.doApiQuery   = true;
+        this.doApiQuery = true;
         if ( this.subscription ) {
             this.subscription.unsubscribe();
         }
@@ -260,7 +263,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                 .debounceTime(this.apiCallDebounceTime)
                 .distinctUntilChanged()
                 .do( ( queryString ) => {
-                    if ( ! queryString ) {
+                    if ( !queryString ) {
                         this.clearSelectedItem();
                         this.searchResult = null;
                     }
@@ -274,7 +277,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                     this.searchResult = result;
                     this._cd.markForCheck();
                     this.ampInput.checkErrors();
-                } , ( error ) => {
+                }, ( error ) => {
                     this.clearSelectedItem();
                     this.close();
                     this.searchResult = null;
@@ -284,26 +287,26 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                 } );
     }
 
-    private markInputAsUnDirty () : void {
+    private markInputAsUnDirty() : void {
         this.control.markAsPristine( {
             onlySelf : false
         } );
     }
 
-    private clearSelectedItem () : void {
+    private clearSelectedItem() : void {
         this.selectedControl.setValue( null );
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
         this.$deSelected.emit( null );
     }
 
-    private initForOptions () {
+    private initForOptions() {
         this.searchResult = this.options;
-        this.doApiQuery   = false;
+        this.doApiQuery = false;
         this.control
             .valueChanges
             .distinctUntilChanged()
             .subscribe( ( queryString ) => {
-                if ( ! queryString || queryString !== this.selectedOption[ this.selectedItemValueIdentifier ] ) {
+                if ( !queryString || queryString !== this.selectedOption[ this.selectedItemValueIdentifier ] ) {
                     this.clearSelectedItem();
                     this.ampInput.checkErrors();
                 }

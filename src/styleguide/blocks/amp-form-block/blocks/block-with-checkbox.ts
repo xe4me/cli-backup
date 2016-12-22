@@ -6,13 +6,11 @@ import {
     ChangeDetectionStrategy ,
     ViewEncapsulation
 } from '@angular/core';
-import { AmpFormBlockComponent } from '../../../../app/blocks/amp-form-block/amp-form-block.component';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
 import { ScrollService } from '../../../../app/services/scroll/scroll.service';
 import { FormModelService } from '../../../../app/services/form-model/form-model.service';
 import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
-import { FormService } from '../../../../app/services/form/form.service';
 @Component( {
     selector   : 'block-with-checkbox' ,
     template   : `
@@ -34,7 +32,6 @@ import { FormService } from '../../../../app/services/form/form.service';
             </amp-form-row>
         </amp-form-block>
     ` ,
-    directives : [ AmpFormBlockComponent ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 export class BlockWithCheckbox extends FormBlock {
@@ -42,7 +39,6 @@ export class BlockWithCheckbox extends FormBlock {
                   formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
-                  private formService : FormService ,
                   scrollService : ScrollService ,
                   progressObserver : ProgressObserverService ) {
         super( formModelService , elementRef , _cd , progressObserver , scrollService );

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-
 @Component( {
     selector    : 'grid' ,
-    templateUrl : 'src/styleguide/layout/responsive/responsive.html' ,
-    styles      : [ require( './responsive.scss' ).toString() ] ,
-    directives  : []
+    templateUrl : './responsive.html' ,
+    styles      : [ require( './responsive.scss' ).toString() ]
 } )
 
-export default class Responsive {
+export default class ResponsiveBasicUsage {
 }

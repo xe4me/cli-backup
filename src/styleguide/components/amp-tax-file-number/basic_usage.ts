@@ -4,7 +4,7 @@ import { ThemeService } from '../../services/theme';
 @Component(
     {
         selector    : 'amp-tax-file-number-basic-usage' ,
-        templateUrl : 'src/styleguide/components/amp-tax-file-number/basic_usage.html' ,
+        templateUrl : './basic_usage.html' ,
         styles      : [ require( './basic_usage.scss' ).toString() ] ,
     } )
 export default class AmpTaxFileNumberBasicUsage {
