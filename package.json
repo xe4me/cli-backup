@@ -29,8 +29,10 @@
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "web-animations-js": "^2.2.2",
-    "amp-ddc-components": "/Users/xe4me/Desktop/Dev/AMP/components",
-    "amp-styleguide-core": "/Users/xe4me/Desktop/Dev/AMP/amp-styleguide-core",
+    "amp-ddc-components": "^4.0.0",
+    "amp-styleguide-core": "^1.0.0",
+    "ddcjs-logger": "^1.0.0",
+    "ddcjs-server": "^1.0.0",
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
@@ -38,7 +40,7 @@
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "@types/hammerjs": "^2.0.33",
-    "amp-angular-cli": "/Users/xe4me/Desktop/Dev/AMP/amp-angular-cli",
+    "amp-angular-cli": "^2.0.0",
     "codelyzer": "~1.0.0-beta.3",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
