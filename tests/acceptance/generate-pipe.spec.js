@@ -8,8 +8,7 @@ var expect = require('chai').expect;
 var path = require('path');
 var tmp = require('../helpers/tmp');
 var root = process.cwd();
-var conf = require('ember-cli/tests/helpers/conf');
-var Promise = require('ember-cli/lib/ext/promise');
+var Promise = require('angular-cli/ember-cli/lib/ext/promise');
 var SilentError = require('silent-error');
 const denodeify = require('denodeify');
 
@@ -17,10 +16,6 @@ const readFile = denodeify(fs.readFile);
 
 
 describe('Acceptance: ng generate pipe', function () {
-  before(conf.setup);
-
-  after(conf.restore);
-
   beforeEach(function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
@@ -38,13 +33,29 @@ describe('Acceptance: ng generate pipe', function () {
   it('ng generate pipe my-pipe', function () {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-pipe.pipe.ts');
+    const testSpecPath = path.join(appRoot, 'src/app/my-pipe.pipe.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
     return ng(['generate', 'pipe', 'my-pipe'])
-      .then(() => expect(existsSync(testPath)).to.equal(true))
+      .then(() => {
+        expect(existsSync(testPath)).to.equal(true);
+        expect(existsSync(testSpecPath)).to.equal(true);
+      })
       .then(() => readFile(appModulePath, 'utf-8'))
       .then(content => {
         expect(content).matches(/import.*\bMyPipePipe\b.*from '.\/my-pipe.pipe';/);
-        expect(content).matches(/declarations:\s*\[[^\]]+?,\n\s+MyPipePipe\n/m);
+        expect(content).matches(/declarations:\s*\[[^\]]+?,\r?\n\s+MyPipePipe\r?\n/m);
+      });
+  });
+
+  it('ng generate pipe my-pipe --no-spec', function () {
+    const appRoot = path.join(root, 'tmp/foo');
+    const testPath = path.join(appRoot, 'src/app/my-pipe.pipe.ts');
+    const testSpecPath = path.join(appRoot, 'src/app/my-pipe.pipe.spec.ts');
+
+    return ng(['generate', 'pipe', 'my-pipe', '--no-spec'])
+      .then(() => {
+        expect(existsSync(testPath)).to.equal(true);
+        expect(existsSync(testSpecPath)).to.equal(false);
       });
   });
 

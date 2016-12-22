@@ -4,12 +4,11 @@ var ng = require('../helpers/ng');
 var expect = require('chai').expect;
 var walkSync = require('walk-sync');
 var glob = require('glob');
-var Blueprint = require('ember-cli/lib/models/blueprint');
+var Blueprint = require('angular-cli/ember-cli/lib/models/blueprint');
 var path = require('path');
 var tmp = require('../helpers/tmp');
-var root = process.cwd();
+var root = path.join(__dirname, '../../packages/angular-cli');
 var util = require('util');
-var conf = require('ember-cli/tests/helpers/conf');
 var minimatch = require('minimatch');
 var intersect = require('lodash/intersection');
 var remove = require('lodash/remove');
@@ -17,19 +16,12 @@ var unique = require('lodash/uniq');
 var forEach = require('lodash/forEach');
 var any = require('lodash/some');
 var EOL = require('os').EOL;
+var existsSync = require('exists-sync');
 
 var defaultIgnoredFiles = Blueprint.ignoredFiles;
 
 describe('Acceptance: ng init', function () {
   this.timeout(20000);
-
-  before(function () {
-    conf.setup();
-  });
-
-  after(function () {
-    conf.restore();
-  });
 
   beforeEach(function () {
     // Make a copy of defaultIgnoredFiles.
@@ -44,9 +36,10 @@ describe('Acceptance: ng init', function () {
     return tmp.teardown('./tmp');
   });
 
-  function confirmBlueprinted(isMobile) {
-    var blueprintPath = path.join(root, 'addon', 'ng2', 'blueprints', 'ng2', 'files');
-    var mobileBlueprintPath = path.join(root, 'addon', 'ng2', 'blueprints', 'mobile', 'files');
+  function confirmBlueprinted(isMobile, routing) {
+    routing = !!routing;
+    var blueprintPath = path.join(root,  'blueprints', 'ng2', 'files');
+    var mobileBlueprintPath = path.join(root, 'blueprints', 'mobile', 'files');
     var expected = unique(walkSync(blueprintPath).concat(isMobile ? walkSync(mobileBlueprintPath) : []).sort());
     var actual = walkSync('.').sort();
 
@@ -55,14 +48,18 @@ describe('Acceptance: ng init', function () {
     });
 
     expected.forEach(function (file, index) {
-      expected[index] = file.replace(/__name__/g, 'tmp');
+      expected[index] = file.replace(/__name__/g, 'app');
       expected[index] = expected[index].replace(/__styleext__/g, 'css');
       expected[index] = expected[index].replace(/__path__/g, 'src');
     });
-    
+
     if (isMobile) {
-      expected = expected.filter(p => p.indexOf('tmp.component.html') < 0);
-      expected = expected.filter(p => p.indexOf('tmp.component.css') < 0);
+      expected = expected.filter(p => p.indexOf('app.component.html') < 0);
+      expected = expected.filter(p => p.indexOf('app.component.css') < 0);
+    }
+
+    if (!routing) {
+      expected = expected.filter(p => p.indexOf('app-routing.module.ts') < 0);
     }
 
     removeIgnored(expected);
@@ -76,7 +73,7 @@ describe('Acceptance: ng init', function () {
   }
 
   function confirmGlobBlueprinted(pattern) {
-    var blueprintPath = path.join(root, 'addon', 'ng2', 'blueprints', 'ng2', 'files');
+    var blueprintPath = path.join(root, 'blueprints', 'ng2', 'files');
     var actual = pickSync('.', pattern);
     var expected = intersect(pickSync(blueprintPath, pattern), actual);
 
@@ -111,13 +108,8 @@ describe('Acceptance: ng init', function () {
     ]).then(confirmBlueprinted);
   });
 
-  it('ng init --mobile', () => {
-    return ng([
-      'init',
-      '--skip-npm',
-      '--skip-bower',
-      '--mobile'
-    ]).then(() => confirmBlueprinted(true));
+  it('ng init with mobile flag does throw exception', function () {
+    expect(ng(['init', '--mobile'])).to.throw;
   });
 
   it('ng init can run in created folder', function () {
@@ -142,11 +134,6 @@ describe('Acceptance: ng init', function () {
 
   it('init an already init\'d folder', function () {
     return ng(['init', '--skip-npm', '--skip-bower'])
-      .then(function () {
-        // ignore the favicon file for the the unit test since it breaks at ember-cli level
-        // when trying to re-init
-        Blueprint.ignoredFiles.push('favicon.ico');
-      })
       .then(function () {
         return ng(['init', '--skip-npm', '--skip-bower']);
       })
@@ -199,5 +186,21 @@ describe('Acceptance: ng init', function () {
         return ng(['init', 'src/**', 'package.json', '--skip-npm', '--skip-bower']);
       })
       .then(confirmBlueprinted);
+  });
+
+  it('ng init --inline-template does not generate a template file', () => {
+    return ng(['init', '--skip-npm', '--skip-git', '--inline-template'])
+      .then(() => {
+        const templateFile = path.join('src', 'app', 'app.component.html');
+        expect(existsSync(templateFile)).to.equal(false);
+      });
+  });
+
+  it('ng init --inline-style does not gener a style file', () => {
+    return ng(['init', '--skip-npm', '--skip-git', '--inline-style'])
+      .then(() => {
+        const styleFile = path.join('src', 'app', 'app.component.css');
+        expect(existsSync(styleFile)).to.equal(false);
+      });
   });
 });
