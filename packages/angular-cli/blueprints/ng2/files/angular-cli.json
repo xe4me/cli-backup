@@ -42,7 +42,6 @@
     }
   },
   "defaults": {
-    "sourceDir": "<%= sourceDir %>",
     "styleExt": "<%= styleExt %>",
     "prefixInterfaces": false,
     "inline": {
