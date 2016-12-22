@@ -13,9 +13,11 @@ import {
 import { SharedFormDataService } from '../../shared/shared-form-data.service';
 import { Subscription } from 'rxjs';
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
-    public description : string = null;
+    private description : string = null;
+    private accountType : string;
     private betterChoiceSubscription : Subscription;
-    public isNewAccount : boolean;
+    private isNewDepositAccount : boolean = false;
+    private additionalDescription : string;
 
     constructor ( formModelService : FormModelService,
                   elementRef : ElementRef,
@@ -28,15 +30,23 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
     public ngAfterViewInit () {
         this.description  = this.__custom[ 'description'];
+        this.accountType = this.__custom[ 'type' ];
         const newOrConvertControl = this.__controlGroup.get(this.__custom.controls[0].id);
         this.betterChoiceSubscription = newOrConvertControl.valueChanges.subscribe((val) => {
-            this.isNewAccount = val === 'convert';
+            if (this.accountType === 'loanOffset') {
+                this.isNewDepositAccount = true;
+                this.additionalDescription = this.__custom[ `additional_${val}_instruction` ]
+            } else {
+                this.isNewDepositAccount = val === 'convert';
+                this.additionalDescription = this.__custom[ 'additional_instruction']
+            }
         });
         this._cd.markForCheck();
         super.ngAfterViewInit();
     }
 
     public ngOnDestroy () {
+        this.betterChoiceSubscription.unsubscribe();
         super.ngOnDestroy();
     }
 }
