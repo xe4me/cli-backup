@@ -1,6 +1,6 @@
 {
   "name": "amp-ddc-components",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "AMP digital dynamic data capture UI component library",
   "author": "Eric Kwok <eric_kwok@amp.com.au>",
   "homepage": "https://gitlab.ccoe.ampaws.com.au/ddc/components",
@@ -42,12 +42,10 @@
     "start": "npm run server:con",
     "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
     "sasslint": "sass-lint --verbose --no-exit",
-
     "pretest": "npm run lint",
     "test": "karma start",
     "test:ui": "runGalen",
     "test:ui-unix": "galen test ./src/styleguide/ --htmlreport report --recursive",
-
     "typedoc": "typedoc",
     "version": "npm run build",
     "watch:dev:hmr": "npm run watch:dev -- --hot",
