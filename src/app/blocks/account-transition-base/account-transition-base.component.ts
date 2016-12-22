@@ -5,7 +5,8 @@ import { SharedFormDataService } from '../../shared/shared-form-data.service';
 import { Constants } from '../../shared';
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
     public description : string = null;
-    //public singleOrJointSubscription : Subscription;
+    private betterChoiceSubscription : Subscription;
+    public isNewAccount : boolean;
 
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
@@ -18,6 +19,10 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
     public ngAfterViewInit () {
         this.description  = this.__custom[ 'description'];
+        const newOrConvertControl = this.__controlGroup.get(this.__custom.controls[0].id);
+        this.betterChoiceSubscription = newOrConvertControl.valueChanges.subscribe((val) => {
+            this.isNewAccount = val === 'convert';
+        });
         this._cd.markForCheck();
         super.ngAfterViewInit();
     }

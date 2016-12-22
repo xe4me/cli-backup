@@ -31,11 +31,11 @@
                         "id" : "BetterChoice",
                         "buttons" : [{
                             "id": "convert_offset_account",
-                            "value": "convert_offset_account",
+                            "value": "convert",
                             "label": "Switch account"
                         }, {
                             "id": "new_offset_account",
-                            "value": "new_offset_account",
+                            "value": "new",
                             "label": "Create new account"
                         }]
                     }, {
@@ -58,11 +58,11 @@
                         "id" : "BetterChoice",
                         "buttons" : [{
                                 "id": "convert_deposit_account",
-                                "value": "convert_deposit_account",
+                                "value": "convert",
                                 "label": "Switch account"
                             }, {
                                 "id": "new_deposit_account",
-                                "value": "new_deposit_account",
+                                "value": "new",
                                 "label": "Create new account"
                         }]
                     }, {
