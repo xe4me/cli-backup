@@ -1,4 +1,4 @@
-import { AmpBasicInfoBlockComponent } from "../app/modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component";
+import { AmpBasicInfoBlockComponent } from '../app/modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component';
 import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
 import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
