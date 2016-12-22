@@ -74,7 +74,7 @@ function createModel ( formDef , fdn , model ) {
             if ( formDef.custom && formDef.custom.optionalBlocks ) {
                 objectToArray(formDef.custom.optionalBlocks)
                     .forEach( ( block ) => {
-                        createModel ( block , null , model );
+                        createModel ( block , (fdn || null) , model );
                     });
             }
         }
