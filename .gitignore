@@ -1,10 +1,12 @@
 dist/
 node_modules/
-npm-debug.log
+npm-debug.log*
 
 # IDEs
 .idea/
 jsconfig.json
+.vscode/
+.npm
 
 # Typings file.
 typings/
