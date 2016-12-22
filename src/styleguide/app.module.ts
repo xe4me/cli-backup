@@ -28,7 +28,6 @@ import {
     AppState,
     InternalStateType
 } from './app.service';
-import { Highlight } from '../../../components/src/styleguide/highlight';
 import { AmpBlockLoaderDirective } from './amp-block-loader.directive';
 import { StickyProgressHeaderBlockComponent } from './blocks/amp-form-block/sticky-progress-header-block/sticky-progress-header-block.component';
 import { AmpSubmitReceiptComponent } from '../app/modules/amp-submit-receipt/components/amp-submit-receipt/amp-submit-receipt.component';
@@ -36,6 +35,7 @@ import {
     ExampleComponent,
     ExampleDirective
 } from './example';
+import { Highlight } from './highlight';
 import { DYNAMICALLY_LOADED_COMPONENTS } from './app.entry-components';
 import { AMP_MODULES } from './app.modules';
 import { PageSectionComponent } from '../app/sections/page-section.component';
