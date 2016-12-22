@@ -6,14 +6,15 @@
   "angular-cli": {},
   "scripts": {
     "start": "amp-ng serve",
-    "tslint": "tslint --exclude \"<%= sourceDir %>/**/*.fdn.ts\" \"<%= sourceDir %>/**/*.ts\"",
+    "tslint": "tslint --exclude \"src/**/*.fdn.ts\" \"src/**/*.ts\"",
     "lint": "npm run tslint",
-    "pretest": "npm run lint",
-    "test": "amp-ng test",
+    "test": "amp-ng test --watch false",
     "pree2e": "webdriver-manager update",
     "e2e": "amp-ng e2e",
     "build:prod": "amp-ng build --prod",
-    "server:express": "node index.js"
+    "server:express": "node index.js",
+    "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
+    "jenkins-jscpd": "jscpd -p . -f '**/*.ts'  -e 'node_modules/**'  -o reports/jscpd-report.xml"
   },
   "private": true,
   "dependencies": {
