@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder , FormGroup} from '@angular/forms';
+import {
+    FormBuilder ,
+    FormGroup
+} from '@angular/forms';
 import {  FormModelService} from 'amp-ddc-components';
 let formDefinition = require( './form-def.def.json' );
 @Component( {
