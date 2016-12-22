@@ -7,7 +7,7 @@
     {
       "baseURI": "ddc/public/ui/bett3r",
       "root": "src",
-      "outDir": "dist",
+      "outDir": "dist/ddc/public/ui/bett3r",
       "assets": [
         "assets",
         "favicon.ico"
