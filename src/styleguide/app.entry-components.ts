@@ -1,3 +1,4 @@
+import { AmpBasicInfoBlockComponent } from "../app/modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component";
 import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
 import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
@@ -12,6 +13,7 @@ import AMPDropDownComponentBasicUsage from './components/amp-dropdown/basic_usag
 import AmpFormBlockBasicUsage from './blocks/amp-form-block/basic_usage.ts';
 import AmpGreenIdBlockBasicUsage from './blocks/amp-greenid-block/basic_usage.ts';
 import IntroBlockBasicUsage from './blocks/amp-intro-block/basic_usage.ts';
+import BasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
 import AMPReviewBasicUsage from './blocks/amp-review/basic_usage.ts';
 import SubmitReceiptPageBasicUsage from './blocks/amp-submit-receipt/basic_usage.ts';
 import AmpCountryDropDownComponentBasicUsage from './components/amp-country/basic_usage.ts';
@@ -68,6 +70,8 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpFormBlockBasicUsage,
     AmpGreenIdBlockBasicUsage,
     IntroBlockBasicUsage,
+    AmpBasicInfoBlockComponent,
+    BasicInfoBlockBasicUsage,
     AMPReviewBasicUsage,
     SubmitReceiptPageBasicUsage,
     AmpCountryDropDownComponentBasicUsage,

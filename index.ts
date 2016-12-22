@@ -31,6 +31,7 @@ export * from './src/app/modules/amp-tooltip';
 export * from './src/app/modules/amp-greenid-block';
 export * from './src/app/modules/amp-submit-receipt';
 export * from './src/app/modules/amp-google-recaptcha';
+export * from './src/app/modules/amp-basic-info-block';
 export * from './src/app/modules/amp-progress-bars';
 export * from './src/app/modules/amp-overlay';
 export * from './src/app/modules/amp-header';
