@@ -7,8 +7,7 @@ var expect = require('chai').expect;
 var path = require('path');
 var tmp = require('../helpers/tmp');
 var root = process.cwd();
-var conf = require('ember-cli/tests/helpers/conf');
-var Promise = require('ember-cli/lib/ext/promise');
+var Promise = require('angular-cli/ember-cli/lib/ext/promise');
 var SilentError = require('silent-error');
 const denodeify = require('denodeify');
 
@@ -16,10 +15,6 @@ const readFile = denodeify(fs.readFile);
 
 
 describe('Acceptance: ng generate directive', function () {
-  before(conf.setup);
-
-  after(conf.restore);
-
   beforeEach(function () {
     return tmp.setup('./tmp').then(function () {
       process.chdir('./tmp');
@@ -44,14 +39,30 @@ describe('Acceptance: ng generate directive', function () {
   it('my-dir --flat false', function () {
     const appRoot = path.join(root, 'tmp/foo');
     const testPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.ts');
+    const testSpecPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.spec.ts');
     const appModulePath = path.join(appRoot, 'src/app/app.module.ts');
 
     return ng(['generate', 'directive', 'my-dir', '--flat', 'false'])
-      .then(() => expect(existsSync(testPath)).to.equal(true))
+      .then(() => {
+        expect(existsSync(testPath)).to.equal(true);
+        expect(existsSync(testSpecPath)).to.equal(true);
+      })
       .then(() => readFile(appModulePath, 'utf-8'))
       .then(content => {
         expect(content).matches(/import.*\bMyDirDirective\b.*from '.\/my-dir\/my-dir.directive';/);
-        expect(content).matches(/declarations:\s*\[[^\]]+?,\n\s+MyDirDirective\n/m);
+        expect(content).matches(/declarations:\s*\[[^\]]+?,\r?\n\s+MyDirDirective\r?\n/m);
+      });
+  });
+
+  it('my-dir --flat false --no-spec', function () {
+    const appRoot = path.join(root, 'tmp/foo');
+    const testPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.ts');
+    const testSpecPath = path.join(appRoot, 'src/app/my-dir/my-dir.directive.spec.ts');
+
+    return ng(['generate', 'directive', 'my-dir', '--flat', 'false', '--no-spec'])
+      .then(() => {
+        expect(existsSync(testPath)).to.equal(true);
+        expect(existsSync(testSpecPath)).to.equal(false);
       });
   });
 
@@ -155,5 +166,16 @@ describe('Acceptance: ng generate directive', function () {
     }, (err) => {
       expect(err).to.equal(`Invalid path: "..${path.sep}my-dir" cannot be above the "src${path.sep}app" directory`);
     });
+  });
+
+  it('converts dash-cased-name to a camelCasedSelector', () => {
+    const appRoot = path.join(root, 'tmp/foo');
+    const directivePath = path.join(appRoot, 'src/app/my-dir.directive.ts');
+    return ng(['generate', 'directive', 'my-dir'])
+      .then(() => readFile(directivePath, 'utf-8'))
+      .then(content => {
+        // expect(content).matches(/selector: [app-my-dir]/m);
+        expect(content).matches(/selector: '\[appMyDir\]'/);
+      });
   });
 });
