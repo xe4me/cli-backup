@@ -35,6 +35,18 @@
     </article>
 
     <article class="section">
+        <h2 class="mb- ml mt+">Default behaviour</h2>
+        <ul class="bml">
+            <li>
+                'Title', 'First name', 'Last name' and 'Date of birth' are required.
+            </li>
+            <li>
+                There is a date format validator on the 'Date of birth' field (DD/MM/YYYY)
+            </li>
+        </ul>
+    </article>
+
+    <article class="section">
         <h2 class="mb- ml mt+">Customisation</h2>
         <p class="para ml">
             Through the "custom" section, you can define:
@@ -75,55 +87,9 @@
     &#125;
             </code>
         </pre>
-
-        <ul class="bml">
-            <li>
-                A specific pattern for text inputs:
-            </li>
-        </ul>
-        <pre>
-            <code class="json">
-    &#123;
-        "custom": &#123;
-            "controls": [
-                &#123;&#125;,
-                &#123;
-                    "id": "FirstName",
-                    "pattern": "^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$FLAGS:g",
-                    "errors": &#123;
-                        "pattern": "First name has an invalid value."
-                    &#125;
-                &#125;
-            ]
-        &#125;
-    &#125;
-            </code>
-        </pre>
-
-        <ul class="bml">
-            <li>
-                Any error labels related to Angular invalid states:
-            </li>
-        </ul>
-        <pre>
-            <code class="json">
-    &#123;
-        "custom": &#123;
-            "controls": [
-                &#123;&#125;,
-                &#123;&#125;,
-                &#123;
-                    "id": "MiddleName",
-                    "pattern": "^[A-Za-z][A-Z|a-z|'| |-]*[a-z]$FLAGS:g",
-                    "errors": &#123;
-                        "required": "Middle name is a required value.",
-                        "pattern": "Middle name has an invalid value."
-                    &#125;
-                &#125;
-            ]
-        &#125;
-    &#125;
-            </code>
-        </pre>
+        <p class="ml">
+            In case you need more customisation options, please get in touch with DDC team!
+        </p>
+        <p>&nbsp;</p>
     </article>
 </section>
