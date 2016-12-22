@@ -9,6 +9,7 @@ import { AccountTransitionBaseBlock } from '../account-transition-base/account-t
     styles : [require('../account-transition-base/account-transition-base.scss')]
 } )
 export class DepositTransitionBlock extends AccountTransitionBaseBlock {
+
     constructor ( formModelService : FormModelService ,
                   elementRef : ElementRef ,
                   _cd : ChangeDetectorRef ,
