@@ -8,7 +8,6 @@ import {
 } from 'amp-ddc-components';
 import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 
-const formModel = require('./form-model.model.json');
 const formDef = require('./form-def.def.json');
 
 @Component({
@@ -20,10 +19,9 @@ const formDef = require('./form-def.def.json');
 export class BetterFormComponent {
     private fullyDistinguishedName = [];
     private childBlocks = formDef;
-    private form : FormGroup = new FormGroup({});
+    private form : FormGroup;
 
     constructor(private _builder : FormBuilder, private formModelService : FormModelService ) {
         this.form = this.formModelService.hydrateForm();
-        //this.form.patchValue(formModel);
     }
 }
