@@ -27,32 +27,13 @@
 // } from '@angular/core/testing/fake_async';
 // import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 // import {
-//     AmpTypeaheadModule,
-//     AmpTooltipModule,
-//     AmpPipesModule,
-//     AmpDirectivesModule,
-//     AmpQasAddressModule,
-//     AmpInputsModule,
-//     AmpCheckboxModule,
-//     AmpTextareaModule,
-//     AmpGroupButtonsModule,
-//     AmpRadioButtonGroupModule,
-//     AmpErrorModule,
-//     AmpButtonModule,
-//     FormBlock,
-//     ScrollService,
-//     FormModelService,
-//     ProgressObserverService,
-//     AmpFormBlockComponent,
-//     AmpOverlayComponent,
-//     AmpIntroBlockComponent,
-//     AmpLoadingComponent,
-//     AmpRowRepeaterModule,
-//     AmpStandAloneMenuModule,
-//     AmpHttpService,
-//     FormSectionService
+//     FormBlock
 // } from 'amp-ddc-components';
 // import { MyAMPLoginBlockComponent } from './my-amplogin-block.component';
+// import { AMP_DDC_MODULES } from '../../app.modules';
+// import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
+// import { DECLARATIONS } from '../../app.module';
+// import { DYNAMIC_BLOCKS } from '../../app.dynamic-blocks';
 // let formDef = require( './DummyTest-form-def.def.json' );
 //
 // // Load the implementations that should be tested
@@ -60,41 +41,20 @@
 //     beforeEach( async( () => {
 //         TestBed.configureTestingModule( {
 //             imports : [
-//                 AmpRowRepeaterModule,
-//                 AmpTooltipModule,
-//                 AmpButtonModule,
-//                 AmpTypeaheadModule,
-//                 AmpPipesModule,
-//                 AmpDirectivesModule,
-//                 AmpQasAddressModule,
-//                 AmpInputsModule,
-//                 AmpErrorModule,
-//                 AmpCheckboxModule,
-//                 AmpTextareaModule,
-//                 AmpGroupButtonsModule,
-//                 AmpRadioButtonGroupModule,
-//                 AmpStandAloneMenuModule,
+//                 ...AMP_DDC_MODULES,
 //                 BrowserModule,
 //                 FormsModule,
 //                 ReactiveFormsModule,
 //                 HttpModule
 //             ],
 //             declarations : [
-//                 TestComponent,
-//                 AmpIntroBlockComponent,
-//                 AmpFormBlockComponent,
-//                 AmpOverlayComponent,
-//                 AmpLoadingComponent
+//                 ...DECLARATIONS,
+//                 TestComponent
 //             ],
 //             providers : [
 //                 { provide : ElementRef, useClass : MockElementRef },
-//                 { provide : Window, useClass : window },
 //                 { provide : ComponentFixtureAutoDetect, useValue : true },
-//                 { provide : FormModelService, useClass : FormModelService },
-//                 { provide : ScrollService, useClass : ScrollService },
-//                 { provide : ProgressObserverService, useClass : ProgressObserverService },
-//                 { provide : AmpHttpService, useClass : AmpHttpService },
-//                 { provide : FormSectionService, useClass : FormSectionService },
+//                 ...APP_RESOLVER_PROVIDERS,
 //                 BrowserDomAdapter,
 //                 Renderer
 //             ]
@@ -245,7 +205,6 @@
 //     @ViewChild( 'myAmpLoginCmp' )
 //     public myAmpLoginCmp;
 //     public form : FormGroup = new FormGroup( {} );
-//
 //     private fullyDistinguishedName = [];
 //     private childBlocks = formDef;
 // }

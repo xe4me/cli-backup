@@ -8,7 +8,7 @@ import {
 
 @Component( {
     selector        : 'bett3r-exit-button' ,
-    templateUrl     : 'bett3r-exit-button.component.html'
+    templateUrl     : './bett3r-exit-button.component.html'
 } )
 
 export class Bett3rExitButtonComponent {

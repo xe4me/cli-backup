@@ -17,6 +17,5 @@ export const APP_RESOLVER_PROVIDERS = [
     AmpHttpService ,
     BrowserDomAdapter ,
     FormSectionService ,
-    CustomerDetailsService ,
-    Renderer
+    CustomerDetailsService
 ];

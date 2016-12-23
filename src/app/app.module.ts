@@ -44,7 +44,7 @@ import {
 } from './blocks/accounts-list/accounts-list.pipe';
 
 import { AMP_DDC_MODULES } from './app.modules';
-const DECLARATIONS = [
+export const DECLARATIONS = [
     ...DYNAMIC_BLOCKS,
     AmpBlockLoaderDirective,
     ErrorPageComponent,

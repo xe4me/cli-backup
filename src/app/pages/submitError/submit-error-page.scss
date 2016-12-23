@@ -62,7 +62,7 @@ h1 {
         height: 22px;
         background-repeat: no-repeat;
         background-size: 100%;
-        background-image : url('/assets/images/Error.png');
+        background-image : url('assets/images/Error.png');
 
         @include media-query('lap-and-up') {
             margin-left : -40px;

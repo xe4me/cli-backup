@@ -12,7 +12,7 @@ $amp-ddc-public-asset : '../../../assets/';
         top      : 0;
     }
     amp-intro-block {
-        background-image  : url('/assets/images/Intro-background_96DPI.jpg');
+        background-image  : url('assets/images/Intro-background_96DPI.jpg');
         background-repeat : no-repeat;
         background-size   : cover;
         min-height        : 893px;
@@ -91,20 +91,20 @@ $amp-ddc-public-asset : '../../../assets/';
 
                             &.time-clock-icon {
                                 &::before {
-                                    background-image : url('/assets/images/time_clock.png');
+                                    background-image : url('assets/images/time_clock.png');
                                 }
                             }
 
                             &.eighteen-plus-icon {
                                 &::before {
-                                    background-image : url('/assets/images/18+.png');
+                                    background-image : url('assets/images/18+.png');
                                 }
                             }
 
                             &.id-check-icon {
                                 &::before {
                                     height : 33px;
-                                    background-image : url('/assets/images/id.png');
+                                    background-image : url('assets/images/id.png');
                                 }
                             }
                         }
