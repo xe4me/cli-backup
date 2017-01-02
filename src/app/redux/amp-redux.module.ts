@@ -11,11 +11,11 @@ import { StoreService } from './services/store/store.service';
 interface Array<T> {
     last() : T[];
 }
-if ( !(<any> Array.prototype).last ) {
-    (<any> Array.prototype).last = () => {
-        return this[ this.length - 1 ];
-    };
-}
+
+(<any> Array.prototype).last = function () {
+    return this[ this.length - 1 ];
+};
+
 const ACTIONS = [
     ModelActions
 ];
