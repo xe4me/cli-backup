@@ -78,8 +78,8 @@ describe( 'amp-group-buttons directive', () => {
         let Inputs = Element.querySelectorAll( 'input' );
         Component.control.setValue( 'null' );
         fixture.detectChanges();
-        for ( let i = 0; i < Inputs.length; i++ ) {
-            expect( Inputs[ i ].checked ).toBeFalsy();
+        for ( const input of  Inputs) {
+            expect( input.checked ).toBeFalsy();
         }
     } );
 } );

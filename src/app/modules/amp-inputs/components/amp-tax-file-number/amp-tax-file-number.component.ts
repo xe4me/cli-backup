@@ -41,11 +41,11 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
             }
             return null;
         };
-    };
+    }
 
     @HostListener('input')
-    private checkValue ( event ) {
-        let newValue = this.control.value.replace( /\D/g , '' );
+    private checkValue ( $event ) {
+        let newValue = $event.target.value.replace( /\D/g , '' );
         this.control.setValue( newValue );
         if (newValue && newValue.length === this.maxLength) {
             this.checkErrors(false);

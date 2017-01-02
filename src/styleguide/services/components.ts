@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Response } from '@angular/http';
+import {
+    Http,
+    Response
+} from '@angular/http';
 export interface IComponentExample {
     component : string;
     name : string;
@@ -69,8 +71,8 @@ export class ComponentsService {
 
     getPrevious ( component : IComponentMeta ) : Promise<IComponentMeta> {
         return this._promise.then( () => {
-            let index = - 1;
-            this.components.forEach( ( c : IComponentMeta , i : number ) => {
+            let index = -1;
+            this.components.forEach( ( c : IComponentMeta, i : number ) => {
                 if ( c.id === component.id ) {
                     index = i;
                 }
@@ -84,28 +86,28 @@ export class ComponentsService {
 
     getNext ( component : IComponentMeta ) : Promise<IComponentMeta> {
         return this._promise.then( () => {
-            let index = - 1;
-            this.components.forEach( ( c : IComponentMeta , i : number ) => {
+            let index = -1;
+            this.components.forEach( ( c : IComponentMeta, i : number ) => {
                 if ( c.id === component.id ) {
                     index = i;
                 }
             } );
             if ( index >= this.components.length - 1 ) {
-                index = - 1;
+                index = -1;
             }
             return this.components[ index + 1 ];
         } );
     }
 
     private getGroupByTpe ( type : string ) : IComponentGroupMeta {
-        for ( let i = 0 ; i < this.componentGrouped.length ; i ++ ) {
-            if ( this.componentGrouped[ i ].type === type ) {
-                return this.componentGrouped[ i ];
+        for ( const componentGroup of  this.componentGrouped ) {
+            if ( componentGroup.type === type ) {
+                return componentGroup;
             }
         }
         let last = this.componentGrouped.length;
         this.componentGrouped.push( {
-            type       : type ,
+            type,
             components : []
         } );
         return this.componentGrouped[ last ];

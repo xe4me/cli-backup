@@ -124,7 +124,7 @@ export class MockAmpQasAddressService {
             return this.handleError( 'bad formated error from server' );
         }
         return this.handleError( MockAmpQasAddressService.errorResponse );
-    };
+    }
 
     private handleError ( error : any ) {
         let errMsg = (error.message) ? error.message : error.status ? error.status : MockAmpQasAddressService.DEFAULT_ERROR_TEXT;

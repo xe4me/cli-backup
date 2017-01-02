@@ -256,13 +256,13 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         return this._maxFloat;
     }
 
-    get isItDisabled () {
-        return (this.disabled || this.isInSummaryState) ? true : null;
-    }
-
     set maxFloat ( value : any ) {
         this._maxFloat = value;
         this.updateValidators();
+    }
+
+    get isItDisabled () {
+        return (this.disabled || this.isInSummaryState) ? true : null;
     }
 
     protected onEnterClick ( event ) {

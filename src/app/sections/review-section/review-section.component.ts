@@ -85,5 +85,5 @@ export class ReviewSectionComponent implements OnInit {
 
     public shouldStick = () : boolean => {
         return this.scrollService.getMyWindowOffset( this.el ) <= 80;
-    };
+    }
 }

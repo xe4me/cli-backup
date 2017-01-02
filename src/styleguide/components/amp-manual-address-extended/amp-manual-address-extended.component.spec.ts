@@ -171,7 +171,7 @@ export class MockAmpCountryService {
     private subject = new BehaviorSubject( MockAmpCountryService._countries );
     public getCountries = () : Observable<any> => {
         return this.subject.asObservable();
-    };
+    }
 }
 describe( 'amp-qas-address component', () => {
     let _fixture;

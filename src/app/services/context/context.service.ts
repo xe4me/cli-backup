@@ -30,7 +30,7 @@ export class ContextService {
 
     public fetchContext () : Observable<any> {
         let headers = new Headers( { 'Content-Type': 'application/json' } );
-        let options = new RequestOptions( { headers: headers , body: '' } );
+        let options = new RequestOptions( { headers , body: '' } );
         return this.http.get( this._contextUrl , options )
                         .map( (res) => res.json() );
     }

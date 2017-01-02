@@ -2,7 +2,7 @@ import { isArray } from 'util';
 import { Component } from '@angular/core';
 import { makeDecorator } from '@angular/core/src/util/decorators';
 export function AmpComponent( annotation : any ) {
-    return function ( target : Function ) {
+    return  ( target : Function ) => {
         let parentTarget = Object.getPrototypeOf( target.prototype ).constructor;
         let parentAnnotations = (<any> Reflect).getMetadata( 'annotations', parentTarget );
         let parentAnnotation = parentAnnotations[ 0 ];

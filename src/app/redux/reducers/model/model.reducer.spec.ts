@@ -1,138 +1,137 @@
 import 'rxjs/add/operator/let';
-import { of } from 'rxjs/observable/of';
 import { ModelActions } from '../../actions/model/model.action';
 import modelReducer from './model.reducer';
 import { getIn } from '../../../modules/amp-utils';
 const TestModel = require( '../../fixtures/model/test.model.json' );
 interface Array<T> {
-    last() : Array<T>;
+    last() : T[];
 }
-if ( ! (<any> Array.prototype).last ) {
-    (<any> Array.prototype).last = function() {
+if ( !(<any> Array.prototype).last ) {
+    (<any> Array.prototype).last = () => {
         return this[ this.length - 1 ];
     };
 }
-describe( 'Model' , function() {
+describe( 'Model', () => {
     const modelActions = new ModelActions();
-    describe( 'Reducer UPDATE' , function() {
-        it( 'should return the state untouched if the action is undefined' , function() {
-            const initialState = modelReducer( TestModel , { type : 'test-action' } );
+    describe( 'Reducer UPDATE', () => {
+        it( 'should return the state untouched if the action is undefined', () => {
+            const initialState = modelReducer( TestModel, { type : 'test-action' } );
             expect( initialState ).toEqual( TestModel );
         } );
         it( 'should update the contactNumber in the model based on the fully distinguished name provider (fdn),' +
-            ' object lookup only' , function() {
+            ' object lookup only', () => {
             const fdn          = [
-                'Application' ,
-                'FirstInsuranceDetailsSection' ,
-                'samplefieldsblock' ,
+                'Application',
+                'FirstInsuranceDetailsSection',
+                'samplefieldsblock',
                 'contactNumber'
             ];
             const payload      = {
-                fdn   : fdn ,
+                fdn,
                 query : 'updated with redux'
             };
             const updateAction = modelActions.update( payload );
             expect( updateAction ).toEqual( {
-                type    : ModelActions.UPDATE ,
-                payload : payload
+                type : ModelActions.UPDATE,
+                payload
             } );
-            const state = modelReducer( TestModel , updateAction );
+            const state = modelReducer( TestModel, updateAction );
             expect( state ).not.toEqual( TestModel );
-            let updatedSection = getIn( fdn , state );
+            let updatedSection = getIn( fdn, state );
             expect( updatedSection.contactNumber ).toEqual( payload.query );
         } );
         it( 'should update the phone in telehpnes array in the model based on the fully distinguished name provider' +
             ' (fdn) ,' +
-            ' array and object lookups' , function() {
+            ' array and object lookups', () => {
             const fdn          = [
-                'Application' ,
-                'FirstInsuranceDetailsSection' ,
-                'samplefieldsblock' ,
-                'telephones' ,
-                0 ,
+                'Application',
+                'FirstInsuranceDetailsSection',
+                'samplefieldsblock',
+                'telephones',
+                0,
                 'phone'
             ];
             const payload      = {
-                fdn   : fdn ,
+                fdn,
                 query : '321321321321'
             };
             const updateAction = modelActions.update( payload );
             expect( updateAction ).toEqual( {
-                type    : ModelActions.UPDATE ,
-                payload : payload
+                type : ModelActions.UPDATE,
+                payload
             } );
-            const state = modelReducer( TestModel , updateAction );
+            const state = modelReducer( TestModel, updateAction );
             expect( state ).not.toEqual( TestModel );
-            let updatedSection = getIn( fdn , state );
+            let updatedSection = getIn( fdn, state );
             expect( updatedSection.phone ).toEqual( payload.query );
         } );
     } );
-    describe( 'Reducer PUSH' , function() {
-        it( 'should Add an item to the specified array in the provider fdn' , function() {
+    describe( 'Reducer PUSH', () => {
+        it( 'should Add an item to the specified array in the provider fdn', () => {
             const fdn        = [
-                'Application' ,
-                'FirstInsuranceDetailsSection' ,
-                'samplefieldsblock' ,
+                'Application',
+                'FirstInsuranceDetailsSection',
+                'samplefieldsblock',
                 'telephones'
             ];
             const payload    = {
-                fdn   : fdn ,
+                fdn,
                 query : {
                     phone : 'new phone number'
                 }
             };
             const pushAction = modelActions.push( payload );
             expect( pushAction ).toEqual( {
-                type    : ModelActions.PUSH ,
-                payload : payload
+                type : ModelActions.PUSH,
+                payload
             } );
-            const state = modelReducer( TestModel , pushAction );
+            const state = modelReducer( TestModel, pushAction );
             expect( state ).not.toEqual( TestModel );
-            let updatedSection = getIn( fdn , state );
+            let updatedSection = getIn( fdn, state );
             expect( updatedSection.telephones.last() ).toEqual( payload.query );
         } );
     } );
-    describe( 'Reducer REMOVE' , function() {
-        it( 'should Remove specified item from the specified array in the provider fdn' , function() {
+    describe( 'Reducer REMOVE', () => {
+        it( 'should Remove specified item from the specified array in the provider fdn', () => {
             const fdn        = [
-                'Application' ,
-                'FirstInsuranceDetailsSection' ,
-                'samplefieldsblock' ,
+                'Application',
+                'FirstInsuranceDetailsSection',
+                'samplefieldsblock',
                 'telephones'
             ];
             const payload    = {
-                fdn   : fdn ,
+                fdn,
                 query : 0
             };
             const pushAction = modelActions.removeAt( payload );
             expect( pushAction ).toEqual( {
-                type    : ModelActions.REMOVE_AT ,
-                payload : payload
+                type : ModelActions.REMOVE_AT,
+                payload
             } );
-            const state = modelReducer( TestModel , pushAction );
+            const state = modelReducer( TestModel, pushAction );
             expect( state ).not.toEqual( TestModel );
-            let updatedSection = getIn( fdn , state );
+            let updatedSection = getIn( fdn, state );
             expect( updatedSection.telephones.length ).toEqual( 1 );
         } );
-        it( 'should Remove all the items from the specified array in the provider fdn' , function() {
+        it( 'should Remove all the items from the specified array in the provider fdn', () => {
             const fdn        = [
-                'Application' ,
-                'FirstInsuranceDetailsSection' ,
-                'samplefieldsblock' ,
+                'Application',
+                'FirstInsuranceDetailsSection',
+                'samplefieldsblock',
                 'telephones'
             ];
             const payload    = {
-                fdn   : fdn ,
+                fdn,
                 query : null
             };
             const pushAction = modelActions.removeAll( payload );
             expect( pushAction ).toEqual( {
-                type    : ModelActions.REMOVE_ALL ,
-                payload : payload
+                type : ModelActions.REMOVE_ALL,
+                payload
             } );
-            const state = modelReducer( TestModel , pushAction );
+            const state = modelReducer( TestModel, pushAction );
             expect( state ).not.toEqual( TestModel );
-            let updatedSection = getIn( fdn , state );
+            let updatedSection = getIn( fdn, state );
             expect( updatedSection.telephones.length ).toEqual( 0 );
         } );
     } );

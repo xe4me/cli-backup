@@ -263,14 +263,14 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
             return;
         }
         reject( 'Script urls were not provided' );
-    };
+    }
 
     private onSessionComplete = ( token : string, verificationStatus : string ) => {
         this.verificationStatusControl.setValue( verificationStatus );
 
         this.$complete.emit( verificationStatus );
         this._cd.markForCheck();
-    };
+    }
 
     private get verificationWasSuccessful () : boolean {
         return [

@@ -44,7 +44,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number          = 0;
     @Input() theme      : string          = 'forms';
-    @Input() sectionsToHide : Array<string> = [];
+    @Input() sectionsToHide : string[];
     public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;
@@ -116,12 +116,12 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
                 this.currentSectionLabel = label;
             }
             return {
-                label         : label,
-                pageSectionId : pageSectionId,
+                label,
+                pageSectionId,
                 id            : menuItemId,
                 state         : classes,
                 anchorUrl     : window.location.href + '/#' + pageSectionId,
-                hidden        : hidden
+                hidden
             };
         } );
         if ( this.sections.length && hasActiveClass ) {

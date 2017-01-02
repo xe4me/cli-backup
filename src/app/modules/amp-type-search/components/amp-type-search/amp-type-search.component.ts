@@ -84,21 +84,21 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 return null;
             }
         };
-    };
+    }
     @Input() queryServiceCall = ( queryValue : string ) : Observable<any> => {
         return new Observable<any>();
-    };
+    }
 
     @Input( 'required' ) set required ( value : boolean ) {
         this._required = value;
     }
 
-    get resultList_id () {
-        return this.id + '-resultList';
-    }
-
     get required () {
         return this._required;
+    }
+
+    get resultList_id () {
+        return this.id + '-resultList';
     }
 
     get control () : FormControl {
@@ -140,7 +140,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     private close = () : void => {
         this._optionsHidden = true;
         this.showNoResults  = false;
-    };
+    }
 
     private onClick ( e ) {
         if (e.target.className.includes('icon--search')) {

@@ -4,9 +4,10 @@ import {
     Renderer,
     EventEmitter,
     NgZone
-}     from '@angular/core';
-import { FormModelService } from '../form-model/form-model.service';
+} from '@angular/core';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
+const emptyFunction = () : void => {
+};
 @Injectable()
 export class ScrollService {
     public $scrolled : EventEmitter<any>;
@@ -36,63 +37,66 @@ export class ScrollService {
     }
 
     // TODO: Find another better way to get all the components available in dome to prevent this direct access
-    public scrollToNextUndoneBlock ( formModel , offset = this._offset ) {
+    public scrollToNextUndoneBlock ( formModel, offset = this._offset ) {
         let isScrolled = false;
         let body       = this._dom.query( 'body' );
-        let components = this._dom.querySelectorAll( body , '[id$="-block"]' );
-        for ( let i = 0 ; i < components.length ; i ++ ) {
-            let selectorName       = components[ i ].id;
+        let components = this._dom.querySelectorAll( body, '[id$="-block"]' );
+        for ( const component of  components ) {
+            let selectorName       = component.id;
             let _fdnOfSelectorName = selectorName.split( '-' );
             _fdnOfSelectorName.pop();
             let formGroup = formModel;
-            for ( let i = 0 ; i < _fdnOfSelectorName.length ; i ++ ) {
-                if ( formGroup.controls[ _fdnOfSelectorName[ i ] ] ) {
-                    formGroup = formGroup.controls[ _fdnOfSelectorName[ i ] ];
+            for ( const fdnSelectorName of  _fdnOfSelectorName ) {
+                if ( formGroup.controls[ fdnSelectorName ] ) {
+                    formGroup = formGroup.controls[ fdnSelectorName ];
                 }
             }
-            if ( ! isScrolled &&
+            if ( !isScrolled &&
                 ( formGroup.invalid ||
                     (formGroup.valid &&
                     formGroup.untouched &&
                     Object.keys( formGroup.value ).length > 0)
                 )
             ) {
-                this.scrollToComponentSelector( selectorName , 'easeInQuad' , offset );
+                this.scrollToComponentSelector( selectorName, 'easeInQuad', offset );
                 isScrolled = true;
                 return null;
             }
         }
-        if ( ! isScrolled ) {
+        if ( !isScrolled ) {
             this.scrollToLastBlock( components );
         }
         return null;
     }
 
-    public scrollToComponentSelector ( componentSelector : string ,
-                                       easing : string = 'easeInQuad' ,
+    public scrollToComponentSelector ( componentSelector : string,
+                                       easing : string = 'easeInQuad',
                                        margin : number = this._offset ) {
         let sectionName;
         let element = this._dom.query( componentSelector );
-        if ( ! element ) {
+        if ( !element ) {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
             element     = this._dom.query( '#' + componentSelector );
-            sectionName = this._dom.getAttribute( element , 'data-section' );
+            sectionName = this._dom.getAttribute( element, 'data-section' );
         }
         let options = {
-            duration       : 800 ,
-            easing         : easing ,
-            offset         : margin ,
-            callbackBefore : ( elemt ) => {
-                this.$scrolling.emit( { section : sectionName , componentSelector : this.getGroupNameOfSelectorName( componentSelector ) } );
-            } ,
-            callbackAfter  : ( elemt ) => {
+            duration       : 800,
+            easing,
+            offset         : margin,
+            callbackBefore : () => {
+                this.$scrolling.emit( {
+                    section           : sectionName,
+                    componentSelector : this.getGroupNameOfSelectorName( componentSelector )
+                } );
+            },
+            callbackAfter  : () => {
                 // this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
-                this.$scrolled.emit( { section : sectionName , componentSelector : componentSelector } );
+                this.$scrolled.emit( { section : sectionName, componentSelector } );
             }
         };
         setTimeout( () => {
-            this.smoothScroll( element , options );
-        } , 0 );
+            this.smoothScroll( element, options );
+        }, 0 );
     }
 
     public updateOffset ( _offset : number ) {
@@ -109,7 +113,7 @@ export class ScrollService {
         this.scrollToComponentSelector( selectorName );
     }
 
-    public scrollMeOut ( el : ElementRef , easing : string = 'easeInQuad' , margin : number = 0 ) {
+    public scrollMeOut ( el : ElementRef, easing : string = 'easeInQuad', margin : number = 0 ) {
         let parentElem = el.nativeElement.offsetParent;
         let style      = window.getComputedStyle( parentElem );
         let element    = el.nativeElement;
@@ -120,20 +124,18 @@ export class ScrollService {
         let height  = element.offsetHeight;
         let bottom  = top + height + margin;
         let options = {
-            duration       : 800 ,
-            easing         : easing ,
-            offset         : - bottom ,
-            callbackBefore : function( elemt ) {
-            } ,
-            callbackAfter  : function( elemt ) {
-            }
+            duration       : 800,
+            easing,
+            offset         : -bottom,
+            callbackBefore : emptyFunction,
+            callbackAfter  : emptyFunction
         };
         setTimeout( () => {
-            this.smoothScroll( el , options );
-        } , 0 );
+            this.smoothScroll( el, options );
+        }, 0 );
     }
 
-    public amIVisible ( el : ElementRef , CLASS_NAME : string ) {
+    public amIVisible ( el : ElementRef ) {
         if ( this.scrollTop === this.lastScrollPosition ) {
             return;
         }
@@ -171,8 +173,8 @@ export class ScrollService {
     public scrollToZero () {
         this.zone.runOutsideAngular( () => {
             setTimeout( () => {
-                window.scrollTo( 0 , 0 );
-            } , 0 );
+                window.scrollTo( 0, 0 );
+            }, 0 );
         } );
     }
 
@@ -216,23 +218,21 @@ export class ScrollService {
         return this._dom.query( 'body' ).innerHeight;
     }
 
-    private smoothScroll ( element , options ) {
+    private smoothScroll ( element, options ) {
         options               = options || {};
         let classInstance     = this;
         // Options
         let duration          = options.duration || 800;
         let offset            = options.offset || 0;
         let easing : string   = options.easing;
-        let callbackBefore    = options.callbackBefore || function() {
-            };
-        let callbackAfter     = options.callbackAfter || function() {
-            };
+        let callbackBefore    = options.callbackBefore || emptyFunction;
+        let callbackAfter     = options.callbackAfter || emptyFunction;
         let container         = options.containerId ? classInstance._dom.query( '#' + options.containerId ) : null;
         let containerPresent  = (container !== undefined && container !== null);
         /**
          * Retrieve current location
          */
-        let getScrollLocation = function() {
+        let getScrollLocation = () => {
             if ( containerPresent ) {
                 return container.scrollTop;
             } else {
@@ -246,32 +246,32 @@ export class ScrollService {
          * - changed if-else to switch
          * @see http://archive.oreilly.com/pub/a/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html
          */
-        let getEasingPattern  = function( type , time ) {
+        let getEasingPattern  = ( type, time ) => {
             switch ( type ) {
                 case 'easeInQuad':
                     return time * time; // accelerating from zero velocity
                 case 'easeOutQuad':
                     return time * (2 - time); // decelerating to zero velocity
                 case 'easeInOutQuad':
-                    return time < 0.5 ? 2 * time * time : - 1 + (4 - 2 * time) * time; // acceleration until halfway, then deceleration
+                    return time < 0.5 ? 2 * time * time : -1 + (4 - 2 * time) * time; // acceleration until halfway, then deceleration
                 case 'easeInCubic':
                     return time * time * time; // accelerating from zero velocity
                 case 'easeOutCubic':
-                    return (-- time) * time * time + 1; // decelerating to zero velocity
+                    return (--time) * time * time + 1; // decelerating to zero velocity
                 case 'easeInOutCubic':
                     return time < 0.5 ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1; // acceleration until halfway, then deceleration
                 case 'easeInQuart':
                     return time * time * time * time; // accelerating from zero velocity
                 case 'easeOutQuart':
-                    return 1 - (-- time) * time * time * time; // decelerating to zero velocity
+                    return 1 - (--time) * time * time * time; // decelerating to zero velocity
                 case 'easeInOutQuart':
-                    return time < 0.5 ? 8 * time * time * time * time : 1 - 8 * (-- time) * time * time * time; // acceleration until halfway, then deceleration
+                    return time < 0.5 ? 8 * time * time * time * time : 1 - 8 * (--time) * time * time * time; // acceleration until halfway, then deceleration
                 case 'easeInQuint':
                     return time * time * time * time * time; // accelerating from zero velocity
                 case 'easeOutQuint':
-                    return 1 + (-- time) * time * time * time * time; // decelerating to zero velocity
+                    return 1 + (--time) * time * time * time * time; // decelerating to zero velocity
                 case 'easeInOutQuint':
-                    return time < 0.5 ? 16 * time * time * time * time * time : 1 + 16 * (-- time) * time * time * time * time; // acceleration until halfway, then deceleration
+                    return time < 0.5 ? 16 * time * time * time * time * time : 1 + 16 * (--time) * time * time * time * time; // acceleration until halfway, then deceleration
                 default:
                     return time;
             }
@@ -279,7 +279,7 @@ export class ScrollService {
         /**
          * Calculate how far to scroll
          */
-        let getEndLocation    = function( elemt ) {
+        let getEndLocation    = ( elemt ) => {
             let location = 0;
             if ( elemt.offsetParent ) {
                 do {
@@ -287,12 +287,12 @@ export class ScrollService {
                     elemt = elemt.offsetParent;
                 } while ( elemt );
             }
-            location = Math.max( location - offset , 0 );
+            location = Math.max( location - offset, 0 );
             return location;
         };
         // Initialize the whole thing
         setTimeout(
-            function() {
+            () => {
                 let currentLocation = null;
                 let startLocation   = getScrollLocation();
                 let endLocation     = getEndLocation( element );
@@ -306,7 +306,7 @@ export class ScrollService {
                  * Stop the scrolling animation when the anchor is reached (or at the top/bottom of the page)
                  */
                 let runAnimation;
-                let stopAnimation   = function() {
+                let stopAnimation   = () => {
                     currentLocation = getScrollLocation();
                     if ( containerPresent ) {
                         scrollHeight   = container.scrollHeight;
@@ -329,28 +329,28 @@ export class ScrollService {
                         clearInterval( runAnimation );
                         callbackAfter( element );
                         setTimeout( () => {
-                            window.scrollTo( 0 , getEndLocation( element ) );
+                            window.scrollTo( 0, getEndLocation( element ) );
                         } );
                     }
                 };
                 /**
                  * Scroll the page by an increment, and check if it's time to stop
                  */
-                let animateScroll   = function() {
+                let animateScroll   = () => {
                     timeLapsed += 16;
                     percentage = ( timeLapsed / duration );
                     percentage = ( percentage > 1 ) ? 1 : percentage;
-                    position   = startLocation + ( distance * getEasingPattern( easing , percentage ) );
+                    position   = startLocation + ( distance * getEasingPattern( easing, percentage ) );
                     if ( containerPresent ) {
                         container.scrollTop = position;
                     } else {
-                        classInstance._window.scrollTo( 0 , position );
+                        classInstance._window.scrollTo( 0, position );
                     }
                     stopAnimation();
                 };
                 callbackBefore( element );
-                runAnimation = setInterval( animateScroll , 16 );
-            } , 0 );
+                runAnimation = setInterval( animateScroll, 16 );
+            }, 0 );
     };
 
     private capitalizeFirstLetter ( str : string ) : string {
@@ -360,7 +360,7 @@ export class ScrollService {
     private camelCaseAndStripDash ( str : string ) : string {
         let split = str.split( '-' );
         split.pop();
-        let camelCased = split.map( ( value , index ) => {
+        let camelCased = split.map( ( value, index ) => {
             return index === 0 ? value : this.capitalizeFirstLetter( value );
         } ).join( '' );
         return camelCased;

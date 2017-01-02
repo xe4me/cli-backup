@@ -84,24 +84,24 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     protected searchStr = '';
     private DO_NOT_FOCUS = false;
 
-    constructor( public _el : ElementRef, public _cd : ChangeDetectorRef, public _renderer : Renderer ) {
+    constructor ( public _el : ElementRef, public _cd : ChangeDetectorRef, public _renderer : Renderer ) {
         super();
     }
 
-    get isOptionsHidden() : boolean {
+    get isOptionsHidden () : boolean {
         return this._optionsHidden;
     }
 
-    getGroupName() {
+    getGroupName () {
         return this.id + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME;
     }
 
-    ngOnInit() : void {
+    ngOnInit () : void {
         super.ngOnInit();
         this.calculateMaxWidth( window.innerWidth );
     }
 
-    ngAfterViewInit() : void {
+    ngAfterViewInit () : void {
         this.selectedOption[ this.fieldValueKey ] = null;
         this.selectedOption[ this.fieldItemKey ] = null;
         this.updateValidators();
@@ -113,7 +113,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    createAndJoinControl() {
+    createAndJoinControl () {
         if ( !this.createdAndJoinedControl ) {
             // if we have the fdn provided by controlGroup , use it otherwise generate a radnom string
             this.createRandomId();
@@ -150,7 +150,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    ngOnDestroy() : any {
+    ngOnDestroy () : any {
         if ( this.subscription ) {
             this.subscription.unsubscribe();
         }
@@ -161,7 +161,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    updateValidators() {
+    updateValidators () {
         if ( this.control ) {
             let validators = Validators.compose( [
                 RequiredValidator.requiredValidation( this.required ),
@@ -172,7 +172,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    emptyAll() {
+    emptyAll () {
         this.selectedOption = {};
         this.selectedOption[ this.fieldValueKey ] = null;
         this.selectedOption[ this.fieldItemKey ] = null;
@@ -184,16 +184,16 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
 
     private close = () : void => {
         this._optionsHidden = true;
-    };
+    }
 
-    private open() {
+    private open () {
         if ( this.isInSummaryState ) {
             return;
         }
         this._optionsHidden = false;
     } ;
 
-    private onKeydown( $event : KeyboardEvent ) : void {
+    private onKeydown ( $event : KeyboardEvent ) : void {
         switch ( $event.keyCode ) {
             case KeyCodes.DOWN:
                 return this.focusOnList( -1, $event );
@@ -208,7 +208,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private getNodeForKeyboardSearch( $event : KeyboardEvent ) : any {
+    private getNodeForKeyboardSearch ( $event : KeyboardEvent ) : any {
         if ( this.clearSearchTimeout ) {
             clearTimeout( this.clearSearchTimeout );
         }
@@ -221,17 +221,18 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         this.searchStr += String.fromCharCode( keyCode );
         if ( this.searchStr ) {
             let search = new RegExp( '^' + this.searchStr, 'i' );
-            for ( let i = 0 ; i < this.options.length ; i++ ) {
-                let op = this.options[ i ];
-                if ( search.test( op[ this.fieldValueKey ] ) ) {
-                    return <any> this.optionsRef.toArray()[ i ];
+            let index = 0;
+            for ( const option of this.options.length ) {
+                if ( search.test( option[ this.fieldValueKey ] ) ) {
+                    return <any> this.optionsRef.toArray()[ index ];
                 }
+                index++;
             }
         }
         return null;
     }
 
-    private selectOption( option, $event : KeyboardEvent, selectActions : SelectActions ) : void {
+    private selectOption ( option, $event : KeyboardEvent, selectActions : SelectActions ) : void {
         if ( this.alreadySelectedThis( option ) ) {
             return;
         }
@@ -265,13 +266,13 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private toggleOptions( $event : KeyboardEvent ) : void {
+    private toggleOptions ( $event : KeyboardEvent ) : void {
         this._optionsHidden = !this._optionsHidden;
         this.focusInput();
         $event.preventDefault();
     }
 
-    private focusOnList( _direction : number, $event : KeyboardEvent ) : void {
+    private focusOnList ( _direction : number, $event : KeyboardEvent ) : void {
         this.open();
         if ( this.focusers.toArray()[ this.LIST_FOCUSER ] ) {
             this.focusers.toArray()[ this.LIST_FOCUSER ].focus( _direction );
@@ -282,13 +283,13 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private focusInput() : void {
+    private focusInput () : void {
         if ( this.focusers.toArray()[ this.INPUT_FOCUSER ] ) {
             this.focusers.toArray()[ this.INPUT_FOCUSER ].focus( -1 );
         }
     }
 
-    private searchForFocus( $event : KeyboardEvent ) {
+    private searchForFocus ( $event : KeyboardEvent ) {
         let node = this.getNodeForKeyboardSearch( $event );
         if ( node && node.nativeElement ) {
             if ( this._optionsHidden ) {
@@ -299,7 +300,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private onTypeCharacter( $event : KeyboardEvent ) {
+    private onTypeCharacter ( $event : KeyboardEvent ) {
         if ( $event.keyCode === KeyCodes.SPACE || $event.keyCode === KeyCodes.ENTER ) {
             this._renderer.invokeElementMethod( $event.target, 'click', [] );
         } else {
@@ -307,7 +308,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private setupOnControlValueChangeHandler() {
+    private setupOnControlValueChangeHandler () {
         if ( this.control ) {
             this.subscription =
                 this.control
@@ -318,19 +319,19 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private findOptionAndSelect( _change : any, doFocus ) {
+    private findOptionAndSelect ( _change : any, doFocus ) {
         if ( _change !== undefined ) {
             if ( _change === null ) {
                 return this.selectOption( _change, null, {
                     doMarkForCheck : true,
-                    doFocus : doFocus
+                    doFocus
                 } );
             }
-            for ( let i = 0 ; i < this.options.length ; i++ ) {
-                if ( this.options[ i ][ this.fieldValueKey ] === _change || this.options[ i ][ this.fieldItemKey ] === _change ) {
-                    return this.selectOption( this.options[ i ], null, {
+            for ( const option of this.options.length ) {
+                if ( option[ this.fieldValueKey ] === _change || option[ this.fieldItemKey ] === _change ) {
+                    return this.selectOption( option, null, {
                         doMarkForCheck : true,
-                        doFocus : doFocus
+                        doFocus
                     } );
                 }
             }
@@ -339,7 +340,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private alreadySelectedThis( option : any ) {
+    private alreadySelectedThis ( option : any ) {
         if ( this.selectedOption && option !== null ) {
             return this.selectedOption[ this.fieldItemKey ] === option[ this.fieldItemKey ];
         } else {
@@ -347,11 +348,11 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
     }
 
-    private onResize( event ) {
+    private onResize ( event ) {
         this.calculateMaxWidth( event.target.innerWidth );
     }
 
-    private calculateMaxWidth( _windowWidth ) {
+    private calculateMaxWidth ( _windowWidth ) {
         let maxWidth = _windowWidth - this.paddingAndMargins;
         this._renderer.setElementStyle( this._el.nativeElement, 'max-width', maxWidth + 'px' );
     }

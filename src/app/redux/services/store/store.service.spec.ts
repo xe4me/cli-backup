@@ -4,18 +4,24 @@ import { getIn } from '../../../modules/amp-utils';
 import { StoreService } from './store.service';
 import { AmpReduxModule } from '../../amp-redux.module';
 import { Store } from '@ngrx/store';
-import { async, TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
+import {
+    async,
+    TestBed,
+    inject,
+    tick,
+    fakeAsync
+} from '@angular/core/testing';
 
 const TestModel = require( '../../fixtures/model/test.model.json' );
 interface Array<T> {
-    last() : Array<T>;
+    last() : T[];
 }
 if ( !(<any> Array.prototype).last ) {
-    (<any> Array.prototype).last = function () {
+    (<any> Array.prototype).last = () => {
         return this[ this.length - 1 ];
     };
 }
-describe( 'Store Service', function () {
+describe( 'Store Service', () => {
     const modelActions = new ModelActions();
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
@@ -31,7 +37,7 @@ describe( 'Store Service', function () {
     describe( 'Select', () => {
         it( 'it should get section corresponded to fdn from the store',
             inject( [ StoreService ], ( storeService : StoreService ) => {
-                const fdn = [
+                const fdn   = [
                     'Application',
                     'FirstInsuranceDetailsSection',
                     'samplefieldsblock',
@@ -45,15 +51,15 @@ describe( 'Store Service', function () {
         );
         it( 'it should update the store and then the subscriber should get that change',
             inject( [ StoreService, Store ], ( storeService : StoreService, store : Store<any> ) => {
-                let updated = false;
-                const fdn = [
+                let updated   = false;
+                const fdn     = [
                     'Application',
                     'FirstInsuranceDetailsSection',
                     'samplefieldsblock',
                     'contactNumber'
                 ];
                 const payload = {
-                    fdn : fdn,
+                    fdn,
                     query : 'updated with redux'
                 };
                 storeService.select( fdn ).subscribe( ( contactNumber ) => {
@@ -66,7 +72,7 @@ describe( 'Store Service', function () {
                 const updateAction = modelActions.update( payload );
                 expect( updateAction ).toEqual( {
                     type : ModelActions.UPDATE,
-                    payload : payload
+                    payload
                 } );
                 updated = true;
                 store.dispatch( updateAction );
@@ -74,16 +80,16 @@ describe( 'Store Service', function () {
         );
         it( 'subscriber to the store should only called once if the update has not met debounceTime',
             inject( [ StoreService, Store ], ( storeService : StoreService, store : Store<any> ) => {
-                let updated = false;
-                let called = 0;
-                const fdn = [
+                let updated   = false;
+                let called    = 0;
+                const fdn     = [
                     'Application',
                     'FirstInsuranceDetailsSection',
                     'samplefieldsblock',
                     'contactNumber'
                 ];
                 const payload = {
-                    fdn : fdn,
+                    fdn,
                     query : 'updated with redux'
                 };
                 storeService.select( fdn ).subscribe( ( contactNumber ) => {
@@ -98,7 +104,7 @@ describe( 'Store Service', function () {
                 const updateAction = modelActions.update( payload );
                 expect( updateAction ).toEqual( {
                     type : ModelActions.UPDATE,
-                    payload : payload
+                    payload
                 } );
                 updated = true;
                 store.dispatch( updateAction );
@@ -108,16 +114,16 @@ describe( 'Store Service', function () {
         );
         it( 'subscriber to the store should only called once if the update has not actually changed the model',
             fakeAsync( inject( [ StoreService, Store ], ( storeService : StoreService, store : Store<any> ) => {
-                    let updated = false;
-                    let called = 0;
-                    const fdn = [
+                    let updated   = false;
+                    let called    = 0;
+                    const fdn     = [
                         'Application',
                         'FirstInsuranceDetailsSection',
                         'samplefieldsblock',
                         'contactNumber'
                     ];
                     const payload = {
-                        fdn : fdn,
+                        fdn,
                         query : 'updated with redux'
                     };
                     storeService.select( fdn ).subscribe( ( contactNumber ) => {
@@ -132,7 +138,7 @@ describe( 'Store Service', function () {
                     const updateAction = modelActions.update( payload );
                     expect( updateAction ).toEqual( {
                         type : ModelActions.UPDATE,
-                        payload : payload
+                        payload
                     } );
                     updated = true;
                     store.dispatch( updateAction );

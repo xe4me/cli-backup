@@ -30,7 +30,7 @@ export class AmpQasAddressService {
 
     public query = ( queryValue : string ) : Observable<any> => {
         let headers : Headers = this.headers;
-        let options = new RequestOptions( { body : '', headers : headers } );
+        let options = new RequestOptions( { body : '', headers } );
         let url = AmpQasAddressService.QAS_QUERY_URL + '/' + encodeURIComponent( escapeSlash( queryValue ) ) + '?residentialOnly=' + this.residentialOnly;
         return this
             .http
@@ -47,10 +47,10 @@ export class AmpQasAddressService {
                 }
             } )
             .catch( this.handleError );
-    };
+    }
     public getFormattedAddress = ( _moniker : string, _type ) : Observable<any> => {
         let headers : Headers = this.headers;
-        let options = new RequestOptions( { body : '', headers : headers } );
+        let options = new RequestOptions( { body : '', headers } );
         let url = AmpQasAddressService.QAS_FORMATTER_URL + '/' + _moniker;
         return this
             .http
@@ -60,7 +60,7 @@ export class AmpQasAddressService {
                 return this.getFormattedAddressByType( re.payload, _type );
             } )
             .catch( this.handleError );
-    };
+    }
 
     private handleError ( error : any ) {
         let errMsg = (error.message) ? error.message : error.status ? error.status : AmpQasAddressService.DEFAULT_ERROR_TEXT;

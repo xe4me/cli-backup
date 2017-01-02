@@ -41,5 +41,5 @@ export class AmpPopDownDirective {
     private onClick = () : void => {
         let popDown = this.dom.query( this.target );
         this.toggle(popDown);
-    };
+    }
 }

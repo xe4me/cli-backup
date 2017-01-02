@@ -12,7 +12,7 @@ import { Component , Input , ViewEncapsulation } from '@angular/core';
 export class AmpTooltipTemplateComponent {
     private extraClasses = '';
     private hide         = () : void => {
-    };
+    }
 }
 @Component( {
     selector : 'amp-tooltip-cmp' ,

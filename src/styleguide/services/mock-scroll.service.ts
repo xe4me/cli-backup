@@ -1,4 +1,7 @@
-import { Injectable , EventEmitter }     from '@angular/core';
+import {
+    Injectable,
+    EventEmitter
+} from '@angular/core';
 import { FormModelService } from '../../app/services/form-model/form-model.service';
 @Injectable()
 export class MockScrollService {
@@ -21,26 +24,24 @@ export class MockScrollService {
     }
 
     public amIVisible ( CLASS_NAME : string ) {
-        let isInView = true;
+        let isInView = CLASS_NAME && true;
         return true;
     }
 
-    private smoothScroll ( element , options ) {
+    private smoothScroll ( element, options ) {
         options               = options || {};
         // Options
         let duration          = options.duration || 800;
         let offset            = options.offset || 0;
         let easing            = options.easing || 'easeInOutQuart';
-        let callbackBefore    = options.callbackBefore || function() {
-            };
-        let callbackAfter     = options.callbackAfter || function() {
-            };
+        let callbackBefore    = options.callbackBefore;
+        let callbackAfter     = options.callbackAfter;
         let container         = document.getElementById( options.containerId ) || null;
         let containerPresent  = (container !== undefined && container !== null);
         /**
          * Retrieve current location
          */
-        let getScrollLocation = function() {
+        let getScrollLocation = () => {
             if ( containerPresent ) {
                 return container.scrollTop;
             } else {
@@ -58,32 +59,32 @@ export class MockScrollService {
          * - changed if-else to switch
          * @see http://archive.oreilly.com/pub/a/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html
          */
-        let getEasingPattern  = function( type , time ) {
+        let getEasingPattern  = ( type, time ) => {
             switch ( type ) {
                 case 'easeInQuad':
                     return time * time; // accelerating from zero velocity
                 case 'easeOutQuad':
                     return time * (2 - time); // decelerating to zero velocity
                 case 'easeInOutQuad':
-                    return time < 0.5 ? 2 * time * time : - 1 + (4 - 2 * time) * time; // acceleration until halfway, then deceleration
+                    return time < 0.5 ? 2 * time * time : -1 + (4 - 2 * time) * time; // acceleration until halfway, then deceleration
                 case 'easeInCubic':
                     return time * time * time; // accelerating from zero velocity
                 case 'easeOutCubic':
-                    return (-- time) * time * time + 1; // decelerating to zero velocity
+                    return (--time) * time * time + 1; // decelerating to zero velocity
                 case 'easeInOutCubic':
                     return time < 0.5 ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1; // acceleration until halfway, then deceleration
                 case 'easeInQuart':
                     return time * time * time * time; // accelerating from zero velocity
                 case 'easeOutQuart':
-                    return 1 - (-- time) * time * time * time; // decelerating to zero velocity
+                    return 1 - (--time) * time * time * time; // decelerating to zero velocity
                 case 'easeInOutQuart':
-                    return time < 0.5 ? 8 * time * time * time * time : 1 - 8 * (-- time) * time * time * time; // acceleration until halfway, then deceleration
+                    return time < 0.5 ? 8 * time * time * time * time : 1 - 8 * (--time) * time * time * time; // acceleration until halfway, then deceleration
                 case 'easeInQuint':
                     return time * time * time * time * time; // accelerating from zero velocity
                 case 'easeOutQuint':
-                    return 1 + (-- time) * time * time * time * time; // decelerating to zero velocity
+                    return 1 + (--time) * time * time * time * time; // decelerating to zero velocity
                 case 'easeInOutQuint':
-                    return time < 0.5 ? 16 * time * time * time * time * time : 1 + 16 * (-- time) * time * time * time * time; // acceleration until halfway, then deceleration
+                    return time < 0.5 ? 16 * time * time * time * time * time : 1 + 16 * (--time) * time * time * time * time; // acceleration until halfway, then deceleration
                 default:
                     return time;
             }
@@ -91,7 +92,7 @@ export class MockScrollService {
         /**
          * Calculate how far to scroll
          */
-        let getEndLocation    = function( elemt ) {
+        let getEndLocation    = ( elemt ) => {
             let location = 0;
             if ( elemt.offsetParent ) {
                 do {
@@ -99,11 +100,11 @@ export class MockScrollService {
                     elemt = elemt.offsetParent;
                 } while ( elemt );
             }
-            location = Math.max( location - offset , 0 );
+            location = Math.max( location - offset, 0 );
             return location;
         };
         // Initialize the whole thing
-        setTimeout( function() {
+        setTimeout( () => {
             let currentLocation = null;
             let startLocation   = getScrollLocation();
             let endLocation     = getEndLocation( element );
@@ -117,7 +118,7 @@ export class MockScrollService {
              * Stop the scrolling animation when the anchor is reached (or at the top/bottom of the page)
              */
             let runAnimation;
-            let stopAnimation   = function() {
+            let stopAnimation   = () => {
                 currentLocation = getScrollLocation();
                 if ( containerPresent ) {
                     scrollHeight   = container.scrollHeight;
@@ -140,21 +141,21 @@ export class MockScrollService {
             /**
              * Scroll the page by an increment, and check if it's time to stop
              */
-            let animateScroll   = function() {
+            let animateScroll   = () => {
                 timeLapsed += 16;
                 percentage = ( timeLapsed / duration );
                 percentage = ( percentage > 1 ) ? 1 : percentage;
-                position   = startLocation + ( distance * getEasingPattern( easing , percentage ) );
+                position   = startLocation + ( distance * getEasingPattern( easing, percentage ) );
                 if ( containerPresent ) {
                     container.scrollTop = position;
                 } else {
-                    window.scrollTo( 0 , position );
+                    window.scrollTo( 0, position );
                 }
                 stopAnimation();
             };
             callbackBefore( element );
-            runAnimation = setInterval( animateScroll , 16 );
-        } , 0 );
+            runAnimation = setInterval( animateScroll, 16 );
+        }, 0 );
     };
 
     private  isElementInViewport ( el ) {

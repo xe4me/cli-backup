@@ -154,7 +154,7 @@ export class AmpReCaptchaComponent implements OnInit, OnDestroy {
         this.recaptchaControlGroup.controls['verificationStatus'].setValue(success ? 'verified' : '');
         this.recaptchaControlGroup.controls['verificationToken'].setValue(response);
         this.captchaResponse.emit({
-            success : success,
+            success,
             token : response,
             recaptcha : this
         });

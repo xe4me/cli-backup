@@ -42,5 +42,5 @@ export class AmpPopDownComponent implements OnInit {
         if (this.domUtils.isVisible(popDown)) {
             this.domUtils.hide(popDown);
         }
-    };
+    }
 }

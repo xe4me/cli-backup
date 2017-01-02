@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 export interface Payload {
     query : any ;
-    fdn : (string|number)[];
+    fdn : Array<(string|number)>;
 }
 @Injectable()
 export class ModelActions {
@@ -13,29 +13,29 @@ export class ModelActions {
 
     update ( payload : Payload ) : Action {
         return {
-            type    : ModelActions.UPDATE ,
-            payload : payload
+            type : ModelActions.UPDATE,
+            payload
         };
     }
 
     push ( payload : Payload ) {
         return {
-            type    : ModelActions.PUSH ,
-            payload : payload
+            type : ModelActions.PUSH,
+            payload
         };
     }
 
     removeAt ( payload : Payload ) {
         return {
-            type    : ModelActions.REMOVE_AT ,
-            payload : payload
+            type : ModelActions.REMOVE_AT,
+            payload
         };
     }
 
     removeAll ( payload : Payload ) {
         return {
-            type    : ModelActions.REMOVE_ALL ,
-            payload : payload
+            type : ModelActions.REMOVE_ALL,
+            payload
         };
     }
 }

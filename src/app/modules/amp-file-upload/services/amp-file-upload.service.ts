@@ -68,7 +68,7 @@ export class AmpFileUploadService {
             } );
         let options = new RequestOptions( {
             body : '' ,
-            headers : headers
+            headers
         } );
         return this.ampHttp.get( this.tokenUrl, options )
             .map( ( res : Response ) => res.json() );
@@ -128,7 +128,7 @@ export class AmpFileUploadService {
                 let progressStatus : Object = {
                     total: e.total,
                     loaded: e.loaded,
-                    percent: percent
+                    percent
                 };
                 if ( speed !== 0 ) {
                     Object.assign( progressStatus,

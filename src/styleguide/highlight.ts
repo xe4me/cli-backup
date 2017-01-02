@@ -1,7 +1,13 @@
-import { ElementRef , ViewEncapsulation , Component , AfterContentInit , Input } from '@angular/core';
-declare var hljs : any;
+import {
+    ElementRef,
+    ViewEncapsulation,
+    Component,
+    AfterContentInit,
+    Input
+} from '@angular/core';
+declare const hljs : any;
 @Component( {
-    selector      : 'highlight' ,
+    selector      : 'highlight',
     template      : `
             <pre>
                 <code *ngIf="rendered || text"  class='highlight' [innerHtml]='rendered || text'>
@@ -10,8 +16,8 @@ declare var hljs : any;
                 <code *ngIf="!rendered && !text"  class='highlight default'>
                     <ng-content></ng-content>
                 </code>
-            </pre>` ,
-    styles     : [ require( './highlight.scss' ).toString() ] ,
+            </pre>`,
+    styles        : [ require( './highlight.scss' ).toString() ],
     encapsulation : ViewEncapsulation.None
 } )
 export class Highlight implements AfterContentInit {
@@ -60,16 +66,16 @@ export class Highlight implements AfterContentInit {
         // Make it so each line starts at 0 whitespace
         let firstLineWhitespace     = lines[ 0 ].match( /^\s*/ )[ 0 ];
         let startingWhitespaceRegex = new RegExp( '^' + firstLineWhitespace );
-        lines                       = lines.map( function( line ) {
+        lines                       = lines.map( ( line ) => {
             return line
-                .replace( startingWhitespaceRegex , '' )
-                .replace( /\s+$/ , '' );
+                .replace( startingWhitespaceRegex, '' )
+                .replace( /\s+$/, '' );
         } );
-        let highlightedCode         = hljs.highlight( this._type , lines.join( '\n' ) , true );
+        let highlightedCode         = hljs.highlight( this._type, lines.join( '\n' ), true );
         highlightedCode.value       = highlightedCode.value
-                                                     .replace( /=<span class='hljs-value'>''<\/span>/gi , '' )
-                                                     .replace( '<head>' , '' )
-                                                     .replace( '<head/>' , '' );
+                                                     .replace( /=<span class='hljs-value'>''<\/span>/gi, '' )
+                                                     .replace( '<head>', '' )
+                                                     .replace( '<head/>', '' );
         this.rendered               = highlightedCode.value;
     }
 }

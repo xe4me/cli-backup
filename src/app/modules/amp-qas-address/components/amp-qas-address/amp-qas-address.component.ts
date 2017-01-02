@@ -166,5 +166,5 @@ export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {
                 return null;
             }
         };
-    };
+    }
 }

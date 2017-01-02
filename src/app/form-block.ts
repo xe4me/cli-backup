@@ -32,7 +32,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * __fdn : the fully distinguished name to this block :
      * E.g : ['Application','SomeSection','ContactDetails'];
      * */
-    protected __fdn : (number|string)[];
+    protected __fdn : Array<(number|string)>;
     /*
      * __form : The overal form , this is accessabel in all the blocks and is the same everywhere
      * */
@@ -92,7 +92,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * Same as loadNext , except loads an array of blocks
      * */
     protected __loadAllNext : ( _defs : FormDefinition[] ,
-                                _viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>[]>;
+                                _viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any[]>>;
     /*
      * __custom : All the custom properties that you've specified in your form definition chunk will be accessible
      @example
@@ -166,9 +166,9 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
                     inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
                 }
                 if ( inputs && inputs.length > 0 ) {
-                    for ( let i = 0 ; i < inputs.length ; i ++ ) {
-                        if ( this.domUtils.isVisible( inputs[ i ] ) ) {
-                            inputs[ i ].focus();
+                    for ( const input of inputs) {
+                        if ( this.domUtils.isVisible( input ) ) {
+                            input.focus();
                             break;
                         }
                     }

@@ -143,7 +143,7 @@ export class MockAmpQasAddressService {
     public query = ( queryValue : string ) : Observable<any> => {
         return queryValue === MockAmpQasAddressService.sampleSearchTerm ? this.subject.asObservable() : this.nullSubject.asObservable();
         // .catch(this.handleError);
-    };
+    }
 
     public setUrlForResidential () {
         this.residentialOnly = 'true';
@@ -312,7 +312,7 @@ export class MockAmpCountryService {
     private subject = new BehaviorSubject( this._countries );
     public getCountries = () : Observable<any> => {
         return this.subject.asObservable();
-    };
+    }
 }
 describe( 'amp-qas-address component', () => {
     let _searchTerm = MockAmpQasAddressService.sampleSearchTerm;

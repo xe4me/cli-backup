@@ -12,10 +12,10 @@ export class AmpGreenIdServices {
 
     // Note: For local development uncomment the line line below and comment out the other BASE_URL variable
     // public static BASE_URL          = 'http://localhost:8082/ddc/public/api/green-id';
-    public static BASE_URL          = `${Environments.property.ApiCallsBaseUrl}/green-id`;
+    public static BASE_URL           = `${Environments.property.ApiCallsBaseUrl}/green-id`;
     public static DEFAULT_ERROR_TEXT = 'Server error';
-    public static REGISTER_ENDPOINT = '/register';
-    public static TOKEN_ENDPOINT = '/token';
+    public static REGISTER_ENDPOINT  = '/register';
+    public static TOKEN_ENDPOINT     = '/token';
 
     private headers = new Headers( {
         'Content-Type' : 'application/json'
@@ -25,9 +25,9 @@ export class AmpGreenIdServices {
 
     }
 
-    public registerUser  = ( modelValue : IGreenIdFormModel ) : Observable<any> => {
+    public registerUser = ( modelValue : IGreenIdFormModel ) : Observable<any> => {
         const headers : Headers = this.headers;
-        const options           = new RequestOptions( { headers : headers } );
+        const options           = new RequestOptions( { headers } );
         const url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.REGISTER_ENDPOINT;
         const body              = JSON.stringify( modelValue );
 
@@ -36,13 +36,13 @@ export class AmpGreenIdServices {
             .post( url, body, options )
             .map( ( res ) => {
                 return res.json();
-            })
+            } )
             .catch( this.handleError );
-    };
+    }
 
-    public getToken  = ( verificationId : string ) : Observable<any> => {
+    public getToken = ( verificationId : string ) : Observable<any> => {
         const headers : Headers = this.headers;
-        const options           = new RequestOptions( { headers, body : '' } ) ;
+        const options           = new RequestOptions( { headers, body : '' } );
         const url               = AmpGreenIdServices.BASE_URL + AmpGreenIdServices.TOKEN_ENDPOINT;
         const urlParams         = `verificationId=${verificationId}`;
 
@@ -51,9 +51,9 @@ export class AmpGreenIdServices {
             .get( `${url}?${urlParams}`, options )
             .map( ( res ) => {
                 return res.json();
-            })
+            } )
             .catch( this.handleError );
-    };
+    }
 
     private handleError ( error : any ) {
         const errMsg = (error.message) ? error.message : error.status ? error.status : AmpGreenIdServices.DEFAULT_ERROR_TEXT;

@@ -83,10 +83,10 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
                 return null;
             }
         };
-    };
+    }
     @Input() queryServiceCall = ( queryValue : string ) : Observable<any> => {
         return new Observable<any>();
-    };
+    }
 
     @Input( 'required' ) set required( value : boolean ) {
         this._required = value;
@@ -186,7 +186,7 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         }
         this._optionsHidden = true;
         this.showNoResults = false;
-    };
+    }
 
     private open() {
         if ( this.isInSummaryState ) {
