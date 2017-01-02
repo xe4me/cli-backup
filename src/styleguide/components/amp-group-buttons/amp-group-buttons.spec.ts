@@ -1,11 +1,23 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import {
+    async,
+    ComponentFixture,
+    TestBed,
+    ComponentFixtureAutoDetect
+} from '@angular/core/testing';
+import {
+    Component,
+    ElementRef,
+    ViewChild
+} from '@angular/core';
+import {
+    FormsModule,
+    ReactiveFormsModule,
+    FormGroup
+} from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
 import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormModelService } from '../../../app/services/form-model/form-model.service';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
-import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
 import { AmpGroupButtonsModule } from '../../../app/modules/amp-group-buttons';
 class MockElementRef implements ElementRef {
     nativeElement = {};
@@ -13,16 +25,15 @@ class MockElementRef implements ElementRef {
 describe( 'amp-group-buttons directive', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports : [ FormsModule, ReactiveFormsModule, AmpGroupButtonsModule ],
+            imports      : [ FormsModule, ReactiveFormsModule, AmpGroupButtonsModule ],
             declarations : [
                 AmpGroupButtonTest
             ],
-            providers : [
+            providers    : [
                 { provide : FormModelService, useClass : MockFormModelService },
                 { provide : ElementRef, useClass : MockElementRef },
                 { provide : ScrollService, useClass : MockScrollService },
-                ProgressObserverService,
-                { provide : Window, useClass : window }
+                { provide : ComponentFixtureAutoDetect, useValue : true }
             ]
         } );
         TestBed.compileComponents();
@@ -30,11 +41,11 @@ describe( 'amp-group-buttons directive', () => {
     it( 'Should contain 2 radio input field  with proper data-automation-id and name attributes ', () => {
         let fixture : ComponentFixture<AmpGroupButtonTest> = TestBed.createComponent( AmpGroupButtonTest );
         fixture.detectChanges();
-        const Element = fixture.nativeElement;
+        const Element   = fixture.nativeElement;
         const Component = fixture.componentInstance;
         // let AmpGroupButtonTest = fixture.debugElement;
-        let Form = Element.querySelector( 'form' );
-        let Inputs = Element.querySelectorAll( 'input' );
+        let Form        = Element.querySelector( 'form' );
+        let Inputs      = Element.querySelectorAll( 'input' );
         expect( Inputs[ '0' ].name ).toBe( Component.groupButtonsCmp.randomizedId );
         expect( Inputs[ '0' ].getAttribute( 'data-automation-id' ) ).toBe( 'group_button' + '_' + Component.groupButtonsCmp.randomizedId + '_fullId' );
         expect( Inputs.length ).toBe( 2 );
@@ -43,7 +54,7 @@ describe( 'amp-group-buttons directive', () => {
         let fixture : ComponentFixture<AmpGroupButtonTest> = TestBed.createComponent( AmpGroupButtonTest );
         fixture.detectChanges();
         const Element = fixture.nativeElement;
-        let Labels = Element.querySelectorAll( 'label' );
+        let Labels    = Element.querySelectorAll( 'label' );
         expect( Labels.length ).toBe( 2 );
         expect( Labels[ '0' ].innerHTML.trim() ).toBe( 'Full sale' );
         expect( Labels[ '1' ].innerHTML.trim() ).toBe( 'Partial sale' );
@@ -51,9 +62,9 @@ describe( 'amp-group-buttons directive', () => {
     it( 'Should update component control value to full after clicking on Full button', () => {
         let fixture : ComponentFixture<AmpGroupButtonTest> = TestBed.createComponent( AmpGroupButtonTest );
         fixture.detectChanges();
-        const Element = fixture.nativeElement;
+        const Element   = fixture.nativeElement;
         const Component = fixture.componentInstance;
-        let Labels = Element.querySelectorAll( 'label' );
+        let Labels      = Element.querySelectorAll( 'label' );
         Labels[ '0' ].click();
         fixture.detectChanges();
         expect( Component.control.value ).toBe( 'full' );
@@ -62,9 +73,9 @@ describe( 'amp-group-buttons directive', () => {
     it( 'Should make the Full button checked after the Component programmatically updated its control value', () => {
         let fixture : ComponentFixture<AmpGroupButtonTest> = TestBed.createComponent( AmpGroupButtonTest );
         fixture.detectChanges();
-        const Element = fixture.nativeElement;
+        const Element   = fixture.nativeElement;
         const Component = fixture.componentInstance;
-        let Inputs = Element.querySelectorAll( 'input' );
+        let Inputs      = Element.querySelectorAll( 'input' );
         Component.control.setValue( 'full' );
         fixture.detectChanges();
         expect( Inputs[ '0' ].checked ).toBeTruthy();
@@ -73,12 +84,12 @@ describe( 'amp-group-buttons directive', () => {
     it( 'Should make all the inputs unchecked ', () => {
         let fixture : ComponentFixture<AmpGroupButtonTest> = TestBed.createComponent( AmpGroupButtonTest );
         fixture.detectChanges();
-        const Element = fixture.nativeElement;
+        const Element   = fixture.nativeElement;
         const Component = fixture.componentInstance;
-        let Inputs = Element.querySelectorAll( 'input' );
+        let Inputs      = Element.querySelectorAll( 'input' );
         Component.control.setValue( 'null' );
         fixture.detectChanges();
-        for ( const input of  Inputs) {
+        for ( const input of  Inputs ) {
             expect( input.checked ).toBeFalsy();
         }
     } );
@@ -102,15 +113,15 @@ describe( 'amp-group-buttons directive', () => {
 class AmpGroupButtonTest {
     @ViewChild( 'groupButtonsCmp' ) groupButtonsCmp;
     private controlGroup : FormGroup = new FormGroup( {} );
-    private fullOrPartialButtons = {
-        buttons : [
+    private fullOrPartialButtons     = {
+        buttons       : [
             {
-                id : 'fullId',
+                id    : 'fullId',
                 value : 'full',
                 label : 'Full sale'
             },
             {
-                id : 'partialId',
+                id    : 'partialId',
                 value : 'partial',
                 label : 'Partial sale'
             }
@@ -118,10 +129,10 @@ class AmpGroupButtonTest {
         fullOrPartial : 'fullOrPartial'
     };
 
-    get control() {
+    get control () {
         return this.controlGroup.controls[ 'fullOrPartial' ];
     }
 
-    private onButtonClick( event ) {
+    private onButtonClick ( event ) {
     }
 }

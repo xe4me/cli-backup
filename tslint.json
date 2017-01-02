@@ -10,6 +10,7 @@
     ],
     "no-empty": false,
     "no-string-literal": false,
+    "only-arrow-functions": false,
     // This is needed for accessing Angular Controls
     //"no-unused-variable": false, apparently it's dep now.
     //no-unused-variable is deprecated. Use the tsc compiler options --noUnusedParameters and --noUnusedLocals instead.

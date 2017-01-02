@@ -1,19 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import {
+    Component,
+    ElementRef,
+    ViewChild
+} from '@angular/core';
+import {
+    FormsModule,
+    ReactiveFormsModule,
+    FormGroup
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 describe( 'amp-email component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports : [ FormsModule, ReactiveFormsModule, AmpInputsModule ],
+            imports      : [ FormsModule, ReactiveFormsModule, AmpInputsModule ],
             declarations : [
                 TestComponent
             ],
-            providers : [
+            providers    : [
                 { provide : ElementRef, useClass : MockElementRef },
-                { provide : Window, useClass : window },
                 { provide : ComponentFixtureAutoDetect, useValue : true }
             ]
         } );
@@ -23,8 +34,8 @@ describe( 'amp-email component', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
-        let Component = fixture.componentInstance;
-        let compiledLabel = compiledTestComponent.query( By.css( 'label' ) );
+        let Component             = fixture.componentInstance;
+        let compiledLabel         = compiledTestComponent.query( By.css( 'label' ) );
         expect( compiledLabel.name ).toBe( 'label' );
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Email' );
         expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.emailCmp.randomizedId );
@@ -33,8 +44,8 @@ describe( 'amp-email component', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
-        let compiledInput = compiledTestComponent.query( By.css( 'input' ) );
-        let Component = fixture.componentInstance;
+        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
+        let Component             = fixture.componentInstance;
         expect( compiledInput.nativeElement.name ).toBe( Component.emailCmp.randomizedId );
         expect( compiledInput.nativeElement.id ).toBe( Component.emailCmp.randomizedId );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
@@ -88,10 +99,10 @@ class MockElementRef implements ElementRef {
 } )
 class TestComponent {
     @ViewChild( 'emailCmp' ) emailCmp;
-    id = 'email';
-    controlGroup : FormGroup = new FormGroup( {} );
+                             id                       = 'email';
+                             controlGroup : FormGroup = new FormGroup( {} );
 
-    get control() {
+    get control () {
         return this.controlGroup.controls[ this.id ];
     }
 }

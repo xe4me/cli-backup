@@ -1,6 +1,17 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Http, BaseRequestOptions } from '@angular/http';
+import {
+    Component,
+    ElementRef,
+    ViewChild
+} from '@angular/core';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import {
+    Http,
+    BaseRequestOptions
+} from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { FormGroup } from '@angular/forms';
 import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
@@ -15,13 +26,12 @@ describe( 'amp-file-upload component', () => {
     };
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports : [ AmpFileUploadModule ],
+            imports      : [ AmpFileUploadModule ],
             declarations : [
                 TestComponent
             ],
-            providers : [
+            providers    : [
                 { provide : ElementRef, useClass : MockElementRef },
-                { provide : Window, useClass : window },
                 { provide : Http },
                 { provide : AmpHttpService },
                 { provide : mockHttpProvider }
@@ -30,7 +40,7 @@ describe( 'amp-file-upload component', () => {
         TestBed.compileComponents();
         fixture = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
-        Element = fixture.nativeElement;
+        Element   = fixture.nativeElement;
         Component = fixture.componentInstance;
     } ) );
     describe( '"File Upload" button', () => {
@@ -77,10 +87,10 @@ class MockElementRef implements ElementRef {
 } )
 class TestComponent {
     @ViewChild( 'componentReference' ) componentReference : AmpFileUploadComponent;
-    controlGroup : FormGroup = new FormGroup( {} );
-    private urls = {
+                                       controlGroup : FormGroup = new FormGroup( {} );
+    private urls                                                = {
         // TODO - Urls has to be modified to fetch data from local JSON file
         uploadUrl : 'http://localhost:8081/ddc/secure/api/upload/upload?token=',
-        tokenUrl : 'http://localhost:8081/ddc/secure/api/upload/token'
+        tokenUrl  : 'http://localhost:8081/ddc/secure/api/upload/token'
     };
 }

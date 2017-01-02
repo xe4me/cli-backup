@@ -1,12 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, EventEmitter, Input, Injectable } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
-import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Injectable
+} from '@angular/core';
+import {
+    FormsModule,
+    ReactiveFormsModule,
+    FormGroup,
+    FormBuilder
+} from '@angular/forms';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
 import { FormSectionService } from '../../../app/services/form-section/form-section.service';
-import { ProgressObserverService } from '../../../app/services/progress-observer/progress-observer.service';
-import { AmpStandAloneMenuModule, AmpStandAloneMenuComponent } from '../../../app/modules/amp-standalone-menu';
+import {
+    AmpStandAloneMenuModule,
+    AmpStandAloneMenuComponent
+} from '../../../app/modules/amp-standalone-menu';
 import { DomUtils } from '../../../app/modules/amp-utils/dom-utils';
 import { By } from '@angular/platform-browser';
 @Injectable()
@@ -15,7 +31,7 @@ class ScrollService1 {
 
     public $scrolled : EventEmitter<any>;
 
-    constructor() {
+    constructor () {
         this.$scrolled = new EventEmitter();
     }
 }
@@ -23,20 +39,17 @@ describe( 'amp standalone menu tests', () => {
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports : [ FormsModule, ReactiveFormsModule, AmpStandAloneMenuModule ],
+            imports      : [ FormsModule, ReactiveFormsModule, AmpStandAloneMenuModule ],
             declarations : [
                 TestComponent,
                 TestComponent1,
                 TestComponent2
             ],
-            providers : [
+            providers    : [
                 { provide : ElementRef, useClass : MockElementRef },
-                { provide : Window, useClass : window },
                 { provide : ComponentFixtureAutoDetect, useValue : true },
                 { provide : ScrollService, useClass : ScrollService1 },
                 { provide : AmpStandAloneMenuComponent, useClass : TestComponent2 },
-                ProgressObserverService,
-                BrowserDomAdapter,
                 FormSectionService,
                 DomUtils
             ]
@@ -45,8 +58,8 @@ describe( 'amp standalone menu tests', () => {
     } ) );
     it( 'amp-standalone-menu check for shown element ', () => {
         let fixture : ComponentFixture<TestComponent1> = TestBed.createComponent( TestComponent1 );
-        let compiledTestComponentNav = fixture.debugElement;
-        let compiledNav = compiledTestComponentNav.query( By.css( 'nav' ) );
+        let compiledTestComponentNav                   = fixture.debugElement;
+        let compiledNav                                = compiledTestComponentNav.query( By.css( 'nav' ) );
         expect( compiledNav ).toBe( null );
         fixture.componentInstance.showNavigation = true;
         fixture.detectChanges();
@@ -67,8 +80,8 @@ class MockElementRef implements ElementRef {
 class TestComponent {
     private form : FormGroup;
 
-    constructor( private _builder : FormBuilder,
-                 private scrollService : ScrollService ) {
+    constructor ( private _builder : FormBuilder,
+                  private scrollService : ScrollService ) {
         this.form = this._builder.group( {} );
     }
 }
@@ -81,7 +94,7 @@ class TestComponent {
 class TestComponent1 {
     public showNavigation : boolean = false;
 
-    constructor() {
+    constructor () {
 
     }
 }
@@ -94,8 +107,8 @@ class TestComponent1 {
 class TestComponent2 {
     public form : FormGroup;
 
-    constructor( private _builder : FormBuilder,
-                 private scrollService : ScrollService ) {
+    constructor ( private _builder : FormBuilder,
+                  private scrollService : ScrollService ) {
 
         this.form = this._builder.group( {} );
     }

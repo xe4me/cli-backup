@@ -1,11 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ViewChild } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import {
+    Component,
+    ViewChild
+} from '@angular/core';
+import {
+    ReactiveFormsModule,
+    FormsModule,
+    FormGroup,
+    FormControl
+} from '@angular/forms';
 import { AmpDropdownModule } from '../../../app/modules/amp-dropdown';
 import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown/components/amp-dropdown/amp-dropdown.component';
 import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { tick, fakeAsync } from '@angular/core/testing/fake_async';
+import {
+    tick,
+    fakeAsync
+} from '@angular/core/testing/fake_async';
 import { AmpFormGroup } from '../../../app/base-control';
 describe( 'amp-dropdown component', () => {
     let Element;
@@ -27,33 +42,33 @@ describe( 'amp-dropdown component', () => {
     let DeselectButton;
     let WrongSelectButton;
 
-    function focusOnInput() {
+    function focusOnInput () {
         Dropdown_input.focus();
         Dropdown_input.dispatchEvent( new Event( 'input' ) );
         Fixture.detectChanges();
     }
 
-    function openTheDropdown() {
+    function openTheDropdown () {
         Dropdown_label.focus();
         Dropdown_label.dispatchEvent( new Event( 'click' ) );
         Fixture.detectChanges();
     }
 
-    function deselect() {
+    function deselect () {
         DeselectButton.click();
         Fixture.detectChanges();
     }
 
-    function wrongSelect() {
+    function wrongSelect () {
         WrongSelectButton.click();
         Fixture.detectChanges();
     }
 
-    function selectFirstItem() {
+    function selectFirstItem () {
         selectItemByIndex( 0 );
     }
 
-    function getValueOfSelectedOption() {
+    function getValueOfSelectedOption () {
         if ( Dropdown_select.options[ Dropdown_select.selectedIndex ] ) {
             return Dropdown_select.options[ Dropdown_select.selectedIndex ].value;
         } else {
@@ -61,12 +76,12 @@ describe( 'amp-dropdown component', () => {
         }
     }
 
-    function selectItemByIndex( _index ) {
+    function selectItemByIndex ( _index ) {
         getAlltheLis()[ _index ].nativeElement.click();
         Fixture.detectChanges();
     }
 
-    function expectAllControlsToBeNull() {
+    function expectAllControlsToBeNull () {
         expect( QueryControl.value ).toBeNull();
         expect( SelectedControl.value ).toBeNull();
         if ( getValueOfSelectedOption() === '' ) {
@@ -78,17 +93,17 @@ describe( 'amp-dropdown component', () => {
         expect( DropdownComponent.selectedOption ).toEqual( emptySelectedOption );
     }
 
-    function getAlltheLis() {
+    function getAlltheLis () {
         return DebugElement.queryAll( By.css( 'li' ) );
     }
 
-    function createComponent() {
+    function createComponent () {
         Fixture = TestBed.createComponent( AmpdropdownTest );
         Fixture.detectChanges();
         TestBed.compileComponents();
     }
 
-    function createOverridenComponent() {
+    function createOverridenComponent () {
         Fixture = TestBed
             .overrideComponent( AmpdropdownTest, {
                 set : {
@@ -116,35 +131,35 @@ describe( 'amp-dropdown component', () => {
         Fixture.detectChanges();
     }
 
-    function doDefineElementsBeforeEach() {
+    function doDefineElementsBeforeEach () {
         beforeEach( () => {
-            Element = Fixture.nativeElement;
-            DebugElement = Fixture.debugElement;
-            TestComponent = DebugElement.componentInstance;
-            DropdownComponent = TestComponent.dropDownCmp;
-            Dropdown_input = Element.querySelector( 'input' );
-            Dropdown_label = Element.querySelector( 'label' );
-            Dropdown_select = Element.querySelector( 'select' );
-            ULElement = Element.querySelector( 'ul' );
-            LiElements = Element.querySelector( 'li' );
-            DeselectButton = Element.querySelector( '#deselect' );
-            WrongSelectButton = Element.querySelector( '#wrongSelect' );
-            Select_Options = Dropdown_select.children;
+            Element             = Fixture.nativeElement;
+            DebugElement        = Fixture.debugElement;
+            TestComponent       = DebugElement.componentInstance;
+            DropdownComponent   = TestComponent.dropDownCmp;
+            Dropdown_input      = Element.querySelector( 'input' );
+            Dropdown_label      = Element.querySelector( 'label' );
+            Dropdown_select     = Element.querySelector( 'select' );
+            ULElement           = Element.querySelector( 'ul' );
+            LiElements          = Element.querySelector( 'li' );
+            DeselectButton      = Element.querySelector( '#deselect' );
+            WrongSelectButton   = Element.querySelector( '#wrongSelect' );
+            Select_Options      = Dropdown_select.children;
             TestCmpControlGroup = TestComponent.__controlGroup;
-            CmpControlGroup = TestComponent.DropdownControlGroup;
-            QueryControl = TestComponent.QueryControl;
-            SelectedControl = TestComponent.SelectedControl;
-            TitleOptions = TestComponent.titleOptions;
+            CmpControlGroup     = TestComponent.DropdownControlGroup;
+            QueryControl        = TestComponent.QueryControl;
+            SelectedControl     = TestComponent.SelectedControl;
+            TitleOptions        = TestComponent.titleOptions;
         } );
     }
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports : [ ReactiveFormsModule, FormsModule, AmpDropdownModule ],
+            imports      : [ ReactiveFormsModule, FormsModule, AmpDropdownModule ],
             declarations : [
                 AmpdropdownTest
             ],
-            providers : [
+            providers    : [
                 { provide : ComponentFixtureAutoDetect, useValue : true }
             ]
         } );
@@ -259,23 +274,21 @@ describe( 'amp-dropdown component', () => {
         } ) );
         it( 'should fire selected event after setting the value pragmatically', fakeAsync( () => {
             let changes;
-            let firedCounter = 0;
-            DropdownComponent.selected.subscribe( ( _changes ) => {
-                changes = _changes;
-                firedCounter++;
-            } );
-            QueryControl.setValue( TitleOptions[ 0 ].label );
-            tick();
+
             let selectedObject = {
                 label : TitleOptions[ 0 ].label,
                 value : TitleOptions[ 0 ].value
             };
-            expect( changes ).toEqual( selectedObject );
-            expect( firedCounter ).toBe( 1 );
+            DropdownComponent.selected.subscribe( ( _changes ) => {
+                changes = _changes;
+                expect( _changes ).toEqual( selectedObject );
+            } );
+            QueryControl.setValue( TitleOptions[ 0 ].label );
+            Fixture.detectChanges();
+            tick();
             openTheDropdown();
             selectFirstItem();
             tick();
-            expect( firedCounter ).toBe( 1 );
         } ) );
         it( 'should fire selected event after setting the value to null ', fakeAsync( () => {
             openTheDropdown();
@@ -337,42 +350,42 @@ describe( 'amp-dropdown component', () => {
 } )
 class AmpdropdownTest {
     @ViewChild( 'dropDownCmp' ) dropDownCmp;
-    public titleOptions = [
+    public titleOptions            = [
         { value : 'mr', label : 'Mr' },
         { value : 'mrs', label : 'Mrs' },
         { value : 'miss', label : 'Miss' },
         { value : 'ms', label : 'Ms' },
         { value : 'dr', label : 'Dr' }
     ];
-    public __controlGroup = new AmpFormGroup( {} );
+    public __controlGroup          = new AmpFormGroup( {} );
     public __retrievedControlGroup = new AmpFormGroup( {
             'TitleDropdown' : new FormGroup( {
                 'SelectedItem' : new FormControl( this.titleOptions[ 0 ].value ),
-                'Query' : new FormControl( this.titleOptions[ 0 ].label )
+                'Query'        : new FormControl( this.titleOptions[ 0 ].label )
             } )
         }
     );
-    public isInSummaryState = false;
-    private FDN = [ 'Application', 'ContactDetails' ];
+    public isInSummaryState        = false;
+    private FDN                    = [ 'Application', 'ContactDetails' ];
 
-    constructor() {
-        this.__controlGroup.__fdn = this.FDN;
+    constructor () {
+        this.__controlGroup.__fdn          = this.FDN;
         this.__retrievedControlGroup.__fdn = this.FDN;
     }
 
-    get DropdownControlGroup() {
+    get DropdownControlGroup () {
         return <AmpFormGroup> this.dropDownCmp.dropdownControlGroup;
     }
 
-    get QueryControl() {
+    get QueryControl () {
         return this.dropDownCmp.control;
     }
 
-    get SelectedControl() {
+    get SelectedControl () {
         return this.dropDownCmp.selectedControl;
     }
 
-    private setTo( _value ) {
+    private setTo ( _value ) {
         this.QueryControl.setValue( _value );
     }
 }

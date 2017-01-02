@@ -1,6 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
+import {
+    Component,
+    ElementRef,
+    ViewChild
+} from '@angular/core';
+import {
+    FormsModule,
+    ReactiveFormsModule,
+    FormGroup
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
@@ -8,11 +20,10 @@ import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 describe( 'amp-password component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports : [ FormsModule, ReactiveFormsModule, AmpInputsModule ],
+            imports      : [ FormsModule, ReactiveFormsModule, AmpInputsModule ],
             declarations : [ TestComponent ],
-            providers : [
+            providers    : [
                 { provide : ElementRef, useClass : MockElementRef },
-                { provide : Window, useClass : window },
                 { provide : ComponentFixtureAutoDetect, useValue : true }
             ]
         } );
@@ -23,20 +34,20 @@ describe( 'amp-password component', () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
-            let Component = fixture.componentInstance;
-            let compiledLabel = compiledTestComponent.query( By.css( '.password label' ) );
+            let Component             = fixture.componentInstance;
+            let compiledLabel         = compiledTestComponent.query( By.css( '.password label' ) );
             expect( compiledLabel.name ).toBe( 'label' );
             expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Password' );
-            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.passwordCmp.randomizedId);
+            expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.passwordCmp.randomizedId );
         } );
         it( 'should contain an input text element with the correct name, id and data-automation-id attribute', () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
-            let Component = fixture.componentInstance;
-            let compiledInput = compiledTestComponent.query( By.css( '.password input' ) );
+            let Component             = fixture.componentInstance;
+            let compiledInput         = compiledTestComponent.query( By.css( '.password input' ) );
             expect( compiledInput.nativeElement.name ).toBe( Component.passwordCmp.randomizedId );
-            expect( compiledInput.nativeElement.id ).toBe( Component.passwordCmp.randomizedId);
+            expect( compiledInput.nativeElement.id ).toBe( Component.passwordCmp.randomizedId );
             expect( compiledInput.nativeElement.type ).toBe( 'password' );
             expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.passwordCmp.randomizedId );
         } );
@@ -60,5 +71,5 @@ class MockElementRef implements ElementRef {
 } )
 class TestComponent {
     @ViewChild( 'passwordCmp' ) passwordCmp;
-    passwordControl : FormGroup = new FormGroup( {} );
+                                passwordControl : FormGroup = new FormGroup( {} );
 }

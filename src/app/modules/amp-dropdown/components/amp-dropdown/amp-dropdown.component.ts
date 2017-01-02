@@ -327,7 +327,8 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
                     doFocus
                 } );
             }
-            for ( const option of this.options.length ) {
+
+            for ( const option of this.options ) {
                 if ( option[ this.fieldValueKey ] === _change || option[ this.fieldItemKey ] === _change ) {
                     return this.selectOption( option, null, {
                         doMarkForCheck : true,
