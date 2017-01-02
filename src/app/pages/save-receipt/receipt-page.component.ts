@@ -1,48 +1,44 @@
 import {
-    Component ,
-    ElementRef ,
-    ChangeDetectorRef ,
-    ViewContainerRef ,
-    EventEmitter ,
+    Component,
+    ChangeDetectorRef,
+    EventEmitter,
     AfterViewInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AmpFormGroup } from '../../base-control';
 @Component( {
-    selector : 'receipt-page-block' ,
-    template : require( './receipt-page.component.html' ) ,
-    styles   : [ require( './receipt-page.component.scss' ).toString() ] ,
+    selector : 'receipt-page-block',
+    template : require( './receipt-page.component.html' ),
+    styles   : [ require( './receipt-page.component.scss' ).toString() ],
     inputs   : [
-        'licensee' ,
-        'fdn' ,
-        'title' ,
-        'messageForReference' ,
-        'messageForEmail' ,
-        'emailSentEvent' ,
+        'licensee',
+        'fdn',
+        'title',
+        'messageForReference',
+        'messageForEmail',
+        'emailSentEvent',
         'emailSentErrorEvent'
-    ] ,
+    ],
     outputs  : [ 'sendEmailEvent' ]
 } )
 export class SaveReceiptPageComponent implements AfterViewInit {
     public sendEmailEvent : EventEmitter<any>      = new EventEmitter();
     public emailSentEvent : EventEmitter<any>      = null;
     public emailSentErrorEvent : EventEmitter<any> = null;
+    public title                                   = 'Your quote/application has been saved';
+    public messageForReference                     = 'Your quote/application is now saved and your reference is ';
+    public messageForEmail                         = 'Enter your email address so instructions to retrieve the quote/application can be sent to you.';
+    public isInSummaryState : boolean              = false;
     public licensee : string                       = 'AMP';
-    private title                                  = 'Your quote/application has been saved';
     private __fdn                                  = [ 'default-receipt-page' ];
-    private messageForReference                    = 'Your quote/application is now saved and your reference is ';
-    private messageForEmail                        = 'Enter your email address so instructions to retrieve the quote/application can be sent to you.';
     private emailSentConfirmation : string         = null;
     private emailSentErrorMessage : string         = null;
     private referenceId : string                   = null;
     private fdn                                    = [];
-    private isInSummaryState : boolean             = false;
     private controlGroup : AmpFormGroup            = new AmpFormGroup( {} );
     private controlName : string                   = 'emailAddress';
 
-    constructor ( private _cd : ChangeDetectorRef ,
-                  private el : ElementRef ,
-                  public _viewContainerRef : ViewContainerRef ,
+    constructor ( private _cd : ChangeDetectorRef,
                   private route : ActivatedRoute ) {
     }
 
@@ -69,18 +65,18 @@ export class SaveReceiptPageComponent implements AfterViewInit {
     }
 
     private get buttonDisabled () : boolean {
-        return ! this.controlGroup.valid;
+        return !this.controlGroup.valid;
     }
 
-    private sendEmail () {
+    public sendEmail () {
         this.sendEmailEvent.emit( this.controlGroup.value[ this.controlName ] );
     }
 
-    private back () {
+    public back () {
         history.back();
     }
 
-    private context () {
+    public context () {
         return this;
     }
 }

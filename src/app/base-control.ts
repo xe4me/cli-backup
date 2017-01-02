@@ -15,16 +15,16 @@ export class BaseControl implements OnDestroy {
     public _controlGroup : AmpFormGroup;
     public control : FormControl;
     public _errors;
-    public _id = 'default';
+    public _id                          = 'default';
     public keepControl : boolean;
-    public createdAndJoinedControl = false;
+    public createdAndJoinedControl      = false;
     public index;
-    public _required : boolean = false;
-    public _disabled : boolean = false;
-    public _randomString = 'default_random_id';
-    public isInSummaryState : boolean = false;
+    public _required : boolean          = false;
+    public _disabled : boolean          = false;
+    public _randomString                = 'default_random_id';
+    public isInSummaryState : boolean   = false;
     public showErrorComponent : boolean = true;
-    public _customValidator : Function = () => {
+    public _customValidator : Function  = () => {
     }
 
     public updateValidators () {
@@ -35,7 +35,7 @@ export class BaseControl implements OnDestroy {
             this.errors = {};
         }
         this.control[ '_ampErrors' ] = {};
-        Object.keys( this.errors ).map( ( errorName, i ) => {
+        Object.keys( this.errors ).map( ( errorName ) => {
             (<any> this.control)._ampErrors[ errorName ] = this.errors[ errorName ];
         } );
     }

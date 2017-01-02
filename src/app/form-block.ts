@@ -6,7 +6,10 @@ import {
     ViewContainerRef,
     ComponentRef
 } from '@angular/core';
-import { arrayJoinByDash , DomUtils } from './modules/amp-utils';
+import {
+    arrayJoinByDash,
+    DomUtils
+} from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormModelService } from './services/form-model/form-model.service';
@@ -69,48 +72,48 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * __loadNext : Will load a chunk of form definition after the current block
      * E.g :
      * @example
-         let toBeLoadedBlock = {
-             "equityHolders": {
-                 "name": "EquityHolders",
-                 "prettyName": "Equity holders",
-                 "blockType": "EquityHoldersBlockComponent",
-                 "blockLayout": "INLINE",
-                 "commonBlock": false,
-                 "path": "blocks/equity-holders/equity-holders.component",
-             }
-         }
-         __loadNext(toBeLoadedBlock , this.viewContainerRef);
+     let toBeLoadedBlock = {
+     "equityHolders": {
+     "name": "EquityHolders",
+     "prettyName": "Equity holders",
+     "blockType": "EquityHoldersBlockComponent",
+     "blockLayout": "INLINE",
+     "commonBlock": false,
+     "path": "blocks/equity-holders/equity-holders.component",
+     }
+     }
+     __loadNext(toBeLoadedBlock , this.viewContainerRef);
      * */
-    protected __loadNext : ( def : FormDefinition , viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>>;
+    protected __loadNext : ( def : FormDefinition, viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>>;
     /*
      * __loadAt
      * Same as loadNext , except load at a specific index without telling where you are(viewContainerRef)
      * */
-    protected __loadAt : ( def : FormDefinition , index : number ) => Promise<ComponentRef<any>>;
+    protected __loadAt : ( def : FormDefinition, index : number ) => Promise<ComponentRef<any>>;
     /*
      * __loadAt
      * Same as loadNext , except loads an array of blocks
      * */
-    protected __loadAllNext : ( _defs : FormDefinition[] ,
+    protected __loadAllNext : ( _defs : FormDefinition[],
                                 _viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any[]>>;
     /*
      * __custom : All the custom properties that you've specified in your form definition chunk will be accessible
      @example
-         let toBeLoadedBlock = {
-             "equityHolders": {
-                 "name": "EquityHolders",
-                 "prettyName": "Equity holders",
-                 "blockType": "EquityHoldersBlockComponent",
-                 "blockLayout": "INLINE",
-                 "commonBlock": false,
-                 "path": "blocks/equity-holders/equity-holders.component",
-                 "custom": {
-                    "whateverField": "whatever value"
-                 }
-             }
-         }
+     let toBeLoadedBlock = {
+     "equityHolders": {
+     "name": "EquityHolders",
+     "prettyName": "Equity holders",
+     "blockType": "EquityHoldersBlockComponent",
+     "blockLayout": "INLINE",
+     "commonBlock": false,
+     "path": "blocks/equity-holders/equity-holders.component",
+     "custom": {
+     "whateverField": "whatever value"
+     }
+     }
+     }
      Then inside the class you can access to whateverField like :
-        console.log(this.__custom.whateverField); // it's amazing I know :)
+     console.log(this.__custom.whateverField); // it's amazing I know :)
      * */
     protected __custom : any;
     /*
@@ -125,10 +128,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     private domUtils : DomUtils    = null;
     private autoSave : boolean     = true;
 
-    constructor ( protected formModelService : FormModelService ,
-                  protected elementRef : ElementRef ,
-                  protected _cd : ChangeDetectorRef ,
-                  protected progressObserver : ProgressObserverService ,
+    constructor ( protected formModelService : FormModelService,
+                  protected elementRef : ElementRef,
+                  protected _cd : ChangeDetectorRef,
+                  protected progressObserver : ProgressObserverService,
                   protected scrollService : ScrollService ) {
         this.domUtils = new DomUtils();
     }
@@ -162,11 +165,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
                 this.autoFocusOn.focus();
             } else {
                 let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
-                if ( ! inputs ) {
+                if ( !inputs ) {
                     inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
                 }
                 if ( inputs && inputs.length > 0 ) {
-                    for ( const input of inputs) {
+                    for ( const input of inputs ) {
                         if ( this.domUtils.isVisible( input ) ) {
                             input.focus();
                             break;
@@ -174,7 +177,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
                     }
                 }
             }
-        } , 100 );
+        }, 100 );
     }
 
     onEdit () {
@@ -190,14 +193,14 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     onNext () {
         // Do not block the onNext function based on whether or not the block is Touched
-        if (this.__controlGroup) {
+        if ( this.__controlGroup ) {
             this.__controlGroup.markAsTouched();
         }
 
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
             this.progressObserver.onProgress( this.__fdn );
-            if (this.formModelService.autoSave && this.autoSave) {
+            if ( this.formModelService.autoSave && this.autoSave ) {
                 this.formModelService.save( this.__form.value );
             }
             let onNextScrolled = this.scrollService.$scrolled.subscribe( () => {
@@ -221,7 +224,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     }
 
     protected subscribeToScrollEvents () {
-        if ( ! this.noScroll ) {
+        if ( !this.noScroll ) {
             this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( changes ) => {
                 if ( changes.componentSelector && changes.componentSelector === this.selectorName ) {
                     this.isInSummaryState = false;
@@ -231,10 +234,6 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
                 }
             } );
         }
-    }
-
-    private resetBlock () {
-        this.isInSummaryState = false;
     }
 
     private unSubscribeFromEvents () {

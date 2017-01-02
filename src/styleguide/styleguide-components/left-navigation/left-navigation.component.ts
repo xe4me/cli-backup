@@ -1,11 +1,12 @@
 import {
-    Component ,
-    animate ,
-    state ,
-    style ,
-    transition ,
-    trigger ,
-    AfterContentInit , ViewChild
+    Component,
+    animate,
+    state,
+    style,
+    transition,
+    trigger,
+    AfterContentInit,
+    ViewChild
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -13,7 +14,7 @@ import { ThemeService } from '../../services/theme';
 import { Observable } from 'rxjs';
 import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
 @Component( {
-    selector   : 'left-navigation' ,
+    selector   : 'left-navigation',
     template   : `
     <div class='left-navigation'>
             <amp-input #queryFilter class='1/1' label='Search here ...'></amp-input>
@@ -51,40 +52,44 @@ import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
         </div>
 
     </div>
-` ,
-    inputs     : [ 'filter' , 'components' , 'componentsGrouped' , 'contentTable' ] ,
-    styles     : [ require( './left-navigation.component.scss' ).toString() ] ,
+`,
+    inputs     : [ 'filter', 'components', 'componentsGrouped', 'contentTable' ],
+    styles     : [ require( './left-navigation.component.scss' ).toString() ],
     animations : [
         trigger(
-            'openClose' ,
+            'openClose',
             [
-                state( 'collapsed, void' , style( { height : '0px' , opacity : '0' , display : 'none' } ) ) ,
-                state( 'expanded' , style( { height : '*' , opacity : '1' , overflow : 'hidden' , display : 'block' } ) ) ,
-                transition( 'collapsed <=> expanded' , [ animate( '250ms linear' ) ] )
+                state( 'collapsed, void', style( { height : '0px', opacity : '0', display : 'none' } ) ),
+                state( 'expanded', style( { height : '*', opacity : '1', overflow : 'hidden', display : 'block' } ) ),
+                transition( 'collapsed <=> expanded', [ animate( '250ms linear' ) ] )
             ] )
     ]
 } )
 export class LeftNavigationComponent implements AfterContentInit {
     @ViewChild( 'queryFilter' ) queryFilter;
     private activeComponentId = null;
-    private INDEX_ID          = - 1;
+    private INDEX_ID          = -1;
     private activeAccordion   = this.INDEX_ID;
     private filteredGroup     = [];
 
-    constructor ( private  themeService : ThemeService ,
-                  public router : Router ,
+    constructor ( private  themeService : ThemeService,
+                  public router : Router,
                   private location : Location ) {
     }
 
-    ngAfterContentInit () : any {
+    public ngAfterContentInit () : any {
         this.activeComponentId = this.location.path().split( '/' )[ 2 ];
         if ( this.activeComponentId ) {
-            this.activeAccordion = this.activeComponentId.toLowerCase().indexOf( 'block' ) > - 1 ? 1 : 0;
+            this.activeAccordion = this.activeComponentId.toLowerCase().indexOf( 'block' ) > -1 ? 1 : 0;
         }
         return undefined;
     }
 
-    navigate ( to : any ) {
+    public openCloseDropdown ( i, length ) {
+        return this.activeAccordion === i || length === 1 ? 'expanded' : 'collapsed';
+    }
+
+    public navigate ( to : any ) {
         this.router.navigate( to );
         if ( to[ 1 ] ) {
             this.activeComponentId = to[ 1 ].id;
@@ -93,36 +98,33 @@ export class LeftNavigationComponent implements AfterContentInit {
         }
     }
 
-    private toggleAccordion ( index ) {
+    public toggleAccordion ( index ) {
         this.activeAccordion = this.activeAccordion === index ? this.INDEX_ID : index;
     }
 
-    private changeTheme ( theme : Theme ) {
+    public changeTheme ( theme : Theme ) {
         this.themeService.theme = theme;
     }
 
-    private doFilter ( items , query ) : Observable<any> {
+    public doFilter ( items, query ) : Observable<any> {
         return isPresent( query ) ? items.filter(
-            ( item ) => {
-                return item[ 'name' ] && item[ 'name' ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
-            }
-        ) : items;
+                ( item ) => {
+                    return item[ 'name' ] && item[ 'name' ].toLowerCase().indexOf( query.toLowerCase() ) !== -1;
+                }
+            ) : items;
     }
 
-    private doFilterGroups ( items , query ) : Observable<any> {
+    public doFilterGroups ( items, query ) : Observable<any> {
         return this.filteredGroup = isPresent( query ) ? items.filter(
-            ( item ) => {
-                let filtered = item.components.filter( ( component ) => {
-                    return component[ 'name' ] && component[ 'name' ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
-                } );
-                return filtered && filtered.length > 0 ? filtered : false;
-            }
-        ) : items;
+                ( item ) => {
+                    let filtered = item.components.filter( ( component ) => {
+                        return component[ 'name' ] && component[ 'name' ].toLowerCase().indexOf( query.toLowerCase() ) !== -1;
+                    } );
+                    return filtered && filtered.length > 0 ? filtered : false;
+                }
+            ) : items;
     }
 
-    private openCloseDropdown ( i , length ) {
-        return this.activeAccordion === i || length === 1 ? 'expanded' : 'collapsed';
-    }
 }
 export interface Theme {
     name : string;

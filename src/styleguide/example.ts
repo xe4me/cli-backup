@@ -6,8 +6,7 @@ import {
     ViewChild,
     ViewContainerRef,
     Directive,
-    ComponentFactoryResolver,
-    Compiler
+    ComponentFactoryResolver
 } from '@angular/core';
 import { IComponentExample } from './services/components';
 import {
@@ -22,9 +21,7 @@ export interface ISourceFile {
 }
 @Directive( { selector : '[example-ref]' } )
 export class ExampleDirective {
-    constructor ( private cd : ChangeDetectorRef,
-                  private viewContainer : ViewContainerRef,
-                  private compiler : Compiler,
+    constructor ( private viewContainer : ViewContainerRef,
                   private componentFactoryResolver : ComponentFactoryResolver ) {
     }
 
@@ -97,7 +94,7 @@ export class ExampleComponent {
         let desc : ISourceFile = {
             type,
             label,
-            data  : ''
+            data : ''
         };
         this.http.get( url ).subscribe( ( res : Response ) => {
             desc.data = res.text();

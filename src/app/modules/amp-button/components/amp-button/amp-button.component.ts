@@ -1,20 +1,15 @@
 import {
-    Component ,
-    ViewEncapsulation ,
-    Input ,
-    HostBinding ,
-    ChangeDetectionStrategy ,
-    ChangeDetectorRef ,
-    ElementRef ,
-    Renderer ,
-    Host ,
-    AfterViewInit ,
-    Optional ,
-    SkipSelf
+    Component,
+    Input,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    ElementRef,
+    Renderer,
+    AfterViewInit
 } from '@angular/core';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 @Component( {
-    selector        : 'amp-button' ,
+    selector        : 'amp-button',
     template        : `
     <button
         [attr.data-automation-id]='_dataAutomationId'
@@ -24,8 +19,8 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
         [disabled]='disabled'
         [class]='_class'>
         <ng-content></ng-content>
-    </button>` ,
-    styles          : [ require( './amp-button.component.scss' ).toString() ] ,
+    </button>`,
+    styles          : [ require( './amp-button.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpButton implements AfterViewInit {
@@ -40,10 +35,10 @@ export class AmpButton implements AfterViewInit {
     private _dataAutomationId : string = 'default-btn';
     private domAdatper : BrowserDomAdapter;
 
-    constructor ( private elementRef : ElementRef ,
-                  private _cd : ChangeDetectorRef ,
-                  private renderer : Renderer ) {
-        renderer.setElementAttribute( elementRef.nativeElement , 'class' , null );
+    constructor ( private elementRef : ElementRef,
+                  private _cd : ChangeDetectorRef,
+                  renderer : Renderer ) {
+        renderer.setElementAttribute( elementRef.nativeElement, 'class', null );
         this.domAdatper = new BrowserDomAdapter();
     }
 
@@ -53,8 +48,8 @@ export class AmpButton implements AfterViewInit {
             if ( contentStr ) {
                 contentStr = contentStr.trim();
             }
-            if ( ! this.dataAutomationId || ! this.dataAutomationId.length ) {
-                this._dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g , '' ) : '');
+            if ( !this.dataAutomationId || !this.dataAutomationId.length ) {
+                this._dataAutomationId = 'btn-' + (contentStr ? contentStr.replace( /\s+/g, '' ) : '');
                 if ( this.context && this.context.__fdn ) {
                     this._dataAutomationId = 'btn-' + this.context.__fdn.join( '-' ) + '-' + contentStr;
                 }
