@@ -5,7 +5,7 @@ import { FormGroup , FormBuilder } from '@angular/forms';
 let formDef = require( './form-def.def.json' );
 
 // Test:
-// /Users/mac-cedric/Downloads/galen-bin-2.3.2/galen test ./src/styleguide/blocks/amp-basic-info-block/ --htmlreport report --recursive --include "desk"
+// /Users/mac-cedric/Downloads/galen-bin-2.3.2/galen test ./src/styleguide/blocks/amp-basic-info-block/ --htmlreport report --recursive"
 
 @Component( {
     selector : 'basic-info-block-basic-usage',
