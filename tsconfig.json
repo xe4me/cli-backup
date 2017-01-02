@@ -7,8 +7,10 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "noEmit": true,
     "noEmitHelpers": true,
     "strictNullChecks": false,
+    "noUnusedParameters":true,
     "baseUrl": "./src",
     "paths": {
     },

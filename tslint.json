@@ -11,8 +11,14 @@
     "no-empty": false,
     "no-string-literal": false,
     // This is needed for accessing Angular Controls
-    "no-unused-variable": false,
+    //"no-unused-variable": false, apparently it's dep now.
+    //no-unused-variable is deprecated. Use the tsc compiler options --noUnusedParameters and --noUnusedLocals instead.
+
     "no-var-requires": false,
+    "object-literal-key-quotes": [false],
+    "ordered-imports": false,
+    "max-classes-per-file": [false],
+
     // Allow for .json files to be required
     "object-literal-sort-keys": false,
     "quotemark": [
