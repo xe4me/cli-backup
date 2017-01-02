@@ -282,13 +282,12 @@ describe( 'manual-address component', () => {
         expect( _postCodeCtrl.value ).toBeNull();
         expect( _cityCtrl.value ).toBeNull();
     } );
-    it( 'It should have the country dropdown always, preselected with Australia and the value should be' + COUNTRY_AUS, fakeAsync( () => {
-        tick()
+    it( 'It should have the country dropdown always, preselected with Australia and the value should be' + COUNTRY_AUS, () => {
         expect( _countryDropdownElement ).toBeDefined();
         expect( _countryDropdownCmp ).toBeDefined();
         expect( _countryDropdownCmp.control ).toBeDefined();
         expect( _countryDropdownCmp.control.value ).toBe( COUNTRY_AUS );
-    } ) );
+    } );
     describe( 'When selected Australia', () => {
         it( 'it should have Street address , Suburb , State and Postcode visible and' +
             ' mandatory', () => {
