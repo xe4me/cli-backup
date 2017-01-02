@@ -10,7 +10,7 @@ const DECLARATIONS = [ AmpBasicInfoBlockComponent ];
 @NgModule( {
     declarations : DECLARATIONS ,
     imports      : [
-        AmpSharedRootModule,
+        AmpSharedRootModule ,
         AmpDropdownModule ,
         AmpFormModule ,
         AmpInputsModule
