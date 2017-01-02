@@ -87,7 +87,7 @@
     "@ngrx/store": "^2.2.1",
     "@ngrx/store-devtools": "^3.0.1",
     "@ngrx/store-log-monitor": "^3.0.1",
-    "amp-styleguide-core": "/Users/xe4me/Desktop/Dev/AMP/amp-styleguide-core"
+    "amp-styleguide-core": "^1.0.0"
   },
   "devDependencies": {
     "@types/hammerjs": "^2.0.33",
