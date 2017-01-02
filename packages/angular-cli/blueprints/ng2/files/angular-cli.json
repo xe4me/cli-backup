@@ -6,7 +6,7 @@
   "apps": [
     {
       "baseURI": "ddc/secure/ui/<%= appId %>",
-      "root": "<%= sourceDir %>",
+      "root": "<%= sourceDir %>/ddc/secure/ui/<%= appId %>",
       "outDir": "dist",
       "assets": [
         "assets",
