@@ -1,5 +1,4 @@
 import {
-    Input,
     ViewContainerRef,
     ComponentFactoryResolver,
     ComponentRef,
@@ -16,31 +15,21 @@ export interface LoadedBlockInfo {
     name : string;
 }
 export abstract class AmpBlockLoader {
-    public blockLoader;
     public fdn                               = [];
     public requireMethod                     = RequireMethod[ RequireMethod.IN_ORDER ];
     public loaded : EventEmitter<any>        = new EventEmitter<any>();
     public $childsLoaded : EventEmitter<any> = new EventEmitter<any>();
-    private blocksCount : number             = 0;
-    private retrievedFiles                   = [];
-    private _blocks : FormDefinition[]       = [];
-    private _form;
-    private _sectionName;
+    protected hasLoadedWithInput = false;
+    protected blocksCount : number           = 0;
+    protected retrievedFiles                 = [];
+    protected _blocks : FormDefinition[]     = [];
+    protected _form;
+    protected _blockLoader;
+    protected _sectionName;
 
     constructor ( public viewContainer : ViewContainerRef,
                   public compiler : Compiler,
                   public componentFactoryResolver : ComponentFactoryResolver ) {
-    }
-
-    @Input() set form ( _form ) {
-        if ( !this._form ) {
-            this._form = _form;
-            this.reload();
-        }
-    }
-
-    get form () {
-        return this._form;
     }
 
     clear () {
@@ -48,7 +37,7 @@ export abstract class AmpBlockLoader {
     }
 
     reload () {
-        this.loadAndCreate( this.blockLoader, this.requireMethod );
+        this.loadAndCreate( this._blockLoader, this.requireMethod );
     }
 
     createComponent ( _loadedComponent : { new() : any }, _index : number ) {
@@ -92,27 +81,6 @@ export abstract class AmpBlockLoader {
         this.$childsLoaded.emit( _loadedBlockInfo );
     }
 
-    /*
-     * TODO : When ever upgraded to RC7 , this should be used , For Sean :)
-     * */
-    // createComponent ( _loadedComponent , _index : number ) : Promise<ComponentRef<any>> {
-    //     return this.compiler
-    //                .compileModuleAndAllComponentsAsync( this.createComponentModule( _loadedComponent ) )
-    //                .then( ( moduleWithCF : ModuleWithComponentFactories<any> ) => {
-    //                    console.log( 'moduleWithCF' , moduleWithCF );
-    //                    const cf = moduleWithCF.componentFactories
-    //                                           .find( x => x.componentType === _loadedComponent );
-    //                    return this.viewContainer.createComponent( cf , _index );
-    //                } );
-    // }
-    // createComponentModule ( componentType : any ) {
-    //     @NgModule( {
-    //         declarations : [ componentType ] ,
-    //     } )
-    //     class RuntimeComponentModule {
-    //     }
-    //     return RuntimeComponentModule;
-    // }
     protected abstract getCustomBundle ( path : string ) : any;
 
     protected getCommonBundle ( path : string ) : any {
@@ -152,7 +120,7 @@ export abstract class AmpBlockLoader {
             let childsLoadedsubscription;
             let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
             _componentRef.instance.__child_blocks = _blockDef;
-            _componentRef.instance.__form         = this.form;
+            _componentRef.instance.__form         = this._form;
             _componentRef.instance.__fdn          = _fdn;
             if ( _blockDef.name ) {
                 let _form = _componentRef.instance.__form;
