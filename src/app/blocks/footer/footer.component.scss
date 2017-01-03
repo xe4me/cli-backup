@@ -59,7 +59,7 @@ $amp-ddc-public-asset : '../../../assets/';
     }
     &.person-white-icon {
         &::before {
-            background-image : url('assets/images/person-white.png');
+            background-image : url('/assets/images/person-white.png');
         }
     }
 }
