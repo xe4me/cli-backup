@@ -43,9 +43,9 @@
   "dependencies": {
     "@angular-cli/ast-tools": "^1.0.0",
     "@angular-cli/base-href-webpack": "^1.0.0",
-    "@angular/compiler": "2.2.1",
-    "@angular/compiler-cli": "2.2.1",
-    "@angular/core": "2.2.1",
+    "@angular/compiler": "2.4.1",
+    "@angular/compiler-cli": "2.4.1",
+    "@angular/core": "2.4.1",
     "@angular/tsc-wrapped": "0.4.0",
     "@ngtools/webpack": "^1.0.0",
     "autoprefixer": "^6.5.3",
@@ -110,7 +110,8 @@
     "resolve": "^1.1.7",
     "rimraf": "^2.5.3",
     "rsvp": "^3.0.17",
-    "rxjs": "5.0.0-beta.12",
+    "rxjs": "~5.0.2",
+    "zone.js": "~0.7.4",
     "sass-loader": "3.2.0",
     "script-loader": "^0.7.0",
     "semver": "^5.1.0",
@@ -138,8 +139,7 @@
     "angular2-router-loader": "^0.3.4",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^2.2.1",
-    "yam": "0.0.18",
-    "zone.js": "^0.6.23"
+    "yam": "0.0.18"
   },
   "ember-addon": {
     "paths": [
