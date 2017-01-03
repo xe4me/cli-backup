@@ -12,7 +12,7 @@
 
     <h4 [style.color]='color'>this is binded to onButtonSelect , i.e on click event , and that event is changing the
         color</h4>
-    <div id="group-buttons">
+    <div class="section ph pv">
         <amp-group-buttons
                 [attr.theme]="themeService.theme.attr"
                 scrollOutOn='full'
@@ -26,7 +26,7 @@
         >
         </amp-group-buttons>
     </div>
-    <section>
+    <section class="section ph pv">
         <div class='content'>
             <amp-button [attr.theme]="themeService.theme.attr" (click)='control.patchValue("partial")'
                         class='btn btn-ok'>
@@ -37,18 +37,36 @@
             </amp-button>
         </div>
     </section>
-    <section>
-        <div class='content'>
-            <amp-button [attr.theme]="themeService.theme.attr" (click)='required=!required' class='btn btn-ok'>
-                Required {{ required }}
-            </amp-button>
-        </div>
-        <div class='content'>
-            <amp-button [attr.theme]="themeService.theme.attr" (click)='isInSummaryState=!isInSummaryState'
-                        class='btn btn-ok'>
-                isInSummaryState {{ isInSummaryState }}
-            </amp-button>
-        </div>
+    <section class="section ph pv">
+        <amp-button [attr.theme]="themeService.theme.attr" (click)='required=!required'
+                    class='btn btn-ok grid__item-1/4'>
+            Required {{ required }}
+        </amp-button>
+        <amp-button [attr.theme]="themeService.theme.attr" (click)='isInSummaryState=!isInSummaryState'
+                    class='btn btn-ok grid__item-1/4'>
+            isInSummaryState {{ isInSummaryState }}
+        </amp-button>
+    </section>
+
+    <section class="section ph pv">
+        <h2>With boolean value
+        </h2>
+        <amp-form-row>
+            <amp-group-buttons
+                    #g2
+                    [attr.theme]="themeService.theme.attr"
+                    class="1/5"
+                    [required]="true"
+                    [isInSummaryState]="isInSummaryState"
+                    [buttons]='booleanOptions.buttons'
+                    [controlGroup]='controlGroup'
+                    [groupName]='booleanOptions.groupName'>
+            </amp-group-buttons>
+        </amp-form-row>
+        <amp-button [attr.theme]="themeService.theme.attr" [disabled]="g2.control.invalid"
+                    class='btn btn-ok'>
+            OK
+        </amp-button>
     </section>
 </form>
 

@@ -222,7 +222,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         if ( this.searchStr ) {
             let search = new RegExp( '^' + this.searchStr, 'i' );
             let index = 0;
-            for ( const option of this.options.length ) {
+            for ( const option of this.options) {
                 if ( search.test( option[ this.fieldValueKey ] ) ) {
                     return <any> this.optionsRef.toArray()[ index ];
                 }

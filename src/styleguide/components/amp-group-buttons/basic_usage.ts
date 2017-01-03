@@ -25,6 +25,21 @@ export default class AmpGroupButtonComponentBasicUsage {
         ],
         fullOrPartial : 'fullOrPartial'
     };
+    private booleanOptions = {
+        buttons : [
+            {
+                id : 'Yes',
+                value : true,
+                label : 'Yes'
+            },
+            {
+                id : 'No',
+                value : false,
+                label : 'No'
+            }
+        ],
+        groupName : 'booleanOptions'
+    };
     private color = 'red';
 
     constructor( private  themeService : ThemeService ) {

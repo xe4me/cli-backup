@@ -92,7 +92,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
 
     private checkIfHasBooleanValue () {
         if ( this.buttons ) {
-            for ( const button of this.buttons.length ) {
+            for ( const button of this.buttons ) {
                 this.hasBooleanValue = typeof button.value === 'boolean';
             }
         }
