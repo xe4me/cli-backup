@@ -8,10 +8,6 @@ import {
     FormsModule,
     ReactiveFormsModule
 } from '@angular/forms';
-import {
-    Routes,
-    RouterModule
-} from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { Footer } from './blocks/footer/footer.component';
 import {
@@ -39,11 +35,9 @@ import {
     ApplicantGeneratorService,
     AccountsListDataService
 } from './shared';
-import {
-    AccountsListPipe
-} from './blocks/accounts-list/accounts-list.pipe';
-
+import { AccountsListPipe } from './blocks/accounts-list/accounts-list.pipe';
 import { AMP_DDC_MODULES } from './app.modules';
+import { AppRoutingModule } from './app.routes';
 export const DECLARATIONS = [
     ...DYNAMIC_BLOCKS,
     AmpBlockLoaderDirective,
@@ -63,41 +57,32 @@ export const DECLARATIONS = [
     AccountsListPipe,
     Footer
 ];
-const AMP_MODULES = [
+const AMP_MODULES         = [
     ...AMP_DDC_MODULES,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule
 ];
-const routes : Routes = [
-    { path : '', component : BetterFormComponent },
-    { path : 'confirmation', component : NormalAccountPage },
-    { path : 'confirmationWithConditionSingle', component : PostnoneSingleAccountPage },
-    { path : 'confirmationWithConditionJoint', component : PostnoneJointAccountPage },
-    { path : 'confirmationTransitioning', component : TransitioningAccountPage },
-    { path : 'submitError/:errorId', component : SubmitErrorPage },
-    { path : 'requestsms/:referenceId/:mobileNumber', component : RequestRefViaSMSPage },
-    { path : 'saveConfirmation/:ref', component : SaveConfirmationPage }
-];
+
 const IMPORTS = [
     ...AMP_MODULES,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot( routes )
+    AppRoutingModule
 ];
 
 @NgModule( {
-    declarations : [
+    declarations    : [
         AppComponent,
         BetterFormComponent,
         ...DECLARATIONS
     ],
-    imports : IMPORTS,
+    imports         : IMPORTS,
     entryComponents : DYNAMIC_BLOCKS,
-    providers : [
+    providers       : [
         <any>Renderer,
         BrowserDomAdapter,
         ...APP_RESOLVER_PROVIDERS,
@@ -105,7 +90,7 @@ const IMPORTS = [
         ApplicantGeneratorService,
         AccountsListDataService
     ],
-    bootstrap : [ AppComponent ]
+    bootstrap       : [ AppComponent ]
 } )
 export class AppModule {
 }
