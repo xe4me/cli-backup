@@ -1,7 +1,5 @@
 @import '../../../styles/abstracts';
 
-$amp-ddc-public-asset : '../../../assets/';
-
 .footer-container {
     color: $amp-colour-white;
     background: $amp-colour-primary;
@@ -59,7 +57,7 @@ $amp-ddc-public-asset : '../../../assets/';
     }
     &.person-white-icon {
         &::before {
-            background-image : url('/assets/images/person-white.png');
+            background-image : url($amp-ddc-public-asset +'images/person-white.png');
         }
     }
 }

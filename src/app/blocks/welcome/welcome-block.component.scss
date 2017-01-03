@@ -1,39 +1,38 @@
 @import '../../../styles/abstracts';
 
-$amp-ddc-public-asset : '../../../assets/';
 :host {
-    width            : 100%;
-    display          : block;
+    width: 100%;
+    display: block;
     header-with-logo {
-        position : absolute;
-        width    : 100%;
-        display  : block;
-        left     : 0;
-        top      : 0;
+        position: absolute;
+        width: 100%;
+        display: block;
+        left: 0;
+        top: 0;
     }
     amp-intro-block {
-        background-image  : url('/assets/images/Intro-background_96DPI.jpg');
-        background-repeat : no-repeat;
-        background-size   : cover;
-        min-height        : 893px;
-        padding-top       : 69px;
+        background-image: url($amp-ddc-public-asset +'images/Intro-background_96DPI.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 893px;
+        padding-top: 69px;
         .intro-message-heading {
             margin-bottom: 0;
         }
         @include media-query(tablet-and-up) {
-          // buttons have a !important margin-top and we somehow need to override them in this case
-          #title-scenario{
-            margin-bottom: -25px;
-          }
+            // buttons have a !important margin-top and we somehow need to override them in this case
+            #title-scenario {
+                margin-bottom: -25px;
+            }
         }
         @media screen and (min-width: 1821px) {
-          background-size: 100%;
-          min-height: 1262px;
+            background-size: 100%;
+            min-height: 1262px;
         }
         @include media-query(palm) {
             padding: 0 8px;
             background-position: left top;
-            background-size   : 3000px;
+            background-size: 3000px;
             .intro-message-heading {
                 margin: 30px 0px 15px;
                 color: $amp-colour-primary;
@@ -48,7 +47,7 @@ $amp-ddc-public-asset : '../../../assets/';
         }
 
         .intro-container {
-            margin-left : 55px;
+            margin-left: 55px;
             @include media-query(palm) {
                 margin: 0;
             }
@@ -75,10 +74,10 @@ $amp-ddc-public-asset : '../../../assets/';
                                 margin-left: 8px;
                             }
                         }
-                        &.icon  {
+                        &.icon {
 
                             &::before {
-                                 content: ' ';
+                                content: ' ';
                                 float: left;
                                 margin-top: -4px;
                                 margin-right: 20px;
@@ -91,20 +90,20 @@ $amp-ddc-public-asset : '../../../assets/';
 
                             &.time-clock-icon {
                                 &::before {
-                                    background-image : url('/assets/images/time_clock.png');
+                                    background-image: url($amp-ddc-public-asset +'images/time_clock.png');
                                 }
                             }
 
                             &.eighteen-plus-icon {
                                 &::before {
-                                    background-image : url('/assets/images/18+.png');
+                                    background-image: url($amp-ddc-public-asset +'images/18+.png');
                                 }
                             }
 
                             &.id-check-icon {
                                 &::before {
-                                    height : 33px;
-                                    background-image : url('/assets/images/id.png');
+                                    height: 33px;
+                                    background-image: url($amp-ddc-public-asset +'images/id.png');
                                 }
                             }
                         }
