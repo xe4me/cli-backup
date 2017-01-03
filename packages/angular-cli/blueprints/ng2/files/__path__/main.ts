@@ -1,4 +1,5 @@
 import './polyfills.ts';
+import 'web-animations-js/web-animations.min';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';

@@ -6,8 +6,8 @@
   "apps": [
     {
       "baseURI": "ddc/secure/ui/<%= appId %>",
-      "root": "<%= sourceDir %>/ddc/secure/ui/<%= appId %>",
-      "outDir": "dist",
+      "root": "src",
+      "outDir": "<%= sourceDir %>/ddc/secure/ui/<%= appId %>",
       "assets": [
         "assets",
         "favicon.ico"
