@@ -16,7 +16,7 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 # Report directory used by tools like Galen
-report
+reports
 
 # IDEs and editors
 /.idea
