@@ -1,6 +1,10 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+
+    // Overrides of tslint:recommended
+
+    "no-unused-variable": false,
     // Overrides of tslint:recommended
     "arrow-parens": true,
     "max-line-length": [
@@ -16,10 +20,13 @@
     //no-unused-variable is deprecated. Use the tsc compiler options --noUnusedParameters and --noUnusedLocals instead.
 
     "no-var-requires": false,
-    "object-literal-key-quotes": [false],
+    "object-literal-key-quotes": [
+      false
+    ],
     "ordered-imports": false,
-    "max-classes-per-file": [false],
-
+    "max-classes-per-file": [
+      false
+    ],
     // Allow for .json files to be required
     "object-literal-sort-keys": false,
     "quotemark": [
