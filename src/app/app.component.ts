@@ -8,5 +8,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 })
 export class AppComponent {
-    private title = 'Welcome to your new AMP DDC Experience!';
 }
