@@ -56,7 +56,7 @@ describe( 'amp-checkbox component', () => {
         expect( Component.control.valid ).toBe( false );
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
-        expect( Component.control.errors.required ).toEqual( Component.checkbox.errors.required );
+        expect( Component.control.errors.required.text ).toEqual( Component.checkbox.errors.required );
     } );
     it( 'Should have the control with validity as true ,  after setting the required attr to false ', () => {
         let fixture : ComponentFixture<AmpCheckboxTest> = TestBed.createComponent( AmpCheckboxTest );
@@ -71,7 +71,7 @@ describe( 'amp-checkbox component', () => {
         expect( Component.control.valid ).toBe( false );
         expect( Component.control.errors ).not.toBeNull();
         expect( Component.control.errors.required ).toBeDefined();
-        expect( Component.control.errors.required ).toEqual( Component.checkbox.errors.required );
+        expect( Component.control.errors.required.text ).toEqual( Component.checkbox.errors.required );
         let ToggleRequired = Element.querySelector( '#toggleRequired' );
         ToggleRequired.click();
         fixture.detectChanges();
@@ -90,7 +90,7 @@ describe( 'amp-checkbox component', () => {
         expect( Component.checkbox.checked ).toBe( false );
         expect( Component.control.valid ).toBe( false );
         expect( Component.control.errors.required ).toBeDefined();
-        expect( Component.control.errors.required ).toEqual( Component.checkbox.errors.required );
+        expect( Component.control.errors.required.text ).toEqual( Component.checkbox.errors.required );
         // Let's change the checked to true
         let ToggleChecked = Element.querySelector( '#toggleChecked' );
         ToggleChecked.click();
@@ -183,9 +183,7 @@ class AmpCheckboxTest {
         id          : 'anId',
         disabled    : false,
         errors      : {
-            required : {
-                text : 'Checkbox field is required'
-            }
+            required : 'Checkbox field is required'
         },
         required    : true,
         checked     : false,
