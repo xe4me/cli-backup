@@ -18,7 +18,6 @@ import {
 } from '@angular/forms';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { ScrollService } from '../../../app/services/scroll/scroll.service';
-import { FormSectionService } from '../../../app/services/form-section/form-section.service';
 import {
     AmpStandAloneMenuModule,
     AmpStandAloneMenuComponent
@@ -50,7 +49,6 @@ describe( 'amp standalone menu tests', () => {
                 { provide : ComponentFixtureAutoDetect, useValue : true },
                 { provide : ScrollService, useClass : ScrollService1 },
                 { provide : AmpStandAloneMenuComponent, useClass : TestComponent2 },
-                FormSectionService,
                 DomUtils
             ]
         } );

@@ -15,9 +15,7 @@ import {
     FormGroup
 } from '@angular/forms';
 import { MockScrollService } from '../../services/mock-scroll.service';
-import { MockFormModelService } from '../../services/mock-form-mode.service';
-import { FormModelService } from '../../../app/services/form-model/form-model.service';
-import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import { ScrollService } from '../../../app/services';
 import { AmpTextareaModule } from '../../../app/modules/amp-textarea';
 class MockElementRef implements ElementRef {
     nativeElement = {};
@@ -30,10 +28,14 @@ describe( 'amp-textarea component', () => {
                 AmpTextAreaTest
             ],
             providers    : [
-                { provide : FormModelService, useClass : MockFormModelService },
-                { provide : ElementRef, useClass : MockElementRef },
-                { provide : ScrollService, useClass : MockScrollService },
-                { provide : ComponentFixtureAutoDetect, useValue : true }
+                {
+                    provide  : ScrollService,
+                    useClass : MockScrollService
+                },
+                {
+                    provide  : ComponentFixtureAutoDetect,
+                    useValue : true
+                }
             ]
         } );
         TestBed.compileComponents();

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { AmpGreenIdServices } from '../../modules/amp-greenid-block/components/services/amp-greenid-service';
-import { AmpGreenIdBlockComponent } from '../../modules/amp-greenid-block/components/amp-greenid-block';
+import { AmpGreenIdServices } from './services/amp-greenid-service';
+import { AmpGreenIdBlockComponent } from './components/amp-greenid-block.component';
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';

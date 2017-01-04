@@ -3,9 +3,8 @@ import {
     FormControl,
     FormBuilder
 } from '@angular/forms';
-import { FormSectionService } from '../../../app/services/form-section/form-section.service';
 @Component( {
-    providers   : [ FormSectionService, FormBuilder ],
+    providers   : [ FormBuilder ],
     selector    : 'amp-block-loader-basic-usage',
     templateUrl : './basic_usage.html',
     styles      : [ require( './basic_usage.scss' ).toString() ]
@@ -33,8 +32,14 @@ export default class AmpBlockLoaderDirectiveBasicUsage {
                     id            : 'ApplicantDetails-gender',
                     label         : 'Gender',
                     buttons       : [
-                        { id : 'ApplicantDetails-femaleId', value : 'F', label : 'Female' },
-                        { id : 'ApplicantDetails-maleId', value : 'M', label : 'Male' }
+                        { id      : 'ApplicantDetails-femaleId',
+                            value : 'F',
+                            label : 'Female'
+                        },
+                        { id      : 'ApplicantDetails-maleId',
+                            value : 'M',
+                            label : 'Male'
+                        }
                     ]
                 }
             }

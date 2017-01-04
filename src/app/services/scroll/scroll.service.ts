@@ -165,7 +165,6 @@ export class ScrollService {
             this.lastScrollPosition = this.scrollTop;
             // @TODO: currently bellow line is commented out , because if you uncomment it , any components that is
             // using ScrollService will break in the styleguide. So we need to fix that and then uncomment bellow line
-            // this.formModelService.setCurrentBlock( CLASS_NAME );
         }
         return isInView;
     }

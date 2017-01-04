@@ -8,10 +8,8 @@ import {
     Component,
     ViewChild
 } from '@angular/core';
-import { FormModelService } from '../../../app/services/form-model/form-model.service';
-import { ScrollService } from '../../../app/services/scroll/scroll.service';
+import { ScrollService } from '../../../app/services';
 import { MockScrollService } from '../../services/mock-scroll.service';
-import { MockFormModelService } from '../../services/mock-form-mode.service';
 import { FormGroup } from '@angular/forms';
 import { AmpCheckboxModule } from '../../../app/modules/amp-checkbox';
 
@@ -23,9 +21,12 @@ describe( 'amp-checkbox component', () => {
                 AmpCheckboxTest
             ],
             providers    : [
-                { provide : FormModelService, useClass : MockFormModelService },
-                { provide : ScrollService, useClass : MockScrollService },
-                { provide : ComponentFixtureAutoDetect, useValue : true }
+                { provide    : ScrollService,
+                    useClass : MockScrollService
+                },
+                { provide    : ComponentFixtureAutoDetect,
+                    useValue : true
+                }
             ]
         } );
         TestBed.compileComponents();

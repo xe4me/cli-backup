@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { AmpGreenIdBlockComponent } from '../../../app/modules/amp-greenid-block/components/amp-greenid-block';
+import { AmpGreenIdBlockComponent } from '../../../app/modules/amp-greenid-block/components/amp-greenid-block.component';
 
 // No tests have been written for this so skipping to make this obvious
 // GitLab issue: https://gitlab.ccoe.ampaws.com.au/DDC/components/issues/4

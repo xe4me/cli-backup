@@ -12,17 +12,15 @@ import {
 } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FormModelService } from './services/form-model/form-model.service';
-import { ProgressObserverService } from './services/progress-observer/progress-observer.service';
+import { SaveService } from './services/save/save.service';
 import { ScrollService } from './services/scroll/scroll.service';
 import { FormDefinition } from './interfaces/form-def.interface';
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     public autoFocusOn;
-    protected isInSummaryState : boolean     = false;
-    protected isActive : boolean             = false;
-    protected hasClickedOnOkButton : boolean = false;
-    protected selectorName : string          = 'default-form-block-selector-name';
-    protected noScroll                       = false;
+    protected isInSummaryState : boolean = false;
+    protected isActive : boolean         = false;
+    protected selectorName : string      = 'default-form-block-selector-name';
+    protected noScroll                   = false;
     /*
      * __onChildsLoaded :
      * Pass in a callback to notify when the children of this block are loaded
@@ -128,10 +126,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     private domUtils : DomUtils    = null;
     private autoSave : boolean     = true;
 
-    constructor ( protected formModelService : FormModelService,
-                  protected elementRef : ElementRef,
+    constructor ( protected saveService : SaveService,
                   protected _cd : ChangeDetectorRef,
-                  protected progressObserver : ProgressObserverService,
                   protected scrollService : ScrollService ) {
         this.domUtils = new DomUtils();
     }
@@ -164,25 +160,24 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
             if ( this.autoFocusOn ) {
                 this.autoFocusOn.focus();
             } else {
-                let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
-                if ( !inputs ) {
-                    inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
-                }
-                if ( inputs && inputs.length > 0 ) {
-                    for ( const input of inputs ) {
-                        if ( this.domUtils.isVisible( input ) ) {
-                            input.focus();
-                            break;
-                        }
-                    }
-                }
+                // let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
+                // if ( !inputs ) {
+                //     inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
+                // }
+                // if ( inputs && inputs.length > 0 ) {
+                //     for ( const input of inputs ) {
+                //         if ( this.domUtils.isVisible( input ) ) {
+                //             input.focus();
+                //             break;
+                //         }
+                //     }
+                // }
             }
         }, 100 );
     }
 
     onEdit () {
         this.isInSummaryState = false;
-        this.scrollService.$scrolled.emit( this.selectorName );
     }
 
     setToTouchedAndSummaryState () {
@@ -199,9 +194,8 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
         if ( this.canGoNext ) {
             this.scrollService.scrollToNextUndoneBlock( this.__form );
-            this.progressObserver.onProgress( this.__fdn );
-            if ( this.formModelService.autoSave && this.autoSave ) {
-                this.formModelService.save( this.__form.value );
+            if ( this.saveService.autoSave && this.autoSave ) {
+                this.saveService.save( this.__form.value );
             }
             let onNextScrolled = this.scrollService.$scrolled.subscribe( () => {
                 this.isInSummaryState = true;

@@ -10,13 +10,14 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class SaveService {
-    public referenceId     = null;
-    public $onSaveResponse = new Subject<any>();
-    private apiBaseURL     = Environments.property.ApiCallsBaseUrl;
-    private headers        = new Headers( { 'Content-Type' : 'application/json' } );
-    private httpOptions    = new RequestOptions( { headers : this.headers } );
-    private saveEndpoint   = '/save';
-    private _saveUrl       = this.apiBaseURL + this.saveEndpoint;
+    public referenceId        = null;
+    public autoSave : boolean = true;
+    public $onSaveResponse    = new Subject<any>();
+    private apiBaseURL        = Environments.property.ApiCallsBaseUrl;
+    private headers           = new Headers( { 'Content-Type' : 'application/json' } );
+    private httpOptions       = new RequestOptions( { headers : this.headers } );
+    private saveEndpoint      = '/save';
+    private _saveUrl          = this.apiBaseURL + this.saveEndpoint;
 
     constructor ( private http : AmpHttpService ) {
     }

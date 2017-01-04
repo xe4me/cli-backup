@@ -1,11 +1,13 @@
-import { Component , ViewContainerRef , ChangeDetectorRef , ElementRef , OnInit } from '@angular/core';
-import { FormSectionService } from '../../services/form-section/form-section.service';
-import { FormModelService } from '../../services/form-model/form-model.service';
-import { ProgressObserverService } from '../../services/progress-observer/progress-observer.service';
-import { ScrollService } from '../../services/scroll/scroll.service';
+import {
+    Component,
+    ChangeDetectorRef,
+    ElementRef,
+    OnInit
+} from '@angular/core';
+import { ScrollService } from '../../services';
 @Component( {
-    selector   : 'review-section' ,
-    template   : `
+    selector : 'review-section',
+    template : `
     <div id='Application-ReviewSection-block' data-section='ReviewSection'>
         <div class='section' *ngIf="createReviewSection" [hidden]="hideReviewSection">
             <div class="container">
@@ -32,55 +34,51 @@ import { ScrollService } from '../../services/scroll/scroll.service';
             </div>
         </div>
     </div>  
- ` ,
-    styles   : [ require('./review-section.component.scss') ]
+ `,
+    styles   : [ require( './review-section.component.scss' ) ]
 } )
 export class ReviewSectionComponent implements OnInit {
 
-    private hideReviewSection : boolean = false;
+    private hideReviewSection : boolean   = false;
     private createReviewSection : boolean = false;
     private _review_blocks;
     private _sticky_blocks;
     private __child_blocks;
-    private __form = this.__form;
-    private __fdn = this.__fdn;
-    private __custom = this.__custom || {};
+    private __form                        = this.__form;
+    private __fdn                         = this.__fdn;
+    private __custom                      = this.__custom || {};
 
-    constructor ( public _viewContainerRef : ViewContainerRef ,
-                  public progressObserver : ProgressObserverService ,
-                  public formSectionService : FormSectionService ,
-                  private formModelService : FormModelService ,
-                  private scrollService : ScrollService ,
+    constructor ( private scrollService : ScrollService,
                   private el : ElementRef,
                   public _cd : ChangeDetectorRef ) {
     }
 
-    ngOnInit() {
-        this.scrollService.$scrolling.subscribe((event) => {
-            if (event.componentSelector === this.__fdn.join('')) {
-                this.hideReviewSection = false;
+    ngOnInit () {
+        this.scrollService.$scrolling.subscribe( ( event ) => {
+            if ( event.componentSelector === this.__fdn.join( '' ) ) {
+                this.hideReviewSection   = false;
                 this.createReviewSection = true;
                 this._cd.markForCheck();
             }
-        });
+        } );
 
-        this.scrollService.$scrolled.subscribe((event) => {
-            let block = event.componentSelector || '';
-            this.hideReviewSection = block.indexOf(this.__fdn.join('-')) === -1;
+        this.scrollService.$scrolled.subscribe( ( event ) => {
+            let block              = event.componentSelector || '';
+            this.hideReviewSection = block.indexOf( this.__fdn.join( '-' ) ) === -1;
             this._cd.markForCheck();
-        });
+        } );
 
         // Filter blocks for review main and sticky columns.
-        this._review_blocks = Object.assign({}, this.__child_blocks);
-        this._sticky_blocks = Object.assign({}, this.__child_blocks);
+        this._review_blocks = Object.assign( {}, this.__child_blocks );
+        this._sticky_blocks = Object.assign( {}, this.__child_blocks );
 
-        this._review_blocks.blocks = this.__child_blocks.blocks.filter((block) => {
+        this._review_blocks.blocks = this.__child_blocks.blocks.filter( ( block ) => {
             return block.blockLayout !== 'STICKY';
-        });
+        } );
 
-        this._sticky_blocks.blocks = this.__child_blocks.blocks.filter((block) => {
+        this._sticky_blocks.blocks = this.__child_blocks.blocks.filter( ( block ) => {
             return block.blockLayout === 'STICKY';
-        });
+        } );
     }
 
     public shouldStick = () : boolean => {

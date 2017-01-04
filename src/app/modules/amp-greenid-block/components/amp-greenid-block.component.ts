@@ -23,13 +23,13 @@ import {
 } from '@angular/platform-browser';
 import { Environments } from '../../../../../';
 import { AmpCheckboxComponent } from '../../amp-checkbox';
-import { AmpGreenIdServices } from './services/amp-greenid-service';
-import { IGreenIdFormModel } from './interfaces/formModel';
+import { AmpGreenIdServices } from '../services/amp-greenid-service';
+import { IGreenIdFormModel } from '../interfaces/form-model';
 @Component( {
     selector : 'amp-greenid-block',
     providers : [ AmpGreenIdServices ], // @TODO : Why are we providing the service here and not at module level ?
     changeDetection : ChangeDetectionStrategy.OnPush,
-    template : require( './amp-greenid-block.html' ),
+    template : require( './amp-greenid-block.component.html' ),
     styles : [ require( './amp-greenid-block.component.scss' ).toString() ],
     encapsulation : ViewEncapsulation.None
 } )

@@ -1,11 +1,16 @@
-import { Component , ChangeDetectorRef , ElementRef , ChangeDetectionStrategy } from '@angular/core';
-import { ScrollService } from '../../../../../app/services/scroll/scroll.service';
-import { FormModelService } from '../../../../../app/services/form-model/form-model.service';
-import { ProgressObserverService } from '../../../../../app/services/progress-observer/progress-observer.service';
+import {
+    Component,
+    ChangeDetectorRef,
+    ChangeDetectionStrategy
+} from '@angular/core';
+import {
+    ScrollService,
+    SaveService
+} from '../../../../../app/services';
 import { ThemeService } from '../../../../services/theme';
 import { FormBlock } from '../../../../../app/form-block';
 @Component( {
-    selector        : 'intro-block' ,
+    selector        : 'intro-block',
     template        : `
         <div class='{{ selectorName }} ph+ tablet-and-down-ph' id="{{ selectorName }}" [class.hidden]='!isActive'>
                 <div class='intro-logo mb+'></div>
@@ -27,17 +32,15 @@ import { FormBlock } from '../../../../../app/form-block';
                 </div>
             </div>
         </div>
-    ` ,
-    styles          : [ require( './intro-block.component.scss' ).toString() ] ,
+    `,
+    styles          : [ require( './intro-block.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class IntroBlockComponent extends FormBlock {
-    constructor ( private themeService : ThemeService ,
-                  formModelService : FormModelService ,
-                  scrollService : ScrollService ,
-                  _cd : ChangeDetectorRef ,
-                  elementRef : ElementRef ,
-                  progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    constructor ( private themeService : ThemeService,
+                  saveService : SaveService,
+                  scrollService : ScrollService,
+                  _cd : ChangeDetectorRef, ) {
+        super( saveService, _cd, scrollService );
     }
 }

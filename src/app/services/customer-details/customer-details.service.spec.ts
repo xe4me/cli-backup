@@ -16,168 +16,169 @@ import {
 } from '@angular/http';
 import { AmpHttpService } from '../amp-http/amp-http.service';
 import { CustomerDetailsService } from './customer-details.service';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 
 const customerDetailsBody = {
-    'meta' : {
-        'url' : '/ddc/secure/api/customer/customer-details?scvid=2239410',
-        'method' : 'GET',
+    'meta'    : {
+        'url'            : '/ddc/secure/api/customer/customer-details?scvid=2239410',
+        'method'         : 'GET',
         'responseTimeMs' : 2262
     },
     'payload' : {
-        'title' : 'Mr.',
-        'givenName' : 'Yibqv',
+        'title'           : 'Mr.',
+        'givenName'       : 'Yibqv',
         'firstMiddleName' : 'Xvkvt',
-        'familyName' : 'Xdkkvt',
-        'genderType' : 'M',
-        'birthDate' : '1974-06-19',
-        'contactDetails' : {
+        'familyName'      : 'Xdkkvt',
+        'genderType'      : 'M',
+        'birthDate'       : '1974-06-19',
+        'contactDetails'  : {
             'residentialAddress' : {
                 'scrubbedAddressIndicator' : false,
-                'addressId' : '572343952077051101',
-                'suburbName' : 'COOROY',
-                'cityName' : 'Not Available',
-                'stateCode' : 'QLD',
-                'countryCode' : '9',
-                'country' : 'Australia',
-                'postcode' : '4563',
-                'addressLine1' : 'Cooroy Mountain Road'
+                'addressId'                : '572343952077051101',
+                'suburbName'               : 'COOROY',
+                'cityName'                 : 'Not Available',
+                'stateCode'                : 'QLD',
+                'countryCode'              : '9',
+                'country'                  : 'Australia',
+                'postcode'                 : '4563',
+                'addressLine1'             : 'Cooroy Mountain Road'
             },
-            'businessAddress' : {
+            'businessAddress'    : {
                 'scrubbedAddressIndicator' : true,
-                'dPID' : '40107265',
-                'addressId' : '947543929589426402',
-                'suburbName' : 'Noosa Heads',
-                'cityName' : 'Not Available',
-                'stateCode' : 'QLD',
-                'countryCode' : '9',
-                'country' : 'Australia',
-                'postcode' : '4567',
-                'addressLine1' : 'Shop 1 36 Sunshine Beach Rd'
+                'dPID'                     : '40107265',
+                'addressId'                : '947543929589426402',
+                'suburbName'               : 'Noosa Heads',
+                'cityName'                 : 'Not Available',
+                'stateCode'                : 'QLD',
+                'countryCode'              : '9',
+                'country'                  : 'Australia',
+                'postcode'                 : '4567',
+                'addressLine1'             : 'Shop 1 36 Sunshine Beach Rd'
             },
-            'postalAddress' : {
+            'postalAddress'      : {
                 'scrubbedAddressIndicator' : true,
-                'addressId' : '947243929589427602',
-                'suburbName' : 'Noosaville',
-                'cityName' : 'Not Available',
-                'stateCode' : 'QLD',
-                'countryCode' : '9',
-                'country' : 'Australia',
-                'postcode' : '4566',
-                'addressLine1' : 'PO Box 196'
+                'addressId'                : '947243929589427602',
+                'suburbName'               : 'Noosaville',
+                'cityName'                 : 'Not Available',
+                'stateCode'                : 'QLD',
+                'countryCode'              : '9',
+                'country'                  : 'Australia',
+                'postcode'                 : '4566',
+                'addressLine1'             : 'PO Box 196'
             },
-            'workPhone' : '1300846347',
-            'emailAddress' : 'XBIL_B_FAPXLVE@BCX.RDC.BI',
-            'homePhone' : '0754477110',
-            'mobilePhone' : '0411121661'
+            'workPhone'          : '1300846347',
+            'emailAddress'       : 'XBIL_B_FAPXLVE@BCX.RDC.BI',
+            'homePhone'          : '0754477110',
+            'mobilePhone'        : '0411121661'
         },
-        'contracts' : [
+        'contracts'       : [
             {
-                'productSystemCode' : 'BK',
-                'productCode' : '1235',
-                'productName' : 'Investment Builder Account',
+                'productSystemCode'  : 'BK',
+                'productCode'        : '1235',
+                'productName'        : 'Investment Builder Account',
                 'contractComponents' : [
                     {
-                        'contractComponentType' : 'ContractAddress',
-                        'contractLocationUsage' : 'Contract Correspondence Address',
+                        'contractComponentType'          : 'ContractAddress',
+                        'contractLocationUsage'          : 'Contract Correspondence Address',
                         'wrongContractLocationIndicator' : false,
-                        'contractLocation' : {
+                        'contractLocation'               : {
                             'scrubbedAddressIndicator' : true,
-                            'addressId' : '947243929589427602',
-                            'suburbName' : 'Noosaville',
-                            'cityName' : 'Not Available',
-                            'stateCode' : 'QLD',
-                            'countryCode' : '9',
-                            'country' : 'Australia',
-                            'postcode' : '4566',
-                            'addressLine1' : 'PO Box 196'
+                            'addressId'                : '947243929589427602',
+                            'suburbName'               : 'Noosaville',
+                            'cityName'                 : 'Not Available',
+                            'stateCode'                : 'QLD',
+                            'countryCode'              : '9',
+                            'country'                  : 'Australia',
+                            'postcode'                 : '4566',
+                            'addressLine1'             : 'PO Box 196'
                         }
                     }
                 ],
-                'pasContractId' : '423438506',
-                'displayContractId' : '423438506'
+                'pasContractId'      : '423438506',
+                'displayContractId'  : '423438506'
             },
             {
-                'productSystemCode' : 'CP',
-                'productCode' : 'FCI',
-                'productName' : 'Flexible Lifetime - Protection',
+                'productSystemCode'  : 'CP',
+                'productCode'        : 'FCI',
+                'productName'        : 'Flexible Lifetime - Protection',
                 'contractComponents' : [
                     {
-                        'contractComponentType' : 'ContractAddress',
-                        'contractLocationUsage' : 'Contract Correspondence Address',
+                        'contractComponentType'          : 'ContractAddress',
+                        'contractLocationUsage'          : 'Contract Correspondence Address',
                         'wrongContractLocationIndicator' : false,
-                        'contractLocation' : {
+                        'contractLocation'               : {
                             'scrubbedAddressIndicator' : true,
-                            'addressId' : '947243929589427602',
-                            'suburbName' : 'Noosaville',
-                            'cityName' : 'Not Available',
-                            'stateCode' : 'QLD',
-                            'countryCode' : '9',
-                            'country' : 'Australia',
-                            'postcode' : '4566',
-                            'addressLine1' : 'PO Box 196'
+                            'addressId'                : '947243929589427602',
+                            'suburbName'               : 'Noosaville',
+                            'cityName'                 : 'Not Available',
+                            'stateCode'                : 'QLD',
+                            'countryCode'              : '9',
+                            'country'                  : 'Australia',
+                            'postcode'                 : '4566',
+                            'addressLine1'             : 'PO Box 196'
                         }
                     }
                 ],
-                'pasContractId' : 'NT5191547C',
-                'displayContractId' : 'NT5191547C'
+                'pasContractId'      : 'NT5191547C',
+                'displayContractId'  : 'NT5191547C'
             },
             {
-                'productSystemCode' : 'U2',
-                'productCode' : 'FL',
-                'productName' : 'Flexible Lifetime - Super',
+                'productSystemCode'  : 'U2',
+                'productCode'        : 'FL',
+                'productName'        : 'Flexible Lifetime - Super',
                 'contractComponents' : [
                     {
-                        'contractComponentType' : 'ContractAddress',
-                        'contractLocationUsage' : 'Contract Correspondence Address',
+                        'contractComponentType'          : 'ContractAddress',
+                        'contractLocationUsage'          : 'Contract Correspondence Address',
                         'wrongContractLocationIndicator' : false,
-                        'contractLocation' : {
+                        'contractLocation'               : {
                             'scrubbedAddressIndicator' : true,
-                            'addressId' : '947243929589427602',
-                            'suburbName' : 'Noosaville',
-                            'cityName' : 'Not Available',
-                            'stateCode' : 'QLD',
-                            'countryCode' : '9',
-                            'country' : 'Australia',
-                            'postcode' : '4566',
-                            'addressLine1' : 'PO Box 196'
+                            'addressId'                : '947243929589427602',
+                            'suburbName'               : 'Noosaville',
+                            'cityName'                 : 'Not Available',
+                            'stateCode'                : 'QLD',
+                            'countryCode'              : '9',
+                            'country'                  : 'Australia',
+                            'postcode'                 : '4566',
+                            'addressLine1'             : 'PO Box 196'
                         }
                     }
                 ],
-                'pasContractId' : 'M701391775',
-                'displayContractId' : '701391775'
+                'pasContractId'      : 'M701391775',
+                'displayContractId'  : '701391775'
             },
             {
-                'productSystemCode' : 'BK',
-                'productCode' : '1240',
-                'productName' : 'eASYSAVER Account',
+                'productSystemCode'  : 'BK',
+                'productCode'        : '1240',
+                'productName'        : 'eASYSAVER Account',
                 'contractComponents' : [
                     {
-                        'contractComponentType' : 'ContractAddress',
-                        'contractLocationUsage' : 'Contract Correspondence Address',
+                        'contractComponentType'          : 'ContractAddress',
+                        'contractLocationUsage'          : 'Contract Correspondence Address',
                         'wrongContractLocationIndicator' : false,
-                        'contractLocation' : {
+                        'contractLocation'               : {
                             'scrubbedAddressIndicator' : true,
-                            'addressId' : '947243929589427602',
-                            'suburbName' : 'Noosaville',
-                            'cityName' : 'Not Available',
-                            'stateCode' : 'QLD',
-                            'countryCode' : '9',
-                            'country' : 'Australia',
-                            'postcode' : '4566',
-                            'addressLine1' : 'PO Box 196'
+                            'addressId'                : '947243929589427602',
+                            'suburbName'               : 'Noosaville',
+                            'cityName'                 : 'Not Available',
+                            'stateCode'                : 'QLD',
+                            'countryCode'              : '9',
+                            'country'                  : 'Australia',
+                            'postcode'                 : '4566',
+                            'addressLine1'             : 'PO Box 196'
                         }
                     }
                 ],
-                'pasContractId' : '717360432',
-                'displayContractId' : '717360432'
+                'pasContractId'      : '717360432',
+                'displayContractId'  : '717360432'
             }
         ]
     }
 };
 
 const mockHttpProvider = {
-    provide : Http,
-    deps : [ MockBackend, BaseRequestOptions ],
+    provide    : Http,
+    deps       : [ MockBackend, BaseRequestOptions ],
     useFactory : ( backend : MockBackend, defaultOptions : BaseRequestOptions ) => {
         return new Http( backend, defaultOptions );
     }
@@ -185,15 +186,17 @@ const mockHttpProvider = {
 
 describe( 'Fetch customer details from server', () => {
     let service : CustomerDetailsService = null;
-    let backend : MockBackend = null;
+    let backend : MockBackend            = null;
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            providers : [ BaseRequestOptions,
+            providers : [
+                BaseRequestOptions,
                 CustomerDetailsService,
-                  MockBackend,
-                    AmpHttpService,
-                    mockHttpProvider ]
+                MockBackend,
+                AmpHttpService,
+                mockHttpProvider
+            ]
         } );
         TestBed.compileComponents();
     } ) );
@@ -205,12 +208,15 @@ describe( 'Fetch customer details from server', () => {
         } ) );
 
     it( 'gets the details with an http call to /customer/customer-details', ( done ) => {
+        let baseUrl                 = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
+        let consumerDetailsEndpoint = '/customer/customer-details';
+        let consumerDetailsUrl      = baseUrl + consumerDetailsEndpoint;
         backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new ResponseOptions( {
                 body : JSON.stringify( customerDetailsBody )
             } );
             expect( connection.request.method ).toBe( RequestMethod.Get );
-            expect( connection.request.url ).toBe( '/customer/customer-details' );
+            expect( connection.request.url ).toBe( consumerDetailsUrl );
             connection.mockRespond( new Response( options ) );
         } );
 
@@ -228,15 +234,15 @@ describe( 'Fetch customer details from server', () => {
 } );
 describe( 'getCustomerDetails()', () => {
     let service : CustomerDetailsService = null;
-    let backend : MockBackend = null;
+    let backend : MockBackend            = null;
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             providers : [ BaseRequestOptions,
                 CustomerDetailsService,
-                  MockBackend,
-                    AmpHttpService,
-                    mockHttpProvider ]
+                MockBackend,
+                AmpHttpService,
+                mockHttpProvider ]
         } );
         TestBed.compileComponents();
     } ) );
@@ -248,8 +254,11 @@ describe( 'getCustomerDetails()', () => {
         } ) );
 
     it( 'should gets the correct customer details with an http call to /customer/customer-details', ( done ) => {
+        let baseUrl                               = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
+        let consumerDetailsEndpoint               = '/customer/customer-details';
+        let consumerDetailsUrl                    = baseUrl + consumerDetailsEndpoint;
         // Changing the customer payload because user has updated his/her profile in CMDM
-        let updatedCustomerDetails = JSON.parse( JSON.stringify( customerDetailsBody ) );
+        let updatedCustomerDetails                = JSON.parse( JSON.stringify( customerDetailsBody ) );
         updatedCustomerDetails.payload.familyName = 'kwok';
 
         let responseOptionsArr = [];
@@ -258,8 +267,7 @@ describe( 'getCustomerDetails()', () => {
 
         backend.connections.subscribe( ( connection : MockConnection ) => {
             expect( connection.request.method ).toBe( RequestMethod.Get );
-            expect( connection.request.url ).toBe( '/customer/customer-details' );
-
+            expect( connection.request.url ).toBe( consumerDetailsUrl );
             connection.mockRespond( new Response( responseOptionsArr.shift() ) );
         } );
 

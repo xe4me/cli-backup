@@ -1,6 +1,10 @@
-import { Directive , ElementRef , Input , Renderer } from '@angular/core';
-import { FormModelService } from '../../../../services/form-model/form-model.service';
-// export enum LICENSEE {AMPFP, HILLROSS, CHARTER};
+import {
+    Directive,
+    ElementRef,
+    Renderer
+} from '@angular/core';
+import { ContextService } from '../../../../services';
+
 @Directive( {
     selector : '[ampLicenseeThemeID]'
 } )
@@ -8,10 +12,10 @@ import { FormModelService } from '../../../../services/form-model/form-model.ser
 export class ThemeIDDirective {
     themeId : string;
 
-    constructor ( el : ElementRef , renderer : Renderer , formModelService : FormModelService ) {
-        this.themeId = formModelService.getModel().context.licensee;
+    constructor ( el : ElementRef, renderer : Renderer, contextService : ContextService ) {
+        this.themeId = contextService.context.licensee;
         // renderer.setElementStyle(el.nativeElement, 'background-color', 'yellow');
-        renderer.setElementClass( el.nativeElement , this.themeId , true );
+        renderer.setElementClass( el.nativeElement, this.themeId, true );
         // Do not directly set the style on the nativeElement, use the Renderer for serverside rendering to work (https://github.com/angular/universal).
         // el.nativeElement.style.backgroundColor = 'yellow';
     }

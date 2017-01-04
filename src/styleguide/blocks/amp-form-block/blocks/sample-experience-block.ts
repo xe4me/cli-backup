@@ -1,11 +1,17 @@
-import { Component , ChangeDetectorRef , ElementRef , OnInit , ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component,
+    ChangeDetectorRef,
+    OnInit,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
-import { ScrollService } from '../../../../app/services/scroll/scroll.service';
-import { FormModelService } from '../../../../app/services/form-model/form-model.service';
-import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
+import {
+    ScrollService,
+    SaveService
+} from '../../../../app/services';
 @Component( {
-    selector        : 'sample-experience-block' ,
+    selector        : 'sample-experience-block',
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
 
@@ -32,17 +38,15 @@ import { ProgressObserverService } from '../../../../app/services/progress-obser
                 </div>
              </amp-form-row> 
         </amp-form-block>
-    ` ,
+    `,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleExperienceBlock extends FormBlock implements OnInit {
-    constructor ( private themeService : ThemeService ,
-                  formModelService : FormModelService ,
-                  elementRef : ElementRef ,
-                  _cd : ChangeDetectorRef ,
-                  scrollService : ScrollService ,
-                  progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    constructor ( private themeService : ThemeService,
+                  saveService : SaveService,
+                  scrollService : ScrollService,
+                  _cd : ChangeDetectorRef, ) {
+        super( saveService, _cd, scrollService );
     }
 
     ngOnInit () : any {

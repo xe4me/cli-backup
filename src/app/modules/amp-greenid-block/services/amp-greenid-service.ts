@@ -4,9 +4,9 @@ import {
     RequestOptions
 } from '@angular/http';
 import { Observable } from 'rxjs';
-import { AmpHttpService } from '../../../../services/amp-http/amp-http.service';
-import { Environments } from '../../../../abstracts/environments/environments.abstract';
-import { IGreenIdFormModel } from '../interfaces/formModel';
+import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
+import { Environments } from '../../../abstracts/environments/environments.abstract';
+import { IGreenIdFormModel } from '../interfaces/form-model';
 @Injectable()
 export class AmpGreenIdServices {
 

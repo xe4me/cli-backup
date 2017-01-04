@@ -33,6 +33,6 @@ export class SubmitService {
     }
 
     public generateUrlWithRef ( referenceId ) {
-        return encodeURI( `${this._submitUrl}?${referenceId}` );
+        return encodeURI( `${this._submitUrl}?id=${referenceId}` );
     }
 }

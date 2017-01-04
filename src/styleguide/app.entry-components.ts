@@ -39,6 +39,8 @@ import AmpTitlesDropDownComponentBasicUsage from './components/amp-titles/basic_
 import AmpTooltipComponentBasicUsage from './components/amp-tooltip/basic_usage.ts';
 import AmpTypeaheadComponentBasicUsage from './components/amp-typeahead/basic_usage.ts';
 import AmpWorkNumberBasicUsage from './components/amp-work-number/basic_usage.ts';
+import AmpPopDownComponentBasicUsage from './components/amp-pop-down/basic_usage';
+import AmpTaxFileNumberBasicUsage from './components/amp-tax-file-number/basic_usage';
 import AmpBlockLoaderDirectiveBasicUsage from './directives/amp-block-loader/basic_usage.ts';
 import AmpNumberBasicUsage from './directives/amp-number/basic_usage.ts';
 import IconBasicUsage from './layout/icons/icons';
@@ -91,6 +93,8 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpTooltipComponentBasicUsage,
     AmpTypeaheadComponentBasicUsage,
     AmpWorkNumberBasicUsage,
+    AmpPopDownComponentBasicUsage,
+    AmpTaxFileNumberBasicUsage,
     AmpBlockLoaderDirectiveBasicUsage,
     AmpNumberBasicUsage,
     IconBasicUsage,

@@ -1,15 +1,27 @@
-import { Component , ElementRef , OnInit , ChangeDetectionStrategy , ChangeDetectorRef } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef
+} from '@angular/core';
 import { ThemeService } from '../../../services/theme';
 import { FormBlock } from '../../../../app/form-block';
-import { ScrollService } from '../../../../app/services/scroll/scroll.service';
-import { FormModelService } from '../../../../app/services/form-model/form-model.service';
-import { ProgressObserverService } from '../../../../app/services/progress-observer/progress-observer.service';
-import { FormArray , FormGroup } from '@angular/forms';
-import { ModelActions , Payload } from '../../../../app/redux/actions/model/model.action';
+import {
+    ScrollService,
+    SaveService
+} from '../../../../app/services';
+import {
+    FormArray,
+    FormGroup
+} from '@angular/forms';
+import {
+    ModelActions,
+    Payload
+} from '../../../../app/redux/actions/model/model.action';
 import { Store } from '@ngrx/store';
 import { AmpButton } from '../../../../app/components/amp-button/amp-button.component';
 @Component( {
-    selector        : 'sample-array-experience-block' ,
+    selector        : 'sample-array-experience-block',
     template        : `
         <amp-form-block [context]="context()" [attr.theme]="themeService.theme.attr" [theme]="themeService.theme.attr">
            <amp-form-row [attr.theme]="themeService.theme.attr" *ngFor="let group of controlGroupArray.controls ; let i = index;">
@@ -38,27 +50,25 @@ import { AmpButton } from '../../../../app/components/amp-button/amp-button.comp
                 <span class="icon icon--plus-filled" aria-hidden="true"></span> Add another field
            </amp-button>
         </amp-form-block>
-    ` ,
+    `,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
     private controlGroupArray : FormArray = new FormArray( [] );
 
-    constructor ( private themeService : ThemeService ,
-                  private modelActions : ModelActions ,
-                  private store : Store<any> ,
-                  formModelService : FormModelService ,
-                  scrollService : ScrollService ,
-                  _cd : ChangeDetectorRef ,
-                  elementRef : ElementRef ,
-                  progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , _cd , progressObserver , scrollService );
+    constructor ( private themeService : ThemeService,
+                  private modelActions : ModelActions,
+                  private store : Store<any>,
+                  saveService : SaveService,
+                  scrollService : ScrollService,
+                  _cd : ChangeDetectorRef, ) {
+        super( saveService, _cd, scrollService );
     }
 
     ngOnInit () : any {
-        this.__controlGroup.addControl( 'ages' , this.controlGroupArray );
+        this.__controlGroup.addControl( 'ages', this.controlGroupArray );
         let payload : Payload = {
-            query : [] ,
+            query : [],
             fdn   : this.__fdn.concat( [ 'ages' ] )
         };
         this.store.dispatch( this.modelActions.update( payload ) );
@@ -70,7 +80,7 @@ export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
         let controlGroup = new FormGroup( {} );
         this.controlGroupArray.push( controlGroup );
         let payload : Payload = {
-            query : {} ,
+            query : {},
             fdn   : this.__fdn.concat( [ 'ages' ] )
         };
         this.store.dispatch( this.modelActions.push( payload ) );
@@ -79,7 +89,7 @@ export class SampleArrayExperienceBlock extends FormBlock implements OnInit {
     private remove ( _index : number ) {
         this.controlGroupArray.removeAt( _index );
         let payload : Payload = {
-            query : _index ,
+            query : _index,
             fdn   : this.__fdn.concat( [ 'ages' ] )
         };
         this.store.dispatch( this.modelActions.removeAt( payload ) );
