@@ -8,7 +8,7 @@ import { Component , ViewEncapsulation } from '@angular/core';
         </md-progress-bar>
     ` ,
     inputs        : [ 'value' , 'determinate' ] ,
-    styles        : [ require( './amp-linear-progress-bar.scss' ).toString() ] ,
+    styles        : [ require( './amp-linear-progress-bar.scss' ) ] ,
     encapsulation : ViewEncapsulation.None
 } )
 export class AmpLinearProgressBarComponent {

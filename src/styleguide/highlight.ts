@@ -17,7 +17,7 @@ declare const hljs : any;
                     <ng-content></ng-content>
                 </code>
             </pre>`,
-    styles        : [ require( './highlight.scss' ).toString() ],
+    styles        : [ require( './highlight.scss' ) ],
     encapsulation : ViewEncapsulation.None
 } )
 export class Highlight implements AfterContentInit {

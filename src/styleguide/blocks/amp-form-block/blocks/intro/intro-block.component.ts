@@ -33,7 +33,7 @@ import { FormBlock } from '../../../../../app/form-block';
             </div>
         </div>
     `,
-    styles          : [ require( './intro-block.component.scss' ).toString() ],
+    styles          : [ require( './intro-block.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class IntroBlockComponent extends FormBlock {

@@ -30,7 +30,7 @@ import { IGreenIdFormModel } from '../interfaces/form-model';
     providers : [ AmpGreenIdServices ], // @TODO : Why are we providing the service here and not at module level ?
     changeDetection : ChangeDetectionStrategy.OnPush,
     template : require( './amp-greenid-block.component.html' ),
-    styles : [ require( './amp-greenid-block.component.scss' ).toString() ],
+    styles : [ require( './amp-greenid-block.component.scss' ) ],
     encapsulation : ViewEncapsulation.None
 } )
 export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {

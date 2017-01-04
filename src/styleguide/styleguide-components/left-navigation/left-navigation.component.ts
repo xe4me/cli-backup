@@ -54,7 +54,7 @@ import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
     </div>
 `,
     inputs     : [ 'filter', 'components', 'componentsGrouped', 'contentTable' ],
-    styles     : [ require( './left-navigation.component.scss' ).toString() ],
+    styles     : [ require( './left-navigation.component.scss' ) ],
     animations : [
         trigger(
             'openClose',

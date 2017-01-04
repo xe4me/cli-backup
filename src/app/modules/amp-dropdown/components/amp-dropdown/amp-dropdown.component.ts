@@ -36,7 +36,7 @@ export interface SelectActions {
         optionsRef : new ViewChildren( 'optionRef' ),
         focusers : new ViewChildren( FocuserDirective )
     },
-    styles : [ require( './amp-dropdown.component.scss' ).toString() ],
+    styles : [ require( './amp-dropdown.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush,
     inputs : [
         'errors',

@@ -12,7 +12,7 @@ import { AmpQasAddressComponent } from '../../../app/modules/amp-qas-address/com
 
 @Component( {
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-qas-address-basic-usage'
 } )
 

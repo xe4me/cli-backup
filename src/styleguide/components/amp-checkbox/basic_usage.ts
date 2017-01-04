@@ -5,7 +5,7 @@ import { ScrollService } from '../../../app/services/scroll/scroll.service';
 @Component( {
     templateUrl : './basic_usage.html',
     providers : [ ScrollService ],
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-checkbox-basic-usage'
 } )
 

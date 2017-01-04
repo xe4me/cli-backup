@@ -5,7 +5,7 @@ import { PdfService } from '../../../app/services/pdf/pdf.service';
     {
         selector : 'amp-pdf-basic-usage',
         templateUrl : './basic_usage.html',
-        styles : [ require( './basic_usage.scss' ).toString() ]
+        styles : [ require( './basic_usage.scss' ) ]
     } )
 export default class AmpPdfServiceBasicUsage {
     constructor( private pdfService : PdfService, private  themeService : ThemeService,

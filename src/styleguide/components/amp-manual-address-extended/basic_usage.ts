@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 @Component( {
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
 
     selector : 'amp-manual-address-extended-basic-usage'
 } )

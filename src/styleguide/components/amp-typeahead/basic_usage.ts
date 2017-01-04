@@ -6,7 +6,7 @@ import { AmpTypeaheadComponent } from '../../../app/modules/amp-typeahead/compon
 @Component( {
     templateUrl : './basic_usage.html',
     providers : [ ScrollService ],
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-typeahead-basic-usage'
 } )
 

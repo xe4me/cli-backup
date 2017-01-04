@@ -6,7 +6,7 @@ import { Component , Input , ViewEncapsulation } from '@angular/core';
             <div class="tooltip-content " [innerHtml]='message'></div>
         </div>
     ` ,
-    styles        : [ require( './amp-tooltip-template.component.scss' ).toString() ] ,
+    styles        : [ require( './amp-tooltip-template.component.scss' ) ] ,
     encapsulation : ViewEncapsulation.None
 } )
 export class AmpTooltipTemplateComponent {
@@ -23,7 +23,7 @@ export class AmpTooltipTemplateComponent {
                 class="icon icon--announcement icon-amp-tooltip">
         </span>
     ` ,
-    styles   : [ require( './amp-tooltip-cmp.component.scss' ).toString() ]
+    styles   : [ require( './amp-tooltip-cmp.component.scss' ) ]
 } )
 export class AmpTooltipComponent {
     @Input( 'message' ) message;

@@ -13,7 +13,7 @@ import { DeviceService } from '../../../../../app/services/device/device.service
 @Component( {
     selector        : 'amp-pop-down' ,
     template        : require( './amp-pop-down.component.html' ) ,
-    styles          : [ require( './amp-pop-down.component.scss' ).toString() ] ,
+    styles          : [ require( './amp-pop-down.component.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     encapsulation   : ViewEncapsulation.None
 } )

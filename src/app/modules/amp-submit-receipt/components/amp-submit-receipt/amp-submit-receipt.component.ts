@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 @Component( {
     selector : 'amp-submit-receipt' ,
     template :   require('./amp-submit-receipt.component.html'),
-    styles   : [ require('./amp-submit-receipt.component.scss').toString() ],
+    styles   : [ require('./amp-submit-receipt.component.scss') ],
     inputs : [
         'licensee',
         'intro_text',

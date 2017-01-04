@@ -20,7 +20,7 @@ import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector : 'amp-qas-address',
     template : require( './amp-qas-address.component.html' ),
-    styles : [ require( './amp-qas-address.component.scss' ).toString() ],
+    styles : [ require( './amp-qas-address.component.scss' ) ],
     providers : [ AmpQasAddressService ]
 } )
 export class AmpQasAddressComponent implements AfterViewInit, OnDestroy {

@@ -19,7 +19,7 @@ import {
             </div>
           </div>
         ` ,
-    styles        : [ require( './amp-review-item.scss' ).toString() ] ,
+    styles        : [ require( './amp-review-item.scss' ) ] ,
     inputs        : [
       'label' ,
       'value' ,

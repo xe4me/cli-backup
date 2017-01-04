@@ -16,7 +16,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
         '[attr.label]'    : '__custom?.label',
         '[tabindex]'      : '"-1"'
     },
-    styles          : [ require( './page-section.component.scss' ).toString() ],
+    styles          : [ require( './page-section.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PageSectionComponent {

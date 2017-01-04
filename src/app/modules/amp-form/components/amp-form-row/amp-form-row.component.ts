@@ -9,7 +9,7 @@ import { Component , Input } from '@angular/core';
              </div>
         </div>
     ` ,
-    styles   : [ require( './amp-form-row.component.scss' ).toString() ]
+    styles   : [ require( './amp-form-row.component.scss' ) ]
 } )
 export class AmpFormRowComponent {
     @Input( 'title' ) title : string;

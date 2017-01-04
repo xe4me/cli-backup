@@ -20,7 +20,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
     {
         selector : 'amp-textarea',
         template : require( './amp-textarea.component.html' ),
-        styles : [ require( './amp-textarea.scss' ).toString() ],
+        styles : [ require( './amp-textarea.scss' ) ],
         inputs : [
             'errors',
             'id',

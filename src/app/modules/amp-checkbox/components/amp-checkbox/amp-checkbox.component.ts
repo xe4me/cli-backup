@@ -18,7 +18,7 @@ import { BaseControl } from '../../../../base-control';
         '[attr.aria-disabled]' : 'disabled',
         '[tabindex]'           : 'tabindex',
     },
-    styles          : [ require( './amp-checkbox.scss' ).toString() ],
+    styles          : [ require( './amp-checkbox.scss' ) ],
     inputs          : [
         'errors',
         'id',

@@ -18,7 +18,7 @@ export class AmpErrorItemComponent {
         } ,
         selector : 'amp-error' ,
         template : require( './amp-error.component.html' ) ,
-        styles   : [ require( './amp-error.component.scss' ).toString() ]
+        styles   : [ require( './amp-error.component.scss' ) ]
     } )
 export class AmpErrorComponent implements OnInit {
     @Input() controlGroup : FormGroup;

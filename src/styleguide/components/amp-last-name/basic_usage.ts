@@ -5,7 +5,7 @@ import { ThemeService } from '../../services/theme';
     {
         selector : 'amp-last-name-basic-usage',
         templateUrl : './basic_usage.html',
-        styles : [ require( './basic_usage.scss' ).toString() ]
+        styles : [ require( './basic_usage.scss' ) ]
     } )
 export default class AmpLastNameBasicUsage {
     toggleFlag : boolean;

@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
         </div>
     ` ,
     inputs   : [ 'determinate' , 'value' ] ,
-    styles   : [ require( './sticky-progress-header-block.component.scss' ).toString() ] ,
+    styles   : [ require( './sticky-progress-header-block.component.scss' ) ] ,
   } )
 export class StickyProgressHeaderBlockComponent {
   private value : number;

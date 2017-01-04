@@ -26,7 +26,7 @@ import { BaseControl } from '../../../../base-control';
     {
         selector : 'amp-input',
         template : require( './amp-input.component.html' ),
-        styles : [ require( './amp-input.component.scss' ).toString() ],
+        styles : [ require( './amp-input.component.scss' ) ],
         inputs : [
             'errors',
             'id',

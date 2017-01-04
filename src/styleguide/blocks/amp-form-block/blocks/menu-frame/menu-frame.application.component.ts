@@ -3,7 +3,7 @@ import { AmpButton } from '../../../../../app/components/amp-button/amp-button.c
 @Component( {
     selector : 'menu-frame',
     template : require( './menu-frame.application.component.html' ),
-    styles   : [ require( './menu-frame.application.component.scss' ).toString() ]
+    styles   : [ require( './menu-frame.application.component.scss' ) ]
 } )
 export class MenuFrameApplicationBlockComponent {
 

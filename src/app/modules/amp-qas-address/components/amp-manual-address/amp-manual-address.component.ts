@@ -20,7 +20,7 @@ import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector : 'amp-manual-address',
     template : require( './amp-manual-address.component.html' ),
-    styles : [ require( './amp-manual-address.component.scss' ).toString() ],
+    styles : [ require( './amp-manual-address.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpManualAddressComponent implements OnInit, AfterViewInit, OnDestroy {

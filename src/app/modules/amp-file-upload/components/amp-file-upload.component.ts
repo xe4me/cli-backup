@@ -15,7 +15,7 @@ import { BaseControl } from '../../../../app/base-control';
 @Component({
     selector    : 'amp-file-upload',
     template    : require('./amp-file-upload.component.html'),
-    styles      : [ require( './amp-file-upload.component.scss' ).toString() ] ,
+    styles      : [ require( './amp-file-upload.component.scss' ) ] ,
     inputs          : [
         'id' ,
         'controlGroup'

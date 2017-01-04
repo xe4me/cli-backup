@@ -6,7 +6,7 @@ import { AmpTitlesComponent } from '../../../app/modules/amp-dropdown/components
 @Component( {
     templateUrl : './basic_usage.html',
     providers : [ ScrollService ],
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-titles-basic-usage'
 } )
 

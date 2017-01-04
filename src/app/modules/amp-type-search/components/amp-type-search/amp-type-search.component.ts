@@ -26,7 +26,7 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
         itemTemplate : new ContentChild( TemplateRef )
     } ,
     template        : require( './amp-type-search.component.html' ) ,
-    styles          : [ require( './amp-type-search.component.scss' ).toString() ] ,
+    styles          : [ require( './amp-type-search.component.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {

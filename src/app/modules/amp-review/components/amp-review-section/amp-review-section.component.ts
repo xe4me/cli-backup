@@ -17,7 +17,7 @@ import { Component , Input } from '@angular/core';
             <ng-content></ng-content>
           </div>
         ` ,
-        styles        : [ require( './amp-review-section.scss' ).toString() ]
+        styles        : [ require( './amp-review-section.scss' ) ]
     } )
 
 export class AmpReviewSectionComponent {

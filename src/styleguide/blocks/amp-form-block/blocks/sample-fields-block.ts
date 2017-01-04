@@ -166,7 +166,7 @@ import { StoreService } from '../../../../app/redux/services/store/store.service
         </amp-form-block>
     `,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles          : [ require( '../basic_usage.scss' ).toString() ],
+    styles          : [ require( '../basic_usage.scss' ) ],
 } )
 export class SampleFieldsBlock extends FormBlock {
     private $checkBoxValue = this.storeService.distinctSelect( FDN.BlockWithCheckbox.concat( [ 'checkboxId' ] ) );

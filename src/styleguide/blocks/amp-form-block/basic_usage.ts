@@ -8,7 +8,7 @@ let formDef = require( './form-def.def.json' );
 @Component( {
     selector : 'amp-form-block-basic-usage',
     template : require( './basic_usage.html' ),
-    styles   : [ require( './basic_usage.scss' ).toString() ]
+    styles   : [ require( './basic_usage.scss' ) ]
 } )
 export default class AmpFormBlockBasicUsage {
     public __controlGroup          = new FormGroup( {} );

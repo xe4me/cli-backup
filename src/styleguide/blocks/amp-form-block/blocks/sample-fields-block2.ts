@@ -34,7 +34,7 @@ import {
         </amp-form-block>
     `,
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles          : [ require( '../basic_usage.scss' ).toString() ],
+    styles          : [ require( '../basic_usage.scss' ) ],
 } )
 export class SampleFieldsBlock2 extends FormBlock implements OnInit {
     constructor ( private themeService : ThemeService,

@@ -26,7 +26,7 @@ import { AmpFormGroup } from '../../../../base-control';
         itemTemplate : new ContentChild( TemplateRef )
     },
     template : require( './amp-typeahead.component.html' ),
-    styles : [ require( './amp-typeahead.component.scss' ).toString() ],
+    styles : [ require( './amp-typeahead.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {

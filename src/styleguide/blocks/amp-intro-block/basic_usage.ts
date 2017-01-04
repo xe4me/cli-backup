@@ -5,7 +5,7 @@ import { AmpIntroBlockComponent } from 'app/modules/amp-intro-block/components/a
 @Component( {
     selector : 'intro-block-basic-usage',
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ]
+    styles : [ require( './basic_usage.scss' ) ]
 } )
 
 export default class IntroBlockBasicUsage {

@@ -8,7 +8,7 @@ import { Input , Component } from '@angular/core';
             [value]="value">    
         </md-progress-circle>
     ` ,
-    styles     : [ require( './amp-loading.component.scss' ).toString() ]
+    styles     : [ require( './amp-loading.component.scss' ) ]
 } )
 export class AmpLoadingComponent {
     @Input() mode        = 'indeterminate';

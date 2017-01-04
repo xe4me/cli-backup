@@ -31,7 +31,7 @@ import { Component , Input , OnInit } from '@angular/core';
             <div class='hr-block-divider'></div>
         </div>
     ` ,
-    styles     : [ require( './amp-form-block.component.scss' ).toString() ]
+    styles     : [ require( './amp-form-block.component.scss' ) ]
 } )
 export class AmpFormBlockComponent implements OnInit {
     @Input( 'context' ) context;

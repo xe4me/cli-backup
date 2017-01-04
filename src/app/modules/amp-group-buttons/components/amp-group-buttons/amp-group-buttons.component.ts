@@ -23,7 +23,7 @@ import { BaseControl } from '../../../../base-control';
         'buttons' ,
         'index'
     ] ,
-    styles          : [ require( './amp-group-buttons.scss' ).toString() ] ,
+    styles          : [ require( './amp-group-buttons.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     providers       : [ RadioControlRegistry ] ,
     outputs         : [ 'select' ]

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     template : `
         <div *ngIf="active" class="amp-overlay"></div>
      ` ,
-    styles   : [ require( './amp-overlay.scss' ).toString() ] ,
+    styles   : [ require( './amp-overlay.scss' ) ] ,
     inputs   : [ 'active' ]
 } )
 export class AmpOverlayComponent {

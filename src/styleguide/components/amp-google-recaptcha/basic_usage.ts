@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Environments } from '../../../app/abstracts/environments/environments.abstract';
 @Component( {
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-google-recaptcha-basic-usage'
 } )
 

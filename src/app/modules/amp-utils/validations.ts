@@ -37,7 +37,7 @@ export class MaxLengthValidator {
     public static maxLengthValidation ( maxLength ) {
         return ( c ) => {
             if ( maxLength ) {
-                if ( ! c.value || ( c.value.length || c.value.toString().length ) <= maxLength ) {
+                if ( ! c.value || ( c.value.length || c.value.length ) <= maxLength ) {
                     return null;
                 }
                 return {
@@ -60,7 +60,7 @@ export class MinLengthValidator {
                 if ( ! c.value ) {
                     return null;
                 } else {
-                    if ( ( c.value.length || c.value.toString().length ) < minLength ) {
+                    if ( ( c.value.length || c.value.length ) < minLength ) {
                         return {
                             minLength : {
                                 text : c._ampErrors && c._ampErrors.minLength ? c._ampErrors.minLength : 'This field should' +

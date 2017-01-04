@@ -12,7 +12,7 @@ let defaultTheme = 'forms';
 @Component( {
     selector        : 'amp-logo' ,
     template        : `<img [attr.src]="url" [attr.alt]="alt" class="amp-logo__image"/>` ,
-    styles          : [ require( './amp-logo.component.scss' ).toString() ] ,
+    styles          : [ require( './amp-logo.component.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 

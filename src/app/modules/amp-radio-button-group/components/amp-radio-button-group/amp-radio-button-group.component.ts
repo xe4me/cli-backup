@@ -33,7 +33,7 @@ import { Validators } from '@angular/forms';
     host            : {
         '[attr.aria-disabled]' : 'disabled'
     } ,
-    styles          : [ require( './amp-radio-button-group.scss' ).toString() ] ,
+    styles          : [ require( './amp-radio-button-group.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     outputs         : [ 'select' ]
 } )

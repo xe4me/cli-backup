@@ -9,7 +9,7 @@ import { FormUtils } from '../../../amp-utils/form-utils';
 @Component( {
     selector        : 'amp-header' ,
     template        : require( './amp-header.component.html' ) ,
-    styles          : [ require( './amp-header.component.scss' ).toString() ],
+    styles          : [ require( './amp-header.component.scss' ) ],
     inputs          : [
         'phoneNumber',
         'unavailableHeading',

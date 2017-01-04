@@ -5,7 +5,7 @@ import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown';
 import { AmpFormGroup } from '../../../app/base-control';
 @Component( {
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-dropdown-basic-usage'
 } )
 

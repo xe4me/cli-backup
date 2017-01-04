@@ -20,7 +20,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
         [class]='_class'>
         <ng-content></ng-content>
     </button>`,
-    styles          : [ require( './amp-button.component.scss' ).toString() ],
+    styles          : [ require( './amp-button.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpButton implements AfterViewInit {

@@ -13,7 +13,7 @@ import { Component , trigger , state , style , animate , transition } from '@ang
                 </div>
             </div>
     ` ,
-    styles     : [ require( './amp-intro-block.component.scss' ).toString() ] ,
+    styles     : [ require( './amp-intro-block.component.scss' ) ] ,
     animations : [
         trigger(
             'slideUp' ,

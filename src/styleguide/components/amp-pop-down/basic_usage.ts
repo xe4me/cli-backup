@@ -6,7 +6,7 @@ import {
 import { ThemeService } from '../../services/theme';
 @Component( {
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-pop-down-basic-usage',
     encapsulation : ViewEncapsulation.None
 } )

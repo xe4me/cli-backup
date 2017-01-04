@@ -10,7 +10,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
     selector      : 'amp-standalone-menu-basic-usage',
     templateUrl   : './basic_usage.html',
     encapsulation : ViewEncapsulation.None,
-    styles        : [ require( './basic_usage.scss' ).toString() ]
+    styles        : [ require( './basic_usage.scss' ) ]
 } )
 
 export default class AmpStandaloneMenuComponentBasicUsage implements OnInit {

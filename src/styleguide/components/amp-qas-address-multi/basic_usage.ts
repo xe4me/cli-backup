@@ -10,7 +10,7 @@ import { HydrationService } from '../../../app/services';
 
 @Component( {
     templateUrl : './basic_usage.html',
-    styles      : [ require( './basic_usage.scss' ).toString() ],
+    styles      : [ require( './basic_usage.scss' ) ],
     selector    : 'amp-qas-address-multi-basic-usage'
 } )
 

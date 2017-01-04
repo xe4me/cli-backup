@@ -3,7 +3,7 @@ import { ComponentsService, IComponentMeta, IComponentGroupMeta } from './servic
 import { TableContentsService } from './services/content-table-service';
 @Component( {
     selector : 'styleguide-app',
-    styles : [ require( './app.scss' ).toString() ],
+    styles : [ require( './app.scss' ) ],
     template : `
         <div class="styleguide-app" [class.show-menu]="!hideNavigation">
             <button class="styleguide-app--toggle" role="button" (click)="hideNavigation=!hideNavigation">Slide</button>

@@ -4,7 +4,7 @@ import { ThemeService } from '../../services/theme';
 @Component( {
     selector : 'amp-group-buttons-block-basic-usage',
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ]
+    styles : [ require( './basic_usage.scss' ) ]
 } )
 
 export default class AmpGroupButtonComponentBasicUsage {

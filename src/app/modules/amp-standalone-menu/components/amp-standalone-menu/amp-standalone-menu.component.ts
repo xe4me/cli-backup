@@ -20,8 +20,8 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
 @Component( {
     selector        : 'amp-standalone-menu',
-    template        : require( './amp-standalone-menu.component.html' ).toString(),
-    styles          : [ require( './amp-standalone-menu.scss' ).toString() ],
+    template        : require( './amp-standalone-menu.component.html' ),
+    styles          : [ require( './amp-standalone-menu.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush,
     animations : [
         trigger(

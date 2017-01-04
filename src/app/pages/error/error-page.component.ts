@@ -21,7 +21,7 @@ import { Observable } from 'rxjs/Observable';
             </div>
         </div>
     ` ,
-    styles   : [ require( './error-page.component.scss' ).toString() ] ,
+    styles   : [ require( './error-page.component.scss' ) ] ,
     inputs : [
         'headline' ,
         'message' ,

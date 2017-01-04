@@ -9,7 +9,7 @@ import { AmpFormGroup } from '../../base-control';
 @Component( {
     selector : 'receipt-page-block',
     template : require( './receipt-page.component.html' ),
-    styles   : [ require( './receipt-page.component.scss' ).toString() ],
+    styles   : [ require( './receipt-page.component.scss' ) ],
     inputs   : [
         'licensee',
         'fdn',

@@ -35,7 +35,7 @@ export class ExampleDirective {
     selector : 'example',
     inputs   : [ 'templateData', 'stylesData', 'sourceData', 'showSource', 'orderedFiles' ],
     template : require( './example.html' ),
-    styles   : [ require( './example.scss' ).toString() ]
+    styles   : [ require( './example.scss' ) ]
 } )
 export class ExampleComponent {
     @ViewChild( ExampleDirective ) exampleDirective : ExampleDirective;

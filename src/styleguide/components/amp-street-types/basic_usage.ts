@@ -6,7 +6,7 @@ import { AmpStreetTypesComponent } from '../../../app/modules/amp-dropdown/compo
 @Component( {
     templateUrl : './basic_usage.html',
     providers : [ ScrollService ],
-    styles : [ require( './basic_usage.scss' ).toString() ],
+    styles : [ require( './basic_usage.scss' ) ],
     selector : 'amp-street-types-basic-usage'
 } )
 

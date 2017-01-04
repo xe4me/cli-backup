@@ -42,7 +42,7 @@ describe( 'AmpDate public date methods' , () => {
             let month          = 10 - 1;
             let day            = 10;
             let date           = new Date( year , month , day );
-            expect( ampDateService.stringToDate( aFutureDate , format , delimeter ).toString() ).toBe( date.toString() );
+            expect( ampDateService.stringToDate( aFutureDate , format , delimeter ) ).toBe( date );
         } ) );
     it( 'Should return null if the string provided is null or not in the correct date format' ,
         inject( [] , () => {

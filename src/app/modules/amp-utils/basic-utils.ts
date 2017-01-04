@@ -4,7 +4,7 @@ export class BasicUtils {
     public static formatCurrency ( amount : any ) : string {
         let currencyPipe : AmpCurrencyPipe = new AmpCurrencyPipe();
         if ( (typeof amount !== 'string') ) {
-            amount = amount.toString();
+            amount = amount;
         }
         return currencyPipe.transform( amount , 2 , 3 );
     }

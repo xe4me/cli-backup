@@ -7,7 +7,7 @@ import {
 @Component( {
     selector        : 'amp-card' ,
     template        : require( './amp-card.component.html' ) ,
-    styles          : [ require( './amp-card.component.scss' ).toString() ] ,
+    styles          : [ require( './amp-card.component.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
 } )
 

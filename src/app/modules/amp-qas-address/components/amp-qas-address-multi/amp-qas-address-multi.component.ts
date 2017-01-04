@@ -4,7 +4,7 @@ import { AmpFormGroup } from '../../../../base-control';
 @Component( {
     selector        : 'amp-qas-address-multi' ,
     template        : require( './amp-qas-address-multi.component.html' ) ,
-    styles          : [ require( './amp-qas-address-multi.component.scss' ).toString() ] ,
+    styles          : [ require( './amp-qas-address-multi.component.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpQasAddressMultiComponent implements OnInit {
