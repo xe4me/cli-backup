@@ -12,7 +12,6 @@ import { HydrationService } from '../../services/hydration/hydration.service';
 export class FormModelService {
     public $hydrateForm : EventEmitter<any> = new EventEmitter();
     public form : FormGroup                 = new FormGroup( {} );
-    public autoSave : boolean               = true;
 
     private _formDefinition;
     private _storedModel;
