@@ -54,7 +54,7 @@ describe( 'Save service ', () => {
         } ) );
 
     it( 'should post the model to the specified url', ( done ) => {
-        let model = { name : "Milad" };
+        let model = { name : 'Milad' };
         backend.connections.subscribe( ( connection : MockConnection ) => {
 
             let options = new ResponseOptions( {
@@ -78,7 +78,7 @@ describe( 'Save service ', () => {
     } );
 
     it( 'should change the url and append the referenceId if save is already done and referenceId exist', fakeAsync( () => {
-        let model        = { name : "Milad" };
+        let model        = { name : 'Milad' };
         let savedCounter = 0;
         backend.connections.subscribe( ( connection : MockConnection ) => {
 
@@ -86,7 +86,7 @@ describe( 'Save service ', () => {
                 body : JSON.stringify( saveSampleResponse )
             } );
             expect( connection.request.method ).toBe( RequestMethod.Post );
-            if ( savedCounter == 0 ) { // first save
+            if ( savedCounter === 0 ) { // first save
                 expect( connection.request.url ).toBe( saveEndPoint );
                 expect( saveService.referenceId ).toBe( null );
             } else {// later saves
@@ -102,7 +102,7 @@ describe( 'Save service ', () => {
         saveService.save( model );
     } ) );
     it( 'should use the provided url in the function if its specified and ignore the baseUrl', ( done ) => {
-        let model = { name : "Milad" };
+        let model = { name : 'Milad' };
         backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new ResponseOptions( {
                 body : JSON.stringify( saveSampleResponse )
@@ -114,10 +114,10 @@ describe( 'Save service ', () => {
     } );
 
     it( 'should handle the error and show the message inside it', ( done ) => {
-        let model = { name : "Milad" };
-        let error = JSON.stringify( { message : "Serve is down" } );
+        let model = { name : 'Milad' };
+        let sampleRrror = JSON.stringify( { message : 'Serve is down' } );
         backend.connections.subscribe( ( connection : MockConnection ) => {
-            let options = new Error( error );
+            let options = new Error( sampleRrror );
             connection.mockError( options );
         } );
 
@@ -125,13 +125,13 @@ describe( 'Save service ', () => {
                    .subscribe(
                        done,
                        ( error ) => {
-                           expect( error ).toEqual( error );
+                           expect( error ).toEqual( sampleRrror );
                            done();
                        }
                    );
     } );
     it( 'should do the save and subscribe together without user doing the subscribe', fakeAsync( () => {
-        let model = { name : "Milad" };
+        let model = { name : 'Milad' };
         backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new ResponseOptions( {
                 body : JSON.stringify( saveSampleResponse )
@@ -142,7 +142,7 @@ describe( 'Save service ', () => {
         tick();
     } ) );
     it( 'should replay with the latest saved result if a save has happened', fakeAsync( () => {
-        let model = { name : "Milad" };
+        let model = { name : 'Milad' };
         backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new ResponseOptions( {
                 body : JSON.stringify( saveSampleResponse )
@@ -158,7 +158,7 @@ describe( 'Save service ', () => {
         );
     } ) );
     it( 'should save and emit the response to any subscriber to $onSaveResponse', fakeAsync( () => {
-        let model         = { name : "Milad" };
+        let model         = { name : 'Milad' };
         let saveCounter   = 0;
         let replayCounter = 0;
         backend.connections.subscribe( ( connection : MockConnection ) => {
@@ -196,7 +196,7 @@ describe( 'Save service ', () => {
     } ) );
 
     it( 'should save and emit the response to all the subscribers which subscribed to $onSaveResponse before save has happend', fakeAsync( () => {
-        let model       = { name : "Milad" };
+        let model       = { name : 'Milad' };
         let saveCounter = 0;
         saveService.$onSaveResponse.subscribe(
             ( response ) => {
@@ -226,4 +226,3 @@ describe( 'Save service ', () => {
     } ) );
 
 } );
-
