@@ -1,31 +1,23 @@
 import {
-    Component ,
-    ChangeDetectorRef ,
-    ElementRef ,
-    ChangeDetectionStrategy ,
-    OnInit ,
-    ViewContainerRef ,
-    ViewChild
+    Component,
+    ChangeDetectorRef,
+    ChangeDetectionStrategy
 } from '@angular/core';
-import { FormControl , Validators , AbstractControl } from '@angular/forms';
 import {
-    ProgressObserverService ,
-    FormBlock ,
-    FormModelService ,
+    FormBlock,
+    SaveService,
     ScrollService
 } from 'amp-ddc-components';
 @Component( {
-    selector        : 'welcome-block' ,
-    templateUrl     : './welcome-block.component.html' ,
-    changeDetection : ChangeDetectionStrategy.OnPush ,
+    selector        : 'welcome-block',
+    templateUrl     : './welcome-block.component.html',
+    changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [ require( './welcome-block.component.scss' ) ]
 } )
-export class WelcomeBlockComponent extends FormBlock  {
-    constructor ( formModelService : FormModelService ,
-                  scrollService : ScrollService ,
-                  _cd : ChangeDetectorRef ,
-                  elementRef : ElementRef ,
-                  progressObserver : ProgressObserverService ) {
-        super( formModelService , elementRef , _cd , progressObserver , scrollService );
+export class WelcomeBlockComponent extends FormBlock {
+    constructor ( scrollService : ScrollService,
+                  saveService : SaveService,
+                  _cd : ChangeDetectorRef ) {
+        super( saveService, _cd, scrollService );
     }
 }
