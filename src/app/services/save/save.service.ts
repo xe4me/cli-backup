@@ -32,7 +32,7 @@ export class SaveService {
                     .map( ( response ) => response.json() )
                     .catch( ErrorService.handleError )
                     .do( ( response : any ) => {
-                        this.referenceId = response.referenceId;
+                        this.referenceId = this.referenceId ? this.referenceId : response.referenceId;
                         this.$onSaveResponse.next( response );
                     }, ( error ) => {
                         this.$onSaveResponse.error( error );
