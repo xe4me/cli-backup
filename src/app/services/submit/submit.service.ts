@@ -21,8 +21,7 @@ export class SubmitService {
     }
 
     public submit ( referenceId, overrideUrl? : string ) : Observable<Response> {
-        let params : string     = `id=${referenceId}`;
-        const queryUrl : string = encodeURI( `${this._submitUrl}?${params}` );
+        const queryUrl : string = this.generateUrlWithRef( referenceId );
 
         let replaySubmit = this.http.post( overrideUrl || queryUrl, JSON.stringify( {} ), this.httpOptions )
                                .map( ( res ) => res.json() )
@@ -31,5 +30,9 @@ export class SubmitService {
 
         replaySubmit.connect();
         return replaySubmit;
+    }
+
+    public generateUrlWithRef ( referenceId ) {
+        return encodeURI( `${this._submitUrl}?${referenceId}` );
     }
 }
