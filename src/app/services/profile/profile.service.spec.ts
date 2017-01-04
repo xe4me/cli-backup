@@ -17,7 +17,10 @@ import {
     RequestMethod
 } from '@angular/http';
 import { AmpHttpService } from '../amp-http/amp-http.service';
-import { ProfileService } from './profile.service';
+import {
+    ProfileService,
+    Profile
+} from './profile.service';
 import { Environments } from '../../abstracts/environments/environments.abstract';
 
 const mockHttpProvider = {
@@ -97,7 +100,7 @@ describe( 'Profile service ', () => {
         profileService.getProfile()
                       .subscribe(
                           ( response ) => {
-                              expect( response ).toEqual( profileresponse );
+                              expect( response ).toEqual( profileresponse.data );
                               done();
                           },
                           ( error ) => {
@@ -123,11 +126,11 @@ describe( 'Profile service ', () => {
         profileService.getProfile();
         tick();
         profileService.getProfile().subscribe( ( res ) => {
-            expect( res ).toEqual( profileresponse );
+            expect( res ).toEqual( profileresponse.data );
         } );
         tick();
         profileService.getProfile().subscribe( ( res ) => {
-            expect( res ).toEqual( profileresponse );
+            expect( res ).toEqual( profileresponse.data );
         } );
         tick();
     } ) );
