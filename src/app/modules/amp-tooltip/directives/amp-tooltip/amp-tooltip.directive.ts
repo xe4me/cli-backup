@@ -17,7 +17,7 @@ import {
     applyCssTransform
 } from '@angular/material';
 import { applyCss } from '../../../amp-utils/functions.utils';
-(<any> ConnectedPositionStrategy).prototype._setElementPosition = ( element, overlayPoint ) => {
+(<any> ConnectedPositionStrategy).prototype._setElementPosition = function ( element, overlayPoint ) {
     let offsetForMargin    = 40;
     let offsetForUx        = offsetForMargin + 12;
     let elementRec         = element.getBoundingClientRect();

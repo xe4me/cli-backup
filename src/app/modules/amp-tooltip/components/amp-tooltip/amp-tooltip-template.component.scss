@@ -33,7 +33,7 @@ $border-radius-lg : .3rem !default;
 }
 
 /** The overlay-container is an invisible element which contains all individual overlays. */
-.md-overlay-container {
+.cdk-overlay-container {
     position       : absolute;
     pointer-events : none;
     top            : 0;
@@ -43,7 +43,7 @@ $border-radius-lg : .3rem !default;
 }
 
 /** A single overlay pane. */
-.md-overlay-pane {
+.cdk-overlay-pane {
     position       : absolute;
     pointer-events : auto;
     box-sizing     : border-box;
