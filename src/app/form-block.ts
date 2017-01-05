@@ -1,5 +1,4 @@
 import {
-    ElementRef,
     ChangeDetectorRef,
     AfterViewInit,
     OnDestroy,
@@ -157,22 +156,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     autoFocus () {
         setTimeout( () => {
-            if ( this.autoFocusOn ) {
-                this.autoFocusOn.focus();
-            } else {
-                // let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
-                // if ( !inputs ) {
-                //     inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
-                // }
-                // if ( inputs && inputs.length > 0 ) {
-                //     for ( const input of inputs ) {
-                //         if ( this.domUtils.isVisible( input ) ) {
-                //             input.focus();
-                //             break;
-                //         }
-                //     }
-                // }
-            }
+            this.autoFocusOn.focus();
         }, 100 );
     }
 
