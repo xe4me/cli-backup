@@ -1,9 +1,11 @@
 import {
+    ElementRef,
     ChangeDetectorRef,
     AfterViewInit,
     OnDestroy,
     ViewContainerRef,
-    ComponentRef
+    ComponentRef,
+    ViewChild
 } from '@angular/core';
 import {
     arrayJoinByDash,
@@ -14,8 +16,11 @@ import { Subscription } from 'rxjs';
 import { SaveService } from './services/save/save.service';
 import { ScrollService } from './services/scroll/scroll.service';
 import { FormDefinition } from './interfaces/form-def.interface';
+import { AutoFocusOnDirective } from './modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
+
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
-    public autoFocusOn;
+    @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
+
     protected isInSummaryState : boolean = false;
     protected isActive : boolean         = false;
     protected selectorName : string      = 'default-form-block-selector-name';
@@ -156,7 +161,22 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
 
     autoFocus () {
         setTimeout( () => {
-            this.autoFocusOn.focus();
+            if ( this.autoFocusOn ) {
+                this.autoFocusOn.focus();
+            } else {
+                // let inputs = this.elementRef.nativeElement.getElementsByTagName( 'input' );
+                // if ( !inputs ) {
+                //     inputs = this.elementRef.nativeElement.getElementsByTagName( 'textarea' );
+                // }
+                // if ( inputs && inputs.length > 0 ) {
+                //     for ( const input of inputs ) {
+                //         if ( this.domUtils.isVisible( input ) ) {
+                //             input.focus();
+                //             break;
+                //         }
+                //     }
+                // }
+            }
         }, 100 );
     }
 
