@@ -14,8 +14,8 @@ export class SubmitService {
     private apiBaseURL     = Environments.property.ApiCallsBaseUrl;
     private headers        = new Headers( { 'Content-Type' : 'application/json' } );
     private httpOptions    = new RequestOptions( { headers : this.headers } );
-    private submitEndpoint = '/submit';
-    private _submitUrl     = this.apiBaseURL + this.submitEndpoint;
+    private submitEndpoint = 'submit';
+    private _submitUrl     = `${this.apiBaseURL}/${Environments.property.ExperienceName}/${this.submitEndpoint}`;
 
     constructor ( private http : AmpHttpService ) {
     }
