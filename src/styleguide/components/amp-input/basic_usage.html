@@ -113,7 +113,6 @@
         <h2>Date of birth
             <small>(with min age of "18" and max age of "100" )</small>
         </h2>
-
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
@@ -125,6 +124,10 @@
                         [valDate]="true"
                         [minAge]="18"
                         [maxAge]="100">
+                    <amp-tooltip-cmp
+                            autoHideDelay='2000'
+                            message='This will hide after 2 second'>
+                    </amp-tooltip-cmp>
                 </amp-input>
             </div>
         </amp-form-row>
@@ -134,6 +137,7 @@
         <h2>Search
             <small>(with icon in right)</small>
         </h2>
+
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-input
