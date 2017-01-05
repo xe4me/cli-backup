@@ -18,6 +18,7 @@ import {
 } from '@angular/http';
 import { AmpHttpService } from '../amp-http/amp-http.service';
 import { SaveService } from './save.service';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 
 const mockHttpProvider = {
     provide    : Http,
@@ -28,7 +29,7 @@ const mockHttpProvider = {
 };
 
 describe( 'Save service ', () => {
-    let saveEndPoint              = '/save';
+    let saveEndPoint              = `/${Environments.property.ExperienceName}/save`;
     let saveSampleResponse        = {
         referenceId : '324234234'
     };
