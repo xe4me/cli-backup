@@ -20,19 +20,6 @@ module.exports = {
     '/ddc/public/api/*': {
         // this will rewrite all the request to api to dev , for save and submit ,
         secure: false,
-        target: "https://ddc-dev.digital-pilot.ampaws.com.au",
-        pathRewrite: function (path, req) {
-            if (req.url) {
-                let to = req.url;
-                to     = req.url.replace(/\/save|/, '/bett3r/save');
-                to     = req.url.replace(/\/submit|/, '/bett3r/submit'); // I know I could do a better regex , but this is better as we can easily comment the line out.
-                if (to !== req.url) {
-                    console.log('rewriting api request from : ' + req.url + ' to : ' + to);
-                    req.url = to;
-                }
-            } else {
-                console.log('request does not have a url path ' + path, 'req: ', req);
-            }
-        }
+        target: "https://ddc-dev.digital-pilot.ampaws.com.au"
     }
 };

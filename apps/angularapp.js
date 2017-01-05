@@ -38,6 +38,7 @@ module.exports = {
                     {
                         ApiCallsBaseUrl: '/ddc/public/api',
                         GoogleApiKey: GOOGLE_API_KEY,
+                        ExperienceName: EXPERIENCE_NAME,
                         TamServicePath: TAM_SERVICE_PATH,
                         GwPracticeService: {
                             ApiKey: GW_PRACTICE_API_KEY,
