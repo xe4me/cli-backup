@@ -22,6 +22,10 @@ export class SaveService {
     constructor ( private http : AmpHttpService ) {
     }
 
+    public setSaveUrl (saveUrl : string) {
+        this._saveUrl = saveUrl;
+    }
+
     public get saveUrl () {
         return this._saveUrl + (this.referenceId ? `?id=${this.referenceId}` : '');
     }
