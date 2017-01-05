@@ -28,9 +28,22 @@ describe( 'amp-first-name component' , () => {
             expect( firstNameControl._status ).toBe( 'VALID' );
         } );
 
-        it( 'should allow full stops, spaces, hyphens and single quotes in first name' , () => {
-            firstNameControl.setValue( 'John-Paul\'o Jr.' );
-            expect( firstNameControl._status ).toBe( 'VALID' );
+        it( 'should not allow full stops' , () => {
+            firstNameControl.setValue( 'John Jr.' );
+            expect( firstNameControl.valid ).toBe( false );
+        } );
+        it( 'should last character be lower case' , () => {
+            firstNameControl.setValue( 'John JJ' );
+            expect( firstNameControl.valid ).toBe( false );
+        } );
+        it( 'should not allow numbers' , () => {
+            firstNameControl.setValue( 'John J 1' );
+            expect( firstNameControl.valid ).toBe( false );
+        } );
+
+        it( 'should allow dash , pipe , apostrophe' , () => {
+            firstNameControl.setValue( 'John-Paul\'o Jr' );
+            expect( firstNameControl.valid ).toBe( true );
         } );
 
         it( 'should NOT allow any other special characters in first name' , () => {

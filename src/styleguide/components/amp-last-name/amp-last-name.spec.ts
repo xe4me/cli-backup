@@ -28,16 +28,28 @@ describe( 'amp-last-name component' , () => {
             expect( lastNameControl._status ).toBe( 'VALID' );
         } );
 
-        it( 'should allow full stops, spaces, hyphens and single quotes in last name' , () => {
-            lastNameControl.setValue( 'John-Smith\'o Jr.' );
-            expect( lastNameControl._status ).toBe( 'VALID' );
+        it( 'should not allow full stops' , () => {
+            lastNameControl.setValue( 'John Jr.' );
+            expect( lastNameControl.valid ).toBe( false );
+        } );
+        it( 'should last character be lower case' , () => {
+            lastNameControl.setValue( 'John JJ' );
+            expect( lastNameControl.valid ).toBe( false );
+        } );
+        it( 'should not allow numbers' , () => {
+            lastNameControl.setValue( 'John J 1' );
+            expect( lastNameControl.valid ).toBe( false );
         } );
 
-        it( 'should NOT allow any other special characters in last name' , () => {
+        it( 'should allow dash , pipe , apostrophe' , () => {
+            lastNameControl.setValue( 'John-Paul\'o Jr' );
+            expect( lastNameControl.valid ).toBe( true );
+        } );
+
+        it( 'should NOT allow any other special characters in first name' , () => {
             lastNameControl.setValue( 'John$' );
             expect( lastNameControl._status ).toBe( 'INVALID' );
         } );
-
         it( 'should start with a letter' , () => {
             lastNameControl.setValue( '.John' );
             expect( lastNameControl._status ).toBe( 'INVALID' );
