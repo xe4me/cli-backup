@@ -7,9 +7,11 @@ import 'rxjs/add/observable/of';
 import {
     FormModelService,
     ScrollService,
-    ProgressObserverService,
+    SaveService,
+    HydrationService,
+    SaveAndSubmitService,
+    SubmitService,
     AmpHttpService,
-    FormSectionService,
     CustomerDetailsService
 } from 'amp-ddc-components';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
@@ -17,12 +19,14 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
 export const APP_RESOLVER_PROVIDERS = [
     FormModelService,
     ScrollService,
-    ProgressObserverService,
+    SaveService,
+    HydrationService,
+    SaveAndSubmitService,
+    SubmitService,
     AmpHttpService,
     BrowserDomAdapter,
     SharedFormDataService,
     ApplicantGeneratorService,
     AccountsListDataService,
-    FormSectionService,
     CustomerDetailsService
 ];

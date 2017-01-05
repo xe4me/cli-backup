@@ -15,8 +15,9 @@ import {
 import {
     FormBlock ,
     ScrollService ,
-    FormModelService ,
-    ProgressObserverService
+    SaveService ,
+    SaveAndSubmitService
+
 } from 'amp-ddc-components';
 import {
     Constants,
@@ -37,17 +38,16 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
     private singleOrJointSubscription : Subscription;
     private isBPMS : boolean = false;
 
-    constructor ( formModelService : FormModelService,
-                  elementRef : ElementRef,
+    constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
-                  progressObserver : ProgressObserverService,
+                  private saveAndSubmitService : SaveAndSubmitService,
                   private router : Router,
                   private sharedFormDataService : SharedFormDataService,
-                  private accountsListDataService : AccountsListDataService
-               ) {
-        super( formModelService , elementRef , _cd , progressObserver , scrollService );
+                  private accountsListDataService : AccountsListDataService) {
+        super( saveService, _cd, scrollService );
     }
+
 
     public ngAfterViewInit() {
         const singleOfJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
@@ -87,9 +87,8 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
         }
 
         this.submitInProgress = true;
-
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
-        this.formModelService.saveAndSubmitApplication(this.__form.value, Constants.submitUrl, referenceId.value)
+        this.saveAndSubmitService.saveAndSubmit(this.__form.value, referenceId.value)
             .subscribe((result) => {
                 this.submitInProgress = false;
                 if ( result.payload.resultStatus === 'SUCCESS' ) {

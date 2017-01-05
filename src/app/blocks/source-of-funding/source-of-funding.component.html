@@ -3,12 +3,13 @@
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/4 ">
             <amp-dropdown
-                [isInSummaryState]="isInSummaryState"
-                [id]="__custom.controls[0].id"
-                [options]="__custom.controls[0].options"
-                label="Primary source of wealth"
-                [controlGroup]="__controlGroup"
-                [required]="true">
+                    auto-focus-on
+                    [isInSummaryState]="isInSummaryState"
+                    [id]="__custom.controls[0].id"
+                    [options]="__custom.controls[0].options"
+                    label="Primary source of wealth"
+                    [controlGroup]="__controlGroup"
+                    [required]="true">
                 <template let-option="option">
                     {{ option.label }}
                 </template>
@@ -18,12 +19,12 @@
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/4 ">
             <amp-dropdown
-                [isInSummaryState]="isInSummaryState"
-                [controlGroup]="__controlGroup"
-                label="Source of funds used to open this account"
-                [id]="__custom.controls[1].id"
-                [options]="__custom.controls[1].options"
-                [required]="true">
+                    [isInSummaryState]="isInSummaryState"
+                    [controlGroup]="__controlGroup"
+                    label="Source of funds used to open this account"
+                    [id]="__custom.controls[1].id"
+                    [options]="__custom.controls[1].options"
+                    [required]="true">
                 <template let-option="option">
                     {{ option.label }}
                 </template>
@@ -33,12 +34,12 @@
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/4 ">
             <amp-dropdown
-                [isInSummaryState]="isInSummaryState"
-                [controlGroup]="__controlGroup"
-                label="Reason for opening this account"
-                [id]="__custom.controls[2].id"
-                [options]="__custom.controls[2].options"
-                [required]="true">
+                    [isInSummaryState]="isInSummaryState"
+                    [controlGroup]="__controlGroup"
+                    label="Reason for opening this account"
+                    [id]="__custom.controls[2].id"
+                    [options]="__custom.controls[2].options"
+                    [required]="true">
                 <template let-option="option">
                     {{ option.label }}
                 </template>

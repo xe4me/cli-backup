@@ -4,26 +4,20 @@ import {
     ElementRef,
     ChangeDetectionStrategy,
     NgZone,
-    OnInit,
     AfterViewInit,
     ViewContainerRef,
     Renderer,
-    OnDestroy } from '@angular/core';
-    import {
-    FormControl,
-        FormGroup
-    } from '@angular/forms';
+    OnDestroy
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import {
     FormBlock,
     ScrollService,
-    FormModelService,
-    ProgressObserverService,
+    SaveService,
     CustomerDetailsService
 } from 'amp-ddc-components';
-import {
-    PrepopMappingService
-} from '../../shared';
+import { PrepopMappingService } from '../../shared';
 /**
  * Thin login interface to MyAMP via TAM.
  *
@@ -63,35 +57,33 @@ import {
  *
  *
  */
-@Component({
+@Component( {
     selector        : 'my-amplogin-block',
     templateUrl     : './my-amplogin-block.component.html',
     changeDetection : ChangeDetectionStrategy.OnPush,
-    styles          : [require ( './my-amplogin-block.component.scss' )]
-})
-export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , AfterViewInit {
+    styles          : [ require( './my-amplogin-block.component.scss' ) ]
+} )
+export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, AfterViewInit {
     public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
-    private errorCode : String = null;
-    private hideThisBlock = false;
+    private errorCode : String              = null;
+    private hideThisBlock                   = false;
 
-    constructor(
-        formModelService : FormModelService,
-        elementRef : ElementRef,
-        _cd : ChangeDetectorRef,
-        scrollService : ScrollService,
-        private customerDetailsService : CustomerDetailsService,
-        progressObserver : ProgressObserverService,
-        private zone : NgZone,
-        private vcf : ViewContainerRef,
-        private renderer : Renderer,
-        private dom : BrowserDomAdapter) {
-        super( formModelService, elementRef, _cd, progressObserver, scrollService );
+    constructor ( elementRef : ElementRef,
+                  _cd : ChangeDetectorRef,
+                  scrollService : ScrollService,
+                  saveService : SaveService,
+                  private customerDetailsService : CustomerDetailsService,
+                  private zone : NgZone,
+                  private vcf : ViewContainerRef,
+                  private renderer : Renderer,
+                  private dom : BrowserDomAdapter ) {
+        super( saveService, _cd, scrollService );
         this.disableAutoSave();
     }
 
-    public ngAfterViewInit() {
+    public ngAfterViewInit () {
         super.ngAfterViewInit();
-        if (this.__isRetrieved) {
+        if ( this.__isRetrieved ) {
             this.cleanUp();
         }
     }
@@ -102,13 +94,13 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
         this.removeLoginFrameListener();
     }
 
-    public removeLoginAndProceed() {
+    public removeLoginAndProceed () {
         this.cleanUp();
-        this.__removeAt(this.__getIndex(this.vcf));
+        this.__removeAt( this.__getIndex( this.vcf ) );
         super.onNext();
     }
 
-    public onNext() {
+    public onNext () {
         this.login();
     }
 
@@ -119,31 +111,31 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
             this.errorCode = null;
 
             // Check if we already have a login form already
-            if (!this.dom.query('#myamploginframe')) {
+            if ( !this.dom.query( '#myamploginframe' ) ) {
                 // Generate hidden MyAMP TAM Login form/iframe
-                let hiddenFormDiv = document.createElement('div');
+                let hiddenFormDiv           = document.createElement( 'div' );
                 hiddenFormDiv.style.display = 'none';
-                hiddenFormDiv.innerHTML =
+                hiddenFormDiv.innerHTML     =
                     `<form action="/eam/login" method="post">
                         <input id="userid" name="userid"/>
                         <input id="password" name="password" type="password"/>
                         <button id="myAmpLoginBtn" type="submit" formtarget="myamploginframe"></button>
                     </form><iframe name="myamploginframe" id="myamploginframe"></iframe>`;
-                document.body.appendChild(hiddenFormDiv);
+                document.body.appendChild( hiddenFormDiv );
 
                 // Bind the onload event of the iframe back into angular to get the response of the login
                 this.removeLoginFrameListener =
-                    this.renderer.listen(this.dom.query('#myamploginframe'), 'load', this.submitCallback);
+                    this.renderer.listen( this.dom.query( '#myamploginframe' ), 'load', this.submitCallback );
             }
 
             // Sync login details from the block to the generated hidden form.
             this.renderer.setElementProperty(
-                this.dom.query('#userid'), 'value', this.__controlGroup.get(this.__custom.controls[0].id).value);
+                this.dom.query( '#userid' ), 'value', this.__controlGroup.get( this.__custom.controls[ 0 ].id ).value );
             this.renderer.setElementProperty(
-                this.dom.query('#password'), 'value', this.__controlGroup.get(this.__custom.controls[1].id).value);
+                this.dom.query( '#password' ), 'value', this.__controlGroup.get( this.__custom.controls[ 1 ].id ).value );
 
             // Finally, submit the form to TAM
-            this.renderer.invokeElementMethod(this.dom.query('#myAmpLoginBtn'), 'click');
+            this.renderer.invokeElementMethod( this.dom.query( '#myAmpLoginBtn' ), 'click' );
         }
     }
 
@@ -151,14 +143,14 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
         return;
     };
 
-    private cleanUp() {
+    private cleanUp () {
         // Remove page level username/password for security concerns
-        this.__controlGroup.get(this.__custom.controls[0].id).reset();
-        this.__controlGroup.get(this.__custom.controls[1].id).reset();
+        this.__controlGroup.get( this.__custom.controls[ 0 ].id ).reset();
+        this.__controlGroup.get( this.__custom.controls[ 1 ].id ).reset();
 
         // Remove username/password from formGroup for security concerns
-        this.__controlGroup.removeControl(this.__custom.controls[0].id);
-        this.__controlGroup.removeControl(this.__custom.controls[1].id);
+        this.__controlGroup.removeControl( this.__custom.controls[ 0 ].id );
+        this.__controlGroup.removeControl( this.__custom.controls[ 1 ].id );
 
         // Clear the errorCode
         this.errorCode = null;
@@ -169,15 +161,15 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
         this.hideThisBlock = true;
     }
 
-    private submitCallback : Function = (event) => {
+    private submitCallback : Function = ( event ) => {
         try {
-            let landingURL = this.dom.query('#myamploginframe').contentWindow.location.href;
-            if (landingURL) {
-                let errorCodeStartIndex = landingURL.indexOf('errorCode=');
-                if (errorCodeStartIndex > -1) {
-                    let tamErrorCode = landingURL.substring(errorCodeStartIndex + 10);
-                    this.onLoginFail(tamErrorCode);
-                } else if (landingURL.indexOf('wps/myportal/sec/xseed/dashboard/mywealth/') > -1) {
+            let landingURL = this.dom.query( '#myamploginframe' ).contentWindow.location.href;
+            if ( landingURL ) {
+                let errorCodeStartIndex = landingURL.indexOf( 'errorCode=' );
+                if ( errorCodeStartIndex > -1 ) {
+                    let tamErrorCode = landingURL.substring( errorCodeStartIndex + 10 );
+                    this.onLoginFail( tamErrorCode );
+                } else if ( landingURL.indexOf( 'wps/myportal/sec/xseed/dashboard/mywealth/' ) > -1 ) {
                     this.onLoginSuccess();
                 } else {
                     this.onLoginFail();
@@ -186,7 +178,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
                 this.onLoginFail();
             }
 
-        } catch (err) {
+        } catch ( err ) {
             this.onLoginFail();
             // Not very likely, as prerequisite states we must be in the same this.domain.
         }
@@ -195,54 +187,55 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy , A
     };
 
     private onLoginSuccess () {
-        this.prepopCustomerDetails(true);
+        this.prepopCustomerDetails( true );
         this.removeLoginAndProceed();
     }
 
     // TODO move this to a service - this component is getting bloated
     // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/1
-    private prepopCustomerDetails (isLoggedIn = false) {// Default assumption is that we are not logged in.
+    private prepopCustomerDetails ( isLoggedIn = false ) {// Default assumption is that we are not logged in.
         // TODO: This will have to change if we start the journey from
         //       MyAMP and never went thru myAMPLoginBlock
         // Lets check the myAMPLoginBlock loginResult
 
-        if (isLoggedIn) {
+        if ( isLoggedIn ) {
             // Trigger the prepopulation from CMDM
             this.customerDetailsService
                 .getCustomerDetails()
-                .then((data) => {
+                .then( ( data ) => {
                     let FDN_Applicant1_PersonalDetailsSection = [
-                        'Application' , 'Applicant1Section' , 'PersonalDetailsSection' ];
+                        'Application', 'Applicant1Section', 'PersonalDetailsSection' ];
 
                     let basicInfo = <FormGroup> this.__form.get(
-                        FDN_Applicant1_PersonalDetailsSection.concat('BasicInfo'));
+                        FDN_Applicant1_PersonalDetailsSection.concat( 'BasicInfo' ) );
 
                     let contactDetails = <FormGroup> this.__form.get(
-                        FDN_Applicant1_PersonalDetailsSection.concat('ContactDetails'));
+                        FDN_Applicant1_PersonalDetailsSection.concat( 'ContactDetails' ) );
 
                     // Lets do some prepopulation
-                    PrepopMappingService.prepopBasicInfo(basicInfo, data.payload, this.customerDetailsService);
+                    PrepopMappingService.prepopBasicInfo( basicInfo, data.payload, this.customerDetailsService );
                     // TODO: For December release, do not prepopulate addresses as we cannot easily
                     // map them to the required fields
                     // this.prepopAddresses(data.payload);
                     PrepopMappingService.prepopContactDetails(
                         contactDetails,
                         data.payload,
-                        this.customerDetailsService);
+                        this.customerDetailsService );
 
                     // TODO: Make sure we load the special prepop block and not the manual entry milad
-                }).catch((err) => {
-                console.error('Failed to customer details', err);
+                } ).catch( ( err ) => {
+                console.error( 'Failed to customer details', err );
                 // According to the mapping rules if the single CMDM call fails there is no need to retry
                 // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824
 
                 // TODO: Make sure we load the manual entry path
-            });
+            } );
         }
     }
-    private onLoginFail (errorCode? : String) {
+
+    private onLoginFail ( errorCode? : String ) {
         this.errorCode = errorCode;
-        if (!errorCode) {
+        if ( !errorCode ) {
             this.errorCode = 'default';
         }
     }

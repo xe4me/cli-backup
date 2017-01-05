@@ -1,6 +1,6 @@
 <amp-form-block [context]="context()"
                 [withOkButton]="false">
-    <amp-greenid-block [model]="mappedGreenIdModel"
+    <amp-greenid-block auto-focus-on [model]="mappedGreenIdModel"
                        [controlGroup]="__controlGroup"
                        (complete)="onVerificationComplete($event)">
     </amp-greenid-block>

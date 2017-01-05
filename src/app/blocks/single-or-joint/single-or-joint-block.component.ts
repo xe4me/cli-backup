@@ -1,56 +1,48 @@
 import {
-    Component ,
-    ChangeDetectorRef ,
-    ElementRef ,
-    ChangeDetectionStrategy ,
-    OnInit ,
-    AfterViewInit ,
+    Component,
+    ChangeDetectorRef,
+    ChangeDetectionStrategy,
+    OnInit,
+    AfterViewInit,
     ViewContainerRef,
     OnDestroy
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {
-    Subscription
-} from 'rxjs';
-import {
-    LoadedBlockInfo ,
-    AmpButton ,
-    ProgressObserverService ,
-    FormBlock ,
-    FormModelService ,
+    LoadedBlockInfo,
+    FormBlock,
+    SaveService,
     ScrollService
 } from 'amp-ddc-components';
 import {
-    Validators ,
-    FormGroup,
+    Validators,
     FormControl
 } from '@angular/forms';
 import {
-    Constants ,
-    ApplicantGeneratorService ,
+    Constants,
+    ApplicantGeneratorService,
     SharedFormDataService
 } from '../../shared';
 @Component( {
-    selector        : 'single-or-joint-block' ,
-    templateUrl     : './single-or-joint-block.component.html' ,
-    styles          : [ require( './single-or-joint-block.component.scss' ).toString() ] ,
+    selector        : 'single-or-joint-block',
+    templateUrl     : './single-or-joint-block.component.html',
+    styles          : [ require( './single-or-joint-block.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class SingleOrJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
     private static secondApplicantSectionIndex : number = 3;
-    public applicant2Added : boolean = false;
+    public applicant2Added : boolean                    = false;
     private jointApplicantKey : string;
     private singleApplicantKey : string;
     private saveSubscription : Subscription;
 
-    constructor ( formModelService : FormModelService ,
-                  scrollService : ScrollService ,
-                  _cd : ChangeDetectorRef ,
-                  elementRef : ElementRef ,
-                  progressObserver : ProgressObserverService ,
-                  private applicantGenerator : ApplicantGeneratorService ,
-                  private viewContainerRef : ViewContainerRef ,
+    constructor ( saveService : SaveService,
+                  _cd : ChangeDetectorRef,
+                  scrollService : ScrollService,
+                  private applicantGenerator : ApplicantGeneratorService,
+                  private viewContainerRef : ViewContainerRef,
                   private sharedDataService : SharedFormDataService ) {
-        super( formModelService , elementRef , _cd , progressObserver , scrollService );
+        super( saveService, _cd, scrollService );
     }
 
     public ngOnInit () {
@@ -58,23 +50,21 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
         this.jointApplicantKey  = Constants.jointApplicant;
 
         if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
-            this.__controlGroup.addControl(this.__custom.controls[0].id, new FormControl(null, Validators.required));
+            this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, new FormControl( null, Validators.required ) );
         }
 
-        if (!this.__isRetrieved) {
-            this.formModelService.setSaveRelativeUrl( Constants.saveUrl );
-            this.saveSubscription = this.formModelService.saveResponse.subscribe((result) => {
-                if (result.payload.meta && result.payload.meta.id) {
-                    this.storeReferenceIdInModel(result.payload.meta.id);
+        if ( !this.__isRetrieved ) {
+            this.saveSubscription = this.saveService.$onSaveResponse.subscribe( ( result ) => {
+                if ( result.payload.meta && result.payload.meta.id ) {
+                    this.storeReferenceIdInModel( result.payload.meta.id );
                     this.saveSubscription.unsubscribe();
                 }
-            });
+            } );
 
         }
 
-
         // load applicant 1
-        this.__loadNext( this.applicantGenerator.getApplicantSection( 1 ), this.viewContainerRef);
+        this.__loadNext( this.applicantGenerator.getApplicantSection( 1 ), this.viewContainerRef );
         // Subscribe to notify when all the milad that are inside of ApplicantSection are successfully loaded ,
         // then go next
         // The reason is if you don't do this , when you start with a Single applicant and finish the form and go
@@ -94,9 +84,9 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
     public ngAfterViewInit () {
         super.ngAfterViewInit();
 
-        if (this.__isRetrieved) {
+        if ( this.__isRetrieved ) {
             this.storeReferenceIdInModel();
-            let singleJointControl = this.__controlGroup.get(this.__custom.controls[0].id);
+            let singleJointControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
             if ( singleJointControl && singleJointControl.value === this.jointApplicantKey ) {
                 this.onJointApplication();
             }
@@ -104,25 +94,25 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
     }
 
     public ngOnDestroy () {
-        if (this.saveSubscription && !this.saveSubscription.closed) {
+        if ( this.saveSubscription && !this.saveSubscription.closed ) {
             this.saveSubscription.unsubscribe();
         }
     }
 
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
-        if ( ! this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
-            let applicant2Sections = this.applicantGenerator.getApplicantSection( 2 );
-            const loginBlockControlGroup = this.__form.get(Constants.MyAMPLoginBlockFDN);
-            if( loginBlockControlGroup ){
+        if ( !this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
+            let applicant2Sections       = this.applicantGenerator.getApplicantSection( 2 );
+            const loginBlockControlGroup = this.__form.get( Constants.MyAMPLoginBlockFDN );
+            if ( loginBlockControlGroup ) {
                 SingleOrJointBlockComponent.secondApplicantSectionIndex = 4;
-            }else{
+            } else {
                 SingleOrJointBlockComponent.secondApplicantSectionIndex = 3;
             }
-            this.__loadAt( applicant2Sections , SingleOrJointBlockComponent.secondApplicantSectionIndex);
+            this.__loadAt( applicant2Sections, SingleOrJointBlockComponent.secondApplicantSectionIndex );
             return;
         }
         if ( this.applicant2Added && singleJointIndicator === Constants.singleApplicant ) {
-            this.__removeAt(SingleOrJointBlockComponent.secondApplicantSectionIndex).then( () => {
+            this.__removeAt( SingleOrJointBlockComponent.secondApplicantSectionIndex ).then( () => {
                 this.applicant2Added = false;
                 this.onNext();
             } );
@@ -132,14 +122,14 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
     }
 
     private onSingleApplication () {
-        this.setUpApplication(this.singleApplicantKey);
+        this.setUpApplication( this.singleApplicantKey );
     }
 
     private onJointApplication () {
-        this.setUpApplication(this.jointApplicantKey);
+        this.setUpApplication( this.jointApplicantKey );
     }
 
-    private setUpApplication (singleJointIndicator : string ) {
+    private setUpApplication ( singleJointIndicator : string ) {
         const singleOrJoint = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         singleOrJoint.setValue( singleJointIndicator );
         singleOrJoint.markAsTouched();
@@ -149,12 +139,10 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
     private storeReferenceIdInModel ( referenceId? : string ) {
         let referenceIdControl = this.sharedDataService.getReferenceIdControl( this.__form );
 
-        if (referenceId) {
-            referenceIdControl.setValue(referenceId);
+        if ( referenceId ) {
+            referenceIdControl.setValue( referenceId );
         } else {
             referenceId = referenceIdControl.value;
         }
-
-        this.formModelService.setSaveRelativeUrl( Constants.saveUrl + '?id=' + referenceId );
     }
 }
