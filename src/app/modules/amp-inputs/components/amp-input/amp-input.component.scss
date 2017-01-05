@@ -52,9 +52,11 @@ input::-ms-clear {
     padding: 0;
     background-color: transparent;
     box-shadow: none;
-    border-bottom: 1px solid $amp-colour-grey-dark;
+    border-bottom: 1px solid transparent;
     padding-bottom: 5px;
     &:not([disabled]) {
+        border-bottom-color: $amp-colour-grey-dark;
+
         @include hover-focus {
             border-color: $amp-colour-sky-blue;
             outline: none;

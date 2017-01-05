@@ -13,7 +13,7 @@ the whole block remains untouched.
            (keyup.enter)='markAsTouched()'
            (blur)='onBlured($event)'
            [class.label-hidden]='labelHidden'
-           [class.has-value]='!controlIsEmpty()'
+           [class.has-value]='!controlIsEmpty() || isInSummaryState'
            [class.has-prefix]='currency'
            [attr.aria-label]='randomizedId'
            [attr.data-automation-id]="'text_'+randomizedId"

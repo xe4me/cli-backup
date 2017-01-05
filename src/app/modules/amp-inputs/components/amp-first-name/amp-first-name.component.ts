@@ -1,6 +1,11 @@
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
 import { AmpInputComponent } from '../amp-input/amp-input.component';
-import { ChangeDetectorRef , ElementRef , Renderer , ViewChild } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    ElementRef,
+    Renderer,
+    ViewChild
+} from '@angular/core';
 @AmpComponent( {
     selector : 'amp-first-name'
 } )
@@ -10,7 +15,7 @@ export class AmpFirstNameComponent extends AmpInputComponent {
                   _el : ElementRef ,
                   _renderer : Renderer ) {
         super( _cd , _el , _renderer );
-        this.pattern   = '^[a-zA-Z][a-zA-Z\\s\'.-]*$';
+        this.pattern = '^[A-Za-z][A-Z|a-z|\'| |-]*[a-z]$FLAGS:g';
         this.maxLength = 30;
         this.required  = true;
         this.label     = 'First name';
