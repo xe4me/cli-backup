@@ -15,7 +15,11 @@ export class AutoFocusOnDirective {
 
     public focus () {
         setTimeout( () => {
-            this._el.nativeElement.getElementsByTagName( this.autoFocusOn || 'input' )[ 0 ].focus();
+            let elements = this._el.nativeElement.getElementsByTagName( this.autoFocusOn || 'input' );
+            let element  = elements ? elements[ 0 ] : null;
+            if ( element ) {
+                element.focus();
+            }
         }, this.delay );
     }
 }
