@@ -50,7 +50,7 @@ export class CustomerDetailsService {
     public fetchCustomerDetails () : Observable<any> {
         let headers = new Headers( {
             'Content-Type' : 'application/json',
-            'caller'       : Environments.property.experienceName || 'components'
+            'caller'       : Environments.property.ExperienceName || 'components'
         } );
         let options = new RequestOptions( { headers, body : '' } );
         return this.http.get( this.apiCustomerUrl, options )

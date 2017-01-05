@@ -16,8 +16,8 @@ export class SaveService {
     private apiBaseURL        = Environments.property.ApiCallsBaseUrl;
     private headers           = new Headers( { 'Content-Type' : 'application/json' } );
     private httpOptions       = new RequestOptions( { headers : this.headers } );
-    private saveEndpoint      = '/save';
-    private _saveUrl          = this.apiBaseURL + this.saveEndpoint;
+    private saveEndpoint      = 'save';
+    private _saveUrl          = `${this.apiBaseURL}/${Environments.property.ExperienceName}/${this.saveEndpoint}`;
 
     constructor ( private http : AmpHttpService ) {
     }
@@ -43,5 +43,4 @@ export class SaveService {
         replaySave.connect();
         return replaySave;
     }
-
 }

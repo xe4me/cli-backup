@@ -46,7 +46,7 @@ export class RootEnvProperty {
     ENV : string;
     // Base url for api calls like : /ddc/secure/api/...
     ApiCallsBaseUrl : string;
-    experienceName : string; // like : buyback , or nio , or cwc
+    ExperienceName : string; // like : buyback , or nio , or cwc
     DamContentUrl : string; // https://www.amp.com.au
     AmpRootUrl : string; // https://www.amp.com.au
     GreenId : {
