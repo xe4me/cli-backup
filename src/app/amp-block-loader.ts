@@ -1,10 +1,12 @@
 import {
+    Input,
     ViewContainerRef,
     ComponentFactoryResolver,
     ComponentRef,
     EventEmitter,
     Compiler,
-    ViewRef
+    ViewRef,
+    Output
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormDefinition } from './interfaces/form-def.interface';
@@ -15,16 +17,43 @@ export interface LoadedBlockInfo {
     name : string;
 }
 export abstract class AmpBlockLoader {
-    public fdn                               = [];
-    public requireMethod                     = RequireMethod[ RequireMethod.IN_ORDER ];
-    public loaded : EventEmitter<any>        = new EventEmitter<any>();
+    @Input( 'fdn' ) fdn                     = [];
+    @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
+    @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
+
+    @Input( 'amp-block-loader' ) set blockLoader ( _blockLoader ) {
+        this._blockLoader = _blockLoader;
+        if ( this._form && !this.hasLoadedWithInput ) {
+            this.reload();
+            this.hasLoadedWithInput = true;
+        }
+    };
+
+    get blockLoader () {
+        return this._blockLoader;
+    }
+
+    @Input() set form ( _form ) {
+        if ( !this._form ) {
+            this._form = _form;
+            if ( this.blockLoader && !this.hasLoadedWithInput ) {
+                this.reload();
+                this.hasLoadedWithInput = true;
+            }
+        }
+    }
+
+    get form () {
+        return this._form;
+    }
+
+    public _blockLoader;
     public $childsLoaded : EventEmitter<any> = new EventEmitter<any>();
-    protected hasLoadedWithInput = false;
     protected blocksCount : number           = 0;
+    protected hasLoadedWithInput : boolean   = false;
     protected retrievedFiles                 = [];
     protected _blocks : FormDefinition[]     = [];
     protected _form;
-    protected _blockLoader;
     protected _sectionName;
 
     constructor ( public viewContainer : ViewContainerRef,
@@ -81,6 +110,27 @@ export abstract class AmpBlockLoader {
         this.$childsLoaded.emit( _loadedBlockInfo );
     }
 
+    /*
+     * TODO : When ever upgraded to RC7 , this should be used , For Sean :)
+     * */
+    // createComponent ( _loadedComponent , _index : number ) : Promise<ComponentRef<any>> {
+    //     return this.compiler
+    //                .compileModuleAndAllComponentsAsync( this.createComponentModule( _loadedComponent ) )
+    //                .then( ( moduleWithCF : ModuleWithComponentFactories<any> ) => {
+    //                    console.log( 'moduleWithCF' , moduleWithCF );
+    //                    const cf = moduleWithCF.componentFactories
+    //                                           .find( x => x.componentType === _loadedComponent );
+    //                    return this.viewContainer.createComponent( cf , _index );
+    //                } );
+    // }
+    // createComponentModule ( componentType : any ) {
+    //     @NgModule( {
+    //         declarations : [ componentType ] ,
+    //     } )
+    //     class RuntimeComponentModule {
+    //     }
+    //     return RuntimeComponentModule;
+    // }
     protected abstract getCustomBundle ( path : string ) : any;
 
     protected getCommonBundle ( path : string ) : any {
@@ -92,7 +142,7 @@ export abstract class AmpBlockLoader {
         return null;
     }
 
-    private loadAndCreate ( formDef : FormDefinition, _requireMethod ) {
+    protected loadAndCreate ( formDef : FormDefinition, _requireMethod ) {
         if ( formDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
             this._sectionName = formDef.name;
         }
@@ -114,13 +164,13 @@ export abstract class AmpBlockLoader {
         }
     }
 
-    private copyFormBlockDefProperty ( _componentRef : ComponentRef<any>,
-                                       _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
+    protected copyFormBlockDefProperty ( _componentRef : ComponentRef<any>,
+                                         _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve ) => {
             let childsLoadedsubscription;
             let _fdn                              = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
             _componentRef.instance.__child_blocks = _blockDef;
-            _componentRef.instance.__form         = this._form;
+            _componentRef.instance.__form         = this.form;
             _componentRef.instance.__fdn          = _fdn;
             if ( _blockDef.name ) {
                 let _form = _componentRef.instance.__form;
@@ -199,7 +249,7 @@ export abstract class AmpBlockLoader {
         } );
     }
 
-    private loadAllSync ( _def : FormDefinition, _index : number ) {
+    protected loadAllSync ( _def : FormDefinition, _index : number ) {
         this.retrievedFiles[ _index ] = null;
         let waitForChunk              = this.requireFile( _def );
         waitForChunk( ( file ) => {
@@ -211,7 +261,7 @@ export abstract class AmpBlockLoader {
         } );
     }
 
-    private requireFile ( _def : FormDefinition ) {
+    protected requireFile ( _def : FormDefinition ) {
         let myChunk      = null;
         let waitForChunk = null;
         if ( _def.commonBlock ) {
@@ -229,11 +279,14 @@ export abstract class AmpBlockLoader {
         return waitForChunk;
     }
 
-    private storeFile ( file : any, block : FormDefinition, _index : number ) {
-        this.retrievedFiles[ _index ] = { file, block };
+    protected storeFile ( file : any, block : FormDefinition, _index : number ) {
+        this.retrievedFiles[ _index ] = {
+            file,
+            block
+        };
     }
 
-    private createAllRecursively ( _index : number ) {
+    protected createAllRecursively ( _index : number ) {
         let componentRef = this.createComponent( this.retrievedFiles[ _index ].file, _index );
         if ( _index === (this._blocks.length - 1) ) {
             this.emitLoadedAll();
@@ -245,27 +298,27 @@ export abstract class AmpBlockLoader {
         }
     }
 
-    private emitLoadedAll () {
+    protected emitLoadedAll () {
         setTimeout( () => {
             this.loaded.emit( 'loaded' );
             this.retrievedFiles = [];
         } );
     }
 
-    private getViewRefOfViewContainerRef ( _viewContainerRef : ViewContainerRef ) : ViewRef {
+    protected getViewRefOfViewContainerRef ( _viewContainerRef : ViewContainerRef ) : ViewRef {
         return <ViewRef> (<any> _viewContainerRef)._element.parentView.ref;
     }
 
-    private getIndex ( _viewContainerRef : ViewContainerRef ) : number {
+    protected getIndex ( _viewContainerRef : ViewContainerRef ) : number {
         return this.getIndexOfComponent( _viewContainerRef );
     }
 
-    private removeAllAfter ( _viewContainerRef : ViewContainerRef ) : Promise<any> {
+    protected removeAllAfter ( _viewContainerRef : ViewContainerRef ) : Promise<any> {
         let index = this.getIndex( _viewContainerRef );
         return this.removeAllAfterIndex( index );
     }
 
-    private removeAllAfterIndex ( _index : number ) : Promise<any> {
+    protected removeAllAfterIndex ( _index : number ) : Promise<any> {
         return new Promise( ( resolve, reject ) => {
             let initialLength = this.viewContainer.length - 1;
             if ( _index !== undefined && initialLength > -1 ) {
@@ -282,7 +335,7 @@ export abstract class AmpBlockLoader {
         } );
     }
 
-    private loadNext ( _def : FormDefinition, _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> {
+    protected loadNext ( _def : FormDefinition, _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> {
         let index = this.getIndex( _viewContainerRef );
         if ( index !== undefined ) {
             index++;
@@ -290,8 +343,8 @@ export abstract class AmpBlockLoader {
         return this.loadAt( _def, index );
     }
 
-    private loadAllNext ( _def : FormDefinition[],
-                          _viewContainerRef : ViewContainerRef ) : Promise<any> {
+    protected loadAllNext ( _def : FormDefinition[],
+                            _viewContainerRef : ViewContainerRef ) : Promise<any> {
         let promises = [];
         if ( _def && _def.length ) {
             let index = this.getIndex( _viewContainerRef );
@@ -307,12 +360,12 @@ export abstract class AmpBlockLoader {
         return Promise.reject( 'def is empty' );
     }
 
-    private getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) : number {
+    protected getIndexOfComponent ( _viewContainerRef : ViewContainerRef ) : number {
         let viewRef = this.getViewRefOfViewContainerRef( _viewContainerRef );
         return this.viewContainer.indexOf( viewRef );
     }
 
-    private removeNext ( _viewContainerRef : ViewContainerRef ) : Promise<number> {
+    protected removeNext ( _viewContainerRef : ViewContainerRef ) : Promise<number> {
         let index = this.getIndexOfComponent( _viewContainerRef );
         if ( index !== undefined ) {
             index++;

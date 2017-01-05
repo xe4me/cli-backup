@@ -50,8 +50,10 @@ import PaddingMarginBasicUsage from './layout/padding-margin/padding-margin';
 import ResponsiveBasicUsage from './layout/responsive/responsive';
 import TablesBasicUsage from './layout/tables/tables';
 import TextBasicUsage from './layout/text/text';
+import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
+    ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
     AmpGroupButtonComponentBasicUsage,
     AmpAccountNumberBasicUsage,
     AmpRowRepeaterBasicUsage,
