@@ -118,12 +118,15 @@ input::-ms-clear {
     @include transition($animation-duration ease all);
 }
 
-.icon-right {
+.post-fix{
     cursor: pointer;
-    line-height: 1;
     position: absolute;
     right: 0;
-    top: 0px;
+    top: 0;
+}
+.icon-right {
+    @extend .post-fix;
+    line-height:1;
 }
 
 /* -- bar styles -------------------------------------- */
