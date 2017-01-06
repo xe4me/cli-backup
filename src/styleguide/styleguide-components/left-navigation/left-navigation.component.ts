@@ -17,7 +17,7 @@ import { isPresent } from '../../../app/modules/amp-utils/functions.utils';
     selector   : 'left-navigation',
     template   : `
     <div class='left-navigation'>
-            <amp-input #queryFilter class='1/1' label='Search here ...'></amp-input>
+            <amp-input #queryFilter class='grid__item 1/1 mt-' [showOptional]="false" placeholder='Search here ...'></amp-input>
             <div class="option-group" (click)="navigate(['Index']);toggleAccordion(-1)" [class.option-group--active]='activeAccordion===INDEX_ID'>
                 <span class="icon icon--faqs "></span> Get started
             </div>
