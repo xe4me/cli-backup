@@ -1,1 +1,4 @@
 @import "../../../styles/abstracts";
+:host /deep/ md-progress-circle.md-primary { // this is only for styleguide , no need to be specified in experience
+    background-color: transparent !important;
+}

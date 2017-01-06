@@ -1,6 +1,7 @@
 @import '../../../../../styles/abstracts';
 @import 'themes/theme-form';
 @import 'themes/theme-tools';
+
 $Loading-stroke-width: 6px;
 $Loading-width: 100px;
 
@@ -18,7 +19,7 @@ $Loading-width: 100px;
             height: $Loading-width/2;
         }
     }
-    md-progress-circle {
+    /deep/ md-progress-circle {
         width: $Loading-width;
         height: $Loading-width;
         path {
@@ -27,3 +28,4 @@ $Loading-width: 100px;
         }
     }
 }
+
