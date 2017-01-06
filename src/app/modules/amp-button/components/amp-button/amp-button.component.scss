@@ -4,7 +4,7 @@
 
 :host {
     //btn-ok default style
-
+    position: relative;
     $btn-ok-background-color: $btn-ok-background-color;
 
     .#{$namespace}btn-ok,
@@ -174,4 +174,11 @@
         }
     }
 
+
+    /deep/ .post-fix{
+        position: absolute;
+        right: 0;
+        top: 67%;
+        @include transform(translate(-50%,-50%));
+    }
 }
