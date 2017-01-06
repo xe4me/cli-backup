@@ -15,6 +15,7 @@
             "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
             "custom": {
                 "blockTitle": "Tell us about yourself",
+                "active": true,
                 "controls": [
                     { "id": "Title" },
                     { "id": "FirstName" },
