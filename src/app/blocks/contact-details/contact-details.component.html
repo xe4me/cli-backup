@@ -1,20 +1,20 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
     <amp-form-row>
-        <div class="grid__item_floated palm-8/9 tablet-7/8 lap-and-up-4/12">
+        <div class="grid__item_floated tablet-and-down-1/1 lap-and-up-4/12">
             <amp-email
                     auto-focus-on
                     [id]="__custom.controls[0].id"
                     [controlGroup]="__controlGroup"
                     [isInSummaryState]="isInSummaryState">
+                <amp-tooltip-cmp
+                        class="post-fix"
+                        message="Confirmation of your application will be sent to this email address.">
+                </amp-tooltip-cmp>
             </amp-email>
-        </div>
-        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
-            <amp-tooltip-cmp
-                    message="Confirmation of your application will be sent to this email address."></amp-tooltip-cmp>
         </div>
     </amp-form-row>
     <amp-form-row>
-        <div class="grid__item_floated palm-8/9 tablet-7/8 lap-and-up-4/12">
+        <div class="grid__item_floated tablet-and-down-1/1 lap-and-up-4/12">
             <amp-mobile-number
                     [id]="__custom.controls[1].id"
                     [isInSummaryState]="isMobileInSummaryState"
@@ -24,15 +24,15 @@
                     [maxLength]="10"
                     [errors]="{'pattern' : __custom.controls[1].errorMsg, 'required' : __custom.controls[1].requiredMsg }"
                     [required]="true">
+                <amp-tooltip-cmp
+                        class="post-fix"
+                        message="A mobile phone number is required to allow AMP Bank to securely protect your account.">
+                </amp-tooltip-cmp>
             </amp-mobile-number>
-        </div>
-        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
-            <amp-tooltip-cmp
-                    message="A mobile phone number is required to allow AMP Bank to securely protect your account."></amp-tooltip-cmp>
         </div>
     </amp-form-row>
     <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12">
+        <div class="grid__item_floated tablet-and-down-1/1 lap-and-up-4/12">
             <amp-home-number
                     [id]="__custom.controls[2].id"
                     [controlGroup]="__controlGroup"
