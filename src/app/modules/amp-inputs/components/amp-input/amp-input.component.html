@@ -9,8 +9,8 @@ the whole block remains untouched.
     <input class="control"
            #input
            (focus)='onFocused($event)'
-           (keyup)='onKeyupEvent($event)'
            (keyup.enter)='markAsTouched()'
+           (input)="onInput($event)"
            (blur)='onBlured($event)'
            [class.label-hidden]='labelHidden'
            [class.has-value]='!controlIsEmpty() || isInSummaryState'

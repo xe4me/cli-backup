@@ -27,6 +27,9 @@ import { BaseControl } from '../../../../base-control';
         selector        : 'amp-input',
         template        : require( './amp-input.component.html' ),
         styles          : [ require( './amp-input.component.scss' ) ],
+        queries         : {
+            inputCmp : new ViewChild( 'input' ),
+        },
         inputs          : [
             'errors',
             'id',
@@ -65,11 +68,11 @@ import { BaseControl } from '../../../../base-control';
             'autoComplete',
             'showOptional'
         ],
-        outputs         : [ 'onEnter', 'onBlur', 'onKeyup' ],
+        outputs         : [ 'onBlur', 'onFocus' ],
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent extends BaseControl implements AfterViewInit {
-    @ViewChild( 'input' ) inputCmp;
+    public inputCmp : ElementRef;
     public doOnBlurDirty              = true;
     protected type : string           = 'text';
     protected _minLength : number;
@@ -92,12 +95,9 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     protected defaultValue : any      = null;
     protected currency : string       = null;
     protected placeholder : string;
-    protected onEnter : EventEmitter<any>;
     protected onBlur : EventEmitter<any>;
     protected onFocus : EventEmitter<any>;
-    protected onKeyup : EventEmitter<any>;
     protected labelHidden : boolean   = false;
-    protected validate;
     protected idleTimeOut             = 4500;
     protected idleTimeoutId;
     protected autoComplete : string   = 'off';
@@ -108,10 +108,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
                   protected el : ElementRef,
                   protected renderer : Renderer ) {
         super();
-        this.onEnter = new EventEmitter();
         this.onBlur  = new EventEmitter();
         this.onFocus = new EventEmitter();
-        this.onKeyup = new EventEmitter();
     }
 
     updateValidators () {
@@ -266,19 +264,20 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     }
 
     get isItDisabled () {
-        return (this.disabled || this.isInSummaryState) ? true : null;
-    }
-
-    protected onEnterClick ( event ) {
-        if ( event.keyCode === 13 ) {
-            this.onEnter.emit( 'enter' );
-        }
+        return ( this.disabled || this.isInSummaryState ) ? true : null;
     }
 
     protected onFocused ( event ) {
         this.resetIdleTimeOut();
         this.doOnBlurDirty = true;
         this.onFocus.emit( event );
+    }
+
+    protected onInput ( event ) {
+        let value = event.target.value;
+        if ( value && this.maxLength > 0 && value.length === this.maxLength ) {
+            this.markControlAsDirty();
+        }
     }
 
     protected onBlured ( $event ) {
@@ -292,17 +291,12 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }, 100 );
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
-            this.inputCmp.value = this.control.value.trim();
+            this.inputCmp.nativeElement.value = this.control.value.trim();
             notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
             notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
 
-    }
-
-    protected onKeyupEvent ( $event ) {
-        this.onEnterClick( $event );
-        this.onKeyup.emit( $event );
     }
 
     protected addDelayedValidation () {

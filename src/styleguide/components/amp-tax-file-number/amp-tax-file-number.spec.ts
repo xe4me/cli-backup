@@ -1,12 +1,10 @@
 import {
     async,
-    ComponentFixture,
     ComponentFixtureAutoDetect,
     TestBed
 } from '@angular/core/testing';
 import {
     Component,
-    ElementRef,
     ViewChild
 } from '@angular/core';
 import {
@@ -15,11 +13,22 @@ import {
     FormGroup
 } from '@angular/forms';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs/amp-inputs.module';
+import { By } from '@angular/platform-browser';
 
-class MockElementRef implements ElementRef {
-    nativeElement = {};
-}
 describe( 'amp-tax-file-number component', () => {
+    let _fixture : any;
+    let _debugElement : any;
+    let _inputElement : any;
+    let _ampTFNTest : any;
+    let _ampTFNTestCmp;
+    let _inputEvent : Event;
+
+    function updateInputText ( text : string ) {
+        _inputElement.value = text;
+        _inputElement.dispatchEvent( _inputEvent );
+        _fixture.detectChanges();
+    }
+
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports      : [ FormsModule, ReactiveFormsModule, AmpInputsModule ],
@@ -27,42 +36,59 @@ describe( 'amp-tax-file-number component', () => {
                 AmpTFNTest
             ],
             providers    : [
-                { provide : ElementRef, useClass : MockElementRef },
-                { provide : ComponentFixtureAutoDetect, useValue : true }
+                {
+                    provide  : ComponentFixtureAutoDetect,
+                    useValue : true
+                }
             ]
         } );
-        TestBed.compileComponents();
+        _fixture       = TestBed.createComponent( AmpTFNTest );
+        _ampTFNTest    = _fixture.debugElement;
+        _ampTFNTestCmp = _ampTFNTest.componentInstance;
+        _debugElement  = _fixture.debugElement;
+        _fixture.detectChanges();
+        _inputElement = _debugElement.query( By.css( 'input' ) ).nativeElement;
+        _inputEvent   = document.createEvent( 'Event' );
+        _inputEvent.initEvent( 'input', true, false );
     } ) );
     it( 'Should contain 1 tax-file-number input field with proper data-automation-id and name attributes ', () => {
-        let fixture : ComponentFixture<AmpTFNTest> = TestBed.createComponent( AmpTFNTest );
-        fixture.detectChanges();
-        let Element    = fixture.nativeElement;
-        let ampTFNTest = fixture.debugElement;
-        let Component  = ampTFNTest.componentInstance;
-        let TFNInput   = Element.querySelector( 'input[type="text"]' );
+        let Element  = _fixture.nativeElement;
+        let TFNInput = Element.querySelector( 'input[type="text"]' );
         expect( TFNInput ).toBeDefined();
-        expect( TFNInput.name ).toBe( Component.tfnCmp.randomizedId );
-        expect( TFNInput.id ).toBe( Component.tfnCmp.randomizedId );
-        expect( TFNInput.getAttribute( 'data-automation-id' ) ).toBe( 'text_' + Component.tfnCmp.randomizedId );
+        expect( TFNInput.name ).toBe( _ampTFNTestCmp.tfnCmp.randomizedId );
+        expect( TFNInput.id ).toBe( _ampTFNTestCmp.tfnCmp.randomizedId );
+        expect( TFNInput.getAttribute( 'data-automation-id' ) ).toBe( 'text_' + _ampTFNTestCmp.tfnCmp.randomizedId );
     } );
     it( 'Should display an error when an INVALID tax-file-number is entered', () => {
-        const expectedError                        = { checkDigitValidation : { text : 'You have entered an invalid tax file number.' } };
-        let fixture : ComponentFixture<AmpTFNTest> = TestBed.createComponent( AmpTFNTest );
-        fixture.detectChanges();
-        let ampTFNTest = fixture.componentInstance;
-        ampTFNTest.control.setValue( '123654789' );
-        fixture.detectChanges();
-        expect( ampTFNTest.control.errors ).toEqual( expectedError );
+        const expectedError = { checkDigitValidation : { text : 'You have entered an invalid tax file number.' } };
+        _ampTFNTestCmp.control.setValue( '123654789' );
+        _fixture.detectChanges();
+        expect( _ampTFNTestCmp.control.errors ).toEqual( expectedError );
     } );
     it( 'Should NOT display an error when a VALID tax-file-number is entered', () => {
-        const expectedError                        = null;
-        let fixture : ComponentFixture<AmpTFNTest> = TestBed.createComponent( AmpTFNTest );
-        fixture.detectChanges();
-        let ampTFNTest = fixture.componentInstance;
-        ampTFNTest.control.setValue( '123456782' );
-        fixture.detectChanges();
-        expect( ampTFNTest.control.errors ).toEqual( expectedError );
+        const expectedError = null;
+        _ampTFNTestCmp.control.setValue( '123456782' );
+        _fixture.detectChanges();
+        expect( _ampTFNTestCmp.control.errors ).toEqual( expectedError );
     } );
+    it( 'should allow numberic values', () => {
+        updateInputText( '65433' );
+        expect( _inputElement.value ).toEqual( '65433' );
+    } );
+    it( 'should not allow anything but numbers', () => {
+        updateInputText( 'sdf a-=-=-' );
+        expect( _inputElement.value ).toEqual( '' );
+    } );
+    it( 'should not let more than the maxLength specified to be entered', () => {
+        let maxLength = _ampTFNTestCmp.tfnCmp.maxLength;
+        let text      = '';
+        for ( let i = 0 ; i < maxLength + 1 ; i++ ) {
+            text += '' + i;
+        }
+        updateInputText( text );
+        expect( _ampTFNTestCmp.control.valid ).toBe( false );
+    } );
+
 } );
 
 @Component( {
