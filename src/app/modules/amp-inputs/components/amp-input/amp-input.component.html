@@ -14,6 +14,7 @@ the whole block remains untouched.
            (blur)='onBlured($event)'
            [class.label-hidden]='labelHidden'
            [class.has-value]='!controlIsEmpty() || isInSummaryState'
+           [class.is-empty]='controlIsEmpty()'
            [class.has-prefix]='currency'
            [attr.aria-label]='randomizedId'
            [attr.data-automation-id]="'text_'+randomizedId"
