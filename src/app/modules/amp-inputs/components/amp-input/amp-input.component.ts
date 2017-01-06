@@ -281,7 +281,6 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     }
 
     protected onBlured ( $event ) {
-        this.checkErrors();
         clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
             if ( this.doOnBlurDirty ) {
@@ -305,11 +304,9 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
             .subscribe( ( changes ) => {
                 this.resetIdleTimeOut();
             } );
-        this.checkErrors();
     }
 
     protected resetIdleTimeOut () {
-        this.checkErrors();
         this.markControlAsUndirty();
         clearTimeout( this.idleTimeoutId );
         this.idleTimeoutId = setTimeout( () => {

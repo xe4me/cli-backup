@@ -58,4 +58,21 @@
             </div>
         </div>
     </section>
+    <section>
+        <h2>It can be at the end of on a text box</h2>
+        <ol class="ml mt">
+            <li>Make sure to put the directive inside the input as a child tag.</li>
+            <li>Make sure to add class of `post-fix` to the tooltip</li>
+        </ol>
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-input label="What's your name?">
+                    <amp-tooltip-cmp
+                            class="post-fix"
+                            message='Tool tip can be part of a text field '>
+                    </amp-tooltip-cmp>
+                </amp-input>
+            </div>
+        </amp-form-row>
+    </section>
 </form>
