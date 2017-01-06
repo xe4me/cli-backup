@@ -6,6 +6,13 @@ the whole block remains untouched.
 -->
 <div class="amp-input">
     <span class="currency" *ngIf='currency'>{{currency}}&nbsp;</span>
+    <span  class="post-fix" *ngIf="!isItDisabled">
+        <ng-content select=".post-fix"></ng-content>
+    </span>
+    <span (click)='handleIconRightClick()'
+          *ngIf='showIconRight && iconRight && !isInSummaryState'
+          class="icon icon--{{ iconRight }} icon-right">
+    </span>
     <input class="control"
            #input
            (focus)='onFocused($event)'
@@ -27,13 +34,6 @@ the whole block remains untouched.
            [attr.placeholder]="placeholder && !label ?placeholder:''"
            [formControl]='control'>
     <span><ng-content></ng-content></span>
-    <span (click)='handleIconRightClick()'
-          *ngIf='showIconRight && iconRight && !isInSummaryState'
-          class="icon icon--{{ iconRight }} icon-right">
-    </span>
-    <span  class="post-fix" *ngIf="!isItDisabled">
-        <ng-content select=".post-fix"></ng-content>
-    </span>
     <span class="bar"></span>
     <label class="label" [attr.for]="randomizedId">
         {{ required || !showOptional ? label:label + " (optional)" }}
