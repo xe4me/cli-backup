@@ -1,24 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup , FormBuilder } from '@angular/forms';
 
-let formDef = require( './form-def.def.json' );
+import { ScrollService } from '../../../app/services/scroll/scroll.service';
 
-// Test:
-// /Users/mac-cedric/Downloads/galen-bin-2.3.2/galen test ./src/styleguide/blocks/amp-basic-info-block/ --htmlreport report --recursive"
+const formDef = require( './form-def.def.json' );
+import { FDN } from './Application.fdn';
 
 @Component( {
-    selector : 'basic-info-block-basic-usage',
+    selector    : 'basic-info-block-basic-usage',
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ).toString() ]
+    styles      : [ require( './basic_usage.scss' ).toString() ]
 } )
-export default class BasicInfoBlockBasicUsage {
+export default class AmpBasicInfoBlockBasicUsage implements AfterViewInit {
 
     private fullyDistinguishedName = [];
     private childBlocks            = formDef;
     private form : FormGroup;
 
-    constructor ( public store : Store<any> , private _builder : FormBuilder ) {
+    constructor ( public store : Store<any> ,
+                  private _builder : FormBuilder,
+                  private scrollService : ScrollService ) {
         this.form = this._builder.group( {} );
+    }
+
+    public ngAfterViewInit () {
+        // Activate the block (not active by default as set in form-block.ts)
+        this.fireMockScrolledEvent(FDN.basicInfo);
+    }
+
+    private fireMockScrolledEvent(fdn) {
+        this.scrollService.$scrolled.emit( {
+            componentSelector : [ ...fdn, 'block' ].join( '-' ),
+            section           : null
+        } );
     }
 }
