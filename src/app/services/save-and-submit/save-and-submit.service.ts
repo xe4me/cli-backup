@@ -12,7 +12,7 @@ export class SaveAndSubmitService {
     public saveAndSubmit ( model, referenceId = null, overrideUrls : { saveUrl?, submitUrl? } = {} ) : Observable<any> {
         let saveAndSubmitReplay =
                 this.saveService.save( model, overrideUrls.saveUrl )
-                    .flatMap( ( saveResponse ) => this.submitService.submit( referenceId ? referenceId : saveResponse.referenceId, overrideUrls.submitUrl ) )
+                    .flatMap( ( saveResponse ) => this.submitService.submit( referenceId ? referenceId : saveResponse.payload.meta.id, overrideUrls.submitUrl ) )
                     .catch( ErrorService.handleError )
                     .publishReplay( 1 );
         saveAndSubmitReplay.connect();

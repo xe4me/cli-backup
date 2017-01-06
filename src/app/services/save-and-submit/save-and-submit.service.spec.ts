@@ -59,7 +59,34 @@ describe( 'SaveAndSubmit service', () => {
         it( 'should do a save and then a submit and emit the result to the subscription', ( done ) => {
             let referenceId    = '4234234234';
             let model          = { name : 'Milad' };
-            let saveResponse   = { referenceId };
+            let saveResponse   = {
+                'meta'       : {
+                    'url'            : '/ddc/public/api/bett3r/save?id=6812434564',
+                    'method'         : 'POST',
+                    'timestamp'      : 'Fri Jan 06 2017 13:57:23 GMT+1100 (AEDT)',
+                    'responseTimeMs' : 70,
+                    'requestId'      : '0c05d1a0d7c5499583f5f093bdd3261c',
+                    'hostname'       : 'api-bett3r-dev-v154-iyrtb',
+                    'pid'            : 17,
+                    'params'         : { 'id' : '6812434564' },
+                    'count'          : 1
+                },
+                'payload'    : {
+                    'meta' : {
+                        'name'         : 'BETT3R',
+                        'modelVersion' : '1.0.0',
+                        'id'           : '6812434564',
+                        'modified'     : '2017-01-06T02:57:23.161Z',
+                        'created'      : '2017-01-06T02:57:04.544Z',
+                        'owner'        : {
+                            'type' : 'customer',
+                            'id'   : null
+                        },
+                        'status'       : 'open'
+                    }
+                },
+                'statusCode' : 200
+            };
             let submitResponse = { submitted : true };
             let callCounter    = 0;
             backend.connections.subscribe( ( connection : MockConnection ) => {

@@ -31,7 +31,32 @@ const mockHttpProvider = {
 describe( 'Save service ', () => {
     let saveEndPoint              = `/${Environments.property.ExperienceName}/save`;
     let saveSampleResponse        = {
-        referenceId : '324234234'
+        'meta'       : {
+            'url'            : '/ddc/public/api/bett3r/save?id=6812434564',
+            'method'         : 'POST',
+            'timestamp'      : 'Fri Jan 06 2017 13:57:23 GMT+1100 (AEDT)',
+            'responseTimeMs' : 70,
+            'requestId'      : '0c05d1a0d7c5499583f5f093bdd3261c',
+            'hostname'       : 'api-bett3r-dev-v154-iyrtb',
+            'pid'            : 17,
+            'params'         : { 'id' : '6812434564' },
+            'count'          : 1
+        },
+        'payload'    : {
+            'meta' : {
+                'name'         : 'BETT3R',
+                'modelVersion' : '1.0.0',
+                'id'           : '6812434564',
+                'modified'     : '2017-01-06T02:57:23.161Z',
+                'created'      : '2017-01-06T02:57:04.544Z',
+                'owner'        : {
+                    'type' : 'customer',
+                    'id'   : null
+                },
+                'status'       : 'open'
+            }
+        },
+        'statusCode' : 200
     };
     let saveService : SaveService = null;
     let backend : MockBackend     = null;
@@ -91,8 +116,8 @@ describe( 'Save service ', () => {
                 expect( connection.request.url ).toBe( saveEndPoint );
                 expect( saveService.referenceId ).toBe( null );
             } else {// later saves
-                expect( connection.request.url ).toBe( saveEndPoint + `?id=${saveSampleResponse.referenceId}` );
-                expect( saveService.referenceId ).toBe( saveSampleResponse.referenceId );
+                expect( connection.request.url ).toBe( saveEndPoint + `?id=${saveSampleResponse.payload.meta.id}` );
+                expect( saveService.referenceId ).toBe( saveSampleResponse.payload.meta.id );
             }
             connection.mockRespond( new Response( options ) );
             savedCounter++;
@@ -115,7 +140,7 @@ describe( 'Save service ', () => {
     } );
 
     it( 'should handle the error and show the message inside it', ( done ) => {
-        let model = { name : 'Milad' };
+        let model       = { name : 'Milad' };
         let sampleRrror = JSON.stringify( { message : 'Serve is down' } );
         backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new Error( sampleRrror );

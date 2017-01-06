@@ -33,7 +33,8 @@ export class SaveService {
                     .map( ( response ) => response.json() )
                     .catch( ErrorService.handleError )
                     .do( ( response : any ) => {
-                        this.referenceId = this.referenceId ? this.referenceId : response.referenceId;
+                        // assuming that the id is available
+                        this.referenceId = this.referenceId ? this.referenceId : response.payload.meta.id;
                         this.$onSaveResponse.next( response );
                     }, ( error ) => {
                         this.$onSaveResponse.error( error );
