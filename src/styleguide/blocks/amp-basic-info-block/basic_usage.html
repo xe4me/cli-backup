@@ -1,0 +1,95 @@
+<form [formGroup]="form" class='nl-form p+'>
+    <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"></div>
+</form>
+
+<section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">
+            Above is an example of a "Basic Info" block.
+        </h2>
+        <p class="ml small">
+            This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
+            <br>It should be <strong>the default way of loading it</strong>.
+        </p>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            In "form-def.def.json" file, in any array of blocks:
+        </p>
+        <pre>
+            <code class="json">
+    &#123;
+        "name": "basicInfo",
+        "blockType": "AmpBasicInfoBlockComponent",
+        "blockLayout": "INLINE",
+        "commonBlock": true,
+        "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+        "custom": &#123;
+            ...
+        &#125;
+    &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Default behaviour</h2>
+        <ul class="bml">
+            <li>
+                'Title', 'First name', 'Last name' and 'Date of birth' are required.
+            </li>
+            <li>
+                There is a date format validator on the 'Date of birth' field (DD/MM/YYYY)
+            </li>
+        </ul>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Customisation</h2>
+        <p class="para ml">
+            Through the "custom" section, <strong>you have to define</strong>:
+        </p>
+
+        <ul class="bml">
+            <li>
+                The title of the block:
+            </li>
+        </ul>
+        <pre>
+            <code class="json">
+    &#123;
+        "custom": &#123;
+            "blockTitle": "Tell us about yourself"
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
+        <ul class="bml">
+            <li>
+                IDs of your model values:
+            </li>
+        </ul>
+        <pre>
+            <code class="json">
+    &#123;
+        "custom": &#123;
+            "controls": [
+                &#123; "id": "myTitle" &#125;,
+                &#123; "id": "myFirstName" &#125;,
+                &#123; "id": "myMiddleName" &#125;,
+                &#123; "id": "myLastName" &#125;,
+                &#123; "id": "myDateOfBirth" &#125;
+            ]
+        &#125;
+    &#125;
+            </code>
+        </pre>
+        <p class="ml">
+            In case you need more customisation options, please get in touch with DDC team!
+        </p>
+        <p>&nbsp;</p>
+    </article>
+</section>

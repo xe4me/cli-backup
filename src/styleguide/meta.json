@@ -920,6 +920,26 @@
         "readme": "<p>AMP natural language work-number"
     },
     {
+        "name": "Amp Basic Info Block",
+        "sources": [
+            "src/app/blocks/amp-basic-info-block/amp-basic-info-block.component.ts"
+        ],
+        "id": "AmpBasicInfoBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-basic-info-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-basic-info-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-basic-info-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-basic-info-block/amp-basic-info-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-basic-info-block/amp-basic-info-block.component.spec.ts",
+                "component": "amp-basic-info-basic-usage",
+                "component_src_location": "blocks/amp-basic-info-block/basic_usage",
+                "name": "Amp Basic Info Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Basic Info block implementation</p>\n"
+    },
+    {
         "name": "Amp Form Block",
         "sources": [
             "src/app/blocks/amp-form-block/amp-form-block.component.ts"
