@@ -31,7 +31,7 @@ the whole block remains untouched.
           *ngIf='showIconRight && iconRight && !isInSummaryState'
           class="icon icon--{{ iconRight }} icon-right">
     </span>
-    <span  class="post-fix">
+    <span  class="post-fix" *ngIf="!isItDisabled">
         <ng-content select=".post-fix"></ng-content>
     </span>
     <span class="bar"></span>
