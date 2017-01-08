@@ -164,6 +164,7 @@ export abstract class AmpBlockLoader {
     copyForBlock ( _componentRef : ComponentRef<any>,
                    _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve ) => {
+            let childsLoadedsubscription;
             let comp            = _componentRef.instance;
             let _fdn            = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
             comp.__child_blocks = _blockDef;
@@ -191,6 +192,9 @@ export abstract class AmpBlockLoader {
             comp.__controlGroup.__prettyName = _blockDef.prettyName || _blockDef.name;
             _componentRef.onDestroy( () => {
                 _form.removeControl( _blockDef.name );
+                if(childsLoadedsubscription){
+                    childsLoadedsubscription.unsubscribe();
+                }
             } );
 
             if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.SECTION ] ) {
@@ -207,39 +211,39 @@ export abstract class AmpBlockLoader {
                 comp.__page = _blockDef.page;
             }
             comp.__custom = _blockDef.custom;
-            _componentRef.instance.__loadNext            = ( _def : FormDefinition ,
+            comp.__loadNext            = ( _def : FormDefinition ,
                                                              _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
                 return this.loadNext( _def , _viewContainerRef );
             };
-            _componentRef.instance.__loadAt              = ( _def : FormDefinition ,
+            comp.__loadAt              = ( _def : FormDefinition ,
                                                              index : number ) : Promise<ComponentRef<any> > => {
                 return this.loadAt( _def , index );
             };
-            _componentRef.instance.__removeAt            = ( index : number ) : Promise<number> => {
+            comp.__removeAt            = ( index : number ) : Promise<number> => {
                 return this.removeAt( index );
             };
-            _componentRef.instance.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
+            comp.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
                 return this.removeNext( _viewContainerRef );
             };
-            _componentRef.instance.__removeAllAfterIndex = ( index : number ) : Promise<any> => {
+            comp.__removeAllAfterIndex = ( index : number ) : Promise<any> => {
                 return this.removeAllAfterIndex( index );
             };
-            _componentRef.instance.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
+            comp.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
                 return this.removeAllAfter( _viewContainerRef );
             };
-            _componentRef.instance.__loadAllNext         = ( _def : FormDefinition[] ,
+            comp.__loadAllNext         = ( _def : FormDefinition[] ,
                                                              _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>[]> => {
                 return this.loadAllNext( _def , _viewContainerRef );
             };
-            _componentRef.instance.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
+            comp.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
                 return this.getIndex( _viewContainerRef );
             };
-            _componentRef.instance.__onChildsLoaded      = ( cb ) : void => {
+            comp.__onChildsLoaded      = ( cb ) : void => {
                 childsLoadedsubscription = this.$childsLoaded.subscribe( ( _loadedBlockInfo : LoadedBlockInfo ) => {
                     cb( _loadedBlockInfo );
                 } );
             };
-            _componentRef.instance.__emitChildLoaded     = ( _loadedBlockInfo : LoadedBlockInfo ) : void => {
+            comp.__emitChildLoaded     = ( _loadedBlockInfo : LoadedBlockInfo ) : void => {
                 this.emitChildLoaded( _loadedBlockInfo );
             };
             _componentRef.changeDetectorRef.detectChanges();
