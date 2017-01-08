@@ -13,7 +13,7 @@ export default class AmpRowRepeaterBasicUsage {
 
     constructor( private  themeService : ThemeService, private _cd : ChangeDetectorRef ) {
     }
-    context(){
+    context() {
         return this;
     }
 }

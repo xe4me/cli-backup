@@ -7,7 +7,7 @@ import { AmpButton } from '../../../../../app/components/amp-button/amp-button.c
 } )
 export class MenuFrameApplicationBlockComponent {
 
-    isSaveDisabled(){
+    isSaveDisabled() {
         return false;
     }
 }

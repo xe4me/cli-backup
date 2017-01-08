@@ -59,8 +59,6 @@
     // TODO: Overrides for recommended that we don't actually want to do so aim to remove
     "interface-name": false,
     "member-access": false,
-    "no-console": false,
-    "one-line": false
-    // This is excluded due to a bug in tslint. This line can be removed once TSLint is upgraded to v4 (when it is released)
+    "no-console": false
   }
 }
