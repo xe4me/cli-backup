@@ -192,7 +192,7 @@ export abstract class AmpBlockLoader {
             comp.__controlGroup.__prettyName = _blockDef.prettyName || _blockDef.name;
             _componentRef.onDestroy( () => {
                 _form.removeControl( _blockDef.name );
-                if(childsLoadedsubscription){
+                if ( childsLoadedsubscription ) {
                     childsLoadedsubscription.unsubscribe();
                 }
             } );
@@ -210,14 +210,14 @@ export abstract class AmpBlockLoader {
             if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
                 comp.__page = _blockDef.page;
             }
-            comp.__custom = _blockDef.custom;
-            comp.__loadNext            = ( _def : FormDefinition ,
-                                                             _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
-                return this.loadNext( _def , _viewContainerRef );
+            comp.__custom              = _blockDef.custom;
+            comp.__loadNext            = ( _def : FormDefinition,
+                                           _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
+                return this.loadNext( _def, _viewContainerRef );
             };
-            comp.__loadAt              = ( _def : FormDefinition ,
-                                                             index : number ) : Promise<ComponentRef<any> > => {
-                return this.loadAt( _def , index );
+            comp.__loadAt              = ( _def : FormDefinition,
+                                           index : number ) : Promise<ComponentRef<any> > => {
+                return this.loadAt( _def, index );
             };
             comp.__removeAt            = ( index : number ) : Promise<number> => {
                 return this.removeAt( index );
@@ -231,9 +231,9 @@ export abstract class AmpBlockLoader {
             comp.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
                 return this.removeAllAfter( _viewContainerRef );
             };
-            comp.__loadAllNext         = ( _def : FormDefinition[] ,
-                                                             _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>[]> => {
-                return this.loadAllNext( _def , _viewContainerRef );
+            comp.__loadAllNext         = ( _def : FormDefinition[],
+                                           _viewContainerRef : ViewContainerRef ) : Promise<Array<ComponentRef<any>>> => {
+                return this.loadAllNext( _def, _viewContainerRef );
             };
             comp.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
                 return this.getIndex( _viewContainerRef );
