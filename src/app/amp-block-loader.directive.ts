@@ -16,7 +16,7 @@ export class AmpBlockLoaderDirective extends AmpBlockLoader {
         super( viewContainer, compiler, componentFactoryResolver );
     }
 
-    protected getCustomBundle ( path : string ) : any {
+     getCustomBundle ( path : string ) : any {
         try {
             return require( '../../../../src/app/' + path + '\.ts' );
         } catch ( err ) {
