@@ -1,0 +1,29 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-basic-info-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-basic-info-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "basicInfo",
+            "blockType": "AmpBasicInfoBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+            "custom": {
+                "blockTitle": "Tell us about yourself",
+                "active": true,
+                "controls": [
+                    { "id": "Title" },
+                    { "id": "FirstName" },
+                    { "id": "MiddleName" },
+                    { "id": "LastName" },
+                    { "id": "DateOfBirth" }
+                ]
+            }
+        }
+    ]
+}

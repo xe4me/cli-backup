@@ -17,34 +17,18 @@
     <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
 
      <!--Materialize-css Google MD font-->
-     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/6591112/739504/css/fonts.css"/>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600' rel='stylesheet'
-          type='text/css'>
-    <link rel="stylesheet" href="https://www.amp.com.au/etc/designs/amp/clientLibraries/icons-libs.min.css"
-          type="text/css"/>
-
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/6591112/739504/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600" />
+    <link rel="stylesheet" type="text/css" href="https://www.amp.com.au/etc/designs/amp/clientLibraries/icons-libs.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/scss.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/typescript.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/stylus.min.js"></script>
 
-
-
-
-    <script>(function(){
-        var intervalRef = setInterval(function(){
-            if(hljs){
-                hljs.initHighlightingOnLoad();
-                clearInterval(intervalRef);
-            }
-        },1);
-    })();</script>
-
-
-
-       <script>
+    <script>
       var _process_env = {
         ENV: 'development',
         ApiCallsBaseUrl: '',
@@ -54,12 +38,12 @@
         GwPracticeService: {
           ApiKey: '',
           EnvPath: '',
-          Path: '',
+          Path: ''
         },
         GwDDCService: {
           ApiKey: '',
           EnvPath: '',
-          Path: '',
+          Path: ''
         },
         GreenId: {
           configScriptUrl: 'https://test2.edentiti.com/df/javascripts/greenidConfig.js',
@@ -91,6 +75,19 @@
     <script src="http://<%= htmlWebpackPlugin.options.metadata.host %>:<%= htmlWebpackPlugin.options.metadata.port %>/webpack-dev-server.js">
     </script>
     <% } %>
+
+  <script>
+    (function() {
+      setTimeout(function() {
+          var intervalRef = setInterval(function() {
+              if (hljs) {
+                  hljs.initHighlighting();
+                  clearInterval(intervalRef);
+              }
+          }, 100);
+      }, 1000);
+    })();
+  </script>
 
   </body>
 </html>
