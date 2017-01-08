@@ -1,13 +1,14 @@
-import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
-import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
-import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
+import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
 import AMPButtonComponentBasicUsage from './components/amp-button/basic_usage';
 import AMPCardComponentBasicUsage from './components/amp-card/basic_usage';
 import AMPCardsComponentBasicUsage from './components/amp-cards/basic_usage';
 import AMPCheckboxComponentBasicUsage from './components/amp-checkbox/basic_usage';
+import AmpContactDetailsBasicUsage from './blocks/amp-contact-details-block/basic_usage.ts';
 import AmpContactNumberBasicUsage from './components/amp-contact-number/basic_usage';
+import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpInputBasicUsage from './components/amp-input/basic_usage';
+import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
 import AMPTextareaComponentBasicUsage from './components/amp-textarea/basic_usage';
 import AMPDropDownComponentBasicUsage from './components/amp-dropdown/basic_usage';
 import AmpFormBlockBasicUsage from './blocks/amp-form-block/basic_usage.ts';
@@ -53,23 +54,26 @@ import TablesBasicUsage from './layout/tables/tables';
 import TextBasicUsage from './layout/text/text';
 
 // Import components that will get loaded dynamically in a block loader
-import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 import { AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-basic-info-block/entry-components';
+import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
+import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
 
-    ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
 
-    AmpBasicInfoBlockBasicUsage,
-    AmpGroupButtonComponentBasicUsage,
     AmpAccountNumberBasicUsage,
-    AmpRowRepeaterBasicUsage,
+    AmpBasicInfoBlockBasicUsage,
     AMPButtonComponentBasicUsage,
     AMPCardComponentBasicUsage,
     AMPCardsComponentBasicUsage,
     AMPCheckboxComponentBasicUsage,
+    AmpContactDetailsBasicUsage,
     AmpContactNumberBasicUsage,
+    AmpGroupButtonComponentBasicUsage,
+    AmpRowRepeaterBasicUsage,
     AmpInputBasicUsage,
     AMPTextareaComponentBasicUsage,
     AMPDropDownComponentBasicUsage,

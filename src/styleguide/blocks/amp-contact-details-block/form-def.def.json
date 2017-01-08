@@ -1,0 +1,42 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-contact-details-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-contact-details-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "contactDetails",
+            "blockType": "AmpContactDetailsBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component",
+            "custom": {
+                "blockTitle": "And your contact details...",
+                "controls": [
+                    {
+                        "id": "EmailAddress",
+                        "label": "Email",
+                        "required": true,
+                        "tooltipMessage": "Confirmation of your application will be sent to this email address."
+                    },
+                    {
+                        "id": "MobileNumber",
+                        "label": "Mobile number",
+                        "required": true,
+                        "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
+                        "requiredErrorMessage" : "Mobile number is a required field.",
+                        "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
+                    },
+                    {
+                        "id": "HomeNumber",
+                        "label": "Home number",
+                        "required": false
+                    }
+                ]
+            }
+        }
+    ]
+}
