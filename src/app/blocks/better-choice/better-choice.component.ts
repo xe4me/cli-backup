@@ -1,7 +1,6 @@
 import {
     Component,
     ChangeDetectorRef,
-    OnInit,
     ChangeDetectionStrategy,
     AfterViewInit,
     ViewContainerRef,
@@ -21,7 +20,7 @@ import { Constants } from '../../shared/constants';
     templateUrl     : './better-choice.component.html',
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
+export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDestroy {
     private singleOrJointSubscription : Subscription;
     private betterChoiceSubscription : Subscription;
     private newOrExistingCustomerSubscription : Subscription;
@@ -56,10 +55,6 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
         }
     }
 
-    public ngOnInit () {
-
-    }
-
     public subscribeToBett3rChoice () {
         if ( !this.betterChoiceSubscription ) {
             const betterChoiceControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
@@ -88,9 +83,12 @@ export class BetterChoiceBlock extends FormBlock implements OnInit, AfterViewIni
     }
 
     public ngOnDestroy () {
-        let subscriptions = [ this.singleOrJointSubscription,
+        let subscriptions = [
+            this.singleOrJointSubscription,
             this.betterChoiceSubscription,
-            this.newOrExistingCustomerSubscription ];
+            this.newOrExistingCustomerSubscription
+        ];
+
         for ( let subscription of subscriptions ) {
             if ( subscription ) {
                 subscription.unsubscribe();

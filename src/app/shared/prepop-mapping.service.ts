@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { FormGroup , FormControl , AbstractControl } from '@angular/forms';
+import {
+    FormGroup,
+    FormControl
+} from '@angular/forms';
 import * as moment from 'moment';
-import { FDN } from '../forms/better-form/Application.fdn';
-import { Constants } from '../shared';
 import { CustomerDetailsService } from 'amp-ddc-components';
 /**
  * All methods here are static, no need for instantiation therefore not an injectable
@@ -39,11 +39,12 @@ export class PrepopMappingService {
         // According to https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824 the title value
         // can be something other than one of the drop down value but still let it thru.
         let parsedTitle = PrepopMappingService.parseTitle(customerDetails.title);
-        basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').setValue(parsedTitle);
-        basicInfoFormGroup.get('TitleDropdown').get('Query').setValue(parsedTitle);
+        const titleDropDown = basicInfoFormGroup.get('TitleDropdown');
+        titleDropDown.get('SelectedItem').setValue(parsedTitle);
+        titleDropDown.get('Query').setValue(parsedTitle);
         // if the title is not one of the accepted title , ( like Mr and ... ) , title dropdown's gonna bail
         // and it'll make the control to be null , so isTitlePrepop is only true , if it really has value after setValue
-        if (basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').value === parsedTitle) {
+        if (titleDropDown.get('SelectedItem').value === parsedTitle) {
             customerDetailsService.isTitlePrepop = true;
         }
 

@@ -53,9 +53,6 @@ import { PrepopMappingService } from '../../shared';
  *           ]
  *       }
  *   }
- *
- *
- *
  */
 @Component( {
     selector        : 'my-amplogin-block',
@@ -65,8 +62,15 @@ import { PrepopMappingService } from '../../shared';
 } )
 export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, AfterViewInit {
     public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
-    private errorCode : String              = null;
+    private errorCode : string              = null;
     private hideThisBlock                   = false;
+    private formTemplate : string           = `
+        <form action="/eam/login" method="post">
+            <input id="userid" name="userid"/>
+            <input id="password" name="password" type="password"/>
+            <button id="myAmpLoginBtn" type="submit" formtarget="myamploginframe"></button>
+        </form>
+        <iframe name="myamploginframe" id="myamploginframe"></iframe>`;
 
     constructor ( elementRef : ElementRef,
                   _cd : ChangeDetectorRef,
@@ -115,12 +119,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, Af
                 // Generate hidden MyAMP TAM Login form/iframe
                 let hiddenFormDiv           = document.createElement( 'div' );
                 hiddenFormDiv.style.display = 'none';
-                hiddenFormDiv.innerHTML     =
-                    `<form action="/eam/login" method="post">
-                        <input id="userid" name="userid"/>
-                        <input id="password" name="password" type="password"/>
-                        <button id="myAmpLoginBtn" type="submit" formtarget="myamploginframe"></button>
-                    </form><iframe name="myamploginframe" id="myamploginframe"></iframe>`;
+                hiddenFormDiv.innerHTML     = this.formTemplate;
                 document.body.appendChild( hiddenFormDiv );
 
                 // Bind the onload event of the iframe back into angular to get the response of the login
@@ -193,13 +192,12 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, Af
 
     // TODO move this to a service - this component is getting bloated
     // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/1
-    private prepopCustomerDetails ( isLoggedIn = false ) {// Default assumption is that we are not logged in.
-        // TODO: This will have to change if we start the journey from
-        //       MyAMP and never went thru myAMPLoginBlock
+    private prepopCustomerDetails ( isLoggedIn = false ) { // Default assumption is that we are not logged in.
+        // TODO: This will have to change if we start the journey from MyAMP and never went through myAMPLoginBlock
         // Lets check the myAMPLoginBlock loginResult
 
         if ( isLoggedIn ) {
-            // Trigger the prepopulation from CMDM
+            // Trigger the pre-population from CMDM
             this.customerDetailsService
                 .getCustomerDetails()
                 .then( ( data ) => {
@@ -212,28 +210,29 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, Af
                     let contactDetails = <FormGroup> this.__form.get(
                         FDN_Applicant1_PersonalDetailsSection.concat( 'ContactDetails' ) );
 
-                    // Lets do some prepopulation
+                    // Lets do some pre-population
                     PrepopMappingService.prepopBasicInfo( basicInfo, data.payload, this.customerDetailsService );
-                    // TODO: For December release, do not prepopulate addresses as we cannot easily
+                    // TODO: For December release, do not pre-populate addresses as we cannot easily
                     // map them to the required fields
-                    // this.prepopAddresses(data.payload);
+                    // PrepopMappingService.prepopAddresses(data.payload);
                     PrepopMappingService.prepopContactDetails(
                         contactDetails,
                         data.payload,
                         this.customerDetailsService );
 
                     // TODO: Make sure we load the special prepop block and not the manual entry milad
-                } ).catch( ( err ) => {
-                console.error( 'Failed to customer details', err );
-                // According to the mapping rules if the single CMDM call fails there is no need to retry
-                // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824
+                } )
+                .catch( ( err ) => {
+                    console.error( 'Failed to map customer details', err );
+                    // According to the mapping rules if the single CMDM call fails there is no need to retry
+                    // https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824
 
-                // TODO: Make sure we load the manual entry path
-            } );
+                    // TODO: Make sure we load the manual entry path
+                } );
         }
     }
 
-    private onLoginFail ( errorCode? : String ) {
+    private onLoginFail ( errorCode? : string ) {
         this.errorCode = errorCode;
         if ( !errorCode ) {
             this.errorCode = 'default';
