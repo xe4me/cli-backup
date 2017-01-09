@@ -29,7 +29,7 @@ const mockHttpProvider = {
 };
 
 describe( 'Save service ', () => {
-    let saveEndPoint              = `/${Environments.property.ExperienceName}/save`;
+    let saveEndPoint              = `/api-${Environments.property.ExperienceName}/save`;
     let saveSampleResponse        = {
         'meta'       : {
             'url'            : '/ddc/public/api/bett3r/save?id=6812434564',
