@@ -59,12 +59,25 @@ describe('amp-contact-details-block component', () => {
             expect(mobileNumberControl).toBeDefined();
             expect(homeNumberControl).toBeDefined();
         });
-        it('the block should display the given title', () => {
-            custom.blockTitle = 'My Contact Details block title';
-            loadComponent();
-            const titleEl = domElement.querySelector('h2');
-            expect(titleEl).toBeDefined();
-            expect(titleEl.textContent).toEqual('My Contact Details block title');
+    });
+
+    describe('Block title', () => {
+        describe('when no block title has been defined', () => {
+            it('should display a blank title', () => {
+                loadComponent();
+                const titleEl = domElement.querySelector('h2');
+                expect(titleEl).toBeDefined();
+                expect(titleEl.textContent).toEqual('');
+            });
+        });
+        describe('when a block title has been defined', () => {
+            it('should display the given title', () => {
+                custom.blockTitle = 'My Contact Details block title';
+                loadComponent();
+                const titleEl = domElement.querySelector('h2');
+                expect(titleEl).toBeDefined();
+                expect(titleEl.textContent).toEqual('My Contact Details block title');
+            });
         });
     });
 
