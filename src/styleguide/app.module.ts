@@ -36,6 +36,7 @@ import {
     ExampleDirective
 } from './example';
 import { Highlight } from './highlight';
+import { HighlightCodeDirective } from './highlight.directive';
 import { DYNAMICALLY_LOADED_COMPONENTS } from './app.entry-components';
 import { AMP_MODULES } from './app.modules';
 import { PageSectionComponent } from '../app/sections/page-section.component';
@@ -89,7 +90,8 @@ const IMPORTS = [
         StyleGuideApp,
         LeftNavigationComponent,
         IndexPage,
-        ComponentPage
+        ComponentPage,
+        HighlightCodeDirective
     ],
     entryComponents : DYNAMICALLY_LOADED_COMPONENTS,
     imports : IMPORTS,
