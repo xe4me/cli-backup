@@ -39,7 +39,7 @@ export interface Profile {
 @Injectable()
 export class ProfileService {
 
-    private baseUrl         = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
+    private baseUrl         = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
     private profileEndpoint = '/profile';
     private profileUrl      = this.baseUrl + this.profileEndpoint;
     private headers         = new Headers( { 'Content-Type' : 'application/json' } );

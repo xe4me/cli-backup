@@ -27,7 +27,7 @@ export interface Advisor {
 @Injectable()
 export class AdvisorsService {
 
-    private baseUrl          = Environments.property.TamServicePath + Environments.property.GwDDCService.EnvPath + Environments.property.GwDDCService.Path;
+    private baseUrl          = Environments.property.TamServicePath + Environments.property.GwPracticeService.EnvPath + Environments.property.GwPracticeService.Path;
     private advisorsEndpoint = '/advisors';
     private advisorsUrl      = this.baseUrl + this.advisorsEndpoint;
     private headers          = new Headers( { 'Content-Type' : 'application/json' } );
