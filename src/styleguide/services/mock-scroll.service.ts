@@ -13,5 +13,5 @@ export class MockScrollService {
     get scrollTop () : number {
         return window.pageYOffset || document.documentElement.scrollTop;
     }
-    public scrollMeOut(){}
+    public scrollMeOut() {}
 }

@@ -102,7 +102,7 @@ export class PatterValidator {
         let regex = pattern;
         let flags;
         let tempFlags  = pattern.substring( lastIndexOfSlash + needle.length );
-        if ( lastIndexOfSlash > -1 && tempFlags && tempFlags.match(/[img]{1,3}$/) ){
+        if ( lastIndexOfSlash > -1 && tempFlags && tempFlags.match(/[img]{1,3}$/) ) {
             regex = pattern.substring( 0 , lastIndexOfSlash );
             flags = tempFlags;
         }

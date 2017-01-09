@@ -195,7 +195,7 @@ export class AmpManualAddressExtendedComponent implements OnInit, OnDestroy {
     public onPoBoxButtonsChange ( $event ) {
         if ( $event !== null && ! this.isResidentialAddress ) {
             this.isItPoBox = $event;
-            if ( this.shouldClearThePoBoxFields ){
+            if ( this.shouldClearThePoBoxFields ) {
                 this.emptyPoBoxDependantFields();
             }
             this.shouldClearThePoBoxFields = true;
