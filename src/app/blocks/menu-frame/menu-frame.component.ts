@@ -81,7 +81,7 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
             this.hideStickyButton = hideStickyButton;
         }
         this._cd.markForCheck();
-    };
+    }
 
     public onBlocksLoaded () {
         const singleOrJointControl     = this.sharedData.getSingleOrJointControl( this.__form );

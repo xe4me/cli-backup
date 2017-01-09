@@ -17,15 +17,15 @@ export class ApplicantGeneratorService {
         }
 
         return {
-            'name'        : `Applicant${index}Section` ,
-            'blockType'   : 'PageSectionComponent' ,
-            'blockLayout' : 'SECTION' ,
-            'commonBlock' : true ,
-            'path'        : 'sections/page-section.component' ,
-            'custom'      : {
-                'label' : `Applicant ${index}`
+            name        : `Applicant${index}Section` ,
+            blockType   : 'PageSectionComponent' ,
+            blockLayout : 'SECTION' ,
+            commonBlock : true ,
+            path        : 'sections/page-section.component' ,
+            custom      : {
+                label : `Applicant ${index}`
             } ,
-            'blocks'      : applicantSections
+            blocks      : applicantSections
         };
     }
 

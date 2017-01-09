@@ -141,7 +141,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, Af
 
     private removeLoginFrameListener : Function = () => {
         return;
-    };
+    }
 
     private cleanUp () {
         // Remove page level username/password for security concerns
@@ -184,7 +184,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, Af
         }
 
         this._cd.markForCheck();
-    };
+    }
 
     private onLoginSuccess () {
         this.prepopCustomerDetails( true );

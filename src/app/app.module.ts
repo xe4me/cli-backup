@@ -32,7 +32,7 @@ const IMPORTS = [
     imports         : IMPORTS,
     entryComponents : DYNAMIC_BLOCKS,
     providers       : [
-        <any>Renderer,
+        <any> Renderer,
         BrowserDomAdapter,
         ...APP_RESOLVER_PROVIDERS
     ],
