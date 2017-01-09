@@ -15,7 +15,7 @@ import {
 } )
 
 export class Bett3rBannerBlock implements OnInit {
-    private bannerImages : Array<string>;
+    private bannerImages : string[];
     private bannerBaseUrl : string;
     private damContentUrl = Environments.property.DamContentUrl;
     constructor () {

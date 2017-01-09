@@ -4,7 +4,6 @@ import {
     OnInit
 } from '@angular/core';
 import {
-    AmpButton ,
     Environments
 } from 'amp-ddc-components';
 import {
@@ -20,7 +19,7 @@ export class PostnoneJointAccountPage implements OnInit {
     private verificatonDocUrl : string =
         Environments.property.DamContentUrl
         + 'amp/digitalhub/common/Documents/Find%20a%20form/Forms/NS3297_Identification_Verfication_Form.PDF';
-    private applicantList : Array<any> ;
+    private applicantList : any[] ;
     private verifyRequiredPersonName : string;
     constructor ( private accountsListDataService : AccountsListDataService ) {
     }

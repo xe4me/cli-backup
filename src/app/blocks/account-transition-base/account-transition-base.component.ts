@@ -29,10 +29,10 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         this.betterChoiceSubscription = newOrConvertControl.valueChanges.subscribe( ( val ) => {
             if ( this.accountType === 'loanOffset' ) {
                 this.isNewDepositAccount   = true;
-                this.additionalDescription = this.__custom[ `additional_${val}_instruction` ]
+                this.additionalDescription = this.__custom[ `additional_${val}_instruction` ];
             } else {
                 this.isNewDepositAccount   = val === 'convert';
-                this.additionalDescription = this.__custom[ 'additional_instruction' ]
+                this.additionalDescription = this.__custom[ 'additional_instruction' ];
             }
         } );
         this._cd.markForCheck();

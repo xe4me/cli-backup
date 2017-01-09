@@ -12,7 +12,8 @@ import {
 } )
 
 export class Bett3rExitButtonComponent {
-    @Input( 'buttonLabel ' ) buttonLabel : string = 'finish';
+    @Input( 'buttonLabel' ) private buttonLabel : string = 'finish';
+
     private finish() : void {
         window.open( `${Environments.property.AmpRootUrl}bett3r`, '_self' );
     }

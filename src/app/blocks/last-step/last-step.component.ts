@@ -48,7 +48,6 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
         super( saveService, _cd, scrollService );
     }
 
-
     public ngAfterViewInit() {
         const singleOfJointControl = this.sharedFormDataService.getSingleOrJointControl(this.__form);
 

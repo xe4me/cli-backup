@@ -8,7 +8,7 @@ import {
 })
 
 export class AccountsListPipe implements PipeTransform {
-    public transform ( data : Array<any> ) : any {
+    public transform ( data : any[] ) : any {
         return data.sort((a, b) => {
             return (a.bett3rAccountType === b.bett3rAccountType)
                 ? 0 : (a.bett3rAccountType > b.bett3rAccountType ? 1 : -1 ) ;

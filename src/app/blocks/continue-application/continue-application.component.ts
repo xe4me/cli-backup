@@ -40,24 +40,24 @@ import { SharedFormDataService } from '../../shared/shared-form-data.service';
             'slideUp',
             [
                 state( 'collapsed, void', style( {
-                    height           : '0px',
+                    'height'         : '0px',
                     'min-height'     : '0px',
-                    opacity          : '0',
+                    'opacity'        : '0',
                     'padding-left'   : '0px',
                     'padding-right'  : '0px',
                     'padding-bottom' : '0px',
                     'padding-top'    : '0px',
-                    display          : 'none'
+                    'display'          : 'none'
                 } ) ),
                 state( 'expanded', style( {
-                    height           : '*',
+                    'height'         : '*',
                     'min-height'     : '*',
-                    opacity          : '1',
+                    'opacity'        : '1',
                     'padding-left'   : '*',
                     'padding-right'  : '*',
                     'padding-bottom' : '*',
                     'padding-top'    : '*',
-                    display          : 'block'
+                    'display'        : 'block'
                 } ) ),
                 transition(
                     'collapsed <=> expanded', [ animate( 800 ) ] )
@@ -65,11 +65,13 @@ import { SharedFormDataService } from '../../shared/shared-form-data.service';
     ]
 } )
 export class ContinueApplicationBlock extends FormBlock {
-    @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
-    @ViewChild( AmpFormBlockComponent ) public AmpFormBlockComponent;
     public static notFoundErrorMsg = 'Sorry, we cannot find your application';
     public static closedErrorMsg   = 'This application has already been submitted';
     public static genericErrorMsg  = 'An unexpected error has occurred.';
+
+    @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
+    @ViewChild( AmpFormBlockComponent ) public AmpFormBlockComponent;
+
     private responseError : string;
     private fieldsAreRequired      = true;
     private showRetrieveBlock      = true;
@@ -105,7 +107,7 @@ export class ContinueApplicationBlock extends FormBlock {
         this.AmpFormBlockComponent.onKeyupEnter = ( event ) => {
             this.retrieve();
             event.preventDefault();
-        }
+        };
     }
 
     public retrieve () {
@@ -121,9 +123,9 @@ export class ContinueApplicationBlock extends FormBlock {
         const dob         = this.__controlGroup.get( this.__custom.controls[ 2 ].id ).value;
 
         this.http.post( `${Environments.property.ApiCallsBaseUrl}${Constants.retrieveUrl}`, {
-            'surname' : surname,
-            'dob'     : dob,
-            'id'      : referenceId
+            surname : surname,
+            dob     : dob,
+            id      : referenceId
         }, options )
             .map( ( res : Response ) => res.json() )
             .subscribe( ( response ) => {
@@ -150,7 +152,8 @@ export class ContinueApplicationBlock extends FormBlock {
         this.fieldsAreRequired = false;
         this.__controlGroup.reset();
         this.slideItUp();
-        setTimeout( () => { //timeout to make sure the controls are valid otherwise it won't go to the next undone block
+        // timeout to make sure the controls are valid otherwise it won't go to the next undone block
+        setTimeout( () => {
             super.onNext();
         }, 10 );
     }

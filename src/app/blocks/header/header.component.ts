@@ -8,7 +8,7 @@ import { Environments } from 'amp-ddc-components';
     selector : 'header-with-logo',
     templateUrl : './header.component.html',
     changeDetection : ChangeDetectionStrategy.OnPush,
-    encapsulation:ViewEncapsulation.None,
+    encapsulation: ViewEncapsulation.None,
     styles : [ require( './header.component.scss' ) ]
 } )
 
