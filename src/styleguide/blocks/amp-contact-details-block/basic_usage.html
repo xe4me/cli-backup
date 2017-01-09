@@ -1,0 +1,122 @@
+<form [formGroup]="form" class='nl-form p+'>
+    <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"></div>
+</form>
+
+<section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">
+            Above is an example of a "Contact Details" block.
+        </h2>
+        <p class="ml small">
+            This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
+            <br>It should be <strong>the default way of loading it</strong>.
+        </p>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            In "form-def.def.json" file, in any array of blocks:
+        </p>
+        <pre>
+            <code myHighlight class="json">
+    &#123;
+        "name": "contactDetails",
+        "blockType": "AmpContactDetailsBlockComponent",
+        "blockLayout": "INLINE",
+        "commonBlock": true,
+        "path": "modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component",
+        "custom": &#123;
+            ...
+        &#125;
+    &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Reference to components</h2>
+        <ul class="bml">
+            <li>
+                'Email':
+                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpEmail'])">AmpEmail</a>
+            </li>
+            <li>
+                'Mobile number':
+                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpPhoneNumber'])">AmpPhoneNumber</a>
+            </li>
+            <li>
+                'Home number':
+                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpHomeNumber'])">AmpHomeNumber</a>
+            </li>
+        </ul>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">"custom" section</h2>
+        <ul class="bml">
+            <li>
+                At least block title and IDs of your model must be defined:
+            </li>
+        </ul>
+        <pre>
+            <code myHighlight class="json">
+    &#123;
+        "custom": &#123;
+            "blockTitle": "And your contact details...",
+            "controls": [
+                &#123; "id": "EmailAddress" &#125;,
+                &#123; "id": "MobileNumber" &#125;,
+                &#123; "id": "HomeNumber" &#125;
+            ]
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
+        <ul class="bml">
+            <li>
+                Without any other info, the block will be loaded with following <strong>default values</strong>:
+            </li>
+        </ul>
+        <pre>
+            <code myHighlight class="json">
+    &#123;
+        "custom": &#123;
+            "controls": [
+                &#123;
+                    "label": "Email",
+                    "required": true,
+                    "tooltipMessage": "Confirmation of your application will be sent to this email address."
+                &#125;,
+                &#123;
+                    "label": "Mobile number",
+                    "required": true,
+                    "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
+                    "requiredErrorMessage" : "Mobile number is a required field.",
+                    "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
+                &#125;,
+                &#123;
+                    "label": "Home number",
+                    "required": false
+                &#125;
+            ]
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
+        <ul class="bml">
+            <li>
+                Feel free to change any of these values.
+            </li>
+        </ul>
+    </article>
+
+    <article class="section">
+        <p class="ml mt">
+            In case you need more customisation options, please get in touch with DDC team!
+        </p>
+        <p>&nbsp;</p>
+    </article>
+</section>

@@ -195,7 +195,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 $event.preventDefault();
             }
         }
-        if (KeyCodes.ENTER === keyCode){
+        if (KeyCodes.ENTER === keyCode) {
             this.doSearchIconClick();
         }
     }
