@@ -17,7 +17,7 @@ export class SaveService {
     private headers           = new Headers( { 'Content-Type' : 'application/json' } );
     private httpOptions       = new RequestOptions( { headers : this.headers } );
     private saveEndpoint      = 'save';
-    private _saveUrl          = `${this.apiBaseURL}/${Environments.property.ExperienceName}/${this.saveEndpoint}`;
+    private _saveUrl          = `${this.apiBaseURL}/api-${Environments.property.ExperienceName}/${this.saveEndpoint}`;
 
     constructor ( private http : AmpHttpService ) {
     }
