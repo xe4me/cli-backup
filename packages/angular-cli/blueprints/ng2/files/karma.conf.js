@@ -15,7 +15,7 @@ module.exports = function (config) {
             require('karma-junit-reporter')
         ],
         files: [
-            { pattern: './<%= sourceDir %>/testProcessEnv.js', watched: false },
+            { pattern: './testProcessEnv.js', watched: false },
             {pattern: './<%= sourceDir %>/test.ts', watched: false}
         ],
         preprocessors: {
