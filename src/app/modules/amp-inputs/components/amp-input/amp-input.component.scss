@@ -54,6 +54,11 @@ input::-ms-clear {
     box-shadow: none;
     border-bottom: 1px solid transparent;
     padding-bottom: 5px;
+    &[disabled] { // this is used for the --- , the input should go away in summary view/ disabled to let the dashes to be aligned if it's empty
+        &.is-empty {
+            display: none;
+        }
+    }
     &:not([disabled]) {
         border-bottom-color: $amp-colour-grey-dark;
 
@@ -118,12 +123,21 @@ input::-ms-clear {
     @include transition($animation-duration ease all);
 }
 
-.icon-right {
+.post-fix {
     cursor: pointer;
-    line-height: 1;
     position: absolute;
     right: 0;
-    top: 0px;
+    top: 0;
+    & ~ {
+        .control {
+            padding-right: 30px;
+        }
+    }
+}
+
+.icon-right {
+    @extend .post-fix;
+    line-height: 1;
 }
 
 /* -- bar styles -------------------------------------- */

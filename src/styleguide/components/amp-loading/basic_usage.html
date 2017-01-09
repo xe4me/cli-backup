@@ -21,4 +21,13 @@
     <button class="btn btn-ok" (click)="setloading()">loading {{ loading }} %</button>
 
 
+    <section>
+        <h4>It can be inside a button</h4>
+        <amp-button
+                [attr.theme]="themeService.theme.attr"
+                [class]="'btn btn-ok 1/6'">
+            <span>Submit</span>
+            <amp-loading class="post-fix" [attr.theme]="themeService.theme.attr"  mode="indeterminate" size="small"></amp-loading>
+        </amp-button>
+    </section>
 </section>

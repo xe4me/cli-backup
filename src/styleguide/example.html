@@ -1,37 +1,26 @@
 <div>
     <div style="z-index:1">
         <section>
-            <!--<md-toolbar style="color:white" [ngStyle]="{'background-color':themeService.theme.color}">-->
-                <!--<md-toolbar-row>-->
-                    <!--<h3>{{ model?.name }}</h3>-->
-                    <!--<span style="flex: 1 1 auto;"></span>-->
-                    <!--<button color="primary" md-raised-button md-icon-button-->
-                            <!--aria-label="View Source"-->
-                            <!--(click)="toggleSource()">-->
-                        <!--&lt;!&ndash;<md-tooltip md-autohide>View Source</md-tooltip>&ndash;&gt;-->
-                        <!--<i class="material-icons">code</i>-->
-                    <!--</button>-->
-                <!--</md-toolbar-row>-->
-            <!--</md-toolbar>-->
+            <md-toolbar style="color:white" [ngStyle]="{'background-color':themeService.theme.color}">
+                <md-toolbar-row>
+                    <h3>{{ model?.name }}</h3>
+                    <span style="flex: 1 1 auto;"></span>
+                    <button color="primary" md-raised-button md-icon-button
+                            aria-label="View Source"
+                            (click)="toggleSource()">
+                        <i class="material-icons">code</i>
+                    </button>
+                </md-toolbar-row>
+            </md-toolbar>
 
-            <!--&lt;!&ndash; Source views &ndash;&gt;-->
-            <!--<md-tab-group *ngIf="!showExample">-->
-                <!--&lt;!&ndash;<md-tab *ngFor="let file of orderedFiles">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<template md-tab-label>{{ file?.label }}</template>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<template md-tab-content>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<md-content>&ndash;&gt;-->
-                                <!--&lt;!&ndash;&lt;!&ndash;<highlight [text]="file.data" [type]="file.type"></highlight>&ndash;&gt;&ndash;&gt;-->
-                            <!--&lt;!&ndash;</md-content>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</template>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;</md-tab>&ndash;&gt;-->
-            <!--</md-tab-group>-->
-            <!--&lt;!&ndash; Live Demos &ndash;&gt;-->
+            <!-- Source views -->
+            <md-tab-group *ngIf="!showExample">
+                <md-tab *ngFor="let file of orderedFiles" [label]="file?.label">
+                    <highlight [text]="file.data" [type]="file.type"></highlight>
+                </md-tab>
+            </md-tab-group>
+            <!-- Live Demos -->
             <div example-ref></div>
-
         </section>
-
     </div>
 </div>

@@ -159,7 +159,7 @@ export class AmpReCaptchaComponent implements OnInit, OnDestroy {
             recaptcha : this
         });
         // Mark control group as touched only when user has completed the captcha challenge.
-        // Pagesection container will have class 'visited' when a control group in it is marked as touched. Standalone navigation menu will become highlighted. 
+        // Pagesection container will have class 'visited' when a control group in it is marked as touched. Standalone navigation menu will become highlighted.
         this.recaptchaControlGroup.markAsTouched();
         this._cd.markForCheck();
     }
@@ -169,8 +169,7 @@ export class AmpReCaptchaComponent implements OnInit, OnDestroy {
             if (!this.keepControl || this.recaptchaControlGroup.controls['verificationStatus'].value !== 'verified') {
                 this.recaptchaControlGroup.controls['verificationStatus'].setValue(null);
             }
-        }
-        else {
+        } else {
             this.recaptchaControlGroup.controls['verificationStatus'].setValue(null);
         }
         this.captchaExpired.emit();

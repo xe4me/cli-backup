@@ -6,14 +6,22 @@ the whole block remains untouched.
 -->
 <div class="amp-input">
     <span class="currency" *ngIf='currency'>{{currency}}&nbsp;</span>
+    <span  class="post-fix" *ngIf="!isItDisabled">
+        <ng-content select=".post-fix"></ng-content>
+    </span>
+    <span (click)='handleIconRightClick()'
+          *ngIf='showIconRight && iconRight && !isInSummaryState'
+          class="icon icon--{{ iconRight }} icon-right">
+    </span>
     <input class="control"
            #input
            (focus)='onFocused($event)'
-           (keyup)='onKeyupEvent($event)'
            (keyup.enter)='markAsTouched()'
+           (input)="onInput($event)"
            (blur)='onBlured($event)'
            [class.label-hidden]='labelHidden'
            [class.has-value]='!controlIsEmpty() || isInSummaryState'
+           [class.is-empty]='controlIsEmpty()'
            [class.has-prefix]='currency'
            [attr.aria-label]='randomizedId'
            [attr.data-automation-id]="'text_'+randomizedId"
@@ -26,10 +34,6 @@ the whole block remains untouched.
            [attr.placeholder]="placeholder && !label ?placeholder:''"
            [formControl]='control'>
     <span><ng-content></ng-content></span>
-    <span (click)='handleIconRightClick()'
-          *ngIf='showIconRight && iconRight && !isInSummaryState'
-          class="icon icon--{{ iconRight }} icon-right">
-    </span>
     <span class="bar"></span>
     <label class="label" [attr.for]="randomizedId">
         {{ required || !showOptional ? label:label + " (optional)" }}

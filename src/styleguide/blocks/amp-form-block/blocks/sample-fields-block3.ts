@@ -24,7 +24,6 @@ import {
                         [isInSummaryState]='false'
                         [id]='__custom.controls[0].id'
                         [label]='"Title"'
-                        [labelHidden]='"HiddenLabel"'
                         [controlGroup]="__controlGroup"
                         [options]='__custom.controls[0].options'
                         [required]="true">

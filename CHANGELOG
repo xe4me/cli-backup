@@ -1,3 +1,40 @@
+Upgrading to 2.4.1 ( latest stable)
+
+
+1- Removed the select output event emitter => No reason for it , we should us the normal (change) on checkbox
+2- Rewrote the amp-input , not dependant on Material2 anymore => performance benefit + cleaner code and testability
+3- Rewrote the textarea  : Original code from material 2 was gone :D , =>
+4- For model service is only for form related stuff , like formDefinitoin access and stored model access.
+5- A seperate service that does the save called SaveService , all the save url should be : api-{experience-name}/save
+6- A seperate service that does the submit called SubmitService , all the save url should be : api-{experience-name}/submit
+7- A seperate service that does the save and submit .
+8- A seperate service for profile
+9- A seperate service for context
+10-All the dynamically loaded components should be added to the entry-components.
+11-Removed ProgressObserverService
+12-Removed Section Service
+13-BlockLoader is not dependent on any service any more
+
+
+
+
+
+To upgrade experience :
+1- Run amp-ng init and discard the overrides for important files , like app.component.ts and allow for the rest
+2- Copy the latest package.json to the old experience
+3- Find all the directives from all the components and remove them
+4- All the dynamically loaded blocks should be added to the entry components of the root module
+   * useful commands to find all the blocks :
+  1- To find all the blocks     grep -lr "export class " ./src/app/blocks/
+  2- To get all the block class names : grep -hr "export class " ./src/app/blocks/   | awk  '{print $3 }'
+5- Update app.module and replace the appropriate components , add entry components which is the dynamic_blocks list created above
+6- get rid of FormService everywhere
+7- get rid of amp-number-only control
+8- get rid of FormModelService if you’re not using it
+9- Use SaveService for save and SubmitService for submit
+10-Adde SaveService and SubmitService to providers of root module
+
+
 Please view this file on the develop branch, on stable branches it's out of date.
 
 v 1.0.0 (released)

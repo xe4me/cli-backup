@@ -1,8 +1,7 @@
 import {
     ChangeDetectorRef,
     ElementRef,
-    Renderer,
-    ViewChild
+    Renderer
 } from '@angular/core';
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
 import { AmpInputComponent } from '../amp-input/amp-input.component';
@@ -11,14 +10,13 @@ import { AmpInputComponent } from '../amp-input/amp-input.component';
     selector : 'amp-password'
 } )
 export class AmpPasswordComponent extends AmpInputComponent {
-    @ViewChild( 'input' ) inputCmp;
-    constructor ( _cd       : ChangeDetectorRef ,
-                  _el       : ElementRef ,
+    constructor ( _cd : ChangeDetectorRef,
+                  _el : ElementRef,
                   _renderer : Renderer ) {
-        super( _cd , _el , _renderer );
+        super( _cd, _el, _renderer );
         this.maxLength = 30;
         this.required  = true;
-        this.type = 'password';
+        this.type      = 'password';
         this.label     = 'Password';
         this.errors    = {
             required : 'Password is a required field.'

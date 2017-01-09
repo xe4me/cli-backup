@@ -19,6 +19,7 @@ import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser
         [disabled]='disabled'
         [class]='_class'>
         <ng-content></ng-content>
+        <ng-content select=".post-fix"></ng-content>
     </button>`,
     styles          : [ require( './amp-button.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush

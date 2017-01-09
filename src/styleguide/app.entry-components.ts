@@ -1,3 +1,4 @@
+import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
 import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
 import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
@@ -51,7 +52,16 @@ import ResponsiveBasicUsage from './layout/responsive/responsive';
 import TablesBasicUsage from './layout/tables/tables';
 import TextBasicUsage from './layout/text/text';
 
+// Import components that will get loaded dynamically in a block loader
+import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
+import { AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-basic-info-block/entry-components';
+
 export const DYNAMICALLY_LOADED_COMPONENTS = [
+
+    ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
+    ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
+
+    AmpBasicInfoBlockBasicUsage,
     AmpGroupButtonComponentBasicUsage,
     AmpAccountNumberBasicUsage,
     AmpRowRepeaterBasicUsage,

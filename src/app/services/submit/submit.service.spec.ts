@@ -18,6 +18,7 @@ import {
 } from '@angular/http';
 import { AmpHttpService } from '../amp-http/amp-http.service';
 import { SubmitService } from './submit.service';
+import { Environments } from '../../abstracts/environments/environments.abstract';
 
 const mockHttpProvider = {
     provide    : Http,
@@ -29,7 +30,7 @@ const mockHttpProvider = {
 describe( 'Submit service', () => {
     let subject : SubmitService = null;
     let backend : MockBackend   = null;
-
+    let submitUrl               = `/${Environments.property.ExperienceName}/submit`;
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             providers : [
@@ -51,7 +52,7 @@ describe( 'Submit service', () => {
             } ) );
 
         it( 'should send an empty post request to the url, with subscribing to it', ( done ) => {
-            let submitUrl      = '/submit';
+
             let referenceId    = '32345345345';
             let urlToBe        = submitUrl + '?id=' + referenceId;
             let sampleResponse = {};
@@ -77,7 +78,7 @@ describe( 'Submit service', () => {
                    );
         } );
         it( 'should send an empty post request to the url , without subscribing ', fakeAsync( () => {
-            let submitUrl   = '/submit';
+
             let referenceId = '32345345345';
             let urlToBe     = submitUrl + '?id=' + referenceId;
             let response    = {};
@@ -95,7 +96,7 @@ describe( 'Submit service', () => {
             tick();
         } ) );
         it( 'should let the user to override the url', fakeAsync( () => {
-            let submitUrl   = '/submit';
+
             let referenceId = '32345345345';
             let urlToBe     = submitUrl + '?id=' + referenceId + '&something=thingly';
             let response    = {};
@@ -113,7 +114,7 @@ describe( 'Submit service', () => {
             tick();
         } ) );
         it( 'multiple submit should do multiple post request, weather subscribed or not', fakeAsync( () => {
-            let submitUrl     = '/submit';
+
             let referenceId   = '1';
             let response      = {};
             let submitCounter = 0;

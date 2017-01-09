@@ -18,7 +18,7 @@ export class AmpQasAddressService {
     public residentialOnly = '';
     private headers = new Headers( {
         'Content-Type' : 'application/json',
-        'caller' : Environments.property.experienceName || 'components'
+        'caller' : Environments.property.ExperienceName || 'components'
     } );
 
     constructor ( private http : AmpHttpService ) {

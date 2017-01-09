@@ -9,7 +9,7 @@ import { AmpHttpService } from '../amp-http/amp-http.service';
 @Injectable()
 export class PdfService {
     public static BASE_URL        = Environments.property.ApiCallsBaseUrl;
-    public static EXPERIENCE_NAME = Environments.property.experienceName;
+    public static EXPERIENCE_NAME = Environments.property.ExperienceName;
     public static PDF_URL         = PdfService.BASE_URL + PdfService.EXPERIENCE_NAME + '/pdf';
     private id                    = null;
     private error                 = null;

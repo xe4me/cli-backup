@@ -13,7 +13,7 @@ export class AmpCountryService {
     public static COUNTRY_URL = AmpCountryService.BASE_URL + '/refdata/countries' ;
     private headers = new Headers( {
         'Content-Type' : 'application/json',
-        'caller' : Environments.property.experienceName || 'components'
+        'caller' : Environments.property.ExperienceName || 'components'
     } ) ;
     private options = new RequestOptions( { headers : this.headers, body : '' } ) ;
 

@@ -24,10 +24,13 @@ import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
 @Component(
     {
-        selector : 'amp-input',
-        template : require( './amp-input.component.html' ),
-        styles : [ require( './amp-input.component.scss' ) ],
-        inputs : [
+        selector        : 'amp-input',
+        template        : require( './amp-input.component.html' ),
+        styles          : [ require( './amp-input.component.scss' ) ],
+        queries         : {
+            inputCmp : new ViewChild( 'input' ),
+        },
+        inputs          : [
             'errors',
             'id',
             'controlGroup',
@@ -65,13 +68,13 @@ import { BaseControl } from '../../../../base-control';
             'autoComplete',
             'showOptional'
         ],
-        outputs : [ 'onEnter', 'onBlur', 'onKeyup' ],
+        outputs         : [ 'onBlur', 'onFocus' ],
         changeDetection : ChangeDetectionStrategy.OnPush
     } )
 export class AmpInputComponent extends BaseControl implements AfterViewInit {
-    @ViewChild( 'input' ) inputCmp;
-    public doOnBlurDirty = true;
-    protected type : string = 'text';
+    public inputCmp : ElementRef;
+    public doOnBlurDirty              = true;
+    protected type : string           = 'text';
     protected _minLength : number;
     protected _maxLength : number;
     protected _maxDate : string;
@@ -82,54 +85,51 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     protected _minFloat : number;
     protected _valDate : boolean;
     protected _pattern : string;
-    protected label : string = '';
-    protected tolowerCase : boolean = false;
-    protected toupperCase : boolean = false;
-    protected iconRight : boolean = false;
-    protected isActive : boolean = true;
+    protected label : string          = '';
+    protected tolowerCase : boolean   = false;
+    protected toupperCase : boolean   = false;
+    protected iconRight : boolean     = false;
+    protected isActive : boolean      = true;
     protected showIconRight : boolean = true;
-    protected tabindex : any = null;
-    protected defaultValue : any = null;
-    protected currency : string = null;
+    protected tabindex : any          = null;
+    protected defaultValue : any      = null;
+    protected currency : string       = null;
     protected placeholder : string;
-    protected onEnter : EventEmitter<any>;
     protected onBlur : EventEmitter<any>;
     protected onFocus : EventEmitter<any>;
-    protected onKeyup : EventEmitter<any>;
-    protected labelHidden : boolean = false;
-    protected validate;
-    protected idleTimeOut = 4500;
+    protected labelHidden : boolean   = false;
+    protected idleTimeOut             = 4500;
     protected idleTimeoutId;
-    protected autoComplete : string = 'off';
+    protected autoComplete : string   = 'off';
     protected iconRightClickHandler;
-    protected showOptional = true;
+    protected showOptional            = true;
 
     constructor ( private _cd : ChangeDetectorRef,
                   protected el : ElementRef,
                   protected renderer : Renderer ) {
         super();
-        this.onEnter = new EventEmitter();
-        this.onBlur = new EventEmitter();
+        this.onBlur  = new EventEmitter();
         this.onFocus = new EventEmitter();
-        this.onKeyup = new EventEmitter();
     }
 
     updateValidators () {
-        let validators = [
-            RequiredValidator.requiredValidation( this._required ),
-            MinLengthValidator.minLengthValidation( this._minLength ),
-            MaxLengthValidator.maxLengthValidation( this._maxLength ),
-            MaxDateValidator.maxDateValidator( this._maxDate, this.pattern ),
-            MinDateValidator.minDateValidator( this._minDate, this.pattern ),
-            MinAgeValidator.minAgeValidator( this._minAge, this.pattern ),
-            MaxAgeValidator.maxAgeValidator( this._maxAge, this.pattern ),
-            PatterValidator.patternValidator( this.pattern ),
-            MaxFloatValidator.maxFloatValidator( this._maxFloat ),
-            DateValidator.dateValidator( this._valDate, this.pattern ),
-            this.customValidator()
-        ];
-        this.validate = Validators.compose( validators );
-        this.checkErrors( true );
+        if ( this.control ) {
+            let validators = Validators.compose( [
+                RequiredValidator.requiredValidation( this._required ),
+                MinLengthValidator.minLengthValidation( this._minLength ),
+                MaxLengthValidator.maxLengthValidation( this._maxLength ),
+                MaxDateValidator.maxDateValidator( this._maxDate, this.pattern ),
+                MinDateValidator.minDateValidator( this._minDate, this.pattern ),
+                MinAgeValidator.minAgeValidator( this._minAge, this.pattern ),
+                MaxAgeValidator.maxAgeValidator( this._maxAge, this.pattern ),
+                PatterValidator.patternValidator( this.pattern ),
+                MaxFloatValidator.maxFloatValidator( this._maxFloat ),
+                DateValidator.dateValidator( this._valDate, this.pattern ),
+                this.customValidator()
+            ] );
+            this.control.setValidators( validators );
+            this.control.updateValueAndValidity( { onlySelf : false } );
+        }
     }
 
     handleIconRightClick () {
@@ -150,11 +150,13 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
 
     public checkErrors ( killTimer = false ) {
         if ( this.control ) {
-            this.control.setErrors( this.validate( this.control ), { emitEvent : true } );
+            this.control.updateValueAndValidity( {
+                emitEvent : false,
+                onlySelf  : false
+            } );
             if ( killTimer ) {
                 clearTimeout( this.idleTimeoutId );
             }
-            this._cd.markForCheck();
         }
     }
 
@@ -262,13 +264,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     }
 
     get isItDisabled () {
-        return (this.disabled || this.isInSummaryState) ? true : null;
-    }
-
-    protected onEnterClick ( event ) {
-        if ( event.keyCode === 13 ) {
-            this.onEnter.emit( 'enter' );
-        }
+        return ( this.disabled || this.isInSummaryState ) ? true : null;
     }
 
     protected onFocused ( event ) {
@@ -277,8 +273,14 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         this.onFocus.emit( event );
     }
 
+    protected onInput ( event ) {
+        let value = event.target.value;
+        if ( value && this.maxLength > 0 && value.length === this.maxLength ) {
+            this.markControlAsDirty();
+        }
+    }
+
     protected onBlured ( $event ) {
-        this.checkErrors();
         clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
             if ( this.doOnBlurDirty ) {
@@ -288,17 +290,12 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }, 100 );
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
-            this.inputCmp.value = this.control.value.trim();
-            notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
-            notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
+            this.inputCmp.nativeElement.value = this.control.value.trim();
+            notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
+            notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
 
-    }
-
-    protected onKeyupEvent ( $event ) {
-        this.onEnterClick( $event );
-        this.onKeyup.emit( $event );
     }
 
     protected addDelayedValidation () {
@@ -307,11 +304,9 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
             .subscribe( ( changes ) => {
                 this.resetIdleTimeOut();
             } );
-        this.checkErrors();
     }
 
     protected resetIdleTimeOut () {
-        this.checkErrors();
         this.markControlAsUndirty();
         clearTimeout( this.idleTimeoutId );
         this.idleTimeoutId = setTimeout( () => {

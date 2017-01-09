@@ -38,6 +38,10 @@ npm-debug.log
 .npm
 
 
+# Galen reports #
+/report
+
+
 # Coverage #
 /coverage/
 /reports/

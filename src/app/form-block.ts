@@ -149,6 +149,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
             this.setToTouchedAndSummaryState();
         }
         this._cd.markForCheck();
+        this._cd.detectChanges();
     }
 
     ngOnDestroy () {
