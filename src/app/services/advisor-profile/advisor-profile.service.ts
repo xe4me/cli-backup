@@ -15,7 +15,7 @@ export class AdvisorProfileService {
     constructor ( private advisorsService : AdvisorsService, private profileService : ProfileService ) {
     }
 
-    public getAdvisorForProfile ( overrideUrls : { profileUrl?, advisorsUrl? } = {} ) : Observable<any> {
+    public getAdvisorForProfile ( overrideUrls : { profileUrl?, advisorsUrl? } = {} ) : Observable<Advisor> {
         let saveAndSubmitReplay =
                 this.profileService.getProfile( overrideUrls.profileUrl )
                     .flatMap(
