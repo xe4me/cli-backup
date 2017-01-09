@@ -30,7 +30,7 @@ const mockHttpProvider = {
 describe( 'Submit service', () => {
     let subject : SubmitService = null;
     let backend : MockBackend   = null;
-    let submitUrl               = `/api-${Environments.property.ExperienceName}/submit`;
+    let submitUrl               = `/${Environments.property.ExperienceName}/submit`;
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             providers : [
