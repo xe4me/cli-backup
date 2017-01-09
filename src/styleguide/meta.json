@@ -940,6 +940,26 @@
         "readme": "<p>Basic Info block implementation</p>\n"
     },
     {
+        "name": "Amp Contact Details Block",
+        "sources": [
+            "src/app/blocks/amp-contact-details-block/amp-contact-details-block.component.ts"
+        ],
+        "id": "AmpContactDetailsBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-contact-details-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-contact-details-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-contact-details-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-contact-details-block/amp-contact-details-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-contact-details-block/amp-contact-details-block.component.spec.ts",
+                "component": "amp-contact-details-basic-usage",
+                "component_src_location": "blocks/amp-contact-details-block/basic_usage",
+                "name": "Amp Contact Details Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Contact Details block implementation</p>\n"
+    },
+    {
         "name": "Amp Form Block",
         "sources": [
             "src/app/blocks/amp-form-block/amp-form-block.component.ts"

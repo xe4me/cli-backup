@@ -1,0 +1,42 @@
+<amp-form-block [context]="context()" buttonsTheme='tools'>
+    <amp-form-row>
+        <div class="grid__item_floated palm-8/9 tablet-7/8 lap-and-up-4/12">
+            <amp-email
+                [id]="__custom.controls[0].id"
+                [controlGroup]="__controlGroup"
+                [label]="__custom.controls[0].label"
+                [required]="__custom.controls[0].required">
+            </amp-email>
+        </div>
+        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
+            <amp-tooltip-cmp [message]="__custom.controls[0].tooltipMessage"></amp-tooltip-cmp>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="grid__item_floated palm-8/9 tablet-7/8 lap-and-up-4/12">
+            <amp-mobile-number
+                [id]="__custom.controls[1].id"
+                [controlGroup]="__controlGroup"
+                [label]="__custom.controls[1].label"
+                [errors]="{
+                    'required': __custom.controls[1].requiredErrorMessage,
+                    'pattern': __custom.controls[1].patternErrorMessage
+                }"
+                [required]="__custom.controls[1].required">
+            </amp-mobile-number>
+        </div>
+        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
+            <amp-tooltip-cmp [message]="__custom.controls[1].tooltipMessage"></amp-tooltip-cmp>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12">
+            <amp-home-number
+                [id]="__custom.controls[2].id"
+                [controlGroup]="__controlGroup"
+                [label]="__custom.controls[2].label"
+                [required]="__custom.controls[2].required">
+            </amp-home-number>
+        </div>
+    </amp-form-row>
+</amp-form-block>

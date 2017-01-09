@@ -2,8 +2,11 @@
 export { AmpBlockLoaderDirective } from './src/app/amp-block-loader.directive';
 export { LoadedBlockInfo } from './src/app/amp-block-loader';
 export { FormBlock } from './src/app/form-block';
-// components
+
+// Components
 export * from './src/app/redux/amp-redux.module';
+export * from './src/app/modules/amp-basic-info-block';
+export * from './src/app/modules/amp-contact-details-block';
 export * from './src/app/modules/amp-intro-block';
 export * from './src/app/modules/amp-review';
 export * from './src/app/modules/amp-utils';
@@ -36,16 +39,17 @@ export * from './src/app/modules/amp-progress-bars';
 export * from './src/app/modules/amp-overlay';
 export * from './src/app/modules/amp-header';
 
-//Services :
+// Services :
 export * from './src/app/services';
+
 // Constants
 export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';
 export { LicenseesAbstract } from './src/app/abstracts/licensee/licensee.abstract';
 export { AssociationLengthAbstract } from './src/app/abstracts/association-length/association-length.abstract';
 export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise-date.abstract';
-// Services
 
 export { Environments } from './src/app/abstracts/environments/environments.abstract'
+
 // Pages
 export { ErrorPageComponent } from './src/app/pages/error/error-page.component';
 export { PageSectionComponent } from './src/app/sections/page-section.component';
