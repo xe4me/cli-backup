@@ -13,6 +13,7 @@
     "e2e": "amp-ng e2e",
     "build:prod": "amp-ng build --prod",
     "server:express": "node index.js",
+    "prepush": "npm run lint",
     "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
     "jenkins-jscpd": "jscpd -p . -f '**/*.ts'  -e 'node_modules/**'  -o reports/jscpd-report.xml"
   },
@@ -45,6 +46,7 @@
     "bundle-loader": "^0.5.4",
     "codelyzer": "^2.0.0-beta.4",
     "concurrently": "^2.0.0",
+    "husky": "^0.12.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
