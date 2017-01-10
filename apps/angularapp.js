@@ -27,6 +27,15 @@ const router = require('express').Router();
 const path = require('path');
 const log = require('ddcjs-logger')('experience-' + EXPERIENCE_NAME);
 
+const fs = require('fs');
+
+require.extensions['.html'] = function (module, filename) {
+    module.exports = fs.readFileSync(filename, 'utf8');
+};
+
+// Load this small file into memory
+let INDEX_HTML_PAGE = require('../dist' + EXPERIENCE_BASEURL + '/index.html');
+
 module.exports = {
     init : function(app) {
 
@@ -68,17 +77,17 @@ module.exports = {
             );
         });
 
+        // Dynamically add the tam-transaction-id request header property into the index.html payload for DTM to use for tracking purposes
+        app.get([EXPERIENCE_BASEURL + '/', EXPERIENCE_BASEURL + '/index.html'], function(req, res) {
+            res.send(INDEX_HTML_PAGE.replace(/tam-transaction-id-placeholder/g, req.headers['tam-transaction-id']));
+        });
+
         // Allow all static resources
         app.use(express.static(path.join(__dirname, '../dist')));
 
         // For all 404 item map it back to Angular app for HTML5 push state client URL resolution
         app.use(function(req, res) {
-            res.status(200).sendfile('dist' + EXPERIENCE_BASEURL + '/index.html');
+            res.send(INDEX_HTML_PAGE.replace(/tam-transaction-id-placeholder/g, req.headers['tam-transaction-id']));
         });
-
-        // app.use(function(err, req, res, next) {
-        //   log.debug("testing" + err.stack);
-        //   res.status(200).send('Something broke!');
-        // });
     }
 };
