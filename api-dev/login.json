@@ -1,0 +1,24 @@
+[
+    {
+        "request": {
+            "url": "/eam/login",
+            "method": "POST"
+        },
+        "response": {
+            "status": 302,
+            "headers": {
+                "location": "/wps/myportal/sec/xseed/dashboard/mywealth/"
+            },
+            "latency": 100
+        }
+    },
+    {
+        "request": {
+            "url": "/wps/myportal/sec/xseed/dashboard/mywealth/",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200
+        }
+    }
+]

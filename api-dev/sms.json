@@ -3,15 +3,15 @@
         "request": {
             "url": "ddc/public/api/sms/postMessage",
             "method": "POST"
-        },  
+        },
         "response": {
-            "statusCode": 200,
+            "status": 200,
             "headers": {
                 "Content-Type": "application/json"
             },
             "latency": 100,
             "body": {
-                "statusCode": 200,
+                "status": 200,
                 "payload": {
                     "confirmation": "736412298",
                     "status": "ACCEPTED",
