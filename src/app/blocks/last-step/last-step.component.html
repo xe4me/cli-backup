@@ -2,13 +2,14 @@
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
             <amp-checkbox
-                auto-focus-on
-                [isInSummaryState]="isInSummaryState"
-                [controlGroup]="__controlGroup"
-                [required]="true"
-                [showErrorComponent]="false"
-                [id]="__custom.controls[0].id">
-                I have read the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a> and
+                    auto-focus-on
+                    [isInSummaryState]="isInSummaryState"
+                    [controlGroup]="__controlGroup"
+                    [required]="true"
+                    [showErrorComponent]="false"
+                    [id]="__custom.controls[0].id">
+                I have read the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a>
+                and
                 confirm the statements in the 'Declarations when applying for an AMP Bett3r Account' section
             </amp-checkbox>
         </div>
@@ -16,18 +17,21 @@
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
             <amp-checkbox
-                [isInSummaryState]="isInSummaryState"
-                [controlGroup]="__controlGroup"
-                [showErrorComponent]="false"
-                [required]="true"
-                [id]="__custom.controls[1].id">
+                    [isInSummaryState]="isInSummaryState"
+                    [controlGroup]="__controlGroup"
+                    [showErrorComponent]="false"
+                    [required]="true"
+                    [id]="__custom.controls[1].id">
                 I agree to the
-                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20Terms%20and%20Conditions.pdf" target="_blank">
+                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20Terms%20and%20Conditions.pdf"
+                   target="_blank">
                     AMP Bett3r Account Terms and Conditions</a>,
-                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20fees%20and%20charges%20guide.pdf" target="_blank">
+                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20fees%20and%20charges%20guide.pdf"
+                   target="_blank">
                     AMP Bett3r Account Fees and Charges Guide</a>
                 and
-                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20Access%20and%20Operating%20Terms%20and%20Conditions.pdf" target="_blank">
+                <a href="https://www.amp.com.au/content/dam/amp/digitalhub/common/Documents/Minisites/Distributor-centre/forms/AMP%20Bett3r%20Account%20Access%20and%20Operating%20Terms%20and%20Conditions.pdf"
+                   target="_blank">
                     Account Access and Operating Terms and Conditions</a>
                 specific to the AMP Bett3r Account.
             </amp-checkbox>
@@ -36,13 +40,14 @@
     <amp-form-row *ngIf="isFinalStepInApplication">
         <div class="lap-and-up-mt-60 grid__item_floated palm-1/1 form-submit">
             <amp-button
-                (click)="submitForm()"
-                [disabled]="__controlGroup.invalid || submitInProgress"
-                [attr.theme]="'tools'"
-                [class]="'btn btn-submit palm-1/1'">
+                    (click)="submitForm()"
+                    [disabled]="__controlGroup.invalid || submitInProgress"
+                    [attr.theme]="'tools'"
+                    [class]="'btn btn-submit palm-1/1'">
                 Submit
-                <div class="submit-in-progress" *ngIf="submitInProgress">
-                    <amp-loading [attr.theme]="'tools'" mode="indeterminate" size="small"></amp-loading>
+                <div class="post-fix submit-in-progress" *ngIf="submitInProgress">
+                    <amp-loading [attr.theme]="'tools'" mode="indeterminate" size="small">
+                    </amp-loading>
                 </div>
             </amp-button>
 
