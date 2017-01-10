@@ -1,6 +1,10 @@
 import {
     Injectable
 } from '@angular/core';
+import {
+    Constants
+} from '.';
+
 @Injectable()
 export class AccountsListDataService {
     public accounts : any[];
@@ -23,7 +27,7 @@ export class AccountsListDataService {
             name : this.getApplicantName(this.formModel.Application.Applicant1Section),
             verified: this.isVerified(this.formModel.Application.Applicant1Section)
         });
-        if (this.formModel.Application.SingleOrJoint.SingleOrJoint === 'JointApplicant' ) {
+        if (this.formModel.Application.SingleOrJoint.SingleOrJoint === Constants.jointApplicant ) {
             applicants.push({
                 name : this.getApplicantName(this.formModel.Application.Applicant2Section),
                 verified: this.isVerified(this.formModel.Application.Applicant2Section)
@@ -46,7 +50,7 @@ export class AccountsListDataService {
     }
 
     private isIndividual() : boolean {
-        return this.formModel.Application.SingleOrJoint.SingleOrJoint === 'Individual';
+        return this.formModel.Application.SingleOrJoint.SingleOrJoint === Constants.singleApplicant;
     }
 
     private isVerified(applicant : any) : boolean {
