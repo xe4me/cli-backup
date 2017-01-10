@@ -1,6 +1,4 @@
 import {
-    TestBed,
-    async,
     inject
 } from '@angular/core/testing';
 
@@ -13,28 +11,17 @@ describe( 'TransformService', () => {
     };
 
     let transformService : TransformService = null;
-    beforeEach( async( () => {
-        TestBed.configureTestingModule( {
-            providers : [
-                TransformService
-            ]
-        } );
-        TestBed.compileComponents();
-    } ) );
-    beforeEach( inject( [ TransformService ],
-        ( _transformService : TransformService ) => {
-            transformService = _transformService;
-            transformService.transform(mockFormData);
-        } ) );
+    beforeEach( () => {
+        transformService = new TransformService();
+        transformService.transform(mockFormData);
+    });
 
-    it ( '#isTransformed should return false after creation', ( done ) => {
+    it ( '#isTransformed should return false after creation', ()  => {
         expect(transformService.isTransformedFormData).toBe(false);
-        done();
     } );
 
-    it ( 'default behaviour is Not transform data', ( done ) => {
+    it ( 'default behaviour is Not transform data', () => {
         expect(transformService.formData).toEqual(mockFormData);
         expect(transformService.transformedData).toBeUndefined();
-        done();
     } );
 });
