@@ -53,8 +53,8 @@ export class RequestRefViaSMSPage implements AfterViewInit {
             const mobileNumber = this.controlGroup.value[this.mobileNumberCtrlId];
             const queryUrl : string = encodeURI(`${Constants.smsPostUrl}`);
             const data = {
-                'smsMessage': `You can continue your saved AMP Bett3r application using ${this.referenceId}`,
-                'mobile': `${mobileNumber}`
+                smsMessage: `You can continue your saved AMP Bett3r application using ${this.referenceId}`,
+                mobile: `${mobileNumber}`
             };
             const options = {};
             // this.smsSentErrorMessage = `Request SMS could not be sent to ${mobileNumber}`;

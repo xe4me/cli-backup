@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { FormGroup , FormControl , AbstractControl } from '@angular/forms';
+import {
+    FormGroup,
+    FormControl
+} from '@angular/forms';
 import * as moment from 'moment';
-import { FDN } from '../forms/better-form/Application.fdn';
-import { Constants } from '../shared';
 import { CustomerDetailsService } from 'amp-ddc-components';
 /**
  * All methods here are static, no need for instantiation therefore not an injectable
@@ -31,7 +31,7 @@ export class PrepopMappingService {
         let parsedDOB = moment(customerDetails.birthDate, 'YYYY-MM-DD');
         if (parsedDOB.isValid()) {
             basicInfoFormGroup.get('DateOfBirth').setValue(parsedDOB.format('DD/MM/YYYY'));
-            // Potentially we can use DISABLED one day 
+            // Potentially we can use DISABLED one day
             // https://gitlab.ccoe.ampaws.com.au/DDC/experience-bett3r/issues/2
             customerDetailsService.isDOBPrepop = true;
         }
@@ -39,11 +39,12 @@ export class PrepopMappingService {
         // According to https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824 the title value
         // can be something other than one of the drop down value but still let it thru.
         let parsedTitle = PrepopMappingService.parseTitle(customerDetails.title);
-        basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').setValue(parsedTitle);
-        basicInfoFormGroup.get('TitleDropdown').get('Query').setValue(parsedTitle);
+        const titleDropDown = basicInfoFormGroup.get('TitleDropdown');
+        titleDropDown.get('SelectedItem').setValue(parsedTitle);
+        titleDropDown.get('Query').setValue(parsedTitle);
         // if the title is not one of the accepted title , ( like Mr and ... ) , title dropdown's gonna bail
         // and it'll make the control to be null , so isTitlePrepop is only true , if it really has value after setValue
-        if(basicInfoFormGroup.get('TitleDropdown').get('SelectedItem').value===parsedTitle){
+        if (titleDropDown.get('SelectedItem').value === parsedTitle) {
             customerDetailsService.isTitlePrepop = true;
         }
 
@@ -56,7 +57,7 @@ export class PrepopMappingService {
             return;
         }
         // TODO: Move this code into the calling module
-        // let FDN_Applicant1_address = 
+        // let FDN_Applicant1_address =
         //     [ 'Application' , 'Applicant1Section' , 'PersonalDetailsSection' , 'Address' , 'Address' ];
         // let address : FormGroup = <FormGroup> this.__form.get(FDN_Applicant1_address);
 
@@ -77,29 +78,29 @@ export class PrepopMappingService {
             // Prepop postal if available
             if (customerDetails.contactDetails.postalAddress) {
                 addressFormGroup.addControl('postalAddress', new FormGroup({
-                    'isManualSearch': new FormControl(false),
-                    'search': new FormGroup({
-                        'selectedItem': new FormControl(),
-                        'query': new FormControl()
+                    isManualSearch: new FormControl(false),
+                    search: new FormGroup({
+                        selectedItem: new FormControl(),
+                        query: new FormControl()
                     }),
-                    'manualAddress': new FormGroup({
-                        'buildingName': new FormControl(),
-                        'unitNumber': new FormControl(),
-                        'streetNumber': new FormControl(),
-                        'streetName': new FormControl(),
-                        'streetTypeDropdown': new FormGroup({
-                            'SelectedItem': new FormControl(),
-                            'Query': new FormControl()
+                    manualAddress: new FormGroup({
+                        buildingName: new FormControl(),
+                        unitNumber: new FormControl(),
+                        streetNumber: new FormControl(),
+                        streetName: new FormControl(),
+                        streetTypeDropdown: new FormGroup({
+                            SelectedItem: new FormControl(),
+                            Query: new FormControl()
                         }),
-                        'poBox': new FormControl(),
-                        'suburb': new FormControl(),
-                        'postCode': new FormControl(),
-                        'stateDropdown': new FormGroup({
-                            'SelectedItem': new FormControl(),
-                            'Query': new FormControl()
+                        poBox: new FormControl(),
+                        suburb: new FormControl(),
+                        postCode: new FormControl(),
+                        stateDropdown: new FormGroup({
+                            SelectedItem: new FormControl(),
+                            Query: new FormControl()
                         })
                     }),
-                    'isItPoBox': new FormControl()
+                    isItPoBox: new FormControl()
                 }));
                 this.prepopAddress(
                     <FormGroup> addressFormGroup.get('postalAddress'),
@@ -146,7 +147,7 @@ export class PrepopMappingService {
     /**
      * Rules so far is remove white spaces and replace +61 with 0 according to JIRA
      * https://teamtools.amp.com.au/jira/browse/BET-3979
-     * 
+     *
      * But if we get too smart, do take a look at Google i18n
      * https://github.com/googlei18n/libphonenumber/tree/master/javascript/i18n/phonenumbers
      */

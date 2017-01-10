@@ -19,7 +19,7 @@ import {
 } )
 
 export class AccountsListBlock implements OnInit {
-    private accounts : Array<any>;
+    private accounts : any[];
     private _pdfBaseUrl : string = `${Environments.property.ApiCallsBaseUrl}${Constants.accountsPdfUrl}`;
     private openPdfUrl : string;
     constructor ( private accountsListDataService : AccountsListDataService) {

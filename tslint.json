@@ -6,13 +6,14 @@
         "arrow-parens": true,
         "max-line-length": [
             true,
-            120
+            140
         ],
         "no-empty": false,
         "no-string-literal": false, // This is needed for accessing Angular Controls
-        "no-unused-variable": false,
         "no-var-requires": false, // Allow for .json files to be required
         "object-literal-sort-keys": false,
+        "object-literal-shorthand": false,
+        "ordered-imports": false,
         "quotemark": [
             true,
             "single"

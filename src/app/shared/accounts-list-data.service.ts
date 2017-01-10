@@ -1,35 +1,38 @@
 import {
     Injectable
 } from '@angular/core';
+import {
+    Constants
+} from '.';
+
 @Injectable()
 export class AccountsListDataService {
-    public accounts : Array<any>;
+    public accounts : any[];
     public pdfId : string;
     private formModel : any;
     public setAccountsData( id : string ,
                             formModel : any ,
-                            accounts : Array<any> ) {
+                            accounts : any[] ) {
         this.accounts = accounts;
         this.pdfId = id;
         this.formModel = formModel;
     }
-    public getAccounts() : Array<any> {
+    public getAccounts() : any[] {
         return this.accounts;
     }
 
-    public getApplicantList() : Array<any> {
+    public getApplicantList() : any[] {
         let applicants = [];
         applicants.push({
             name : this.getApplicantName(this.formModel.Application.Applicant1Section),
             verified: this.isVerified(this.formModel.Application.Applicant1Section)
         });
-        if (this.formModel.Application.SingleOrJoint.SingleOrJoint === 'JointApplicant' ) {
+        if (this.formModel.Application.SingleOrJoint.SingleOrJoint === Constants.jointApplicant ) {
             applicants.push({
                 name : this.getApplicantName(this.formModel.Application.Applicant2Section),
                 verified: this.isVerified(this.formModel.Application.Applicant2Section)
             });
         }
-        console.log(applicants[0]);
         return applicants;
     }
 
@@ -43,11 +46,11 @@ export class AccountsListDataService {
     }
     private getApplicantName (applicant : any) : string {
         const BasicInfo = applicant.PersonalDetailsSection.BasicInfo;
-        return `${BasicInfo.FirstName}${BasicInfo.MiddleName? ' ' + BasicInfo.MiddleName + ' ' : ' '}${BasicInfo.LastName}`;
+        return `${BasicInfo.FirstName}${BasicInfo.MiddleName ? ' ' + BasicInfo.MiddleName + ' ' : ' '}${BasicInfo.LastName}`;
     }
 
     private isIndividual() : boolean {
-        return this.formModel.Application.SingleOrJoint.SingleOrJoint === 'Individual';
+        return this.formModel.Application.SingleOrJoint.SingleOrJoint === Constants.singleApplicant;
     }
 
     private isVerified(applicant : any) : boolean {
