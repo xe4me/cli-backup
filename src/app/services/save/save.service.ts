@@ -30,7 +30,7 @@ export class SaveService {
     }
 
     public save ( model : any, overrideUrl? : string ) {
-        let transformedModel = this.transformService.transform( model );
+        let transformedModel = this.transformService.toBackendModel( model );
         let replaySave =
                 this.http
                     .post( overrideUrl || this.saveUrl, JSON.stringify( transformedModel ), this.httpOptions )
