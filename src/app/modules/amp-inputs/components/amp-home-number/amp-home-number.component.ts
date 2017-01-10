@@ -17,6 +17,7 @@ export class AmpHomeNumberComponent extends AmpInputComponent {
         this.maxLength = 20;
         this.required  = true;
         this.label     = 'Home number';
+        this.type      = 'tel';
         this.errors    = {
             required : 'Home number is a required field.',
             pattern  : 'The home number must contain a minimum of 8 characters. Only numeric and area code characters are allowed.'

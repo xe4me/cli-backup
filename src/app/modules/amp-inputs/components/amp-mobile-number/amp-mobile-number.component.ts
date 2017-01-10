@@ -17,6 +17,7 @@ export class AmpMobileNumberComponent extends AmpInputComponent {
         this.maxLength = 20;
         this.required  = true;
         this.label     = 'Mobile';
+        this.type      = 'tel';
         this.errors    = {
             required : 'Mobile is a required field.',
             pattern  : 'The mobile must contain a minimum of 10 characters. Only numeric and area code characters are allowed.'
