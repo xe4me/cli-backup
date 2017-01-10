@@ -1,27 +1,17 @@
-import {
-    inject
-} from '@angular/core/testing';
+import { TransformService } from './transform.service';
 
-import {TransformService} from './transform.service';
+describe('TransformService', () => {
 
-describe( 'TransformService', () => {
     const mockFormData = {
-        name : 'test1' ,
-        dateOfBirth : '1990-01-01'
+        name : 'John' ,
+        dateOfBirth : '01/01/1990'
     };
 
-    let transformService : TransformService = null;
-    beforeEach( () => {
-        transformService = new TransformService();
-        transformService.transform(mockFormData);
+    let transformService : TransformService = new TransformService();
+
+    it('default behaviour is to not transform data', () => {
+        const backendModel = transformService.toBackendModel(mockFormData);
+        expect(backendModel).toEqual(mockFormData);
     });
 
-    it ( '#isTransformed should return false after creation', ()  => {
-        expect(transformService.isTransformedFormData).toBe(false);
-    } );
-
-    it ( 'default behaviour is Not transform data', () => {
-        expect(transformService.formData).toEqual(mockFormData);
-        expect(transformService.transformedData).toBeUndefined();
-    } );
 });
