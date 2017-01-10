@@ -19,10 +19,9 @@ export class SaveService {
     private httpOptions       = new RequestOptions( { headers : this.headers } );
     private saveEndpoint      = 'save';
     private _saveUrl          = `${this.apiBaseURL}/${Environments.property.ExperienceName}/${this.saveEndpoint}`;
-    private transformService : TransformService;
 
-    constructor ( private http : AmpHttpService ) {
-        this.transformService = new TransformService();
+    constructor ( private http : AmpHttpService ,
+                  private transformService : TransformService ) {
     }
 
     public get saveUrl () {
