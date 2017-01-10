@@ -25,11 +25,11 @@ export class TransformService {
         this._isTransformed = value;
     }
 
-    get isTransformedFormData () {
+    get isTransformedFormData () : boolean {
         return this._isTransformed;
     }
 
-    transform ( value ) {
+    public transform ( value ) {
         this._formData = value;
         return this._formData;
     }
