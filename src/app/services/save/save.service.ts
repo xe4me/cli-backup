@@ -20,8 +20,7 @@ export class SaveService {
     private saveEndpoint      = 'save';
     private _saveUrl          = `${this.apiBaseURL}/${Environments.property.ExperienceName}/${this.saveEndpoint}`;
 
-    constructor ( private http : AmpHttpService ,
-                  private transformService : TransformService ) {
+    constructor ( private http : AmpHttpService ) {
     }
 
     public get saveUrl () {
@@ -29,7 +28,7 @@ export class SaveService {
     }
 
     public save ( model : any, overrideUrl? : string ) {
-        let transformedModel = this.transformService.toBackendModel( model );
+        let transformedModel = TransformService.toBackendModel( model );
         let replaySave =
                 this.http
                     .post( overrideUrl || this.saveUrl, JSON.stringify( transformedModel ), this.httpOptions )

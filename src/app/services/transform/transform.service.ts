@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
 export class TransformService {
 
-    public toBackendModel ( frontendModel ) {
+    public static toBackendModel ( frontendModel ) {
         return frontendModel;
     }
 
