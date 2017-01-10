@@ -1,15 +1,21 @@
-import { Directive, ElementRef } from '@angular/core';
+import {
+    Directive ,
+    ElementRef
+} from '@angular/core';
 
 declare const hljs : any;
 
-@Directive({
-    selector: 'code[myHighlight]'
-})
+@Directive( {
+    selector: 'code[syntaxHighlight]'
+} )
 export class HighlightCodeDirective {
 
-    constructor(private eltRef : ElementRef) {}
+    constructor ( private eltRef : ElementRef ) {
 
-    ngAfterViewInit() {
+    }
+
+    ngAfterViewInit () {
         hljs.highlightBlock(this.eltRef.nativeElement);
     }
+
 }
