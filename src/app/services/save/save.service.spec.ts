@@ -18,7 +18,6 @@ import {
 } from '@angular/http';
 import { AmpHttpService } from '../amp-http/amp-http.service';
 import { SaveService } from './save.service';
-import { TransformService } from '../transform/transform.service';
 import { Environments } from '../../abstracts/environments/environments.abstract';
 
 const mockHttpProvider = {
@@ -60,7 +59,6 @@ describe( 'Save service ', () => {
         'statusCode' : 200
     };
     let saveService : SaveService = null;
-    let transformService : TransformService = null;
     let backend : MockBackend     = null;
 
     beforeEach( async( () => {
@@ -68,7 +66,6 @@ describe( 'Save service ', () => {
             providers : [
                 BaseRequestOptions,
                 SaveService,
-                TransformService,
                 MockBackend,
                 AmpHttpService,
                 mockHttpProvider
@@ -76,10 +73,9 @@ describe( 'Save service ', () => {
         } );
         TestBed.compileComponents();
     } ) );
-    beforeEach( inject( [ SaveService, TransformService, MockBackend ],
-        ( _saveService : SaveService, _transformService : TransformService, _mockBackend : MockBackend ) => {
+    beforeEach( inject( [ SaveService, MockBackend ],
+        ( _saveService : SaveService, _mockBackend : MockBackend ) => {
             saveService = _saveService;
-            transformService = _transformService;
             backend     = _mockBackend;
         } ) );
 
