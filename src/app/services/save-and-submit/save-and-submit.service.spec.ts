@@ -19,6 +19,7 @@ import {
 import { AmpHttpService } from '../amp-http/amp-http.service';
 import { SubmitService } from '../submit/submit.service';
 import { SaveService } from '../save/save.service';
+import { TransformService } from '../transform/transform.service';
 import { SaveAndSubmitService } from './save-and-submit.service';
 
 const mockHttpProvider = {
@@ -28,8 +29,10 @@ const mockHttpProvider = {
         return new Http( backend, defaultOptions );
     }
 };
+
 describe( 'SaveAndSubmit service', () => {
     let saveAndSubmitService : SaveAndSubmitService = null;
+    let transformService : TransformService         = null;
     let submitService : SubmitService               = null;
     let backend : MockBackend                       = null;
 
@@ -38,6 +41,7 @@ describe( 'SaveAndSubmit service', () => {
             providers : [
                 SubmitService,
                 SaveService,
+                TransformService,
                 BaseRequestOptions,
                 SaveAndSubmitService,
                 MockBackend,
@@ -49,9 +53,14 @@ describe( 'SaveAndSubmit service', () => {
     } ) );
 
     describe( 'SaveAndSubmit', () => {
-        beforeEach( inject( [ SaveAndSubmitService, MockBackend, SubmitService ],
-            ( _saveAndSubmitService : SaveAndSubmitService, _mockBackend : MockBackend, _submitService : SubmitService ) => {
+        beforeEach( inject( [ SaveAndSubmitService, TransformService, MockBackend, SubmitService ],
+            ( _saveAndSubmitService : SaveAndSubmitService,
+              _transformService : TransformService,
+              _mockBackend : MockBackend,
+              _submitService : SubmitService
+            ) => {
                 saveAndSubmitService = _saveAndSubmitService;
+                transformService     = _transformService;
                 submitService        = _submitService;
                 backend              = _mockBackend;
             } ) );

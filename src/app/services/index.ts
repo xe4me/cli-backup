@@ -15,9 +15,11 @@ export {
     ProfileService,
     Profile
 } from './profile/profile.service';
+
 export { SaveAndSubmitService } from './save-and-submit/save-and-submit.service';
 export { ErrorService } from './error/error.service';
 export { SubmitService } from './submit/submit.service';
+export { TransformService } from './transform/transform.service';
 export { SaveService } from './save/save.service';
 export { DeviceService } from './device/device.service';
 export { ValidationService } from './validation/validation.service';
