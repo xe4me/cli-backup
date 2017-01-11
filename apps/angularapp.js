@@ -25,9 +25,7 @@ const TAM_TRANSACTION_ID = 'tam-transaction-id';
 const TAM_TRANSACTION_ID_PLACEHOLDER_REGEX = /tam-transaction-id-placeholder/g;
 
 const express = require('express');
-const router = require('express').Router();
 const path = require('path');
-const log = require('ddcjs-logger')('experience-' + EXPERIENCE_NAME);
 const fs = require('fs');
 
 require.extensions['.html'] = function (module, filename) {
