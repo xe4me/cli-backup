@@ -26,10 +26,8 @@ const EXPERIENCE_BASEURL = '/ddc/secure/ui/' + EXPERIENCE_NAME;
 const TAM_TRANSACTION_ID = 'tam-transaction-id';
 const TAM_TRANSACTION_ID_PLACEHOLDER_REGEX = /tam-transaction-id-placeholder/g;
 
-var express = require('express');
-var router = require('express').Router();
-var path = require('path');
-var log = require('ddcjs-logger')('experience-' + EXPERIENCE_NAME);
+const express = require('express');
+const path = require('path');
 const fs = require('fs');
 
 require.extensions['.html'] = function (module, filename) {
