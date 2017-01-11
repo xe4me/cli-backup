@@ -21,12 +21,13 @@ const GREEN_ID_ACCOUNT_ID = process.env.GREEN_ID_ACCOUNT_ID;
 const GREEN_ID_PASSWORD = process.env.GREEN_ID_PASSWORD;
 
 const EXPERIENCE_BASEURL = '/ddc/public/ui/' + EXPERIENCE_NAME;
+const TAM_TRANSACTION_ID = 'tam-transaction-id';
+const TAM_TRANSACTION_ID_PLACEHOLDER_REGEX = /tam-transaction-id-placeholder/g;
 
 const express = require('express');
 const router = require('express').Router();
 const path = require('path');
 const log = require('ddcjs-logger')('experience-' + EXPERIENCE_NAME);
-
 const fs = require('fs');
 
 require.extensions['.html'] = function (module, filename) {
@@ -79,7 +80,7 @@ module.exports = {
 
         // Dynamically add the tam-transaction-id request header property into the index.html payload for DTM to use for tracking purposes
         app.get([EXPERIENCE_BASEURL + '/', EXPERIENCE_BASEURL + '/index.html'], function(req, res) {
-            res.send(INDEX_HTML_PAGE.replace(/tam-transaction-id-placeholder/g, req.headers['tam-transaction-id']));
+            res.send(INDEX_HTML_PAGE.replace(TAM_TRANSACTION_ID_PLACEHOLDER_REGEX, req.headers[TAM_TRANSACTION_ID]));
         });
 
         // Allow all static resources
@@ -87,7 +88,7 @@ module.exports = {
 
         // For all 404 item map it back to Angular app for HTML5 push state client URL resolution
         app.use(function(req, res) {
-            res.send(INDEX_HTML_PAGE.replace(/tam-transaction-id-placeholder/g, req.headers['tam-transaction-id']));
+            res.send(INDEX_HTML_PAGE.replace(TAM_TRANSACTION_ID_PLACEHOLDER_REGEX, req.headers[TAM_TRANSACTION_ID]));
         });
     }
 };
