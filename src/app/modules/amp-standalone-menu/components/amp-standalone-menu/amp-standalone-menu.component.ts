@@ -44,7 +44,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number          = 0;
     @Input() theme      : string          = 'forms';
-    @Input() sectionsToHide : string[]    = [];
+    @Input() sectionsToHide : string[];
     public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;
