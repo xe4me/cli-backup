@@ -5,6 +5,7 @@ import {
 } from '@angular/http';
 import { AmpHttpService } from '../amp-http/amp-http.service';
 import { Environments } from '../../abstracts/environments/environments.abstract';
+import { TransformService } from '../transform/transform.service';
 import { ErrorService } from '../error/error.service';
 import { Subject } from 'rxjs';
 
@@ -19,7 +20,8 @@ export class SaveService {
     private saveEndpoint      = 'save';
     private _saveUrl          = `${this.apiBaseURL}/${Environments.property.ExperienceName}/${this.saveEndpoint}`;
 
-    constructor ( private http : AmpHttpService ) {
+    constructor ( private http : AmpHttpService ,
+                  private transformService : TransformService ) {
     }
 
     public get saveUrl () {
@@ -27,9 +29,10 @@ export class SaveService {
     }
 
     public save ( model : any, overrideUrl? : string ) {
+        let transformedModel = this.transformService.toBackendModel( model );
         let replaySave =
                 this.http
-                    .post( overrideUrl || this.saveUrl, JSON.stringify( model ), this.httpOptions )
+                    .post( overrideUrl || this.saveUrl, JSON.stringify( transformedModel ), this.httpOptions )
                     .map( ( response ) => response.json() )
                     .catch( ErrorService.handleError )
                     .do( ( response : any ) => {

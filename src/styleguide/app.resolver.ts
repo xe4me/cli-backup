@@ -28,7 +28,8 @@ import {
     SaveAndSubmitService,
     ErrorService,
     SubmitService,
-    SaveService
+    SaveService,
+    TransformService
 } from '../app/services';
 
 @Injectable()
@@ -50,6 +51,7 @@ export const APP_RESOLVER_PROVIDERS = [
     PdfService,
     ScrollService,
     SaveService,
+    TransformService,
     SubmitService,
     SaveAndSubmitService,
     ProfileService,
