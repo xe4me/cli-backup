@@ -44,7 +44,7 @@
                     }
                     ],
                     "description": "You can either switch your existing offset account to become a Bett3r Pay account or choose to create a new account.",
-                    "additional_convert_instruction": "Please enter the offset account number you want to switch to become your Bett3r Pay account.",
+                    "additional_convert_instruction" : "Please enter the offset account number you want to switch to become your Bett3r Pay account.",
                     "additional_new_instruction": "Please enter the loan account number you want to offset with your Bett3r Pay account."
                 }
             },
