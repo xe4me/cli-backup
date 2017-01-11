@@ -1,9 +1,7 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup , FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { ScrollService } from '../../../app/services/scroll/scroll.service';
 
 const formDef = require( './form-def.def.json' );
 
