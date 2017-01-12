@@ -1,5 +1,10 @@
+import {
+    ChangeDetectorRef,
+    Renderer,
+    AfterViewInit,
+    ElementRef
+} from '@angular/core';
 import { AmpComponent } from '../../../../decorators/amp-component.decorator';
-import { ChangeDetectorRef , Renderer , AfterViewInit , ElementRef } from '@angular/core';
 import { AmpDropdownComponent } from '../amp-dropdown/amp-dropdown.component';
 import { AmpCountryService } from '../../services/amp-country.service';
 @AmpComponent( {
@@ -37,17 +42,17 @@ export class AmpCountryComponent extends AmpDropdownComponent implements AfterVi
             this.control.setValue( 'Australia' );
         }
         let subs =
-                this.ampCountryService
-                    .getCountries()
-                    .subscribe( ( res : any ) => {
-                        this.options = res;
-                        if ( this.control.value === null ) {
-                            this.control.setValue( 'Australia' );
-                        }
-                        if ( subs ) {
-                            subs.unsubscribe();
-                        }
-                    } );
+            this.ampCountryService
+                .getCountries()
+                .subscribe( ( res : any ) => {
+                    this.options = res;
+                    if ( this.control.value === null ) {
+                        this.control.setValue( 'Australia' );
+                    }
+                    if ( subs ) {
+                        subs.unsubscribe();
+                    }
+                } );
         return undefined;
     }
 }
