@@ -211,6 +211,7 @@ export abstract class AmpBlockLoader {
                 comp.__page = _blockDef.page;
             }
             comp.__custom              = _blockDef.custom;
+            comp.isActive              = _blockDef.custom.isInitiallyActive;
             comp.__loadNext            = ( _def : FormDefinition,
                                            _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
                 return this.loadNext( _def, _viewContainerRef );
