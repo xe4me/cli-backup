@@ -22,6 +22,10 @@ export class Context {
     exp : number;
     jwt_realUserFirstName : string;
     jwt_realUserLastName : string;
+    jwt_actingAsUser : string;
+    jwt_actingAsUserLastName : string;
+    jwt_actingAsUserFirstName : string;
+    jwt_saleid : string;
     jwt_realUser : string;
     jwt_iss : string;
     jwt_impersonatedUser : string;

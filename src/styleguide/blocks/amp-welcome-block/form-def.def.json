@@ -1,0 +1,94 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-welcome-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-welcome-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "welcome",
+            "blockType": "AmpWelcomeBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock" : false ,
+            "path"        : "modules/amp-welcome-block/components/amp-welcome-block/amp-welcome-block.component" ,
+            "custom": {
+                "welcomeTitle": "[Welcome Title]",
+                "welcomeMessage": "[Welcome Message]",
+                "backgroundImageUrl": "url(/assets/images/Intro-background_96DPI.jpg)",
+                "welcomePoints": [
+                    {
+                    "icon": "time-clock-icon", 
+                    "text": "Point 1: It will only take about 5 minutes"
+                    },
+                    {
+                    "icon": "eighteen-plus-icon", 
+                    "text": "Point 2: You must be over 18 years old"
+                    }
+                ],
+                "actions": [
+                    {
+                        "action": "start",
+                        "buttonName": "New application",
+                        "nextBlock": {
+                            "name": "contactDetails",
+                            "blockType": "AmpContactDetailsBlockComponent",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component",
+                            "custom": {
+                            "blockTitle": "And your contact details...",
+                            "blockFdn" : ["Application" , "contactDetails"],
+                            "controls": [
+                                    {
+                                        "id": "EmailAddress",
+                                        "label": "Email",
+                                        "required": true,
+                                        "tooltipMessage": "Confirmation of your application will be sent to this email address."
+                                    },
+                                    {
+                                        "id": "MobileNumber",
+                                        "label": "Mobile number",
+                                        "required": true,
+                                        "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
+                                        "requiredErrorMessage" : "Mobile number is a required field.",
+                                        "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
+                                    },
+                                    {
+                                        "id": "HomeNumber",
+                                        "label": "Home number",
+                                        "required": false
+                                    }
+                                ]
+                            }
+
+                        }
+                    },
+                    {
+                        "action": "continue",
+                        "buttonName": "Continue application",
+                        "nextBlock": {
+                            "name": "basicInfo",
+                            "blockType": "AmpBasicInfoBlockComponent",
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
+                            "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                            "custom": {
+                                "blockTitle": "Where did we leave off?",
+                                "blockFdn" : ["Application" , "basicInfo"],
+                                "controls": [
+                                    { "id": "Title" },
+                                    { "id": "FirstName" },
+                                    { "id": "MiddleName" },
+                                    { "id": "LastName" },
+                                    { "id": "DateOfBirth" }
+                                ]
+                            }
+                        }
+                    }
+                ] 
+            }
+        }
+    ]
+}

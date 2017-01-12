@@ -59,7 +59,7 @@ type StoreType = {
     disposeOldHosts : () => void
 };
 
-const shouldBeReplacedWithModulesComponents = [
+export const shouldBeReplacedWithModulesComponents = [
     PageSectionComponent,
     ExampleComponent,
     ExampleDirective,
