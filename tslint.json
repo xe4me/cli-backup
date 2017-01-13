@@ -3,7 +3,11 @@
     "rules": {
 
         // Overrides of tslint:recommended
+        "adjacent-overload-signatures": false,
         "arrow-parens": true,
+        "max-classes-per-file": [
+            false
+        ],
         "max-line-length": [
             true,
             400
@@ -11,22 +15,15 @@
         ],
         "no-empty": false,
         "no-string-literal": false,
-        "only-arrow-functions": false,
-        "adjacent-overload-signatures": false,
-        // This is needed for accessing Angular Controls
-        //"no-unused-variable": false, apparently it's dep now.
-        //no-unused-variable is deprecated. Use the tsc compiler options --noUnusedParameters and --noUnusedLocals instead.
-
+        // no-unused-variable is deprecated. Use the tsc compiler options --noUnusedParameters and --noUnusedLocals instead.
+        // "no-unused-variable": false, apparently it's dep now.
         "no-var-requires": false,
         "object-literal-key-quotes": [
             false
         ],
-        "ordered-imports": false,
-        "max-classes-per-file": [
-            false
-        ],
-        // Allow for .json files to be required
         "object-literal-sort-keys": false,
+        "only-arrow-functions": false,
+        "ordered-imports": false,
         "quotemark": [
             true,
             "single"
@@ -56,6 +53,7 @@
             "allow-leading-underscore",
             "allow-pascal-case"
         ],
+
         // TODO: Overrides for recommended that we don't actually want to do so aim to remove
         "interface-name": false,
         "member-access": false,
