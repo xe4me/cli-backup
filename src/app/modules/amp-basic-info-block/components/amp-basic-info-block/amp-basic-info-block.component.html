@@ -5,7 +5,8 @@
                 auto-focus-on
                 class='palm-mt'
                 [id]="__custom.controls[0].id"
-                [controlGroup]="__controlGroup">
+                [controlGroup]="__controlGroup"
+                [isInSummaryState]="isInSummaryState">
                 <template let-option="option">
                     {{ option.label }}
                 </template>
@@ -16,20 +17,23 @@
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 lap-and-up-pr">
             <amp-first-name
                 [id]="__custom.controls[1].id"
-                [controlGroup]="__controlGroup">
+                [controlGroup]="__controlGroup"
+                [isInSummaryState]="isInSummaryState">
             </amp-first-name>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 lap-and-up-pr">
             <amp-input
                 [id]="__custom.controls[2].id"
                 [controlGroup]="__controlGroup"
+                [isInSummaryState]="isInSummaryState"
                 [label]="'Middle name'">
             </amp-input>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
             <amp-last-name
                 [id]="__custom.controls[3].id"
-                [controlGroup]="__controlGroup">
+                [controlGroup]="__controlGroup"
+                [isInSummaryState]="isInSummaryState">
             </amp-last-name>
         </div>
     </amp-form-row>
@@ -38,6 +42,7 @@
             <amp-input
                 [id]="__custom.controls[4].id"
                 [controlGroup]="__controlGroup"
+                [isInSummaryState]="isInSummaryState"
                 [label]="'Date of birth'"
                 [required]="true"
                 [valDate]="true">
