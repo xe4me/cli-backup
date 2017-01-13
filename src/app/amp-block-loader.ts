@@ -210,8 +210,9 @@ export abstract class AmpBlockLoader {
             if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
                 comp.__page = _blockDef.page;
             }
-            comp.__custom              = _blockDef.custom;
-            comp.isActive              = typeof _blockDef.custom === 'object' && _blockDef.custom.isInitiallyActive;
+            if ( _blockDef.custom ) {
+                this.copyCustomFields( _blockDef, comp );
+            }
             comp.__loadNext            = ( _def : FormDefinition,
                                            _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
                 return this.loadNext( _def, _viewContainerRef );
@@ -273,15 +274,19 @@ export abstract class AmpBlockLoader {
         } );
     }
 
-    requireFile ( _def : FormDefinition ) {
+    requireFile ( _defOrPath : FormDefinition|string ) {
         let myChunk      = null;
         let waitForChunk = null;
-        if ( _def.commonBlock ) {
-            if ( _def.blockLayout ) {
-                waitForChunk = this.getCommonBundle( _def.path );
-            }
+        if ( typeof _defOrPath === 'string' ) {
+            myChunk = this.getCustomBundle( _defOrPath );
         } else {
-            myChunk = this.getCustomBundle( _def.path );
+            if ( _defOrPath.commonBlock ) {
+                if ( _defOrPath.blockLayout ) {
+                    waitForChunk = this.getCommonBundle( _defOrPath.path );
+                }
+            } else {
+                myChunk = this.getCustomBundle( _defOrPath.path );
+            }
         }
         if ( myChunk ) {
             return ( _callback ) => {
@@ -383,5 +388,36 @@ export abstract class AmpBlockLoader {
             index++;
         }
         return this.removeAt( index );
+    }
+
+    private copyCustomFields ( _blockDef : FormDefinition, comp : any ) {
+        if ( typeof _blockDef.custom === 'object' ) {
+            comp.isActive = _blockDef.custom.isInitiallyActive;
+            comp.__custom = _blockDef.custom;
+        } else if ( typeof _blockDef.custom === 'string' ) {
+            // assuming that this is a path to a file that should be loaded and replaced with custom
+            // like "custom":"src/app/blocks/quote/applicant-details/applicant-details-config.ts"
+            // and this file should always be inside the experience
+            // important to NOTE :
+            // the file should be typescript
+            // the file should export the json file as default like :
+            // export default MyJson;
+            if ( _blockDef.custom ) {
+                let pathToCustomFile = _blockDef.custom;
+                if ( _blockDef.custom === '~~' ) {
+                    pathToCustomFile = _blockDef.path.split( '.' )[ 0 ] + '.config';
+                } else if ( _blockDef.custom.charAt( 0 ) === '~' ) {
+                    let relativePathArray = _blockDef.path.split( '/' );
+                    relativePathArray.pop(); // we don't want the last bit
+                    pathToCustomFile = `${relativePathArray.join( '/' )}/${pathToCustomFile.replace( '~', '' )}`;
+                }
+                let customFileChunk = this.requireFile( pathToCustomFile );
+                customFileChunk( ( customFile ) => {
+                    comp.__custom = customFile[ 'default' ];
+                } );
+            }
+        } else {
+            comp.__custom = _blockDef.custom; // IT COULD BE AN ARRAY OR SOMETHING ELSE
+        }
     }
 }
