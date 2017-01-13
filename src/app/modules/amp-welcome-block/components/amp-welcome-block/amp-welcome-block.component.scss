@@ -14,8 +14,16 @@ $amp-ddc-public-asset : '../../../assets/';
 
         background-repeat: no-repeat;
         background-size: cover;
-        min-height: 0px !important;
+        min-height: 893px;
         padding-top: 69px;
+
+        header-with-logo {
+            position: absolute;
+            width: 100%;
+            display: block;
+            left: 0;
+            top: 0;
+        }
         .intro-message-heading {
             margin-bottom: 0;
         }
