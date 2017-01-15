@@ -9,7 +9,7 @@
                      [attr.disabled]='disabled'
                      [value]='button.value'
                      [checked]='control.value===button.value'/>
-              <label (click)='scroll(button.value)'
+              <label (click)='onClick(button)'
                      [attr.for]='randomizedId+"_"+button.id'>
                   {{ button.label }}
               </label>

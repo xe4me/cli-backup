@@ -1,35 +1,46 @@
-import { Component , EventEmitter , ElementRef , ChangeDetectorRef , ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    ElementRef,
+    ChangeDetectorRef,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import { RequiredValidator } from '../../../../modules/amp-utils';
 import { Validators } from '@angular/forms';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { RadioControlRegistry } from '@angular/forms/src/directives/radio_control_value_accessor';
 import { BaseControl } from '../../../../base-control';
+export interface GrouButtonOption {
+    value : string;
+    id : string;
+}
 @Component( {
-    selector        : 'amp-group-buttons' ,
-    template        : require( './amp-group-buttons.component.html' ) ,
+    selector        : 'amp-group-buttons',
+    template        : require( './amp-group-buttons.component.html' ),
     inputs          : [
-        'errors' ,
-        'groupName' ,
-        'controlGroup' ,
-        'customValidator' ,
-        'defaultValue' ,
-        'isInSummaryState' ,
-        'keepControlOnDestroy' ,
-        'required' ,
-        'scrollOutUnless' ,
-        'scrollOutOn' ,
-        'disabled' ,
-        'keepControl' ,
-        'buttons' ,
+        'errors',
+        'groupName',
+        'controlGroup',
+        'customValidator',
+        'defaultValue',
+        'isInSummaryState',
+        'keepControlOnDestroy',
+        'required',
+        'scrollOutUnless',
+        'scrollOutOn',
+        'disabled',
+        'keepControl',
+        'buttons',
         'index'
-    ] ,
-    styles          : [ require( './amp-group-buttons.scss' ) ] ,
-    changeDetection : ChangeDetectionStrategy.OnPush ,
-    providers       : [ RadioControlRegistry ] ,
+    ],
+    styles          : [ require( './amp-group-buttons.scss' ) ],
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    providers       : [ RadioControlRegistry ],
     outputs         : [ 'select' ]
 } )
 export class AmpGroupButtonsComponent extends BaseControl {
     public keepControl : boolean      = false;
+    public selectedItem : GrouButtonOption;
     private buttons;
     private keepControlOnDestroy      = false;
     private scrollOutUnless : string;
@@ -38,8 +49,8 @@ export class AmpGroupButtonsComponent extends BaseControl {
     private hasBooleanValue : boolean = false;
     private select                    = new EventEmitter<any>();
 
-    constructor ( private changeDetector : ChangeDetectorRef ,
-                  private elem : ElementRef ,
+    constructor ( private changeDetector : ChangeDetectorRef,
+                  private elem : ElementRef,
                   private scrollService : ScrollService ) {
         super();
     }
@@ -55,7 +66,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
     updateValidators () {
         if ( this.control ) {
             let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required , this.hasBooleanValue ) ,
+                RequiredValidator.requiredValidation( this.required, this.hasBooleanValue ),
                 this.customValidator()
             ] );
             this.control.setValidators( validators );
@@ -75,18 +86,19 @@ export class AmpGroupButtonsComponent extends BaseControl {
                 }
             } );
         if ( this.defaultValue ) {
-            this.control.setValue( this.defaultValue , { emitEvent : true } );
+            this.control.setValue( this.defaultValue, { emitEvent : true } );
         }
         this.updateValidators();
         this.changeDetector.detectChanges();
         return undefined;
     }
 
-    private scroll ( value ) {
-        if ( this.scrollOutUnless && value !== this.scrollOutUnless ) {
-            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
-        } else if ( this.scrollOutOn && value === this.scrollOutOn ) {
-            this.scrollService.scrollMeOut( this.elem , 'easeInQuad' , 60 );
+    private onClick ( option : GrouButtonOption ) {
+        this.selectedItem = option;
+        if ( this.scrollOutUnless && option.value !== this.scrollOutUnless ) {
+            this.scrollService.scrollMeOut( this.elem, 'easeInQuad', 60 );
+        } else if ( this.scrollOutOn && option.value === this.scrollOutOn ) {
+            this.scrollService.scrollMeOut( this.elem, 'easeInQuad', 60 );
         }
     }
 
