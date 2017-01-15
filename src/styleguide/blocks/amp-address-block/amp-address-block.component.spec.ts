@@ -27,7 +27,7 @@ function loadComponent() {
     addressControl = controlGroup['Address'];
 }
 
-fdescribe('amp-address-block component', () => {
+describe('amp-address-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

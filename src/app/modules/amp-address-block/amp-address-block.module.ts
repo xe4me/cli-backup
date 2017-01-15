@@ -9,14 +9,14 @@ import { AmpQasAddressModule } from '../amp-qas-address';
 const DECLARATIONS = [ AmpAddressMultiBlockComponent ];
 
 @NgModule( {
-    declarations : DECLARATIONS ,
+    declarations : DECLARATIONS,
     imports      : [
-        AmpSharedRootModule ,
-        AmpFormModule ,
-        AmpInputsModule ,
-        AmpTooltipModule ,
+        AmpSharedRootModule,
+        AmpFormModule,
+        AmpInputsModule,
+        AmpTooltipModule,
         AmpQasAddressModule
-    ] ,
+    ],
     entryComponents : DECLARATIONS,
     exports      : DECLARATIONS
 } )
