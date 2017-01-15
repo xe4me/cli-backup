@@ -8,7 +8,7 @@ import { Component , Input , OnInit } from '@angular/core';
     template   : `
       <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK">
             <amp-overlay [active]='!context?.isActive' *ngIf="withOverlay"></amp-overlay>
-            <h2 class="heading heading-intro {{ headingClass }}" [innerHtml]="context?.__custom.blockTitle"></h2>
+            <h2 *ngIf="context?.__custom.blockTitle" class="heading heading-intro {{ headingClass }}" [innerHtml]="context?.__custom.blockTitle"></h2>
             <ng-content></ng-content>
              <div class="block-buttons mt-60 " *ngIf="withOkButton">
                  <amp-button
