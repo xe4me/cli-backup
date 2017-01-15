@@ -63,11 +63,10 @@ describe('amp-contact-details-block component', () => {
 
     describe('Block title', () => {
         describe('when no block title has been defined', () => {
-            it('should display a blank title', () => {
+            it('should not have the block title h2', () => {
                 loadComponent();
                 const titleEl = domElement.querySelector('h2');
-                expect(titleEl).toBeDefined();
-                expect(titleEl.textContent).toEqual('');
+                expect(titleEl).toBe(null);
             });
         });
         describe('when a block title has been defined', () => {
