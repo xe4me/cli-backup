@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormDefinition } from './interfaces/form-def.interface';
+import { clone } from './modules/amp-utils';
 export enum BlockLayout { INLINE, PAGE, SECTION, COMPONENT }
 export enum RequireMethod { ALL, IN_ORDER }
 export interface LoadedBlockInfo {
@@ -18,7 +19,7 @@ export interface LoadedBlockInfo {
 }
 export abstract class AmpBlockLoader {
     @Input( 'fdn' ) fdn                     = [];
-    @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.IN_ORDER ];
+    @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.ALL ];
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
 
     @Input( 'amp-block-loader' ) set blockLoader ( _blockLoader ) {
@@ -166,7 +167,7 @@ export abstract class AmpBlockLoader {
         return new Promise( ( resolve ) => {
             let childsLoadedsubscription;
             let comp            = _componentRef.instance;
-            let _fdn            = this.fdn.concat( _blockDef.name ? [ _blockDef.name ] : [] );
+            let _fdn            = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
             comp.__child_blocks = _blockDef;
             comp.__form         = this.form;
             comp.__loader       = this;
@@ -177,17 +178,7 @@ export abstract class AmpBlockLoader {
                     _form = _form.controls[ fdnItem ];
                 }
             }
-            if ( _blockDef.name ) {
-                if ( _form.contains( _blockDef.name ) ) {
-                    comp.__controlGroup = _form.get( _blockDef.name );
-                    comp.__isRetrieved  = true;
-                } else {
-                    comp.__controlGroup = new FormGroup( {} );
-                    _form.addControl( _blockDef.name, comp.__controlGroup );
-                }
-            } else {
-                comp.__controlGroup = _form;
-            }
+            this.createOrRetrieveCG( _blockDef, comp, _form );
             comp.__controlGroup.__fdn        = _fdn;
             comp.__controlGroup.__prettyName = _blockDef.prettyName || _blockDef.name;
             _componentRef.onDestroy( () => {
@@ -406,18 +397,45 @@ export abstract class AmpBlockLoader {
                 let pathToCustomFile = _blockDef.custom;
                 if ( _blockDef.custom === '~~' ) {
                     pathToCustomFile = _blockDef.path.split( '.' )[ 0 ] + '.config';
-                } else if ( _blockDef.custom.charAt( 0 ) === '~' ) {
+                } else if ( _blockDef.custom.startsWith( '~' ) ) {
                     let relativePathArray = _blockDef.path.split( '/' );
                     relativePathArray.pop(); // we don't want the last bit
                     pathToCustomFile = `${relativePathArray.join( '/' )}/${pathToCustomFile.replace( '~', '' )}`;
                 }
                 let customFileChunk = this.requireFile( pathToCustomFile );
                 customFileChunk( ( customFile ) => {
-                    comp.__custom = customFile[ 'default' ];
+                    comp.__custom = clone( customFile[ 'default' ] );
                 } );
             }
         } else {
             comp.__custom = _blockDef.custom; // IT COULD BE AN ARRAY OR SOMETHING ELSE
         }
+    }
+
+    private createOrRetrieveCG ( _blockDef : FormDefinition, comp : any, _form : any ) {
+        if ( _blockDef.name ) {
+            if ( _form.get( _blockDef.name ) ) {
+                comp.__controlGroup = _form.get( _blockDef.name );
+                comp.__isRetrieved  = true;
+            } else {
+                let paths = _blockDef.name.split( '.' );
+                paths.map( ( cgName ) => {
+                    if ( _form.contains( cgName ) ) {
+                        _form = _form.get( cgName );
+                    } else {
+                        let cg = new FormGroup( {} );
+                        _form.addControl( cgName, cg );
+                        _form = cg;
+                    }
+                } );
+                comp.__controlGroup = _form;
+            }
+        } else {
+            comp.__controlGroup = _form;
+        }
+    }
+
+    private parseFdnOfBlockName ( blockName : string ) : Array<string|number> {
+        return blockName ? blockName.split( '.' ) : [];
     }
 }

@@ -1157,5 +1157,23 @@
             }
         ],
         "readme": "<p>Tax File Number block implementation</p>\n"
+    },
+    {
+        "name": "Amp Currency ",
+        "sources": [
+            "src/app/directives/amp-currency/amp-currency.component.ts"
+        ],
+        "id": "AmpNumberDirective",
+        "examples": [
+            {
+                "template": "src/styleguide/directives/amp-currency/basic_usage.html",
+                "styles": "src/styleguide/directives/amp-currency/basic_usage.scss",
+                "source": "src/styleguide/directives/amp-currency/basic_usage.ts",
+                "component": "amp-currency-basic-usage",
+                "component_src_location": "directives/amp-currency/basic_usage",
+                "name": "Amp Number basic usage"
+            }
+        ],
+        "readme": "<p>To convert the input value to the currency as typing</p>\n"
     }
 ]
