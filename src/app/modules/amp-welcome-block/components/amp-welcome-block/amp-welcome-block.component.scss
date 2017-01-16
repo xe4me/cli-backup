@@ -1,105 +1,95 @@
 @import '../../../../../styles/abstracts';
+
+
 $font-size : $amp-base-font-size * 2 / 5 !default;
 
-amp-welcome-block {
-    background-repeat: no-repeat;
-    background-size: 100%;
-    min-height: 1262px;
-}
-.welcome-container{
-    width: 100%;
-    display: block;
-    padding-top: 69px;
-}
-.header-container {
-    background-color: $amp-colour-primary;
-    position: absolute;
-    width: 100%;
-    display: block;
-    left: 0;
-    top: 0;
-    @include media-query(lap-and-up) {
-        height: 70px;
-    }
+$logo-height : 60px !default;
+$logo-width : 220px !default;
 
-    amp-logo {
-        height: 50px;
-        margin-left: 71px;
-        img {
-            height: 42px;
-            width: 150px;
-            margin-top: 12px;
-            margin-bottom: 10px;
+$amp-ddc-public-asset : '../../../assets/';
+
+:host {
+        width: 100%;
+        display: block;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 0px !important;
+        padding-top: 69px;
+        .intro-message-heading {
+            margin-bottom: 0;
         }
-    }
-
-    @include media-query(tablet-and-down) {
-        amp-logo {
-            margin-left: 7px;
-            display: block;
-            height: 65px;
-            img {
-                margin-top: 10px;
-                margin-bottom: 14px;
+        @include media-query(tablet-and-up) {
+            // buttons have a !important margin-top and we somehow need to override them in this case
+            #title-scenario {
+                margin-bottom: -25px;
             }
         }
-    }
-}
-
-.intro-message-heading {
-    margin-bottom: 0;
-}
-
-@media screen and (min-width: 1821px) {
-    background-size: 100%;
-    min-height: 1262px;
-}
-@include media-query(palm) {
-    padding: 0 8px;
-    background-position: left top;
-    background-size: 3000px;
-    .intro-message-heading {
-        margin: 30px 0px 15px;
-        color: $amp-colour-primary;
-        font-size: $font-size-small;
-        line-height: 30px;
-    }
-    amp-button {
-        button.btn {
-            margin-top: 20px !important;
+        @media screen and (min-width: 1821px) {
+            background-size: 100%;
+            min-height: 1262px;
         }
-    }
-}
+        @include media-query(palm) {
+            padding: 0 8px;
+            background-position: left top;
+            background-size: 3000px;
+            .intro-message-heading {
+                margin: 30px 0px 15px;
+                color: $amp-colour-primary;
+                font-size: $font-size-small;
+                line-height: 30px;
+            }
+            amp-button {
+                button.btn {
+                    margin-top: 20px !important;
+                }
+            }
+        }
 
-.intro-container {
-    margin-left: 55px;
-    @include media-query(palm) {
-        margin: 0;
-    }
-}
+        .intro-container {
+            margin-left: 55px;
+            @include media-query(palm) {
+                margin: 0;
+            }
+        }
 
-.intro-list-container {
-    font-weight: 400;
-    margin-top: 60px;
-    color: $amp-colour-secondary-darkest;
-    .data-list {
-        &.data-list-iconed {
-            list-style: none;
-            .data-list__item {
-                margin-top: 36px;
-                span {
-                    display: inline-block;
-                    vertical-align: middle;
-                    font-size: $font-size-tiny;
-                    font-weight: 600;
-                    margin-left: 14px;
-                    padding-bottom: 13px;
-                    @include media-query(palm) {
-                        display: block;
-                        margin-left: 8px;
+        .intro-list-container {
+            font-weight: 400;
+            margin-top: 60px;
+            color: $amp-colour-secondary-darkest;
+            .data-list {
+                &.data-list-iconed {
+                    list-style: none;
+                    .data-list__item {
+                        margin-top: 36px;
+                        span {
+                            display: inline-block;
+                            vertical-align: middle;
+                            font-size: $font-size-tiny;
+                            font-weight: 600;
+                            margin-left: 14px;
+                            padding-bottom: 13px;
+                            @include media-query(palm) {
+                                display: block;
+                                margin-left: 8px;
+                            }
+                        }
+                        &.icon {
+
+                            &::before {
+                                content: ' ';
+                                float: left;
+                                margin-top: -4px;
+                                margin-right: 20px;
+                                top: 0;
+                                width: 36px;
+                                height: 37px;
+                                background-repeat: no-repeat;
+                                background-size: 100%;
+                            }
+                        }
                     }
                 }
             }
         }
-    }
 }

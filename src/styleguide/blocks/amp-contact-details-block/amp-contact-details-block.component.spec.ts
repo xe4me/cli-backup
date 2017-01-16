@@ -31,7 +31,7 @@ function loadComponent() {
     homeNumberControl = controlGroup['homeNumber'];
 }
 
-describe('amp-contact-details-block component', () => {
+xdescribe('amp-contact-details-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

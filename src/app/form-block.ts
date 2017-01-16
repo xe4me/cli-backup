@@ -22,7 +22,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
 
     protected isInSummaryState : boolean = false;
-    protected isActive : boolean         = true;
+    protected isActive : boolean         = false;
     protected selectorName : string      = 'default-form-block-selector-name';
     protected noScroll                   = false;
     /*
@@ -145,7 +145,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         this.visibleFlag  = this.selectorName + 'IsVisible';
         this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
-        if ( this.__isRetrieved && this.canGoNext ) {
+        if ( this.__isRetrieved && this.__controlGroup.valid ) {
             this.setToTouchedAndSummaryState();
         }
         this._cd.markForCheck();
@@ -211,7 +211,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     }
 
     get canGoNext () {
-        return this.__controlGroup && this.__controlGroup.valid;
+        return this.__controlGroup.valid;
     }
 
     protected disableAutoSave () {

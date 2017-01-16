@@ -1,30 +1,22 @@
-<div class="welcome-container">
-    <div class="header-container">
-        <div class="logo-container">
-            <amp-logo [baseURL]="damContentUrl" [theme]="'tools'">
-            </amp-logo>
-        </div>
+<div class="intro-container mt++">
+    <h1 class="better-header">{{__custom.welcomeTitle}}</h1>
+    <h3 class="intro-message-heading heading heading-intro mt">{{__custom.welcomeMessage}}</h3>
+    <div class="intro-list-container">
+        <ul class="data-list data-list-iconed">
+            <li class="data-list__item icon" *ngFor="let item of __custom.welcomePoints" [ngClass]="item.icon"><span>{{item.text}}</span></li>
+        </ul>
     </div>
-    <div class="intro-container mt++">
-        <h1 class="better-header">{{__custom.welcomeTitle}}</h1>
-        <h3 class="intro-message-heading heading heading-intro mt">{{__custom.welcomeMessage}}</h3>
-        <div class="intro-list-container">
-            <ul class="data-list data-list-iconed">
-                <li class="data-list__item icon" *ngFor="let item of __custom.welcomePoints" [ngClass]="item.icon"><span>{{item.text}}</span></li>
-            </ul>
-        </div>
-        <div class="mt+ mb palm-mt- intro-block-button-container">
-            <amp-button
-                    (click)="onNewApplication()"
+    <div class="mt+ mb palm-mt- intro-block-button-container">
+        <amp-button
+                (click)="onNewApplication()"
+                [attr.theme]="'tools'"
+                class="1/4 btn btn-ok palm-1/1 tablet-1/2 tablet-and-up-mr">
+            {{__custom.actions[0].buttonName}}
+        </amp-button>
+        <amp-button (click)="onContinueApplication()"
                     [attr.theme]="'tools'"
-                    class="1/4 btn btn-ok palm-1/1 tablet-1/2 tablet-and-up-mr">
-                {{__custom.actions[0].buttonName}}
-            </amp-button>
-            <amp-button (click)="onContinueApplication()"
-                        [attr.theme]="'tools'"
-                        class="1/4 btn btn-ok palm-1/1 palm-mt- tablet-1/2 tablet-and-up-mr">
-                {{__custom.actions[1].buttonName}}
-            </amp-button>
-        </div>
+                    class="1/4 btn btn-ok palm-1/1 palm-mt- tablet-1/2 tablet-and-up-mr">
+            {{__custom.actions[1].buttonName}}
+        </amp-button>
     </div>
 </div>

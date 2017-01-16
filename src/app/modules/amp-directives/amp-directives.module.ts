@@ -6,23 +6,17 @@ import { ThemeIDDirective } from './directives/theme-id/themeId.directive';
 import { AmpStickyOnScrollDirective } from './directives/auto-sticky-on-scroll/amp-sticky-on-scroll.directive';
 import { FocuserDirective } from './directives/focuser/focuser.directive';
 import { AmpNumberDirective } from './directives/number/amp-number.directive';
-import { AmpCurrencyDirective } from './directives/currency/amp-curency.directive';
-import {
-    AmpCurrencyPipe
-} from '../amp-pipes';
 const DECLARATIONS = [
-    AutoFocusOnDirective,
-    ClickedOutsideDirective,
-    AmpCurrencyDirective,
-    AutoFocusDirective,
-    ThemeIDDirective,
-    AmpStickyOnScrollDirective,
-    FocuserDirective,
+    AutoFocusOnDirective ,
+    ClickedOutsideDirective ,
+    AutoFocusDirective ,
+    ThemeIDDirective ,
+    AmpStickyOnScrollDirective ,
+    FocuserDirective ,
     AmpNumberDirective
 ];
 @NgModule( {
-    providers    : [ AmpCurrencyPipe ],
-    declarations : DECLARATIONS,
+    declarations : DECLARATIONS ,
     exports      : DECLARATIONS
 } )
 export class AmpDirectivesModule {

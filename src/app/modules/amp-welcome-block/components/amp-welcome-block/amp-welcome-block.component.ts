@@ -7,24 +7,22 @@ import {
     transition ,
     ViewContainerRef ,
     ChangeDetectorRef ,
-    ElementRef ,
-    ViewEncapsulation
+    ElementRef
 } from '@angular/core';
 import { AmpButton } from '../../../amp-button/components/amp-button/amp-button.component';
 import { FormBlock } from '../../../../form-block';
 import { SaveService } from '../../../../services/save/save.service';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { ProgressObserverService } from '../../../../services/progress-observer/progress-observer.service';
-import { Environments } from '../../../../abstracts/environments/environments.abstract';
 @Component( {
     selector   : 'amp-welcome-block' ,
+    // directives : [ AmpButton ] ,
     host       : {
         '[@slideUp]' : 'slideUp',
-        '[style.background-image]' : '__custom.backgroundImageUrl'
+        '[style.background-image]'  : '__custom.backgroundImageUrl'
     } ,
     template     : require('./amp-welcome-block.component.html'),
-    styles     : [ require( './amp-welcome-block.component.scss')] ,
-    encapsulation: ViewEncapsulation.None,
+    styles     : [ require( './amp-welcome-block.component.scss' ).toString() ] ,
     animations : [
         trigger(
             'slideUp' ,
@@ -59,7 +57,6 @@ export class AmpWelcomeBlockComponent extends FormBlock {
         CONTINUE : 'continue',
         START    : 'start'
     };
-    private damContentUrl = `${Environments.property.DamContentUrl}amp/digitalhub/common/images/systems/ddc/`;
     private slideUp = 'expanded';
 
     constructor ( saveService : SaveService,

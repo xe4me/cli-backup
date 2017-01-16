@@ -25,6 +25,7 @@ import { AmpProgressBarsModule } from '../app/modules/amp-progress-bars';
 import { AmpOverlayModule } from '../app/modules/amp-overlay';
 import { AmpReviewModule } from '../app/modules/amp-review';
 import { AmpIntroBlockModule } from 'app/modules/amp-intro-block';
+import { AmpSaveCloseBlockModule } from '../app/blocks/amp-save-close-block/amp-save-close-block.module';
 export const AMP_MODULES = [
     AmpTooltipModule.forRoot(),
     AmpProgressBarsModule,
@@ -52,5 +53,6 @@ export const AMP_MODULES = [
     AmpGreenIdModule,
     AmpLogoModule,
     AmpGoogleRecaptchaModule,
-    AmpCardsModule
+    AmpCardsModule,
+    AmpSaveCloseBlockModule
 ];
