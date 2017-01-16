@@ -1,0 +1,95 @@
+<form [formGroup]="form" class='nl-form p+'>
+    <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"></div>
+</form>
+
+<section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">
+            Above is an example of a "Tax File Number" block.
+        </h2>
+        <p class="ml small">
+            This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
+            <br>It should be <strong>the default way of loading it</strong>.
+        </p>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            In "form-def.def.json" file, in any array of blocks:
+        </p>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "name": "taxFileNumber",
+        "blockType": "AmpTaxFileNUmberBlockComponent",
+        "blockLayout": "INLINE",
+        "commonBlock": true,
+        "path": "modules/amp-tax-file-number-block/components/amp-tax-file-number-block/amp-tax-file-number-block.component",
+        "custom": &#123;
+        "blockTitle": "Questions we need to ask...",
+        "controls": [
+            &#123;
+                "id": "hasTaxFileNumber",
+                "buttons": [
+                    &#123;
+                        "id": "Yes",
+                        "value": true,
+                        "label": "Yes"
+                    &#125;,
+                    &#123;
+                        "id": "No",
+                        "value": false,
+                        "label": "No"
+                    &#125;
+                ]
+            &#125;,
+            &#123;
+                "id": "taxFileNumber"
+            &#125;,
+            &#123;
+                "id": "noTaxFileNumberReason",
+                "options": [
+                    &#123;
+                        "value": "Children",
+                        "label": "Children"
+                    &#125;,
+                    &#123;
+                        "value": "AgedServiceInvalidPensioner",
+                        "label": "Aged, Service or Invalid Pensioner"
+                    &#125;,
+                    &#123;
+                        "value": "OtherExemptPensioner",
+                        "label": "Other exempt Pensioner"
+                    &#125;,
+                    &#123;
+                        "value": "TaxReturnsNotRequired",
+                        "label": "Tax returns not required"
+                    &#125;,
+                    &#123;
+                        "value": "ExemptForTFN",
+                        "label": "Exempt for TFN"
+                    &#125;,
+                    &#123;
+                        "value": "TerritoryResident",
+                        "label": "Territory residents"
+                    &#125;,
+                    &#123;
+                        "value": "NonResident",
+                        "label": "Non resident"
+                    &#125;
+                ]
+            &#125;
+        ]
+    &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <p class="ml mt">
+            In case you need more customisation options, please get in touch with DDC team!
+        </p>
+        <p>&nbsp;</p>
+    </article>
+</section>

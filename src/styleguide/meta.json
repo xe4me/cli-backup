@@ -1139,6 +1139,26 @@
         "readme": "<p>To Allow only numbers in the input field</p>\n"
     },
     {
+        "name": "Amp Tax File Number Block",
+        "sources": [
+            "src/app/blocks/amp-tax-file-number-block/amp-tax-file-number-block.component.ts"
+        ],
+        "id": "AmpTaxFileNumberBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-tax-file-number-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-tax-file-number-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-tax-file-number-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-tax-file-number-block/amp-tax-file-number-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-tax-file-number-block/amp-tax-file-number-block.component.spec.ts",
+                "component": "amp-tax-file-number-basic-usage",
+                "component_src_location": "blocks/amp-tax-file-number-block/basic_usage",
+                "name": "Amp Tax File Number Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Tax File Number block implementation</p>\n"
+    },
+    {
         "name": "Amp Currency ",
         "sources": [
             "src/app/directives/amp-currency/amp-currency.component.ts"

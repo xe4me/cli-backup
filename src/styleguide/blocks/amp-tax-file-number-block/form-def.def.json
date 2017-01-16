@@ -1,0 +1,75 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-tax-file-number-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-tax-file-number-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "taxFileNumber",
+            "blockType": "AmpTaxFileNumberBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-tax-file-number-block/components/amp-tax-file-number-block/amp-tax-file-number-block.component",
+            "custom": {
+                "blockTitle": "Questions we need to ask...",
+                "isInitiallyActive": true,
+                "controls": [
+                    {
+                        "id": "hasTaxFileNumber",
+                        "buttons": [
+                            {
+                                "id": "Yes",
+                                "value": true,
+                                "label": "Yes"
+                            },
+                            {
+                                "id": "No",
+                                "value": false,
+                                "label": "No"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "taxFileNumber"
+                    },
+                    {
+                        "id": "noTaxFileNumberReason",
+                        "options": [
+                            {
+                                "value": "Children",
+                                "label": "Children"
+                            },
+                            {
+                                "value": "AgedServiceInvalidPensioner",
+                                "label": "Aged, Service or Invalid Pensioner"
+                            },
+                            {
+                                "value": "OtherExemptPensioner",
+                                "label": "Other exempt Pensioner"
+                            },
+                            {
+                                "value": "TaxReturnsNotRequired",
+                                "label": "Tax returns not required"
+                            },
+                            {
+                                "value": "ExemptForTFN",
+                                "label": "Exempt for TFN"
+                            },
+                            {
+                                "value": "TerritoryResident",
+                                "label": "Territory residents"
+                            },
+                            {
+                                "value": "NonResident",
+                                "label": "Non resident"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

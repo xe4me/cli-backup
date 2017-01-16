@@ -8,6 +8,7 @@ export * from './src/app/redux/amp-redux.module';
 export * from './src/app/modules/amp-address-block';
 export * from './src/app/modules/amp-basic-info-block';
 export * from './src/app/modules/amp-contact-details-block';
+export * from './src/app/modules/amp-tax-file-number-block';
 export * from './src/app/modules/amp-intro-block';
 export * from './src/app/modules/amp-review';
 export * from './src/app/modules/amp-utils';
