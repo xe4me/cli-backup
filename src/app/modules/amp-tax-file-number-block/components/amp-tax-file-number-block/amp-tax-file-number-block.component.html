@@ -7,6 +7,7 @@
             <amp-group-buttons
                     auto-focus-on
                     class="grid__item 1/1"
+                    (select)="onTaxGroupButtonClick($event)"
                     [buttons]="__custom.controls[0].buttons"
                     [isInSummaryState]="isInSummaryState"
                     [controlGroup]="__controlGroup"
@@ -15,7 +16,7 @@
             </amp-group-buttons>
         </div>
     </amp-form-row>
-    <div *ngIf="hasTfn?.value === true">
+    <div *ngIf="hasTfn">
         <div class="mt-60 heading-contxtual-label">
             Providing your tax file number prevents you from paying unnecessary tax on the interest you earn.
         </div>
@@ -34,7 +35,7 @@
             </div>
         </amp-form-row>
     </div>
-    <amp-form-row *ngIf="hasTfn?.value === false">
+    <amp-form-row *ngIf="!hasTfn">
         <div class="grid__item_floated tablet-and-down-1/1 lap-and-up-8/12 mt+">
             <amp-dropdown
                     label='Tax File Number exemption reason'

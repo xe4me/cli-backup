@@ -4,18 +4,17 @@ import {
     ChangeDetectionStrategy,
     AfterViewInit
 } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
-import {FormBlock} from '../../../../form-block';
-import {SaveService} from '../../../../services/save/save.service';
-import {ScrollService} from '../../../../services/scroll/scroll.service';
+import { FormBlock } from '../../../../form-block';
+import { SaveService } from '../../../../services/save/save.service';
+import { ScrollService } from '../../../../services/scroll/scroll.service';
 
 @Component( {
     selector        : 'amp-tax-file-number-block',
-    template        : require('./amp-tax-file-number-block.component.html'),
+    template        : require( './amp-tax-file-number-block.component.html' ),
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTaxFileNumberBlockComponent extends FormBlock implements AfterViewInit {
-    public hasTfn : AbstractControl;
+    public hasTfn : boolean = false;
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
@@ -23,8 +22,8 @@ export class AmpTaxFileNumberBlockComponent extends FormBlock implements AfterVi
         super( saveService, _cd, scrollService );
     }
 
-    public ngAfterViewInit () {
-        this.hasTfn = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        super.ngAfterViewInit();
+    onTaxGroupButtonClick ( $event ) {
+        this.hasTfn = $event
+        this._cd.detectChanges();
     }
 }
