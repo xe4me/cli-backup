@@ -1,4 +1,5 @@
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
+import AmpAddressBlockBasicUsage from './blocks/amp-address-block/basic_usage.ts';
 import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
 import AmpWelcomeBlockBasicUsage from './blocks/amp-welcome-block/basic_usage.ts';
 import AMPButtonComponentBasicUsage from './components/amp-button/basic_usage';
@@ -56,19 +57,21 @@ import TablesBasicUsage from './layout/tables/tables';
 import TextBasicUsage from './layout/text/text';
 
 // Import components that will get loaded dynamically in a block loader
+import { AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-address-block/entry-components';
 import { AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-basic-info-block/entry-components';
 import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
-
+    ...AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
     ...AMP_WELCOME_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
 
     AmpAccountNumberBasicUsage,
+    AmpAddressBlockBasicUsage,
     AmpBasicInfoBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AMPButtonComponentBasicUsage,

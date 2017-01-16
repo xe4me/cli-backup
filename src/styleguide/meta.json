@@ -920,6 +920,26 @@
         "readme": "<p>AMP natural language work-number"
     },
     {
+        "name": "Amp Address Block",
+        "sources": [
+            "src/app/modules/amp-address-block/components/amp-address-multi-block/amp-address-multi-block.component.ts"
+        ],
+        "id": "AmpAddressBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-address-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-address-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-address-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-address-block/amp-address-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-address-block/amp-address-block.component.spec.ts",
+                "component": "amp-address-basic-usage",
+                "component_src_location": "blocks/amp-address-block/basic_usage",
+                "name": "Amp Address Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Address block implementation</p>\n"
+    },
+    {
         "name": "Amp Basic Info Block",
         "sources": [
             "src/app/blocks/amp-basic-info-block/amp-basic-info-block.component.ts"
