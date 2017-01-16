@@ -46,6 +46,7 @@ import AmpPopDownComponentBasicUsage from './components/amp-pop-down/basic_usage
 import AmpTaxFileNumberBasicUsage from './components/amp-tax-file-number/basic_usage';
 import AmpBlockLoaderDirectiveBasicUsage from './directives/amp-block-loader/basic_usage.ts';
 import AmpNumberBasicUsage from './directives/amp-number/basic_usage.ts';
+import AmpCurrencyBasicUsage from './directives/amp-currency/basic_usage';
 import IconBasicUsage from './layout/icons/icons';
 import GridBasicUsage from './layout/grid/grid';
 import ListsBasicUsage from './layout/lists/lists';
@@ -115,6 +116,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpTaxFileNumberBasicUsage,
     AmpBlockLoaderDirectiveBasicUsage,
     AmpNumberBasicUsage,
+    AmpCurrencyBasicUsage,
     IconBasicUsage,
     GridBasicUsage,
     ListsBasicUsage,

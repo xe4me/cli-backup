@@ -404,7 +404,7 @@ export abstract class AmpBlockLoader {
                 }
                 let customFileChunk = this.requireFile( pathToCustomFile );
                 customFileChunk( ( customFile ) => {
-                    comp.__custom = clone(customFile[ 'default' ]);
+                    comp.__custom = clone( customFile[ 'default' ] );
                 } );
             }
         } else {
@@ -414,8 +414,9 @@ export abstract class AmpBlockLoader {
 
     private createOrRetrieveCG ( _blockDef : FormDefinition, comp : any, _form : any ) {
         if ( _blockDef.name ) {
-            if ( comp.__controlGroup = _form.get( _blockDef.name ) ) {
-                comp.__isRetrieved = true;
+            if ( _form.get( _blockDef.name ) ) {
+                comp.__controlGroup = _form.get( _blockDef.name );
+                comp.__isRetrieved  = true;
             } else {
                 let paths = _blockDef.name.split( '.' );
                 paths.map( ( cgName ) => {
@@ -434,7 +435,7 @@ export abstract class AmpBlockLoader {
         }
     }
 
-    private parseFdnOfBlockName ( blockName : string ) : (string|number)[] {
-        return blockName ? blockName.split( '.' ) : []
+    private parseFdnOfBlockName ( blockName : string ) : Array<string|number> {
+        return blockName ? blockName.split( '.' ) : [];
     }
 }
