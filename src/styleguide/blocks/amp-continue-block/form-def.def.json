@@ -1,0 +1,36 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-continue-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-continue-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "ContinueBlock",
+            "blockType": "AmpContinueBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-retrieve/components/amp-continue-block/amp-continue-block.component",
+            "custom": {
+                "blockTitle": "Where did we leave off?",
+                "isInitiallyActive": true,
+                "controls": [
+                {
+                    "id": "ReferenceCode",
+                    "requiredErrMsg": "Reference code is a required field."
+                },
+                {
+                    "id": "LastName",
+                    "requiredErrMsg": "Last name is a required field."
+                },
+                {
+                    "id": "DateOfBirth",
+                    "requiredErrMsg": "Date of birth is a required field."
+                }
+                ]
+            }
+        }
+    ]
+}
