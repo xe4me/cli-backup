@@ -1,0 +1,27 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-address-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-address-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "contactDetails",
+            "blockType": "AmpContactDetailsBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-address-block/components/amp-address-multi-block/amp-address-multi-block.component",
+            "custom": {
+                "blockTitle": "And where you live...",
+                "isInitiallyActive": true,
+                "controls": [
+                    {
+                        "id": "Address"
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,5 +1,6 @@
 import {
     Component,
+    ViewContainerRef,
     ChangeDetectorRef,
     ChangeDetectionStrategy
 } from '@angular/core';
@@ -26,7 +27,8 @@ export class PageSectionComponent {
     private __emitChildLoaded;
     private __name;
 
-    constructor ( public scrollService : ScrollService,
+    constructor ( public vcf : ViewContainerRef,
+                  public scrollService : ScrollService,
                   public _cd : ChangeDetectorRef ) {
     }
 
