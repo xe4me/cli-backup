@@ -20,6 +20,8 @@
                 [controlGroup]="__controlGroup"
                 [isInSummaryState]="isInSummaryState"
                 [label]="__custom.controls[1].label"
+                [pattern]="'^04(\\d){8}$'"
+                [maxLength]="10"
                 [errors]="{
                     'required': __custom.controls[1].requiredErrorMessage,
                     'pattern': __custom.controls[1].patternErrorMessage

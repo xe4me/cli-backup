@@ -145,7 +145,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         this.visibleFlag  = this.selectorName + 'IsVisible';
         this.doneFlag     = this.selectorName + 'IsDone';
         this.subscribeToScrollEvents();
-        if ( this.__isRetrieved && this.__controlGroup.valid ) {
+        if ( this.__isRetrieved && this.canGoNext ) {
             this.setToTouchedAndSummaryState();
         }
         this._cd.markForCheck();
@@ -211,7 +211,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     }
 
     get canGoNext () {
-        return this.__controlGroup.valid;
+        return this.__controlGroup && this.__controlGroup.valid;
     }
 
     protected disableAutoSave () {

@@ -17,6 +17,7 @@ export class AmpContactNumberComponent extends AmpInputComponent {
         this.maxLength = 20;
         this.required  = true;
         this.label     = 'Contact number';
+        this.type      = 'tel';
         this.errors    = {
             required : 'Contact number is a required field.',
             pattern  : 'The contact number must contain a minimum of 8 characters. Only numeric and area code' +
