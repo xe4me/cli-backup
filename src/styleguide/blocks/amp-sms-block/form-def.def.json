@@ -12,7 +12,7 @@
             "blockType": "AmpSmsBlockComponent",
             "blockLayout": "INLINE",
             "commonBlock": false,
-            "path": "blocks/amp-save-close-block/components/amp-sms-block/amp-sms-block.component",
+            "path": "modules/amp-save-close-block/components/amp-sms-block/amp-sms-block.component",
             "custom": {
                 "blockTitle": "Just in case you want to return...",
                 "description" : "Test SMS description",

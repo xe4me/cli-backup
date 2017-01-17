@@ -26,7 +26,7 @@ import { AmpOverlayModule } from '../app/modules/amp-overlay';
 import { AmpReviewModule } from '../app/modules/amp-review';
 import { AmpIntroBlockModule } from 'app/modules/amp-intro-block';
 import { AmpRetrieveBlockModule } from 'app/modules/amp-retrieve-block';
-import { AmpSaveCloseBlockModule } from '../app/blocks/amp-save-close-block/amp-save-close-block.module';
+import { AmpSaveCloseBlockModule } from '../app/modules/amp-save-close-block/amp-save-close-block.module';
 export const AMP_MODULES = [
     AmpTooltipModule.forRoot(),
     AmpProgressBarsModule,

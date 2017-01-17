@@ -12,7 +12,7 @@
             "blockType": "AmpSaveConfirmationBlockComponent",
             "blockLayout": "INLINE",
             "commonBlock": false,
-            "path": "blocks/amp-save-close-block/components/amp-save-confirmation-block/amp-save-confirmation-block.component",
+            "path": "modules/amp-save-close-block/components/amp-save-confirmation-block/amp-save-confirmation-block.component",
             "custom": {
                 "blockTitle": "Test AMP save and close block",
                 "description" : "save confirmation description",

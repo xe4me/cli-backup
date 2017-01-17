@@ -11,7 +11,7 @@ import {
     TestBed
 } from '@angular/core/testing';
 
-import { AmpSaveCloseBlockModule } from '../../../app/blocks/amp-save-close-block/amp-save-close-block.module';
+import { AmpSaveCloseBlockModule } from '../../../app/modules/amp-save-close-block/amp-save-close-block.module';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 import {By} from '@angular/platform-browser';
 
