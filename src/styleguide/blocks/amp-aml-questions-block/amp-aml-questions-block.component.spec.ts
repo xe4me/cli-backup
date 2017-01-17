@@ -2,8 +2,6 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormsModule, FormGroup } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-
 import { AmpAmlQuestionsBlockModule } from '../../../app/modules/amp-aml-questions-block';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 
@@ -26,9 +24,10 @@ function loadComponent() {
     ngElement = fixture.debugElement;
 
     const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
-    primarySourceOfWealth = controlGroup['primarySourceOfWealth'];
-    sourceOfFundsForAccount = controlGroup['sourceOfFundsForAccount'];
-    reasonForOpeningAccount = controlGroup['reasonForOpeningAccount'];
+    console.log(controlGroup);
+    primarySourceOfWealth = controlGroup['primarySourceOfWealthDropdown'];
+    sourceOfFundsForAccount = controlGroup['sourceOfFundsForAccountDropdown'];
+    reasonForOpeningAccount = controlGroup['reasonForOpeningAccountDropdown'];
 }
 
 describe('amp-aml-questions-block component', () => {
@@ -84,12 +83,11 @@ describe('amp-aml-questions-block component', () => {
         describe('when some fields are still empty', () => {
             it('OK button should be enabled', () => {
                 loadComponent();
-                expect(primarySourceOfWealth._status).toBe('VALID');
-                expect(sourceOfFundsForAccount._status).toBe('VALID');
-                expect(reasonForOpeningAccount._status).toBe('VALID');
+                expect(primarySourceOfWealth._status).toBe('INVALID');
+
                 const okButtonEl = domElement.querySelector('button');
                 expect(okButtonEl).toBeDefined();
-                expect(okButtonEl.hasAttribute('disabled')).toBe(false);
+                expect(okButtonEl.hasAttribute('disabled')).toBe(true);
             });
         });
     });

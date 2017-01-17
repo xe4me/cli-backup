@@ -3,18 +3,18 @@ import { AmpAmlQuestionsBlockComponent } from './components/amp-aml-questions-bl
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpFormModule } from '../amp-form';
 import { AmpInputsModule } from '../amp-inputs';
-import { AmpTooltipModule } from '../amp-tooltip';
+import { AmpDropdownModule } from '../amp-dropdown';
 
 const DECLARATIONS = [ AmpAmlQuestionsBlockComponent ];
 
 @NgModule( {
     declarations : DECLARATIONS ,
     imports      : [
-        AmpSharedRootModule ,
-        AmpFormModule ,
-        AmpInputsModule ,
-        AmpTooltipModule
-    ] ,
+        AmpDropdownModule,
+        AmpFormModule,
+        AmpInputsModule,
+        AmpSharedRootModule
+    ],
     exports      : DECLARATIONS
 } )
 export class AmpAmlQuestionsBlockModule {
