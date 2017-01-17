@@ -10,6 +10,7 @@ import AMPCheckboxComponentBasicUsage from './components/amp-checkbox/basic_usag
 import AmpContactDetailsBasicUsage from './blocks/amp-contact-details-block/basic_usage.ts';
 import AmpTaxFileNumberBlockBasicUsage from './blocks/amp-tax-file-number-block/basic_usage.ts';
 import AmpContactNumberBasicUsage from './components/amp-contact-number/basic_usage';
+import AmpContinueBlockBasicUsage from './blocks/amp-continue-block/basic_usage.ts';
 import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpInputBasicUsage from './components/amp-input/basic_usage';
 import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
@@ -88,6 +89,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpContactDetailsBasicUsage,
     AmpTaxFileNumberBlockBasicUsage,
     AmpContactNumberBasicUsage,
+    AmpContinueBlockBasicUsage,
     AmpGroupButtonComponentBasicUsage,
     AmpRowRepeaterBasicUsage,
     AmpInputBasicUsage,

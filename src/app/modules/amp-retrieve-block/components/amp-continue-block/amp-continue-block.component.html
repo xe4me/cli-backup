@@ -1,0 +1,70 @@
+<div class="container" [hidden]="!showRetrieveBlock">
+    <div class="main main--aside">
+        <amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="tools" [withOkButton]='false'>
+            <p class="heading-contxtual-label">
+                Enter your application number sent by SMS and other details.
+            </p>
+            <amp-form-row>
+                <div auto-focus-on="div" class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+                    <amp-input
+                            #refCode
+                            auto-focus-on
+                            [id]="__custom.controls[0].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="'Application number'"
+                            [required]="fieldsAreRequired"
+                            [minLength]="10"
+                            [maxLength]="10"
+                            amp-number-only
+                            [errors]="{ required : __custom.controls[0].requiredErrMsg }"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-input>
+                </div>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+                    <amp-input
+                            [id]="__custom.controls[1].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="'Last name'"
+                            [required]="fieldsAreRequired"
+                            [errors]="{ required : __custom.controls[1].requiredErrMsg }"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-input>
+                </div>
+                <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+                    <amp-input
+                            [id]="__custom.controls[2].id"
+                            [controlGroup]="__controlGroup"
+                            [label]="'Date of birth'"
+                            [required]="fieldsAreRequired"
+                            [valDate]="true"
+                            [errors]="{ required : __custom.controls[2].requiredErrMsg}"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-input>
+                </div>
+            </amp-form-row>
+            <div class="errors" *ngIf="responseError">
+                <div class="error-item">
+                    <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+                    <span>{{responseError}}</span>
+                </div>
+            </div>
+            <div class="mt-60">
+                <amp-button
+                        [attr.theme]="'tools'"
+                        [disabled]="!canGoNext"
+                        [context]="context()"
+                        class="1/4  btn btn-ok palm-1/1 tablet-1/1 palm-mr0 mr"
+                        (click)="retrieve()">
+                    Retrieve
+                </amp-button>
+                <amp-button
+                        [attr.theme]="'tools'"
+                        [context]="context()"
+                        class="1/4 btn btn-ok btn-secondary palm-1/1 palm-mt- tablet-1/1 "
+                        (click)="onNewApplication()">
+                    New application
+                </amp-button>
+            </div>
+        </amp-form-block>
+    </div>
+</div>

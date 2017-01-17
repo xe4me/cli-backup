@@ -1060,6 +1060,26 @@
         "readme": "<p>Different permutations of intro block components</p>\n"
     },
     {
+        "name": "Amp Continue Block",
+        "sources": [
+            "src/app/modules/amp-retrieve-block/components/amp-continue-block/amp-continue-block.component.ts"
+        ],
+        "id": "AmpContinueBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-continue-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-continue-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-continue-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-continue-block/amp-continue-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-continue-block/amp-continue-block.component.spec.ts",
+                "component": "amp-continue-basic-usage",
+                "component_src_location": "blocks/amp-continue-block/basic_usage",
+                "name": "Amp Continue Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Continue block implementation</p>\n"
+    },
+    {
         "name": "Amp Submit Receipt page",
         "sources": [
             "src/app/blocks/amp-submit-receipt/amp-submit-receipt.page.ts"
