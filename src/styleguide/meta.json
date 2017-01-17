@@ -940,6 +940,26 @@
         "readme": "<p>Address block implementation</p>\n"
     },
     {
+        "name": "Amp AML Questions Block",
+        "sources": [
+            "src/app/blocks/amp-aml-questions-block/components/amp-aml-questions-block"
+        ],
+        "id": "AmpAmlQuestionsBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-aml-questions-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-aml-questions-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-aml-questions-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-aml-questions-block/amp-aml-questions-block.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-aml-questions-block/amp-aml-questions-block.spec.ts",
+                "component": "amp-aml-questions-block",
+                "component_src_location": "blocks/amp-aml-questions-block/basic_usage",
+                "name": "AML Questions"
+            }
+        ],
+        "readme": "<p>AML Questions.</p>\n"
+    },
+    {
         "name": "Amp Basic Info Block",
         "sources": [
             "src/app/blocks/amp-basic-info-block/amp-basic-info-block.component.ts"
@@ -1096,6 +1116,26 @@
             }
         ],
         "readme": "<p>Different permutations of intro block components</p>\n"
+    },
+    {
+        "name": "Amp Continue Block",
+        "sources": [
+            "src/app/modules/amp-retrieve-block/components/amp-continue-block/amp-continue-block.component.ts"
+        ],
+        "id": "AmpContinueBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-continue-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-continue-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-continue-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-continue-block/amp-continue-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-continue-block/amp-continue-block.component.spec.ts",
+                "component": "amp-continue-basic-usage",
+                "component_src_location": "blocks/amp-continue-block/basic_usage",
+                "name": "Amp Continue Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Continue block implementation</p>\n"
     },
     {
         "name": "Amp Submit Receipt page",

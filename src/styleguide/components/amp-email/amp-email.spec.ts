@@ -40,7 +40,7 @@ describe( 'amp-email component', () => {
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Email' );
         expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.emailCmp.randomizedId );
     } );
-    it( 'should contain an input text element with the correct name, id and data-automation-id attribute', () => {
+    it( 'should contain an input email element with the correct name, id and data-automation-id attribute', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent = fixture.debugElement;
@@ -48,7 +48,7 @@ describe( 'amp-email component', () => {
         let Component             = fixture.componentInstance;
         expect( compiledInput.nativeElement.name ).toBe( Component.emailCmp.randomizedId );
         expect( compiledInput.nativeElement.id ).toBe( Component.emailCmp.randomizedId );
-        expect( compiledInput.nativeElement.type ).toBe( 'text' );
+        expect( compiledInput.nativeElement.type ).toBe( 'email' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.emailCmp.randomizedId );
     } );
     it( 'should be required', () => {
@@ -92,7 +92,7 @@ class MockElementRef implements ElementRef {
         <amp-email
             #emailCmp
             [id]="id"
-            [controlGroup]='controlGroup'>    
+            [controlGroup]='controlGroup'>
         </amp-email>
     </form>
     `

@@ -29,14 +29,14 @@ describe( 'amp-contact-number component', () => {
         expect( compiledLabel.nativeElement.textContent.trim() ).toEqual( 'Contact number' );
         expect( compiledLabel.nativeElement.attributes[ 'for' ].value ).toBe( Component.contactNumberCmp.randomizedId);
     } );
-    it( 'should contain an input text element with the correct name, id and data-automation-id attribute', () => {
+    it( 'should contain an input tel element with the correct name, id and data-automation-id attribute', () => {
         _fixture.detectChanges();
         let compiledTestComponent = _fixture.debugElement;
         let Component = _fixture.componentInstance;
         let compiledInput = compiledTestComponent.query( By.css( 'input' ) );
         expect( compiledInput.nativeElement.name ).toBe( Component.contactNumberCmp.randomizedId );
         expect( compiledInput.nativeElement.id ).toBe( Component.contactNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.type ).toBe( 'text' );
+        expect( compiledInput.nativeElement.type ).toBe( 'tel' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text_' + Component.contactNumberCmp.randomizedId );
     } );
     it( 'should be required it it is empty', () => {
@@ -73,7 +73,7 @@ class MockElementRef implements ElementRef {
         <amp-contact-number
             #contactNumberCmp
             [id]="id"
-            [controlGroup]='controlGroup'>    
+            [controlGroup]='controlGroup'>
         </amp-contact-number>
     </form>
     `

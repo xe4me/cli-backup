@@ -17,6 +17,7 @@ export class AmpEmailComponent extends AmpInputComponent {
         this.maxLength = 50;
         this.required  = true;
         this.label     = 'Email';
+        this.type      = 'email';
         this.errors    = {
             required : 'Email is a required field',
             pattern  : 'The email is not valid'

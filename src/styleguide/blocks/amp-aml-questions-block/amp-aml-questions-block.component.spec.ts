@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormsModule, FormGroup } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import { AmpTaxFileNumberBlockModule } from '../../../app/modules/amp-tax-file-number-block';
+import { AmpAmlQuestionsBlockModule } from '../../../app/modules/amp-aml-questions-block';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 
 let custom : any = {};
@@ -13,9 +14,9 @@ let component;
 let domElement;
 let ngElement;
 
-let hasTaxFileNumberControl;
-let taxFileNumberControl;
-let noTaxFileNumberReasonControl;
+let primarySourceOfWealth;
+let sourceOfFundsForAccount;
+let reasonForOpeningAccount;
 
 function loadComponent() {
     fixture = TestBed.createComponent(TestComponent);
@@ -25,16 +26,16 @@ function loadComponent() {
     ngElement = fixture.debugElement;
 
     const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
-    hasTaxFileNumberControl = controlGroup['hasTaxFileNumber'];
-    taxFileNumberControl = controlGroup['taxFileNumber'];
-    noTaxFileNumberReasonControl = controlGroup['noTaxFileNumberReason'];
+    primarySourceOfWealth = controlGroup['primarySourceOfWealth'];
+    sourceOfFundsForAccount = controlGroup['sourceOfFundsForAccount'];
+    reasonForOpeningAccount = controlGroup['reasonForOpeningAccount'];
 }
 
-describe('amp-tax-file-number-block component', () => {
+describe('amp-aml-questions-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, AmpTaxFileNumberBlockModule, HttpModule],
+            imports: [FormsModule, AmpAmlQuestionsBlockModule, HttpModule],
             declarations: [TestComponent],
             providers: [
                 ...APP_RESOLVER_PROVIDERS
@@ -43,9 +44,9 @@ describe('amp-tax-file-number-block component', () => {
 
         custom = {
             controls: [
-                { id: 'hasTaxFileNumber' },
-                { id: 'taxFileNumberControl' },
-                { id: 'noTaxFileNumberReasonControl' }
+                { id: 'primarySourceOfWealth' },
+                { id: 'sourceOfFundsForAccount' },
+                { id: 'reasonForOpeningAccount' }
             ]
         };
     }));
@@ -54,7 +55,9 @@ describe('amp-tax-file-number-block component', () => {
         it('the component should be defined with one control for each input', () => {
             loadComponent();
             expect(component).toBeDefined();
-            expect(hasTaxFileNumberControl).toBeDefined();
+            expect(primarySourceOfWealth).toBeDefined();
+            expect(sourceOfFundsForAccount).toBeDefined();
+            expect(reasonForOpeningAccount).toBeDefined();
         });
     });
 
@@ -68,35 +71,37 @@ describe('amp-tax-file-number-block component', () => {
         });
         describe('when a block title has been defined', () => {
             it('should display the given title', () => {
-                custom.blockTitle = 'Questions we need to ask...';
+                custom.blockTitle = 'And a couple more...';
                 loadComponent();
                 const titleEl = domElement.querySelector('h2');
                 expect(titleEl).toBeDefined();
-                expect(titleEl.textContent).toEqual('Questions we need to ask...');
+                expect(titleEl.textContent).toEqual('And a couple more...');
             });
         });
     });
 
     describe('OK button', () => {
-        describe('when just loaded', () => {
-            it('OK button should be disabled', () => {
+        describe('when some fields are still empty', () => {
+            it('OK button should be enabled', () => {
                 loadComponent();
-                expect(hasTaxFileNumberControl._status).toBe('INVALID');
-
+                expect(primarySourceOfWealth._status).toBe('VALID');
+                expect(sourceOfFundsForAccount._status).toBe('VALID');
+                expect(reasonForOpeningAccount._status).toBe('VALID');
                 const okButtonEl = domElement.querySelector('button');
                 expect(okButtonEl).toBeDefined();
-                expect(okButtonEl.hasAttribute('disabled')).toBe(true);
+                expect(okButtonEl.hasAttribute('disabled')).toBe(false);
             });
         });
     });
+
 });
 
 @Component({
     template: `
     <form #formModel='ngForm' class='nl-form'>
-        <div class="tax-file-number-block">
-            <amp-tax-file-number-block #block>
-            </amp-tax-file-number-block>
+        <div class="contact-details-block">
+            <amp-aml-questions-block #block>
+            </amp-aml-questions-block>
         </div>
     </form>
     `

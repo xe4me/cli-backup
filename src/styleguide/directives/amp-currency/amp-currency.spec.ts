@@ -15,7 +15,7 @@ import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 import { AmpDirectivesModule } from '../../../app/modules/amp-directives/amp-directives.module';
-fdescribe( 'amp-currency directive', () => {
+describe( 'amp-currency directive', () => {
     let _fixture : any;
     let _debugElement : any;
     let _inputElement : any;

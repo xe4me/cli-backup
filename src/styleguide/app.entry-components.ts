@@ -1,5 +1,6 @@
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
 import AmpAddressBlockBasicUsage from './blocks/amp-address-block/basic_usage.ts';
+import AmpAmlQuestionsBlockBasicUsage from './blocks/amp-aml-questions-block/basic_usage';
 import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
 import AmpSmsBlockBasicUsage from './blocks/amp-sms-block/basic_usage.ts';
 import AmpSaveCloseBlockBasicUsage from './blocks/amp-save-close-block/basic_usage.ts';
@@ -9,7 +10,9 @@ import AMPCardComponentBasicUsage from './components/amp-card/basic_usage';
 import AMPCardsComponentBasicUsage from './components/amp-cards/basic_usage';
 import AMPCheckboxComponentBasicUsage from './components/amp-checkbox/basic_usage';
 import AmpContactDetailsBasicUsage from './blocks/amp-contact-details-block/basic_usage.ts';
+import AmpTaxFileNumberBlockBasicUsage from './blocks/amp-tax-file-number-block/basic_usage.ts';
 import AmpContactNumberBasicUsage from './components/amp-contact-number/basic_usage';
+import AmpContinueBlockBasicUsage from './blocks/amp-continue-block/basic_usage.ts';
 import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpInputBasicUsage from './components/amp-input/basic_usage';
 import AmpRowRepeaterBasicUsage from './components/amp-row-repeater/basic_usage';
@@ -49,6 +52,7 @@ import AmpPopDownComponentBasicUsage from './components/amp-pop-down/basic_usage
 import AmpTaxFileNumberBasicUsage from './components/amp-tax-file-number/basic_usage';
 import AmpBlockLoaderDirectiveBasicUsage from './directives/amp-block-loader/basic_usage.ts';
 import AmpNumberBasicUsage from './directives/amp-number/basic_usage.ts';
+import AmpCurrencyBasicUsage from './directives/amp-currency/basic_usage';
 import IconBasicUsage from './layout/icons/icons';
 import GridBasicUsage from './layout/grid/grid';
 import ListsBasicUsage from './layout/lists/lists';
@@ -58,18 +62,26 @@ import TablesBasicUsage from './layout/tables/tables';
 import TextBasicUsage from './layout/text/text';
 
 // Import components that will get loaded dynamically in a block loader
+import { AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-address-block/entry-components';
+import { AMP_AML_QUESTIONS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-aml-questions-block/entry-components';
 import { AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-basic-info-block/entry-components';
+import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
+import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
-
+    ...AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_AML_QUESTIONS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_WELCOME_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
+    ...AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS,
 
     AmpAccountNumberBasicUsage,
     AmpAddressBlockBasicUsage,
+    AmpAmlQuestionsBlockBasicUsage,
     AmpBasicInfoBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
@@ -79,7 +91,9 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AMPCardsComponentBasicUsage,
     AMPCheckboxComponentBasicUsage,
     AmpContactDetailsBasicUsage,
+    AmpTaxFileNumberBlockBasicUsage,
     AmpContactNumberBasicUsage,
+    AmpContinueBlockBasicUsage,
     AmpGroupButtonComponentBasicUsage,
     AmpRowRepeaterBasicUsage,
     AmpInputBasicUsage,
@@ -119,6 +133,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpTaxFileNumberBasicUsage,
     AmpBlockLoaderDirectiveBasicUsage,
     AmpNumberBasicUsage,
+    AmpCurrencyBasicUsage,
     IconBasicUsage,
     GridBasicUsage,
     ListsBasicUsage,
