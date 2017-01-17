@@ -29,16 +29,16 @@ export interface SelectActions {
     doMarkAsTouched? : boolean;
 }
 @Component( {
-    selector : 'amp-dropdown',
-    template : require( './amp-dropdown.component.html' ),
-    queries : {
+    selector        : 'amp-dropdown',
+    template        : require( './amp-dropdown.component.html' ),
+    queries         : {
         itemTemplate : new ContentChild( TemplateRef ),
-        optionsRef : new ViewChildren( 'optionRef' ),
-        focusers : new ViewChildren( FocuserDirective )
+        optionsRef   : new ViewChildren( 'optionRef' ),
+        focusers     : new ViewChildren( FocuserDirective )
     },
-    styles : [ require( './amp-dropdown.component.scss' ) ],
+    styles          : [ require( './amp-dropdown.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush,
-    inputs : [
+    inputs          : [
         'errors',
         'id',
         'controlGroup',
@@ -47,6 +47,7 @@ export interface SelectActions {
         'fieldValueKey',
         'isInSummaryState',
         'showErrorComponent',
+        'defaultValue',
         'customValidator',
         'label',
         'required',
@@ -54,35 +55,36 @@ export interface SelectActions {
         'index',
         'keepControl',
     ],
-    outputs : [
+    outputs         : [
         'selected'
     ]
 } )
 export class AmpDropdownComponent extends BaseControl implements AfterViewInit, OnDestroy {
     public static DROPDOWN_CONTROL_GROUP_NAME = 'Dropdown';
-    public static QUERY_CONTROL_NAME = 'Query';
-    public static SELECTED_CONTROL_NAME = 'SelectedItem';
+    public static QUERY_CONTROL_NAME          = 'Query';
+    public static SELECTED_CONTROL_NAME       = 'SelectedItem';
     public selectedControl : FormControl;
     public control : FormControl;
     public dropdownControlGroup : FormGroup;
-    public keepControl : boolean = false;
-    public selected = new EventEmitter<any>();
+    public keepControl : boolean              = false;
+    public selected                           = new EventEmitter<any>();
     protected focusers : QueryList<FocuserDirective>;
     protected optionsRef : QueryList<TemplateRef<ElementRef>>;
-    protected maxHeight : string = '400px';
-    protected paddingAndMargins : number = 55;
-    protected fieldItemKey = 'value';
-    protected fieldValueKey = 'label';
+    protected maxHeight : string              = '400px';
+    protected paddingAndMargins : number      = 55;
+    protected fieldItemKey                    = 'value';
+    protected fieldValueKey                   = 'label';
     protected label;
+    protected defaultValue;
     protected options;
     protected subscription : Subscription;
-    protected INPUT_FOCUSER : number = 0;
-    protected LIST_FOCUSER : number = 1;
-    protected selectedOption = {};
-    protected _optionsHidden : boolean = true;
+    protected INPUT_FOCUSER : number          = 0;
+    protected LIST_FOCUSER : number           = 1;
+    protected selectedOption                  = {};
+    protected _optionsHidden : boolean        = true;
     protected clearSearchTimeout;
-    protected searchStr = '';
-    private DO_NOT_FOCUS = false;
+    protected searchStr                       = '';
+    private DO_NOT_FOCUS                      = false;
 
     constructor ( public _el : ElementRef, public _cd : ChangeDetectorRef, public _renderer : Renderer ) {
         super();
@@ -103,8 +105,9 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
 
     ngAfterViewInit () : void {
         this.selectedOption[ this.fieldValueKey ] = null;
-        this.selectedOption[ this.fieldItemKey ] = null;
+        this.selectedOption[ this.fieldItemKey ]  = null;
         this.updateValidators();
+        this.setDefaultValue();
         // check if control has value ( it's been retrieved , and if so , do the select)
         if ( this.control.value !== undefined ) {
             setTimeout( () => {
@@ -142,7 +145,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
                 }
             } else {
                 this.selectedControl = new FormControl();
-                this.control = new FormControl();
+                this.control         = new FormControl();
             }
             this.setAmpErrors();
             this.createdAndJoinedControl = true;
@@ -173,13 +176,19 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     }
 
     emptyAll () {
-        this.selectedOption = {};
+        this.selectedOption                       = {};
         this.selectedOption[ this.fieldValueKey ] = null;
-        this.selectedOption[ this.fieldItemKey ] = null;
+        this.selectedOption[ this.fieldItemKey ]  = null;
         this.control.setValue( null, {
             emitEvent : false
         } );
         this.selectedControl.setValue( null );
+    }
+
+    setDefaultValue () {
+        if ( this.defaultValue && this.control && !this.control.value ) {
+            this.control.setValue( this.defaultValue );
+        }
     }
 
     private close = () : void => {
@@ -214,15 +223,15 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         }
         this.clearSearchTimeout = setTimeout( () => {
             this.clearSearchTimeout = undefined;
-            this.searchStr = '';
+            this.searchStr          = '';
         }, 300 );
         // Support 1-9 on numpad
-        let keyCode = $event.keyCode - (KeyCodes.isNumPadKey( $event ) ? 48 : 0);
+        let keyCode             = $event.keyCode - (KeyCodes.isNumPadKey( $event ) ? 48 : 0);
         this.searchStr += String.fromCharCode( keyCode );
         if ( this.searchStr ) {
             let search = new RegExp( '^' + this.searchStr, 'i' );
-            let index = 0;
-            for ( const option of this.options) {
+            let index  = 0;
+            for ( const option of this.options ) {
                 if ( search.test( option[ this.fieldValueKey ] ) ) {
                     return <any> this.optionsRef.toArray()[ index ];
                 }

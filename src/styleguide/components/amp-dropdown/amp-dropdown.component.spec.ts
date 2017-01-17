@@ -115,6 +115,7 @@ describe( 'amp-dropdown component', () => {
                             [id]='"Title"'
                             [label]='"Title"'
                             [options]='titleOptions'
+                            defaultValue='miss'
                             [controlGroup]="__retrievedControlGroup"
                             [required]="true">
                             <template let-option="option">
@@ -124,6 +125,31 @@ describe( 'amp-dropdown component', () => {
                     </form>
                     <button id='deselect' (click)='setTo(null)'>Deselect</button>
                     <button id='wrongSelect' (click)='setTo("Milad")'>wrongSelect</button>
+                `
+                }
+            } )
+            .createComponent( AmpdropdownTest );
+        Fixture.detectChanges();
+    }
+
+    function createOverridenComponentForDefault () {
+        Fixture = TestBed
+            .overrideComponent( AmpdropdownTest, {
+                set : {
+                    template : `
+                    <form class='nl-form' >
+                         <amp-dropdown
+                            #dropDownCmp
+                            [isInSummaryState]='isInSummaryState'
+                            [id]='"Title"'
+                            [options]='titleOptions'
+                            defaultValue='mr'
+                            [controlGroup]="__retrievedControlGroup">
+                            <template let-option="option">
+                                {{ option.label }}
+                            </template>
+                        </amp-dropdown>
+                    </form>
                 `
                 }
             } )
@@ -309,7 +335,7 @@ describe( 'amp-dropdown component', () => {
             expect( CmpControlGroup.touched ).toBeFalsy();
         } );
     } );
-    describe( 'With retrieved controlGroup', () => {
+    describe( 'With retrieved controlGroup and default value ', () => {
         beforeEach( () => {
             createOverridenComponent();
         } );
@@ -319,12 +345,29 @@ describe( 'amp-dropdown component', () => {
             expect( SelectedControl.value ).toBe( TitleOptions[ 0 ].value );
             expect( getValueOfSelectedOption() ).toBe( TitleOptions[ 0 ].label );
         } );
+
+        it( 'should not be selected the default value because retrieve has priority', () => {
+            expect( QueryControl.value ).not.toBe( 'Miss' );
+            expect( SelectedControl.value ).not.toBe( 'iss' );
+            expect( getValueOfSelectedOption() ).not.toBe( 'Miss' );
+        } );
         it( 'should empty all the controls and selectedElement object', () => {
             DropdownComponent.emptyAll();
             expectAllControlsToBeNull();
         } );
         it( 'should not be marked as touched initially', () => {
             expect( CmpControlGroup.touched ).toBeFalsy();
+        } );
+    } );
+    describe( 'With default value', () => {
+        beforeEach( () => {
+            createOverridenComponentForDefault();
+        } );
+        doDefineElementsBeforeEach();
+        it( 'it should be preselected if it has default value', () => {
+            expect( QueryControl.value ).toBe( 'Mr' );
+            expect( SelectedControl.value ).toBe( 'mr' );
+            expect( getValueOfSelectedOption() ).toBe('Mr' );
         } );
     } );
 } );
