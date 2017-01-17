@@ -28,10 +28,10 @@ const DECLARATIONS = [
         AmpInputsModule
     ] ,
     providers : [
-        SaveAndCloseService,
+        SaveAndCloseService ,
         AmpSmsService
     ],
-    entryComponents : DECLARATIONS,
+    entryComponents : DECLARATIONS ,
     exports      : DECLARATIONS
 } )
 
