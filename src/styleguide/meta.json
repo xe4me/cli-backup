@@ -980,6 +980,26 @@
         "readme": "<p>Basic Info block implementation</p>\n"
     },
     {
+        "name": "Amp Captcha Block",
+        "sources": [
+            "src/app/blocks/amp-captcha-block/amp-captcha-block.component.ts"
+        ],
+        "id": "AmpCaptchaBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-captcha-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-captcha-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-captcha-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-captcha-block/amp-captcha-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-captcha-block/amp-captcha-block.component.spec.ts",
+                "component": "amp-captcha-block-basic-usage",
+                "component_src_location": "blocks/amp-captcha-block/basic_usage",
+                "name": "Amp Captcha Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Captcha block implementation</p>\n"
+    },
+    {
         "name": "Amp Contact Details Block",
         "sources": [
             "src/app/blocks/amp-contact-details-block/amp-contact-details-block.component.ts"
