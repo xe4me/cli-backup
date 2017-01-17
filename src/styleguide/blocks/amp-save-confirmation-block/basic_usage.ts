@@ -11,7 +11,7 @@ import {SaveAndCloseService} from '../../../app/services/save-and-close/save-and
 @Component( {
     selector    : 'amp-save-confirmation-block-basic-usage',
     templateUrl : './basic_usage.html',
-    styles      : [ require( './basic_usage.scss' ).toString() ],
+    styles      : [ require( './basic_usage.scss' ) ],
     providers   : [ SaveAndCloseService ]
 } )
 export default class AmpSaveConfirmationBlockBasicUsage implements AfterViewInit {
@@ -22,8 +22,7 @@ export default class AmpSaveConfirmationBlockBasicUsage implements AfterViewInit
 
     constructor ( public store : Store<any> ,
                   private _builder : FormBuilder,
-                  private scrollService : ScrollService,
-                  private saveCloseService : SaveAndCloseService) {
+                  private scrollService : ScrollService) {
         this.form = this._builder.group( {} );
     }
 

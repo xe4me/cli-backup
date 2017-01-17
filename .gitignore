@@ -69,3 +69,4 @@ npm-debug.log
 # IDE #
 .idea/
 *.swp
+*.r1

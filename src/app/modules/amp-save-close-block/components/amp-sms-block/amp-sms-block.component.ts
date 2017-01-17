@@ -20,8 +20,6 @@ import { AmpSmsService } from '../../services/amp-sms.service';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpSmsBlockComponent extends FormBlock implements OnInit {
-    public static BASE_URL = Environments.property.ApiCallsBaseUrl;
-    public static SMS_URL = `${AmpSmsBlockComponent.BASE_URL}/sms/postMessage`;
     private mobileNumber : string = null ;
     private smsMessage : string = null ;
     private smsSentErrorMessage : string = null;
