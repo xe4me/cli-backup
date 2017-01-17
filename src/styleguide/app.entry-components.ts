@@ -7,6 +7,7 @@ import AMPCardComponentBasicUsage from './components/amp-card/basic_usage';
 import AMPCardsComponentBasicUsage from './components/amp-cards/basic_usage';
 import AMPCheckboxComponentBasicUsage from './components/amp-checkbox/basic_usage';
 import AmpContactDetailsBasicUsage from './blocks/amp-contact-details-block/basic_usage.ts';
+import AmpTaxFileNumberBlockBasicUsage from './blocks/amp-tax-file-number-block/basic_usage.ts';
 import AmpContactNumberBasicUsage from './components/amp-contact-number/basic_usage';
 import AmpGroupButtonComponentBasicUsage from './components/amp-group-buttons/basic_usage';
 import AmpInputBasicUsage from './components/amp-input/basic_usage';
@@ -62,6 +63,7 @@ import { AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-basic-info-b
 import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
+import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS,
@@ -69,6 +71,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_WELCOME_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
+    ...AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS,
 
     AmpAccountNumberBasicUsage,
     AmpAddressBlockBasicUsage,
@@ -79,6 +82,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AMPCardsComponentBasicUsage,
     AMPCheckboxComponentBasicUsage,
     AmpContactDetailsBasicUsage,
+    AmpTaxFileNumberBlockBasicUsage,
     AmpContactNumberBasicUsage,
     AmpGroupButtonComponentBasicUsage,
     AmpRowRepeaterBasicUsage,
