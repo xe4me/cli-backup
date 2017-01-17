@@ -14,12 +14,12 @@
             "commonBlock": false,
             "path": "modules/amp-retrieve-block/components/amp-continue-block/amp-continue-block.component",
             "custom": {
-                "blockTitle": "Where did we leave off?",
+                "blockTitle": "Continue where you left off",
                 "isInitiallyActive": true,
                 "controls": [
                 {
                     "id": "ReferenceCode",
-                    "requiredErrMsg": "Reference code is a required field."
+                    "requiredErrMsg": "Application number is a required field."
                 },
                 {
                     "id": "LastName",

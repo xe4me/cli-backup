@@ -46,7 +46,7 @@ describe('amp-continue-block component', () => {
             controls: [
                 {
                     'id': 'ReferenceCode',
-                    'requiredErrMsg': 'Reference code is a required field.'
+                    'requiredErrMsg': 'Application number is a required field.'
                 },
                 {
                     'id': 'LastName',

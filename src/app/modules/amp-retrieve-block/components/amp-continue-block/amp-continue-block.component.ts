@@ -70,11 +70,11 @@ export class AmpContinueBlockComponent extends FormBlock {
 
     // Default custom values. Please note, this is all or nothing, we do not currently do shallow nor deep copying.
     public __custom               = {
-        'blockTitle': 'Where did we leave off?',
+        'blockTitle': 'Continue where you left off',
         'controls': [
           {
             'id': 'ReferenceCode',
-            'requiredErrMsg': 'Reference code is a required field.'
+            'requiredErrMsg': 'Application number is a required field.'
           },
           {
             'id': 'LastName',

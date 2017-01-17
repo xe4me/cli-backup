@@ -2,7 +2,7 @@
     <div class="main main--aside">
         <amp-form-block class="first-steps-container" [context]="context()" buttonsTheme="tools" [withOkButton]='false'>
             <p class="heading-contxtual-label">
-                Enter the reference code that we sent you by SMS, as well as your last name and date of birth
+                Enter your application number sent by SMS and other details.
             </p>
             <amp-form-row>
                 <div auto-focus-on="div" class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
@@ -11,7 +11,7 @@
                             auto-focus-on
                             [id]="__custom.controls[0].id"
                             [controlGroup]="__controlGroup"
-                            [label]="'Reference code'"
+                            [label]="'Application number'"
                             [required]="fieldsAreRequired"
                             [minLength]="10"
                             [maxLength]="10"
@@ -60,7 +60,7 @@
                 <amp-button
                         [attr.theme]="'tools'"
                         [context]="context()"
-                        class="1/4 btn btn-ok palm-1/1 palm-mt- tablet-1/1 "
+                        class="1/4 btn btn-ok btn-secondary palm-1/1 palm-mt- tablet-1/1 "
                         (click)="onNewApplication()">
                     New application
                 </amp-button>
