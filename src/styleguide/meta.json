@@ -1158,6 +1158,26 @@
         "readme": "<p>Different permutations of intro block components</p>\n"
     },
     {
+        "name": "Amp Online ID Check Block",
+        "sources": [
+            "src/app/blocks/amp-online-id-check-block/amp-online-id-check-block.component.ts"
+        ],
+        "id": "AmpOnlineIdCheckBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-online-id-check-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-online-id-check-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-online-id-check-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-online-id-check-block/amp-online-id-check-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-online-id-check-block/amp-online-id-check-block.component.spec.ts",
+                "component": "amp-online-id-check-basic-usage",
+                "component_src_location": "blocks/amp-online-id-check-block/basic_usage",
+                "name": "Amp Online ID Check Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Online ID Check block implementation</p>\n"
+    },
+    {
         "name": "Amp Continue Block",
         "sources": [
             "src/app/modules/amp-retrieve-block/components/amp-continue-block/amp-continue-block.component.ts"

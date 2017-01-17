@@ -1,12 +1,12 @@
 import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_usage';
 import AmpAddressBlockBasicUsage from './blocks/amp-address-block/basic_usage.ts';
-import AmpAmlQuestionsBlockBasicUsage from './blocks/amp-aml-questions-block/basic_usage';
 import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
 import AmpCaptchaBlockBasicUsage from './blocks/amp-captcha-block/basic_usage.ts';
 import AmpMenuFrameBlockBasicUsage from './blocks/amp-menu-frame-block/basic_usage.ts';
 import AmpSmsBlockBasicUsage from './blocks/amp-sms-block/basic_usage.ts';
 import AmpSaveConfirmationBlockBasicUsage from './blocks/amp-save-confirmation-block/basic_usage.ts';
 import AmpWelcomeBlockBasicUsage from './blocks/amp-welcome-block/basic_usage.ts';
+import AmpAddressBlockBasicUsage from './blocks/amp-address-block/basic_usage.ts';
 import AMPButtonComponentBasicUsage from './components/amp-button/basic_usage';
 import AMPCardComponentBasicUsage from './components/amp-card/basic_usage';
 import AMPCardsComponentBasicUsage from './components/amp-cards/basic_usage';
@@ -74,19 +74,22 @@ import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/e
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
 import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
+import { AMP_ONLINE_ID_CHECK_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-online-id-check-block/entry-components';
 import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
 import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
 import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
+
     ...AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_AML_QUESTIONS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
+    ...AMP_ONLINE_ID_CHECK_BLOCK_ENTRY_COMPONENTS,
     ...AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS,
     ...AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS,
-    ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
     ...AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS,
     ...AMP_WELCOME_BLOCK_ENTRY_COMPONENTS,
 

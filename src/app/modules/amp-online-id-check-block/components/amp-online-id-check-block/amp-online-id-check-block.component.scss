@@ -1,0 +1,10 @@
+@import '../../../../../styles/abstracts';
+
+:host {
+    /deep/ .id-check-icon {
+        background-image: url('../../../../../assets/images/greenid-complete.png');
+    }
+    .heading.heading-intro {
+        margin-bottom: 30px;
+    }
+}
