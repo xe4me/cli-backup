@@ -84,14 +84,14 @@ describe('amp-sms-block component', () => {
         });
         it ('if acceptPrivacy empty, should disable OK buton', () => {
             expect(acceptPrivacyControl._status).toBe('INVALID');
-            const okButtonEl = domElement.querySelector('button');
+            const okButtonEl = domElement.querySelectorAll('button').item(0);
             expect(okButtonEl).toBeDefined();
             expect(okButtonEl.hasAttribute('disabled')).toBe(true);
         });
         it ('if acceptPrivacy === false, should disable OK buton', () => {
             acceptPrivacyControl.setValue(false);
             expect(acceptPrivacyControl._status).toBe('INVALID');
-            const okButtonEl = domElement.querySelector('button');
+            const okButtonEl = domElement.querySelectorAll('button').item(0);
             expect(okButtonEl).toBeDefined();
             expect(okButtonEl.hasAttribute('disabled')).toBe(true);
         });

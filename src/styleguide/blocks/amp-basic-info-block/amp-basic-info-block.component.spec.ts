@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { AmpBasicInfoBlockModule } from '../../../app/modules/amp-basic-info-block';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 
-xdescribe('amp-basic-info-block component', () => {
+describe('amp-basic-info-block component', () => {
 
     let fixture : ComponentFixture<TestComponent>;
     let component;
