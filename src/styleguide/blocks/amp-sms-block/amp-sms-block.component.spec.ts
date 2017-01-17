@@ -78,7 +78,7 @@ describe('amp-sms-block component', () => {
         it ('if mobileNumber fail with validation rule, should disable OK buton', () => {
             mobileControl.setValue('0545456789');
             expect(mobileControl._status).toBe('INVALID');
-            const okButtonEl = domElement.querySelector('button');
+            const okButtonEl = domElement.querySelectorAll('button').item(0);
             expect(okButtonEl).toBeDefined();
             expect(okButtonEl.hasAttribute('disabled')).toBe(true);
         });
