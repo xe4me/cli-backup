@@ -9,12 +9,12 @@ import { FDN } from './Application.fdn';
 import {SaveAndCloseService} from '../../../app/services/save-and-close/save-and-close.service';
 
 @Component( {
-    selector    : 'amp-save-close-block-basic-usage',
+    selector    : 'amp-save-confirmation-block-basic-usage',
     templateUrl : './basic_usage.html',
     styles      : [ require( './basic_usage.scss' ).toString() ],
     providers   : [ SaveAndCloseService ]
 } )
-export default class AmpSaveCloseBlockBasicUsage implements AfterViewInit {
+export default class AmpSaveConfirmationBlockBasicUsage implements AfterViewInit {
 
     private fullyDistinguishedName = [];
     private childBlocks            = formDef;

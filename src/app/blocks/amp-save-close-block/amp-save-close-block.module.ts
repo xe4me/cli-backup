@@ -3,7 +3,7 @@ import { AmpSmsService } from './services/amp-sms.service';
 import { SaveAndCloseService } from '../../services';
 import { AmpSmsBlockComponent } from './components/amp-sms-block/amp-sms-block.component';
 import { AmpSaveCloseButtonComponent } from './components/amp-save-close-button/amp-save-close-button.component';
-import { AmpSaveCloseBlockComponent } from './components/amp-save-close-block/amp-save-close-block.component';
+import { AmpSaveConfirmationBlockComponent } from './components/amp-save-confirmaiton-block/amp-save-confirmation-block.component';
 import { AmpExitButtonComponent } from './components/amp-exit-button/amp-exit-button.component';
 import { AmpSharedRootModule } from '../../modules/amp-shared-root/amp-shared-root.module';
 import { AmpFormModule } from '../../modules/amp-form';
@@ -13,7 +13,7 @@ import { AmpCheckboxModule } from '../../modules/amp-checkbox';
 
 const DECLARATIONS = [
     AmpSmsBlockComponent,
-    AmpSaveCloseBlockComponent,
+    AmpSaveConfirmationBlockComponent,
     AmpSaveCloseButtonComponent,
     AmpExitButtonComponent
 ];

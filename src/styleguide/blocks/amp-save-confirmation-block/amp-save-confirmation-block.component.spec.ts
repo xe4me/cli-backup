@@ -33,7 +33,7 @@ function loadComponent () {
     component = fixture.componentInstance;
 }
 
-describe('amp-save-close-block component', () => {
+describe('amp-save-confirmation-block component', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule, AmpSaveCloseBlockModule, HttpModule],
@@ -58,8 +58,8 @@ describe('amp-save-close-block component', () => {
     template: `
     <form #formModel='ngForm' class='nl-form'>
         <div class="save-close-block">
-            <amp-save-close-block #block>
-            </amp-save-close-block>
+            <amp-save-confirmation-block #block>
+            </amp-save-confirmation-block>
         </div>
     </form>
     `

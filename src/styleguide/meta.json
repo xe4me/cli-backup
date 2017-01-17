@@ -1038,20 +1038,20 @@
         ],
         "readme": "<p>SMS block implementation</p>\n"
     },{
-        "name": "Amp Save and Close Block",
+        "name": "Amp Save Confirmation Block",
         "sources": [
-            "src/app/blocks/amp-save-close-block/components/amp-save-close-block/amp-save-close-block.component.ts"
+            "src/app/blocks/amp-save-close-block/components/amp-save-confirmation-block/amp-save-confirmation-block.component.ts"
         ],
-        "id": "AmpSaveCloseBlock",
+        "id": "AmpSaveConfirmationBlock",
         "examples": [
             {
-                "template": "src/styleguide/blocks/amp-save-close-block/basic_usage.html",
-                "styles": "src/styleguide/blocks/amp-save-close-block/basic_usage.scss",
-                "source": "src/styleguide/blocks/amp-save-close-block/basic_usage.ts",
-                "galen": "src/styleguide/blocks/amp-save-close-block/amp-save-close-block.component.test.spec",
-                "jasmine": "src/styleguide/blocks/amp-save-close-block/amp-save-close-block.component.spec.ts",
-                "component": "amp-save-close-block-basic-usage",
-                "component_src_location": "blocks/amp-save-close-block/basic_usage",
+                "template": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-save-confirmation-block/amp-save-confirmation-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-save-confirmation-block/amp-save-confirmation-block.component.spec.ts",
+                "component": "amp-save-confirmation-block-basic-usage",
+                "component_src_location": "blocks/amp-save-confirmation-block/basic_usage",
                 "name": "Amp Save and Close Block Basic Usage"
             }
         ],

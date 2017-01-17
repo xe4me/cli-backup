@@ -1,20 +1,21 @@
 {
     "id": "Application",
     "name": "Application",
-    "fdnClassPath": "src/styleguide/blocks/amp-save-close-block",
-    "fdnModelPath": "src/styleguide/blocks/amp-save-close-block",
+    "fdnClassPath": "src/styleguide/blocks/amp-save-confirmation-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-save-confirmation-block",
     "version": "0.0.1",
     "path": "/application",
     "status": "NEW",
     "blocks": [
         {
             "name": "saveClose",
-            "blockType": "AmpSaveCloseBlockComponent",
+            "blockType": "AmpSaveConfirmationBlockComponent",
             "blockLayout": "INLINE",
             "commonBlock": false,
-            "path": "blocks/amp-save-close-block/components/amp-save-close-block/amp-save-close-block.component",
+            "path": "blocks/amp-save-close-block/components/amp-save-confirmation-block/amp-save-confirmation-block.component",
             "custom": {
                 "blockTitle": "Test AMP save and close block",
+                "description" : "save confirmation description",
                 "active": true
             }
         }

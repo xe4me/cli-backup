@@ -11,11 +11,11 @@ import {
 } from '../../../../services';
 
 @Component( {
-    selector    : 'amp-save-close-block',
-    template : require( './amp-save-close-block.component.html' ),
+    selector    : 'amp-save-confirmation-block',
+    template : require( './amp-save-confirmation-block.component.html' ),
     changeDetection : ChangeDetectionStrategy.OnPush,
 } )
-export class AmpSaveCloseBlockComponent {
+export class AmpSaveConfirmationBlockComponent {
     public referenceNumber : string;
     private __custom;
     constructor( private saveService : SaveService) {
