@@ -30,7 +30,7 @@ function loadComponent() {
     noTaxFileNumberReasonControl = controlGroup['noTaxFileNumberReason'];
 }
 
-fdescribe('amp-tax-file-number-block component', () => {
+describe('amp-tax-file-number-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
