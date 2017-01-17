@@ -8,7 +8,7 @@
     "status": "NEW",
     "blocks": [
         {
-            "name": "questionsBlock",
+            "name": "amlQuestions",
             "blockType": "AmpAmlQuestionsBlock",
             "blockLayout": "INLINE",
             "commonBlock": false,

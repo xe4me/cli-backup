@@ -21,7 +21,7 @@
         <pre>
             <code syntaxHighlight class="json">
     &#123;
-        "name": "questionsBlock",
+        "name": "amlQuestions",
         "blockType": "AmpAmlQuestionsBlock",
         "blockLayout": "INLINE",
         "commonBlock": false,
@@ -133,85 +133,6 @@
         &#125;
             </code>
         </pre>
-    </article>
-
-    <article class="section">
-        <h2 class="mb- ml mt+">Reference to components</h2>
-        <ul class="bml">
-            <li>
-                'Email':
-                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpEmail'])">AmpEmail</a>
-            </li>
-            <li>
-                'Mobile number':
-                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpPhoneNumber'])">AmpPhoneNumber</a>
-            </li>
-            <li>
-                'Home number':
-                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpHomeNumber'])">AmpHomeNumber</a>
-            </li>
-        </ul>
-    </article>
-
-    <article class="section">
-        <h2 class="mb- ml mt+">"custom" section</h2>
-        <ul class="bml">
-            <li>
-                At least block title and IDs of your model must be defined:
-            </li>
-        </ul>
-        <pre>
-            <code syntaxHighlight class="json">
-    &#123;
-        "custom": &#123;
-            "blockTitle": "And your contact details...",
-            "controls": [
-                &#123; "id": "EmailAddress" &#125;,
-                &#123; "id": "MobileNumber" &#125;,
-                &#123; "id": "HomeNumber" &#125;
-            ]
-        &#125;
-    &#125;
-            </code>
-        </pre>
-
-        <ul class="bml">
-            <li>
-                Without any other info, the block will be loaded with following <strong>default values</strong>:
-            </li>
-        </ul>
-        <pre>
-            <code syntaxHighlight class="json">
-    &#123;
-        "custom": &#123;
-            "controls": [
-                &#123;
-                    "label": "Email",
-                    "required": true,
-                    "tooltipMessage": "Confirmation of your application will be sent to this email address."
-                &#125;,
-                &#123;
-                    "label": "Mobile number",
-                    "required": true,
-                    "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
-                    "requiredErrorMessage" : "Mobile number is a required field.",
-                    "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
-                &#125;,
-                &#123;
-                    "label": "Home number",
-                    "required": false
-                &#125;
-            ]
-        &#125;
-    &#125;
-            </code>
-        </pre>
-
-        <ul class="bml">
-            <li>
-                Feel free to change any of these values.
-            </li>
-        </ul>
     </article>
 
     <article class="section">
