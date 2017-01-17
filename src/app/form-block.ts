@@ -22,7 +22,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
 
     protected isInSummaryState : boolean = false;
-    protected isActive : boolean         = true;
+    protected isActive : boolean         = false;
     protected selectorName : string      = 'default-form-block-selector-name';
     protected noScroll                   = false;
     /*
