@@ -4,6 +4,12 @@ import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpFormModule } from '../amp-form';
 import { AmpInputsModule } from '../amp-inputs';
 import { AmpButtonModule } from '../amp-button';
+import {
+    ScrollService,
+    SaveService,
+    FormModelService,
+    AmpHttpService
+} from '../../services';
 
 const DECLARATIONS = [ AmpContinueBlockComponent ];
 
@@ -14,6 +20,12 @@ const DECLARATIONS = [ AmpContinueBlockComponent ];
         AmpFormModule,
         AmpInputsModule,
         AmpButtonModule
+    ],
+    providers    : [
+        ScrollService,
+        SaveService,
+        FormModelService,
+        AmpHttpService
     ],
     entryComponents : DECLARATIONS,
     exports      : DECLARATIONS

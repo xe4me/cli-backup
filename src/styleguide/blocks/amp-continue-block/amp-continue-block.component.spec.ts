@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { AmpRetrieveBlockModule } from '../../../app/modules/amp-retrieve';
+import { AmpRetrieveBlockModule } from '../../../app/modules/amp-retrieve-block';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 
 let custom : any = {};

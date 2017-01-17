@@ -12,7 +12,7 @@
             "blockType": "AmpContinueBlockComponent",
             "blockLayout": "INLINE",
             "commonBlock": false,
-            "path": "modules/amp-retrieve/components/amp-continue-block/amp-continue-block.component",
+            "path": "modules/amp-retrieve-block/components/amp-continue-block/amp-continue-block.component",
             "custom": {
                 "blockTitle": "Where did we leave off?",
                 "isInitiallyActive": true,

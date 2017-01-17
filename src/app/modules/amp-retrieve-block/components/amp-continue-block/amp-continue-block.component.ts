@@ -15,16 +15,16 @@ import {
     RequestOptions,
     Response
 } from '@angular/http';
+import { FormBlock } from '../../../../form-block';
 import {
-    FormBlock,
     ScrollService,
     SaveService,
     FormModelService,
-    AmpHttpService,
-    AmpFormBlockComponent,
-    AutoFocusOnDirective,
-    Environments
-} from '../../../../../../index';
+    AmpHttpService
+} from '../../../../services';
+import { AmpFormBlockComponent } from '../../../amp-form';
+import { AutoFocusOnDirective } from '../../../amp-directives';
+import { Environments } from '../../../../abstracts/environments/environments.abstract';
 @Component( {
     selector        : 'amp-continue-block',
     template        : require('./amp-continue-block.component.html'),
@@ -32,7 +32,7 @@ import {
     host            : {
         '[@slideUp]' : 'slideUp'
     },
-    styles          : [ require( './amp-continue-block.component.scss' ).toString() ],
+    styles          : [ require( './amp-continue-block.component.scss' ) ],
     animations      : [
         trigger(
             'slideUp',
@@ -67,6 +67,25 @@ export class AmpContinueBlockComponent extends FormBlock {
     public static closedErrorMsg   = 'This application has already been submitted';
     public static genericErrorMsg  = 'An unexpected error has occurred.';
     public static retrieveURL      = `${Environments.property.ApiCallsBaseUrl}/${Environments.property.ExperienceName}/retrieve`;
+
+    // Default custom values. Please note, this is all or nothing, we do not currently do shallow nor deep copying.
+    public __custom               = {
+        'blockTitle': 'Where did we leave off?',
+        'controls': [
+          {
+            'id': 'ReferenceCode',
+            'requiredErrMsg': 'Reference code is a required field.'
+          },
+          {
+            'id': 'LastName',
+            'requiredErrMsg': 'Last name is a required field.'
+          },
+          {
+            'id': 'DateOfBirth',
+            'requiredErrMsg': 'Date of birth is a required field.'
+          }
+        ]
+    }
 
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
     @ViewChild( AmpFormBlockComponent ) public AmpFormBlockComponent;
