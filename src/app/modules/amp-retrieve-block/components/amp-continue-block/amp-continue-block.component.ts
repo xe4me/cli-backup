@@ -85,7 +85,7 @@ export class AmpContinueBlockComponent extends FormBlock {
             'requiredErrMsg': 'Date of birth is a required field.'
           }
         ]
-    }
+    };
 
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
     @ViewChild( AmpFormBlockComponent ) public AmpFormBlockComponent;
