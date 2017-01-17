@@ -14,7 +14,8 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTaxFileNumberBlockComponent extends FormBlock implements AfterViewInit {
-    public hasTfn : boolean = false;
+
+    public hasTfn : boolean;
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
