@@ -1,0 +1,22 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-save-close-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-save-close-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "saveClose",
+            "blockType": "AmpSaveCloseBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "blocks/amp-save-close-block/components/amp-save-close-block/amp-save-close-block.component",
+            "custom": {
+                "blockTitle": "Test AMP save and close block",
+                "active": true
+            }
+        }
+    ]
+}

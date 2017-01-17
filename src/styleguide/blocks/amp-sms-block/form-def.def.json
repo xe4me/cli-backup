@@ -1,0 +1,32 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-sms-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-sms-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "smsMessage",
+            "blockType": "AmpSmsBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "blocks/amp-save-close-block/components/amp-sms-block/amp-sms-block.component",
+            "custom": {
+                "blockTitle": "Just in case you want to return...",
+                "description" : "Test SMS description",
+                "active": true,
+                "controls": [
+                    {
+                        "id": "mobileNumber"
+                    },
+                    {
+                        "id": "acceptPrivacy",
+                        "label" : "I have read the <a href='https://www.amp.com.au/depositprivacy' target='_blank'> privacy information</a> and confirm the statements, test label"
+                    }
+                ]
+            }
+        }
+    ]
+}
