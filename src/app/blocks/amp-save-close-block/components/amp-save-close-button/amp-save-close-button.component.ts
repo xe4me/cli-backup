@@ -16,7 +16,6 @@ import { FormModelService, SaveService, SaveAndCloseService } from '../../../../
     } )
 export class AmpSaveCloseButtonComponent {
     @Input() private form : FormGroup;
-
         constructor (
         private saveCloseService  : SaveAndCloseService,
         private saveService : SaveService,
