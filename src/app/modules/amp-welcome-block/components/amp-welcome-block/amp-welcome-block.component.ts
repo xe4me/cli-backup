@@ -7,7 +7,8 @@ import {
     transition ,
     ViewContainerRef ,
     ChangeDetectorRef ,
-    ElementRef
+    ElementRef ,
+    ViewEncapsulation
 } from '@angular/core';
 import { AmpButton } from '../../../amp-button/components/amp-button/amp-button.component';
 import { FormBlock } from '../../../../form-block';
