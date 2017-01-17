@@ -56,6 +56,5 @@ export const AMP_MODULES = [
     AmpGoogleRecaptchaModule,
     AmpCardsModule,
     AmpRetrieveBlockModule,
-    AmpCardsModule,
     AmpSaveCloseBlockModule
 ];
