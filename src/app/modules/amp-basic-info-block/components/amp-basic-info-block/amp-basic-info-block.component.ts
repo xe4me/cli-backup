@@ -5,8 +5,11 @@ import {
     Optional
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
-import { ScrollService, SaveService } from '../../../../services';
-import { SaveAndCloseService } from '../../../../services/save-and-close/save-and-close.service';
+import {
+    ScrollService,
+    SaveService,
+    SaveAndCloseService
+} from '../../../../services';
 
 @Component({
     selector        : 'amp-basic-info-block',
