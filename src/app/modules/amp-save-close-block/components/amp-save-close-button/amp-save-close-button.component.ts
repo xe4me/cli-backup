@@ -16,11 +16,15 @@ import { FormModelService, SaveService, SaveAndCloseService } from '../../../../
     } )
 export class AmpSaveCloseButtonComponent {
     @Input() private form : FormGroup;
-        constructor (
-        private saveCloseService  : SaveAndCloseService,
+    private showStickyButton : boolean = false;
+    constructor (
         private saveService : SaveService,
         private formModelService : FormModelService,
         private router : Router) {
+        this.hydrationSubscription = this.formModelService.$hydrateForm
+            .subscribe( ( _hydratedForm : any ) => {
+                this.showStickyButton = false;
+            } );
     }
 
     public onSave () {
