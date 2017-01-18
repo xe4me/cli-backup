@@ -1,0 +1,25 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-captcha-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-captcha-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "captcha",
+            "blockType": "CaptchaBlock",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-captcha-block/components/amp-captcha-block/amp-captcha-block.component",
+            "custom": {
+                "blockTitle": "And lastly, that you’re not a robot",
+                "isInitiallyActive": true,
+                "controls": [ {
+                    "id": "googleRecaptchaCheck"
+                } ]
+            }
+        }
+    ]
+}

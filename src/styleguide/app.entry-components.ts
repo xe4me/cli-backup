@@ -2,6 +2,7 @@ import AmpAccountNumberBasicUsage from './components/amp-account-number/basic_us
 import AmpAddressBlockBasicUsage from './blocks/amp-address-block/basic_usage.ts';
 import AmpAmlQuestionsBlockBasicUsage from './blocks/amp-aml-questions-block/basic_usage';
 import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
+import AmpCaptchaBlockBasicUsage from './blocks/amp-captcha-block/basic_usage.ts';
 import AmpSmsBlockBasicUsage from './blocks/amp-sms-block/basic_usage.ts';
 import AmpSaveConfirmationBlockBasicUsage from './blocks/amp-save-confirmation-block/basic_usage.ts';
 import AmpWelcomeBlockBasicUsage from './blocks/amp-welcome-block/basic_usage.ts';
@@ -65,6 +66,7 @@ import TextBasicUsage from './layout/text/text';
 import { AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-address-block/entry-components';
 import { AMP_AML_QUESTIONS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-aml-questions-block/entry-components';
 import { AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-basic-info-block/entry-components';
+import { AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-captcha-block/entry-components';
 import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
@@ -74,15 +76,17 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_AML_QUESTIONS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
-    ...AMP_WELCOME_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
     ...AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_WELCOME_BLOCK_ENTRY_COMPONENTS,
 
     AmpAccountNumberBasicUsage,
     AmpAddressBlockBasicUsage,
     AmpAmlQuestionsBlockBasicUsage,
     AmpBasicInfoBlockBasicUsage,
+    AmpCaptchaBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
     AmpSaveConfirmationBlockBasicUsage,
