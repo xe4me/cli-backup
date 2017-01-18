@@ -12,6 +12,7 @@ export * from './src/app/modules/amp-basic-info-block';
 export * from './src/app/modules/amp-captcha-block';
 export * from './src/app/modules/amp-welcome-block';
 export * from './src/app/modules/amp-contact-details-block';
+export * from './src/app/modules/amp-residency-block';
 export * from './src/app/modules/amp-retrieve-block';
 export * from './src/app/modules/amp-tax-file-number-block';
 export * from './src/app/modules/amp-intro-block';

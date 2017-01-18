@@ -1,0 +1,74 @@
+<amp-form-block [context]="context()" buttonsTheme="tools">
+
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+            <amp-country
+                auto-focus-on
+                [isInSummaryState]="isInSummaryState"
+                [id]="__custom.controls[0].id"
+                [controlGroup]="__controlGroup"
+                [required]="true"
+                [label]="'Country of citizenship'">
+                <template let-option="option">
+                    {{ option.country }}
+                </template>
+            </amp-country>
+        </div>
+    </amp-form-row>
+
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+            <amp-country
+                [isInSummaryState]="isInSummaryState"
+                [id]="__custom.controls[1].id"
+                [controlGroup]="__controlGroup"
+                [required]="true"
+                [label]="'Country of residency'">
+                <template let-option="option">
+                    {{ option.country }}
+                </template>
+            </amp-country>
+        </div>
+    </amp-form-row>
+
+    <amp-form-row>
+        <div class="mt-60 heading-contxtual-label">
+            Are you a US citizen or resident for tax purposes?
+            <amp-tooltip-cmp message='If you are a United States (US) citizen or US resident for US tax purposes (even if you are also a taxpayer in Australia) you should answer Yes.'></amp-tooltip-cmp>
+        </div>
+        <div class="mt grid__item_floated palm-1/1 tablet-1/1 lap-and-up-9/12">
+            <amp-group-buttons
+                #usTaxResidency
+                [required]="true"
+                [isInSummaryState]="isInSummaryState"
+                [buttons]="__custom.controls[2].buttons"
+                [groupName]="__custom.controls[2].id"
+                [controlGroup]="__controlGroup">
+            </amp-group-buttons>
+        </div>
+    </amp-form-row>
+
+    <amp-form-row *ngIf="usTaxResidency?.control?.value === true">
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 mr">
+            <amp-input
+                #tin
+                [id]="__custom.controls[3].id"
+                [controlGroup]="__controlGroup"
+                [label]="'TIN'"
+                [required]="true"
+                [isInSummaryState]="isInSummaryState"
+                [pattern]="'^(\\d){9}$'"
+                amp-number-only
+                [maxLength]="9"
+                [errors]="{
+                    required: __custom.controls[3].requiredErrorMessage,
+                    pattern: __custom.controls[3].patternErrorMessage
+                }">
+            </amp-input>
+        </div>
+        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
+            <amp-tooltip-cmp message="Please provide your US taxpayer identification number (TIN). For individuals this is usually your Social Security Number (SSN) and for entities it is usually the Employer Identification Number (EIN)."></amp-tooltip-cmp>
+        </div>
+    </amp-form-row>
+
+</amp-form-block>
