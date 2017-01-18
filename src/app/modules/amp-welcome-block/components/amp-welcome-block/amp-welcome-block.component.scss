@@ -72,9 +72,17 @@ amp-welcome-block {
 }
 
 .intro-container {
-    margin-left: 55px;
+    margin-left: 96px;
     @include media-query(palm) {
         margin: 0;
+    }
+
+    .welcome-header {
+        line-height: 64px;
+        font-size: 52px;
+        font-family: "Archer SSm A", "Archer SSm B", "Open Sans", "Helvetica", "Arial", serif;
+        font-weight: 400;
+        color: #001e41;
     }
 }
 
