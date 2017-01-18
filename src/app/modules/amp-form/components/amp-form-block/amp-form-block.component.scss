@@ -12,6 +12,7 @@
 
         .heading-intro {
             margin-bottom : 40px;
+            outline: none !important;
 
             @include media-query('palm') {
                 font-size : 20px;

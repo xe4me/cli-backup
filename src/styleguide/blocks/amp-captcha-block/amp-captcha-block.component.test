@@ -1,10 +1,10 @@
 @@ set
-    task    AmpIntroBlock
-    url     http://localhost:3001/component/AmpSubmitReceipt
+    task    AmpCaptchaBlock
+    url     http://localhost:3001/component/AmpCaptchaBlock
 
 @@ parameterized
-    | subtask    | spec                                                      |
-    | All        | src/styleguide/blocks/amp-submit-receipt/amp-submit-receipt.component.test.spec    |
+    | subtask    | spec                                                                                   |
+    | All        | src/styleguide/blocks/amp-captcha-block/amp-captcha-block.component.test.spec          |
 
 @@ parameterized
     | browser       |
@@ -19,7 +19,7 @@
     | Mobile     | mobile  | 320x800     |
 
 
-@@ groups ddc, amp-intro-block
+@@ groups ddc, amp-captcha-block
 ${task}: ${subtask} - ${breakpoint}
     selenium ${browser} ${url} ${size}
             check ${spec} --include "${tags}"
