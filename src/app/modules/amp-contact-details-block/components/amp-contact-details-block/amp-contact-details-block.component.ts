@@ -2,10 +2,15 @@ import {
     Component,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    OnInit
+    OnInit,
+    Optional
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
-import { ScrollService, SaveService } from '../../../../services';
+import {
+    ScrollService,
+    SaveService,
+    SaveAndCloseService
+} from '../../../../services';
 
 @Component({
     selector        : 'amp-contact-details-block',
@@ -63,6 +68,7 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
 
     constructor( saveService : SaveService ,
                  _cd : ChangeDetectorRef ,
+                 @Optional() private saveCloseService : SaveAndCloseService,
                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
     }
@@ -74,6 +80,12 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
                 this.setIfNot(this.__custom.controls[index], prop.attr, prop.defaultVal);
             });
         });
+    }
+    onNext() {
+        if (this.saveCloseService) {
+            this.saveCloseService.mobileNumber = this.__controlGroup.value[this.__custom.controls[1].id];
+        }
+        super.onNext();
     }
 
     private setIfNot(control, attr, defaultValue) {

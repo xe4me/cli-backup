@@ -1,10 +1,15 @@
 import {
     Component,
     ChangeDetectorRef,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    Optional
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
-import { ScrollService, SaveService } from '../../../../services';
+import {
+    ScrollService,
+    SaveService,
+    SaveAndCloseService
+} from '../../../../services';
 
 @Component({
     selector        : 'amp-basic-info-block',
@@ -13,11 +18,16 @@ import { ScrollService, SaveService } from '../../../../services';
     styles          : [ require('./amp-basic-info-block.component.scss') ]
 })
 export class AmpBasicInfoBlockComponent extends FormBlock {
-
     constructor( saveService : SaveService ,
                  _cd : ChangeDetectorRef ,
+                 @Optional() private saveCloseService : SaveAndCloseService ,
                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
     }
-
+    onNext() {
+        if (this.saveCloseService) {
+            this.saveCloseService.enable();
+        }
+        super.onNext();
+    }
 }
