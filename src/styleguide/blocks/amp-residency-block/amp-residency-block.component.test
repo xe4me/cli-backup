@@ -1,10 +1,10 @@
 @@ set
-    task    AmpBasicInfoBlock
-    url     http://localhost:3001/component/AmpBasicInfoBlock
+    task    AmpResidencyBlock
+    url     http://localhost:3001/component/AmpResidencyBlock
 
 @@ parameterized
     | subtask    | spec                                                                                   |
-    | All        | src/styleguide/blocks/amp-basic-info-block/amp-basic-info-block.component.test.spec    |
+    | All        | src/styleguide/blocks/amp-residency-block/amp-residency-block.component.test.spec    |
 
 @@ parameterized
     | browser       |
@@ -19,7 +19,7 @@
     | Mobile     | mobile  | 320x800     |
 
 
-@@ groups ddc, amp-basic-info-block
+@@ groups ddc, amp-residency-block
 ${task}: ${subtask} - ${breakpoint}
     selenium ${browser} ${url} ${size}
             check ${spec} --include "${tags}"
