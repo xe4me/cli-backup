@@ -18,7 +18,6 @@ import { ProgressObserverService } from '../../../../services/progress-observer/
 import { Environments } from '../../../../abstracts/environments/environments.abstract';
 @Component( {
     selector   : 'amp-welcome-block' ,
-    // directives : [ AmpButton ] ,
     host       : {
         '[@slideUp]' : 'slideUp',
         '[style.background-image]' : '__custom.backgroundImageUrl'
@@ -68,7 +67,6 @@ export class AmpWelcomeBlockComponent extends FormBlock {
                   scrollService : ScrollService,
                   private viewReference : ViewContainerRef ) {
         super( saveService, _cd, scrollService );
-        console.error('loading welcomess');
     }
 
     // public ngAfterViewInit() {
@@ -102,7 +100,13 @@ export class AmpWelcomeBlockComponent extends FormBlock {
 
     private onNewApplication() {
         let nextBlock = this.getNextStep(AmpWelcomeBlockComponent.ACTIONS.START);
-        this.loadAndScrollToNextBlock(nextBlock);
+        if ( nextBlock ) {
+            this.loadAndScrollToNextBlock(nextBlock);
+        } else {
+            //this.onNext();
+            this.proceed()
+                    .then( this.onNext );
+        }
     }
 
     private loadAndScrollToNextBlock(nextBlock) {
@@ -110,21 +114,9 @@ export class AmpWelcomeBlockComponent extends FormBlock {
         this.__loadNext( nextBlock , this.viewReference )
             .then( (componentRef) => {
                 this.proceed()
-                    .then( () => {
-                        // console.log('nextBlock.blockFdn '+nextBlock.custom.blockFdn);
-                        this.fireMockScrolledEvent(nextBlock.custom.blockFdn);
-                    } );
+                    .then( this.onNext );
             } );
         }
-    }
-
-    private fireMockScrolledEvent (fdn) {
-        // console.log('fireMockScrolledEvent: ' + fdn);
-        // console.log('componentSelector: ' + [ ...fdn, 'block' ].join( '-' ));
-        this.scrollService.$scrolled.emit( {
-            componentSelector : [ ...fdn, 'block' ].join( '-' ) ,
-            section           : null
-        } );
     }
 
 }
