@@ -43,10 +43,15 @@
             class='amp-dropdown-option'
             [class.amp-dropdown-active]='option[fieldItemKey] === selectedOption[fieldItemKey]'
             [attr.tabindex]='i+1'>
-            <template
-                [ngTemplateOutlet]='itemTemplate'
-                [ngOutletContext]='{ option: option, index: index }'>
-            </template>
+            <span *ngIf="itemTemplate">
+                <template
+                    [ngTemplateOutlet]='itemTemplate'
+                    [ngOutletContext]='{ option: option, index: index }'>
+                </template>
+            </span>
+            <span *ngIf="!itemTemplate">
+                {{ option[fieldValueKey] }}
+            </span>
         </li>
     </ul>
 </div>

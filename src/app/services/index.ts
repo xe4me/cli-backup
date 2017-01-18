@@ -17,6 +17,7 @@ export {
 } from './profile/profile.service';
 
 export { SaveAndSubmitService } from './save-and-submit/save-and-submit.service';
+export { SaveAndCloseService } from './save-and-close/save-and-close.service';
 export { ErrorService } from './error/error.service';
 export { SubmitService } from './submit/submit.service';
 export { TransformService } from './transform/transform.service';

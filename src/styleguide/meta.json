@@ -1018,6 +1018,44 @@
             }
         ],
         "readme": "<p>Contact Details block implementation</p>\n"
+    },{
+        "name": "Amp SMS Block",
+        "sources": [
+            "src/app/blocks/amp-save-close-block/components/amp-sms-block/amp-sms-block.component.ts"
+        ],
+        "id": "AmpSmsBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-sms-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-sms-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-sms-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-sms-block/amp-sms-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-sms-block/amp-sms-block.component.spec.ts",
+                "component": "amp-sms-block-basic-usage",
+                "component_src_location": "blocks/amp-sms-block/basic_usage",
+                "name": "Amp SMS Block Basic Usage"
+            }
+        ],
+        "readme": "<p>SMS block implementation</p>\n"
+    },{
+        "name": "Amp Save Confirmation Block",
+        "sources": [
+            "src/app/blocks/amp-save-close-block/components/amp-save-confirmation-block/amp-save-confirmation-block.component.ts"
+        ],
+        "id": "AmpSaveConfirmationBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-save-confirmation-block/amp-save-confirmation-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-save-confirmation-block/amp-save-confirmation-block.component.spec.ts",
+                "component": "amp-save-confirmation-block-basic-usage",
+                "component_src_location": "blocks/amp-save-confirmation-block/basic_usage",
+                "name": "Amp Save and Close Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Save and Close block implementation</p>\n"
     },
     {
         "name": "Amp Form Block",
@@ -1197,43 +1235,5 @@
             }
         ],
         "readme": "<p>To Allow only numbers in the input field</p>\n"
-    },
-    {
-        "name": "Amp Tax File Number Block",
-        "sources": [
-            "src/app/blocks/amp-tax-file-number-block/amp-tax-file-number-block.component.ts"
-        ],
-        "id": "AmpTaxFileNumberBlock",
-        "examples": [
-            {
-                "template": "src/styleguide/blocks/amp-tax-file-number-block/basic_usage.html",
-                "styles": "src/styleguide/blocks/amp-tax-file-number-block/basic_usage.scss",
-                "source": "src/styleguide/blocks/amp-tax-file-number-block/basic_usage.ts",
-                "galen": "src/styleguide/blocks/amp-tax-file-number-block/amp-tax-file-number-block.component.test.spec",
-                "jasmine": "src/styleguide/blocks/amp-tax-file-number-block/amp-tax-file-number-block.component.spec.ts",
-                "component": "amp-tax-file-number-basic-usage",
-                "component_src_location": "blocks/amp-tax-file-number-block/basic_usage",
-                "name": "Amp Tax File Number Block Basic Usage"
-            }
-        ],
-        "readme": "<p>Tax File Number block implementation</p>\n"
-    },
-    {
-        "name": "Amp Currency ",
-        "sources": [
-            "src/app/directives/amp-currency/amp-currency.component.ts"
-        ],
-        "id": "AmpNumberDirective",
-        "examples": [
-            {
-                "template": "src/styleguide/directives/amp-currency/basic_usage.html",
-                "styles": "src/styleguide/directives/amp-currency/basic_usage.scss",
-                "source": "src/styleguide/directives/amp-currency/basic_usage.ts",
-                "component": "amp-currency-basic-usage",
-                "component_src_location": "directives/amp-currency/basic_usage",
-                "name": "Amp Number basic usage"
-            }
-        ],
-        "readme": "<p>To convert the input value to the currency as typing</p>\n"
     }
 ]
