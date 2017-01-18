@@ -104,8 +104,8 @@ export class AmpWelcomeBlockComponent extends FormBlock {
         if ( nextBlock ) {
             this.loadAndScrollToNextBlock(nextBlock);
         } else {
-            this.proceed()
-                    .then( this.onNext );
+                this.proceed();
+                this.onNext();
         }
     }
 
@@ -113,8 +113,8 @@ export class AmpWelcomeBlockComponent extends FormBlock {
         if (nextBlock) {
         this.__loadNext( nextBlock , this.viewReference )
             .then( (componentRef) => {
-                this.proceed()
-                    .then( this.onNext );
+                this.proceed();
+                this.onNext();
             } );
         }
     }
