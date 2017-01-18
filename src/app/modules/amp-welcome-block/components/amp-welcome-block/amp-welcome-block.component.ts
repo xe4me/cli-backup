@@ -67,6 +67,7 @@ export class AmpWelcomeBlockComponent extends FormBlock {
                   scrollService : ScrollService,
                   private viewReference : ViewContainerRef ) {
         super( saveService, _cd, scrollService );
+        this.disableAutoSave();
     }
 
     // public ngAfterViewInit() {
@@ -103,7 +104,6 @@ export class AmpWelcomeBlockComponent extends FormBlock {
         if ( nextBlock ) {
             this.loadAndScrollToNextBlock(nextBlock);
         } else {
-            //this.onNext();
             this.proceed()
                     .then( this.onNext );
         }
