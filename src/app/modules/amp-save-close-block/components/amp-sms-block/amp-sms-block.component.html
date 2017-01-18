@@ -1,0 +1,53 @@
+<amp-form-block [context]="context()" buttonsTheme='tools' [withOkButton]="false">
+    <div class="content"> {{__custom.description? __custom.description : 'Enter your mobile number below to receive an SMS code so you can pick up from where you left off.'}}
+    </div>
+    <amp-form-row>
+        <div class="mt+ palm-8/9 tablet-7/8 lap-and-up-4/12">
+            <amp-mobile-number
+                    [id]="__custom.controls[0].id"
+                    [controlGroup]="__controlGroup"
+                    [pattern]="'^04(\\d){8}$'"
+                    [maxLength]="10"
+                    [errors]="{'pattern' : 'Mobile number must be in the format 04nnnnnnnn.', 'required' : 'Mobile number is a required field.' }"
+                    [required]="true"></amp-mobile-number>
+        </div>
+    </amp-form-row>
+
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
+            <amp-checkbox
+                [id]="__custom.controls[1].id"
+                [controlGroup]="__controlGroup"
+                [required]="true">
+                <span class="checkbox-label" [innerHTML]="__custom.controls[1].label"></span>
+            </amp-checkbox>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="sms-sent_message mt" *ngIf="smsSentErrorMessage">
+            <div class="errors">
+                <div class="error-item">
+                    <span class='icon icon--close icon-errors' aria-hidden='true'></span>
+                    <span>{{smsSentErrorMessage}}</span>
+                </div>
+            </div>
+        </div>
+    </amp-form-row>
+    <amp-form-row>
+        <div class="mt-60">
+            <amp-button
+                    [attr.theme]="'tools'"
+                    (click)="continueTo()"
+                    [disabled]="__controlGroup.invalid"
+                    class="btn btn-submit palm-1/1 1/5 tablet-1/1 palm-mr0 mr">
+                Continue
+            </amp-button>
+            <amp-button
+                    [attr.theme]="'tools'"
+                    (click)="back()"
+                    class="btn btn-secondary palm-1/1 1/5 tablet-1/1 tablet-and-down-mt">
+                Back
+            </amp-button>
+        </div>
+    </amp-form-row>
+</amp-form-block>
