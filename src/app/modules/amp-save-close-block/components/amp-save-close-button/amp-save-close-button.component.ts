@@ -1,7 +1,7 @@
 import {
     Component,
     ChangeDetectionStrategy,
-    Input
+    Input, ChangeDetectorRef
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
@@ -10,7 +10,10 @@ import {
     SaveService,
     SaveAndCloseService
 } from '../../../../services';
-import { Subscription } from 'rxjs';
+import {
+    Subscription,
+    Subject
+} from 'rxjs';
 
 @Component(
     {
@@ -27,12 +30,19 @@ export class AmpSaveCloseButtonComponent {
         private saveService : SaveService,
         private formModelService : FormModelService,
         private saveCloseService : SaveAndCloseService,
+        private _cd : ChangeDetectorRef,
         private router : Router) {
-        this.showStickyButton = this.saveCloseService.showSaveAndClose;
+        this.saveCloseService.showSaveAndClose
+            .subscribe( ( enable : boolean ) => {
+                this.showStickyButton = enable;
+                this._cd.markForCheck();
+            });
         this.hydrationSubscription = this.formModelService.$hydrateForm
             .subscribe( ( _hydratedForm : any ) => {
                 this.showStickyButton = true;
+                this._cd.markForCheck();
             } );
+
     }
 
     public onSave () {

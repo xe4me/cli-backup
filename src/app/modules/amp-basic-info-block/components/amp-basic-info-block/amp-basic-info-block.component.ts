@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
 import { ScrollService, SaveService } from '../../../../services';
-import {SaveAndCloseService} from "../../../../services/save-and-close/save-and-close.service";
+import { SaveAndCloseService } from '../../../../services/save-and-close/save-and-close.service';
 
 @Component({
     selector        : 'amp-basic-info-block',
@@ -15,7 +15,6 @@ import {SaveAndCloseService} from "../../../../services/save-and-close/save-and-
     styles          : [ require('./amp-basic-info-block.component.scss') ]
 })
 export class AmpBasicInfoBlockComponent extends FormBlock {
-
     constructor( saveService : SaveService ,
                  _cd : ChangeDetectorRef ,
                  @Optional() private saveCloseService : SaveAndCloseService ,
@@ -23,6 +22,9 @@ export class AmpBasicInfoBlockComponent extends FormBlock {
         super( saveService, _cd, scrollService );
     }
     onNext() {
-        this.saveCloseService.enable();
+        if (this.saveCloseService) {
+            this.saveCloseService.enable();
+        }
+        super.onNext();
     }
 }

@@ -6,8 +6,11 @@ import {
     Optional
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
-import { ScrollService, SaveService } from '../../../../services';
-import {SaveAndCloseService} from "../../../../services/save-and-close/save-and-close.service";
+import {
+    ScrollService,
+    SaveService,
+    SaveAndCloseService
+} from '../../../../services';
 
 @Component({
     selector        : 'amp-contact-details-block',
@@ -79,11 +82,14 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
         });
     }
     onNext() {
-        this.saveCloseService.mobileNumber = this.__controlGroup.value[this.__custom.controls[1].id];
+        if (this.saveCloseService) {
+            this.saveCloseService.mobileNumber = this.__controlGroup.value[this.__custom.controls[1].id];
+        }
+        super.onNext();
     }
 
     private setIfNot(control, attr, defaultValue) {
-            if (control[attr] === undefined) {
+        if (control[attr] === undefined) {
             control[attr] = defaultValue;
         }
     }
