@@ -8,7 +8,8 @@ import {
     animate,
     ViewContainerRef,
     transition,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    Optional
 } from '@angular/core';
 import {
     Headers,
@@ -20,7 +21,8 @@ import {
     ScrollService,
     SaveService,
     FormModelService,
-    AmpHttpService
+    AmpHttpService,
+    TransformService
 } from '../../../../services';
 import { AmpFormBlockComponent } from '../../../amp-form';
 import { AutoFocusOnDirective } from '../../../amp-directives';
@@ -102,7 +104,8 @@ export class AmpContinueBlockComponent extends FormBlock {
                   private vcf : ViewContainerRef,
                   private formModelService : FormModelService,
                   private http : AmpHttpService,
-                  saveService : SaveService ) {
+                  saveService : SaveService,
+                  @Optional() private transformService : TransformService ) {
         super( saveService, _cd, scrollService );
 
         this.disableAutoSave();
@@ -147,10 +150,15 @@ export class AmpContinueBlockComponent extends FormBlock {
             .map( ( res : Response ) => res.json() )
             .subscribe( ( response ) => {
                 const payload = response.payload;
+
+                // Individual Experience may have their own implementation of the transform service, thus
+                // changing the shape of backend model into the corresponding frontend model.
+                let transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload.application ) : payload.application;
+
                 if ( payload.status === 'success' ) {
                     this.showRetrieveBlock = false;
                     this._cd.markForCheck();
-                    this.formModelService.storeModelAndHydrateForm( payload.application );
+                    this.formModelService.storeModelAndHydrateForm( transformedAppModel );
                 } else {
                     this.responseError = this.getErrorMessage( payload.status );
                     this._cd.markForCheck();
