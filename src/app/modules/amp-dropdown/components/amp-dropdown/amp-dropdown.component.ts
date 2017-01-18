@@ -185,7 +185,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         this.selectedControl.setValue( null );
     }
 
-    setDefaultValue () {
+    private setDefaultValue () {
         if ( this.defaultValue && this.control && !this.control.value ) {
             this.control.setValue( this.defaultValue );
         }

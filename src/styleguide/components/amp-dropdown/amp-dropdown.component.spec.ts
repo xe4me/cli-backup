@@ -334,6 +334,11 @@ describe( 'amp-dropdown component', () => {
         it( 'should not be marked as touched initially', () => {
             expect( CmpControlGroup.touched ).toBeFalsy();
         } );
+        it( 'should NOT be preselected if it no attr as defaultValue is passed int', () => {
+            expect( QueryControl.value ).toBe( null );
+            expect( SelectedControl.value ).toBe( null );
+            expect( getValueOfSelectedOption() ).toBe( '' );
+        } );
     } );
     describe( 'With retrieved controlGroup and default value ', () => {
         beforeEach( () => {
@@ -346,7 +351,7 @@ describe( 'amp-dropdown component', () => {
             expect( getValueOfSelectedOption() ).toBe( TitleOptions[ 0 ].label );
         } );
 
-        it( 'should not be selected the default value because retrieve has priority', () => {
+        it( 'should not be selected with default value because retrieve has priority', () => {
             expect( QueryControl.value ).not.toBe( 'Miss' );
             expect( SelectedControl.value ).not.toBe( 'iss' );
             expect( getValueOfSelectedOption() ).not.toBe( 'Miss' );
