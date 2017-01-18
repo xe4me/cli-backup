@@ -1,0 +1,31 @@
+<div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK" #formBlock>
+    <amp-overlay [active]='!context?.isActive' *ngIf="withOverlay"></amp-overlay>
+    <h2
+        *ngIf="context?.__custom.blockTitle"
+        class="heading js-heading heading-intro {{ headingClass }}"
+        [innerHtml]="context?.__custom.blockTitle"
+        tabindex="-1">
+    </h2>
+
+    <ng-content></ng-content>
+
+    <div class="block-buttons mt-60 " *ngIf="withOkButton">
+        <amp-button
+        [context]="context"
+        *ngIf='!context?.isInSummaryState'
+        [attr.theme]=" buttonsTheme || theme"
+        (click)='context.onNext()'
+        [disabled]='!context?.canGoNext' class='btn btn-ok'>
+        OK
+        </amp-button>
+        <amp-button
+            [context]="context"
+            *ngIf='context?.isInSummaryState'
+            [attr.theme]="buttonsTheme || theme"
+            (click)='context.onEdit()'
+            class='btn btn-change palm-m0'>
+            Change
+        </amp-button>
+    </div>
+    <div class='hr-block-divider'></div>
+</div>
