@@ -233,6 +233,9 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
     }
 
     private selectOption ( option, $event : KeyboardEvent, selectActions : SelectActions ) : void {
+        if ( this.alreadySelectedThis( option ) ) {
+            return;
+        }
         if ( option === null ) {
             this.emptyAll();
         } else {
@@ -335,6 +338,14 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
             }
             // if the value inside the control is not in the options , set it to null !!!!
             this.emptyAll();
+        }
+    }
+
+    private alreadySelectedThis ( option : any ) {
+        if ( this.selectedOption && option !== null ) {
+            return this.selectedOption[ this.fieldItemKey ] === option[ this.fieldItemKey ];
+        } else {
+            return this.selectedOption[ this.fieldItemKey ] === option;
         }
     }
 
