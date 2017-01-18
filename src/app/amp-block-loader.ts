@@ -72,7 +72,7 @@ export abstract class AmpBlockLoader {
 
     createComponent ( _loadedComponent : { new() : any }, _index : number ) {
         let factory = this.componentFactoryResolver
-                          .resolveComponentFactory( _loadedComponent );
+            .resolveComponentFactory( _loadedComponent );
         return this.viewContainer.createComponent( factory, _index );
     }
 

@@ -1,0 +1,17 @@
+<amp-form-block [context]="context()" buttonsTheme="tools" *ngIf="showCaptchaBlock">
+    <p class="heading-contxtual-label">
+        By clicking below, it shows us that you're a human
+    </p>
+    <amp-form-row>
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-4/12">
+            <amp-google-recaptcha
+                    auto-focus-on
+                    [controlGroup]="__controlGroup"
+                    [keepControl]="keepControl"
+                    (captchaResponse)="handleCaptchaResponse($event)"
+                    (captchaExpired)="handleCaptchaExpired($event)"
+                    [sitekey]="sitekey">
+            </amp-google-recaptcha>
+        </div>
+    </amp-form-row>
+</amp-form-block>

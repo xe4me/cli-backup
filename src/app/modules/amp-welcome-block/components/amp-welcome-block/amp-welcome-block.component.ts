@@ -18,6 +18,7 @@ import { ProgressObserverService } from '../../../../services/progress-observer/
 import { Environments } from '../../../../abstracts/environments/environments.abstract';
 @Component( {
     selector   : 'amp-welcome-block' ,
+    // directives : [ AmpButton ] ,
     host       : {
         '[@slideUp]' : 'slideUp',
         '[style.background-image]' : '__custom.backgroundImageUrl'
