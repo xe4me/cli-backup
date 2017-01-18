@@ -6,7 +6,7 @@ export class SaveAndCloseService {
     public mobileNumber : string;
     public exitUrl : string;
     public smsMessage : string;
-    public showSaveAndClose : Observable<boolean> = false;
+    public showSaveAndClose : boolean = false;
     constructor () {
 
     }

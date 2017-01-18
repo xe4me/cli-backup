@@ -5,7 +5,12 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { FormModelService, SaveService, SaveAndCloseService } from '../../../../services';
+import {
+    FormModelService,
+    SaveService,
+    SaveAndCloseService
+} from '../../../../services';
+import { Subscription } from 'rxjs';
 
 @Component(
     {
@@ -17,13 +22,16 @@ import { FormModelService, SaveService, SaveAndCloseService } from '../../../../
 export class AmpSaveCloseButtonComponent {
     @Input() private form : FormGroup;
     private showStickyButton : boolean = false;
+    private hydrationSubscription : Subscription;
     constructor (
         private saveService : SaveService,
         private formModelService : FormModelService,
+        private saveCloseService : SaveAndCloseService,
         private router : Router) {
+        this.showStickyButton = this.saveCloseService.showSaveAndClose;
         this.hydrationSubscription = this.formModelService.$hydrateForm
             .subscribe( ( _hydratedForm : any ) => {
-                this.showStickyButton = false;
+                this.showStickyButton = true;
             } );
     }
 
@@ -33,5 +41,7 @@ export class AmpSaveCloseButtonComponent {
             this.router.navigate( [ 'saveAndClose' ] );
         } );
     }
-
+    public ngOnDestroy () {
+        this.hydrationSubscription.unsubscribe();
+    }
 }

@@ -24,6 +24,5 @@ export class AmpBasicInfoBlockComponent extends FormBlock {
     }
     onNext() {
         this.saveCloseService.enable();
-        super();
     }
 }

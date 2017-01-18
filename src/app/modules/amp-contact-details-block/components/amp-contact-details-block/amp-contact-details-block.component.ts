@@ -80,11 +80,10 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
     }
     onNext() {
         this.saveCloseService.mobileNumber = this.__controlGroup.value[this.__custom.controls[1].id];
-        super();
     }
 
     private setIfNot(control, attr, defaultValue) {
-        if (control[attr] === undefined) {
+            if (control[attr] === undefined) {
             control[attr] = defaultValue;
         }
     }
