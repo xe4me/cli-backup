@@ -46,10 +46,10 @@ export class AmpMenuFrameBlockComponent implements OnDestroy, AfterViewInit {
         this.hydrationSubscription = this.formModelService.$hydrateForm
                                          .subscribe( ( _hydratedForm : any ) => {
                                              this.loader.clear();
-                                             let keys = Object.keys( _hydratedForm.controls.Application.controls );
+                                             let keys = Object.keys( _hydratedForm.controls );
                                              keys.map( ( _controlGroupName ) => {
-                                                 (<any> this.__form.controls).Application.addControl( _controlGroupName,
-                                                     _hydratedForm.controls.Application.controls[ _controlGroupName ] );
+                                                 this.__form.addControl( _controlGroupName,
+                                                     _hydratedForm.controls[ _controlGroupName ] );
                                              } );
                                              this.loader.reload();
                                              this.hideStickyButton = false;
