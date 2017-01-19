@@ -164,7 +164,11 @@ export class AmpContinueBlockComponent extends FormBlock {
                     this._cd.markForCheck();
                 }
             }, ( error ) => {
-                this.responseError = AmpContinueBlockComponent.genericErrorMsg;
+                if (error.status === 404 && error.json() && error.json().payload) {
+                    this.responseError = this.getErrorMessage( error.json().payload.status );
+                } else {
+                    this.responseError = AmpContinueBlockComponent.genericErrorMsg;
+                }
                 this._cd.markForCheck();
             } );
     }
