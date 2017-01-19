@@ -11,10 +11,10 @@ export class AmpSmsService {
         private saveCloseService : SaveAndCloseService) {
 
     }
-    public sendSMS (mobileNumber : string) {
+    public sendSMS (mobile : string) {
             const queryUrl : string = encodeURI(AmpSmsService.SMS_URL);
             const data = {
-                mobileNumber: mobileNumber,
+                mobileNumber: mobile,
                 smsMessage: this.saveCloseService.smsMessage
             };
             return this

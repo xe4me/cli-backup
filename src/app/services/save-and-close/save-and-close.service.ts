@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class SaveAndCloseService {
-    public mobileNumber :  Subject<string> = new Subject( );
+    public mobileNumber : Subject<string> = new Subject( );
     public exitUrl : string;
     public smsMessage : string;
     public initialMobileNumber : string;
@@ -16,8 +16,8 @@ export class SaveAndCloseService {
         this.showSaveAndClose.next(true);
     }
 
-    public updateMobileNumber(number : string) : void {
-        this.initialMobileNumber = number;
-        this.mobileNumber.next(number);
+    public updateMobileNumber( mobile : string ) : void {
+        this.initialMobileNumber = mobile;
+        this.mobileNumber.next(mobile);
     }
 }
