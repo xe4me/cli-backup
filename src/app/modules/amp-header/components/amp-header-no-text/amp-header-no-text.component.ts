@@ -6,7 +6,7 @@ import {
 import { Environments } from '../../../../abstracts/environments/environments.abstract';
 @Component( {
     selector : 'amp-header-no-text',
-    templateUrl : 'amp-header-no-text.component.html',
+    template : require( './amp-header-no-text.component.html' ) ,
     changeDetection : ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     styles : [ require( './amp-header-no-text.component.scss' ) ]
