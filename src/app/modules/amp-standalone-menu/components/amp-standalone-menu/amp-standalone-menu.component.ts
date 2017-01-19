@@ -45,6 +45,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     @Input() menuOffset : number          = 0;
     @Input() theme      : string          = 'forms';
     @Input() sectionsToHide : string[]    = [];
+    @Input() containInside : string       = 'menu-frame';
     public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;
@@ -58,6 +59,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     private menuScrolling : boolean = false;
     private openClosed : string = 'closed';
     private html; // get a reference to html element so we can stop scrolling when menu open on mobile
+    private menuPosition : string         = 'top';
     constructor ( private dom : BrowserDomAdapter,
                   private cd : ChangeDetectorRef,
                   private scrollService : ScrollService ) {
@@ -126,6 +128,11 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         } );
         if ( this.sections.length && hasActiveClass ) {
             this.showMenu = true;
+            this.domUtils.addClass(body, 'show-menu');
+            setTimeout(() => {
+                this.setupContainingElement();
+                this.setMenuPosition();
+            });
         }
         this.cd.markForCheck();
     }
@@ -177,6 +184,71 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
             this.scrollService.updateOffset( menuHeight );
         } else {
             this.scrollService.updateOffset( this.menuOffset );
+        }
+    }
+
+    private onScroll () {
+        this.setMenuPosition();
+    }
+
+    private getContainingElement () {
+        const menu = this.menu.nativeElement;
+        const containingElement = this.domUtils.closest( menu, this.containInside );
+
+        if ( containingElement ) {
+            return containingElement;
+        }
+        return false;
+    }
+
+    private setupContainingElement () {
+        const containingElement = this.getContainingElement();
+
+        if ( containingElement ) {
+            if ( window.getComputedStyle(containingElement).position === 'static' ) {
+                containingElement.style.position = 'relative';
+            }
+        }
+    }
+
+    private setMenuPosition () {
+        const menu = this.menu.nativeElement;
+        const containingElement = this.getContainingElement();
+
+        if ( containingElement ) {
+            const stickyClass           = 'steps-menu--sticky';
+            const bottomClass           = 'steps-menu--bottom';
+            let scrollY                 = window.scrollY || window.pageYOffset;
+            let containingElementY      = containingElement.offsetTop;
+            let containingElementHeight = containingElement.offsetHeight;
+            let menuHeight              = this.menu.nativeElement.offsetHeight;
+            let position;
+
+            if ( scrollY >= (containingElementY + containingElementHeight - menuHeight) ) {
+                position = 'bottom';
+            } else if ( scrollY >= containingElementY ) {
+                position = 'middle';
+            } else {
+                position = 'top';
+            }
+
+            if (this.menuPosition !== position) {
+                this.menuPosition = position;
+
+                switch (position) {
+                    case 'bottom':
+                        this.domUtils.removeClass(menu, stickyClass);
+                        this.domUtils.addClass(menu, bottomClass);
+                        break;
+                    case 'middle':
+                        this.domUtils.removeClass(menu, bottomClass);
+                        this.domUtils.addClass(menu, stickyClass);
+                        break;
+                    default:
+                        this.domUtils.removeClass(menu, stickyClass);
+                        this.domUtils.removeClass(menu, bottomClass);
+                }
+            }
         }
     }
 
