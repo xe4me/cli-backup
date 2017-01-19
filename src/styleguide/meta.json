@@ -1018,7 +1018,28 @@
             }
         ],
         "readme": "<p>Contact Details block implementation</p>\n"
-    },{
+    },
+    {
+        "name": "Amp Menu Frame Block",
+        "sources": [
+            "src/app/blocks/amp-menu-frame-block/amp-menu-frame-block.component.ts"
+        ],
+        "id": "AmpMenuFrameBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-menu-frame-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-menu-frame-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-menu-frame-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-menu-frame-block/amp-menu-frame-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-menu-frame-block/amp-menu-frame-block.component.spec.ts",
+                "component": "amp-menu-frame-basic-usage",
+                "component_src_location": "blocks/amp-menu-frame-block/basic_usage",
+                "name": "Amp Menu Frame Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Menu frame implementation</p>\n"
+    },
+    {
         "name": "Amp SMS Block",
         "sources": [
             "src/app/blocks/amp-save-close-block/components/amp-sms-block/amp-sms-block.component.ts"

@@ -1,0 +1,133 @@
+<form [formGroup]="form" class='nl-form p+'>
+    <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"></div>
+</form>
+
+<section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">
+            Above is an example of a "AMP Welcome" block.
+        </h2>
+        <p class="ml small">
+            This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
+            <br>It should be <strong>the default way of loading it</strong>.
+        </p>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            In "form-def.def.json" file, add the AMP welcome block like below:
+        </p>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "name": "Welcome",
+        "blockType": "AmpWelcomeBlockComponent",
+        "blockLayout": "INLINE",
+        "commonBlock": true,
+        "path": "modules/amp-welcome-block/components/amp-welcome-block/amp-welcome-block.component",
+        "custom": &#123;
+            ...
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
+        <h2 class="mb- ml mt+">Customisation</h2>
+        <p class="para ml">
+            In the "custom" section, <strong>you have to define</strong>:
+        </p>
+
+        <ul class="bml">
+            <li>
+                The titles and the background image of the block:
+            </li>
+        </ul>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "custom": &#123;
+            "welcomeTitle": "AMP Saver Account",
+            "welcomeMessage": "Reach your savings goals sooner",
+            "backgroundImageUrl": "url(/assets/images/Intro-background_96DPI.jpg)"
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
+        <ul class="bml">
+            <li>
+                The body messages are in point forms. Define the the icon and the text for each point:
+            </li>
+        </ul>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "custom": &#123;
+        "welcomePoints": [
+           &#123;
+            "icon": "time-clock-icon",
+            "text": "It will only take about 5 minutes"
+            &#125;,
+           &#123;
+            "icon": "eighteen-plus-icon",
+            "text": "You must be over 18 years old"
+           &#125;
+        ]
+        &#125;
+    &#125;
+            </code>
+        </pre>
+<ul class="bml">
+            <li>
+                Define the list of actions/buttons. On click of a button, the amp block loader loads the subsequent block. Define the subsequent block that needs to be loaded for each button:
+            </li>
+        </ul>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "custom": &#123;
+        "actions": [
+            &#123;
+                "action": "start",
+                "buttonName": "New application",
+                "nextBlock": &#123;
+                    "name": "contactDetails",
+                    "blockType": "AmpContactDetailsBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": true,
+                    "path": "modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component",
+                    "custom": &#123;
+                        "blockTitle": "And your contact details...",
+                        "blockFdn" : ["PersonalDetailsSection" , "contactDetails"]
+                        &#123;
+                    &#125;
+                &#125;
+            &#125;,
+            &#123;
+                "action": "continue",
+                "buttonName": "Continue application",
+                "nextBlock": &#123;
+                    "name": "basicInfo",
+                    "blockType": "AmpBasicInfoBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": true,
+                    "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                    "custom": &#123;
+                        "blockTitle": "Where did we leave off?",
+                        "blockFdn" : ["PersonalDetailsSection" , "basicInfo"]
+                        &#123;
+                    &#125;
+                &#125;
+            &#125;
+        ]
+        &#125;
+    &#125;
+            </code>
+        </pre>
+        <p class="ml">
+            In case you need more customisation options, please get in touch with DDC team!
+        </p>
+        <p>&nbsp;</p>
+    </article>
+</section>
