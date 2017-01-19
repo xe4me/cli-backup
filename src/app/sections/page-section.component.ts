@@ -16,6 +16,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
         '[class.visited]' : '__controlGroup.touched || isATab',
         '[class.done]'    : '__controlGroup.valid && __controlGroup.touched',
         '[attr.label]'    : '__custom?.label',
+        '[attr.tab]'      : 'isATab',
         '[tabindex]'      : '"-1"'
     },
     styles          : [ require( './page-section.component.scss' ) ],
