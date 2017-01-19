@@ -1,7 +1,8 @@
 import {
     Component,
     ChangeDetectionStrategy,
-    Input, ChangeDetectorRef
+    Input,
+    ChangeDetectorRef
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
@@ -11,8 +12,7 @@ import {
     SaveAndCloseService
 } from '../../../../services';
 import {
-    Subscription,
-    Subject
+    Subscription
 } from 'rxjs';
 
 @Component(
