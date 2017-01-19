@@ -47,6 +47,8 @@ module.exports = {
             res.status(200).send(
                 'var _process_env = ' + JSON.stringify(
                     {
+                        ApiCallsBaseUrl: '/ddc/secure/api',
+                        ExperienceName: EXPERIENCE_NAME,
                         GoogleApiKey: GOOGLE_API_KEY,
                         TamServicePath: TAM_SERVICE_PATH,
                         TamCustomerDomain: TAM_CUSTOMER_DOMAIN,
