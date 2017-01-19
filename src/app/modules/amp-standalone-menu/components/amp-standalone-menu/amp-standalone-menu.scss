@@ -1,7 +1,7 @@
 @import '../../../../../styles/abstracts';
 @import './amp-standalone-menu.mixins';
 
-$amp-ddc-menu-height: 70px !default;
+$amp-ddc-menu-height: $menu-height;
 $amp-ddc-menu-border-width: 1px;
 $amp-ddc-menu-padding-top: 20px;
 $amp-ddc-menu-padding-bottom: 15px;
@@ -18,20 +18,40 @@ $amp-ddc-menu-circle-offset: 5px;
 $amp-ddc-menu-color-default: $amp-colour-sky-blue;
 $amp-ddc-menu-color-dark: $amp-colour-primary;
 
+:host {
+    display: block;
+
+    &.menu--is-not-sticky {
+        position: relative;
+    }
+}
+
 .hidden {
     display : none;
 }
+
 .steps-menu {
     @include amp-family($amp-font-open-sans-regular);
     font-size: $amp-ddc-menu-font-size;
-    position: fixed;
-    top: 70px;
-    left: 40px;
+    position: absolute;
+    top: 0;
+    padding: 70px 0;
     z-index: 100;
+
+    &--sticky {
+        position: fixed;
+    }
+
+    &--bottom {
+        position: absolute;
+        top: auto;
+        bottom: 0;
+    }
 
     @include media-query(palm) {
         background: $amp-colour-white;
         overflow: hidden;
+        padding: 0;
         position: fixed;
         top: 0;
         left: 0;
@@ -46,7 +66,6 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
 
     &--open {
         @include media-query(palm) {
-            overflow: auto;
             padding-bottom: $amp-ddc-menu-height;
         }
     }
@@ -88,6 +107,15 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
             border: 0;
             border-top: 1px solid $amp-colour-grey-dark;
             z-index: 10;
+        }
+    }
+
+    &__nav {
+        display: block;
+        height: 100%;
+
+        @include media-query(palm) {
+            overflow: auto;
         }
     }
 

@@ -1,20 +1,16 @@
 @import '../../../../../styles/abstracts';
 
-$menu-height-desktop: 100px;
-$menu-height-mobile: 65px;
+$header-height-desktop: 100px;
+$header-height-mobile: 65px;
 
 :host {
-    @include media-query('palm') {
-        padding-top : $menu-height-mobile;
-    }
-
     display: block;
 
     .amp-logo__image {
-        max-height: $menu-height-desktop * 0.6;
+        max-height: $header-height-desktop * 0.6;
 
         @include media-query(tablet-and-down) {
-            max-height: $menu-height-mobile * 0.6;
+            max-height: $header-height-mobile * 0.6;
         }
     }
 
@@ -22,11 +18,11 @@ $menu-height-mobile: 65px;
         background-color:  $amp-colour-primary;
         color: #fff;
         display: table;
-        height: $menu-height-desktop;
+        height: $header-height-desktop;
         width: 100%;
 
         @include media-query(tablet-and-down) {
-            height: $menu-height-mobile;
+            height: $header-height-mobile;
         }
 
         &__inner {

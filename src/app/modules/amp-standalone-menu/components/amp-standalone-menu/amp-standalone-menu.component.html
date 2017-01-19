@@ -2,11 +2,13 @@
     #menu
     class="steps-menu steps-menu--{{ theme }}"
     [class.steps-menu--open]="isOpen"
+    [class.steps-menu--sticky]="isSticky"
     *ngIf="showMenu"
     [@openClosed]="openClosed"
-    (window:resize)="onResize($event.target, menu)">
+    (window:resize)="onResize($event.target, menu)"
+    (window:scroll)="onScroll()">
     <ng-content></ng-content>
-    <nav role="navigation">
+    <nav role="navigation" class="steps-menu__nav">
         <ul class="steps-menu__list">
             <li *ngFor="let section of sections" id="{{ section.id }}" class="steps-menu__item" [ngClass]="section.state" [class.hidden]="section.hidden">
                 <span class="steps-menu__step" *ngIf="isStateDisabled(section.state)">

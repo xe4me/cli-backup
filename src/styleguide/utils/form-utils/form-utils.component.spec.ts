@@ -18,8 +18,8 @@ describe( 'Form Util functions test', () => {
         } );
 
         it( 'time now should be within opening times', () => {
-            let start = moment().subtract( 1, 'h' );
-            let end   = moment().add( 1, 'h' );
+            let start = moment().subtract( 1, 'm' );
+            let end   = moment().add( 1, 'm' );
 
             expect( FormUtils.isWithinTimes( time( start ), time( end ) ) ).toEqual( true );
         } );

@@ -25,3 +25,9 @@
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+.show-menu {
+    @include media-query('palm') {
+        padding-top: $menu-height;
+    }
+}

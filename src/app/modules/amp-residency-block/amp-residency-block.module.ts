@@ -18,7 +18,8 @@ const DECLARATIONS = [ AmpResidencyBlockComponent ];
         AmpGroupButtonsModule,
         AmpInputsModule,
         AmpTooltipModule
-    ] ,
+    ],
+    entryComponents : DECLARATIONS,
     exports      : DECLARATIONS
 } )
 export class AmpResidencyBlockModule {

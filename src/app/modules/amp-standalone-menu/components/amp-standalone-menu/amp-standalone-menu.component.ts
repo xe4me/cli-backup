@@ -23,18 +23,18 @@ import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
     template        : require( './amp-standalone-menu.component.html' ),
     styles          : [ require( './amp-standalone-menu.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush,
-    animations : [
+    animations      : [
         trigger(
             'openClosed',
             [
                 state( 'closed, void', style( {
-                    height       : '*'
+                    height : '*'
                 } ) ),
                 state( 'open', style( {
-                    height       : '100%'
+                    height : '100%'
                 } ) ),
                 transition(
-                    'closed <=> open', [ animate('450ms ease-in') ] )
+                    'closed <=> open', [ animate( '450ms ease-in' ) ] )
             ] )
     ]
 } )
@@ -43,20 +43,20 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number          = 0;
-    @Input() theme      : string          = 'forms';
+    @Input() theme : string               = 'forms';
     @Input() sectionsToHide : string[]    = [];
-    public showMenu     : boolean         = false;
+    public showMenu : boolean             = false;
     private sections                      = [];
     private currentSectionId : string     = null;
     private domUtils : DomUtils           = null;
     private itemPrefix : string           = 'Item-'; // Prefix for the nav menu id.
     private isOpen : boolean              = false;
-    private currentSectionLabel : string = '';
+    private currentSectionLabel : string  = '';
     private tempScrollTop : number;
     private sectionObservable : Observable<any>;
     private scrollSubscription : Subscription;
-    private menuScrolling : boolean = false;
-    private openClosed : string = 'closed';
+    private menuScrolling : boolean       = false;
+    private openClosed : string           = 'closed';
     private html; // get a reference to html element so we can stop scrolling when menu open on mobile
     constructor ( private dom : BrowserDomAdapter,
                   private cd : ChangeDetectorRef,
@@ -85,11 +85,11 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     }
 
     private isStateDisabled ( state : string ) {
-        return state.indexOf( 'visited' ) === - 1 && state.indexOf( 'active' ) === - 1;
+        return state.indexOf( 'visited' ) === -1 && state.indexOf( 'active' ) === -1;
     }
 
     private isStateActive ( state : string ) {
-        return state.indexOf( 'active' ) > - 1;
+        return state.indexOf( 'active' ) > -1;
     }
 
     /**
@@ -108,19 +108,21 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
             let menuItemId    = this.itemPrefix + section.id;
             let classes       = section.className;
             let label         = section.getAttribute( 'label' );
-            let hidden = this.sectionsToHide.indexOf(pageSectionId) !== -1;
-            if ( ! hasActiveClass && currentSectionName && currentSectionName.indexOf( pageSectionId ) > - 1 ) {
-                classes               = classes ? classes + ' active' : 'active';
-                this.currentSectionId = pageSectionId;
-                hasActiveClass        = true;
+            let isATab        = section.getAttribute( 'tab' );
+            let hidden        = this.sectionsToHide.indexOf( pageSectionId ) !== -1;
+            if ( !hasActiveClass && currentSectionName && currentSectionName.indexOf( pageSectionId ) > -1 ) {
+                classes                  = classes ? classes + ' active' : 'active';
+                this.currentSectionId    = pageSectionId;
+                hasActiveClass           = true;
                 this.currentSectionLabel = label;
             }
             return {
                 label,
                 pageSectionId,
-                id            : menuItemId,
-                state         : classes,
-                anchorUrl     : window.location.href + '/#' + pageSectionId,
+                isATab,
+                id        : menuItemId,
+                state     : classes,
+                anchorUrl : window.location.href + '/#' + pageSectionId,
                 hidden
             };
         } );
@@ -133,13 +135,13 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     private close () {
         this.allowHtmlScrolling();
         this.openClosed = 'closed';
-        this.isOpen = false;
+        this.isOpen     = false;
     }
 
     private open () {
         this.disableHtmlScrolling();
-        this.isOpen   = true;
-        this.openClosed = 'open';
+        this.isOpen        = true;
+        this.openClosed    = 'open';
         this.tempScrollTop = this.scrollService.scrollTop;
     }
 
@@ -153,14 +155,19 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private onSectionClick ( event, section ) {
         event.preventDefault();
-        this.scrollToSection(section);
+        console.log( 'section', section );
+        this.scrollToSection( section );
         this.close();
     }
 
     private scrollToSection ( section ) {
         this.currentSectionId = section.pageSectionId;
-        this.menuScrolling = true;
-        this.scrollService.scrollToComponentSelector( section.pageSectionId );
+        this.menuScrolling    = true;
+        if ( section.isATab === 'true' ) {
+            this.scrollService.scrollToComponentSelector( section.pageSectionId, null, 0, true ); // mock th scroll
+        } else {
+            this.scrollService.scrollToComponentSelector( section.pageSectionId );
+        }
     }
 
     private allowHtmlScrolling () {
@@ -182,19 +189,19 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private subscribeToScrollEvents () {
         this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( component ) => {
-            if (this.menuScrolling) {
-                let body = this.dom.query( 'body' );
-                let section = this.dom.querySelector( body, '#' + component.componentSelector );
-                let tabindex = section.getAttribute('tabindex');
+            if ( this.menuScrolling ) {
+                let body     = this.dom.query( 'body' );
+                let section  = this.dom.querySelector( body, '#' + component.componentSelector );
+                let tabindex = section.getAttribute( 'tabindex' );
 
                 this.menuScrolling = false;
 
-                if (tabindex && tabindex !== '0') {
+                if ( tabindex && tabindex !== '0' ) {
                     section.focus();
                 } else {
-                    setTimeout(() => {
-                        this.dom.querySelector( body, 'a[href$="#' + component.componentSelector + '"]').focus();
-                    });
+                    setTimeout( () => {
+                        this.dom.querySelector( body, 'a[href$="#' + component.componentSelector + '"]' ).focus();
+                    } );
                 }
             }
         } );

@@ -1039,6 +1039,65 @@
         "readme": "<p>Contact Details block implementation</p>\n"
     },
     {
+        "name": "Amp Menu Frame Block",
+        "sources": [
+            "src/app/blocks/amp-menu-frame-block/amp-menu-frame-block.component.ts"
+        ],
+        "id": "AmpMenuFrameBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-menu-frame-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-menu-frame-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-menu-frame-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-menu-frame-block/amp-menu-frame-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-menu-frame-block/amp-menu-frame-block.component.spec.ts",
+                "component": "amp-menu-frame-basic-usage",
+                "component_src_location": "blocks/amp-menu-frame-block/basic_usage",
+                "name": "Amp Menu Frame Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Menu frame implementation</p>\n"
+    },
+    {
+        "name": "Amp SMS Block",
+        "sources": [
+            "src/app/blocks/amp-save-close-block/components/amp-sms-block/amp-sms-block.component.ts"
+        ],
+        "id": "AmpSmsBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-sms-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-sms-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-sms-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-sms-block/amp-sms-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-sms-block/amp-sms-block.component.spec.ts",
+                "component": "amp-sms-block-basic-usage",
+                "component_src_location": "blocks/amp-sms-block/basic_usage",
+                "name": "Amp SMS Block Basic Usage"
+            }
+        ],
+        "readme": "<p>SMS block implementation</p>\n"
+    },{
+        "name": "Amp Save Confirmation Block",
+        "sources": [
+            "src/app/blocks/amp-save-close-block/components/amp-save-confirmation-block/amp-save-confirmation-block.component.ts"
+        ],
+        "id": "AmpSaveConfirmationBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-save-confirmation-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-save-confirmation-block/amp-save-confirmation-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-save-confirmation-block/amp-save-confirmation-block.component.spec.ts",
+                "component": "amp-save-confirmation-block-basic-usage",
+                "component_src_location": "blocks/amp-save-confirmation-block/basic_usage",
+                "name": "Amp Save and Close Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Save and Close block implementation</p>\n"
+    },
+    {
         "name": "Amp Form Block",
         "sources": [
             "src/app/blocks/amp-form-block/amp-form-block.component.ts"
