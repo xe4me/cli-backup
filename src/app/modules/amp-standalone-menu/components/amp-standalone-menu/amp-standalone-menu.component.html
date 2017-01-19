@@ -2,6 +2,7 @@
     #menu
     class="steps-menu steps-menu--{{ theme }}"
     [class.steps-menu--open]="isOpen"
+    [class.steps-menu--sticky]="isSticky"
     *ngIf="showMenu"
     [@openClosed]="openClosed"
     (window:resize)="onResize($event.target, menu)"

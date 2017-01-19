@@ -36,7 +36,10 @@ import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
                 transition(
                     'closed <=> open', [ animate('450ms ease-in') ] )
             ] )
-    ]
+    ],
+    host            : {
+        '[class.menu--is-not-sticky]': '!isSticky',
+    }
 } )
 export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild( 'menu' ) menu;
@@ -46,6 +49,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     @Input() theme      : string          = 'forms';
     @Input() sectionsToHide : string[]    = [];
     @Input() containInside : string       = 'menu-frame';
+    @Input() isSticky : boolean           = true;
     public showMenu     : boolean         = false;
     private sections                      = [];
     private currentSectionId : string     = null;
@@ -59,7 +63,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     private menuScrolling : boolean = false;
     private openClosed : string = 'closed';
     private html; // get a reference to html element so we can stop scrolling when menu open on mobile
-    private menuPosition : string         = 'top';
+    private menuPosition : string          = '';
     constructor ( private dom : BrowserDomAdapter,
                   private cd : ChangeDetectorRef,
                   private scrollService : ScrollService ) {
@@ -67,7 +71,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         this.sectionObservable = scrollService.$scrolled;
     }
 
-    ngOnInit () : any {
+    public ngOnInit () : any {
         this.sectionObservable.subscribe( ( blockchanges ) => {
             let sectionName = blockchanges ? blockchanges.componentSelector : null;
             setTimeout( () => {
@@ -77,12 +81,12 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         this.html = this.dom.query( 'html' );
     }
 
-    ngAfterViewInit () {
+    public ngAfterViewInit () {
         this.onResize( window, this.menu );
         this.subscribeToScrollEvents();
     }
 
-    ngOnDestroy () {
+    public ngOnDestroy () {
         this.unSubscribeFromEvents();
     }
 
@@ -203,10 +207,14 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private setupContainingElement () {
         const containingElement = this.getContainingElement();
+        const styles = window.getComputedStyle(containingElement);
 
-        if ( containingElement ) {
-            if ( window.getComputedStyle(containingElement).position === 'static' ) {
+        if ( containingElement && styles ) {
+            if ( styles.position === 'static' ) {
                 containingElement.style.position = 'relative';
+            }
+            if ( styles.display === 'inline' ) {
+                containingElement.style.display = 'block';
             }
         }
     }
@@ -215,14 +223,14 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         const menu = this.menu.nativeElement;
         const containingElement = this.getContainingElement();
 
-        if ( containingElement ) {
+        if ( containingElement && this.isSticky ) {
             const stickyClass           = 'steps-menu--sticky';
             const bottomClass           = 'steps-menu--bottom';
             let scrollY                 = window.scrollY || window.pageYOffset;
             let containingElementY      = containingElement.offsetTop;
             let containingElementHeight = containingElement.offsetHeight;
             let menuHeight              = this.menu.nativeElement.offsetHeight;
-            let position;
+            let position                = 'top';
 
             if ( scrollY >= (containingElementY + containingElementHeight - menuHeight) ) {
                 position = 'bottom';

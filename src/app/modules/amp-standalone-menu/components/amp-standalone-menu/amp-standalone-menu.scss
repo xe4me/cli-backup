@@ -20,6 +20,10 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
 
 :host {
     display: block;
+
+    &.menu--is-not-sticky {
+        position: relative;
+    }
 }
 
 .hidden {
