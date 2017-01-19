@@ -1,30 +1,22 @@
 import {
     Component,
     ChangeDetectorRef,
-    ChangeDetectionStrategy,
-    AfterViewInit
+    ChangeDetectionStrategy
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
 import { SaveService } from '../../../../services/save/save.service';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 
 @Component( {
-    selector        : 'amp-tax-file-number-block',
-    template        : require( './amp-tax-file-number-block.component.html' ),
+    selector        : 'amp-residency-block',
+    template        : require('./amp-residency-block.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class AmpTaxFileNumberBlockComponent extends FormBlock implements AfterViewInit {
-
-    public hasTfn : boolean = null;
+export class AmpResidencyBlockComponent extends FormBlock {
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
-    }
-
-    onTaxGroupButtonClick ( $event ) {
-        this.hasTfn = $event;
-        this._cd.detectChanges();
     }
 }

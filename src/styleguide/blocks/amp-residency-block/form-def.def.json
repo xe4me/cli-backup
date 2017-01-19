@@ -1,0 +1,48 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "Residency",
+            "blockType": "AmpResidencyBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-residency-block/components/amp-residency-block/amp-residency-block.component",
+            "custom": {
+                "isInitiallyActive": true,
+                "blockTitle": "Nearly there...",
+                "controls": [
+                    {
+                        "id": "countryOfCitizenship"
+                    },
+                    {
+                        "id": "countryOfResidency"
+                    },
+                    {
+                        "id": "USTaxCitizen",
+                        "buttons": [
+                            {
+                                "id": "Yes",
+                                "value": true,
+                                "label": "Yes"
+                            },
+                            {
+                                "id": "No",
+                                "value": false,
+                                "label": "No"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "tin",
+                        "requiredErrorMessage": "TIN is a required field.",
+                        "patternErrorMessage": "TIN must contain 9 digits."
+                    }
+                ]
+            }
+        }
+    ]
+}

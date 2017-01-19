@@ -45,7 +45,7 @@ export class AmpSmsBlockComponent extends FormBlock implements OnInit {
             this.saveCloseService.mobileNumber = (this.__controlGroup.value[this.__custom.controls[0].id]);
             this.sms.sendSMS()
                 .subscribe( (result) => {
-                        this.goToNext();
+                        this.goToNextBlock();
                     },
                     (error) => {
                         this.smsSentErrorMessage = `Request SMS could not be sent to ${this.saveCloseService.mobileNumber}`;
@@ -57,11 +57,11 @@ export class AmpSmsBlockComponent extends FormBlock implements OnInit {
         history.back();
     }
 
-    private goToNext() : void {
+    private goToNextBlock() : void {
         this.__loadNext( this.__custom.optionalBlocks[0], this.vcf )
             .then ( ( ) => {
-            let myIndex = this.__getIndex(this.vcf);
-            this.__removeAt(myIndex);
-        });
+                let myIndex = this.__getIndex(this.vcf);
+                this.__removeAt(myIndex);
+            });
     }
 }

@@ -16,38 +16,40 @@
             </amp-group-buttons>
         </div>
     </amp-form-row>
-    <div *ngIf="hasTfn">
-        <div class="mt-60 heading-contxtual-label">
-            Providing your tax file number prevents you from paying unnecessary tax on the interest you earn.
+    <div *ngIf="hasTfn !== null">
+        <div *ngIf="hasTfn">
+            <div class="mt-60 heading-contxtual-label">
+                Providing your tax file number prevents you from paying unnecessary tax on the interest you earn.
+            </div>
+            <amp-form-row>
+                <div class="mt grid__item_floated tablet-and-down-1/1 lap-and-up-4/12">
+                    <amp-tax-file-number
+                            [id]="__custom.controls[1].id"
+                            [controlGroup]="__controlGroup"
+                            [required]="false"
+                            [isInSummaryState]="isInSummaryState">
+                        <amp-tooltip-cmp
+                                class="post-fix"
+                                message="Collection of tax file number (TFN) information is authorised by tax laws. Australian privacy law and tax laws strictly regulate the use and disclosure of TFNs. You are not required by law to provide your TFN and it is not an offence if you don’t provide it. We collect your TFN to determine if we must withhold an amount from any interest we pay to you on your AMP Bett3r Account.">
+                        </amp-tooltip-cmp>
+                    </amp-tax-file-number>
+                </div>
+            </amp-form-row>
         </div>
-        <amp-form-row>
-            <div class="mt grid__item_floated tablet-and-down-1/1 lap-and-up-4/12">
-                <amp-tax-file-number
-                        [id]="__custom.controls[1].id"
+        <amp-form-row *ngIf="!hasTfn">
+            <div class="grid__item_floated tablet-and-down-1/1 lap-and-up-8/12 mt+">
+                <amp-dropdown
+                        label='Tax File Number exemption reason'
+                        [isInSummaryState]="isInSummaryState"
+                        [id]="__custom.controls[2].id"
+                        [options]="__custom.controls[2].options"
                         [controlGroup]="__controlGroup"
-                        [required]="false"
-                        [isInSummaryState]="isInSummaryState">
-                    <amp-tooltip-cmp
-                            class="post-fix"
-                            message="Collection of tax file number (TFN) information is authorised by tax laws. Australian privacy law and tax laws strictly regulate the use and disclosure of TFNs. You are not required by law to provide your TFN and it is not an offence if you don’t provide it. We collect your TFN to determine if we must withhold an amount from any interest we pay to you on your AMP Bett3r Account.">
-                    </amp-tooltip-cmp>
-                </amp-tax-file-number>
+                        [required]="true">
+                    <template let-option="option">
+                        {{ option.label }}
+                    </template>
+                </amp-dropdown>
             </div>
         </amp-form-row>
     </div>
-    <amp-form-row *ngIf="!hasTfn">
-        <div class="grid__item_floated tablet-and-down-1/1 lap-and-up-8/12 mt+">
-            <amp-dropdown
-                    label='Tax File Number exemption reason'
-                    [isInSummaryState]="isInSummaryState"
-                    [id]="__custom.controls[2].id"
-                    [options]="__custom.controls[2].options"
-                    [controlGroup]="__controlGroup"
-                    [required]="true">
-                <template let-option="option">
-                    {{ option.label }}
-                </template>
-            </amp-dropdown>
-        </div>
-    </amp-form-row>
 </amp-form-block>

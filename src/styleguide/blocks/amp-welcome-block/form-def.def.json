@@ -1,8 +1,6 @@
 {
     "id": "Application",
     "name": "Application",
-    "fdnClassPath": "src/styleguide/blocks/amp-welcome-block",
-    "fdnModelPath": "src/styleguide/blocks/amp-welcome-block",
     "version": "0.0.1",
     "path": "/application",
     "status": "NEW",
@@ -19,11 +17,11 @@
                 "backgroundImageUrl": "url(/assets/images/Intro-background_96DPI.jpg)",
                 "welcomePoints": [
                     {
-                    "icon": "time-clock-icon", 
+                    "icon": "time-clock-icon",
                     "text": "Point 1: It will only take about 5 minutes"
                     },
                     {
-                    "icon": "eighteen-plus-icon", 
+                    "icon": "eighteen-plus-icon",
                     "text": "Point 2: You must be over 18 years old"
                     }
                 ],
@@ -87,7 +85,7 @@
                             }
                         }
                     }
-                ] 
+                ]
             }
         }
     ]

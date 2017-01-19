@@ -1,4 +1,4 @@
-<div class="welcome-container">
+<amp-intro-block class="mt0" [ngStyle]="{'background-image': __custom.backgroundImageUrl}">
     <div class="header-container">
         <div class="logo-container">
             <amp-logo [baseURL]="damContentUrl" [theme]="'tools'">
@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="intro-container mt++">
-        <h1 class="welcome-header">{{__custom.welcomeTitle}}</h1>
+        <h1 class="intro-header">{{__custom.welcomeTitle}}</h1>
         <h3 class="intro-message-heading heading heading-intro mt">{{__custom.welcomeMessage}}</h3>
         <div class="intro-list-container">
             <ul class="data-list data-list-iconed">
@@ -27,4 +27,4 @@
             </amp-button>
         </div>
     </div>
-</div>
+</amp-intro-block>
