@@ -1,0 +1,170 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-menu-frame-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-menu-frame-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+      
+            "name": "welcome",
+            "blockType": "AmpWelcomeBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock" : false ,
+            "path"        : "modules/amp-welcome-block/components/amp-welcome-block/amp-welcome-block.component" ,
+            "custom": {
+              "welcomeTitle": "Welcome to AMP!",
+                "welcomeMessage": "This is a welcome message.",
+                "backgroundImageUrl": "url(/assets/images/Intro-background_96DPI.jpg)",
+                "welcomePoints": [
+                    {
+                    "icon": "time-clock-icon", 
+                    "text": "It will only take about 5 minutes"
+                    },
+                    {
+                    "icon": "eighteen-plus-icon", 
+                    "text": "You must be over 18 years old"
+                    }
+                ],
+                "actions": [
+                    {
+                        "action": "start",
+                        "buttonName": "New application"
+                    },
+                    {
+                        "action": "continue",
+                        "buttonName": "Continue application"
+                    }
+                ] 
+            }
+          },
+          {
+          "blockType": "AmpMenuFrameBlockComponent",
+          "blockLayout": "INLINE",
+          "commonBlock": false,
+          "path": "modules/amp-menu-frame-block/components/amp-menu-frame-block/amp-menu-frame-block.component",
+          "blocks": [
+                {
+                  "name": "personalDetails",
+                  "blockType": "PageSectionComponent",
+                  "blockLayout": "SECTION",
+                  "commonBlock": false,
+                  "path": "sections/page-section.component",
+                  "custom": {
+                    "label": "Personal Details"
+                  },
+                  "blocks": [
+                    {
+                      "name": "basicInfo",
+                      "blockType": "AmpBasicInfoBlockComponent",
+                      "blockLayout": "INLINE",
+                      "commonBlock": false,
+                      "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                      "custom": {
+                        "blockTitle": "Tell us about yourself",
+                        "isInitiallyActive": true,
+                        "controls": [
+                          {
+                            "id": "title"
+                          },
+                          {
+                            "id": "firstName"
+                          },
+                          {
+                            "id": "middleName"
+                          },
+                          {
+                            "id": "surName"
+                          },
+                          {
+                            "id": "dateOfBirth"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "furtherQuestions",
+                  "blockType": "PageSectionComponent",
+                  "blockLayout": "SECTION",
+                  "commonBlock": false,
+                  "path": "sections/page-section.component",
+                  "custom": {
+                    "label": "Further Questions"
+                  },
+                  "blocks": [
+                    {
+                      "name": "taxFileNumber",
+                      "blockType": "AmpTaxFileNumberBlockComponent",
+                      "blockLayout": "INLINE",
+                      "commonBlock": false,
+                      "path": "modules/amp-tax-file-number-block/components/amp-tax-file-number-block/amp-tax-file-number-block.component",
+                      "custom": {
+                        "blockTitle": "Questions we need to ask...",
+                        "isInitiallyActive": true,
+                        "controls": [
+                          {
+                            "id": "hasTaxFileNumber",
+                            "buttons": [
+                              {
+                                "id": "Yes",
+                                "value": true,
+                                "label": "Yes"
+                              },
+                              {
+                                "id": "No",
+                                "value": false,
+                                "label": "No"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "taxFileNumber"
+                          },
+                          {
+                            "id": "noTaxFileNumberReason",
+                            "options": [
+                              {
+                                "value": "Children",
+                                "label": "Children"
+                              },
+                              {
+                                "value": "AgedServiceInvalidPensioner",
+                                "label": "Aged, Service or Invalid Pensioner"
+                              },
+                              {
+                                "value": "OtherExemptPensioner",
+                                "label": "Other exempt Pensioner"
+                              },
+                              {
+                                "value": "TaxReturnsNotRequired",
+                                "label": "Tax returns not required"
+                              },
+                              {
+                                "value": "ExemptForTFN",
+                                "label": "Exempt for TFN"
+                              },
+                              {
+                                "value": "TerritoryResident",
+                                "label": "Territory residents"
+                              },
+                              {
+                                "value": "NonResident",
+                                "label": "Non resident"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+            ]
+          }
+    
+
+    ]
+}
