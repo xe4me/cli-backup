@@ -1,4 +1,7 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
+    <p class="heading-contxtual-label">
+        Enter your full name that's shown on your identification documents.
+    </p>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 palm-mt+ pr-- palm-p0">
             <amp-titles
@@ -26,7 +29,8 @@
                 [id]="__custom.controls[2].id"
                 [controlGroup]="__controlGroup"
                 [isInSummaryState]="isInSummaryState"
-                [label]="'Middle name'">
+                [label]="'Middle name(s)'"
+                [showOptional]="false">
             </amp-input>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">

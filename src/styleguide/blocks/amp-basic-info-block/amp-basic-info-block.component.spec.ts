@@ -90,7 +90,7 @@ describe('amp-basic-info-block component', () => {
     it('should have the correct label for the "Middle name" text input', () => {
         const middleNameLabelEl = ngElement.query(By.css('label[for=Application-MiddleName]'));
         expect(middleNameLabelEl).toBeDefined();
-        expect(middleNameLabelEl.nativeElement.textContent.trim()).toEqual('Middle name (optional)');
+        expect(middleNameLabelEl.nativeElement.textContent.trim()).toEqual('Middle name(s)');
     });
 
     // "Date of birth" label defined in the component's html template
