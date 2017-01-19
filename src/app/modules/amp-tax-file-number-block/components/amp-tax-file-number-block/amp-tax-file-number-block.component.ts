@@ -15,7 +15,7 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
 } )
 export class AmpTaxFileNumberBlockComponent extends FormBlock implements AfterViewInit {
 
-    public hasTfn : boolean;
+    public hasTfn : boolean = null;
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
