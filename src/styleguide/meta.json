@@ -502,7 +502,7 @@
     {
         "name": "Amp Header",
         "sources": [
-            "src/app/modules/amp-header/components"
+            "src/app/modules/amp-header/components/amp-header/amp-header.component"
         ],
         "id": "AmpHeader",
         "examples": [
@@ -518,6 +518,25 @@
             }
         ],
         "readme": "<p>AMP standard header for experience projects"
+    },{
+        "name": "Amp Header No Text",
+        "sources": [
+            "src/app/modules/amp-header/components/amp-header-no-text/amp-header-no-text.component"
+        ],
+        "id": "AmpHeaderNoText",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-header-no-text/basic_usage.html",
+                "styles": "src/styleguide/components/amp-header-no-text/basic_usage.scss",
+                "source": "src/styleguide/components/amp-header-no-text/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-header-no-text/amp-header-no-text.test.spec",
+                "jasmine": "src/styleguide/components/amp-header-no-text/amp-header-no-text.spec.ts",
+                "component": "amp-header-no-text-basic-usage",
+                "component_src_location": "components/amp-header-no-text/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>AMP standard header without contact information for experience projects"
     },
     {
         "name": "Amp Home Number",

@@ -3,7 +3,8 @@ import {
     ChangeDetectorRef,
     ChangeDetectionStrategy,
     OnInit,
-    Optional
+    Optional,
+    ViewChild,
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
 import {
@@ -12,13 +13,15 @@ import {
     SaveAndCloseService
 } from '../../../../services';
 
+import { AmpInputComponent } from '../../../amp-inputs';
+
 @Component({
     selector        : 'amp-contact-details-block',
     template        : require('./amp-contact-details-block.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit {
-
+    @ViewChild('mobileNumber') mobileNumberCmp : AmpInputComponent;
     private defaultValues = [
         [
             {
@@ -71,6 +74,7 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
                  @Optional() private saveCloseService : SaveAndCloseService,
                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
+
     }
 
     ngOnInit() {
@@ -83,7 +87,9 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
     }
     onNext() {
         if (this.saveCloseService) {
-            this.saveCloseService.mobileNumber = this.__controlGroup.value[this.__custom.controls[1].id];
+            console.log("this.mobileNumberCmp.control.value");
+            console.log(this.mobileNumberCmp.control.value);
+            this.saveCloseService.updateMobileNumber(this.mobileNumberCmp.control.value);
         }
         super.onNext();
     }
