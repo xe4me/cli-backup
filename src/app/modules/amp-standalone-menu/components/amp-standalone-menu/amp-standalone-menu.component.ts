@@ -23,47 +23,41 @@ import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
     template        : require( './amp-standalone-menu.component.html' ),
     styles          : [ require( './amp-standalone-menu.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush,
-    animations : [
+    animations      : [
         trigger(
             'openClosed',
             [
                 state( 'closed, void', style( {
-                    height       : '*'
+                    height : '*'
                 } ) ),
                 state( 'open', style( {
-                    height       : '100%'
+                    height : '100%'
                 } ) ),
                 transition(
-                    'closed <=> open', [ animate('450ms ease-in') ] )
+                    'closed <=> open', [ animate( '450ms ease-in' ) ] )
             ] )
-    ],
-    host            : {
-        '[class.menu--is-not-sticky]': '!isSticky',
-    }
+    ]
 } )
 export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild( 'menu' ) menu;
     // Selector of the main page content to show/hide content in mobile view.
     @Input() mainContentSelector : string = 'main';
     @Input() menuOffset : number          = 0;
-    @Input() theme      : string          = 'forms';
+    @Input() theme : string               = 'forms';
     @Input() sectionsToHide : string[]    = [];
-    @Input() containInside : string       = 'menu-frame';
-    @Input() isSticky : boolean           = true;
-    public showMenu     : boolean         = false;
+    public showMenu : boolean             = false;
     private sections                      = [];
     private currentSectionId : string     = null;
     private domUtils : DomUtils           = null;
     private itemPrefix : string           = 'Item-'; // Prefix for the nav menu id.
     private isOpen : boolean              = false;
-    private currentSectionLabel : string = '';
+    private currentSectionLabel : string  = '';
     private tempScrollTop : number;
     private sectionObservable : Observable<any>;
     private scrollSubscription : Subscription;
-    private menuScrolling : boolean = false;
-    private openClosed : string = 'closed';
+    private menuScrolling : boolean       = false;
+    private openClosed : string           = 'closed';
     private html; // get a reference to html element so we can stop scrolling when menu open on mobile
-    private menuPosition : string          = '';
     constructor ( private dom : BrowserDomAdapter,
                   private cd : ChangeDetectorRef,
                   private scrollService : ScrollService ) {
@@ -71,7 +65,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         this.sectionObservable = scrollService.$scrolled;
     }
 
-    public ngOnInit () : any {
+    ngOnInit () : any {
         this.sectionObservable.subscribe( ( blockchanges ) => {
             let sectionName = blockchanges ? blockchanges.componentSelector : null;
             setTimeout( () => {
@@ -81,21 +75,21 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         this.html = this.dom.query( 'html' );
     }
 
-    public ngAfterViewInit () {
+    ngAfterViewInit () {
         this.onResize( window, this.menu );
         this.subscribeToScrollEvents();
     }
 
-    public ngOnDestroy () {
+    ngOnDestroy () {
         this.unSubscribeFromEvents();
     }
 
     private isStateDisabled ( state : string ) {
-        return state.indexOf( 'visited' ) === - 1 && state.indexOf( 'active' ) === - 1;
+        return state.indexOf( 'visited' ) === -1 && state.indexOf( 'active' ) === -1;
     }
 
     private isStateActive ( state : string ) {
-        return state.indexOf( 'active' ) > - 1;
+        return state.indexOf( 'active' ) > -1;
     }
 
     /**
@@ -114,29 +108,26 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
             let menuItemId    = this.itemPrefix + section.id;
             let classes       = section.className;
             let label         = section.getAttribute( 'label' );
-            let hidden = this.sectionsToHide.indexOf(pageSectionId) !== -1;
-            if ( ! hasActiveClass && currentSectionName && currentSectionName.indexOf( pageSectionId ) > - 1 ) {
-                classes               = classes ? classes + ' active' : 'active';
-                this.currentSectionId = pageSectionId;
-                hasActiveClass        = true;
+            let isATab        = section.getAttribute( 'tab' );
+            let hidden        = this.sectionsToHide.indexOf( pageSectionId ) !== -1;
+            if ( !hasActiveClass && currentSectionName && currentSectionName.indexOf( pageSectionId ) > -1 ) {
+                classes                  = classes ? classes + ' active' : 'active';
+                this.currentSectionId    = pageSectionId;
+                hasActiveClass           = true;
                 this.currentSectionLabel = label;
             }
             return {
                 label,
                 pageSectionId,
-                id            : menuItemId,
-                state         : classes,
-                anchorUrl     : window.location.href + '/#' + pageSectionId,
+                isATab,
+                id        : menuItemId,
+                state     : classes,
+                anchorUrl : window.location.href + '/#' + pageSectionId,
                 hidden
             };
         } );
         if ( this.sections.length && hasActiveClass ) {
             this.showMenu = true;
-            this.domUtils.addClass(body, 'show-menu');
-            setTimeout(() => {
-                this.setupContainingElement();
-                this.setMenuPosition();
-            });
         }
         this.cd.markForCheck();
     }
@@ -144,13 +135,13 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     private close () {
         this.allowHtmlScrolling();
         this.openClosed = 'closed';
-        this.isOpen = false;
+        this.isOpen     = false;
     }
 
     private open () {
         this.disableHtmlScrolling();
-        this.isOpen   = true;
-        this.openClosed = 'open';
+        this.isOpen        = true;
+        this.openClosed    = 'open';
         this.tempScrollTop = this.scrollService.scrollTop;
     }
 
@@ -164,14 +155,19 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private onSectionClick ( event, section ) {
         event.preventDefault();
-        this.scrollToSection(section);
+        console.log( 'section', section );
+        this.scrollToSection( section );
         this.close();
     }
 
     private scrollToSection ( section ) {
         this.currentSectionId = section.pageSectionId;
-        this.menuScrolling = true;
-        this.scrollService.scrollToComponentSelector( section.pageSectionId );
+        this.menuScrolling    = true;
+        if ( section.isATab === 'true' ) {
+            this.scrollService.scrollToComponentSelector( section.pageSectionId, null, 0, true ); // mock th scroll
+        } else {
+            this.scrollService.scrollToComponentSelector( section.pageSectionId );
+        }
     }
 
     private allowHtmlScrolling () {
@@ -191,90 +187,21 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         }
     }
 
-    private onScroll () {
-        this.setMenuPosition();
-    }
-
-    private getContainingElement () {
-        const menu = this.menu.nativeElement;
-        const containingElement = this.domUtils.closest( menu, this.containInside );
-
-        if ( containingElement ) {
-            return containingElement;
-        }
-        return false;
-    }
-
-    private setupContainingElement () {
-        const containingElement = this.getContainingElement();
-        const styles = window.getComputedStyle(containingElement);
-
-        if ( containingElement && styles ) {
-            if ( styles.position === 'static' ) {
-                containingElement.style.position = 'relative';
-            }
-            if ( styles.display === 'inline' ) {
-                containingElement.style.display = 'block';
-            }
-        }
-    }
-
-    private setMenuPosition () {
-        const menu = this.menu.nativeElement;
-        const containingElement = this.getContainingElement();
-
-        if ( containingElement && this.isSticky ) {
-            const stickyClass           = 'steps-menu--sticky';
-            const bottomClass           = 'steps-menu--bottom';
-            let scrollY                 = window.scrollY || window.pageYOffset;
-            let containingElementY      = containingElement.offsetTop;
-            let containingElementHeight = containingElement.offsetHeight;
-            let menuHeight              = this.menu.nativeElement.offsetHeight;
-            let position                = 'top';
-
-            if ( scrollY >= (containingElementY + containingElementHeight - menuHeight) ) {
-                position = 'bottom';
-            } else if ( scrollY >= containingElementY ) {
-                position = 'middle';
-            } else {
-                position = 'top';
-            }
-
-            if (this.menuPosition !== position) {
-                this.menuPosition = position;
-
-                switch (position) {
-                    case 'bottom':
-                        this.domUtils.removeClass(menu, stickyClass);
-                        this.domUtils.addClass(menu, bottomClass);
-                        break;
-                    case 'middle':
-                        this.domUtils.removeClass(menu, bottomClass);
-                        this.domUtils.addClass(menu, stickyClass);
-                        break;
-                    default:
-                        this.domUtils.removeClass(menu, stickyClass);
-                        this.domUtils.removeClass(menu, bottomClass);
-                }
-            }
-        }
-    }
-
     private subscribeToScrollEvents () {
         this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( component ) => {
-            if (this.menuScrolling) {
-                let body = this.dom.query( 'body' );
-                let section = this.dom.querySelector( body, '#' + component.componentSelector );
-                let tabindex = section.getAttribute('tabindex');
+            if ( this.menuScrolling ) {
+                let body     = this.dom.query( 'body' );
+                let section  = this.dom.querySelector( body, '#' + component.componentSelector );
+                let tabindex = section.getAttribute( 'tabindex' );
 
                 this.menuScrolling = false;
 
-                if (tabindex && tabindex !== '0') {
+                if ( tabindex && tabindex !== '0' ) {
                     section.focus();
                 } else {
-                    setTimeout(() => {
-                        this.dom.querySelector( body, 'a[href$="#' + component.componentSelector + '"]').focus();
-                    });
+                    setTimeout( () => {
+                        this.dom.querySelector( body, 'a[href$="#' + component.componentSelector + '"]' ).focus();
+                    } );
                 }
             }
         } );
