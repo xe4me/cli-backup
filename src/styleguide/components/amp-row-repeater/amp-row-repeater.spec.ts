@@ -6,7 +6,8 @@ import {
 import {
     Component,
     ElementRef,
-    ViewChild
+    ViewChild,
+    Injector
 } from '@angular/core';
 import {
     FormsModule,
@@ -14,85 +15,191 @@ import {
     FormGroup
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
+import { HttpModule } from '@angular/http';
+import {
+    AmpQasAddressModule,
+    AmpQasAddressService
+} from '../../../app/modules/amp-qas-address';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
+import {
+    AmpRowRepeaterModule,
+    AmpRowRepeaterComponent
+} from '../../../app/modules/amp-row-repeater';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
-describe( 'amp-account-number component', () => {
+import { AmpFormModule } from '../../../app/modules/amp-form';
+import { MockAmpQasAddressService } from '../amp-qas-address/amp-qas-address.component.spec';
+fdescribe( 'amp-row-repeater component', () => {
+    let _fixture;
+    let _testCmpInjector : Injector;
+    let _testCmp;
+    let _element;
+    let _debugElement;
+    let _testCmpControlGroup;
+    let _repeaterComp : AmpRowRepeaterComponent;
+
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ FormsModule, ReactiveFormsModule, AmpInputsModule ],
-            declarations : [
-                TestComponent
-            ],
+            declarations : [ TestComponent ],
             providers    : [
-                { provide : ElementRef, useClass : MockElementRef },
-                { provide : ComponentFixtureAutoDetect, useValue : true }
+                {
+                    provide  : ComponentFixtureAutoDetect,
+                    useValue : true
+                }
+            ],
+            imports      : [
+                HttpModule,
+                FormsModule,
+                ReactiveFormsModule,
+                AmpRowRepeaterModule,
+                AmpInputsModule,
+                AmpFormModule
             ]
         } );
-        TestBed.compileComponents();
+        _fixture             = TestBed.createComponent( TestComponent );
+        _testCmpInjector     = _fixture.debugElement.injector;
+        _testCmp             = _fixture.componentInstance;
+        _repeaterComp        = _testCmp.repeater;
+        _debugElement        = _fixture.debugElement;
+        _element             = _fixture.nativeElement;
+        _testCmpControlGroup = _testCmp.__controlGroup;
+        _fixture.detectChanges();
     } ) );
-    it( 'should contain an input text element with the correct name, max value, id and data-automation-id attribute', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
-        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
-        let Component             = fixture.componentInstance;
-        expect( compiledInput.nativeElement.name ).toBe( Component.accountNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.id ).toBe( Component.accountNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.attributes[ 'maxlength' ].value ).toBe( '9' );
-        expect( compiledInput.nativeElement.type ).toBe( 'text' );
-        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.accountNumberCmp.randomizedId );
+    it( 'testComponentControlGroup should be defined ', () => {
+        expect( _testCmpControlGroup ).toBeDefined();
     } );
-    it( 'should be invalid if longer than 9 digits', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        let compiledInput          = compiledTestComponent.query( By.css( 'input' ) );
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '12345678910' );
-        expect( accountNumberControl._status ).toBe( 'INVALID' );
+    it( '_repeaterComp should be defined ', () => {
+        expect( _repeaterComp ).toBeDefined();
     } );
-    it( 'should be invalid if shorter than 9 digits', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        let compiledInput          = compiledTestComponent.query( By.css( 'input' ) );
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '12345678' );
-        expect( accountNumberControl._status ).toBe( 'INVALID' );
+    describe( 'add', () => {
+        it( 'should initially have one row if initialRowCount has not been specified', () => {
+            expect( _repeaterComp.rowCount ).toBe( 1 );
+        } );
+        it( 'should should add a row when clicking calling add() without specifying how many ', () => {
+            _repeaterComp.add();
+            expect( _repeaterComp.rowCount ).toBe( 2 );
+        } );
+        it( 'should should add as much row as specified in the add function when called', () => {
+            _repeaterComp.add( 4 );
+            expect( _repeaterComp.rowCount ).toBe( 5 );
+        } );
+        it( 'should not add more than the maxRows if specified', () => {
+            // considering max row is 5
+            _repeaterComp.add( 10 );
+            expect( _repeaterComp.rowCount ).toBe( 5 );
+        } );
+        it( 'should add one more , if the number of rows are less than specified number', () => {
+            _repeaterComp.addIfLt( 2 );
+            expect( _repeaterComp.rowCount ).toBe( 2 );
+        } );
+        it( 'should add one more , if the number of rows are less than or equal to specified number', () => {
+            _repeaterComp.addIfLtE( 1 );
+            expect( _repeaterComp.rowCount ).toBe( 2 );
+        } );
+        it( 'should NOT add one more if the nor is NOT less than or equal the specified number ', () => {
+            _repeaterComp.addIfLtE( 0 );
+            expect( _repeaterComp.rowCount ).toBe( 1 );
+        } );
+        it( 'should NOT add one more if the nor is not less than the specified number ', () => {
+            _repeaterComp.addIfLt( 0 );
+            expect( _repeaterComp.rowCount ).toBe( 1 );
+        } );
+        it( 'should add one more , if the number of rows are greater than specified number', () => {
+            _repeaterComp.addIfGt( 0 );
+            expect( _repeaterComp.rowCount ).toBe( 2 );
+        } );
+        it( 'should add one more , if the number of rows are greater than or equal to the specified number', () => {
+            _repeaterComp.addIfGtE( 1 );
+            expect( _repeaterComp.rowCount ).toBe( 2 );
+        } );
+        it( 'should NOT add one more , if the number of rows are NOT greater than to the specified number', () => {
+            _repeaterComp.addIfGt( 1 );
+            expect( _repeaterComp.rowCount ).toBe( 1 );
+        } );
+        it( 'should NOT add one more , if the number of rows are NOT greater than or equal to the specified number', () => {
+            _repeaterComp.addIfGtE( 2 );
+            expect( _repeaterComp.rowCount ).toBe( 1 );
+        } );
     } );
-    it( 'should be valid if exactly 9 digits', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        let compiledInput          = compiledTestComponent.query( By.css( 'input' ) );
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '123456789' );
-        expect( accountNumberControl._status ).toBe( 'VALID' );
+    describe( 'remove', () => {
+        it( 'should REMOVE all the rows and the rowCount should be 0 if reset is called', () => {
+            _repeaterComp.reset();
+            expect( _repeaterComp.rowCount ).toBe( 0 );
+        } );
+        it( 'should REMOVE only the specified row if remove is called', () => {
+            _repeaterComp.add( 4 );
+            expect( _repeaterComp.rowCount ).toBe( 5 );
+            _repeaterComp.remove( 4 );
+            expect( _repeaterComp.rowCount ).toBe( 4 );
+        } );
+        it( 'should NOT REMOVE if the number is not specified when remove is called', () => {
+            _repeaterComp.add( 4 );
+            expect( _repeaterComp.rowCount ).toBe( 5 );
+            (<any> _repeaterComp).remove();
+            expect( _repeaterComp.rowCount ).toBe( 5 );
+        } );
     } );
-    it( 'should be invalid if contains non-numeric characters', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        let compiledInput          = compiledTestComponent.query( By.css( 'input' ) );
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '12345678a' );
-        expect( accountNumberControl._status ).toBe( 'INVALID' );
+
+    fdescribe( 'buttons when specified', () => {
+        it( 'should have an add button with the correct label if specified', () => {
+            let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
+            let AddButtonElement          = AddButtonElementDebugElem.nativeElement;
+            expect( AddButtonElementDebugElem ).toBeDefined();
+            expect( AddButtonElement ).toBeDefined();
+            expect( AddButtonElement.innerText ).toBe( 'Add another one' );
+        } );
+        it( 'should NOT have an add button if nor are zero ', () => {
+            _repeaterComp.reset();
+            let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
+            expect( AddButtonElementDebugElem ).toBe(null);
+        } );
+        it( 'should have the add button disabled if the rowCount and maxRows are met', () => {
+            _repeaterComp.add(5);
+            let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
+            expect( AddButtonElementDebugElem ).toBe(null);
+        } );
     } );
+
 } );
-class MockElementRef implements ElementRef {
-    nativeElement = {};
-}
 @Component( {
     template : `
-    <form  #formModel='ngForm' class='nl-form' >
-        <amp-account-number
-            #accountNumberCmp
-            [id]="'account-number'"
-            [controlGroup]='accountNumberControl'></amp-account-number>
-    </form>
+    <amp-row-repeater
+            #repeater
+            [controlGroup]="__controlGroup"
+            [id]="'EquityHolders'"
+            [addBtn]="'Add another one'"
+            [maxRows]="5"
+            [removeBtn]="'Remove'"
+            [isInSummaryState]="isInSummaryState">
+        <template let-index="index" let-controlGroup="controlGroup">
+            <h2 class="heading heading-intro" [ngClass]="{'mt-30': index }">
+                Row {{ index + 1 }}
+            </h2>
+
+            <amp-form-row>
+                <div class="grid__item_floated lap-and-up-1/2 lap-and-up-pr">
+                    <amp-first-name
+                            [id]="'firstname'"
+                            [keepControl]='true'
+                            [controlGroup]="controlGroup"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-first-name>
+                </div>
+                <div class="grid__item_floated lap-and-up-1/2">
+                    <amp-last-name
+                            [id]="'lastname'"
+                            [keepControl]='true'
+                            [controlGroup]="controlGroup"
+                            [isInSummaryState]="isInSummaryState">
+                    </amp-last-name>
+                </div>
+            </amp-form-row>
+        </template>
+    </amp-row-repeater>
     `
 } )
 class TestComponent {
-    @ViewChild( 'accountNumberCmp' ) accountNumberCmp;
-                                     accountNumberControl : FormGroup = new FormGroup( {} );
+    @ViewChild( 'repeater' ) repeater;
+                             toggleFlag : boolean;
+    private __controlGroup : FormGroup = new FormGroup( {} );
 }
