@@ -28,7 +28,6 @@
     "preclean:install": "npm run clean",
     "preclean:start": "npm run clean",
     "pree2e": "npm run webdriver:update -- --standalone",
-    "preversion": "npm test",
     "protractor": "protractor",
     "rimraf": "rimraf",
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
