@@ -20,7 +20,6 @@ import { Environments } from '../../../../abstracts/environments/environments.ab
     selector   : 'amp-welcome-block' ,
     host       : {
         '[@slideUp]' : 'slideUp',
-        '[style.background-image]' : '__custom.backgroundImageUrl'
     } ,
     template     : require('./amp-welcome-block.component.html'),
     styles     : [ require( './amp-welcome-block.component.scss')] ,
