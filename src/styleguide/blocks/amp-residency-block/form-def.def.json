@@ -1,8 +1,6 @@
 {
     "id": "Application",
     "name": "Application",
-    "fdnClassPath": "src/styleguide/blocks/amp-residency-block",
-    "fdnModelPath": "src/styleguide/blocks/amp-residency-block",
     "version": "0.0.1",
     "path": "/application",
     "status": "NEW",

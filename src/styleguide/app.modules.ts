@@ -1,4 +1,4 @@
-import { AmpStyleguideReduxModule } from '../app/redux/amp-styleguide-redux.module';
+import { AmpStyleguideReduxModule } from './amp-styleguide-redux.module';
 import { AmpQasAddressModule } from '../app/modules/amp-qas-address';
 import { AmpFileUploadModule } from '../app/modules/amp-file-upload';
 import { AmpTypeaheadModule } from '../app/modules/amp-typeahead';

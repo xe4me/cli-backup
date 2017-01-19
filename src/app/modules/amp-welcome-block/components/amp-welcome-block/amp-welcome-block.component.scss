@@ -1,27 +1,32 @@
 @import '../../../../../styles/abstracts';
-$font-size : $amp-base-font-size * 2 / 5 !default;
-
-amp-welcome-block {
+amp-intro-block {
     background-repeat: no-repeat;
-    background-size: 100%;
-    min-height: 1262px;
-}
-.welcome-container{
-    width: 100%;
-    display: block;
-    padding-top: 69px;
-}
-.header-container {
-    background-color: $amp-colour-primary;
-    position: absolute;
-    width: 100%;
-    display: block;
-    left: 0;
-    top: 0;
-    @include media-query(lap-and-up) {
-        height: 70px;
-    }
+    background-size: cover;
+    background-color: transparent;
+    min-height: 893px;
+    padding: 69px 0px !important;
 
+    .intro-message-heading {
+        margin-bottom: 0;
+    }
+    .intro-header {
+        line-height: 64px;
+        font-size: 52px;
+        font-family: "Archer SSm A", "Archer SSm B", "Open Sans", "Helvetica", "Arial", serif;
+        font-weight: 400;
+        color: #001e41;
+    }
+    .header-container {
+        background-color: $amp-colour-primary;
+        position: absolute;
+        width: 100%;
+        display: block;
+        left: 0;
+        top: 0;
+        @include media-query(lap-and-up) {
+            height: 70px;
+        }
+    }
     amp-logo {
         height: 50px;
         margin-left: 71px;
@@ -32,10 +37,13 @@ amp-welcome-block {
             margin-bottom: 10px;
         }
     }
-
-    @include media-query(tablet-and-down) {
+    @include media-query(tablet-and-up) {
+        // buttons have a !important margin-top and we somehow need to override them in this case
+        #title-scenario {
+            margin-bottom: -25px;
+        }
         amp-logo {
-            margin-left: 7px;
+            margin-left: 71px;
             display: block;
             height: 65px;
             img {
@@ -44,68 +52,84 @@ amp-welcome-block {
             }
         }
     }
-}
-
-.intro-message-heading {
-    margin-bottom: 0;
-}
-
-@media screen and (min-width: 1821px) {
-    background-size: 100%;
-    min-height: 1262px;
-}
-@include media-query(palm) {
-    padding: 0 8px;
-    background-position: left top;
-    background-size: 3000px;
-    .intro-message-heading {
-        margin: 30px 0px 15px;
-        color: $amp-colour-primary;
-        font-size: $font-size-small;
-        line-height: 30px;
+    @media screen and (min-width: 1821px) {
+        background-size: 100%;
+        min-height: 1262px;
     }
-    amp-button {
-        button.btn {
-            margin-top: 20px !important;
+    @include media-query(palm) {
+        padding: 0 8px !important;
+        background-position: left top;
+        background-size: 3000px;
+        .intro-message-heading {
+            margin: 30px 0px 15px;
+            color: $amp-colour-primary;
+            font-size: $font-size-small;
+            line-height: 30px;
+        }
+        amp-button {
+            button.btn {
+                margin-top: 20px !important;
+            }
         }
     }
-}
 
-.intro-container {
-    margin-left: 96px;
-    @include media-query(palm) {
-        margin: 0;
+    .intro-container {
+        margin-left: 55px;
+        @include media-query(palm) {
+            margin: 0;
+        }
     }
 
-    .welcome-header {
-        line-height: 64px;
-        font-size: 52px;
-        font-family: "Archer SSm A", "Archer SSm B", "Open Sans", "Helvetica", "Arial", serif;
+   .intro-list-container {
         font-weight: 400;
-        color: #001e41;
-    }
-}
-
-.intro-list-container {
-    font-weight: 400;
-    margin-top: 60px;
-    color: $amp-colour-secondary-darkest;
-    .data-list {
-        &.data-list-iconed {
-            list-style: none;
-            .data-list__item {
-                margin-top: 36px;
-                span {
-                    display: inline-block;
-                    vertical-align: middle;
-                    font-size: $font-size-tiny;
-                    font-weight: 600;
-                    margin-left: 14px;
-                    padding-bottom: 13px;
-                    @include media-query(palm) {
-                        display: block;
-                        margin-left: 8px;
+        margin-top: 60px;
+        color: $amp-colour-secondary-darkest;
+        .data-list {
+            &.data-list-iconed {
+                list-style: none;
+                .data-list__item {
+                    margin-top: 36px;
+                    span {
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: $font-size-tiny;
+                        font-weight: 600;
+                        margin-left: 14px;
+                        padding-bottom: 13px;
+                        @include media-query(palm) {
+                            display: block;
+                            margin-left: 8px;
+                        }
                     }
+                    &.icon {
+                            &::before {
+                                content: ' ';
+                                float: left;
+                                margin-top: -4px;
+                                margin-right: 20px;
+                                top: 0;
+                                width: 36px;
+                                height: 37px;
+                                background-repeat: no-repeat;
+                                background-size: 100%;
+                            }
+                            &.time-clock-icon {
+                                &::before {
+                                    background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/time_clock.png');
+                                }
+                            }
+                            &.eighteen-plus-icon {
+                                &::before {
+                                    background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/18+.png');
+                                }
+                            }
+                            &.id-check-icon {
+                                &::before {
+                                    height: 33px;
+                                    background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/id.png');
+                                }
+                            }
+                        }
                 }
             }
         }

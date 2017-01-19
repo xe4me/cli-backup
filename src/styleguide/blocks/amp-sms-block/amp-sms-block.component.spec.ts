@@ -66,9 +66,9 @@ describe('amp-sms-block component', () => {
     });
 
     describe('Should disable OK button, if any required field is not valid', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             loadComponent();
-        }));
+        });
         it ('if mobileNumber empty, should disable OK buton', () => {
             expect(mobileControl._status).toBe('INVALID');
             const okButtonEl = domElement.querySelector('button');
@@ -100,12 +100,7 @@ describe('amp-sms-block component', () => {
 
 @Component({
     template: `
-    <form #formModel='ngForm' class='nl-form'>
-        <div class="sms-block">
-            <amp-sms-block #block>
-            </amp-sms-block>
-        </div>
-    </form>
+        <amp-sms-block #block></amp-sms-block>
     `
 })
 class TestComponent implements OnInit {

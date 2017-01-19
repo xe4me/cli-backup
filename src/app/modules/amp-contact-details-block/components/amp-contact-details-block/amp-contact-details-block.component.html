@@ -9,7 +9,7 @@
                 [required]="__custom.controls[0].required">
             </amp-email>
         </div>
-        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
+        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12" *ngIf="!isInSummaryState">
             <amp-tooltip-cmp [message]="__custom.controls[0].tooltipMessage"></amp-tooltip-cmp>
         </div>
     </amp-form-row>
@@ -29,7 +29,7 @@
                 [required]="__custom.controls[1].required">
             </amp-mobile-number>
         </div>
-        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12">
+        <div class="grid__item_floated palm-1/9 tablet-1/8 lap-and-up-2/12" *ngIf="!isInSummaryState">
             <amp-tooltip-cmp [message]="__custom.controls[1].tooltipMessage"></amp-tooltip-cmp>
         </div>
     </amp-form-row>

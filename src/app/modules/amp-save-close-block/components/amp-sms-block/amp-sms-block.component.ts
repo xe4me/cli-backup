@@ -3,16 +3,22 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     ViewContainerRef,
-    Input,
-    Output,
-    OnInit, ComponentRef
+    OnInit,
+    ViewChild
 } from '@angular/core';
 
-import { FormBlock } from '../../../../form-block';
-import { ScrollService, SaveService, SaveAndCloseService } from '../../../../services';
+import {
+    AmpInputComponent
+ } from '../../../amp-inputs';
 
-import { Environments } from '../../../../abstracts/environments/environments.abstract';
+import { FormBlock } from '../../../../form-block';
+import {
+    ScrollService,
+    SaveService,
+    SaveAndCloseService
+} from '../../../../services';
 import { AmpSmsService } from '../../services/amp-sms.service';
+
 @Component( {
     selector    : 'amp-sms-block' ,
     template: require('./amp-sms-block.component.html'),
@@ -20,8 +26,8 @@ import { AmpSmsService } from '../../services/amp-sms.service';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpSmsBlockComponent extends FormBlock implements OnInit {
-    private mobileNumber : string = null ;
-    private smsMessage : string = null ;
+
+    @ViewChild('mobileNumber') mobileNumberCmp : AmpInputComponent;
     private smsSentErrorMessage : string = null;
     private checkoutLabel : string = 'I have read the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a> and confirm the statements in the \/Declarations when applying for an AMP Bett3r Account\' section';
 
@@ -32,6 +38,12 @@ export class AmpSmsBlockComponent extends FormBlock implements OnInit {
                  private saveCloseService : SaveAndCloseService,
                  private vcf : ViewContainerRef) {
         super( saveService, _cd, scrollService );
+
+        this.saveCloseService.mobileNumber
+            .subscribe( (mobile : string) => {
+                this.mobileNumberCmp.control.setValue(mobile);
+                this._cd.markForCheck();
+            });
     }
 
     public ngOnInit() {
@@ -39,16 +51,20 @@ export class AmpSmsBlockComponent extends FormBlock implements OnInit {
             this.checkoutLabel = this.__custom.controls[1].label;
         }
     }
+    public ngAfterViewInit () {
+        this.mobileNumberCmp.control.setValue(this.saveCloseService.initialMobileNumber);
+        super.ngAfterViewInit();
+    }
 
     private continueTo() {
         if (this.__controlGroup.valid) {
-            this.saveCloseService.mobileNumber = (this.__controlGroup.value[this.__custom.controls[0].id]);
-            this.sms.sendSMS()
+            const mobileNumber = this.mobileNumberCmp.control.value;
+            this.sms.sendSMS(mobileNumber)
                 .subscribe( (result) => {
                         this.goToNextBlock();
                     },
                     (error) => {
-                        this.smsSentErrorMessage = `Request SMS could not be sent to ${this.saveCloseService.mobileNumber}`;
+                        this.smsSentErrorMessage = `Request SMS could not be sent to ${mobileNumber}`;
                     });
         }
     };

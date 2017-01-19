@@ -52,4 +52,17 @@ export class DomUtils {
                 el.style.opacity !== '0' &&
                 el.style.visibility !== 'hidden';
     }
+
+    public closest (el : any, selector : string) {
+        let matches = el.webkitMatchesSelector ? 'webkitMatchesSelector' : (el.msMatchesSelector ? 'msMatchesSelector' : 'matches');
+
+        while (el.parentElement) {
+            if (el[matches](selector)) {
+                return el;
+            }
+            el = el.parentElement;
+        }
+
+        return null;
+    }
 }
