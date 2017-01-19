@@ -38,6 +38,7 @@ export class AmpSmsBlockComponent extends FormBlock implements OnInit {
                  private saveCloseService : SaveAndCloseService,
                  private vcf : ViewContainerRef) {
         super( saveService, _cd, scrollService );
+
         this.saveCloseService.mobileNumber
             .subscribe( (number : string) => {
                 this.mobileNumberCmp.control.setValue(number);

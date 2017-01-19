@@ -87,8 +87,6 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
     }
     onNext() {
         if (this.saveCloseService) {
-            console.log("this.mobileNumberCmp.control.value");
-            console.log(this.mobileNumberCmp.control.value);
             this.saveCloseService.updateMobileNumber(this.mobileNumberCmp.control.value);
         }
         super.onNext();

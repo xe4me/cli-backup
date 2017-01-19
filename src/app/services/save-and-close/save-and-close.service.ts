@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class SaveAndCloseService {
-    public mobileNumber :  Subject<string> = new Subject();
+    public mobileNumber :  Subject<string> = new Subject( );
     public exitUrl : string;
     public smsMessage : string;
     public initialMobileNumber : string;
-    public showSaveAndClose : Subject<boolean> = new Subject();
+    public showSaveAndClose : Subject<boolean> = new Subject( );
     constructor () {
         this.showSaveAndClose.next(false);
     }
