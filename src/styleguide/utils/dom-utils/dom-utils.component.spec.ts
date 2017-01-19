@@ -125,6 +125,34 @@ describe( 'Dom Utils functions test', () => {
         domUtils.toggle( compiledDiv.nativeElement );
         expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( true );
     } );
+
+    it( 'should NOT find any closest element from string selector', () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv                   = fixture.debugElement;
+        let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-closest-child' ) );
+        let domUtils                                   = new DomUtils();
+        expect( domUtils.closest( compiledDiv.nativeElement, '.test-does-not-exist' ) ).toBeNull();
+    } );
+
+    it( 'should find the closest ancestor from string selector', () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv                   = fixture.debugElement;
+        let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-closest-child' ) );
+        let domUtils                                   = new DomUtils();
+        let parentClassName                            = 'test-closest-parent';
+        let parentEl                                   = domUtils.closest( compiledDiv.nativeElement, '.' + parentClassName );
+        expect( domUtils.hasClass(parentEl, parentClassName) ).toBe( true );
+    } );
+
+    it( 'should find a previous ancestor from string selector', () => {
+        let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
+        let compiledTestComponentDiv                   = fixture.debugElement;
+        let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-closest-child' ) );
+        let domUtils                                   = new DomUtils();
+        let parentClassName                            = 'test-closest-grandparent';
+        let parentEl                                   = domUtils.closest( compiledDiv.nativeElement, '.' + parentClassName );
+        expect( domUtils.hasClass(parentEl, parentClassName) ).toBe( true );
+    } );
 } );
 
 @Component( {
@@ -136,6 +164,11 @@ describe( 'Dom Utils functions test', () => {
     <div class="test-isvisibile-4" hidden>hi, i'm a div</div>
     <div class="test-toggle-hide">hi, i'm a div</div>
     <div class="test-toggle-show" hidden>hi, i'm a div</div>
+    <div class="test-closest-grandparent">
+        <div class="test-closest-parent">
+            <div class="test-closest-child">hi, i'm a child div</div>
+        </div>
+    </div>
     `
 } )
 class TestComponent2 {
