@@ -8,6 +8,12 @@ import {
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 const emptyFunction = () : void => {
 };
+export interface ScrollOptions {
+    mock? : boolean;
+    onlyForward? : boolean;
+    ignore? : string;
+    currentId? : string;
+}
 @Injectable()
 export class ScrollService {
     public $scrolled : EventEmitter<any>;
@@ -37,14 +43,33 @@ export class ScrollService {
     }
 
     // TODO: Find another better way to get all the components available in dome to prevent this direct access
-    public scrollToNextUndoneBlock ( formModel, offset = this._offset ) {
-        let isScrolled = false;
-        let body       = this._dom.query( 'body' );
-        let components = this._dom.querySelectorAll( body, '[id$="-block"]' );
+    public scrollToNextUndoneBlock ( formModel, offset = this._offset, options : ScrollOptions = {
+        mock        : false,
+        onlyForward : false,
+        currentId   : null,
+        ignore      : null
+    } ) {
+        let isScrolled        = false;
+        let currentIdIsPassed = false;
+        let currentIdIsMet    = false;
+        let body              = this._dom.query( 'body' );
+        let components        = this._dom.querySelectorAll( body, '[id$="-block"]' );
         for ( const component of  components ) {
             let selectorName       = component.id;
             let _fdnOfSelectorName = selectorName.split( '-' );
             _fdnOfSelectorName.pop();
+            if ( options.onlyForward ) {
+                currentIdIsMet = options.currentId === selectorName;
+                if ( !currentIdIsMet ) {
+                    continue;
+                } else {
+                    if ( !currentIdIsPassed ) {
+                        currentIdIsPassed = true;
+                        continue;
+                    }
+                }
+            }
+
             let formGroup = formModel;
             for ( const fdnSelectorName of  _fdnOfSelectorName ) {
                 if ( formGroup.controls[ fdnSelectorName ] ) {
@@ -58,7 +83,7 @@ export class ScrollService {
                     Object.keys( formGroup.value ).length > 0)
                 )
             ) {
-                this.scrollToComponentSelector( selectorName, 'easeInQuad', offset );
+                this.scrollToComponentSelector( selectorName, 'easeInQuad', offset, options.mock );
                 isScrolled = true;
                 return null;
             }
@@ -71,13 +96,28 @@ export class ScrollService {
 
     public scrollToComponentSelector ( componentSelector : string,
                                        easing : string = 'easeInQuad',
-                                       margin : number = this._offset ) {
+                                       margin : number = this._offset,
+                                       mock : boolean = false ) {
+
         let sectionName;
         let element = this._dom.query( componentSelector );
         if ( !element ) {
             // **20-June-2016 upgraded Angular RC.2, DCL loadIntoLocation no longer exists, LoadAsRoot does not keep the host element, so look for it in the class.
             element     = this._dom.query( '#' + componentSelector );
             sectionName = this._dom.getAttribute( element, 'data-section' );
+        }
+        if ( mock ) {
+            this.$scrolling.emit( {
+                section           : sectionName,
+                componentSelector : this.getGroupNameOfSelectorName( componentSelector )
+            } );
+            setTimeout( () => {
+                this.$scrolled.emit( {
+                    section : sectionName,
+                    componentSelector
+                } );
+            }, 800 );
+            return ;
         }
         let options = {
             duration       : 800,
@@ -91,7 +131,10 @@ export class ScrollService {
             },
             callbackAfter  : () => {
                 // this.$scrolled.emit( this.getGroupNameOfSelectorName( componentSelector ) );
-                this.$scrolled.emit( { section : sectionName, componentSelector } );
+                this.$scrolled.emit( {
+                    section : sectionName,
+                    componentSelector
+                } );
             }
         };
         setTimeout( () => {
