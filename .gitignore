@@ -70,3 +70,6 @@ npm-debug.log
 .idea/
 *.swp
 *.r1
+
+**/Application.fdn.ts
+**/Application.model.json
