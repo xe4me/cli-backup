@@ -73,6 +73,8 @@ import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact
 import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
+import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
+import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS,
@@ -92,6 +94,8 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpCaptchaBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
+    AmpHeaderBasicUsage,
+    AmpHeaderNoTextBasicUsage,
     AmpSaveConfirmationBlockBasicUsage,
     AMPButtonComponentBasicUsage,
     AMPCardComponentBasicUsage,

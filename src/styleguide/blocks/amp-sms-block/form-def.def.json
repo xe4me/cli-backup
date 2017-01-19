@@ -16,7 +16,7 @@
             "custom": {
                 "blockTitle": "Just in case you want to return...",
                 "description" : "Test SMS description",
-                "active": true,
+                "isInitiallyActive": true,
                 "controls": [
                     {
                         "id": "mobileNumber"

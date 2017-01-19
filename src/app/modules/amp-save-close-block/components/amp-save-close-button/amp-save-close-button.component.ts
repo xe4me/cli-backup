@@ -12,8 +12,7 @@ import {
     SaveAndCloseService
 } from '../../../../services';
 import {
-    Subscription,
-    Subject
+    Subscription
 } from 'rxjs';
 
 @Component(
