@@ -1,7 +1,16 @@
+@import '../../../../../styles/abstracts';
+
 :host {
     display: block;
     padding: 0;
     width: 100%;
+
+    .btn-add {
+        margin-top: 40px;
+        @include media-query(palm) {
+            margin-top: 20px;
+        }
+    }
 
     .row-repeated {
         &__btn-remove {
@@ -9,3 +18,5 @@
         }
     }
 }
+
+
