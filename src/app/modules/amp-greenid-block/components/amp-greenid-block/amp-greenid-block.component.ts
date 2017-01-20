@@ -19,6 +19,7 @@ import {
     SafeResourceUrl,
     DomSanitizer
 } from '@angular/platform-browser';
+import * as _ from 'lodash';
 import { Environments } from '../../../../abstracts/environments/environments.abstract';
 import { AmpCheckboxComponent } from '../../../amp-checkbox';
 import { AmpGreenIdServices } from '../../services/amp-greenid-service';
@@ -330,59 +331,26 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         this.startVerification();
     }
 
+    /**
+     * Get necessary values from the model, from paths given in the exeperience's form-def
+     */
     private mapGreenIdModel () {
-
-        const personalDetailsObj = this.__form.get(this.__custom.personalDetailsSectionName);
-        if (!personalDetailsObj) {
-            console.error(`Problem in "onlineIdCheck" custom properties. form.personalDetailsSectionName is ${personalDetailsObj}`);
-            return this.buildEmptyGreenIdModel();
-        }
-        const personalDetails = this.__form.get(this.__custom.personalDetailsSectionName).value;
-        const basicInfo       = personalDetails[this.__custom.basicInfoBlockName];
-        const contactDetails  = personalDetails[this.__custom.contactDetailsBlockName];
-        const address         = personalDetails[this.__custom.addressBlockName];
-
-        const residentialAddress = address.Address.residentialAddress.manualAddress;
-        const state              = residentialAddress.stateDropdown ? residentialAddress.stateDropdown.SelectedItem : '';
-        const streetType         = residentialAddress.streetTypeDropdown ? residentialAddress.streetTypeDropdown.SelectedItem : '';
-
         return {
-            title       : basicInfo[this.__custom.titleFieldId],
-            firstName   : basicInfo[this.__custom.firstNameFieldId],
-            middleNames : basicInfo[this.__custom.middleNamesFieldId] || '',
-            lastName    : basicInfo[this.__custom.lastNameFieldId],
-            dateOfBirth : basicInfo[this.__custom.dateOfBirthFieldId],
-            email       : contactDetails[this.__custom.emailFieldId],
+            title       : _.get(this.__form, this.__custom.titleFieldId, ''),
+            firstName   : _.get(this.__form, this.__custom.firstNameFieldId, ''),
+            middleNames : _.get(this.__form, this.__custom.middleNamesFieldId, ''),
+            lastName    : _.get(this.__form, this.__custom.lastNameFieldId, ''),
+            dateOfBirth : _.get(this.__form, this.__custom.dateOfBirthFieldId, ''),
+            email       : _.get(this.__form, this.__custom.emailFieldId, ''),
             address     : {
                 country      : 'AU',
-                state        : state || '',
-                streetName   : residentialAddress.streetName || '',
-                flatNumber   : residentialAddress.unitNumber || '',
-                streetNumber : residentialAddress.streetNumber || '',
-                suburb       : residentialAddress.suburb,
-                postcode     : residentialAddress.postCode,
-                streetType   : streetType || ''
-            }
-        };
-    }
-
-    private buildEmptyGreenIdModel () {
-        return {
-            title       : '',
-            firstName   : '',
-            middleNames : '',
-            lastName    : '',
-            dateOfBirth : '',
-            email       : '',
-            address     : {
-                country      : '',
-                state        : '',
-                streetName   : '',
-                flatNumber   : '',
-                streetNumber : '',
-                suburb       : '',
-                postcode     : '',
-                streetType   : ''
+                state        : _.get(this.__form, this.__custom.stateFieldId, ''),
+                streetName   : _.get(this.__form, this.__custom.streetNameFieldId, ''),
+                flatNumber   : _.get(this.__form, this.__custom.flatNumberFieldId, ''),
+                streetNumber : _.get(this.__form, this.__custom.streetNumberFieldId, ''),
+                suburb       : _.get(this.__form, this.__custom.suburdFieldId, ''),
+                postcode     : _.get(this.__form, this.__custom.postcodeFieldId, ''),
+                streetType   : _.get(this.__form, this.__custom.streetTypeFieldId, '')
             }
         };
     }
