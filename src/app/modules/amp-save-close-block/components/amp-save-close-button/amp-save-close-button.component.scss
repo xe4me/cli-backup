@@ -2,11 +2,16 @@
 
 .sticky {
     position: absolute;
-     @include media-query(tablet-and-up){
-            position: fixed;
-            float: right;
-            top: 40px;
-            right: 40px;
-            z-index: 9999;
+
+    @include media-query(tablet-and-up){
+        position: fixed;
+        float: right;
+        top: 40px;
+        right: 40px;
+        z-index: 9999;
+    }
+    @media screen and (max-width: 480px) {
+        top: 6.5%;
+        right: 20%;
     }
 }
