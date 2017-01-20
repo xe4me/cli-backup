@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { IndexPage } from './routes/index';
 import { ComponentPage } from './routes/component';
 
