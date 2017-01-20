@@ -1,13 +1,12 @@
 @import '../../../../../styles/abstracts';
 
 .sticky {
-    position: fixed;
-    float: right;
-    top: 40px;
-    right: 40px;
-    z-index: 9999;
-
-    @include media-query(palm) {
-         display : none;
+    position: absolute;
+     @include media-query(tablet-and-up){
+            position: fixed;
+            float: right;
+            top: 40px;
+            right: 40px;
+            z-index: 9999;
     }
 }
