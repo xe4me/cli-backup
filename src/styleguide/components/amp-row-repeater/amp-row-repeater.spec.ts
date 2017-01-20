@@ -88,11 +88,11 @@ describe( 'amp-row-repeater component', () => {
             _repeaterComp.addIfLtE( 1 );
             expect( _repeaterComp.rowCount ).toBe( 2 );
         } );
-        it( 'should NOT add one more if the nor is NOT less than or equal the specified number ', () => {
+        it( 'should NOT add one more if the row count is NOT less than or equal the specified number ', () => {
             _repeaterComp.addIfLtE( 0 );
             expect( _repeaterComp.rowCount ).toBe( 1 );
         } );
-        it( 'should NOT add one more if the nor is not less than the specified number ', () => {
+        it( 'should NOT add one more if the row count is not less than the specified number ', () => {
             _repeaterComp.addIfLt( 0 );
             expect( _repeaterComp.rowCount ).toBe( 1 );
         } );
@@ -115,7 +115,7 @@ describe( 'amp-row-repeater component', () => {
         it( 'should have the rowCount the same as initialRowCount if specified', () => {
             _testCmp.initialRowCount = 5;
             _fixture.detectChanges();
-            _repeaterComp.reset();
+            _repeaterComp.removeAll();
             _repeaterComp.init();
             _fixture.detectChanges();
             expect( _repeaterComp.rowCount ).toBe( _testCmp.initialRowCount );
@@ -123,19 +123,19 @@ describe( 'amp-row-repeater component', () => {
     } );
     describe( 'remove', () => {
         it( 'should REMOVE all the rows and the rowCount should be 0 if reset is called', () => {
-            _repeaterComp.reset();
+            _repeaterComp.removeAll();
             expect( _repeaterComp.rowCount ).toBe( 0 );
         } );
         it( 'should REMOVE only the specified row if remove is called', () => {
             _repeaterComp.add( 4 );
             expect( _repeaterComp.rowCount ).toBe( 5 );
-            _repeaterComp.remove( 4 );
+            _repeaterComp.removeAt( 4 );
             expect( _repeaterComp.rowCount ).toBe( 4 );
         } );
         it( 'should NOT REMOVE if the number is not specified when remove is called', () => {
             _repeaterComp.add( 4 );
             expect( _repeaterComp.rowCount ).toBe( 5 );
-            (<any> _repeaterComp).remove();
+            (<any> _repeaterComp).removeAt();
             expect( _repeaterComp.rowCount ).toBe( 5 );
         } );
     } );
@@ -157,14 +157,14 @@ describe( 'amp-row-repeater component', () => {
             expect( AddButtonElement ).toBeDefined();
             expect( AddButtonElement.disabled ).toBe( true );
         } );
-        it( 'should have a remove button for each row if the nors are more than 1', () => {
+        it( 'should have a remove button for each row if the row count is more than 1', () => {
             _repeaterComp.add( 5 );
             _fixture.detectChanges();
             let RemoveButtons = document.querySelectorAll( '.row-repeated__btn-remove' );
             expect( RemoveButtons ).toBeDefined();
             expect( RemoveButtons.length ).toBe( _repeaterComp.rowCount );
         } );
-        it( 'should NOT have a remove button if the nors are less than or equal to one', () => {
+        it( 'should NOT have a remove button if the row count is less than or equal to one', () => {
             let RemoveButtons = document.querySelectorAll( '.row-repeated__btn-remove' );
             expect( RemoveButtons.length ).toBe( 0 );
         } );

@@ -17,17 +17,17 @@ import { AmpFormGroup } from '../../../../base-control';
     },
     template        : `
         <div class="grid__container 1/1" [class.mt-60]="hasMarginTop" *ngFor="let controlGroup of controlArray.controls ; let i = index;">
-            <div class="row-repeated__col-left utils__push--left {{ colLeftClass }}">
+            <div class="row-repeated__col-left {{ colLeftClass }}" [class.utils__push--left]="hasButtons">
                 <template
                     [ngTemplateOutlet]="itemTemplate"
                     [ngOutletContext]="{ controlGroup: controlGroup, index: i }">
                 </template>
             </div>
-            <div class="row-repeated__col-right utils__push--left {{ colRightClass }}">
+            <div *ngIf="hasButtons" class="row-repeated__col-right utils__push--left {{ colRightClass }}">
                 <amp-button
-                    *ngIf="rowCount > 1 && hasButtons"
+                    *ngIf="rowCount > 1"
                     [context]="context"
-                    (click)="remove(i)"
+                    (click)="removeAt(i)"
                     [disabled]="isInSummaryState"
                     class="btn btn-anchor row-repeated__btn-remove">
                     {{ removeBtn }}
@@ -85,7 +85,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
 
     public init () {
         if ( this.rowCount === 0 ) {
-            if ( this.initialRowCount === undefined ) {
+            if ( isNaN( this.initialRowCount ) ) {
                 this.add();
             } else {
                 this.add( this.initialRowCount );
@@ -95,7 +95,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
 
     public add ( count : number = 1 ) {
         for ( let i = 0 ; i < count ; i++ ) {
-            if ( this.maxRows !== undefined && this.rowCount >= this.maxRows  ) {
+            if ( isNaN( this.maxRows ) || this.rowCount >= this.maxRows ) {
                 return;
             }
             let formGroupForArray   = new AmpFormGroup( {} );
@@ -134,7 +134,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         }
     }
 
-    public remove ( _index : number ) {
+    public removeAt ( _index : number ) {
         if ( _index === undefined ) {
             return;
         }
@@ -142,7 +142,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         this._cd.markForCheck();
     }
 
-    public reset () {
+    public removeAll () {
         while ( this.controlArray.length ) {
             this.controlArray.removeAt( 0 );
         }
