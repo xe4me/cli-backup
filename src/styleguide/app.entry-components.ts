@@ -72,13 +72,12 @@ import { AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-captcha-block/e
 import { AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-menu-frame-block/entry-components';
 import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
+import { AMP_GREENID_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-greenid-block/entry-components';
 import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
-import { AMP_ONLINE_ID_CHECK_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-online-id-check-block/entry-components';
 import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
 import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
 import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
-import AmpOnlineIdCheckBlockBasicUsage from "./blocks/amp-online-id-check-block/basic_usage";
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
 
@@ -87,8 +86,8 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_GREENID_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
-    ...AMP_ONLINE_ID_CHECK_BLOCK_ENTRY_COMPONENTS,
     ...AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS,
     ...AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS,
     ...AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS,
@@ -99,7 +98,6 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpAmlQuestionsBlockBasicUsage,
     AmpBasicInfoBlockBasicUsage,
     AmpCaptchaBlockBasicUsage,
-    AmpOnlineIdCheckBlockBasicUsage,
     AmpMenuFrameBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,

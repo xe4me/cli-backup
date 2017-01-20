@@ -1,0 +1,25 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "greenId",
+            "blockType": "AmpGreenIdBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-greenid-block/components/amp-greenid-block/amp-greenid-block.component",
+            "custom": {
+                "blockTitle": "We now need to verify your identity",
+                "isInitiallyActive": true,
+                "controls": [
+                    {
+                        "id": "consent"
+                    }
+                ]
+            }
+        }
+    ]
+}

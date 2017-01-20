@@ -17,7 +17,6 @@ import { AmpFormModule } from '../app/modules/amp-form';
 import { AmpRowRepeaterModule } from '../app/modules/amp-row-repeater';
 import { AmpPopDownModule } from '../app/modules/amp-pop-down';
 import { AmpTooltipModule } from '../app/modules/amp-tooltip';
-import { AmpGreenIdModule } from '../app/modules/amp-greenid-block';
 import { AmpGoogleRecaptchaModule } from '../app/modules/amp-google-recaptcha';
 import { AmpLogoModule } from '../app/modules/amp-logo';
 import { AmpCardsModule } from '../app/modules/amp-cards';
@@ -27,6 +26,7 @@ import { AmpReviewModule } from '../app/modules/amp-review';
 import { AmpIntroBlockModule } from 'app/modules/amp-intro-block';
 import { AmpRetrieveBlockModule } from 'app/modules/amp-retrieve-block';
 import { AmpSaveCloseBlockModule } from '../app/modules/amp-save-close-block/amp-save-close-block.module';
+
 export const AMP_MODULES = [
     AmpTooltipModule.forRoot(),
     AmpProgressBarsModule,
@@ -51,7 +51,6 @@ export const AMP_MODULES = [
     AmpTypeaheadModule,
     AmpQasAddressModule,
     AmpStyleguideReduxModule,
-    AmpGreenIdModule,
     AmpLogoModule,
     AmpGoogleRecaptchaModule,
     AmpCardsModule,
