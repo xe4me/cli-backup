@@ -1,0 +1,26 @@
+<div class="container blocks-wrapper">
+    <h3 class="heading heading-intro mb lap-and-up-mb+">{{title}}</h3>
+    <!--
+    <accounts-list>
+    </accounts-list>
+    -->
+    <div class="main">
+        <div class="content mt+">
+            Download the My AMP app to start using your account and remember to keep these accounts numbers handy.
+        </div>
+        <div class="app-buttons">
+            <a href="https://itunes.apple.com/au/app/my-amp/id763144972?mt=8" target="_blank">
+                <img src="assets/images/apple-store-badge.png" class="apple-store-button">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=au.com.amp.myportfolio.android&hl=en" target="_blank">
+                <img src="assets/images/google-play-badge.png">
+            </a>
+            <amp-button [attr.theme]="'tools'" (click)="onPdfButtonClick()" class="btn btn-secondary">
+                Your account PDF
+            </amp-button>
+        </div>
+    </div>
+    <amp-button [attr.theme]="'tools'" (click)="onFinishButtonClick()" class="btn btn-ok mr palm-1/1 palm-mr0">
+        Finish
+    </amp-button>
+</div>

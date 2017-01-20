@@ -27,6 +27,7 @@ export interface IComponentGroupMeta {
 }
 @Injectable()
 export class ComponentsService {
+
     public components : IComponentMeta[]            = null;
     public componentGrouped : IComponentGroupMeta[] = [];
     private _promise : Promise<void>;
@@ -51,7 +52,7 @@ export class ComponentsService {
         } );
     }
 
-    gertComponentsGrouped () : Promise<IComponentGroupMeta[]> {
+    getComponentsGrouped () : Promise<IComponentGroupMeta[]> {
         return this._promise.then( () => {
             return this.componentGrouped;
         } );
