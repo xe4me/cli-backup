@@ -142,7 +142,7 @@ describe( 'amp-row-repeater component', () => {
 
     describe( 'buttons when specified', () => {
         it( 'should have an add button with the correct label if specified', () => {
-            let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
+            let AddButtonElementDebugElem = _debugElement.query( By.css( '.btn-add' ) );
             let AddButtonElement          = AddButtonElementDebugElem.nativeElement;
             expect( AddButtonElementDebugElem ).toBeDefined();
             expect( AddButtonElement ).toBeDefined();
@@ -151,7 +151,7 @@ describe( 'amp-row-repeater component', () => {
         it( 'should have the add button disabled if the rowCount and maxRows are met', () => {
             _repeaterComp.add( 10 );
             _fixture.detectChanges();
-            let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
+            let AddButtonElementDebugElem = _debugElement.query( By.css( '.btn-add' ) );
             let AddButtonElement          = AddButtonElementDebugElem.nativeElement;
             expect( AddButtonElementDebugElem ).toBeDefined();
             expect( AddButtonElement ).toBeDefined();

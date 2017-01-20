@@ -39,7 +39,7 @@ import { AmpFormGroup } from '../../../../base-control';
             [context]="context"
             (click)="add()"
             [disabled]="addBtnDisabled"
-            class="btn btn-anchor btn-inline add">
+            class="btn btn-anchor btn-inline btn-add">
             <span class="icon icon--plus-filled" aria-hidden="true"></span> {{ addBtn }}
         </amp-button>
     `,
