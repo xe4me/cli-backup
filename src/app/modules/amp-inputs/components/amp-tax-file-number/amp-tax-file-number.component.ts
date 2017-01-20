@@ -29,10 +29,11 @@ export class AmpTaxFileNumberComponent extends AmpInputComponent {
     }
 
     public customValidator = () : any => {
+        let regex = new RegExp( this.pattern );
         return ( c ) => {
             if ( c.value &&
                  c.value.length === this.maxLength &&
-                 new RegExp( this.pattern ).test( c.value ) ) {
+                 regex.test( c.value ) ) {
                 return this.isDigitValidationOk( c.value ) ? null : { checkDigitValidation : { text : this.errors.checkDigitValidation } };
             }
             return null;
