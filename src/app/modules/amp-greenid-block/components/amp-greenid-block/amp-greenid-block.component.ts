@@ -53,9 +53,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     @Input() styleUrl : string = Environments.property.GreenId.styleUrl;
     @Input() uiScriptUrl : string = Environments.property.GreenId.uiScriptUrl;
     @Input() configScriptUrl : string = Environments.property.GreenId.configScriptUrl;
-    @Input() creditHeaderCheckboxLabel : string = `
-        I authorise AMP to check only my identity against personal information held by a credit bureau.
-    `;
     @Output( 'complete' ) $complete : EventEmitter<any> = new EventEmitter();
     @ViewChild( AmpCheckboxComponent ) private creditHeaderCheckboxComponent;
 

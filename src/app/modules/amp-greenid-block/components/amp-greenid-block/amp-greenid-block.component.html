@@ -2,12 +2,20 @@
 
     <div class="lap-and-up-9/12 heading-contxtual-label">
         You can use the following methods:
-        <ul class="mt list-default">
-            <li>Driver's licence</li>
-            <li>Australian passport</li>
-            <li>Medicare card</li>
-            <li>Australian work visa</li>
-        </ul>
+        <div class="full-width">
+            <div class="dip sm-1/4">
+                <ul class="mt list-default">
+                    <li>Driver's licence</li>
+                    <li>Australian passport</li>
+                </ul>
+            </div>
+            <div class="dip">
+                <ul class="mt list-default">
+                    <li>Medicare card</li>
+                    <li>Australian work visa</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="grid__container 1/1 palm-1/1">
@@ -16,12 +24,14 @@
                 <amp-checkbox
                     [controlGroup]="controlGroup"
                     [id]="creditHeaderCheckboxId">
-                    <span [innerHTML]="creditHeaderCheckboxLabel"></span>
+                    <span>
+                        I agree that by opening an AMP Saver Account, I authorise AMP Bank to check my identity
+                        against personal information held by a credit bureau and I consent to my personal
+                        information being used and disclosed as set out int the
+                        <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a>
+                        document.
+                    </span>
                 </amp-checkbox>
-                <p class="heading-contxtual-label mt+">
-                    By proceeding I consent to my personal information being used and disclosed as set out in
-                    the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a> document.
-                </p>
                 <div class="mt-60">
                     <amp-button
                         theme="tools"
