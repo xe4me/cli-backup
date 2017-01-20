@@ -95,7 +95,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
 
     public add ( count : number = 1 ) {
         for ( let i = 0 ; i < count ; i++ ) {
-            if ( this.maxRows !== undefined && i >= (this.maxRows - 1) ) {
+            if ( this.maxRows !== undefined && this.rowCount >= this.maxRows  ) {
                 return;
             }
             let formGroupForArray   = new AmpFormGroup( {} );
@@ -108,8 +108,8 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
                     this.controlArray.length
                 ];
             this.controlArray.push( formGroupForArray );
-            this._cd.markForCheck();
         }
+        this._cd.markForCheck();
     }
 
     public addIfGt ( num : number ) {

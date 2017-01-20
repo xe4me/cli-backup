@@ -1,11 +1,9 @@
 import {
     async,
-    ComponentFixture,
     TestBed
 } from '@angular/core/testing';
 import {
     Component,
-    ElementRef,
     ViewChild,
     Injector
 } from '@angular/core';
@@ -15,12 +13,7 @@ import {
     FormGroup
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
 import { HttpModule } from '@angular/http';
-import {
-    AmpQasAddressModule,
-    AmpQasAddressService
-} from '../../../app/modules/amp-qas-address';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import {
     AmpRowRepeaterModule,
@@ -28,8 +21,7 @@ import {
 } from '../../../app/modules/amp-row-repeater';
 import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 import { AmpFormModule } from '../../../app/modules/amp-form';
-import { MockAmpQasAddressService } from '../amp-qas-address/amp-qas-address.component.spec';
-fdescribe( 'amp-row-repeater component', () => {
+describe( 'amp-row-repeater component', () => {
     let _fixture;
     let _testCmpInjector : Injector;
     let _testCmp;
@@ -120,6 +112,14 @@ fdescribe( 'amp-row-repeater component', () => {
             _repeaterComp.addIfGtE( 2 );
             expect( _repeaterComp.rowCount ).toBe( 1 );
         } );
+        it( 'should have the rowCount the same as initialRowCount if specified', () => {
+            _testCmp.initialRowCount = 5;
+            _fixture.detectChanges();
+            _repeaterComp.reset();
+            _repeaterComp.init();
+            _fixture.detectChanges();
+            expect( _repeaterComp.rowCount ).toBe( _testCmp.initialRowCount );
+        } );
     } );
     describe( 'remove', () => {
         it( 'should REMOVE all the rows and the rowCount should be 0 if reset is called', () => {
@@ -140,7 +140,7 @@ fdescribe( 'amp-row-repeater component', () => {
         } );
     } );
 
-    fdescribe( 'buttons when specified', () => {
+    describe( 'buttons when specified', () => {
         it( 'should have an add button with the correct label if specified', () => {
             let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
             let AddButtonElement          = AddButtonElementDebugElem.nativeElement;
@@ -148,18 +148,27 @@ fdescribe( 'amp-row-repeater component', () => {
             expect( AddButtonElement ).toBeDefined();
             expect( AddButtonElement.innerText ).toBe( 'Add another one' );
         } );
-        it( 'should NOT have an add button if nor are zero ', () => {
-            _repeaterComp.reset();
-            let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
-            expect( AddButtonElementDebugElem ).toBe(null);
-        } );
         it( 'should have the add button disabled if the rowCount and maxRows are met', () => {
-            _repeaterComp.add(5);
+            _repeaterComp.add( 10 );
+            _fixture.detectChanges();
             let AddButtonElementDebugElem = _debugElement.query( By.css( '.add' ) );
-            expect( AddButtonElementDebugElem ).toBe(null);
+            let AddButtonElement          = AddButtonElementDebugElem.nativeElement;
+            expect( AddButtonElementDebugElem ).toBeDefined();
+            expect( AddButtonElement ).toBeDefined();
+            expect( AddButtonElement.disabled ).toBe( true );
+        } );
+        it( 'should have a remove button for each row if the nors are more than 1', () => {
+            _repeaterComp.add( 5 );
+            _fixture.detectChanges();
+            let RemoveButtons = document.querySelectorAll( '.row-repeated__btn-remove' );
+            expect( RemoveButtons ).toBeDefined();
+            expect( RemoveButtons.length ).toBe( _repeaterComp.rowCount );
+        } );
+        it( 'should NOT have a remove button if the nors are less than or equal to one', () => {
+            let RemoveButtons = document.querySelectorAll( '.row-repeated__btn-remove' );
+            expect( RemoveButtons.length ).toBe( 0 );
         } );
     } );
-
 } );
 @Component( {
     template : `
@@ -170,6 +179,8 @@ fdescribe( 'amp-row-repeater component', () => {
             [addBtn]="'Add another one'"
             [maxRows]="5"
             [removeBtn]="'Remove'"
+            [initialRowCount]="initialRowCount"
+            [hasButtons]="hasButtons"
             [isInSummaryState]="isInSummaryState">
         <template let-index="index" let-controlGroup="controlGroup">
             <h2 class="heading heading-intro" [ngClass]="{'mt-30': index }">
@@ -200,6 +211,8 @@ fdescribe( 'amp-row-repeater component', () => {
 } )
 class TestComponent {
     @ViewChild( 'repeater' ) repeater;
-                             toggleFlag : boolean;
+    private initialRowCount : 1;
+    private toggleFlag : boolean;
+    private hasButtons : boolean       = true;
     private __controlGroup : FormGroup = new FormGroup( {} );
 }
