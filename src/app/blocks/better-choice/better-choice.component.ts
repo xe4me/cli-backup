@@ -57,15 +57,13 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
 
     public subscribeToBett3rChoice () {
         const betterChoiceControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+        if ( !this.betterChoiceSubscription ) {
+            this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
+                this.setNextBlock( val );
+            } );
+        }
         if (this.__isRetrieved) {
             this.setNextBlock( betterChoiceControl.value );
-        } else {
-            if ( !this.betterChoiceSubscription ) {
-                this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
-                    this.setNextBlock( val );
-                } );
-            }
-
         }
     }
 
