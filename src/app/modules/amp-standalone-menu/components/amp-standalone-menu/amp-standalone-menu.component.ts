@@ -214,9 +214,15 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private setupContainingElement () {
         const containingElement = this.getContainingElement();
-        const styles = window.getComputedStyle(containingElement);
+        let styles;
 
-        if ( containingElement && styles ) {
+        if ( !containingElement ) {
+            return false;
+        }
+
+        styles = window.getComputedStyle(containingElement);
+
+        if ( styles ) {
             if ( styles.position === 'static' ) {
                 containingElement.style.position = 'relative';
             }
@@ -229,7 +235,6 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     private setMenuPosition () {
         const menu = this.menu.nativeElement;
         const containingElement = this.getContainingElement();
-        const styles = window.getComputedStyle(containingElement);
 
         if ( containingElement && this.isSticky ) {
             const stickyClass           = 'steps-menu--sticky';
