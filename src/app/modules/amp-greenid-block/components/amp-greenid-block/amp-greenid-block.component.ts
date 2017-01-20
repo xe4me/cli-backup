@@ -3,7 +3,6 @@ import {
     OnInit,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    Renderer,
     Input,
     Output,
     OnDestroy,
@@ -14,20 +13,19 @@ import {
 import {
     FormControl,
     FormGroup,
-    FormBuilder,
     Validators
 } from '@angular/forms';
 import {
     SafeResourceUrl,
     DomSanitizer
 } from '@angular/platform-browser';
-import { Environments } from '../../../../../';
-import { AmpCheckboxComponent } from '../../amp-checkbox';
-import { AmpGreenIdServices } from '../services/amp-greenid-service';
-import { IGreenIdFormModel } from '../interfaces/form-model';
-import { FormBlock } from "../../../form-block";
-import { SaveService } from "../../../services/save/save.service";
-import { ScrollService } from "../../../services/scroll/scroll.service";
+import { Environments } from '../../../../abstracts/environments/environments.abstract';
+import { AmpCheckboxComponent } from '../../../amp-checkbox';
+import { AmpGreenIdServices } from '../../services/amp-greenid-service';
+import { IGreenIdFormModel } from '../../interfaces/form-model';
+import { FormBlock } from '../../../../form-block';
+import { SaveService } from '../../../../services/save/save.service';
+import { ScrollService } from '../../../../services/scroll/scroll.service';
 
 @Component( {
     selector : 'amp-greenid-block',
@@ -48,10 +46,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         LOCKED_OUT : 'LOCKED_OUT'
     };
 
-    // When the model was given by the bett3r wrapping component
-    // @Input() model : IGreenIdFormModel; // form model input
-    private model : IGreenIdFormModel;
-
     @Input() id : string = 'greenIdIdentityCheck';
     @Input() keepControl : boolean = false;
     @Input() controlGroup : FormGroup;
@@ -65,6 +59,10 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     `;
     @Output( 'complete' ) $complete : EventEmitter<any> = new EventEmitter();
     @ViewChild( AmpCheckboxComponent ) private creditHeaderCheckboxComponent;
+
+    // When the model was given by the bett3r wrapping component
+    // @Input() model : IGreenIdFormModel; // form model input
+    private model : IGreenIdFormModel;
 
     private creditHeaderCheckboxId : string = 'creditHeaderCheckbox';
     private greenIdControlGroup : FormGroup;
@@ -121,8 +119,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         if ( this.hasConsentBeenPassed ) {
             this.startVerification();
         }
-
-
     }
 
     public ngOnDestroy () {
@@ -343,7 +339,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         const personalDetailsObj = this.__form.get(this.__custom.personalDetailsSectionName);
         if (!personalDetailsObj) {
             console.error(`Problem in "onlineIdCheck" custom properties. form.personalDetailsSectionName is ${personalDetailsObj}`);
-            return AmpGreenIdBlockComponent.buildEmptyGreenIdModel();
+            return this.buildEmptyGreenIdModel();
         }
         const personalDetails = this.__form.get(this.__custom.personalDetailsSectionName).value;
         const basicInfo       = personalDetails[this.__custom.basicInfoBlockName];
@@ -363,18 +359,18 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
             email       : contactDetails[this.__custom.emailFieldId],
             address     : {
                 country      : 'AU',
-                state        : state,
+                state        : state || '',
                 streetName   : residentialAddress.streetName || '',
                 flatNumber   : residentialAddress.unitNumber || '',
                 streetNumber : residentialAddress.streetNumber || '',
                 suburb       : residentialAddress.suburb,
                 postcode     : residentialAddress.postCode,
-                streetType   : streetType
+                streetType   : streetType || ''
             }
         };
     }
 
-    private static buildEmptyGreenIdModel () {
+    private buildEmptyGreenIdModel () {
         return {
             title       : '',
             firstName   : '',

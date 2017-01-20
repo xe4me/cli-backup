@@ -1,9 +1,9 @@
-@import '../../../../styles/abstracts';
+@import '../../../../../styles/abstracts';
 $tooltip-background : #003C6D;
 $small-font-size : 15px;
 
 .id-check-icon {
-    background-image : url($amp-ddc-components-public-asset + 'images/greenid-complete.png');
+    background-image : url('../../../../../assets/images/greenid-complete.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100px 100px;
