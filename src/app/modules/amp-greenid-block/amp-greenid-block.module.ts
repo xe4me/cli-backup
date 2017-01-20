@@ -17,6 +17,7 @@ const DECLARATIONS = [ AmpGreenIdBlockComponent ];
         AmpCheckboxModule,
         AmpFormModule
     ],
+    entryComponents : DECLARATIONS,
     providers : [ AmpGreenIdServices, Http ],
     exports : DECLARATIONS
 } )

@@ -48,7 +48,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
 
     @Input() id : string = 'greenIdIdentityCheck';
     @Input() keepControl : boolean = false;
-    @Input() controlGroup : FormGroup;
     @Input() checkboxLabel : string;
     @Input() showOnReady = true;
     @Input() styleUrl : string = Environments.property.GreenId.styleUrl;
@@ -122,8 +121,8 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     }
 
     public ngOnDestroy () {
-        if ( !this.keepControl && this.controlGroup && this.id ) {
-            this.controlGroup.removeControl( this.id );
+        if ( !this.keepControl && this.__controlGroup && this.id ) {
+            this.__controlGroup.removeControl( this.id );
         }
     }
 
@@ -190,13 +189,13 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     }
 
     private createControls () {
-        if ( this.controlGroup ) {
-            if ( this.controlGroup.contains( this.id ) ) {
-                this.greenIdControlGroup = <FormGroup> this.controlGroup.get( this.id );
+        if ( this.__controlGroup ) {
+            if ( this.__controlGroup.contains( this.id ) ) {
+                this.greenIdControlGroup = <FormGroup> this.__controlGroup.get( this.id );
                 this.revalidateControlGroup( this.greenIdControlGroup );
             } else {
                 this.greenIdControlGroup = this.createGreenIdControlGroup();
-                this.controlGroup.addControl( this.id, this.greenIdControlGroup );
+                this.__controlGroup.addControl( this.id, this.greenIdControlGroup );
             }
         } else {
             this.greenIdControlGroup = this.createGreenIdControlGroup();
