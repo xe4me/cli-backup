@@ -25,6 +25,10 @@ import { Environments } from '../../../../../';
 import { AmpCheckboxComponent } from '../../amp-checkbox';
 import { AmpGreenIdServices } from '../services/amp-greenid-service';
 import { IGreenIdFormModel } from '../interfaces/form-model';
+import { FormBlock } from "../../../form-block";
+import { SaveService } from "../../../services/save/save.service";
+import { ScrollService } from "../../../services/scroll/scroll.service";
+
 @Component( {
     selector : 'amp-greenid-block',
     providers : [ AmpGreenIdServices ], // @TODO : Why are we providing the service here and not at module level ?
@@ -33,7 +37,8 @@ import { IGreenIdFormModel } from '../interfaces/form-model';
     styles : [ require( './amp-greenid-block.component.scss' ) ],
     encapsulation : ViewEncapsulation.None
 } )
-export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
+export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDestroy {
+
     public static verificationStatuses = {
         VERIFIED : 'VERIFIED',
         VERIFIED_WITH_CHANGES : 'VERIFIED_WITH_CHANGES',
@@ -43,8 +48,11 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         LOCKED_OUT : 'LOCKED_OUT'
     };
 
+    // When the model was given by the bett3r wrapping component
+    // @Input() model : IGreenIdFormModel; // form model input
+    private model : IGreenIdFormModel;
+
     @Input() id : string = 'greenIdIdentityCheck';
-    @Input() model : IGreenIdFormModel; // form model input
     @Input() keepControl : boolean = false;
     @Input() controlGroup : FormGroup;
     @Input() checkboxLabel : string;
@@ -81,11 +89,12 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         we can discuss other options with you.
     `;
 
-    constructor ( private ampGreenIdServices : AmpGreenIdServices,
-                  private fb : FormBuilder,
-                  private _cd : ChangeDetectorRef,
-                  private _render : Renderer,
+    constructor ( saveService : SaveService,
+                  _cd : ChangeDetectorRef,
+                  scrollService : ScrollService,
+                  private ampGreenIdServices : AmpGreenIdServices,
                   private sanitizer : DomSanitizer ) {
+        super( saveService, _cd, scrollService );
     }
 
     public getGreenIdControlGroup () : FormGroup {
@@ -112,6 +121,8 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         if ( this.hasConsentBeenPassed ) {
             this.startVerification();
         }
+
+
     }
 
     public ngOnDestroy () {
@@ -157,12 +168,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
                     }
                 }
             } );
-    }
-
-    private onHeaderCheckOkClick () {
-        this.hasOkBeenClicked = true;
-        this.hasCreditCheckHeaderConsentBeenGiven = !!this.creditHeaderCheckboxComponent.control.value;
-        this.startVerification();
     }
 
     private get verificationStatusControl () : FormControl {
@@ -322,4 +327,72 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     private updateVerificationId ( newVerificationId : string ) : void {
         this.verificationIdControl.setValue( newVerificationId );
     }
+
+    private onOkClick () {
+
+        // Build our model object to give to Green ID
+        this.model = this.mapGreenIdModel();
+
+        this.hasOkBeenClicked = true;
+        this.hasCreditCheckHeaderConsentBeenGiven = !!this.creditHeaderCheckboxComponent.control.value;
+        this.startVerification();
+    }
+
+    private mapGreenIdModel () {
+
+        const personalDetailsObj = this.__form.get(this.__custom.personalDetailsSectionName);
+        if (!personalDetailsObj) {
+            console.error(`Problem in "onlineIdCheck" custom properties. form.personalDetailsSectionName is ${personalDetailsObj}`);
+            return AmpGreenIdBlockComponent.buildEmptyGreenIdModel();
+        }
+        const personalDetails = this.__form.get(this.__custom.personalDetailsSectionName).value;
+        const basicInfo       = personalDetails[this.__custom.basicInfoBlockName];
+        const contactDetails  = personalDetails[this.__custom.contactDetailsBlockName];
+        const address         = personalDetails[this.__custom.addressBlockName];
+
+        const residentialAddress = address.Address.residentialAddress.manualAddress;
+        const state              = residentialAddress.stateDropdown ? residentialAddress.stateDropdown.SelectedItem : '';
+        const streetType         = residentialAddress.streetTypeDropdown ? residentialAddress.streetTypeDropdown.SelectedItem : '';
+
+        return {
+            title       : basicInfo[this.__custom.titleFieldId],
+            firstName   : basicInfo[this.__custom.firstNameFieldId],
+            middleNames : basicInfo[this.__custom.middleNamesFieldId] || '',
+            lastName    : basicInfo[this.__custom.lastNameFieldId],
+            dateOfBirth : basicInfo[this.__custom.dateOfBirthFieldId],
+            email       : contactDetails[this.__custom.emailFieldId],
+            address     : {
+                country      : 'AU',
+                state        : state,
+                streetName   : residentialAddress.streetName || '',
+                flatNumber   : residentialAddress.unitNumber || '',
+                streetNumber : residentialAddress.streetNumber || '',
+                suburb       : residentialAddress.suburb,
+                postcode     : residentialAddress.postCode,
+                streetType   : streetType
+            }
+        };
+    }
+
+    private static buildEmptyGreenIdModel () {
+        return {
+            title       : '',
+            firstName   : '',
+            middleNames : '',
+            lastName    : '',
+            dateOfBirth : '',
+            email       : '',
+            address     : {
+                country      : '',
+                state        : '',
+                streetName   : '',
+                flatNumber   : '',
+                streetNumber : '',
+                suburb       : '',
+                postcode     : '',
+                streetType   : ''
+            }
+        };
+    }
+
 }
