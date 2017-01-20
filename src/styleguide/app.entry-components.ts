@@ -6,7 +6,7 @@ import AmpMenuFrameBlockBasicUsage from './blocks/amp-menu-frame-block/basic_usa
 import AmpSmsBlockBasicUsage from './blocks/amp-sms-block/basic_usage.ts';
 import AmpSaveConfirmationBlockBasicUsage from './blocks/amp-save-confirmation-block/basic_usage.ts';
 import AmpWelcomeBlockBasicUsage from './blocks/amp-welcome-block/basic_usage.ts';
-import AmpAddressBlockBasicUsage from './blocks/amp-address-block/basic_usage.ts';
+import AmpAmlQuestionsBlockBasicUsage from './blocks/amp-aml-questions-block/basic_usage';
 import AMPButtonComponentBasicUsage from './components/amp-button/basic_usage';
 import AMPCardComponentBasicUsage from './components/amp-card/basic_usage';
 import AMPCardsComponentBasicUsage from './components/amp-cards/basic_usage';
@@ -78,6 +78,7 @@ import { AMP_ONLINE_ID_CHECK_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-online-
 import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
 import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
 import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
+import AmpOnlineIdCheckBlockBasicUsage from "./blocks/amp-online-id-check-block/basic_usage";
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
 
@@ -98,6 +99,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpAmlQuestionsBlockBasicUsage,
     AmpBasicInfoBlockBasicUsage,
     AmpCaptchaBlockBasicUsage,
+    AmpOnlineIdCheckBlockBasicUsage,
     AmpMenuFrameBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
