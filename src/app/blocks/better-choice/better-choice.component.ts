@@ -62,8 +62,6 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
         } else {
             if ( !this.betterChoiceSubscription ) {
                 this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
-                    console.log('this.setNextBlock( val )');
-                    console.log(val);
                     this.setNextBlock( val );
                 } );
             }
@@ -82,7 +80,6 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                         this.existingCustomer = true;
                         this._cd.markForCheck();
                         setTimeout( () => {
-                            console.log('this.subscribeToBett3rChoice()');
                             this.subscribeToBett3rChoice();
                         } );
                     }
