@@ -8,7 +8,6 @@ export * from './src/app/redux/amp-redux.module';
 export * from './src/app/modules/amp-address-block';
 export * from './src/app/modules/amp-save-close-block';
 export * from './src/app/modules/amp-aml-questions-block';
-export * from './src/app/modules/amp-online-id-check-block';
 export * from './src/app/modules/amp-basic-info-block';
 export * from './src/app/modules/amp-captcha-block';
 export * from './src/app/modules/amp-menu-frame-block';
