@@ -166,7 +166,6 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private onSectionClick ( event, section ) {
         event.preventDefault();
-        console.log( 'section', section );
         this.scrollToSection( section );
         this.close();
     }
