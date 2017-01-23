@@ -125,7 +125,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     }
 
     private startVerification () {
-        if ( !this.isVerificationCompleted ) {            
+        if ( !this.isVerificationCompleted ) {
             // Build our model object to give to Green ID
             this.model = this.mapGreenIdModel();
 
@@ -353,7 +353,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
                 streetName   : _.get(this.__form.value, this.__custom.streetNameFieldId, '') || '',
                 flatNumber   : _.get(this.__form.value, this.__custom.flatNumberFieldId, '') || '',
                 streetNumber : _.get(this.__form.value, this.__custom.streetNumberFieldId, ''),
-                suburb       : _.get(this.__form.value, this.__custom.suburdFieldId, '') || '',
+                suburb       : _.get(this.__form.value, this.__custom.suburbFieldId, '') || '',
                 postcode     : _.get(this.__form.value, this.__custom.postcodeFieldId, ''),
                 streetType   : _.get(this.__form.value, this.__custom.streetTypeFieldId, '')
             }
