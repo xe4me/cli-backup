@@ -18,7 +18,7 @@ import {
     AmpPipesModule,
     AmpQasAddressModule,
     AmpTextareaModule,
-    AmpGreenIdModule,
+    AmpGreenIdBlockModule,
     AmpLogoModule,
     AmpDropdownModule,
     AmpGoogleRecaptchaModule
@@ -44,7 +44,7 @@ export const AMP_DDC_MODULES = [
     AmpPipesModule,
     AmpQasAddressModule,
     AmpTextareaModule,
-    AmpGreenIdModule,
+    AmpGreenIdBlockModule,
     AmpLogoModule,
     AmpDropdownModule,
     AmpGoogleRecaptchaModule

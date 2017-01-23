@@ -43,7 +43,6 @@ export const DYNAMIC_BLOCKS = [
     DepositTransitionBlock,
     Footer,
     Header,
-    IdCheckBlock,
     LastStepBlock,
     LoanOffsetBlock,
     MenuFrameBlockComponent,
