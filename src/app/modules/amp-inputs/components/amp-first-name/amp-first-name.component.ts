@@ -18,7 +18,8 @@ export class AmpFirstNameComponent extends AmpInputComponent {
         this.required  = true;
         this.label     = 'First name';
         this.errors    = {
-            required : 'First name is a required field.'
+            required : 'First name is a required field.',
+            pattern : 'First name has an invalid value.'
         };
     }
 }
