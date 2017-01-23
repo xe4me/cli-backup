@@ -13,8 +13,10 @@ import {
     ScrollService,
     SaveService
 } from 'amp-ddc-components';
-import { SharedFormDataService } from '../../shared/shared-form-data.service';
-import { Constants } from '../../shared/constants';
+import {
+    Constants,
+    SharedFormDataService
+} from '../../shared';
 @Component( {
     selector        : 'better-choice-block',
     templateUrl     : './better-choice.component.html',
@@ -25,7 +27,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     private betterChoiceSubscription : Subscription;
     private newOrExistingCustomerSubscription : Subscription;
     private loadedDynamicBlock : string = '';
-    private existingCustomer : boolean  = false;
+    private isExistingCustomer : boolean  = false;
 
     constructor ( _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
@@ -55,18 +57,6 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
         }
     }
 
-    public subscribeToBett3rChoice () {
-        const betterChoiceControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        if ( !this.betterChoiceSubscription ) {
-            this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
-                this.setNextBlock( val );
-            } );
-        }
-        if (this.__isRetrieved) {
-            this.setNextBlock( betterChoiceControl.value );
-        }
-    }
-
     public ngAfterViewInit () {
         const newOrExistingCustomerControl     =
                   this.sharedFormDataService.getNewOrExistingCustomerControl( this.__form );
@@ -75,7 +65,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                 .valueChanges
                 .subscribe( ( newOrExisting ) => {
                     if ( newOrExisting === Constants.existingCustomer ) {
-                        this.existingCustomer = true;
+                        this.isExistingCustomer = true;
                         this._cd.markForCheck();
                         setTimeout( () => {
                             this.subscribeToBett3rChoice();
@@ -98,5 +88,23 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             }
         }
         super.ngOnDestroy();
+    }
+
+    private get showBlock () : boolean {
+        return this.isExistingCustomer;
+    }
+
+    private subscribeToBett3rChoice () {
+        const betterChoiceControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+        if (this.__isRetrieved) {
+            this.setNextBlock( betterChoiceControl.value );
+        } else {
+            if ( !this.betterChoiceSubscription ) {
+                this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
+                    this.setNextBlock( val );
+                } );
+            }
+
+        }
     }
 }
