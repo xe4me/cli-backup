@@ -157,6 +157,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
             if ( killTimer ) {
                 clearTimeout( this.idleTimeoutId );
             }
+            this._cd.markForCheck();
         }
     }
 

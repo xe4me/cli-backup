@@ -3,8 +3,10 @@ import {
     Component,
     TemplateRef,
     ChangeDetectorRef,
+    Output,
     ChangeDetectionStrategy,
     Input,
+    EventEmitter,
     OnInit,
     OnDestroy
 } from '@angular/core';
@@ -59,7 +61,9 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Input( 'colRightClass' ) colRightClass : string        = '';
     @Input( 'hasMarginTop' ) hasMarginTop : boolean         = true;
     @Input( 'hasButtons' ) hasButtons : boolean             = true;
-    private controlArray : FormArray;
+    @Output( 'remove' ) $remove                             = new EventEmitter<any>();
+    @Output( 'add' ) $add                                   = new EventEmitter<any>();
+    public controlArray : FormArray;
 
     constructor ( public _cd : ChangeDetectorRef ) {
 
@@ -108,6 +112,9 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
                     this.controlArray.length
                 ];
             this.controlArray.push( formGroupForArray );
+            this.$add.emit( {
+                addedGroup : formGroupForArray
+            } );
         }
         this._cd.markForCheck();
     }
@@ -139,6 +146,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
             return;
         }
         this.controlArray.removeAt( _index );
+        this.$remove.emit( _index );
         this._cd.markForCheck();
     }
 
