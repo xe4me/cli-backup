@@ -32,6 +32,7 @@ export class AmpMenuFrameBlockComponent implements OnDestroy, AfterViewInit {
     private singleOrJointSubscription : Subscription;
     private hydrationSubscription : Subscription;
     private sectionsToHide                   = [];
+    private containInside                    = 'amp-menu-frame-block';
     private hideStickyButton                 = true;
     private ADDRESS_BLOCK_COMPONENT_SELECTOR = 'Application-Applicant1Section-PersonalDetailsSection-Address-block';
     @ViewChild( AmpBlockLoaderDirective ) private loader;
@@ -94,7 +95,7 @@ export class AmpMenuFrameBlockComponent implements OnDestroy, AfterViewInit {
     // }
 
     public ngOnDestroy () {
-        // this.hydrationSubscription.unsubscribe();
+        this.hydrationSubscription.unsubscribe();
         // if ( this.singleOrJointSubscription ) {
         //     this.singleOrJointSubscription.unsubscribe();
         // }

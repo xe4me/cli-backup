@@ -1,6 +1,7 @@
 import { ViewEncapsulation, Component } from '@angular/core';
 import { ComponentsService, IComponentMeta, IComponentGroupMeta } from './services/components';
 import { TableContentsService } from './services/content-table-service';
+
 @Component( {
     selector : 'styleguide-app',
     styles : [ require( './app.scss' ) ],
@@ -36,7 +37,7 @@ export class StyleGuideApp {
             .then( ( comps ) => {
                 this.components = comps;
             } );
-        this._componentsService.gertComponentsGrouped()
+        this._componentsService.getComponentsGrouped()
             .then( ( componentsGrouped ) => {
                 this.componentsGrouped = componentsGrouped;
             } );

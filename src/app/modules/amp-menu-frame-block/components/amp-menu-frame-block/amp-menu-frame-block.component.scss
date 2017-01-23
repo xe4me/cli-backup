@@ -22,4 +22,15 @@
             border-top: 1px solid $amp-colour-gray-neutral;
         }
     }
+
+    .steps-menu{
+        padding-top :0px;
+        left: 40px;
+        top: 70px;
+    }
+    @media screen and (max-width: 480px) {
+        ul.steps-menu__list {
+            margin-top: 150px;
+        }
+    }
 }

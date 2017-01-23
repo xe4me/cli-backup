@@ -244,12 +244,12 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
             let menuHeight              = this.menu.nativeElement.offsetHeight;
             let position                = 'top';
 
-            if ( scrollY >= (containingElementY + containingElementHeight - menuHeight) ) {
-                position = 'bottom';
-            } else if ( scrollY >= containingElementY ) {
+            if ( scrollY <= containingElementY ) {
+                position = 'top';
+            } else if ( scrollY < (containingElementY + containingElementHeight - menuHeight) ) {
                 position = 'middle';
             } else {
-                position = 'top';
+                position = 'bottom';
             }
 
             if (this.menuPosition !== position) {
