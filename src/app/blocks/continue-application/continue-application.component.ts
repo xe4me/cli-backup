@@ -133,6 +133,7 @@ export class ContinueApplicationBlock extends FormBlock {
                 if ( payload.status === 'success' ) {
                     this.showRetrieveBlock = false;
                     this._cd.markForCheck();
+                    this.saveService.referenceId = referenceId;
                     this.formModelService.storeModelAndHydrateForm( payload.application );
                 } else {
                     this.responseError = this.getErrorMessage( payload.status );
