@@ -3,7 +3,6 @@ import {
     OnInit,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    Renderer,
     Input,
     Output,
     OnDestroy,
@@ -14,17 +13,21 @@ import {
 import {
     FormControl,
     FormGroup,
-    FormBuilder,
     Validators
 } from '@angular/forms';
 import {
     SafeResourceUrl,
     DomSanitizer
 } from '@angular/platform-browser';
-import { Environments } from '../../../../../';
-import { AmpCheckboxComponent } from '../../amp-checkbox';
-import { AmpGreenIdServices } from '../services/amp-greenid-service';
-import { IGreenIdFormModel } from '../interfaces/form-model';
+import * as _ from 'lodash';
+import { Environments } from '../../../../abstracts/environments/environments.abstract';
+import { AmpCheckboxComponent } from '../../../amp-checkbox';
+import { AmpGreenIdServices } from '../../services/amp-greenid-service';
+import { IGreenIdFormModel } from '../../interfaces/form-model';
+import { FormBlock } from '../../../../form-block';
+import { SaveService } from '../../../../services/save/save.service';
+import { ScrollService } from '../../../../services/scroll/scroll.service';
+
 @Component( {
     selector : 'amp-greenid-block',
     providers : [ AmpGreenIdServices ], // @TODO : Why are we providing the service here and not at module level ?
@@ -33,7 +36,8 @@ import { IGreenIdFormModel } from '../interfaces/form-model';
     styles : [ require( './amp-greenid-block.component.scss' ) ],
     encapsulation : ViewEncapsulation.None
 } )
-export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
+export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDestroy {
+
     public static verificationStatuses = {
         VERIFIED : 'VERIFIED',
         VERIFIED_WITH_CHANGES : 'VERIFIED_WITH_CHANGES',
@@ -44,19 +48,16 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     };
 
     @Input() id : string = 'greenIdIdentityCheck';
-    @Input() model : IGreenIdFormModel; // form model input
     @Input() keepControl : boolean = false;
-    @Input() controlGroup : FormGroup;
     @Input() checkboxLabel : string;
     @Input() showOnReady = true;
     @Input() styleUrl : string = Environments.property.GreenId.styleUrl;
     @Input() uiScriptUrl : string = Environments.property.GreenId.uiScriptUrl;
     @Input() configScriptUrl : string = Environments.property.GreenId.configScriptUrl;
-    @Input() creditHeaderCheckboxLabel : string = `
-        I authorise AMP to check only my identity against personal information held by a credit bureau.
-    `;
     @Output( 'complete' ) $complete : EventEmitter<any> = new EventEmitter();
     @ViewChild( AmpCheckboxComponent ) private creditHeaderCheckboxComponent;
+
+    private model : IGreenIdFormModel;
 
     private creditHeaderCheckboxId : string = 'creditHeaderCheckbox';
     private greenIdControlGroup : FormGroup;
@@ -81,11 +82,14 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         we can discuss other options with you.
     `;
 
-    constructor ( private ampGreenIdServices : AmpGreenIdServices,
-                  private fb : FormBuilder,
-                  private _cd : ChangeDetectorRef,
-                  private _render : Renderer,
+    private showOkButton : boolean = false;
+
+    constructor ( saveService : SaveService,
+                  _cd : ChangeDetectorRef,
+                  scrollService : ScrollService,
+                  private ampGreenIdServices : AmpGreenIdServices,
                   private sanitizer : DomSanitizer ) {
+        super( saveService, _cd, scrollService );
     }
 
     public getGreenIdControlGroup () : FormGroup {
@@ -115,13 +119,16 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy () {
-        if ( !this.keepControl && this.controlGroup && this.id ) {
-            this.controlGroup.removeControl( this.id );
+        if ( !this.keepControl && this.__controlGroup && this.id ) {
+            this.__controlGroup.removeControl( this.id );
         }
     }
 
     private startVerification () {
         if ( !this.isVerificationCompleted ) {
+            // Build our model object to give to Green ID
+            this.model = this.mapGreenIdModel();
+
             this.loadApiScripts = new Promise<any>( this.loadApiScriptsHandler ).then( () => {
                 this.setupGreenId();
                 if ( !this.isAlreadyRegistered ) {
@@ -159,12 +166,6 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
             } );
     }
 
-    private onHeaderCheckOkClick () {
-        this.hasOkBeenClicked = true;
-        this.hasCreditCheckHeaderConsentBeenGiven = !!this.creditHeaderCheckboxComponent.control.value;
-        this.startVerification();
-    }
-
     private get verificationStatusControl () : FormControl {
         return <FormControl> this.greenIdControlGroup.controls[ 'verificationStatus' ];
     }
@@ -189,13 +190,13 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     }
 
     private createControls () {
-        if ( this.controlGroup ) {
-            if ( this.controlGroup.contains( this.id ) ) {
-                this.greenIdControlGroup = <FormGroup> this.controlGroup.get( this.id );
+        if ( this.__controlGroup ) {
+            if ( this.__controlGroup.contains( this.id ) ) {
+                this.greenIdControlGroup = <FormGroup> this.__controlGroup.get( this.id );
                 this.revalidateControlGroup( this.greenIdControlGroup );
             } else {
                 this.greenIdControlGroup = this.createGreenIdControlGroup();
-                this.controlGroup.addControl( this.id, this.greenIdControlGroup );
+                this.__controlGroup.addControl( this.id, this.greenIdControlGroup );
             }
         } else {
             this.greenIdControlGroup = this.createGreenIdControlGroup();
@@ -269,6 +270,7 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
         this.verificationStatusControl.setValue( verificationStatus );
 
         this.$complete.emit( verificationStatus );
+        this.showOkButton = true;
         this._cd.markForCheck();
     }
 
@@ -322,4 +324,40 @@ export class AmpGreenIdBlockComponent implements OnInit, OnDestroy {
     private updateVerificationId ( newVerificationId : string ) : void {
         this.verificationIdControl.setValue( newVerificationId );
     }
+
+    private onCreditCheckHeaderConsentClick () {
+        this.hasOkBeenClicked = true;
+        this.hasCreditCheckHeaderConsentBeenGiven = !!this.creditHeaderCheckboxComponent.control.value;
+        this.startVerification();
+    }
+
+    private onOkClick () {
+        this.onNext();
+        this.showOkButton = false;
+    }
+
+    /**
+     * Get necessary values from the model, from paths given in the exeperience's form-def
+     */
+    private mapGreenIdModel () {
+        return {
+            title       : _.get(this.__form.value, this.__custom.titleFieldId, ''),
+            firstName   : _.get(this.__form.value, this.__custom.firstNameFieldId, ''),
+            middleNames : _.get(this.__form.value, this.__custom.middleNamesFieldId, '') || '',
+            lastName    : _.get(this.__form.value, this.__custom.lastNameFieldId, ''),
+            dateOfBirth : _.get(this.__form.value, this.__custom.dateOfBirthFieldId, ''),
+            email       : _.get(this.__form.value, this.__custom.emailFieldId, ''),
+            address     : {
+                country      : 'AU',
+                state        : _.get(this.__form.value, this.__custom.stateFieldId, ''),
+                streetName   : _.get(this.__form.value, this.__custom.streetNameFieldId, '') || '',
+                flatNumber   : _.get(this.__form.value, this.__custom.flatNumberFieldId, '') || '',
+                streetNumber : _.get(this.__form.value, this.__custom.streetNumberFieldId, ''),
+                suburb       : _.get(this.__form.value, this.__custom.suburbFieldId, '') || '',
+                postcode     : _.get(this.__form.value, this.__custom.postcodeFieldId, ''),
+                streetType   : _.get(this.__form.value, this.__custom.streetTypeFieldId, '')
+            }
+        };
+    }
+
 }
