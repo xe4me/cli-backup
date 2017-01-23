@@ -117,19 +117,19 @@
                     "blockTitle": "Checking your ID",
                     "blockTitle_verified": "Thanks",
                     "blockTitle_unverified": "Your ID was unable to be verified",
-                    "titleFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.TitleDropdown.SelectedItem",
+                    "titleFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.Title.SelectedItem",
                     "firstNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.FirstName",
                     "middleNamesFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.MiddleName",
                     "lastNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.LastName",
                     "dateOfBirthFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.DateOfBirth",
                     "emailFieldId": "Application.Applicant1Section.PersonalDetailsSection.contactDetails.EmailAddress",
-                    "stateFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.stateDropdown.SelectedItem",
+                    "stateFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.state.SelectedItem",
                     "streetNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetName",
                     "flatNumberFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.unitNumber",
                     "streetNumberFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetNumber",
-                    "suburdFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.suburb",
+                    "suburbFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.suburb",
                     "postcodeFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.postCode",
-                    "streetTypeFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetTypeDropdown.SelectedItem"
+                    "streetTypeFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetType.SelectedItem"
                 }
             }
         ]
