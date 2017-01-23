@@ -100,43 +100,49 @@ describe('amp-basic-info-block component', () => {
         expect(dateOfBirthLabelEl.nativeElement.textContent.trim()).toEqual('Date of birth');
     });
 
-    // --- Required fields
-    it('should enforce "Title" as a required field"', () => {
-        fixture.detectChanges();
-        expect(titleControl.controls.Query.errors.required).toBeDefined();
-    });
-    it('should enforce "First name" as a required field"', () => {
-        fixture.detectChanges();
-        expect(firstNameControl.errors.required).toBeDefined();
-    });
-    it('should enforce "Last name" as a required field"', () => {
-        fixture.detectChanges();
-        expect(lastNameControl.errors.required).toBeDefined();
-    });
-    it('should enforce "Date of birth" as a required field"', () => {
-        fixture.detectChanges();
-        expect(dateOfBirthControl.errors.required).toBeDefined();
-    });
-
-    // --- Error messages
-    it('should define the correct error message for required "Title" field', () => {
-        expect(titleControl.controls.Query._errors.required.text).toEqual('Title is a required field.');
-    });
-    it('should define the correct error message for required "First name" field', () => {
-        expect(firstNameControl._errors.required.text).toEqual('First name is a required field.');
-    });
-    it('should define the correct error message for required "Last name" field', () => {
-        expect(lastNameControl._errors.required.text).toEqual('Last name is a required field.');
-    });
-    it('should define the correct error message for required "Date of birth" field', () => {
-        expect(dateOfBirthControl._errors.required.text).toEqual('This field is required');
+    describe('Required fields', () => {
+        it('should enforce "Title" as a required field"', () => {
+            fixture.detectChanges();
+            expect(titleControl.controls.Query.errors.required).toBeDefined();
+        });
+        it('should enforce "First name" as a required field"', () => {
+            fixture.detectChanges();
+            expect(firstNameControl.errors.required).toBeDefined();
+        });
+        it('should enforce "Last name" as a required field"', () => {
+            fixture.detectChanges();
+            expect(lastNameControl.errors.required).toBeDefined();
+        });
+        it('should enforce "Date of birth" as a required field"', () => {
+            fixture.detectChanges();
+            expect(dateOfBirthControl.errors.required).toBeDefined();
+        });
     });
 
-    it('should enforce the date format for the "Date of birth" test input', () => {
-        dateOfBirthControl.setValue('abc');
-        expect(dateOfBirthControl._status).toBe('INVALID');
-        fixture.detectChanges();
-        expect(dateOfBirthControl.errors.invalidDate ).toBeDefined();
+    describe('Error messages', () => {
+        it('should define the correct error message for required "Title" field', () => {
+            expect(titleControl.controls.Query._errors.required.text).toEqual('Title is a required field.');
+        });
+        it('should define the correct error message for required "First name" field', () => {
+            expect(firstNameControl._errors.required.text).toEqual('First name is a required field.');
+        });
+        it('should define the correct error message for required "Last name" field', () => {
+            expect(lastNameControl._errors.required.text).toEqual('Last name is a required field.');
+        });
+        it('should define the correct error message for required "Date of birth" field', () => {
+            expect(dateOfBirthControl._errors.required.text).toEqual('Date of birth is a required field.');
+        });
+
+        it('should define the correct pattern error message for "Middle name(s)" field', () => {
+            expect(middleNameControl._ampErrors.pattern).toEqual('Middle name(s) has an invalid value.');
+        });
+
+        it('should enforce the date format for the "Date of birth" test input', () => {
+            dateOfBirthControl.setValue('abc');
+            expect(dateOfBirthControl._status).toBe('INVALID');
+            fixture.detectChanges();
+            expect(dateOfBirthControl.errors.invalidDate).toBeDefined();
+        });
     });
 
 });
