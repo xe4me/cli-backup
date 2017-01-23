@@ -141,8 +141,6 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
 
         if ( referenceId ) {
             referenceIdControl.setValue( referenceId );
-        } else {
-            referenceId = referenceIdControl.value;
         }
     }
 }
