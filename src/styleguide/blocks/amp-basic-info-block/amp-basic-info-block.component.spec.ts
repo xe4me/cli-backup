@@ -36,7 +36,7 @@ describe('amp-basic-info-block component', () => {
         component = fixture.componentInstance;
 
         const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
-        titleControl = controlGroup['TitleDropdown'];
+        titleControl = controlGroup['Title'];
         firstNameControl = controlGroup['FirstName'];
         middleNameControl = controlGroup['MiddleName'];
         lastNameControl = controlGroup['LastName'];

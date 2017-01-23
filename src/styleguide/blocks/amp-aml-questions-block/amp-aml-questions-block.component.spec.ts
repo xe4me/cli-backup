@@ -25,9 +25,9 @@ function loadComponent() {
 
     const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
     console.log(controlGroup);
-    primarySourceOfWealth = controlGroup['primarySourceOfWealthDropdown'];
-    sourceOfFundsForAccount = controlGroup['sourceOfFundsForAccountDropdown'];
-    reasonForOpeningAccount = controlGroup['reasonForOpeningAccountDropdown'];
+    primarySourceOfWealth = controlGroup['primarySourceOfWealth'];
+    sourceOfFundsForAccount = controlGroup['sourceOfFundsForAccount'];
+    reasonForOpeningAccount = controlGroup['reasonForOpeningAccount'];
 }
 
 describe('amp-aml-questions-block component', () => {

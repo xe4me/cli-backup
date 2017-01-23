@@ -1,6 +1,8 @@
 import {
     async,
-    TestBed
+    TestBed,
+    fakeAsync,
+    tick
 } from '@angular/core/testing';
 import {
     Component,
@@ -120,6 +122,15 @@ describe( 'amp-row-repeater component', () => {
             _fixture.detectChanges();
             expect( _repeaterComp.rowCount ).toBe( _testCmp.initialRowCount );
         } );
+        it( 'should emit an event when adding a row', fakeAsync( () => {
+            let eventCounter = 0;
+            _repeaterComp.$add.subscribe( ( event ) => {
+                expect( event ).toBeDefined();
+                expect( eventCounter ).toBe( 0 );
+                eventCounter++;
+            } );
+            tick();
+        } ) );
     } );
     describe( 'remove', () => {
         it( 'should REMOVE all the rows and the rowCount should be 0 if reset is called', () => {
@@ -138,6 +149,19 @@ describe( 'amp-row-repeater component', () => {
             (<any> _repeaterComp).removeAt();
             expect( _repeaterComp.rowCount ).toBe( 5 );
         } );
+        it( 'should emit an event when removing a row', fakeAsync( () => {
+            _repeaterComp.add( 5 );
+            _fixture.detectChanges();
+            let eventCounter = 0;
+            _repeaterComp.$remove.subscribe( ( event ) => {
+                expect( event ).toBeDefined();
+                expect( event ).toBe( 0 );
+                expect( eventCounter ).toBe( 0 );
+                eventCounter++;
+            } );
+            _repeaterComp.removeAt( 0 );
+            tick();
+        } ) );
     } );
 
     describe( 'buttons when specified', () => {

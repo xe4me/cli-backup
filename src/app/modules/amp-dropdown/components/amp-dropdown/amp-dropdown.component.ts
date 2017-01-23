@@ -94,10 +94,6 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
         return this._optionsHidden;
     }
 
-    getGroupName () {
-        return this.id + AmpDropdownComponent.DROPDOWN_CONTROL_GROUP_NAME;
-    }
-
     ngOnInit () : void {
         super.ngOnInit();
         this.calculateMaxWidth( window.innerWidth );
@@ -121,11 +117,11 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
             // if we have the fdn provided by controlGroup , use it otherwise generate a radnom string
             this.createRandomId();
             if ( this.controlGroup ) {
-                if ( this.controlGroup.contains( this.getGroupName() ) ) {
-                    this.dropdownControlGroup = <FormGroup> this.controlGroup.get( this.getGroupName() );
+                if ( this.controlGroup.contains( this.id ) ) {
+                    this.dropdownControlGroup = <FormGroup> this.controlGroup.get( this.id );
                 } else {
                     this.dropdownControlGroup = new FormGroup( {} );
-                    this.controlGroup.addControl( this.getGroupName(), this.dropdownControlGroup );
+                    this.controlGroup.addControl( this.id, this.dropdownControlGroup );
                 }
             } else {
                 this.dropdownControlGroup = new FormGroup( {} );
@@ -158,8 +154,8 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
             this.subscription.unsubscribe();
         }
         if ( !this.keepControl ) {
-            if ( this.controlGroup && this.controlGroup.contains( this.getGroupName() ) ) {
-                this.controlGroup.removeControl( this.getGroupName() );
+            if ( this.controlGroup && this.controlGroup.contains( this.id ) ) {
+                this.controlGroup.removeControl( this.id );
             }
         }
     }
