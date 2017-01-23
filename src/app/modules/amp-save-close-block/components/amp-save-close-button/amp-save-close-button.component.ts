@@ -24,6 +24,7 @@ import {
     } )
 export class AmpSaveCloseButtonComponent {
     @Input() private form : FormGroup;
+    @Input() private context : any;
     private showStickyButton : boolean = false;
     private hydrationSubscription : Subscription;
     constructor (

@@ -1,0 +1,33 @@
+@import '../pages';
+
+.container {
+
+    amp-button {
+        margin-top: 0 !important;
+        .btn {
+            margin-top: 0 !important;
+        }
+    }
+    .app-buttons {
+        margin-top: 3.333em;
+        .apple-store-button {
+            margin-right: 2em;
+        }
+    }
+    @include media-query(tablet-and-down) {
+        amp-button {
+            margin-top: 0 !important;
+            .btn {
+                margin-top: 0 !important;
+            }
+        }
+        .app-buttons img{
+            max-width: 46%;
+            &.apple-store-button {
+                margin-right: 5%;
+            }
+        }
+    }
+
+}
+

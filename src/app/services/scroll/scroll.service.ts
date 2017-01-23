@@ -116,7 +116,7 @@ export class ScrollService {
                     section : sectionName,
                     componentSelector
                 } );
-            }, 800 );
+            } );
             return ;
         }
         let options = {
