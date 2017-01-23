@@ -214,7 +214,7 @@ describe( 'amp-country service ', () => {
     it( 'get the country list when subscribed', ( done ) => {
         backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new ResponseOptions( {
-                body : JSON.stringify( countries )
+                body : JSON.stringify( {payload : countries} )
             } );
             expect( connection.request.method ).toBe( RequestMethod.Get );
             expect( connection.request.url ).toBe( countryServiceEndPoint );
@@ -224,7 +224,7 @@ describe( 'amp-country service ', () => {
         countryService.getCountries()
             .subscribe(
                 ( response ) => {
-                    expect( response ).toEqual( countries );
+                    expect( response).toEqual( countries );
                     done();
                 },
                 ( error ) => {
@@ -237,7 +237,7 @@ describe( 'amp-country service ', () => {
         backend.connections.subscribe( ( connection : MockConnection ) => {
             callsCounter++;
             let options = new ResponseOptions( {
-                body : JSON.stringify( countries )
+                body : JSON.stringify( {payload : countries} )
             } );
             expect( connection.request.method ).toBe( RequestMethod.Get );
             expect( connection.request.url ).toBe( countryServiceEndPoint );

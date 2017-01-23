@@ -28,6 +28,7 @@ module.exports = function (config) {
          * we are building the test environment in ./spec-bundle.js
          */
         files: [
+
             {pattern: './config/_process_env.js', watched: false},
             {pattern: './src/assets/**/*', watched: false, included: false, served: true, nocache: false},
             {pattern: './config/spec-bundle.js', watched: false}
@@ -103,7 +104,7 @@ module.exports = function (config) {
          * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
          */
         browsers: [
-            'Chrome'
+            'PhantomJS'
         ],
 
         customLaunchers: {
