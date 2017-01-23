@@ -113,7 +113,7 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
                 ];
             this.controlArray.push( formGroupForArray );
             this.$add.emit( {
-                addedArray : formGroupForArray
+                addedGroup : formGroupForArray
             } );
         }
         this._cd.markForCheck();
