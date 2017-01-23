@@ -63,6 +63,9 @@ import PaddingMarginBasicUsage from './layout/padding-margin/padding-margin';
 import ResponsiveBasicUsage from './layout/responsive/responsive';
 import TablesBasicUsage from './layout/tables/tables';
 import TextBasicUsage from './layout/text/text';
+import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
+import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
+import AmpConfirmationPageBasicUsage from './pages/amp-confirmation-page/basic_usage';
 
 // Import components that will get loaded dynamically in a block loader
 import { AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-address-block/entry-components';
@@ -76,8 +79,7 @@ import { AMP_GREENID_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-greenid-block/e
 import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
-import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
-import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
+import { AmpConfirmationPageComponent } from '../app/pages/amp-confirmation-page/amp-confirmation-page.component';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
 
@@ -98,6 +100,8 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpAmlQuestionsBlockBasicUsage,
     AmpBasicInfoBlockBasicUsage,
     AmpCaptchaBlockBasicUsage,
+    AmpConfirmationPageBasicUsage,
+    AmpConfirmationPageComponent,
     AmpMenuFrameBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,

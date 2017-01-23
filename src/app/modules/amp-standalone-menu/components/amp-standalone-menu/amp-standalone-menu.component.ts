@@ -166,7 +166,6 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private onSectionClick ( event, section ) {
         event.preventDefault();
-        console.log( 'section', section );
         this.scrollToSection( section );
         this.close();
     }
@@ -214,9 +213,15 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
     private setupContainingElement () {
         const containingElement = this.getContainingElement();
-        const styles = window.getComputedStyle(containingElement);
+        let styles;
 
-        if ( containingElement && styles ) {
+        if ( !containingElement ) {
+            return false;
+        }
+
+        styles = window.getComputedStyle(containingElement);
+
+        if ( styles ) {
             if ( styles.position === 'static' ) {
                 containingElement.style.position = 'relative';
             }
@@ -229,7 +234,6 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     private setMenuPosition () {
         const menu = this.menu.nativeElement;
         const containingElement = this.getContainingElement();
-        const styles = window.getComputedStyle(containingElement);
 
         if ( containingElement && this.isSticky ) {
             const stickyClass           = 'steps-menu--sticky';
@@ -240,12 +244,12 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
             let menuHeight              = this.menu.nativeElement.offsetHeight;
             let position                = 'top';
 
-            if ( scrollY >= (containingElementY + containingElementHeight - menuHeight) ) {
-                position = 'bottom';
-            } else if ( scrollY >= containingElementY ) {
+            if ( scrollY <= containingElementY ) {
+                position = 'top';
+            } else if ( scrollY < (containingElementY + containingElementHeight - menuHeight) ) {
                 position = 'middle';
             } else {
-                position = 'top';
+                position = 'bottom';
             }
 
             if (this.menuPosition !== position) {

@@ -1375,5 +1375,25 @@
             }
         ],
         "readme": "<p>To Allow only numbers in the input field</p>\n"
+    },
+    {
+        "name": "Amp Confirmation Page (WIP)",
+        "sources": [
+            "src/app/pages/amp-confirmation-page/amp-confirmation-page.ts"
+        ],
+        "id": "AmpConfirmationPage",
+        "examples": [
+            {
+                "template": "src/styleguide/pages/amp-confirmation-page/basic_usage.html",
+                "styles": "src/styleguide/pages/amp-confirmation-page/basic_usage.scss",
+                "source": "src/styleguide/pages/amp-confirmation-page/basic_usage.ts",
+                "galen": "src/styleguide/pages/amp-confirmation-page/amp-confirmation-page.component.test.spec",
+                "jasmine": "src/styleguide/pages/amp-confirmation-page/amp-confirmation-page.component.spec.ts",
+                "component": "amp-confirmation-page-basic-usage",
+                "component_src_location": "pages/amp-confirmation-page/basic_usage",
+                "name": "Amp Confirmation Page Basic Usage"
+            }
+        ],
+        "readme": "<p>Amp Confirmation Page.</p>\n"
     }
 ]

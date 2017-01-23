@@ -59,7 +59,9 @@ export class ScrollService {
             let _fdnOfSelectorName = selectorName.split( '-' );
             _fdnOfSelectorName.pop();
             if ( options.onlyForward ) {
-                currentIdIsMet = options.currentId === selectorName;
+                if ( !currentIdIsMet ) {
+                    currentIdIsMet = options.currentId === selectorName;
+                }
                 if ( !currentIdIsMet ) {
                     continue;
                 } else {
@@ -76,11 +78,11 @@ export class ScrollService {
                     formGroup = formGroup.controls[ fdnSelectorName ];
                 }
             }
+            // why do we need  this : > ??? Object.keys( formGroup.value ).length > 0
             if ( !isScrolled &&
                 ( formGroup.invalid ||
                     (formGroup.valid &&
-                    formGroup.untouched &&
-                    Object.keys( formGroup.value ).length > 0)
+                    formGroup.untouched )
                 )
             ) {
                 this.scrollToComponentSelector( selectorName, 'easeInQuad', offset, options.mock );
@@ -116,8 +118,8 @@ export class ScrollService {
                     section : sectionName,
                     componentSelector
                 } );
-            }, 800 );
-            return ;
+            } );
+            return;
         }
         let options = {
             duration       : 800,

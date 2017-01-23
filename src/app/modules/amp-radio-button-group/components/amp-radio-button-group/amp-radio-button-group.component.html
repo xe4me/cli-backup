@@ -20,5 +20,10 @@
         <div class="label">
             {{ button.label }}
         </div>
+        <amp-tooltip-cmp *ngIf="button.tooltip"
+            (click)="false"
+            class="post-fix"
+            [message]="button.tooltip">
+        </amp-tooltip-cmp>
     </label>
 </div>

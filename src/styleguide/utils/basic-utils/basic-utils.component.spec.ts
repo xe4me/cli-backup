@@ -20,11 +20,11 @@ describe( 'Basic Util functions test', () => {
             let ausAddress = {
                 address         : '33 Alfred Street',
                 city            : '',
-                countryDropdown : {
+                country : {
                     Query        : 'Australia',
                     SelectedItem : 'AUS'
                 },
-                stateDropdown   : {
+                state   : {
                     Query        : 'NSW',
                     SelectedItem : 'NSW'
                 },
@@ -42,11 +42,11 @@ describe( 'Basic Util functions test', () => {
             let nzAddress = {
                 address         : '42 Shotover St',
                 city            : 'Queenstown',
-                countryDropdown : {
+                country : {
                     Query        : 'New Zealand',
                     SelectedItem : 'NZL'
                 },
-                stateDropdown   : {
+                state   : {
                     Query        : '',
                     SelectedItem : ''
                 },
@@ -64,11 +64,11 @@ describe( 'Basic Util functions test', () => {
             let ukAddress = {
                 address         : '10 Downing Street',
                 city            : 'London',
-                countryDropdown : {
+                country : {
                     Query        : 'United Kingdom',
                     SelectedItem : 'UK'
                 },
-                stateDropdown   : {
+                state   : {
                     Query        : '',
                     SelectedItem : ''
                 },
