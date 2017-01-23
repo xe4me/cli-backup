@@ -57,8 +57,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     @Output( 'complete' ) $complete : EventEmitter<any> = new EventEmitter();
     @ViewChild( AmpCheckboxComponent ) private creditHeaderCheckboxComponent;
 
-    // When the model was given by the bett3r wrapping component
-    // @Input() model : IGreenIdFormModel; // form model input
     private model : IGreenIdFormModel;
 
     private creditHeaderCheckboxId : string = 'creditHeaderCheckbox';
@@ -83,6 +81,8 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         identity verified by a credit reporting agency, please select another data source or contact AMP Bank so that
         we can discuss other options with you.
     `;
+
+    private showOkButton : boolean = false;
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
@@ -125,7 +125,10 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     }
 
     private startVerification () {
-        if ( !this.isVerificationCompleted ) {
+        if ( !this.isVerificationCompleted ) {            
+            // Build our model object to give to Green ID
+            this.model = this.mapGreenIdModel();
+
             this.loadApiScripts = new Promise<any>( this.loadApiScriptsHandler ).then( () => {
                 this.setupGreenId();
                 if ( !this.isAlreadyRegistered ) {
@@ -267,6 +270,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         this.verificationStatusControl.setValue( verificationStatus );
 
         this.$complete.emit( verificationStatus );
+        this.showOkButton = true;
         this._cd.markForCheck();
     }
 
@@ -321,14 +325,15 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         this.verificationIdControl.setValue( newVerificationId );
     }
 
-    private onOkClick () {
-
-        // Build our model object to give to Green ID
-        this.model = this.mapGreenIdModel();
-
+    private onCreditCheckHeaderConsentClick () {
         this.hasOkBeenClicked = true;
         this.hasCreditCheckHeaderConsentBeenGiven = !!this.creditHeaderCheckboxComponent.control.value;
         this.startVerification();
+    }
+
+    private onOkClick () {
+        this.onNext();
+        this.showOkButton = false;
     }
 
     /**
@@ -336,21 +341,21 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
      */
     private mapGreenIdModel () {
         return {
-            title       : _.get(this.__form, this.__custom.titleFieldId, ''),
-            firstName   : _.get(this.__form, this.__custom.firstNameFieldId, ''),
-            middleNames : _.get(this.__form, this.__custom.middleNamesFieldId, ''),
-            lastName    : _.get(this.__form, this.__custom.lastNameFieldId, ''),
-            dateOfBirth : _.get(this.__form, this.__custom.dateOfBirthFieldId, ''),
-            email       : _.get(this.__form, this.__custom.emailFieldId, ''),
+            title       : _.get(this.__form.value, this.__custom.titleFieldId, ''),
+            firstName   : _.get(this.__form.value, this.__custom.firstNameFieldId, ''),
+            middleNames : _.get(this.__form.value, this.__custom.middleNamesFieldId, '') || '',
+            lastName    : _.get(this.__form.value, this.__custom.lastNameFieldId, ''),
+            dateOfBirth : _.get(this.__form.value, this.__custom.dateOfBirthFieldId, ''),
+            email       : _.get(this.__form.value, this.__custom.emailFieldId, ''),
             address     : {
                 country      : 'AU',
-                state        : _.get(this.__form, this.__custom.stateFieldId, ''),
-                streetName   : _.get(this.__form, this.__custom.streetNameFieldId, ''),
-                flatNumber   : _.get(this.__form, this.__custom.flatNumberFieldId, ''),
-                streetNumber : _.get(this.__form, this.__custom.streetNumberFieldId, ''),
-                suburb       : _.get(this.__form, this.__custom.suburdFieldId, ''),
-                postcode     : _.get(this.__form, this.__custom.postcodeFieldId, ''),
-                streetType   : _.get(this.__form, this.__custom.streetTypeFieldId, '')
+                state        : _.get(this.__form.value, this.__custom.stateFieldId, ''),
+                streetName   : _.get(this.__form.value, this.__custom.streetNameFieldId, '') || '',
+                flatNumber   : _.get(this.__form.value, this.__custom.flatNumberFieldId, '') || '',
+                streetNumber : _.get(this.__form.value, this.__custom.streetNumberFieldId, ''),
+                suburb       : _.get(this.__form.value, this.__custom.suburdFieldId, '') || '',
+                postcode     : _.get(this.__form.value, this.__custom.postcodeFieldId, ''),
+                streetType   : _.get(this.__form.value, this.__custom.streetTypeFieldId, '')
             }
         };
     }

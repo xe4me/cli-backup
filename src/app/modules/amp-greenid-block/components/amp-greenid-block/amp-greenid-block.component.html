@@ -36,7 +36,7 @@
                     <amp-button
                         theme="tools"
                         class="btn btn-ok mr palm-1/1 palm-mr0"
-                        (click)="onOkClick()">
+                        (click)="onCreditCheckHeaderConsentClick()">
                         OK
                     </amp-button>
                 </div>
@@ -64,4 +64,14 @@
             </div>
         </div>
     </div>
+    <div class="mt-60">
+        <amp-button
+                theme="tools"
+                class="btn btn-ok mr palm-1/1 palm-mr0"
+                *ngIf="showOkButton"
+                (click)="onOkClick()">
+            OK
+        </amp-button>
+    </div>
+
 </amp-form-block>
