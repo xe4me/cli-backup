@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AmpButton } from '../../../app/modules/amp-button/components/amp-button/amp-button.component';
 import { AmpConfirmationPageComponent } from '../../../app/pages/amp-confirmation-page/amp-confirmation-page.component';
+import { AmpHeaderNoTextComponent } from '../../../app/modules/amp-header/components/amp-header-no-text/amp-header-no-text.component';
+import { AmpLogoComponent } from '../../../app/modules/amp-logo/components/amp-logo/amp-logo.component';
 
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 
@@ -25,7 +27,7 @@ describe( 'amp-confirmation-page component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports: [ FormsModule, HttpModule ],
-            declarations: [ AmpConfirmationPageComponent, AmpButton, TestComponent ],
+            declarations: [ AmpConfirmationPageComponent, AmpButton, TestComponent, AmpHeaderNoTextComponent, AmpLogoComponent ],
             providers: [ ...APP_RESOLVER_PROVIDERS ]
         } );
     } ) );
@@ -34,6 +36,14 @@ describe( 'amp-confirmation-page component', () => {
         it( 'the component should be defined with one control for each input', () => {
             loadComponent();
             expect( component ).toBeDefined();
+        } );
+        it( 'the component should contain an amp-header-no-text', () => {
+            loadComponent();
+            expect( domElement.querySelector( 'amp-header-no-text' ) ).toBeDefined();
+        } );
+        it( 'the component should contain an amp-button', () => {
+            loadComponent();
+            expect( domElement.querySelector( 'amp-button' ) ).toBeDefined();
         } );
     } );
 
