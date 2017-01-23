@@ -11,6 +11,7 @@ export interface Country {
 export class AmpCountryService {
     public static BASE_URL = Environments.property.ApiCallsBaseUrl;
     public static COUNTRY_URL = AmpCountryService.BASE_URL + '/refdata/countries';
+    public countries : Country[] = [];
     private headers = new Headers( {
         'Content-Type' : 'application/json',
         'caller' : Environments.property.ExperienceName || 'components'
@@ -23,6 +24,10 @@ export class AmpCountryService {
     public getCountries() : Observable<Country[]> {
         return this.http
             .get( AmpCountryService.COUNTRY_URL, this.options )
-            .map( ( res ) => res.json().payload );
+            .map( ( res ) => {
+                const coutryList = res.json().payload;
+                this.countries = coutryList;
+                return coutryList;
+            } );
     }
 }
