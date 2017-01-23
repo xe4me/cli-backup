@@ -56,8 +56,8 @@ function loadComponent() {
     component = fixture.componentInstance;
 
     const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
-    countryOfCitizenshipControl = controlGroup['countryOfCitizenshipDropdown'];
-    countryOfResidencyControl = controlGroup['countryOfResidencyDropdown'];
+    countryOfCitizenshipControl = controlGroup['countryOfCitizenship'];
+    countryOfResidencyControl = controlGroup['countryOfResidency'];
     usTaxCitizenControl = controlGroup['USTaxCitizen'];
     tinControl = controlGroup['tin'];
 }

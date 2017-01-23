@@ -89,7 +89,10 @@ describe( 'amp-dropdown component', () => {
         } else {
             expect( getValueOfSelectedOption() ).toBe( null );
         }
-        let emptySelectedOption = { label : null, value : null };
+        let emptySelectedOption = {
+            label : null,
+            value : null
+        };
         expect( DropdownComponent.selectedOption ).toEqual( emptySelectedOption );
     }
 
@@ -186,7 +189,10 @@ describe( 'amp-dropdown component', () => {
                 AmpdropdownTest
             ],
             providers    : [
-                { provide : ComponentFixtureAutoDetect, useValue : true }
+                {
+                    provide  : ComponentFixtureAutoDetect,
+                    useValue : true
+                }
             ]
         } );
     } ) );
@@ -372,7 +378,7 @@ describe( 'amp-dropdown component', () => {
         it( 'it should be preselected if it has default value', () => {
             expect( QueryControl.value ).toBe( 'Mr' );
             expect( SelectedControl.value ).toBe( 'mr' );
-            expect( getValueOfSelectedOption() ).toBe('Mr' );
+            expect( getValueOfSelectedOption() ).toBe( 'Mr' );
         } );
     } );
 } );
@@ -399,15 +405,30 @@ describe( 'amp-dropdown component', () => {
 class AmpdropdownTest {
     @ViewChild( 'dropDownCmp' ) dropDownCmp;
     public titleOptions            = [
-        { value : 'mr', label : 'Mr' },
-        { value : 'mrs', label : 'Mrs' },
-        { value : 'miss', label : 'Miss' },
-        { value : 'ms', label : 'Ms' },
-        { value : 'dr', label : 'Dr' }
+        {
+            value : 'mr',
+            label : 'Mr'
+        },
+        {
+            value : 'mrs',
+            label : 'Mrs'
+        },
+        {
+            value : 'miss',
+            label : 'Miss'
+        },
+        {
+            value : 'ms',
+            label : 'Ms'
+        },
+        {
+            value : 'dr',
+            label : 'Dr'
+        }
     ];
     public __controlGroup          = new AmpFormGroup( {} );
     public __retrievedControlGroup = new AmpFormGroup( {
-            'TitleDropdown' : new FormGroup( {
+            'Title' : new FormGroup( {
                 'SelectedItem' : new FormControl( this.titleOptions[ 0 ].value ),
                 'Query'        : new FormControl( this.titleOptions[ 0 ].label )
             } )
