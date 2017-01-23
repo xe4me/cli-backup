@@ -65,6 +65,12 @@ describe( 'amp-last-name component' , () => {
             expect( lastNameControl._status ).toBe( 'INVALID' );
         } );
 
+        describe( 'Error message' , () => {
+            it('should define the correct error message for pattern', () => {
+                expect( lastNameControl._ampErrors.pattern ).toEqual( 'Last name has an invalid value.' );
+            });
+        } );
+
     } );
 } );
 
