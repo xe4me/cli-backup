@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AmpButton } from '../../../app/modules/amp-button/components/amp-button/amp-button.component';
-import { AmpConfirmationPageComponent } from '../../../app/pages/amp-confirmation-page/amp-confirmation-page.component';
+import { AmpTransitioningAccountPageComponent } from '../../../app/pages/amp-transitioning-account-page/amp-transitioning-account-page.component';
 
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 
@@ -20,12 +20,12 @@ function loadComponent () {
     ngElement = fixture.debugElement;
 }
 
-describe( 'amp-confirmation-page component', () => {
+describe( 'amp-transitioning-account-page component', () => {
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports: [ FormsModule, HttpModule ],
-            declarations: [ AmpConfirmationPageComponent, AmpButton, TestComponent ],
+            declarations: [ AmpTransitioningAccountPageComponent, AmpButton, TestComponent ],
             providers: [ ...APP_RESOLVER_PROVIDERS ]
         } );
     } ) );
@@ -52,9 +52,9 @@ describe( 'amp-confirmation-page component', () => {
 
 @Component( {
     template: `
-        <div class="amp-confirmation-page">
-            <amp-confirmation-page title="My title">
-            </amp-confirmation-page>
+        <div class="amp-transitioning-account-page">
+            <amp-transitioning-account-page title="My title">
+            </amp-transitioning-account-page>
         </div>
     `
 } )

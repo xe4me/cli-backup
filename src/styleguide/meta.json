@@ -1395,5 +1395,25 @@
             }
         ],
         "readme": "<p>Amp Confirmation Page.</p>\n"
+    },
+    {
+        "name": "Amp Transitioning Page",
+        "sources": [
+            "src/app/pages/amp-transitioning-account-page/amp-confirmation-page.ts"
+        ],
+        "id": "AmpTransitioningAccountPage",
+        "examples": [
+            {
+                "template": "src/styleguide/pages/amp-transitioning-account-page/basic_usage.html",
+                "styles": "src/styleguide/pages/amp-transitioning-account-page/basic_usage.scss",
+                "source": "src/styleguide/pages/amp-transitioning-account-page/basic_usage.ts",
+                "galen": "src/styleguide/pages/amp-transitioning-account-page/amp-transitioning-account-page.component.test.spec",
+                "jasmine": "src/styleguide/pages/amp-transitioning-account-page/amp-transitioning-account-page.component.spec.ts",
+                "component": "amp-transitioning-account-page-basic-usage",
+                "component_src_location": "pages/amp-transitioning-account-page/basic_usage",
+                "name": "Amp Confirmation Account Page Basic Usage"
+            }
+        ],
+        "readme": "<p>Amp Transitioning Account Page.</p>\n"
     }
 ]
