@@ -45,15 +45,15 @@ export class IdCheckBlock extends FormBlock {
         const applicant          = this.__form.get( [ 'Application', `Applicant${applicantIndex}Section` ] ).value;
         const personalDetails    = applicant.PersonalDetailsSection;
         const residentialAddress = personalDetails.Address.Address.residentialAddress.manualAddress;
-        const state              = residentialAddress.stateDropdown ? residentialAddress.stateDropdown.SelectedItem : '';
-        const streetType         = residentialAddress.streetTypeDropdown
-            ? residentialAddress.streetTypeDropdown.SelectedItem : '';
+        const state              = residentialAddress.state ? residentialAddress.state.SelectedItem : '';
+        const streetType         = residentialAddress.streetType
+            ? residentialAddress.streetType.SelectedItem : '';
 
         return {
             firstName   : personalDetails.BasicInfo.FirstName,
             lastName    : personalDetails.BasicInfo.LastName,
             middleNames : personalDetails.BasicInfo.MiddleName || '',
-            title       : personalDetails.BasicInfo.TitleDropdown.SelectedItem,
+            title       : personalDetails.BasicInfo.Title.SelectedItem,
             dateOfBirth : personalDetails.BasicInfo.DateOfBirth,
             email       : personalDetails.ContactDetails.EmailAddress,
             address     : {
