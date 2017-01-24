@@ -102,37 +102,34 @@
         },
         "blocks": [
             {
-                "name": "OnlineOrOfflineIdCheck",
-                "blockType": "OnlineOrOfflineIdCheckBlock",
+                "name": "IdCheck",
+                "blockType": "AmpGreenIdBlockComponent",
                 "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/online-or-offline-id-check/online-or-offline-id-check.component",
+                "commonBlock": true,
+                "path": "modules/amp-greenid-block/components/amp-greenid-block/amp-greenid-block.component",
                 "custom": {
-                    "blockTitle": "We now need to verify your identity",
+                    "isInitiallyActive": true,
                     "controls": [
                         {
-                            "id": "OnlineIDCheck"
+                            "id": "AcceptIdentityCheckPrivacyDeclaration"
                         }
                     ],
-                    "optionalBlocks": {
-                        "IdCheckBlock": {
-                            "name": "IdCheck",
-                            "blockType": "IdCheckBlock",
-                            "blockLayout": "INLINE",
-                            "commonBlock": false,
-                            "path": "blocks/id-check/id-check.component",
-                            "custom": {
-                                "controls": [
-                                    {
-                                        "id": "AcceptIdentityCheckPrivacyDeclaration"
-                                    }
-                                ],
-                                "blockTitle": "Checking your ID",
-                                "blockTitle_verified": "Thanks",
-                                "blockTitle_unverified": "Your ID was unable to be verified"
-                            }
-                        }
-                    }
+                    "blockTitle": "Checking your ID",
+                    "blockTitle_verified": "Thanks",
+                    "blockTitle_unverified": "Your ID was unable to be verified",
+                    "titleFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.Title.SelectedItem",
+                    "firstNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.FirstName",
+                    "middleNamesFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.MiddleName",
+                    "lastNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.LastName",
+                    "dateOfBirthFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.DateOfBirth",
+                    "emailFieldId": "Application.Applicant1Section.PersonalDetailsSection.contactDetails.EmailAddress",
+                    "stateFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.state.SelectedItem",
+                    "streetNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetName",
+                    "flatNumberFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.unitNumber",
+                    "streetNumberFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetNumber",
+                    "suburbFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.suburb",
+                    "postcodeFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.postCode",
+                    "streetTypeFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetType.SelectedItem"
                 }
             }
         ]
