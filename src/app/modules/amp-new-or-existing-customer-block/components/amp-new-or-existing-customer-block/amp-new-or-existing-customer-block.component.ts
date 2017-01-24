@@ -3,8 +3,7 @@ import {
     ChangeDetectorRef,
     ChangeDetectionStrategy,
     OnInit,
-    AfterViewInit,
-    ViewContainerRef
+    AfterViewInit, Input
 } from '@angular/core';
 import {
     Validators,
@@ -14,7 +13,10 @@ import { FormBlock } from '../../../../form-block';
 import { SaveService } from '../../../../services/save/save.service';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 
-//import { Constants } from '../../shared';
+// import { Constants } from '../../shared';
+
+const DEFAUT_NEW_BUTTON_LABEL = 'New';
+const DEFAUT_EXISTING_BUTTON_LABEL = 'Existing';
 
 @Component( {
     selector        : 'amp-new-or-existing-customer-block',
@@ -24,6 +26,9 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
 } )
 export class AmpNewOrExistingCustomerBlockComponent extends FormBlock implements OnInit, AfterViewInit {
 
+    @Input() newButtonLabel;
+    @Input() existingButtonLabel;
+
     private loadedLoginBlock = false;
     private hideThisBlock    = false;
 
@@ -31,10 +36,12 @@ export class AmpNewOrExistingCustomerBlockComponent extends FormBlock implements
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
-        //this.disableAutoSave();
+        // this.disableAutoSave();
     }
 
     public ngOnInit () {
+        this.newButtonLabel = this.__custom.newButtonLabel || DEFAUT_NEW_BUTTON_LABEL;
+        this.existingButtonLabel = this.__custom.existingButtonLabel || DEFAUT_EXISTING_BUTTON_LABEL;
         /*
         if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
             this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, new FormControl( null, Validators.required ) );

@@ -24,7 +24,7 @@ function loadComponent() {
     const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
 }
 
-describe('amp-new-or-existing-customer-block component', () => {
+xdescribe('amp-new-or-existing-customer-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
