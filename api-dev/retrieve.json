@@ -91,7 +91,7 @@
                     "AcceptIdentityCheckPrivacyDeclaration": true
                   },
                   "IdCheck": {
-                    "green-id-identity-check": {
+                    "greenIdIdentityCheck": {
                       "verificationId": null,
                       "verificationStatus": null
                     }
