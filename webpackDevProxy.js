@@ -23,6 +23,9 @@ module.exports = {
             }
         }
     },
+    '/ddc/public/api/bett3r/eligible-accounts': {
+        target: 'http://localhost:8882'
+    },
     '/ddc/public/api/*': {
         // this will rewrite all the request to api to dev , for save and submit ,
         secure: false,

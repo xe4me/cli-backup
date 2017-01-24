@@ -4,8 +4,8 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import {
-    SaveService,
-    ScrollService
+    ScrollService,
+    SaveService
 } from 'amp-ddc-components';
 import { AccountTransitionBaseBlock } from '../account-transition-base/account-transition-base.component';
 @Component( {
