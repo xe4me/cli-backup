@@ -31,6 +31,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     private loadedDynamicBlock : string = '';
     private isExistingCustomer : boolean  = false;
     private userHasLoggedIn : boolean  = false;
+    private eligibleAccountsRequestFailed : boolean  = false;
     private accountsEligibleForTransitioning : {} = null;
 
     constructor ( _cd : ChangeDetectorRef,
@@ -105,7 +106,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
 
     private get showBlock () : boolean {
         if ( this.isExistingCustomer ) {
-            if ( this.userHasLoggedIn ) {
+            if ( this.userHasLoggedIn && !this.eligibleAccountsRequestFailed ) {
                 return this.userHasEligibleAccounts;
             }
             return true;
@@ -133,7 +134,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                     this._cd.markForCheck();
                 },
                 () => {
-                    // in the case of an error ie 404 or 500 don't do anything
+                    this.eligibleAccountsRequestFailed = true;
                 });
     }
 
@@ -146,7 +147,6 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                 }
             }
         }
-
         return false;
     }
 }
