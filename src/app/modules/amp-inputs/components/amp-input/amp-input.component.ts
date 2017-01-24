@@ -22,6 +22,7 @@ import {
 } from '../../../amp-utils';
 import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
+
 @Component(
     {
         selector        : 'amp-input',
@@ -281,6 +282,10 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }
     }
 
+    protected parseCurrency() : number {
+        return this.control.value ? parseFloat(this.control.value.replace(/[,\$]/g, '')) : this.control.value;
+    }
+
     protected onBlured ( $event ) {
         clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
@@ -290,7 +295,11 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
             }
         }, 100 );
         let notUsable;
-        if ( this.control.value && isNaN( this.control.value ) ) {
+
+        if ( this.control.value &&
+             isNaN( this.control.value ) &&
+             isNaN( this.parseCurrency() ) ) {
+
             this.inputCmp.nativeElement.value = this.control.value.trim();
             notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
             notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
