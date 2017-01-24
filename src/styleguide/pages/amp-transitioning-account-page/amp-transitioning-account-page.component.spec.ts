@@ -48,8 +48,8 @@ describe( 'amp-transitioning-account-page component', () => {
     } );
 
     describe( 'Block title', () => {
-        describe( 'when a title has been defined', () => {
-            it( 'should not have the block title h3', () => {
+        describe( 'when a title has been passed to the component as an input', () => {
+            it( 'should display the title in a h3 tag', () => {
                 loadComponent();
                 const titleEl = domElement.querySelector( 'h3' );
                 expect( titleEl ).toBeDefined();
