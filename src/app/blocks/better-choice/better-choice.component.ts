@@ -16,6 +16,7 @@ import {
 import {
     Constants,
     SharedFormDataService,
+    EligibleAccountsService,
     LoginStatusService
 } from '../../shared';
 @Component( {
@@ -29,15 +30,59 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     private newOrExistingCustomerSubscription : Subscription;
     private loadedDynamicBlock : string = '';
     private isExistingCustomer : boolean  = false;
+    private userHasLoggedIn : boolean  = false;
+    private eligibleAccountsRequestFailed : boolean  = false;
+    private accountsEligibleForTransitioning : {} = null;
 
     constructor ( _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
                   private viewContainerRef : ViewContainerRef,
                   private sharedFormDataService : SharedFormDataService,
+                  private eligibleAccountsService : EligibleAccountsService,
                   private loginService : LoginStatusService,
                   private route : ActivatedRoute,
                   saveService : SaveService ) {
         super( saveService, _cd, scrollService );
+    }
+
+    public ngAfterViewInit () {
+        const newOrExistingCustomerControl     =
+                  this.sharedFormDataService.getNewOrExistingCustomerControl( this.__form );
+        this.newOrExistingCustomerSubscription =
+            newOrExistingCustomerControl
+                .valueChanges
+                .subscribe( ( newOrExisting ) => {
+                    if ( newOrExisting === Constants.existingCustomer ) {
+                        this.isExistingCustomer = true;
+                        this._cd.markForCheck();
+                        setTimeout( () => {
+                            this.subscribeToBett3rChoice();
+                        } );
+                    }
+                } );
+
+        this.loginService.userHasLoggedIn()
+            .subscribe( () => {
+                this.userHasLoggedIn = true;
+                this.fetchEligibleAccounts();
+            });
+
+        super.ngAfterViewInit();
+    }
+
+    public ngOnDestroy () {
+        let subscriptions = [
+            this.singleOrJointSubscription,
+            this.betterChoiceSubscription,
+            this.newOrExistingCustomerSubscription
+        ];
+
+        for ( let subscription of subscriptions ) {
+            if ( subscription ) {
+                subscription.unsubscribe();
+            }
+        }
+        super.ngOnDestroy();
     }
 
     public setNextBlock ( betterChoiceId : string ) {
@@ -59,47 +104,14 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
         }
     }
 
-    public ngAfterViewInit () {
-        const newOrExistingCustomerControl     =
-                  this.sharedFormDataService.getNewOrExistingCustomerControl( this.__form );
-        this.newOrExistingCustomerSubscription =
-            newOrExistingCustomerControl
-                .valueChanges
-                .subscribe( ( newOrExisting ) => {
-                    if ( newOrExisting === Constants.existingCustomer ) {
-                        this.isExistingCustomer = true;
-                        this._cd.markForCheck();
-                        setTimeout( () => {
-                            this.subscribeToBett3rChoice();
-                        } );
-                    }
-                } );
-
-        this.loginService.userHasLoggedIn()
-            .subscribe( () => {
-                // TODO: Need to request the users accounts here
-            });
-
-        super.ngAfterViewInit();
-    }
-
-    public ngOnDestroy () {
-        let subscriptions = [
-            this.singleOrJointSubscription,
-            this.betterChoiceSubscription,
-            this.newOrExistingCustomerSubscription
-        ];
-
-        for ( let subscription of subscriptions ) {
-            if ( subscription ) {
-                subscription.unsubscribe();
-            }
-        }
-        super.ngOnDestroy();
-    }
-
     private get showBlock () : boolean {
-        return this.isExistingCustomer;
+        if ( this.isExistingCustomer ) {
+            if ( this.userHasLoggedIn && !this.eligibleAccountsRequestFailed ) {
+                return this.userHasEligibleAccounts;
+            }
+            return true;
+        }
+        return false;
     }
 
     private subscribeToBett3rChoice () {
@@ -112,5 +124,29 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                 this.setNextBlock( val );
             } );
         }
+    }
+
+    private fetchEligibleAccounts () {
+        this.eligibleAccountsService.getEligibleAccounts()
+            .subscribe(
+                ( response ) => {
+                    this.accountsEligibleForTransitioning = response.payload;
+                    this._cd.markForCheck();
+                },
+                () => {
+                    this.eligibleAccountsRequestFailed = true;
+                });
+    }
+
+    private get userHasEligibleAccounts () {
+        if ( this.accountsEligibleForTransitioning ) {
+            for ( const accountType of Object.keys( this.accountsEligibleForTransitioning ) ) {
+                const accounts = this.accountsEligibleForTransitioning[accountType];
+                if ( accounts.length > 0 ) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

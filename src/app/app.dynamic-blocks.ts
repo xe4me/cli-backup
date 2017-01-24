@@ -9,7 +9,6 @@ import { ContinueApplicationBlock } from './blocks/continue-application/continue
 import { DepositTransitionBlock } from './blocks/deposit-transition/deposit-transition.component';
 import { Footer } from './blocks/footer/footer.component';
 import { Header } from './blocks/header/header.component';
-import { IdCheckBlock } from './blocks/id-check/id-check.component';
 import { LastStepBlock } from './blocks/last-step/last-step.component';
 import { LoanOffsetBlock } from './blocks/loan-offset/loan-offset.component';
 import { MenuFrameBlockComponent } from './blocks/menu-frame/menu-frame.component';
@@ -17,7 +16,6 @@ import { MyAMPLoginBlockComponent } from './blocks/my-amplogin-block/my-amplogin
 import { NewOrExistingCustomerBlock } from './blocks/new-or-existing-customer/new-or-existing-customer-block.component';
 import { NotARobotBlock } from './blocks/not-a-robot/not-a-robot.component';
 import { OffsetTransitionBlock } from './blocks/offset-transition/offset-transition.component';
-import { OnlineOrOfflineIdCheckBlock } from './blocks/online-or-offline-id-check/online-or-offline-id-check.component';
 import { ResidencyBlock } from './blocks/residency/residency.component';
 import { SingleOrJointBlockComponent } from './blocks/single-or-joint/single-or-joint-block.component';
 import { SourceOfFundingBlock } from './blocks/source-of-funding/source-of-funding.component';
@@ -50,7 +48,6 @@ export const DYNAMIC_BLOCKS = [
     NewOrExistingCustomerBlock,
     NotARobotBlock,
     OffsetTransitionBlock,
-    OnlineOrOfflineIdCheckBlock,
     ResidencyBlock,
     SingleOrJointBlockComponent,
     SourceOfFundingBlock,

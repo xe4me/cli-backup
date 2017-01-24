@@ -108,7 +108,6 @@
                 "commonBlock": true,
                 "path": "modules/amp-greenid-block/components/amp-greenid-block/amp-greenid-block.component",
                 "custom": {
-                    "isInitiallyActive": true,
                     "controls": [
                         {
                             "id": "AcceptIdentityCheckPrivacyDeclaration"
@@ -117,19 +116,20 @@
                     "blockTitle": "Checking your ID",
                     "blockTitle_verified": "Thanks",
                     "blockTitle_unverified": "Your ID was unable to be verified",
-                    "titleFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.Title.SelectedItem",
-                    "firstNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.FirstName",
-                    "middleNamesFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.MiddleName",
-                    "lastNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.LastName",
-                    "dateOfBirthFieldId": "Application.Applicant1Section.PersonalDetailsSection.BasicInfo.DateOfBirth",
-                    "emailFieldId": "Application.Applicant1Section.PersonalDetailsSection.contactDetails.EmailAddress",
-                    "stateFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.state.SelectedItem",
-                    "streetNameFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetName",
-                    "flatNumberFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.unitNumber",
-                    "streetNumberFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetNumber",
-                    "suburbFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.suburb",
-                    "postcodeFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.postCode",
-                    "streetTypeFieldId": "Application.Applicant1Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetType.SelectedItem"
+                    "rootApplicantFDN":"Application.Applicant",
+                    "titleFDN": "Section.PersonalDetailsSection.BasicInfo.Title.SelectedItem",
+                    "firstNameFDN": "Section.PersonalDetailsSection.BasicInfo.FirstName",
+                    "middleNamesFDN": "Section.PersonalDetailsSection.BasicInfo.MiddleName",
+                    "lastNameFDN": "Section.PersonalDetailsSection.BasicInfo.LastName",
+                    "dateOfBirthFDN": "Section.PersonalDetailsSection.BasicInfo.DateOfBirth",
+                    "emailFDN": "Section.PersonalDetailsSection.contactDetails.EmailAddress",
+                    "stateFDN": "Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.state.SelectedItem",
+                    "streetNameFDN": "Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetName",
+                    "flatNumberFDN": "Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.unitNumber",
+                    "streetNumberFDN": "Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetNumber",
+                    "suburbFDN": "Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.suburb",
+                    "postcodeFDN": "Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.postCode",
+                    "streetTypeFDN": "Section.PersonalDetailsSection.Address.Address.residentialAddress.manualAddress.streetType.SelectedItem"
                 }
             }
         ]
