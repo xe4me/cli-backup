@@ -99,19 +99,19 @@ describe( 'Green id unit tests', () => {
     it( 'mapGreenIdModel should extract the form model values for GreenId to consume', () => {
         // loadComponent();
         let _custom = {
-            titleFieldId        : 'personalDetails.title',
-            firstNameFieldId    : 'personalDetails.firstName',
-            middleNamesFieldId  : 'personalDetails.middleName',
-            lastNameFieldId     : 'personalDetails.lastName',
-            dateOfBirthFieldId  : 'personalDetails.dob',
-            emailFieldId        : 'personalDetails.contactDetails.email',
-            stateFieldId        : 'personalDetails.address.state',
-            streetNameFieldId   : 'personalDetails.address.streetName',
-            flatNumberFieldId   : 'personalDetails.address.flatNumber',
-            streetNumberFieldId : 'personalDetails.address.streetNumber',
-            suburbFieldId       : 'personalDetails.address.suburb',
-            postcodeFieldId     : 'personalDetails.address.postCode',
-            streetTypeFieldId   : 'personalDetails.address.streetType'
+            titleFDN        : 'personalDetails.title',
+            firstNameFDN    : 'personalDetails.firstName',
+            middleNamesFDN  : 'personalDetails.middleName',
+            lastNameFDN     : 'personalDetails.lastName',
+            dateOfBirthFDN  : 'personalDetails.dob',
+            emailFDN        : 'personalDetails.contactDetails.email',
+            stateFDN        : 'personalDetails.address.state',
+            streetNameFDN   : 'personalDetails.address.streetName',
+            flatNumberFDN   : 'personalDetails.address.flatNumber',
+            streetNumberFDN : 'personalDetails.address.streetNumber',
+            suburbFDN       : 'personalDetails.address.suburb',
+            postcodeFDN     : 'personalDetails.address.postCode',
+            streetTypeFDN   : 'personalDetails.address.streetType'
         };
 
         let ampGreenIdBlockCmp = new AmpGreenIdBlockComponent(null, null, null, null, null);
