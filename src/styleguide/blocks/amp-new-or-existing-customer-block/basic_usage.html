@@ -1,0 +1,49 @@
+<form [formGroup]="form" class='nl-form p+'>
+    <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"></div>
+</form>
+
+<section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">
+            Above is an example of a "NewOrExistingCustomer" block.
+        </h2>
+        <p class="ml small">
+            This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
+            <br>It should be <strong>the default way of loading it</strong>.
+        </p>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            In "form-def.def.json" file, in any array of blocks:
+        </p>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "name": "newOrExistingCustomer",
+        "blockType": "AmpNewOrExistingCustomerComponent",
+        "blockLayout": "INLINE",
+        "commonBlock": true,
+        "path": "modules/amp-new-or-existing-customer-block/components/amp-new-or-existing-customer-block/amp-new-or-existing-customer-block.component",
+        "custom": &#123;
+            "isInitiallyActive": true,
+            "blockTitle": "Please choose how you would like to continue",
+            "controls": [
+                &#123;
+                    "id": "ampNewOrExistingCustomer"
+                &#125;
+            ]
+        &#125;
+     &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <p class="ml mt">
+            In case you need more customisation options, please get in touch with DDC team!
+        </p>
+        <p>&nbsp;</p>
+    </article>
+</section>

@@ -1079,6 +1079,26 @@
         "readme": "<p>Menu frame implementation</p>\n"
     },
     {
+        "name": "Amp New Or Existing Customer Block (WIP)",
+        "sources": [
+            "src/app/blocks/amp-new-or-existing-customer-block/components/amp-new-or-existing-customer-block.component.ts"
+        ],
+        "id": "AmpNewOrExistingCustomerBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-new-or-existing-customer-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-new-or-existing-customer-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-new-or-existing-customer-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-new-or-existing-customer-block/amp-new-or-existing-customer-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-new-or-existing-customer-block/amp-new-or-existing-customer-block.component.spec.ts",
+                "component": "amp-new-or-existing-customer-block-basic-usage",
+                "component_src_location": "blocks/amp-new-or-existing-customer-block/basic_usage",
+                "name": "Amp New Or Existing Customer Block Basic Usage"
+            }
+        ],
+        "readme": "<p>New or existing customer implementation</p>\n"
+    },
+    {
         "name": "Amp SMS Block",
         "sources": [
             "src/app/blocks/amp-save-close-block/components/amp-sms-block/amp-sms-block.component.ts"
