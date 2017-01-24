@@ -22,6 +22,7 @@ import {
 } from '../../../amp-utils';
 import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
+
 @Component(
     {
         selector        : 'amp-input',
@@ -66,7 +67,8 @@ import { BaseControl } from '../../../../base-control';
             'showIconRight',
             'iconRightClickHandler',
             'autoComplete',
-            'showOptional'
+            'showOptional',
+            'noTrim'
         ],
         outputs         : [ 'onBlur', 'onFocus' ],
         changeDetection : ChangeDetectionStrategy.OnPush
@@ -103,6 +105,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     protected autoComplete : string   = 'off';
     protected iconRightClickHandler;
     protected showOptional            = true;
+    protected noTrim                  = false;
 
     constructor ( private _cd : ChangeDetectorRef,
                   protected el : ElementRef,
@@ -291,7 +294,9 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }, 100 );
         let notUsable;
         if ( this.control.value && isNaN( this.control.value ) ) {
-            this.inputCmp.nativeElement.value = this.control.value.trim();
+            if ( !this.noTrim || this.noTrim !== true) {
+                this.inputCmp.nativeElement.value = this.control.value.trim();
+            }
             notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
             notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
