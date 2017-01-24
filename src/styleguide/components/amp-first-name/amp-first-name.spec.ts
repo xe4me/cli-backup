@@ -20,7 +20,7 @@ describe( 'amp-first-name component' , () => {
             let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
             fixture.detectChanges();
             let compiledTestComponent = fixture.debugElement;
-            firstNameControl    = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
+            firstNameControl = compiledTestComponent.componentInstance.firstNameControl.controls[ 'firstName' ];
         } ) );
 
         it( 'should allow letters in first name' , () => {
@@ -64,6 +64,12 @@ describe( 'amp-first-name component' , () => {
         it( 'should NOT allow number in first name' , () => {
             firstNameControl.setValue( 'John1' );
             expect( firstNameControl._status ).toBe( 'INVALID' );
+        } );
+
+        describe( 'Error message' , () => {
+            it('should define the correct error message for pattern', () => {
+                expect( firstNameControl._ampErrors.pattern ).toEqual( 'First name has an invalid value.' );
+            });
         } );
 
     } );

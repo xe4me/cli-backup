@@ -1039,6 +1039,26 @@
         "readme": "<p>Contact Details block implementation</p>\n"
     },
     {
+        "name": "Amp GreenId Block",
+        "sources": [
+            "src/app/blocks/amp-greenid-block/amp-greenid-block.component.ts"
+        ],
+        "id": "AmpGreenidBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-greenid-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-greenid-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-greenid-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.spec.ts",
+                "component": "amp-greenid-basic-usage",
+                "component_src_location": "blocks/amp-greenid-block/basic_usage",
+                "name": "Amp GreenID Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Green id block implementation</p>\n"
+    },
+    {
         "name": "Amp Menu Frame Block",
         "sources": [
             "src/app/blocks/amp-menu-frame-block/amp-menu-frame-block.component.ts"
@@ -1116,26 +1136,6 @@
             }
         ],
         "readme": "<p>See components in context</p>\n"
-    },
-    {
-        "name": "Amp GreenId Block",
-        "sources": [
-            "src/app/blocks/amp-greenid-block/amp-greenid-block.component.ts"
-        ],
-        "id": "AmpGreenidBlock",
-        "examples": [
-            {
-                "template": "src/styleguide/blocks/amp-greenid-block/basic_usage.html",
-                "styles": "src/styleguide/blocks/amp-greenid-block/basic_usage.scss",
-                "source": "src/styleguide/blocks/amp-greenid-block/basic_usage.ts",
-                "galen": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.test.spec",
-                "jasmine": "src/styleguide/blocks/amp-greenid-block/amp-greenid-block.component.spec.ts",
-                "component": "amp-greenid-basic-usage",
-                "component_src_location": "blocks/amp-greenid-block/basic_usage",
-                "name": "Amp GreenID Block Basic Usage"
-            }
-        ],
-        "readme": "<p>Green id block implementation</p>\n"
     },
     {
         "name": "Amp Intro Block",
