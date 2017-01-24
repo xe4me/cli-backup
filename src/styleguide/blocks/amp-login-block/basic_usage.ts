@@ -5,7 +5,7 @@ import { FormGroup , FormBuilder } from '@angular/forms';
 const formDef = require( './form-def.def.json' );
 
 @Component( {
-    selector    : 'login-block-basic-usage',
+    selector    : 'amp-login-block-basic-usage',
     templateUrl : './basic_usage.html',
     styles      : [ require( './basic_usage.scss' ).toString() ]
 } )

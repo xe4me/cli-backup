@@ -1180,7 +1180,7 @@
     {
         "name": "Amp Login Block",
         "sources": [
-            "src/app/blocks/amp-login-block/amp-login-block.component.ts"
+            "src/app/blocks/amp-login-block/components/amp-login-block.component.ts"
         ],
         "id": "AmpLoginBlock",
         "examples": [
@@ -1190,7 +1190,8 @@
                 "source": "src/styleguide/blocks/amp-login-block/basic_usage.ts",
                 "galen": "src/styleguide/blocks/amp-login-block/amp-login-block.component.test.spec",
                 "jasmine": "src/styleguide/blocks/amp-login-block/amp-login-block.component.spec.ts",
-                "component": "login-block-basic-usage",
+                "component": "amp-login-block-basic-usage",
+                "component_src_location": "blocks/amp-login-block/basic_usage",
                 "name": "Amp Login Block Basic Usage"
             }
         ],

@@ -10,6 +10,7 @@ export * from './src/app/modules/amp-save-close-block';
 export * from './src/app/modules/amp-aml-questions-block';
 export * from './src/app/modules/amp-basic-info-block';
 export * from './src/app/modules/amp-captcha-block';
+export * from './src/app/modules/amp-login-block';
 export * from './src/app/modules/amp-menu-frame-block';
 export * from './src/app/modules/amp-new-or-existing-customer-block';
 export * from './src/app/modules/amp-welcome-block';
