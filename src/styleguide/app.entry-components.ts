@@ -27,6 +27,7 @@ import AmpGreenIdBlockBasicUsage from './blocks/amp-greenid-block/basic_usage.ts
 import IntroBlockBasicUsage from './blocks/amp-intro-block/basic_usage.ts';
 import AMPReviewBasicUsage from './blocks/amp-review/basic_usage.ts';
 import SubmitReceiptPageBasicUsage from './blocks/amp-submit-receipt/basic_usage.ts';
+import AmpLoginBlockBasicUsage from './blocks/amp-login-block/basic_usage';
 import AmpCountryDropDownComponentBasicUsage from './components/amp-country/basic_usage.ts';
 import AmpEmailBasicUsage from './components/amp-email/basic_usage.ts';
 import AmpFileUploadComponentBasicUsage from './components/amp-file-upload/basic_usage.ts';
@@ -78,6 +79,7 @@ import { AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-menu-frame-b
 import { AMP_NEW_OR_EXISTING_CUSTOMER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-new-or-existing-customer-block/entry-components';
 import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
+import { AMP_LOGIN_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-login-block/entry-components';
 import { AMP_GREENID_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-greenid-block/entry-components';
 import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-block/entry-components';
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
@@ -92,6 +94,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_LOGIN_BLOCK_ENTRY_COMPONENTS,
     ...AMP_GREENID_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
     ...AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS,
@@ -111,6 +114,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpTransitioningAccountPageComponent,
     AmpMenuFrameBlockBasicUsage,
     AmpNewOrExistingCustomerBlockBasicUsage,
+    AmpLoginBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
     AmpHeaderBasicUsage,

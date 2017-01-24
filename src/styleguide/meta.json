@@ -1178,6 +1178,25 @@
         "readme": "<p>Different permutations of intro block components</p>\n"
     },
     {
+        "name": "Amp Login Block",
+        "sources": [
+            "src/app/blocks/amp-login-block/amp-login-block.component.ts"
+        ],
+        "id": "AmpLoginBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-login-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-login-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-login-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-login-block/amp-login-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-login-block/amp-login-block.component.spec.ts",
+                "component": "login-block-basic-usage",
+                "name": "Amp Login Block Basic Usage"
+            }
+        ],
+        "readme": "<p>No se</p>\n"
+    },
+    {
         "name": "Amp Continue Block",
         "sources": [
             "src/app/modules/amp-retrieve-block/components/amp-continue-block/amp-continue-block.component.ts"
