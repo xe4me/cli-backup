@@ -54,12 +54,8 @@ export class AccountsListDataService {
     }
 
     private isVerified(applicant : any) : boolean {
-        if ( applicant.IdentitySection.OnlineOrOfflineIdCheck.OnlineIDCheck === 'online' ) {
-            let status = applicant.IdentitySection.IdCheck['green-id-identity-check'].verificationStatus;
-            return status === 'VERIFIED_WITH_CHANGES' || status === 'VERIFIED';
-        } else {
-            return false;
-        }
+        let status = applicant.IdentitySection.IdCheck['green-id-identity-check'].verificationStatus;
+        return status === 'VERIFIED_WITH_CHANGES' || status === 'VERIFIED';
     }
 
     private isNormal() : boolean {
