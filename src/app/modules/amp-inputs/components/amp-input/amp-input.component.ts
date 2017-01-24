@@ -22,6 +22,7 @@ import {
 } from '../../../amp-utils';
 import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
+
 @Component(
     {
         selector        : 'amp-input',
@@ -281,6 +282,10 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         if ( value && this.maxLength > 0 && value.length === this.maxLength ) {
             this.markControlAsDirty();
         }
+    }
+
+    protected parseCurrency() : number {
+        return this.control.value ? parseFloat(this.control.value.replace(/[,\$]/g, '')) : this.control.value;
     }
 
     protected onBlured ( $event ) {
