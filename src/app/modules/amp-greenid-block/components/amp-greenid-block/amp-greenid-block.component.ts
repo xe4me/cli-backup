@@ -341,21 +341,21 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
      */
     private mapGreenIdModel () {
         return {
-            title       : _.get(this.__form.value, this.__custom.titleFieldId, ''),
-            firstName   : _.get(this.__form.value, this.__custom.firstNameFieldId, ''),
-            middleNames : _.get(this.__form.value, this.__custom.middleNamesFieldId, '') || '',
-            lastName    : _.get(this.__form.value, this.__custom.lastNameFieldId, ''),
-            dateOfBirth : _.get(this.__form.value, this.__custom.dateOfBirthFieldId, ''),
-            email       : _.get(this.__form.value, this.__custom.emailFieldId, ''),
+            title       : _.get(this.__form.value, this.__custom.titleFDN, ''),
+            firstName   : _.get(this.__form.value, this.__custom.firstNameFDN, ''),
+            middleNames : _.get(this.__form.value, this.__custom.middleNamesFDN, '') || '',
+            lastName    : _.get(this.__form.value, this.__custom.lastNameFDN, ''),
+            dateOfBirth : _.get(this.__form.value, this.__custom.dateOfBirthFDN, ''),
+            email       : _.get(this.__form.value, this.__custom.emailFDN, ''),
             address     : {
                 country      : 'AU',
-                state        : _.get(this.__form.value, this.__custom.stateFieldId, ''),
-                streetName   : _.get(this.__form.value, this.__custom.streetNameFieldId, '') || '',
-                flatNumber   : _.get(this.__form.value, this.__custom.flatNumberFieldId, '') || '',
-                streetNumber : _.get(this.__form.value, this.__custom.streetNumberFieldId, ''),
-                suburb       : _.get(this.__form.value, this.__custom.suburbFieldId, '') || '',
-                postcode     : _.get(this.__form.value, this.__custom.postcodeFieldId, ''),
-                streetType   : _.get(this.__form.value, this.__custom.streetTypeFieldId, '')
+                state        : _.get(this.__form.value, this.__custom.stateFDN, ''),
+                streetName   : _.get(this.__form.value, this.__custom.streetNameFDN, '') || '',
+                flatNumber   : _.get(this.__form.value, this.__custom.flatNumberFDN, '') || '',
+                streetNumber : _.get(this.__form.value, this.__custom.streetNumberFDN, ''),
+                suburb       : _.get(this.__form.value, this.__custom.suburbFDN, '') || '',
+                postcode     : _.get(this.__form.value, this.__custom.postcodeFDN, ''),
+                streetType   : _.get(this.__form.value, this.__custom.streetTypeFDN, '')
             }
         };
     }
