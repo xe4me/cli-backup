@@ -66,6 +66,7 @@ import TextBasicUsage from './layout/text/text';
 import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
 import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
 import AmpConfirmationPageBasicUsage from './pages/amp-confirmation-page/basic_usage';
+import AmpTransitioningAccountPageBasicUsage from './pages/amp-transitioning-account-page/basic_usage';
 
 // Import components that will get loaded dynamically in a block loader
 import { AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-address-block/entry-components';
@@ -80,6 +81,7 @@ import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-blo
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
 import { AmpConfirmationPageComponent } from '../app/pages/amp-confirmation-page/amp-confirmation-page.component';
+import { AmpTransitioningAccountPageComponent } from '../app/pages/amp-transitioning-account-page/amp-transitioning-account-page.component';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
 
@@ -102,6 +104,8 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpCaptchaBlockBasicUsage,
     AmpConfirmationPageBasicUsage,
     AmpConfirmationPageComponent,
+    AmpTransitioningAccountPageBasicUsage,
+    AmpTransitioningAccountPageComponent,
     AmpMenuFrameBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
