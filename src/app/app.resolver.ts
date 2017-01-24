@@ -1,7 +1,9 @@
 import {
     SharedFormDataService,
     ApplicantGeneratorService,
-    AccountsListDataService
+    AccountsListDataService,
+    LoginStatusService,
+    EligibleAccountsService
 } from './shared';
 import 'rxjs/add/observable/of';
 import {
@@ -28,5 +30,7 @@ export const APP_RESOLVER_PROVIDERS = [
     SharedFormDataService,
     ApplicantGeneratorService,
     AccountsListDataService,
+    LoginStatusService,
+    EligibleAccountsService,
     CustomerDetailsService
 ];

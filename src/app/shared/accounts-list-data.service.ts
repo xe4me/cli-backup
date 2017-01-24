@@ -54,7 +54,7 @@ export class AccountsListDataService {
     }
 
     private isVerified(applicant : any) : boolean {
-        let status = applicant.IdentitySection.IdCheck['green-id-identity-check'].verificationStatus;
+        let status = applicant.IdentitySection.IdCheck.greenIdIdentityCheck.verificationStatus;
         return status === 'VERIFIED_WITH_CHANGES' || status === 'VERIFIED';
     }
 

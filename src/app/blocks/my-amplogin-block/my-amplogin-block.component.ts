@@ -17,7 +17,10 @@ import {
     SaveService,
     CustomerDetailsService
 } from 'amp-ddc-components';
-import { PrepopMappingService } from '../../shared';
+import {
+    PrepopMappingService,
+    LoginStatusService
+} from '../../shared';
 /**
  * Thin login interface to MyAMP via TAM.
  *
@@ -77,6 +80,7 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, Af
                   scrollService : ScrollService,
                   saveService : SaveService,
                   private customerDetailsService : CustomerDetailsService,
+                  private loginService : LoginStatusService,
                   private zone : NgZone,
                   private vcf : ViewContainerRef,
                   private renderer : Renderer,
@@ -186,8 +190,13 @@ export class MyAMPLoginBlockComponent extends FormBlock implements OnDestroy, Af
     }
 
     private onLoginSuccess () {
+        this.emitLoginSuccess();
         this.prepopCustomerDetails( true );
         this.removeLoginAndProceed();
+    }
+
+    private emitLoginSuccess () {
+        this.loginService.loginSuccess();
     }
 
     // TODO move this to a service - this component is getting bloated
