@@ -95,10 +95,6 @@ describe( 'Green id unit tests', () => {
         } );
         TestBed.compileComponents();
     } ) );
-    xit( 'Green id unit tests, not done as part of the original Green Id component', () => {
-        // Simple test added just so this test suite correctly shows up as skipped in the Jasmine output
-        expect( true ).toBe( true );
-    } );
 
     it( 'mapGreenIdModel should extract the form model values for GreenId to consume', () => {
         // loadComponent();
