@@ -18,6 +18,11 @@
                 "label": "Create a new or transition an existing offset account"
             } ]
         } ],
+        "account_types_block_mapping": {
+            "deposit": "deposit_account",
+            "offset": "offset_account",
+            "loan": "offset_account"
+        },
         "optionalBlocks": {
             "offset_account": {
                 "name": "LoanOffset",

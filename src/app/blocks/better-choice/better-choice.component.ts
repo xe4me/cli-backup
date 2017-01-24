@@ -28,10 +28,12 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     private singleOrJointSubscription : Subscription;
     private betterChoiceSubscription : Subscription;
     private newOrExistingCustomerSubscription : Subscription;
+    private eligibleAccountsServiceSubscription : Subscription;
     private loadedDynamicBlock : string = '';
     private isExistingCustomer : boolean  = false;
     private userHasLoggedIn : boolean  = false;
     private eligibleAccountsRequestFailed : boolean  = false;
+    private hasEligibleDepositAccount : boolean  = false;
     private accountsEligibleForTransitioning : {} = null;
 
     constructor ( _cd : ChangeDetectorRef,
@@ -39,7 +41,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                   private viewContainerRef : ViewContainerRef,
                   private sharedFormDataService : SharedFormDataService,
                   private eligibleAccountsService : EligibleAccountsService,
-                  private loginService : LoginStatusService,
+                  private loginStatusService : LoginStatusService,
                   private route : ActivatedRoute,
                   saveService : SaveService ) {
         super( saveService, _cd, scrollService );
@@ -61,7 +63,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                     }
                 } );
 
-        this.loginService.userHasLoggedIn()
+        this.loginStatusService.userHasLoggedIn()
             .subscribe( () => {
                 this.userHasLoggedIn = true;
                 this.fetchEligibleAccounts();
@@ -74,7 +76,8 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
         let subscriptions = [
             this.singleOrJointSubscription,
             this.betterChoiceSubscription,
-            this.newOrExistingCustomerSubscription
+            this.newOrExistingCustomerSubscription,
+            this.eligibleAccountsServiceSubscription
         ];
 
         for ( let subscription of subscriptions ) {
@@ -100,7 +103,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
         }
         if ( nextBlock ) {
             this.loadedDynamicBlock = betterChoiceId;
-            this.__loadNext( nextBlock, this.viewContainerRef );
+            return this.__loadNext( nextBlock, this.viewContainerRef );
         }
     }
 
@@ -115,22 +118,26 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     }
 
     private subscribeToBett3rChoice () {
-        const betterChoiceControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         if (this.__isRetrieved) {
-            this.setNextBlock( betterChoiceControl.value );
+            this.setNextBlock( this.betterChoiceControl.value );
         }
         if ( !this.betterChoiceSubscription ) {
-            this.betterChoiceSubscription = betterChoiceControl.valueChanges.subscribe( ( val ) => {
-                this.setNextBlock( val );
+            this.betterChoiceSubscription = this.betterChoiceControl.valueChanges.subscribe( ( val ) => {
+                this.setNextBlock( val ).then(() => {
+                    if ( this.userHasEligibleAccounts && !this.hasBothDepositAndOffsetLoanAccount) {
+                        this.__removeAt(this.__getIndex(this.viewContainerRef));
+                    }
+                });
             } );
         }
     }
 
     private fetchEligibleAccounts () {
-        this.eligibleAccountsService.getEligibleAccounts()
+        this.eligibleAccountsServiceSubscription = this.eligibleAccountsService.getEligibleAccounts()
             .subscribe(
                 ( response ) => {
                     this.accountsEligibleForTransitioning = response.payload;
+                    this.displayAccountToTransition();
                     this._cd.markForCheck();
                 },
                 () => {
@@ -138,15 +145,50 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                 });
     }
 
-    private get userHasEligibleAccounts () {
-        if ( this.accountsEligibleForTransitioning ) {
-            for ( const accountType of Object.keys( this.accountsEligibleForTransitioning ) ) {
-                const accounts = this.accountsEligibleForTransitioning[accountType];
-                if ( accounts.length > 0 ) {
-                    return true;
-                }
+    private displayAccountToTransition () {
+        if ( this.userHasEligibleAccounts ) {
+            if ( this.hasOnlyDepositAccount ) {
+                this.betterChoiceControl.setValue( this.getBlockForAccountType('deposit') );
+            } else if ( this.hasOnlyOffsetOrLoanAccount ) {
+                this.betterChoiceControl.setValue( this.getBlockForAccountType('offset') );
             }
         }
-        return false;
+    }
+
+    private get betterChoiceControl () {
+        return this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+    }
+
+    private get userHasEligibleAccounts () : boolean {
+        return this.hasDepositAccount || this.hasOffsetOrLoanAccount;
+    }
+
+    private getBlockForAccountType ( accountType : string ) : string {
+        return this.__custom.account_types_block_mapping[accountType];
+    }
+
+    private get hasDepositAccount () : boolean {
+        return this.hasAccount('deposit');
+    }
+
+    private get hasOffsetOrLoanAccount () : boolean {
+        return this.hasAccount('offset') || this.hasAccount('loan');
+    }
+
+    private get hasBothDepositAndOffsetLoanAccount () : boolean {
+        return this.hasDepositAccount && this.hasOffsetOrLoanAccount;
+    }
+
+    private get hasOnlyDepositAccount () : boolean {
+        return this.hasDepositAccount && !this.hasOffsetOrLoanAccount;
+    }
+
+    private get hasOnlyOffsetOrLoanAccount () : boolean {
+        return this.hasOffsetOrLoanAccount && !this.hasDepositAccount;
+    }
+
+    private hasAccount ( accountType : string ) : boolean {
+        const accounts = this.accountsEligibleForTransitioning[accountType];
+        return accounts.length > 0;
     }
 }
