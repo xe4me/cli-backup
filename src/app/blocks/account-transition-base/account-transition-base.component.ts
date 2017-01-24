@@ -13,7 +13,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     private description : string          = null;
     private accountType : string;
     private betterChoiceSubscription : Subscription;
-    private isNewDepositAccount : boolean = false;
+    private showAccountNumber : boolean = false;
     private additionalDescription : string;
 
     constructor ( saveService : SaveService,
@@ -27,14 +27,13 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         this.accountType              = this.__custom[ 'type' ];
         const newOrConvertControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         this.betterChoiceSubscription = newOrConvertControl.valueChanges.subscribe( ( val ) => {
-            if ( this.accountType === 'loanOffset' ) {
-                this.isNewDepositAccount   = true;
-                this.additionalDescription = this.__custom[ `additional_${val}_instruction` ];
-            } else {
-                this.isNewDepositAccount   = val === 'convert';
-                this.additionalDescription = this.__custom[ 'additional_instruction' ];
-            }
+            this.checkoutAccountType(val);
         } );
+        if ( this.__isRetrieved ) {
+            this.checkoutAccountType(newOrConvertControl.value);
+            this.__controlGroup.markAsTouched();
+            this.isActive         = true;
+        }
         this._cd.markForCheck();
         super.ngAfterViewInit();
     }
@@ -43,4 +42,15 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         this.betterChoiceSubscription.unsubscribe();
         super.ngOnDestroy();
     }
+
+    private checkoutAccountType (val : string) : void {
+        if ( this.accountType === 'loanOffset' ) {
+            this.showAccountNumber   = true;
+            this.additionalDescription = this.__custom[ `additional_${val}_instruction` ];
+        } else {
+            this.showAccountNumber   = val === 'convert';
+            this.additionalDescription = this.__custom[ 'additional_instruction' ];
+        }
+    }
+
 }
