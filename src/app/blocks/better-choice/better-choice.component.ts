@@ -15,7 +15,8 @@ import {
 } from 'amp-ddc-components';
 import {
     Constants,
-    SharedFormDataService
+    SharedFormDataService,
+    LoginStatusService
 } from '../../shared';
 @Component( {
     selector        : 'better-choice-block',
@@ -33,6 +34,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                   scrollService : ScrollService,
                   private viewContainerRef : ViewContainerRef,
                   private sharedFormDataService : SharedFormDataService,
+                  private loginService : LoginStatusService,
                   private route : ActivatedRoute,
                   saveService : SaveService ) {
         super( saveService, _cd, scrollService );
@@ -72,6 +74,12 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                         } );
                     }
                 } );
+
+        this.loginService.userHasLoggedIn()
+            .subscribe( () => {
+                // TODO: Need to request the users accounts here
+            });
+
         super.ngAfterViewInit();
     }
 
