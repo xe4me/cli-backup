@@ -1,4 +1,5 @@
 <div class="amp-tabs">
+
     <div class="amp-tabs__nav" role="tablist">
         <a
             *ngFor="let tab of tabs"
@@ -14,5 +15,17 @@
             </span>
         </a>
     </div>
-    <ng-content></ng-content>
+
+    <div *ngIf="tabsFromList">
+        <ng-content></ng-content>
+    </div>
+
+    <div *ngIf="!tabsFromList">
+        <amp-tab *ngFor="let tab of tabs" [tabTitle]="tab.title" [active]="tab.active">
+            <div [innerHtml]="tab.content"></div>
+        </amp-tab>
+    </div>
+
 </div>
+
+

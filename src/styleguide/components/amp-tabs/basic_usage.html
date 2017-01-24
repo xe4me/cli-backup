@@ -1,12 +1,12 @@
 <section class="section p">
 
-    <p class="mb-40">Tabs generated from mark-up</p>
+    <h2 class="mb-40">Tabs from mark-up</h2>
 
     <p class="mb-40"><i>Required:</i> <code>tabTitle</code> on each tab</p>
     <p class="mb-40"><i>Optional:</i> <code>active</code> on one tab (use to set default tab)</p>
 
     <amp-tabs>
-        <amp-tab tabTitle="Car">
+        <amp-tab [tabTitle]="'Car'">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
         <amp-tab tabTitle="Bicycle" active="true">
@@ -19,5 +19,13 @@
             <p>A boat is a watercraft of a large range of sizes designed to float, plane, work or travel on water. Small boats are typically found on inland waterways (e.g., rivers and lakes) or in protected coastal areas.</p>
         </amp-tab>
     </amp-tabs>
+
+</section>
+
+<section class="section p">
+
+    <h2 class="mb-40">Tabs from array</h2>
+
+    <amp-tabs [tabs]="tabs"></amp-tabs>
 
 </section>
