@@ -1,0 +1,15 @@
+@import '../../../../../styles/abstracts';
+
+$amp-tab-border-color: $amp-colour-grey-dark;
+
+.amp-tab {
+    &__panel {
+        border-top: 1px solid $amp-tab-border-color;
+        display: none;
+        padding: 20px;
+
+        &--active {
+            display: block !important;
+        }
+    }
+}

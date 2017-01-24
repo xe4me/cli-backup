@@ -26,6 +26,7 @@ import { AmpReviewModule } from '../app/modules/amp-review';
 import { AmpIntroBlockModule } from 'app/modules/amp-intro-block';
 import { AmpRetrieveBlockModule } from 'app/modules/amp-retrieve-block';
 import { AmpSaveCloseBlockModule } from '../app/modules/amp-save-close-block/amp-save-close-block.module';
+import { AmpTabsModule } from '../app/modules/amp-tabs';
 
 export const AMP_MODULES = [
     AmpTooltipModule.forRoot(),
@@ -55,5 +56,6 @@ export const AMP_MODULES = [
     AmpGoogleRecaptchaModule,
     AmpCardsModule,
     AmpRetrieveBlockModule,
-    AmpSaveCloseBlockModule
+    AmpSaveCloseBlockModule,
+    AmpTabsModule
 ];

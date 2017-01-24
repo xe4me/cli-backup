@@ -839,6 +839,26 @@
         "readme": "<p>Stand alone menu component</p>\n"
     },
     {
+        "name": "Amp Tabs",
+        "sources": [
+            "src/app/components/amp-tabs/amp-tabs.component.ts"
+        ],
+        "id": "AmpTabsComponent",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-tabs/basic_usage.html",
+                "styles": "src/styleguide/components/amp-tabs/basic_usage.scss",
+                "source": "src/styleguide/components/amp-tabs/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-tabs/amp-tabs.component.test.spec",
+                "jasmine": "src/styleguide/components/amp-tabs/amp-tabs.component.spec.ts",
+                "component": "amp-tabs-block-basic-usage",
+                "component_src_location": "components/amp-tabs/basic_usage",
+                "name": "Amp Tabs Basic Usage"
+            }
+        ],
+        "readme": "<p>Amp Tabs component</p>\n"
+    },
+    {
         "name": "Amp Tax File Number",
         "sources": [
             "src/app/components/amp-inputs/components"
