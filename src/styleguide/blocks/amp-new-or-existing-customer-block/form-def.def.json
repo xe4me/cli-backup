@@ -1,0 +1,25 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "newOrExistingCustomer",
+            "blockType": "AmpNewOrExistingCustomerComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-new-or-existing-customer-block/components/amp-new-or-existing-customer-block/amp-new-or-existing-customer-block.component",
+            "custom": {
+                "isInitiallyActive": true,
+                "blockTitle": "Please choose how you would like to continue",
+                "controls": [
+                    {
+                        "id": "ampNewOrExistingCustomer"
+                    }
+                ]
+            }
+        }
+    ]
+}
