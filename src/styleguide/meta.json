@@ -460,6 +460,26 @@
         "readme": "<p>AMP natural language input, base on ng2-material md-component.</p>\n"
     },
     {
+        "name": "Amp Loading Button",
+        "sources": [
+            "src/app/components/amp-inputs/components"
+        ],
+        "id": "AmpLoadingButton",
+        "examples": [
+            {
+                "template": "src/styleguide/components/amp-loading-button/basic_usage.html",
+                "styles": "src/styleguide/components/amp-loading-button/basic_usage.scss",
+                "source": "src/styleguide/components/amp-loading-button/basic_usage.ts",
+                "galen": "src/styleguide/components/amp-loading-button/amp-loading-button.test.spec",
+                "jasmine": "src/styleguide/components/amp-loading-button/amp-loading-button.spec.ts",
+                "component": "amp-loading-button-basic-usage",
+                "component_src_location": "components/amp-loading-button/basic_usage",
+                "name": "Basic Usage"
+            }
+        ],
+        "readme": "<p>A button with loading indicator</p>\n"
+    },
+    {
         "name": "Amp Google Recaptcha",
         "sources": [
             "src/app/components/amp-google-recaptcha/amp-google-recaptcha.component.ts"

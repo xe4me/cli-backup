@@ -1,0 +1,10 @@
+<amp-button class="btn btn-submit palm-1/1">
+    Submit
+    <div class="post-fix">
+        <amp-loading [attr.theme]="'tools'"
+                     [showLoading]="loadingService.$loading| async"
+                     mode="indeterminate"
+                     size="small">
+        </amp-loading>
+    </div>
+</amp-button>

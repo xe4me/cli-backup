@@ -15,6 +15,7 @@ import { AmpButtonModule } from '../app/modules/amp-button';
 import { AmpStandAloneMenuModule } from '../app/modules/amp-standalone-menu';
 import { AmpFormModule } from '../app/modules/amp-form';
 import { AmpRowRepeaterModule } from '../app/modules/amp-row-repeater';
+import { AmpLoadingButtonModule } from '../app/modules/amp-loading-button';
 import { AmpPopDownModule } from '../app/modules/amp-pop-down';
 import { AmpTooltipModule } from '../app/modules/amp-tooltip';
 import { AmpGoogleRecaptchaModule } from '../app/modules/amp-google-recaptcha';
@@ -29,6 +30,7 @@ import { AmpSaveCloseBlockModule } from '../app/modules/amp-save-close-block/amp
 
 export const AMP_MODULES = [
     AmpTooltipModule.forRoot(),
+    AmpLoadingButtonModule.forRoot(),
     AmpProgressBarsModule,
     AmpIntroBlockModule,
     AmpOverlayModule,
