@@ -284,10 +284,6 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }
     }
 
-    protected parseCurrency() : number {
-        return this.control.value ? parseFloat(this.control.value.replace(/[,\$]/g, '')) : this.control.value;
-    }
-
     protected onBlured ( $event ) {
         clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
