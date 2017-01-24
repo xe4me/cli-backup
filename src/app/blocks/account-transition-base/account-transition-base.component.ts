@@ -38,6 +38,11 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         super.ngAfterViewInit();
     }
 
+    public ngOnDestroy () {
+        this.betterChoiceSubscription.unsubscribe();
+        super.ngOnDestroy();
+    }
+
     private checkoutAccountType (val : string) : void {
         if ( this.accountType === 'loanOffset' ) {
             this.showAccountNumber   = true;
@@ -48,8 +53,4 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         }
     }
 
-    public ngOnDestroy () {
-        this.betterChoiceSubscription.unsubscribe();
-        super.ngOnDestroy();
-    }
 }
