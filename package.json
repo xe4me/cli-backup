@@ -15,7 +15,7 @@
     "server:express": "node index.js",
     "prepush": "npm run lint",
     "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
-    "jenkins-jscpd": "jscpd -p . -f '**/*.ts'  -e 'node_modules/**'  -o reports/jscpd-report.xml"
+    "jenkins-jscpd": "jscpd -p . -f '**/*.ts' -e 'node_modules/**' -o reports/jscpd-report.xml"
   },
   "private": true,
   "dependencies": {
@@ -50,6 +50,7 @@
     "husky": "^0.12.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
+    "jscpd": "^0.6.10",
     "karma": "1.2.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
