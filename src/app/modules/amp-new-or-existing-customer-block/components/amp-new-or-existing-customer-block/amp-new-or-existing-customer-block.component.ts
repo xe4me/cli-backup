@@ -68,7 +68,7 @@ export class AmpNewOrExistingCustomerBlockComponent extends FormBlock implements
         const loginBlockControlGroup = this.__form.get( AMP_LOGIN_BLOCK_FDN );
         if (newOrLoginToMyAmp === EXISTING_CUSTOMER && !loginBlockControlGroup) {
             this.loadedLoginBlock = true;
-            return this.__loadNext( this.__custom.optionalBlocks.MyAMPLoginBlock, this.viewReference );
+            return this.__loadNext( this.__custom.optionalBlocks.ampLoginBlock, this.viewReference );
         }
         if (newOrLoginToMyAmp === NEW_CUSTOMER && loginBlockControlGroup) {
             this.loadedLoginBlock = false;
@@ -78,11 +78,9 @@ export class AmpNewOrExistingCustomerBlockComponent extends FormBlock implements
     }
 
     private newOrLogin ( newOrLoginToMyAmp : string ) {
-        console.log( ">>> " + this.__custom.controls[ 0 ].id );
         const newOrLoginToMyAmpControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
         newOrLoginToMyAmpControl.setValue( newOrLoginToMyAmp );
         newOrLoginToMyAmpControl.markAsTouched();
-
         if (!this.__isRetrieved) {
             this.addOrRemoveContinueSection( newOrLoginToMyAmp ).then( ( actualComponent ) => {
                 this.hideThisBlock = true;
