@@ -21,10 +21,11 @@ export class AmpTabsComponent implements AfterContentInit {
     @ContentChildren(AmpTabComponent) tabsList : QueryList<AmpTabComponent>;
     @Input('tabs') tabsArray = [];
 
-    private tabs;
-    private tabsFromList : boolean = true;
+    public tabs;
+    public tabsFromList : boolean = true;
 
     public ngAfterContentInit () {
+
         if (this.tabsArray.length) {
             this.tabs = this.tabsArray;
             this.tabsFromList = false;
@@ -35,8 +36,9 @@ export class AmpTabsComponent implements AfterContentInit {
         let activeTabs = this.tabs.filter((tab) => tab.active);
 
         if (activeTabs.length !== 1) {
+            let firstTab = this.tabsFromList ? this.tabs.first : this.tabs[0];
             this.resetTabs();
-            this.selectTab(this.tabs[0]);
+            this.selectTab(firstTab);
         }
     }
 

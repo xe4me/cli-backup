@@ -8,15 +8,32 @@ import { Component } from '@angular/core';
 
 export default class AMPTabsComponentBasicUsage {
 
+    private title1 = 'Car';
+
     private tabs = [
         {
             title: 'Cat',
-            content: '<p>Cats are awesome!</p>',
-         // active: true
+            content: '<p>Cats are awesome!</p>'
         },
         {
             title: 'Dog',
             content: '<p>Dogs are terrible..</p>'
+        },
+        {
+            title: 'Hamster',
+            content: '<p>Tiny little furball</p>'
+        }
+    ];
+
+    private tabs2 = [
+        {
+            title: 'Cat',
+            content: '<p>Cats are awesome!</p>'
+        },
+        {
+            title: 'Dog',
+            content: '<p>Dogs are terrible..</p>',
+            active: true
         },
         {
             title: 'Hamster',
