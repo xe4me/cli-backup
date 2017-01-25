@@ -62,7 +62,7 @@ function loadComponent() {
     tinControl = controlGroup['tin'];
 }
 
-xdescribe('amp-residency-block component', () => {
+describe('amp-residency-block component', () => {
 
     let backend : MockBackend = null;
 
