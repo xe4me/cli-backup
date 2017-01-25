@@ -3,6 +3,7 @@ import AmpAddressBlockBasicUsage from './blocks/amp-address-block/basic_usage.ts
 import AmpBasicInfoBlockBasicUsage from './blocks/amp-basic-info-block/basic_usage.ts';
 import AmpCaptchaBlockBasicUsage from './blocks/amp-captcha-block/basic_usage.ts';
 import AmpMenuFrameBlockBasicUsage from './blocks/amp-menu-frame-block/basic_usage.ts';
+import AmpNewOrExistingCustomerBlockBasicUsage from './blocks/amp-new-or-existing-customer-block/basic_usage';
 import AmpSmsBlockBasicUsage from './blocks/amp-sms-block/basic_usage.ts';
 import AmpSaveConfirmationBlockBasicUsage from './blocks/amp-save-confirmation-block/basic_usage.ts';
 import AmpWelcomeBlockBasicUsage from './blocks/amp-welcome-block/basic_usage.ts';
@@ -67,6 +68,7 @@ import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
 import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
 import AmpConfirmationPageBasicUsage from './pages/amp-confirmation-page/basic_usage';
 import AMPTabsComponentBasicUsage from './components/amp-tabs/basic_usage';
+import AmpTransitioningAccountPageBasicUsage from './pages/amp-transitioning-account-page/basic_usage';
 
 // Import components that will get loaded dynamically in a block loader
 import { AMP_ADDRESS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-address-block/entry-components';
@@ -74,6 +76,7 @@ import { AMP_AML_QUESTIONS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-aml-quest
 import { AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-basic-info-block/entry-components';
 import { AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-captcha-block/entry-components';
 import { AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-menu-frame-block/entry-components';
+import { AMP_NEW_OR_EXISTING_CUSTOMER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-new-or-existing-customer-block/entry-components';
 import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
 import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
 import { AMP_GREENID_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-greenid-block/entry-components';
@@ -81,6 +84,7 @@ import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-blo
 import { AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS } from './blocks/amp-form-block/entry-components';
 import { AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-tax-file-number-block/entry-components';
 import { AmpConfirmationPageComponent } from '../app/pages/amp-confirmation-page/amp-confirmation-page.component';
+import { AmpTransitioningAccountPageComponent } from '../app/pages/amp-transitioning-account-page/amp-transitioning-account-page.component';
 
 export const DYNAMICALLY_LOADED_COMPONENTS = [
 
@@ -92,6 +96,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_GREENID_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,
     ...AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS,
+    ...AMP_NEW_OR_EXISTING_CUSTOMER_BLOCK_ENTRY_COMPONENTS,
     ...AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS,
     ...AMP_TAX_FILE_NUMBER_BLOCK_ENTRY_COMPONENTS,
     ...AMP_WELCOME_BLOCK_ENTRY_COMPONENTS,
@@ -103,7 +108,10 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpCaptchaBlockBasicUsage,
     AmpConfirmationPageBasicUsage,
     AmpConfirmationPageComponent,
+    AmpTransitioningAccountPageBasicUsage,
+    AmpTransitioningAccountPageComponent,
     AmpMenuFrameBlockBasicUsage,
+    AmpNewOrExistingCustomerBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
     AmpHeaderBasicUsage,

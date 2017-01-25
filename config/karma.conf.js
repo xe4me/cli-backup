@@ -49,7 +49,8 @@ module.exports = function (config) {
                 {type: 'text-summary', subdir: '.'},
                 {type: 'json', subdir: '.'},
                 {type: 'html', subdir: '.'},
-                {type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml'}
+                {type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml'},
+                {type: 'lcov', subdir: '.'}
             ]
         },
 
