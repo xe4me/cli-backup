@@ -1,5 +1,4 @@
 import {
-    ElementRef,
     ChangeDetectorRef,
     AfterViewInit,
     OnDestroy,
@@ -30,7 +29,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * Pass in a callback to notify when the children of this block are loaded
      * E.g
      * A block like Section , which itself will load bunch of other blocks , will call this function on loaded.
-     * And the parant and siblings of the parent will be notified if they've subscribed to .
+     * And the parent and siblings of the parent will be notified if they've subscribed to .
      * */
     protected __onChildsLoaded : ( callback : Function ) => void;
     /*
@@ -39,11 +38,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * */
     protected __fdn : Array<(number|string)>;
     /*
-     * __form : The overal form , this is accessabel in all the blocks and is the same everywhere
+     * __form : The overall form , this is accessible in all the blocks and is the same everywhere
      * */
     protected __form : FormGroup;
     /*
-     * controlGroup : The control group that created specificically for this block
+     * controlGroup : The control group that created specifically for this block
      * */
     protected __controlGroup : FormGroup;
     protected __sectionName : string;
@@ -56,7 +55,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * */
     protected __removeNext : ( viewContainerRef : ViewContainerRef ) => Promise<number>;
     /*
-     * __removeAllAfter : Will remove all the blocks after current block if they're in the same conainer
+     * __removeAllAfter : Will remove all the blocks after current block if they're in the same container
      * E.g : If you're inside menu frame , you cannot delete review block if they not in the same blocks array in
      * form definition
      * */

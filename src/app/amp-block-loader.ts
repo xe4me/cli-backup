@@ -165,7 +165,7 @@ export abstract class AmpBlockLoader {
     copyForBlock ( _componentRef : ComponentRef<any>,
                    _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve ) => {
-            let childsLoadedsubscription;
+            let childsLoadedSubscription;
             let comp            = _componentRef.instance;
             let _fdn            = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
             comp.__child_blocks = _blockDef;
@@ -183,8 +183,8 @@ export abstract class AmpBlockLoader {
             comp.__controlGroup.__prettyName = _blockDef.prettyName || _blockDef.name;
             _componentRef.onDestroy( () => {
                 _form.removeControl( _blockDef.name );
-                if ( childsLoadedsubscription ) {
-                    childsLoadedsubscription.unsubscribe();
+                if ( childsLoadedSubscription ) {
+                    childsLoadedSubscription.unsubscribe();
                 }
             } );
 
@@ -235,7 +235,7 @@ export abstract class AmpBlockLoader {
                 return this.loadAllNext( _def, _viewContainerRef );
             };
             comp.__onChildsLoaded      = ( cb ) : void => {
-                childsLoadedsubscription = this.$childsLoaded.subscribe( ( _loadedBlockInfo : LoadedBlockInfo ) => {
+                childsLoadedSubscription = this.$childsLoaded.subscribe( ( _loadedBlockInfo : LoadedBlockInfo ) => {
                     cb( _loadedBlockInfo );
                 } );
             };
