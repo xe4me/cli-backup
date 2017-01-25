@@ -9,15 +9,24 @@ import {
 } from 'amp-ddc-components';
 import { AccountTransitionBaseBlock } from '../account-transition-base/account-transition-base.component';
 @Component( {
-    selector        : 'offset-transition-block',
+    selector        : 'loan-offset-block',
     templateUrl     : '../account-transition-base/account-transition-base.html',
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [ require( '../account-transition-base/account-transition-base.scss' ) ]
 } )
-export class OffsetTransitionBlock extends AccountTransitionBaseBlock {
+export class LoanOffsetTransitionBlock extends AccountTransitionBaseBlock {
+
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
+    }
+
+    protected shouldShowAccountNumber ( action : string ) : boolean {
+        return true;
+    }
+
+    protected additionalInstructionsText ( action : string ) : string {
+        return this.__custom[ `additional_${action}_instruction` ];
     }
 }

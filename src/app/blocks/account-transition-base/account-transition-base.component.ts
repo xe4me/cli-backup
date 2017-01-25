@@ -3,12 +3,13 @@ import {
     AfterViewInit,
     OnDestroy
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {
     FormBlock,
     ScrollService,
     SaveService
 } from 'amp-ddc-components';
-import { Subscription } from 'rxjs';
+
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
     private description : string          = null;
     private accountType : string;
@@ -18,7 +19,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
-                  scrollService : ScrollService, ) {
+                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
     }
 
@@ -26,14 +27,17 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         this.description              = this.__custom[ 'description' ];
         this.accountType              = this.__custom[ 'type' ];
         const newOrConvertControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        this.betterChoiceSubscription = newOrConvertControl.valueChanges.subscribe( ( val ) => {
-            this.checkoutAccountType(val);
-        } );
+        this.betterChoiceSubscription = newOrConvertControl.valueChanges
+            .subscribe( ( val ) => {
+                this.checkoutAccountType(val);
+            } );
+
         if ( this.__isRetrieved ) {
             this.checkoutAccountType(newOrConvertControl.value);
             this.__controlGroup.markAsTouched();
-            this.isActive         = true;
+            this.isActive = true;
         }
+
         this._cd.markForCheck();
         super.ngAfterViewInit();
     }
@@ -43,14 +47,16 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         super.ngOnDestroy();
     }
 
-    private checkoutAccountType (val : string) : void {
-        if ( this.accountType === 'loanOffset' ) {
-            this.showAccountNumber   = true;
-            this.additionalDescription = this.__custom[ `additional_${val}_instruction` ];
-        } else {
-            this.showAccountNumber   = val === 'convert';
-            this.additionalDescription = this.__custom[ 'additional_instruction' ];
-        }
+    protected shouldShowAccountNumber ( action : string ) : boolean {
+        return action === 'convert';
     }
 
+    protected additionalInstructionsText ( action : string ) : string {
+        return this.__custom[ 'additional_instruction' ];
+    }
+
+    private checkoutAccountType ( val : string ) : void {
+        this.showAccountNumber = this.shouldShowAccountNumber(val);
+        this.additionalDescription = this.additionalInstructionsText(val);
+    }
 }

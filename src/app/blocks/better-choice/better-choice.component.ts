@@ -122,13 +122,14 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             this.setNextBlock( this.betterChoiceControl.value );
         }
         if ( !this.betterChoiceSubscription ) {
-            this.betterChoiceSubscription = this.betterChoiceControl.valueChanges.subscribe( ( val ) => {
-                this.setNextBlock( val ).then(() => {
-                    if ( this.userHasEligibleAccounts && !this.hasBothDepositAndOffsetLoanAccount) {
-                        this.__removeSelf(this.viewContainerRef);
-                    }
-                });
-            } );
+            this.betterChoiceSubscription = this.betterChoiceControl.valueChanges
+                .subscribe( ( val ) => {
+                    this.setNextBlock( val ).then(() => {
+                        if ( this.userHasEligibleAccounts && !this.hasBothDepositAndOffsetLoanAccount) {
+                            this.__removeSelf(this.viewContainerRef);
+                        }
+                    });
+                } );
         }
     }
 
@@ -160,7 +161,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     }
 
     private get userHasEligibleAccounts () : boolean {
-        return this.hasDepositAccount || this.hasOffsetOrLoanAccount;
+        return this.accountsEligibleForTransitioning && (this.hasDepositAccount || this.hasOffsetOrLoanAccount);
     }
 
     private getBlockForAccountType ( accountType : string ) : string {
