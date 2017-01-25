@@ -67,6 +67,7 @@ import TextBasicUsage from './layout/text/text';
 import AmpHeaderBasicUsage from './components/amp-header/basic_usage';
 import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usage';
 import AmpConfirmationPageBasicUsage from './pages/amp-confirmation-page/basic_usage';
+import AMPTabsComponentBasicUsage from './components/amp-tabs/basic_usage';
 import AmpTransitioningAccountPageBasicUsage from './pages/amp-transitioning-account-page/basic_usage';
 
 // Import components that will get loaded dynamically in a block loader
@@ -171,5 +172,6 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     PaddingMarginBasicUsage,
     ResponsiveBasicUsage,
     TablesBasicUsage,
-    TextBasicUsage
+    TextBasicUsage,
+    AMPTabsComponentBasicUsage
 ];
