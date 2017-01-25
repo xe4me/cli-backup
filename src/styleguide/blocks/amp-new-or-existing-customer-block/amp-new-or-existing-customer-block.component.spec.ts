@@ -2,7 +2,6 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormsModule, FormGroup } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { AmpNewOrExistingCustomerBlockModule } from '../../../app/modules/amp-new-or-existing-customer-block';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
