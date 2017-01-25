@@ -1195,7 +1195,7 @@
                 "name": "Amp Login Block Basic Usage"
             }
         ],
-        "readme": "<p>No se</p>\n"
+        "readme": "<p> A simple example of how you'd use the pdf service .</p>\n\n"
     },
     {
         "name": "Amp Continue Block",
