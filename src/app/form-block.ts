@@ -67,6 +67,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * */
     protected __removeAllAfterIndex : ( index : number ) => Promise<any>;
     /*
+     * __removeSelf : Will remove the current block
+     * */
+    protected __removeSelf : ( viewContainerRef : ViewContainerRef ) => Promise<any>;
+    /*
      * __getIndex : Will give you your index in the current container
      * */
     protected __getIndex : ( viewContainerRef : ViewContainerRef ) => number;
