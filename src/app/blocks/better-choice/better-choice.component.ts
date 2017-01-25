@@ -125,7 +125,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             this.betterChoiceSubscription = this.betterChoiceControl.valueChanges.subscribe( ( val ) => {
                 this.setNextBlock( val ).then(() => {
                     if ( this.userHasEligibleAccounts && !this.hasBothDepositAndOffsetLoanAccount) {
-                        this.__removeAt(this.__getIndex(this.viewContainerRef));
+                        this.__removeSelf(this.viewContainerRef);
                     }
                 });
             } );
