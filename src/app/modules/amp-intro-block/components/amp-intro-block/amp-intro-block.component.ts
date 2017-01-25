@@ -1,11 +1,14 @@
 import { Component , trigger , state , style , animate , transition } from '@angular/core';
+export interface IntroBlockAnimateOptions{
+    animate?:boolean
+}
 @Component( {
     selector   : 'amp-intro-block' ,
     host       : {
         '[@slideUp]' : 'slideUp'
     } ,
     template   : `
-            <div class='ph+ tablet-and-down-ph' [class.hidden]='!isActive'>
+            <div class='ph+ tablet-and-down-ph' [hidden]='!isActive'>
                 <div class='grid__container 1/1 palm-1/1'>
                     <div class='grid__item_floated utils__align--left' >
                           <ng-content></ng-content>
@@ -45,7 +48,7 @@ import { Component , trigger , state , style , animate , transition } from '@ang
 } )
 export class AmpIntroBlockComponent {
     private slideUp = 'expanded';
-
+    private isActive = true;
     /**
      * Call this method to move onto the next block
      *
@@ -53,12 +56,17 @@ export class AmpIntroBlockComponent {
      *
      *
      */
-    public proceed () : Promise<string> {
+    public proceed ( options?:IntroBlockAnimateOptions ) : Promise<string> {
         return new Promise( ( resolve , reject ) => {
             this.slideUp = 'collapsed';
+            if( options && options.animate === false ) {
+                    this.isActive = false; 
+                    return resolve();;   
+            }
             setTimeout( () => {
                 resolve();
             } , 801 );
         } );
     }
+
 }
