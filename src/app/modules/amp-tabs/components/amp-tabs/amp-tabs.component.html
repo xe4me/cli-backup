@@ -21,7 +21,7 @@
     </div>
 
     <div *ngIf="!tabsFromList">
-        <amp-tab *ngFor="let tab of tabs" [tabTitle]="tab.title" [active]="tab.active">
+        <amp-tab *ngFor="let tab of tabs" [tab-title]="tab.title" [active]="tab.active">
             <div [innerHtml]="tab.content"></div>
         </amp-tab>
     </div>
