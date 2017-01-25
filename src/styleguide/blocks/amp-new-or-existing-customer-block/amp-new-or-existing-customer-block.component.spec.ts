@@ -32,6 +32,9 @@ describe( 'amp-new-or-existing-customer-block component', () => {
                 ...APP_RESOLVER_PROVIDERS
             ]
         } );
+        custom = {
+            controls : [ { id : 'ampNewOrExistingCustomer' } ]
+        };
     } ) );
 
     describe( 'When the component is loaded', () => {
