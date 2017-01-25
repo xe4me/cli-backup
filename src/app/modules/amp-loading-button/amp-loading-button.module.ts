@@ -11,12 +11,12 @@ import {
     XHRBackend,
     RequestOptions
 } from '@angular/http';
-import { InterceptedHttp } from './services/amp-http/amp-http.service';
+import { AmpHttpInterceptor } from './services/amp-http-interceptor/amp-http-interceptor.service';
 import { AmpLoadingService } from 'app/modules/amp-loading-button/services/amp-loading/amp-loading.service';
 const DECLARATIONS       = [ AmpLoadingButtonComponent ];
 const interceptorFactory =
           ( backend : XHRBackend, defaultOptions : RequestOptions, loadingService : AmpLoadingService ) =>
-              new InterceptedHttp( backend, defaultOptions, loadingService )
+              new AmpHttpInterceptor( backend, defaultOptions, loadingService )
 @NgModule( {
     declarations : DECLARATIONS,
     imports      : [

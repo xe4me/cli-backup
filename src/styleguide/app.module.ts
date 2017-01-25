@@ -47,7 +47,7 @@ import { AmpLoadingComponent } from '../app/components/amp-loading/amp-loading.c
 import { AmpDropdownNewModule } from './.';
 import { AmpFormRowModule } from '../app/modules/amp-form-row/amp-form-row.module';
 import { AmpHeaderModule } from '../app/modules/amp-header/amp-header.module';
-import { InterceptedHttp } from '../app/modules/amp-loading-button/services/amp-http/amp-http.service';
+import { InterceptedHttp } from '../app/modules/amp-loading-button/services/amp-http-interceptor/amp-http.service';
 
 /*
  * Platform and Environment providers/directives/pipes
