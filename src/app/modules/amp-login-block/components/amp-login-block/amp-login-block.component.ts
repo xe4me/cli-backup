@@ -26,9 +26,9 @@ import { SaveService } from '../../../../services/save/save.service';
 export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, AfterViewInit {
 
     public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
-    private errorCode: string = null;
+    private errorCode : string = null;
     private hideThisBlock = false;
-    private formTemplate: string = `
+    private formTemplate : string = `
         <form action="/eam/login" method="post">
             <input id="userid" name="userid"/>
             <input id="password" name="password" type="password"/>
@@ -36,16 +36,16 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
         </form>
         <iframe name="myamploginframe" id="myamploginframe"></iframe>`;
 
-    constructor( elementRef: ElementRef,
+    constructor( elementRef : ElementRef,
                  _cd: ChangeDetectorRef,
-                 scrollService: ScrollService,
+                 scrollService : ScrollService,
                  saveService: SaveService,
-                 private zone: NgZone,
-                 private vcf: ViewContainerRef,
-                 private renderer: Renderer,
-                 private dom: BrowserDomAdapter ) {
+                 private zone : NgZone,
+                 private vcf : ViewContainerRef,
+                 private renderer : Renderer,
+                 private dom : BrowserDomAdapter ) {
         super( saveService, _cd, scrollService );
-         this.disableAutoSave();
+        this.disableAutoSave();
     }
 
     public ngAfterViewInit() {
@@ -100,7 +100,7 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
         }
     }
 
-    private removeLoginFrameListener: Function = () => {
+    private removeLoginFrameListener : Function = () => {
         return;
     }
 
@@ -122,7 +122,7 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
         this.hideThisBlock = true;
     }
 
-    private submitCallback: Function = ( event ) => {
+    private submitCallback : Function = ( event ) => {
         try {
             let landingURL = this.dom.query( '#myamploginframe' ).contentWindow.location.href;
             if (landingURL) {
@@ -151,7 +151,7 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
         this.removeLoginAndProceed();
     }
 
-    private onLoginFail( errorCode?: string ) {
+    private onLoginFail( errorCode? : string ) {
         this.errorCode = errorCode;
         if (!errorCode) {
             this.errorCode = 'default';
