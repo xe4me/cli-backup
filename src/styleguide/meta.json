@@ -1098,6 +1098,25 @@
         ],
         "readme": "<p>SMS block implementation</p>\n"
     },{
+        "name": "Amp Single or Joint Block",
+        "sources": [
+            "src/app/blocks/amp-single-joint-block/components/amp-single-joint-block/amp-single-joint-block.component.ts"
+        ],
+        "id": "AmpSingleJointBlock",
+        "examples": [
+            {
+                "template": "src/styleguide/blocks/amp-single-joint-block/basic_usage.html",
+                "styles": "src/styleguide/blocks/amp-single-joint-block/basic_usage.scss",
+                "source": "src/styleguide/blocks/amp-single-joint-block/basic_usage.ts",
+                "galen": "src/styleguide/blocks/amp-single-joint-block/amp-single-joint-block.component.test.spec",
+                "jasmine": "src/styleguide/blocks/amp-single-joint-block/amp-single-joint-block.component.spec.ts",
+                "component": "amp-single-joint-block-basic-usage",
+                "component_src_location": "blocks/amp-single-joint-block/basic_usage",
+                "name": "Amp Single Joint Block Basic Usage"
+            }
+        ],
+        "readme": "<p>Single Joint block implementation</p>\n"
+    },{
         "name": "Amp Save Confirmation Block",
         "sources": [
             "src/app/blocks/amp-save-close-block/components/amp-save-confirmation-block/amp-save-confirmation-block.component.ts"

@@ -5,6 +5,7 @@ import AmpCaptchaBlockBasicUsage from './blocks/amp-captcha-block/basic_usage.ts
 import AmpMenuFrameBlockBasicUsage from './blocks/amp-menu-frame-block/basic_usage.ts';
 import AmpSmsBlockBasicUsage from './blocks/amp-sms-block/basic_usage.ts';
 import AmpSaveConfirmationBlockBasicUsage from './blocks/amp-save-confirmation-block/basic_usage.ts';
+import AmpSingleJointBlockBasicUsage from './blocks/amp-single-joint-block/basic_usage.ts';
 import AmpWelcomeBlockBasicUsage from './blocks/amp-welcome-block/basic_usage.ts';
 import AmpAmlQuestionsBlockBasicUsage from './blocks/amp-aml-questions-block/basic_usage';
 import AMPButtonComponentBasicUsage from './components/amp-button/basic_usage';
@@ -112,6 +113,7 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     AmpHeaderBasicUsage,
     AmpHeaderNoTextBasicUsage,
     AmpSaveConfirmationBlockBasicUsage,
+    AmpSingleJointBlockBasicUsage,
     AMPButtonComponentBasicUsage,
     AMPCardComponentBasicUsage,
     AMPCardsComponentBasicUsage,
