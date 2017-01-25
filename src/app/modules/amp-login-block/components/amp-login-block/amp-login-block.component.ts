@@ -37,9 +37,9 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
         <iframe name="myamploginframe" id="myamploginframe"></iframe>`;
 
     constructor( elementRef : ElementRef,
-                 _cd: ChangeDetectorRef,
+                 _cd : ChangeDetectorRef,
                  scrollService : ScrollService,
-                 saveService: SaveService,
+                 saveService : SaveService,
                  private zone : NgZone,
                  private vcf : ViewContainerRef,
                  private renderer : Renderer,
