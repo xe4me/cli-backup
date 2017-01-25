@@ -7,6 +7,8 @@ import {
     QueryList
 } from '@angular/core';
 
+import { KeyCodes } from '../../../amp-utils';
+
 import { AmpTabComponent } from '../amp-tab/amp-tab.component';
 
 @Component( {
@@ -62,7 +64,8 @@ export class AmpTabsComponent implements AfterContentInit {
     }
 
     public onKeyup ( event, tab ) {
-        if (event.keyCode === 32) {
+        if (event.keyCode === KeyCodes.SPACE) {
+            event.preventDefault();
             this.selectTab(tab);
         }
     }
