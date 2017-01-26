@@ -47,7 +47,33 @@
                         }
                     ],
                     "offset": [],
-                    "loan": []
+                    "loan": [
+                        {
+                            "productSystemCode": "BK",
+                            "productCode": "3010",
+                            "productName": "All Options Variable Rate - Principal & Interest",
+                            "contractComponents": [
+                                {
+                                    "contractComponentType": "ContractAddress",
+                                    "contractLocationUsage": "Contract Correspondence Address",
+                                    "wrongContractLocationIndicator": false,
+                                    "contractLocation": {
+                                        "scrubbedAddressIndicator": true,
+                                        "addressId": "594743930892478202",
+                                        "suburbName": "Irymple",
+                                        "cityName": "Not Available",
+                                        "stateCode": "VIC",
+                                        "countryCode": "9",
+                                        "country": "Australia",
+                                        "postcode": "3498",
+                                        "addressLine1": "PO Box 135"
+                                    }
+                                }
+                            ],
+                            "pasContractId": "185690369",
+                            "displayContractId": "185690369"
+                        }
+                    ]
                 }
             }
         }
