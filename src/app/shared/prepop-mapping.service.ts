@@ -39,7 +39,7 @@ export class PrepopMappingService {
         // According to https://teamtools.amp.com.au/confluence/pages/viewpage.action?pageId=55352824 the title value
         // can be something other than one of the drop down value but still let it thru.
         let parsedTitle = PrepopMappingService.parseTitle(customerDetails.title);
-        const titleDropDown = basicInfoFormGroup.get('TitleDropdown');
+        const titleDropDown = basicInfoFormGroup.get('Title');
         titleDropDown.get('SelectedItem').setValue(parsedTitle);
         titleDropDown.get('Query').setValue(parsedTitle);
         // if the title is not one of the accepted title , ( like Mr and ... ) , title dropdown's gonna bail
@@ -116,8 +116,8 @@ export class PrepopMappingService {
         mAddrFG.get('postCode').setValue(prepopAddress.postcode);
         mAddrFG.get('streetName').setValue(prepopAddress.addressLine1);
         mAddrFG.get('suburb').setValue(prepopAddress.suburbName);
-        mAddrFG.get('stateDropdown').get('Query').setValue(prepopAddress.stateCode);
-        mAddrFG.get('stateDropdown').get('SelectedItem').setValue(prepopAddress.stateCode);
+        mAddrFG.get('state').get('Query').setValue(prepopAddress.stateCode);
+        mAddrFG.get('state').get('SelectedItem').setValue(prepopAddress.stateCode);
         addressFormGroup.get('search').get('query').setValue(
             prepopAddress.addressLine1 + ', ' +
             prepopAddress.suburbName + ' ' +

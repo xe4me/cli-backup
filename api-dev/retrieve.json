@@ -31,7 +31,7 @@
               "Applicant1Section": {
                 "PersonalDetailsSection": {
                   "BasicInfo": {
-                    "TitleDropdown": {
+                    "Title": {
                       "SelectedItem": "Mr",
                       "Query": "Mr"
                     },
@@ -53,14 +53,14 @@
                           "unitNumber": "",
                           "streetNumber": "20-64",
                           "streetName": "Avon",
-                          "streetTypeDropdown": {
+                          "streetType": {
                             "SelectedItem": "RD",
                             "Query": "Road"
                           },
                           "poBox": null,
                           "suburb": "PYMBLE",
                           "postCode": "2073",
-                          "stateDropdown": {
+                          "state": {
                             "SelectedItem": "NSW",
                             "Query": "NSW"
                           }
@@ -103,25 +103,25 @@
                     "TaxFileNumber": null
                   },
                   "SourceOfFunding": {
-                    "PrimarySourceOfWealthDropdown": {
+                    "PrimarySourceOfWealth": {
                       "SelectedItem": "WSA",
                       "Query": "Sale of assets (e.g. shares, property)"
                     },
-                    "SourceOfFundsForAccountDropdown": {
+                    "SourceOfFundsForAccount": {
                       "SelectedItem": "FSA",
                       "Query": "Sale of assets (e.g. shares, property)"
                     },
-                    "ReasonForOpeningAccountDropdown": {
+                    "ReasonForOpeningAccount": {
                       "SelectedItem": "SAV",
                       "Query": "Savings (e.g. regular deposits with few withdrawals, earning interest to grow your balance)"
                     }
                   },
                   "Residency": {
-                    "CountryOfCitizenshipDropdown": {
+                    "CountryOfCitizenship": {
                       "SelectedItem": "AUS",
                       "Query": "Australia"
                     },
-                    "CountryOfResidencyDropdown": {
+                    "CountryOfResidency": {
                       "SelectedItem": "NZL",
                       "Query": "New Zealand"
                     },
@@ -138,7 +138,7 @@
               "Applicant2Section": {
                 "PersonalDetailsSection": {
                   "BasicInfo": {
-                    "TitleDropdown": {
+                    "Title": {
                       "SelectedItem": null,
                       "Query": null
                     },
@@ -160,14 +160,14 @@
                           "unitNumber": null,
                           "streetNumber": null,
                           "streetName": null,
-                          "streetTypeDropdown": {
+                          "streetType": {
                             "SelectedItem": null,
                             "Query": null
                           },
                           "poBox": null,
                           "suburb": null,
                           "postCode": null,
-                          "stateDropdown": {
+                          "state": {
                             "SelectedItem": null,
                             "Query": null
                           }
@@ -193,25 +193,25 @@
                     "HasTaxFileNumber": null
                   },
                   "SourceOfFunding": {
-                    "PrimarySourceOfWealthDropdown": {
+                    "PrimarySourceOfWealth": {
                       "SelectedItem": null,
                       "Query": null
                     },
-                    "SourceOfFundsForAccountDropdown": {
+                    "SourceOfFundsForAccount": {
                       "SelectedItem": null,
                       "Query": null
                     },
-                    "ReasonForOpeningAccountDropdown": {
+                    "ReasonForOpeningAccount": {
                       "SelectedItem": null,
                       "Query": null
                     }
                   },
                   "Residency": {
-                    "CountryOfCitizenshipDropdown": {
+                    "CountryOfCitizenship": {
                       "SelectedItem": "AUS",
                       "Query": "Australia"
                     },
-                    "CountryOfResidencyDropdown": {
+                    "CountryOfResidency": {
                       "SelectedItem": "AUS",
                       "Query": "Australia"
                     },
