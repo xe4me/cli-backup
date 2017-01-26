@@ -2,12 +2,17 @@ import {
     Component,
     Input,
     Pipe,
-    PipeTransform
+    EventEmitter,
+    Output,
+    PipeTransform,
+    HostListener
 } from '@angular/core';
 import {
     AmpLoadingService,
     LoadingMessage
 } from '../../services/amp-loading/amp-loading.service';
+import { SaveAndSubmitService } from '../../../../services/save-and-submit/save-and-submit.service';
+import { FormModelService } from '../../../../services/form-model/form-model.service';
 import { Request } from '@angular/http';
 import Timer = NodeJS.Timer;
 
@@ -15,7 +20,7 @@ import Timer = NodeJS.Timer;
     name : 'messageMatchesUrl'
 } )
 export class MessageMatchesUrlPipe implements PipeTransform {
-    transform ( loadingMessage : LoadingMessage, ifUrlHas ) : any {
+    transform( loadingMessage : LoadingMessage, ifUrlHas ) : any {
         if ( loadingMessage ) {
             let { url, isLoading } = loadingMessage;
             if ( ifUrlHas === undefined ) { // show the loading if user doesn't care about the url match
@@ -46,8 +51,23 @@ export class AmpLoadingButtonComponent {
     @Input( 'class' ) clasz : string;
     @Input( 'disabled' ) disabled : boolean;
     @Input( 'data-automation-id' ) dataAutomationId : string;
+    @Input( 'auto-submit' ) autoSubmit : boolean    = true;
+    @Output( 'submit' ) $submit : EventEmitter<any> = new EventEmitter<any>();
 
-    constructor ( private loadingService : AmpLoadingService ) {
+    constructor( private loadingService : AmpLoadingService,
+                 private formModelService : FormModelService,
+                 private saveAndSubmitService : SaveAndSubmitService ) {
 
     }
+
+    @HostListener( 'click', [ '$event' ] ) onClick() {
+        if ( this.autoSubmit ) {
+            this.saveAndSubmitService
+                .saveAndSubmit( this.formModelService.form.value )
+                .subscribe( ( result ) => {
+                    this.$submit.emit( result );
+                } );
+        }
+    }
+
 }

@@ -16,7 +16,6 @@ import {
 } from '@angular/http/testing';
 import {
     discardPeriodicTasks,
-    flushMicrotasks,
     tick,
     fakeAsync
 } from '@angular/core/testing';
@@ -25,7 +24,8 @@ import {
     Http,
     BaseRequestOptions,
     Response,
-    ResponseOptions
+    ResponseOptions,
+    RequestMethod
 } from '@angular/http';
 import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
 import {
@@ -43,7 +43,7 @@ const mockHttpProvider = {
         return new AmpHttpInterceptor( backend, defaultOptions, loadingService );
     }
 };
-fdescribe( 'loading button component', () => {
+describe( 'loading button component', () => {
     let _fixture;
     let _testCmpInjector : Injector;
     let _testCmp;
@@ -53,11 +53,11 @@ fdescribe( 'loading button component', () => {
     let _http;
     let _loadingBtnCmp : AmpLoadingButtonComponent;
 
-    function callHttp ( http ) {
+    function callHttp( http ) {
         http.get( AmpCountryService.COUNTRY_URL, null ).subscribe();
     }
 
-    function _getMdProgressElement () {
+    function _getMdProgressElement() {
         return _debugElement.query( By.css( 'md-progress-circle' ) );
     }
 
@@ -116,15 +116,113 @@ fdescribe( 'loading button component', () => {
         _fixture.detectChanges();
         expect( _getMdProgressElement() ).toBeNull();
     } ) );
+
+    it( 'should NOT listen and should NOT show loading because url does NOT match', fakeAsync( () => {
+        _testCmp.ifUrlHas = 'someUrl';
+        _backend.connections.subscribe( ( connection : MockConnection ) => {
+            let options = new ResponseOptions( {
+                body : JSON.stringify( {} )
+            } );
+            setTimeout( () => {
+                connection.mockRespond( new Response( options ) );
+            }, 1000 );
+        } );
+        callHttp( _http );
+        _fixture.detectChanges();
+        expect( _getMdProgressElement() ).toBeNull();
+        tick( 1001 );
+        discardPeriodicTasks();
+        _fixture.detectChanges();
+        expect( _getMdProgressElement() ).toBeNull();
+    } ) );
+    it( 'should listen and should show loading because url DOES match', fakeAsync( () => {
+        _testCmp.ifUrlHas = 'countries';
+        _backend.connections.subscribe( ( connection : MockConnection ) => {
+            let options = new ResponseOptions( {
+                body : JSON.stringify( {} )
+            } );
+            setTimeout( () => {
+                connection.mockRespond( new Response( options ) );
+            }, 1000 );
+        } );
+        callHttp( _http );
+        _fixture.detectChanges();
+        expect( _getMdProgressElement() ).not.toBeNull();
+        tick( 1001 );
+        discardPeriodicTasks();
+        _fixture.detectChanges();
+        expect( _getMdProgressElement() ).toBeNull();
+    } ) );
+    it( 'should do the save and submit if autoSubmit is true or not set', fakeAsync( () => {
+        _testCmp.autoSubmit = true;
+        _fixture.detectChanges();
+        let saveResponse   = {
+            'meta'       : {
+                'url'            : '/ddc/public/api/bett3r/save?id=6812434564',
+                'method'         : 'POST',
+                'timestamp'      : 'Fri Jan 06 2017 13:57:23 GMT+1100 (AEDT)',
+                'responseTimeMs' : 70,
+                'requestId'      : '0c05d1a0d7c5499583f5f093bdd3261c',
+                'hostname'       : 'api-bett3r-dev-v154-iyrtb',
+                'pid'            : 17,
+                'params'         : { 'id' : '6812434564' },
+                'count'          : 1
+            },
+            'payload'    : {
+                'meta' : {
+                    'name'         : 'BETT3R',
+                    'modelVersion' : '1.0.0',
+                    'id'           : '6812434564',
+                    'modified'     : '2017-01-06T02:57:23.161Z',
+                    'created'      : '2017-01-06T02:57:04.544Z',
+                    'owner'        : {
+                        'type' : 'customer',
+                        'id'   : null
+                    },
+                    'status'       : 'open'
+                }
+            },
+            'statusCode' : 200
+        };
+        let submitResponse = { submitted : true };
+        let callCounter    = 0;
+        _backend.connections.subscribe( ( connection : MockConnection ) => {
+            callCounter++;
+            expect( connection.request.method ).toBe( RequestMethod.Post );
+            if ( callCounter === 1 ) {
+                let options = new ResponseOptions( {
+                    body : JSON.stringify( saveResponse )
+                } );
+                expect( connection.request.getBody() ).toEqual( '{}' ); // because loading-button is connected to formModelSerivice and form is empty
+                connection.mockRespond( new Response( options ) );
+            } else if ( callCounter === 2 ) {
+                let options = new ResponseOptions( {
+                    body : JSON.stringify( submitResponse )
+                } );
+                expect( connection.request.getBody() ).toEqual( '{}' );
+                connection.mockRespond( new Response( options ) );
+            }
+            expect( callCounter ).toBeLessThan( 3 );
+        } );
+        _loadingBtnCmp.$submit.subscribe( ( response ) => {
+                expect( response ).toEqual( submitResponse );
+                tick();
+            }
+        );
+        let ampButtonElem = _element.querySelector( 'amp-loading-button' );
+        ampButtonElem.click();
+    } ) );
 } );
 
 @Component( {
     template : `
-        <amp-loading-button #loadingBtnCmp>
+        <amp-loading-button #loadingBtnCmp [if-url-has]="ifUrlHas" [auto-submit]="autoSubmit">
             Submit
         </amp-loading-button>
     `
 } )
 class TestComponent {
+    public ifUrlHas;
+    public autoSubmit = false;
     @ViewChild( 'loadingBtnCmp' ) loadingBtnCmp;
 }
