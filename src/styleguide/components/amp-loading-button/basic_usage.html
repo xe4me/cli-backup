@@ -1,0 +1,22 @@
+<form class="nl-form p+">
+    <h1 class="heading heading-intro">A button that is hooked into http requests and shows the loading icon</h1>
+    <p>It will hook into the http service and intercept the http to show and hide the loading icon</p>
+    <section>
+        <h2>To intercept all the http requests in the application</h2>
+        <div class="mt+">
+            <div class="grid__item 1/4">
+                <amp-loading-button (click)="callHttp()" [theme]="themeService.theme"></amp-loading-button>
+            </div>
+        </div>
+    </section>
+    <section class="mt+">
+        <h2>To intercept only if the url has a specific word </h2>
+        <div class="mt+">
+            <div class="grid__item 1/4">
+                <amp-loading-button (click)="callHttp()" if-url-has="save" [theme]="themeService.theme">
+                    Save
+                </amp-loading-button>
+            </div>
+        </div>
+    </section>
+</form>

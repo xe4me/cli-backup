@@ -48,6 +48,7 @@ export * from './src/app/modules/amp-google-recaptcha';
 export * from './src/app/modules/amp-progress-bars';
 export * from './src/app/modules/amp-overlay';
 export * from './src/app/modules/amp-header';
+export * from './src/app/modules/amp-loading-button';
 
 // Services :
 export * from './src/app/services';

@@ -2,6 +2,7 @@ import {
     Component,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
+    Input,
     OnInit
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
@@ -13,7 +14,6 @@ import { ScrollService, SaveService } from '../../../../services';
     changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
-
     private defaultValues = [
         [
             {
@@ -27,6 +27,7 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
                  _cd : ChangeDetectorRef ,
                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
+
     }
 
     ngOnInit() {
