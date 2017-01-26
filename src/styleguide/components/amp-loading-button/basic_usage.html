@@ -5,7 +5,7 @@
         <h2>To intercept all the http requests in the application</h2>
         <div class="mt+">
             <div class="grid__item 1/4">
-                <amp-loading-button (click)="callHttp()"></amp-loading-button>
+                <amp-loading-button (click)="callHttp()" [theme]="themeService.theme"></amp-loading-button>
             </div>
         </div>
     </section>
@@ -13,7 +13,7 @@
         <h2>To intercept only if the url has a specific word </h2>
         <div class="mt+">
             <div class="grid__item 1/4">
-                <amp-loading-button (click)="callHttp()">
+                <amp-loading-button (click)="callHttp()" if-url-has="save" [theme]="themeService.theme">
                     Save
                 </amp-loading-button>
             </div>

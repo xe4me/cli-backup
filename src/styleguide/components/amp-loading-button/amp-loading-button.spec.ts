@@ -1,87 +1,130 @@
 import {
     async,
-    ComponentFixture,
-    TestBed
+    TestBed,
+    inject
 } from '@angular/core/testing';
 import {
     Component,
-    ViewChild
+    ViewChild,
+    Injector
 } from '@angular/core';
-import {
-    ReactiveFormsModule,
-    FormGroup
-} from '@angular/forms';
-import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
-import { AmpInputsModule } from '../../../app/modules/amp-inputs';
-describe( 'amp-account-number component', () => {
+import {
+    MockBackend,
+    MockConnection
+} from '@angular/http/testing';
+import {
+    discardPeriodicTasks,
+    flushMicrotasks,
+    tick,
+    fakeAsync
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import {
+    Http,
+    BaseRequestOptions,
+    Response,
+    ResponseOptions
+} from '@angular/http';
+import { AmpHttpService } from '../../../app/services/amp-http/amp-http.service';
+import {
+    AmpLoadingButtonModule,
+    AmpLoadingService,
+    AmpHttpInterceptor,
+    AmpLoadingButtonComponent
+} from '../../../app/modules/amp-loading-button';
+import { AmpCountryService } from '../../../app/modules/amp-dropdown/services/amp-country.service';
+
+const mockHttpProvider = {
+    provide    : Http,
+    deps       : [ MockBackend, BaseRequestOptions, AmpLoadingService ],
+    useFactory : ( backend : MockBackend, defaultOptions : BaseRequestOptions, loadingService : AmpLoadingService ) => {
+        return new AmpHttpInterceptor( backend, defaultOptions, loadingService );
+    }
+};
+fdescribe( 'loading button component', () => {
+    let _fixture;
+    let _testCmpInjector : Injector;
+    let _testCmp;
+    let _element;
+    let _debugElement;
+    let _backend;
+    let _http;
+    let _loadingBtnCmp : AmpLoadingButtonComponent;
+
+    function callHttp ( http ) {
+        http.get( AmpCountryService.COUNTRY_URL, null ).subscribe();
+    }
+
+    function _getMdProgressElement () {
+        return _debugElement.query( By.css( 'md-progress-circle' ) );
+    }
+
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
-            imports      : [ ReactiveFormsModule, AmpInputsModule ],
-            declarations : [
-                TestComponent
-            ],
+            declarations : [ TestComponent ],
             providers    : [
-                { provide : ComponentFixtureAutoDetect, useValue : true }
+                BaseRequestOptions,
+                MockBackend,
+                AmpHttpService,
+                mockHttpProvider,
+                {
+                    provide  : ComponentFixtureAutoDetect,
+                    useValue : true
+                }
+            ],
+            imports      : [
+                ReactiveFormsModule,
+                AmpLoadingButtonModule.forRoot()
             ]
         } );
-        TestBed.compileComponents();
+        _fixture         = TestBed.createComponent( TestComponent );
+        _testCmpInjector = _fixture.debugElement.injector;
+        _testCmp         = _fixture.componentInstance;
+        _loadingBtnCmp   = _testCmp.loadingBtnCmp;
+        _debugElement    = _fixture.debugElement;
+        _element         = _fixture.nativeElement;
+        _fixture.detectChanges();
     } ) );
-    it( 'should contain an input text element with the correct name, max value, id and data-automation-id attribute', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent = fixture.debugElement;
-        let compiledInput         = compiledTestComponent.query( By.css( 'input' ) );
-        let Component             = fixture.componentInstance;
-        expect( compiledInput.nativeElement.name ).toBe( Component.accountNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.id ).toBe( Component.accountNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.attributes[ 'maxlength' ].value ).toBe( '9' );
-        expect( compiledInput.nativeElement.type ).toBe( 'text' );
-        expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.accountNumberCmp.randomizedId );
+    beforeEach( inject( [ Http, MockBackend ],
+        ( http : Http, _mockBackend : MockBackend ) => {
+            _backend = _mockBackend;
+            _http    = http;
+        } ) );
+    it( 'should be defined ', () => {
+        expect( _loadingBtnCmp ).toBeDefined();
     } );
-    it( 'should be invalid if longer than 9 digits', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '12345678910' );
-        expect( accountNumberControl.valid ).toBe( false );
+    it( 'content text should be Submit if specified Submit', () => {
+        let ampButtonElem = _debugElement.query( By.css( 'amp-button' ) );
+        expect( ampButtonElem.nativeElement.textContent.trim() ).toEqual( 'Submit' );
     } );
-    it( 'should be invalid if shorter than 9 digits', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '12345678' );
-        expect( accountNumberControl.valid ).toBe( false );
-    } );
-    it( 'should be valid if exactly 9 digits', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '123456789' );
-        expect( accountNumberControl.valid ).toBe( true );
-    } );
-    it( 'should be invalid if contains non-numeric characters', () => {
-        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
-        fixture.detectChanges();
-        let compiledTestComponent  = fixture.debugElement;
-        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.get( 'account-number' );
-        accountNumberControl.setValue( '12345678a' );
-        expect( accountNumberControl.valid ).toBe( false );
-    } );
+    it( 'should listen to all http calls if the if-url-has is not specified', fakeAsync( () => {
+        _backend.connections.subscribe( ( connection : MockConnection ) => {
+            let options = new ResponseOptions( {
+                body : JSON.stringify( {} )
+            } );
+            setTimeout( () => {
+                connection.mockRespond( new Response( options ) );
+            }, 1000 );
+        } );
+        callHttp( _http );
+        _fixture.detectChanges();
+        expect( _getMdProgressElement() ).not.toBeNull();
+        tick( 1001 );
+        discardPeriodicTasks();
+        _fixture.detectChanges();
+        expect( _getMdProgressElement() ).toBeNull();
+    } ) );
 } );
 
 @Component( {
     template : `
-    <amp-account-number
-        #accountNumberCmp
-        [id]="'account-number'"
-        [controlGroup]="accountNumberControl"></amp-account-number>
+        <amp-loading-button #loadingBtnCmp>
+            Submit
+        </amp-loading-button>
     `
 } )
 class TestComponent {
-    @ViewChild( 'accountNumberCmp' ) accountNumberCmp;
-    public accountNumberControl : FormGroup = new FormGroup( {} );
+    @ViewChild( 'loadingBtnCmp' ) loadingBtnCmp;
 }

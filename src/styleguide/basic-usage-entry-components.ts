@@ -138,4 +138,4 @@ export const BASIC_USAGE_ENTRY_COMPONENTS = [
     ResponsiveBasicUsage,
     TablesBasicUsage,
     TextBasicUsage
-]
+];
