@@ -281,7 +281,8 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
     private get verificationSuccessful () {
         return [
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED,
-            AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_WITH_CHANGES
+            AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_WITH_CHANGES,
+            AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_ADMIN
         ].includes( this.verificationStatusControl.value );
 
     }
@@ -292,7 +293,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
 
     private get verificationFailed () {
         return [
-            AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_ADMIN,
             AmpGreenIdBlockComponent.verificationStatuses.PENDING,
             AmpGreenIdBlockComponent.verificationStatuses.LOCKED_OUT
         ].includes( this.verificationStatusControl.value );
