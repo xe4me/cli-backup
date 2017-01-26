@@ -201,7 +201,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         } else {
             this.greenIdControlGroup = this.createGreenIdControlGroup();
         }
-        this.greenIdControlGroup.markAsTouched();
     }
 
     private revalidateControlGroup ( controlGroup : FormGroup ) {
@@ -268,18 +267,38 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
 
     private onSessionComplete = ( token : string, verificationStatus : string ) => {
         this.verificationStatusControl.setValue( verificationStatus );
-
         this.$complete.emit( verificationStatus );
         this.showOkButton = true;
         this._cd.markForCheck();
     }
 
-    private get verificationWasSuccessful () : boolean {
+    private onSessionCancelled = ( token : string, verificationStatus : string ) => {
+        this.verificationStatusControl.setValue( verificationStatus );
+        this.showOkButton = true;
+        this._cd.markForCheck();
+    }
+
+    private get verificationSuccessful () {
         return [
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED,
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_WITH_CHANGES
         ].includes( this.verificationStatusControl.value );
+
     }
+
+    private get verificationSkipped () {
+        return AmpGreenIdBlockComponent.verificationStatuses.IN_PROGRESS === this.verificationStatusControl.value;
+    }
+
+    private get verificationFailed () {
+        return [
+            AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_ADMIN,
+            AmpGreenIdBlockComponent.verificationStatuses.PENDING,
+            AmpGreenIdBlockComponent.verificationStatuses.LOCKED_OUT
+        ].includes( this.verificationStatusControl.value );
+    }
+    
+    
 
     private createGreenIdControlGroup () {
         return new FormGroup( {
@@ -294,11 +313,16 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
 
     private setupGreenId () : void {
         let options = Object.assign( this.greenIdSettings, {
-            sessionCompleteCallback : this.onSessionComplete
+            sessionCompleteCallback : this.onSessionComplete,
+            sessionCancelledCallback : this.onSessionCancelled,
+            enableCancelButton : true
         } );
         window[ 'greenidConfig' ].setOverrides( {
             'enable_save_and_complete_later' : false,
-            'dnb_tandc_text' : this.termsAndConditionsText
+            'dnb_tandc_text' : this.termsAndConditionsText,
+            'intro_title' : '<h1>Verify your identity</h1>',
+            'intro_introText0' : '<p class="lead">To verify your identity, the details you enter below need to match with 2 different ID sources. You must choose at least one ID source that’s from a government body.</p><p class="lead">If you skip this step, you can continue your application but won’t be able to use your new account until you verify your identity.</p>',
+            'intro_introText1' : '<p class="lead">To verify your identity, the details you enter below need to match with 1 different ID source. You must choose at least one ID source that’s from a government body.</p><p class="lead">If you skip this step, you can continue your application but won’t be able to use your new account until you verify your identity.</p>'
         } );
         window[ 'greenidUI' ].setup( options );
     }

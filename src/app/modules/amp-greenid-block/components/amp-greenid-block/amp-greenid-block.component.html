@@ -50,13 +50,17 @@
             </div>
 
             <div *ngIf="isVerificationCompleted">
-                <div *ngIf="verificationWasSuccessful">
+                <div *ngIf="verificationSuccessful">
                     <h2>Thanks</h2>
-                    <p>Your ID has been verified. Please continue.</p>
+                    <p>Your identity has been verified so please continue.</p>
                 </div>
-                <div *ngIf="!verificationWasSuccessful">
-                    <h2>Your ID was unable to be verified</h2>
-                    <p>But please still continue and you can provide your ID using the paper forms available at the end of your application.</p>
+                <div *ngIf="verificationSkipped">
+                    <h2>You’ve chosen to skip your ID check</h2>
+                    <p>You’ll be able to verify your identity later by downloading a paper form when you complete this application.</p>
+                </div>
+                <div *ngIf="verificationFailed">
+                    <h2>We couldn't verify your identity</h2>
+                    <p>You'll be able to verify your identity later by downloading a paper form when you complete this application.</p>
                 </div>
                 <div>
                     <span class="id-check-icon mt-60"></span>
