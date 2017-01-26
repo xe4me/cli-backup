@@ -297,8 +297,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
             AmpGreenIdBlockComponent.verificationStatuses.LOCKED_OUT
         ].includes( this.verificationStatusControl.value );
     }
-    
-    
 
     private createGreenIdControlGroup () {
         return new FormGroup( {
