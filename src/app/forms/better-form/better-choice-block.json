@@ -26,10 +26,10 @@
         "optionalBlocks": {
             "offset_account": {
                 "name": "LoanOffset",
-                "blockType": "LoanOffsetBlock",
+                "blockType": "LoanOffsetTransitionBlock",
                 "blockLayout": "INLINE",
                 "commonBlock": false,
-                "path": "blocks/loan-offset/loan-offset.component",
+                "path": "blocks/loan-offset-transition/loan-offset-transition.component",
                 "custom": {
                     "blockTitle": "Your offset account",
                     "type" : "loanOffset",
