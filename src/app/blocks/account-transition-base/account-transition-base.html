@@ -20,14 +20,27 @@
         </p>
         <amp-form-row>
             <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+                <amp-dropdown
+                    *ngIf="hasAccounts"
+                    #depositAccount
+                    auto-focus-on
+                    [id]="__custom.controls[1].id"
+                    [label]='"Account number"'
+                    [controlGroup]="__controlGroup"
+                    [isInSummaryState]="isInSummaryState"
+                    [options]="accountsEligibleForTransitioning"
+                    [required]="true">
+                </amp-dropdown>
+
                 <amp-account-number
-                        #depositAccount
-                        auto-focus-on
-                        [id]="__custom.controls[1].id"
-                        [controlGroup]="__controlGroup"
-                        amp-number-only
-                        [isInSummaryState]="isInSummaryState"
-                        [required]="true">
+                    *ngIf="!hasAccounts"
+                    #depositAccount
+                    auto-focus-on
+                    [id]="__custom.controls[1].id"
+                    [controlGroup]="__controlGroup"
+                    amp-number-only
+                    [isInSummaryState]="isInSummaryState"
+                    [required]="true">
                 </amp-account-number>
             </div>
         </amp-form-row>

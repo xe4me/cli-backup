@@ -9,17 +9,25 @@ import {
     ScrollService,
     SaveService
 } from 'amp-ddc-components';
+import {
+    EligibleAccountsService,
+    LoginStatusService
+} from '../../shared';
 
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
-    private description : string          = null;
-    private accountType : string;
+    protected accountType : string;
+    private description : string = null;
     private betterChoiceSubscription : Subscription;
+    private eligibleAccountsServiceSubscription : Subscription;
     private showAccountNumber : boolean = false;
     private additionalDescription : string;
+    private accountsEligibleForTransitioning : Array<{}> = [];
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
-                  scrollService : ScrollService ) {
+                  scrollService : ScrollService,
+                  private loginStatusService : LoginStatusService,
+                  private eligibleAccountsService : EligibleAccountsService ) {
         super( saveService, _cd, scrollService );
     }
 
@@ -38,12 +46,18 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             this.isActive = true;
         }
 
+        this.loginStatusService.userHasLoggedIn()
+            .subscribe( () => {
+                this.fetchEligibleAccounts();
+            });
+
         this._cd.markForCheck();
         super.ngAfterViewInit();
     }
 
     public ngOnDestroy () {
         this.betterChoiceSubscription.unsubscribe();
+        this.eligibleAccountsServiceSubscription.unsubscribe();
         super.ngOnDestroy();
     }
 
@@ -53,6 +67,32 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
     protected additionalInstructionsText ( action : string ) : string {
         return this.__custom[ 'additional_instruction' ];
+    }
+
+    protected mapEligibleAccounts (accounts : any[] ) : Array<{}> {
+        if (accounts[this.accountType]) {
+            return accounts[this.accountType].map( (account) => {
+                return {
+                    value: account.displayContractId,
+                    label: account.displayContractId
+                };
+            } );
+        }
+        return [];
+    }
+
+    protected get hasAccounts () : boolean {
+        return this.accountsEligibleForTransitioning.length > 0;
+    }
+
+    private fetchEligibleAccounts () {
+        this.eligibleAccountsServiceSubscription = this.eligibleAccountsService.getEligibleAccounts()
+            .subscribe(
+                ( response ) => {
+                    this.accountsEligibleForTransitioning = this.mapEligibleAccounts(response.payload);
+                    this._cd.markForCheck();
+                },
+                () => {});
     }
 
     private checkoutAccountType ( val : string ) : void {
