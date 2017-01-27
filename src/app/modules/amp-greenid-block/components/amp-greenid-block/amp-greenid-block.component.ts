@@ -19,7 +19,7 @@ import {
     SafeResourceUrl,
     DomSanitizer
 } from '@angular/platform-browser';
-import * as _ from 'lodash';
+import { get }from 'lodash';
 import { Environments } from '../../../../abstracts/environments/environments.abstract';
 import { AmpCheckboxComponent } from '../../../amp-checkbox';
 import { AmpGreenIdServices } from '../../services/amp-greenid-service';
@@ -345,21 +345,21 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
             rootApplicantFDN = this.__custom.rootApplicantFDN + this.__custom.applicantIndex;
         }
         return {
-            title       : _.get(this.__form.value, rootApplicantFDN + this.__custom.titleFDN, ''),
-            firstName   : _.get(this.__form.value, rootApplicantFDN + this.__custom.firstNameFDN, ''),
-            middleNames : _.get(this.__form.value, rootApplicantFDN + this.__custom.middleNamesFDN, '') || '',
-            lastName    : _.get(this.__form.value, rootApplicantFDN + this.__custom.lastNameFDN, ''),
-            dateOfBirth : _.get(this.__form.value, rootApplicantFDN + this.__custom.dateOfBirthFDN, ''),
-            email       : _.get(this.__form.value, rootApplicantFDN + this.__custom.emailFDN, ''),
+            title       : get(this.__form.value, rootApplicantFDN + this.__custom.titleFDN, ''),
+            firstName   : get(this.__form.value, rootApplicantFDN + this.__custom.firstNameFDN, ''),
+            middleNames : get(this.__form.value, rootApplicantFDN + this.__custom.middleNamesFDN, '') || '',
+            lastName    : get(this.__form.value, rootApplicantFDN + this.__custom.lastNameFDN, ''),
+            dateOfBirth : get(this.__form.value, rootApplicantFDN + this.__custom.dateOfBirthFDN, ''),
+            email       : get(this.__form.value, rootApplicantFDN + this.__custom.emailFDN, ''),
             address     : {
                 country      : 'AU',
-                state        : _.get(this.__form.value, rootApplicantFDN + this.__custom.stateFDN, ''),
-                streetName   : _.get(this.__form.value, rootApplicantFDN + this.__custom.streetNameFDN, '') || '',
-                flatNumber   : _.get(this.__form.value, rootApplicantFDN + this.__custom.flatNumberFDN, '') || '',
-                streetNumber : _.get(this.__form.value, rootApplicantFDN + this.__custom.streetNumberFDN, ''),
-                suburb       : _.get(this.__form.value, rootApplicantFDN + this.__custom.suburbFDN, '') || '',
-                postcode     : _.get(this.__form.value, rootApplicantFDN + this.__custom.postcodeFDN, ''),
-                streetType   : _.get(this.__form.value, rootApplicantFDN + this.__custom.streetTypeFDN, '')
+                state        : get(this.__form.value, rootApplicantFDN + this.__custom.stateFDN, ''),
+                streetName   : get(this.__form.value, rootApplicantFDN + this.__custom.streetNameFDN, '') || '',
+                flatNumber   : get(this.__form.value, rootApplicantFDN + this.__custom.flatNumberFDN, '') || '',
+                streetNumber : get(this.__form.value, rootApplicantFDN + this.__custom.streetNumberFDN, ''),
+                suburb       : get(this.__form.value, rootApplicantFDN + this.__custom.suburbFDN, '') || '',
+                postcode     : get(this.__form.value, rootApplicantFDN + this.__custom.postcodeFDN, ''),
+                streetType   : get(this.__form.value, rootApplicantFDN + this.__custom.streetTypeFDN, '')
             }
         };
     }
