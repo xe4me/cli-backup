@@ -38,6 +38,9 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         this.betterChoiceSubscription = newOrConvertControl.valueChanges
             .subscribe( ( val ) => {
                 this.checkoutAccountType(val);
+                setTimeout( () => {
+                    this._cd.markForCheck();
+                } );
             } );
 
         if ( this.__isRetrieved ) {
