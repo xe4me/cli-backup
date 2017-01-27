@@ -22,7 +22,7 @@
                     "deposit": [
                         {
                             "productSystemCode": "BK",
-                            "productCode": "1253",
+                            "productCode": 1253,
                             "productName": "AMP FIRST",
                             "contractComponents": [
                                 {
@@ -44,13 +44,25 @@
                             ],
                             "pasContractId": "559334420",
                             "displayContractId": "559334420"
+                        },
+                        {
+                            "productSystemCode": "BK",
+                            "productCode": 1263,
+                            "productName": "AMP Access Account",
+                            "contractComponents": [
+                                {
+                                    "contractComponentType": "ContractAddress"
+                                }
+                            ],
+                            "pasContractId": "018609800",
+                            "displayContractId": "018609800"
                         }
                     ],
                     "offset": [],
                     "loan": [
                         {
                             "productSystemCode": "BK",
-                            "productCode": "3010",
+                            "productCode": 3010,
                             "productName": "All Options Variable Rate - Principal & Interest",
                             "contractComponents": [
                                 {

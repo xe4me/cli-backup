@@ -7,6 +7,10 @@ import {
     ScrollService,
     SaveService
 } from 'amp-ddc-components';
+import {
+    EligibleAccountsService,
+    LoginStatusService
+} from '../../shared';
 import { AccountTransitionBaseBlock } from '../account-transition-base/account-transition-base.component';
 @Component( {
     selector        : 'deposit-transition-block',
@@ -18,7 +22,9 @@ export class DepositTransitionBlock extends AccountTransitionBaseBlock {
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
-                  scrollService : ScrollService ) {
-        super( saveService, _cd, scrollService );
+                  scrollService : ScrollService,
+                  loginStatusService : LoginStatusService,
+                  eligibleAccountsService : EligibleAccountsService ) {
+        super( saveService, _cd, scrollService, loginStatusService, eligibleAccountsService );
     }
 }
