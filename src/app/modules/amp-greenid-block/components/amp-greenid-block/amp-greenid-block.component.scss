@@ -17,20 +17,20 @@ amp-greenid-block {
         margin: 0;
     }
 
+    .id-check-icon {
+        background-image: url($amp-ddc-components-public-asset + 'images/greenid-complete.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100px 100px;
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+    }
+
     #greenid-container {
 
         font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
         font-size: $small-font-size;
-
-        .id-check-icon {
-            background-image: url('../../../../../assets/images/greenid-complete.png');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 100px 100px;
-            display: inline-block;
-            height: 100px;
-            width: 100px;
-        }
 
         h1, h2 {
             font-size: 24px;
