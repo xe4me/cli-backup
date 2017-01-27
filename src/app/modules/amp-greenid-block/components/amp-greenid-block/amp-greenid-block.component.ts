@@ -320,7 +320,8 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
             'dnb_tandc_text' : this.termsAndConditionsText,
             'intro_title' : '<h1>Verify your identity</h1>',
             'intro_introText0' : `<p class="lead">The details you enter below need to match with 2 different ID sources. You must choose one ID source that's from a government body.</p>
-                                  <p class="lead">If you skip this step, you'll still need to verify your identity later on a paper form (much harder to do). And you can't use your new account until you've done this.</p>`
+                                  <p class="lead">If you skip this step, you'll still need to verify your identity later on a paper form (much harder to do). And you can't use your new account until you've done this.</p>`,
+            'cancel_button_text' : 'Skip ID check'
         } );
         window[ 'greenidUI' ].setup( options );
     }
