@@ -1,6 +1,6 @@
 {
   "name": "amp-angular-cli",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "CLI tool for Angular",
   "main": "packages/angular-cli/lib/cli/index.js",
   "trackingCode": "UA-8594346-19",
