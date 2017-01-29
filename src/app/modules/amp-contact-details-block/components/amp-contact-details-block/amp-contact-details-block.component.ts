@@ -12,7 +12,6 @@ import {
     SaveService,
     SaveAndCloseService
 } from '../../../../services';
-
 import { AmpInputComponent } from '../../../amp-inputs';
 
 @Component({
@@ -21,81 +20,50 @@ import { AmpInputComponent } from '../../../amp-inputs';
     changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit {
+
     @ViewChild('mobileNumber') mobileNumberCmp : AmpInputComponent;
-    private defaultValues = [
-        [
+
+    private defaultValues = {
+        "blockTitle": "And your contact details...",
+        "controls": [
             {
-                attr: 'label',
-                defaultVal: 'Email'
+                "id": "emailAddress",
+                "label": "Email",
+                "required": true,
+                "tooltipMessage": "Confirmation of your application will be sent to this email address."
             },
             {
-                attr: 'required',
-                defaultVal: true
+                "id": "mobileNumber",
+                "label": "Mobile number",
+                "required": true,
+                "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
+                "requiredErrorMessage": "Mobile number is a required field.",
+                "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
             },
             {
-                attr: 'tooltipMessage',
-                defaultVal: 'Confirmation of your application will be sent to this email address.'
-            }
-        ], [
-            {
-                attr: 'label',
-                defaultVal: 'Mobile number'
-            },
-            {
-                attr: 'required',
-                defaultVal: true
-            },
-            {
-                attr: 'tooltipMessage',
-                defaultVal: 'A mobile phone number is required to allow AMP Bank to securely protect your account.'
-            },
-            {
-                attr: 'requiredErrorMessage',
-                defaultVal: 'Mobile number is a required field.'
-            },
-            {
-                attr: 'patternErrorMessage',
-                defaultVal: 'Mobile number must be in the format 04nnnnnnnn.'
-            }
-        ], [
-            {
-                attr: 'label',
-                defaultVal: 'Home number'
-            },
-            {
-                attr: 'required',
-                defaultVal: false
+                "id": "homeNumber",
+                "label": "Home number",
+                "required": false
             }
         ]
-    ];
+    };
 
     constructor( saveService : SaveService ,
                  _cd : ChangeDetectorRef ,
                  @Optional() private saveCloseService : SaveAndCloseService,
                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
-
     }
 
     ngOnInit() {
-        // Set default values if no custom ones from form-def...
-        this.defaultValues.forEach((control, index) => {
-            control.forEach((prop) => {
-                this.setIfNot(this.__custom.controls[index], prop.attr, prop.defaultVal);
-            });
-        });
+        super.setBlockAttributes(this.defaultValues);
     }
+
     onNext() {
         if (this.saveCloseService) {
             this.saveCloseService.updateMobileNumber(this.mobileNumberCmp.control.value);
         }
         super.onNext();
-    }
-
-    private setIfNot(control, attr, defaultValue) {
-        if (control[attr] === undefined) {
-            control[attr] = defaultValue;
-        }
     }
 
 }
