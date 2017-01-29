@@ -20,18 +20,19 @@ import Timer = NodeJS.Timer;
     name : 'messageMatchesUrl'
 } )
 export class MessageMatchesUrlPipe implements PipeTransform {
-    transform( loadingMessage : LoadingMessage, ifUrlHas ) : any {
+    transform ( loadingMessage : LoadingMessage, ifUrlHas ) : any {
         if ( loadingMessage ) {
             let { url, isLoading } = loadingMessage;
             if ( ifUrlHas === undefined ) { // show the loading if user doesn't care about the url match
                 return isLoading;
             }
+            let regex = new RegExp( ifUrlHas );
             if ( isLoading ) {
                 if ( url instanceof Request ) {
-                    return url.url.indexOf( ifUrlHas ) > 0;
+                    return regex.test( url.url );
                 }
                 if ( typeof(url) === 'string' ) {
-                    return url.indexOf( ifUrlHas ) > 0;
+                    return regex.test( url );
                 }
             }
         }
@@ -46,22 +47,22 @@ export class MessageMatchesUrlPipe implements PipeTransform {
 } )
 
 export class AmpLoadingButtonComponent {
-    @Input( 'if-url-has' ) ifUrlHas;
+    @Input( 'if-url-has' ) ifUrlHas                     = 'save|submit';
     @Input( 'theme' ) theme : string;
     @Input( 'class' ) clasz : string;
     @Input( 'disabled' ) disabled : boolean;
     @Input( 'data-automation-id' ) dataAutomationId : string;
-    @Input( 'auto-submit' ) autoSubmit : boolean    = true;
-    @Output( 'submit' ) $submit : EventEmitter<any> = new EventEmitter<any>();
+    @Input( 'submit-on-click' ) submitOnClick : boolean = false;
+    @Output( 'submit' ) $submit : EventEmitter<any>     = new EventEmitter<any>();
 
-    constructor( private loadingService : AmpLoadingService,
-                 private formModelService : FormModelService,
-                 private saveAndSubmitService : SaveAndSubmitService ) {
+    constructor ( private loadingService : AmpLoadingService,
+                  private formModelService : FormModelService,
+                  private saveAndSubmitService : SaveAndSubmitService ) {
 
     }
 
-    @HostListener( 'click', [ '$event' ] ) onClick() {
-        if ( this.autoSubmit ) {
+    @HostListener( 'click', [ '$event' ] ) onClick () {
+        if ( this.submitOnClick ) {
             this.saveAndSubmitService
                 .saveAndSubmit( this.formModelService.form.value )
                 .subscribe( ( result ) => {
