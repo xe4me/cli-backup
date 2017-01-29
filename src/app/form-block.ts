@@ -239,21 +239,21 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         }
     }
 
-    private unSubscribeFromEvents () {
-        if ( this.scrollSubscription ) {
-            this.scrollSubscription.unsubscribe();
-        }
-    }
-
     protected setBlockAttributes (defaultValues) {
         const custom = defaultValues;
         // Override default values if custom values are provided
         if (_.size(this.__custom) > 0) {
             _.each(this.__custom, (value, key) => {
                 _.set(custom, key, value);
-            })
+            });
         }
         this.__custom = custom;
+    }
+
+    private unSubscribeFromEvents () {
+        if ( this.scrollSubscription ) {
+            this.scrollSubscription.unsubscribe();
+        }
     }
 
 }

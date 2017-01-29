@@ -23,6 +23,7 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
 
     @ViewChild('mobileNumber') mobileNumberCmp : AmpInputComponent;
 
+    /* tslint:disable:quotemark */
     private defaultValues = {
         "blockTitle": "And your contact details...",
         "controls": [
@@ -47,6 +48,7 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements OnInit
             }
         ]
     };
+    /* tslint:enable */
 
     constructor( saveService : SaveService ,
                  _cd : ChangeDetectorRef ,
