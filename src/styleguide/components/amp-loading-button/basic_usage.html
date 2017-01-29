@@ -3,20 +3,50 @@
     <p>It will hook into the http service and intercept the http to show and hide the loading icon</p>
     <section>
         <h2>To intercept all the http requests in the application</h2>
-        <div class="mt+">
-            <div class="grid__item 1/4">
-                <amp-loading-button (click)="callHttp()" [theme]="themeService.theme"></amp-loading-button>
+        <amp-form-row>
+            <p>Because the `if-url-has` attribute accepts regular expressions , you intercept all the http calls by
+                passing a .</p>
+            <div class="mt+">
+                <div class="grid__item 1/4">
+                    <amp-loading-button if-url-has="."
+                                        [theme]="themeService.theme">Void</amp-loading-button>
+                </div>
             </div>
-        </div>
+        </amp-form-row>
     </section>
     <section class="mt+">
-        <h2>To intercept only if the url has a specific word </h2>
-        <div class="mt+">
-            <div class="grid__item 1/4">
-                <amp-loading-button (click)="callHttp()" if-url-has="save" [theme]="themeService.theme">
-                    Save
-                </amp-loading-button>
+        <h2>To intercept only if the url has a specific word</h2>
+        <amp-form-row>
+            <p>This will only show the loading if the url has the word "countries".
+            </p>
+            <div class="mt+">
+                <div class="grid__item 1/4">
+                    <amp-loading-button (click)="callHttp()" if-url-has="countries" [theme]="themeService.theme">
+                        Get countries
+                    </amp-loading-button>
+                </div>
             </div>
-        </div>
+        </amp-form-row>
+    </section>
+    <section class="mt+">
+        <h2>To do the save and submit on click and show the loading </h2>
+        <amp-form-row>
+            <p>You just need to set the `submit-on=click` to be `true` and the rest is handled by the component</p>
+            <div class="mt+">
+                <div class="grid__item 1/4">
+                    <amp-loading-button [submit-on-click]="true" [theme]="themeService.theme"></amp-loading-button>
+                </div>
+            </div>
+        </amp-form-row>
+    </section>
+    <section class="mt+">
+        <h2>Not specifying the if-url-has property will show the loading for save or submit calls only by default</h2>
+        <amp-form-row>
+            <div class="mt+">
+                <div class="grid__item 1/4">
+                    <amp-loading-button [submit-on-click]="true" [theme]="themeService.theme"></amp-loading-button>
+                </div>
+            </div>
+        </amp-form-row>
     </section>
 </form>
