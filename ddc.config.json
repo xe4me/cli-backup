@@ -2,13 +2,7 @@
     "type": "experience",
     "port": 8080,
     "protocol": "HTTP",
-    "nodePort": {
-      "prd": 30007,
-      "prf": 30007,
-      "sys": 30007,
-      "uat": 30007,
-      "dev": 30007
-    },
+    "nodePort": "30007"
     "angularCliProj": false,
     "skipNPMPublish": false,
 
