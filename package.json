@@ -1,14 +1,13 @@
 {
   "name": "amp-angular-cli",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "CLI tool for Angular",
   "main": "packages/angular-cli/lib/cli/index.js",
   "trackingCode": "UA-8594346-19",
   "bin": {
     "amp-ng": "./bin/ng"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "scripts": {
     "build": "node ./scripts/publish/build.js",
     "build:patch": "node ./scripts/patch.js",
