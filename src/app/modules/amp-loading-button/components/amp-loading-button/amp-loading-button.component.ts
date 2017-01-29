@@ -50,6 +50,7 @@ export class AmpLoadingButtonComponent {
     @Input( 'if-url-has' ) ifUrlHas                     = 'save|submit';
     @Input( 'theme' ) theme : string;
     @Input( 'class' ) clasz : string;
+    @Input( 'context' ) context : string;
     @Input( 'disabled' ) disabled : boolean;
     @Input( 'data-automation-id' ) dataAutomationId : string;
     @Input( 'submit-on-click' ) submitOnClick : boolean = false;

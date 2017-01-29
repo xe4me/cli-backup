@@ -43,7 +43,7 @@ const mockHttpProvider = {
         return new AmpHttpInterceptor( backend, defaultOptions, loadingService );
     }
 };
-fdescribe( 'loading button component', () => {
+describe( 'loading button component', () => {
     let _fixture;
     let _testCmpInjector : Injector;
     let _testCmp;
@@ -158,7 +158,7 @@ fdescribe( 'loading button component', () => {
         _fixture.detectChanges();
         expect( _getMdProgressElement() ).toBeNull();
     } ) );
-    fit( 'should be disabled when showing the loading icon', fakeAsync( () => {
+    it( 'should be disabled when showing the loading', fakeAsync( () => {
         _testCmp.ifUrlHas = 'countries';
         _backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new ResponseOptions( {
