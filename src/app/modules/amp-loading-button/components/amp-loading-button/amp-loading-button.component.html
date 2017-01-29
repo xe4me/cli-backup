@@ -1,6 +1,6 @@
 <amp-button class="{{ clasz||'btn btn-submit palm-1/1' }}"
             [attr.theme]="theme"
-            [disabled]="disabled"
+            [disabled]="disabled || loadingService.$loading| async | messageMatchesUrl:ifUrlHas"
             [data-automation-id]="dataAutomationId">
     <span #content><ng-content></ng-content></span>
     <span *ngIf="content.childNodes.length===0">Submit</span>

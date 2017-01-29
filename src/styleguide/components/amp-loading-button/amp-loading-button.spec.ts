@@ -61,6 +61,10 @@ fdescribe( 'loading button component', () => {
         return _debugElement.query( By.css( 'md-progress-circle' ) );
     }
 
+    function _getButtonElement () {
+        return _debugElement.query( By.css( 'button' ) );
+    }
+
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             declarations : [ TestComponent ],
@@ -153,6 +157,24 @@ fdescribe( 'loading button component', () => {
         discardPeriodicTasks();
         _fixture.detectChanges();
         expect( _getMdProgressElement() ).toBeNull();
+    } ) );
+    fit( 'should be disabled when showing the loading icon', fakeAsync( () => {
+        _testCmp.ifUrlHas = 'countries';
+        _backend.connections.subscribe( ( connection : MockConnection ) => {
+            let options = new ResponseOptions( {
+                body : JSON.stringify( {} )
+            } );
+            setTimeout( () => {
+                connection.mockRespond( new Response( options ) );
+            }, 1000 );
+        } );
+        callHttp( _http );
+        _fixture.detectChanges();
+        expect( _getButtonElement().nativeElement.disabled ).toBe( true );
+        tick( 1001 );
+        discardPeriodicTasks();
+        _fixture.detectChanges();
+        expect( _getButtonElement().nativeElement.disabled ).toBe( false );
     } ) );
     it( 'should do the save and submit if submit-on-click is true ', fakeAsync( () => {
         _testCmp.submitOnClick = true;
