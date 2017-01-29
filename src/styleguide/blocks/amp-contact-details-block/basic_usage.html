@@ -25,10 +25,7 @@
         "blockType": "AmpContactDetailsBlockComponent",
         "blockLayout": "INLINE",
         "commonBlock": true,
-        "path": "modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component",
-        "custom": &#123;
-            ...
-        &#125;
+        "path": "modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component"
     &#125;
             </code>
         </pre>
@@ -53,10 +50,42 @@
     </article>
 
     <article class="section">
+        <h2 class="mb- ml mt+">Default props</h2>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "blockTitle": "And your contact details...",
+        "controls": [
+            &#123;
+                "id": "emailAddress",
+                "label": "Email",
+                "required": true,
+                "tooltipMessage": "Confirmation of your application will be sent to this email address."
+            &#125;,
+            &#123;
+                "id": "mobileNumber",
+                "label": "Mobile number",
+                "required": true,
+                "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
+                "requiredErrorMessage": "Mobile number is a required field.",
+                "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
+            &#125;,
+            &#123;
+                "id": "homeNumber",
+                "label": "Home number",
+                "required": false
+            &#125;
+        ]
+    &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
         <h2 class="mb- ml mt+">"custom" section</h2>
         <ul class="bml">
             <li>
-                At least block title and IDs of your model must be defined:
+                You can override any prop by adding a "custom" item in your block definition. Some examples:
             </li>
         </ul>
         <pre>
@@ -64,53 +93,13 @@
     &#123;
         "custom": &#123;
             "blockTitle": "And your contact details...",
-            "controls": [
-                &#123; "id": "EmailAddress" &#125;,
-                &#123; "id": "MobileNumber" &#125;,
-                &#123; "id": "HomeNumber" &#125;
-            ]
+            "controls[0].label": "My email label",
+            "controls[1].requiredErrorMessage": "Mobile number is a highly required field.",
+            "controls[3].required": true
         &#125;
     &#125;
             </code>
         </pre>
-
-        <ul class="bml">
-            <li>
-                Without any other info, the block will be loaded with following <strong>default values</strong>:
-            </li>
-        </ul>
-        <pre>
-            <code syntaxHighlight class="json">
-    &#123;
-        "custom": &#123;
-            "controls": [
-                &#123;
-                    "label": "Email",
-                    "required": true,
-                    "tooltipMessage": "Confirmation of your application will be sent to this email address."
-                &#125;,
-                &#123;
-                    "label": "Mobile number",
-                    "required": true,
-                    "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
-                    "requiredErrorMessage" : "Mobile number is a required field.",
-                    "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
-                &#125;,
-                &#123;
-                    "label": "Home number",
-                    "required": false
-                &#125;
-            ]
-        &#125;
-    &#125;
-            </code>
-        </pre>
-
-        <ul class="bml">
-            <li>
-                Feel free to change any of these values.
-            </li>
-        </ul>
     </article>
 
     <article class="section">
