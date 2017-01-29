@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { AmpContactDetailsBlockModule } from '../../../app/modules/amp-contact-details-block';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
 
-let custom : any = {};
+let custom : any;
 
 let fixture : ComponentFixture<TestComponent>;
 let component;
@@ -26,12 +26,12 @@ function loadComponent() {
     ngElement = fixture.debugElement;
 
     const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
-    emailControl = controlGroup['email'];
+    emailControl = controlGroup['emailAddress'];
     mobileNumberControl = controlGroup['mobileNumber'];
     homeNumberControl = controlGroup['homeNumber'];
 }
 
-describe('amp-contact-details-block component', () => {
+fdescribe('amp-contact-details-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -42,13 +42,7 @@ describe('amp-contact-details-block component', () => {
             ]
         });
 
-        custom = {
-            controls: [
-                { id: 'email' },
-                { id: 'mobileNumber' },
-                { id: 'homeNumber' }
-            ]
-        };
+        custom = {};
     }));
 
     describe('When the component is loaded', () => {
@@ -62,14 +56,15 @@ describe('amp-contact-details-block component', () => {
     });
 
     describe('Block title', () => {
-        describe('when no block title has been defined', () => {
-            it('should not have the block title h2', () => {
+        describe('when no custom block title has been given', () => {
+            it('should display the default title', () => {
                 loadComponent();
                 const titleEl = domElement.querySelector('h2');
-                expect(titleEl).toBe(null);
+                expect(titleEl).toBeDefined();
+                expect(titleEl.textContent).toEqual('And your contact details...');
             });
         });
-        describe('when a block title has been defined', () => {
+        describe('when a custom block title has been given', () => {
             it('should display the given title', () => {
                 custom.blockTitle = 'My Contact Details block title';
                 loadComponent();
@@ -109,9 +104,9 @@ describe('amp-contact-details-block component', () => {
         });
         describe('When there is no required fields', () => {
             it('should have its "OK" button enabled', () => {
-                custom.controls[0].required = false;
-                custom.controls[1].required = false;
-                custom.controls[2].required = false;
+                custom['controls[0].required'] = false;
+                custom['controls[1].required'] = false;
+                custom['controls[2].required'] = false;
                 loadComponent();
                 fixture.detectChanges();
                 const okButtonEl = domElement.querySelector('button');
@@ -127,7 +122,7 @@ describe('amp-contact-details-block component', () => {
                 loadComponent();
             });
             it('should display the default label for "Email" field', () => {
-                const emailLabelEl = ngElement.query(By.css('label[for=Application-email]'));
+                const emailLabelEl = ngElement.query(By.css('label[for=Application-emailAddress]'));
                 expect(emailLabelEl).toBeDefined();
                 expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('Email');
             });
@@ -144,21 +139,21 @@ describe('amp-contact-details-block component', () => {
         });
         describe('When customising labels', () => {
             it('should display the customised label for "Email" field', () => {
-                custom.controls[0].label = 'My email';
+                custom['controls[0].label'] = 'My email';
                 loadComponent();
-                const emailLabelEl = ngElement.query(By.css('label[for=Application-email]'));
+                const emailLabelEl = ngElement.query(By.css('label[for=Application-emailAddress]'));
                 expect(emailLabelEl).toBeDefined();
                 expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('My email');
             });
             it('should display the customised label for "Mobile number" field', () => {
-                custom.controls[1].label = 'My mobile number';
+                custom['controls[1].label'] = 'My mobile number';
                 loadComponent();
                 const emailLabelEl = ngElement.query(By.css('label[for=Application-mobileNumber]'));
                 expect(emailLabelEl).toBeDefined();
                 expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('My mobile number');
             });
             it('should display the customised label for "Home number" field', () => {
-                custom.controls[2].label = 'My home number';
+                custom['controls[2].label'] = 'My home number';
                 loadComponent();
                 const emailLabelEl = ngElement.query(By.css('label[for=Application-homeNumber]'));
                 expect(emailLabelEl).toBeDefined();
@@ -187,7 +182,7 @@ describe('amp-contact-details-block component', () => {
         });
         describe('When customising tooltip messages', () => {
             it('should display the customised tooltip message for "Email" field', () => {
-                custom.controls[0].tooltipMessage = 'My email tooltip message';
+                custom['controls[0].tooltipMessage'] = 'My email tooltip message';
                 loadComponent();
                 const emailFormRow = domElement.querySelectorAll('amp-form-row').item(0);
                 const emailTooltip = emailFormRow.querySelector('amp-tooltip-cmp span');
@@ -195,7 +190,7 @@ describe('amp-contact-details-block component', () => {
                 expect(emailTooltip.getAttribute('ng-reflect-message')).toBe('My email tooltip message');
             });
             it('should display the customised tooltip message for "Mobile number" field', () => {
-                custom.controls[1].tooltipMessage = 'My mobile number tooltip message';
+                custom['controls[1].tooltipMessage'] = 'My mobile number tooltip message';
                 loadComponent();
                 const mobileNumberFormRow = domElement.querySelectorAll('amp-form-row').item(1);
                 const mobileNumberTooltip = mobileNumberFormRow.querySelector('amp-tooltip-cmp span');
@@ -222,13 +217,13 @@ describe('amp-contact-details-block component', () => {
         describe('When customising error messages', () => {
             it('should have the customised required error message for "Mobile number" field', () => {
                 const customRequiredErrorMessage = 'Mobile number is a highly required field.';
-                custom.controls[1].requiredErrorMessage = customRequiredErrorMessage;
+                custom['controls[1].requiredErrorMessage'] = customRequiredErrorMessage;
                 loadComponent();
                 expect(mobileNumberControl.errors.required.text).toEqual(customRequiredErrorMessage);
             });
             it('should have the customised pattern error message for "Mobile number" field', () => {
                 const customPatternErrorMessage = 'Mobile number has a very specific pattern.';
-                custom.controls[1].patternErrorMessage = customPatternErrorMessage;
+                custom['controls[1].patternErrorMessage'] = customPatternErrorMessage;
                 loadComponent();
                 mobileNumberControl.setValue('Wrong number');
                 fixture.detectChanges();
