@@ -3,7 +3,6 @@ import {
     ChangeDetectorRef,
     ElementRef,
     ChangeDetectionStrategy,
-    NgZone,
     AfterViewInit,
     ViewContainerRef,
     Renderer,
@@ -13,9 +12,9 @@ import {
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 
 import { FormBlock } from '../../../../form-block';
-
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { SaveService } from '../../../../services/save/save.service';
+import { LoginStatusService } from '../../../../services/login/login-status.service';
 
 @Component( {
     selector: 'amp-login-block',
@@ -25,7 +24,6 @@ import { SaveService } from '../../../../services/save/save.service';
 } )
 export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, AfterViewInit {
 
-    public static LOGIN_STATUS_CONTROL_NAME = 'loginResult';
     private errorCode : string = null;
     private hideThisBlock = false;
     private formTemplate : string = `
@@ -40,7 +38,7 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
                  _cd : ChangeDetectorRef,
                  scrollService : ScrollService,
                  saveService : SaveService,
-                 private zone : NgZone,
+                 private loginStatusService : LoginStatusService,
                  private vcf : ViewContainerRef,
                  private renderer : Renderer,
                  private dom : BrowserDomAdapter ) {
@@ -148,7 +146,12 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
     }
 
     private onLoginSuccess() {
+        this.emitLoginSuccess();
         this.removeLoginAndProceed();
+    }
+
+    private emitLoginSuccess () {
+        this.loginStatusService.loginSuccess();
     }
 
     private onLoginFail( errorCode? : string ) {
