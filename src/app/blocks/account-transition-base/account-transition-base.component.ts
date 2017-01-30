@@ -101,6 +101,10 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         } );
     }
 
+    protected get defaultAccountAction () : string {
+        return this.accountActions.convert;
+    }
+
     protected updateAccountAction ( action : string ) : void {
         this.currentAction = action;
     }
