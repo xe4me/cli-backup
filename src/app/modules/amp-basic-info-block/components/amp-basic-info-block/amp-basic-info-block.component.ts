@@ -24,10 +24,22 @@ export class AmpBasicInfoBlockComponent extends FormBlock {
                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
     }
+    public ngAfterViewInit () {
+        console.log(this.__isRetrieved);
+        if (this.__isRetrieved) {
+            this.showSaveAndCloseButton();
+        }
+        super.ngAfterViewInit();
+    }
+
     onNext() {
+        this.showSaveAndCloseButton();
+        super.onNext();
+    }
+
+    showSaveAndCloseButton () {
         if (this.saveCloseService) {
             this.saveCloseService.enable();
         }
-        super.onNext();
     }
 }
