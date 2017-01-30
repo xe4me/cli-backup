@@ -1,13 +1,15 @@
 import {
     ChangeDetectorRef,
     AfterViewInit,
-    OnDestroy
+    OnDestroy,
+    ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
     FormBlock,
     ScrollService,
-    SaveService
+    SaveService,
+    AmpDropdownComponent
 } from 'amp-ddc-components';
 import {
     EligibleAccountsService,
@@ -16,12 +18,18 @@ import {
 
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
     protected accountType : string;
+    protected accountActions = {
+        new: 'new',
+        convert: 'convert'
+    };
+
+    @ViewChild ('accountsListCmp') private accountsListCmp : AmpDropdownComponent;
     private description : string = null;
     private betterChoiceSubscription : Subscription;
     private eligibleAccountsServiceSubscription : Subscription;
-    private showAccountNumber : boolean = false;
+    private showAccountNumber : boolean = true;
     private additionalDescription : string;
-    private accountsEligibleForTransitioning : Array<{}> = [];
+    private accountsEligibleForTransitioning : Array<{ value : string, label : string }> = [];
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
@@ -35,18 +43,21 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         this.description              = this.__custom[ 'description' ];
         this.accountType              = this.__custom[ 'type' ];
         const newOrConvertControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+
         this.betterChoiceSubscription = newOrConvertControl.valueChanges
             .subscribe( ( val ) => {
                 this.checkoutAccountType(val);
-                setTimeout( () => {
-                    this._cd.markForCheck();
-                } );
+                this._cd.markForCheck();
+                this.setAccountNumberDropdownDefaultValue();
+
             } );
 
         if ( this.__isRetrieved ) {
             this.checkoutAccountType(newOrConvertControl.value);
             this.__controlGroup.markAsTouched();
             this.isActive = true;
+        } else {
+            newOrConvertControl.setValue(this.defaultAccountAction);
         }
 
         this.loginStatusService.userHasLoggedIn()
@@ -72,7 +83,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         return this.__custom[ 'additional_instruction' ];
     }
 
-    protected mapEligibleAccounts (accounts : any[] ) : Array<{}> {
+    protected mapEligibleAccounts ( accounts : any[] ) : Array<{ value : string, label : string }> {
         if (accounts[this.accountType]) {
             return accounts[this.accountType].map( (account) => {
                 return {
@@ -88,12 +99,17 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         return this.accountsEligibleForTransitioning.length > 0;
     }
 
+    protected get defaultAccountAction () : string {
+        return this.accountActions.convert;
+    }
+
     private fetchEligibleAccounts () {
         this.eligibleAccountsServiceSubscription = this.eligibleAccountsService.getEligibleAccounts()
             .subscribe(
                 ( response ) => {
                     this.accountsEligibleForTransitioning = this.mapEligibleAccounts(response.payload);
                     this._cd.markForCheck();
+                    this.setAccountNumberDropdownDefaultValue();
                 },
                 () => {});
     }
@@ -101,5 +117,14 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     private checkoutAccountType ( val : string ) : void {
         this.showAccountNumber = this.shouldShowAccountNumber(val);
         this.additionalDescription = this.additionalInstructionsText(val);
+    }
+
+    private setAccountNumberDropdownDefaultValue () : void {
+        setTimeout( () => {
+            if ( this.accountsListCmp ) {
+                const accountNumberControl = this.accountsListCmp.control;
+                accountNumberControl.setValue(this.accountsEligibleForTransitioning[0].value);
+            }
+        } );
     }
 }
