@@ -1,7 +1,5 @@
 import { Component , trigger , state , style , animate , transition } from '@angular/core';
-export interface IntroBlockAnimateOptions{
-    animate?:boolean
-}
+export interface IntroBlockAnimateOptions { animate? : boolean; };
 @Component( {
     selector   : 'amp-intro-block' ,
     host       : {
@@ -56,12 +54,12 @@ export class AmpIntroBlockComponent {
      *
      *
      */
-    public proceed ( options?:IntroBlockAnimateOptions ) : Promise<string> {
+    public proceed ( options? : IntroBlockAnimateOptions ) : Promise<string> {
         return new Promise( ( resolve , reject ) => {
             this.slideUp = 'collapsed';
-            if( options && options.animate === false ) {
-                    this.isActive = false; 
-                    return resolve();;   
+            if ( options && options.animate === false ) {
+                    this.isActive = false;
+                    return resolve();
             }
             setTimeout( () => {
                 resolve();

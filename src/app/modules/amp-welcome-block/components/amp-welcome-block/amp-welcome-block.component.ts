@@ -21,11 +21,11 @@ import { Environments } from '../../../../abstracts/environments/environments.ab
     encapsulation: ViewEncapsulation.None
 } )
 export class AmpWelcomeBlockComponent extends FormBlock {
-    @ViewChild('introBlockCmp') introBlockCmp:AmpIntroBlockComponent
     private static ACTIONS = {
         CONTINUE : 'continue',
         START    : 'start'
     };
+    @ViewChild('introBlockCmp') introBlockCmp : AmpIntroBlockComponent;
     private damContentUrl = `${Environments.property.DamContentUrl}amp/digitalhub/common/images/systems/ddc/`;
     private slideUp = 'expanded';
 
@@ -67,10 +67,9 @@ export class AmpWelcomeBlockComponent extends FormBlock {
         if (nextBlock) {
                 this.__loadNext( nextBlock , this.viewReference )
                     .then( (componentRef) => {
-                       setTimeout(()=>{
-                           console.log('!this.__isRetrieved',!this.__isRetrieved);
+                       setTimeout( () => {
                             this.introBlockCmp
-                                .proceed({animate:!this.__isRetrieved})
+                                .proceed({ animate : !this.__isRetrieved })
                                 .then( () => {
                                     this.goNext(!this.__isRetrieved);
                                 } );
@@ -78,15 +77,15 @@ export class AmpWelcomeBlockComponent extends FormBlock {
                     } );
         } else {
             this.introBlockCmp
-                .proceed({animate:!this.__isRetrieved})
+                .proceed({animate : !this.__isRetrieved})
                 .then( () => {
                     this.goNext(!this.__isRetrieved);
                 } );
-        }      
+        }
     }
 
-    goNext(mockScroll:boolean){
-         this.scrollService.scrollToNextUndoneBlock(this.__form,undefined,{
+    private goNext( mockScroll : boolean ) {
+         this.scrollService.scrollToNextUndoneBlock(this.__form, undefined, {
             mock : mockScroll
         });
     }
