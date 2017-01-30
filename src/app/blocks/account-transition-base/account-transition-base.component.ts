@@ -78,7 +78,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     }
 
     protected get additionalDescription () : string {
-        return this.__custom[ 'additional_instruction' ];
+        return this.hasAccounts ? this.__custom[ 'additional_dropdown_instruction' ] : this.__custom[ 'additional_input_instruction' ];
     }
 
     protected mapEligibleAccounts ( accounts : any[] ) : void {

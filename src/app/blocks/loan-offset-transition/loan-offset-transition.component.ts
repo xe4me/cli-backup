@@ -40,7 +40,7 @@ export class LoanOffsetTransitionBlock extends AccountTransitionBaseBlock {
     }
 
     protected get additionalDescription () : string {
-        return this.__custom[ `additional_${this.currentAction}_instruction` ];
+        return this.__custom[ `additional_${ this.currentAction }_${ this.hasAccounts ? 'dropdown' : 'input' }_instruction` ];
     }
 
     protected mapEligibleAccounts (accounts : any[] ) : void {
