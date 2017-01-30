@@ -217,13 +217,13 @@ describe('amp-contact-details-block component', () => {
         describe('When customising error messages', () => {
             it('should have the customised required error message for "Mobile number" field', () => {
                 const customRequiredErrorMessage = 'Mobile number is a highly required field.';
-                custom['controls[1].requiredErrorMessage'] = customRequiredErrorMessage;
+                custom['controls[1].errors.required'] = customRequiredErrorMessage;
                 loadComponent();
                 expect(mobileNumberControl.errors.required.text).toEqual(customRequiredErrorMessage);
             });
             it('should have the customised pattern error message for "Mobile number" field', () => {
                 const customPatternErrorMessage = 'Mobile number has a very specific pattern.';
-                custom['controls[1].patternErrorMessage'] = customPatternErrorMessage;
+                custom['controls[1].errors.pattern'] = customPatternErrorMessage;
                 loadComponent();
                 mobileNumberControl.setValue('Wrong number');
                 fixture.detectChanges();
