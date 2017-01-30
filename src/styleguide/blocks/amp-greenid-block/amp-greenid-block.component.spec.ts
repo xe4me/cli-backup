@@ -48,7 +48,7 @@ function loadComponent() {
 
 // No tests have been written for this so skipping to make this obvious
 // GitLab issue: https://gitlab.ccoe.ampaws.com.au/DDC/components/issues/4
-describe( 'Green id unit tests', () => {
+xdescribe( 'Green id unit tests', () => {
 
     beforeEach( async( () => {
         const modelValue = {
