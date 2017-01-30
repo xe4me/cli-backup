@@ -7,37 +7,34 @@ import {
     ViewContainerRef,
     OnDestroy
 } from '@angular/core';
-import { Subscription } from 'rxjs';
-
 import {
     Validators,
-    FormControl, FormArray
+    FormControl
 } from '@angular/forms';
 import {
     AmpApplicantGeneratorService,
 } from '../../services/amp-applicant-generator.service';
 import {
     FormBlock
-} from "../../../../form-block";
+} from '../../../../form-block';
 import {
     LoadedBlockInfo
-} from "../../../../amp-block-loader";
+} from '../../../../amp-block-loader';
 import {
     SaveService,
     ScrollService
-} from "../../../../services";
+} from '../../../../services';
 @Component( {
     selector        : 'amp-single-joint-block',
-    templateUrl     : 'amp-single-joint-block.component.html',
+    template     : require('./amp-single-joint-block.component.html'),
     styles          : [ require( './amp-single-joint-block.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
-    private nextApplicantIndex : number;
     private static singleApplicantKey : string = 'Single';
     private static jointApplicantKey : string = 'Joint';
-    public applicant2Added : boolean                    = false;
-    private saveSubscription : Subscription;
+    public applicant2Added : boolean  = false;
+    private nextApplicantIndex : number;
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
@@ -64,7 +61,7 @@ export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, A
         // onNext nevertheless , which is wrong, because if it takes 2 minute to load , we should wait and then go
         // to next undone block , which is inside the applicant2Section
         this.__onChildsLoaded( ( _loadedComponent : LoadedBlockInfo ) => {
-            if ( _loadedComponent.name === 'Applicant2' ) {
+            if ( _loadedComponent.name === 'applicant2' ) {
                 this.applicant2Added = true;
                 this.onNext();
             }

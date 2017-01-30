@@ -8,23 +8,26 @@ export class AmpApplicantGeneratorService {
      private applicantCounter : number = 0 ;
      public getApplicantSection ( ) : any {
          this.applicantCounter++;
-        const applicantSections = clone( this.applicantDef );
+         const applicantSections = clone( this.applicantDef );
 
-        this.addApplicantIdToSectionBlocks(applicantSections, this.applicantCounter);
+         this.addApplicantIdToSectionBlocks(applicantSections, this.applicantCounter);
 
-        return {
-            name        : `Applicant${this.applicantCounter}` ,
-            blockType   : 'PageSectionComponent' ,
-            blockLayout : 'SECTION' ,
-            commonBlock : this.isCommonBlock ,
-            path        : 'sections/page-section.component' ,
-            custom      : {
-                label : `Applicant ${this.applicantCounter}`
-            } ,
-            blocks      : applicantSections
-        };
+         return {
+             name        : `applicant${this.applicantCounter}` ,
+             blockType   : 'PageSectionComponent' ,
+             blockLayout : 'SECTION' ,
+             commonBlock : this.isCommonBlock ,
+             path        : 'sections/page-section.component' ,
+             custom      : {
+                 label : `Applicant ${this.applicantCounter}`
+             } ,
+             blocks      : applicantSections
+         };
     }
 
+    public numberOfApplicant () : number {
+        return this.applicantCounter;
+    }
     private addApplicantIdToSectionBlocks (sections, index : number ) : void {
         for (let section of sections) {
             for (let block of section.blocks) {
@@ -33,7 +36,4 @@ export class AmpApplicantGeneratorService {
         }
     }
 
-    public get numberOfApplicant () : number {
-        return this.applicantCounter;
-    }
 }
