@@ -125,7 +125,8 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             this.betterChoiceSubscription = this.betterChoiceControl.valueChanges
                 .subscribe( ( val ) => {
                     this.setNextBlock( val ).then(() => {
-                        if ( this.userHasEligibleAccounts && !this.hasBothDepositAndOffsetLoanAccount) {
+                        // TODO @Iain - Please review this part for disabling preselect for offset account
+                        if ( this.userHasEligibleAccounts && this.hasOnlyDepositAccount) {
                             this.__removeSelf(this.viewContainerRef);
                         }
                     });
@@ -151,7 +152,8 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             if ( this.hasOnlyDepositAccount ) {
                 this.betterChoiceControl.setValue( this.getBlockForAccountType('deposit') );
             } else if ( this.hasOnlyOffsetOrLoanAccount ) {
-                this.betterChoiceControl.setValue( this.getBlockForAccountType('offset') );
+                // TODO @Iain - Please review this part for disabling preselect for offset account
+                // this.betterChoiceControl.setValue( this.getBlockForAccountType('offset') );
             }
         }
     }

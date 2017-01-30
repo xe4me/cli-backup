@@ -48,7 +48,6 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
                 this.updateAccountAction(action);
                 this._cd.markForCheck();
                 this.setAccountNumberDropdownDefaultValue();
-
             } );
 
         if ( this.__isRetrieved ) {
