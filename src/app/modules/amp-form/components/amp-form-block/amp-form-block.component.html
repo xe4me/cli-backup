@@ -3,6 +3,7 @@
     <h2
         *ngIf="context?.__custom.blockTitle"
         class="heading js-heading heading-intro {{ headingClass }}"
+        [class.has-heading-tooltip]="tooltip.children.length > 0"
         [innerHtml]="context?.__custom.blockTitle"
         tabindex="-1">
     </h2>
