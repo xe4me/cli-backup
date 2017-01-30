@@ -41,7 +41,7 @@
     "@angular/compiler-cli": "2.2.1",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "2.5.38",
-    "@types/lodash": "^4.14.45",
+    "@types/lodash": "4.14.45",
     "@types/node": "6.0.42",
     "amp-angular-cli": "^2.0.0",
     "bundle-loader": "^0.5.4",
