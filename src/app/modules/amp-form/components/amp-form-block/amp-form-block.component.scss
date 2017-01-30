@@ -11,6 +11,7 @@
         position    : relative;
 
         .heading-intro {
+            display: inline-block;
             margin-bottom : 40px;
             outline: none !important;
 
@@ -18,12 +19,37 @@
                 font-size : 20px;
                 line-height : 30px;
             }
+
+            &.has-heading-tooltip {
+                max-width: calc(100% - 35px);
+            }
+        }
+
+        .heading-tooltip {
+            &__wrapper {
+                display: inline-block;
+                padding-left: 5px;
+                vertical-align: top;
+
+                @include media-query('tablet-and-up') {
+                    margin-top: 6px;
+                }
+
+                &:empty {
+                    display: none;
+                }
+
+                /deep/ .icon {
+                    margin: 0;
+                }
+            }
         }
 
         .hr-block-divider {
             margin : $default-margin 0 0;
         }
     }
+
     @include media-query(palm) {
         .FormBlocK {
             padding-top : 50px;

@@ -1,5 +1,5 @@
 <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK" #formBlock>
-    <amp-overlay [active]='!context?.isActive' *ngIf="withOverlay"></amp-overlay>
+    <amp-overlay [active]="!context?.isActive" *ngIf="withOverlay"></amp-overlay>
     <h2
         *ngIf="context?.__custom.blockTitle"
         class="heading js-heading heading-intro {{ headingClass }}"
@@ -7,25 +7,31 @@
         tabindex="-1">
     </h2>
 
+    <div
+        #tooltip
+        class="heading-tooltip__wrapper">
+        <ng-content select=".heading-tooltip"></ng-content>
+    </div>
+
     <ng-content></ng-content>
 
     <div class="block-buttons mt-60 " *ngIf="withOkButton">
         <amp-button
         [context]="context"
-        *ngIf='!context?.isInSummaryState'
-        [attr.theme]=" buttonsTheme || theme"
-        (click)='context.onNext()'
-        [disabled]='!context?.canGoNext' class='btn btn-ok'>
+        *ngIf="!context?.isInSummaryState"
+        [attr.theme]="buttonsTheme || theme"
+        (click)="context.onNext()"
+        [disabled]="!context?.canGoNext" class="btn btn-ok">
         OK
         </amp-button>
         <amp-button
             [context]="context"
-            *ngIf='context?.isInSummaryState'
+            *ngIf="context?.isInSummaryState"
             [attr.theme]="buttonsTheme || theme"
-            (click)='context.onEdit()'
-            class='btn btn-change palm-m0'>
+            (click)="context.onEdit()"
+            class="btn btn-change palm-m0">
             Change
         </amp-button>
     </div>
-    <div class='hr-block-divider'></div>
+    <div class="hr-block-divider"></div>
 </div>
