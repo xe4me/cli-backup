@@ -34,7 +34,6 @@ describe('amp-applicant-generator service', () => {
     });
     it ('should return applicant1 form-def and increase counter', () => {
         expect(applicantGenerator.getApplicantSection()).toEqual(returnApplicant1Def);
-        console.log(applicantGenerator.numberOfApplicant());
         expect(applicantGenerator.numberOfApplicant()).toBe(1);
     });
 

@@ -27,7 +27,6 @@ import {
 @Component( {
     selector        : 'amp-single-joint-block',
     template     : require('./amp-single-joint-block.component.html'),
-    styles          : [ require( './amp-single-joint-block.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
