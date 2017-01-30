@@ -1,22 +1,25 @@
 <amp-form-block [context]="context()" buttonsTheme='tools'>
-    <amp-form-row>
-        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
-            <p class="mb heading-contxtual-label">
-                {{ description }}
-            </p>
-            <amp-group-buttons
-                class="grid__item 1/1 lap-and-up-8/12"
-                [buttons]="__custom.controls[0].buttons"
-                [isInSummaryState]="isInSummaryState"
-                [defaultValue]="defaultAccountAction"
-                [controlGroup]="__controlGroup"
-                [groupName]="__custom.controls[0].id"
-                [required]="true">
-            </amp-group-buttons>
-        </div>
-    </amp-form-row>
+    <div [hidden]="hideNewOrConvertButtons && hasAccounts">
+        <amp-form-row>
+            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
+                <p class="mb heading-contxtual-label">
+                    {{ description }}
+                </p>
+                <amp-group-buttons
+                    class="grid__item 1/1 lap-and-up-8/12"
+                    [buttons]="__custom.controls[0].buttons"
+                    [isInSummaryState]="isInSummaryState"
+                    [defaultValue]="defaultAccountAction"
+                    [controlGroup]="__controlGroup"
+                    [groupName]="__custom.controls[0].id"
+                    [required]="true">
+                </amp-group-buttons>
+            </div>
+        </amp-form-row>
+    </div>
     <div *ngIf="showAccountNumber">
-        <p class="mt mb heading-contxtual-label" *ngIf="additionalDescription">
+        <p class="mt mb heading-contxtual-label"
+           *ngIf="additionalDescription">
             {{ additionalDescription }}
         </p>
         <amp-form-row>

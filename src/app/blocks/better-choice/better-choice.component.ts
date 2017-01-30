@@ -126,8 +126,8 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                 .subscribe( ( val ) => {
                     this.setNextBlock( val ).then(() => {
                         // TODO @Iain - Please review this part for disabling preselect for offset account
-                        if ( this.userHasEligibleAccounts && this.hasOnlyDepositAccount) {
-                            this.__removeSelf(this.viewContainerRef);
+                        if ( this.userHasEligibleAccounts && this.hasOnlyDepositAccount ) {
+                            this.__removeSelf( this.viewContainerRef );
                         }
                     });
                 } );

@@ -45,7 +45,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
         this.betterChoiceSubscription = newOrConvertControl.valueChanges
             .subscribe( ( action ) => {
-                this.updateAccountAction(action);
+                this.updateAccountAction( action );
                 this._cd.markForCheck();
                 this.setAccountNumberDropdownDefaultValue();
             } );
@@ -55,7 +55,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             this.__controlGroup.markAsTouched();
             this.isActive = true;
         } else {
-            newOrConvertControl.setValue(this.defaultAccountAction);
+            newOrConvertControl.setValue( this.defaultAccountAction );
         }
 
         this.loginStatusService.userHasLoggedIn()
@@ -112,11 +112,15 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         return this.accountsEligibleForTransitioning;
     }
 
+    protected get hideNewOrConvertButtons () : boolean {
+        return false;
+    }
+
     private fetchEligibleAccounts () {
         this.eligibleAccountsServiceSubscription = this.eligibleAccountsService.getEligibleAccounts()
             .subscribe(
                 ( response ) => {
-                    this.mapEligibleAccounts(response.payload);
+                    this.mapEligibleAccounts( response.payload );
                     this._cd.markForCheck();
                     this.setAccountNumberDropdownDefaultValue();
                 },
@@ -127,7 +131,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         setTimeout( () => {
             if ( this.accountsListCmp ) {
                 const accountNumberControl = this.accountsListCmp.control;
-                accountNumberControl.setValue(this.accountsEligibleForTransitioning[0].value);
+                accountNumberControl.setValue( this.accountsEligibleForTransitioning[0].value );
             }
         } );
     }

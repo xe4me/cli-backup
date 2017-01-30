@@ -24,8 +24,8 @@ export class LoanOffsetTransitionBlock extends AccountTransitionBaseBlock {
         loan: 'loan'
     };
 
-    private mappedOffsetAccounts : any[] = [];
-    private mappedLoanAccounts : any[] = [];
+    private mappedOffsetAccounts : Array<{ value : string, label : string }> = [];
+    private mappedLoanAccounts : Array<{ value : string, label : string }> = [];
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
@@ -49,17 +49,32 @@ export class LoanOffsetTransitionBlock extends AccountTransitionBaseBlock {
 
         this.mappedOffsetAccounts = this.mapDropdownOptions(offsetAccounts);
         this.mappedLoanAccounts = this.mapDropdownOptions(loanAccounts);
+
+        this.updateAccountsEligibleForTransitioning();
     }
 
     protected get hasAccounts () : boolean {
-        if (this.currentAction === this.accountActions.convert) {
-            return this.mappedOffsetAccounts.length > 0;
+        if ( this.currentAction === this.accountActions.convert ) {
+            return this.mappedOffsetAccounts.length > 0 || ( this.mappedOffsetAccounts.length === 0 && this.mappedLoanAccounts.length > 0);
         } else {
             return this.mappedLoanAccounts.length > 0;
         }
     }
 
-    protected get dropdownOptions () {
-        return this.currentAction === this.accountActions.convert ? this.mappedOffsetAccounts : this.mappedLoanAccounts;
+    protected updateAccountAction ( action : string ) : void {
+        this.currentAction = action;
+        this.updateAccountsEligibleForTransitioning();
+    }
+
+    protected get hideNewOrConvertButtons () : boolean {
+        return this.mappedOffsetAccounts.length === 0;
+    }
+
+    private updateAccountsEligibleForTransitioning () : void {
+        if ( this.currentAction === this.accountActions.new || this.mappedOffsetAccounts.length === 0 ) {
+            this.accountsEligibleForTransitioning = this.mappedLoanAccounts;
+        } else {
+            this.accountsEligibleForTransitioning = this.mappedOffsetAccounts;
+        }
     }
 }
