@@ -1,0 +1,31 @@
+<div class="amp-tabs">
+
+    <div class="amp-tabs__nav" role="tablist">
+        <a
+            *ngFor="let tab of tabs"
+            [class.amp-tabs__nav-item--active]="tab.active"
+            class="amp-tabs__nav-item"
+            href="#"
+            role="tab"
+            (click)="onClick($event, tab)"
+            (keyup)="onKeyup($event, tab)"
+            [attr.aria-selected]="tab.active">
+            <span class="amp-tabs__title">
+                {{tab.title}}
+            </span>
+        </a>
+    </div>
+
+    <div *ngIf="tabsFromList">
+        <ng-content></ng-content>
+    </div>
+
+    <div *ngIf="!tabsFromList">
+        <amp-tab *ngFor="let tab of tabs" [tabTitle]="tab.title" [active]="tab.active">
+            <div [innerHtml]="tab.content"></div>
+        </amp-tab>
+    </div>
+
+</div>
+
+

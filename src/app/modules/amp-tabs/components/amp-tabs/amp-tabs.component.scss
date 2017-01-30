@@ -1,0 +1,68 @@
+@import '../../../../../styles/abstracts';
+
+$amp-tab-border-color: $amp-colour-grey-dark;
+$amp-tab-active-bg-color: $amp-colour-sky-blue;
+$amp-tab-active-arrow-size: 15px;
+
+.amp-tabs {
+    border: 1px solid $amp-tab-border-color;
+
+    &__nav {
+        display: table;
+        min-height: 80px;
+        table-layout: fixed;
+        width: 100%;
+
+        &-item {
+            border-left: 1px solid $amp-tab-border-color;
+            color: $amp-colour-primary;
+            display: table-cell;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1;
+            padding: 15px;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+            z-index: 1;
+            transition: background .2s ease, color .2s ease;
+
+            &:first-child {
+                border-left: 0;
+            }
+
+            &:focus,
+            &:hover {
+                background: $amp-tab-active-bg-color;
+                color: $amp-colour-white;
+            }
+
+            &--active {
+                background: $amp-tab-active-bg-color;
+                color: $amp-colour-white;
+
+                &::after {
+                    border: $amp-tab-active-arrow-size solid transparent;
+                    border-bottom-width: 0;
+                    border-top-color: $amp-colour-sky-blue;
+                    content: "";
+                    height: 0;
+                    margin-left: $amp-tab-active-arrow-size * -1;
+                    position: absolute;
+                    bottom: $amp-tab-active-arrow-size * -1;
+                    left: 50%;
+                    width: 0;
+                    z-index: 2;
+                }
+            }
+        }
+    }
+
+    &__title {
+        display: inline-block;
+        line-height: 23px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+}

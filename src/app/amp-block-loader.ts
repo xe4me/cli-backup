@@ -165,7 +165,7 @@ export abstract class AmpBlockLoader {
     copyForBlock ( _componentRef : ComponentRef<any>,
                    _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve ) => {
-            let childsLoadedsubscription;
+            let childsLoadedSubscription;
             let comp            = _componentRef.instance;
             let _fdn            = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
             comp.__child_blocks = _blockDef;
@@ -183,8 +183,8 @@ export abstract class AmpBlockLoader {
             comp.__controlGroup.__prettyName = _blockDef.prettyName || _blockDef.name;
             _componentRef.onDestroy( () => {
                 _form.removeControl( _blockDef.name );
-                if ( childsLoadedsubscription ) {
-                    childsLoadedsubscription.unsubscribe();
+                if ( childsLoadedSubscription ) {
+                    childsLoadedSubscription.unsubscribe();
                 }
             } );
 
@@ -204,6 +204,24 @@ export abstract class AmpBlockLoader {
             if ( _blockDef.custom ) {
                 this.copyCustomFields( _blockDef, comp );
             }
+            comp.__removeAt            = ( index : number ) : Promise<number> => {
+                return this.removeAt( index );
+            };
+            comp.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
+                return this.removeNext( _viewContainerRef );
+            };
+            comp.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
+                return this.removeAllAfter( _viewContainerRef );
+            };
+            comp.__removeAllAfterIndex = ( index : number ) : Promise<any> => {
+                return this.removeAllAfterIndex( index );
+            };
+            comp.__removeSelf = ( _viewContainerRef : ViewContainerRef ) : Promise<any> => {
+                return this.removeSelf( _viewContainerRef );
+            };
+            comp.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
+                return this.getIndex( _viewContainerRef );
+            };
             comp.__loadNext            = ( _def : FormDefinition,
                                            _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
                 return this.loadNext( _def, _viewContainerRef );
@@ -212,27 +230,12 @@ export abstract class AmpBlockLoader {
                                            index : number ) : Promise<ComponentRef<any> > => {
                 return this.loadAt( _def, index );
             };
-            comp.__removeAt            = ( index : number ) : Promise<number> => {
-                return this.removeAt( index );
-            };
-            comp.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
-                return this.removeNext( _viewContainerRef );
-            };
-            comp.__removeAllAfterIndex = ( index : number ) : Promise<any> => {
-                return this.removeAllAfterIndex( index );
-            };
-            comp.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
-                return this.removeAllAfter( _viewContainerRef );
-            };
             comp.__loadAllNext         = ( _def : FormDefinition[],
                                            _viewContainerRef : ViewContainerRef ) : Promise<Array<ComponentRef<any>>> => {
                 return this.loadAllNext( _def, _viewContainerRef );
             };
-            comp.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
-                return this.getIndex( _viewContainerRef );
-            };
             comp.__onChildsLoaded      = ( cb ) : void => {
-                childsLoadedsubscription = this.$childsLoaded.subscribe( ( _loadedBlockInfo : LoadedBlockInfo ) => {
+                childsLoadedSubscription = this.$childsLoaded.subscribe( ( _loadedBlockInfo : LoadedBlockInfo ) => {
                     cb( _loadedBlockInfo );
                 } );
             };
@@ -341,6 +344,10 @@ export abstract class AmpBlockLoader {
                 reject( 'index undefined' );
             }
         } );
+    }
+
+    removeSelf ( _viewContainerRef : ViewContainerRef ) : Promise<any> {
+        return this.removeAt( this.getIndex( _viewContainerRef ) );
     }
 
     loadNext ( _def : FormDefinition, _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> {
