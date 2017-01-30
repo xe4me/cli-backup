@@ -71,6 +71,7 @@ import AmpHeaderNoTextBasicUsage from './components/amp-header-no-text/basic_usa
 import AmpConfirmationPageBasicUsage from './pages/amp-confirmation-page/basic_usage';
 import AMPTabsComponentBasicUsage from './components/amp-tabs/basic_usage';
 import AmpTransitioningAccountPageBasicUsage from './pages/amp-transitioning-account-page/basic_usage';
+import AmpSingleJointBlockBasicUsage from './blocks/amp-single-joint-block/basic_usage';
 
 export const BASIC_USAGE_ENTRY_COMPONENTS = [
     AmpLoadingButtonBasicUsage,
@@ -148,6 +149,7 @@ export const BASIC_USAGE_ENTRY_COMPONENTS = [
     AmpLoginBlockBasicUsage,
     AmpWelcomeBlockBasicUsage,
     AmpSmsBlockBasicUsage,
+    AmpSingleJointBlockBasicUsage,
     AmpHeaderBasicUsage,
     AmpHeaderNoTextBasicUsage,
     AmpSaveConfirmationBlockBasicUsage,
