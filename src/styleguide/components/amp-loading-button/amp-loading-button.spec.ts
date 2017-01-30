@@ -53,12 +53,16 @@ describe( 'loading button component', () => {
     let _http;
     let _loadingBtnCmp : AmpLoadingButtonComponent;
 
-    function callHttp( http ) {
+    function callHttp ( http ) {
         http.get( AmpCountryService.COUNTRY_URL, null ).subscribe();
     }
 
-    function _getMdProgressElement() {
+    function _getMdProgressElement () {
         return _debugElement.query( By.css( 'md-progress-circle' ) );
+    }
+
+    function _getButtonElement () {
+        return _debugElement.query( By.css( 'button' ) );
     }
 
     beforeEach( async( () => {
@@ -95,11 +99,12 @@ describe( 'loading button component', () => {
     it( 'should be defined ', () => {
         expect( _loadingBtnCmp ).toBeDefined();
     } );
-    it( 'content text should be Submit if specified Submit', () => {
+    it( 'content text should be Submit if NOT specified', () => {
         let ampButtonElem = _debugElement.query( By.css( 'amp-button' ) );
         expect( ampButtonElem.nativeElement.textContent.trim() ).toEqual( 'Submit' );
     } );
-    it( 'should listen to all http calls if the if-url-has is not specified', fakeAsync( () => {
+    it( 'should listen to all http calls if the if-url-has is specified as . (dot)', fakeAsync( () => {
+        _testCmp.ifUrlHas = '.';
         _backend.connections.subscribe( ( connection : MockConnection ) => {
             let options = new ResponseOptions( {
                 body : JSON.stringify( {} )
@@ -153,8 +158,26 @@ describe( 'loading button component', () => {
         _fixture.detectChanges();
         expect( _getMdProgressElement() ).toBeNull();
     } ) );
-    it( 'should do the save and submit if autoSubmit is true or not set', fakeAsync( () => {
-        _testCmp.autoSubmit = true;
+    it( 'should be disabled when showing the loading', fakeAsync( () => {
+        _testCmp.ifUrlHas = 'countries';
+        _backend.connections.subscribe( ( connection : MockConnection ) => {
+            let options = new ResponseOptions( {
+                body : JSON.stringify( {} )
+            } );
+            setTimeout( () => {
+                connection.mockRespond( new Response( options ) );
+            }, 1000 );
+        } );
+        callHttp( _http );
+        _fixture.detectChanges();
+        expect( _getButtonElement().nativeElement.disabled ).toBe( true );
+        tick( 1001 );
+        discardPeriodicTasks();
+        _fixture.detectChanges();
+        expect( _getButtonElement().nativeElement.disabled ).toBe( false );
+    } ) );
+    it( 'should do the save and submit if submit-on-click is true ', fakeAsync( () => {
+        _testCmp.submitOnClick = true;
         _fixture.detectChanges();
         let saveResponse   = {
             'meta'       : {
@@ -216,13 +239,11 @@ describe( 'loading button component', () => {
 
 @Component( {
     template : `
-        <amp-loading-button #loadingBtnCmp [if-url-has]="ifUrlHas" [auto-submit]="autoSubmit">
-            Submit
-        </amp-loading-button>
+        <amp-loading-button #loadingBtnCmp [if-url-has]="ifUrlHas" [submit-on-click]="submitOnClick"></amp-loading-button>
     `
 } )
 class TestComponent {
     public ifUrlHas;
-    public autoSubmit = false;
+    public submitOnClick = false;
     @ViewChild( 'loadingBtnCmp' ) loadingBtnCmp;
 }
