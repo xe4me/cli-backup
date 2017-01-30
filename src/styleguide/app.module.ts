@@ -11,7 +11,10 @@ import {
     FormsModule,
     ReactiveFormsModule
 } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {
+    HttpModule,
+    Http
+} from '@angular/http';
 import {
     removeNgStyles,
     createNewHosts,
@@ -44,6 +47,7 @@ import { AmpLoadingComponent } from '../app/components/amp-loading/amp-loading.c
 import { AmpDropdownNewModule } from './.';
 import { AmpFormRowModule } from '../app/modules/amp-form-row/amp-form-row.module';
 import { AmpHeaderModule } from '../app/modules/amp-header/amp-header.module';
+import { InterceptedHttp } from '../app/modules/amp-loading-button/services/amp-http-interceptor/amp-http.service';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -68,7 +72,7 @@ export const shouldBeReplacedWithModulesComponents = [
     StickyProgressHeaderBlockComponent,
     Highlight
 ];
-const IMPORTS = [
+const IMPORTS                                      = [
     ...AMP_MODULES,
     MaterialModule.forRoot(),
     BrowserModule,
@@ -81,10 +85,9 @@ const IMPORTS = [
 
     RouterModule.forRoot( ROUTES, { useHash : false } )
 ];
-
 @NgModule( {
-    bootstrap : [ StyleGuideApp ],
-    declarations : [
+    bootstrap       : [ StyleGuideApp ],
+    declarations    : [
         ...DYNAMICALLY_LOADED_COMPONENTS,
         ...shouldBeReplacedWithModulesComponents,
         StyleGuideApp,
@@ -94,10 +97,11 @@ const IMPORTS = [
         HighlightCodeDirective
     ],
     entryComponents : DYNAMICALLY_LOADED_COMPONENTS,
-    imports : IMPORTS,
-    providers : [ // expose our Services and Providers into Angular's dependency injection
+    imports         : IMPORTS,
+    providers       : [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,
         APP_PROVIDERS
+
     ]
 } )
 export class StyleGuideAppModule {
@@ -122,12 +126,12 @@ export class StyleGuideAppModule {
     }
 
     hmrOnDestroy ( store : StoreType ) {
-        const cmpLocation = this.appRef.components.map( ( cmp ) => cmp.location.nativeElement );
+        const cmpLocation        = this.appRef.components.map( ( cmp ) => cmp.location.nativeElement );
         // save state
-        const state = this.appState._state;
-        store.state = state;
+        const state              = this.appState._state;
+        store.state              = state;
         // recreate root elements
-        store.disposeOldHosts = createNewHosts( cmpLocation );
+        store.disposeOldHosts    = createNewHosts( cmpLocation );
         // save input values
         store.restoreInputValues = createInputTransfer();
         // remove styles
