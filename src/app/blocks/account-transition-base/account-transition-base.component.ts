@@ -113,10 +113,6 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         return this.accountsEligibleForTransitioning;
     }
 
-    protected get defaultAccountAction () : string {
-        return this.accountActions.convert;
-    }
-
     private fetchEligibleAccounts () {
         this.eligibleAccountsServiceSubscription = this.eligibleAccountsService.getEligibleAccounts()
             .subscribe(
