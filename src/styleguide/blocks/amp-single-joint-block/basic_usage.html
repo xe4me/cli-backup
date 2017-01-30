@@ -21,13 +21,33 @@
         <pre>
             <code syntaxHighlight class="json">
     &#123;
-        "name": "smsMessage",
-        "blockType": "Amp",
+        "name": "singleOrJoint",
+        "blockType": "AmpSingleJointBlockComponent",
         "blockLayout": "INLINE",
         "commonBlock": true,
-        "path": "modules/amp-save-close-block/components/amp-sms-block/amp-sms-block.component",
+        "path": "modules/amp-single-joint-block/components/amp-single-joint-block/amp-single-joint-block.component",
         "custom": &#123;
             ...
+        &#125;
+    &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            add your applicant def json file etc. applicant.json to your initial application form. ts file susch
+        </p>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+       constructor ( public store : Store<any> ,
+                  private _builder : FormBuilder ,
+                  public applicantService : AmpApplicantGeneratorService  ) {
+            this.form = this._builder.group( {} );
+            this.applicantService.applicantDef = applicantJSON;
+        }
         &#125;
     &#125;
             </code>
@@ -38,62 +58,9 @@
         <h2 class="mb- ml mt+">Default behaviour</h2>
         <ul class="bml">
             <li>
-                'mobileNumber', 'acceptPrivacy'.
-            </li>
-            <li>
-                There is a format validator on the 'mobileNumber' field (04nnnnnnnn) for Australian only
-            </li>
-            <li>
-                'description' - default text : Enter your mobile number below to receive an SMS code so you can pick up from where you left off.
-            </li>
-            <li>
-                'checkboxLable' - default text : I have read the <a href="https://www.amp.com.au/depositprivacy" target="_blank">privacy information</a> and confirm the statements in the \'Declarations when applying for an AMP Bett3r Account\' section
+                'singleOrJoint'.
             </li>
         </ul>
     </article>
 
-    <article class="section">
-        <h2 class="mb- ml mt+">Customisation</h2>
-        <p class="para ml">
-            Through the "custom" section, <strong>you have to define</strong>:
-        </p>
-
-        <ul class="bml">
-            <li>
-                The title of the block:
-            </li>
-        </ul>
-        <pre>
-            <code syntaxHighlight class="json">
-    &#123;
-        "custom": &#123;
-            "blockTitle": "Just in case you want to return..."
-        &#125;
-    &#125;
-            </code>
-        </pre>
-
-        <ul class="bml">
-            <li>
-                IDs of your model values:
-            </li>
-            <li>acceptPrivacy - add label to overwrite default checkout label</li>
-        </ul>
-        <pre>
-            <code syntaxHighlight class="json">
-    &#123;
-        "custom": &#123;
-            "controls": [
-                &#123; "id": "mobileNumber" &#125;,
-                &#123; "id": "acceptPrivacy","label" : "I have read the <a href='https://www.amp.com.au/depositprivacy' target='_blank'> privacy information</a> and confirm the statements, test label" &#125;,
-            ]
-        &#125;
-    &#125;
-            </code>
-        </pre>
-        <p class="ml">
-            In case you need more customisation options, please get in touch with DDC team!
-        </p>
-        <p>&nbsp;</p>
-    </article>
 </section>
