@@ -1,6 +1,6 @@
 // utils
 export { AmpBlockLoaderDirective } from './src/app/amp-block-loader.directive';
-export { LoadedBlockInfo } from './src/app/amp-block-loader';
+export { LoadedBlockInfo, AmpBlockLoader } from './src/app/amp-block-loader';
 export { FormBlock } from './src/app/form-block';
 
 // Components
