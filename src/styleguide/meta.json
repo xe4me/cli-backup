@@ -1119,7 +1119,7 @@
         "readme": "<p>Menu frame implementation</p>\n"
     },
     {
-        "name": "Amp New Or Existing Customer Block (WIP)",
+        "name": "Amp New Or Existing Customer Block",
         "sources": [
             "src/app/blocks/amp-new-or-existing-customer-block/components/amp-new-or-existing-customer-block.component.ts"
         ],
