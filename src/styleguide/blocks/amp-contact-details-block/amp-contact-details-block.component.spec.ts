@@ -89,7 +89,7 @@ describe('amp-contact-details-block component', () => {
         });
         describe('when a custom block title has been given', () => {
             it('should display the given title', () => {
-                setCustomOverrides('blockTitle', 'My Contact Details block title')
+                setCustomOverrides('blockTitle', 'My Contact Details block title');
                 loadComponent();
                 const titleEl = domElement.querySelector('h2');
                 expect(titleEl).toBeDefined();
