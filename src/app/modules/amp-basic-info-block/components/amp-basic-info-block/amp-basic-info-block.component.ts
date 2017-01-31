@@ -25,7 +25,6 @@ export class AmpBasicInfoBlockComponent extends FormBlock {
         super( saveService, _cd, scrollService );
     }
     public ngAfterViewInit () {
-        console.log(this.__isRetrieved);
         if (this.__isRetrieved) {
             this.showSaveAndCloseButton();
         }
