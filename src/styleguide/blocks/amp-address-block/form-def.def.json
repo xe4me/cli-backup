@@ -6,8 +6,8 @@
     "status": "NEW",
     "blocks": [
         {
-            "name": "contactDetails",
-            "blockType": "AmpContactDetailsBlockComponent",
+            "name": "addressBlock",
+            "blockType": "AmpAddressMultiBlockComponent",
             "blockLayout": "INLINE",
             "commonBlock": false,
             "path": "modules/amp-address-block/components/amp-address-multi-block/amp-address-multi-block.component",

@@ -2,7 +2,6 @@ import {
     Component,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    Input,
     OnInit
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
@@ -14,6 +13,10 @@ import { ScrollService, SaveService } from '../../../../services';
     changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
+
+    public isPrimaryApplicant : boolean = false;
+    private sameThanPrimaryApplicant : boolean = true;
+
     private defaultValues = [
         [
             {
@@ -27,7 +30,6 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
                  _cd : ChangeDetectorRef ,
                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
-
     }
 
     ngOnInit() {
@@ -44,5 +46,15 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
             control[attr] = defaultValue;
         }
     }
+
+    get isTheAddressRequired () {
+        return this.isPrimaryApplicant || !this.sameThanPrimaryApplicant;
+    }
+
+    public onSameThanPrimaryApplicantCheckboxSelect ( $event ) {
+        this.sameThanPrimaryApplicant = $event.target.checked;
+        this._cd.detectChanges();
+    }
+
 
 }

@@ -17,6 +17,7 @@ import { FormControl } from '@angular/forms';
 import { AmpManualAddressComponent } from '../amp-manual-address/amp-manual-address.component';
 import { addDashOrNothing } from '../../../amp-utils/functions.utils';
 import { AmpFormGroup } from '../../../../base-control';
+
 @Component( {
     selector : 'amp-qas-address',
     template : require( './amp-qas-address.component.html' ),
