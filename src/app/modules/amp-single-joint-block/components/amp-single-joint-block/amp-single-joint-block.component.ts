@@ -5,110 +5,119 @@ import {
     OnInit,
     AfterViewInit,
     ViewContainerRef,
+    ComponentRef,
     OnDestroy
-} from '@angular/core';
-import {
-    Validators,
-    FormControl
-} from '@angular/forms';
-import {
-    AmpApplicantGeneratorService,
-} from '../../services/amp-applicant-generator.service';
-import {
-    FormBlock
-} from '../../../../form-block';
-import {
-    LoadedBlockInfo
-} from '../../../../amp-block-loader';
-import {
-    SaveService,
-    ScrollService
-} from '../../../../services';
+} from "@angular/core";
+import { SectionRepeaterComponent } from "../../../../sections/section-repeater/section-repeater.component";
+import { FormBlock } from "../../../../form-block";
+import { SaveService, ScrollService } from "../../../../services";
+import { AmpRowRepeaterComponent } from "../../../amp-row-repeater";
 @Component( {
     selector        : 'amp-single-joint-block',
-    template     : require('./amp-single-joint-block.component.html'),
+    template        : require( './amp-single-joint-block.component.html' ),
     styles          : [ require( './amp-single-joint-block.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
-    private static singleApplicantKey : string = 'Single';
-    private static jointApplicantKey : string = 'Joint';
-    public applicant2Added : boolean  = false;
-    private nextApplicantIndex : number;
 
-    constructor ( saveService : SaveService,
-                  _cd : ChangeDetectorRef,
-                  scrollService : ScrollService,
-                  private applicantGenerator : AmpApplicantGeneratorService,
-                  private viewContainerRef : ViewContainerRef ) {
+    protected __custom = {
+        blockTitle     : 'Who\'s this account for?',
+        controls       : {
+            singleOrJoint : {
+                'id'    : 'singleOrJoint',
+                options : [
+                    {
+                        id    : 'single',
+                        value : 'single',
+                        label : 'Just me'
+                    },
+                    {
+                        id    : 'joint',
+                        value : 'joint',
+                        label : 'Me and someone else'
+                    }
+                ]
+            }
+        },
+        optionalBlocks : {
+            repeater : {
+                "name"        : "Applicants",
+                "blockType"   : "SectionRepeaterComponent",
+                "blockLayout" : "INLINE",
+                "commonBlock" : false,
+                "path"        : "sections/section-repeater/section-repeater.component",
+                "blocks"      : [
+                    {
+                        "name"        : "personalDetails",
+                        "blockType"   : "PageSectionComponent",
+                        "blockLayout" : "SECTION",
+                        "commonBlock" : false,
+                        "path"        : "sections/page-section.component",
+                        "custom"      : {
+                            "label" : "Personal Details"
+                        },
+                        "blocks"      : [
+                            {
+                                "name"        : "basicInfo",
+                                "blockType"   : "AmpBasicInfoBlockComponent",
+                                "blockLayout" : "INLINE",
+                                "commonBlock" : false,
+                                "path"        : "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                                "custom"      : {
+                                    "blockTitle" : "Tell us about yourself",
+                                    "controls"   : [
+                                        {
+                                            "id" : "title"
+                                        },
+                                        {
+                                            "id" : "firstName"
+                                        },
+                                        {
+                                            "id" : "middleName"
+                                        },
+                                        {
+                                            "id" : "surName"
+                                        },
+                                        {
+                                            "id" : "dateOfBirth"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    };
+    private repeater : AmpRowRepeaterComponent;
+
+    constructor( saveService : SaveService,
+                 _cd : ChangeDetectorRef,
+                 scrollService : ScrollService,
+                 private viewContainerRef : ViewContainerRef ) {
         super( saveService, _cd, scrollService );
     }
 
-    public ngOnInit () {
-
-        if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
-            this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, new FormControl( null, Validators.required ) );
-        }
-
-        // load applicant 1
-        this.__loadNext( this.applicantGenerator.getApplicantSection(), this.viewContainerRef );
-        // Subscribe to notify when all the blocks that are inside of ApplicantSection are successfully loaded ,
-        // then go next
-        // The reason is if you don't do this , when you start with a Single applicant and finish the form and go
-        // and change to Joint applicant and click on Joint , it will take you to the submit page , where as it
-        // should've taken you to the first block in Applicant2 !!!
-        // It was happening because we don't know how long it might take to load Applicant2 but we where doing
-        // onNext nevertheless , which is wrong, because if it takes 2 minute to load , we should wait and then go
-        // to next undone block , which is inside the applicant2Section
-        this.__onChildsLoaded( ( _loadedComponent : LoadedBlockInfo ) => {
-            if ( _loadedComponent.name === 'applicant2' ) {
-                this.applicant2Added = true;
-                this.onNext();
-            }
-        } );
-    }
-
-    public ngAfterViewInit () {
-        super.ngAfterViewInit();
-
-        if ( this.__isRetrieved ) {
-            let singleJointControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-            if ( singleJointControl && singleJointControl.value === AmpSingleJointBlockComponent.jointApplicantKey ) {
-                this.onJointApplication();
-            }
-        }
-    }
-
-    public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
-        if ( !this.applicant2Added && singleJointIndicator === AmpSingleJointBlockComponent.jointApplicantKey ) {
-            let applicant2Sections       = this.applicantGenerator.getApplicantSection();
-            let nextIndex = this.__getIndex(this.viewContainerRef) + 1;
-            this.nextApplicantIndex = nextIndex ;
-            this.__loadAt( applicant2Sections, nextIndex);
-            return;
-        }
-        if ( this.applicant2Added && singleJointIndicator === AmpSingleJointBlockComponent.singleApplicantKey ) {
-            this.__removeAt( this.nextApplicantIndex ).then( () => {
-                this.applicant2Added = false;
-                this.onNext();
+    public ngOnInit() {
+        this.__loadNext( this.__custom.optionalBlocks.repeater, this.viewContainerRef )
+            .then( ( componentRef : ComponentRef<SectionRepeaterComponent> ) => {
+                this.repeater = componentRef.instance.repeater;
             } );
-            return;
+    }
+
+
+    public onSingleOrJointSelect( singleJointIndicator : string ) {
+        let jointValue = this.__custom.controls.singleOrJoint.options[ 1 ].value;
+        if ( singleJointIndicator === jointValue ) {
+            this.repeater.addIfLt( 2 );
+        } else {
+            if ( this.repeater.rowCount > 1 ) {
+                this.repeater.removeLast();
+            }
         }
+
         this.onNext();
     }
 
-    private onSingleApplication () {
-        this.setUpApplication( AmpSingleJointBlockComponent.singleApplicantKey );
-    }
-
-    private onJointApplication () {
-        this.setUpApplication( AmpSingleJointBlockComponent.jointApplicantKey );
-    }
-
-    private setUpApplication ( singleJointIndicator : string ) {
-        const singleOrJoint = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        singleOrJoint.setValue( singleJointIndicator );
-        singleOrJoint.markAsTouched();
-        this.addOrRemoveJointApplicantSection( singleJointIndicator );
-    }
 }

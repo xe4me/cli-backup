@@ -12,16 +12,7 @@
             "blockType": "AmpSingleJointBlockComponent",
             "blockLayout": "INLINE",
             "commonBlock": false,
-            "path": "modules/amp-single-joint-block/components/amp-single-joint-block/amp-single-joint-block.component",
-            "custom": {
-                "blockTitle": "Who's this account for?",
-                "isInitiallyActive": true,
-                "controls": [
-                    {
-                        "id": "singleOrJoint"
-                    }
-                ]
-            }
+            "path": "modules/amp-single-joint-block/components/amp-single-joint-block/amp-single-joint-block.component"
         }
     ]
 }
