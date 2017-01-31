@@ -33,12 +33,14 @@ export class AmpContactDetailsBlockComponent extends FormBlock {
                 tooltipMessage : 'Confirmation of your application will be sent to this email address.'
             },
             {
-                id                   : 'mobileNumber',
-                label                : 'Mobile number',
-                required             : true,
-                tooltipMessage       : 'A mobile phone number is required to allow AMP Bank to securely protect your account.',
-                requiredErrorMessage : 'Mobile number is a required field.',
-                patternErrorMessage  : 'Mobile number must be in the format 04nnnnnnnn.'
+                id             : 'mobileNumber',
+                label          : 'Mobile number',
+                required       : true,
+                tooltipMessage : 'A mobile phone number is required to allow AMP Bank to securely protect your account.',
+                errors         : {
+                    required : 'Mobile number is a required field.',
+                    pattern  : 'Mobile number must be in the format 04nnnnnnnn.'
+                }
             },
             {
                 id       : 'homeNumber',
@@ -48,14 +50,14 @@ export class AmpContactDetailsBlockComponent extends FormBlock {
         ]
     };
 
-    constructor( saveService : SaveService,
-                 _cd : ChangeDetectorRef,
-                 @Optional() private saveCloseService : SaveAndCloseService,
-                 scrollService : ScrollService ) {
+    constructor ( saveService : SaveService,
+                  _cd : ChangeDetectorRef,
+                  @Optional() private saveCloseService : SaveAndCloseService,
+                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
     }
 
-    onNext() {
+    onNext () {
         if ( this.saveCloseService ) {
             this.saveCloseService.updateMobileNumber( this.mobileNumberCmp.control.value );
         }
