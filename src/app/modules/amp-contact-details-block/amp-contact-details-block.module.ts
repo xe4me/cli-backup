@@ -9,6 +9,7 @@ const DECLARATIONS = [ AmpContactDetailsBlockComponent ];
 
 @NgModule( {
     declarations : DECLARATIONS ,
+    entryComponents : DECLARATIONS ,
     imports      : [
         AmpSharedRootModule ,
         AmpFormModule ,
