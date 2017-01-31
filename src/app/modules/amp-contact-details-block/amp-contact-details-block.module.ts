@@ -8,15 +8,15 @@ import { AmpTooltipModule } from '../amp-tooltip';
 const DECLARATIONS = [ AmpContactDetailsBlockComponent ];
 
 @NgModule( {
-    declarations : DECLARATIONS ,
-    entryComponents : DECLARATIONS ,
-    imports      : [
-        AmpSharedRootModule ,
-        AmpFormModule ,
-        AmpInputsModule ,
+    declarations    : DECLARATIONS,
+    entryComponents : DECLARATIONS,
+    imports         : [
+        AmpSharedRootModule,
+        AmpFormModule,
+        AmpInputsModule,
         AmpTooltipModule
-    ] ,
-    exports      : DECLARATIONS
+    ],
+    exports         : DECLARATIONS
 } )
 export class AmpContactDetailsBlockModule {
 }
