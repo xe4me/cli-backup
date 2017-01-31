@@ -4,6 +4,7 @@ import {
     OnDestroy,
     ViewChild
 } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
     FormBlock,
@@ -23,11 +24,13 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         convert: 'convert'
     };
     protected currentAction : string;
+    protected newOrConvertControl : AbstractControl;
     protected accountsEligibleForTransitioning : Array<{ value : string, label : string }> = [];
 
     @ViewChild ('accountsListCmp') private accountsListCmp : AmpDropdownComponent;
     private description : string = null;
-    private betterChoiceSubscription : Subscription;
+    private userHasLoggedIn : boolean  = false;
+    private newOrConvertControlSubscription : Subscription;
     private eligibleAccountsServiceSubscription : Subscription;
 
     constructor ( saveService : SaveService,
@@ -41,9 +44,9 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     public ngAfterViewInit () {
         this.description              = this.__custom[ 'description' ];
         this.accountType              = this.__custom[ 'type' ];
-        const newOrConvertControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
+        this.newOrConvertControl     = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
 
-        this.betterChoiceSubscription = newOrConvertControl.valueChanges
+        this.newOrConvertControlSubscription = this.newOrConvertControl.valueChanges
             .subscribe( ( action ) => {
                 this.updateAccountAction( action );
                 this._cd.markForCheck();
@@ -51,15 +54,16 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             } );
 
         if ( this.__isRetrieved ) {
-            this.updateAccountAction(newOrConvertControl.value);
+            this.updateAccountAction( this.newOrConvertControl.value );
             this.__controlGroup.markAsTouched();
             this.isActive = true;
         } else {
-            newOrConvertControl.setValue( this.defaultAccountAction );
+            this.newOrConvertControl.setValue( this.defaultAccountAction );
         }
 
         this.loginStatusService.userHasLoggedIn()
             .subscribe( () => {
+                this.userHasLoggedIn = true;
                 this.fetchEligibleAccounts();
             });
 
@@ -68,8 +72,10 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     }
 
     public ngOnDestroy () {
-        this.betterChoiceSubscription.unsubscribe();
-        this.eligibleAccountsServiceSubscription.unsubscribe();
+        this.newOrConvertControlSubscription.unsubscribe();
+        if ( this.eligibleAccountsServiceSubscription ) {
+            this.eligibleAccountsServiceSubscription.unsubscribe();
+        }
         super.ngOnDestroy();
     }
 
@@ -78,7 +84,9 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     }
 
     protected get additionalDescription () : string {
-        return this.hasAccounts ? this.__custom[ 'additional_dropdown_instruction' ] : this.__custom[ 'additional_input_instruction' ];
+        return this.hasEligibleAccounts ?
+            this.__custom[ 'additional_dropdown_instruction' ] :
+            this.__custom[ 'additional_input_instruction' ];
     }
 
     protected mapEligibleAccounts ( accounts : any[] ) : void {
@@ -87,7 +95,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         }
     }
 
-    protected get hasAccounts () : boolean {
+    protected get hasEligibleAccounts () : boolean {
         return this.accountsEligibleForTransitioning.length > 0;
     }
 
@@ -112,8 +120,16 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         return this.accountsEligibleForTransitioning;
     }
 
+    protected get canTransitionAccount () : boolean {
+        return true;
+    }
+
     protected get hideNewOrConvertButtons () : boolean {
-        return false;
+        return this.userHasLoggedIn && !this.canTransitionAccount;
+    }
+
+    private get hideBlock () : boolean {
+        return this.userHasLoggedIn && !this.hasEligibleAccounts;
     }
 
     private fetchEligibleAccounts () {
@@ -121,6 +137,9 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             .subscribe(
                 ( response ) => {
                     this.mapEligibleAccounts( response.payload );
+                    if ( !this.canTransitionAccount || !this.hasEligibleAccounts ) {
+                        this.newOrConvertControl.setValue( this.accountActions.new );
+                    }
                     this._cd.markForCheck();
                     this.setAccountNumberDropdownDefaultValue();
                 },

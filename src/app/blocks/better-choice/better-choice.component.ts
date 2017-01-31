@@ -33,7 +33,6 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     private isExistingCustomer : boolean  = false;
     private userHasLoggedIn : boolean  = false;
     private eligibleAccountsRequestFailed : boolean  = false;
-    private hasEligibleDepositAccount : boolean  = false;
     private accountsEligibleForTransitioning : {} = null;
 
     constructor ( _cd : ChangeDetectorRef,
@@ -107,14 +106,14 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
         }
     }
 
-    private get showBlock () : boolean {
+    private get hideBlock () : boolean {
         if ( this.isExistingCustomer ) {
             if ( this.userHasLoggedIn && !this.eligibleAccountsRequestFailed ) {
-                return this.userHasEligibleAccounts;
+                return this.hasOnlyDepositAccount;
             }
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private subscribeToBett3rChoice () {
@@ -124,12 +123,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
         if ( !this.betterChoiceSubscription ) {
             this.betterChoiceSubscription = this.betterChoiceControl.valueChanges
                 .subscribe( ( val ) => {
-                    this.setNextBlock( val ).then(() => {
-                        // TODO @Iain - Please review this part for disabling preselect for offset account
-                        if ( this.userHasEligibleAccounts && this.hasOnlyDepositAccount ) {
-                            this.__removeSelf( this.viewContainerRef );
-                        }
-                    });
+                    this.setNextBlock( val );
                 } );
         }
     }
@@ -139,7 +133,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             .subscribe(
                 ( response ) => {
                     this.accountsEligibleForTransitioning = response.payload;
-                    this.displayAccountToTransition();
+                    this.setDefaultAccountToTransition();
                     this._cd.markForCheck();
                 },
                 () => {
@@ -147,14 +141,9 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                 });
     }
 
-    private displayAccountToTransition () {
-        if ( this.userHasEligibleAccounts ) {
-            if ( this.hasOnlyDepositAccount ) {
-                this.betterChoiceControl.setValue( this.getBlockForAccountType('deposit') );
-            } else if ( this.hasOnlyOffsetOrLoanAccount ) {
-                // TODO @Iain - Please review this part for disabling preselect for offset account
-                // this.betterChoiceControl.setValue( this.getBlockForAccountType('offset') );
-            }
+    private setDefaultAccountToTransition () {
+        if ( !this.userHasEligibleAccounts || this.hasOnlyDepositAccount ) {
+            this.betterChoiceControl.setValue( this.getBlockForAccountType('deposit') );
         }
     }
 

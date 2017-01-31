@@ -11,9 +11,9 @@ export class ApplicantGeneratorService {
 
         this.addApplicantIdToSectionBlocks(applicantSections, index);
 
-        if (index === 1) {
-            this.addCaptchaBlock(applicantSections);
-            this.addBett3rChoiceBlock(applicantSections);
+        if ( this.isFirstApplicant( index ) ) {
+            this.addCaptchaBlock( applicantSections );
+            this.addBett3rChoiceBlock( applicantSections );
         }
 
         return {
@@ -43,6 +43,10 @@ export class ApplicantGeneratorService {
     private addBett3rChoiceBlock( sections ) {
         let bett3rChoiceBlock = clone(bett3rChoiceBlockJSON);
         sections[0].blocks.push(bett3rChoiceBlock);
+    }
+
+    private isFirstApplicant (index : number ) : boolean {
+         return index === 1;
     }
 
     private addApplicantIdToSectionBlocks (sections, index : number ) : void {

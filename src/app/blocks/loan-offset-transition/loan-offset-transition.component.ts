@@ -40,7 +40,7 @@ export class LoanOffsetTransitionBlock extends AccountTransitionBaseBlock {
     }
 
     protected get additionalDescription () : string {
-        return this.__custom[ `additional_${ this.currentAction }_${ this.hasAccounts ? 'dropdown' : 'input' }_instruction` ];
+        return this.__custom[ `additional_${ this.currentAction }_${ this.hasEligibleAccounts ? 'dropdown' : 'input' }_instruction` ];
     }
 
     protected mapEligibleAccounts (accounts : any[] ) : void {
@@ -53,25 +53,33 @@ export class LoanOffsetTransitionBlock extends AccountTransitionBaseBlock {
         this.updateAccountsEligibleForTransitioning();
     }
 
-    protected get hasAccounts () : boolean {
+    protected get hasEligibleAccounts () : boolean {
         if ( this.currentAction === this.accountActions.convert ) {
-            return this.mappedOffsetAccounts.length > 0 || ( this.mappedOffsetAccounts.length === 0 && this.mappedLoanAccounts.length > 0);
+            return this.hasOffsetAccounts || this.hasLoanAccounts;
         } else {
-            return this.mappedLoanAccounts.length > 0;
+            return this.hasLoanAccounts;
         }
     }
 
     protected updateAccountAction ( action : string ) : void {
-        this.currentAction = action;
+        super.updateAccountAction( action );
         this.updateAccountsEligibleForTransitioning();
     }
 
-    protected get hideNewOrConvertButtons () : boolean {
-        return this.mappedOffsetAccounts.length === 0;
+    protected get canTransitionAccount () : boolean {
+        return this.hasOffsetAccounts;
+    }
+
+    private get hasOffsetAccounts () : boolean {
+        return this.mappedOffsetAccounts.length > 0;
+    }
+
+    private get hasLoanAccounts () : boolean {
+        return this.mappedLoanAccounts.length > 0;
     }
 
     private updateAccountsEligibleForTransitioning () : void {
-        if ( this.currentAction === this.accountActions.new || this.mappedOffsetAccounts.length === 0 ) {
+        if ( this.currentAction === this.accountActions.new ) {
             this.accountsEligibleForTransitioning = this.mappedLoanAccounts;
         } else {
             this.accountsEligibleForTransitioning = this.mappedOffsetAccounts;
