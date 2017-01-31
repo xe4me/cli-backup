@@ -9,14 +9,14 @@
         </h2>
         <p class="ml small">
             This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
-            <br>It should be <strong>the default way of loading it</strong>.
+            <br>It should be <strong>the default way of loading a block.</strong>.
         </p>
     </article>
 
     <article class="section">
         <h2 class="mb- ml mt+">Example</h2>
         <p class="para ml">
-            In "form-def.def.json" file, in any array of blocks:
+            In a "form-def.def.json" file, in any array of blocks:
         </p>
         <pre>
             <code syntaxHighlight class="json">
@@ -29,24 +29,6 @@
     &#125;
             </code>
         </pre>
-    </article>
-
-    <article class="section">
-        <h2 class="mb- ml mt+">Reference to components</h2>
-        <ul class="bml">
-            <li>
-                'Email':
-                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpEmail'])">AmpEmail</a>
-            </li>
-            <li>
-                'Mobile number':
-                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpPhoneNumber'])">AmpPhoneNumber</a>
-            </li>
-            <li>
-                'Home number':
-                <a href="javascript:void(0);" (click)="navigate(['component', 'AmpHomeNumber'])">AmpHomeNumber</a>
-            </li>
-        </ul>
     </article>
 
     <article class="section">
@@ -67,8 +49,10 @@
                 "label": "Mobile number",
                 "required": true,
                 "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
-                "requiredErrorMessage": "Mobile number is a required field.",
-                "patternErrorMessage": "Mobile number must be in the format 04nnnnnnnn."
+                "errors": &#123;
+                    "required": "Mobile number is a required field.",
+                    "pattern": "Mobile number must be in the format 04nnnnnnnn"
+                &#125;
             &#125;,
             &#123;
                 "id": "homeNumber",
@@ -85,27 +69,57 @@
         <h2 class="mb- ml mt+">"custom" section</h2>
         <ul class="bml">
             <li>
-                You can override any prop by adding a "custom" item in your block definition. Some examples:
+                You can override any prop by adding a "custom.overrides" object to your block definition. Some examples:
             </li>
         </ul>
         <pre>
             <code syntaxHighlight class="json">
     &#123;
         "custom": &#123;
-            "blockTitle": "And your contact details...",
-            "controls[0].label": "My email label",
-            "controls[1].errors.required": "Mobile number is a highly required field.",
-            "controls[3].required": true
+            "overrides": &#123;
+                "blockTitle": "And your contact details...",
+                "controls[0].label": "My email label",
+                "controls[1].errors.required": "Mobile number is a highly required field.",
+                "controls[3].required": true
+            &#125;
         &#125;
     &#125;
             </code>
         </pre>
-    </article>
-
-    <article class="section">
-        <p class="ml mt">
-            In case you need more customisation options, please get in touch with DDC team!
-        </p>
-        <p>&nbsp;</p>
+        <ul class="bml">
+            <li>
+                Or you can override everything by providing all of your custom props:
+            </li>
+        </ul>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "blockTitle": "My block title",
+        "controls": [
+            &#123;
+                "id": "myEmailAddress",
+                "label": "My email",
+                "required": true,
+                "tooltipMessage": "My tooltip..."
+            &#125;,
+            &#123;
+                "id": "myMobileNumber",
+                "label": "My mobile number",
+                "required": true,
+                "tooltipMessage": "My tooltip...",
+                "errors": &#123;
+                    "required": "My required error",
+                    "pattern": "My pattern error"
+                &#125;
+            &#125;,
+            &#123;
+                "id": "myHomeNumber",
+                "label": "My home number",
+                "required": false
+            &#125;
+        ]
+    &#125;
+            </code>
+        </pre>
     </article>
 </section>
