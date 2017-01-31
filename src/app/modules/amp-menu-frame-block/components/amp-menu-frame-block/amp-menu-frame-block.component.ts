@@ -33,10 +33,8 @@ export class AmpMenuFrameBlockComponent implements OnDestroy, AfterViewInit {
     private hydrationSubscription : Subscription;
     private sectionsToHide                   = [];
     private containInside                    = 'amp-menu-frame-block';
-    private hideStickyButton                 = true;
     private ADDRESS_BLOCK_COMPONENT_SELECTOR = 'Application-Applicant1Section-PersonalDetailsSection-Address-block';
     @ViewChild( AmpBlockLoaderDirective ) private loader;
-    // @ViewChild( StickySaveButton ) private saveButton : StickySaveButton;
 
     constructor ( private _el : ElementRef,
                   private formModelService : FormModelService,
@@ -53,14 +51,12 @@ export class AmpMenuFrameBlockComponent implements OnDestroy, AfterViewInit {
                                                      _hydratedForm.controls[ _controlGroupName ] );
                                              } );
                                              this.loader.reload();
-                                             this.hideStickyButton = false;
                                              // let singleOrJoint     = this.__form.get( [ ...FDN.SingleOrJoint, 'SingleOrJoint' ] );
                                              // this.onSingleJoint( singleOrJoint ? singleOrJoint.value : null, false );
                                              this._cd.markForCheck();
                                          } );
         let onNextScrolled         = this.scrollService.$scrolled.subscribe( ( fdn ) => {
             if ( fdn.componentSelector === this.ADDRESS_BLOCK_COMPONENT_SELECTOR ) {
-                this.hideStickyButton = false;
                 onNextScrolled.unsubscribe();
             }
         } );
@@ -79,9 +75,6 @@ export class AmpMenuFrameBlockComponent implements OnDestroy, AfterViewInit {
         // } else {
         //     this.sectionsToHide = [];
         // }
-        // if ( hideStickyButton === false ) {
-        //     this.hideStickyButton = hideStickyButton;
-        // }
         // this._cd.markForCheck();
     }
 
@@ -89,10 +82,6 @@ export class AmpMenuFrameBlockComponent implements OnDestroy, AfterViewInit {
         // const singleOrJointControl     = this.sharedData.getSingleOrJointControl( this.__form );
         // this.singleOrJointSubscription = singleOrJointControl.valueChanges.subscribe( this.onSingleJoint );
     }
-
-    // public onSave () {
-    //     this.saveButton.onSave();
-    // }
 
     public ngOnDestroy () {
         this.hydrationSubscription.unsubscribe();

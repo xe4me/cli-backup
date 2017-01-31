@@ -4,8 +4,6 @@ import {
     Input
 } from '@angular/core';
 
-import { AmpButton } from 'amp-ddc-components';
-
 @Component( {
     selector        : 'amp-transitioning-account-page' ,
     template        : require( './amp-transitioning-account-page.component.html' ) ,
