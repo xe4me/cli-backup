@@ -15,11 +15,11 @@ import {
     FormBlock,
     ScrollService,
     SaveService,
-    CustomerDetailsService
+    CustomerDetailsService,
+    LoginStatusService
 } from 'amp-ddc-components';
 import {
-    PrepopMappingService,
-    LoginStatusService
+    PrepopMappingService
 } from '../../shared';
 /**
  * Thin login interface to MyAMP via TAM.
