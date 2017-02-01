@@ -65,11 +65,11 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
     @Output( 'add' ) $add                                   = new EventEmitter<any>();
     public controlArray : FormArray;
 
-    constructor ( public _cd : ChangeDetectorRef ) {
+    constructor( public _cd : ChangeDetectorRef ) {
 
     }
 
-    public ngOnInit () : void {
+    public ngOnInit() : void {
         if ( this.controlGroup && this.id ) {
             if ( this.controlGroup.contains( this.id ) ) {
                 this.controlArray = <FormArray> this.controlGroup.get( this.id );
@@ -81,13 +81,13 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         this.init();
     }
 
-    public ngOnDestroy () : void {
+    public ngOnDestroy() : void {
         if ( this.controlGroup && this.id && this.controlGroup.contains( this.id ) ) {
             this.controlGroup.removeControl( this.id );
         }
     }
 
-    public init () {
+    public init() {
         if ( this.rowCount === 0 ) {
             if ( isNaN( this.initialRowCount ) ) {
                 this.add();
@@ -97,8 +97,8 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         }
     }
 
-    public add ( count : number = 1 ) {
-        for ( let i = 0 ; i < count ; i++ ) {
+    public add( count : number = 1 ) {
+        for ( let i = 0; i < count; i++ ) {
             if ( isNaN( this.maxRows ) || this.rowCount >= this.maxRows ) {
                 return;
             }
@@ -119,29 +119,29 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         this._cd.markForCheck();
     }
 
-    public addIfGt ( num : number ) {
+    public addIfGt( num : number ) {
         if ( this.controlArray && this.controlArray.length > num ) {
             this.add();
         }
     }
 
-    public addIfGtE ( num : number ) {
+    public addIfGtE( num : number ) {
         let n = num - 1;
         this.addIfGt( n );
     }
 
-    public addIfLtE ( num : number ) {
+    public addIfLtE( num : number ) {
         let n = num + 1;
         this.addIfLt( n );
     }
 
-    public addIfLt ( num : number ) {
+    public addIfLt( num : number ) {
         if ( this.controlArray && this.controlArray.length < num ) {
             this.add();
         }
     }
 
-    public removeAt ( _index : number ) {
+    public removeAt( _index : number ) {
         if ( _index === undefined ) {
             return;
         }
@@ -150,18 +150,22 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
         this._cd.markForCheck();
     }
 
-    public removeAll () {
+    public removeLast() {
+        this.removeAt( this.rowCount - 1 );
+    }
+
+    public removeAll() {
         while ( this.controlArray.length ) {
             this.controlArray.removeAt( 0 );
         }
         this._cd.markForCheck();
     }
 
-    public get rowCount () : number {
+    public get rowCount() : number {
         return this.controlArray ? this.controlArray.controls.length : 0;
     }
 
-    public get addBtnDisabled () {
+    public get addBtnDisabled() {
         return (this.maxRows === this.rowCount) || this.isInSummaryState;
     }
 }

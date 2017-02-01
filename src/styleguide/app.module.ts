@@ -43,6 +43,7 @@ import { HighlightCodeDirective } from './highlight.directive';
 import { DYNAMICALLY_LOADED_COMPONENTS } from './app.entry-components';
 import { AMP_MODULES } from './app.modules';
 import { PageSectionComponent } from '../app/sections/page-section.component';
+import { SectionRepeaterComponent } from '../app/sections/section-repeater/section-repeater.component';
 import { AmpLoadingComponent } from '../app/components/amp-loading/amp-loading.component';
 import { AmpDropdownNewModule } from './.';
 import { AmpFormRowModule } from '../app/modules/amp-form-row/amp-form-row.module';
@@ -65,6 +66,7 @@ type StoreType = {
 
 export const shouldBeReplacedWithModulesComponents = [
     PageSectionComponent,
+    SectionRepeaterComponent,
     ExampleComponent,
     ExampleDirective,
     AmpSubmitReceiptComponent,
@@ -96,7 +98,7 @@ const IMPORTS                                      = [
         ComponentPage,
         HighlightCodeDirective
     ],
-    entryComponents : DYNAMICALLY_LOADED_COMPONENTS,
+    entryComponents : [ ...DYNAMICALLY_LOADED_COMPONENTS, SectionRepeaterComponent ],
     imports         : IMPORTS,
     providers       : [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,
@@ -105,10 +107,10 @@ const IMPORTS                                      = [
     ]
 } )
 export class StyleGuideAppModule {
-    constructor ( public appRef : ApplicationRef, public appState : AppState ) {
+    constructor( public appRef : ApplicationRef, public appState : AppState ) {
     }
 
-    hmrOnInit ( store : StoreType ) {
+    hmrOnInit( store : StoreType ) {
         if ( !store || !store.state ) {
             return;
         }
@@ -125,7 +127,7 @@ export class StyleGuideAppModule {
         delete store.restoreInputValues;
     }
 
-    hmrOnDestroy ( store : StoreType ) {
+    hmrOnDestroy( store : StoreType ) {
         const cmpLocation        = this.appRef.components.map( ( cmp ) => cmp.location.nativeElement );
         // save state
         const state              = this.appState._state;
@@ -138,7 +140,7 @@ export class StyleGuideAppModule {
         removeNgStyles();
     }
 
-    hmrAfterDestroy ( store : StoreType ) {
+    hmrAfterDestroy( store : StoreType ) {
         // display new elements
         store.disposeOldHosts();
         delete store.disposeOldHosts;
