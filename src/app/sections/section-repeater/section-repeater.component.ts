@@ -3,7 +3,6 @@ import {
     ViewChild,
     ChangeDetectionStrategy
 } from '@angular/core';
-import { ScrollService } from '../services/scroll/scroll.service';
 import { AmpRowRepeaterComponent } from '../../modules/amp-row-repeater';
 @Component( {
     selector : 'section-repeater',
