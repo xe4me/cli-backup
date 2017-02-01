@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    FormsModule,
-    FormGroup
-} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
     async,
@@ -56,7 +53,6 @@ describe('amp-contact-details-block component', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                FormsModule,
                 AmpContactDetailsBlockModule,
                 HttpModule
             ],
