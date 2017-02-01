@@ -1,11 +1,10 @@
 import {
     ViewContainerRef,
     Directive,
-    Compiler,
-    ComponentFactoryResolver
+    ComponentFactoryResolver,
+    Compiler
 } from '@angular/core';
 import { AmpBlockLoader } from '../app/amp-block-loader';
-
 @Directive( {
     selector : '[amp-block-loader]'
 } )
