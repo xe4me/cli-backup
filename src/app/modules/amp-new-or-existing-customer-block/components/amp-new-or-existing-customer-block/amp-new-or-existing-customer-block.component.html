@@ -1,20 +1,17 @@
-<amp-form-block [context]="context()" [withOkButton]="false" [hidden]="hideThisBlock" class="container main--aside">
-    <amp-form-row>
-        <div class="mt+ grid__item_floated tablet-and-down-1/1">
-            <amp-button
-                id="newButton"
-                theme="tools"
-                [context]="context()"
-                class="btn btn-ok palm-1/1 1/4 tablet-1/1 palm-mr0 mr"
-                (click)="newApplication()">{{newButtonLabel}}
-            </amp-button>
-            <amp-button
-                id="existingButton"
-                theme="tools"
-                [context]="context()"
-                class="btn btn-ok btn-secondary palm-1/1 palm-mt- 1/4 tablet-1/1"
-                (click)="loginToMyAmp()">{{existingButtonLabel}}
-            </amp-button>
-        </div>
-    </amp-form-row>
-</amp-form-block>
+<amp-slider>
+    <amp-form-block [context]="context()" [withOkButton]="false">
+        <amp-form-row>
+            <div class="mt+ grid__item_floated tablet-and-down-1/1">
+                <amp-group-buttons
+                    class="mt 3/5"
+                    (select)='newOrLogin($event)'
+                    [required]="true"
+                    [isInSummaryState]="isInSummaryState"
+                    [buttons]='__custom.controls.customerType.options'
+                    [controlGroup]='__controlGroup'
+                    [groupName]='__custom.controls.customerType.id'>
+                </amp-group-buttons>
+            </div>
+        </amp-form-row>
+    </amp-form-block>
+</amp-slider>
