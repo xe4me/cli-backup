@@ -38,6 +38,7 @@ export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, A
 
     public onSingleOrJointSelect( singleJointIndicator : string ) {
         let jointValue = this.__custom.controls.singleOrJoint.options[ 1 ].value;
+        console.log("this.repeater.rowCount", this.repeater.rowCount);
         if ( singleJointIndicator === jointValue ) {
             this.repeater.addIfLt( 2 );
         } else {
