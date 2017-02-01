@@ -12,6 +12,11 @@ import {
 } from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import {
+    each,
+    size,
+    set
+} from 'lodash';
 import { SaveService } from './services/save/save.service';
 import { ScrollService } from './services/scroll/scroll.service';
 import { FormDefinition } from './interfaces/form-def.interface';
@@ -54,7 +59,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     /*
      * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
      * */
-    protected __removeNext : ( viewContainerRef : ViewContainerRef, options : RemoveNextOptions ) => Promise<number>;
+    protected __removeNext : ( viewContainerRef : ViewContainerRef, options? : RemoveNextOptions ) => Promise<number>;
     /*
      * __removeAllAfter : Will remove all the blocks after current block if they're in the same container
      * E.g : If you're inside menu frame , you cannot delete review block if they not in the same blocks array in
@@ -239,9 +244,21 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
         }
     }
 
+    protected setBlockAttributes (defaultValues) {
+        const custom = defaultValues;
+        // Override default values if custom values are provided
+        if (size(this.__custom) > 0) {
+            each(this.__custom, (value, key) => {
+                set(custom, key, value);
+            });
+        }
+        this.__custom = custom;
+    }
+
     private unSubscribeFromEvents () {
         if ( this.scrollSubscription ) {
             this.scrollSubscription.unsubscribe();
         }
     }
+
 }

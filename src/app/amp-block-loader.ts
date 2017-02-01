@@ -11,6 +11,11 @@ import {
 import { FormGroup } from '@angular/forms';
 import { FormDefinition } from './interfaces/form-def.interface';
 import { clone } from './modules/amp-utils';
+import {
+    each,
+    size,
+    set
+} from 'lodash';
 export enum BlockLayout { INLINE, PAGE, SECTION, COMPONENT }
 export enum RequireMethod { ALL, IN_ORDER }
 export interface LoadedBlockInfo {
@@ -418,8 +423,7 @@ export abstract class AmpBlockLoader {
 
     private copyCustomFields ( _blockDef : FormDefinition, comp : any ) {
         if ( typeof _blockDef.custom === 'object' ) {
-            comp.isActive = _blockDef.custom.isInitiallyActive;
-            comp.__custom = _blockDef.custom;
+            this.mergeCustoms( comp, _blockDef.custom );
         } else if ( typeof _blockDef.custom === 'string' ) {
             // assuming that this is a path to a file that should be loaded and replaced with custom
             // like "custom":"src/app/blocks/quote/applicant-details/applicant-details-config.ts"
@@ -439,12 +443,31 @@ export abstract class AmpBlockLoader {
                 }
                 let customFileChunk = this.requireFile( pathToCustomFile );
                 customFileChunk( ( customFile ) => {
-                    comp.__custom = clone( customFile[ 'default' ] );
+                    this.mergeCustoms( comp, clone( customFile[ 'default' ] ) );
                 } );
             }
         } else {
             comp.__custom = _blockDef.custom; // IT COULD BE AN ARRAY OR SOMETHING ELSE
         }
+    }
+
+    private mergeCustoms ( comp : any, customs ) {
+        if ( comp.__custom && customs.overrides ) { // means we have default values inside the component class already
+            this.overrideCustomProperties( comp.__custom, customs.overrides );
+        } else { // replace
+            comp.__custom = customs;
+        }
+        comp.isActive = comp.__custom.isInitiallyActive;
+    }
+
+    private overrideCustomProperties ( defaultValues, newValues ) {
+        // Override default values if custom values are provided
+        if ( size( newValues ) > 0 ) {
+            each( newValues, ( value, key ) => {
+                set( defaultValues, key, value );
+            } );
+        }
+        return defaultValues;
     }
 
     private createOrRetrieveCG ( _blockDef : FormDefinition, comp : any, _form : any ) {

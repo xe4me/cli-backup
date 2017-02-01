@@ -21,7 +21,7 @@ function loadComponent () {
     ngElement = fixture.debugElement;
 }
 
-describe( 'amp-new-or-existing-customer-block component', () => {
+fdescribe( 'amp-new-or-existing-customer-block component', () => {
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {

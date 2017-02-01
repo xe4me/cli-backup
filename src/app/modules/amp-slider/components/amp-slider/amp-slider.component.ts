@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component } from "@angular/core";
-import { VerticalSlide } from "../../../../animations/vertical-slide.animation";
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { VerticalSlide } from '../../../../animations/vertical-slide.animation';
 export interface SliderAnimateOptions {
     animate? : boolean;
 }
