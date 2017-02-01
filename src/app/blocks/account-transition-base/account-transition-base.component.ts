@@ -10,11 +10,11 @@ import {
     FormBlock,
     ScrollService,
     SaveService,
-    AmpDropdownComponent
+    AmpDropdownComponent,
+    LoginStatusService
 } from 'amp-ddc-components';
 import {
-    EligibleAccountsService,
-    LoginStatusService
+    EligibleAccountsService
 } from '../../shared';
 
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
