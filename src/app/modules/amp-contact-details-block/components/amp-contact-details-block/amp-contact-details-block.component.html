@@ -23,10 +23,7 @@
                 [label]="__custom.controls[1].label"
                 [pattern]="'^04(\\d){8}$'"
                 [maxLength]="10"
-                [errors]="{
-                    'required': __custom.controls[1].requiredErrorMessage,
-                    'pattern': __custom.controls[1].patternErrorMessage
-                }"
+                [errors]="__custom.controls[1].errors"
                 [required]="__custom.controls[1].required">
             </amp-mobile-number>
         </div>
