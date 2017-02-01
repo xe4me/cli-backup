@@ -10,6 +10,7 @@ import { isPresent } from '@angular/core/src/facade/lang';
 import { RequiredValidator } from '../../../../modules/amp-utils';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 import { BaseControl } from '../../../../base-control';
+
 @Component( {
     selector        : 'amp-checkbox',
     template        : require( './amp-checkbox.component.html' ),

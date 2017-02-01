@@ -1,13 +1,13 @@
 <amp-form-block [headingClass]="'mb0'" [context]="context()" buttonsTheme="tools">
-    <amp-form-row *ngIf='!isPrimaryApplicant'>
+    <amp-form-row *ngIf='isPrimaryApplicant === null'>
         <div class='mb-- grid__item_floated 1/1'>
             <amp-checkbox class="mt"
                 [isInSummaryState]="isInSummaryState"
                 [controlGroup]="__controlGroup"
                 [checked]="true"
-                [id]="sameThanPrimaryApplicant"
+                [id]="__custom.controls[0].id"
                 (change)="onSameThanPrimaryApplicantCheckboxSelect($event)">
-                <label>My residential and postal address is the same as __TODO_FIRST_APPLICANT_NAME__.</label>
+                <label>My residential and postal address is the same as {{primaryApplicantName}}.</label>
             </amp-checkbox>
         </div>
     </amp-form-row>
@@ -15,7 +15,7 @@
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-9/12">
             <amp-qas-address-multi
                     auto-focus-on
-                    [id]="__custom.controls[0].id"
+                    [id]="__custom.controls[1].id"
                     [controlGroup]="__controlGroup"
                     [isInSummaryState]="isInSummaryState"
                     [required]="isTheAddressRequired">
