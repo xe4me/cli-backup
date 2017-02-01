@@ -11,13 +11,13 @@ import { Subscription } from 'rxjs';
 import {
     FormBlock,
     ScrollService,
-    SaveService
+    SaveService,
+    LoginStatusService
 } from 'amp-ddc-components';
 import {
     Constants,
     SharedFormDataService,
-    EligibleAccountsService,
-    LoginStatusService
+    EligibleAccountsService
 } from '../../shared';
 @Component( {
     selector        : 'better-choice-block',
