@@ -15,8 +15,8 @@
                 "blockTitle": "And where you live...",
                 "isInitiallyActive": true,
                 "controls": [
-                    { "id": "SameThanPrimary" },
-                    { "id": "Address" }
+                    { "id": "Address" },
+                    { "id": "SameThanPrimary" }
                 ]
             }
         }
