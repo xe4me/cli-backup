@@ -65,6 +65,7 @@ export { Environments } from './src/app/abstracts/environments/environments.abst
 // Pages
 export { ErrorPageComponent } from './src/app/pages/error/error-page.component';
 export { PageSectionComponent } from './src/app/sections/page-section.component';
+export { SectionRepeaterComponent } from './src/app/sections/section-repeater/section-repeater.component';
 export { ReviewSectionComponent } from './src/app/sections/review-section/review-section.component';
 export { SaveReceiptPageComponent } from './src/app/pages/save-receipt/receipt-page.component';
 export { AmpConfirmationPageComponent } from './src/app/pages/amp-confirmation-page/amp-confirmation-page.component';

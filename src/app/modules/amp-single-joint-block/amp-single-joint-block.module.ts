@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { AmpApplicantGeneratorService } from './services/amp-applicant-generator.service';
 import { AmpSingleJointBlockComponent } from './components/amp-single-joint-block/amp-single-joint-block.component';
 
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
@@ -16,9 +15,6 @@ const DECLARATIONS = [
         AmpSharedRootModule,
         AmpGroupButtonsModule,
         AmpFormModule
-    ],
-    providers       : [
-        AmpApplicantGeneratorService,
     ],
     entryComponents : DECLARATIONS,
     exports         : DECLARATIONS
