@@ -12,7 +12,7 @@
                     [defaultValue]="defaultAccountAction"
                     [controlGroup]="__controlGroup"
                     [groupName]="__custom.controls[0].id"
-                    [required]="true">
+                    [required]="!hideBlock">
                 </amp-group-buttons>
             </div>
         </amp-form-row>
@@ -32,7 +32,7 @@
                     [label]='"Account number"'
                     [isInSummaryState]="isInSummaryState"
                     [options]="dropdownOptions"
-                    [required]="true">
+                    [required]="!hideBlock">
                 </amp-dropdown>
 
                 <amp-account-number
@@ -42,7 +42,7 @@
                     [controlGroup]="__controlGroup"
                     amp-number-only
                     [isInSummaryState]="isInSummaryState"
-                    [required]="true">
+                    [required]="!hideBlock">
                 </amp-account-number>
             </div>
         </amp-form-row>
