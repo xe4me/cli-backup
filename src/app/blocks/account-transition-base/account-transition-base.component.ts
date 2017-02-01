@@ -67,7 +67,6 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
                 this.fetchEligibleAccounts();
             });
 
-        this._cd.markForCheck();
         super.ngAfterViewInit();
     }
 
@@ -142,6 +141,10 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
                     }
                     this._cd.markForCheck();
                     this.setAccountNumberDropdownDefaultValue();
+
+                    if ( !this.hasEligibleAccounts ) {
+                        this.__controlGroup.markAsTouched();
+                    }
                 },
                 () => {});
     }
