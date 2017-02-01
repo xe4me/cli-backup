@@ -1,0 +1,8 @@
+@import '../../../../../styles/abstracts';
+
+:host {
+    @include transform(translate3d(0, 0, 0)); // just for performance
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
