@@ -5,11 +5,11 @@ import {
 } from '@angular/core';
 import {
     ScrollService,
-    SaveService
+    SaveService,
+    LoginStatusService
 } from 'amp-ddc-components';
 import {
-    EligibleAccountsService,
-    LoginStatusService
+    EligibleAccountsService
 } from '../../shared';
 import { AccountTransitionBaseBlock } from '../account-transition-base/account-transition-base.component';
 @Component( {
