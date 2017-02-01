@@ -362,7 +362,6 @@ export abstract class AmpBlockLoader {
         return this.removeAt( this.getIndex( _viewContainerRef ) );
     }
 
-
     loadNext ( _def : FormDefinition,
                _viewContainerRef : ViewContainerRef,
                options : LoadNextOptions = {
@@ -381,7 +380,6 @@ export abstract class AmpBlockLoader {
         }
         return this.loadAt( _def, index );
     }
-
 
     isBlockAlreadyLoaded ( _def : FormDefinition ) : boolean {
         return this.form.get( [ ...this.fdn, _def.name ] ) ? true : false;
@@ -409,7 +407,6 @@ export abstract class AmpBlockLoader {
         let viewRef = this.getViewRefOfViewContainerRef( _viewContainerRef );
         return this.viewContainer.indexOf( viewRef );
     }
-
 
     removeNext ( _viewContainerRef : ViewContainerRef, options : RemoveNextOptions = { removableDef : null } ) : Promise<number> {
         let index = this.getIndexOfComponent( _viewContainerRef );

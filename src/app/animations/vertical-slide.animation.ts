@@ -1,5 +1,5 @@
-import { trigger, state, style, animate, transition } from "@angular/core";
-export function VerticalSlide( duration ) {
+import { trigger, state, style, animate, transition } from '@angular/core';
+export function VerticalSlide ( duration ) {
     return trigger(
         'slideUp',
         [
@@ -25,5 +25,5 @@ export function VerticalSlide( duration ) {
             } ) ),
             transition(
                 'collapsed <=> expanded', [ animate( duration ) ] )
-        ] )
+        ] );
 }
