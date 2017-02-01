@@ -1,0 +1,20 @@
+{
+    "blockTitle": "Tell us about yourself",
+    "controls": [
+        {
+            "id": "title"
+        },
+        {
+            "id": "firstName"
+        },
+        {
+            "id": "middleName"
+        },
+        {
+            "id": "surName"
+        },
+        {
+            "id": "dateOfBirth"
+        }
+    ]
+}
