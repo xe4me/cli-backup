@@ -68,6 +68,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                 this.fetchEligibleAccounts();
             });
 
+        this.__controlGroup.markAsTouched();
         super.ngAfterViewInit();
     }
 
@@ -109,7 +110,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     private get hideBlock () : boolean {
         if ( this.isExistingCustomer ) {
             if ( this.userHasLoggedIn && !this.eligibleAccountsRequestFailed ) {
-                return this.hasOnlyDepositAccount;
+                return this.userHasNoEligibleAccountsOrOnlyDepositAccounts;
             }
             return false;
         }
@@ -142,7 +143,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     }
 
     private setDefaultAccountToTransition () {
-        if ( !this.userHasEligibleAccounts || this.hasOnlyDepositAccount ) {
+        if ( this.userHasNoEligibleAccountsOrOnlyDepositAccounts ) {
             this.betterChoiceControl.setValue( this.getBlockForAccountType('deposit') );
         }
     }
@@ -153,6 +154,10 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
 
     private get userHasEligibleAccounts () : boolean {
         return this.accountsEligibleForTransitioning && (this.hasDepositAccount || this.hasOffsetOrLoanAccount);
+    }
+
+    private get userHasNoEligibleAccountsOrOnlyDepositAccounts () : boolean {
+        return !this.userHasEligibleAccounts || this.hasOnlyDepositAccount;
     }
 
     private getBlockForAccountType ( accountType : string ) : string {
