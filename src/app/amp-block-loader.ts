@@ -17,6 +17,12 @@ export interface LoadedBlockInfo {
     fdn : Array<(string|number)>;
     name : string;
 }
+export interface LoadNextOptions {
+    allowMultiple : boolean;
+}
+export interface RemoveNextOptions {
+    removableDef : FormDefinition;
+}
 export abstract class AmpBlockLoader {
     @Input( 'fdn' ) fdn                     = [];
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.ALL ];
@@ -135,7 +141,7 @@ export abstract class AmpBlockLoader {
         if ( _blockName && this.fdn.indexOf( _blockName ) < 0 ) {
             this.fdn.push( _blockName );
         }
-        for ( let _index = 0 ; _index < this._blocks.length ; _index++ ) {
+        for ( let _index = 0; _index < this._blocks.length; _index++ ) {
             if ( _requireMethod === RequireMethod.ALL ) {
                 this.loadAllSync( this._blocks[ _index ], _index );
             } else {
@@ -207,8 +213,8 @@ export abstract class AmpBlockLoader {
             comp.__removeAt            = ( index : number ) : Promise<number> => {
                 return this.removeAt( index );
             };
-            comp.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
-                return this.removeNext( _viewContainerRef );
+            comp.__removeNext          = ( _viewContainerRef : ViewContainerRef, options? ) : Promise<number> => {
+                return this.removeNext( _viewContainerRef, options );
             };
             comp.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
                 return this.removeAllAfter( _viewContainerRef );
@@ -216,15 +222,16 @@ export abstract class AmpBlockLoader {
             comp.__removeAllAfterIndex = ( index : number ) : Promise<any> => {
                 return this.removeAllAfterIndex( index );
             };
-            comp.__removeSelf = ( _viewContainerRef : ViewContainerRef ) : Promise<any> => {
+            comp.__removeSelf          = ( _viewContainerRef : ViewContainerRef ) : Promise<any> => {
                 return this.removeSelf( _viewContainerRef );
             };
             comp.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
                 return this.getIndex( _viewContainerRef );
             };
             comp.__loadNext            = ( _def : FormDefinition,
-                                           _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
-                return this.loadNext( _def, _viewContainerRef );
+                                           _viewContainerRef : ViewContainerRef,
+                                           options? ) : Promise<ComponentRef<any>> => {
+                return this.loadNext( _def, _viewContainerRef, options );
             };
             comp.__loadAt              = ( _def : FormDefinition,
                                            index : number ) : Promise<ComponentRef<any> > => {
@@ -350,12 +357,27 @@ export abstract class AmpBlockLoader {
         return this.removeAt( this.getIndex( _viewContainerRef ) );
     }
 
-    loadNext ( _def : FormDefinition, _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> {
+    loadNext ( _def : FormDefinition,
+               _viewContainerRef : ViewContainerRef,
+               options : LoadNextOptions = {
+                   allowMultiple : false
+               } ) : Promise<ComponentRef<any>> {
+
+        if ( !options.allowMultiple ) {
+            if ( this.isBlockAlreadyLoaded( _def ) ) {
+                return Promise.resolve();
+            }
+        }
+
         let index = this.getIndex( _viewContainerRef );
         if ( index !== undefined ) {
             index++;
         }
         return this.loadAt( _def, index );
+    }
+
+    isBlockAlreadyLoaded ( _def : FormDefinition ) : boolean {
+        return this.form.get( [ ...this.fdn, _def.name ] ) ? true : false;
     }
 
     loadAllNext ( _def : FormDefinition[],
@@ -380,11 +402,17 @@ export abstract class AmpBlockLoader {
         return this.viewContainer.indexOf( viewRef );
     }
 
-    removeNext ( _viewContainerRef : ViewContainerRef ) : Promise<number> {
+    removeNext ( _viewContainerRef : ViewContainerRef, options : RemoveNextOptions = { removableDef : null } ) : Promise<number> {
         let index = this.getIndexOfComponent( _viewContainerRef );
         if ( index !== undefined ) {
             index++;
         }
+        if ( options.removableDef ) {
+            if ( this.isBlockAlreadyLoaded( options.removableDef ) ) {
+                return Promise.resolve( index );
+            }
+        }
+
         return this.removeAt( index );
     }
 

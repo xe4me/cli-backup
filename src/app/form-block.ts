@@ -16,6 +16,7 @@ import { SaveService } from './services/save/save.service';
 import { ScrollService } from './services/scroll/scroll.service';
 import { FormDefinition } from './interfaces/form-def.interface';
 import { AutoFocusOnDirective } from './modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
+import { RemoveNextOptions, LoadNextOptions } from './amp-block-loader';
 
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
@@ -53,7 +54,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     /*
      * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
      * */
-    protected __removeNext : ( viewContainerRef : ViewContainerRef ) => Promise<number>;
+    protected __removeNext : ( viewContainerRef : ViewContainerRef, options : RemoveNextOptions ) => Promise<number>;
     /*
      * __removeAllAfter : Will remove all the blocks after current block if they're in the same container
      * E.g : If you're inside menu frame , you cannot delete review block if they not in the same blocks array in
@@ -89,7 +90,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      }
      __loadNext(toBeLoadedBlock , this.viewContainerRef);
      * */
-    protected __loadNext : ( def : FormDefinition, viewContainerRef : ViewContainerRef ) => Promise<ComponentRef<any>>;
+    protected __loadNext : ( def : FormDefinition, viewContainerRef : ViewContainerRef, options? : LoadNextOptions ) => Promise<ComponentRef<any>>;
     /*
      * __loadAt
      * Same as loadNext , except load at a specific index without telling where you are(viewContainerRef)
