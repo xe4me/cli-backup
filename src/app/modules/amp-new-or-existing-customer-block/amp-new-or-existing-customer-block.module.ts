@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { AmpNewOrExistingCustomerBlockComponent } from './components/amp-new-or-existing-customer-block/amp-new-or-existing-customer-block.component';
 import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
+import { AmpSliderModule } from '../amp-slider/amp-slider.module';
 import { AmpFormModule } from '../amp-form';
-import { AmpInputsModule } from '../amp-inputs';
-import { AmpButtonModule } from '../amp-button/amp-button.module';
+import { AmpGroupButtonsModule } from '../amp-group-buttons/amp-group-buttons.module';
 
 const DECLARATIONS = [ AmpNewOrExistingCustomerBlockComponent ];
 
 @NgModule( {
-    declarations: DECLARATIONS,
-    imports: [
-        AmpButtonModule,
+    declarations    : DECLARATIONS,
+    imports         : [
         AmpSharedRootModule,
-        AmpFormModule,
-        AmpInputsModule
+        AmpSliderModule,
+        AmpGroupButtonsModule,
+        AmpFormModule
     ],
-    entryComponents: DECLARATIONS,
-    exports: DECLARATIONS
+    entryComponents : DECLARATIONS,
+    exports         : DECLARATIONS
 } )
 export class AmpNewOrExistingCustomerBlockModule {
 }
