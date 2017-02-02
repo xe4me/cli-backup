@@ -382,7 +382,7 @@ export abstract class AmpBlockLoader {
     }
 
     isBlockAlreadyLoaded ( _def : FormDefinition ) : boolean {
-        return this.form.get( [ ...this.fdn, _def.name ] ) ? true : false;
+        return !!this.form.get( [ ...this.fdn, _def.name ] );
     }
 
     loadAllNext ( _def : FormDefinition[],

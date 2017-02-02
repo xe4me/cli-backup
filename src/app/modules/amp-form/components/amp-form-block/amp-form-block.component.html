@@ -23,7 +23,7 @@
         [attr.theme]="buttonsTheme || theme"
         (click)="context.onNext()"
         [disabled]="!context?.canGoNext" class="btn btn-ok">
-        OK
+        {{ okButtonLabel }}
         </amp-button>
         <amp-button
             [context]="context"
@@ -31,7 +31,7 @@
             [attr.theme]="buttonsTheme || theme"
             (click)="context.onEdit()"
             class="btn btn-change palm-m0">
-            Change
+            {{ changeButtonLabel }}
         </amp-button>
     </div>
     <div class="hr-block-divider"></div>
