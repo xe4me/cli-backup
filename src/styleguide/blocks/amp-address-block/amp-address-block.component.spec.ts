@@ -40,6 +40,8 @@ describe('amp-address-block component', () => {
         });
 
         custom = {
+            targetApplicantRepeaterId: "applicants",
+            targetPrimaryApplicantBasicInfoId: "basicInfo",
             controls: [
                 { id: 'address' },
                 { id: 'sameThanPrimaryApplicant' }

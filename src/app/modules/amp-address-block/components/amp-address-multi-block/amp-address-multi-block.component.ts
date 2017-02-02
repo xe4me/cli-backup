@@ -49,16 +49,10 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
             return ;
         }
 
-        console.log('-----------------------------------------');
-        console.log(this.__fdn);
-        console.log('-----------------------------------------');
-
-        var applicationIndexInFdn = this.extractApplicationIndexInFdn('applicants'); // TODO in custom
+        var applicationIndexInFdn = this.extractApplicationIndexInFdn(this.__custom.targetApplicantRepeaterId); // 'applicants'
         this.currentApplicantIndex = this.extractApplicantIndex(applicationIndexInFdn);
         if (this.currentApplicantIndex > 0) {
             var primaryApplicantControlGroup = this.extractPrimaryApplicantControlGroup( applicationIndexInFdn );
-            console.log('>>>> primaryApplicantControlGroup:');
-            console.log(primaryApplicantControlGroup);
             primaryApplicantControlGroup.valueChanges.debounceTime( 500 ).subscribe( ( query ) => {
                 this.primaryApplicantModel = {
                     title: query.title ? query.title.SelectedItem : '',
@@ -74,7 +68,7 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
     private extractPrimaryApplicantControlGroup(applicationIndexInFdn) {
         let primaryApplicantFdn = this.__fdn;
         primaryApplicantFdn[applicationIndexInFdn + 1] = 0;
-        primaryApplicantFdn[primaryApplicantFdn.length - 1] = 'basicInfo'; // TODO custom or tout mettre en dur?
+        primaryApplicantFdn[primaryApplicantFdn.length - 1] = this.__custom.targetPrimaryApplicantBasicInfoId; // 'basicInfo'
         let primaryApplicantControlGroup = this.__form.get(primaryApplicantFdn);
         if (!primaryApplicantControlGroup) {
             this.logError('Cannot extract primaryApplicantControlGroup, applicationIndexInFdn: ' + applicationIndexInFdn);

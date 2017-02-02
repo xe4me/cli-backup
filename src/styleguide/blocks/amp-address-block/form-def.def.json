@@ -14,6 +14,8 @@
             "custom": {
                 "blockTitle": "And where you live...",
                 "isInitiallyActive": true,
+                "targetApplicantRepeaterId": "applicants",
+                "targetPrimaryApplicantBasicInfoId": "basicInfo",
                 "controls": [
                     { "id": "address" },
                     { "id": "sameThanPrimary" }
