@@ -20,8 +20,8 @@ let domElement;
 let ngElement;
 
 let emailControl;
-let mobileNumberControl;
-let homeNumberControl;
+let mobilePhoneControl;
+let homePhoneControl;
 
 function loadComponent() {
     fixture = TestBed.createComponent(TestComponent);
@@ -32,8 +32,8 @@ function loadComponent() {
 
     const controlGroup = ngElement.componentInstance.form.controls.contactDetails.controls;
     emailControl = controlGroup['emailAddress'];
-    mobileNumberControl = controlGroup['mobileNumber'];
-    homeNumberControl = controlGroup['homeNumber'];
+    mobilePhoneControl = controlGroup['mobilePhone'];
+    homePhoneControl = controlGroup['homePhone'];
 }
 
 function setDefaultState() {
@@ -73,8 +73,8 @@ describe('amp-contact-details-block component', () => {
             loadComponent();
             expect(component).toBeDefined();
             expect(emailControl).toBeDefined();
-            expect(mobileNumberControl).toBeDefined();
-            expect(homeNumberControl).toBeDefined();
+            expect(mobilePhoneControl).toBeDefined();
+            expect(homePhoneControl).toBeDefined();
         });
     });
 
@@ -103,8 +103,8 @@ describe('amp-contact-details-block component', () => {
             it('OK button should be disabled', () => {
                 loadComponent();
                 expect(emailControl._status).toBe('INVALID');
-                expect(mobileNumberControl._status).toBe('INVALID');
-                expect(homeNumberControl._status).toBe('VALID');
+                expect(mobilePhoneControl._status).toBe('INVALID');
+                expect(homePhoneControl._status).toBe('VALID');
                 const okButtonEl = domElement.querySelector('button');
                 expect(okButtonEl).toBeDefined();
                 expect(okButtonEl.hasAttribute('disabled')).toBe(true);
@@ -116,9 +116,9 @@ describe('amp-contact-details-block component', () => {
             }));
             it('OK button should be enabled', () => {
                 emailControl.setValue('john.doe@star.com');
-                mobileNumberControl.setValue('0401123456');
+                mobilePhoneControl.setValue('0401123456');
                 expect(emailControl._status).toBe('VALID');
-                expect(mobileNumberControl._status).toBe('VALID');
+                expect(mobilePhoneControl._status).toBe('VALID');
                 fixture.detectChanges();
                 const okButtonEl = domElement.querySelector('button');
                 expect(okButtonEl).toBeDefined();
@@ -151,13 +151,13 @@ describe('amp-contact-details-block component', () => {
                 expect(emailLabelEl).toBeDefined();
                 expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('Email');
             });
-            it('should display the default label for "Mobile number" field', () => {
-                const emailLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-mobileNumber]'));
+            it('should display the default label for "Mobile phone" field', () => {
+                const emailLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-mobilePhone]'));
                 expect(emailLabelEl).toBeDefined();
                 expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('Mobile number');
             });
-            it('should display the default label for "Home number" field', () => {
-                const emailLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-homeNumber]'));
+            it('should display the default label for "Home phone" field', () => {
+                const emailLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-homePhone]'));
                 expect(emailLabelEl).toBeDefined();
                 expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('Home number (optional)');
             });
@@ -170,19 +170,19 @@ describe('amp-contact-details-block component', () => {
                 expect(emailLabelEl).toBeDefined();
                 expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('My email');
             });
-            it('should display the customised label for "Mobile number" field', () => {
+            it('should display the customised label for "Mobile phone" field', () => {
                 setCustomOverrides('controls[1].label', 'My mobile number');
                 loadComponent();
-                const emailLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-mobileNumber]'));
-                expect(emailLabelEl).toBeDefined();
-                expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('My mobile number');
+                const mobileNumberLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-mobilePhone]'));
+                expect(mobileNumberLabelEl).toBeDefined();
+                expect(mobileNumberLabelEl.nativeElement.textContent.trim()).toEqual('My mobile number');
             });
             it('should display the customised label for "Home number" field', () => {
                 setCustomOverrides('controls[2].label', 'My home number');
                 loadComponent();
-                const emailLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-homeNumber]'));
-                expect(emailLabelEl).toBeDefined();
-                expect(emailLabelEl.nativeElement.textContent.trim()).toEqual('My home number (optional)');
+                const homeNumberLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-homePhone]'));
+                expect(homeNumberLabelEl).toBeDefined();
+                expect(homeNumberLabelEl.nativeElement.textContent.trim()).toEqual('My home number (optional)');
             });
         });
     });
@@ -199,10 +199,10 @@ describe('amp-contact-details-block component', () => {
                 expect(emailTooltip.getAttribute('ng-reflect-message')).toBe('Confirmation of your application will be sent to this email address.');
             });
             it('should display the default tooltip message for "Mobile number" field', () => {
-                const mobileNumberFormRow = domElement.querySelectorAll('amp-form-row').item(1);
-                const mobileNumberTooltip = mobileNumberFormRow.querySelector('amp-tooltip-cmp span');
-                expect(mobileNumberTooltip).toBeDefined();
-                expect(mobileNumberTooltip.getAttribute('ng-reflect-message')).toBe('A mobile phone number is required to allow AMP Bank to securely protect your account.');
+                const mobilePhoneFormRow = domElement.querySelectorAll('amp-form-row').item(1);
+                const mobilePhoneTooltip = mobilePhoneFormRow.querySelector('amp-tooltip-cmp span');
+                expect(mobilePhoneTooltip).toBeDefined();
+                expect(mobilePhoneTooltip.getAttribute('ng-reflect-message')).toBe('A mobile phone number is required to allow AMP Bank to securely protect your account.');
             });
         });
         describe('When customising tooltip messages', () => {
@@ -217,10 +217,10 @@ describe('amp-contact-details-block component', () => {
             it('should display the customised tooltip message for "Mobile number" field', () => {
                 setCustomOverrides('controls[1].tooltipMessage', 'My mobile number tooltip message');
                 loadComponent();
-                const mobileNumberFormRow = domElement.querySelectorAll('amp-form-row').item(1);
-                const mobileNumberTooltip = mobileNumberFormRow.querySelector('amp-tooltip-cmp span');
-                expect(mobileNumberTooltip).toBeDefined();
-                expect(mobileNumberTooltip.getAttribute('ng-reflect-message')).toBe('My mobile number tooltip message');
+                const mobilePhoneFormRow = domElement.querySelectorAll('amp-form-row').item(1);
+                const mobilePhoneTooltip = mobilePhoneFormRow.querySelector('amp-tooltip-cmp span');
+                expect(mobilePhoneTooltip).toBeDefined();
+                expect(mobilePhoneTooltip.getAttribute('ng-reflect-message')).toBe('My mobile number tooltip message');
             });
         });
     });
@@ -231,12 +231,12 @@ describe('amp-contact-details-block component', () => {
                 loadComponent();
             });
             it('should have the default required error message for "Mobile number" field', () => {
-                expect(mobileNumberControl.errors.required.text).toEqual('Mobile number is a required field.');
+                expect(mobilePhoneControl.errors.required.text).toEqual('Mobile number is a required field.');
             });
             it('should have the default pattern error message for "Mobile number" field', () => {
-                mobileNumberControl.setValue('Wrong number');
+                mobilePhoneControl.setValue('Wrong number');
                 fixture.detectChanges();
-                expect(mobileNumberControl._errors.pattern.text).toEqual('Mobile number must be in the format 04nnnnnnnn.');
+                expect(mobilePhoneControl._errors.pattern.text).toEqual('Mobile number must be in the format 04nnnnnnnn.');
             });
         });
         describe('When customising error messages', () => {
@@ -244,15 +244,15 @@ describe('amp-contact-details-block component', () => {
                 const customRequiredErrorMessage = 'Mobile number is a highly required field.';
                 setCustomOverrides('controls[1].errors.required', customRequiredErrorMessage);
                 loadComponent();
-                expect(mobileNumberControl.errors.required.text).toEqual(customRequiredErrorMessage);
+                expect(mobilePhoneControl.errors.required.text).toEqual(customRequiredErrorMessage);
             });
             it('should have the customised pattern error message for "Mobile number" field', () => {
                 const customPatternErrorMessage = 'Mobile number has a very specific pattern.';
                 setCustomOverrides('controls[1].errors.pattern', customPatternErrorMessage);
                 loadComponent();
-                mobileNumberControl.setValue('Wrong number');
+                mobilePhoneControl.setValue('Wrong number');
                 fixture.detectChanges();
-                expect(mobileNumberControl._errors.pattern.text).toEqual(customPatternErrorMessage);
+                expect(mobilePhoneControl._errors.pattern.text).toEqual(customPatternErrorMessage);
             });
         });
     });
