@@ -9,7 +9,7 @@ import { AmpBlockLoaderDirective } from '../../amp-block-loader-test.directive';
 
 let custom : any;
 
-fdescribe('amp-basic-info-block component', () => {
+describe('amp-basic-info-block component', () => {
 
     let fixture : ComponentFixture<TestComponent>;
     let component;
