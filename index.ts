@@ -50,6 +50,7 @@ export * from './src/app/modules/amp-progress-bars';
 export * from './src/app/modules/amp-overlay';
 export * from './src/app/modules/amp-header';
 export * from './src/app/modules/amp-loading-button';
+export * from './src/app/modules/amp-slider';
 
 // Services :
 export * from './src/app/services';
