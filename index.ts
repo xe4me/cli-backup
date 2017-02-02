@@ -18,6 +18,7 @@ export * from './src/app/modules/amp-welcome-block';
 export * from './src/app/modules/amp-contact-details-block';
 export * from './src/app/modules/amp-residency-block';
 export * from './src/app/modules/amp-retrieve-block';
+export * from './src/app/modules/amp-single-joint-block';
 export * from './src/app/modules/amp-tax-file-number-block';
 export * from './src/app/modules/amp-intro-block';
 export * from './src/app/modules/amp-review';

@@ -6,18 +6,19 @@
     "status": "NEW",
     "blocks": [
         {
-            "name": "contactDetails",
-            "blockType": "AmpContactDetailsBlockComponent",
+            "name": "addressBlock",
+            "blockType": "AmpAddressMultiBlockComponent",
             "blockLayout": "INLINE",
             "commonBlock": false,
             "path": "modules/amp-address-block/components/amp-address-multi-block/amp-address-multi-block.component",
             "custom": {
                 "blockTitle": "And where you live...",
                 "isInitiallyActive": true,
+                "targetApplicantRepeaterId": "applicants",
+                "targetPrimaryApplicantBasicInfoId": "basicInfo",
                 "controls": [
-                    {
-                        "id": "Address"
-                    }
+                    { "id": "address" },
+                    { "id": "sameThanPrimary" }
                 ]
             }
         }
