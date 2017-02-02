@@ -23,7 +23,7 @@ const custom = require('./amp-single-joint-block.json');
 } )
 export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
 
-    private __custom = custom;
+    protected __custom = custom;
     private repeater : AmpRowRepeaterComponent;
 
     constructor( saveService : SaveService,
