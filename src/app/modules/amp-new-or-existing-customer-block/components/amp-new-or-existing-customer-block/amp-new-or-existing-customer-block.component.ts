@@ -96,7 +96,7 @@ export class AmpNewOrExistingCustomerBlockComponent extends FormBlock implements
         } else {
             this.slider
                 .slide( { animate : false } )
-                .then( () => this.goNext( true ) );
+                .then( () => this.goNext( false ) );
         }
     }
 
