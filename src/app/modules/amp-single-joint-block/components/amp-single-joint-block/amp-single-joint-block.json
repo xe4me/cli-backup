@@ -1,0 +1,20 @@
+{
+    "blockTitle": "Who's this account for?",
+    "controls": {
+        "singleOrJoint": {
+            "id": "singleOrJoint",
+            "options": [
+                {
+                    "id": "single",
+                    "value": "single",
+                    "label": "Just me"
+                },
+                {
+                    "id": "joint",
+                    "value": "joint",
+                    "label": "Me and someone else"
+                }
+            ]
+        }
+    }
+}
