@@ -11,11 +11,11 @@ import { AmpRowRepeaterComponent } from '../../modules/amp-row-repeater';
                 #repeater
                 [controlGroup]="__controlGroup"
                 [hasButtons]="false"
-                [initialRowCount]="__child_blocks.blocks.length"
-                [id]="__child_blocks.id"
+                [initialRowCount]="__custom.initialRowCount"
+                [id]="__child_blocks.blocks[0].name"
                 [context]="context()">
             <template let-index="index" let-controlGroup="controlGroup">
-                <div [amp-block-loader]="__child_blocks"
+                <div [amp-block-loader]="__child_blocks.blocks[0]"
                      [fdn]="controlGroup.__fdn"
                      [form]="__form">
                 </div>

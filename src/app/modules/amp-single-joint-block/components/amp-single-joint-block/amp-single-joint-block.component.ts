@@ -12,6 +12,9 @@ import { SectionRepeaterComponent } from '../../../../sections/section-repeater/
 import { FormBlock } from '../../../../form-block';
 import { SaveService, ScrollService } from '../../../../services';
 import { AmpRowRepeaterComponent } from '../../../amp-row-repeater';
+
+const custom = require('./amp-single-joint-block.json');
+
 @Component( {
     selector        : 'amp-single-joint-block',
     template        : require( './amp-single-joint-block.component.html' ),
@@ -20,6 +23,7 @@ import { AmpRowRepeaterComponent } from '../../../amp-row-repeater';
 } )
 export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, AfterViewInit, OnDestroy {
 
+    protected __custom = custom;
     private repeater : AmpRowRepeaterComponent;
 
     constructor( saveService : SaveService,

@@ -35,48 +35,59 @@
                 },
                 "optionalBlocks" : {
                     "repeater" : {
-                        "id"        : "applicants",
                         "blockType"   : "SectionRepeaterComponent",
                         "blockLayout" : "INLINE",
                         "commonBlock" : false,
                         "path"        : "sections/section-repeater/section-repeater.component",
+                        "custom"      : {
+                            "initialRowCount" : 1
+                        },
                         "blocks"      : [
                             {
-                                "name"        : "personalDetails",
-                                "blockType"   : "PageSectionComponent",
-                                "blockLayout" : "SECTION",
+                                "name"        : "applicants",
+                                "blockType"   : "SectionComponent",
+                                "blockLayout" : "INLINE",
                                 "commonBlock" : false,
                                 "path"        : "sections/page-section.component",
-                                "custom"      : {
-                                    "label" : "Personal Details"
-                                },
-                                "blocks"      : [
+                                "blocks":[
                                     {
-                                        "name"        : "basicInfo",
-                                        "blockType"   : "AmpBasicInfoBlockComponent",
-                                        "blockLayout" : "INLINE",
+                                        "name"        : "personalDetails",
+                                        "blockType"   : "PageSectionComponent",
+                                        "blockLayout" : "SECTION",
                                         "commonBlock" : false,
-                                        "path"        : "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                                        "path"        : "sections/page-section.component",
                                         "custom"      : {
-                                            "blockTitle" : "Tell us about yourself",
-                                            "controls"   : [
-                                                {
-                                                    "id" : "title"
-                                                },
-                                                {
-                                                    "id" : "firstName"
-                                                },
-                                                {
-                                                    "id" : "middleName"
-                                                },
-                                                {
-                                                    "id" : "surName"
-                                                },
-                                                {
-                                                    "id" : "dateOfBirth"
+                                            "label" : "Personal Details"
+                                        },
+                                        "blocks"      : [
+                                            {
+                                                "name"        : "basicInfo",
+                                                "blockType"   : "AmpBasicInfoBlockComponent",
+                                                "blockLayout" : "INLINE",
+                                                "commonBlock" : false,
+                                                "path"        : "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                                                "custom"      : {
+                                                    "blockTitle" : "Tell us about yourself",
+                                                    "controls"   : [
+                                                        {
+                                                            "id" : "title"
+                                                        },
+                                                        {
+                                                            "id" : "firstName"
+                                                        },
+                                                        {
+                                                            "id" : "middleName"
+                                                        },
+                                                        {
+                                                            "id" : "surName"
+                                                        },
+                                                        {
+                                                            "id" : "dateOfBirth"
+                                                        }
+                                                    ]
                                                 }
-                                            ]
-                                        }
+                                            }
+                                        ]
                                     }
                                 ]
                             }

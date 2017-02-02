@@ -61,7 +61,7 @@ export const AMP_MODULES = [
     AmpCardsModule,
     AmpRetrieveBlockModule,
     AmpSaveCloseBlockModule,
-    AmpNewOrExistingCustomerBlockModule,
     AmpSingleJointBlockModule,
+    AmpNewOrExistingCustomerBlockModule,
     AmpTabsModule
 ];
