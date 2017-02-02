@@ -100,9 +100,10 @@ export abstract class AmpBlockLoader {
             for (let i = 0; i < this.viewContainer.length; i++) {
                 if (this.viewContainer.get(i)['fdn'].join('') === _fdn.join('')) {
                     this.viewContainer.remove(i);
-                    return resolve( _fdn );
+                    break;
                 }
             }
+            resolve( _fdn );
         } );
     }
 
