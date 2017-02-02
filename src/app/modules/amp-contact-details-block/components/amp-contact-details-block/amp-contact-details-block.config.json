@@ -8,7 +8,7 @@
             "tooltipMessage": "Confirmation of your application will be sent to this email address."
         },
         {
-            "id": "mobileNumber",
+            "id": "mobilePhone",
             "label": "Mobile number",
             "required": true,
             "tooltipMessage": "A mobile phone number is required to allow AMP Bank to securely protect your account.",
@@ -18,7 +18,7 @@
             }
         },
         {
-            "id": "homeNumber",
+            "id": "homePhone",
             "label": "Home number",
             "required": false
         }

@@ -2,9 +2,12 @@
 amp-intro-block {
     background-repeat: no-repeat;
     background-size: cover;
+    @include media-query(lap-and-up) {
+        background-position-y: 70px;
+    }
     background-color: transparent;
     min-height: 893px;
-    padding: 69px 0px !important;
+    padding-top: 69px !important;
 
     .intro-message-heading {
         margin-bottom: 0;
@@ -15,6 +18,10 @@ amp-intro-block {
         font-family: "Archer SSm A", "Archer SSm B", "Open Sans", "Helvetica", "Arial", serif;
         font-weight: 400;
         color: #001e41;
+        @include media-query(palm) {
+            line-height: 45px;
+            font-size: 35px;
+        }
     }
     .header-container {
         background-color: $amp-colour-primary;
@@ -37,6 +44,16 @@ amp-intro-block {
             margin-bottom: 10px;
         }
     }
+    @include media-query(tablet-and-down) {
+        amp-button {
+            button.btn {
+                margin-top: 20px !important;
+            }
+        }
+    }
+
+    
+
     @include media-query(tablet-and-up) {
         // buttons have a !important margin-top and we somehow need to override them in this case
         #title-scenario {
@@ -66,17 +83,20 @@ amp-intro-block {
             font-size: $font-size-small;
             line-height: 30px;
         }
-        amp-button {
-            button.btn {
-                margin-top: 20px !important;
-            }
-        }
     }
 
     .intro-container {
         margin-left: 55px;
-        @include media-query(palm) {
-            margin: 0;
+        @include media-query(lap-and-up) {
+            .intro-block-button-container {
+                margin-top: 60px !important;
+            }
+        }
+    }
+
+    @include media-query(palm) {
+        .intro-container.mt\+\+ {
+            margin: 115px 0px !important;
         }
     }
 
@@ -132,6 +152,9 @@ amp-intro-block {
                         }
                 }
             }
+        }
+        @include media-query(palm) {
+            margin-top: 40px;
         }
     }
 }

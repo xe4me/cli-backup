@@ -7,6 +7,9 @@
 }
 
 .icon-amp-tooltip {
+    cursor: pointer;
+    position: relative;
+
     @include hover-focus {
         color : $amp-colour-secondary;
     }
