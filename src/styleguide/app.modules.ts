@@ -29,6 +29,7 @@ import { AmpRetrieveBlockModule } from 'app/modules/amp-retrieve-block';
 import { AmpSaveCloseBlockModule } from '../app/modules/amp-save-close-block/amp-save-close-block.module';
 import { AmpTabsModule } from '../app/modules/amp-tabs';
 import { AmpSingleJointBlockModule } from '../app/modules/amp-single-joint-block/amp-single-joint-block.module';
+import { AmpNewOrExistingCustomerBlockModule } from '../app/modules/amp-new-or-existing-customer-block';
 
 export const AMP_MODULES = [
     AmpTooltipModule.forRoot(),
@@ -60,6 +61,7 @@ export const AMP_MODULES = [
     AmpCardsModule,
     AmpRetrieveBlockModule,
     AmpSaveCloseBlockModule,
+    AmpNewOrExistingCustomerBlockModule,
     AmpSingleJointBlockModule,
     AmpTabsModule
 ];
