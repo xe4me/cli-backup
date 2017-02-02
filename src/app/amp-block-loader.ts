@@ -94,6 +94,18 @@ export abstract class AmpBlockLoader {
         } );
     }
 
+    removeByFdn ( _fdn : Array<string | number> ) : Promise<any> {
+        return new Promise( ( resolve ) => {
+
+            for (let i = 0; i < this.viewContainer.length; i++) {
+                if (this.viewContainer.get(i)['fdn'].join('') === _fdn.join('')) {
+                    this.viewContainer.remove(i);
+                    return resolve( _fdn );
+                }
+            }
+        } );
+    }
+
     loadAt ( _def : FormDefinition, _index : number ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve, reject ) => {
             let waitForChunk = this.requireFile( _def );
@@ -179,6 +191,9 @@ export abstract class AmpBlockLoader {
             let childsLoadedSubscription;
             let comp            = _componentRef.instance;
             let _fdn            = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
+
+            _componentRef.hostView['fdn'] = _fdn;
+
             comp.__child_blocks = _blockDef;
             comp.__form         = this.form;
             comp.__loader       = this;
@@ -217,6 +232,9 @@ export abstract class AmpBlockLoader {
             }
             comp.__removeAt            = ( index : number ) : Promise<number> => {
                 return this.removeAt( index );
+            };
+            comp.__removeByFdn         = ( fdn : Array<string | number> ) : Promise<any> => {
+                return this.removeByFdn( fdn );
             };
             comp.__removeNext          = ( _viewContainerRef : ViewContainerRef, options? ) : Promise<number> => {
                 return this.removeNext( _viewContainerRef, options );
@@ -387,6 +405,7 @@ export abstract class AmpBlockLoader {
 
     loadAllNext ( _def : FormDefinition[],
                   _viewContainerRef : ViewContainerRef ) : Promise<any> {
+
         let promises = [];
         if ( _def && _def.length ) {
             let index = this.getIndex( _viewContainerRef );
