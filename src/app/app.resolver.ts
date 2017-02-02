@@ -12,6 +12,7 @@ import {
     HydrationService,
     SaveAndSubmitService,
     SubmitService,
+    LoginStatusService,
     AmpHttpService,
     CustomerDetailsService
 } from 'amp-ddc-components';
@@ -24,6 +25,7 @@ export const APP_RESOLVER_PROVIDERS = [
     HydrationService,
     SaveAndSubmitService,
     SubmitService,
+    LoginStatusService,
     AmpHttpService,
     BrowserDomAdapter,
     SharedFormDataService,
