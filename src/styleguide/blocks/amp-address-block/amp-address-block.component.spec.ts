@@ -24,8 +24,8 @@ function loadComponent() {
     ngElement = fixture.debugElement;
 
     const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
-    addressControl = controlGroup['Address'];
-    sameThanPrimaryApplicantControl = controlGroup['SameThanPrimary'];
+    addressControl = controlGroup['address'];
+    sameThanPrimaryApplicantControl = controlGroup['sameThanPrimary'];
 }
 
 describe('amp-address-block component', () => {
@@ -41,8 +41,8 @@ describe('amp-address-block component', () => {
 
         custom = {
             controls: [
-                { id: 'SameThanPrimaryApplicant' },
-                { id: 'Address' }
+                { id: 'address' },
+                { id: 'sameThanPrimaryApplicant' }
             ]
         };
     }));

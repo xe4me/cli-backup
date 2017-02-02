@@ -4,7 +4,6 @@ import {
     ChangeDetectionStrategy,
     OnInit
 } from '@angular/core';
-import { get }from 'lodash';
 import { FormBlock } from '../../../../form-block';
 import { ScrollService, SaveService } from '../../../../services';
 
@@ -16,6 +15,8 @@ import { ScrollService, SaveService } from '../../../../services';
 export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
 
     private sameThanPrimaryApplicant : boolean = true;
+
+    public currentApplicantIndex = 0;
     private primaryApplicantModel;
 
     private defaultValues = [
@@ -29,22 +30,56 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
 
     constructor( saveService : SaveService ,
                  _cd : ChangeDetectorRef ,
-                 scrollService : ScrollService ) {
+                 scrollService : ScrollService) {
         super( saveService, _cd, scrollService );
     }
 
     ngOnInit() {
-        // Set default values if no custom ones from form-def...
         this.defaultValues.forEach((control, index) => {
             control.forEach((prop) => {
                 this.setIfNot(this.__custom.controls[index], prop.attr, prop.defaultVal);
             });
         });
+    }
 
-        console.log(this.__custom);
-        console.log(this.__form);
-        console.log(this.__custom.applicantIndex); // undef
-        this.primaryApplicantModel = this.extractPrimaryApplicantModel();
+    ngAfterViewInit() {
+        super.ngAfterViewInit();
+
+        if (!this.__fdn) {
+            return ;
+        }
+
+        console.log('-----------------------------------------');
+        console.log(this.__fdn);
+        console.log('-----------------------------------------');
+
+        var applicationIndexInFdn = this.extractApplicationIndexInFdn('applicants'); // TODO in custom
+        this.currentApplicantIndex = this.extractApplicantIndex(applicationIndexInFdn);
+        if (this.currentApplicantIndex > 0) {
+            var primaryApplicantControlGroup = this.extractPrimaryApplicantControlGroup( applicationIndexInFdn );
+            console.log('>>>> primaryApplicantControlGroup:');
+            console.log(primaryApplicantControlGroup);
+            primaryApplicantControlGroup.valueChanges.debounceTime( 500 ).subscribe( ( query ) => {
+                this.primaryApplicantModel = {
+                    title: query.title ? query.title.SelectedItem : '',
+                    firstName: query.firstName ? query.firstName : '',
+                    surName: query.surName ? query.surName : ''
+                };
+            } );
+        }
+
+
+    }
+
+    private extractPrimaryApplicantControlGroup(applicationIndexInFdn) {
+        let primaryApplicantFdn = this.__fdn;
+        primaryApplicantFdn[applicationIndexInFdn + 1] = 0;
+        primaryApplicantFdn[primaryApplicantFdn.length - 1] = 'basicInfo'; // TODO custom or tout mettre en dur?
+        let primaryApplicantControlGroup = this.__form.get(primaryApplicantFdn);
+        if (!primaryApplicantControlGroup) {
+            this.logError('Cannot extract primaryApplicantControlGroup, applicationIndexInFdn: ' + applicationIndexInFdn);
+        }
+        return primaryApplicantControlGroup;
     }
 
     private setIfNot(control, attr, defaultValue) {
@@ -53,37 +88,48 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
         }
     }
 
-    get isPrimaryApplicant () {
-        return this.primaryApplicantModel === null;
+    private logError ( messsage ) {
+        console.log( '[ERROR][' + this.__fdn + '] ' + messsage );
+        console.log( this.__form.value );
     }
 
-    get isTheAddressRequired () {
-        return this.isPrimaryApplicant !== null || !this.sameThanPrimaryApplicant;
+    private extractApplicationIndexInFdn ( key ) {
+        let keyIndex = this.__fdn.lastIndexOf( key );
+        if (keyIndex < 0) {
+            this.logError('Cannot find applicationIndexInFdn, key: ' + key);
+            return -1;
+        }
+        return keyIndex;
+    }
+
+    private extractApplicantIndex ( keyIndex ) {
+        let currentApplicantIndexStr = this.__fdn[ keyIndex + 1 ];
+        let currentApplicantIndex = Number(currentApplicantIndexStr);
+        if (!(currentApplicantIndex >= 0)) {
+            this.logError('CurrentApplicantIndex is invalid, expected a number, got: ' + currentApplicantIndexStr + ', keyIndex was: ' + keyIndex);
+            return -1;
+        }
+        return currentApplicantIndex;
+    }
+
+    get isPrimaryApplicant () {
+        return this.currentApplicantIndex === 0;
     }
 
     get primaryApplicantName () {
-        return this.primaryApplicantModel.title + ' ' + this.primaryApplicantModel.firstName + ' ' + this.primaryApplicantModel.lastName;
+        if (!this.primaryApplicantModel) {
+            return '';
+        }
+        return this.primaryApplicantModel.title + ' ' + this.primaryApplicantModel.firstName + ' ' + this.primaryApplicantModel.surName;
+    }
+
+    get isTheAddressRequired () {
+        return this.isPrimaryApplicant || !this.sameThanPrimaryApplicant;
     }
 
     private onSameThanPrimaryApplicantCheckboxSelect ( $event ) {
         this.sameThanPrimaryApplicant = $event.target.checked;
         this._cd.detectChanges();
-    }
-
-    private extractPrimaryApplicantModel () {
-        // TODO to activate the feature
-        if (1 === 1 + 2) {
-            return null;
-        }
-        let rootApplicantFDN = '';
-        if (this.__custom.rootApplicantFDN && this.__custom.applicantIndex) {
-            rootApplicantFDN = this.__custom.rootApplicantFDN + this.__custom.applicantIndex;
-        }
-        return {
-            title: get( this.__form.value, rootApplicantFDN + this.__custom.titleFDN, '' ),
-            firstName: get( this.__form.value, rootApplicantFDN + this.__custom.firstNameFDN, '' ),
-            lastName: get( this.__form.value, rootApplicantFDN + this.__custom.lastNameFDN, '' )
-        };
     }
 
 }

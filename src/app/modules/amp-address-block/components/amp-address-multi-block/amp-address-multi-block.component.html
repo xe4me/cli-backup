@@ -1,5 +1,5 @@
 <amp-form-block [headingClass]="'mb0'" [context]="context()" buttonsTheme="tools">
-    <amp-form-row *ngIf='isPrimaryApplicant === null'>
+    <amp-form-row *ngIf='!isPrimaryApplicant'>
         <div class='mb-- grid__item_floated 1/1'>
             <amp-checkbox class="mt"
                 [isInSummaryState]="isInSummaryState"
