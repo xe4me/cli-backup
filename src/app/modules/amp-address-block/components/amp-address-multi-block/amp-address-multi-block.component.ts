@@ -7,16 +7,16 @@ import {
 import { FormBlock } from '../../../../form-block';
 import { ScrollService, SaveService } from '../../../../services';
 
-@Component({
-    selector        : 'amp-address-multi-block',
-    template        : require('./amp-address-multi-block.component.html'),
-    changeDetection : ChangeDetectionStrategy.OnPush
-})
+@Component( {
+    selector: 'amp-address-multi-block',
+    template: require( './amp-address-multi-block.component.html' ),
+    changeDetection: ChangeDetectionStrategy.OnPush
+} )
 export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
 
     private sameThanPrimaryApplicant : boolean = true;
 
-    public currentApplicantIndex = 0;
+    private currentApplicantIndex = 0;
     private primaryApplicantModel;
 
     private defaultValues = [
@@ -28,31 +28,31 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
         ]
     ];
 
-    constructor( saveService : SaveService ,
-                 _cd : ChangeDetectorRef ,
-                 scrollService : ScrollService) {
+    constructor ( saveService : SaveService,
+                  _cd : ChangeDetectorRef,
+                  scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
     }
 
-    ngOnInit() {
-        this.defaultValues.forEach((control, index) => {
-            control.forEach((prop) => {
-                this.setIfNot(this.__custom.controls[index], prop.attr, prop.defaultVal);
-            });
-        });
+    ngOnInit () {
+        this.defaultValues.forEach( ( control, index ) => {
+            control.forEach( ( prop ) => {
+                this.setIfNot( this.__custom.controls[ index ], prop.attr, prop.defaultVal );
+            } );
+        } );
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit () {
         super.ngAfterViewInit();
 
         if (!this.__fdn) {
-            return ;
+            return;
         }
 
-        var applicationIndexInFdn = this.extractApplicationIndexInFdn(this.__custom.targetApplicantRepeaterId); // 'applicants'
-        this.currentApplicantIndex = this.extractApplicantIndex(applicationIndexInFdn);
+        let applicationIndexInFdn = this.extractApplicationIndexInFdn( this.__custom.targetApplicantRepeaterId ); // 'applicants'
+        this.currentApplicantIndex = this.extractApplicantIndex( applicationIndexInFdn );
         if (this.currentApplicantIndex > 0) {
-            var primaryApplicantControlGroup = this.extractPrimaryApplicantControlGroup( applicationIndexInFdn );
+            let primaryApplicantControlGroup = this.extractPrimaryApplicantControlGroup( applicationIndexInFdn );
             primaryApplicantControlGroup.valueChanges.debounceTime( 500 ).subscribe( ( query ) => {
                 this.primaryApplicantModel = {
                     title: query.title ? query.title.SelectedItem : '',
@@ -61,24 +61,22 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
                 };
             } );
         }
-
-
     }
 
-    private extractPrimaryApplicantControlGroup(applicationIndexInFdn) {
+    private extractPrimaryApplicantControlGroup ( applicationIndexInFdn ) {
         let primaryApplicantFdn = this.__fdn;
-        primaryApplicantFdn[applicationIndexInFdn + 1] = 0;
-        primaryApplicantFdn[primaryApplicantFdn.length - 1] = this.__custom.targetPrimaryApplicantBasicInfoId; // 'basicInfo'
-        let primaryApplicantControlGroup = this.__form.get(primaryApplicantFdn);
+        primaryApplicantFdn[ applicationIndexInFdn + 1 ] = 0;
+        primaryApplicantFdn[ primaryApplicantFdn.length - 1 ] = this.__custom.targetPrimaryApplicantBasicInfoId; // 'basicInfo'
+        let primaryApplicantControlGroup = this.__form.get( primaryApplicantFdn );
         if (!primaryApplicantControlGroup) {
-            this.logError('Cannot extract primaryApplicantControlGroup, applicationIndexInFdn: ' + applicationIndexInFdn);
+            this.logError( 'Cannot extract primaryApplicantControlGroup, applicationIndexInFdn: ' + applicationIndexInFdn );
         }
         return primaryApplicantControlGroup;
     }
 
-    private setIfNot(control, attr, defaultValue) {
-        if (control[attr] === undefined) {
-            control[attr] = defaultValue;
+    private setIfNot ( control, attr, defaultValue ) {
+        if (control[ attr ] === undefined) {
+            control[ attr ] = defaultValue;
         }
     }
 
@@ -90,7 +88,7 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
     private extractApplicationIndexInFdn ( key ) {
         let keyIndex = this.__fdn.lastIndexOf( key );
         if (keyIndex < 0) {
-            this.logError('Cannot find applicationIndexInFdn, key: ' + key);
+            this.logError( 'Cannot find applicationIndexInFdn, key: ' + key );
             return -1;
         }
         return keyIndex;
@@ -98,9 +96,9 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
 
     private extractApplicantIndex ( keyIndex ) {
         let currentApplicantIndexStr = this.__fdn[ keyIndex + 1 ];
-        let currentApplicantIndex = Number(currentApplicantIndexStr);
+        let currentApplicantIndex = Number( currentApplicantIndexStr );
         if (!(currentApplicantIndex >= 0)) {
-            this.logError('CurrentApplicantIndex is invalid, expected a number, got: ' + currentApplicantIndexStr + ', keyIndex was: ' + keyIndex);
+            this.logError( 'CurrentApplicantIndex is invalid, expected a number, got: ' + currentApplicantIndexStr + ', keyIndex was: ' + keyIndex );
             return -1;
         }
         return currentApplicantIndex;
