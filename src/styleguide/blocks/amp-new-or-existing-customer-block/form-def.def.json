@@ -12,15 +12,9 @@
             "commonBlock": false,
             "path": "modules/amp-new-or-existing-customer-block/components/amp-new-or-existing-customer-block/amp-new-or-existing-customer-block.component",
             "custom": {
-                "isInitiallyActive": true,
-                "blockTitle": "Tell us whether you're new to AMP",
-                "newButtonLabel": "New customer",
-                "existingButtonLabel": "Current customer",
-                "controls": [
-                    {
-                        "id": "ampNewOrExistingCustomer"
-                    }
-                ]
+                "overrides": {
+                    "isInitiallyActive": true
+                }
             }
         }
     ]
