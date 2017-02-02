@@ -1,7 +1,6 @@
 {
     "extends": "tslint:recommended",
     "rules": {
-
         // Overrides of tslint:recommended
         "arrow-parens": true,
         "max-line-length": [
@@ -10,9 +9,10 @@
         ],
         "no-empty": false,
         "no-string-literal": false, // This is needed for accessing Angular Controls
-        "no-unused-variable": false,
         "no-var-requires": false, // Allow for .json files to be required
         "object-literal-sort-keys": false,
+        "object-literal-shorthand": false,
+        "ordered-imports": false,
         "quotemark": [
             true,
             "single"
@@ -34,10 +34,11 @@
                 "variable-declaration": "onespace"
             }
         ],
-        "variable-name": [true,
+        "variable-name": [
+            true,
             "ban-keywords",
-            // This rule is commented out as this rule doesn't allow for double leading underscores. I have raised an
-            // issue with TSLint re this: https://github.com/palantir/tslint/issues/1605
+            // This rule is commented out as this rule doesn't allow for double leading underscores. An issue has been
+            // raised with TSLint re this: https://github.com/palantir/tslint/issues/1605
             // "check-format",
             "allow-leading-underscore",
             "allow-pascal-case"
