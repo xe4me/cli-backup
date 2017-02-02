@@ -1,18 +1,80 @@
 {
-    "blockTitle": "Who's this account for?",
-    "controls": {
-        "singleOrJoint": {
-            "id": "singleOrJoint",
-            "options": [
+    "blockTitle"     : "Who's this account for?",
+    "isInitiallyActive": true,
+    "controls"       : {
+        "singleOrJoint" : {
+            "id"    : "singleOrJoint",
+            "options" : [
                 {
-                    "id": "single",
-                    "value": "single",
-                    "label": "Just me"
+                    "id"    : "single",
+                    "value" : "single",
+                    "label" : "Just me"
                 },
                 {
-                    "id": "joint",
-                    "value": "joint",
-                    "label": "Me and someone else"
+                    "id"    : "joint",
+                    "value" : "joint",
+                    "label" : "Me and someone else"
+                }
+            ]
+        }
+    },
+    "optionalBlocks" : {
+        "repeater" : {
+            "blockType"   : "SectionRepeaterComponent",
+            "blockLayout" : "INLINE",
+            "commonBlock" : false,
+            "path"        : "sections/section-repeater/section-repeater.component",
+            "custom"      : {
+                "initialRowCount" : 1
+            },
+            "blocks"      : [
+                {
+                    "name"        : "applicants",
+                    "blockType"   : "SectionComponent",
+                    "blockLayout" : "INLINE",
+                    "commonBlock" : false,
+                    "path"        : "sections/page-section.component",
+                    "blocks":[
+                        {
+                            "name"        : "personalDetails",
+                            "blockType"   : "PageSectionComponent",
+                            "blockLayout" : "SECTION",
+                            "commonBlock" : false,
+                            "path"        : "sections/page-section.component",
+                            "custom"      : {
+                                "label" : "Personal Details"
+                            },
+                            "blocks"      : [
+                                {
+                                    "name"        : "basicInfo",
+                                    "blockType"   : "AmpBasicInfoBlockComponent",
+                                    "blockLayout" : "INLINE",
+                                    "commonBlock" : false,
+                                    "path"        : "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                                    "custom"      : {
+                                        "blockTitle" : "Tell us about yourself",
+                                        "controls"   : [
+                                            {
+                                                "id" : "title"
+                                            },
+                                            {
+                                                "id" : "firstName"
+                                            },
+                                            {
+                                                "id" : "middleName"
+                                            },
+                                            {
+                                                "id" : "surName"
+                                            },
+                                            {
+                                                "id" : "dateOfBirth"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
