@@ -97,9 +97,9 @@ export abstract class AmpBlockLoader {
     removeByFdn ( _fdn : Array<string | number> ) : Promise<any> {
         return new Promise( ( resolve ) => {
 
-            for (let i = 0; i < this.viewContainer.length; i++) {
-                if (this.viewContainer.get(i)['fdn'].join('') === _fdn.join('')) {
-                    this.viewContainer.remove(i);
+            for ( let i = 0; i < this.viewContainer.length; i++ ) {
+                if ( this.viewContainer.get( i )[ 'fdn' ].join( '' ) === _fdn.join( '' ) ) {
+                    this.viewContainer.remove( i );
                     break;
                 }
             }
@@ -108,10 +108,12 @@ export abstract class AmpBlockLoader {
     }
 
     removeByName ( _name : string ) : Promise<any> {
-        if (!_name) {
-            return new Promise((resolve) => { resolve(); });
+        if ( !_name ) {
+            return new Promise( ( resolve ) => {
+                resolve();
+            } );
         }
-        return this.removeByFdn([...this.fdn, _name]);
+        return this.removeByFdn( [ ...this.fdn, _name ] );
     }
 
     loadAt ( _def : FormDefinition, _index : number ) : Promise<ComponentRef<any>> {
@@ -197,10 +199,10 @@ export abstract class AmpBlockLoader {
                    _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve ) => {
             let childsLoadedSubscription;
-            let comp            = _componentRef.instance;
-            let _fdn            = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
+            let comp = _componentRef.instance;
+            let _fdn = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
 
-            _componentRef.hostView['fdn'] = _fdn;
+            _componentRef.hostView[ 'fdn' ] = _fdn;
 
             comp.__child_blocks = _blockDef;
             comp.__form         = this.form;
@@ -445,7 +447,7 @@ export abstract class AmpBlockLoader {
         if ( options.removableDef ) {
             if ( this.isBlockAlreadyLoaded( options.removableDef ) ) {
                 return Promise.resolve( index );
-            }else{
+            } else {
                 return Promise.resolve( null );
             }
         }
