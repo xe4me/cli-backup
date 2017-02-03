@@ -1,17 +1,20 @@
 <div (keyup.enter)="onKeyupEnter($event)" class="FormBlocK" #formBlock>
     <amp-overlay [active]="!context?.isActive" *ngIf="withOverlay"></amp-overlay>
-    <h2
-        *ngIf="context?.__custom.blockTitle"
-        class="heading js-heading heading-intro {{ headingClass }}"
-        [class.has-heading-tooltip]="tooltip.children.length > 0"
-        [innerHtml]="context?.__custom.blockTitle"
-        tabindex="-1">
-    </h2>
 
-    <div
-        #tooltip
-        class="heading-tooltip__wrapper">
-        <ng-content select=".heading-tooltip"></ng-content>
+    <div class="heading__wrapper">
+        <h2
+            *ngIf="context?.__custom.blockTitle"
+            class="heading js-heading heading-intro {{ headingClass }}"
+            [class.has-heading-tooltip]="tooltip.children.length > 0"
+            [innerHtml]="context?.__custom.blockTitle"
+            tabindex="-1">
+        </h2>
+
+        <div
+            #tooltip
+            class="heading-tooltip__wrapper"><!-- comments to remove all whitespace
+        --><ng-content select=".heading-tooltip"></ng-content><!--
+    --></div>
     </div>
 
     <ng-content></ng-content>
