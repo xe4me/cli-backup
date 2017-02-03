@@ -445,6 +445,8 @@ export abstract class AmpBlockLoader {
         if ( options.removableDef ) {
             if ( this.isBlockAlreadyLoaded( options.removableDef ) ) {
                 return Promise.resolve( index );
+            }else{
+                return Promise.resolve( null );
             }
         }
 
