@@ -63,6 +63,10 @@ export class RootEnvProperty {
         secretkey : string; // Use this for communication between your site and Google.
     };
 
+    // USI validation service provided by ES&I https://secure-uat.amp.com.au/services/secure/ddcService/1.0.0/validateUSI
+    USIValidationServiceUrl : string; // /ddcService/1.0.0/validateUSI
+    USIValidationKey : string; // Bearer 9Lw_2eaUjy1YGfQWfkNnyz31CToa
+
     constructor () {
         if (_process_env) {
             Object.assign(this, _process_env);
