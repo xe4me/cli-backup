@@ -57,13 +57,10 @@ amp-form-row > .form__row > .grid__container > .grid__item_floated {
     margin-top : $default-margin;
 }
 
-.heading-intro {
-    & + amp-form-row,
-    & + .heading-tooltip__wrapper + amp-form-row {
-        margin-top : -1 * $default-margin;
+.heading__wrapper + amp-form-row {
+    margin-top : -1 * $default-margin;
 
-        @include media-query(palm) {
-            margin-top : -30px;
-        }
+    @include media-query(palm) {
+        margin-top : -30px;
     }
 }
