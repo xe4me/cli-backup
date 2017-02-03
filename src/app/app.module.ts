@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import {
     NgModule,
-    Renderer
+    Renderer, CUSTOM_ELEMENTS_SCHEMA
 } from '@angular/core';
 import {
     FormsModule,
@@ -36,7 +36,8 @@ const IMPORTS = [
         BrowserDomAdapter,
         ...APP_RESOLVER_PROVIDERS
     ],
-    bootstrap       : [ AppComponent ]
+    bootstrap       : [ AppComponent ],
+    exports: DYNAMIC_BLOCKS
 } )
 export class AppModule {
 }

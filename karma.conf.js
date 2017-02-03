@@ -7,8 +7,8 @@ module.exports = function (config) {
         frameworks: ['jasmine', 'angular-cli'],
         plugins: [
             require('karma-jasmine'),
-//      require('karma-chrome-launcher'),
-            require('karma-phantomjs-launcher'),
+     require('karma-chrome-launcher'),
+            // require('karma-phantomjs-launcher'),
             require('karma-remap-istanbul'),
             require('amp-angular-cli/plugins/karma'),
             require('karma-coverage'),
@@ -50,9 +50,9 @@ module.exports = function (config) {
         },
         port: 9876,
         colors: true,
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DEBUG,
         autoWatch: true,
-        browsers: ['PhantomJS'],
-        singleRun: true
+        browsers: ['Chrome'],
+        singleRun: false
     });
 };
