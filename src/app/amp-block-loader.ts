@@ -107,6 +107,13 @@ export abstract class AmpBlockLoader {
         } );
     }
 
+    removeByName ( _name : string ) : Promise<any> {
+        if (!_name) {
+            return new Promise((resolve) => { resolve(); });
+        }
+        return this.removeByFdn([...this.fdn, _name]);
+    }
+
     loadAt ( _def : FormDefinition, _index : number ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve, reject ) => {
             let waitForChunk = this.requireFile( _def );
@@ -236,6 +243,9 @@ export abstract class AmpBlockLoader {
             };
             comp.__removeByFdn         = ( fdn : Array<string | number> ) : Promise<any> => {
                 return this.removeByFdn( fdn );
+            };
+            comp.__removeByName        = ( name : string ) : Promise<any> => {
+                return this.removeByName( name );
             };
             comp.__removeNext          = ( _viewContainerRef : ViewContainerRef, options? ) : Promise<number> => {
                 return this.removeNext( _viewContainerRef, options );
