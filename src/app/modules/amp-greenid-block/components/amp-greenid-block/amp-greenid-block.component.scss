@@ -95,7 +95,7 @@ amp-greenid-block {
                 font-size: 18px;
             }
 
-            &.btn-default {
+            &.btn-default#greenid-source-cancel {
                 background-color: transparent !important;
                 color: $amp-colour-secondary;
                 min-height: 33px;
@@ -114,7 +114,7 @@ amp-greenid-block {
 
                 &:active {
                     outline: none;
-                    color: $amp-colour-secondary-darkest;   
+                    color: $amp-colour-secondary-darkest;
                     border-color: $amp-colour-secondary-darkest;
                     box-shadow: none;
                 }
