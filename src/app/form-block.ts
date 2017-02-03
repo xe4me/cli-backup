@@ -61,6 +61,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * */
     protected __removeByFdn : ( fdn : Array<string | number> ) => Promise<any>;
     /*
+     * __removeByFdn : Will remove a block based on it's name and it's section's FDN
+     * */
+    protected __removeByName : ( name : string ) => Promise<any>;
+    /*
      * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
      * */
     protected __removeNext : ( viewContainerRef : ViewContainerRef, options? : RemoveNextOptions ) => Promise<number>;
