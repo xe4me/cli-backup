@@ -5,20 +5,12 @@ import {FormGroup, FormControl} from "@angular/forms";
 @Injectable()
 export class MockSharedFormDataService {
 
-    private existingCustomerControl : FormControl;
+    private newOrExistingCustomerFdn = ['Application' , 'NewOrExistingCustomer', 'NewOrExistingCustomer'];
 
     constructor () {
     }
 
     public getNewOrExistingCustomerControl ( form : FormGroup ){
-        return this.existingCustomerControl;
-    }
-
-    public setNewCustomerControl () {
-        this.existingCustomerControl = new FormControl('NewCustomer');
-    }
-
-    public setExistingCustomerControl () {
-        this.existingCustomerControl = new FormControl('ExistingCustomer');
+        return <FormControl> form.get( this.newOrExistingCustomerFdn );
     }
 }

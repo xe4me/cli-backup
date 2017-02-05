@@ -29,6 +29,7 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
     private betterChoiceSubscription : Subscription;
     private newOrExistingCustomerSubscription : Subscription;
     private eligibleAccountsServiceSubscription : Subscription;
+    private useHasLoggedInSubscription : Subscription;
     private loadedDynamicBlock : string = '';
     private isExistingCustomer : boolean  = false;
     private userHasLoggedIn : boolean  = false;
@@ -62,11 +63,13 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
                     }
                 } );
 
-        this.loginStatusService.userHasLoggedIn()
-            .subscribe( () => {
-                this.userHasLoggedIn = true;
-                this.fetchEligibleAccounts();
-            });
+        this.useHasLoggedInSubscription =
+            this.loginStatusService
+                .userHasLoggedIn()
+                .subscribe( () => {
+                    this.userHasLoggedIn = true;
+                    this.fetchEligibleAccounts();
+                });
 
         this.__controlGroup.markAsTouched();
         super.ngAfterViewInit();
@@ -77,7 +80,8 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             this.singleOrJointSubscription,
             this.betterChoiceSubscription,
             this.newOrExistingCustomerSubscription,
-            this.eligibleAccountsServiceSubscription
+            this.eligibleAccountsServiceSubscription,
+            this.useHasLoggedInSubscription
         ];
 
         for ( let subscription of subscriptions ) {
@@ -122,10 +126,12 @@ export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDes
             this.setNextBlock( this.betterChoiceControl.value );
         }
         if ( !this.betterChoiceSubscription ) {
-            this.betterChoiceSubscription = this.betterChoiceControl.valueChanges
-                .subscribe( ( val ) => {
-                    this.setNextBlock( val );
-                } );
+            if (this.betterChoiceControl) {
+                this.betterChoiceSubscription = this.betterChoiceControl.valueChanges
+                    .subscribe((val) => {
+                        this.setNextBlock(val);
+                    });
+            }
         }
     }
 

@@ -17,7 +17,7 @@ import {Response, ResponseOptions, Http, BaseRequestOptions} from '@angular/http
 import {APP_BASE_HREF} from '@angular/common';
 import {BetterChoiceBlock} from "./better-choice.component";
 
-fdescribe( 'Component: BetterChoiceBlock', () => {
+describe( 'Component: BetterChoiceBlock', () => {
 
     let mockLoginStatusService = new MockLoginStatusService();
     let mockSharedFormDataService = new MockSharedFormDataService();
@@ -53,10 +53,10 @@ fdescribe( 'Component: BetterChoiceBlock', () => {
                     provide: SaveService,
                     useValue: true
                 },
-                {
-                    provide  : ComponentFixtureAutoDetect,
-                    useValue : true
-                },
+                // {
+                //     provide  : ComponentFixtureAutoDetect,
+                //     useValue : true
+                // },
                 {
                     provide : MockBackend,
                     useValue: true
@@ -71,67 +71,227 @@ fdescribe( 'Component: BetterChoiceBlock', () => {
     } ) );
 
 
-    describe ( 'Better Choice Block with No login Users', () => {
-
-        let betterChoice: ComponentFixture<BetterChoiceBlockTest>;
+    // describe ( 'Better Choice Block with No login Users', () => {
+    //     let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
+    //
+    //     beforeEach(() => {
+    //         betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+    //         betterChoice.detectChanges();
+    //         let newOrExistingCustomerControl = mockSharedFormDataService.getNewOrExistingCustomerControl(betterChoice.componentInstance.block.__form);
+    //         newOrExistingCustomerControl.setValue('NewCustomer');
+    //         console.log(newOrExistingCustomerControl);
+    //     });
+    //
+    //     it('Ensure the better choice block is not visible', () => {
+    //         expect( betterChoice.componentInstance ).toBeDefined();
+    //
+    //         let title = betterChoice.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent
+    //         expect( title ).toBe( betterChoice.componentInstance.block.__custom.blockTitle );
+    //
+    //         let sharedFormDataService = betterChoice.debugElement.injector.get(SharedFormDataService);
+    //         let group = betterChoice.componentInstance.block.__controlGroup;
+    //         let control : FormControl = sharedFormDataService.getNewOrExistingCustomerControl(group);
+    //         expect( control ).toBeDefined();
+    //
+    //         let eligibleAccountsService = betterChoice.debugElement.injector.get(EligibleAccountsService);
+    //         expect( eligibleAccountsService ).toBeDefined();
+    //
+    //         let loginStatusService = betterChoice.debugElement.injector.get(LoginStatusService);
+    //         expect( loginStatusService ).toBeDefined();
+    //
+    //         expect( betterChoice.componentInstance.block.userHasLoggedIn ).toBe(false);
+    //         expect( betterChoice.componentInstance.block.hideBlock ).toBe(true);
+    //
+    //         expect( betterChoice.componentInstance.block.__controlGroup.controls.TransitChoice.value).toBe(null);
+    //     });
+    // } );
+    //
+    describe ( 'Better Choice Block with existing users no login', () => {
+        let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
 
         beforeEach(() => {
-            mockSharedFormDataService.setNewCustomerControl();
             betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
             betterChoice.detectChanges();
+            let newOrExistingCustomerControl = mockSharedFormDataService.getNewOrExistingCustomerControl(betterChoice.componentInstance.block.__form);
+            newOrExistingCustomerControl.setValue('ExistingCustomer');
+            console.log(newOrExistingCustomerControl);
         });
 
-        it('Ensure the better choice block is created', () => {
+        it('Ensure the better choice block is visible', () => {
+            expect( betterChoice.componentInstance ).toBeDefined();
+
             let title = betterChoice.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent
             expect( title ).toBe( betterChoice.componentInstance.block.__custom.blockTitle );
+
+            let sharedFormDataService = betterChoice.debugElement.injector.get(SharedFormDataService);
+            let group = betterChoice.componentInstance.block.__controlGroup;
+            let control : FormControl = sharedFormDataService.getNewOrExistingCustomerControl(group);
+            expect( control ).toBeDefined();
+
+            let eligibleAccountsService = betterChoice.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = betterChoice.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( betterChoice.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( betterChoice.componentInstance.block.hideBlock ).toBe(false);
+            expect( betterChoice.componentInstance.block.__controlGroup.controls.TransitChoice.value).toBe(null);
+        });
+    } );
+
+    describe ( 'Better Choice Block with existing users no accounts' , () => {
+        let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
+
+        beforeEach(() => {
+            betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+            betterChoice.detectChanges();
+            let newOrExistingCustomerControl = mockSharedFormDataService.getNewOrExistingCustomerControl(betterChoice.componentInstance.block.__form);
+            newOrExistingCustomerControl.setValue('ExistingCustomer');
+            console.log(newOrExistingCustomerControl);
+            mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_NO_ACCOUNTS);
+            return mockLoginStatusService.loginSuccess();
         });
 
-        it('Ensure the better choice block is hided for none-login users', () => {
+        it('Ensure the better choice block is visible and default to create a new deposit_account', () => {
+            expect( betterChoice.componentInstance ).toBeDefined();
+
+            let title = betterChoice.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( betterChoice.componentInstance.block.__custom.blockTitle );
+
+            let sharedFormDataService = betterChoice.debugElement.injector.get(SharedFormDataService);
+            let group = betterChoice.componentInstance.block.__controlGroup;
+            let control : FormControl = sharedFormDataService.getNewOrExistingCustomerControl(group);
+            expect( control ).toBeDefined();
+
+            let eligibleAccountsService = betterChoice.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = betterChoice.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( betterChoice.componentInstance.block.userHasLoggedIn ).toBe(true);
             expect( betterChoice.componentInstance.block.hideBlock ).toBe(true);
+
+            expect( betterChoice.componentInstance.block.__controlGroup.controls.TransitChoice.value).toBe('deposit_account');
         });
-
-        it('Ensure the better choice block is preset value for deposit account', () => {
-
-        });
-    } );
-
-    describe ( 'Better Choice Block with existing users no login', () => {
-        let betterChoice: ComponentFixture<BetterChoiceBlockTest>;
-        let betterChoiceBlockJSON;
-
-        // beforeEach(() => {
-        //     betterChoiceBlockJSON = require('../../forms/better-form/better-choice-block.json');
-        //     mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.NO_LOGIN);
-        //     mockLoginStatusService.loginSuccess();
-        //     mockSharedFormDataService.setExistingCustomerControl();
-        //     betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
-        //     betterChoice.detectChanges();
-        // });
-    } );
-
-    describe ( 'Better Choice Block with existing users deposit accounts only', () => {
-
-    } );
-
-    describe ( 'Better Choice Block with existing users deposit and loan accounts only', () => {
-
-    } );
-
-    describe ( 'Better Choice Block with existing users deposit, loan and offset accounts', () => {
-
-    } );
-
-    describe ( 'Better Choice Block with existing users loan accounts only', () => {
-
     });
+    //
+    // describe ( 'Better Choice Block with existing users deposit accounts only', () => {
+    //     let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
+    //
+    //     beforeEach(() => {
+    //         betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+    //         mockLoginStatusService.loginSuccess();
+    //         mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSITS_ACCOUNTS_ONLY);
+    //         betterChoice.detectChanges();
+    //     });
+    //
+    //     it('Ensure the better choice block is visible and default to select one from list deposit accounts', () => {
+    //         expect( betterChoice.componentInstance ).toBeDefined();
+    //
+    //         let title = betterChoice.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+    //         expect( title ).toBe( betterChoice.componentInstance.block.__custom.blockTitle );
+    //
+    //         let sharedFormDataService = betterChoice.debugElement.injector.get(SharedFormDataService);
+    //         let group = betterChoice.componentInstance.block.__controlGroup;
+    //         let control : FormControl = sharedFormDataService.getNewOrExistingCustomerControl(group);
+    //         expect( control ).toBeDefined();
+    //
+    //         let eligibleAccountsService = betterChoice.debugElement.injector.get(EligibleAccountsService);
+    //         expect( eligibleAccountsService ).toBeDefined();
+    //
+    //         let loginStatusService = betterChoice.debugElement.injector.get(LoginStatusService);
+    //         expect( loginStatusService ).toBeDefined();
+    //
+    //         expect( betterChoice.componentInstance.block.userHasLoggedIn ).toBe(true);
+    //         expect( betterChoice.componentInstance.block.hideBlock ).toBe(false);
+    //
+    //         expect( betterChoice.componentInstance.block.__controlGroup.controls.TransitChoice.value).toBe('deposit_account');
+    //     });
+    // } );
+    //
+    //
+    // describe ( 'Better Choice Block with existing users deposit and loan accounts only', () => {
+    //     let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
+    //
+    //     beforeEach(() => {
+    //         betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+    //         mockLoginStatusService.loginSuccess();
+    //         mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSITS_ACCOUNTS_ONLY);
+    //         betterChoice.detectChanges();
+    //     });
+    //
+    //     it('Ensure the better choice block is visible and let user to choose', () => {
+    //         expect( betterChoice.componentInstance ).toBeDefined();
+    //
+    //         let title = betterChoice.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+    //         expect( title ).toBe( betterChoice.componentInstance.block.__custom.blockTitle );
+    //
+    //         let sharedFormDataService = betterChoice.debugElement.injector.get(SharedFormDataService);
+    //         let group = betterChoice.componentInstance.block.__controlGroup;
+    //         let control : FormControl = sharedFormDataService.getNewOrExistingCustomerControl(group);
+    //         expect( control ).toBeDefined();
+    //
+    //         let eligibleAccountsService = betterChoice.debugElement.injector.get(EligibleAccountsService);
+    //         expect( eligibleAccountsService ).toBeDefined();
+    //
+    //         let loginStatusService = betterChoice.debugElement.injector.get(LoginStatusService);
+    //         expect( loginStatusService ).toBeDefined();
+    //
+    //         expect( betterChoice.componentInstance.block.userHasLoggedIn ).toBe(true);
+    //         expect( betterChoice.componentInstance.block.hideBlock ).toBe(false);
+    //
+    //         expect( betterChoice.componentInstance.block.__controlGroup.controls.TransitChoice.value).toBe(null);
+    //     });
+    // } );
 
-    describe ( 'Better Choice Block with existing users loan and offsets accounts only', () => {
-
-    });
-
-    describe ( 'Better Choice Block for retrieve scenario', () => {
-
-    } );
+    // describe ( 'Better Choice Block with existing users deposit, loan and offset accounts', () => {
+    //     let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
+    //     let betterChoiceBlockJSON;
+    //
+    //     beforeEach(() => {
+    //         mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSIT_LOAN_AND_OFFSET_ACCOUNTS);
+    //         mockLoginStatusService.loginSuccess();
+    //         mockSharedFormDataService.setExistingCustomerControl();
+    //         betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+    //         betterChoice.detectChanges();
+    //     });
+    // } );
+    //
+    // describe ( 'Better Choice Block with existing users loan accounts only', () => {
+    //     let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
+    //     let betterChoiceBlockJSON;
+    //
+    //     beforeEach(() => {
+    //         mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_LOAN_ACCOUNTS_ONLY);
+    //         mockLoginStatusService.loginSuccess();
+    //         mockSharedFormDataService.setExistingCustomerControl();
+    //         betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+    //         betterChoice.detectChanges();
+    //     });
+    // });
+    //
+    // describe ( 'Better Choice Block with existing users loan and offsets accounts only', () => {
+    //     let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
+    //     let betterChoiceBlockJSON;
+    //
+    //     beforeEach(() => {
+    //         mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_LOAN_AND_OFFSET_ACCOUNTS_ONLY);
+    //         mockLoginStatusService.loginSuccess();
+    //         mockSharedFormDataService.setExistingCustomerControl();
+    //         betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+    //         betterChoice.detectChanges();
+    //     });
+    //
+    //     it('Ensure the better choice block is created', () => {
+    //         expect(true).toBe(true);
+    //     });
+    // });
+    //
+    // describe ( 'Better Choice Block for retrieve scenario', () => {
+    //
+    // } );
 } );
 @Component( {
     template : `
@@ -145,94 +305,17 @@ class BetterChoiceBlockTest implements OnInit{
     @ViewChild('block') block;
 
     ngOnInit() {
+        let blockJSON = require('../../forms/better-form/better-choice-block.json');
         this.block.__fdn = ['Application', 'Applicant1Section', 'PersonalDetailsSection', 'DepositTransition'];
-        this.block.__controlGroup = new FormGroup({
-            TransitChoice: new FormControl('')
-        });
-        this.block.__custom = require('../../forms/better-form/better-choice-block.json').custom;
-        // console.log(this.block.__custom);
-        // this.block.__custom = {
-        //     "blockTitle": "How can we make your life Bett3r?",
-        //     "controls": [ {
-        //         "id": "TransitChoice",
-        //         "buttons": [ {
-        //             "id": "deposit_account",
-        //             "value": "deposit_account",
-        //             "label": "Create a new or transition an existing deposit account"
-        //         }, {
-        //             "id": "offset_account",
-        //             "value": "offset_account",
-        //             "label": "Create a new or transition an existing offset account"
-        //         } ]
-        //     } ],
-        //     "account_types_block_mapping": {
-        //         "deposit": "deposit_account",
-        //         "offset": "offset_account",
-        //         "loan": "offset_account"
-        //     },
-        //     "optionalBlocks": {
-        //         "offset_account": {
-        //             "name": "LoanOffset",
-        //             "blockType": "LoanOffsetTransitionBlock",
-        //             "blockLayout": "INLINE",
-        //             "commonBlock": false,
-        //             "path": "blocks/loan-offset-transition/loan-offset-transition.component",
-        //             "custom": {
-        //                 "blockTitle": "Your offset account",
-        //                 "type" : "loanOffset",
-        //                 "controls": [ {
-        //                     "id" : "BetterChoice",
-        //                     "buttons" : [{
-        //                         "id": "convert_offset_account",
-        //                         "value": "convert",
-        //                         "label": "Switch account"
-        //                     }, {
-        //                         "id": "new_offset_account",
-        //                         "value": "new",
-        //                         "label": "Create new account"
-        //                     }]
-        //                 }, {
-        //                     "id": "AccountNumber"
-        //                 }
-        //                 ],
-        //                 "description": "You can either switch your existing offset account to become a Bett3r Pay account or choose to create a new account.",
-        //                 "additional_convert_input_instruction": "Please enter the offset account number you want to switch to become your Bett3r Pay account.",
-        //                 "additional_convert_dropdown_instruction": "Please select the offset account number you want to switch to become your Bett3r Pay account.",
-        //                 "additional_new_input_instruction": "Please enter the loan account number you want to offset with your Bett3r Pay account.",
-        //                 "additional_new_dropdown_instruction": "Please select the loan account number you want to offset with your Bett3r Pay account."
-        //             }
-        //         },
-        //         "deposit_account": {
-        //             "name": "DepositTransition",
-        //             "blockType": "DepositTransitionBlock",
-        //             "blockLayout": "INLINE",
-        //             "commonBlock": false,
-        //             "path": "blocks/deposit-transition/deposit-transition.component",
-        //             "custom": {
-        //                 "blockTitle": "Your deposit account",
-        //                 "type" : "deposit",
-        //                 "controls": [ {
-        //                     "id" : "BetterChoice",
-        //                     "buttons" : [{
-        //                         "id": "convert_deposit_account",
-        //                         "value": "convert",
-        //                         "label": "Switch account"
-        //                     }, {
-        //                         "id": "new_deposit_account",
-        //                         "value": "new",
-        //                         "label": "Create new account"
-        //                     }]
-        //                 }, {
-        //                     "id": "AccountNumber",
-        //                     "label": "Deposit Account Number"
-        //                 } ],
-        //                 "description": "You can either switch your existing deposit account to become a Bett3r Pay account or choose to create a new account.",
-        //                 "additional_input_instruction": "Please enter the deposit account number you want to switch to become your Bett3r Pay account.",
-        //                 "additional_dropdown_instruction": "Please select the deposit account number you want to switch to become your Bett3r Pay account."
-        //             }
-        //         }
-        //     }
-        // };
+        this.block.__controlGroup = new FormGroup({});
+        this.block.__controlGroup.addControl(blockJSON.custom.controls[0].id, new FormControl());
+        this.block.__custom = blockJSON.custom;
+        this.block.__form = new FormGroup({});
+        let applicationFormGroup = new FormGroup({});
+        let newOrExistingFormGroup = new FormGroup({});
+        newOrExistingFormGroup.addControl('NewOrExistingCustomer', new FormControl());
+        applicationFormGroup.addControl('NewOrExistingCustomer', newOrExistingFormGroup);
+        this.block.__form.addControl('Application', applicationFormGroup);
     }
 
 }

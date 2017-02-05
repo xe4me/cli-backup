@@ -14,7 +14,6 @@ const loginUserWithDepositLoanAndOffsetAccounts = require('./data/eligible-accou
 export class MockEligibleAccountsService {
 
     public accounts : any = {
-        NO_LOGIN : {},
         LOGIN_NO_ACCOUNTS : loginUserWithoutEligibleAccounts,
         LOGIN_DEPOSITS_ACCOUNTS_ONLY: loginUserwithDepositAccountsOnly,
         LOGIN_LOAN_ACCOUNTS_ONLY : loginUserwithLoanAccountsOnly,
