@@ -97,13 +97,8 @@ export abstract class AmpBlockLoader {
 
     removeByFdn ( _fdn : Array<string | number> ) : Promise<any> {
         return new Promise( ( resolve ) => {
-
-            for ( let i = 0; i < this.viewContainer.length; i++ ) {
-                if ( this.viewContainer.get( i )[ 'fdn' ].join( '' ) === _fdn.join( '' ) ) {
-                    this.viewContainer.remove( i );
-                    break;
-                }
-            }
+            let index = this.findComponentIndexByFdn( _fdn );
+            this.viewContainer.remove( index );
             resolve( _fdn );
         } );
     }
@@ -412,8 +407,18 @@ export abstract class AmpBlockLoader {
         return this.loadAt( _def, index );
     }
 
+    findComponentIndexByFdn ( _fdn ) {
+        _fdn = _fdn.join( '' );
+        for ( let i = 0; i < this.viewContainer.length; i++ ) {
+            if ( this.viewContainer.get( i )[ 'fdn' ].join( '' ) === _fdn ) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     isBlockAlreadyLoaded ( _def : FormDefinition ) : boolean {
-        return !!this.form.get( [ ...this.fdn, _def.name ] );
+        return this.findComponentIndexByFdn( [ ...this.fdn, _def.name ] ) !== null;
     }
 
     loadAllNext ( _def : FormDefinition[],
