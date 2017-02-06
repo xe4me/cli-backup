@@ -531,7 +531,7 @@ export abstract class AmpBlockLoader {
         return blockName ? blockName.split( '.' ) : [];
     }
 
-    private isRepeater ( _blockDef ) {
+    private isRepeater ( _blockDef ) : boolean {
         return _blockDef.blockLayout === BlockLayout[ BlockLayout.REPEATER ];
     }
 }
