@@ -15,6 +15,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
         '[id]'            : 'getFdnJoined(__fdn)',
         '[class.visited]' : '__controlGroup.touched || isATab',
         '[class.done]'    : '__controlGroup.valid && __controlGroup.touched',
+        '[class.valid]'   : '__controlGroup.valid',
         '[attr.label]'    : '__custom?.label',
         '[attr.tab]'      : 'isATab',
         '[tabindex]'      : '"-1"'
