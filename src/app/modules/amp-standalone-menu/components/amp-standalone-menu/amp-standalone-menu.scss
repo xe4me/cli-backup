@@ -17,6 +17,8 @@ $amp-ddc-menu-circle-offset: 5px;
 
 $amp-ddc-menu-color-default: $amp-colour-sky-blue;
 $amp-ddc-menu-color-dark: $amp-colour-primary;
+$amp-ddc-menu-tickmark-icon-size: 20px;
+
 
 :host {
     display: block;
@@ -162,6 +164,28 @@ $amp-ddc-menu-color-dark: $amp-colour-primary;
                 background: $amp-ddc-menu-color-default;
             }
         }
+        &.valid {
+           .icon {
+                display: block;
+            }
+        }
+
+        .icon {
+              background-color: $amp-colour-sky-blue;
+              border-radius: $amp-ddc-menu-tickmark-icon-size;
+              color: $amp-colour-white;
+              content: "y";
+              display: none;
+              font-size: 11px !important;
+              height: $amp-ddc-menu-tickmark-icon-size;
+              line-height: $amp-ddc-menu-tickmark-icon-size + 2px;
+              position: absolute;
+              right: 160px;
+              top: 0;
+              text-align: center;
+              width: $amp-ddc-menu-tickmark-icon-size;
+              z-index: 100;
+            }
     }
 
     &__step {

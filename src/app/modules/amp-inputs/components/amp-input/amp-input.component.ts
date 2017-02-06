@@ -299,8 +299,8 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
             } else {
                 this.control.setValue(this.inputCmp.nativeElement.value.trim());
             }
-            notUsable           = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
-            notUsable           = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
+            notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
+            notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
 
