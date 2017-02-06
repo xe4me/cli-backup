@@ -6,10 +6,11 @@ export interface IntroBlockAnimateOptions {
 @Component( {
     selector   : 'amp-intro-block',
     host       : {
-        '[@slideUp]' : 'slideUp'
+        '[@slideUp]' : 'slideUp',
+        '[hidden]'   : '!isActive'
     },
     template   : `
-            <div class='ph+ tablet-and-down-ph' [hidden]='!isActive'>
+            <div class='ph+ tablet-and-down-ph'>
                 <div class='grid__container 1/1 palm-1/1'>
                     <div class='grid__item_floated utils__align--left' >
                           <ng-content></ng-content>
