@@ -159,7 +159,7 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
             }
         }
 
-        &.done {
+        &.valid {
             &::before {
                 background: $amp-ddc-menu-color-default;
             }
@@ -174,13 +174,12 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
               background-color: $amp-colour-sky-blue;
               border-radius: $amp-ddc-menu-tickmark-icon-size;
               color: $amp-colour-white;
-              content: "y";
               display: none;
               font-size: 11px !important;
               height: $amp-ddc-menu-tickmark-icon-size;
               line-height: $amp-ddc-menu-tickmark-icon-size + 2px;
               position: absolute;
-              right: 160px;
+              left: -4px;
               top: 0;
               text-align: center;
               width: $amp-ddc-menu-tickmark-icon-size;
