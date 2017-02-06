@@ -24,6 +24,7 @@ export * from './src/app/modules/amp-intro-block';
 export * from './src/app/modules/amp-review';
 export * from './src/app/modules/amp-utils';
 export * from './src/app/modules/amp-pipes';
+export * from './src/app/modules/amp-tabs';
 export * from './src/app/modules/amp-typeahead';
 export * from './src/app/modules/amp-type-search';
 export * from './src/app/modules/amp-qas-address';
