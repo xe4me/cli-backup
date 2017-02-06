@@ -25,6 +25,8 @@ export class AmpTaxFileNumberBlockComponent extends FormBlock implements AfterVi
 
     onTaxGroupButtonClick ( $event ) {
         this.hasTfn = $event;
-        this._cd.detectChanges();
+        setTimeout( () => {
+            this._cd.detectChanges();
+        } );
     }
 }
