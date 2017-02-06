@@ -13,7 +13,7 @@ import { FormBlock } from '../../../../form-block';
 import { SaveService, ScrollService } from '../../../../services';
 import { AmpRowRepeaterComponent } from '../../../amp-row-repeater';
 
-const custom = require('./amp-single-joint-block.json');
+const custom = require( './amp-single-joint-block.json' );
 
 @Component( {
     selector        : 'amp-single-joint-block',
@@ -41,6 +41,9 @@ export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, A
     }
 
     public onSingleOrJointSelect( singleJointIndicator : string ) {
+        if ( !this.repeater ) {
+            return;
+        }
         let jointValue = this.__custom.controls.singleOrJoint.options[ 1 ].value;
         if ( singleJointIndicator === jointValue ) {
             this.repeater.addIfLt( 2 );
