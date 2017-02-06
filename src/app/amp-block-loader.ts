@@ -10,13 +10,13 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormDefinition } from './interfaces/form-def.interface';
-import { clone } from './modules/amp-utils';
 import {
     each,
     size,
+    clone,
     set
 } from 'lodash';
-export enum BlockLayout { INLINE, PAGE, SECTION, COMPONENT }
+export enum BlockLayout { INLINE, PAGE, SECTION, REPEATER, COMPONENT }
 export enum RequireMethod { ALL, IN_ORDER }
 export interface LoadedBlockInfo {
     fdn : Array<(string|number)>;
@@ -31,6 +31,7 @@ export interface RemoveNextOptions {
 export abstract class AmpBlockLoader {
     @Input( 'fdn' ) fdn                     = [];
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.ALL ];
+    @Input( 'repeaterIndex' ) repeaterIndex;
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
 
     @Input( 'amp-block-loader' ) set blockLoader ( _blockLoader ) {
@@ -200,15 +201,16 @@ export abstract class AmpBlockLoader {
         return new Promise( ( resolve ) => {
             let childsLoadedSubscription;
             let comp = _componentRef.instance;
-            let _fdn = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
-
+            let _fdn = this.fdn;
+            if ( _blockDef.blockLayout && !this.isRepeater( _blockDef ) ) {
+                _fdn = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
+            }
             _componentRef.hostView[ 'fdn' ] = _fdn;
-
-            comp.__child_blocks = _blockDef;
-            comp.__form         = this.form;
-            comp.__loader       = this;
-            comp.__fdn          = _fdn;
-            let _form           = comp.__form;
+            comp.__child_blocks             = _blockDef;
+            comp.__form                     = this.form;
+            comp.__loader                   = this;
+            comp.__fdn                      = _fdn;
+            let _form                       = comp.__form;
             for ( const fdnItem of this.fdn ) {
                 if ( _form.controls[ fdnItem ] ) {
                     _form = _form.controls[ fdnItem ];
@@ -229,14 +231,12 @@ export abstract class AmpBlockLoader {
                     comp.__controlGroup.custom = _blockDef.custom;
                 }
             }
-            comp.__path        = _blockDef.path;
-            comp.__blockType   = _blockDef.blockType;
-            comp.__blockLayout = _blockDef.blockLayout;
-            comp.__name        = _blockDef.name;
-            comp.__sectionName = this._sectionName;
-            if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
-                comp.__page = _blockDef.page;
-            }
+            comp.__path          = _blockDef.path;
+            comp.__blockType     = _blockDef.blockType;
+            comp.__blockLayout   = _blockDef.blockLayout;
+            comp.__name          = _blockDef.name;
+            comp.__sectionName   = this._sectionName;
+            comp.__repeaterIndex = this.repeaterIndex;
             if ( _blockDef.custom ) {
                 this.copyCustomFields( _blockDef, comp );
             }
@@ -505,7 +505,7 @@ export abstract class AmpBlockLoader {
     }
 
     private createOrRetrieveCG ( _blockDef : FormDefinition, comp : any, _form : any ) {
-        if ( _blockDef.name ) {
+        if ( _blockDef.name && !this.isRepeater( _blockDef ) ) {
             if ( _form.get( _blockDef.name ) ) {
                 comp.__controlGroup = _form.get( _blockDef.name );
                 comp.__isRetrieved  = true;
@@ -529,5 +529,9 @@ export abstract class AmpBlockLoader {
 
     private parseFdnOfBlockName ( blockName : string ) : Array<string|number> {
         return blockName ? blockName.split( '.' ) : [];
+    }
+
+    private isRepeater ( _blockDef ) : boolean {
+        return _blockDef.blockLayout === BlockLayout[ BlockLayout.REPEATER ];
     }
 }

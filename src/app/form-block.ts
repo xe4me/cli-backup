@@ -43,6 +43,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * E.g : ['Application','SomeSection','ContactDetails'];
      * */
     protected __fdn : Array<(number|string)>;
+
+    /*
+     * __repeaterIndex : This will be populated if this component is loaded inside a repeater
+     * */
+    protected __repeaterIndex : number;
     /*
      * __form : The overall form , this is accessible in all the blocks and is the same everywhere
      * */
