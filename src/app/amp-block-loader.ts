@@ -10,16 +10,28 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormDefinition } from './interfaces/form-def.interface';
-import { clone } from './modules/amp-utils';
-export enum BlockLayout { INLINE, PAGE, SECTION, COMPONENT }
+import {
+    each,
+    size,
+    clone,
+    set
+} from 'lodash';
+export enum BlockLayout { INLINE, PAGE, SECTION, REPEATER, COMPONENT }
 export enum RequireMethod { ALL, IN_ORDER }
 export interface LoadedBlockInfo {
     fdn : Array<(string|number)>;
     name : string;
 }
+export interface LoadNextOptions {
+    allowMultiple : boolean;
+}
+export interface RemoveNextOptions {
+    removableDef : FormDefinition;
+}
 export abstract class AmpBlockLoader {
     @Input( 'fdn' ) fdn                     = [];
     @Input( 'requireMethod' ) requireMethod = RequireMethod[ RequireMethod.ALL ];
+    @Input( 'repeaterIndex' ) repeaterIndex;
     @Output() loaded : EventEmitter<any>    = new EventEmitter<any>();
 
     @Input( 'amp-block-loader' ) set blockLoader ( _blockLoader ) {
@@ -83,6 +95,23 @@ export abstract class AmpBlockLoader {
         } );
     }
 
+    removeByFdn ( _fdn : Array<string | number> ) : Promise<any> {
+        return new Promise( ( resolve ) => {
+            let index = this.findComponentIndexByFdn( _fdn );
+            this.viewContainer.remove( index );
+            resolve( _fdn );
+        } );
+    }
+
+    removeByName ( _name : string ) : Promise<any> {
+        if ( !_name ) {
+            return new Promise( ( resolve ) => {
+                resolve();
+            } );
+        }
+        return this.removeByFdn( [ ...this.fdn, _name ] );
+    }
+
     loadAt ( _def : FormDefinition, _index : number ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve, reject ) => {
             let waitForChunk = this.requireFile( _def );
@@ -135,7 +164,7 @@ export abstract class AmpBlockLoader {
         if ( _blockName && this.fdn.indexOf( _blockName ) < 0 ) {
             this.fdn.push( _blockName );
         }
-        for ( let _index = 0 ; _index < this._blocks.length ; _index++ ) {
+        for ( let _index = 0; _index < this._blocks.length; _index++ ) {
             if ( _requireMethod === RequireMethod.ALL ) {
                 this.loadAllSync( this._blocks[ _index ], _index );
             } else {
@@ -166,13 +195,17 @@ export abstract class AmpBlockLoader {
                    _blockDef : FormDefinition ) : Promise<ComponentRef<any>> {
         return new Promise( ( resolve ) => {
             let childsLoadedSubscription;
-            let comp            = _componentRef.instance;
-            let _fdn            = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
-            comp.__child_blocks = _blockDef;
-            comp.__form         = this.form;
-            comp.__loader       = this;
-            comp.__fdn          = _fdn;
-            let _form           = comp.__form;
+            let comp = _componentRef.instance;
+            let _fdn = this.fdn;
+            if ( _blockDef.blockLayout && !this.isRepeater( _blockDef ) ) {
+                _fdn = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
+            }
+            _componentRef.hostView[ 'fdn' ] = _fdn;
+            comp.__child_blocks             = _blockDef;
+            comp.__form                     = this.form;
+            comp.__loader                   = this;
+            comp.__fdn                      = _fdn;
+            let _form                       = comp.__form;
             for ( const fdnItem of this.fdn ) {
                 if ( _form.controls[ fdnItem ] ) {
                     _form = _form.controls[ fdnItem ];
@@ -193,22 +226,26 @@ export abstract class AmpBlockLoader {
                     comp.__controlGroup.custom = _blockDef.custom;
                 }
             }
-            comp.__path        = _blockDef.path;
-            comp.__blockType   = _blockDef.blockType;
-            comp.__blockLayout = _blockDef.blockLayout;
-            comp.__name        = _blockDef.name;
-            comp.__sectionName = this._sectionName;
-            if ( _blockDef.blockLayout === BlockLayout[ BlockLayout.PAGE ] ) {
-                comp.__page = _blockDef.page;
-            }
+            comp.__path          = _blockDef.path;
+            comp.__blockType     = _blockDef.blockType;
+            comp.__blockLayout   = _blockDef.blockLayout;
+            comp.__name          = _blockDef.name;
+            comp.__sectionName   = this._sectionName;
+            comp.__repeaterIndex = this.repeaterIndex;
             if ( _blockDef.custom ) {
                 this.copyCustomFields( _blockDef, comp );
             }
             comp.__removeAt            = ( index : number ) : Promise<number> => {
                 return this.removeAt( index );
             };
-            comp.__removeNext          = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
-                return this.removeNext( _viewContainerRef );
+            comp.__removeByFdn         = ( fdn : Array<string | number> ) : Promise<any> => {
+                return this.removeByFdn( fdn );
+            };
+            comp.__removeByName        = ( name : string ) : Promise<any> => {
+                return this.removeByName( name );
+            };
+            comp.__removeNext          = ( _viewContainerRef : ViewContainerRef, options? ) : Promise<number> => {
+                return this.removeNext( _viewContainerRef, options );
             };
             comp.__removeAllAfter      = ( _viewContainerRef : ViewContainerRef ) : Promise<number> => {
                 return this.removeAllAfter( _viewContainerRef );
@@ -216,15 +253,16 @@ export abstract class AmpBlockLoader {
             comp.__removeAllAfterIndex = ( index : number ) : Promise<any> => {
                 return this.removeAllAfterIndex( index );
             };
-            comp.__removeSelf = ( _viewContainerRef : ViewContainerRef ) : Promise<any> => {
+            comp.__removeSelf          = ( _viewContainerRef : ViewContainerRef ) : Promise<any> => {
                 return this.removeSelf( _viewContainerRef );
             };
             comp.__getIndex            = ( _viewContainerRef : ViewContainerRef ) : number => {
                 return this.getIndex( _viewContainerRef );
             };
             comp.__loadNext            = ( _def : FormDefinition,
-                                           _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> => {
-                return this.loadNext( _def, _viewContainerRef );
+                                           _viewContainerRef : ViewContainerRef,
+                                           options? ) : Promise<ComponentRef<any>> => {
+                return this.loadNext( _def, _viewContainerRef, options );
             };
             comp.__loadAt              = ( _def : FormDefinition,
                                            index : number ) : Promise<ComponentRef<any> > => {
@@ -350,7 +388,18 @@ export abstract class AmpBlockLoader {
         return this.removeAt( this.getIndex( _viewContainerRef ) );
     }
 
-    loadNext ( _def : FormDefinition, _viewContainerRef : ViewContainerRef ) : Promise<ComponentRef<any>> {
+    loadNext ( _def : FormDefinition,
+               _viewContainerRef : ViewContainerRef,
+               options : LoadNextOptions = {
+                   allowMultiple : false
+               } ) : Promise<ComponentRef<any>> {
+
+        if ( !options.allowMultiple ) {
+            if ( this.isBlockAlreadyLoaded( _def ) ) {
+                return Promise.resolve();
+            }
+        }
+
         let index = this.getIndex( _viewContainerRef );
         if ( index !== undefined ) {
             index++;
@@ -358,8 +407,23 @@ export abstract class AmpBlockLoader {
         return this.loadAt( _def, index );
     }
 
+    findComponentIndexByFdn ( _fdn ) {
+        _fdn = _fdn.join( '' );
+        for ( let i = 0; i < this.viewContainer.length; i++ ) {
+            if ( this.viewContainer.get( i )[ 'fdn' ].join( '' ) === _fdn ) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    isBlockAlreadyLoaded ( _def : FormDefinition ) : boolean {
+        return this.findComponentIndexByFdn( [ ...this.fdn, _def.name ] ) !== null;
+    }
+
     loadAllNext ( _def : FormDefinition[],
                   _viewContainerRef : ViewContainerRef ) : Promise<any> {
+
         let promises = [];
         if ( _def && _def.length ) {
             let index = this.getIndex( _viewContainerRef );
@@ -380,18 +444,25 @@ export abstract class AmpBlockLoader {
         return this.viewContainer.indexOf( viewRef );
     }
 
-    removeNext ( _viewContainerRef : ViewContainerRef ) : Promise<number> {
+    removeNext ( _viewContainerRef : ViewContainerRef, options : RemoveNextOptions = { removableDef : null } ) : Promise<number> {
         let index = this.getIndexOfComponent( _viewContainerRef );
         if ( index !== undefined ) {
             index++;
         }
+        if ( options.removableDef ) {
+            if ( this.isBlockAlreadyLoaded( options.removableDef ) ) {
+                return Promise.resolve( index );
+            } else {
+                return Promise.resolve( null );
+            }
+        }
+
         return this.removeAt( index );
     }
 
     private copyCustomFields ( _blockDef : FormDefinition, comp : any ) {
         if ( typeof _blockDef.custom === 'object' ) {
-            comp.isActive = _blockDef.custom.isInitiallyActive;
-            comp.__custom = _blockDef.custom;
+            this.mergeCustoms( comp, _blockDef.custom );
         } else if ( typeof _blockDef.custom === 'string' ) {
             // assuming that this is a path to a file that should be loaded and replaced with custom
             // like "custom":"src/app/blocks/quote/applicant-details/applicant-details-config.ts"
@@ -411,7 +482,7 @@ export abstract class AmpBlockLoader {
                 }
                 let customFileChunk = this.requireFile( pathToCustomFile );
                 customFileChunk( ( customFile ) => {
-                    comp.__custom = clone( customFile[ 'default' ] );
+                    this.mergeCustoms( comp, clone( customFile[ 'default' ] ) );
                 } );
             }
         } else {
@@ -419,8 +490,27 @@ export abstract class AmpBlockLoader {
         }
     }
 
+    private mergeCustoms ( comp : any, customs ) {
+        if ( comp.__custom && customs.overrides ) { // means we have default values inside the component class already
+            this.overrideCustomProperties( comp.__custom, customs.overrides );
+        } else { // replace
+            comp.__custom = customs;
+        }
+        comp.isActive = comp.__custom.isInitiallyActive;
+    }
+
+    private overrideCustomProperties ( defaultValues, newValues ) {
+        // Override default values if custom values are provided
+        if ( size( newValues ) > 0 ) {
+            each( newValues, ( value, key ) => {
+                set( defaultValues, key, value );
+            } );
+        }
+        return defaultValues;
+    }
+
     private createOrRetrieveCG ( _blockDef : FormDefinition, comp : any, _form : any ) {
-        if ( _blockDef.name ) {
+        if ( _blockDef.name && !this.isRepeater( _blockDef ) ) {
             if ( _form.get( _blockDef.name ) ) {
                 comp.__controlGroup = _form.get( _blockDef.name );
                 comp.__isRetrieved  = true;
@@ -444,5 +534,9 @@ export abstract class AmpBlockLoader {
 
     private parseFdnOfBlockName ( blockName : string ) : Array<string|number> {
         return blockName ? blockName.split( '.' ) : [];
+    }
+
+    private isRepeater ( _blockDef ) : boolean {
+        return _blockDef.blockLayout === BlockLayout[ BlockLayout.REPEATER ];
     }
 }

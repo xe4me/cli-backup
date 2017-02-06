@@ -1,0 +1,8 @@
+<amp-form-block [context]="context()" [withOkButton]='false'>
+    <amp-group-buttons
+        (select)="onSingleOrJointSelect($event)"
+        [controlGroup]="__controlGroup"
+        [buttons]="__custom.controls.singleOrJoint.options"
+        [groupName]="__custom.controls.singleOrJoint.id">
+    </amp-group-buttons>
+</amp-form-block>

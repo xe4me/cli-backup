@@ -5,6 +5,7 @@ import { AmpFormModule } from '../amp-form';
 import { AmpInputsModule } from '../amp-inputs';
 import { AmpTooltipModule } from '../amp-tooltip';
 import { AmpQasAddressModule } from '../amp-qas-address';
+import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
 
 const DECLARATIONS = [ AmpAddressMultiBlockComponent ];
 
@@ -15,7 +16,8 @@ const DECLARATIONS = [ AmpAddressMultiBlockComponent ];
         AmpFormModule,
         AmpInputsModule,
         AmpTooltipModule,
-        AmpQasAddressModule
+        AmpQasAddressModule,
+        AmpCheckboxModule
     ],
     entryComponents : DECLARATIONS,
     exports      : DECLARATIONS

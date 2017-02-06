@@ -25,8 +25,8 @@ import { applyCss } from '../../../amp-utils/functions.utils';
     let scrollPos          = this._viewportRuler.getViewportScrollPosition();
     let viewportRect       = this._viewportRuler.getViewportRect();
     let overlayOriginRight = viewportRect.width - overlayPoint.x;
-    let overlayOriginLeft  = overlayPoint.x;
-    let y                  = overlayPoint.y + scrollPos.top - 5;
+    let overlayOriginLeft  = Math.round(overlayPoint.x);
+    let y                  = Math.round(overlayPoint.y + scrollPos.top - 5);
     // if there is no room right
     if ( elementWidth >= overlayOriginRight ) {
         if ( elementWidth >= overlayOriginLeft ) {// if there is NOT enough room in left
@@ -36,14 +36,14 @@ import { applyCss } from '../../../amp-utils/functions.utils';
             putInLeft( overlayOriginLeft - elementWidth + offsetForUx, y );
         }
     } else {
-        let transofrm = overlayOriginLeft + scrollPos.left;
+        let transform = overlayOriginLeft + scrollPos.left;
         // check if there is room in left for uxOfsset other wise no uxoffset but we still need to get rid of margin
         if ( overlayOriginLeft > offsetForUx ) {
-            transofrm = transofrm - offsetForUx;
+            transform = transform - offsetForUx;
         } else {
-            transofrm = transofrm - offsetForMargin;
+            transform = transform - offsetForMargin;
         }
-        putInOriginalPos( transofrm, y );
+        putInOriginalPos( transform, y );
     }
     function putInCenterX ( transformY ) {
         applyCssTransform( element, 'translateX(-50%) translateY(' + transformY + 'px)' );

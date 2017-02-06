@@ -17,20 +17,20 @@ amp-greenid-block {
         margin: 0;
     }
 
+    .id-check-icon {
+        background-image: url('assets/images/greenid-complete.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100px 100px;
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+    }
+
     #greenid-container {
 
         font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
         font-size: $small-font-size;
-
-        .id-check-icon {
-            background-image: url('../../../../../assets/images/greenid-complete.png');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 100px 100px;
-            display: inline-block;
-            height: 100px;
-            width: 100px;
-        }
 
         h1, h2 {
             font-size: 24px;
@@ -82,10 +82,9 @@ amp-greenid-block {
             }
         }
         .btn {
-            background-color: $amp-colour-secondary !important;
+            background-color: $amp-colour-secondary;
             &:hover {
                 background-color: $amp-colour-primary !important;
-                color: $amp-colour-white;
             }
             border-radius: 0;
             border: 0;
@@ -94,6 +93,33 @@ amp-greenid-block {
                 min-height: 58px;
                 font-weight: 600;
                 font-size: 18px;
+            }
+
+            &.btn-default#greenid-source-cancel {
+                background-color: transparent !important;
+                color: $amp-colour-secondary;
+                min-height: 33px;
+                font-weight: 600;
+                font-size: 18px;
+                padding: 0;
+                margin-left: 24px !important;
+                border-color: transparent;
+                border-width: 0 0 2px 0;
+                border-bottom-style: solid;
+
+
+                &:hover {
+                    border-color: $amp-colour-secondary;
+                }
+
+                &:active {
+                    outline: none;
+                    color: $amp-colour-secondary-darkest;
+                    border-color: $amp-colour-secondary-darkest;
+                    box-shadow: none;
+                }
+
+
             }
         }
 

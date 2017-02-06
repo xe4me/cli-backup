@@ -1,20 +1,24 @@
 // utils
 export { AmpBlockLoaderDirective } from './src/app/amp-block-loader.directive';
-export { LoadedBlockInfo } from './src/app/amp-block-loader';
+export { LoadedBlockInfo, AmpBlockLoader } from './src/app/amp-block-loader';
 export { FormBlock } from './src/app/form-block';
 
 // Components
 export * from './src/app/redux/amp-redux.module';
 export * from './src/app/modules/amp-address-block';
 export * from './src/app/modules/amp-save-close-block';
+export * from './src/app/modules/amp-single-joint-block';
 export * from './src/app/modules/amp-aml-questions-block';
 export * from './src/app/modules/amp-basic-info-block';
 export * from './src/app/modules/amp-captcha-block';
+export * from './src/app/modules/amp-login-block';
 export * from './src/app/modules/amp-menu-frame-block';
+export * from './src/app/modules/amp-new-or-existing-customer-block';
 export * from './src/app/modules/amp-welcome-block';
 export * from './src/app/modules/amp-contact-details-block';
 export * from './src/app/modules/amp-residency-block';
 export * from './src/app/modules/amp-retrieve-block';
+export * from './src/app/modules/amp-single-joint-block';
 export * from './src/app/modules/amp-tax-file-number-block';
 export * from './src/app/modules/amp-intro-block';
 export * from './src/app/modules/amp-review';
@@ -46,6 +50,8 @@ export * from './src/app/modules/amp-google-recaptcha';
 export * from './src/app/modules/amp-progress-bars';
 export * from './src/app/modules/amp-overlay';
 export * from './src/app/modules/amp-header';
+export * from './src/app/modules/amp-loading-button';
+export * from './src/app/modules/amp-slider';
 
 // Services :
 export * from './src/app/services';
@@ -61,6 +67,7 @@ export { Environments } from './src/app/abstracts/environments/environments.abst
 // Pages
 export { ErrorPageComponent } from './src/app/pages/error/error-page.component';
 export { PageSectionComponent } from './src/app/sections/page-section.component';
+export { SectionRepeaterComponent } from './src/app/sections/section-repeater/section-repeater.component';
 export { ReviewSectionComponent } from './src/app/sections/review-section/review-section.component';
 export { SaveReceiptPageComponent } from './src/app/pages/save-receipt/receipt-page.component';
 export { AmpConfirmationPageComponent } from './src/app/pages/amp-confirmation-page/amp-confirmation-page.component';

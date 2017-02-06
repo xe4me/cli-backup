@@ -6,7 +6,8 @@ import {
 } from '@angular/core';
 import { AmpBlockLoader } from '../app/amp-block-loader';
 @Directive( {
-    selector : '[amp-block-loader]'
+    selector : '[amp-block-loader]',
+    exportAs : 'loader'
 } )
 export class AmpBlockLoaderDirective extends AmpBlockLoader {
 

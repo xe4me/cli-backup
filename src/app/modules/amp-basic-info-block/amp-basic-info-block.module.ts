@@ -8,14 +8,15 @@ import { AmpInputsModule } from '../amp-inputs';
 const DECLARATIONS = [ AmpBasicInfoBlockComponent ];
 
 @NgModule( {
-    declarations : DECLARATIONS ,
-    imports      : [
-        AmpSharedRootModule ,
-        AmpDropdownModule ,
-        AmpFormModule ,
+    declarations    : DECLARATIONS,
+    entryComponents : DECLARATIONS,
+    imports         : [
+        AmpSharedRootModule,
+        AmpDropdownModule,
+        AmpFormModule,
         AmpInputsModule
-    ] ,
-    exports      : DECLARATIONS
+    ],
+    exports         : DECLARATIONS
 } )
 export class AmpBasicInfoBlockModule {
 }

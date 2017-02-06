@@ -6,7 +6,8 @@ import {
 } from '@angular/core';
 import { AmpBlockLoader } from './amp-block-loader';
 @Directive( {
-    selector : '[amp-block-loader]'
+    selector : '[amp-block-loader]',
+    exportAs : 'loader'
 } )
 export class AmpBlockLoaderDirective extends AmpBlockLoader {
 
@@ -16,7 +17,7 @@ export class AmpBlockLoaderDirective extends AmpBlockLoader {
         super( viewContainer, compiler, componentFactoryResolver );
     }
 
-     getCustomBundle ( path : string ) : any {
+    getCustomBundle ( path : string ) : any {
         try {
             return require( '../../../../src/app/' + path + '\.ts' );
         } catch ( err ) {

@@ -1,6 +1,7 @@
 import { Component , Input , ChangeDetectionStrategy , ChangeDetectorRef , OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AmpFormGroup } from '../../../../base-control';
+
 @Component( {
     selector        : 'amp-qas-address-multi' ,
     template        : require( './amp-qas-address-multi.component.html' ) ,

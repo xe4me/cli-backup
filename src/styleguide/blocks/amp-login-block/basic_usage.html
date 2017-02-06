@@ -1,0 +1,81 @@
+<form [formGroup]="form" class='nl-form p+'>
+    <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"></div>
+</form>
+<section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">
+            Above is an example of a "Login" block.
+        </h2>
+        <p class="ml small">
+            This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
+            <br>It should be <strong>the default way of loading it</strong>.
+        </p>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            In "form-def.def.json" file, in any array of blocks:
+        </p>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "name": "login",
+        "blockType": "AmpLoginBlockComponent",
+        "blockLayout": "INLINE",
+        "commonBlock": true,
+        "path": "modules/amp-login-block/components/amp-login-block/amp-login-block.component",
+        "custom": &#123;
+            ...
+        &#125;
+    &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">You will have to define custom properties. Here is an example:</h2>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "custom": &#123;
+            "blockTitle": "Do you want to log into My AMP so we can link your details to this application?",
+            "loginButtonLabel": "Login",
+            "noButtonLabel": "No",
+            "errorCodeMap": &#123;
+                "logon.disabled": "We're sorry you can't access your My AMP account.  We have a technical issue that is impacting your account, we should have this resolved in the next 2 business days, please try again then. For urgent queries, please call us on 1300 657 801 (8am - 8pm Monday to Friday). We apologise for any inconvenience.",
+                "logon.invalid": "Invalid username or password",
+                "logon.locked": "Your account has been locked, please click the 'Forgot Password' link below or contact AMP e-Services on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST) to unlock your account.",
+                "logon.unavailable": "AMP is currently performing system maintenance which is affecting customers logging into their portal.",
+                "logon.service.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                "logon.unauthorized": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                "logon.forbidden": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                "logon.unknown.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                "logon.internal.error": "We currently are unable to process your request, please contact AMP eServices on 1300 300 465 between 8.30 AM and 7.00 PM weekdays (AEST)",
+                "logon.disabled.super": "MyAMP is currently undergoing maintenance and will be back online within 24-48 hours. If you have any urgent enquiries or you are still having problems logging in after this period please call 1300 657 801. We thank you for your patience.",
+                "logon.locked.super": "Your account has been locked to preserve the security of your account and information, please call AMP on 1300 300 465, 8am to 8pm Monday to Friday, and 9am to 5pm Saturday and Sunday (Sydney time)",
+                "default": "Incorrect username/password combination, please try again."
+            &#125;,
+            "controls": [
+                &#123;
+                    "id": "userId",
+                    "label": "Username",
+                    "requiredMsg": "Username is a required field"
+                &#125;,
+                &#123;
+                    "id": "password",
+                    "label": "Password",
+                    "requiredMsg": "Password is a required field"
+                &#125;
+            ]
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
+        <p class="ml">
+            In case you need more customisation options, please get in touch with DDC team!
+        </p>
+        <p>&nbsp;</p>
+    </article>
+</section>

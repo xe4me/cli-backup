@@ -1,11 +1,13 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, FormGroup } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { AmpBasicInfoBlockModule } from '../../../app/modules/amp-basic-info-block';
 import { APP_RESOLVER_PROVIDERS } from '../../app.resolver';
+import { AmpBlockLoaderDirective } from '../../amp-block-loader-test.directive';
+
+let custom : any;
 
 describe('amp-basic-info-block component', () => {
 
@@ -22,8 +24,15 @@ describe('amp-basic-info-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, AmpBasicInfoBlockModule, HttpModule],
-            declarations: [TestComponent],
+            imports: [
+                FormsModule,
+                AmpBasicInfoBlockModule,
+                HttpModule
+            ],
+            declarations: [
+                AmpBlockLoaderDirective,
+                TestComponent
+            ],
             providers: [
                 ...APP_RESOLVER_PROVIDERS
             ]
@@ -35,16 +44,29 @@ describe('amp-basic-info-block component', () => {
         ngElement = fixture.debugElement;
         component = fixture.componentInstance;
 
-        const controlGroup = ngElement.componentInstance.block.__controlGroup.controls;
-        titleControl = controlGroup['Title'];
-        firstNameControl = controlGroup['FirstName'];
-        middleNameControl = controlGroup['MiddleName'];
-        lastNameControl = controlGroup['LastName'];
-        dateOfBirthControl = controlGroup['DateOfBirth'];
+        const controlGroup = ngElement.componentInstance.form.controls.basicInfo.controls;
+        titleControl = controlGroup['title'];
+        firstNameControl = controlGroup['firstName'];
+        middleNameControl = controlGroup['middleName'];
+        lastNameControl = controlGroup['surName'];
+        dateOfBirthControl = controlGroup['dateOfBirth'];
+
+        custom = {
+            overrides: {
+                isInitiallyActive: true
+            }
+        };
     }));
 
-    it('should be defined', () => {
-        expect(true).toBe(true);
+    describe('When the component is loaded', () => {
+        it('the component should be defined with one control for each input', () => {
+            expect(component).toBeDefined();
+            expect(titleControl).toBeDefined();
+            expect(firstNameControl).toBeDefined();
+            expect(middleNameControl).toBeDefined();
+            expect(lastNameControl).toBeDefined();
+            expect(dateOfBirthControl).toBeDefined();
+        });
     });
 
     it('should have the correct title', () => {
@@ -86,16 +108,14 @@ describe('amp-basic-info-block component', () => {
         expect(okButtonEl.hasAttribute('disabled')).toBe(false);
     });
 
-    // "Middle name" label defined in the component's html template
     it('should have the correct label for the "Middle name" text input', () => {
-        const middleNameLabelEl = ngElement.query(By.css('label[for=Application-MiddleName]'));
+        const middleNameLabelEl = ngElement.query(By.css('label[for=Application-basicInfo-middleName]'));
         expect(middleNameLabelEl).toBeDefined();
         expect(middleNameLabelEl.nativeElement.textContent.trim()).toEqual('Middle name(s)');
     });
 
-    // "Date of birth" label defined in the component's html template
     it('should have the correct label for the "Date of birth" text input', () => {
-        const dateOfBirthLabelEl = ngElement.query(By.css('label[for=Application-DateOfBirth]'));
+        const dateOfBirthLabelEl = ngElement.query(By.css('label[for=Application-basicInfo-dateOfBirth]'));
         expect(dateOfBirthLabelEl).toBeDefined();
         expect(dateOfBirthLabelEl.nativeElement.textContent.trim()).toEqual('Date of birth');
     });
@@ -149,33 +169,35 @@ describe('amp-basic-info-block component', () => {
 
 @Component({
     template: `
-    <form #formModel='ngForm' class='nl-form'>
-        <div class="basic-info-block">
-            <amp-basic-info-block #block>
-            </amp-basic-info-block>
-        </div>
-    </form>
+        <div [amp-block-loader]="childBlocks"
+            [fdn]="fullyDistinguishedName"
+            [form]="form"></div>
     `
 })
-class TestComponent implements OnInit {
+class TestComponent {
 
-    @ViewChild('block') block;
+    public form : FormGroup = new FormGroup( {} );
+    private fullyDistinguishedName = [];
+    private childBlocks = {
+        id: 'Application',
+        name: 'Application',
+        version: '0.0.1',
+        path: '/application',
+        status: 'NEW',
+        blocks: [
+            {
+                name: 'basicInfo',
+                blockType: 'AmpBasicInfoBlockComponent',
+                blockLayout: 'INLINE',
+                commonBlock: false,
+                path: 'modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component'
+            }
+        ]
+    };
 
-    ngOnInit() {
-        this.block.__fdn = ['Application'];
-        this.block.__custom = {
-            'blockTitle': 'Tell us about yourself',
-            'controls': [
-                { 'id': 'Title' },
-                { 'id': 'FirstName' },
-                { 'id': 'MiddleName' },
-                { 'id': 'LastName' },
-                { 'id': 'DateOfBirth' }
-            ]
-        };
-        this.block.__controlGroup = new FormGroup({});
-
-        // No more random IDs
-        this.block.__controlGroup.__fdn = this.block.__fdn;
+    constructor () {
+        if (custom) {
+            this.childBlocks.blocks[0]['custom'] = custom;
+        }
     }
 }

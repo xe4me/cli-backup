@@ -1,0 +1,58 @@
+<form [formGroup]="form" class='nl-form p+'>
+    <div [amp-block-loader]="childBlocks" [fdn]="fullyDistinguishedName" [form]="form"></div>
+</form>
+
+<section class="section">
+    <article class="section">
+        <h2 class="mb- ml mt+">
+            Above is an example of a "Single or Joint" block.
+        </h2>
+        <p class="ml small">
+            This block is loaded from a <strong>form-def.def.json</strong> file by the 'amp-block-loader' directive.
+            <br>It should be <strong>the default way of loading it</strong>.
+        </p>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            In "form-def.def.json" file, in any array of blocks:
+        </p>
+        <pre>
+            <code syntaxHighlight class="json">
+                &#123;
+                    "name": "singleOrJoint",
+                    "blockType": "AmpSingleJointBlockComponent",
+                    "blockLayout": "INLINE",
+                    "commonBlock": true,
+                    "path": "modules/amp-single-joint-block/components/amp-single-joint-block/amp-single-joint-block.component",
+                    "custom": &#123;
+                        ...
+                    &#125;
+                &#125;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Example</h2>
+        <p class="para ml">
+            add your applicant def json file etc. applicant.json to your initial application form. ts file susch
+        </p>
+        <pre>
+            <code syntaxHighlight class="json">
+            this.applicantService.applicantDef = applicantJSON;
+            </code>
+        </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Default behaviour</h2>
+        <ul class="bml">
+            <li>
+                'singleOrJoint'.
+            </li>
+        </ul>
+    </article>
+
+</section>

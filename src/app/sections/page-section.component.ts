@@ -8,7 +8,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
 @Component( {
     selector        : 'page-section',
     template        : `
-     <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form" (loaded)='onAllLoaded()'></div>
+     <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form" [repeaterIndex]="__repeaterIndex" (loaded)='onAllLoaded()'></div>
   `,
     host            : {
         '[hidden]'        : 'isHidden',
@@ -23,14 +23,18 @@ import { ScrollService } from '../services/scroll/scroll.service';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PageSectionComponent {
-    private __fdn;
-    private __controlGroup;
-    private __custom;
-    private __emitChildLoaded;
-    private __name;
-    private isHidden : boolean;
-    private scrolledSubscribtion;
-    private isATab = false;
+
+    public __fdn;
+    public __controlGroup;
+    public __custom;
+    public __emitChildLoaded;
+    public __name;
+    public __loadNext;
+    public __removeNext;
+    public __repeaterIndex : number;
+    public isHidden : boolean;
+    public scrolledSubscribtion;
+    public isATab = false;
 
     constructor ( public vcf : ViewContainerRef,
                   public scrollService : ScrollService,
@@ -48,6 +52,13 @@ export class PageSectionComponent {
                         this.isHidden = changes.componentSelector.indexOf( this.getFdnJoined( this.__fdn ) ) < 0;
                     }
                 } );
+        }
+        this.updateLabel();
+    }
+
+    updateLabel () {
+        if ( this.__custom && this.__custom.updateLabel ) {
+            this.__custom.updateLabel.call( this );
         }
     }
 

@@ -47,17 +47,6 @@ bolr styles
 
 }
 
-/*.form__row label :first-of-type {
-    background-color: orange;
-}*/
-
-/*
- label:first-child {
-       background-color: orange;
-    }
-
-*/
-
 @include media-query(palm) {
     amp-form-row > .form__row > .grid__container > .grid__item_floated {
         margin-top : $default-margin/1.5 !important;
@@ -68,8 +57,9 @@ amp-form-row > .form__row > .grid__container > .grid__item_floated {
     margin-top : $default-margin;
 }
 
-.heading-intro + amp-form-row {
+.heading__wrapper + amp-form-row {
     margin-top : -1 * $default-margin;
+
     @include media-query(palm) {
         margin-top : -30px;
     }

@@ -3,100 +3,106 @@ import {
     ChangeDetectorRef,
     ChangeDetectionStrategy,
     OnInit,
-    AfterViewInit, Input
+    ViewChild,
+    AfterViewInit,
+    ViewContainerRef
 } from '@angular/core';
-import {
-    Validators,
-    FormControl
-} from '@angular/forms';
 import { FormBlock } from '../../../../form-block';
 import { SaveService } from '../../../../services/save/save.service';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
-
-// import { Constants } from '../../shared';
-
-const DEFAUT_NEW_BUTTON_LABEL = 'New';
-const DEFAUT_EXISTING_BUTTON_LABEL = 'Existing';
-
+import { FormDefinition } from '../../../../interfaces/form-def.interface';
+import { AmpSliderComponent } from '../../../amp-slider';
 @Component( {
     selector        : 'amp-new-or-existing-customer-block',
-    template        : require('./amp-new-or-existing-customer-block.component.html'),
-    styles          : [ require( './amp-new-or-existing-customer-block.component.scss' ).toString() ],
+    template        : require( './amp-new-or-existing-customer-block.component.html' ),
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpNewOrExistingCustomerBlockComponent extends FormBlock implements OnInit, AfterViewInit {
+    public static NEW;
+    public static EXISTING;
+    @ViewChild( AmpSliderComponent ) slider : AmpSliderComponent;
 
-    @Input() newButtonLabel;
-    @Input() existingButtonLabel;
-
-    private loadedLoginBlock = false;
-    private hideThisBlock    = false;
+    protected __custom = {
+        blockTitle          : 'Tell us whether you\'re new to AMP',
+        newButtonLabel      : 'New customer',
+        existingButtonLabel : 'Current customer',
+        controls            : {
+            customerType : {
+                id      : 'customerType',
+                options : [
+                    {
+                        id    : 'New',
+                        value : 'New',
+                        label : 'New customer'
+                    },
+                    {
+                        id    : 'Existing',
+                        value : 'Existing',
+                        label : 'Current customer'
+                    }
+                ]
+            }
+        },
+        loginBlockFdn       : [ 'Application', 'MyAMPLoginBlock' ],
+        optionalBlocks      : [
+            {
+                name        : 'ampLoginBlock',
+                blockType   : 'AmpLoginBlockComponent',
+                blockLayout : 'INLINE',
+                commonBlock : true,
+                path        : 'modules/amp-login-block/components/amp-login-block/amp-login-block.component',
+                custom      : 'custom/login.config'
+            }
+        ]
+    };
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
-                  scrollService : ScrollService ) {
+                  scrollService : ScrollService,
+                  private viewReference : ViewContainerRef ) {
         super( saveService, _cd, scrollService );
-        // this.disableAutoSave();
+        this.disableAutoSave();
     }
 
-    public ngOnInit () {
-        this.newButtonLabel = this.__custom.newButtonLabel || DEFAUT_NEW_BUTTON_LABEL;
-        this.existingButtonLabel = this.__custom.existingButtonLabel || DEFAUT_EXISTING_BUTTON_LABEL;
-        /*
-        if ( !this.__controlGroup.contains( this.__custom.controls[ 0 ].id ) ) {
-            this.__controlGroup.addControl( this.__custom.controls[ 0 ].id, new FormControl( null, Validators.required ) );
-        }
-        this.__controlGroup.markAsTouched();
-        */
+    ngOnInit () {
+        let options                                     = this.__custom.controls.customerType.options;
+        AmpNewOrExistingCustomerBlockComponent.NEW      = options[ 0 ].value;
+        AmpNewOrExistingCustomerBlockComponent.EXISTING = options[ 1 ].value;
     }
 
-    public ngAfterViewInit () {
-        super.ngAfterViewInit();
-        /*
-        if ( this.__isRetrieved ) {
-            this.hideThisBlock = true;
-            setTimeout( () => {
-                this.newOrLogin( this.__controlGroup.get( this.__custom.controls[ 0 ].id ).value );
-            }, 10 );
-        }
-        */
-    }
-
-    /*
     private addOrRemoveContinueSection ( newOrLoginToMyAmp : string ) : Promise<any> {
-        const loginBlockControlGroup = this.__form.get( Constants.MyAMPLoginBlockFDN );
-        if ( newOrLoginToMyAmp === Constants.existingCustomer && !loginBlockControlGroup ) {
-            this.loadedLoginBlock = true;
-            return this.__loadNext( this.__custom.optionalBlocks.MyAMPLoginBlock, this.viewReference );
+        let def : FormDefinition = this.__custom.optionalBlocks[ 0 ];
+        if ( newOrLoginToMyAmp === AmpNewOrExistingCustomerBlockComponent.EXISTING ) {
+            return this.__loadNext( def, this.viewReference );
         }
-        if ( newOrLoginToMyAmp === Constants.newCustomer && loginBlockControlGroup ) {
-            this.loadedLoginBlock = false;
-            return this.__removeNext( this.viewReference );
+        if ( newOrLoginToMyAmp === AmpNewOrExistingCustomerBlockComponent.NEW ) {
+            return this.__removeNext( this.viewReference, {
+                removableDef : def
+            } );
         }
         return new Promise( ( resolve ) => resolve() );
     }
 
     private newOrLogin ( newOrLoginToMyAmp : string ) {
-        const newOrLoginToMyAmpControl = this.__controlGroup.get( this.__custom.controls[ 0 ].id );
-        newOrLoginToMyAmpControl.setValue( newOrLoginToMyAmp );
-        newOrLoginToMyAmpControl.markAsTouched();
         if ( !this.__isRetrieved ) {
-            this.addOrRemoveContinueSection( newOrLoginToMyAmp ).then( ( actualComponent ) => {
-                this.hideThisBlock = true;
-                setTimeout( () => {
-                    this.onNext();
-                }, 0 );
-            } );
+            this.addOrRemoveContinueSection( newOrLoginToMyAmp )
+                .then( () => {
+                    setTimeout( () => {
+                        this.slider
+                            .slide()
+                            .then( () => this.goNext( true ) );
+                    }, 0 );
+                } );
         } else {
-            this.onNext();
+            this.slider
+                .slide( { animate : false } )
+                .then( () => this.goNext( false ) );
         }
-    } */
-
-    private newApplication () {
-        // this.newOrLogin( Constants.newCustomer );
     }
 
-    private loginToMyAmp () {
-       // this.newOrLogin( Constants.existingCustomer );
+    private goNext ( mockScroll : boolean ) {
+        this.scrollService.scrollToNextUndoneBlock( this.__form, undefined, {
+            mock : mockScroll
+        } );
     }
 }

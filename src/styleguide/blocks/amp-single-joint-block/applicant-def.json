@@ -1,0 +1,90 @@
+{
+    "id": "Application",
+    "name": "Application",
+    "fdnClassPath": "src/styleguide/blocks/amp-single-joint-block",
+    "fdnModelPath": "src/styleguide/blocks/amp-single-joint-block",
+    "version": "0.0.1",
+    "path": "/application",
+    "status": "NEW",
+    "blocks": [
+        {
+            "name": "singleOrJoint",
+            "blockType": "AmpSingleJointBlockComponent",
+            "blockLayout": "INLINE",
+            "commonBlock": false,
+            "path": "modules/amp-single-joint-block/components/amp-single-joint-block/amp-single-joint-block.component",
+            "custom" : {
+                "blockTitle"     : "Who's this account for?",
+                "isInitiallyActive": true,
+                "controls"       : {
+                    "singleOrJoint" : {
+                        "id"    : "singleOrJoint",
+                        "options" : [
+                            {
+                                "id"    : "single",
+                                "value" : "single",
+                                "label" : "Just me"
+                            },
+                            {
+                                "id"    : "joint",
+                                "value" : "joint",
+                                "label" : "Me and someone else"
+                            }
+                        ]
+                    }
+                },
+                "optionalBlocks" : {
+                    "repeater" : {
+                        "id"        : "applicants",
+                        "name"        : "applicants",
+                        "blockType"   : "SectionRepeaterComponent",
+                        "blockLayout" : "INLINE",
+                        "commonBlock" : false,
+                        "path"        : "sections/section-repeater/section-repeater.component",
+                        "blocks"      : [
+                            {
+                                "name"        : "personalDetails",
+                                "blockType"   : "PageSectionComponent",
+                                "blockLayout" : "SECTION",
+                                "commonBlock" : false,
+                                "path"        : "sections/page-section.component",
+                                "custom"      : {
+                                    "label" : "Personal Details"
+                                },
+                                "blocks"      : [
+                                    {
+                                        "name"        : "basicInfo",
+                                        "blockType"   : "AmpBasicInfoBlockComponent",
+                                        "blockLayout" : "INLINE",
+                                        "commonBlock" : false,
+                                        "path"        : "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                                        "custom"      : {
+                                            "blockTitle" : "Tell us about yourself",
+                                            "controls"   : [
+                                                {
+                                                    "id" : "title"
+                                                },
+                                                {
+                                                    "id" : "firstName"
+                                                },
+                                                {
+                                                    "id" : "middleName"
+                                                },
+                                                {
+                                                    "id" : "surName"
+                                                },
+                                                {
+                                                    "id" : "dateOfBirth"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}

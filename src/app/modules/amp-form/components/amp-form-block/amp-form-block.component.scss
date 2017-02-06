@@ -11,12 +11,37 @@
         position    : relative;
 
         .heading-intro {
-            margin-bottom : 40px;
+            display: inline-block;
+            margin-bottom : 50px;
             outline: none !important;
 
             @include media-query('palm') {
                 font-size : 20px;
                 line-height : 30px;
+            }
+
+            &.has-heading-tooltip {
+                max-width: calc(100% - 35px);
+            }
+        }
+
+        .heading-tooltip {
+            &__wrapper {
+                display: inline-block;
+                padding-left: 5px;
+                vertical-align: top;
+
+                @include media-query('tablet-and-up') {
+                    margin-top: 6px;
+                }
+
+                &:empty {
+                    display: none;
+                }
+
+                /deep/ .icon {
+                    margin: 0;
+                }
             }
         }
 
