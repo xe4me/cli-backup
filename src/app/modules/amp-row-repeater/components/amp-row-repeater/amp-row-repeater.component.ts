@@ -94,6 +94,8 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
             } else {
                 this.add( this.initialRowCount );
             }
+        } else {
+            this.updateFdnForCGs();
         }
     }
 
@@ -102,20 +104,13 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
             if ( isNaN( this.maxRows ) || this.rowCount >= this.maxRows ) {
                 return;
             }
-            let formGroupForArray   = new AmpFormGroup( {} );
-            formGroupForArray.__fdn = this.controlGroup && this.controlGroup.__fdn ? [
-                    ...this.controlGroup.__fdn,
-                    this.id,
-                    this.controlArray.length
-                ] : [
-                    'default-fdn-for-' + this.id,
-                    this.controlArray.length
-                ];
+            let formGroupForArray = new AmpFormGroup( {} );
             this.controlArray.push( formGroupForArray );
             this.$add.emit( {
                 addedGroup : formGroupForArray
             } );
         }
+        this.updateFdnForCGs();
         this._cd.markForCheck();
     }
 
@@ -167,5 +162,19 @@ export class AmpRowRepeaterComponent implements OnInit, OnDestroy {
 
     public get addBtnDisabled() {
         return (this.maxRows === this.rowCount) || this.isInSummaryState;
+    }
+
+    private updateFdnForCGs() {
+        for ( let i = 0; i < this.controlArray.length; i++ ) {
+            this.controlArray.controls[ i ][ '__fdn' ] =
+                this.controlGroup && this.controlGroup.__fdn ? [
+                        ...this.controlGroup.__fdn,
+                        this.id,
+                        i
+                    ] : [
+                        'default-fdn-for-' + this.id,
+                        i
+                    ];
+        }
     }
 }
