@@ -1,4 +1,9 @@
-import { Component, ViewContainerRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component,
+    ViewContainerRef,
+    ChangeDetectorRef,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import { ScrollService } from '../services/scroll/scroll.service';
 @Component( {
     selector        : 'page-section',

@@ -202,7 +202,7 @@ export abstract class AmpBlockLoader {
             let childsLoadedSubscription;
             let comp = _componentRef.instance;
             let _fdn = this.fdn;
-            if ( _blockDef.blockLayout && _blockDef.blockLayout !== BlockLayout[ BlockLayout.REPEATER ] ) {
+            if ( _blockDef.blockLayout && !this.isRepeater( _blockDef ) ) {
                 _fdn = [ ...this.fdn, ...this.parseFdnOfBlockName( _blockDef.name ) ];
             }
             _componentRef.hostView[ 'fdn' ] = _fdn;
@@ -505,7 +505,7 @@ export abstract class AmpBlockLoader {
     }
 
     private createOrRetrieveCG ( _blockDef : FormDefinition, comp : any, _form : any ) {
-        if ( _blockDef.name && _blockDef.blockLayout !== BlockLayout[ BlockLayout.REPEATER ] ) {
+        if ( _blockDef.name && !this.isRepeater( _blockDef ) ) {
             if ( _form.get( _blockDef.name ) ) {
                 comp.__controlGroup = _form.get( _blockDef.name );
                 comp.__isRetrieved  = true;
@@ -529,5 +529,9 @@ export abstract class AmpBlockLoader {
 
     private parseFdnOfBlockName ( blockName : string ) : Array<string|number> {
         return blockName ? blockName.split( '.' ) : [];
+    }
+
+    private isRepeater ( _blockDef ) {
+        return _blockDef.blockLayout === BlockLayout[ BlockLayout.REPEATER ];
     }
 }
