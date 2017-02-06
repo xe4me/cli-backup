@@ -4,7 +4,7 @@ import {
     OnDestroy,
     ViewChild
 } from '@angular/core';
-import {AbstractControl, FormControl} from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
     FormBlock,
@@ -56,11 +56,15 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
         if ( this.__isRetrieved ) {
             this.__controlGroup.markAsTouched();
             this.isActive = true;
-            this.updateAccountAction(this.newOrConvertControl.value);
-            this.newOrConvertControl.setValue(this.newOrConvertControl.value);
-            let accountNumberControl = this.__controlGroup.get( this.__custom.controls[ 1 ].id);
-            if ( accountNumberControl && accountNumberControl.get('Query') && accountNumberControl.get('SelectedItem') ) {
-                this.__controlGroup.setControl('AccountNumber', new FormControl(accountNumberControl.get('SelectedItem').value));
+            this.updateAccountAction( this.newOrConvertControl.value );
+            this.newOrConvertControl.setValue( this.newOrConvertControl.value );
+            let accountNumberControlId = this.__custom.controls[ 1 ].id;
+            let accountNumberControl = this.__controlGroup.get( accountNumberControlId );
+            if ( this.isAccountNumberDropdown( accountNumberControl ) ) {
+                this.__controlGroup.setControl(
+                    accountNumberControlId ,
+                    new FormControl( accountNumberControl.get( 'SelectedItem' ).value )
+                );
             }
         } else {
             this.newOrConvertControl.setValue( this.defaultAccountAction );
@@ -82,6 +86,12 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             this.eligibleAccountsServiceSubscription.unsubscribe();
         }
         super.ngOnDestroy();
+    }
+
+    protected isAccountNumberDropdown ( accountNumberControl ) : boolean {
+        return  accountNumberControl &&
+                accountNumberControl.get( 'Query' ) &&
+                accountNumberControl.get( 'SelectedItem' );
     }
 
     protected get showAccountNumber () : boolean {
