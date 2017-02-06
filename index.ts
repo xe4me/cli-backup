@@ -65,6 +65,9 @@ export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise
 
 export { Environments } from './src/app/abstracts/environments/environments.abstract'
 
+//Interface
+export { FormDefinition } from './src/app/interfaces/form-def.interface'
+
 // Pages
 export { ErrorPageComponent } from './src/app/pages/error/error-page.component';
 export { PageSectionComponent } from './src/app/sections/page-section.component';
