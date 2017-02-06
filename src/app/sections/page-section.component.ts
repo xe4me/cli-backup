@@ -31,7 +31,7 @@ export class PageSectionComponent {
     public __name;
     public __loadNext;
     public __removeNext;
-    public __repeaterIndex;
+    public __repeaterIndex : number;
     public isHidden : boolean;
     public scrolledSubscribtion;
     public isATab = false;
