@@ -126,19 +126,19 @@ describe( 'amp-tabs component', () => {
 @Component( {
     template : `
         <amp-tabs #tabs1 id="tabs1">
-            <amp-tab tabTitle="tab1a">
+            <amp-tab tab-title="tab1a">
                 <p>Tab A</p>
             </amp-tab>
-            <amp-tab tabTitle="tab1b">
+            <amp-tab tab-title="tab1b">
                 <p>Tab B</p>
             </amp-tab>
         </amp-tabs>
 
         <amp-tabs #tabs2 id="tabs2">
-            <amp-tab tabTitle="tab2a">
+            <amp-tab tab-title="tab2a">
                 <p>Tab A</p>
             </amp-tab>
-            <amp-tab tabTitle="tab2b" [active]="true">
+            <amp-tab tab-title="tab2b" [active]="true">
                 <p>Tab B</p>
             </amp-tab>
         </amp-tabs>

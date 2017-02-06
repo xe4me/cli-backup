@@ -2,20 +2,20 @@
 
     <h2 class="mb-40">Tabs from mark-up (default active tab)</h2>
 
-    <p class="mb-40"><i>Required:</i> <code>tabTitle</code> on each tab</p>
+    <p class="mb-40"><i>Required:</i> <code>tab-title</code> on each tab</p>
     <p class="mb-40"><i>Optional:</i> <code>active</code> on one tab (use to set default tab)</p>
 
     <amp-tabs>
-        <amp-tab [tabTitle]="title1">
+        <amp-tab [tab-title]="title1">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tabTitle="Bicycle">
+        <amp-tab tab-title="Bicycle">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
         </amp-tab>
-        <amp-tab tabTitle="Aeroplane">
+        <amp-tab tab-title="Aeroplane">
             <p>An airplane or aeroplane (informally plane) is a powered, fixed-wing aircraft that is propelled forward by thrust from a jet engine or propeller. Airplanes come in a variety of sizes, shapes, and wing configurations.</p>
         </amp-tab>
-        <amp-tab tabTitle="Boat">
+        <amp-tab tab-title="Boat">
             <p>A boat is a watercraft of a large range of sizes designed to float, plane, work or travel on water. Small boats are typically found on inland waterways (e.g., rivers and lakes) or in protected coastal areas.</p>
         </amp-tab>
     </amp-tabs>
@@ -23,10 +23,10 @@
     <h2 class="mt-60 mb-40">Tabs from mark-up (Setting default active tab)</h2>
 
     <amp-tabs>
-        <amp-tab [tabTitle]="'Car'">
+        <amp-tab [tab-title]="'Car'">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tabTitle="Bicycle" active="true">
+        <amp-tab tab-title="Bicycle" active="true">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
         </amp-tab>
     </amp-tabs>
