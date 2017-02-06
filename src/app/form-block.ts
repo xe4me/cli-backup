@@ -43,6 +43,11 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * E.g : ['Application','SomeSection','ContactDetails'];
      * */
     protected __fdn : Array<(number|string)>;
+
+    /*
+     * __repeaterIndex : This will be populated if this component is loaded inside a repeater
+     * */
+    protected __repeaterIndex : number;
     /*
      * __form : The overall form , this is accessible in all the blocks and is the same everywhere
      * */
@@ -60,6 +65,10 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * __removeByFdn : Will remove a block based on it's FDN
      * */
     protected __removeByFdn : ( fdn : Array<string | number> ) => Promise<any>;
+    /*
+     * __removeByFdn : Will remove a block based on it's name and it's section's FDN
+     * */
+    protected __removeByName : ( name : string ) => Promise<any>;
     /*
      * __removeNext : Will remove the next block , need to specify the current block which is ViewContainerRef
      * */

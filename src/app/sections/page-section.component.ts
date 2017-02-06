@@ -8,7 +8,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
 @Component( {
     selector        : 'page-section',
     template        : `
-     <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form" (loaded)='onAllLoaded()'></div>
+     <div [amp-block-loader]="__child_blocks" [fdn]="__fdn" [form]="__form" [repeaterIndex]="__repeaterIndex" (loaded)='onAllLoaded()'></div>
   `,
     host            : {
         '[hidden]'        : 'isHidden',
@@ -23,6 +23,7 @@ import { ScrollService } from '../services/scroll/scroll.service';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class PageSectionComponent {
+
     public __fdn;
     public __controlGroup;
     public __custom;
@@ -30,6 +31,7 @@ export class PageSectionComponent {
     public __name;
     public __loadNext;
     public __removeNext;
+    public __repeaterIndex : number;
     public isHidden : boolean;
     public scrolledSubscribtion;
     public isATab = false;
@@ -50,6 +52,13 @@ export class PageSectionComponent {
                         this.isHidden = changes.componentSelector.indexOf( this.getFdnJoined( this.__fdn ) ) < 0;
                     }
                 } );
+        }
+        this.updateLabel();
+    }
+
+    updateLabel () {
+        if ( this.__custom && this.__custom.updateLabel ) {
+            this.__custom.updateLabel.call( this );
         }
     }
 
