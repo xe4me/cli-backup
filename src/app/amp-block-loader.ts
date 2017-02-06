@@ -108,6 +108,9 @@ export abstract class AmpBlockLoader {
     }
 
     loadAt ( _def : FormDefinition, _index : number ) : Promise<ComponentRef<any>> {
+        if ( this.isBlockAlreadyLoaded( _def ) ) {
+            return Promise.resolve();
+        }
         return new Promise( ( resolve, reject ) => {
             let waitForChunk = this.requireFile( _def );
             if ( !waitForChunk ) {
