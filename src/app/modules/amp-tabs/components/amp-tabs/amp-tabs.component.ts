@@ -5,15 +5,12 @@ import {
     Component ,
     ContentChildren ,
     EventEmitter ,
-    ElementRef ,
     Input ,
     QueryList
 } from '@angular/core';
 
 import { RequiredValidator, KeyCodes } from '../../../amp-utils';
 import { Validators } from '@angular/forms';
-import { ScrollService } from '../../../../services/scroll/scroll.service';
-import { RadioControlRegistry } from '@angular/forms/src/directives/radio_control_value_accessor';
 import { BaseControl } from '../../../../base-control';
 import { AmpTabComponent } from '../amp-tab/amp-tab.component';
 
@@ -31,11 +28,8 @@ import { AmpTabComponent } from '../amp-tab/amp-tab.component';
         'isInSummaryState',
         'keepControlOnDestroy',
         'required',
-        'keepControl',
-        'buttons',
-        'index'
+        'keepControl'
     ],
-    providers       : [ RadioControlRegistry ],
     outputs         : [ 'select' ]
 } )
 export class AmpTabsComponent extends BaseControl implements AfterContentInit {
@@ -45,15 +39,12 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     public tabs;
     public keepControl : boolean      = false;
     public selectedItem;
-    private buttons;
     private keepControlOnDestroy      = false;
     private defaultValue : string;
     private hasBooleanValue : boolean = false;
     private select                    = new EventEmitter<any>();
 
-    constructor ( private _cd : ChangeDetectorRef,
-                  private elem : ElementRef,
-                  private scrollService : ScrollService ) {
+    constructor ( private _cd : ChangeDetectorRef ) {
         super();
     }
 
