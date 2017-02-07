@@ -50,6 +50,7 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     @Input() sectionsToHide : string[]    = [];
     @Input() containInside : string       = 'menu-frame';
     @Input() isSticky : boolean           = true;
+    @Input() useTickMarks : boolean       = false;
     public showMenu : boolean             = false;
     private sections                      = [];
     private currentSectionId : string     = null;
