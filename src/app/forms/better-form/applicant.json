@@ -11,10 +11,10 @@
         "blocks": [
             {
                 "name": "BasicInfo",
-                "blockType": "AmpBasicInfoBlockComponent",
+                "blockType": "BasicInfoBlock",
                 "blockLayout": "INLINE",
-                "commonBlock": true,
-                "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                "commonBlock": false,
+                "path": "blocks/basic-info/basic-info.component",
                 "custom": {
                     "blockTitle": "Tell us about yourself",
                     "blockTitle_applicant2": "And now for applicant 2",
