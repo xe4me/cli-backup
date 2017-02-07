@@ -27,7 +27,7 @@ import {
 } from '../../shared';
 @Component( {
     selector        : 'last-step-block' ,
-    templateUrl     : './last-step.component.html' ,
+    template        : require( './last-step.component.html') ,
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles : [require('./last-step.component.scss').toString()]
 } )

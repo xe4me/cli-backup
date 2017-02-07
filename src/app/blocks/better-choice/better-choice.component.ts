@@ -21,7 +21,7 @@ import {
 } from '../../shared';
 @Component( {
     selector        : 'better-choice-block',
-    templateUrl     : './better-choice.component.html',
+    template        : require( './better-choice.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class BetterChoiceBlock extends FormBlock implements AfterViewInit, OnDestroy {

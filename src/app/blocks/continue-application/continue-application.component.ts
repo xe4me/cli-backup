@@ -29,7 +29,7 @@ import { Constants } from '../../shared';
 import { SharedFormDataService } from '../../shared/shared-form-data.service';
 @Component( {
     selector        : 'continue-application-block',
-    templateUrl     : './continue-application.component.html',
+    template        : require( './continue-application.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
     host            : {
         '[@slideUp]' : 'slideUp'

@@ -16,7 +16,7 @@ import {
 import { Constants } from '../../shared';
 @Component( {
     selector        : 'basic-info-block',
-    templateUrl     : './basic-info.component.html',
+    template        : require( './basic-info.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [ require( './basic-info.component.scss' ) ]
 } )

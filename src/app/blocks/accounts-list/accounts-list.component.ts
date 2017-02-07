@@ -13,7 +13,7 @@ import {
 
 @Component( {
     selector        : 'accounts-list' ,
-    templateUrl     : './accounts-list.component.html' ,
+    template        : require('./accounts-list.component.html') ,
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles : [ require( './accounts-list.component.scss').toString() ]
 } )

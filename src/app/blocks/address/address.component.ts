@@ -10,7 +10,7 @@ import {
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'address-block' ,
-    templateUrl     : './address.component.html' ,
+    template        : require('./address.component.html') ,
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AddressBlock extends FormBlock {
