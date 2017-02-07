@@ -27,6 +27,8 @@ import {
 import { AmpFormBlockComponent } from '../../../amp-form';
 import { AutoFocusOnDirective } from '../../../amp-directives';
 import { Environments } from '../../../../abstracts/environments/environments.abstract';
+import { LoginStatusService } from '../../../../services/login/login-status.service';
+
 @Component( {
     selector        : 'amp-continue-block',
     template        : require('./amp-continue-block.component.html'),
@@ -65,6 +67,7 @@ import { Environments } from '../../../../abstracts/environments/environments.ab
     ]
 } )
 export class AmpContinueBlockComponent extends FormBlock {
+
     public static notFoundErrorMsg = 'Sorry, we cannot find your application';
     public static closedErrorMsg   = 'This application has already been submitted';
     public static genericErrorMsg  = 'An unexpected error has occurred.';
@@ -104,6 +107,7 @@ export class AmpContinueBlockComponent extends FormBlock {
                   private vcf : ViewContainerRef,
                   private formModelService : FormModelService,
                   private http : AmpHttpService,
+                  private loginStatusService : LoginStatusService,
                   saveService : SaveService,
                   @Optional() private transformService : TransformService ) {
         super( saveService, _cd, scrollService );
@@ -160,6 +164,7 @@ export class AmpContinueBlockComponent extends FormBlock {
                     this._cd.markForCheck();
                     this.formModelService.storeModelAndHydrateForm( transformedAppModel );
                     this.saveService.referenceId = referenceId;
+                    this.loginStatusService.loginSuccess(); // to hide the captcha
                 } else {
                     this.responseError = this.getErrorMessage( payload.status );
                     this._cd.markForCheck();
