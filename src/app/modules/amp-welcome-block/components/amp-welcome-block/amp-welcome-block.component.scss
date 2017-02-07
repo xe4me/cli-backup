@@ -1,5 +1,5 @@
 @import '../../../../../styles/abstracts';
-amp-intro-block {
+:host /deep/ amp-intro-block {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;
@@ -87,16 +87,15 @@ amp-intro-block {
 
     .intro-container {
         margin-left: 55px;
+        margin-top: 90px;
         @include media-query(lap-and-up) {
             .intro-block-button-container {
                 margin-top: 60px !important;
             }
         }
-    }
-
-    @include media-query(palm) {
-        .intro-container.mt\+\+ {
-            margin: 115px 0px !important;
+        @include media-query(palm) {
+            margin-left: 0px;
+            margin-top: 115px !important;
         }
     }
 
@@ -120,7 +119,6 @@ amp-intro-block {
                     float: left;
                     margin-top: -4px;
                     margin-right: 20px;
-                    top: 0;
                     width: 36px;
                     height: 37px;
                     background-repeat: no-repeat;
