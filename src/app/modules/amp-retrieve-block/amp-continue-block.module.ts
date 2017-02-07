@@ -11,6 +11,7 @@ import {
     FormModelService,
     AmpHttpService
 } from '../../services';
+import { LoginStatusService } from '../../services/login/login-status.service';
 
 const DECLARATIONS = [ AmpContinueBlockComponent ];
 
@@ -27,7 +28,8 @@ const DECLARATIONS = [ AmpContinueBlockComponent ];
         ScrollService,
         SaveService,
         FormModelService,
-        AmpHttpService
+        AmpHttpService,
+        LoginStatusService
     ],
     entryComponents : DECLARATIONS,
     exports      : DECLARATIONS

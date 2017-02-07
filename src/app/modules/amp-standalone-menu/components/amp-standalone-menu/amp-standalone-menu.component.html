@@ -17,6 +17,7 @@
                 <a href="{{ section.anchorUrl }}" class="steps-menu__step" *ngIf="!isStateDisabled(section.state)" (click)="onSectionClick($event, section)">
                     {{ section.label }}
                 </a>
+                <span class="icon icon--tick" aria-hidden="true" *ngIf='useTickMarks'></span>
             </li>
         </ul>
     </nav>
