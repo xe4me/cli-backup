@@ -146,7 +146,7 @@ export abstract class AmpBlockLoader {
         try {
             return require( 'bundle-loader!amp-ddc-components/src/app/' + path + '\.ts' );
         } catch ( err ) {
-            console.log( 'Oops!! Trying to load ' + 'bundle!amp-ddc-components/src/app/' + path + '\.ts' + ' from node_modules but not components found.' );
+            console.warn( 'Oops!! Trying to load ' + 'bundle!amp-ddc-components/src/app/' + path + '\.ts' + ' from node_modules but not components found.' );
         }
         return null;
     }
@@ -165,7 +165,7 @@ export abstract class AmpBlockLoader {
             this.fdn.push( _blockName );
         }
         for ( let _index = 0; _index < this._blocks.length; _index++ ) {
-            if ( _requireMethod === RequireMethod.ALL ) {
+            if ( _requireMethod === RequireMethod[ RequireMethod.ALL ] ) {
                 this.loadAllSync( this._blocks[ _index ], _index );
             } else {
                 this.loadAt( this._blocks[ _index ], _index );
@@ -300,10 +300,14 @@ export abstract class AmpBlockLoader {
         waitForChunk( ( file ) => {
             let keys = Object.keys( file );
             this.storeFile( file[ keys[ 0 ] ], _def, _index );
-            if ( this.retrievedFiles.length === this.blocksCount ) {
-                this.createAllRecursively( 0 );
+            if ( this.isRetrievedFilesFullyPopulated ) {
+               this.createAllRecursively( 0 );
             }
         } );
+    }
+
+    get isRetrievedFilesFullyPopulated () : boolean {
+        return this.retrievedFiles.length === this.blocksCount && this.retrievedFiles.indexOf(null) < 0;
     }
 
     requireFile ( _defOrPath : FormDefinition|string ) {
