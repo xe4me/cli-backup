@@ -300,7 +300,7 @@ export abstract class AmpBlockLoader {
         waitForChunk( ( file ) => {
             let keys = Object.keys( file );
             this.storeFile( file[ keys[ 0 ] ], _def, _index );
-            if ( this.retrievedFiles.length === this.blocksCount && !this.retrievedFiles.indexOf(null)) {
+            if ( this.retrievedFiles.length === this.blocksCount && this.retrievedFiles.indexOf(null) < 0) {
                this.createAllRecursively( 0 );
             }
         } );
