@@ -1,8 +1,9 @@
 import {
+    AfterViewInit,
     Component,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    AfterViewInit, ViewContainerRef
+    ViewContainerRef, AfterViewChecked
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
 import { ScrollService, SaveService } from '../../../../services';
@@ -15,7 +16,10 @@ import { LoginStatusService } from '../../../../services/login/login-status.serv
     changeDetection: ChangeDetectionStrategy.OnPush,
     styles: [ require( './amp-captcha-block.component.scss' ) ]
 } )
-export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit {
+export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit, AfterViewChecked {
+
+    private mainCaptcha : boolean = false;
+    private static alreadyValidated : boolean = false;
 
     private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
     private showCaptchaBlock : boolean = true;
@@ -32,28 +36,50 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
 
     public ngAfterViewInit () {
         super.ngAfterViewInit();
-        if (this.__isRetrieved && this.__controlGroup.valid) {
-            this.hideBlock();
-        }
+        this.autoDestroyIfNecessary();
         this.loginStatusService.userHasLoggedIn().subscribe( () => {
-            this._cd.markForCheck();
-            this.__removeAt( this.__getIndex( this.vcf ) );
+            console.log('-----> 3');
+            this.autoDestroy();
         } );
+    }
+
+    public ngAfterViewChecked () {
+        this.autoDestroyIfNecessary();
     }
 
     private handleCaptchaResponse ( response ) {
         this.verified = response.success;
+        this.mainCaptcha = true;
+        AmpCaptchaBlockComponent.alreadyValidated = this.verified;
     }
 
     private handleCaptchaExpired ( event ) {
         // BET-3872: Remove captcha block after successfully verified
-        if (this.verified) {
-            this.hideBlock();
-        }
-        this._cd.markForCheck();
+        this.autoDestroy();
     }
 
     private hideBlock () {
         this.showCaptchaBlock = false;
+    }
+
+    private autoDestroyIfNecessary () {
+        console.log('-------------------> ' + this.__isRetrieved);
+        if (!this.mainCaptcha && AmpCaptchaBlockComponent.alreadyValidated) {
+            console.log('-----> 1');
+            this.autoDestroy();
+        }
+        if (this.__isRetrieved) {
+            console.log('-----> 2');
+            this.autoDestroy();
+        }
+    }
+
+    private autoDestroy () {
+        console.log('**********************************************');
+        console.log('** AUTO DESTROY!');
+        console.log('**********************************************');
+        this.hideBlock();
+        this._cd.markForCheck();
+        this.__removeSelf( this.vcf );
     }
 }

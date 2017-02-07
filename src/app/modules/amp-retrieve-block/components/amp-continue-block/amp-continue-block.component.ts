@@ -164,7 +164,6 @@ export class AmpContinueBlockComponent extends FormBlock {
                     this._cd.markForCheck();
                     this.formModelService.storeModelAndHydrateForm( transformedAppModel );
                     this.saveService.referenceId = referenceId;
-                    this.loginStatusService.loginSuccess(); // to hide the captcha
                 } else {
                     this.responseError = this.getErrorMessage( payload.status );
                     this._cd.markForCheck();
