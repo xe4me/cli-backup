@@ -6,7 +6,7 @@ const formDef = require( './form-def.def.json' );
 
 @Component( {
     selector    : 'better-form',
-    templateUrl : './better-form.component.html',
+    template        : require( './better-form.component.html'),
     styles      : [ require( './better-form.component.scss' ) ]
 } )
 export class BetterFormComponent {

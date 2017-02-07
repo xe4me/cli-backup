@@ -14,7 +14,7 @@ import {
 import { AccountTransitionBaseBlock } from '../account-transition-base/account-transition-base.component';
 @Component( {
     selector        : 'deposit-transition-block',
-    templateUrl     : '../account-transition-base/account-transition-base.html',
+    template        : require( '../account-transition-base/account-transition-base.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [ require( '../account-transition-base/account-transition-base.scss' ) ]
 } )

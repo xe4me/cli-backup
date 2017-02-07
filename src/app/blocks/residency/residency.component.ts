@@ -10,7 +10,7 @@ import {
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'residency-block',
-    templateUrl     : './residency.component.html',
+    template        : require( './residency.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class ResidencyBlock extends FormBlock {

@@ -59,7 +59,7 @@ import {
  */
 @Component( {
     selector        : 'my-amplogin-block',
-    templateUrl     : './my-amplogin-block.component.html',
+    template        : require( './my-amplogin-block.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [ require( './my-amplogin-block.component.scss' ) ]
 } )

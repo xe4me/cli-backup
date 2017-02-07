@@ -6,7 +6,7 @@ import {
 import { Environments } from 'amp-ddc-components';
 @Component( {
     selector : 'header-with-logo',
-    templateUrl : './header.component.html',
+    template : require( './header.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     styles : [ require( './header.component.scss' ) ]

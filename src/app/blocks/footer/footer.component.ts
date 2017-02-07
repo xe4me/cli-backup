@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 @Component( {
     selector        : 'footer' ,
-    templateUrl     : './footer.component.html' ,
+    template        : require( './footer.component.html') ,
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles : [ require( './footer.component.scss').toString() ],
 } )

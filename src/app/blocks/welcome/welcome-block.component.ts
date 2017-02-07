@@ -15,7 +15,7 @@ import {
 import { FDN } from '../../forms/better-form/Application.fdn';
 @Component( {
     selector        : 'welcome-block',
-    templateUrl     : './welcome-block.component.html',
+    template        : require( './welcome-block.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [ require( './welcome-block.component.scss' ) ]
 } )

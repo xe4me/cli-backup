@@ -12,7 +12,7 @@ import {
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'not-a-robot-block',
-    templateUrl     : './not-a-robot.component.html',
+    template        : require( './not-a-robot.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles          : [ require( './not-a-robot.component.scss' ) ]
 } )
