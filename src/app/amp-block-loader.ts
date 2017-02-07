@@ -300,10 +300,14 @@ export abstract class AmpBlockLoader {
         waitForChunk( ( file ) => {
             let keys = Object.keys( file );
             this.storeFile( file[ keys[ 0 ] ], _def, _index );
-            if ( this.retrievedFiles.length === this.blocksCount && this.retrievedFiles.indexOf(null) < 0) {
+            if ( this.isRetrievedFilesFullyPopulated ) {
                this.createAllRecursively( 0 );
             }
         } );
+    }
+
+    get isRetrievedFilesFullyPopulated () : boolean {
+        return this.retrievedFiles.length === this.blocksCount && this.retrievedFiles.indexOf(null) < 0;
     }
 
     requireFile ( _defOrPath : FormDefinition|string ) {
