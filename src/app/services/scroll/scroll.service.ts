@@ -55,6 +55,14 @@ export class ScrollService {
         let body              = this._dom.query( 'body' );
         let components        = this._dom.querySelectorAll( body, '[id$="-block"]' );
         for ( const component of  components ) {
+
+            // If the block is hidden then don't scroll to it
+            const style = window.getComputedStyle(component);
+            if ( style.display === 'none') {
+                // Element is not visisble
+                continue;
+            }
+
             let selectorName       = component.id;
             let _fdnOfSelectorName = selectorName.split( '-' );
             _fdnOfSelectorName.pop();
