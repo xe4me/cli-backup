@@ -34,7 +34,7 @@ describe( 'AppComponent', () => {
                     useValue : '/'
                 },
                 ...AMP_DDC_PROVIDERS,
-                <any>Renderer,
+                <any> Renderer,
                 BrowserDomAdapter
             ],
             declarations : DECLARATIONS,
