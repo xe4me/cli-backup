@@ -4,7 +4,10 @@ import {
     OnDestroy,
     ViewChild
 } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
+import {
+    AbstractControl,
+    FormControl
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
     FormBlock,
@@ -60,6 +63,8 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             this.newOrConvertControl.setValue( this.newOrConvertControl.value );
             let accountNumberControlId = this.__custom.controls[ 1 ].id;
             let accountNumberControl = this.__controlGroup.get( accountNumberControlId );
+            // If the account number component is a DropDown in retrieve scenarios,
+            // change it to account number input and set a new control with value
             if ( this.isAccountNumberDropdown( accountNumberControl ) ) {
                 this.__controlGroup.setControl(
                     accountNumberControlId ,
@@ -124,9 +129,6 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     }
 
     protected get defaultAccountAction () : string {
-        if ( this.__isRetrieved ) {
-            return '';
-        }
         return this.accountActions.convert;
     }
 
