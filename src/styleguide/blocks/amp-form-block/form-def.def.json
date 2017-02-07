@@ -102,8 +102,8 @@
                         {
                             "name": "sampleArrayExperienceBlock",
                             "blockType": "SampleArrayExperienceBlock",
-                            "blockLayou": "INLINE",
-                            "commonBloc": false,
+                            "blockLayout": "INLINE",
+                            "commonBlock": false,
                             "path": "amp-form-block/blocks/sample-array-experience-block",
                             "custom": {
                                 "blockTitle": "This block has dynamic controls",

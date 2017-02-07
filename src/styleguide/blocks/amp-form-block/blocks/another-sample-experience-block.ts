@@ -52,6 +52,8 @@ import { AutoFocusOnDirective } from '../../../../app/modules/amp-directives';
                     <button (click)='removeAt()'>Remove at 1</button>
                     <br>
                     <button (click)='loadAllNext()'>Load all next</button>
+                    <br>
+                    <button (click)='removeByFdn(["Application", "sampleArrayExperienceBlock"])'>Remove by fdn </button>
             </amp-form-row>
         </amp-form-block>
     `,
@@ -144,6 +146,12 @@ export class AnotherSampleExperienceBlock extends FormBlock {
         this.__loadAllNext( this.multipleChilds, this._vContainerRef )
             .then( ( all ) => {
                 console.log( 'all', all );
+            } );
+    }
+    removeByFdn (fdn) {
+        this.__removeByFdn( fdn )
+            .then( ( removedIndex) => {
+                console.log( 'removedIndex', removedIndex );
             } );
     }
 }
