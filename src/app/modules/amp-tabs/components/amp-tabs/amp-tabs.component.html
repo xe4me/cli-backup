@@ -3,11 +3,11 @@
     [class.amp-tabs--disabled]="disabled">
 
     <div class="amp-tabs__nav" role="tablist">
-        <a
+        <label
             *ngFor="let tab of tabs"
             [class.amp-tabs__nav-item--active]="tab.active"
             class="amp-tabs__nav-item"
-            href="#"
+            [attr.for]="randomizedId + '_' + tab.id"
             role="tab"
             (click)="onClick($event, tab)"
             (keydown)="onKeydown($event, tab)"
@@ -16,20 +16,18 @@
             <span class="amp-tabs__title">
                 {{tab.title}}
             </span>
-        </a>
+            <input
+                hidden
+                [attr.data-automation-id]='"group_tab_" + randomizedId + "_" + tab.id'
+                type="radio"
+                [attr.id]="randomizedId + '_' + tab.id"
+                [attr.name]="randomizedId"
+                [formControl]="control"
+                [attr.disabled]="disabled"
+                [value]="tab.id"
+                [checked]="control.value === tab.id" />
+        </label>
     </div>
-
-    <input
-        *ngFor="let tab of tabs"
-        hidden
-        [attr.data-automation-id]='"group_tab_" + randomizedId + "_" + tab.id'
-        type="radio"
-        [attr.id]="randomizedId + '_' + tab.id"
-        [attr.name]="randomizedId"
-        [formControl]="control"
-        [attr.disabled]="disabled"
-        [value]="tab.id"
-        [checked]="control.value === tab.id" />
 
     <div *ngIf="tabsFromList()">
         <ng-content></ng-content>
