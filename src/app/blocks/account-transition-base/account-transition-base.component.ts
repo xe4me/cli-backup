@@ -4,7 +4,10 @@ import {
     OnDestroy,
     ViewChild
 } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import {
+    AbstractControl,
+    FormControl
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
     FormBlock,
@@ -32,7 +35,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     private userHasLoggedIn : boolean  = false;
     private newOrConvertControlSubscription : Subscription;
     private eligibleAccountsServiceSubscription : Subscription;
-
+    private isAccountNumberDropDownOrInputReady : boolean = false;
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
@@ -54,9 +57,20 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             } );
 
         if ( this.__isRetrieved ) {
-            this.updateAccountAction( this.newOrConvertControl.value );
             this.__controlGroup.markAsTouched();
             this.isActive = true;
+            this.updateAccountAction( this.newOrConvertControl.value );
+            this.newOrConvertControl.setValue( this.newOrConvertControl.value );
+            let accountNumberControlId = this.__custom.controls[ 1 ].id;
+            let accountNumberControl = this.__controlGroup.get( accountNumberControlId );
+            // If the account number component is a DropDown in retrieve scenarios,
+            // change it to account number input and set a new control with value
+            if ( this.isAccountNumberDropdown( accountNumberControl ) ) {
+                this.__controlGroup.setControl(
+                    accountNumberControlId ,
+                    new FormControl( accountNumberControl.get( 'SelectedItem' ).value )
+                );
+            }
         } else {
             this.newOrConvertControl.setValue( this.defaultAccountAction );
         }
@@ -67,6 +81,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
                 this.fetchEligibleAccounts();
             });
 
+        this.isAccountNumberDropDownOrInputReady = true;
         super.ngAfterViewInit();
     }
 
@@ -76,6 +91,12 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             this.eligibleAccountsServiceSubscription.unsubscribe();
         }
         super.ngOnDestroy();
+    }
+
+    protected isAccountNumberDropdown ( accountNumberControl ) : boolean {
+        return  accountNumberControl &&
+                accountNumberControl.get( 'Query' ) &&
+                accountNumberControl.get( 'SelectedItem' );
     }
 
     protected get showAccountNumber () : boolean {
