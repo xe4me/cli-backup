@@ -300,22 +300,10 @@ export abstract class AmpBlockLoader {
         waitForChunk( ( file ) => {
             let keys = Object.keys( file );
             this.storeFile( file[ keys[ 0 ] ], _def, _index );
-            if ( this.retrievedFiles.length === this.blocksCount && !this.hasNullRetrievedFiles()) {
+            if ( this.retrievedFiles.length === this.blocksCount && !this.retrievedFiles.indexOf(null)) {
                this.createAllRecursively( 0 );
             }
         } );
-    }
-
-    hasNullRetrievedFiles () : boolean {
-        if (this.retrievedFiles != null && this.retrievedFiles.length > 0) {
-             for ( let file of this.retrievedFiles ) {
-                // If we find any element initialize to NULLs
-                if (file === null) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     requireFile ( _defOrPath : FormDefinition|string ) {
