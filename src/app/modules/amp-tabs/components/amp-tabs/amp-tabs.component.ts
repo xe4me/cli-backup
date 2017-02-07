@@ -93,7 +93,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     public updateValidators () {
         if ( this.control ) {
             let validators = Validators.compose( [
-                RequiredValidator.requiredValidation( this.required, true ),
+                RequiredValidator.requiredValidation( this.required ),
                 this.customValidator()
             ] );
             this.control.setValidators( validators );
