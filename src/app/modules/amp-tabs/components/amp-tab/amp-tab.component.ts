@@ -11,6 +11,7 @@ import {
 
 export class AmpTabComponent {
 
+    @Input('id') id : string = '';
     @Input('tab-title') title : string = '';
     @Input('active') active : boolean = false;
 

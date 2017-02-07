@@ -14,6 +14,9 @@ import {
     FormGroup
 } from '@angular/forms';
 
+import { MockScrollService } from '../../services/mock-scroll.service';
+import { ScrollService } from '../../../app/services';
+
 import { By } from '@angular/platform-browser';
 
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
@@ -32,12 +35,18 @@ describe( 'amp-tabs component', () => {
     let _tabsComp2 : AmpTabsComponent;
     let _tabsComp3 : AmpTabsComponent;
     let _tabsComp4 : AmpTabsComponent;
+    let _tabsComp5 : AmpTabsComponent;
+    let _tabsComp6 : AmpTabsComponent;
     const TAB_SELECTOR = '.amp-tabs__nav-item';
 
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             declarations : [ TestComponent ],
             providers    : [
+                {
+                    provide  : ScrollService,
+                    useClass : MockScrollService
+                },
                 {
                     provide  : ComponentFixtureAutoDetect,
                     useValue : true
@@ -53,6 +62,8 @@ describe( 'amp-tabs component', () => {
         _tabsComp2           = _testCmp.tabs2;
         _tabsComp3           = _testCmp.tabs3;
         _tabsComp4           = _testCmp.tabs4;
+        _tabsComp5           = _testCmp.tabs5;
+        _tabsComp6           = _testCmp.tabs6;
         _debugElement        = _fixture.debugElement;
         _element             = _fixture.nativeElement;
         _fixture.detectChanges();
@@ -79,8 +90,8 @@ describe( 'amp-tabs component', () => {
             expect(_tabsComp1.tabs.length).toEqual(2);
         } );
 
-        it( 'should set tabsFromList property to true', () => {
-            expect(_tabsComp1.tabsFromList).toEqual(true);
+        it( 'should expect tabsFromList to equal true', () => {
+            expect(_tabsComp1.tabsFromList()).toEqual(true);
         } );
 
         it( 'should have the first tab active by default', () => {
@@ -89,6 +100,10 @@ describe( 'amp-tabs component', () => {
 
         it( 'should set selected active tab as default', () => {
             expect(_tabsComp2.tabs.last.active).toEqual(true);
+        } );
+
+        it( 'should set defaultValue tab as default', () => {
+            expect(_tabsComp3.tabs.last.active).toEqual(true);
         } );
 
         it( 'should set selected tab as active', () => {
@@ -106,46 +121,84 @@ describe( 'amp-tabs component', () => {
 
     describe( 'Tabs from array', () => {
         it( 'should get tabs from array', () => {
-            expect(_tabsComp3.tabs.length).toEqual(2);
+            expect(_tabsComp4.tabs.length).toEqual(2);
         } );
 
-        it( 'should NOT set tabsFromList property to true', () => {
-            expect(_tabsComp3.tabsFromList).toEqual(false);
+        it( 'should expect tabsFromList to equal false', () => {
+            expect(_tabsComp4.tabsFromList()).toEqual(false);
         } );
 
         it( 'should have the first tab active by default', () => {
-            expect(_tabsComp3.tabs[0].active).toEqual(true);
+            expect(_tabsComp4.tabs[0].active).toEqual(true);
         } );
 
         it( 'should set selected active tab as default', () => {
-            expect(_tabsComp4.tabs[1].active).toEqual(true);
+            expect(_tabsComp5.tabs[1].active).toEqual(true);
+        } );
+
+        it( 'should set defaultValue tab as default', () => {
+            expect(_tabsComp6.tabs[1].active).toEqual(true);
         } );
     } );
 
 } );
 @Component( {
     template : `
-        <amp-tabs #tabs1 id="tabs1">
-            <amp-tab tab-title="tab1a">
+        <amp-tabs
+            #tabs1
+            id="tabs1"
+            [controlGroup]="controlGroup1">
+            <amp-tab tab-title="tab1a" id="tab1a">
                 <p>Tab A</p>
             </amp-tab>
-            <amp-tab tab-title="tab1b">
+            <amp-tab tab-title="tab1b" id="tab1b">
                 <p>Tab B</p>
             </amp-tab>
         </amp-tabs>
 
-        <amp-tabs #tabs2 id="tabs2">
-            <amp-tab tab-title="tab2a">
+        <amp-tabs
+            #tabs2
+            id="tabs2"
+            [controlGroup]="controlGroup2">
+            <amp-tab tab-title="tab2a" id="tab2a">
                 <p>Tab A</p>
             </amp-tab>
-            <amp-tab tab-title="tab2b" [active]="true">
+            <amp-tab tab-title="tab2b" id="tab2b" [active]="true">
                 <p>Tab B</p>
             </amp-tab>
         </amp-tabs>
 
-        <amp-tabs [tabs]="tabs3Array" #tabs3 id="tabs3"></amp-tabs>
+        <amp-tabs
+            #tabs3
+            id="tabs3"
+            [controlGroup]="controlGroup3"
+            [defaultValue]="'tab3b'">
+            <amp-tab tab-title="tab3a" id="tab3a">
+                <p>Tab A</p>
+            </amp-tab>
+            <amp-tab tab-title="tab3b" id="tab3b">
+                <p>Tab B</p>
+            </amp-tab>
+        </amp-tabs>
 
-        <amp-tabs [tabs]="tabs4Array" #tabs4 id="tabs4"></amp-tabs>
+        <amp-tabs
+            [tabs]="tabs4Array"
+            #tabs4
+            id="tabs4"
+            [controlGroup]="controlGroup4"></amp-tabs>
+
+        <amp-tabs
+            [tabs]="tabs5Array"
+            #tabs5
+            id="tabs5"
+            [controlGroup]="controlGroup5"></amp-tabs>
+
+        <amp-tabs
+            [tabs]="tabs6Array"
+            #tabs6
+            id="tabs6"
+            [controlGroup]="controlGroup6"
+            [defaultValue]="tabs6Array[1].id"></amp-tabs>
     `
 } )
 class TestComponent {
@@ -153,27 +206,53 @@ class TestComponent {
     @ViewChild( 'tabs2' ) tabs2;
     @ViewChild( 'tabs3' ) tabs3;
     @ViewChild( 'tabs4' ) tabs4;
+    @ViewChild( 'tabs5' ) tabs5;
+    @ViewChild( 'tabs6' ) tabs6;
 
-    private tabs3Array = [
-        {
-            'title': 'tab3a',
-            'content': 'Tab A'
-        },
-        {
-            'title': 'tab3b',
-            'content': 'Tab B'
-        }
-    ];
+    controlGroup1 : FormGroup = new FormGroup( {} );
+    controlGroup2 : FormGroup = new FormGroup( {} );
+    controlGroup3 : FormGroup = new FormGroup( {} );
+    controlGroup4 : FormGroup = new FormGroup( {} );
+    controlGroup5 : FormGroup = new FormGroup( {} );
+    controlGroup6 : FormGroup = new FormGroup( {} );
 
     private tabs4Array = [
         {
+            'id': 'tab4a',
             'title': 'tab4a',
             'content': 'Tab A'
         },
         {
+            'idtitle': 'tab4b',
             'title': 'tab4b',
+            'content': 'Tab B'
+        }
+    ];
+
+    private tabs5Array = [
+        {
+            'id': 'tab5a',
+            'title': 'tab5a',
+            'content': 'Tab A'
+        },
+        {
+            'id': 'tab5b',
+            'title': 'tab5b',
             'content': 'Tab B',
             'active': true
+        }
+    ];
+
+    private tabs6Array = [
+        {
+            'id': 'tab6a',
+            'title': 'tab6a',
+            'content': 'Tab A'
+        },
+        {
+            'id': 'tab6b',
+            'title': 'tab6b',
+            'content': 'Tab B'
         }
     ];
 }

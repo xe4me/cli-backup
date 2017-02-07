@@ -1,4 +1,5 @@
 @import '../../../../../styles/abstracts';
+@import './amp-tabs.component.mixins';
 
 $amp-tab-border-color: $amp-colour-grey-dark;
 $amp-tab-active-bg-color: $amp-colour-sky-blue;
@@ -16,6 +17,7 @@ $amp-tab-active-arrow-size: 15px;
         &-item {
             border-left: 1px solid $amp-tab-border-color;
             color: $amp-colour-primary;
+            cursor: pointer;
             display: table-cell;
             font-size: 15px;
             font-weight: 600;
@@ -27,19 +29,26 @@ $amp-tab-active-arrow-size: 15px;
             z-index: 1;
             transition: background .2s ease, color .2s ease;
 
+            @include is-disabled() {
+                color: $amp-colour-grey-darker;
+                cursor: default;
+            }
+
             &:first-child {
                 border-left: 0;
             }
 
-            &:focus,
-            &:hover {
-                background: $amp-tab-active-bg-color;
-                color: $amp-colour-white;
+             @include not-disabled() {
+                &:focus,
+                &:hover {
+                    background: $amp-tab-active-bg-color;
+                    color: $amp-colour-white;
+                }
             }
 
             &--active {
                 background: $amp-tab-active-bg-color;
-                color: $amp-colour-white;
+                color: $amp-colour-white !important;
 
                 &::after {
                     border: $amp-tab-active-arrow-size solid transparent;

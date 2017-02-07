@@ -1,33 +1,59 @@
 <section class="section p">
 
-    <h2 class="mb-40">Tabs from mark-up (default active tab)</h2>
+    <h2 class="mb-40">Tabs from mark-up (default active tab) <button (click)="toggleDisable()">Toggle disable ({{ disabled }})</button></h2>
 
-    <p class="mb-40"><i>Required:</i> <code>tab-title</code> on each tab</p>
+    <p class="mb-40"><i>Required:</i> <code>id</code> and <code>tab-title</code> on each tab</p>
     <p class="mb-40"><i>Optional:</i> <code>active</code> on one tab (use to set default tab)</p>
 
-    <amp-tabs>
-        <amp-tab [tab-title]="title1">
+    <amp-tabs
+        [required]="required"
+        [isInSummaryState]="isInSummaryState"
+        [controlGroup]="controlGroup1"
+        [disabled]="disabled"
+        [groupName]="'tabs1'">
+        <amp-tab [tab-title]="title1" [id]="id1">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tab-title="Bicycle">
+        <amp-tab tab-title="Bicycle" id="bicycle">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
         </amp-tab>
-        <amp-tab tab-title="Aeroplane">
+        <amp-tab tab-title="Aeroplane" id="aeroplane">
             <p>An airplane or aeroplane (informally plane) is a powered, fixed-wing aircraft that is propelled forward by thrust from a jet engine or propeller. Airplanes come in a variety of sizes, shapes, and wing configurations.</p>
         </amp-tab>
-        <amp-tab tab-title="Boat">
+        <amp-tab tab-title="Boat" id="boat">
             <p>A boat is a watercraft of a large range of sizes designed to float, plane, work or travel on water. Small boats are typically found on inland waterways (e.g., rivers and lakes) or in protected coastal areas.</p>
         </amp-tab>
     </amp-tabs>
 
     <h2 class="mt-60 mb-40">Tabs from mark-up (Setting default active tab)</h2>
 
-    <amp-tabs>
-        <amp-tab [tab-title]="'Car'">
+    <amp-tabs
+        [required]="required"
+        [isInSummaryState]="isInSummaryState"
+        [controlGroup]="controlGroup2"
+        [groupName]="'tabs2'">
+        <amp-tab [tab-title]="'Car'" id="car2">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tab-title="Bicycle" active="true">
+        <amp-tab tab-title="Bicycle" id="bicycle2" active="true">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
+        </amp-tab>
+    </amp-tabs>
+
+    <h2 class="mt-60 mb-40">Tabs from mark-up (Setting active tab via defaultValue)</h2>
+
+    <amp-tabs
+        [controlGroup]="controlGroup3"
+        [groupName]="'tabs3'"
+        [defaultValue]="'bus3'">
+        <amp-tab [tab-title]="'Car3'" id="car3">
+            <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
+        </amp-tab>
+        <amp-tab tab-title="Bicycle3" id="bicycle3">
+            <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
+        </amp-tab>
+        <amp-tab tab-title="Bus3" id="bus3">
+            <p>The wheels on the bus go round and round..</p>
         </amp-tab>
     </amp-tabs>
 
@@ -37,10 +63,19 @@
 
     <h2 class="mb-40">Tabs from array (default active tab)</h2>
 
-    <amp-tabs [tabs]="tabs"></amp-tabs>
+    <amp-tabs [controlGroup]="controlGroup4" [tabs]="tabs"></amp-tabs>
 
     <h2 class="mt-60 mb-40">Tabs from array (Setting default active tab)</h2>
 
-    <amp-tabs [tabs]="tabs2"></amp-tabs>
+    <amp-tabs [controlGroup]="controlGroup5" [tabs]="tabs2"></amp-tabs>
+
+    <h2 class="mt-60 mb-40">Tabs from array (Setting active tab via defaultValue) <button (click)="toggleDisable2()">Toggle disable ({{ disabled }})</button></h2>
+
+    <amp-tabs
+        [controlGroup]="controlGroup5"
+        [tabs]="tabs3"
+        [disabled]="disabled2"
+        [defaultValue]="tabs3[2].id"></amp-tabs>
 
 </section>
+
