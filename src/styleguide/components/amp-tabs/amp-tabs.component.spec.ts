@@ -125,7 +125,10 @@ describe( 'amp-tabs component', () => {
 } );
 @Component( {
     template : `
-        <amp-tabs #tabs1 id="tabs1">
+        <amp-tabs
+            #tabs1
+            id="tabs1"
+            [controlGroup]="controlGroup1">
             <amp-tab tab-title="tab1a">
                 <p>Tab A</p>
             </amp-tab>
@@ -134,7 +137,10 @@ describe( 'amp-tabs component', () => {
             </amp-tab>
         </amp-tabs>
 
-        <amp-tabs #tabs2 id="tabs2">
+        <amp-tabs
+            #tabs2
+            id="tabs2"
+            [controlGroup]="controlGroup2">
             <amp-tab tab-title="tab2a">
                 <p>Tab A</p>
             </amp-tab>
@@ -143,9 +149,17 @@ describe( 'amp-tabs component', () => {
             </amp-tab>
         </amp-tabs>
 
-        <amp-tabs [tabs]="tabs3Array" #tabs3 id="tabs3"></amp-tabs>
+        <amp-tabs
+            [tabs]="tabs3Array"
+            #tabs3
+            id="tabs3"
+            [controlGroup]="controlGroup3"></amp-tabs>
 
-        <amp-tabs [tabs]="tabs4Array" #tabs4 id="tabs4"></amp-tabs>
+        <amp-tabs
+            [tabs]="tabs4Array"
+            #tabs4
+            id="tabs4"
+            [controlGroup]="controlGroup4"></amp-tabs>
     `
 } )
 class TestComponent {
@@ -154,12 +168,19 @@ class TestComponent {
     @ViewChild( 'tabs3' ) tabs3;
     @ViewChild( 'tabs4' ) tabs4;
 
+    controlGroup1 : FormGroup = new FormGroup( {} );
+    controlGroup2 : FormGroup = new FormGroup( {} );
+    controlGroup3 : FormGroup = new FormGroup( {} );
+    controlGroup4 : FormGroup = new FormGroup( {} );
+
     private tabs3Array = [
         {
+            'id': 'tab3a',
             'title': 'tab3a',
             'content': 'Tab A'
         },
         {
+            'idtitle': 'tab3b',
             'title': 'tab3b',
             'content': 'Tab B'
         }
@@ -167,10 +188,12 @@ class TestComponent {
 
     private tabs4Array = [
         {
+            'id': 'tab4a',
             'title': 'tab4a',
             'content': 'Tab A'
         },
         {
+            'id': 'tab4b',
             'title': 'tab4b',
             'content': 'Tab B',
             'active': true
