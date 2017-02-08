@@ -11,23 +11,16 @@ import {
     ChangeDetectionStrategy,
     Optional
 } from '@angular/core';
-import {
-    Headers,
-    RequestOptions,
-    Response
-} from '@angular/http';
 import { FormBlock } from '../../../../form-block';
 import {
     ScrollService,
     SaveService,
     FormModelService,
-    AmpHttpService,
     TransformService
 } from '../../../../services';
 import { AmpFormBlockComponent } from '../../../amp-form';
 import { AutoFocusOnDirective } from '../../../amp-directives';
-import { Environments } from '../../../../abstracts/environments/environments.abstract';
-import { LoginStatusService } from '../../../../services/login/login-status.service';
+import { RetrieveService } from '../../../../services/retrieve/retrieve.service';
 
 @Component( {
     selector        : 'amp-continue-block',
@@ -71,7 +64,6 @@ export class AmpContinueBlockComponent extends FormBlock {
     public static notFoundErrorMsg = 'Sorry, we cannot find your application';
     public static closedErrorMsg   = 'This application has already been submitted';
     public static genericErrorMsg  = 'An unexpected error has occurred.';
-    public static retrieveURL      = `${Environments.property.ApiCallsBaseUrl}/${Environments.property.ExperienceName}/retrieve`;
 
     // Default custom values. Please note, this is all or nothing, we do not currently do shallow nor deep copying.
     public __custom               = {
@@ -105,25 +97,13 @@ export class AmpContinueBlockComponent extends FormBlock {
     constructor ( _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
                   private vcf : ViewContainerRef,
+                  private retrieveService : RetrieveService,
                   private formModelService : FormModelService,
-                  private http : AmpHttpService,
-                  private loginStatusService : LoginStatusService,
                   saveService : SaveService,
                   @Optional() private transformService : TransformService ) {
         super( saveService, _cd, scrollService );
 
         this.disableAutoSave();
-    }
-
-    public getErrorMessage ( status ) : string {
-        switch ( status ) {
-            case 'notFound' :
-                return AmpContinueBlockComponent.notFoundErrorMsg;
-            case 'closed' :
-                return AmpContinueBlockComponent.closedErrorMsg;
-            default :
-                return AmpContinueBlockComponent.genericErrorMsg;
-        }
     }
 
     public ngAfterViewInit () {
@@ -135,47 +115,46 @@ export class AmpContinueBlockComponent extends FormBlock {
     }
 
     public retrieve () {
+
         if ( !this.__controlGroup.valid ) {
             return;
         }
-
-        let headers = new Headers( { 'Content-Type' : 'application/json' } );
-        let options = new RequestOptions( { headers } );
 
         const referenceId = this.__controlGroup.get( this.__custom.controls[ 0 ].id ).value;
         const surname     = this.__controlGroup.get( this.__custom.controls[ 1 ].id ).value;
         const dob         = this.__controlGroup.get( this.__custom.controls[ 2 ].id ).value;
 
-        this.http.post( AmpContinueBlockComponent.retrieveURL, {
-            surname,
-            dob,
-            id      : referenceId
-        }, options )
-            .map( ( res : Response ) => res.json() )
-            .subscribe( ( response ) => {
-                const payload = response.payload;
+        let getErrorMessage = ( payload ) => {
+            if (!payload) {
+                return AmpContinueBlockComponent.genericErrorMsg;
+            }
+            switch (payload.status) {
+                case 'notFound' :
+                    return AmpContinueBlockComponent.notFoundErrorMsg;
+                case 'closed' :
+                    return AmpContinueBlockComponent.closedErrorMsg;
+                default :
+                    return AmpContinueBlockComponent.genericErrorMsg;
+            }
+        };
 
-                // Individual Experience may have their own implementation of the transform service, thus
-                // changing the shape of backend model into the corresponding frontend model.
-                let transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload.application ) : payload.application;
-
-                if ( payload.status === 'success' ) {
-                    this.showRetrieveBlock = false;
-                    this._cd.markForCheck();
-                    this.formModelService.storeModelAndHydrateForm( transformedAppModel );
-                    this.saveService.referenceId = referenceId;
-                } else {
-                    this.responseError = this.getErrorMessage( payload.status );
-                    this._cd.markForCheck();
-                }
-            }, ( error ) => {
+        this.retrieveService.retrieve(referenceId, surname, dob, (error, payload) => {
+            if (error) {
                 if (error.status === 404 && error.json() && error.json().payload) {
-                    this.responseError = this.getErrorMessage( error.json().payload.status );
+                    this.responseError = getErrorMessage( error.json().payload );
                 } else {
-                    this.responseError = AmpContinueBlockComponent.genericErrorMsg;
+                    this.responseError = getErrorMessage( payload );
                 }
                 this._cd.markForCheck();
-            } );
+                return;
+            }
+
+            let transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload.application ) : payload.application;
+            this.showRetrieveBlock = false;
+            this._cd.markForCheck();
+            this.formModelService.storeModelAndHydrateForm( transformedAppModel );
+            this.saveService.referenceId = referenceId;
+        } );
     }
 
     public onNext () {
