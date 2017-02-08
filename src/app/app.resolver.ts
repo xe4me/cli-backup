@@ -1,8 +1,7 @@
 import {
     SharedFormDataService,
     ApplicantGeneratorService,
-    AccountsListDataService,
-    EligibleAccountsService
+    AccountsListDataService
 } from './shared';
 import 'rxjs/add/observable/of';
 import {
@@ -12,9 +11,7 @@ import {
     HydrationService,
     SaveAndSubmitService,
     SubmitService,
-    LoginStatusService,
-    AmpHttpService,
-    CustomerDetailsService
+    AmpHttpService
 } from 'amp-ddc-components';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 // an array of services to resolve routes with data
@@ -25,12 +22,9 @@ export const APP_RESOLVER_PROVIDERS = [
     HydrationService,
     SaveAndSubmitService,
     SubmitService,
-    LoginStatusService,
     AmpHttpService,
     BrowserDomAdapter,
     SharedFormDataService,
     ApplicantGeneratorService,
-    AccountsListDataService,
-    EligibleAccountsService,
-    CustomerDetailsService
+    AccountsListDataService
 ];
