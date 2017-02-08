@@ -4,6 +4,7 @@ import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpFormModule } from '../amp-form';
 import { AmpInputsModule } from '../amp-inputs';
 import { AmpGoogleRecaptchaModule } from '../amp-google-recaptcha';
+import { RetrieveService } from '../../services/retrieve/retrieve.service';
 
 const DECLARATIONS = [ AmpCaptchaBlockComponent ];
 
@@ -13,8 +14,11 @@ const DECLARATIONS = [ AmpCaptchaBlockComponent ];
         AmpSharedRootModule,
         AmpFormModule,
         AmpInputsModule,
-        AmpGoogleRecaptchaModule
+        AmpGoogleRecaptchaModule,
     ] ,
+    providers    : [
+        RetrieveService,
+    ],
     exports      : DECLARATIONS
 } )
 export class AmpCaptchaBlockModule {

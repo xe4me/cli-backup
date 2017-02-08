@@ -8,10 +8,9 @@ import { AmpDirectivesModule } from '../amp-directives';
 import {
     ScrollService,
     SaveService,
-    FormModelService,
-    AmpHttpService
+    FormModelService
 } from '../../services';
-import { LoginStatusService } from '../../services/login/login-status.service';
+import { RetrieveService } from '../../services/retrieve/retrieve.service';
 
 const DECLARATIONS = [ AmpContinueBlockComponent ];
 
@@ -28,8 +27,7 @@ const DECLARATIONS = [ AmpContinueBlockComponent ];
         ScrollService,
         SaveService,
         FormModelService,
-        AmpHttpService,
-        LoginStatusService
+        RetrieveService,
     ],
     entryComponents : DECLARATIONS,
     exports      : DECLARATIONS
