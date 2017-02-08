@@ -14,13 +14,13 @@ export class AmpAccountNumberComponent extends AmpInputComponent {
                   _el : ElementRef,
                   _renderer : Renderer ) {
         super( _cd, _el, _renderer );
-        this.maxLength = 9;
-        this.pattern   = '^[0-9]{9}$';
+        this.maxLength = 12;
+        this.pattern   = '^[0-9]{3,12}$';
         this.required  = true;
         this.label     = 'Account number';
         this.errors    = {
             required : 'Account number is a required field.',
-            pattern  : 'Your account number is made up of 9 digits. It has no letters or spaces'
+            pattern  : 'Your account number is made up of 3 to 12 digits. It has no letters or spaces'
         };
     }
 }
