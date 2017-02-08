@@ -1,102 +1,101 @@
 @import '../../../../../styles/abstracts';
-amp-intro-block {
+:host /deep/ amp-intro-block {
     background-repeat: no-repeat;
     background-size: cover;
-    @include media-query(lap-and-up) {
-        background-position-y: 70px;
-    }
     background-color: transparent;
     min-height: 893px;
     padding-top: 69px !important;
 
+    @include media-query(lap-and-up) {
+        background-position-y: 70px;
+    }
+    
+    @include media-query(palm) {
+        padding: 0 8px !important;
+        background-position: left top;
+        background-size: 3000px;
+    }
+    
+    @media screen and (min-width: 1821px) {
+        background-size: 100%;
+        min-height: 1262px;
+    }
+
     .intro-message-heading {
         margin-bottom: 0;
+
+        @include media-query(palm) {
+            color: $amp-colour-primary;
+            font-size: $font-size-small;
+            line-height: 30px;
+            margin: 30px 0px 15px;
+        }
     }
+    
     .intro-header {
-        line-height: 64px;
+        @include amp-family($amp-font-archer-pro-light);
+        color: $amp-colour-primary;
         font-size: 52px;
-        font-family: "Archer SSm A", "Archer SSm B", "Open Sans", "Helvetica", "Arial", serif;
-        font-weight: 400;
-        color: #001e41;
+        line-height: 64px;
+
         @include media-query(palm) {
             line-height: 45px;
             font-size: 35px;
         }
     }
+
     .header-container {
         background-color: $amp-colour-primary;
-        position: absolute;
-        width: 100%;
         display: block;
+        position: absolute;
         left: 0;
         top: 0;
+        width: 100%;
+
         @include media-query(lap-and-up) {
             height: 70px;
         }
     }
+    
     amp-logo {
         height: 50px;
         margin-left: 71px;
+
+        @include media-query(tablet-and-up) {
+            display: block;
+            height: 65px;
+        }
+
         img {
             height: 42px;
             width: 150px;
             margin-top: 12px;
             margin-bottom: 10px;
-        }
-    }
-    @include media-query(tablet-and-down) {
-        amp-button {
-            button.btn {
-                margin-top: 20px !important;
-            }
-        }
-    }
-
-    
-
-    @include media-query(tablet-and-up) {
-        // buttons have a !important margin-top and we somehow need to override them in this case
-        #title-scenario {
-            margin-bottom: -25px;
-        }
-        amp-logo {
-            margin-left: 71px;
-            display: block;
-            height: 65px;
-            img {
+            
+            @include media-query(tablet-and-up) {
                 margin-top: 10px;
                 margin-bottom: 14px;
             }
         }
     }
-    @media screen and (min-width: 1821px) {
-        background-size: 100%;
-        min-height: 1262px;
-    }
-    @include media-query(palm) {
-        padding: 0 8px !important;
-        background-position: left top;
-        background-size: 3000px;
-        .intro-message-heading {
-            margin: 30px 0px 15px;
-            color: $amp-colour-primary;
-            font-size: $font-size-small;
-            line-height: 30px;
+ 
+    .btn-intro {
+        @include media-query(tablet-and-down) {
+            margin-top: 20px !important;
         }
     }
 
     .intro-container {
         margin-left: 55px;
+        margin-top: 90px;
         @include media-query(lap-and-up) {
             .intro-block-button-container {
                 margin-top: 60px !important;
             }
         }
-    }
-
-    @include media-query(palm) {
-        .intro-container.mt\+\+ {
-            margin: 115px 0px !important;
+        @include media-query(palm) {
+            margin-left: 0px;
+            margin-top: 115px !important;
         }
     }
 
@@ -104,57 +103,61 @@ amp-intro-block {
         font-weight: 400;
         margin-top: 60px;
         color: $amp-colour-secondary-darkest;
-        .data-list {
-            &.data-list-iconed {
-                list-style: none;
-                .data-list__item {
-                    margin-top: 36px;
-                    span {
-                        display: inline-block;
-                        vertical-align: middle;
-                        font-size: $font-size-tiny;
-                        font-weight: 600;
-                        margin-left: 14px;
-                        padding-bottom: 13px;
-                        @include media-query(palm) {
-                            display: block;
-                            margin-left: 8px;
-                        }
-                    }
-                    &.icon {
-                            &::before {
-                                content: ' ';
-                                float: left;
-                                margin-top: -4px;
-                                margin-right: 20px;
-                                top: 0;
-                                width: 36px;
-                                height: 37px;
-                                background-repeat: no-repeat;
-                                background-size: 100%;
-                            }
-                            &.time-clock-icon {
-                                &::before {
-                                    background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/time_clock.png');
-                                }
-                            }
-                            &.eighteen-plus-icon {
-                                &::before {
-                                    background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/18+.png');
-                                }
-                            }
-                            &.id-check-icon {
-                                &::before {
-                                    height: 33px;
-                                    background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/id.png');
-                                }
-                            }
-                        }
-                }
-            }
-        }
+
         @include media-query(palm) {
             margin-top: 40px;
+        }
+        
+        .data-list {
+            list-style: none;
+
+            .data-list__item {
+                margin-top: 36px;
+
+                &::before {
+                    content: ' ';
+                    float: left;
+                    margin-top: -4px;
+                    margin-right: 20px;
+                    width: 36px;
+                    height: 37px;
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                }
+
+                &.time-clock-icon {
+                    &::before {
+                        background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/time_clock.png');
+                    }
+                }
+
+                &.eighteen-plus-icon {
+                    &::before {
+                        background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/18+.png');
+                    }
+                }
+
+                &.id-check-icon {
+                    &::before {
+                        height: 33px;
+                        background-image: url('/ddc/public/ui/amp-saver/assets/images/icons/id.png');
+                    }
+                }
+
+                &-text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: $font-size-tiny;
+                    font-weight: 600;
+                    margin-left: 14px;
+                    padding-bottom: 13px;
+
+                    @include media-query(palm) {
+                        display: block;
+                        margin-left: 8px;
+                    }
+                }
+            }
         }
     }
 }
