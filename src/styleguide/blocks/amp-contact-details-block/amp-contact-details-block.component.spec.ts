@@ -256,7 +256,6 @@ describe('amp-contact-details-block component', () => {
             });
         });
     });
-
 });
 
 @Component({

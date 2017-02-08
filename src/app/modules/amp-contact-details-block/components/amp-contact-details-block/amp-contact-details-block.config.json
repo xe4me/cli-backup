@@ -5,7 +5,8 @@
             "id": "emailAddress",
             "label": "Email",
             "required": true,
-            "tooltipMessage": "Confirmation of your application will be sent to this email address."
+            "tooltipMessage": "Confirmation of your application will be sent to this email address.",
+            "prepopMapping": "payload.contactDetails.emailAddress"
         },
         {
             "id": "mobilePhone",
@@ -15,12 +16,15 @@
             "errors": {
                 "required": "Mobile number is a required field.",
                 "pattern": "Mobile number must be in the format 04nnnnnnnn."
-            }
+            },
+            "prepopMapping": "payload.contactDetails.mobilePhone",
+            "prepopMappingParser": "parseMobileNumber"
         },
         {
             "id": "homePhone",
             "label": "Home number",
-            "required": false
+            "required": false,
+            "prepopMapping": "payload.contactDetails.homePhone"
         }
     ]
 }
