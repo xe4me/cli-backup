@@ -49,6 +49,7 @@ export class RootEnvProperty {
     ExperienceName : string; // like : buyback , or nio , or cwc
     DamContentUrl : string; // https://www.amp.com.au
     AmpRootUrl : string; // https://www.amp.com.au
+    AemHostName : string; // AEM domain
     GreenId : {
         configScriptUrl : string;
         uiScriptUrl : string;
