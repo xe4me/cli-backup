@@ -9,20 +9,22 @@
         <h1 class="intro-header">{{__custom.welcomeTitle}}</h1>
         <h3 class="intro-message-heading heading heading-intro mt">{{__custom.welcomeMessage}}</h3>
         <div class="intro-list-container">
-            <ul class="data-list data-list-iconed">
-                <li class="data-list__item icon" *ngFor="let item of __custom.welcomePoints" [ngClass]="item.icon"><span>{{item.text}}</span></li>
+            <ul class="data-list">
+                <li class="data-list__item" *ngFor="let item of __custom.welcomePoints" [ngClass]="item.icon">
+                    <span class="data-list__item-text">{{item.text}}</span>
+                </li>
             </ul>
         </div>
         <div class="mt+ mb palm-mt- intro-block-button-container">
             <amp-button
                     (click)="onNewApplication()"
                     [attr.theme]="'tools'"
-                    class="1/4 btn btn-ok palm-1/1 tablet-1/2 tablet-and-up-mr">
+                    class="1/4 btn btn-ok palm-1/1 tablet-1/2 tablet-and-up-mr btn-intro">
                 {{__custom.actions[0].buttonName}}
             </amp-button>
             <amp-button (click)="onContinueApplication()"
                         [attr.theme]="'tools'"
-                        class="1/4 btn btn-ok palm-1/1 palm-mt- tablet-1/2 tablet-and-up-mr">
+                        class="1/4 btn btn-ok palm-1/1 palm-mt- tablet-1/2 tablet-and-up-mr btn-intro">
                 {{__custom.actions[1].buttonName}}
             </amp-button>
         </div>
