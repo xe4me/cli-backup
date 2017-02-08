@@ -35,27 +35,27 @@ describe( 'amp-account-number component', () => {
         let Component             = fixture.componentInstance;
         expect( compiledInput.nativeElement.name ).toBe( Component.accountNumberCmp.randomizedId );
         expect( compiledInput.nativeElement.id ).toBe( Component.accountNumberCmp.randomizedId );
-        expect( compiledInput.nativeElement.attributes[ 'maxlength' ].value ).toBe( '9' );
+        expect( compiledInput.nativeElement.attributes[ 'maxlength' ].value ).toBe( '12' );
         expect( compiledInput.nativeElement.type ).toBe( 'text' );
         expect( compiledInput.nativeElement.attributes[ 'data-automation-id' ].value ).toBe( 'text' + '_' + Component.accountNumberCmp.randomizedId );
     } );
-    it( 'should be invalid if longer than 9 digits', () => {
+    it( 'should be invalid if longer than 12 digits', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent  = fixture.debugElement;
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '12345678910' );
+        accountNumberControl.setValue( '12345678910123' );
         expect( accountNumberControl.valid ).toBe( false );
     } );
-    it( 'should be invalid if shorter than 9 digits', () => {
+    it( 'should be invalid if shorter than 3 digits', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent  = fixture.debugElement;
         const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
-        accountNumberControl.setValue( '12345678' );
+        accountNumberControl.setValue( '12' );
         expect( accountNumberControl.valid ).toBe( false );
     } );
-    it( 'should be valid if exactly 9 digits', () => {
+    it( 'should be valid if 9 digits', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
         let compiledTestComponent  = fixture.debugElement;
