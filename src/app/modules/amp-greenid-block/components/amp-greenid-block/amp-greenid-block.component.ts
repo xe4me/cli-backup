@@ -368,9 +368,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
             if (this.__custom.applicantIndex) {
                 rootApplicantFDN = this.__custom.rootApplicantFDN + this.__custom.applicantIndex;
             } else {
-                if (this.__repeaterIndex) {
-                    rootApplicantFDN = this.__custom.rootApplicantFDN + '.' + this.__repeaterIndex + '.';
-                }
+                rootApplicantFDN = this.__custom.rootApplicantFDN + '.' + this.__repeaterIndex + '.';
             }
         }
         return {
