@@ -63,6 +63,22 @@ describe( 'amp-account-number component', () => {
         accountNumberControl.setValue( '123456789' );
         expect( accountNumberControl.valid ).toBe( true );
     } );
+    it( 'should be valid if 3 digits', () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent  = fixture.debugElement;
+        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
+        accountNumberControl.setValue( '123' );
+        expect( accountNumberControl.valid ).toBe( true );
+    } );
+    it( 'should be valid if 12 digits', () => {
+        let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
+        fixture.detectChanges();
+        let compiledTestComponent  = fixture.debugElement;
+        const accountNumberControl = compiledTestComponent.componentInstance.accountNumberControl.controls[ 'account-number' ];
+        accountNumberControl.setValue( '123456789012' );
+        expect( accountNumberControl.valid ).toBe( true );
+    } );
     it( 'should be invalid if contains non-numeric characters', () => {
         let fixture : ComponentFixture<TestComponent> = TestBed.createComponent( TestComponent );
         fixture.detectChanges();
