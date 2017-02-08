@@ -96,7 +96,9 @@ class DepositTransitionBlockTest implements OnInit{
     @ViewChild('block') block;
 
     ngOnInit() {
+        let blockJSON = require('../../forms/better-form/better-choice-block.json');
         this.block.__fdn = ['Application', 'Applicant1Section', 'PersonalDetailsSection', 'DepositTransition'];
+        this.block.__controlGroup = new FormGroup({});
         this.block.__custom = {
             "blockTitle": "Your deposit account",
                 "type" : "deposit",
