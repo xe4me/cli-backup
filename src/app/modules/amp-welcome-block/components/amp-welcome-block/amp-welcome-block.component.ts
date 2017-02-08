@@ -1,10 +1,9 @@
 import {
-    Component ,
+    Component,
     ViewChild,
-    ViewContainerRef ,
-    ChangeDetectorRef ,
-    ElementRef ,
-    ViewEncapsulation
+    ViewContainerRef,
+    ChangeDetectorRef,
+    ElementRef
 } from '@angular/core';
 import { AmpButton } from '../../../amp-button/components/amp-button/amp-button.component';
 
@@ -17,8 +16,7 @@ import { Environments } from '../../../../abstracts/environments/environments.ab
 @Component( {
     selector   : 'amp-welcome-block' ,
     template     : require('./amp-welcome-block.component.html'),
-    styles     : [ require( './amp-welcome-block.component.scss')] ,
-    encapsulation: ViewEncapsulation.None
+    styles     : [ require( './amp-welcome-block.component.scss')]
 } )
 export class AmpWelcomeBlockComponent extends FormBlock {
     private static ACTIONS = {
