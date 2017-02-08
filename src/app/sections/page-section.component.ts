@@ -32,6 +32,8 @@ export class PageSectionComponent {
     public __name;
     public __loadNext;
     public __removeNext;
+    public __removeByFdn;
+    public __removeByName;
     public __repeaterIndex : number;
     public isHidden : boolean;
     public scrolledSubscribtion;
