@@ -18,6 +18,7 @@ import {
     MinAgeValidator,
     MaxAgeValidator,
     PatterValidator,
+    MinFloatValidator,
     MaxFloatValidator
 } from '../../../amp-utils';
 import { Validators } from '@angular/forms';
@@ -126,6 +127,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
                 MinAgeValidator.minAgeValidator( this._minAge, this.pattern ),
                 MaxAgeValidator.maxAgeValidator( this._maxAge, this.pattern ),
                 PatterValidator.patternValidator( this.pattern ),
+                MinFloatValidator.minFloatValidator( this._minFloat ),
                 MaxFloatValidator.maxFloatValidator( this._maxFloat ),
                 DateValidator.dateValidator( this._valDate, this.pattern ),
                 this.customValidator()
@@ -255,6 +257,15 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
 
     set maxAge ( value : any ) {
         this._maxAge = parseInt( value, 10 );
+        this.updateValidators();
+    }
+
+    get minFloat () {
+        return this._minFloat;
+    }
+
+    set minFloat ( value : any ) {
+        this._minFloat = value;
         this.updateValidators();
     }
 
