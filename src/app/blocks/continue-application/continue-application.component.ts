@@ -18,6 +18,7 @@ import {
 import {
     FormBlock,
     ScrollService,
+    TransformService,
     SaveService,
     FormModelService,
     AmpHttpService,
@@ -29,7 +30,7 @@ import { Constants } from '../../shared';
 import { SharedFormDataService } from '../../shared/shared-form-data.service';
 @Component( {
     selector        : 'continue-application-block',
-    template        : require( './continue-application.component.html'),
+    template        : require( './continue-application.component.html' ),
     changeDetection : ChangeDetectionStrategy.OnPush,
     host            : {
         '[@slideUp]' : 'slideUp'
@@ -47,7 +48,7 @@ import { SharedFormDataService } from '../../shared/shared-form-data.service';
                     'padding-right'  : '0px',
                     'padding-bottom' : '0px',
                     'padding-top'    : '0px',
-                    'display'          : 'none'
+                    'display'        : 'none'
                 } ) ),
                 state( 'expanded', style( {
                     'height'         : '*',
@@ -73,25 +74,26 @@ export class ContinueApplicationBlock extends FormBlock {
     @ViewChild( AmpFormBlockComponent ) public AmpFormBlockComponent;
 
     private responseError : string;
-    private fieldsAreRequired      = true;
-    private showRetrieveBlock      = true;
-    private removedNextBlock       = false;
-    private slideUp                = 'expanded';
-    private ANIMATION_TIME         = 800;
+    private fieldsAreRequired = true;
+    private showRetrieveBlock = true;
+    private removedNextBlock  = false;
+    private slideUp           = 'expanded';
+    private ANIMATION_TIME    = 800;
 
-    constructor ( _cd : ChangeDetectorRef,
-                  scrollService : ScrollService,
-                  private vcf : ViewContainerRef,
-                  private formModelService : FormModelService,
-                  private sharedFormDataService : SharedFormDataService,
-                  private http : AmpHttpService,
-                  saveService : SaveService ) {
+    constructor( _cd : ChangeDetectorRef,
+                 scrollService : ScrollService,
+                 private vcf : ViewContainerRef,
+                 private formModelService : FormModelService,
+                 private transformService : TransformService,
+                 private sharedFormDataService : SharedFormDataService,
+                 private http : AmpHttpService,
+                 saveService : SaveService ) {
         super( saveService, _cd, scrollService );
 
         this.disableAutoSave();
     }
 
-    public getErrorMessage ( status ) : string {
+    public getErrorMessage( status ) : string {
         switch ( status ) {
             case 'notFound' :
                 return ContinueApplicationBlock.notFoundErrorMsg;
@@ -102,7 +104,7 @@ export class ContinueApplicationBlock extends FormBlock {
         }
     }
 
-    public ngAfterViewInit () {
+    public ngAfterViewInit() {
         super.ngAfterViewInit();
         this.AmpFormBlockComponent.onKeyupEnter = ( event ) => {
             this.retrieve();
@@ -110,7 +112,7 @@ export class ContinueApplicationBlock extends FormBlock {
         };
     }
 
-    public retrieve () {
+    public retrieve() {
         if ( !this.__controlGroup.valid ) {
             return;
         }
@@ -129,12 +131,13 @@ export class ContinueApplicationBlock extends FormBlock {
         }, options )
             .map( ( res : Response ) => res.json() )
             .subscribe( ( response ) => {
-                const payload = response.payload;
+                const payload   = response.payload;
+                let transformed = this.transformService.toFrontendModel( payload.application );
                 if ( payload.status === 'success' ) {
                     this.showRetrieveBlock = false;
                     this._cd.markForCheck();
                     this.saveService.referenceId = referenceId;
-                    this.formModelService.storeModelAndHydrateForm( payload.application );
+                    this.formModelService.storeModelAndHydrateForm( transformed );
                 } else {
                     this.responseError = this.getErrorMessage( payload.status );
                     this._cd.markForCheck();
@@ -145,11 +148,11 @@ export class ContinueApplicationBlock extends FormBlock {
             } );
     }
 
-    public onNext () {
+    public onNext() {
         this.retrieve();
     }
 
-    public onNewApplication () {
+    public onNewApplication() {
         this.fieldsAreRequired = false;
         this.__controlGroup.reset();
         this.slideItUp();
@@ -159,7 +162,7 @@ export class ContinueApplicationBlock extends FormBlock {
         }, 10 );
     }
 
-    public slideItUp () : Promise<string> {
+    public slideItUp() : Promise<string> {
         return new Promise( ( resolve, reject ) => {
             this.slideUp = 'collapsed';
             setTimeout( () => {
