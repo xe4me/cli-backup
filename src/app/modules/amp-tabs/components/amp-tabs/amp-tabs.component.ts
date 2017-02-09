@@ -71,7 +71,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
         if ( this.defaultValue ) {
             activeTabs = this.tabs.filter((tab) => {
-                return tab.id === this.defaultValue;
+                return tab.value === this.defaultValue;
             });
         }
 
@@ -114,7 +114,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
             this.resetTabs();
             tab.active = true;
             this.selectedItem = tab;
-            this.control.setValue( tab.id, { emitEvent : true } );
+            this.control.setValue( tab.value, { emitEvent : true } );
             this._cd.markForCheck();
         }
     }

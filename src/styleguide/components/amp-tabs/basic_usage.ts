@@ -23,16 +23,19 @@ export default class AMPTabsComponentBasicUsage {
     private tabs = [
         {
             id: 'Cat',
+            value: 1,
             title: 'Cat',
             content: '<p>Cats are awesome!</p>'
         },
         {
             id: 'Dog',
+            value: 2,
             title: 'Dog',
             content: '<p>Dogs are terrible..</p>'
         },
         {
             id: 'Hamster',
+            value: 3,
             title: 'Hamster',
             content: '<p>Tiny little furball</p>'
         }
@@ -41,17 +44,20 @@ export default class AMPTabsComponentBasicUsage {
     private tabs2 = [
         {
             id: 'Cat2',
+            value: 'Cat2',
             title: 'Cat',
             content: '<p>Cats are awesome!</p>'
         },
         {
             id: 'Dog2',
+            value: 'Dog2',
             title: 'Dog',
             content: '<p>Dogs are terrible..</p>',
             active: true
         },
         {
             id: 'Hamster2',
+            value: 'Hamster2',
             title: 'Hamster',
             content: '<p>Tiny little furball</p>'
         }
@@ -60,17 +66,20 @@ export default class AMPTabsComponentBasicUsage {
     private tabs3 = [
         {
             id: 'Cat3',
+            value: 'Cat3',
             title: 'Cat3',
             content: '<p>Cats are awesome!</p>'
         },
         {
             id: 'Dog3',
+            value: 'Dog3',
             title: 'Dog3',
             content: '<p>Dogs are terrible..</p>',
             active: true
         },
         {
             id: 'Hamster3',
+            value: 'Hamster3',
             title: 'Hamster3',
             content: '<p>Tiny little furball</p>'
         }
