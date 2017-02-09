@@ -46,13 +46,13 @@
         [controlGroup]="controlGroup3"
         [groupName]="'tabs3'"
         [defaultValue]="'bus3'">
-        <amp-tab [tab-title]="'Car3'" id="car3" value="1">
+        <amp-tab [tab-title]="'Car3'" id="car3" value="bus1">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tab-title="Bicycle3" id="bicycle3" value="2">
+        <amp-tab tab-title="Bicycle3" id="bicycle3" value="bus2">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
         </amp-tab>
-        <amp-tab tab-title="Bus3" id="bus3" value="3">
+        <amp-tab tab-title="Bus3" id="bus3" value="bus3">
             <p>The wheels on the bus go round and round..</p>
         </amp-tab>
     </amp-tabs>
@@ -75,7 +75,7 @@
         [controlGroup]="controlGroup5"
         [tabs]="tabs3"
         [disabled]="disabled2"
-        [defaultValue]="tabs3[2].id"></amp-tabs>
+        [defaultValue]="tabs3[2].value"></amp-tabs>
 
 </section>
 
