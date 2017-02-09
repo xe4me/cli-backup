@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "url": "ddc/public/api/bett3r/retrieve",
+      "url": "ddc/public/api/bett3r/retrieve1",
       "method": "POST"
     },
     "response": {

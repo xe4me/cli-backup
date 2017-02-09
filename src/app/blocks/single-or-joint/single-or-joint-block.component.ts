@@ -102,12 +102,7 @@ export class SingleOrJointBlockComponent extends FormBlock implements OnInit, Af
     public addOrRemoveJointApplicantSection ( singleJointIndicator : string ) {
         if ( !this.applicant2Added && singleJointIndicator === Constants.jointApplicant ) {
             let applicant2Sections       = this.applicantGenerator.getApplicantSection( 2 );
-            const loginBlockControlGroup = this.__form.get( Constants.MyAMPLoginBlockFDN );
-            if ( loginBlockControlGroup ) {
-                SingleOrJointBlockComponent.secondApplicantSectionIndex = 4;
-            } else {
-                SingleOrJointBlockComponent.secondApplicantSectionIndex = 3;
-            }
+            SingleOrJointBlockComponent.secondApplicantSectionIndex = 3;
             this.__loadAt( applicant2Sections, SingleOrJointBlockComponent.secondApplicantSectionIndex );
             return;
         }

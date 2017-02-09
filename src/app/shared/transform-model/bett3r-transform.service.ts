@@ -20,10 +20,9 @@ export class Bett3rTransformService extends TransformService {
         if ( !appModel ) {
             return {};
         }
-
         let ApplicantSection1 = get( appModel, 'Application.Applicant1Section' );
         let ApplicantSection2 = get( appModel, 'Application.Applicant2Section' );
-
+        unset( appModel, 'Application.MyAMPLoginBlock' );
         this.transformPersonalDetails( ApplicantSection1 );
         this.transformIdentity( ApplicantSection1 );
         this.transformFinalQuestions( ApplicantSection1 );
