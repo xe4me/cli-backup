@@ -148,10 +148,10 @@ describe( 'amp-tabs component', () => {
             #tabs1
             id="tabs1"
             [controlGroup]="controlGroup1">
-            <amp-tab tab-title="tab1a" id="tab1a">
+            <amp-tab tab-title="tab1a" id="tab1a" value="tab1a">
                 <p>Tab A</p>
             </amp-tab>
-            <amp-tab tab-title="tab1b" id="tab1b">
+            <amp-tab tab-title="tab1b" id="tab1b" value="tab1b">
                 <p>Tab B</p>
             </amp-tab>
         </amp-tabs>
@@ -160,10 +160,10 @@ describe( 'amp-tabs component', () => {
             #tabs2
             id="tabs2"
             [controlGroup]="controlGroup2">
-            <amp-tab tab-title="tab2a" id="tab2a">
+            <amp-tab tab-title="tab2a" id="tab2a" value="tab2a">
                 <p>Tab A</p>
             </amp-tab>
-            <amp-tab tab-title="tab2b" id="tab2b" [active]="true">
+            <amp-tab tab-title="tab2b" id="tab2b" value="tab2b" [active]="true">
                 <p>Tab B</p>
             </amp-tab>
         </amp-tabs>
@@ -173,10 +173,10 @@ describe( 'amp-tabs component', () => {
             id="tabs3"
             [controlGroup]="controlGroup3"
             [defaultValue]="'tab3b'">
-            <amp-tab tab-title="tab3a" id="tab3a">
+            <amp-tab tab-title="tab3a" id="tab3a" value="tab3a">
                 <p>Tab A</p>
             </amp-tab>
-            <amp-tab tab-title="tab3b" id="tab3b">
+            <amp-tab tab-title="tab3b" id="tab3b" value="tab3b">
                 <p>Tab B</p>
             </amp-tab>
         </amp-tabs>
@@ -198,7 +198,7 @@ describe( 'amp-tabs component', () => {
             #tabs6
             id="tabs6"
             [controlGroup]="controlGroup6"
-            [defaultValue]="tabs6Array[1].id"></amp-tabs>
+            [defaultValue]="tabs6Array[1].value"></amp-tabs>
     `
 } )
 class TestComponent {
@@ -219,11 +219,13 @@ class TestComponent {
     private tabs4Array = [
         {
             'id': 'tab4a',
+            'value': 'tab4a',
             'title': 'tab4a',
             'content': 'Tab A'
         },
         {
-            'idtitle': 'tab4b',
+            'id': 'tab4b',
+            'value': 'tab4b',
             'title': 'tab4b',
             'content': 'Tab B'
         }
@@ -232,11 +234,13 @@ class TestComponent {
     private tabs5Array = [
         {
             'id': 'tab5a',
+            'value': 'tab5a',
             'title': 'tab5a',
             'content': 'Tab A'
         },
         {
             'id': 'tab5b',
+            'value': 'tab5b',
             'title': 'tab5b',
             'content': 'Tab B',
             'active': true
@@ -246,11 +250,13 @@ class TestComponent {
     private tabs6Array = [
         {
             'id': 'tab6a',
+            'value': 'tab6a',
             'title': 'tab6a',
             'content': 'Tab A'
         },
         {
             'id': 'tab6b',
+            'value': 'tab6b',
             'title': 'tab6b',
             'content': 'Tab B'
         }

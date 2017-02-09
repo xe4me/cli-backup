@@ -11,16 +11,16 @@
         [controlGroup]="controlGroup1"
         [disabled]="disabled"
         [groupName]="'tabs1'">
-        <amp-tab [tab-title]="title1" [id]="id1">
+        <amp-tab [tab-title]="title1" [id]="id1" value="1">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tab-title="Bicycle" id="bicycle">
+        <amp-tab tab-title="Bicycle" id="bicycle" value="2">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
         </amp-tab>
-        <amp-tab tab-title="Aeroplane" id="aeroplane">
+        <amp-tab tab-title="Aeroplane" id="aeroplane" value="3">
             <p>An airplane or aeroplane (informally plane) is a powered, fixed-wing aircraft that is propelled forward by thrust from a jet engine or propeller. Airplanes come in a variety of sizes, shapes, and wing configurations.</p>
         </amp-tab>
-        <amp-tab tab-title="Boat" id="boat">
+        <amp-tab tab-title="Boat" id="boat" value="4">
             <p>A boat is a watercraft of a large range of sizes designed to float, plane, work or travel on water. Small boats are typically found on inland waterways (e.g., rivers and lakes) or in protected coastal areas.</p>
         </amp-tab>
     </amp-tabs>
@@ -32,10 +32,10 @@
         [isInSummaryState]="isInSummaryState"
         [controlGroup]="controlGroup2"
         [groupName]="'tabs2'">
-        <amp-tab [tab-title]="'Car'" id="car2">
+        <amp-tab [tab-title]="'Car'" id="car2" value="1">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tab-title="Bicycle" id="bicycle2" active="true">
+        <amp-tab tab-title="Bicycle" id="bicycle2" active="true" value="2">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
         </amp-tab>
     </amp-tabs>
@@ -46,13 +46,13 @@
         [controlGroup]="controlGroup3"
         [groupName]="'tabs3'"
         [defaultValue]="'bus3'">
-        <amp-tab [tab-title]="'Car3'" id="car3">
+        <amp-tab [tab-title]="'Car3'" id="car3" value="bus1">
             <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
         </amp-tab>
-        <amp-tab tab-title="Bicycle3" id="bicycle3">
+        <amp-tab tab-title="Bicycle3" id="bicycle3" value="bus2">
             <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
         </amp-tab>
-        <amp-tab tab-title="Bus3" id="bus3">
+        <amp-tab tab-title="Bus3" id="bus3" value="bus3">
             <p>The wheels on the bus go round and round..</p>
         </amp-tab>
     </amp-tabs>
@@ -75,7 +75,7 @@
         [controlGroup]="controlGroup5"
         [tabs]="tabs3"
         [disabled]="disabled2"
-        [defaultValue]="tabs3[2].id"></amp-tabs>
+        [defaultValue]="tabs3[2].value"></amp-tabs>
 
 </section>
 

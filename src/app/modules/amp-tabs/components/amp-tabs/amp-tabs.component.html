@@ -24,8 +24,8 @@
                 [attr.name]="randomizedId"
                 [formControl]="control"
                 [attr.disabled]="disabled"
-                [value]="tab.id"
-                [checked]="control.value === tab.id" />
+                [value]="tab.value"
+                [checked]="control.value === tab.value" />
         </label>
     </div>
 
@@ -34,10 +34,13 @@
     </div>
 
     <div *ngIf="!tabsFromList()">
-        <amp-tab *ngFor="let tab of tabs" [tab-title]="tab.title" [active]="tab.active">
+        <amp-tab
+            *ngFor="let tab of tabs"
+            [id]="tab.id"
+            [tab-title]="tab.title"
+            [active]="tab.active">
             <div [innerHtml]="tab.content"></div>
         </amp-tab>
     </div>
 
 </div>
-
