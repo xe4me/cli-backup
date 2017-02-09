@@ -1,0 +1,256 @@
+[
+    {
+        "request": {
+            "url": "ddc/public/api/bett3r/retrieve",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "latency": 100,
+            "body": {
+                "status": 200,
+                "payload": {
+                    "status": "success",
+                    "application": {
+                        "Application": {
+                            "Welcome": {},
+                            "ContinueApplicationBlock": {
+                                "ReferenceCode": "2999360011",
+                                "LastName": "Bernhard",
+                                "DateOfBirth": "30/07/1966"
+                            },
+                            "NewOrExistingCustomer": {
+                                "NewOrExistingCustomer": "ExistingCustomer"
+                            },
+                            "SingleOrJoint": {
+                                "SingleOrJoint": "JointApplicant"
+                            },
+                            "Applicant1Section": {
+                                "PersonalDetailsSection": {
+                                    "BasicInfo": {
+                                        "TitleDropdown": {
+                                            "SelectedItem": "Miss",
+                                            "Query": "Miss"
+                                        },
+                                        "FirstName": "Cheryl",
+                                        "MiddleName": "Ann",
+                                        "LastName": "Bernhard",
+                                        "DateOfBirth": "30/07/1966"
+                                    },
+                                    "Address": {
+                                        "Address": {
+                                            "residentialAddress": {
+                                                "isManualSearch": false,
+                                                "search": {
+                                                    "selectedItem": "AUS|b14cc8df-89e2-4abe-8d12-57021a6d1e8d|0pOAUSHArgBwAAAAAIAwEAAAAAKbRhUAAgAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAxIE1BY2RvbmFsZCBzdHJlAA--",
+                                                    "query": "1 MacDonald Street, ERSKINEVILLE  NSW  2043"
+                                                },
+                                                "manualAddress": {
+                                                    "buildingName": "",
+                                                    "unitNumber": "",
+                                                    "streetNumber": "1",
+                                                    "streetName": "MacDonald",
+                                                    "streetTypeDropdown": {
+                                                        "SelectedItem": "ST",
+                                                        "Query": "Street"
+                                                    },
+                                                    "poBox": null,
+                                                    "suburb": "ERSKINEVILLE",
+                                                    "postCode": "2043",
+                                                    "stateDropdown": {
+                                                        "SelectedItem": "NSW",
+                                                        "Query": "NSW"
+                                                    }
+                                                },
+                                                "isItPoBox": false
+                                            },
+                                            "postalAndResidentialAreSame": true
+                                        }
+                                    },
+                                    "ContactDetails": {
+                                        "EmailAddress": "amp@amp.com",
+                                        "MobileNumber": "0421051518",
+                                        "HomeNumber": null
+                                    },
+                                    "NotARobot": {
+                                        "amp-google-recaptcha-check": {
+                                            "verificationStatus": "verified",
+                                            "verificationToken": "03AHJ_VusX59i9BdfSmxIfH_fzfJ5C_ihrZXCp4dI4FXTxvCFYJnGCqcQ1Xr-R0S6i1sdCGjHfaVzOwQogz9WlGUqZ5Hc5ZWNlyAN08FUJ6fjOGLDqyM880-EdrIHc_beU2TqnDKgl5TQcFXKmKHvwj1DA916pToDHyHiWZWvN2vTpApfCDVdTFl08en4iADOOHbM-g7cK23_YW3eItNRDklTzOEg98vpK2rv4CagDd0IZhZuxo06_UYuxsjrHyB_PKeJ_vDnY1nacYVcjb-KQNZNWnxh8wwFZg9vvsDgVQTLFPsymzDKNG-loZipKgz4f3Ftga3EYmV1bP3lv6Gik_jHc1J4wl-6q6-0JIZ8bup-9BiFlRZrquQb2qNnRwM8swOotAx1_8k6guJyhLhvPjNyLfXAxhoi8FgMG4jHtCa1-FwH2oPn3PLb-fkN0FDCPWueALny_y7mHaP-n2g9cYJxmCEuKrBOz9G0IfXB08F53sQG4Z0cEkMEfIV1N8dDsw_jgaZWqYGs-vn3mCfKfC60nn9n5LxLlqX_z1nimbbrIAd6-ecXTapokl3sh-4RHIoJ1Cgy_Ite7v2CuTgtGzYtzQExWZFbsaxVpTApOaryEapJNytKUqTrGmOyUfuSozbhNRB1gCerNRr54N-ssWHhA1nLlInuAJtlSDd7IGyxHBC9YOHOhy_DY04bGROO36vX6zkIPPNX5VPvg41NQsoL9oyrHmNWCsmYdecGA6bowTvxgkfO1ZkFtpf1dncHyMvZP-NNdlWhXuxyBqnWRhNsBoI4FNu-wqD0t_H_5vzM1UqL1NngKM3O9pZokz7JyVFl0oe8kPSe8-u8Abo42j_Hg7elYzbfVIrb0uSA0Rywomx_wYX-CXFKfDHeFywarrKrUCQOqZKX8fowjsb9jFlY_m7TI0QXUYOfqpWgypMMKuQ6y-MTy5Zg"
+                                        }
+                                    },
+                                    "BetterChoice": {
+                                        "BetterChoice": "convert_offset_account"
+                                    },
+                                    "OffsetTransition": {
+                                        "OffsetTransitionAccountNumber": "111111111"
+                                    }
+                                },
+                                "IdentitySection": {
+                                    "OnlineOrOfflineIdCheck": {
+                                        "OnlineIDCheck": "online"
+                                    },
+                                    "IdentiyCheckPrivacyDeclaration": {
+                                        "AcceptIdentityCheckPrivacyDeclaration": true
+                                    },
+                                    "IdCheck": {
+                                        "green-id-identity-check": {
+                                            "verificationId": "29n8FtBq",
+                                            "verificationToken": "09de201c9187662289031cfc2efb8ff8248abb75",
+                                            "verificationStatus": "VERIFIED"
+                                        }
+                                    }
+                                },
+                                "FinalQuestionsSection": {
+                                    "TaxFileNumber": {
+                                        "HasTaxFileNumber": false,
+                                        "NoTaxFileNumberReasonDropdown": {
+                                            "SelectedItem": "OtherExemptPensioner",
+                                            "Query": "Other exempt Pensioner"
+                                        }
+                                    },
+                                    "SourceOfFunding": {
+                                        "PrimarySourceOfWealthDropdown": {
+                                            "SelectedItem": "WII",
+                                            "Query": "Investment income (e.g. rent, dividends, pension)"
+                                        },
+                                        "SourceOfFundsForAccountDropdown": {
+                                            "SelectedItem": "FGB",
+                                            "Query": "Government benefits (e.g. childcare rebate, family tax benefit)"
+                                        },
+                                        "ReasonForOpeningAccountDropdown": {
+                                            "SelectedItem": "BW",
+                                            "Query": "Building wealth (e.g. large initial deposit, using investment returns to grow your wealth over time)"
+                                        }
+                                    },
+                                    "Residency": {
+                                        "CountryOfCitizenshipDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "CountryOfResidencyDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "USTaxCitizen": false
+                                    },
+                                    "LastStep": {
+                                        "AcceptPrivacyDeclaration": true,
+                                        "AcceptTandCs": true
+                                    }
+                                }
+                            },
+                            "Applicant2Section": {
+                                "PersonalDetailsSection": {
+                                    "BasicInfo": {
+                                        "TitleDropdown": {
+                                            "SelectedItem": "Mrs",
+                                            "Query": "Mrs"
+                                        },
+                                        "FirstName": "Cathlin",
+                                        "MiddleName": "Raye",
+                                        "LastName": "Jago",
+                                        "DateOfBirth": "21/01/1982"
+                                    },
+                                    "Address": {
+                                        "Address": {
+                                            "residentialAddress": {
+                                                "isManualSearch": false,
+                                                "search": {
+                                                    "selectedItem": "AUS|ea4e0bbd-a932-452c-bad5-6e4ab2f6a629|0WOAUSHArgBwAAAAAIAwEAAAAAKbRhUAAgAAAAAAAAAAD..2QAAAAA.....wAAAAAAAAAAAAAAAAAxIE1BY2RvbmFsZCBTdCBFcnMA",
+                                                    "query": "1 MacDonald Street, ERSKINEVILLE  NSW  2043"
+                                                },
+                                                "manualAddress": {
+                                                    "buildingName": "",
+                                                    "unitNumber": "",
+                                                    "streetNumber": "1",
+                                                    "streetName": "MacDonald",
+                                                    "streetTypeDropdown": {
+                                                        "SelectedItem": "ST",
+                                                        "Query": "Street"
+                                                    },
+                                                    "poBox": null,
+                                                    "suburb": "ERSKINEVILLE",
+                                                    "postCode": "2043",
+                                                    "stateDropdown": {
+                                                        "SelectedItem": "NSW",
+                                                        "Query": "NSW"
+                                                    }
+                                                },
+                                                "isItPoBox": false
+                                            },
+                                            "postalAndResidentialAreSame": true
+                                        }
+                                    },
+                                    "ContactDetails": {
+                                        "EmailAddress": "amp@amp.com.au",
+                                        "MobileNumber": "0404383006",
+                                        "HomeNumber": null
+                                    }
+                                },
+                                "IdentitySection": {
+                                    "OnlineOrOfflineIdCheck": {
+                                        "OnlineIDCheck": "online"
+                                    },
+                                    "IdentiyCheckPrivacyDeclaration": {
+                                        "AcceptIdentityCheckPrivacyDeclaration": true
+                                    },
+                                    "IdCheck": {
+                                        "green-id-identity-check": {
+                                            "verificationId": "AASvdRM3",
+                                            "verificationToken": "57c668411c062bb55cda2f0df0cfa85b4116420a",
+                                            "verificationStatus": "VERIFIED"
+                                        }
+                                    }
+                                },
+                                "FinalQuestionsSection": {
+                                    "TaxFileNumber": {
+                                        "HasTaxFileNumber": true,
+                                        "TaxFileNumber": null
+                                    },
+                                    "SourceOfFunding": {
+                                        "PrimarySourceOfWealthDropdown": {
+                                            "SelectedItem": "WIE",
+                                            "Query": "Income from employment (regular and/or bonus)"
+                                        },
+                                        "SourceOfFundsForAccountDropdown": {
+                                            "SelectedItem": "FBF",
+                                            "Query": "Borrowed Funds"
+                                        },
+                                        "ReasonForOpeningAccountDropdown": {
+                                            "SelectedItem": "BW",
+                                            "Query": "Building wealth (e.g. large initial deposit, using investment returns to grow your wealth over time)"
+                                        }
+                                    },
+                                    "Residency": {
+                                        "CountryOfCitizenshipDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "CountryOfResidencyDropdown": {
+                                            "SelectedItem": "AUS",
+                                            "Query": "Australia"
+                                        },
+                                        "USTaxCitizen": null
+                                    },
+                                    "LastStep": {
+                                        "AcceptPrivacyDeclaration": null,
+                                        "AcceptTandCs": null
+                                    }
+                                }
+                            },
+                            "referenceId": "2999360011",
+                            "MyAMPLoginBlock": {
+                                "loginResult": null,
+                                "userId": null,
+                                "password": null
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+]
