@@ -38,8 +38,7 @@ export class PrepopulationService {
                         this.prepop(data, formBlock);
                     })
                     .catch( (err) => {
-                        // Do nothing....TODO: please remove the line below.
-                        console.log('WTF, failed to get customer Details ', err);
+                        // Do nothing
                     });
             });
     }
@@ -50,23 +49,29 @@ export class PrepopulationService {
             return;
         }
 
+        let hasPrepopOccurred = false;
         const controlGroup = formBlock['__controlGroup'];
         for (const customControl of formBlock['__custom'].controls) {
             // Make sure this custom.control definition is valid (i.e. have both an Id and prepopMapping)
             if (customControl && customControl.id && customControl.prepopMapping) {
                 let srcValue = get(data, customControl.prepopMapping);
-                // For some special backend data, we might want to massage it first.
-                if (customControl.prepopMappingParser) {
-                    srcValue = this[customControl.prepopMappingParser].call(this, srcValue, data);
+                if (srcValue) {
+                    // For some special backend data, we might want to massage it first.
+                    if (customControl.prepopMappingParser) {
+                        srcValue = this[customControl.prepopMappingParser].call(this, srcValue, data);
+                    }
+                    controlGroup.get(customControl.id).setValue(srcValue);
+                    // Add a custom isPrepop flag into the FormControl object for UI to manage this special state.
+                    (<any> controlGroup.get(customControl.id)).__isPrepop = true;
+                    hasPrepopOccurred = true;
                 }
-                controlGroup.get(customControl.id).setValue(srcValue);
-                // Add a custom isPrepop flag into the FormControl object for UI to manage this special state.
-                (<any> controlGroup.get(customControl.id)).__isPrepop = true;
             }
         }
 
         // Emit an event to signalify prepop is finished for this block
-        this.prepopCompletedSubject.next(<string[]> formBlock['__fdn']);
+        if (hasPrepopOccurred) {
+            this.prepopCompletedSubject.next(<string[]> formBlock['__fdn']);
+        }
     }
 
 }

@@ -4,7 +4,7 @@
             <amp-email
                 [id]="__custom.controls[0].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isEmailInSummaryState"
+                [isInSummaryState]="isInSummaryState"
                 [label]="__custom.controls[0].label"
                 [required]="__custom.controls[0].required">
             </amp-email>
@@ -19,7 +19,7 @@
                 #mobileNumber
                 [id]="__custom.controls[1].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState"
+                [isInSummaryState]="isMobilePhoneInSummaryState"
                 [label]="__custom.controls[1].label"
                 [pattern]="'^04(\\d){8}$'"
                 [maxLength]="10"

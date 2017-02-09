@@ -40,12 +40,6 @@ export class AmpContactDetailsBlockComponent extends FormBlock implements AfterV
     public ngAfterViewInit() {
         super.ngAfterViewInit();
         this.prepopAmpContactDetailsService.registerBlockForPrepop(this);
-
-        // TODO:- TBC
-        // Example of how to subscribe to the prepop event but not sure why we need to!
-        this.prepopAmpContactDetailsService.prepopCompletedSubject.subscribe((blockFDN) => {
-            console.log('Prepop completed for ', blockFDN);
-        });
     }
 
     onNext () {

@@ -21,7 +21,13 @@ const DECLARATIONS = [ AmpContactDetailsBlockComponent ];
         AmpInputsModule,
         AmpTooltipModule
     ],
-    providers : [ CustomerDetailsService, LoginStatusService, AmpHttpService, Http, PrepopAmpContactDetailsService ],
+    providers : [
+        CustomerDetailsService,
+        LoginStatusService,
+        AmpHttpService,
+        Http,
+        PrepopAmpContactDetailsService
+    ],
     exports         : DECLARATIONS
 } )
 export class AmpContactDetailsBlockModule {
