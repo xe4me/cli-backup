@@ -58,7 +58,14 @@ export class AmpFormBlockComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private onKeyupEnter ( event ) {
-        if ( event.target.tagName.toLowerCase() !== 'textarea' && !this.domUtils.hasClass( event.target, 'amp-dropdown-control' ) ) {
+        let isNotTextarea = event.target.tagName.toLowerCase() !== 'textarea';
+        let isNotAmpDropdownControl = !this.domUtils.hasClass( event.target, 'amp-dropdown-control' );
+        let isNotAmpTabItem = !this.domUtils.hasClass( event.target, 'amp-tabs__nav-item' );
+
+        if ( isNotTextarea &&
+             isNotAmpDropdownControl &&
+             isNotAmpTabItem ) {
+
             if ( this.context.canGoNext ) {
                 this.context.onNext();
             } else {
