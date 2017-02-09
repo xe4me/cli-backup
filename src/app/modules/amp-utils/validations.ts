@@ -179,6 +179,30 @@ export class MaxDateValidator {
         };
     }
 }
+export class MinFloatValidator {
+    public static minFloatValidator ( minFloat ) {
+        return ( c ) => {
+            if ( minFloat ) {
+                if ( ! c.value || c.value.length > 0 ) {
+                    if ( c.value ) {
+                        let newVal       = c.value;
+                        let replaceValue = newVal.replace( /[^0-9\.]+/g , '' );
+                        if ( replaceValue < minFloat ) {
+                            return {
+                                minFloat : {
+                                    text : c._ampErrors && c._ampErrors.minFloat ? c._ampErrors.minFloat : `
+                                        This amount should be more than ${minFloat}.
+                                    `
+                                }
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
+        };
+    }
+}
 export class MaxFloatValidator {
     public static maxFloatValidator ( maxFloat ) {
         return ( c ) => {
