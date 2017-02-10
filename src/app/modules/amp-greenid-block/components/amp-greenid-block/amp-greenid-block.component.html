@@ -22,7 +22,7 @@
         <div *ngIf="!hasConsentBeenPassed">
             <amp-form-row class="mt+">
                 <amp-checkbox
-                    [controlGroup]="controlGroup"
+                    [controlGroup]="__controlGroup"
                     [id]="creditHeaderCheckboxId">
                     <span>
                         I authorise AMP to check only my identity against personal information held by a credit bureau.
@@ -34,6 +34,7 @@
                 </div>
                 <div class="mt-60">
                     <amp-button
+                        [context]="context()"
                         theme="tools"
                         class="btn btn-ok mr palm-1/1 palm-mr0"
                         (click)="onCreditCheckHeaderConsentClick()">
@@ -70,6 +71,7 @@
     </div>
     <div class="mt-60">
         <amp-button
+                [context]="context()"
                 theme="tools"
                 class="btn btn-ok mr palm-1/1 palm-mr0"
                 *ngIf="showOkButton"
