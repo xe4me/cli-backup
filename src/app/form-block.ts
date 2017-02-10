@@ -216,6 +216,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     }
 
     onNext () {
+        this.track();
         // Do not block the onNext function based on whether or not the block is Touched
         if ( this.__controlGroup ) {
             this.__controlGroup.markAsTouched();
