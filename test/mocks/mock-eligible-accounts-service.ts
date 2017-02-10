@@ -1,7 +1,7 @@
 import {
     Injectable
 } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 const loginUserWithoutEligibleAccounts = require('./data/eligible-accounts-no-accounts.json');
 const loginUserwithDepositAccountsOnly = require('./data/eligible-accounts-deposit-accounts-only.json');
@@ -22,20 +22,17 @@ export class MockEligibleAccountsService {
         LOGIN_DEPOSIT_LOAN_AND_OFFSET_ACCOUNTS : loginUserWithDepositLoanAndOffsetAccounts
     };
 
-    private eligibleAccountsData : any;
+    private eligibleAccountsSubject : Subject<any>;
 
     constructor () {
+        this.eligibleAccountsSubject = new Subject();
     }
 
     public getEligibleAccounts () : Observable<any> {
-        if(this.eligibleAccountsData){
-            return Observable.of(this.eligibleAccountsData);
-        }else{
-            return Observable.empty();
-        }
+        return this.eligibleAccountsSubject;
     }
 
     public setEligibleAccounts ( account : any ) : void {
-        this.eligibleAccountsData = account;
+        this.eligibleAccountsSubject.next( account );
     }
 }

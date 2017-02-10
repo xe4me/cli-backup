@@ -70,42 +70,41 @@ describe( 'Component: BetterChoiceBlock', () => {
         TestBed.compileComponents();
     } ) );
 
+    describe ( 'Better Choice Block with No login Users', () => {
+        let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
 
-    // describe ( 'Better Choice Block with No login Users', () => {
-    //     let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
-    //
-    //     beforeEach(() => {
-    //         betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
-    //         betterChoice.detectChanges();
-    //         let newOrExistingCustomerControl = mockSharedFormDataService.getNewOrExistingCustomerControl(betterChoice.componentInstance.block.__form);
-    //         newOrExistingCustomerControl.setValue('NewCustomer');
-    //         console.log(newOrExistingCustomerControl);
-    //     });
-    //
-    //     it('Ensure the better choice block is not visible', () => {
-    //         expect( betterChoice.componentInstance ).toBeDefined();
-    //
-    //         let title = betterChoice.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent
-    //         expect( title ).toBe( betterChoice.componentInstance.block.__custom.blockTitle );
-    //
-    //         let sharedFormDataService = betterChoice.debugElement.injector.get(SharedFormDataService);
-    //         let group = betterChoice.componentInstance.block.__controlGroup;
-    //         let control : FormControl = sharedFormDataService.getNewOrExistingCustomerControl(group);
-    //         expect( control ).toBeDefined();
-    //
-    //         let eligibleAccountsService = betterChoice.debugElement.injector.get(EligibleAccountsService);
-    //         expect( eligibleAccountsService ).toBeDefined();
-    //
-    //         let loginStatusService = betterChoice.debugElement.injector.get(LoginStatusService);
-    //         expect( loginStatusService ).toBeDefined();
-    //
-    //         expect( betterChoice.componentInstance.block.userHasLoggedIn ).toBe(false);
-    //         expect( betterChoice.componentInstance.block.hideBlock ).toBe(true);
-    //
-    //         expect( betterChoice.componentInstance.block.__controlGroup.controls.TransitChoice.value).toBe(null);
-    //     });
-    // } );
-    //
+        beforeEach(() => {
+            betterChoice = TestBed.createComponent( BetterChoiceBlockTest );
+            betterChoice.detectChanges();
+            let newOrExistingCustomerControl = mockSharedFormDataService.getNewOrExistingCustomerControl(betterChoice.componentInstance.block.__form);
+            newOrExistingCustomerControl.setValue('NewCustomer');
+            console.log(newOrExistingCustomerControl);
+        });
+
+        it('Ensure the better choice block is not visible', () => {
+            expect( betterChoice.componentInstance ).toBeDefined();
+
+            let title = betterChoice.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent
+            expect( title ).toBe( betterChoice.componentInstance.block.__custom.blockTitle );
+
+            let sharedFormDataService = betterChoice.debugElement.injector.get(SharedFormDataService);
+            let group = betterChoice.componentInstance.block.__controlGroup;
+            let control : FormControl = sharedFormDataService.getNewOrExistingCustomerControl(group);
+            expect( control ).toBeDefined();
+
+            let eligibleAccountsService = betterChoice.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = betterChoice.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( betterChoice.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( betterChoice.componentInstance.block.hideBlock ).toBe(true);
+
+            expect( betterChoice.componentInstance.block.__controlGroup.controls.TransitChoice.value).toBe(null);
+        });
+    } );
+
     describe ( 'Better Choice Block with existing users no login', () => {
         let betterChoice : ComponentFixture<BetterChoiceBlockTest> = null;
 
@@ -150,7 +149,7 @@ describe( 'Component: BetterChoiceBlock', () => {
             newOrExistingCustomerControl.setValue('ExistingCustomer');
             console.log(newOrExistingCustomerControl);
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_NO_ACCOUNTS);
-            return mockLoginStatusService.loginSuccess();
+            mockLoginStatusService.loginSuccess();
         });
 
         it('Ensure the better choice block is visible and default to create a new deposit_account', () => {
