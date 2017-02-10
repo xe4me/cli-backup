@@ -57,7 +57,13 @@ export class ApplicantGeneratorService {
     private addApplicantIdToSectionBlocks (sections, index : number ) : void {
         for (let section of sections) {
             for (let block of section.blocks) {
-                block.custom.applicantIndex = index;
+                if (!block.custom) {
+                    block.custom = {};
+                }
+                if (!block.custom.overrides) {
+                    block.custom.overrides = {};
+                }
+                block.custom.overrides.applicantIndex = index;
             }
         }
     }

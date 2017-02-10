@@ -1,4 +1,5 @@
 import {
+    AmpBasicInfoBlockModule,
     AmpDirectivesModule,
     AmpInputsModule,
     AmpErrorModule,
@@ -27,6 +28,7 @@ import {
 } from 'amp-ddc-components';
 
 export const AMP_DDC_MODULES = [
+    AmpBasicInfoBlockModule,
     AmpDirectivesModule,
     AmpInputsModule,
     AmpErrorModule,
