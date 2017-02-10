@@ -19,11 +19,11 @@ export class RequiredValidator {
                         }
                     };
                 } else {
-                    if ( (! c.value || ( c.value && !c.value.trim() ) || c.value.length === 0) && (c.value !== 0) ) {
+                    if ( (! c.value || ( typeof c.value === 'string' && !c.value.trim() ) || c.value.length === 0) && (c.value !== 0) ) {
                         return {
                             required : {
                                 text : c._ampErrors && c._ampErrors.required ? c._ampErrors.required : 'This field is' +
-                                ' required'
+                                    ' required'
                             }
                         };
                     }
