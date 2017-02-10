@@ -1,10 +1,10 @@
 @mixin not-disabled() {
-    .amp-tabs:not(.amp-tabs--disabled) & {
+    /deep/ .amp-tabs:not(.amp-tabs--disabled) & {
         @content;
     }
 }
 @mixin is-disabled() {
-    .amp-tabs.amp-tabs--disabled & {
+    /deep/ .amp-tabs.amp-tabs--disabled & {
         @content;
     }
 }

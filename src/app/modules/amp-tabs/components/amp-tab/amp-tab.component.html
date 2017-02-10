@@ -1,3 +1,12 @@
+<label
+    class="amp-tab-mobile__nav-item"
+    [class.amp-tab-mobile__nav-item--active]="active"
+    [attr.for]="randomizedId + '_' + id"
+    role="tab"
+    [attr.aria-selected]="active">
+    {{ title }} <i aria-hidden="true" class="icon icon--chevron-down"></i>
+</label>
+
 <div
     class="amp-tab__panel"
     [class.amp-tab__panel--active]="active"

@@ -1,12 +1,22 @@
 @import '../../../../../styles/abstracts';
 @import './amp-tabs.component.mixins';
 
-$amp-tab-border-color: $amp-colour-grey-dark;
-$amp-tab-active-bg-color: $amp-colour-sky-blue;
-$amp-tab-active-arrow-size: 15px;
+:host {
+    display: block;
+}
 
 .amp-tabs {
     border: 1px solid $amp-tab-border-color;
+    display: block;
+
+    &::before {
+        content: 'desktop';
+        display: none;
+
+        @include media-query($amp-tab-breakpoint) {
+            content: 'mobile';
+        }
+    }
 
     &__nav {
         display: table;
@@ -14,7 +24,12 @@ $amp-tab-active-arrow-size: 15px;
         table-layout: fixed;
         width: 100%;
 
+        @include media-query($amp-tab-breakpoint) {
+            display: none;
+        }
+
         &-item {
+            border-bottom: 1px solid $amp-tab-border-color;
             border-left: 1px solid $amp-tab-border-color;
             color: $amp-colour-primary;
             cursor: pointer;
@@ -27,28 +42,28 @@ $amp-tab-active-arrow-size: 15px;
             text-align: center;
             vertical-align: middle;
             z-index: 1;
-            transition: background .2s ease, color .2s ease;
-
-            @include is-disabled() {
-                color: $amp-colour-grey-darker;
-                cursor: default;
-            }
+            transition: background .3s ease, color .3s ease;
 
             &:first-child {
                 border-left: 0;
+            }
+
+            @include is-disabled() {
+                color: $amp-tab-disabled-color;
+                cursor: default;
             }
 
              @include not-disabled() {
                 &:focus,
                 &:hover {
                     background: $amp-tab-active-bg-color;
-                    color: $amp-colour-white;
+                    color: $amp-tab-hover-color;
                 }
             }
 
             &--active {
                 background: $amp-tab-active-bg-color;
-                color: $amp-colour-white !important;
+                color: $amp-tab-active-color !important;
 
                 &::after {
                     border: $amp-tab-active-arrow-size solid transparent;
