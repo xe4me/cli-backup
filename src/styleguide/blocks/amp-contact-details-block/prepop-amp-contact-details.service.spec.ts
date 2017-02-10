@@ -22,11 +22,6 @@ describe( 'Service: PrepopAmpContactDetailsService' , () => {
             expect(prepopAmpContactDetailsService['parseMobileNumber']('+61413123123')).toBe('0413123123');
         });
         it( 'should prepopulate only when processed number pass regular express 04nnnnnnnn', () => {
-            let cmdmData = {
-                contactDetails : {
-                    mobilePhone : '41+613123123'
-                }
-            };
             expect(prepopAmpContactDetailsService['parseMobileNumber']('41+613123123')).toBeNull();
 
             expect(prepopAmpContactDetailsService['parseMobileNumber']('  + 6  1 0 4  13 1   23123   ')).toBeNull();

@@ -103,7 +103,7 @@ describe( 'Service: PrepopulationService' , () => {
         });
 
         it('should not trigger prepop method for applicant 2', (done) => {
-            delete mockFormBlock.__custom.__applicantIndex;
+            delete mockFormBlock.__custom.applicantIndex;
             mockFormBlock.__repeaterIndex = 2;
 
             const mockLoginStatusService = new MockLoginStatusService();

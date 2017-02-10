@@ -18,12 +18,12 @@ export class PrepopAmpContactDetailsService extends PrepopulationService {
      * But if we get too smart, do take a look at Google i18n
      * https://github.com/googlei18n/libphonenumber/tree/master/javascript/i18n/phonenumbers
      */
-    private parseMobileNumber (mobile : string ) {
-        let validMobileRegex = /^04\d{8}$/;
+    private parseMobile (mobile : string ) {
+        const validMobileRegex = /^04\d{8}$/;
         if (mobile) {
             let parseMobile = mobile.replace(/ /g, '');
             if (parseMobile) {
-                parseMobile = parseMobile.replace('+61', '0');
+                parseMobile = parseMobile.replace(/^\+61/, '0');
             }
 
             if (validMobileRegex.test(parseMobile)) {
