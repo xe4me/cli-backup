@@ -191,7 +191,7 @@ export class MinFloatValidator {
                             return {
                                 minFloat : {
                                     text : c._ampErrors && c._ampErrors.minFloat ? c._ampErrors.minFloat : `
-                                        This amount should be more than ${minFloat}.
+                                        This amount should be more than or equal to ${minFloat}.
                                     `
                                 }
                             };
@@ -215,7 +215,7 @@ export class MaxFloatValidator {
                             return {
                                 maxFloat : {
                                     text : c._ampErrors && c._ampErrors.maxFloat ? c._ampErrors.maxFloat : `
-                                        This amount should be more than ${maxFloat}.
+                                        This amount should be less than or equal to ${maxFloat}.
                                     `
                                 }
                             };
