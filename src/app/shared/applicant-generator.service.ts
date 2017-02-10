@@ -64,6 +64,9 @@ export class ApplicantGeneratorService {
                     block.custom.overrides = {};
                 }
                 block.custom.overrides.applicantIndex = index;
+                if( index===2 ){
+                    block.custom.overrides.blockTitle = "And now for applicant 2";
+                }
             }
         }
     }
