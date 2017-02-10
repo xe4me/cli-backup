@@ -11,6 +11,7 @@ import {
     FormModelService
 } from '../../services';
 import { RetrieveService } from '../../services/retrieve/retrieve.service';
+import { AmpSliderModule } from '../amp-slider/amp-slider.module';
 
 const DECLARATIONS = [ AmpContinueBlockComponent ];
 
@@ -19,6 +20,7 @@ const DECLARATIONS = [ AmpContinueBlockComponent ];
     imports      : [
         AmpSharedRootModule,
         AmpFormModule,
+        AmpSliderModule,
         AmpInputsModule,
         AmpButtonModule,
         AmpDirectivesModule
