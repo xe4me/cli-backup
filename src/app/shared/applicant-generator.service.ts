@@ -7,67 +7,82 @@ const debitCardMigrationBlockJSON = require('../forms/better-form/debit-card-mig
 
 @Injectable()
 export class ApplicantGeneratorService {
-     public getApplicantSection ( index : number ) : any {
+
+    public getApplicantSection ( index : number ) : any {
         const applicantSections = clone( applicantJSON );
 
-        this.addApplicantIdToSectionBlocks(applicantSections, index);
+        this.addApplicantIdToSectionBlocks( applicantSections, index );
 
         if ( this.isFirstApplicant( index ) ) {
             this.addCaptchaBlock( applicantSections );
             this.addBett3rChoiceBlock( applicantSections );
         }
 
+        if ( !this.isFirstApplicant( index ) ) {
+            this.changeTitleBasicInfoBlock( applicantSections );
+        }
+
         return {
-            name        : `Applicant${index}Section` ,
-            blockType   : 'PageSectionComponent' ,
-            blockLayout : 'SECTION' ,
-            commonBlock : true ,
-            path        : 'sections/page-section.component' ,
+            name        : `Applicant${index}Section`,
+            blockType   : 'PageSectionComponent',
+            blockLayout : 'SECTION',
+            commonBlock : true,
+            path        : 'sections/page-section.component',
             custom      : {
                 label : `Applicant ${index}`
-            } ,
+            },
             blocks      : applicantSections
         };
     }
 
     public getDebitCardMigrationBlockJSON () {
-         return debitCardMigrationBlockJSON;
+        return debitCardMigrationBlockJSON;
     }
 
-    private findBlock ( sections , title , sectionIndex ) {
-        return sections[sectionIndex].blocks.filter((item) => {
+    private findBlock ( sections, title, sectionIndex ) {
+        return sections[ sectionIndex ].blocks.filter( ( item ) => {
             return title === item.name;
-        })[0];
+        } )[ 0 ];
     }
 
-    private addCaptchaBlock( sections ) {
-        let captchBlock = clone(captchBlockJSON);
-        sections[0].blocks.push(captchBlock);
+    private addCaptchaBlock ( sections ) {
+        let captchBlock = clone( captchBlockJSON );
+        sections[ 0 ].blocks.push( captchBlock );
     }
 
-    private addBett3rChoiceBlock( sections ) {
-        let bett3rChoiceBlock = clone(bett3rChoiceBlockJSON);
-        sections[0].blocks.push(bett3rChoiceBlock);
+    private addBett3rChoiceBlock ( sections ) {
+        let bett3rChoiceBlock = clone( bett3rChoiceBlockJSON );
+        sections[ 0 ].blocks.push( bett3rChoiceBlock );
     }
 
-    private isFirstApplicant (index : number ) : boolean {
-         return index === 1;
+    private isFirstApplicant ( index : number ) : boolean {
+        return index === 1;
     }
 
-    private addApplicantIdToSectionBlocks (sections, index : number ) : void {
+    private addApplicantIdToSectionBlocks ( sections, index : number ) : void {
         for (let section of sections) {
             for (let block of section.blocks) {
-                if (!block.custom) {
+
+                if ( !block.custom ) {
                     block.custom = {};
                 }
-                if (!block.custom.overrides) {
+                block.custom.applicantIndex = index;
+
+                if ( !block.custom.overrides ) {
                     block.custom.overrides = {};
                 }
                 block.custom.overrides.applicantIndex = index;
-                if( index===2 ){
-                    block.custom.overrides.blockTitle = "And now for applicant 2";
-                }
+
+                // If 'custom.overrides' is not defined, the block loader will replace
+                // all default block props by the ones provided here, 'applicantIndex' for example
+                // See amp-block-loader / mergeCustoms()
             }
         }
     }
+
+    private changeTitleBasicInfoBlock ( sections ) {
+        const basicInfoBlock = this.findBlock( sections, 'BasicInfo', 0 );
+        basicInfoBlock.custom.overrides.blockTitle = 'And now for applicant 2';
+    }
+
 }
