@@ -67,6 +67,7 @@ export class RootEnvProperty {
     // USI validation service provided by ES&I https://secure-uat.amp.com.au/services/secure/ddcService/1.0.0/validateUSI
     USIValidationServiceUrl : string; // /ddcService/1.0.0/validateUSI
     USIValidationKey : string; // Bearer 9Lw_2eaUjy1YGfQWfkNnyz31CToa
+    RestrictPolicyOwner : string; // For NIO disable policy onwership selection
 
     constructor () {
         if (_process_env) {
