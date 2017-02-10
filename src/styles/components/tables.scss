@@ -42,6 +42,7 @@ th {
                 @include media-query('tablet-and-down') {
                     display: block;
                     padding: 15px 0;
+                    width: 100% !important;
 
                     &:not(:last-child) {
                         border: 0;
@@ -50,5 +51,59 @@ th {
                 }
             }
         }
+    }
+}
+
+.table--equal-col-width {
+    > tbody {
+        > tr {
+            // Using a loop and width property here instead of 'table-layout: fixed' as this
+            // solution will work with responsive styles (.baseline-table-wrapper)
+            @for $i from 2 through 10 {
+                :first-child:nth-last-child(#{$i}),
+                :first-child:nth-last-child(#{$i}) ~ * {
+                    width:  100% / $i;
+                }
+            }
+        }
+    }
+}
+
+.baseline-table {
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+                border: 1px solid $amp-colour-grey-dark;
+                color: $amp-colour-grey-darkest;
+                min-width: 130px;
+                padding: 20px;
+            }
+
+            > th {
+                color: $amp-colour-primary;
+                font-weight: 600;
+            }
+
+            > th,
+            > td {
+                font-size: 14px;
+            }
+        }
+    }
+
+    > thead {
+        > tr {
+            > th {
+                font-size: 12px;
+            }
+        }
+    }
+
+    &-wrapper {
+        overflow: auto;
+        width: 100%;
     }
 }
