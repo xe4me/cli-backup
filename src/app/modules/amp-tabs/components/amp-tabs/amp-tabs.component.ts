@@ -41,7 +41,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     public tabs = [];
     public keepControl : boolean      = false;
-    public selectedItem;
+    public selectedItem = {};
     private keepControlOnDestroy      = false;
     private defaultValue : string | boolean;
     private select                    = new EventEmitter<any>();
@@ -122,6 +122,8 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     }
 
     public resetTabs () {
+        this.selectedItem = {};
+
         this.tabs.forEach((_tab) => {
             _tab.active = false;
         });
