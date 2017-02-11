@@ -3,8 +3,15 @@
         @content;
     }
 }
+
 @mixin is-disabled() {
     /deep/ .amp-tabs.amp-tabs--disabled & {
+        @content;
+    }
+}
+
+@mixin is-collapsed() {
+    /deep/ .amp-tabs.amp-tabs--collapsed & {
         @content;
     }
 }

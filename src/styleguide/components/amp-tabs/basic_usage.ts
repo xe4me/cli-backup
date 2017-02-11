@@ -20,6 +20,7 @@ export default class AMPTabsComponentBasicUsage {
     private required = true;
     private title1 = 'Car';
     private id1 = 'car1';
+    private collapsed = false;
 
     private tabs = [
         {
@@ -92,5 +93,13 @@ export default class AMPTabsComponentBasicUsage {
 
     private toggleDisable2() {
         this.disabled2 = !this.disabled2;
+    }
+
+    private toggleCollapsed() {
+        this.collapsed = !this.collapsed;
+    }
+
+    private onSelect () {
+        this.collapsed = false;
     }
 }

@@ -38,6 +38,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     @Input('tabs') tabsArray = [];
     @Input('disabled') disabled : boolean = false;
+    @Input('collapsed') collapsed : boolean = false;
 
     public tabs = [];
     public keepControl : boolean      = false;
@@ -130,6 +131,10 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     }
 
     public selectTab ( tab ) {
+        if ( this.collapsed ) {
+            this.collapsed = false;
+        }
+
         if ( !this.disabled && tab ) {
             let isTabActive = tab.active;
             this.resetTabs();

@@ -25,6 +25,12 @@
                 display: none !important;
             }
         }
+
+        @include is-collapsed {
+            @include media-query($amp-tab-breakpoint) {
+                display: none !important;
+            }
+        }
     }
 
     &-mobile {
