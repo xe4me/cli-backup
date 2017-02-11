@@ -21,10 +21,8 @@ import { AmpTabComponent } from '../amp-tab/amp-tab.component';
     styles          : [ require( './amp-tabs.component.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     inputs          : [
-        'errors',
         'groupName',
         'controlGroup',
-        'customValidator',
         'defaultValue',
         'isInSummaryState',
         'keepControlOnDestroy',
@@ -37,15 +35,15 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     @ViewChild( 'tabEl' ) tabEl;
     @ContentChildren(AmpTabComponent) tabsList : QueryList<AmpTabComponent>;
+
     @Input('tabs') tabsArray = [];
     @Input('disabled') disabled : boolean = false;
-    @Input('noDefaultTab') noDefaultTab : boolean = false;
-    public tabs;
+
+    public tabs = [];
     public keepControl : boolean      = false;
     public selectedItem;
     private keepControlOnDestroy      = false;
     private defaultValue : string | boolean;
-    private hasBooleanValue : boolean = false;
     private select                    = new EventEmitter<any>();
 
     constructor ( private _cd : ChangeDetectorRef ) {
