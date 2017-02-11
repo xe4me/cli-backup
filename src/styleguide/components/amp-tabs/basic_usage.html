@@ -2,7 +2,7 @@
 
     <h2 class="mb-40">Tabs from mark-up (default active tab) <button (click)="toggleDisable()">Toggle disable ({{ disabled }})</button></h2>
 
-    <p class="mb-40"><i>Required:</i> <code>id</code> and <code>tab-title</code> on each tab</p>
+    <p class="mb-40"><i>Required:</i> <code>id</code>, <code>tab-title</code>, <code>value</code> on each tab</p>
     <p class="mb-40"><i>Optional:</i> <code>active</code> on one tab (use to set default tab)</p>
 
     <amp-tabs
@@ -79,3 +79,25 @@
 
 </section>
 
+
+
+<section class="section p mt-60">
+
+    <h2 class="mb-40">No default tab (set defaultValue = false)</h2>
+
+    <amp-tabs
+        [controlGroup]="controlGroup6"
+        [groupName]="'tabs6'"
+        [defaultValue]="false">
+        <amp-tab [tab-title]="'Car6'" id="car6" value="car6">
+            <p>A car is a wheeled, self-powered motor vehicle used for transportation and a product of the automotive industry. Most definitions of the term specify that cars are designed to run primarily on roads, to have seating for one to eight people, to typically have four wheels with tyres, and to be constructed principally for the transport of people rather than goods.</p>
+        </amp-tab>
+        <amp-tab tab-title="Bicycle6" id="bicycle6" value="bicycle6">
+            <p>A bicycle, often called a bike or cycle, is a human-powered, pedal-driven, single-track vehicle, having two wheels attached to a frame, one behind the other. A bicycle rider is called a cyclist, or bicyclist.</p>
+        </amp-tab>
+        <amp-tab tab-title="Bus6" id="bus6" value="bus6">
+            <p>The wheels on the bus go round and round..</p>
+        </amp-tab>
+    </amp-tabs>
+
+</section>

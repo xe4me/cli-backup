@@ -39,14 +39,14 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     @ContentChildren(AmpTabComponent) tabsList : QueryList<AmpTabComponent>;
     @Input('tabs') tabsArray = [];
     @Input('disabled') disabled : boolean = false;
+    @Input('noDefaultTab') noDefaultTab : boolean = false;
     public tabs;
     public keepControl : boolean      = false;
     public selectedItem;
     private keepControlOnDestroy      = false;
-    private defaultValue : string;
+    private defaultValue : string | boolean;
     private hasBooleanValue : boolean = false;
     private select                    = new EventEmitter<any>();
-    private noDefaultTab : boolean    = false;
 
     constructor ( private _cd : ChangeDetectorRef ) {
         super();
@@ -78,7 +78,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
         this.resetTabs();
 
-        if ( !this.noDefaultTab ) {
+        if ( this.defaultValue !== false ) {
             this.selectTab(tabs[0]);
         }
     }
@@ -131,7 +131,13 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     public selectTab ( tab ) {
         if ( !this.disabled && tab ) {
+            let isTabActive = tab.active;
             this.resetTabs();
+
+            if ( this.isMobileView() && isTabActive ) {
+                return false;
+            }
+
             tab.active = true;
             this.selectedItem = tab;
             this.control.setValue( tab.value, { emitEvent : true } );

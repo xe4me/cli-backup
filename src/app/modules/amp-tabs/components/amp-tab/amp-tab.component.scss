@@ -7,12 +7,23 @@
 
 .amp-tab {
     &__panel {
+        border-top: 1px solid $amp-tab-border-color;
         display: none;
         padding: 20px;
 
+        @include media-query($amp-tab-breakpoint) {
+            border: 0;
+        }
+
         &--active {
             display: block !important;
-            animation: showTabContent 0.5s ease;
+            animation: showTabContent ($amp-tab-transition-time * 2) ease;
+        }
+
+        @include is-disabled {
+            @include media-query($amp-tab-breakpoint) {
+                display: none !important;
+            }
         }
     }
 
@@ -20,8 +31,12 @@
         &__nav {
             &-item {
                 border-top: 1px solid $amp-tab-border-color;
+                color: $amp-tab-default-color;
                 display: none;
-                padding: 20px 50px 20px 20px;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1.3;
+                padding: 19px 50px 19px 20px;
                 position: relative;
                 width: 100%;
 
@@ -29,27 +44,39 @@
                     display: block;
                 }
 
-                @include is-disabled() {
+                @include is-disabled {
                     color: $amp-tab-disabled-color;
-                    transition: color .3s ease;
                 }
 
                 &--active {
                     background: $amp-tab-active-bg-color;
                     color: $amp-tab-active-color !important;
-                    transition: background .3s ease, color .3s ease;
+                    transition: background $amp-tab-transition-time ease, color $amp-tab-transition-time ease;
 
-                    .icon {
+                    .amp-tab__icon {
                         color: $amp-tab-active-color !important;
-                        @include transform(translateY(-50%) rotate(180deg) !important);
+
+                        &-default {
+                            @include transform(translateY(-50%) rotate(180deg) !important);
+
+                            @include is-disabled {
+                                display: none;
+                            }
+                        }
+
+                        &-selected {
+                            @include is-disabled {
+                                display: block !important;
+                            }
+                        }
                     }
                 }
 
-                /deep/ .amp-tabs__content > amp-tab:first-child & {
+                @include first-tab {
                     border-top: 0;
                 }
 
-                .icon {
+                .amp-tab__icon {
                     color: $amp-tab-active-bg-color;
                     font-size: 14px;
                     line-height: 1;
@@ -59,25 +86,18 @@
                     top: 50%;
                     transition: transform .4s ease;
                     @include transform(translateY(-50%));
+
+                    &-selected {
+                        display: none;
+                        font-size: 20px;
+                        right: 17px;
+                    }
+
+                    @include is-disabled {
+                        color: $amp-tab-disabled-color;
+                    }
                 }
             }
         }
-    }
-}
-
-@keyframes showTabContent {
-    0% {
-        display: none;
-        opacity: 0;
-    }
-
-    1% {
-        display: block;
-        opacity: 0;
-    }
-
-    100% {
-        display: block;
-        opacity: 1;
     }
 }

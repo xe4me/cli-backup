@@ -60,8 +60,10 @@ $menu-height: 70px;
 // Tabs
 $amp-tab-border-color: $amp-colour-grey-dark;
 $amp-tab-active-bg-color: $amp-colour-sky-blue;
+$amp-tab-default-color: $amp-colour-primary;
 $amp-tab-active-color: $amp-colour-white;
 $amp-tab-disabled-color: $amp-colour-grey-darker;
 $amp-tab-hover-color: $amp-colour-white;
 $amp-tab-active-arrow-size: 15px;
 $amp-tab-breakpoint: 'tablet-and-down';
+$amp-tab-transition-time: .3s;

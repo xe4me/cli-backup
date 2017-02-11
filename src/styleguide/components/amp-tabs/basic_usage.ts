@@ -13,6 +13,7 @@ export default class AMPTabsComponentBasicUsage {
     controlGroup3 : FormGroup = new FormGroup( {} );
     controlGroup4 : FormGroup = new FormGroup( {} );
     controlGroup5 : FormGroup = new FormGroup( {} );
+    controlGroup6 : FormGroup = new FormGroup( {} );
 
     private disabled = false;
     private disabled2 = false;

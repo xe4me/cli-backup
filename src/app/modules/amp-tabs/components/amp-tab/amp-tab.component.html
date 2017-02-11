@@ -4,7 +4,9 @@
     [attr.for]="randomizedId + '_' + id"
     role="tab"
     [attr.aria-selected]="active">
-    {{ title }} <i aria-hidden="true" class="icon icon--chevron-down"></i>
+    {{ title }}
+    <i aria-hidden="true" class="icon icon--chevron-down amp-tab__icon amp-tab__icon-default"></i>
+    <i aria-hidden="true" class="icon icon--tick amp-tab__icon amp-tab__icon-selected"></i>
 </label>
 
 <div
