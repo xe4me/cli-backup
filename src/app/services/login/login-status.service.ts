@@ -26,7 +26,7 @@ export class LoginStatusService {
     public constructor (private http : AmpHttpService) {
         this.eventSubject = new ReplaySubject<boolean>(1);
         this.loggedIn = false;
-        // this.checkLoginStatus();
+        this.checkLoginStatus();
     }
 
     // Call the MyAMP Junction in TAM
@@ -43,6 +43,8 @@ export class LoginStatusService {
                         } else {
                             this.notLoggedIn();
                         }
+                   }, (err) => {
+                       console.error('Failed to check session validity.', err);
                    });
     }
 
