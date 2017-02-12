@@ -26,19 +26,9 @@ module.exports = {
     '/ddc/public/api/bett3r/eligible-accounts': {
         target: 'http://localhost:8882'
     },
-    '/ddc/public/api/qas/*':{
-        secure: false,
-        target: 'https://ddc-dev.digital-pilot.ampaws.com.au'
-    },
-    '/ddc/public/api/green-id/*':{
-        target: 'http://localhost:8082'
-        // secure: false,
-        // target: 'https://ddc-dev.digital-pilot.ampaws.com.au'
-    },
     '/ddc/public/api/*': {
         // this will rewrite all the request to api to dev , for save and submit ,
-        target: 'http://localhost:8083/'
-        // secure: false,
-        // target: 'https://ddc-dev.digital-pilot.ampaws.com.au'
+        secure: false,
+        target: 'https://ddc-dev.digital-pilot.ampaws.com.au'
     }
 }

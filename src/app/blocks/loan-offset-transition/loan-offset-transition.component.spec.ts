@@ -1,28 +1,39 @@
 import {
-    async, TestBed, ComponentFixture, ComponentFixtureAutoDetect, inject, fakeAsync,
-    tick, discardPeriodicTasks
+    async,
+    TestBed,
+    ComponentFixture,
+    ComponentFixtureAutoDetect,
+    fakeAsync,
+    tick,
+    discardPeriodicTasks
 } from '@angular/core/testing';
-import {MockBackend} from '@angular/http/testing';
-import {Component, ViewChild, OnInit} from '@angular/core';
-import {FormsModule, ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
 import {
-    AmpInputsModule,
-    ScrollService,
+    Component,
+    ViewChild,
+    OnInit
+} from '@angular/core';
+import {
+    FormsModule,
+    FormGroup,
+    FormControl
+} from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
+import { By } from '@angular/platform-browser';
+import {
     LoginStatusService,
-    AmpHttpService,
     SaveService
 } from 'amp-ddc-components';
-import {EligibleAccountsService, SharedFormDataService} from '../../shared/';
-import {MockScrollService, MockLoginStatusService, MockEligibleAccountsService, MockSharedFormDataService} from '../../../../test/mocks/';
-import {BrowserModule, By} from '@angular/platform-browser';
-import {AppModule} from '../../app.module';
-import {Response, ResponseOptions, Http, BaseRequestOptions} from '@angular/http';
-import {APP_BASE_HREF} from '@angular/common';
+import { AppModule } from '../../app.module';
+import { EligibleAccountsService } from '../../shared/';
+import {
+    MockLoginStatusService,
+    MockEligibleAccountsService
+} from '../../../../test/mocks/';
 
 const betterChoiceTypes = {
     convert_account : 'convert',
     new_account : 'new'
-}
+};
 
 fdescribe('Component: LoanOffsetTransitionBlock', () => {
 
@@ -58,14 +69,6 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
                 {
                     provide  : ComponentFixtureAutoDetect,
                     useValue : true
-                },
-                {
-                    provide : MockBackend,
-                    useValue: true
-                },
-                {
-                    provide : AmpHttpService,
-                    useValue: true
                 }
             ]
         } );
@@ -79,7 +82,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
         }));
 
-        it('Ensure the deposit transition block is created and block is not hided with default value convert for better choice', fakeAsync(() => {
+        it('Ensure the offset loan transition block is created and ' +
+            'block is not hided with default value convert for better choice', fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -97,7 +101,9 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
 
             expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
             expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.convert_account );
 
             let groupButtonLabels = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -119,6 +125,122 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
         }));
     });
 
+    describe( 'Offset Loan Transition Account Block with Retrieve - no accounts' , () => {
+        let loanOffsetTransition : ComponentFixture<LoanOffsetBlockTest> = null;
+
+        beforeEach(async(() => {
+            loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
+            loanOffsetTransition.componentInstance.block.__isRetrieved = true;
+            loanOffsetTransition.detectChanges();
+        }));
+
+        it('Ensure the offset loan transition block is created and block is visible', fakeAsync(() => {
+            loanOffsetTransition.detectChanges();
+            tick();
+            loanOffsetTransition.detectChanges();
+
+            expect( loanOffsetTransition.componentInstance ).toBeDefined();
+
+            let title = loanOffsetTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( loanOffsetTransition.componentInstance.block.__custom.blockTitle);
+
+            let eligibleAccountsService = loanOffsetTransition.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = loanOffsetTransition.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.convert_account );
+        }));
+    });
+
+    describe( 'Loan Offset Transition Account Block with Retrieve - valid accounts:Dropdown' , () => {
+        let loanOffsetTransition : ComponentFixture<LoanOffsetBlockTest> = null;
+
+        beforeEach(async(() => {
+            loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
+            loanOffsetTransition.componentInstance.block.__isRetrieved = true;
+            loanOffsetTransition.detectChanges();
+            let accountNumberGroupId = loanOffsetTransition.componentInstance.block.__custom.controls[1].id;
+            let accountNumberFormGroup = new FormGroup({});
+            let accountNumber = '111111111';
+            accountNumberFormGroup.addControl('Query', new FormControl(accountNumber));
+            accountNumberFormGroup.addControl('SelectedItem', new FormControl(accountNumber));
+            loanOffsetTransition.componentInstance.block.__controlGroup.setControl(accountNumberGroupId, accountNumberFormGroup);
+            loanOffsetTransition.componentInstance.block.ngAfterViewInit();
+        }));
+
+        it('Ensure the loan offset transition block is created and block is visible', fakeAsync(() => {
+            loanOffsetTransition.detectChanges();
+            tick();
+            loanOffsetTransition.detectChanges();
+
+            expect( loanOffsetTransition.componentInstance ).toBeDefined();
+
+            let title = loanOffsetTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( loanOffsetTransition.componentInstance.block.__custom.blockTitle);
+
+            let eligibleAccountsService = loanOffsetTransition.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = loanOffsetTransition.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.convert_account );
+
+            let accountNumberControl = loanOffsetTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+            expect( accountNumberControl.value ).toBe('111111111');
+        }));
+    });
+
+    describe( 'Loan Offset Transition Account Block with Retrieve - valid accounts:Input' , () => {
+        let loanOffsetTransition : ComponentFixture<LoanOffsetBlockTest> = null;
+
+        beforeEach(async(() => {
+            loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
+            loanOffsetTransition.componentInstance.block.__isRetrieved = true;
+            loanOffsetTransition.detectChanges();
+            let accountNumberGroupId = loanOffsetTransition.componentInstance.block.__custom.controls[1].id;
+            let accountNumber = '111111111';
+            loanOffsetTransition.componentInstance.block.__controlGroup.setControl(accountNumberGroupId, new FormControl(accountNumber));
+            loanOffsetTransition.componentInstance.block.ngAfterViewInit();
+        }));
+
+        it('Ensure the loan offset transition block is created and block is visible', fakeAsync(() => {
+            loanOffsetTransition.detectChanges();
+            tick();
+            loanOffsetTransition.detectChanges();
+
+            expect( loanOffsetTransition.componentInstance ).toBeDefined();
+
+            let title = loanOffsetTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( loanOffsetTransition.componentInstance.block.__custom.blockTitle);
+
+            let eligibleAccountsService = loanOffsetTransition.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = loanOffsetTransition.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.convert_account );
+
+            let accountNumberControl = loanOffsetTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+            expect( accountNumberControl.value ).toBe('111111111');
+        }));
+    });
+
     describe( 'Loan Offset Transition Account Block with Login Existing Users - Loan accounts only', () => {
         let loanOffsetTransition : ComponentFixture<LoanOffsetBlockTest> = null;
 
@@ -128,7 +250,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_LOAN_ACCOUNTS_ONLY);
         }));
 
-        it('Ensure the deposit transition block is created and block is hided with default value new for better choice', fakeAsync(() => {
+        it('Ensure the loan offset transition block is created and ' +
+            'block is hided with default value new for better choice', fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -145,8 +268,55 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             expect( loginStatusService ).toBeDefined();
 
             expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
-            expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(true);
-            expect( loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.new_account);
+            expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.new_account );
+
+            let groupButtonLabels = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
+            let groupButtonInputs = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
+
+            expect( groupButtonLabels.length ).toBe(2);
+            expect( groupButtonInputs.length ).toBe(2);
+
+            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+
+            discardPeriodicTasks();
+        }));
+    });
+
+    describe( 'Deposit Transition Account Block with Login Existing Users - Deposit and Loan Accounts Only', () => {
+        let loanOffsetTransition : ComponentFixture<LoanOffsetBlockTest> = null;
+
+        beforeEach(async(() => {
+            loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
+            mockLoginStatusService.loginSuccess();
+            mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSIT_AND_LOAN_ACCOUNTS_ONLY);
+        }));
+
+        it('Ensure the loan offset transition block is created and ' +
+            'block is visible to create an offset account', fakeAsync(() => {
+            loanOffsetTransition.detectChanges();
+            tick();
+            loanOffsetTransition.detectChanges();
+
+            expect( loanOffsetTransition.componentInstance ).toBeDefined();
+
+            let title = loanOffsetTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( loanOffsetTransition.componentInstance.block.__custom.blockTitle);
+
+            let eligibleAccountsService = loanOffsetTransition.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = loanOffsetTransition.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
+            expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.new_account );
 
             let groupButtonLabels = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -170,7 +340,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_LOAN_AND_OFFSET_ACCOUNTS_ONLY);
         }));
 
-        it('Ensure the deposit transition block is created and block is not hided with data pre-populated', fakeAsync(() => {
+        it('Ensure the loan offset transition block is created and ' +
+            'block is not hided with data pre-populated', fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -188,49 +359,9 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
 
             expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
             expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
 
-            let groupButtonLabels = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
-            let groupButtonInputs = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
-
-            expect( groupButtonLabels.length ).toBe(2);
-            expect( groupButtonInputs.length ).toBe(2);
-
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
-
-            discardPeriodicTasks();
-        }));
-    });
-
-    describe( 'Deposit Transition Account Block with Login Existing Users - Deposit and Loan Accounts Only', () => {
-        let loanOffsetTransition : ComponentFixture<LoanOffsetBlockTest> = null;
-
-        beforeEach(async(() => {
-            loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
-            mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSIT_AND_LOAN_ACCOUNTS_ONLY);
-            mockLoginStatusService.loginSuccess();
-        }));
-
-        it('Ensure the deposit transition block is created and block is', fakeAsync(() => {
-            loanOffsetTransition.detectChanges();
-            tick();
-            loanOffsetTransition.detectChanges();
-
-            expect( loanOffsetTransition.componentInstance ).toBeDefined();
-
-            let title = loanOffsetTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
-            expect( title ).toBe( loanOffsetTransition.componentInstance.block.__custom.blockTitle);
-
-            let eligibleAccountsService = loanOffsetTransition.debugElement.injector.get(EligibleAccountsService);
-            expect( eligibleAccountsService ).toBeDefined();
-
-            let loginStatusService = loanOffsetTransition.debugElement.injector.get(LoginStatusService);
-            expect( loginStatusService ).toBeDefined();
-
-            expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
-            expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.convert_account );
 
             let groupButtonLabels = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -250,11 +381,12 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
 
         beforeEach(async(() => {
             loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
-            mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSIT_LOAN_AND_OFFSET_ACCOUNTS);
             mockLoginStatusService.loginSuccess();
+            mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSIT_LOAN_AND_OFFSET_ACCOUNTS);
         }));
 
-        it('Ensure the deposit transition block is created and block is', fakeAsync(() => {
+        it('Ensure the loan offset transition block is created and ' +
+            'block is not hided with data pre-populated', fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -272,7 +404,9 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
 
             expect( loanOffsetTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
             expect( loanOffsetTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let betterChoice = loanOffsetTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value ).toBe( betterChoiceTypes.convert_account );
 
             let groupButtonLabels = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = loanOffsetTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -286,11 +420,7 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             discardPeriodicTasks();
         }));
     });
-
-    describe( 'Loan Offset Transition Account Block with Retrieve', () => {
-
-    });
-})
+});
 
 @Component( {
     template : `
@@ -299,11 +429,11 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
         </div>
     `
 })
-class LoanOffsetBlockTest implements OnInit{
+class LoanOffsetBlockTest implements OnInit {
 
-    @ViewChild('block') block;
+    @ViewChild('block') public block;
 
-    ngOnInit() {
+    public ngOnInit() {
         let blockJSON = require('../../forms/better-form/better-choice-block.json');
         this.block.__fdn = ['Application', 'Applicant1Section', 'PersonalDetailsSection', 'LoanOffset'];
         this.block.__controlGroup = new FormGroup({});
@@ -313,7 +443,7 @@ class LoanOffsetBlockTest implements OnInit{
         let accountNumberGroupId = blockJSON.custom.optionalBlocks.deposit_account.custom.controls[1].id;
         this.block.__controlGroup.addControl(betterChoiceControlId, betterChoiceControl);
         this.block.__controlGroup.addControl(accountNumberGroupId, accountNumberControl);
-        this.block.__custom = blockJSON.custom.optionalBlocks.deposit_account.custom;
+        this.block.__custom = blockJSON.custom.optionalBlocks.offset_account.custom;
         this.block.__form = new FormGroup({});
         let applicationFormGroup = new FormGroup({});
         let newOrExistingFormGroup = new FormGroup({});

@@ -1,28 +1,39 @@
 import {
-    async, TestBed, ComponentFixture, ComponentFixtureAutoDetect, inject, fakeAsync,
-    tick, discardPeriodicTasks
+    async,
+    TestBed,
+    ComponentFixture,
+    ComponentFixtureAutoDetect,
+    fakeAsync,
+    tick,
+    discardPeriodicTasks
 } from '@angular/core/testing';
-import {MockBackend} from '@angular/http/testing';
-import {Component, ViewChild, OnInit} from '@angular/core';
-import {FormsModule, ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
 import {
-    AmpInputsModule,
-    ScrollService,
+    Component,
+    ViewChild,
+    OnInit
+} from '@angular/core';
+import {
+    FormsModule,
+    FormGroup,
+    FormControl
+} from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
+import { By } from '@angular/platform-browser';
+import {
     LoginStatusService,
-    AmpHttpService,
     SaveService
 } from 'amp-ddc-components';
-import {EligibleAccountsService, SharedFormDataService} from '../../shared/';
-import {MockScrollService, MockLoginStatusService, MockEligibleAccountsService, MockSharedFormDataService} from '../../../../test/mocks/';
-import {BrowserModule, By} from '@angular/platform-browser';
-import {AppModule} from '../../app.module';
-import {Response, ResponseOptions, Http, BaseRequestOptions} from '@angular/http';
-import {APP_BASE_HREF} from '@angular/common';
+import { AppModule } from '../../app.module';
+import { EligibleAccountsService } from '../../shared/';
+import {
+    MockLoginStatusService,
+    MockEligibleAccountsService
+} from '../../../../test/mocks/';
 
 const betterChoiceTypes = {
     convert_account : 'convert',
     new_account : 'new'
-}
+};
 
 fdescribe('Component: DepositTransitionBlock', () => {
 
@@ -58,14 +69,6 @@ fdescribe('Component: DepositTransitionBlock', () => {
                 {
                     provide  : ComponentFixtureAutoDetect,
                     useValue : true
-                },
-                {
-                    provide : MockBackend,
-                    useValue: true
-                },
-                {
-                    provide : AmpHttpService,
-                    useValue: true
                 }
             ]
         } );
@@ -79,7 +82,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             depositTransition = TestBed.createComponent( DepositTransitionBlockTest );
         }));
 
-        it('Ensure the deposit transition block is created and block is not hided with default value convert for better choice', fakeAsync(() => {
+        it('Ensure the deposit transition block is created and ' +
+            'block is not hided with default value convert for better choice', fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -97,7 +101,9 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
             expect( depositTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.convert_account);
 
             let groupButtonLabels = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -108,18 +114,139 @@ fdescribe('Component: DepositTransitionBlock', () => {
             expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
             expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
 
+            let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+
+            expect( accountNumberControl.valid ).toBe( false );
+
             groupButtonLabels[1].nativeElement.click();
             tick();
             depositTransition.detectChanges();
 
             expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
             expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( betterChoice.value ).toBe( betterChoiceTypes.new_account );
 
             let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
 
-            expect( ampAccountNumber ).toBeUndefined();
+            expect( ampAccountNumber ).toBeNull();
 
             discardPeriodicTasks();
+        }));
+    });
+
+    describe( 'Deposit Transition Account Block with Retrieve - no accounts' , () => {
+        let depositTransition : ComponentFixture<DepositTransitionBlockTest> = null;
+
+        beforeEach(async(() => {
+            depositTransition = TestBed.createComponent( DepositTransitionBlockTest );
+            depositTransition.componentInstance.block.__isRetrieved = true;
+            depositTransition.detectChanges();
+        }));
+
+        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
+            depositTransition.detectChanges();
+            tick();
+            depositTransition.detectChanges();
+
+            expect( depositTransition.componentInstance ).toBeDefined();
+
+            let title = depositTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( depositTransition.componentInstance.block.__custom.blockTitle);
+
+            let eligibleAccountsService = depositTransition.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = depositTransition.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( depositTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.convert_account);
+        }));
+    });
+
+    describe( 'Deposit Transition Account Block with Retrieve - valid accounts:Dropdown' , () => {
+        let depositTransition : ComponentFixture<DepositTransitionBlockTest> = null;
+
+        beforeEach(async(() => {
+            depositTransition = TestBed.createComponent( DepositTransitionBlockTest );
+            depositTransition.componentInstance.block.__isRetrieved = true;
+            depositTransition.detectChanges();
+            let accountNumberGroupId = depositTransition.componentInstance.block.__custom.controls[1].id;
+            let accountNumberFormGroup = new FormGroup({});
+            let accountNumber = '111111111';
+            accountNumberFormGroup.addControl('Query', new FormControl(accountNumber));
+            accountNumberFormGroup.addControl('SelectedItem', new FormControl(accountNumber));
+            depositTransition.componentInstance.block.__controlGroup.setControl(accountNumberGroupId, accountNumberFormGroup);
+            depositTransition.componentInstance.block.ngAfterViewInit();
+        }));
+
+        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
+            depositTransition.detectChanges();
+            tick();
+            depositTransition.detectChanges();
+
+            expect( depositTransition.componentInstance ).toBeDefined();
+
+            let title = depositTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( depositTransition.componentInstance.block.__custom.blockTitle);
+
+            let eligibleAccountsService = depositTransition.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = depositTransition.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( depositTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+            expect( accountNumberControl.value ).toBe('111111111');
+        }));
+    });
+
+    describe( 'Deposit Transition Account Block with Retrieve - valid accounts:Input' , () => {
+        let depositTransition : ComponentFixture<DepositTransitionBlockTest> = null;
+
+        beforeEach(async(() => {
+            depositTransition = TestBed.createComponent( DepositTransitionBlockTest );
+            depositTransition.componentInstance.block.__isRetrieved = true;
+            depositTransition.detectChanges();
+            let accountNumberGroupId = depositTransition.componentInstance.block.__custom.controls[1].id;
+            let accountNumber = '111111111';
+            depositTransition.componentInstance.block.__controlGroup.setControl(accountNumberGroupId, new FormControl(accountNumber));
+            depositTransition.componentInstance.block.ngAfterViewInit();
+        }));
+
+        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
+            depositTransition.detectChanges();
+            tick();
+            depositTransition.detectChanges();
+
+            expect( depositTransition.componentInstance ).toBeDefined();
+
+            let title = depositTransition.debugElement.query(By.css('h2.heading.js-heading.heading-intro')).nativeElement.textContent;
+            expect( title ).toBe( depositTransition.componentInstance.block.__custom.blockTitle);
+
+            let eligibleAccountsService = depositTransition.debugElement.injector.get(EligibleAccountsService);
+            expect( eligibleAccountsService ).toBeDefined();
+
+            let loginStatusService = depositTransition.debugElement.injector.get(LoginStatusService);
+            expect( loginStatusService ).toBeDefined();
+
+            expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(false);
+            expect( depositTransition.componentInstance.block.hideBlock ).toBe(false);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+            expect( accountNumberControl.value ).toBe('111111111');
         }));
     });
 
@@ -150,7 +277,9 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
             expect( depositTransition.componentInstance.block.hideBlock ).toBe(true);
-            expect( depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.new_account);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.new_account);
 
             let groupButtonLabels = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -163,7 +292,7 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
 
-            expect( ampAccountNumber ).toBeDefined();
+            expect( ampAccountNumber ).toBeNull();
 
             discardPeriodicTasks();
         }));
@@ -196,7 +325,9 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
             expect( depositTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.convert_account);
 
             let groupButtonLabels = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -206,6 +337,22 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
             expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+
+            let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+            expect( accountNumberControl.valid ).toBe( true );
+            expect( accountNumberControl.value ).toBeDefined();
+
+            groupButtonLabels[1].nativeElement.click();
+            tick();
+            depositTransition.detectChanges();
+
+            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( betterChoice.value).toBe(betterChoiceTypes.new_account);
+
+            let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
+
+            expect( ampAccountNumber ).toBeNull();
 
             discardPeriodicTasks();
         }));
@@ -238,7 +385,9 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
             expect( depositTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.convert_account);
 
             let groupButtonLabels = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -248,6 +397,22 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
             expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+
+            let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+            expect( accountNumberControl.valid ).toBe( true );
+            expect( accountNumberControl.value ).toBeDefined();
+
+            groupButtonLabels[1].nativeElement.click();
+            tick();
+            depositTransition.detectChanges();
+
+            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( betterChoice.value).toBe(betterChoiceTypes.new_account);
+
+            let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
+
+            expect( ampAccountNumber ).toBeNull();
 
             discardPeriodicTasks();
         }));
@@ -280,7 +445,9 @@ fdescribe('Component: DepositTransitionBlock', () => {
 
             expect( depositTransition.componentInstance.block.userHasLoggedIn ).toBe(true);
             expect( depositTransition.componentInstance.block.hideBlock ).toBe(false);
-            expect( depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice.value).toBe(betterChoiceTypes.convert_account);
+
+            let betterChoice = depositTransition.componentInstance.block.__controlGroup.controls.BetterChoice;
+            expect( betterChoice.value).toBe(betterChoiceTypes.convert_account);
 
             let groupButtonLabels = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button label'));
             let groupButtonInputs = depositTransition.debugElement.queryAll(By.css('amp-group-buttons div.amp-group-button input'));
@@ -291,54 +458,12 @@ fdescribe('Component: DepositTransitionBlock', () => {
             expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
             expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
 
+            let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
+            expect( accountNumberControl.valid ).toBe( true );
+            expect( accountNumberControl.value ).toBeDefined();
+
             discardPeriodicTasks();
         }));
-    });
-
-    describe( 'Deposit Transition Account Block with Retrieve - no accounts' , () => {
-        let depositTransition : ComponentFixture<DepositTransitionBlockTest> = null;
-
-        beforeEach(async(() => {
-            depositTransition = TestBed.createComponent( DepositTransitionBlockTest );
-            depositTransition.componentInstance.block.__isRetrieved = true;
-            depositTransition.detectChanges();
-        }));
-
-        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
-            depositTransition.detectChanges();
-            tick();
-            depositTransition.detectChanges();
-
-            expect( depositTransition.componentInstance ).toBeDefined();
-        }));
-    });
-
-    describe( 'Deposit Transition Account Block with Retrieve - valid accounts:Dropdown' , () => {
-        let depositTransition : ComponentFixture<DepositTransitionBlockTest> = null;
-
-        beforeEach(async(() => {
-            depositTransition = TestBed.createComponent( DepositTransitionBlockTest );
-            depositTransition.componentInstance.block.__isRetrieved = true;
-            let accountNumberGroupId = depositTransition.componentInstance.block.__custom.controls[1].id;
-            let accountNumberFormGroup = new FormGroup({});
-            let accountNumber = '111111111';
-            accountNumberFormGroup.addControl('Query', new FormControl(accountNumber));
-            accountNumberFormGroup.addControl('SelectedItem', new FormControl(accountNumber));
-            depositTransition.componentInstance.block.__controlGroup.setControl(accountNumberGroupId, accountNumberFormGroup);
-            depositTransition.componentInstance.block.ngAfterViewInit();
-        }));
-
-        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
-            depositTransition.detectChanges();
-            tick();
-            depositTransition.detectChanges();
-
-            expect( depositTransition.componentInstance ).toBeDefined();
-        }));
-    });
-
-    describe( 'Deposit Transition Account Block with Retrieve - valid accounts:Input' , () => {
-
     });
 });
 
@@ -349,11 +474,11 @@ fdescribe('Component: DepositTransitionBlock', () => {
         </div>
     `
 })
-class DepositTransitionBlockTest implements OnInit{
+class DepositTransitionBlockTest implements OnInit {
 
-    @ViewChild('block') block;
+    @ViewChild('block') public block;
 
-    ngOnInit() {
+    public ngOnInit() {
         let blockJSON = require('../../forms/better-form/better-choice-block.json');
         this.block.__fdn = ['Application', 'Applicant1Section', 'PersonalDetailsSection', 'DepositTransition'];
         this.block.__controlGroup = new FormGroup({});

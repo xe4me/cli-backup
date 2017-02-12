@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import {
     NgModule,
-    Renderer, CUSTOM_ELEMENTS_SCHEMA
+    Renderer
 } from '@angular/core';
 import {
     FormsModule,

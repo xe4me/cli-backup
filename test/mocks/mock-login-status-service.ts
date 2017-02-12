@@ -16,6 +16,10 @@ export class MockLoginStatusService {
         this.eventSubject.next( true );
     }
 
+    public disableSuccess () {
+        this.eventSubject.complete();
+    }
+
     public userHasLoggedIn () : Observable<any> {
         return this.eventSource;
     }
