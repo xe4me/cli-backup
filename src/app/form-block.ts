@@ -22,6 +22,7 @@ import { ScrollService } from './services/scroll/scroll.service';
 import { FormDefinition } from './interfaces/form-def.interface';
 import { AutoFocusOnDirective } from './modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
 import { RemoveNextOptions, LoadNextOptions } from './amp-block-loader';
+import { Environments } from './abstracts/environments/environments.abstract';
 
 export abstract class FormBlock implements AfterViewInit, OnDestroy {
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
@@ -44,6 +45,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
      * */
     protected __fdn : Array<(number|string)>;
 
+    protected __name : string;
     /*
      * __repeaterIndex : This will be populated if this component is loaded inside a repeater
      * */
@@ -214,6 +216,7 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     }
 
     onNext () {
+        this.track();
         // Do not block the onNext function based on whether or not the block is Touched
         if ( this.__controlGroup ) {
             this.__controlGroup.markAsTouched();
@@ -271,6 +274,26 @@ export abstract class FormBlock implements AfterViewInit, OnDestroy {
     private unSubscribeFromEvents () {
         if ( this.scrollSubscription ) {
             this.scrollSubscription.unsubscribe();
+        }
+    }
+
+    /**
+     * This method is an abstraction of the track method available with ewt object which is analytics tracker object.
+     * This object is loaded with an external script coming from the provider's server.
+     *
+     * To have access to this object you need to have this piece of code into you index.html of your exeperience
+     * <script src="https://www.sc.pages03.net/lp/static/js/iMAWebCookie.js?18560ebc-14a40f8eab9-943e27de0c8b91cc3fcf1475c3e5d726&amp;h=www.pages03.net"></script>
+     * <script type=text/javascript>
+     *  window.onload = function() {
+     *     ewt.init ();
+     *  }
+     * </script>
+     */
+    private track() {
+        if ((<any> window).ewt) {
+            (<any> window).ewt.track({name: this.__name, type: Environments.property.ExperienceName, link: null});
+        } else {
+            console.warn('ewt object is not properly loaded');
         }
     }
 

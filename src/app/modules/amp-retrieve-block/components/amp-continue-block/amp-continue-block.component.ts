@@ -2,12 +2,7 @@ import {
     Component,
     ChangeDetectorRef,
     ViewChild,
-    trigger,
-    state,
-    style,
-    animate,
     ViewContainerRef,
-    transition,
     ChangeDetectionStrategy,
     Optional
 } from '@angular/core';
@@ -21,43 +16,13 @@ import {
 import { AmpFormBlockComponent } from '../../../amp-form';
 import { AutoFocusOnDirective } from '../../../amp-directives';
 import { RetrieveService } from '../../../../services/retrieve/retrieve.service';
+import { AmpSliderComponent } from '../../../amp-slider/components/amp-slider/amp-slider.component';
 
 @Component( {
     selector        : 'amp-continue-block',
     template        : require('./amp-continue-block.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush,
-    host            : {
-        '[@slideUp]' : 'slideUp'
-    },
-    styles          : [ require( './amp-continue-block.component.scss' ) ],
-    animations      : [
-        trigger(
-            'slideUp',
-            [
-                state( 'collapsed, void', style( {
-                    'height'         : '0',
-                    'min-height'     : '0',
-                    'opacity'        : '0',
-                    'padding-left'   : '0',
-                    'padding-right'  : '0',
-                    'padding-bottom' : '0',
-                    'padding-top'    : '0',
-                    'display'          : 'none'
-                } ) ),
-                state( 'expanded', style( {
-                    'height'         : '*',
-                    'min-height'     : '*',
-                    'opacity'        : '1',
-                    'padding-left'   : '*',
-                    'padding-right'  : '*',
-                    'padding-bottom' : '*',
-                    'padding-top'    : '*',
-                    'display'        : 'block'
-                } ) ),
-                transition(
-                    'collapsed <=> expanded', [ animate( 800 ) ] )
-            ] )
-    ]
+    styles          : [ require( './amp-continue-block.component.scss' ) ]
 } )
 export class AmpContinueBlockComponent extends FormBlock {
 
@@ -86,6 +51,7 @@ export class AmpContinueBlockComponent extends FormBlock {
 
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
     @ViewChild( AmpFormBlockComponent ) public AmpFormBlockComponent;
+    @ViewChild( AmpSliderComponent ) slider : AmpSliderComponent;
 
     private responseError : string;
     private fieldsAreRequired      = true;
@@ -155,6 +121,7 @@ export class AmpContinueBlockComponent extends FormBlock {
             this.formModelService.storeModelAndHydrateForm( transformedAppModel );
             this.saveService.referenceId = referenceId;
         } );
+
     }
 
     public onNext () {
@@ -164,19 +131,12 @@ export class AmpContinueBlockComponent extends FormBlock {
     public onNewApplication () {
         this.fieldsAreRequired = false;
         this.__controlGroup.reset();
-        this.slideItUp();
-        // timeout to make sure the controls are valid otherwise it won't go to the next undone block
+
         setTimeout( () => {
-            super.onNext();
+            this.slider
+                .slide()
+                .then( () => super.onNext() );
         }, 10 );
     }
 
-    public slideItUp () : Promise<string> {
-        return new Promise( ( resolve, reject ) => {
-            this.slideUp = 'collapsed';
-            setTimeout( () => {
-                resolve( 'done' );
-            }, this.ANIMATION_TIME );
-        } );
-    }
 }
