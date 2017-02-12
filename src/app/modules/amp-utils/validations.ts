@@ -243,7 +243,7 @@ export class MinAgeValidator {
                 return {
                     minAge : {
                         text : c._ampErrors && c._ampErrors.minAge ? c._ampErrors.minAge : `
-                            You must be older than than ${minAge} years old.
+                            You must be older than ${minAge} years old.
                         `
                     }
                 };
