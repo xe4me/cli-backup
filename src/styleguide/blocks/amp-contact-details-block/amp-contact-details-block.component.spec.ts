@@ -110,7 +110,7 @@ describe('amp-contact-details-block component', () => {
                 expect(okButtonEl.hasAttribute('disabled')).toBe(true);
             });
         });
-        xdescribe('when all required values have been provided', () => {
+        describe('when all required values have been provided', () => {
             beforeEach(async(() => {
                 loadComponent();
             }));
