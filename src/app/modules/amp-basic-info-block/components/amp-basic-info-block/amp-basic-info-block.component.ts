@@ -4,6 +4,7 @@ import {
     ChangeDetectionStrategy,
     Optional
 } from '@angular/core';
+import { clone } from 'lodash';
 import { FormBlock } from '../../../../form-block';
 import {
     ScrollService,
@@ -20,7 +21,7 @@ const defaultBlockProps = require( './amp-basic-info-block.config.json' );
 } )
 export class AmpBasicInfoBlockComponent extends FormBlock {
 
-    protected __custom = defaultBlockProps;
+    protected __custom = clone( defaultBlockProps );
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
