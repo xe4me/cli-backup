@@ -25,7 +25,6 @@ import { AmpTabComponent } from '../amp-tab/amp-tab.component';
         'controlGroup',
         'defaultValue',
         'isInSummaryState',
-        'keepControlOnDestroy',
         'required',
         'keepControl'
     ],
@@ -43,7 +42,6 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     public tabs = [];
     public keepControl : boolean      = false;
     public selectedItem = {};
-    private keepControlOnDestroy      = false;
     private defaultValue : string | boolean;
     private select                    = new EventEmitter<any>();
 
