@@ -68,7 +68,7 @@ describe( 'Service: PrepopulationService' , () => {
     describe('registerBlockForPrepop', () => {
 
         it('should trigger prepop method when loginStatusService.userHasLoggedIn and the customerDetailsService returns successfully', (done) => {
-            const mockLoginStatusService = new MockLoginStatusService();
+            const mockLoginStatusService = new MockLoginStatusService(null);
             const mockCustomerDetailsService = new MockCustomerDetailsService(null);
             prepopulationService = new PrepopulationService(mockCustomerDetailsService, mockLoginStatusService);
             prepopulationService.prepop = () => {
@@ -83,7 +83,7 @@ describe( 'Service: PrepopulationService' , () => {
         });
 
         it('should not trigger prepop method if customerDetailsService fails to return', (done) => {
-            const mockLoginStatusService = new MockLoginStatusService();
+            const mockLoginStatusService = new MockLoginStatusService(null);
             const mockCustomerDetailsService = new MockCustomerDetailsService(null);
             mockCustomerDetailsService.customerDetailsPromise = new Promise((resolve, reject) => {
                 reject('CMDM is down...crap are we resilentish');
@@ -103,10 +103,10 @@ describe( 'Service: PrepopulationService' , () => {
         });
 
         it('should not trigger prepop method for applicant 2', (done) => {
-            delete mockFormBlock.__custom.__applicantIndex;
+            delete mockFormBlock.__custom.applicantIndex;
             mockFormBlock.__repeaterIndex = 2;
 
-            const mockLoginStatusService = new MockLoginStatusService();
+            const mockLoginStatusService = new MockLoginStatusService(null);
             const mockCustomerDetailsService = new MockCustomerDetailsService(null);
             prepopulationService = new PrepopulationService(mockCustomerDetailsService, mockLoginStatusService);
             prepopulationService.prepop = () => {
@@ -256,6 +256,9 @@ class MockLoginStatusService extends LoginStatusService {
     public loggedInSubject = new Subject();
     public userHasLoggedIn () {
         return this.loggedInSubject;
+    }
+
+    public checkLoginStatus () {
     }
 }
 class MockCustomerDetailsService extends CustomerDetailsService {
