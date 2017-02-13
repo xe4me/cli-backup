@@ -14,7 +14,12 @@
                 "blockType": "BasicInfoBlock",
                 "blockLayout": "INLINE",
                 "commonBlock": true,
-                "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component"
+                "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
+                "custom": {
+                    "overrides": {
+                        "controls[4].minAge": 18
+                    }
+                }
             },
             {
                 "name": "Address",
