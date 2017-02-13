@@ -2,15 +2,8 @@ import {
     ViewContainerRef,
     ComponentRef
 } from '@angular/core';
-import {
-    arrayJoinByDash,
-    DomUtils
-} from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
-import { SaveService } from './services/save/save.service';
-import { ScrollService } from './services/scroll/scroll.service';
 import { FormDefinition } from '../../interfaces/form-def.interface';
-import { AutoFocusOnDirective } from './modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
 import {
     RemoveNextOptions,
     LoadNextOptions,
