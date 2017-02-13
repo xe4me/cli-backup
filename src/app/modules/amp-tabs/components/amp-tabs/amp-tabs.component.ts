@@ -166,7 +166,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     }
 
     public get view () : string {
-        return window.getComputedStyle(this.tabEl.nativeElement, ':before')
+        return window.getComputedStyle(this.tabEl.nativeElement, '::before')
                         .getPropertyValue('content')
                         .replace(/\"/g, '');
     }
