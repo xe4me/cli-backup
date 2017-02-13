@@ -115,10 +115,18 @@ export class AmpContinueBlockComponent extends FormBlock {
                 return;
             }
 
-            let transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload.application ) : payload.application;
+
             this.showRetrieveBlock = false;
             this._cd.markForCheck();
+            let transformedAppModel;
+
+            if(payload.application ) {
+               transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload.application ) : payload.application;
+            } else {
+                transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload ) : payload ;
+            }
             this.formModelService.storeModelAndHydrateForm( transformedAppModel );
+
             this.saveService.referenceId = referenceId;
         } );
 
