@@ -5,6 +5,7 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { ScrollService } from '../services/scroll/scroll.service';
+import { BlockLoaderAbstracts } from '../abstracts/block-loader/block-loader.abstracts';
 @Component( {
     selector        : 'page-section',
     template        : `
@@ -23,26 +24,16 @@ import { ScrollService } from '../services/scroll/scroll.service';
     styles          : [ require( './page-section.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
-export class PageSectionComponent {
+export class PageSectionComponent extends BlockLoaderAbstracts {
 
-    public __fdn;
-    public __controlGroup;
-    public __custom;
-    public __emitChildLoaded;
-    public __name;
-    public __loadNext;
-    public __removeNext;
-    public __removeByFdn;
-    public __removeByName;
-    public __repeaterIndex : number;
     public isHidden : boolean;
     public scrolledSubscribtion;
     public isATab = false;
 
-    constructor ( public vcf : ViewContainerRef,
-                  public scrollService : ScrollService,
-                  public _cd : ChangeDetectorRef ) {
-
+    constructor( public vcf : ViewContainerRef,
+                 public scrollService : ScrollService,
+                 public _cd : ChangeDetectorRef ) {
+        super();
     }
 
     ngOnInit () {

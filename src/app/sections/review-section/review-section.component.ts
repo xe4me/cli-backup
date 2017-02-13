@@ -5,6 +5,7 @@ import {
     OnInit
 } from '@angular/core';
 import { ScrollService } from '../../services';
+import { BlockLoaderAbstracts } from '../../abstracts/block-loader/block-loader.abstracts';
 @Component( {
     selector : 'review-section',
     template : `
@@ -37,20 +38,17 @@ import { ScrollService } from '../../services';
  `,
     styles   : [ require( './review-section.component.scss' ) ]
 } )
-export class ReviewSectionComponent implements OnInit {
+export class ReviewSectionComponent extends BlockLoaderAbstracts implements OnInit {
 
     private hideReviewSection : boolean   = false;
     private createReviewSection : boolean = false;
     private _review_blocks;
     private _sticky_blocks;
-    private __child_blocks;
-    private __form                        = this.__form;
-    private __fdn                         = this.__fdn;
-    private __custom                      = this.__custom || {};
 
     constructor ( private scrollService : ScrollService,
                   private el : ElementRef,
                   public _cd : ChangeDetectorRef ) {
+        super();
     }
 
     ngOnInit () {
