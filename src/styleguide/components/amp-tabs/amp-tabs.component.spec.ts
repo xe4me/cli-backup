@@ -150,6 +150,14 @@ describe( 'amp-tabs component', () => {
             expect(_tabsComp7.tabs[0].active).toEqual(false);
             expect(_tabsComp7.tabs[1].active).toEqual(false);
         } );
+
+        it( 'should set hasMadeSelection to true', () => {
+            expect(_tabsComp2.hasMadeSelection).toEqual(true);
+        } );
+
+        it( 'should set hasMadeSelection to false', () => {
+            expect(_tabsComp7.hasMadeSelection).toEqual(false);
+        } );
     } );
 
     describe( 'Tabs from array', () => {
