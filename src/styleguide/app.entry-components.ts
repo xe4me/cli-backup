@@ -6,7 +6,6 @@ import { AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-captcha-block/e
 import { AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-menu-frame-block/entry-components';
 import { AMP_NEW_OR_EXISTING_CUSTOMER_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-new-or-existing-customer-block/entry-components';
 import { AMP_WELCOME_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-welcome-block/entry-components';
-import { AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-contact-details-block/entry-components';
 import { AMP_LOGIN_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-login-block/entry-components';
 import { AMP_GREENID_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-greenid-block/entry-components';
 import { AMP_RESIDENCY_BLOCK_ENTRY_COMPONENTS } from './blocks/amp-residency-block/entry-components';
@@ -22,7 +21,6 @@ export const DYNAMICALLY_LOADED_COMPONENTS = [
     ...AMP_AML_QUESTIONS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_BASIC_INFO_BLOCK_ENTRY_COMPONENTS,
     ...AMP_CAPTCHA_BLOCK_ENTRY_COMPONENTS,
-    ...AMP_CONTACT_DETAILS_BLOCK_ENTRY_COMPONENTS,
     ...AMP_LOGIN_BLOCK_ENTRY_COMPONENTS,
     ...AMP_GREENID_BLOCK_ENTRY_COMPONENTS,
     ...AMP_FORM_BLOCK_EXAMPLE_ENTRY_COMPONENTS,

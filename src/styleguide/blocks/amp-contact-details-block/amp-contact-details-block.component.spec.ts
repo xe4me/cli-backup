@@ -29,9 +29,6 @@ function loadComponent() {
     component = fixture.componentInstance;
     domElement = fixture.nativeElement;
     ngElement = fixture.debugElement;
-
-    console.error ('loadComponent()', JSON.stringify(component['childBlocks'].blocks[0]['custom']));
-
     const controlGroup = ngElement.componentInstance.form.controls.contactDetails.controls;
     emailControl = controlGroup['emailAddress'];
     mobilePhoneControl = controlGroup['mobilePhone'];
