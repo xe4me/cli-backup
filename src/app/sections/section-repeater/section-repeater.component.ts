@@ -1,4 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+    Component,
+    ViewChild
+} from '@angular/core';
 import { AmpRowRepeaterComponent } from '../../modules/amp-row-repeater';
 import { BlockLoaderAbstracts } from '../../abstracts/block-loader/block-loader.abstracts';
 @Component( {
