@@ -13,12 +13,14 @@ export default class AMPTabsComponentBasicUsage {
     controlGroup3 : FormGroup = new FormGroup( {} );
     controlGroup4 : FormGroup = new FormGroup( {} );
     controlGroup5 : FormGroup = new FormGroup( {} );
+    controlGroup6 : FormGroup = new FormGroup( {} );
 
     private disabled = false;
     private disabled2 = false;
     private required = true;
     private title1 = 'Car';
     private id1 = 'car1';
+    private collapsed = false;
 
     private tabs = [
         {
@@ -91,5 +93,13 @@ export default class AMPTabsComponentBasicUsage {
 
     private toggleDisable2() {
         this.disabled2 = !this.disabled2;
+    }
+
+    private toggleCollapsed() {
+        this.collapsed = !this.collapsed;
+    }
+
+    private onSelect () {
+        this.collapsed = false;
     }
 }

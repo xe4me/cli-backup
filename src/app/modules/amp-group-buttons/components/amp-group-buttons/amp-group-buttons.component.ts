@@ -24,7 +24,6 @@ export interface GrouButtonOption {
         'customValidator',
         'defaultValue',
         'isInSummaryState',
-        'keepControlOnDestroy',
         'required',
         'scrollOutUnless',
         'scrollOutOn',
@@ -42,7 +41,6 @@ export class AmpGroupButtonsComponent extends BaseControl {
     public keepControl : boolean      = false;
     public selectedItem : GrouButtonOption;
     private buttons;
-    private keepControlOnDestroy      = false;
     private scrollOutUnless : string;
     private scrollOutOn : string;
     private defaultValue : string;

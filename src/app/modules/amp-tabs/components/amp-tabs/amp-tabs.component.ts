@@ -6,6 +6,7 @@ import {
     ContentChildren ,
     EventEmitter ,
     Input ,
+    ViewChild ,
     QueryList
 } from '@angular/core';
 
@@ -20,28 +21,28 @@ import { AmpTabComponent } from '../amp-tab/amp-tab.component';
     styles          : [ require( './amp-tabs.component.scss' ) ] ,
     changeDetection : ChangeDetectionStrategy.OnPush ,
     inputs          : [
-        'errors',
         'groupName',
         'controlGroup',
-        'customValidator',
         'defaultValue',
         'isInSummaryState',
-        'keepControlOnDestroy',
         'required',
         'keepControl'
     ],
     outputs         : [ 'select' ]
 } )
 export class AmpTabsComponent extends BaseControl implements AfterContentInit {
+
+    @ViewChild( 'tabEl' ) tabEl;
     @ContentChildren(AmpTabComponent) tabsList : QueryList<AmpTabComponent>;
+
     @Input('tabs') tabsArray = [];
     @Input('disabled') disabled : boolean = false;
-    public tabs;
+    @Input('collapsed') collapsed : boolean = false;
+
+    public tabs = [];
     public keepControl : boolean      = false;
-    public selectedItem;
-    private keepControlOnDestroy      = false;
-    private defaultValue : string;
-    private hasBooleanValue : boolean = false;
+    public selectedItem = {};
+    private defaultValue : string | boolean;
     private select                    = new EventEmitter<any>();
 
     constructor ( private _cd : ChangeDetectorRef ) {
@@ -65,21 +66,18 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     public ngAfterContentInit () {
 
-        this.tabs = this.tabsArray.length ? this.tabsArray : this.tabsList;
+        this.getTabs();
+        this.setRandomizedIds();
 
-        let activeTabs = this.tabs.filter((tab) => tab.active);
-
-        if ( this.defaultValue ) {
-            activeTabs = this.tabs.filter((tab) => {
-                return tab.value === this.defaultValue;
-            });
-        }
+        let activeTabs = this.defaultValue ? this.setDefaultValueTab() : this.getActiveTabs();
 
         let tabs = activeTabs.length ? activeTabs : this.tabs;
-        let firstTab = this.tabsFromList(tabs) ? tabs.first : tabs[0];
 
         this.resetTabs();
-        this.selectTab(firstTab);
+
+        if ( this.defaultValue !== false ) {
+            this.selectTab(tabs[0]);
+        }
     }
 
     private set groupName ( _id ) {
@@ -88,6 +86,26 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     private get groupName () {
         return this._id;
+    }
+
+    public getTabs () {
+        return this.tabs = this.tabsArray.length ? this.tabsArray : this.tabsList.toArray();
+    }
+
+    public setRandomizedIds () {
+        this.tabs.forEach( (tab) => {
+            tab.randomizedId = this.randomizedId;
+        });
+    }
+
+    public getActiveTabs () {
+        return this.tabs.filter((tab) => tab.active);
+    }
+
+    public setDefaultValueTab () {
+        return this.tabs.filter((tab) => {
+            return tab.value === this.defaultValue;
+        });
     }
 
     public updateValidators () {
@@ -103,15 +121,26 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     }
 
     public resetTabs () {
-        let tabs = this.tabsFromList() ? this.tabs.toArray() : this.tabs;
-        tabs.forEach((_tab) => {
+        this.selectedItem = {};
+
+        this.tabs.forEach((_tab) => {
             _tab.active = false;
         });
     }
 
     public selectTab ( tab ) {
+        if ( this.collapsed ) {
+            this.collapsed = false;
+        }
+
         if ( !this.disabled && tab ) {
+            let isTabActive = tab.active;
             this.resetTabs();
+
+            if ( this.isMobileView() && isTabActive ) {
+                return false;
+            }
+
             tab.active = true;
             this.selectedItem = tab;
             this.control.setValue( tab.value, { emitEvent : true } );
@@ -132,7 +161,21 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
         }
     }
 
-    public tabsFromList (tabs = this.tabs) : boolean {
-        return tabs.constructor !== Array;
+    public tabsFromList () : boolean {
+        return this.tabsArray.length === 0;
+    }
+
+    public get view () : string {
+        return window.getComputedStyle(this.tabEl.nativeElement, ':before')
+                        .getPropertyValue('content')
+                        .replace(/\"/g, '');
+    }
+
+    public isMobileView () : boolean {
+        return this.view === 'mobile';
+    }
+
+    public isDesktopView () : boolean {
+        return this.view === 'desktop';
     }
 }

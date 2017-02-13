@@ -1,12 +1,22 @@
 @import '../../../../../styles/abstracts';
 @import './amp-tabs.component.mixins';
 
-$amp-tab-border-color: $amp-colour-grey-dark;
-$amp-tab-active-bg-color: $amp-colour-sky-blue;
-$amp-tab-active-arrow-size: 15px;
+:host {
+    display: block;
+}
 
 .amp-tabs {
     border: 1px solid $amp-tab-border-color;
+    display: block;
+
+    &::before {
+        content: 'desktop';
+        display: none;
+
+        @include media-query($amp-tab-breakpoint) {
+            content: 'mobile';
+        }
+    }
 
     &__nav {
         display: table;
@@ -14,54 +24,66 @@ $amp-tab-active-arrow-size: 15px;
         table-layout: fixed;
         width: 100%;
 
+        @include media-query($amp-tab-breakpoint) {
+            display: none;
+        }
+
         &-item {
             border-left: 1px solid $amp-tab-border-color;
-            color: $amp-colour-primary;
+            color: $amp-tab-default-color;
             cursor: pointer;
             display: table-cell;
             font-size: 15px;
             font-weight: 600;
             line-height: 1;
+            outline: none;
             padding: 15px;
             position: relative;
             text-align: center;
             vertical-align: middle;
             z-index: 1;
-            transition: background .2s ease, color .2s ease;
-
-            @include is-disabled() {
-                color: $amp-colour-grey-darker;
-                cursor: default;
-            }
+            transition: background $amp-tab-transition-time ease, color $amp-tab-transition-time ease;
 
             &:first-child {
                 border-left: 0;
             }
 
-             @include not-disabled() {
+            &::after {
+                border: $amp-tab-active-arrow-size solid transparent;
+                border-bottom-width: 0;
+                border-top-color: $amp-colour-sky-blue;
+                content: "";
+                height: 0;
+                margin-left: $amp-tab-active-arrow-size * -1;
+                opacity: 0;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                z-index: 2;
+                transition: bottom $amp-tab-transition-time ease;
+            }
+
+            @include is-disabled {
+                color: $amp-tab-disabled-color;
+                cursor: default;
+            }
+
+             @include not-disabled {
                 &:focus,
                 &:hover {
                     background: $amp-tab-active-bg-color;
-                    color: $amp-colour-white;
+                    color: $amp-tab-hover-color;
                 }
             }
 
             &--active {
                 background: $amp-tab-active-bg-color;
-                color: $amp-colour-white !important;
+                color: $amp-tab-active-color !important;
 
                 &::after {
-                    border: $amp-tab-active-arrow-size solid transparent;
-                    border-bottom-width: 0;
-                    border-top-color: $amp-colour-sky-blue;
-                    content: "";
-                    height: 0;
-                    margin-left: $amp-tab-active-arrow-size * -1;
-                    position: absolute;
                     bottom: $amp-tab-active-arrow-size * -1;
-                    left: 50%;
-                    width: 0;
-                    z-index: 2;
+                    opacity: 1;
                 }
             }
         }

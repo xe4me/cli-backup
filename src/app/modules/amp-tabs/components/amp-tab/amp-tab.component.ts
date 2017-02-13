@@ -11,9 +11,9 @@ import {
 
 export class AmpTabComponent {
 
-    @Input('id') id : string = '';
-    @Input('value') value : string = '';
-    @Input('tab-title') title : string = '';
-    @Input('active') active : boolean = false;
-
+    @Input('id') id : string                     = '';
+    @Input('value') value : string               = '';
+    @Input('tab-title') title : string           = '';
+    @Input('active') active : boolean            = false;
+    @Input('randomizedId') randomizedId : string = '';
 }
