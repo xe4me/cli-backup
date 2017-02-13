@@ -1,9 +1,9 @@
 import {
     Component,
-    ViewChild,
-    ChangeDetectionStrategy
+    ViewChild
 } from '@angular/core';
 import { AmpRowRepeaterComponent } from '../../modules/amp-row-repeater';
+import { BlockLoaderAbstracts } from '../../abstracts';
 @Component( {
     selector : 'section-repeater',
     template : `
@@ -23,14 +23,10 @@ import { AmpRowRepeaterComponent } from '../../modules/amp-row-repeater';
             </template>
         </amp-row-repeater>
   `,
-
-    styles          : [ require( './section-repeater.component.scss' ) ]
+    styles   : [ require( './section-repeater.component.scss' ) ]
 } )
-export class SectionRepeaterComponent {
+export class SectionRepeaterComponent extends BlockLoaderAbstracts {
     @ViewChild( 'repeater' ) repeater : AmpRowRepeaterComponent;
-    public __fdn;
-    public __controlGroup;
-    public __custom;
 
     context() {
         return this;
