@@ -1,0 +1,8 @@
+{
+    "name": "DebitCard",
+    "blockType": "DebitCardMigrationBlock",
+    "blockLayout": "INLINE",
+    "commonBlock": false,
+    "path": "blocks/debit-card-migration/debit-card-migration.component",
+
+}

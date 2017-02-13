@@ -6,6 +6,7 @@ import { Bett3rExitButtonComponent } from './blocks/bett3r-exit-button/bett3r-ex
 import { BetterChoiceBlock } from './blocks/better-choice/better-choice.component';
 import { ContactDetailsBlock } from './blocks/contact-details/contact-details.component';
 import { ContinueApplicationBlock } from './blocks/continue-application/continue-application.component';
+import { DebitCardMigrationBlock } from './blocks/debit-card-migration/debit-card-migration.component';
 import { DepositTransitionBlock } from './blocks/deposit-transition/deposit-transition.component';
 import { Footer } from './blocks/footer/footer.component';
 import { Header } from './blocks/header/header.component';
@@ -37,6 +38,7 @@ export const DYNAMIC_BLOCKS = [
     BetterChoiceBlock,
     ContactDetailsBlock,
     ContinueApplicationBlock,
+    DebitCardMigrationBlock,
     DepositTransitionBlock,
     Footer,
     Header,
