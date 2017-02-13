@@ -57,7 +57,7 @@ describe( 'Service: Login status', () => {
         } );
     } );
 
-    describe('When the userHasLoggedIn event has been subscribed to again', () => {
+    describe('Given loginSuccess has already been called, When userHasLoggedIn event is subscribed to', () => {
         it('should trigger the subscription event straight away', () => {
             loginStatusService.loginSuccess();
 
@@ -71,8 +71,8 @@ describe( 'Service: Login status', () => {
     describe('When the session is already loggedIn, further checking of the session status', () => {
         it('should only trigger the subscription event once', () => {
             loginStatusService.userHasLoggedIn()
-                .scan((acc, x, i) => {
-                        return acc + 1;
+                .scan((accumulatedValue) => {
+                        return accumulatedValue + 1;
                     }, 0)
                 .subscribe((counter) => {
                     expect(counter).toBe(1);
@@ -86,14 +86,14 @@ describe( 'Service: Login status', () => {
 
     describe('When the user is already loggedIn', () => {
         it('should trigger the subscription event once when checkLoginStatus is invoked', fakeAsync(() => {
-            expect(loginStatusService.hasLoggedIn()).toBeFalsy();
+            expect(loginStatusService.hasLoggedIn()).toBe(false);
 
             loginStatusService.checkLoginStatus();
 
             connection.mockRespond(res);
             tick();
 
-            expect(loginStatusService.hasLoggedIn()).toBeTruthy();
+            expect(loginStatusService.hasLoggedIn()).toBe(true);
         }));
     });
 

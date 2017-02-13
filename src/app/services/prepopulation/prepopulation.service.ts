@@ -17,6 +17,7 @@ export class PrepopulationService {
     /*
      * Unfortunately, we need a method to pass Block's formGroup reference to this generic services.
      * If you can think of a way to do this generically please inform Eric, Milad or Cedric to remove this crap.
+     * https://gitlab.ccoe.ampaws.com.au/DDC/components/issues/9
      */
     public registerBlockForPrepop (formBlock : FormBlock) {
         if (!formBlock || !formBlock['__controlGroup']) {
@@ -47,7 +48,7 @@ export class PrepopulationService {
             return;
         }
 
-        let hasPrepopOccurred = false;
+        let hasPrepopOccurred : boolean = false;
         const controlGroup = formBlock['__controlGroup'];
         for (const customControl of formBlock['__custom'].controls) {
             // Make sure this custom.control definition is valid (i.e. have both an Id and prepopMapping)
