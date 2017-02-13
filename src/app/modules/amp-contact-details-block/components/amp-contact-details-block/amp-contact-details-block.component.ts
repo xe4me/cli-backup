@@ -2,10 +2,10 @@ import {
     Component,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    OnInit,
     Optional,
     ViewChild,
 } from '@angular/core';
+import { clone } from 'lodash';
 import { FormBlock } from '../../../../form-block';
 import {
     ScrollService,
@@ -24,7 +24,7 @@ export class AmpContactDetailsBlockComponent extends FormBlock {
 
     @ViewChild( 'mobileNumber' ) mobileNumberCmp : AmpInputComponent;
 
-    protected __custom = defaultBlockProps;
+    protected __custom = clone( defaultBlockProps );
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
