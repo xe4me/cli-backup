@@ -247,8 +247,10 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     }
 
     set minAge ( value : any ) {
-        this._minAge = parseInt( value, 10 );
-        this.updateValidators();
+        if ( value ) {
+            this._minAge = parseInt( value, 10 );
+            this.updateValidators();
+        }
     }
 
     get maxAge () {
