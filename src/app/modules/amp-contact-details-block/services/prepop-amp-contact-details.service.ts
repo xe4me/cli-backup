@@ -21,13 +21,13 @@ export class PrepopAmpContactDetailsService extends PrepopulationService {
     private parseMobile (mobile : string ) {
         const validMobileRegex = /^04\d{8}$/;
         if (mobile) {
-            let parseMobile = mobile.replace(/ /g, '');
-            if (parseMobile) {
-                parseMobile = parseMobile.replace(/^\+61/, '0');
+            let parsedMobile = mobile.replace(/ /g, '');
+            if (parsedMobile) {
+                parsedMobile = parsedMobile.replace(/^\+61/, '0');
             }
 
-            if (validMobileRegex.test(parseMobile)) {
-                return parseMobile;
+            if (validMobileRegex.test(parsedMobile)) {
+                return parsedMobile;
             }
         }
         return null;

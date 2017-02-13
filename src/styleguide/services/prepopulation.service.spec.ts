@@ -76,27 +76,24 @@ describe( 'Service: PrepopulationService' , () => {
             };
 
             prepopulationService.registerBlockForPrepop(mockFormBlock);
-            expect(true).toBeTruthy;
 
-            // Now pretent to login
+            // Now pretend to login
             mockLoginStatusService.loggedInSubject.next('boo');
         });
 
         it('should not trigger prepop method if customerDetailsService fails to return', (done) => {
             const mockLoginStatusService = new MockLoginStatusService(null);
             const mockCustomerDetailsService = new MockCustomerDetailsService(null);
-            mockCustomerDetailsService.customerDetailsPromise = new Promise((resolve, reject) => {
-                reject('CMDM is down...crap are we resilentish');
-            });
+            mockCustomerDetailsService.customerDetailsPromise = Promise.reject('CMDM is down...crap are we resilentish');
+
             prepopulationService = new PrepopulationService(mockCustomerDetailsService, mockLoginStatusService);
             prepopulationService.prepop = () => {
                 fail('Prepopulate should not have been fired as Customer Details never came back!!!');
             };
 
             prepopulationService.registerBlockForPrepop(mockFormBlock);
-            expect(true).toBeTruthy;
 
-            // Now pretent to login
+            // Now pretend to login
             mockLoginStatusService.loggedInSubject.next('boo');
 
             setTimeout(done, 500);
@@ -114,9 +111,8 @@ describe( 'Service: PrepopulationService' , () => {
             };
 
             prepopulationService.registerBlockForPrepop(mockFormBlock);
-            expect(true).toBeTruthy;
 
-            // Now pretent to login
+            // Now pretend to login
             mockLoginStatusService.loggedInSubject.next('boo');
 
             setTimeout(done, 500);
@@ -262,9 +258,8 @@ class MockLoginStatusService extends LoginStatusService {
     }
 }
 class MockCustomerDetailsService extends CustomerDetailsService {
-    public customerDetailsPromise = new Promise((resolve, reject) => {
-        resolve(mockCustomerData);
-    });
+    public customerDetailsPromise = Promise.resolve(mockCustomerData);
+
     public getCustomerDetails () {
         return this.customerDetailsPromise;
     }
