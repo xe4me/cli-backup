@@ -9,18 +9,45 @@ import { AmpBlockLoaderDirective } from '../../amp-block-loader-test.directive';
 
 let custom : any;
 
-describe('amp-basic-info-block component', () => {
+let fixture : ComponentFixture<TestComponent>;
+let component;
+let domElement;
+let ngElement;
 
-    let fixture : ComponentFixture<TestComponent>;
-    let component;
-    let domElement;
-    let ngElement;
+let titleControl;
+let firstNameControl;
+let middleNameControl;
+let lastNameControl;
+let dateOfBirthControl;
 
-    let titleControl;
-    let firstNameControl;
-    let middleNameControl;
-    let lastNameControl;
-    let dateOfBirthControl;
+function loadComponent() {
+    fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
+    component = fixture.componentInstance;
+    domElement = fixture.nativeElement;
+    ngElement = fixture.debugElement;
+
+    const controlGroup = ngElement.componentInstance.form.controls.basicInfo.controls;
+    titleControl = controlGroup['title'];
+    firstNameControl = controlGroup['firstName'];
+    middleNameControl = controlGroup['middleName'];
+    lastNameControl = controlGroup['surName'];
+    dateOfBirthControl = controlGroup['dateOfBirth'];
+}
+
+function setDefaultState() {
+    custom = {
+        overrides: {
+            isInitiallyActive: true
+        }
+    };
+}
+
+function setCustomOverrides(prop, value) {
+    custom.overrides[prop] = value;
+}
+
+fdescribe('amp-basic-info-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -38,28 +65,12 @@ describe('amp-basic-info-block component', () => {
             ]
         });
 
-        fixture = TestBed.createComponent(TestComponent);
-        fixture.detectChanges();
-        domElement = fixture.nativeElement;
-        ngElement = fixture.debugElement;
-        component = fixture.componentInstance;
-
-        const controlGroup = ngElement.componentInstance.form.controls.basicInfo.controls;
-        titleControl = controlGroup['title'];
-        firstNameControl = controlGroup['firstName'];
-        middleNameControl = controlGroup['middleName'];
-        lastNameControl = controlGroup['surName'];
-        dateOfBirthControl = controlGroup['dateOfBirth'];
-
-        custom = {
-            overrides: {
-                isInitiallyActive: true
-            }
-        };
+        setDefaultState();
     }));
 
     describe('When the component is loaded', () => {
         it('the component should be defined with one control for each input', () => {
+            loadComponent();
             expect(component).toBeDefined();
             expect(titleControl).toBeDefined();
             expect(firstNameControl).toBeDefined();
@@ -69,24 +80,41 @@ describe('amp-basic-info-block component', () => {
         });
     });
 
-    it('should have the correct title', () => {
-        const titleEl = domElement.querySelector('h2');
-        expect(titleEl).toBeDefined();
-        expect(titleEl.textContent).toContain('Tell us about yourself');
+    describe('Block title', () => {
+        describe('when no custom block title has been given', () => {
+            it('should display the default title', () => {
+                loadComponent();
+                const titleEl = domElement.querySelector('h2');
+                expect(titleEl).toBeDefined();
+                expect(titleEl.textContent).toEqual('Tell us about yourself');
+            });
+        });
+        describe('when a custom block title has been given', () => {
+            it('should display the given title', () => {
+                setCustomOverrides('blockTitle', 'And now for applicant 2');
+                loadComponent();
+                const titleEl = domElement.querySelector('h2');
+                expect(titleEl).toBeDefined();
+                expect(titleEl.textContent).toEqual('And now for applicant 2');
+            });
+        });
     });
 
     it('should allow letters in first name', () => {
+        loadComponent();
         firstNameControl.setValue('John');
         expect(firstNameControl._status).toBe('VALID');
     });
 
     it('should have its "OK" button disabled if some required values are missing', () => {
+        loadComponent();
         const okButtonEl = domElement.querySelector('button');
         expect(okButtonEl).toBeDefined();
         expect(okButtonEl.hasAttribute('disabled')).toBe(true);
     });
 
     it('should have its "OK" button enabled if form is valid', () => {
+        loadComponent();
 
         titleControl.setValue({
             Query: 'Mr',
@@ -109,18 +137,23 @@ describe('amp-basic-info-block component', () => {
     });
 
     it('should have the correct label for the "Middle name" text input', () => {
+        loadComponent();
         const middleNameLabelEl = ngElement.query(By.css('label[for=Application-basicInfo-middleName]'));
         expect(middleNameLabelEl).toBeDefined();
         expect(middleNameLabelEl.nativeElement.textContent.trim()).toEqual('Middle name(s)');
     });
 
     it('should have the correct label for the "Date of birth" text input', () => {
+        loadComponent();
         const dateOfBirthLabelEl = ngElement.query(By.css('label[for=Application-basicInfo-dateOfBirth]'));
         expect(dateOfBirthLabelEl).toBeDefined();
         expect(dateOfBirthLabelEl.nativeElement.textContent.trim()).toEqual('Date of birth');
     });
 
     describe('Required fields', () => {
+        beforeEach(() => {
+            loadComponent();
+        });
         it('should enforce "Title" as a required field"', () => {
             fixture.detectChanges();
             expect(titleControl.controls.Query.errors.required).toBeDefined();
@@ -140,6 +173,9 @@ describe('amp-basic-info-block component', () => {
     });
 
     describe('Error messages', () => {
+        beforeEach(() => {
+            loadComponent();
+        });
         it('should define the correct error message for required "Title" field', () => {
             expect(titleControl.controls.Query._errors.required.text).toEqual('Title is a required field.');
         });
@@ -162,6 +198,31 @@ describe('amp-basic-info-block component', () => {
             expect(dateOfBirthControl._status).toBe('INVALID');
             fixture.detectChanges();
             expect(dateOfBirthControl.errors.invalidDate).toBeDefined();
+        });
+    });
+
+    describe('Minimum age', () => {
+        describe('When no minimum age is defined', () => {
+            it('any value should be marked as valid', () => {
+                loadComponent();
+                dateOfBirthControl.setValue('11/11/2012');
+                expect(dateOfBirthControl._status).toBe('VALID');
+            });
+        });
+        describe('When a minimum age is defined', () => {
+            it('an invalid value should be marked as invalid', () => {
+                setCustomOverrides('controls[4].minAge', 18);
+                loadComponent();
+                dateOfBirthControl.setValue('11/11/2012');
+                expect(dateOfBirthControl._status).toBe('INVALID');
+                expect(dateOfBirthControl._errors.minAge.text.trim()).toEqual('You must be older than than 18 years old.');
+            });
+            it('a valid value should be marked as valid', () => {
+                setCustomOverrides('controls[4].minAge', 18);
+                loadComponent();
+                dateOfBirthControl.setValue('11/11/1982');
+                expect(dateOfBirthControl._status).toBe('VALID');
+            });
         });
     });
 
