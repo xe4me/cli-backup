@@ -36,122 +36,109 @@ describe( 'Dom Utils functions test', () => {
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledNav                                = compiledTestComponentDiv.query( By.css( 'div.thisisaclass' ) );
         expect( compiledNav.nativeElement ).toBeDefined();
-        let domUtils = new DomUtils();
-        expect( domUtils.hasClass( compiledNav.nativeElement, 'thisisaclass' ) ).toBe( true );
+
+        expect( DomUtils.hasClass( compiledNav.nativeElement, 'thisisaclass' ) ).toBe( true );
     } );
 
     it( 'Dom Utils check if the div is found and we can add a class to it', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.thisisaclass' ) );
-        let domUtils                                   = new DomUtils();
-        domUtils.addClass( compiledDiv.nativeElement, 'thisisaclass2' );
-        expect( domUtils.hasClass( compiledDiv.nativeElement, 'thisisaclass2' ) ).toBe( true );
+        DomUtils.addClass( compiledDiv.nativeElement, 'thisisaclass2' );
+        expect( DomUtils.hasClass( compiledDiv.nativeElement, 'thisisaclass2' ) ).toBe( true );
     } );
 
     it( 'Dom Utils check if the div is found and we have removed classes', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.thisisaclass' ) );
-        let domUtils                                   = new DomUtils();
-        domUtils.removeClass( compiledDiv.nativeElement, 'thisisaclass' );
-        expect( domUtils.hasClass( compiledDiv.nativeElement, 'thisisaclass' ) ).toBe( false );
+        DomUtils.removeClass( compiledDiv.nativeElement, 'thisisaclass' );
+        expect( DomUtils.hasClass( compiledDiv.nativeElement, 'thisisaclass' ) ).toBe( false );
     } );
 
     it( 'Dom Utils check if the div is visible (display property)', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-isvisibile-1' ) );
-        let domUtils                                   = new DomUtils();
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
     } );
 
     it( 'Dom Utils check if the div is visible (opacity property)', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-isvisibile-2' ) );
-        let domUtils                                   = new DomUtils();
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
     } );
 
     it( 'Dom Utils check if the div is visible (height property)', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-isvisibile-3' ) );
-        let domUtils                                   = new DomUtils();
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
     } );
 
     it( 'Dom Utils check if the div is visible (hidden attribute)', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-isvisibile-4' ) );
-        let domUtils                                   = new DomUtils();
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
     } );
 
     it( 'Dom Utils hide element', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.thisisaclass' ) );
-        let domUtils                                   = new DomUtils();
-        domUtils.hide( compiledDiv.nativeElement );
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
+        DomUtils.hide( compiledDiv.nativeElement );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
     } );
 
     it( 'Dom Utils show element', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-isvisibile-4' ) );
-        let domUtils                                   = new DomUtils();
-        domUtils.show( compiledDiv.nativeElement );
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( true );
+        DomUtils.show( compiledDiv.nativeElement );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( true );
     } );
 
     it( 'Dom Utils toggle hiding element', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-toggle-hide' ) );
-        let domUtils                                   = new DomUtils();
-        domUtils.toggle( compiledDiv.nativeElement );
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
+        DomUtils.toggle( compiledDiv.nativeElement );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( false );
     } );
 
     it( 'Dom Utils toggle showing element', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-toggle-show' ) );
-        let domUtils                                   = new DomUtils();
-        domUtils.toggle( compiledDiv.nativeElement );
-        expect( domUtils.isVisible( compiledDiv.nativeElement ) ).toBe( true );
+        DomUtils.toggle( compiledDiv.nativeElement );
+        expect( DomUtils.isVisible( compiledDiv.nativeElement ) ).toBe( true );
     } );
 
     it( 'should NOT find any closest element from string selector', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-closest-child' ) );
-        let domUtils                                   = new DomUtils();
-        expect( domUtils.closest( compiledDiv.nativeElement, '.test-does-not-exist' ) ).toBeNull();
+        expect( DomUtils.closest( compiledDiv.nativeElement, '.test-does-not-exist' ) ).toBeNull();
     } );
 
     it( 'should find the closest ancestor from string selector', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-closest-child' ) );
-        let domUtils                                   = new DomUtils();
         let parentClassName                            = 'test-closest-parent';
-        let parentEl                                   = domUtils.closest( compiledDiv.nativeElement, '.' + parentClassName );
-        expect( domUtils.hasClass(parentEl, parentClassName) ).toBe( true );
+        let parentEl                                   = DomUtils.closest( compiledDiv.nativeElement, '.' + parentClassName );
+        expect( DomUtils.hasClass(parentEl, parentClassName) ).toBe( true );
     } );
 
     it( 'should find a previous ancestor from string selector', () => {
         let fixture : ComponentFixture<TestComponent2> = TestBed.createComponent( TestComponent2 );
         let compiledTestComponentDiv                   = fixture.debugElement;
         let compiledDiv                                = compiledTestComponentDiv.query( By.css( 'div.test-closest-child' ) );
-        let domUtils                                   = new DomUtils();
         let parentClassName                            = 'test-closest-grandparent';
-        let parentEl                                   = domUtils.closest( compiledDiv.nativeElement, '.' + parentClassName );
-        expect( domUtils.hasClass(parentEl, parentClassName) ).toBe( true );
+        let parentEl                                   = DomUtils.closest( compiledDiv.nativeElement, '.' + parentClassName );
+        expect( DomUtils.hasClass(parentEl, parentClassName) ).toBe( true );
     } );
 } );
 

@@ -20,21 +20,18 @@ export class AmpPopDownDirective {
 
     @Input( 'amp-pop-down-toggle' ) target : string;
 
-    private domUtils = null;
-
-    constructor( private dom : BrowserDomAdapter ,
-                 private el : ElementRef ,
-                 private renderer : Renderer) {
-       this.domUtils = new DomUtils();
+    constructor( private dom : BrowserDomAdapter,
+                 private el : ElementRef,
+                 private renderer : Renderer ) {
     }
 
-    private toggle ( element ) {
-        if (this.domUtils.isVisible(element)) {
-            this.domUtils.toggle(element);
+    private toggle( element ) {
+        if ( DomUtils.isVisible( element ) ) {
+            DomUtils.toggle( element );
         } else {
-            setTimeout(() => {
-                this.domUtils.toggle(element);
-            });
+            setTimeout( () => {
+                DomUtils.toggle( element );
+            } );
         }
     }
 

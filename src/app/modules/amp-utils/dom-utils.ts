@@ -4,15 +4,15 @@
  */
 export class DomUtils {
 
-    public hide (el : any) {
+    public static hide (el : any) {
         el.setAttribute('hidden', '');
     }
 
-    public show (el : any) {
+    public static show (el : any) {
         el.removeAttribute('hidden');
     }
 
-    public toggle (el : any) {
+    public static toggle (el : any) {
         if ( this.isVisible(el) ) {
             this.hide(el);
         } else {
@@ -20,7 +20,7 @@ export class DomUtils {
         }
     }
 
-    public addClass (el : any, className : string) {
+    public static addClass (el : any, className : string) {
         if (el.classList) {
             el.classList.add(className);
         } else if (!this.hasClass(el, className)) {
@@ -28,7 +28,7 @@ export class DomUtils {
         }
     }
 
-    public removeClass (el : any, className : string) {
+    public static removeClass (el : any, className : string) {
         if (el.classList) {
             el.classList.remove(className);
         } else if (this.hasClass(el, className)) {
@@ -37,7 +37,7 @@ export class DomUtils {
         }
     }
 
-    public hasClass (el : any, className : string) {
+    public static hasClass (el : any, className : string) {
         if (el.classList) {
             return el.classList.contains(className);
         } else {
@@ -45,7 +45,7 @@ export class DomUtils {
         }
     }
 
-    public isVisible (el : any) {
+    public static isVisible (el : any) {
         return  el.clientWidth !== 0 &&
                 el.clientHeight !== 0 &&
                 el.style.opacity !== 0 &&
@@ -53,7 +53,7 @@ export class DomUtils {
                 el.style.visibility !== 'hidden';
     }
 
-    public closest (el : any, selector : string) {
+    public static closest (el : any, selector : string) {
         let matches = el.webkitMatchesSelector ? 'webkitMatchesSelector' : (el.msMatchesSelector ? 'msMatchesSelector' : 'matches');
 
         while (el.parentElement) {
