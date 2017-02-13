@@ -28,7 +28,10 @@ import { AmpTabComponent } from '../amp-tab/amp-tab.component';
         'required',
         'keepControl'
     ],
-    outputs         : [ 'select' ]
+    outputs         : [ 'select' ],
+    host : {
+        '[attr.id]' : '_id'
+    }
 } )
 export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
