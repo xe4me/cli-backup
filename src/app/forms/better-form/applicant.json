@@ -17,6 +17,11 @@
                 "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
                 "custom": {
                     "overrides": {
+                        "controls[0].id": "Title",
+                        "controls[1].id": "FirstName",
+                        "controls[2].id": "MiddleName",
+                        "controls[3].id": "LastName",
+                        "controls[4].id": "DateOfBirth",
                         "controls[4].minAge": 18
                     }
                 }
