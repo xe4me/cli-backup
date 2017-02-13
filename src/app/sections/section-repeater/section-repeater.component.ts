@@ -1,6 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+    Component,
+    ViewChild
+} from '@angular/core';
 import { AmpRowRepeaterComponent } from '../../modules/amp-row-repeater';
-import { BlockLoaderAbstracts } from '../../abstracts/block-loader/block-loader.abstracts';
+import { BlockLoaderAbstracts } from '../../abstracts';
 @Component( {
     selector : 'section-repeater',
     template : `

@@ -5,7 +5,7 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { ScrollService } from '../services/scroll/scroll.service';
-import { BlockLoaderAbstracts } from '../abstracts/block-loader/block-loader.abstracts';
+import { BlockLoaderAbstracts } from '../abstracts';
 @Component( {
     selector        : 'page-section',
     template        : `
