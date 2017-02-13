@@ -119,11 +119,9 @@ export class AmpContinueBlockComponent extends FormBlock {
             this._cd.markForCheck();
             let transformedAppModel;
 
-            if (payload.application ) {
-                transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload.application ) : payload.application;
-            } else {
-                transformedAppModel = this.transformService ? this.transformService.toFrontendModel( payload ) : payload ;
-            }
+            const data = payload.application ? payload.application : payload ;
+
+            transformedAppModel = this.transformService ? this.transformService.toFrontendModel( data ) : data;
             this.formModelService.storeModelAndHydrateForm( transformedAppModel );
 
             this.saveService.referenceId = referenceId;
