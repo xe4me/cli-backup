@@ -21,6 +21,7 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
 
     private static alreadyValidated : boolean = false;
     private mainCaptcha : boolean = false;
+    private isDestroyed : boolean = false;
 
     private sitekey : string = Environments.property.GoogleRecaptcha.sitekey;
     private showCaptchaBlock : boolean = true;
@@ -65,15 +66,19 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
     private autoDestroyIfNecessary () {
         if (!this.mainCaptcha && AmpCaptchaBlockComponent.alreadyValidated) {
             this.autoDestroy();
-        }
-        if (this.retrieveService.hasBeenRetrieveSuccessfully) {
+        } else  if (this.retrieveService.hasBeenRetrieveSuccessfully) {
             this.autoDestroy();
         }
     }
 
     private autoDestroy () {
-        this.hideBlock();
-        this._cd.markForCheck();
-        this.__removeSelf( this.vcf );
+        // because several events can make the object to be destroyed
+        if (!this.isDestroyed) {
+            this.isDestroyed = true;
+            this.hideBlock();
+            this._cd.markForCheck();
+            this.__removeSelf( this.vcf );
+            this.onNext();
+        }
     }
 }
