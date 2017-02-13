@@ -17,7 +17,7 @@
         height: 100%;
         padding-left: 45px;
 
-        .show-menu & {
+        .styleguide-show-menu & {
             margin-left: 260px;
             padding-left: 0;
         }
@@ -26,7 +26,7 @@
     &--menu {
         display: none;
 
-        .show-menu & {
+        .styleguide-show-menu & {
             display: block;
         }
     }
@@ -44,7 +44,7 @@
         transition: width .4s ease;
         width: auto;
 
-        .show-menu & {
+        .styleguide-show-menu & {
             width: 260px;
         }
     }
