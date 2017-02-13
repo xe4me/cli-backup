@@ -75,7 +75,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
         this.resetTabs();
 
-        if ( this.defaultValue !== false ) {
+        if ( this.defaultValue !== false && this.isDesktopView() ) {
             this.selectTab(tabs[0]);
         }
     }
@@ -177,5 +177,9 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     public isDesktopView () : boolean {
         return this.view === 'desktop';
+    }
+
+    public get hasMadeSelection () {
+        return Object.keys(this.selectedItem).length > 0;
     }
 }
