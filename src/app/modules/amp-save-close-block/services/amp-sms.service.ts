@@ -14,7 +14,7 @@ export class AmpSmsService {
     public sendSMS (mobile : string) {
             const queryUrl : string = encodeURI(AmpSmsService.SMS_URL);
             const data = {
-                mobileNumber: mobile,
+                mobile: mobile,
                 smsMessage: this.saveCloseService.smsMessage
             };
             return this
