@@ -111,15 +111,15 @@ describe('Component: LoanOffsetTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
 
             groupButtonLabels[1].nativeElement.click();
             tick();
             loanOffsetTransition.detectChanges();
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( true );
 
             discardPeriodicTasks();
         }));
@@ -282,8 +282,8 @@ describe('Component: LoanOffsetTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( true );
 
             discardPeriodicTasks();
         }));
@@ -327,8 +327,8 @@ describe('Component: LoanOffsetTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( true );
 
             discardPeriodicTasks();
         }));
@@ -372,8 +372,8 @@ describe('Component: LoanOffsetTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
 
             discardPeriodicTasks();
         }));
@@ -417,8 +417,8 @@ describe('Component: LoanOffsetTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
 
             discardPeriodicTasks();
         }));
