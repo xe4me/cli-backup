@@ -119,19 +119,20 @@ describe( 'amp-tabs component', () => {
         } );
 
         it( 'should have the first tab active by default', () => {
-            expect(_tabsComp1.tabs[0].active).toEqual(true);
+            expect(_tabsComp1.tabs[0].active).toEqual(_tabsComp1.isDesktopView());
         } );
 
         it( 'should set selected active tab as default', () => {
-            expect(_tabsComp2.tabs[1].active).toEqual(true);
+            expect(_tabsComp2.tabs[1].active).toEqual(_tabsComp2.isDesktopView());
         } );
 
         it( 'should set selectedItem as active tab', () => {
-            expect(_tabsComp2.selectedItem).toEqual(_tabsComp2.tabs[1]);
+            let selectedItem = _tabsComp2.isDesktopView() ? _tabsComp2.tabs[1] : {};
+            expect(_tabsComp2.selectedItem).toEqual(selectedItem);
         } );
 
         it( 'should set defaultValue tab as default', () => {
-            expect(_tabsComp3.tabs[1].active).toEqual(true);
+            expect(_tabsComp3.tabs[1].active).toEqual(_tabsComp3.isDesktopView());
         } );
 
         it( 'should set selected tab as active', () => {
@@ -152,7 +153,7 @@ describe( 'amp-tabs component', () => {
         } );
 
         it( 'should set hasMadeSelection to true', () => {
-            expect(_tabsComp2.hasMadeSelection).toEqual(true);
+            expect(_tabsComp2.hasMadeSelection).toEqual(_tabsComp2.isDesktopView());
         } );
 
         it( 'should set hasMadeSelection to false', () => {
@@ -170,15 +171,15 @@ describe( 'amp-tabs component', () => {
         } );
 
         it( 'should have the first tab active by default', () => {
-            expect(_tabsComp4.tabs[0].active).toEqual(true);
+            expect(_tabsComp4.tabs[0].active).toEqual(_tabsComp4.isDesktopView());
         } );
 
         it( 'should set selected active tab as default', () => {
-            expect(_tabsComp5.tabs[1].active).toEqual(true);
+            expect(_tabsComp5.tabs[1].active).toEqual(_tabsComp5.isDesktopView());
         } );
 
         it( 'should set defaultValue tab as default', () => {
-            expect(_tabsComp6.tabs[1].active).toEqual(true);
+            expect(_tabsComp6.tabs[1].active).toEqual(_tabsComp6.isDesktopView());
         } );
 
         it( 'should have no active tabs', () => {
