@@ -35,7 +35,7 @@ const betterChoiceTypes = {
     new_account : 'new'
 };
 
-fdescribe('Component: DepositTransitionBlock', () => {
+describe('Component: DepositTransitionBlock', () => {
 
     let mockLoginStatusService = new MockLoginStatusService();
     let mockEligibleAccountsService = new MockEligibleAccountsService();
@@ -82,8 +82,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             depositTransition = TestBed.createComponent( DepositTransitionBlockTest );
         }));
 
-        it('Ensure the deposit transition block is created and ' +
-            'block is not hided with default value convert for better choice', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -111,8 +111,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
 
             let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
 
@@ -122,8 +122,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             tick();
             depositTransition.detectChanges();
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
             expect( betterChoice.value ).toBe( betterChoiceTypes.new_account );
 
             let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
@@ -143,7 +143,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             depositTransition.detectChanges();
         }));
 
-        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -183,7 +184,9 @@ fdescribe('Component: DepositTransitionBlock', () => {
             depositTransition.componentInstance.block.ngAfterViewInit();
         }));
 
-        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert') 
+            and account is converted from dropdown to input`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -223,7 +226,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             depositTransition.componentInstance.block.ngAfterViewInit();
         }));
 
-        it('Ensure the deposit transition block is created and block is visible', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert') and populate the account`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -259,7 +263,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_NO_ACCOUNTS);
         }));
 
-        it('Ensure the deposit transition block is created and block is hided with default value new for better choice', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('new')`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -287,8 +292,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( true );
 
             let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
 
@@ -307,7 +312,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSITS_ACCOUNTS_ONLY);
         }));
 
-        it('Ensure the deposit transition block is created and block is not hided with data pre-populated', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -335,8 +341,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
 
             let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
             expect( accountNumberControl.valid ).toBe( true );
@@ -346,8 +352,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             tick();
             depositTransition.detectChanges();
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( true );
             expect( betterChoice.value).toBe(betterChoiceTypes.new_account);
 
             let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
@@ -367,7 +373,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             mockLoginStatusService.loginSuccess();
         }));
 
-        it('Ensure the deposit transition block is created and block is', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -395,8 +402,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
 
             let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
             expect( accountNumberControl.valid ).toBe( true );
@@ -406,8 +413,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             tick();
             depositTransition.detectChanges();
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeFalsy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeTruthy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( true );
             expect( betterChoice.value).toBe(betterChoiceTypes.new_account);
 
             let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
@@ -427,7 +434,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             mockLoginStatusService.loginSuccess();
         }));
 
-        it('Ensure the deposit transition block is created and block is', fakeAsync(() => {
+        it(`Ensure the deposit transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             depositTransition.detectChanges();
             tick();
             depositTransition.detectChanges();
@@ -455,8 +463,8 @@ fdescribe('Component: DepositTransitionBlock', () => {
             expect( groupButtonLabels.length ).toBe(2);
             expect( groupButtonInputs.length ).toBe(2);
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBeTruthy();
-            expect( groupButtonInputs[1].nativeElement.checked ).toBeFalsy();
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
 
             let accountNumberControl = depositTransition.componentInstance.block.__controlGroup.controls.AccountNumber;
             expect( accountNumberControl.valid ).toBe( true );

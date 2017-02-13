@@ -35,7 +35,7 @@ const betterChoiceTypes = {
     new_account : 'new'
 };
 
-fdescribe('Component: LoanOffsetTransitionBlock', () => {
+describe('Component: LoanOffsetTransitionBlock', () => {
 
     let mockLoginStatusService = new MockLoginStatusService();
     let mockEligibleAccountsService = new MockEligibleAccountsService();
@@ -82,8 +82,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             loanOffsetTransition = TestBed.createComponent( LoanOffsetBlockTest );
         }));
 
-        it('Ensure the offset loan transition block is created and ' +
-            'block is not hided with default value convert for better choice', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -134,7 +134,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             loanOffsetTransition.detectChanges();
         }));
 
-        it('Ensure the offset loan transition block is created and block is visible', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -174,7 +175,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             loanOffsetTransition.componentInstance.block.ngAfterViewInit();
         }));
 
-        it('Ensure the loan offset transition block is created and block is visible', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -214,7 +216,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             loanOffsetTransition.componentInstance.block.ngAfterViewInit();
         }));
 
-        it('Ensure the loan offset transition block is created and block is visible', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -250,8 +253,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_LOAN_ACCOUNTS_ONLY);
         }));
 
-        it('Ensure the loan offset transition block is created and ' +
-            'block is hided with default value new for better choice', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('new')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -295,8 +298,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSIT_AND_LOAN_ACCOUNTS_ONLY);
         }));
 
-        it('Ensure the loan offset transition block is created and ' +
-            'block is visible to create an offset account', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('new')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -340,8 +343,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_LOAN_AND_OFFSET_ACCOUNTS_ONLY);
         }));
 
-        it('Ensure the loan offset transition block is created and ' +
-            'block is not hided with data pre-populated', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();
@@ -385,8 +388,8 @@ fdescribe('Component: LoanOffsetTransitionBlock', () => {
             mockEligibleAccountsService.setEligibleAccounts(mockEligibleAccountsService.accounts.LOGIN_DEPOSIT_LOAN_AND_OFFSET_ACCOUNTS);
         }));
 
-        it('Ensure the loan offset transition block is created and ' +
-            'block is not hided with data pre-populated', fakeAsync(() => {
+        it(`Ensure the loan offset transition block is created and block is visible 
+            WITH the value for the better choice control set to the default value ('convert')`, fakeAsync(() => {
             loanOffsetTransition.detectChanges();
             tick();
             loanOffsetTransition.detectChanges();

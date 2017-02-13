@@ -39,7 +39,7 @@ const transitChoiceTypes = {
     offset_account : 'offset_account'
 };
 
-fdescribe( 'Component: BetterChoiceBlock', () => {
+describe( 'Component: BetterChoiceBlock', () => {
 
     let mockLoginStatusService = new MockLoginStatusService();
     let mockSharedFormDataService = new MockSharedFormDataService();

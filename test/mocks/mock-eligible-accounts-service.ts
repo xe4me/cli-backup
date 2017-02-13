@@ -1,7 +1,8 @@
+import { Injectable } from '@angular/core';
 import {
-    Injectable
-} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+    Observable,
+    Subject
+} from 'rxjs';
 
 const loginUserWithoutEligibleAccounts = require('./data/eligible-accounts-no-accounts.json');
 const loginUserwithDepositAccountsOnly = require('./data/eligible-accounts-deposit-accounts-only.json');
