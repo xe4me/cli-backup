@@ -25,22 +25,20 @@ export class AmpPopDownComponent implements OnInit {
     @Input( 'isFullWidth' ) isFullWidth : boolean = true;
     @Input( 'align' ) align : string = 'left';
 
-    private domUtils = null;
     private isMobile = false;
 
     constructor( private deviceService : DeviceService ) {
-       this.domUtils = new DomUtils();
     }
 
-    public ngOnInit () {
+    public ngOnInit() {
         this.isMobile = this.deviceService.isMobile();
     }
 
     private hide = () : void => {
         let popDown = this.popDown.nativeElement;
 
-        if (this.domUtils.isVisible(popDown)) {
-            this.domUtils.hide(popDown);
+        if ( DomUtils.isVisible( popDown ) ) {
+            DomUtils.hide( popDown );
         }
     }
 }

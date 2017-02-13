@@ -33,11 +33,9 @@ export class AmpFormBlockComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input( 'changeButtonLabel' ) changeButtonLabel = 'Change';
     @ViewChild( 'formBlock' ) formBlock;
 
-    private domUtils = null;
     private scrollSubscription : Subscription;
 
-    constructor ( private scrollService : ScrollService ) {
-        this.domUtils = new DomUtils();
+    constructor( private scrollService : ScrollService ) {
     }
 
     public ngOnInit () : any {
@@ -57,14 +55,14 @@ export class AmpFormBlockComponent implements OnInit, AfterViewInit, OnDestroy {
         this.unSubscribeFromEvents();
     }
 
-    private onKeyupEnter ( event ) {
-        let isNotTextarea = event.target.tagName.toLowerCase() !== 'textarea';
-        let isNotAmpDropdownControl = !this.domUtils.hasClass( event.target, 'amp-dropdown-control' );
-        let isNotAmpTabItem = !this.domUtils.hasClass( event.target, 'amp-tabs__nav-item' );
+    private onKeyupEnter( event ) {
+        let isNotTextarea           = event.target.tagName.toLowerCase() !== 'textarea';
+        let isNotAmpDropdownControl = !DomUtils.hasClass( event.target, 'amp-dropdown-control' );
+        let isNotAmpTabItem         = !DomUtils.hasClass( event.target, 'amp-tabs__nav-item' );
 
         if ( isNotTextarea &&
-             isNotAmpDropdownControl &&
-             isNotAmpTabItem ) {
+            isNotAmpDropdownControl &&
+            isNotAmpTabItem ) {
 
             if ( this.context.canGoNext ) {
                 this.context.onNext();
@@ -74,13 +72,13 @@ export class AmpFormBlockComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-    private firstFocusableControl () {
+    private firstFocusableControl() {
         let formBlock         = this.formBlock.nativeElement;
         let focusableElements = formBlock.querySelectorAll( 'input:not([disabled]), textarea:not([disabled])' );
         let control           = null;
 
         for ( let el of focusableElements ) {
-            if ( this.domUtils.isVisible( el ) && this.shouldFocusOnControl( el ) ) {
+            if ( DomUtils.isVisible( el ) && this.shouldFocusOnControl( el ) ) {
                 control = el;
                 break;
             }
@@ -89,7 +87,7 @@ export class AmpFormBlockComponent implements OnInit, AfterViewInit, OnDestroy {
         return control;
     }
 
-    private focusOnControl () {
+    private focusOnControl() {
         let formBlock = this.formBlock.nativeElement;
         let control   = this.firstFocusableControl() || formBlock.querySelector( '.js-heading' );
 
@@ -98,9 +96,9 @@ export class AmpFormBlockComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-    private shouldFocusOnControl ( el ) {
-        return this.domUtils.hasClass( el, 'ng-invalid' ) ||
-            (this.domUtils.hasClass( el, 'ng-valid' ) && this.domUtils.hasClass( el, 'ng-untouched' ));
+    private shouldFocusOnControl( el ) {
+        return DomUtils.hasClass( el, 'ng-invalid' ) ||
+            (DomUtils.hasClass( el, 'ng-valid' ) && DomUtils.hasClass( el, 'ng-untouched' ));
     }
 
     private subscribeToScrollEvents () {
