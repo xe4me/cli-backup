@@ -28,7 +28,10 @@ import { AmpTabComponent } from '../amp-tab/amp-tab.component';
         'required',
         'keepControl'
     ],
-    outputs         : [ 'select' ]
+    outputs         : [ 'select' ],
+    host : {
+        '[attr.id]' : '_id'
+    }
 } )
 export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
@@ -39,6 +42,9 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     @Input('disabled') disabled : boolean = false;
     @Input('collapsed') collapsed : boolean = false;
 
+    public _view : string;
+    public _isMobileView : boolean;
+    public _isDesktopView : boolean;
     public tabs = [];
     public keepControl : boolean      = false;
     public selectedItem = {};
@@ -66,6 +72,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
     public ngAfterContentInit () {
 
+        this.setView();
         this.getTabs();
         this.setRandomizedIds();
 
@@ -75,7 +82,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
 
         this.resetTabs();
 
-        if ( this.defaultValue !== false ) {
+        if ( this.defaultValue !== false && this.isDesktopView ) {
             this.selectTab(tabs[0]);
         }
     }
@@ -137,7 +144,7 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
             let isTabActive = tab.active;
             this.resetTabs();
 
-            if ( this.isMobileView() && isTabActive ) {
+            if ( this.isMobileView && isTabActive ) {
                 return false;
             }
 
@@ -153,6 +160,10 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
         this.selectTab(tab);
     }
 
+    public onResize ( event ) {
+        this.setView();
+    }
+
     public onKeydown ( event, tab ) {
         if (event.keyCode === KeyCodes.ENTER ||
             event.keyCode === KeyCodes.SPACE) {
@@ -166,16 +177,35 @@ export class AmpTabsComponent extends BaseControl implements AfterContentInit {
     }
 
     public get view () : string {
-        return window.getComputedStyle(this.tabEl.nativeElement, ':before')
-                        .getPropertyValue('content')
-                        .replace(/\"/g, '');
+        return this._view;
     }
 
-    public isMobileView () : boolean {
+    public setView () {
+        this._view = window.getComputedStyle(this.tabEl.nativeElement, '::before')
+                        .getPropertyValue('content')
+                        .replace(/\"/g, '');
+
+        this._isMobileView = this.isMobileViewCurrent();
+        this._isDesktopView = this.isDesktopViewCurrent();
+    }
+
+    public isMobileViewCurrent () : boolean {
         return this.view === 'mobile';
     }
 
-    public isDesktopView () : boolean {
+    public get isMobileView () : boolean {
+        return this._isMobileView;
+    }
+
+    public isDesktopViewCurrent () : boolean {
         return this.view === 'desktop';
+    }
+
+    public get isDesktopView () : boolean {
+        return this._isDesktopView;
+    }
+
+    public get hasMadeSelection () {
+        return Object.keys(this.selectedItem).length > 0;
     }
 }
