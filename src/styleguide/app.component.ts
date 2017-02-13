@@ -6,7 +6,7 @@ import { TableContentsService } from './services/content-table-service';
     selector : 'styleguide-app',
     styles : [ require( './app.scss' ) ],
     template : `
-        <div class="styleguide-app" [class.show-menu]="!hideNavigation">
+        <div class="styleguide-app" [class.styleguide-show-menu]="!hideNavigation">
             <button class="styleguide-app--toggle" role="button" (click)="hideNavigation=!hideNavigation">Slide</button>
             <div class="styleguide-app--menu">
                 <left-navigation

@@ -27,7 +27,7 @@
 }
 
 .show-menu {
-    @include media-query('palm') {
+    @include media-query($menu-mobile-breakpoint) {
         padding-top: $menu-height;
     }
 }
