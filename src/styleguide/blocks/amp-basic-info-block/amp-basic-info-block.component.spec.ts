@@ -47,7 +47,7 @@ function setCustomOverrides(prop, value) {
     custom.overrides[prop] = value;
 }
 
-fdescribe('amp-basic-info-block component', () => {
+describe('amp-basic-info-block component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -215,7 +215,7 @@ fdescribe('amp-basic-info-block component', () => {
                 loadComponent();
                 dateOfBirthControl.setValue('11/11/2012');
                 expect(dateOfBirthControl._status).toBe('INVALID');
-                expect(dateOfBirthControl._errors.minAge.text.trim()).toEqual('You must be older than than 18 years old.');
+                expect(dateOfBirthControl._errors.minAge.text.trim()).toEqual('You must be older than 18 years old.');
             });
             it('a valid value should be marked as valid', () => {
                 setCustomOverrides('controls[4].minAge', 18);
