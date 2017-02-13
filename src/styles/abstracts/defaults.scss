@@ -56,6 +56,8 @@ $card-spacing: 16px;
 
 // Menu
 $menu-height: 70px;
+$menu-desktop-width: $content-left-width + $content-left-margin - 30px;
+$menu-mobile-breakpoint: 'tablet-and-down';
 
 // Tabs
 $amp-tab-border-color: $amp-colour-grey-dark;
