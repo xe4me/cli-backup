@@ -1,21 +1,31 @@
-import { ViewContainerRef, ComponentRef } from '@angular/core';
-import { arrayJoinByDash, DomUtils } from './modules/amp-utils';
+import {
+    ViewContainerRef,
+    ComponentRef
+} from '@angular/core';
+import {
+    arrayJoinByDash,
+    DomUtils
+} from './modules/amp-utils';
 import { FormGroup } from '@angular/forms';
 import { SaveService } from './services/save/save.service';
 import { ScrollService } from './services/scroll/scroll.service';
 import { FormDefinition } from '../../interfaces/form-def.interface';
 import { AutoFocusOnDirective } from './modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
-import { RemoveNextOptions, LoadNextOptions, LoadedBlockInfo } from '../../amp-block-loader';
+import {
+    RemoveNextOptions,
+    LoadNextOptions,
+    LoadedBlockInfo
+} from '../../amp-block-loader';
 /*
-* BlockLoaderAbstracts
-*
-* This is just an abstract class and extending from it or not is not actually adding or removing any
-* javascript value.
-* This is just to make typescript and auto completion happy.
-* All of the bellow properties will be created dynamically on the fly in the browser and will be
-* injected into the dynamically created blocks.
-*
-* */
+ * BlockLoaderAbstracts
+ *
+ * This is just an abstract class and extending from it or not is not actually adding or removing any
+ * javascript value.
+ * This is just to make typescript and auto completion happy.
+ * All of the bellow properties will be created dynamically on the fly in the browser and will be
+ * injected into the dynamically created blocks.
+ *
+ * */
 
 export abstract class BlockLoaderAbstracts {
     /*

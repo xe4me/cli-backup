@@ -9,7 +9,10 @@ import { Subscription } from 'rxjs';
 import { SaveService } from './services/save/save.service';
 import { ScrollService } from './services/scroll/scroll.service';
 import { AutoFocusOnDirective } from './modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
-import { Environments, BlockLoaderAbstracts } from './abstracts';
+import {
+    Environments,
+    BlockLoaderAbstracts
+} from './abstracts';
 
 export abstract class FormBlock extends BlockLoaderAbstracts implements AfterViewInit, OnDestroy {
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
@@ -69,7 +72,7 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
 
     }
 
-    onNext () {
+    onNext() {
         this.beforeOnNext();
         this.track();
         // Do not block the onNext function based on whether or not the block is Touched
