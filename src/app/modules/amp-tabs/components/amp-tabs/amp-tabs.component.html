@@ -1,6 +1,9 @@
 <div
+    #tabEl
     class="amp-tabs"
-    [class.amp-tabs--disabled]="disabled">
+    [class.amp-tabs--disabled]="disabled"
+    [class.amp-tabs--collapsed]="collapsed"
+    [id]="id">
 
     <div class="amp-tabs__nav" role="tablist">
         <label
@@ -14,7 +17,7 @@
             [attr.aria-selected]="tab.active"
             [attr.tabindex]="disabled ? null : 0">
             <span class="amp-tabs__title">
-                {{tab.title}}
+                {{ tab.title }}
             </span>
             <input
                 hidden
@@ -29,16 +32,17 @@
         </label>
     </div>
 
-    <div *ngIf="tabsFromList()">
+    <div *ngIf="tabsFromList()" class="amp-tabs__content">
         <ng-content></ng-content>
     </div>
 
-    <div *ngIf="!tabsFromList()">
+    <div *ngIf="!tabsFromList()" class="amp-tabs__content">
         <amp-tab
             *ngFor="let tab of tabs"
             [id]="tab.id"
             [tab-title]="tab.title"
-            [active]="tab.active">
+            [active]="tab.active"
+            [randomizedId]="randomizedId">
             <div [innerHtml]="tab.content"></div>
         </amp-tab>
     </div>

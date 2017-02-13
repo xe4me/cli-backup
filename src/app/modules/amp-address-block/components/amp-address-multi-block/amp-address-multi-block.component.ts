@@ -15,9 +15,10 @@ import { ScrollService, SaveService } from '../../../../services';
 export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
 
     private sameThanPrimaryApplicant : boolean = true;
-
-    private currentApplicantIndex = 0;
     private primaryApplicantModel;
+
+    private primaryApplicationBasicInfoControlGroup;
+    private primaryApplicationAddressControlGroup;
 
     private defaultValues = [
         [
@@ -42,6 +43,14 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
         } );
     }
 
+    beforeOnNext () {
+        super.beforeOnNext();
+
+        if (this.sameThanPrimaryApplicant === true && this.__repeaterIndex > 0) {
+            Object.assign(this.__controlGroup.value, this.primaryApplicationAddressControlGroup.value);
+        }
+    }
+
     ngAfterViewInit () {
         super.ngAfterViewInit();
 
@@ -49,11 +58,11 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
             return;
         }
 
-        let applicationIndexInFdn = this.extractApplicationIndexInFdn( this.__custom.targetApplicantRepeaterId ); // 'applicants'
-        this.currentApplicantIndex = this.extractApplicantIndex( applicationIndexInFdn );
-        if (this.currentApplicantIndex > 0) {
-            let primaryApplicantControlGroup = this.extractPrimaryApplicantControlGroup( applicationIndexInFdn );
-            primaryApplicantControlGroup.valueChanges.debounceTime( 500 ).subscribe( ( query ) => {
+        this.primaryApplicationBasicInfoControlGroup = this.extractOtherApplicantControlGroup( 0, this.__custom.targetPrimaryApplicantBasicInfoId ); // 'basicInfo'
+        this.primaryApplicationAddressControlGroup = this.extractOtherApplicantControlGroup( 0, this.__name );  // 'address'
+
+        if (this.__repeaterIndex > 0) {
+            this.primaryApplicationBasicInfoControlGroup.valueChanges.debounceTime( 500 ).subscribe( ( query ) => {
                 this.primaryApplicantModel = {
                     title: query.title ? query.title.SelectedItem : '',
                     firstName: query.firstName ? query.firstName : '',
@@ -63,13 +72,27 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
         }
     }
 
-    private extractPrimaryApplicantControlGroup ( applicationIndexInFdn ) {
-        let primaryApplicantFdn = this.__fdn;
-        primaryApplicantFdn[ applicationIndexInFdn + 1 ] = 0;
-        primaryApplicantFdn[ primaryApplicantFdn.length - 1 ] = this.__custom.targetPrimaryApplicantBasicInfoId; // 'basicInfo'
+    private extractOtherApplicantControlGroup ( applicantNumber, fieldName ) {
+        let extractApplicationIndexInFdn = ( key ) => {
+            let keyIndex = this.__fdn.lastIndexOf( key );
+            if (keyIndex < 0) {
+                this.logError( 'Cannot find applicationIndexInFdn, key: ' + key );
+                return -1;
+            }
+            return keyIndex;
+        };
+        let recreateCustomFdn = ( applicationIndexInFdn ) => {
+            let primaryApplicantFdn = this.__fdn;
+            primaryApplicantFdn[ applicationIndexInFdn + 1 ] = applicantNumber;
+            primaryApplicantFdn[ primaryApplicantFdn.length - 1 ] = fieldName;
+            return primaryApplicantFdn;
+        };
+
+        let applicationIndexInFdn = extractApplicationIndexInFdn( this.__custom.targetApplicantRepeaterId ); // 'applicants'
+        let primaryApplicantFdn = recreateCustomFdn( applicationIndexInFdn );
         let primaryApplicantControlGroup = this.__form.get( primaryApplicantFdn );
         if (!primaryApplicantControlGroup) {
-            this.logError( 'Cannot extract primaryApplicantControlGroup, applicationIndexInFdn: ' + applicationIndexInFdn );
+            this.logError( 'Cannot extract extractOtherApplicantControlGroup, applicantNumber: ' + applicantNumber + ', fieldName: ' + fieldName + ', applicationIndexInFdn: ' + applicationIndexInFdn + ', primaryApplicantFdn: ' + primaryApplicantFdn + ', this.__custom.targetApplicantRepeaterId:' + this.__custom.targetApplicantRepeaterId );
         }
         return primaryApplicantControlGroup;
     }
@@ -85,27 +108,8 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
         console.log( this.__form.value );
     }
 
-    private extractApplicationIndexInFdn ( key ) {
-        let keyIndex = this.__fdn.lastIndexOf( key );
-        if (keyIndex < 0) {
-            this.logError( 'Cannot find applicationIndexInFdn, key: ' + key );
-            return -1;
-        }
-        return keyIndex;
-    }
-
-    private extractApplicantIndex ( keyIndex ) {
-        let currentApplicantIndexStr = this.__fdn[ keyIndex + 1 ];
-        let currentApplicantIndex = Number( currentApplicantIndexStr );
-        if (!(currentApplicantIndex >= 0)) {
-            this.logError( 'CurrentApplicantIndex is invalid, expected a number, got: ' + currentApplicantIndexStr + ', keyIndex was: ' + keyIndex );
-            return -1;
-        }
-        return currentApplicantIndex;
-    }
-
     get isPrimaryApplicant () {
-        return this.currentApplicantIndex === 0;
+        return this.__repeaterIndex === 0;
     }
 
     get primaryApplicantName () {

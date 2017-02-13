@@ -38,6 +38,7 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
     position: absolute;
     top: 0;
     padding: 70px 0;
+    width: $menu-desktop-width;
     z-index: 100;
 
     &--sticky {
@@ -50,7 +51,7 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
         bottom: 0;
     }
 
-    @include media-query(palm) {
+    @include media-query($menu-mobile-breakpoint) {
         background: $amp-colour-white;
         overflow: hidden;
         padding: 0;
@@ -62,12 +63,8 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
         @include transform(translate3d(0, 0 , 0));
     }
 
-    @include media-query(tablet-and-up) {
-        max-width: 180px;
-    }
-
     &--open {
-        @include media-query(palm) {
+        @include media-query($menu-mobile-breakpoint) {
             padding-bottom: $amp-ddc-menu-height;
         }
     }
@@ -91,7 +88,7 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
         bottom: 0;
         left: 0;
 
-        @include media-query(palm) {
+        @include media-query($menu-mobile-breakpoint) {
             display: block;
         }
 
@@ -116,7 +113,7 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
         display: block;
         height: 100%;
 
-        @include media-query(palm) {
+        @include media-query($menu-mobile-breakpoint) {
             overflow: auto;
         }
     }
@@ -124,7 +121,7 @@ $amp-ddc-menu-tickmark-icon-size: 20px;
     &__list {
         list-style: none;
 
-        @include media-query(palm) {
+        @include media-query($menu-mobile-breakpoint) {
             margin: 40px 30px;
         }
     }

@@ -22,8 +22,10 @@
     display: block;
 
     &--aside {
-        @include media-query('tablet-and-up') {
-            margin-left: $content-left-width + $content-left-margin;
+        margin-left: $content-left-width + $content-left-margin;
+
+        @include media-query($menu-mobile-breakpoint) {
+            margin-left: 0;
         }
     }
 }

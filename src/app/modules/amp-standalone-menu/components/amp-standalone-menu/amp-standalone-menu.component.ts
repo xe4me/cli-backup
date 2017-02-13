@@ -37,8 +37,8 @@ import { DomUtils } from '../../../../../app/modules/amp-utils/dom-utils';
                     'closed <=> open', [ animate( '450ms ease-in' ) ] )
             ] )
     ],
-    host : {
-        '[class.menu--is-not-sticky]': '!isSticky',
+    host            : {
+        '[class.menu--is-not-sticky]' : '!isSticky',
     }
 } )
 export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -54,7 +54,6 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     public showMenu : boolean             = false;
     private sections                      = [];
     private currentSectionId : string     = null;
-    private domUtils : DomUtils           = null;
     private itemPrefix : string           = 'Item-'; // Prefix for the nav menu id.
     private isOpen : boolean              = false;
     private currentSectionLabel : string  = '';
@@ -68,7 +67,6 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     constructor ( private dom : BrowserDomAdapter,
                   private cd : ChangeDetectorRef,
                   private scrollService : ScrollService ) {
-        this.domUtils          = new DomUtils();
         this.sectionObservable = scrollService.$scrolled;
     }
 
@@ -135,8 +133,8 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         } );
         if ( this.sections.length && hasActiveClass ) {
             this.showMenu = true;
-            this.domUtils.addClass(body, 'show-menu');
-            setTimeout(() => {
+            DomUtils.addClass( body, 'show-menu' );
+            setTimeout( () => {
                 this.setupContainingElement();
                 this.setMenuPosition();
             });
@@ -202,9 +200,9 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
         this.setMenuPosition();
     }
 
-    private getContainingElement () {
-        const menu = this.menu.nativeElement;
-        const containingElement = this.domUtils.closest( menu, this.containInside );
+    private getContainingElement() {
+        const menu              = this.menu.nativeElement;
+        const containingElement = DomUtils.closest( menu, this.containInside );
 
         if ( containingElement ) {
             return containingElement;
@@ -258,16 +256,16 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
 
                 switch (position) {
                     case 'bottom':
-                        this.domUtils.removeClass(menu, stickyClass);
-                        this.domUtils.addClass(menu, bottomClass);
+                        DomUtils.removeClass( menu, stickyClass );
+                        DomUtils.addClass( menu, bottomClass );
                         break;
                     case 'middle':
-                        this.domUtils.removeClass(menu, bottomClass);
-                        this.domUtils.addClass(menu, stickyClass);
+                        DomUtils.removeClass( menu, bottomClass );
+                        DomUtils.addClass( menu, stickyClass );
                         break;
                     default:
-                        this.domUtils.removeClass(menu, stickyClass);
-                        this.domUtils.removeClass(menu, bottomClass);
+                        DomUtils.removeClass( menu, stickyClass );
+                        DomUtils.removeClass( menu, bottomClass );
                 }
             }
         }
