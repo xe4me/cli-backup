@@ -12,7 +12,7 @@ import {
 @Component(
     {
         selector        : 'sticky-save-button',
-        templateUrl     : './sticky-save-button.html',
+        template        : require('./sticky-save-button.html'),
         styles          : [ require( './sticky-save-button.scss' ) ],
         changeDetection : ChangeDetectionStrategy.OnPush
     } )

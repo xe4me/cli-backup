@@ -13,7 +13,7 @@ import { Constants } from '../../shared';
 
 @Component( {
     selector        : 'contact-details-block',
-    templateUrl     : './contact-details.component.html',
+    template        : require( './contact-details.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class ContactDetailsBlock extends FormBlock {

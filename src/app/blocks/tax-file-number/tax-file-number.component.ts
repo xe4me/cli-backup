@@ -12,7 +12,7 @@ import {
 } from 'amp-ddc-components';
 @Component( {
     selector        : 'tax-file-number-block',
-    templateUrl     : './tax-file-number.component.html',
+    template        : require( './tax-file-number.component.html'),
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class TaxFileNumberBlock extends FormBlock implements AfterViewInit {

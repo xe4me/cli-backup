@@ -18,7 +18,7 @@ import {
 import { Constants } from '../../shared';
 @Component( {
     selector        : 'new-or-existing-customer-block',
-    templateUrl     : './new-or-existing-customer-block.component.html',
+    template        : require( './new-or-existing-customer-block.component.html'),
     styles          : [ require( './new-or-existing-customer-block.component.scss' ).toString() ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

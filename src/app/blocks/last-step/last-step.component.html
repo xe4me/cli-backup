@@ -40,6 +40,7 @@
     <amp-form-row *ngIf="isFinalStepInApplication">
         <div class="lap-and-up-mt-60 grid__item_floated palm-1/1 form-submit">
             <amp-button
+                    [context]="context()"
                     (click)="submitForm()"
                     [disabled]="__controlGroup.invalid || submitInProgress"
                     [attr.theme]="'tools'"

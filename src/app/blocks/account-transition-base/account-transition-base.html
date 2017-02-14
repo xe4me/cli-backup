@@ -1,28 +1,27 @@
 <amp-form-block [context]="context()" [hidden]="hideBlock" buttonsTheme="tools">
-    <div [hidden]="hideNewOrConvertButtons">
-        <amp-form-row>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
-                <p class="mb heading-contxtual-label">
-                    {{ description }}
-                </p>
-                <amp-group-buttons
-                    class="grid__item 1/1 lap-and-up-8/12"
-                    [buttons]="__custom.controls[0].buttons"
-                    [isInSummaryState]="isInSummaryState"
-                    [controlGroup]="__controlGroup"
-                    [groupName]="__custom.controls[0].id"
-                    [required]="!hideBlock">
-                </amp-group-buttons>
-            </div>
-        </amp-form-row>
-    </div>
+    <amp-form-row [hidden]="hideNewOrConvertButtons">
+        <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-10/12">
+            <p class="mb-60 heading-contxtual-label">
+                {{ description }}
+            </p>
+            <amp-group-buttons
+                class="grid__item 1/1 lap-and-up-8/12"
+                [buttons]="__custom.controls[0].buttons"
+                [isInSummaryState]="isInSummaryState"
+                [controlGroup]="__controlGroup"
+                [groupName]="__custom.controls[0].id"
+                [required]="!hideBlock">
+            </amp-group-buttons>
+        </div>
+    </amp-form-row>
+
     <div *ngIf="showAccountNumber">
-        <p class="mt mb heading-contxtual-label"
+        <p class="mt-60 heading-contxtual-label"
            *ngIf="additionalDescription">
             {{ additionalDescription }}
         </p>
         <amp-form-row>
-            <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
+            <div class="mt-60 grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
                 <amp-dropdown
                     *ngIf="hasEligibleAccounts && isAccountNumberDropDownOrInputReady"
                     #accountsListCmp

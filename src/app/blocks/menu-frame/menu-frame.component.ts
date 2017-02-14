@@ -22,7 +22,7 @@ import { StickySaveButton } from '../../components/sticky-save-button/sticky-sav
 import { FDN } from '../../forms/better-form/Application.fdn';
 @Component( {
     selector        : 'menu-frame',
-    templateUrl     : './menu-frame.component.html',
+    template        : require( './menu-frame.component.html'),
     styles          : [ require( './menu-frame.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

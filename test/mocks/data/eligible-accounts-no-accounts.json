@@ -1,0 +1,17 @@
+{
+    "meta": {
+        "url": "/ddc/public/api/bett3r/eligible-accounts",
+        "method": "GET",
+        "responseTimeMs": 175,
+        "requestId": "9a17befa718d4d4082075407d38132bc",
+        "pid": 54873
+    },
+    "payload": {
+        "deposit": [
+        ],
+        "offset": [
+        ],
+        "loan": [
+        ]
+    }
+}

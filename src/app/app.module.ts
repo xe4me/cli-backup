@@ -15,6 +15,8 @@ import { AppComponent } from './app.component';
 import { AMP_DDC_MODULES } from './app.modules';
 import { AppRoutingModule } from './app.routes';
 import { DECLARATIONS } from './app.declarations';
+import { TransformService } from 'amp-ddc-components';
+import { Bett3rTransformService } from './shared/transform-model/bett3r-transform.service';
 
 const IMPORTS = [
     ...AMP_DDC_MODULES,
@@ -34,9 +36,11 @@ const IMPORTS = [
     providers       : [
         <any> Renderer,
         BrowserDomAdapter,
-        ...APP_RESOLVER_PROVIDERS
+        ...APP_RESOLVER_PROVIDERS,
+        { provide : TransformService, useClass : Bett3rTransformService }
     ],
-    bootstrap       : [ AppComponent ]
+    bootstrap       : [ AppComponent ],
+    exports: DYNAMIC_BLOCKS
 } )
 export class AppModule {
 }

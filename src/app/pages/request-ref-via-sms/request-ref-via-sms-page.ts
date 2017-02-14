@@ -20,7 +20,7 @@ import { Constants } from '../../shared/constants';
 
 @Component( {
     selector    : 'request-ref-via-sms-page' ,
-    templateUrl: './request-ref-via-sms-page.html',
+    template        : require( './request-ref-via-sms-page.html'),
     styles: [ require( './request-ref-via-sms-page.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )

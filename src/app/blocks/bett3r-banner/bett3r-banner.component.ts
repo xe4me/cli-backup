@@ -9,7 +9,7 @@ import {
 
 @Component( {
     selector        : 'bett3r-banner' ,
-    templateUrl     : './bett3r-banner.component.html' ,
+    template        : require( './bett3r-banner.component.html') ,
     changeDetection : ChangeDetectionStrategy.OnPush,
     styles : [ require( './bett3r-banner.component.scss').toString() ]
 } )

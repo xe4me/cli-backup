@@ -1,0 +1,54 @@
+{
+    "meta": {
+        "url": "/ddc/public/api/bett3r/eligible-accounts",
+        "method": "GET",
+        "responseTimeMs": 175,
+        "requestId": "9a17befa718d4d4082075407d38132bc",
+        "pid": 54873
+    },
+    "payload": {
+        "deposit": [
+            {
+                "productSystemCode": "BK",
+                "productCode": 1253,
+                "productName": "AMP FIRST",
+                "contractComponents": [
+                    {
+                        "contractComponentType": "ContractAddress",
+                        "contractLocationUsage": "Contract Correspondence Address",
+                        "wrongContractLocationIndicator": false,
+                        "contractLocation": {
+                            "scrubbedAddressIndicator": true,
+                            "addressId": "132843949186341001",
+                            "suburbName": "S Turramurra",
+                            "cityName": "Not Available",
+                            "stateCode": "NSW",
+                            "countryCode": "9",
+                            "country": "Australia",
+                            "postcode": "2074",
+                            "addressLine1": "10 Balmaringa Ave"
+                        }
+                    }
+                ],
+                "pasContractId": "559334420",
+                "displayContractId": "559334420"
+            },
+            {
+                "productSystemCode": "BK",
+                "productCode": 1263,
+                "productName": "AMP Access Account",
+                "contractComponents": [
+                    {
+                        "contractComponentType": "ContractAddress"
+                    }
+                ],
+                "pasContractId": "018609800",
+                "displayContractId": "018609800"
+            }
+        ],
+        "offset": [
+        ],
+        "loan": [
+        ]
+    }
+}
