@@ -4,6 +4,7 @@ import {
     ChangeDetectionStrategy,
     OnInit
 } from '@angular/core';
+import { cloneDeep } from 'lodash';
 import { FormBlock } from '../../../../form-block';
 import { ScrollService, SaveService } from '../../../../services';
 
@@ -47,12 +48,9 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
         super.beforeOnNext();
 
         if (this.sameThanPrimaryApplicant === true && this.__repeaterIndex > 0) {
-            console.log('> Copying Applicant 1 address to Applicant 2...');
-            console.log(this.__controlGroup.value);
-            Object.assign(this.__controlGroup.value, this.primaryApplicationAddressControlGroup.value);
-            console.log(this.__controlGroup.value);
-            console.log(this.__form.value);
-            console.log('< End of copy ... theses debug traces will be removed.');
+            let model = cloneDeep( this.primaryApplicationAddressControlGroup.value );
+            model[ this.__custom.controls[ 1 ].id ] = true; // 'sameThanPrimary'
+            this.__controlGroup.setValue( model );
         }
     }
 
