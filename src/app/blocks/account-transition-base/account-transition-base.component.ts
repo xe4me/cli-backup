@@ -2,7 +2,8 @@ import {
     ChangeDetectorRef,
     AfterViewInit,
     OnDestroy,
-    ViewChild
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 import {
     AbstractControl,
@@ -10,6 +11,7 @@ import {
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
+    FormDefinition,
     FormBlock,
     ScrollService,
     SaveService,
@@ -19,6 +21,7 @@ import {
 import {
     EligibleAccountsService
 } from '../../shared';
+import { ApplicantGeneratorService } from '../../shared/applicant-generator.service';
 
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
     protected accountType : string;
@@ -29,6 +32,7 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     protected currentAction : string;
     protected newOrConvertControl : AbstractControl;
     protected accountsEligibleForTransitioning : Array<{ value : string, label : string }> = [];
+    protected debitCardMigrationFormDef : FormDefinition;
 
     @ViewChild ('accountsListCmp') private accountsListCmp : AmpDropdownComponent;
     private description : string = null;
@@ -36,11 +40,14 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
     private newOrConvertControlSubscription : Subscription;
     private eligibleAccountsServiceSubscription : Subscription;
     private isAccountNumberDropDownOrInputReady : boolean = false;
+
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
+                  private viewContainerRef : ViewContainerRef,
                   private loginStatusService : LoginStatusService,
-                  private eligibleAccountsService : EligibleAccountsService ) {
+                  private eligibleAccountsService : EligibleAccountsService,
+                  private applicantGeneratorService : ApplicantGeneratorService ) {
         super( saveService, _cd, scrollService );
     }
 
@@ -134,6 +141,12 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
     protected updateAccountAction ( action : string ) : void {
         this.currentAction = action;
+
+        if ( this.currentAction === this.accountActions.convert ) {
+            this.setDebitCardMigrationBlock();
+        } else {
+            this.removeDebitCardMigrationBlock();
+        }
     }
 
     protected get dropdownOptions () {
@@ -146,6 +159,18 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
 
     protected get hideNewOrConvertButtons () : boolean {
         return this.userHasLoggedIn && !this.canTransitionAccount;
+    }
+
+    protected setDebitCardMigrationBlock () : void {
+        this.debitCardMigrationFormDef = this.applicantGeneratorService.getDebitCardMigrationBlockJSON();
+        this.__loadNext( this.debitCardMigrationFormDef, this.viewContainerRef );
+    }
+
+    protected removeDebitCardMigrationBlock () : void {
+        if ( this.debitCardMigrationFormDef ) {
+            this.__removeNext( this.viewContainerRef );
+            this.debitCardMigrationFormDef = null;
+        }
     }
 
     private get hideBlock () : boolean {

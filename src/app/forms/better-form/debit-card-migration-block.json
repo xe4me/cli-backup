@@ -1,0 +1,22 @@
+{
+    "name": "DebitCard",
+    "blockType": "DebitCardMigrationBlock",
+    "blockLayout": "INLINE",
+    "commonBlock": false,
+    "path": "blocks/debit-card-migration/debit-card-migration.component",
+    "custom": {
+        "blockTitle": "How would you like to use your debit card",
+        "controls": [ {
+            "id": "MigrationChoice",
+            "buttons": [ {
+                "id": "migrate",
+                "value": "migrate",
+                "label": "Migrate my existing debit card to my new Spend account"
+            }, {
+                "id": "new",
+                "value": "new",
+                "label": "Keep my existing debit card with my Pay account and provide a new card for my Spend account"
+            } ]
+        } ]
+    }
+}

@@ -1,7 +1,8 @@
 import {
     Component,
     ChangeDetectorRef,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    ViewContainerRef
 } from '@angular/core';
 import {
     ScrollService,
@@ -12,6 +13,7 @@ import {
     EligibleAccountsService
 } from '../../shared';
 import { AccountTransitionBaseBlock } from '../account-transition-base/account-transition-base.component';
+import { ApplicantGeneratorService } from '../../shared/applicant-generator.service';
 @Component( {
     selector        : 'loan-offset-block',
     template        : require( '../account-transition-base/account-transition-base.html'),
@@ -30,9 +32,11 @@ export class LoanOffsetTransitionBlock extends AccountTransitionBaseBlock {
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
+                  viewContainerRef : ViewContainerRef,
                   loginStatusService : LoginStatusService,
-                  eligibleAccountsService : EligibleAccountsService ) {
-        super( saveService, _cd, scrollService, loginStatusService, eligibleAccountsService );
+                  eligibleAccountsService : EligibleAccountsService,
+                  applicantGeneratorService : ApplicantGeneratorService ) {
+        super( saveService, _cd, scrollService, viewContainerRef, loginStatusService, eligibleAccountsService, applicantGeneratorService );
     }
 
     protected get showAccountNumber () : boolean {
