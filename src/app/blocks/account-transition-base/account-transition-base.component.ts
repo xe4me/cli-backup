@@ -88,8 +88,6 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
                 this.fetchEligibleAccounts();
             });
 
-        this.setDebitCardMigrationBlock();
-
         this.isAccountNumberDropDownOrInputReady = true;
         super.ngAfterViewInit();
     }
