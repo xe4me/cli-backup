@@ -73,10 +73,6 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
     }
 
     onNext() {
-
-        console.log('****** onNext() called for ' + this.__name);
-        console.log(this.__form.value);
-
         this.beforeOnNext();
         this.track();
         // Do not block the onNext function based on whether or not the block is Touched

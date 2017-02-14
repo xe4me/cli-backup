@@ -14,10 +14,10 @@ const DECLARATIONS = [ AmpCaptchaBlockComponent ];
         AmpSharedRootModule,
         AmpFormModule,
         AmpInputsModule,
-        AmpGoogleRecaptchaModule,
+        AmpGoogleRecaptchaModule
     ] ,
     providers    : [
-        RetrieveService,
+        RetrieveService
     ],
     exports      : DECLARATIONS
 } )
