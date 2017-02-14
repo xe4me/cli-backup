@@ -11,7 +11,7 @@
             </amp-checkbox>
         </div>
     </amp-form-row>
-    <div class="grid__container 1/1" *ngIf='isTheAddressRequired'>
+    <div class="grid__container 1/1" [hidden]='!isTheAddressRequired'>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-9/12">
             <amp-qas-address-multi
                     auto-focus-on
