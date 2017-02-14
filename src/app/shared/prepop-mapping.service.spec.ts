@@ -12,7 +12,7 @@ import { CustomerDetailsService } from 'amp-ddc-components';
 import { PrepopMappingService } from './prepop-mapping.service';
 
 // Load the implementations that should be tested
-fdescribe( 'Service: PrepopMappingService' , () => {
+describe( 'Service: PrepopMappingService' , () => {
     let basicInfo : FormGroup;
     let contactDetails : FormGroup;
     let customerDetailsService : CustomerDetailsService;

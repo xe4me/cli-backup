@@ -438,6 +438,8 @@ class LoanOffsetBlockTest implements OnInit {
 
     public ngOnInit() {
         let blockJSON = require('../../forms/better-form/better-choice-block.json');
+        this.block.__loadNext = (nextBlock, viewContainerRef) => {};
+        this.block.__removeNext = (viewContainerRef) => {};
         this.block.__fdn = ['Application', 'Applicant1Section', 'PersonalDetailsSection', 'LoanOffset'];
         this.block.__controlGroup = new FormGroup({});
         let accountNumberControl = new FormControl();

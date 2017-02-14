@@ -1,7 +1,8 @@
 import {
     Component,
     ChangeDetectorRef,
-    ChangeDetectionStrategy, ViewContainerRef
+    ChangeDetectionStrategy,
+    ViewContainerRef
 } from '@angular/core';
 import {
     ScrollService,
@@ -12,7 +13,7 @@ import {
     EligibleAccountsService
 } from '../../shared';
 import { AccountTransitionBaseBlock } from '../account-transition-base/account-transition-base.component';
-import {ApplicantGeneratorService} from "../../shared/applicant-generator.service";
+import { ApplicantGeneratorService } from '../../shared/applicant-generator.service';
 @Component( {
     selector        : 'deposit-transition-block',
     template        : require( '../account-transition-base/account-transition-base.html'),

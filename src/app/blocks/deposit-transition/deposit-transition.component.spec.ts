@@ -122,8 +122,8 @@ describe('Component: DepositTransitionBlock', () => {
             tick();
             depositTransition.detectChanges();
 
-            expect( groupButtonInputs[0].nativeElement.checked ).toBe( true );
-            expect( groupButtonInputs[1].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[0].nativeElement.checked ).toBe( false );
+            expect( groupButtonInputs[1].nativeElement.checked ).toBe( true );
             expect( betterChoice.value ).toBe( betterChoiceTypes.new_account );
 
             let ampAccountNumber = depositTransition.debugElement.query(By.css('amp-account-number'));
@@ -488,6 +488,8 @@ class DepositTransitionBlockTest implements OnInit {
 
     public ngOnInit() {
         let blockJSON = require('../../forms/better-form/better-choice-block.json');
+        this.block.__loadNext = (nextBlock, viewContainerRef) => {};
+        this.block.__removeNext = (viewContainerRef) => {};
         this.block.__fdn = ['Application', 'Applicant1Section', 'PersonalDetailsSection', 'DepositTransition'];
         this.block.__controlGroup = new FormGroup({});
         let accountNumberControl = new FormControl();

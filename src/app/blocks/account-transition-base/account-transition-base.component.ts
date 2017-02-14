@@ -21,7 +21,7 @@ import {
 import {
     EligibleAccountsService
 } from '../../shared';
-import {ApplicantGeneratorService} from '../../shared/applicant-generator.service';
+import { ApplicantGeneratorService } from '../../shared/applicant-generator.service';
 
 export class AccountTransitionBaseBlock extends FormBlock implements AfterViewInit, OnDestroy {
     protected accountType : string;

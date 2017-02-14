@@ -12,22 +12,15 @@ import {
 } from 'amp-ddc-components';
 
 @Component({
-    selector: 'app-debit-card-migration-block',
-    templateUrl: 'debit-card-migration.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    selector        : 'debit-card-block',
+    template        : require( './debit-card-migration.html' ),
+    changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class DebitCardMigrationBlock extends FormBlock implements AfterViewInit, OnDestroy {
+export class DebitCardMigrationBlock extends FormBlock {
 
     constructor( _cd : ChangeDetectorRef,
                  scrollService : ScrollService,
                  saveService : SaveService) {
         super(saveService, _cd, scrollService);
-    }
-
-    public ngAfterViewInit () : void {
-        super.ngAfterViewInit();
-    }
-
-    public ngOnDestroy () : void {
     }
 }
