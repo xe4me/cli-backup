@@ -39,7 +39,8 @@ const IMPORTS = [
         ...APP_RESOLVER_PROVIDERS,
         { provide : TransformService, useClass : Bett3rTransformService }
     ],
-    bootstrap       : [ AppComponent ]
+    bootstrap       : [ AppComponent ],
+    exports: DYNAMIC_BLOCKS
 } )
 export class AppModule {
 }
