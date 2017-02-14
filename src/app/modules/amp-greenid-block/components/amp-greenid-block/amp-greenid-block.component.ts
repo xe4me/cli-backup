@@ -389,9 +389,14 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
                 streetType   : get(this.__form.value, rootApplicantFDN + this.__custom.streetTypeFDN, '')
             }
         };
-        console.log('Green Id Model (fndPrefix: ' + rootApplicantFDN + ')');
+        if (!model.address.postcode || model.address.postcode === '') {
+            console.log('> Green Id cannot find the postcode of applicant ' + this.__repeaterIndex + ' , fdn was: ' + rootApplicantFDN + this.__custom.suburbFDN);
+            console.log(this.__form.value);
+        }
+
+        console.log('> Green Id Model (fnd sample: ' + rootApplicantFDN + this.__custom.suburbFDN + ')');
         console.log(model);
-        console.log('Form Value was');
+        console.log('> Form Value was');
         console.log(this.__form.value);
         return model;
     }
