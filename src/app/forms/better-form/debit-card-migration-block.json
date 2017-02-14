@@ -15,7 +15,7 @@
             }, {
                 "id": "new",
                 "value": "new",
-                "label": "Keep my existing debit card with my Pay account, and provide a new card for my Spend account"
+                "label": "Keep my existing debit card with my Pay account and provide a new card for my Spend account"
             } ]
         } ]
     }

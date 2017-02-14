@@ -3,6 +3,7 @@ import { clone } from 'amp-ddc-components';
 const applicantJSON = require( '../forms/better-form/applicant.json' );
 const captchBlockJSON = require('../forms/better-form/capcha-block.json');
 const bett3rChoiceBlockJSON = require('../forms/better-form/better-choice-block.json');
+const debitCardMigrationBlockJSON = require('../forms/better-form/debit-card-migration-block.json');
 
 @Injectable()
 export class ApplicantGeneratorService {
@@ -27,6 +28,10 @@ export class ApplicantGeneratorService {
             } ,
             blocks      : applicantSections
         };
+    }
+
+    public getDebitCardMigrationBlockJSON () {
+         return debitCardMigrationBlockJSON;
     }
 
     private findBlock ( sections , title , sectionIndex ) {
