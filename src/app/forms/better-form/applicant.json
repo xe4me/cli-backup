@@ -67,26 +67,16 @@
             },
             {
                 "name": "ContactDetails",
-                "blockType": "ContactDetailsBlock",
+                "blockType": "AmpContactDetailsBlockComponent",
                 "blockLayout": "INLINE",
-                "commonBlock": false,
-                "path": "blocks/contact-details/contact-details.component",
+                "commonBlock": true,
+                "path": "modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component",
                 "custom": {
-                    "blockTitle": "And your contact details...",
-                    "controls": [
-                        {
-                            "id": "EmailAddress"
-                        },
-                        {
-                            "id": "MobileNumber",
-                            "errorMsg": "Mobile number must be in the format 04nnnnnnnn.",
-                            "requiredMsg" : "Mobile number is a required field.",
-                            "label": "Mobile number"
-                        },
-                        {
-                            "id": "HomeNumber"
-                        }
-                    ]
+                    "overrides": {
+                        "controls[0].id": "EmailAddress",
+                        "controls[1].id": "MobileNumber",
+                        "controls[2].id": "HomeNumber"
+                    }
                 }
             }
         ]

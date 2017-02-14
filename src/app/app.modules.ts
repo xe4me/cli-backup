@@ -21,7 +21,9 @@ import {
     AmpGreenIdBlockModule,
     AmpLogoModule,
     AmpDropdownModule,
-    AmpGoogleRecaptchaModule
+    AmpGoogleRecaptchaModule,
+    AmpContactDetailsBlockModule,
+    AmpBasicInfoBlockModule
 } from 'amp-ddc-components';
 
 export const AMP_DDC_MODULES = [
@@ -47,5 +49,7 @@ export const AMP_DDC_MODULES = [
     AmpGreenIdBlockModule,
     AmpLogoModule,
     AmpDropdownModule,
-    AmpGoogleRecaptchaModule
+    AmpGoogleRecaptchaModule,
+    AmpContactDetailsBlockModule,
+    AmpBasicInfoBlockModule
 ];
