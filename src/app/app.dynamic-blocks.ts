@@ -1,6 +1,5 @@
 import { AccountsListBlock } from './blocks/accounts-list/accounts-list.component';
 import { AddressBlock } from './blocks/address/address.component';
-import { BasicInfoBlock } from './blocks/basic-info/basic-info.component';
 import { Bett3rBannerBlock } from './blocks/bett3r-banner/bett3r-banner.component';
 import { Bett3rExitButtonComponent } from './blocks/bett3r-exit-button/bett3r-exit-button.component';
 import { BetterChoiceBlock } from './blocks/better-choice/better-choice.component';
@@ -25,13 +24,13 @@ import {
     PageSectionComponent,
     ReviewSectionComponent
 } from 'amp-ddc-components';
+
 export const DYNAMIC_BLOCKS = [
     ReviewSectionComponent,
     PageSectionComponent,
     DetailsPage,
     AccountsListBlock,
     AddressBlock,
-    BasicInfoBlock,
     Bett3rBannerBlock,
     Bett3rExitButtonComponent,
     BetterChoiceBlock,
