@@ -42,7 +42,8 @@
                 "id": "emailAddress",
                 "label": "Email",
                 "required": true,
-                "tooltipMessage": "Confirmation of your application will be sent to this email address."
+                "tooltipMessage": "Confirmation of your application will be sent to this email address.",
+                "prepopMapping": "payload.contactDetails.emailAddress"
             &#125;,
             &#123;
                 "id": "mobileNumber",
@@ -52,12 +53,15 @@
                 "errors": &#123;
                     "required": "Mobile number is a required field.",
                     "pattern": "Mobile number must be in the format 04nnnnnnnn"
-                &#125;
+                &#125;,
+                "prepopMapping": "payload.contactDetails.mobilePhone",
+                "prepopMappingParser": "parseMobile"
             &#125;,
             &#123;
                 "id": "homeNumber",
                 "label": "Home number",
-                "required": false
+                "required": false,
+                "prepopMapping": "payload.contactDetails.homePhone"
             &#125;
         ]
     &#125;
@@ -121,5 +125,99 @@
     &#125;
             </code>
         </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">"Prepopulation" capability</h2>
+        <ul class="bml">
+            <li>
+                This block is prepop enabled, which means that by default (whether it's on initialization of the block or by an explicit amp-login-block) it will check for a valid session. If so, it will call api-customer and map the email, mobile, homePhone into the corresponding controls. This behaviour is control via "prepopMapping" in each of the custom controls element.
+            </li>
+        </ul>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "custom": &#123;
+            "overrides": &#123;
+                "controls[0].prepopMapping": "payload.contactDetails.emailAddress"
+            &#125;
+        &#125;
+    &#125;
+            </code>
+        </pre>
+        <ul class="bml">
+            <li>
+                Or removing this attribute will disable prepop:
+            </li>
+        </ul>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "custom": &#123;
+            "overrides": &#123;
+                "controls[0].prepopMapping": null
+            &#125;
+        &#125;
+    &#125;
+            </code>
+        </pre>
+        <ul class="bml">
+            <li>
+                Furthermore, some prepop data requires a level of massaging (such as date format or stripping whitespace etc..), you can achieve this via "prepopMappingParser" that maps to a function in your injected PrepopulationService subclass:
+            </li>
+        </ul>
+        <pre>
+            <code syntaxHighlight class="json">
+    &#123;
+        "custom": &#123;
+            "overrides": &#123;
+                "controls[1].prepopMapping": "payload.contactDetails.mobilePhone",
+                "controls[1].prepopMappingParser": "parseMobile"
+            &#125;
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
+        <pre>
+            <code syntaxHighlight class="json">
+    import &#123; Injectable &#125; from '@angular/core';
+    import &#123; PrepopulationService &#125; from '../../../services/prepopulation/prepopulation.service';
+    import &#123; CustomerDetailsService &#125; from '../../../services/customer-details/customer-details.service';
+    import &#123; LoginStatusService &#125; from '../../../services/login/login-status.service';
+
+    @Injectable()
+    export class PrepopAmpContactDetailsService extends PrepopulationService &#123;
+
+        constructor ( public customerDetailsService : CustomerDetailsService,
+                    public loginStatusService : LoginStatusService ) &#123;
+            super(customerDetailsService, loginStatusService);
+        &#125;
+
+        /**
+        * Rules so far is remove white spaces and replace +61 with 0 according to JIRA
+        * https://teamtools.amp.com.au/jira/browse/BET-3979
+        *
+        * But if we get too smart, do take a look at Google i18n
+        * https://github.com/googlei18n/libphonenumber/tree/master/javascript/i18n/phonenumbers
+        */
+        private parseMobile (mobile : string ) &#123;
+            const validMobileRegex = /^04\d&#123;8&#125;$/;
+            if (mobile) &#123;
+                let parseMobile = mobile.replace(/ /g, '');
+                if (parseMobile) &#123;
+                    parseMobile = parseMobile.replace(/^\+61/, '0');
+                &#125;
+
+                if (validMobileRegex.test(parseMobile)) &#123;
+                    return parseMobile;
+                &#125;
+            &#125;
+            return null;
+        &#125;
+    &#125;
+            </code>
+        </pre>
+
     </article>
 </section>

@@ -1,15 +1,50 @@
+import { ReflectiveInjector } from '@angular/core';
+import {
+    fakeAsync,
+    tick
+} from '@angular/core/testing';
+import {
+    BaseRequestOptions,
+    ConnectionBackend,
+    Http,
+    RequestOptions
+} from '@angular/http';
+import {
+    Response,
+    ResponseOptions
+} from '@angular/http';
+import {
+    MockBackend,
+    MockConnection
+} from '@angular/http/testing';
 import { Subscription } from 'rxjs';
+import { AmpHttpService } from '../amp-http/amp-http.service';
 import { LoginStatusService } from './login-status.service';
 
 describe( 'Service: Login status', () => {
+    let loginStatusService : LoginStatusService;
+    let res : Response;
+    let connection : MockConnection;
+
+    beforeEach(() => {
+            let text : string;    // this will be set from mock response
+            const injector = ReflectiveInjector.resolveAndCreate([
+                {provide: ConnectionBackend, useClass: MockBackend},
+                {provide: RequestOptions, useClass: BaseRequestOptions},
+                Http,
+                LoginStatusService,
+                AmpHttpService
+            ]);
+
+            const backend = injector.get(ConnectionBackend);
+            loginStatusService = injector.get(LoginStatusService);
+
+            backend.connections.subscribe((c : MockConnection) => connection = c);
+            res = new Response(new ResponseOptions({body : 'Something'}));
+            res.ok = true;
+    });
 
     describe( 'When the userHasLoggedIn event has been subscribed to AND the loginSuccess is called', () => {
-        let loginStatusService : LoginStatusService;
-
-        beforeEach( () => {
-            loginStatusService = new LoginStatusService();
-        } );
-
         it( 'should trigger the subscription event', () => {
             const loggedInSub : Subscription = loginStatusService.userHasLoggedIn()
                 .subscribe( ( isLoggedIn ) => {
@@ -22,16 +57,7 @@ describe( 'Service: Login status', () => {
         } );
     } );
 
-    // TODO: This is skipped as the test only passes if the Observable has already been
-    //       subscribed to before the event is triggered which is not the desired behaviour
-    //       it should replay the action no matter when the subscribe is called
-    //       Github issue: https://gitlab.ccoe.ampaws.com.au/DDC/components/issues/7
-    xdescribe('When the userHasLoggedIn event has been subscribed to again', () => {
-        let loginStatusService : LoginStatusService;
-
-        beforeEach(() => {
-            loginStatusService = new LoginStatusService();
-        });
+    describe('Given loginSuccess has already been called, When userHasLoggedIn event is subscribed to', () => {
         it('should trigger the subscription event straight away', () => {
             loginStatusService.loginSuccess();
 
@@ -41,4 +67,34 @@ describe( 'Service: Login status', () => {
                 });
         });
     });
+
+    describe('When the session is already loggedIn, further checking of the session status', () => {
+        it('should only trigger the subscription event once', () => {
+            loginStatusService.userHasLoggedIn()
+                .scan((accumulatedValue) => {
+                        return accumulatedValue + 1;
+                    }, 0)
+                .subscribe((counter) => {
+                    expect(counter).toBe(1);
+                });
+
+            loginStatusService.loginSuccess();
+            loginStatusService.loginSuccess();
+            loginStatusService.loginSuccess();
+        });
+    });
+
+    describe('When the user is already loggedIn', () => {
+        it('should trigger the subscription event once when checkLoginStatus is invoked', fakeAsync(() => {
+            expect(loginStatusService.hasLoggedIn()).toBe(false);
+
+            loginStatusService.checkLoginStatus();
+
+            connection.mockRespond(res);
+            tick();
+
+            expect(loginStatusService.hasLoggedIn()).toBe(true);
+        }));
+    });
+
 } );

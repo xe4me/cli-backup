@@ -3,6 +3,5 @@ import { AmpBasicInfoBlockComponent } from '../../../app/modules/amp-basic-info-
 import { AmpContactDetailsBlockComponent } from '../../../app/modules/amp-contact-details-block/components/amp-contact-details-block/amp-contact-details-block.component';
 export const AMP_WELCOME_BLOCK_ENTRY_COMPONENTS = [
     AmpWelcomeBlockComponent,
-    AmpBasicInfoBlockComponent,
-    AmpContactDetailsBlockComponent
+    AmpBasicInfoBlockComponent
 ];

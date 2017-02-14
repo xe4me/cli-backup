@@ -107,7 +107,8 @@ export class ScrollService {
     public scrollToComponentSelector ( componentSelector : string,
                                        easing : string = 'easeInQuad',
                                        margin : number = this._offset,
-                                       mock : boolean = false ) {
+                                       mock : boolean = false,
+                                       duration : number = 800 ) {
 
         let sectionName;
         let element = this._dom.query( componentSelector );
@@ -130,7 +131,7 @@ export class ScrollService {
             return;
         }
         let options = {
-            duration       : 800,
+            duration,
             easing,
             offset         : margin,
             callbackBefore : () => {
@@ -150,6 +151,10 @@ export class ScrollService {
         setTimeout( () => {
             this.smoothScroll( element, options );
         }, 0 );
+    }
+
+    public jumpToComponentSelector ( componentSelector ) {
+        this.scrollToComponentSelector( componentSelector, 'easeInQuad', this._offset, false, 0 );
     }
 
     public updateOffset ( _offset : number ) {
@@ -274,7 +279,7 @@ export class ScrollService {
         options               = options || {};
         let classInstance     = this;
         // Options
-        let duration          = options.duration || 800;
+        let duration          = isNaN(options.duration) ? 800 : options.duration;
         let offset            = options.offset || 0;
         let easing : string   = options.easing;
         let callbackBefore    = options.callbackBefore || emptyFunction;
