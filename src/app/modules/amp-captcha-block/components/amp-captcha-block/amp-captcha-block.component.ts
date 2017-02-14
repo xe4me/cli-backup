@@ -71,8 +71,8 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
         if (!this.isDestroyed) {
             this.isDestroyed = true;
             this._cd.markForCheck();
+            this.__removeSelf( this.vcf );
             setTimeout( () => {
-                this.__removeSelf( this.vcf );
                 this.onNext();
             });
         }
