@@ -31,7 +31,8 @@ import {
     SubmitService,
     SaveService,
     TransformService,
-    SaveAndCloseService
+    SaveAndCloseService,
+    PrepopulationService
 } from '../app/services';
 
 @Injectable()
@@ -70,5 +71,6 @@ export const APP_RESOLVER_PROVIDERS = [
     BrowserDomAdapter,
     ThemeService,
     MdIconRegistry,
-    Renderer
+    Renderer,
+    PrepopulationService
 ];

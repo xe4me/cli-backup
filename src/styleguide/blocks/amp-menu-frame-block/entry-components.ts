@@ -5,7 +5,6 @@ import { AmpWelcomeBlockComponent } from '../../../app/modules/amp-welcome-block
 import { PageSectionComponent } from '../../../app/sections/page-section.component';
 export const AMP_MENU_FRAME_BLOCK_ENTRY_COMPONENTS = [
     AmpBasicInfoBlockComponent,
-    AmpContactDetailsBlockComponent,
     AmpMenuFrameBlockComponent,
     AmpWelcomeBlockComponent,
     PageSectionComponent

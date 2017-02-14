@@ -30,3 +30,4 @@ export { AmpConfirmationDialogService } from './amp-confirmation-dialog/amp-conf
 export { CustomerDetailsService } from './customer-details/customer-details.service';
 export { HydrationService } from './hydration/hydration.service';
 export { LoginStatusService } from './login/login-status.service';
+export { PrepopulationService } from './prepopulation/prepopulation.service';

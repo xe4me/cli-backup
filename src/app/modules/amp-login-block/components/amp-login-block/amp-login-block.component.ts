@@ -146,6 +146,7 @@ export class AmpLoginBlockComponent extends FormBlock implements OnDestroy, Afte
     }
 
     private onLoginSuccess() {
+        // TODO: Instead of assuming the session is valid. Call the this.loginStatusService.checkLoginStatus()
         this.emitLoginSuccess();
         this.removeLoginAndProceed();
     }

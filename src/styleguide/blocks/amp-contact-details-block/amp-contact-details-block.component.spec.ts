@@ -29,7 +29,6 @@ function loadComponent() {
     component = fixture.componentInstance;
     domElement = fixture.nativeElement;
     ngElement = fixture.debugElement;
-
     const controlGroup = ngElement.componentInstance.form.controls.contactDetails.controls;
     emailControl = controlGroup['emailAddress'];
     mobilePhoneControl = controlGroup['mobilePhone'];
@@ -125,14 +124,14 @@ describe('amp-contact-details-block component', () => {
                 expect(okButtonEl.hasAttribute('disabled')).toBe(false);
             });
         });
-        // Ignore test that makes other tests to fail...
-        // Don't know why, looks like these required=false props are applied all the time
-        xdescribe('When there is no required fields', () => {
-            it('should have its "OK" button enabled', () => {
+        describe('When there is no required fields', () => {
+            beforeEach(async(() => {
                 setCustomOverrides('controls[0].required', false);
                 setCustomOverrides('controls[1].required', false);
                 setCustomOverrides('controls[2].required', false);
                 loadComponent();
+            }));
+            it('should have its "OK" button enabled', () => {
                 fixture.detectChanges();
                 const okButtonEl = domElement.querySelector('button');
                 expect(okButtonEl).toBeDefined();
@@ -142,10 +141,16 @@ describe('amp-contact-details-block component', () => {
     });
 
     describe('Labels', () => {
+        beforeEach(async(() => {
+            // The method setDefaultState is not sufficient to clear out the previous test custom overrides
+            // Somewhere is caching/reusing the custom overrides and therefore must be explicitly be undone here.
+            setCustomOverrides('controls[0].required', true);
+            setCustomOverrides('controls[1].required', true);
+            setCustomOverrides('controls[2].required', false);
+
+            loadComponent();
+        }));
         describe('When no custom labels are given', () => {
-            beforeEach(() => {
-                loadComponent();
-            });
             it('should display the default label for "Email" field', () => {
                 const emailLabelEl = ngElement.query(By.css('label[for=Application-contactDetails-emailAddress]'));
                 expect(emailLabelEl).toBeDefined();
@@ -256,7 +261,6 @@ describe('amp-contact-details-block component', () => {
             });
         });
     });
-
 });
 
 @Component({
