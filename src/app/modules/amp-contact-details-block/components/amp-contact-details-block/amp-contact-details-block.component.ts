@@ -9,7 +9,6 @@ import {
 import { clone } from 'lodash';
 import { FormBlock } from '../../../../form-block';
 import {
-    CustomerDetailsService,
     ScrollService,
     SaveService,
     SaveAndCloseService

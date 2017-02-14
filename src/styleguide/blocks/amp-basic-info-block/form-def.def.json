@@ -12,15 +12,9 @@
             "commonBlock": false,
             "path": "modules/amp-basic-info-block/components/amp-basic-info-block/amp-basic-info-block.component",
             "custom": {
-                "blockTitle": "Tell us about yourself",
-                "isInitiallyActive": true,
-                "controls": [
-                    { "id": "Title" },
-                    { "id": "FirstName" },
-                    { "id": "MiddleName" },
-                    { "id": "LastName" },
-                    { "id": "DateOfBirth" }
-                ]
+                "overrides": {
+                    "isInitiallyActive": true
+                }
             }
         }
     ]

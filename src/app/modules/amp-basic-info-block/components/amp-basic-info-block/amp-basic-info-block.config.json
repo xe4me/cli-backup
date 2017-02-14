@@ -2,19 +2,26 @@
     "blockTitle": "Tell us about yourself",
     "controls": [
         {
-            "id": "title"
+            "id": "title",
+            "prepopMapping": "payload.title",
+            "prepopMappingParser": "parseTitle"
         },
         {
-            "id": "firstName"
+            "id": "firstName",
+            "prepopMapping": "payload.givenName"
         },
         {
-            "id": "middleName"
+            "id": "middleName",
+            "prepopMapping": "payload.firstMiddleName"
         },
         {
-            "id": "surName"
+            "id": "surName",
+            "prepopMapping": "payload.familyName"
         },
         {
-            "id": "dateOfBirth"
+            "id": "dateOfBirth",
+            "prepopMapping": "payload.birthDate",
+            "prepopMappingParser": "parseBirthDate"
         }
     ]
 }
