@@ -14,7 +14,8 @@ import {
 @Component({
     selector        : 'debit-card-block',
     template        : require( './debit-card-migration.html' ),
-    changeDetection : ChangeDetectionStrategy.OnPush
+    changeDetection : ChangeDetectionStrategy.OnPush,
+    styles          : [ require( '../debit-card-migration/debit-card-migration.scss' ) ]
 })
 export class DebitCardMigrationBlock extends FormBlock {
 
