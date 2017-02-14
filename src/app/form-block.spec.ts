@@ -70,7 +70,6 @@ describe( 'form-block', () => {
                 expect( basicInfoBlock.isAlive ).toBe( true );
             } );
             it( 'should be false after the block is destroyed', () => {
-                expect( basicInfoBlock.isAlive ).toBe( true );
                 destroyBasicInfo();
                 expect( basicInfoBlock.isAlive ).toBe( false );
             } );
@@ -85,14 +84,12 @@ describe( 'form-block', () => {
         describe( 'scroll', () => {
             it( 'it should listen to $scrolled event if is alive', fakeAsync( () => {
                 spyOn( basicInfoBlock, 'setActiveAndFocus' );
-                expect( basicInfoBlock.setActiveAndFocus ).not.toHaveBeenCalled();
                 fireMockScrollEvent();
                 tick( 1000 );
                 expect( basicInfoBlock.setActiveAndFocus ).toHaveBeenCalled();
             } ) );
             it( 'it should NOT listen to $scrolled event if it is destroyed (is not alive)', fakeAsync( () => {
                 spyOn( basicInfoBlock, 'setActiveAndFocus' );
-                expect( basicInfoBlock.setActiveAndFocus ).not.toHaveBeenCalled();
                 destroyBasicInfo();
                 fireMockScrollEvent();
                 tick( 1000 );
