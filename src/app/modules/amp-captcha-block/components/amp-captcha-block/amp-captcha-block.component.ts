@@ -3,7 +3,8 @@ import {
     Component,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    ViewContainerRef, AfterViewChecked
+    ViewContainerRef,
+    AfterViewChecked
 } from '@angular/core';
 import { FormBlock } from '../../../../form-block';
 import { ScrollService, SaveService } from '../../../../services';

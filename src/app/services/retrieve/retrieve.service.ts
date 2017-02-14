@@ -13,7 +13,7 @@ export class RetrieveService {
     constructor ( private http : AmpHttpService ) {
     }
 
-    public retrieve (referenceId, surname, dob, callback) {
+    public retrieve (referenceId : string, surname : string, dob : string, callback) {
 
         let headers = new Headers( { 'Content-Type' : 'application/json' } );
         let options = new RequestOptions( { headers } );
