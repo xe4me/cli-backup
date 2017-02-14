@@ -16,9 +16,7 @@ export class ApplicantGeneratorService {
         if ( this.isFirstApplicant( index ) ) {
             this.addCaptchaBlock( applicantSections );
             this.addBett3rChoiceBlock( applicantSections );
-        }
-
-        if ( !this.isFirstApplicant( index ) ) {
+        } else {
             this.changeTitleBasicInfoBlock( applicantSections );
         }
 
