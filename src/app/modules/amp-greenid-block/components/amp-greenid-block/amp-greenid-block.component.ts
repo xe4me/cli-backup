@@ -371,7 +371,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
                 rootApplicantFDN = this.__custom.rootApplicantFDN + '.' + this.__repeaterIndex + '.';
             }
         }
-        return {
+        let model = {
             title       : get(this.__form.value, rootApplicantFDN + this.__custom.titleFDN, ''),
             firstName   : get(this.__form.value, rootApplicantFDN + this.__custom.firstNameFDN, ''),
             middleNames : get(this.__form.value, rootApplicantFDN + this.__custom.middleNamesFDN, '') || '',
@@ -389,6 +389,11 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
                 streetType   : get(this.__form.value, rootApplicantFDN + this.__custom.streetTypeFDN, '')
             }
         };
+        console.log('Green Id Model (fndPrefix: ' + rootApplicantFDN + ')');
+        console.log(model);
+        console.log('Form Value was');
+        console.log(this.__form.value);
+        return model;
     }
 
 }
