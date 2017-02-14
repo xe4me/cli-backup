@@ -9,7 +9,7 @@
                 class='palm-mt'
                 [id]="__custom.controls[0].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState">
+                [isInSummaryState]="isTitleInSummaryState">
                 <template let-option="option">
                     {{ option.label }}
                 </template>
@@ -21,14 +21,14 @@
             <amp-first-name
                 [id]="__custom.controls[1].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState">
+                [isInSummaryState]="isFirstNameInSummaryState">
             </amp-first-name>
         </div>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12 lap-and-up-pr">
             <amp-input
                 [id]="__custom.controls[2].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState"
+                [isInSummaryState]="isMiddleNameInSummaryState"
                 [label]="'Middle name(s)'"
                 [showOptional]="false"
                 [pattern]="'^[A-Za-z][A-Z|a-z|\'| |-]*[a-z]$FLAGS:g'"
@@ -41,7 +41,7 @@
             <amp-last-name
                 [id]="__custom.controls[3].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState">
+                [isInSummaryState]="isLastNameInSummaryState">
             </amp-last-name>
         </div>
     </amp-form-row>
@@ -50,7 +50,7 @@
             <amp-input
                 [id]="__custom.controls[4].id"
                 [controlGroup]="__controlGroup"
-                [isInSummaryState]="isInSummaryState"
+                [isInSummaryState]="isDateOfBirthInSummaryState"
                 [label]="'Date of birth'"
                 [required]="true"
                 [valDate]="true"
