@@ -41,7 +41,6 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
         this.autoDestroyIfNecessary();
         this.loginStatusService.userHasLoggedIn().subscribe( () => {
             this.autoDestroy();
-            this.onNext();
         } );
     }
 
