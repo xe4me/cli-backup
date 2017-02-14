@@ -39,24 +39,42 @@
         "blockTitle": "Tell us about yourself",
         "controls": [
             &#123;
-                "id": "title"
+                "id": "title",
+                "prepopMapping": "payload.title",
+                "prepopMappingParser": "parseTitle"
             &#125;,
             &#123;
-                "id": "firstName"
+                "id": "firstName",
+                "prepopMapping": "payload.givenName"
             &#125;,
             &#123;
-                "id": "middleName"
+                "id": "middleName",
+                "prepopMapping": "payload.firstMiddleName"
             &#125;,
             &#123;
-                "id": "surName"
+                "id": "surName",
+                "prepopMapping": "payload.familyName"
             &#125;,
             &#123;
-                "id": "dateOfBirth"
+                "id": "dateOfBirth",
+                "prepopMapping": "payload.birthDate",
+                "prepopMappingParser": "parseBirthDate"
             &#125;
         ]
     &#125;
             </code>
         </pre>
+    </article>
+
+    <article class="section">
+        <h2 class="mb- ml mt+">Prepopulation</h2>
+        <p>
+            After instantiation, the block will subscribe to a 'login success' event.
+            When received, it will call the Customer API and update its
+            fields accordingly, hence the 'prepopMapping' and 'prepopMappingParser' properties in the form-def.<br>
+            'prepopMapping' indicates where to find the field in the Customer API response payload.<br>
+            'prepopMappingParser' allows to apply some transformation. Ex: Change 1949-02-01 to 01/02/1949.
+        </p>
     </article>
 
     <article class="section">

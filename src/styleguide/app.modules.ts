@@ -31,6 +31,7 @@ import { AmpTabsModule } from '../app/modules/amp-tabs';
 import { AmpSingleJointBlockModule } from '../app/modules/amp-single-joint-block/amp-single-joint-block.module';
 import { AmpNewOrExistingCustomerBlockModule } from '../app/modules/amp-new-or-existing-customer-block';
 import { AmpContactDetailsBlockModule } from '../app/modules/amp-contact-details-block';
+import { AmpBasicInfoBlockModule } from '../app/modules/amp-basic-info-block/amp-basic-info-block.module';
 
 export const AMP_MODULES = [
     AmpTooltipModule.forRoot(),
@@ -65,5 +66,6 @@ export const AMP_MODULES = [
     AmpSingleJointBlockModule,
     AmpNewOrExistingCustomerBlockModule,
     AmpTabsModule,
-    AmpContactDetailsBlockModule
+    AmpContactDetailsBlockModule,
+    AmpBasicInfoBlockModule
 ];
