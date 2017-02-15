@@ -10,7 +10,8 @@ import { FormBlock } from '../../../../form-block';
 import {
     ScrollService,
     SaveService,
-    SaveAndCloseService
+    SaveAndCloseService,
+    GreenIdStatusService
 } from '../../../../services';
 import { PrepopAmpBasicInfoService } from '../../services/prepop-amp-basic-info.service';
 
@@ -24,11 +25,14 @@ const defaultBlockProps = require( './amp-basic-info-block.config.json' );
 } )
 export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewInit {
 
+    private showOkButton : boolean = true;
+
     protected __custom = clone( defaultBlockProps );
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   private prepopAmpBasicInfoService : PrepopAmpBasicInfoService,
+                  private greenIdStatusService : GreenIdStatusService,
                   @Optional() private saveCloseService : SaveAndCloseService,
                   scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
@@ -40,6 +44,13 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
         if ( this.__isRetrieved ) {
             this.showSaveAndCloseButton();
         }
+        this.greenIdStatusService
+            .isGreenIdVerified()
+            .takeWhile( () => this.isAlive )
+            .subscribe( () => {
+                this.disableOkAndChangeButton();
+                this._cd.markForCheck();
+            } );
     }
 
     onNext () {
@@ -78,4 +89,7 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
             || this.isInSummaryState;
     }
 
+    private disableOkAndChangeButton () : void {
+        this.showOkButton = false;
+    }
 }

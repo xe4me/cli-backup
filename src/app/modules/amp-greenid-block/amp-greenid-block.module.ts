@@ -6,6 +6,7 @@ import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpButtonModule } from '../amp-button/amp-button.module';
 import { AmpFormModule } from '../amp-form/amp-form.module';
 import { AmpCheckboxModule } from '../amp-checkbox/amp-checkbox.module';
+import { GreenIdStatusService } from '../../services/green-id/green-id-status.service';
 
 const DECLARATIONS = [ AmpGreenIdBlockComponent ];
 
@@ -18,7 +19,10 @@ const DECLARATIONS = [ AmpGreenIdBlockComponent ];
         AmpFormModule
     ],
     entryComponents : DECLARATIONS,
-    providers : [ AmpGreenIdServices, Http ],
+    providers : [
+        Http,
+        AmpGreenIdServices
+    ],
     exports : DECLARATIONS
 } )
 export class AmpGreenIdBlockModule {

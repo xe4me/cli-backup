@@ -6,6 +6,7 @@ import {
     Input,
     Output,
     OnDestroy,
+    AfterViewInit,
     ViewEncapsulation,
     EventEmitter,
     ViewChild
@@ -25,8 +26,11 @@ import { AmpCheckboxComponent } from '../../../amp-checkbox';
 import { AmpGreenIdServices } from '../../services/amp-greenid-service';
 import { IGreenIdFormModel } from '../../interfaces/form-model';
 import { FormBlock } from '../../../../form-block';
-import { SaveService } from '../../../../services/save/save.service';
-import { ScrollService } from '../../../../services/scroll/scroll.service';
+import {
+    SaveService,
+    ScrollService,
+    GreenIdStatusService
+} from '../../../../services';
 
 @Component( {
     selector : 'amp-greenid-block',
@@ -36,7 +40,7 @@ import { ScrollService } from '../../../../services/scroll/scroll.service';
     styles : [ require( './amp-greenid-block.component.scss' ) ],
     encapsulation : ViewEncapsulation.None
 } )
-export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDestroy {
+export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDestroy, AfterViewInit {
 
     public static verificationStatuses = {
         VERIFIED : 'VERIFIED',
@@ -88,6 +92,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
                   private ampGreenIdServices : AmpGreenIdServices,
+                  private greenIdStatusService : GreenIdStatusService,
                   private sanitizer : DomSanitizer ) {
         super( saveService, _cd, scrollService );
     }
@@ -122,6 +127,15 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         if ( !this.keepControl && this.__controlGroup && this.id ) {
             this.__controlGroup.removeControl( this.id );
         }
+    }
+
+    public ngAfterViewInit () {
+        if ( this.__isRetrieved ) {
+            if( this.verificationSuccessful ) {
+                this.greenIdStatusService.greenIdVerified();
+            }
+        }
+        super.ngAfterViewInit();
     }
 
     private startVerification () {
@@ -269,6 +283,9 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         this.verificationStatusControl.setValue( verificationStatus );
         this.$complete.emit( verificationStatus );
         this.showOkButton = true;
+        if( this.verificationSuccessful ) {
+            this.greenIdStatusService.greenIdVerified();
+        }
         this._cd.markForCheck();
     }
 
@@ -284,7 +301,6 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_WITH_CHANGES,
             AmpGreenIdBlockComponent.verificationStatuses.VERIFIED_ADMIN
         ].includes( this.verificationStatusControl.value );
-
     }
 
     private get verificationSkipped () {
