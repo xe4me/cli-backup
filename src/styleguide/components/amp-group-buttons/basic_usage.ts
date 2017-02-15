@@ -2,51 +2,83 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ThemeService } from '../../services/theme';
 @Component( {
-    selector : 'amp-group-buttons-block-basic-usage',
+    selector    : 'amp-group-buttons-block-basic-usage',
     templateUrl : './basic_usage.html',
-    styles : [ require( './basic_usage.scss' ) ]
+    styles      : [ require( './basic_usage.scss' ) ]
 } )
 
 export default class AmpGroupButtonComponentBasicUsage {
-    controlGroup : FormGroup = new FormGroup( {} );
-    private required = true;
+    controlGroup : FormGroup     = new FormGroup( {} );
+    private required             = true;
+    private disbaled             = false;
     private fullOrPartialButtons = {
-        buttons : [
+        buttons       : [
             {
-                id : 'fullId',
+                id    : 'fullId',
                 value : 'full',
                 label : 'Full sale'
             },
             {
-                id : 'partialId',
+                id    : 'partialId',
                 value : 'partial',
                 label : 'Partial sale'
             }
         ],
         fullOrPartial : 'fullOrPartial'
     };
-    private booleanOptions = {
-        buttons : [
+    private booleanOptions       = {
+        buttons   : [
             {
-                id : 'Yes',
+                id    : 'Yes',
                 value : true,
                 label : 'Yes'
             },
             {
-                id : 'No',
+                id    : 'No',
                 value : false,
                 label : 'No'
             }
         ],
         groupName : 'booleanOptions'
     };
-    private color = 'red';
+    private longTextOptions      = {
+        buttons   : [
+            {
+                id    : 'me',
+                value : 'me',
+                label : 'Just me'
+            },
+            {
+                id    : 'us',
+                value : 'us',
+                label : 'Me and someone else'
+            }
+        ],
+        groupName : 'longTextOptions'
+    };
+    private threeButtonOptions   = {
+        buttons   : [
+            {
+                id    : 'me',
+                value : 'me',
+                label : 'Just me'
+            },
+            {
+                id    : 'you',
+                value : 'you',
+                label : 'Just you'
+            },
+            {
+                id    : 'us',
+                value : 'us',
+                label : 'Me and someone else'
+            }
+        ],
+        groupName : 'threeButtonOptions'
+    };
+    private color                = 'red';
 
     constructor( private  themeService : ThemeService ) {
-    }
-
-    private get control() {
-        return this.controlGroup.controls[ 'fullOrPartial' ];
     }
 
     private onButtonClick() {

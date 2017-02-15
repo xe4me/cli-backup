@@ -5,6 +5,7 @@
 $switch-height                             : 60px;
 $switch-border-width                       : 1px;
 $switch-font-size                          : 18px;
+$switch-font-size-mobile                   : 14px;
 $switch-border-color                       : $amp-colour-sky-blue;
 $switch-background-color                   : $amp-colour-white;
 $switch-color                              : $amp-colour-sky-blue;
@@ -35,68 +36,66 @@ $switch-disabled-selected-background-color : $amp-colour-grey-darkest;
     min-width    : 260px;
     table-layout : fixed;
     overflow     : hidden;
-    input {
+    label {
         &:not([disabled]) {
-            + label {
-                &:hover {
-                    cursor              : pointer;
-                    color               : $switch-hover-color;
-                    background-color    : $switch-hover-background-color;
-                }
+            &:hover {
+                cursor           : pointer;
+                color            : $switch-hover-color;
+                background-color : $switch-hover-background-color;
             }
-            &:checked {
-                & + label {
-                    color               : $switch-selected-color;
-                    background-color    : $switch-selected-background-color;
-                }
+            &[checked] {
+                color            : $switch-selected-color;
+                background-color : $switch-selected-background-color;
             }
         }
         &[disabled] {
-            &:not(checked) {
-                & + label {
-                    border              : solid $switch-disabled-border-color $switch-border-width;
-                    color               : $switch-disabled-color;
-                    background-color    : $switch-disabled-background-color;
-                }
+            &:not([checked]) {
+                border           : solid $switch-disabled-border-color $switch-border-width;
+                color            : $switch-disabled-color;
+                background-color : $switch-disabled-background-color;
             }
-            &:checked {
-                & + label {
-                    color               : $switch-disabled-selected-color;
-                    background-color    : $switch-disabled-selected-background-color;
-                }
+            &[checked] {
+                color            : $switch-disabled-selected-color;
+                background-color : $switch-disabled-selected-background-color;
+                border-color     : $switch-disabled-selected-background-color;
             }
         }
     }
 
-    > span {
-        overflow      : hidden;
-        text-overflow : ellipsis;
-        white-space   : nowrap;
-        display       : table-cell;
-        margin-left   : -2px;
-        &:nth-child(n+1) label {
+    label {
+        @include transition(all 300ms linear);
+        @include amp-family($switch-font-family);
+        overflow         : hidden;
+        text-overflow    : ellipsis;
+        margin-left      : -2px;
+        border           : solid $switch-border-color $switch-border-width;
+        color            : $switch-color;
+        height           : $switch-height;
+        line-height      : 1.6;
+        box-sizing       : border-box;
+        display          : table-cell;
+        vertical-align   : middle;
+        width            : 100%;
+        min-width        : 130px;
+        background-color : $switch-background-color;
+        font-size        : $switch-font-size;
+        font-weight      : 600;
+        text-align       : center;
+        text-shadow      : none;
+        padding          : 10px 20px;
+
+        @include media-query('tablet-and-down') {
+            padding   : 10px;
+            font-size : $switch-font-size-mobile;
+        }
+
+        &:nth-child(n+1) {
             border-left : 0;
         }
-        &:first-child label {
+
+        &:first-child {
             border-left : solid $switch-border-color $switch-border-width;
         }
-        label {
-            @include transition(all 300ms linear);
-            border           : solid $switch-border-color $switch-border-width;
-            color            : $switch-color;
-            height           : $switch-height;
-            line-height      : $switch-height - (4*$switch-border-width);
-            box-sizing       : border-box;
-            display          : inline-block;
-            width            : 100%;
-            min-width        : 130px;
-            @include amp-family($switch-font-family);
-            background-color : $switch-background-color;
-            font-size        : $switch-font-size;
-            font-weight      : 600;
-            text-align       : center;
-            text-shadow      : none;
-            padding          : 0 20px;
-        }
     }
+
 }

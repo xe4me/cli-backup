@@ -2,6 +2,7 @@ import {
     Component,
     EventEmitter,
     ElementRef,
+    AfterViewInit,
     ChangeDetectorRef,
     ChangeDetectionStrategy
 } from '@angular/core';
@@ -37,7 +38,7 @@ export interface GrouButtonOption {
     providers       : [ RadioControlRegistry ],
     outputs         : [ 'select' ]
 } )
-export class AmpGroupButtonsComponent extends BaseControl {
+export class AmpGroupButtonsComponent extends BaseControl implements AfterViewInit {
     public keepControl : boolean      = false;
     public selectedItem : GrouButtonOption;
     private buttons;
@@ -47,21 +48,21 @@ export class AmpGroupButtonsComponent extends BaseControl {
     private hasBooleanValue : boolean = false;
     private select                    = new EventEmitter<any>();
 
-    constructor ( private changeDetector : ChangeDetectorRef,
-                  private elem : ElementRef,
-                  private scrollService : ScrollService ) {
+    constructor( private changeDetector : ChangeDetectorRef,
+                 private elem : ElementRef,
+                 private scrollService : ScrollService ) {
         super();
     }
 
-    private set groupName ( _id ) {
+    private set groupName( _id ) {
         this._id = _id;
     }
 
-    private get groupName () {
+    private get groupName() {
         return this._id;
     }
 
-    updateValidators () {
+    updateValidators() {
         if ( this.control ) {
             let validators = Validators.compose( [
                 RequiredValidator.requiredValidation( this.required, this.hasBooleanValue ),
@@ -73,7 +74,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
         }
     }
 
-    ngAfterViewInit () : any {
+    ngAfterViewInit() : any {
         this.checkIfHasBooleanValue();
         this.control
             .valueChanges
@@ -81,6 +82,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
             .subscribe( ( changes ) => {
                 if ( changes !== undefined && changes !== null ) {
                     this.select.emit( changes );
+                    this.changeDetector.markForCheck();
                 }
             } );
         if ( this.defaultValue ) {
@@ -91,7 +93,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
         return undefined;
     }
 
-    private onClick ( option : GrouButtonOption ) {
+    private onClick( option : GrouButtonOption ) {
         this.selectedItem = option;
         if ( this.scrollOutUnless && option.value !== this.scrollOutUnless ) {
             this.scrollService.scrollMeOut( this.elem, 'easeInQuad', 60 );
@@ -100,7 +102,7 @@ export class AmpGroupButtonsComponent extends BaseControl {
         }
     }
 
-    private checkIfHasBooleanValue () {
+    private checkIfHasBooleanValue() {
         if ( this.buttons ) {
             for ( const button of this.buttons ) {
                 this.hasBooleanValue = typeof button.value === 'boolean';
