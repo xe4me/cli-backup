@@ -1,7 +1,7 @@
 <amp-form-block [context]="context()" buttonsTheme="'tools'" [withOkButton]="false">
     <div class="error-container" *ngIf="errorCode">
-        <span class="error-icon"></span>
-        <p class="error-body">{{ errorCode | i18nSelect: __custom.errorCodeMap }}</p>
+        <span class="icon icon--danger-filled"></span>
+        <span class="error-body">{{ errorCode | i18nSelect: __custom.errorCodeMap }}</span>
     </div>
     <amp-form-row>
         <div class="grid__item_floated palm-1/1 tablet-1/1 lap-and-up-3/12">
