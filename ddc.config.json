@@ -1,5 +1,15 @@
 {
     "dockerBuildSpeedOptimisation": true,
+     "resourceQuota": {
+      "limits": {
+        "cpu": "200m",
+        "memory": "100Mi"
+      },
+      "requests": {
+        "cpu": "100m",
+        "memory": "50Mi"
+      }
+    },
     "environment": {
         "dev": {
             "AMP_ROOT_URL": "https://www-amp-com-au-dev.digital-pilot.ampaws.com.au/",
