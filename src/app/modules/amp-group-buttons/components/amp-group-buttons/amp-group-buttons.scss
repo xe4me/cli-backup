@@ -2,25 +2,26 @@
 @import './themes/theme-form';
 @import './themes/theme-tools';
 
-$switch-height : 60px;
-$switch-border-width : 1px;
-$switch-font-size : 18px;
-$switch-font-size-mobile : 14px;
-$switch-border-color : $amp-colour-sky-blue;
-$switch-background-color : $amp-colour-white;
-$switch-color : $amp-colour-sky-blue;
-$switch-font-family : $amp-font-open-sans-semibold;
+$switch-height                             : 60px;
+$switch-border-width                       : 1px;
+$switch-font-size                          : 18px;
+$switch-font-size-mobile                   : 14px;
+$switch-border-color                       : $amp-colour-sky-blue;
+$switch-background-color                   : $amp-colour-white;
+
+$switch-color                              : $amp-colour-sky-blue;
+$switch-font-family                        : $amp-font-open-sans-semibold;
 // Switch hover state
-$switch-hover-background-color : $amp-colour-secondary-lighter;
-$switch-hover-color : $amp-colour-primary;
+$switch-hover-background-color             : $amp-colour-secondary-lighter;
+$switch-hover-color                        : $amp-colour-primary;
 // Switch selected state
-$switch-selected-background-color : $amp-colour-sky-blue;
-$switch-selected-color : $amp-colour-white;
+$switch-selected-background-color          : $amp-colour-sky-blue;
+$switch-selected-color                     : $amp-colour-white;
 // Switch disabled state
-$switch-disabled-border-color : $amp-colour-grey-darkest;
-$switch-disabled-color : $amp-colour-grey-darkest;
-$switch-disabled-background-color : $amp-colour-white;
-$switch-disabled-selected-color : $amp-colour-white;
+$switch-disabled-border-color              : $amp-colour-grey-darkest;
+$switch-disabled-color                     : $amp-colour-grey-darkest;
+$switch-disabled-background-color          : $amp-colour-white;
+$switch-disabled-selected-color            : $amp-colour-white;
 $switch-disabled-selected-background-color : $amp-colour-grey-darkest;
 
 :host {
