@@ -56,7 +56,7 @@ export class PageSectionComponent extends BlockLoaderAbstracts {
             if ( this.__isRetrieved ) {
                 this.isHidden = false;
             } else {
-                this.scrolledSubscription = this.scrollService.$scrolling.subscribe(( changes ) => {
+                this.scrollService.$scrolling.takeWhile(() => this.isHidden).subscribe(( changes ) => {
                     if (changes &&
                         changes.componentSelector &&
                         this.isBlockInCurrentSection( changes ) &&
@@ -67,7 +67,6 @@ export class PageSectionComponent extends BlockLoaderAbstracts {
 
                         this.scrollService.stopAnimation()
                             .then(() => {
-                                this.scrolledSubscription.unsubscribe();
                                 this.scrollService.scrollToNextUndoneBlock(this.__form);
                             });
                     }
