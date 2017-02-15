@@ -67,6 +67,11 @@ describe( 'validations', () => {
             jasmine.clock().mockDate( today );
         } );
 
+        afterEach( () => {
+            // Restore today's date
+            jasmine.clock().mockDate();
+        } );
+
         describe( 'when giving a valid date of birth (age = 20)', () => {
             it( 'should be considered as valid', () => {
                 // Age = 20 years 0 month 1 day

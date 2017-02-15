@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { Component } from '@angular/core';
 import { FormsModule, FormGroup } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -202,6 +203,15 @@ describe('amp-basic-info-block component', () => {
     });
 
     describe('Minimum age', () => {
+        beforeEach(() => {
+            // Mock today's date
+            const today = moment('2015-02-15').toDate();
+            jasmine.clock().mockDate(today);
+        });
+        afterEach(() => {
+            // Restore today's date
+            jasmine.clock().mockDate();
+        });
         describe('When no minimum age is defined', () => {
             it('any value should be marked as valid', () => {
                 loadComponent();
@@ -209,18 +219,18 @@ describe('amp-basic-info-block component', () => {
                 expect(dateOfBirthControl._status).toBe('VALID');
             });
         });
-        describe('When a minimum age is defined', () => {
-            it('an invalid value should be marked as invalid', () => {
+        describe('When a minimum age is defined (minAge = 18)', () => {
+            it('an invalid value should be marked as invalid (age = 16)', () => {
                 setCustomOverrides('controls[4].minAge', 18);
                 loadComponent();
-                dateOfBirthControl.setValue('11/11/2012');
+                dateOfBirthControl.setValue('11/11/1998');
                 expect(dateOfBirthControl._status).toBe('INVALID');
                 expect(dateOfBirthControl._errors.minAge.text.trim()).toEqual('You must be older than 18 years old.');
             });
-            it('a valid value should be marked as valid', () => {
+            it('a valid value should be marked as valid (age = 22)', () => {
                 setCustomOverrides('controls[4].minAge', 18);
                 loadComponent();
-                dateOfBirthControl.setValue('11/11/1982');
+                dateOfBirthControl.setValue('11/11/1992');
                 expect(dateOfBirthControl._status).toBe('VALID');
             });
         });
