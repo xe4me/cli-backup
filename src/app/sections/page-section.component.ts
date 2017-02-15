@@ -27,8 +27,9 @@ import { BlockLoaderAbstracts } from '../abstracts';
 export class PageSectionComponent extends BlockLoaderAbstracts {
 
     public isHidden : boolean;
-    public scrolledSubscribtion;
+    public scrolledSubscription;
     public isATab = false;
+    public sectionReveal = false;
 
     constructor( public vcf : ViewContainerRef,
                  public scrollService : ScrollService,
@@ -37,17 +38,48 @@ export class PageSectionComponent extends BlockLoaderAbstracts {
     }
 
     ngOnInit () {
-        this.isATab   = this.__custom ? this.__custom.isATab : false;
-        this.isHidden = this.isATab;
+        this.__custom = this.__custom || {};
+        this.isATab   = this.__custom.isATab;
+        this.sectionReveal   = this.__custom.sectionReveal;
+        this.isHidden = this.isATab || this.sectionReveal;
+
         if ( this.isATab ) {
-            this.scrolledSubscribtion =
+            this.scrolledSubscription =
                 this.scrollService.$scrolled.subscribe( ( changes : { section : string, componentSelector : string } ) => {
                     if ( changes && changes.componentSelector ) {
-                        this.isHidden = changes.componentSelector.indexOf( this.getFdnJoined( this.__fdn ) ) < 0;
+                        this.isHidden = !this.isBlockInCurrentSection( changes );
                     }
                 } );
         }
+
+        if ( this.sectionReveal ) {
+            if ( this.__isRetrieved ) {
+                this.isHidden = false;
+            } else {
+                this.scrolledSubscription = this.scrollService.$scrolling.subscribe(( changes ) => {
+                    if (changes &&
+                        changes.componentSelector &&
+                        this.isBlockInCurrentSection( changes ) &&
+                        this.isHidden) {
+
+                        this.isHidden = false;
+                        this._cd.markForCheck();
+
+                        this.scrollService.stopAnimation()
+                            .then(() => {
+                                this.scrolledSubscription.unsubscribe();
+                                this.scrollService.scrollToNextUndoneBlock(this.__form);
+                            });
+                    }
+                });
+            }
+        }
+
         this.updateLabel();
+    }
+
+    isBlockInCurrentSection ( changes ) {
+        return changes.componentSelector.indexOf( this.getFdnJoined( this.__fdn ) ) > -1;
     }
 
     updateLabel () {
@@ -68,8 +100,8 @@ export class PageSectionComponent extends BlockLoaderAbstracts {
     }
 
     ngOnDestroy () {
-        if ( this.scrolledSubscribtion ) {
-            this.scrolledSubscribtion.unsubscribe();
+        if ( this.scrolledSubscription ) {
+            this.scrolledSubscription.unsubscribe();
         }
     }
 }
