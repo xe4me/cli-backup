@@ -9,7 +9,7 @@ export class GreenIdStatusService {
 
     private eventSource : Observable<any>;
     private eventSubject : Subject<any>;
-    private greenIdResults : Array<{}> = [];
+    private greenIdResults : boolean[] = [];
 
     public constructor () {
         this.eventSubject = new Subject();

@@ -5,7 +5,6 @@ import {
     ViewChild
 } from '@angular/core';
 import { arrayJoinByDash } from './modules/amp-utils';
-import { Subscription } from 'rxjs';
 import { SaveService } from './services/save/save.service';
 import { ScrollService } from './services/scroll/scroll.service';
 import { AutoFocusOnDirective } from './modules/amp-directives/directives/auto-focus-on/auto-focus-on.directive';
@@ -22,7 +21,6 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
     protected isAlive : boolean          = true;
     protected selectorName : string      = 'default-form-block-selector-name';
     protected noScroll                   = false;
-    private scrollSubscription : Subscription;
     private autoSave : boolean           = true;
 
     constructor( protected saveService : SaveService,
@@ -47,7 +45,6 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
 
     public ngOnDestroy() {
         this.isAlive = false;
-        this.unSubscribeFromEvents();
     }
 
     public autoFocus() {
@@ -107,20 +104,14 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
 
     protected subscribeToScrollEvents() {
         if ( !this.noScroll ) {
-            this.scrollSubscription = this.scrollService.$scrolled.subscribe( ( changes ) => {
-                if ( changes.componentSelector && changes.componentSelector === this.selectorName ) {
-                    this.isInSummaryState = false;
-                    this.isActive         = true;
-                    this.autoFocus();
-                    this._cd.markForCheck();
-                }
-            } );
-        }
-    }
-
-    private unSubscribeFromEvents() {
-        if ( this.scrollSubscription ) {
-            this.scrollSubscription.unsubscribe();
+            this.scrollService
+                .$scrolled
+                .takeWhile( () => this.isAlive )
+                .subscribe( ( changes ) => {
+                    if ( changes.componentSelector && changes.componentSelector === this.selectorName ) {
+                        this.setActiveAndFocus();
+                    }
+                } );
         }
     }
 
@@ -144,8 +135,14 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
                 link : null
             } );
         } else {
-            console.warn( 'ewt object is not properly loaded' );
+            console.info( 'ewt object is not properly loaded' );
         }
     }
 
+    private setActiveAndFocus() {
+        this.isInSummaryState = false;
+        this.isActive         = true;
+        this.autoFocus();
+        this._cd.markForCheck();
+    }
 }

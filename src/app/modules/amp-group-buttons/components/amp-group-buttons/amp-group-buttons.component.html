@@ -1,17 +1,19 @@
 <div class='amp-group-button' [class.disabled]='disabled'>
-      <span *ngFor='let button of buttons; let i=index; let last = last;'>
-              <input class="sr-only"
-                     [attr.data-automation-id]='"group_button_" +randomizedId+"_"+button.id'
-                     type='radio'
-                     [attr.id]='randomizedId+"_"+button.id'
-                     [attr.name]='randomizedId'
-                     [formControl]='control'
-                     [attr.disabled]='disabled'
-                     [value]='button.value'
-                     [checked]='control.value===button.value'/>
-              <label (click)='onClick(button)'
-                     [attr.for]='randomizedId+"_"+button.id'>
-                  {{ button.label }}
-              </label>
-      </span>
+    <label
+        *ngFor='let button of buttons'
+        [attr.disabled]='disabled'
+        [attr.checked]='control.value===button.value?true:null'
+        (click)='onClick(button)'
+        [attr.for]='randomizedId+"_"+button.id'>
+        <input class="sr-only"
+               [attr.data-automation-id]='"group_button_" +randomizedId+"_"+button.id'
+               type='radio'
+               [attr.id]='randomizedId+"_"+button.id'
+               [attr.name]='randomizedId'
+               [formControl]='control'
+               [attr.disabled]='disabled'
+               [value]='button.value'
+               [checked]='control.value===button.value'/>
+            {{ button.label }}
+    </label>
 </div>

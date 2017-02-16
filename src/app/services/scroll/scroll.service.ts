@@ -22,6 +22,7 @@ export class ScrollService {
     private lastScrollPosition;
     private _window          = window;
     private _offset : number = 0;
+    private runAnimation = null;
 
     constructor ( private _dom : BrowserDomAdapter,
                   private zone : NgZone,
@@ -171,6 +172,15 @@ export class ScrollService {
         this.scrollToComponentSelector( selectorName );
     }
 
+    public stopAnimation () {
+        return new Promise( ( resolve ) => {
+            setTimeout(() => {
+                clearInterval( this.runAnimation );
+                resolve();
+            });
+        });
+    }
+
     public scrollMeOut ( el : ElementRef, easing : string = 'easeInQuad', margin : number = 0 ) {
         let parentElem = el.nativeElement.offsetParent;
         let style      = window.getComputedStyle( parentElem );
@@ -221,8 +231,6 @@ export class ScrollService {
         // }
         if ( isInView ) {
             this.lastScrollPosition = this.scrollTop;
-            // @TODO: currently bellow line is commented out , because if you uncomment it , any components that is
-            // using ScrollService will break in the styleguide. So we need to fix that and then uncomment bellow line
         }
         return isInView;
     }
@@ -362,7 +370,6 @@ export class ScrollService {
                 /**
                  * Stop the scrolling animation when the anchor is reached (or at the top/bottom of the page)
                  */
-                let runAnimation;
                 let stopAnimation   = () => {
                     currentLocation = getScrollLocation();
                     if ( containerPresent ) {
@@ -383,7 +390,7 @@ export class ScrollService {
                             internalHeight >= scrollHeight
                         )
                     ) { // stop
-                        clearInterval( runAnimation );
+                        this.stopAnimation();
                         callbackAfter( element );
                         setTimeout( () => {
                             window.scrollTo( 0, getEndLocation( element ) );
@@ -406,7 +413,7 @@ export class ScrollService {
                     stopAnimation();
                 };
                 callbackBefore( element );
-                runAnimation = setInterval( animateScroll, 16 );
+                this.runAnimation = setInterval( animateScroll, 16 );
             }, 0 );
     };
 

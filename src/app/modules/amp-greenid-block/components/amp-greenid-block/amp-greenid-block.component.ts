@@ -362,11 +362,10 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
 
     private updateGreenIdVerificationStatus () : void {
         if ( this.verificationSuccessful ) {
-            let applicantIndex = -1;
             if ( this.__custom.rootApplicantFDN ) {
-                applicantIndex = this.__custom.applicantIndex || this.__repeaterIndex;
+                let applicantIndex = this.__custom.applicantIndex || this.__repeaterIndex;
+                this.greenIdStatusService.greenIdVerified( applicantIndex );
             }
-            this.greenIdStatusService.greenIdVerified( applicantIndex );
         }
     }
 

@@ -49,7 +49,7 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
             .takeWhile( () => this.isAlive )
             .subscribe( ( greenIdResults ) => {
                 if ( greenIdResults[this.getCurrentApplicantIndex] ) {
-                    this.disableOkAndChangeButton();
+                    this.hideOkAndChangeButton();
                     this._cd.markForCheck();
                 }
             } );
@@ -95,7 +95,7 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
             || this.isInSummaryState;
     }
 
-    private disableOkAndChangeButton () : void {
+    private hideOkAndChangeButton () : void {
         this.showOkButton = false;
     }
 }

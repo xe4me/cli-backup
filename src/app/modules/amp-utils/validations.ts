@@ -1,5 +1,6 @@
-import { FormUtils } from './form-utils';
 import * as moment from 'moment';
+import { FormUtils } from './form-utils';
+
 export class RequiredValidator {
     public static requiredValidation ( required , booleanValue = false , isCheckbox = false ) {
         return ( c ) => {
@@ -33,6 +34,7 @@ export class RequiredValidator {
         };
     }
 }
+
 export class MaxLengthValidator {
     public static maxLengthValidation ( maxLength ) {
         return ( c ) => {
@@ -53,6 +55,7 @@ export class MaxLengthValidator {
         };
     }
 }
+
 export class MinLengthValidator {
     public static minLengthValidation ( minLength ) {
         return ( c ) => {
@@ -75,6 +78,7 @@ export class MinLengthValidator {
         };
     }
 }
+
 export class PatterValidator {
     public static patternValidator ( pattern ) {
         return ( c ) => {
@@ -112,6 +116,7 @@ export class PatterValidator {
         };
     }
 }
+
 export class DateValidator {
     public static dateValidator ( pattern , datePattern ) {
         return ( c ) => {
@@ -130,6 +135,7 @@ export class DateValidator {
         };
     }
 }
+
 export class MinDateValidator {
     public static minDateValidator ( minDate , datePattern ) {
         return ( c ) => {
@@ -155,6 +161,7 @@ export class MinDateValidator {
         };
     }
 }
+
 export class MaxDateValidator {
     public static maxDateValidator ( maxDate , datePattern ) {
         return ( c ) => {
@@ -179,6 +186,7 @@ export class MaxDateValidator {
         };
     }
 }
+
 export class MinFloatValidator {
     public static minFloatValidator ( minFloat ) {
         return ( c ) => {
@@ -203,6 +211,7 @@ export class MinFloatValidator {
         };
     }
 }
+
 export class MaxFloatValidator {
     public static maxFloatValidator ( maxFloat ) {
         return ( c ) => {
@@ -227,6 +236,7 @@ export class MaxFloatValidator {
         };
     }
 }
+
 export class MinAgeValidator {
     public static minAgeValidator ( minAge , datePattern ) {
         return ( c ) => {
@@ -236,7 +246,7 @@ export class MinAgeValidator {
                     ! new RegExp( datePattern ).test( c.value ) ||
                     age === null ||
                     age === undefined ||
-                    age > minAge ||
+                    age >= minAge ||
                     ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
@@ -252,6 +262,7 @@ export class MinAgeValidator {
         };
     }
 }
+
 export class MaxAgeValidator {
     public static maxAgeValidator ( maxAge , datePattern ) {
         return ( c ) => {
@@ -261,7 +272,7 @@ export class MaxAgeValidator {
                     ! new RegExp( datePattern ).test( c.value ) ||
                     age === null ||
                     age === undefined ||
-                    age < maxAge ||
+                    age <= maxAge ||
                     ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }
