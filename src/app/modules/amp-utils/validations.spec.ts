@@ -56,41 +56,43 @@ describe( 'validations', () => {
         } );
     } );
 
-    describe( 'MinAgeValidator - minAge = 18', () => {
+    describe( 'MinAgeValidator', () => {
+        describe( 'Given the minAge is 18', () => {
 
-        const minAge    = 18;
-        const noPattern = undefined;
+            const minAge    = 18;
+            const noPattern = undefined;
 
-        beforeEach( () => {
-            // Mock today's date
-            const today = moment( '2000-02-15' ).toDate();
-            jasmine.clock().mockDate( today );
-        } );
-
-        afterEach( () => {
-            // Restore today's date
-            jasmine.clock().mockDate();
-        } );
-
-        describe( 'when giving a valid date of birth (age = 20)', () => {
-            it( 'should be considered as valid', () => {
-                // Age = 20 years 0 month 1 day
-                const validationResult = MinAgeValidator.minAgeValidator( minAge, noPattern )( { value : '14/02/1980' } );
-                expect( validationResult ).toBeNull();
+            beforeEach( () => {
+                // Mock today's date
+                const today = moment( '2000-02-15' ).toDate();
+                jasmine.clock().mockDate( today );
             } );
-        } );
-        describe( 'when giving a valid date of birth (age = 18)', () => {
-            it( 'should be considered as valid', () => {
-                // Age = 18 years 0 month 1 day
-                const validationResult = MinAgeValidator.minAgeValidator( minAge, noPattern )( { value : '14/02/1982' } );
-                expect( validationResult ).toBeNull();
+
+            afterEach( () => {
+                // Restore today's date
+                jasmine.clock().mockDate();
             } );
-        } );
-        describe( 'when giving an invalid date of birth (age = 17)', () => {
-            it( 'should be considered as invalid', () => {
-                // Age = 17 years 0 month 1 day
-                const validationResult = MinAgeValidator.minAgeValidator( minAge, noPattern )( { value : '14/02/1983' } );
-                expect( validationResult ).not.toBeNull();
+
+            describe( 'when giving a date of birth that is older than the min age (20 years old)', () => {
+                it( 'should be considered as valid', () => {
+                    // Age = 20 years 0 month 1 day
+                    const validationResult = MinAgeValidator.minAgeValidator( minAge, noPattern )( { value : '14/02/1980' } );
+                    expect( validationResult ).toBeNull();
+                } );
+            } );
+            describe( 'when giving a date of birth that is the same age as the min age (18 years old)', () => {
+                it( 'should be considered as valid', () => {
+                    // Age = 18 years 0 month 1 day
+                    const validationResult = MinAgeValidator.minAgeValidator( minAge, noPattern )( { value : '14/02/1982' } );
+                    expect( validationResult ).toBeNull();
+                } );
+            } );
+            describe( 'when giving a date of birth that is younger than the min age (17 years old)', () => {
+                it( 'should be considered as invalid', () => {
+                    // Age = 17 years 0 month 1 day
+                    const validationResult = MinAgeValidator.minAgeValidator( minAge, noPattern )( { value : '14/02/1983' } );
+                    expect( validationResult ).not.toBeNull();
+                } );
             } );
         } );
     } );
@@ -106,21 +108,21 @@ describe( 'validations', () => {
             jasmine.clock().mockDate( today );
         } );
 
-        describe( 'when giving a valid date of birth (age = 99)', () => {
+        describe( 'when giving a date of birth that is younger than the max age (99 years old)', () => {
             it( 'should be considered as valid', () => {
                 // Age = 99 years 0 month 1 day
                 const validationResult = MaxAgeValidator.maxAgeValidator( maxAge, noPattern )( { value : '14/02/1901' } );
                 expect( validationResult ).toBeNull();
             } );
         } );
-        describe( 'when giving an invalid date of birth (age = 100)', () => {
+        describe( 'when giving a date of birth that is the same age as the max age (100 years old)', () => {
             it( 'should be considered as invalid', () => {
                 // Age = 100 years 0 month 1 day
                 const validationResult = MaxAgeValidator.maxAgeValidator( maxAge, noPattern )( { value : '14/02/1900' } );
                 expect( validationResult ).not.toBeNull();
             } );
         } );
-        describe( 'when giving an invalid date of birth (age = 101)', () => {
+        describe( 'when giving a date of birth that is older than the max age (101 years old)', () => {
             it( 'should be considered as invalid', () => {
                 // Age = 101 years 0 month 1 day
                 const validationResult = MaxAgeValidator.maxAgeValidator( maxAge, noPattern )( { value : '14/02/1899' } );
