@@ -71,7 +71,6 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
     }
 
     private autoDestroy () {
-        // because several events can make the object to be destroyed
         if (!this.isDestroyed) {
             this.isDestroyed = true;
             this._cd.markForCheck();
