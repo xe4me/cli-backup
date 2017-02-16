@@ -1,4 +1,4 @@
-FROM registry-ddc.digital-pilot.ampaws.com.au/amp-nodejs-with-angularcli:latest
+FROM registry-ddc.digital-pilot.ampaws.com.au/amp-nodejs-with-angularcli:latest-node6
 
 MAINTAINER "Francis Naoum" <francis_naoum@amp.com.au>
 
