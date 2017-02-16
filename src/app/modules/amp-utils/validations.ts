@@ -272,7 +272,7 @@ export class MaxAgeValidator {
                     ! new RegExp( datePattern ).test( c.value ) ||
                     age === null ||
                     age === undefined ||
-                    age < maxAge ||
+                    age <= maxAge ||
                     ! FormUtils.isValidDate( c.value ) ) {
                     return null;
                 }

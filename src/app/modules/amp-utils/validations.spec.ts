@@ -116,10 +116,10 @@ describe( 'validations', () => {
             } );
         } );
         describe( 'when giving a date of birth that is the same age as the max age (100 years old)', () => {
-            it( 'should be considered as invalid', () => {
+            it( 'should be considered as valid', () => {
                 // Age = 100 years 0 month 1 day
                 const validationResult = MaxAgeValidator.maxAgeValidator( maxAge, noPattern )( { value : '14/02/1900' } );
-                expect( validationResult ).not.toBeNull();
+                expect( validationResult ).toBeNull();
             } );
         } );
         describe( 'when giving a date of birth that is older than the max age (101 years old)', () => {
