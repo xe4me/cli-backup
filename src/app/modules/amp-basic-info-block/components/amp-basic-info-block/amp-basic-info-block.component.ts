@@ -25,9 +25,9 @@ const defaultBlockProps = require( './amp-basic-info-block.config.json' );
 } )
 export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewInit {
 
-    private showOkButton : boolean = true;
-
     protected __custom = clone( defaultBlockProps );
+
+    private showOkButton : boolean = true;
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
@@ -47,9 +47,11 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
         this.greenIdStatusService
             .isGreenIdVerified()
             .takeWhile( () => this.isAlive )
-            .subscribe( () => {
-                this.disableOkAndChangeButton();
-                this._cd.markForCheck();
+            .subscribe( ( greenIdResults ) => {
+                if ( greenIdResults[this.getCurrentApplicantIndex] ) {
+                    this.disableOkAndChangeButton();
+                    this._cd.markForCheck();
+                }
             } );
     }
 
@@ -82,6 +84,10 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
 
     get isDateOfBirthInSummaryState () {
         return this.isControlInSummaryState( 4 );
+    }
+
+    private get getCurrentApplicantIndex () {
+        return this.__custom.applicantIndex || this.__repeaterIndex;
     }
 
     private isControlInSummaryState ( controlIndex ) {

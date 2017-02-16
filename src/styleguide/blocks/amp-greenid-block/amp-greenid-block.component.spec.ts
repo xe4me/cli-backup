@@ -114,7 +114,7 @@ describe( 'Green id unit tests', () => {
             streetTypeFDN   : 'personalDetails.address.streetType'
         };
 
-        let ampGreenIdBlockCmp = new AmpGreenIdBlockComponent(null, null, null, null, null);
+        let ampGreenIdBlockCmp = new AmpGreenIdBlockComponent(null, null, null, null, null, null);
         ampGreenIdBlockCmp['__form'] = new FormGroup({
             personalDetails : new FormGroup({
                 title: new FormControl('Mr'),

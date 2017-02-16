@@ -131,9 +131,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
 
     public ngAfterViewInit () {
         if ( this.__isRetrieved ) {
-            if( this.verificationSuccessful ) {
-                this.greenIdStatusService.greenIdVerified();
-            }
+            this.updateGreenIdVerificationStatus();
         }
         super.ngAfterViewInit();
     }
@@ -283,9 +281,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         this.verificationStatusControl.setValue( verificationStatus );
         this.$complete.emit( verificationStatus );
         this.showOkButton = true;
-        if( this.verificationSuccessful ) {
-            this.greenIdStatusService.greenIdVerified();
-        }
+        this.updateGreenIdVerificationStatus();
         this._cd.markForCheck();
     }
 
@@ -362,6 +358,16 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
 
     private updateVerificationId ( newVerificationId : string ) : void {
         this.verificationIdControl.setValue( newVerificationId );
+    }
+
+    private updateGreenIdVerificationStatus () : void {
+        if ( this.verificationSuccessful ) {
+            let applicantIndex = -1;
+            if ( this.__custom.rootApplicantFDN ) {
+                applicantIndex = this.__custom.applicantIndex || this.__repeaterIndex;
+            }
+            this.greenIdStatusService.greenIdVerified( applicantIndex );
+        }
     }
 
     private onCreditCheckHeaderConsentClick () {

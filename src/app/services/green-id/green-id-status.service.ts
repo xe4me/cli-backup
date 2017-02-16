@@ -9,14 +9,16 @@ export class GreenIdStatusService {
 
     private eventSource : Observable<any>;
     private eventSubject : Subject<any>;
+    private greenIdResults : Array<{}> = [];
 
     public constructor () {
         this.eventSubject = new Subject();
         this.eventSource = this.eventSubject.publishReplay().refCount();
     }
 
-    public greenIdVerified () : void{
-        this.eventSubject.next( true );
+    public greenIdVerified ( applicantIndex : number ) : void {
+        this.greenIdResults[applicantIndex] = true;
+        this.eventSubject.next( this.greenIdResults );
     }
 
     public isGreenIdVerified () : Observable<any> {
