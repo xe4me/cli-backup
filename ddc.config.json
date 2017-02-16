@@ -10,7 +10,8 @@
         "memory": "50Mi"
       }
     },
-    "environment": {
+   "buildToolsImage": "amp-nodejs-buildtools:latest-node6",
+   "environment": {
         "dev": {
             "AMP_ROOT_URL": "https://www-amp-com-au-dev.digital-pilot.ampaws.com.au/",
             "DAM_CONTENT_URL": "https://amponline-uat.amp.com.au/content/dam/",
