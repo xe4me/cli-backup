@@ -41,6 +41,7 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
         super.ngAfterViewInit();
         this.autoDestroyIfNecessary();
         this.loginStatusService.userHasLoggedIn().subscribe( () => {
+            console.log('Captcha ' + this.__name + ' removed (hasLoggedIn)');
             this.autoDestroy();
         } );
     }
@@ -61,8 +62,10 @@ export class AmpCaptchaBlockComponent extends FormBlock implements AfterViewInit
 
     private autoDestroyIfNecessary () {
         if (!this.mainCaptcha && AmpCaptchaBlockComponent.alreadyValidated) {
+            console.log('Captcha ' + this.__name + ' removed (alreadyValidated)');
             this.autoDestroy();
         } else  if (this.retrieveService.hasBeenRetrieveSuccessfully) {
+            console.log('Captcha ' + this.__name + ' removed (hasBeenRetrieve)');
             this.autoDestroy();
         }
     }
