@@ -40,6 +40,7 @@ import { BaseControl } from '../../../../base-control';
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
+
     public keepControl : boolean = false;
     private _checked : boolean   = false;
     private _tabindex : number;
@@ -83,7 +84,7 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
     }
 
     get checked () {
-        // if the model are retrieved , the checked would still return the default false valur
+        // if the model are retrieved , the checked would still return the default false value
         // so the view wont tick the checkbox , bellow check is for this reason
         if ( this.control.value !== undefined ) {
             return this.control.value;
@@ -93,8 +94,10 @@ export class AmpCheckboxComponent extends BaseControl implements AfterViewInit {
     }
 
     set checked ( value ) {
-        this._checked = value;
-        this.control.setValue( this._checked );
+        if (this.control.value === undefined || this.control.value === null) {
+            this._checked = value;
+            this.control.setValue( this._checked );
+        }
     }
 
     public onChange ( $event ) {

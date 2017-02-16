@@ -2,20 +2,26 @@ import {
     Component,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
-    OnInit
+    OnInit,
+    AfterViewChecked,
+    ViewChild
 } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { FormBlock } from '../../../../form-block';
+import { FormModelService } from '../../../../services/form-model/form-model.service';
 import { ScrollService, SaveService } from '../../../../services';
+import { AmpCheckboxComponent } from '../../../amp-checkbox/components/amp-checkbox/amp-checkbox.component';
 
 @Component( {
     selector: 'amp-address-multi-block',
     template: require( './amp-address-multi-block.component.html' ),
     changeDetection: ChangeDetectionStrategy.OnPush
 } )
-export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
+export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit, AfterViewChecked {
 
-    private sameThanPrimaryApplicant : boolean = true;
+    @ViewChild('sameThanPrimaryApplicantCmp') private sameThanPrimaryApplicantCmp : AmpCheckboxComponent;
+
+    private _sameThanPrimaryApplicant : boolean;
     private primaryApplicantModel;
 
     private primaryApplicationBasicInfoControlGroup;
@@ -46,11 +52,11 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
 
     beforeOnNext () {
         super.beforeOnNext();
-
         if (this.sameThanPrimaryApplicant === true && this.__repeaterIndex > 0) {
             let model = cloneDeep( this.primaryApplicationAddressControlGroup.value );
             model[ this.__custom.controls[ 1 ].id ] = true; // 'sameThanPrimary'
             this.__controlGroup.setValue( model );
+            this._cd.markForCheck();
         }
     }
 
@@ -71,7 +77,14 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
                     firstName: query.firstName ? query.firstName : '',
                     surName: query.surName ? query.surName : ''
                 };
+                this._cd.markForCheck();
             } );
+        }
+    }
+
+    ngAfterViewChecked () {
+        if (this.sameThanPrimaryApplicantCmp && this.sameThanPrimaryApplicantCmp.control) {
+            this.sameThanPrimaryApplicant = this.sameThanPrimaryApplicantCmp.control.value;
         }
     }
 
@@ -115,6 +128,19 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
         return this.__repeaterIndex === 0;
     }
 
+    get sameThanPrimaryApplicant () {
+        if (this.isPrimaryApplicant) {
+            return undefined;
+        }
+        return this._sameThanPrimaryApplicant === undefined ? true : this._sameThanPrimaryApplicant;
+    }
+
+    set sameThanPrimaryApplicant ( value ) {
+        if (this._sameThanPrimaryApplicant !== value) {
+            this._sameThanPrimaryApplicant = value;
+        }
+    }
+
     get primaryApplicantName () {
         if (!this.primaryApplicantModel) {
             return '';
@@ -123,12 +149,16 @@ export class AmpAddressMultiBlockComponent extends FormBlock implements OnInit {
     }
 
     get isTheAddressRequired () {
-        return this.isPrimaryApplicant || !this.sameThanPrimaryApplicant;
+        return this.isPrimaryApplicant || this.sameThanPrimaryApplicant !== true;
+    }
+
+    private onSameThanPrimaryApplicantCheckboxBlured ( $event ) {
+        this._cd.detectChanges();
     }
 
     private onSameThanPrimaryApplicantCheckboxSelect ( $event ) {
         this.sameThanPrimaryApplicant = $event.target.checked;
-        this._cd.detectChanges();
+        this._cd.detectChanges(); // not working -> onBlur
     }
 
 }

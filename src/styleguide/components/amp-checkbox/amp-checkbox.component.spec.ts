@@ -87,7 +87,7 @@ describe( 'amp-checkbox component', () => {
         let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
         let Labels          = Element.querySelector( 'label' );
         fixture.detectChanges();
-        expect( Component.checkbox.checked ).toBe( false );
+        expect( Component.checkbox.checked ).toBe( null );
         expect( Component.control.valid ).toBe( false );
         expect( Component.control.errors.required ).toBeDefined();
         expect( Component.control.errors.required.text ).toEqual( Component.checkbox.errors.required );
@@ -140,7 +140,7 @@ describe( 'amp-checkbox component', () => {
         let Checkbox        = Element.querySelector( 'input[type="checkbox"]' );
         let Label           = Element.querySelector( 'label' );
         let ContainerElem   = Element.querySelector( '.container' );
-        expect( Component.control.value ).toBe( false );
+        expect( Component.control.value ).toBe( null );
         Label.click();
         fixture.detectChanges();
         expect( Component.checkboxEmittedValue ).toBe( true );
@@ -186,7 +186,7 @@ class AmpCheckboxTest {
             required : 'Checkbox field is required'
         },
         required    : true,
-        checked     : false,
+        checked     : null,
         scrollOutOn : null
     };
 
