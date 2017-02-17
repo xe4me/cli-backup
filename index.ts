@@ -58,7 +58,6 @@ export * from './src/app/modules/amp-slider';
 export * from './src/app/services';
 
 // Constants
-export { TimeframesAbstract } from './src/app/abstracts/timeframes/timeframes.abstract';
 export { LicenseesAbstract } from './src/app/abstracts/licensee/licensee.abstract';
 export { AssociationLengthAbstract } from './src/app/abstracts/association-length/association-length.abstract';
 export { ExerciseDateAbstract } from './src/app/abstracts/exercise-date/exercise-date.abstract';
