@@ -31,3 +31,4 @@ export { CustomerDetailsService } from './customer-details/customer-details.serv
 export { HydrationService } from './hydration/hydration.service';
 export { LoginStatusService } from './login/login-status.service';
 export { PrepopulationService } from './prepopulation/prepopulation.service';
+export { GreenIdStatusService } from './green-id/green-id-status.service';

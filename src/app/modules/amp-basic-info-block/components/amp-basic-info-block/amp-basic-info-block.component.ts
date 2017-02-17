@@ -10,7 +10,8 @@ import { FormBlock } from '../../../../form-block';
 import {
     ScrollService,
     SaveService,
-    SaveAndCloseService
+    SaveAndCloseService,
+    GreenIdStatusService
 } from '../../../../services';
 import { PrepopAmpBasicInfoService } from '../../services/prepop-amp-basic-info.service';
 
@@ -26,9 +27,12 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
 
     protected __custom = clone( defaultBlockProps );
 
+    private showOkButton : boolean = true;
+
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   private prepopAmpBasicInfoService : PrepopAmpBasicInfoService,
+                  @Optional() private greenIdStatusService : GreenIdStatusService,
                   @Optional() private saveCloseService : SaveAndCloseService,
                   scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
@@ -39,6 +43,17 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
         this.prepopAmpBasicInfoService.registerBlockForPrepop( this );
         if ( this.__isRetrieved ) {
             this.showSaveAndCloseButton();
+        }
+        if ( this.greenIdStatusService ) {
+            this.greenIdStatusService
+                .isGreenIdVerified()
+                .takeWhile( () => this.isAlive )
+                .subscribe( ( greenIdResults ) => {
+                    if ( greenIdResults[this.getCurrentApplicantIndex] ) {
+                        this.hideOkAndChangeButton();
+                        this._cd.markForCheck();
+                    }
+                } );
         }
     }
 
@@ -73,9 +88,16 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
         return this.isControlInSummaryState( 4 );
     }
 
+    private get getCurrentApplicantIndex () {
+        return this.__custom.applicantIndex || this.__repeaterIndex;
+    }
+
     private isControlInSummaryState ( controlIndex ) {
         return this.__controlGroup.get( this.__custom.controls[ controlIndex ].id )[ '__isPrepop' ]
             || this.isInSummaryState;
     }
 
+    private hideOkAndChangeButton () : void {
+        this.showOkButton = false;
+    }
 }

@@ -4,8 +4,11 @@ import { AmpSharedRootModule } from '../amp-shared-root/amp-shared-root.module';
 import { AmpDropdownModule } from '../amp-dropdown';
 import { AmpFormModule } from '../amp-form';
 import { AmpInputsModule } from '../amp-inputs';
-import { CustomerDetailsService } from '../../services/customer-details/customer-details.service';
-import { LoginStatusService } from '../../services/login/login-status.service';
+import {
+    CustomerDetailsService,
+    GreenIdStatusService,
+    LoginStatusService
+} from '../../services';
 import { PrepopAmpBasicInfoService } from './services/prepop-amp-basic-info.service';
 
 const DECLARATIONS = [ AmpBasicInfoBlockComponent ];
@@ -21,6 +24,7 @@ const DECLARATIONS = [ AmpBasicInfoBlockComponent ];
     ],
     providers : [
         CustomerDetailsService,
+        GreenIdStatusService,
         LoginStatusService,
         PrepopAmpBasicInfoService
     ],
