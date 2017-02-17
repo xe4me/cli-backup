@@ -3,13 +3,9 @@ import { HttpModule } from '@angular/http';
 import {
     async,
     ComponentFixture,
-    TestBed,
-    inject
+    TestBed
 } from '@angular/core/testing';
-import {
-    FormGroup,
-    FormControl
-} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { PrepopulationService } from '../../app/services/prepopulation/prepopulation.service';
@@ -29,10 +25,6 @@ let component;
 let domElement;
 let ngElement;
 
-let emailControl;
-let mobilePhoneControl;
-let homePhoneControl;
-
 let prepopulationService;
 let mockFormBlock;
 
@@ -42,7 +34,6 @@ function loadComponent() {
     component = fixture.componentInstance;
     domElement = fixture.nativeElement;
     ngElement = fixture.debugElement;
-
 }
 
 function setDefaultState() {
@@ -56,15 +47,13 @@ function setDefaultState() {
     };
 }
 
-function setCustomOverrides(prop, value) {
-    custom.overrides[prop] = value;
-}
-
 // Load the implementations that should be tested
 describe( 'Service: PrepopulationService' , () => {
+
     beforeEach(() => {
         setDefaultState();
     });
+
     describe('registerBlockForPrepop', () => {
 
         it('should trigger prepop method when loginStatusService.userHasLoggedIn and the customerDetailsService returns successfully', (done) => {
@@ -101,7 +90,7 @@ describe( 'Service: PrepopulationService' , () => {
 
         it('should not trigger prepop method for applicant 2', (done) => {
             delete mockFormBlock.__custom.applicantIndex;
-            mockFormBlock.__repeaterIndex = 2;
+            mockFormBlock.__repeaterIndex = 1;
 
             const mockLoginStatusService = new MockLoginStatusService(null);
             const mockCustomerDetailsService = new MockCustomerDetailsService(null);
@@ -120,6 +109,7 @@ describe( 'Service: PrepopulationService' , () => {
     });
 
     describe ( 'prepop', () => {
+
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [
@@ -257,6 +247,7 @@ class MockLoginStatusService extends LoginStatusService {
     public checkLoginStatus () {
     }
 }
+
 class MockCustomerDetailsService extends CustomerDetailsService {
     public customerDetailsPromise = Promise.resolve(mockCustomerData);
 
