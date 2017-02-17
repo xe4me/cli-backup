@@ -32,7 +32,7 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
                   private prepopAmpBasicInfoService : PrepopAmpBasicInfoService,
-                  private greenIdStatusService : GreenIdStatusService,
+                  @Optional() private greenIdStatusService : GreenIdStatusService,
                   @Optional() private saveCloseService : SaveAndCloseService,
                   scrollService : ScrollService ) {
         super( saveService, _cd, scrollService );
@@ -44,15 +44,17 @@ export class AmpBasicInfoBlockComponent extends FormBlock implements AfterViewIn
         if ( this.__isRetrieved ) {
             this.showSaveAndCloseButton();
         }
-        this.greenIdStatusService
-            .isGreenIdVerified()
-            .takeWhile( () => this.isAlive )
-            .subscribe( ( greenIdResults ) => {
-                if ( greenIdResults[this.getCurrentApplicantIndex] ) {
-                    this.hideOkAndChangeButton();
-                    this._cd.markForCheck();
-                }
-            } );
+        if ( this.greenIdStatusService ) {
+            this.greenIdStatusService
+                .isGreenIdVerified()
+                .takeWhile( () => this.isAlive )
+                .subscribe( ( greenIdResults ) => {
+                    if ( greenIdResults[this.getCurrentApplicantIndex] ) {
+                        this.hideOkAndChangeButton();
+                        this._cd.markForCheck();
+                    }
+                } );
+        }
     }
 
     onNext () {

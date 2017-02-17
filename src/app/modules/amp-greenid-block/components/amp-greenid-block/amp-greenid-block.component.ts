@@ -4,6 +4,7 @@ import {
     ChangeDetectorRef,
     ChangeDetectionStrategy,
     Input,
+    Optional,
     Output,
     OnDestroy,
     AfterViewInit,
@@ -92,7 +93,7 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
                   _cd : ChangeDetectorRef,
                   scrollService : ScrollService,
                   private ampGreenIdServices : AmpGreenIdServices,
-                  private greenIdStatusService : GreenIdStatusService,
+                  @Optional() private greenIdStatusService : GreenIdStatusService,
                   private sanitizer : DomSanitizer ) {
         super( saveService, _cd, scrollService );
     }
