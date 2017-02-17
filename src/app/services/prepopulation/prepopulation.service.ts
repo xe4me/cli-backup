@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { get, has } from 'lodash';
+import {
+    get,
+    has,
+    isNil
+} from 'lodash';
 import { FormBlock } from '../../form-block';
 import { CustomerDetailsService } from '../customer-details/customer-details.service';
 import { LoginStatusService } from '../login/login-status.service';
@@ -25,7 +29,7 @@ export class PrepopulationService {
         }
         // Only register for applicant 1.
         // Note: This logic might be better in the actual Components, so that each component have a choice.
-        // Currently implemented here because there no are requirement to prepop for second or third appliant(s)
+        // Currently implemented here because there no are requirement to prepop for second or third applicant(s)
         if (!this.isFirstApplicant(formBlock) && this.hasApplicantIndicator(formBlock)) {
             return;     // Do not prepop for applicant 2, 3, 4....
         }
@@ -75,14 +79,16 @@ export class PrepopulationService {
         }
     }
 
+    /**
+     * 'applicantIndex' is manually set in bett3r in applicant-generator.service and starts at 1
+     * '__repeaterIndex' gets added by the section-repeater.component and starts at 0 (amp-saver)
+     */
     private isFirstApplicant (formBlock : FormBlock) : boolean {
-        return (formBlock['__custom'].applicantIndex && formBlock['__custom'].applicantIndex === 1) ||
-            (formBlock['__repeaterIndex'] && formBlock['__repeaterIndex'] === 1);
+        return formBlock['__custom'].applicantIndex === 1 || formBlock['__repeaterIndex'] === 0;
     }
 
     private hasApplicantIndicator (formBlock : FormBlock) : boolean {
-        return (formBlock['__custom'].applicantIndex || formBlock['__custom'].applicantIndex === 0) ||
-                (formBlock['__repeaterIndex'] || formBlock['__repeaterIndex'] === 0);
+        return !isNil(formBlock['__custom'].applicantIndex) || !isNil(formBlock['__repeaterIndex']);
     }
 
 }
