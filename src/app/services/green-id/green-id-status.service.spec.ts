@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { GreenIdStatusService } from './green-id-status.service';
 
-fdescribe( 'Service: GreenId Status', () => {
+describe( 'Service: GreenId Status', () => {
     let greenIdStatusService : GreenIdStatusService;
     const applicantOneIndex = 1;
     const applicantTwoIndex = 2;
