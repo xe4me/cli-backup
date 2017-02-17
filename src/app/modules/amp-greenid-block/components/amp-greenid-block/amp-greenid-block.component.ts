@@ -284,12 +284,14 @@ export class AmpGreenIdBlockComponent extends FormBlock implements OnInit, OnDes
         this.showOkButton = true;
         this.updateGreenIdVerificationStatus();
         this._cd.markForCheck();
+        this.scrollService.scrollToComponentSelector(this.selectorName);
     }
 
     private onSessionCancelled = ( token : string, verificationStatus : string ) => {
         this.verificationStatusControl.setValue( verificationStatus );
         this.showOkButton = true;
         this._cd.markForCheck();
+        this.scrollService.scrollToComponentSelector(this.selectorName);
     }
 
     private get verificationSuccessful () {

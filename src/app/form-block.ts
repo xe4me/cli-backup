@@ -14,6 +14,7 @@ import {
 } from './abstracts';
 
 export abstract class FormBlock extends BlockLoaderAbstracts implements AfterViewInit, OnDestroy {
+
     @ViewChild( AutoFocusOnDirective ) public autoFocusOn;
 
     protected isInSummaryState : boolean = false;
@@ -71,6 +72,9 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
 
     onNext() {
         this.beforeOnNext();
+
+        this.logIfDebugEnabled('***** onNext() ' + this.__name, this.__form.value);
+
         this.track();
         // Do not block the onNext function based on whether or not the block is Touched
         if ( this.__controlGroup ) {
@@ -92,6 +96,21 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
 
     public get canGoNext() {
         return this.__controlGroup && this.__controlGroup.valid;
+    }
+
+    public isDebugEnabled() {
+        return window[ 'isDebugEnabled' ];
+    }
+
+    public logIfDebugEnabled ( title : string, content : any = undefined ) {
+        if (this.isDebugEnabled()) {
+            if (title) {
+                console.log( title );
+            }
+            if (content) {
+                console.log( content );
+            }
+        }
     }
 
     protected disableAutoSave() {
@@ -145,4 +164,5 @@ export abstract class FormBlock extends BlockLoaderAbstracts implements AfterVie
         this.autoFocus();
         this._cd.markForCheck();
     }
+
 }
