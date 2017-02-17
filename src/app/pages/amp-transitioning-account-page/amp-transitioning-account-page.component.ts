@@ -4,6 +4,7 @@ import {
     Input
 } from '@angular/core';
 
+
 @Component( {
     selector        : 'amp-transitioning-account-page' ,
     template        : require( './amp-transitioning-account-page.component.html' ) ,
@@ -13,6 +14,8 @@ import {
 export class AmpTransitioningAccountPageComponent {
 
     @Input() title;
+    @Input() message;
+  
 
     public onFinishButtonClick() {
         console.log('onFinishButtonClick');
