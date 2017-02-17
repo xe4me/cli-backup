@@ -233,12 +233,12 @@ export class AmpStandAloneMenuComponent implements OnInit, AfterViewInit, OnDest
     private setMenuPosition () {
         const menu = this.menu.nativeElement;
         const containingElement = this.getContainingElement();
-
+        menu.style.marginTop = this.menuOffset + 'px';
         if ( containingElement && this.isSticky ) {
             const stickyClass           = 'steps-menu--sticky';
             const bottomClass           = 'steps-menu--bottom';
             let scrollY                 = window.scrollY || window.pageYOffset;
-            let containingElementY      = containingElement.offsetTop;
+            let containingElementY      = containingElement.offsetTop - this.menuOffset;
             let containingElementHeight = containingElement.offsetHeight;
             let menuHeight              = this.menu.nativeElement.offsetHeight;
             let position                = 'top';
