@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup , FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 
 const formDef = require( './form-def.def.json' );
 
@@ -17,13 +16,8 @@ export default class AmpNewOrExistingCustomerBlockBasicUsage {
     private form : FormGroup;
 
     constructor ( public store : Store<any>,
-                  private _builder : FormBuilder,
-                  public router : Router ) {
+                  private _builder : FormBuilder ) {
         this.form = this._builder.group( {} );
-    }
-
-    public navigate ( to : any ) {
-        this.router.navigate( to );
     }
 
 }
