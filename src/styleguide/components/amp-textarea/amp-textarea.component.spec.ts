@@ -100,9 +100,9 @@ describe( 'amp-textarea component', () => {
 } )
 class AmpTextAreaTest {
     @ViewChild( 'textAreaCmp' ) textAreaCmp;
-                                isInSummaryState = false;
-                                controlGroup     = new FormGroup( {} );
-    private textarea                             = {
+    isInSummaryState = false;
+    controlGroup     = new FormGroup( {} );
+    private textarea = {
         id               : 'textarea',
         label            : 'A Label',
         maxLenght        : 5,

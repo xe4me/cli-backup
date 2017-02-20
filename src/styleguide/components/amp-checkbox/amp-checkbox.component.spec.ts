@@ -175,7 +175,7 @@ describe( 'amp-checkbox component', () => {
 } )
 class AmpCheckboxTest {
     @ViewChild( 'checkboxCmp' ) checkboxCmp;
-                                controlGroup : FormGroup = new FormGroup( {} );
+    controlGroup : FormGroup = new FormGroup( {} );
 
     isInSummaryState = false;
     checkboxEmittedValue;

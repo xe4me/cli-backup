@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 @Component(
-  {
-    selector : 'sticky-progress-header-block' ,
-    template : `
+    {
+        selector : 'sticky-progress-header-block' ,
+        template : `
         <div class='sticky'>
             <div class="sticky__header">
                 <div class='sticky__header--left'>
@@ -18,10 +18,10 @@ import { Component } from '@angular/core';
             </div>
         </div>
     ` ,
-    inputs   : [ 'determinate' , 'value' ] ,
-    styles   : [ require( './sticky-progress-header-block.component.scss' ) ] ,
-  } )
+        inputs   : [ 'determinate' , 'value' ] ,
+        styles   : [ require( './sticky-progress-header-block.component.scss' ) ] ,
+    } )
 export class StickyProgressHeaderBlockComponent {
-  private value : number;
-  private determinate : string;
+    private value : number;
+    private determinate : string;
 }

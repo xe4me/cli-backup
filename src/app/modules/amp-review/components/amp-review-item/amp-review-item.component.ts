@@ -1,11 +1,11 @@
 import {
-  Component
+    Component
 } from '@angular/core';
 
 @Component(
-  {
-    selector      : 'amp-review-item' ,
-    template      : `
+    {
+        selector      : 'amp-review-item' ,
+        template      : `
           <div class="grid">
             <div class="grid__item amp-review-item__label 2/5">
               <span>{{label}}</span>
@@ -19,13 +19,13 @@ import {
             </div>
           </div>
         ` ,
-    styles        : [ require( './amp-review-item.scss' ) ] ,
-    inputs        : [
-      'label' ,
-      'value' ,
-      'frequency'
-    ]
-  } )
+        styles        : [ require( './amp-review-item.scss' ) ] ,
+        inputs        : [
+            'label' ,
+            'value' ,
+            'frequency'
+        ]
+    } )
 
 export class AmpReviewItemComponent {
 }

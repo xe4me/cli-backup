@@ -154,7 +154,7 @@ describe( 'amp-radio-group-button component , single item usage', () => {
 } )
 class AmpRadioGroupButtonTest1 {
     @ViewChild( 'radioGroupButtonCmp1' ) radioGroupButtonCmp1;
-                                         multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
+    multipleOptioncontrolGroup : FormGroup = new FormGroup( {} );
 
     get multipleOptionControl () {
         return this.multipleOptioncontrolGroup.controls[ this.radiosMultipleOptions.groupName ];
@@ -242,7 +242,7 @@ class AmpRadioGroupButtonTest1 {
 } )
 class AmpRadioGroupButtonTest2 {
     @ViewChild( 'radioGroupButtonCmp2' ) radioGroupButtonCmp2;
-                                         oneOptioncontrolGroup : FormGroup = new FormGroup( {} );
+    oneOptioncontrolGroup : FormGroup = new FormGroup( {} );
 
     get oneOptionControl () {
         return this.oneOptioncontrolGroup.controls[ this.radiosOneOption.groupName ];

@@ -228,10 +228,9 @@ describe( 'loading button component', () => {
             expect( callCounter ).toBeLessThan( 3 );
         } );
         _loadingBtnCmp.$submit.subscribe( ( response ) => {
-                expect( response ).toEqual( submitResponse );
-                tick();
-            }
-        );
+            expect( response ).toEqual( submitResponse );
+            tick();
+        });
         let ampButtonElem = _element.querySelector( 'amp-loading-button' );
         ampButtonElem.click();
     } ) );

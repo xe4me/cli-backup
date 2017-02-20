@@ -1,32 +1,40 @@
 import {
-    QueryList ,
-    Component ,
-    ViewChildren ,
-    ContentChild ,
-    TemplateRef ,
-    EventEmitter ,
-    OnInit ,
-    Input ,
-    Output ,
-    ChangeDetectionStrategy ,
-    ChangeDetectorRef ,
-    AfterViewInit ,
-    ViewChild ,
+    QueryList,
+    Component,
+    ViewChildren,
+    ContentChild,
+    TemplateRef,
+    EventEmitter,
+    Input,
+    Output,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    AfterViewInit,
+    ViewChild,
     OnDestroy
 } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
-import { Observable , Subscription } from 'rxjs/Rx';
-import { isPresent , KeyCodes } from '../../../amp-utils';
+import {
+    FormControl,
+    FormGroup
+} from '@angular/forms';
+import {
+    Observable,
+    Subscription
+} from 'rxjs/Rx';
+import {
+    isPresent,
+    KeyCodes
+} from '../../../amp-utils';
 import { FocuserDirective } from '../../../amp-directives';
 import { AmpInputComponent } from '../../../amp-inputs';
 import { ScrollService } from '../../../../services/scroll/scroll.service';
 @Component( {
-    selector        : 'amp-type-search' ,
+    selector        : 'amp-type-search',
     queries         : {
         itemTemplate : new ContentChild( TemplateRef )
-    } ,
-    template        : require( './amp-type-search.component.html' ) ,
-    styles          : [ require( './amp-type-search.component.scss' ) ] ,
+    },
+    template        : require( './amp-type-search.component.html' ),
+    styles          : [ require( './amp-type-search.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
 export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
@@ -77,7 +85,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 return this.selectedControl.value ? null : {
                     invalidSearch : {
                         text : c._ampErrors && c._ampErrors.invalidSearch ? c._ampErrors.invalidSearch : 'please' +
-                        ' select a search result'
+                            ' select a search result'
                     }
                 };
             } else {
@@ -125,8 +133,8 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit () : any {
         this.selectedOption[ this.selectedItemValueIdentifier ] = null;
-        this.searchControlGroup.addControl( this.id + AmpTypeSearchComponent.SELECTED_CONTROL_ID_POSTFIX , this.selectedControl );
-        this.controlGroup.addControl( AmpTypeSearchComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME , this.searchControlGroup );
+        this.searchControlGroup.addControl( this.id + AmpTypeSearchComponent.SELECTED_CONTROL_ID_POSTFIX, this.selectedControl );
+        this.controlGroup.addControl( AmpTypeSearchComponent.SEARCH_ADDRESS_CONTROL_GROUP_NAME, this.searchControlGroup );
         this.initForApi();
         return undefined;
     }
@@ -157,11 +165,11 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
                 this.open();
                 this.searchResult = result.json().payload;
                 if ( result.json().errorCode ) {
-                  this.$errorCode.emit({ errorCode: result.json().errorCode });
+                    this.$errorCode.emit({ errorCode: result.json().errorCode });
                 }
                 this._cd.markForCheck();
                 this.ampInput.checkErrors();
-            } , ( error ) => {
+            }, ( error ) => {
                 this.isSearching = false;
                 this.clearSelectedItem();
                 this.close();
@@ -179,7 +187,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         this.$showResults.emit(!this._optionsHidden);
 
         setTimeout( () => {
-          this.scrollService.scrollToComponentSelector(this.resultList_id);
+            this.scrollService.scrollToComponentSelector(this.resultList_id);
         });
     };
 
@@ -201,7 +209,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
     }
 
     private selectOption ( option ) : void {
-        this.selectedOption = Object.assign( {} , option );
+        this.selectedOption = Object.assign( {}, option );
         this.control.setValue( this.selectedOption[ this.selectedItemValueIdentifier ].trim().substring(0, 50) );
         this.selectedControl.setValue( JSON.stringify( this.selectedOption ) );
         this.ampInput.checkErrors();
@@ -217,12 +225,12 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    private filter ( items , identifier , query , doFilter ) : Observable<any> {
+    private filter ( items, identifier, query, doFilter ) : Observable<any> {
         return this.filteredList = doFilter && isPresent( query ) ? items.filter(
-            ( item ) => {
-                return item[ identifier ] && item[ identifier ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
-            }
-        ) : items;
+                ( item ) => {
+                    return item[ identifier ] && item[ identifier ].toLowerCase().indexOf( query.toLowerCase() ) !== - 1;
+                }
+            ) : items;
     }
 
     private focusInput () : void {
@@ -253,7 +261,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         //             this.searchResult = result;
         //             this._cd.markForCheck();
         //             this.ampInput.checkErrors();
-        //         } , ( error ) => {
+        //         }, ( error ) => {
         //             this.clearSelectedItem();
         //             this.close();
         //             this.searchResult = null;
@@ -267,7 +275,7 @@ export class AmpTypeSearchComponent implements AfterViewInit, OnDestroy {
         setTimeout( () => {
             (<any> this.control)._dirty = false;
             this.control.updateValueAndValidity( {
-                onlySelf  : false ,
+                onlySelf  : false,
                 emitEvent : true
             } );
         } );

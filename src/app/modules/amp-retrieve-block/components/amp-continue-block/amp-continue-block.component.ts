@@ -34,18 +34,18 @@ export class AmpContinueBlockComponent extends FormBlock {
     public __custom               = {
         'blockTitle': 'Continue where you left off',
         'controls': [
-          {
-            'id': 'ReferenceCode',
-            'requiredErrMsg': 'Application number is a required field.'
-          },
-          {
-            'id': 'LastName',
-            'requiredErrMsg': 'Last name is a required field.'
-          },
-          {
-            'id': 'DateOfBirth',
-            'requiredErrMsg': 'Date of birth is a required field.'
-          }
+            {
+                'id': 'ReferenceCode',
+                'requiredErrMsg': 'Application number is a required field.'
+            },
+            {
+                'id': 'LastName',
+                'requiredErrMsg': 'Last name is a required field.'
+            },
+            {
+                'id': 'DateOfBirth',
+                'requiredErrMsg': 'Date of birth is a required field.'
+            }
         ]
     };
 

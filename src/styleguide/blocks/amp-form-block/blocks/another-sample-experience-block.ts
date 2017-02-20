@@ -61,7 +61,7 @@ import { AutoFocusOnDirective } from '../../../../app/modules/amp-directives';
 } )
 export class AnotherSampleExperienceBlock extends FormBlock {
     @ViewChild( AutoFocusOnDirective ) autoFocusOn;
-                                       isActive = true;
+    isActive = true;
     private loadedDynamicBlock                  = false;
     private dynamicChild                        = {
         'name'        : 'BlockWithRadios',

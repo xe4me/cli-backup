@@ -8,10 +8,10 @@ describe( 'Amp File Upload service' , ( ) => {
 
     it( 'Should return a valid token url' , ( ) => {
         expect( _fileUploadService.tokenUrl ).toContain( '/upload/token' );
-        } );
+    } );
 
     it( 'Should return a valid upload url' , ( ) => {
-            expect( _fileUploadService.uploadUrl ).toContain( '/upload/upload' );
-        } ) ;
+        expect( _fileUploadService.uploadUrl ).toContain( '/upload/upload' );
+    } ) ;
 
 } );

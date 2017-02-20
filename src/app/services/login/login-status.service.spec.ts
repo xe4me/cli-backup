@@ -27,21 +27,21 @@ describe( 'Service: Login status', () => {
     let connection : MockConnection;
 
     beforeEach(() => {
-            let text : string;    // this will be set from mock response
-            const injector = ReflectiveInjector.resolveAndCreate([
-                {provide: ConnectionBackend, useClass: MockBackend},
-                {provide: RequestOptions, useClass: BaseRequestOptions},
-                Http,
-                LoginStatusService,
-                AmpHttpService
-            ]);
+        let text : string;    // this will be set from mock response
+        const injector = ReflectiveInjector.resolveAndCreate([
+            {provide: ConnectionBackend, useClass: MockBackend},
+            {provide: RequestOptions, useClass: BaseRequestOptions},
+            Http,
+            LoginStatusService,
+            AmpHttpService
+        ]);
 
-            const backend = injector.get(ConnectionBackend);
-            loginStatusService = injector.get(LoginStatusService);
+        const backend = injector.get(ConnectionBackend);
+        loginStatusService = injector.get(LoginStatusService);
 
-            backend.connections.subscribe((c : MockConnection) => connection = c);
-            res = new Response(new ResponseOptions({body : 'Something'}));
-            res.ok = true;
+        backend.connections.subscribe((c : MockConnection) => connection = c);
+        res = new Response(new ResponseOptions({body : 'Something'}));
+        res.ok = true;
     });
 
     describe( 'When the userHasLoggedIn event has been subscribed to AND the loginSuccess is called', () => {
@@ -72,8 +72,8 @@ describe( 'Service: Login status', () => {
         it('should only trigger the subscription event once', () => {
             loginStatusService.userHasLoggedIn()
                 .scan((accumulatedValue) => {
-                        return accumulatedValue + 1;
-                    }, 0)
+                    return accumulatedValue + 1;
+                }, 0)
                 .subscribe((counter) => {
                     expect(counter).toBe(1);
                 });
