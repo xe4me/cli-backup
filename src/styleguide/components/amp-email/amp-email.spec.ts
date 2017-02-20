@@ -14,8 +14,8 @@ import {
     FormGroup
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
+import { AmpInputsModule } from '../../../app/modules/amp-inputs';
 describe( 'amp-email component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
@@ -99,8 +99,8 @@ class MockElementRef implements ElementRef {
 } )
 class TestComponent {
     @ViewChild( 'emailCmp' ) emailCmp;
-                             id                       = 'email';
-                             controlGroup : FormGroup = new FormGroup( {} );
+    id                       = 'email';
+    controlGroup : FormGroup = new FormGroup( {} );
 
     get control () {
         return this.controlGroup.controls[ this.id ];

@@ -37,15 +37,15 @@ export class LoginStatusService {
         } );
         let options = new RequestOptions( { headers, body : '' } );
         this.http.get( this.apiUserSessionUrl, options )
-                   .subscribe((res : Response) => {
-                        if (res.ok) {
-                            this.loginSuccess();
-                        } else {
-                            this.notLoggedIn();
-                        }
-                   }, (err) => {
-                       console.error('Failed to check session validity.', err);
-                   });
+            .subscribe((res : Response) => {
+                if (res.ok) {
+                    this.loginSuccess();
+                } else {
+                    this.notLoggedIn();
+                }
+            }, (err) => {
+                console.error('Failed to check session validity.', err);
+            });
     }
 
     // Triggered by the login block

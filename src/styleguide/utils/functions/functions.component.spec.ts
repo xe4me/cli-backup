@@ -13,12 +13,10 @@ describe( 'Functions tests' , () => {
     };
 
     it( 'String Template works correctly with object literal' , () => {
-            expect( stringTemplate( str.literal, { first: 'James', last: 'Bond' } ) ).toEqual( str.output );
-        }
-    );
+        expect( stringTemplate( str.literal, { first: 'James', last: 'Bond' } ) ).toEqual( str.output );
+    });
 
     it( 'String Template works correctly with array' , () => {
-            expect( stringTemplate( str.array, ['James', 'Bond'] ) ).toEqual( str.output );
-        }
-    );
+        expect( stringTemplate( str.array, ['James', 'Bond'] ) ).toEqual( str.output );
+    });
 } );

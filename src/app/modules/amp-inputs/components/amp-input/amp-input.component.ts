@@ -8,6 +8,8 @@ import {
     ChangeDetectionStrategy,
     ViewChild
 } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { isNumber } from 'lodash';
 import {
     RequiredValidator,
     MinLengthValidator,
@@ -21,9 +23,7 @@ import {
     MinFloatValidator,
     MaxFloatValidator
 } from '../../../amp-utils';
-import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
-import { isNumber } from 'lodash';
 
 @Component(
     {

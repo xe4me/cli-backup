@@ -61,11 +61,11 @@ export class AmpSmsBlockComponent extends FormBlock implements OnInit {
             const mobileNumber = this.mobileNumberCmp.control.value;
             this.sms.sendSMS(mobileNumber)
                 .subscribe( (result) => {
-                        this.goToNextBlock();
-                    },
-                    (error) => {
-                        this.smsSentErrorMessage = `Request SMS could not be sent to ${mobileNumber}`;
-                    });
+                    this.goToNextBlock();
+                },
+                (error) => {
+                    this.smsSentErrorMessage = `Request SMS could not be sent to ${mobileNumber}`;
+                });
         }
     };
 

@@ -1,6 +1,12 @@
-import { ElementRef , Renderer , Directive , EventEmitter , Input , AfterViewInit } from '@angular/core';
-import { KeyCodes } from '../../../amp-utils';
+import {
+    ElementRef,
+    Renderer,
+    Directive,
+    EventEmitter,
+    Input
+} from '@angular/core';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
+import { KeyCodes } from '../../../amp-utils';
 @Directive( {
     selector : '[focuser]' ,
     host     : {

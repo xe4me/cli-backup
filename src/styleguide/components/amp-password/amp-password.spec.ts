@@ -71,5 +71,5 @@ class MockElementRef implements ElementRef {
 } )
 class TestComponent {
     @ViewChild( 'passwordCmp' ) passwordCmp;
-                                passwordControl : FormGroup = new FormGroup( {} );
+    passwordControl : FormGroup = new FormGroup( {} );
 }

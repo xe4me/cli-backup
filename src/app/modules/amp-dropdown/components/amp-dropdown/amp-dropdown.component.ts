@@ -196,7 +196,7 @@ export class AmpDropdownComponent extends BaseControl implements AfterViewInit, 
             return;
         }
         this._optionsHidden = false;
-    } ;
+    };
 
     private onKeydown ( $event : KeyboardEvent ) : void {
         switch ( $event.keyCode ) {

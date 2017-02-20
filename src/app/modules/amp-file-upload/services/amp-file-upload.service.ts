@@ -1,16 +1,18 @@
-import { Injectable,
-         EventEmitter,
-         Output
+import {
+    Injectable,
+    EventEmitter,
+    Output
 } from '@angular/core';
-import { Http,
-         Response,
-         Headers,
-         RequestOptions
+import {
+    Http,
+    Response,
+    Headers,
+    RequestOptions
 } from '@angular/http';
+import { Observable } from 'rxjs';
 import { UploadStatus } from './upload-status.class';
 import { humanizeBytes } from '../../../modules/amp-utils/functions.utils';
 import { Environments } from '../../../abstracts/environments/environments.abstract';
-import { Observable } from 'rxjs';
 import { AmpHttpService } from '../../../services/amp-http/amp-http.service';
 
 @Injectable()
@@ -63,9 +65,9 @@ export class AmpFileUploadService {
 
     public retrieveNewToken ( ) : Observable<any> {
         let headers  = new Headers( {
-                'Content-Type' : 'application/json' ,
-                'caller'       : 'components'
-            } );
+            'Content-Type' : 'application/json' ,
+            'caller'       : 'components'
+        } );
         let options = new RequestOptions( {
             body : '' ,
             headers
@@ -94,7 +96,7 @@ export class AmpFileUploadService {
         let deleteUrlwithParms : string;
         deleteUrlwithParms = `${this._deleteUrl}?fileName=${fileName}&formName=${formName}&id=${formId}`;
         return this.ampHttp.post( deleteUrlwithParms, {}, {} )
-                        .map( ( res : Response ) => res.json() );
+            .map( ( res : Response ) => res.json() );
     }
 
     private isFile( file : any ) : boolean {

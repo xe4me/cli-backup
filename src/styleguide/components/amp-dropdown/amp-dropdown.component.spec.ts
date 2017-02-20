@@ -13,14 +13,14 @@ import {
     FormGroup,
     FormControl
 } from '@angular/forms';
-import { AmpDropdownModule } from '../../../app/modules/amp-dropdown';
-import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown/components/amp-dropdown/amp-dropdown.component';
 import { By } from '@angular/platform-browser';
 import { ComponentFixtureAutoDetect } from '@angular/core/testing/test_bed';
 import {
     tick,
     fakeAsync
 } from '@angular/core/testing/fake_async';
+import { AmpDropdownModule } from '../../../app/modules/amp-dropdown';
+import { AmpDropdownComponent } from '../../../app/modules/amp-dropdown/components/amp-dropdown/amp-dropdown.component';
 import { AmpFormGroup } from '../../../app/base-control';
 describe( 'amp-dropdown component', () => {
     let Element;
@@ -428,12 +428,11 @@ class AmpdropdownTest {
     ];
     public __controlGroup          = new AmpFormGroup( {} );
     public __retrievedControlGroup = new AmpFormGroup( {
-            'Title' : new FormGroup( {
-                'SelectedItem' : new FormControl( this.titleOptions[ 0 ].value ),
-                'Query'        : new FormControl( this.titleOptions[ 0 ].label )
-            } )
-        }
-    );
+        'Title' : new FormGroup( {
+            'SelectedItem' : new FormControl( this.titleOptions[ 0 ].value ),
+            'Query'        : new FormControl( this.titleOptions[ 0 ].label )
+        } )
+    });
     public isInSummaryState        = false;
     private FDN                    = [ 'Application', 'ContactDetails' ];
 
