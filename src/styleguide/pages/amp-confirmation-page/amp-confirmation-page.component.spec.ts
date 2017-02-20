@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AmpButton } from '../../../app/modules/amp-button/components/amp-button/amp-button.component';
+import { AmpExitButtonComponent } from '../../../app/modules/amp-save-close-block/';
 import { AmpConfirmationPageComponent } from '../../../app/pages/amp-confirmation-page/amp-confirmation-page.component';
 import { AmpHeaderNoTextComponent } from '../../../app/modules/amp-header/components/amp-header-no-text/amp-header-no-text.component';
 import { AmpLogoComponent } from '../../../app/modules/amp-logo/components/amp-logo/amp-logo.component';
@@ -27,7 +27,7 @@ describe( 'amp-confirmation-page component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports: [ FormsModule, HttpModule ],
-            declarations: [ AmpConfirmationPageComponent, AmpButton, TestComponent, AmpHeaderNoTextComponent, AmpLogoComponent ],
+            declarations: [ AmpConfirmationPageComponent, AmpExitButtonComponent, TestComponent, AmpHeaderNoTextComponent, AmpLogoComponent ],
             providers: [ ...APP_RESOLVER_PROVIDERS ]
         } );
     } ) );
@@ -41,9 +41,9 @@ describe( 'amp-confirmation-page component', () => {
             loadComponent();
             expect( domElement.querySelector( 'amp-header-no-text' ) ).toBeDefined();
         } );
-        it( 'the component should contain an amp-button', () => {
+        it( 'the component should contain an amp-exit-button', () => {
             loadComponent();
-            expect( domElement.querySelector( 'amp-button' ) ).toBeDefined();
+            expect( domElement.querySelector( 'amp-exit-button' ) ).toBeDefined();
         } );
     } );
 
