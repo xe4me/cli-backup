@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
 import { AmpHttpService } from '../amp-http/amp-http.service';
 import { LoginStatusService } from './login-status.service';
 
-describe( 'Service: Login status', () => {
+fdescribe( 'Service: Login status', () => {
     let loginStatusService : LoginStatusService;
     let res : Response;
     let connection : MockConnection;
@@ -40,7 +40,7 @@ describe( 'Service: Login status', () => {
         loginStatusService = injector.get(LoginStatusService);
 
         backend.connections.subscribe((c : MockConnection) => connection = c);
-        res = new Response(new ResponseOptions({body : 'Something'}));
+        res = new Response(new ResponseOptions({body : {data:{}}}));
         res.ok = true;
     });
 
