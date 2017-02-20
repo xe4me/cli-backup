@@ -40,7 +40,7 @@ fdescribe( 'Service: Login status', () => {
         loginStatusService = injector.get(LoginStatusService);
 
         backend.connections.subscribe((c : MockConnection) => connection = c);
-        res = new Response(new ResponseOptions({body : {data:{}}}));
+        res = new Response(new ResponseOptions({body : {data: {}}}));
         res.ok = true;
     });
 
