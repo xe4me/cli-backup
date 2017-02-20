@@ -36,7 +36,6 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
     private isJointApplication : boolean = false;
     private submitInProgress : boolean = false;
     private singleOrJointSubscription : Subscription;
-    private isBPMS : boolean = false;
 
     constructor ( saveService : SaveService,
                   _cd : ChangeDetectorRef,
@@ -89,25 +88,26 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
         const referenceId = this.sharedFormDataService.getReferenceIdControl(this.__form);
         this.saveAndSubmitService.saveAndSubmit(this.__form.value, referenceId.value)
             .subscribe((result) => {
+                const payload = result.payload;
                 this.submitInProgress = false;
-                if ( result.payload.resultStatus === 'SUCCESS' ) {
-                    this.isBPMS = result.payload.caseType === 'BPMS';
-                    if (this.isBPMS) {
+                if ( payload.resultStatus === 'SUCCESS' ) {
+                    const isBPMS = payload.caseType === 'BPMS';
+                    if (isBPMS) {
                         this.router.navigate(['confirmationTransitioning']);
                     } else {
                         this.accountsListDataService
-                            .setAccountsData( referenceId.value, this.__form.value, result.payload.accounts );
+                            .setAccountsData( referenceId.value, payload.application, payload.accounts );
                         let navigateTo = this.accountsListDataService.navigateTo();
                         this.router.navigate([navigateTo]);
                     }
                 } else {
-                    if ( result.payload.resultStatus === 'FAILURE') {
-                        const errors = result.payload.errors;
+                    if ( payload.resultStatus === 'FAILURE' ) {
+                        const errors = payload.errors;
                         if (errors && errors.length > 0) {
                             const error = errors[0].code;
                             const navigateTo : string = 'submitError';
-                            if (error === SubmitErrors.customerHasBetter) {
-                                this.router.navigate([navigateTo, error]);
+                            if ( error === SubmitErrors.customerHasBetter ) {
+                                this.router.navigate( [navigateTo, error] );
                                 return;
                             }
                         }
@@ -115,7 +115,7 @@ export class LastStepBlock extends FormBlock implements AfterViewInit, OnDestroy
                     this.submitErrorMessage = this.__custom.submitErrMsg;
                     this._cd.markForCheck();
                 }
-            }, (error) => {
+            }, () => {
                 this.submitInProgress = false;
                 this.submitErrorMessage = this.__custom.submitErrMsg;
                 this._cd.markForCheck();
