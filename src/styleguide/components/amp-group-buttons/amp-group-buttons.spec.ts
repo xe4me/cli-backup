@@ -80,11 +80,14 @@ describe( 'amp-group-buttons components', () => {
             expect( Inputs[ '1' ].checked ).toBeFalsy();
         } );
         it( 'Should make all the inputs unchecked ', () => {
-            Component.control.setValue( 'null' );
+            Component.control.setValue( 'full' );
             fixture.detectChanges();
-            for ( const input of  Inputs ) {
-                expect( input.checked ).toBeFalsy();
-            }
+            Component.control.setValue( null );
+            fixture.detectChanges();
+            expect( Inputs[ '0' ].checked ).toBe(false);
+            expect( Inputs[ '1' ].checked ).toBe(false);
+            expect( Labels[ '0' ].getAttribute('checked') ).toBeFalsy();
+            expect( Labels[ '1' ].getAttribute('checked') ).toBeFalsy();
         } );
     } );
     describe( 'When it\'s retrieved ', () => {
