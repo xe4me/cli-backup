@@ -20,7 +20,9 @@ export class Rectangle {
 
 export class Ruler {
     domAdapter : DomAdapter;
-    constructor(domAdapter : DomAdapter) { this.domAdapter = domAdapter; }
+    constructor(domAdapter : DomAdapter) {
+        this.domAdapter = domAdapter;
+    }
 
     measure(el : ElementRef) : Promise<Rectangle> {
         let clntRect = <any> this.domAdapter.getBoundingClientRect(el.nativeElement);

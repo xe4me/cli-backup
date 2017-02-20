@@ -1,10 +1,17 @@
 {
-    "extends": "tslint:recommended",
+    "extends": [
+        "tslint-eslint-rules",
+        "tslint:recommended"
+    ],
     "rules": {
 
         // Overrides of tslint:recommended
         "adjacent-overload-signatures": false,
         "arrow-parens": true,
+        "brace-style": [
+            true,
+            "1tbs"
+        ],
         "max-classes-per-file": [
             false
         ],
