@@ -35,6 +35,7 @@
             true,
             "single"
         ],
+        "ter-arrow-spacing": true,
         "ter-indent": [
             true,
             4,
