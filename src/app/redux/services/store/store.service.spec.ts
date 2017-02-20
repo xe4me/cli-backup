@@ -114,41 +114,40 @@ describe( 'Store Service', () => {
         );
         it( 'subscriber to the store should only called once if the update has not actually changed the model',
             fakeAsync( inject( [ StoreService, Store ], ( storeService : StoreService, store : Store<any> ) => {
-                    let updated   = false;
-                    let called    = 0;
-                    const fdn     = [
-                        'Application',
-                        'FirstInsuranceDetailsSection',
-                        'samplefieldsblock',
-                        'contactNumber'
-                    ];
-                    const payload = {
-                        fdn,
-                        query : 'updated with redux'
-                    };
-                    storeService.select( fdn ).subscribe( ( contactNumber ) => {
-                        if ( updated ) {
-                            called++;
-                            expect( contactNumber ).toEqual( payload.query );
-                            expect( called ).toBe( 1 );
-                        } else {
-                            expect( contactNumber ).toEqual( null );
-                        }
-                    } );
-                    const updateAction = modelActions.update( payload );
-                    expect( updateAction ).toEqual( {
-                        type : ModelActions.UPDATE,
-                        payload
-                    } );
-                    updated = true;
+                let updated   = false;
+                let called    = 0;
+                const fdn     = [
+                    'Application',
+                    'FirstInsuranceDetailsSection',
+                    'samplefieldsblock',
+                    'contactNumber'
+                ];
+                const payload = {
+                    fdn,
+                    query : 'updated with redux'
+                };
+                storeService.select( fdn ).subscribe( ( contactNumber ) => {
+                    if ( updated ) {
+                        called++;
+                        expect( contactNumber ).toEqual( payload.query );
+                        expect( called ).toBe( 1 );
+                    } else {
+                        expect( contactNumber ).toEqual( null );
+                    }
+                } );
+                const updateAction = modelActions.update( payload );
+                expect( updateAction ).toEqual( {
+                    type : ModelActions.UPDATE,
+                    payload
+                } );
+                updated = true;
+                store.dispatch( updateAction );
+                setTimeout( () => {
                     store.dispatch( updateAction );
-                    setTimeout( () => {
-                        store.dispatch( updateAction );
-                    }, 1800 );
-                    tick( 1800 );
-                }
-            ) )
-        );
+                }, 1800 );
+                tick( 1800 );
+            }
+        ) ) );
     } );
     //     describe('getBook', function() {
     //         it('should get a selected book out of the books state', function() {

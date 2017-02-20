@@ -87,8 +87,8 @@ class MockElementRef implements ElementRef {
 } )
 class TestComponent {
     @ViewChild( 'componentReference' ) componentReference : AmpFileUploadComponent;
-                                       controlGroup : FormGroup = new FormGroup( {} );
-    private urls                                                = {
+    controlGroup : FormGroup = new FormGroup( {} );
+    private urls             = {
         // TODO - Urls has to be modified to fetch data from local JSON file
         uploadUrl : 'http://localhost:8081/ddc/secure/api/upload/upload?token=',
         tokenUrl  : 'http://localhost:8081/ddc/secure/api/upload/token'

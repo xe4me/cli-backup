@@ -1,11 +1,11 @@
 import {
-  Component
+    Component
 } from '@angular/core';
 
 @Component(
-  {
-    selector      : 'amp-review-total' ,
-    template      : `
+    {
+        selector      : 'amp-review-total' ,
+        template      : `
           <div class="grid amp-review-total pv">
             <h3 class="grid__item amp-review-total__label 2/5">
               <span>{{label}}</span>
@@ -19,13 +19,13 @@ import {
             </div>
           </div>
         ` ,
-    styles        : [ require( './amp-review-total.scss' ) ] ,
-    inputs        : [
-      'label' ,
-      'value' ,
-      'frequency'
-    ]
-  } )
+        styles        : [ require( './amp-review-total.scss' ) ] ,
+        inputs        : [
+            'label' ,
+            'value' ,
+            'frequency'
+        ]
+    } )
 
 export class AmpReviewTotalComponent {
 }

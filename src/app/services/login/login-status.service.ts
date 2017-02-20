@@ -37,24 +37,24 @@ export class LoginStatusService {
         } );
         let options = new RequestOptions( { headers, body : '' } );
         this.http.get( this.apiUserSessionUrl, options )
-                   .subscribe((res : Response) => {
-                        if (res.ok) {
-                            // Need to make sure we are getting JSON data payload
-                            try {
-                                let responseData = res.json();
-                                if (responseData.data) {
-                                    // As long as we get a JSON data payload, we know it wasn't a TAM opp_err response.
-                                    this.loginSuccess();
-                                }
-                            } catch (jsonParseErr) {
-                                this.notLoggedIn();
+                .subscribe((res : Response) => {
+                    if (res.ok) {
+                        // Need to make sure we are getting JSON data payload
+                        try {
+                            let responseData = res.json();
+                            if (responseData.data) {
+                                // As long as we get a JSON data payload, we know it wasn't a TAM opp_err response.
+                                this.loginSuccess();
                             }
-                        } else {
+                        } catch (jsonParseErr) {
                             this.notLoggedIn();
                         }
-                   }, (err) => {
-                       this.notLoggedIn();
-                   });
+                    } else {
+                        this.notLoggedIn();
+                    }
+                }, (err) => {
+                    this.notLoggedIn();
+                });
     }
 
     // Triggered by the login block

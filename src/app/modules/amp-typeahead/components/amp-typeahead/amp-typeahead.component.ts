@@ -84,11 +84,11 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
         return ( c : any ) => {
             if ( c.value && c.value.length >= this.minTriggerLength ) {
                 return (this.selectedControl.value !== null) ? null : {
-                        invalidSearch : {
-                            text : c._ampErrors && c._ampErrors.invalidSearch ? c._ampErrors.invalidSearch : 'please' +
-                                ' select a search result'
-                        }
-                    };
+                    invalidSearch : {
+                        text : c._ampErrors && c._ampErrors.invalidSearch ? c._ampErrors.invalidSearch : 'please' +
+                            ' select a search result'
+                    }
+                };
             } else {
                 return null;
             }
@@ -172,12 +172,12 @@ export class AmpTypeaheadComponent implements AfterViewInit, OnDestroy {
             this.selectedControl = new FormControl();
         }
         this.searchControlGroup.__fdn = this.controlGroup && this.controlGroup.__fdn ? [
-                ...this.controlGroup.__fdn,
-                this.id
-            ] : [
-                'default-fdn-for-' + this.id,
-                this.label
-            ];
+            ...this.controlGroup.__fdn,
+            this.id
+        ] : [
+            'default-fdn-for-' + this.id,
+            this.label
+        ];
     }
 
     ngOnDestroy () : void {

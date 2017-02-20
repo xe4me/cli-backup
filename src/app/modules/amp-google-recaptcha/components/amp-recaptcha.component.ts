@@ -15,15 +15,13 @@ import { AmpReCaptchaService } from '../services/amp-recaptcha.service';
 import {
     FormControl,
     FormGroup,
-    FormBuilder,
     Validators
 } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
 @Component({
-   selector: 'amp-google-recaptcha',
-   changeDetection: ChangeDetectionStrategy.OnPush,
-   template: `<div #recaptchaId></div>`
-
+    selector: 'amp-google-recaptcha',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `<div #recaptchaId></div>`
 })
 export class AmpReCaptchaComponent implements OnInit, OnDestroy {
     // Get the site id key at https://www.google.com/recaptcha/admin

@@ -1,7 +1,10 @@
 import '@ngrx/core/add/operator/select';
 import { Action } from '@ngrx/store';
 import { ModelActions } from '../../actions/model/model.action';
-import { clone , getIn } from '../../../modules/amp-utils';
+import {
+    clone,
+    getIn
+} from '../../../modules/amp-utils';
 export default function( state , action : Action ) {
     switch ( action.type ) {
         case ModelActions.UPDATE: {

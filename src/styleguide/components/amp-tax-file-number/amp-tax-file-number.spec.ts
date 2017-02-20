@@ -12,8 +12,8 @@ import {
     ReactiveFormsModule,
     FormGroup
 } from '@angular/forms';
-import { AmpInputsModule } from '../../../app/modules/amp-inputs/amp-inputs.module';
 import { By } from '@angular/platform-browser';
+import { AmpInputsModule } from '../../../app/modules/amp-inputs/amp-inputs.module';
 
 describe( 'amp-tax-file-number component', () => {
     let _fixture : any;
@@ -104,7 +104,7 @@ describe( 'amp-tax-file-number component', () => {
 } )
 class AmpTFNTest {
     @ViewChild( 'tfnCmp' ) tfnCmp;
-                           controlGroup : FormGroup = new FormGroup( {} );
+    controlGroup : FormGroup = new FormGroup( {} );
 
     get control () {
         return this.controlGroup.controls[ this.tfnCmp.id ];
