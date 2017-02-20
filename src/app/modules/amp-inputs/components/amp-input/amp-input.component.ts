@@ -23,6 +23,7 @@ import {
 } from '../../../amp-utils';
 import { Validators } from '@angular/forms';
 import { BaseControl } from '../../../../base-control';
+import { isNumber } from 'lodash';
 
 @Component(
     {
@@ -79,6 +80,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     public doOnBlurDirty              = true;
     protected type : string           = 'text';
     protected _minLength : number;
+    protected _defaultValue : string;
     protected _maxLength : number;
     protected _maxDate : string;
     protected _minDate : string;
@@ -95,7 +97,6 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     protected isActive : boolean      = true;
     protected showIconRight : boolean = true;
     protected tabindex : any          = null;
-    protected defaultValue : any      = null;
     protected currency : string       = null;
     protected placeholder : string;
     protected onBlur : EventEmitter<any>;
@@ -179,6 +180,15 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     set pattern ( value : string ) {
         this._pattern = value;
         this.updateValidators();
+    }
+
+    get defaultValue () {
+        return this._defaultValue;
+    }
+
+    set defaultValue ( value : string ) {
+        this._defaultValue = value;
+        this.setDefaultValue();
     }
 
     get minLength () {
@@ -306,17 +316,16 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
             }
         }, 100 );
         let notUsable;
-        if ( this.control.value && isNaN( this.control.value ) ) {
-            if ( this.noTrim && this.noTrim === true) {
-                this.control.setValue(this.inputCmp.nativeElement.value);
+        if ( this.control.value && !isNumber( this.control.value ) ) {
+            if ( this.noTrim && this.noTrim === true ) {
+                this.control.setValue( this.inputCmp.nativeElement.value );
             } else {
-                this.control.setValue(this.inputCmp.nativeElement.value.trim());
+                this.control.setValue( this.inputCmp.nativeElement.value.trim() );
             }
             notUsable = this.tolowerCase ? this.control.setValue( this.control.value.toLowerCase() ) : '';
             notUsable = this.toupperCase ? this.control.setValue( this.control.value.toUpperCase() ) : '';
         }
         this.onBlur.emit( $event );
-
     }
 
     protected addDelayedValidation () {
@@ -345,7 +354,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     }
 
     protected setDefaultValue () {
-        if ( this.defaultValue && this.control ) {
+        if ( this.defaultValue && this.control && (this.control.value === null || this.control.value === undefined ) ) {
             this.control.setValue( this.defaultValue );
         }
     }
