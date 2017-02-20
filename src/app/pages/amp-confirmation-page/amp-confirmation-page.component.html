@@ -16,9 +16,11 @@
             <a href="https://play.google.com/store/apps/details?id=au.com.amp.myportfolio.android&hl=en" target="_blank">
                 <img src="assets/images/google-play-badge.png">
             </a>
-            <amp-exit-button [buttonLabel]="'Finish'">
-            </amp-exit-button>
+            <amp-button [attr.theme]="'tools'" (click)="onPdfButtonClick()" class="btn btn-secondary">
+                Your account PDF
+            </amp-button>
         </div>
     </div>
-
+    <amp-exit-button [buttonLabel]="'Finish'">
+    </amp-exit-button>
 </div>
