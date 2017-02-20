@@ -97,27 +97,27 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
     protected isActive : boolean      = true;
     protected showIconRight : boolean = true;
     protected tabindex : any          = null;
-    protected currency : string     = null;
+    protected currency : string       = null;
     protected placeholder : string;
     protected onBlur : EventEmitter<any>;
     protected onFocus : EventEmitter<any>;
-    protected labelHidden : boolean = false;
-    protected idleTimeOut           = 4500;
+    protected labelHidden : boolean   = false;
+    protected idleTimeOut             = 4500;
     protected idleTimeoutId;
-    protected autoComplete : string = 'off';
+    protected autoComplete : string   = 'off';
     protected iconRightClickHandler;
-    protected showOptional          = true;
-    protected noTrim                = false;
+    protected showOptional            = true;
+    protected noTrim                  = false;
 
-    constructor( private _cd : ChangeDetectorRef,
-                 protected el : ElementRef,
-                 protected renderer : Renderer ) {
+    constructor ( private _cd : ChangeDetectorRef,
+                  protected el : ElementRef,
+                  protected renderer : Renderer ) {
         super();
         this.onBlur  = new EventEmitter();
         this.onFocus = new EventEmitter();
     }
 
-    updateValidators() {
+    updateValidators () {
         if ( this.control ) {
             let validators = Validators.compose( [
                 RequiredValidator.requiredValidation( this._required ),
@@ -138,14 +138,14 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }
     }
 
-    handleIconRightClick() {
+    handleIconRightClick () {
         if ( this.iconRightClickHandler ) {
             this.doOnBlurDirty = false;
             this.iconRightClickHandler( this.inputCmp, this.control );
         }
     }
 
-    ngAfterViewInit() : any {
+    ngAfterViewInit () : any {
         this.updateValidators();
         this.addDelayedValidation();
         this.setDefaultValue();
@@ -154,7 +154,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         return undefined;
     }
 
-    public checkErrors( killTimer = false ) {
+    public checkErrors ( killTimer = false ) {
         if ( this.control ) {
             this.control.updateValueAndValidity( {
                 emitEvent : false,
@@ -167,54 +167,54 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }
     }
 
-    public markControlAsDirty() {
+    public markControlAsDirty () {
         this.control.markAsDirty( {
             onlySelf : false
         } );
     }
 
-    get pattern() {
+    get pattern () {
         return this._pattern;
     }
 
-    set pattern( value : string ) {
+    set pattern ( value : string ) {
         this._pattern = value;
         this.updateValidators();
     }
 
-    get defaultValue() {
+    get defaultValue () {
         return this._defaultValue;
     }
 
-    set defaultValue( value : string ) {
+    set defaultValue ( value : string ) {
         this._defaultValue = value;
         this.setDefaultValue();
     }
 
-    get minLength() {
+    get minLength () {
         return this._minLength;
     }
 
-    set minLength( value : number ) {
+    set minLength ( value : number ) {
         this._minLength = value;
         this.updateValidators();
     }
 
-    set valDate( value : boolean ) {
+    set valDate ( value : boolean ) {
         this._valDate = value;
         this.updateValidators();
     }
 
-    get maxLength() {
+    get maxLength () {
         return this._maxLength;
     }
 
-    set maxLength( value : number ) {
+    set maxLength ( value : number ) {
         this._maxLength = value;
         this.updateValidators();
     }
 
-    protected humanDate( value : any ) {
+    protected humanDate ( value : any ) {
         switch ( value ) {
             case 'yesterday':
                 value = -1;
@@ -234,80 +234,80 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         return value;
     }
 
-    get minDate() {
+    get minDate () {
         return this._minDate;
     }
 
-    set minDate( value : any ) {
+    set minDate ( value : any ) {
         this._minDate = this.humanDate( value );
         this.updateValidators();
     }
 
-    get maxDate() {
+    get maxDate () {
         return this._maxDate;
     }
 
-    set maxDate( value : any ) {
+    set maxDate ( value : any ) {
         this._maxDate = this.humanDate( value );
         this.updateValidators();
     }
 
-    get minAge() {
+    get minAge () {
         return this._minAge;
     }
 
-    set minAge( value : any ) {
+    set minAge ( value : any ) {
         if ( value ) {
             this._minAge = parseInt( value, 10 );
             this.updateValidators();
         }
     }
 
-    get maxAge() {
+    get maxAge () {
         return this._maxAge;
     }
 
-    set maxAge( value : any ) {
+    set maxAge ( value : any ) {
         this._maxAge = parseInt( value, 10 );
         this.updateValidators();
     }
 
-    get minFloat() {
+    get minFloat () {
         return this._minFloat;
     }
 
-    set minFloat( value : any ) {
+    set minFloat ( value : any ) {
         this._minFloat = value;
         this.updateValidators();
     }
 
-    get maxFloat() {
+    get maxFloat () {
         return this._maxFloat;
     }
 
-    set maxFloat( value : any ) {
+    set maxFloat ( value : any ) {
         this._maxFloat = value;
         this.updateValidators();
     }
 
-    get isItDisabled() {
+    get isItDisabled () {
         return ( this.disabled || this.isInSummaryState ) ? true : null;
     }
 
-    protected onFocused( event ) {
+    protected onFocused ( event ) {
         this.resetIdleTimeOut();
         this.doOnBlurDirty = true;
         this.onFocus.emit( event );
     }
 
-    protected onInput( event ) {
+    protected onInput ( event ) {
         let value = event.target.value;
         if ( value && this.maxLength > 0 && value.length === this.maxLength ) {
             this.markControlAsDirty();
         }
     }
 
-    protected onBlured( $event ) {
+    protected onBlured ( $event ) {
         clearTimeout( this.idleTimeoutId );
         setTimeout( () => {
             if ( this.doOnBlurDirty ) {
@@ -328,7 +328,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         this.onBlur.emit( $event );
     }
 
-    protected addDelayedValidation() {
+    protected addDelayedValidation () {
         this.control
             .valueChanges
             .subscribe( ( changes ) => {
@@ -336,7 +336,7 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
             } );
     }
 
-    protected resetIdleTimeOut() {
+    protected resetIdleTimeOut () {
         this.markControlAsUndirty();
         clearTimeout( this.idleTimeoutId );
         this.idleTimeoutId = setTimeout( () => {
@@ -347,23 +347,23 @@ export class AmpInputComponent extends BaseControl implements AfterViewInit {
         }, this.idleTimeOut );
     }
 
-    protected markControlAsUndirty() {
+    protected markControlAsUndirty () {
         this.control.markAsPristine( {
             onlySelf : false
         } );
     }
 
-    protected setDefaultValue() {
+    protected setDefaultValue () {
         if ( this.defaultValue && this.control && (this.control.value === null || this.control.value === undefined ) ) {
             this.control.setValue( this.defaultValue );
         }
     }
 
-    protected controlIsEmpty() {
+    protected controlIsEmpty () {
         return !this.control.value && this.control.value !== 'false' && this.control.value !== 0;
     }
 
-    protected markAsTouched() {
+    protected markAsTouched () {
         this.control.markAsTouched();
     }
 }
