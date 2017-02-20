@@ -80,10 +80,10 @@ export class AmpGroupButtonsComponent extends BaseControl implements AfterViewIn
             .valueChanges
             .distinctUntilChanged()
             .subscribe( ( changes ) => {
-                if ( changes !== undefined ) {
+                if ( changes !== undefined && changes !== null ) {
                     this.select.emit( changes );
-                    this.changeDetector.markForCheck();
                 }
+                this.changeDetector.markForCheck();
             } );
         if ( this.defaultValue ) {
             this.control.setValue( this.defaultValue, { emitEvent : true } );
