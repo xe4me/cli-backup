@@ -14,8 +14,4 @@ export class AmpTransitioningAccountPageComponent {
 
     @Input() title;
 
-    public onFinishButtonClick() {
-        console.log('onFinishButtonClick');
-    }
-
 }
