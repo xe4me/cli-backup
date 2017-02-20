@@ -3,7 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AmpExitButtonComponent } from '../../../app/modules/amp-save-close-block/';
+import { AmpButton } from '../../../app/modules/amp-button/components/amp-button/amp-button.component';
 import { AmpHeaderNoTextComponent } from '../../../app/modules/amp-header/components/amp-header-no-text/amp-header-no-text.component';
+import { AmpFormRowComponent } from '../../../app/modules/amp-form/';
 import { AmpLogoComponent } from '../../../app/modules/amp-logo/components/amp-logo/amp-logo.component';
 import { AmpTransitioningAccountPageComponent } from '../../../app/pages/amp-transitioning-account-page/amp-transitioning-account-page.component';
 
@@ -27,7 +29,7 @@ describe( 'amp-transitioning-account-page component', () => {
     beforeEach( async( () => {
         TestBed.configureTestingModule( {
             imports: [ FormsModule, HttpModule ],
-            declarations: [ AmpTransitioningAccountPageComponent, AmpExitButtonComponent, TestComponent, AmpHeaderNoTextComponent, AmpLogoComponent ],
+            declarations: [ AmpTransitioningAccountPageComponent, AmpButton, AmpExitButtonComponent, AmpFormRowComponent, TestComponent, AmpHeaderNoTextComponent, AmpLogoComponent ],
             providers: [ ...APP_RESOLVER_PROVIDERS ]
         } );
     } ) );
