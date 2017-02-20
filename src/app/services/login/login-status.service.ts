@@ -39,12 +39,21 @@ export class LoginStatusService {
         this.http.get( this.apiUserSessionUrl, options )
                    .subscribe((res : Response) => {
                         if (res.ok) {
-                            this.loginSuccess();
+                            // Need to make sure we are getting JSON data payload
+                            try {
+                                let responseData = res.json();
+                                if (responseData.data) {
+                                    // As long as we get a JSON data payload, we know it wasn't a TAM opp_err response.
+                                    this.loginSuccess();
+                                }
+                            } catch (jsonParseErr) {
+                                this.notLoggedIn();
+                            }
                         } else {
                             this.notLoggedIn();
                         }
                    }, (err) => {
-                       console.error('Failed to check session validity.', err);
+                       this.notLoggedIn();
                    });
     }
 
