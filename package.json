@@ -15,7 +15,7 @@
     "server:express": "node index.js",
     "prepush": "npm run lint",
     "jenkins-lint": "eslint src -f checkstyle -o reports/eslintReport.xml; exit 0",
-    "jenkins-jscpd": "jscpd -p . -f '**/*.ts' -e 'node_modules/**' -o reports/jscpd-report.xml"
+    "jenkins-jscpd": "jscpd -p . -f \"**/*.ts\" -e \"node_modules/**\" -o reports/jscpd-report.xml"
   },
   "private": true,
   "dependencies": {

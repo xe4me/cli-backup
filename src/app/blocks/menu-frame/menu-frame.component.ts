@@ -8,7 +8,6 @@ import {
     ViewChild
 } from '@angular/core';
 import {
-    AmpBlockLoaderDirective,
     FormModelService,
     ScrollService
 } from 'amp-ddc-components';
@@ -33,7 +32,7 @@ export class MenuFrameBlockComponent implements OnDestroy, AfterViewInit {
     private sectionsToHide                   = [];
     private hideStickyButton                 = true;
     private ADDRESS_BLOCK_COMPONENT_SELECTOR = 'Application-Applicant1Section-PersonalDetailsSection-Address-block';
-    @ViewChild( AmpBlockLoaderDirective ) private loader;
+    @ViewChild( 'loader' ) private loader;
     @ViewChild( StickySaveButton ) private saveButton : StickySaveButton;
 
     constructor ( private _el : ElementRef,

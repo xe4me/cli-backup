@@ -1,7 +1,6 @@
 import { Footer } from './blocks/footer/footer.component';
 import {
-    ErrorPageComponent,
-    AmpBlockLoaderDirective
+    ErrorPageComponent
 } from 'amp-ddc-components';
 import { DYNAMIC_BLOCKS } from './app.dynamic-blocks';
 import { AppComponent } from './app.component';
@@ -19,6 +18,7 @@ import { AccountsListBlock } from './blocks/accounts-list/accounts-list.componen
 import { Header } from './blocks/header/header.component';
 import { RequestRefViaSMSPage } from './pages/request-ref-via-sms/request-ref-via-sms-page';
 import { AccountsListPipe } from './blocks/accounts-list/accounts-list.pipe';
+import { AmpBlockLoaderDirective } from './amp-block-loader.directive';
 
 export const DECLARATIONS = [
     ...DYNAMIC_BLOCKS,
