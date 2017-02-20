@@ -2,9 +2,7 @@
 <div class="container">
     <h3 class="heading heading-intro mb lap-and-up-mb+">{{title}}</h3>
     <div class="main">
-        <div class="content mt+">
-            We have received your application and will come back to you within 2 working days to confirm that your account has been opened and provide you with your account information.
-        </div>
+        <div class="content mt+" [innerHTML]="message"></div>
     </div>
     <amp-exit-button [buttonLabel]="'Finish'">
     </amp-exit-button>

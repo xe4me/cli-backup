@@ -30,14 +30,14 @@ export class AmpLoadingService {
             isLoading : true
         } );
         return obs
-            .catch( ( error ) => {
-                return ErrorService.handleError( error );
-            } )
-            .finally( () => {
+            .do( () => {
                 this.emitLoading( {
                     url,
                     isLoading : false
                 } );
+            } )
+            .catch( ( error ) => {
+                return ErrorService.handleError( error );
             } );
     }
 }

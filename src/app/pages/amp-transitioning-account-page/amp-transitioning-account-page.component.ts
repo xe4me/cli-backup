@@ -10,8 +10,10 @@ import {
     styles          : [ require( './amp-transitioning-account-page.component.scss' ) ],
     changeDetection : ChangeDetectionStrategy.OnPush
 } )
+
 export class AmpTransitioningAccountPageComponent {
 
     @Input() title;
+    @Input() message;
 
 }
