@@ -22,7 +22,7 @@ export class ScrollService {
     private lastScrollPosition;
     private _window          = window;
     private _offset : number = 0;
-    private runAnimation = null;
+    private runAnimation = [];
 
     constructor ( private _dom : BrowserDomAdapter,
                   private zone : NgZone,
@@ -174,10 +174,10 @@ export class ScrollService {
 
     public stopAnimation () {
         return new Promise( ( resolve ) => {
-            setTimeout(() => {
-                clearInterval( this.runAnimation );
+            setTimeout( () => {
+                this.runAnimation.forEach( clearInterval );
                 resolve();
-            });
+            } );
         });
     }
 
@@ -413,7 +413,7 @@ export class ScrollService {
                     stopAnimation();
                 };
                 callbackBefore( element );
-                this.runAnimation = setInterval( animateScroll, 16 );
+                this.runAnimation.push( setInterval ( animateScroll , 16 ) );
             }, 0 );
     };
 
