@@ -52,8 +52,9 @@ export class AmpSingleJointBlockComponent extends FormBlock implements OnInit, A
                 this.repeater.removeLast();
             }
         }
-
-        this.onNext();
+        setTimeout( ( ) => {
+            this.onNext();
+        });
     }
 
 }

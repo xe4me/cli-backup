@@ -18,8 +18,4 @@ export class AmpConfirmationPageComponent {
         console.log( 'onPdfButtonClick' );
     }
 
-    public onFinishButtonClick() {
-        console.log( 'onFinishButtonClick' );
-    }
-
 }

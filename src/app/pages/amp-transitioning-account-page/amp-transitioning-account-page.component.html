@@ -4,7 +4,6 @@
     <div class="main">
         <div class="content mt+" [innerHTML]="message"></div>
     </div>
-    <amp-button [attr.theme]="'tools'" (click)="onFinishButtonClick()" class="btn btn-ok mr mt-60 mb+ palm-1/1 palm-mr0">
-        Finish
-    </amp-button>
+    <amp-exit-button [buttonLabel]="'Finish'">
+    </amp-exit-button>
 </div>
