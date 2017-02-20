@@ -5,7 +5,7 @@
             </sticky-save-button>
         </amp-standalone-menu>
         <main class="main main--aside">
-            <div [amp-block-loader]="__child_blocks" (loaded)="onBlocksLoaded()" [fdn]="__fdn" [form]="__form"></div>
+            <div #loader="loader" [amp-block-loader]="__child_blocks" (loaded)="onBlocksLoaded()" [fdn]="__fdn" [form]="__form"></div>
         </main>
     </div>
 </div>
