@@ -19,25 +19,25 @@ export class AmpLoadingService {
 
     private isLoading : boolean = false;
 
-    public emitLoading ( options : LoadingMessage ) {
+    public emitLoading( options : LoadingMessage ) {
         this.isLoading = options.isLoading;
         this.$loading.emit( options );
     }
 
-    public intercept ( obs : Observable<Response>, url : string|Request ) : Observable<Response> {
+    public intercept( obs : Observable<Response>, url : string|Request ) : Observable<Response> {
         this.emitLoading( {
             url,
             isLoading : true
         } );
         return obs
-            .catch( ( error ) => {
-                return ErrorService.handleError( error );
-            } )
-            .finally( () => {
+            .do( () => {
                 this.emitLoading( {
                     url,
                     isLoading : false
                 } );
+            } )
+            .catch( ( error ) => {
+                return ErrorService.handleError( error );
             } );
     }
 }
