@@ -80,13 +80,12 @@ export class AccountTransitionBaseBlock extends FormBlock implements AfterViewIn
             }
         } else {
             this.newOrConvertControl.setValue( this.defaultAccountAction );
+            this.loginStatusService.userHasLoggedIn()
+                .subscribe( () => {
+                    this.userHasLoggedIn = true;
+                    this.fetchEligibleAccounts();
+                });
         }
-
-        this.loginStatusService.userHasLoggedIn()
-            .subscribe( () => {
-                this.userHasLoggedIn = true;
-                this.fetchEligibleAccounts();
-            });
 
         this.isAccountNumberDropDownOrInputReady = true;
         super.ngAfterViewInit();

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
-    FormModelService,
-    LoginStatusService,
-    CustomerDetailsService
+    FormModelService
 } from 'amp-ddc-components';
 import { EligibleAccountsService } from '../../shared/eligible-accounts.service';
 
@@ -13,9 +11,7 @@ const formDef = require( './form-def.def.json' );
     selector    : 'better-form',
     template        : require( './better-form.component.html'),
     providers: [
-        LoginStatusService,
-        EligibleAccountsService,
-        CustomerDetailsService
+        EligibleAccountsService
     ],
     styles      : [ require( './better-form.component.scss' ) ]
 } )
