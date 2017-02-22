@@ -107,22 +107,22 @@ export default Task.extend({
     }
 
     const statsConfig = getWebpackStatsConfig(serveTaskOptions.verbose);
-
+//    [`${serveDefaults.deployUrl}/*`]: {
+//      // rewrite all the local asset request to remove the relative path from them, this is not needed in the environments and is only for local
+//      target: 'http://localhost:3000',
+//        pathRewrite: function (path:string, req:any) {
+//        if (req.url) {
+//          let to = req.url.replace(serveDefaults.deployUrl, '');
+//          if (to !== req.url) {
+//            req.url = to;
+//          }
+//        } else {
+//        }
+//      }
+//    }
     let proxyConfig = {};
     let defaultProxySetting = {
-      [`${serveDefaults.deployUrl}/*`]: {
-        // rewrite all the local asset request to remove the relative path from them, this is not needed in the environments and is only for local
-        target: 'http://localhost:3000',
-        pathRewrite: function (path:string, req:any) {
-          if (req.url) {
-            let to = req.url.replace(serveDefaults.deployUrl, '');
-            if (to !== req.url) {
-              req.url = to;
-            }
-          } else {
-          }
-        }
-      }
+
     };
     if (serveTaskOptions.proxyConfig) {
       const proxyPath = path.resolve(this.project.root, serveTaskOptions.proxyConfig);

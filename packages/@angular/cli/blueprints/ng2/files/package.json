@@ -40,6 +40,7 @@
   "devDependencies": {
     "@angular/cli": "/Users/xe4me/dev/AMP/angular-cli/dist/@angular/cli",
     "@angular/compiler-cli": "2.4.3",
+    "@types/lodash": "4.14.45",
     "@types/jasmine": "2.5.38",
     "@types/node": "6.0.60",
     "jasmine-core": "~2.5.2",
@@ -57,7 +58,7 @@
     "protractor": "5.1.0",
     "stubby": "^0.3.1",
     "ts-node": "2.0.0",
-    "tslint": "4.4.2",
+    "tslint": "4.3.1",
     "typescript": "2.0.3"
   }
 }
