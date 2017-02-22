@@ -5,7 +5,7 @@ import { CliConfig } from '../models/config';
 import { Version } from '../upgrade/version';
 import { ServeTaskOptions } from './serve';
 import { overrideOptions } from '../utilities/override-options';
-
+import StubbyTask from '../tasks/stubby';
 const SilentError = require('silent-error');
 const PortFinder = require('portfinder');
 const Command = require('../ember-cli/lib/models/command');
@@ -40,7 +40,7 @@ export const baseServeCommandOptions: any = overrideOptions(
       aliases: ['H'],
       description: `Listens only on ${defaultHost} by default`
     },
-    { name: 'proxy-config', type: 'Path', aliases: ['pc'] },
+  { name: 'proxy-config',default: 'webpackDevProxy.js',  type: 'Path', aliases: ['pc'] },
     { name: 'ssl', type: Boolean, default: false },
     { name: 'ssl-key', type: String, default: 'ssl/server.key' },
     { name: 'ssl-cert', type: String, default: 'ssl/server.crt' },
@@ -79,7 +79,12 @@ const ServeCommand = Command.extend({
     const ServeTask = require('../tasks/serve').default;
 
     Version.assertAngularVersionIs2_3_1OrHigher(this.project.root);
-
+      const stubbyTask = new StubbyTask({
+          ui: this.ui,
+          analytics: this.analytics,
+          project: this.project
+      });
+      stubbyTask.run(commandOptions).then();
     return checkExpressPort(commandOptions)
       .then((opts: ServeTaskOptions) => {
         const serve = new ServeTask({

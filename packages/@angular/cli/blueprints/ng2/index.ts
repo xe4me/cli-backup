@@ -37,6 +37,7 @@ export default Blueprint.extend({
       .replace(/^./, (l) => l.toUpperCase());
 
     return {
+      appId :options.entity.name.split('-').pop(),
       htmlComponentName: stringUtils.dasherize(options.entity.name),
       jsComponentName: stringUtils.classify(options.entity.name),
       fullAppName: fullAppName,

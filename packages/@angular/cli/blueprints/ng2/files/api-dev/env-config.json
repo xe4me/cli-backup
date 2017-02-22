@@ -1,0 +1,17 @@
+[
+  {
+    "request": {
+      "url": "/config.js",
+      "post": "this is some post data in textual format",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/javascript"
+      },
+      "latency": 10,
+      "body": "var _process_env = {GoogleApiKey: '',TamServicePath: 'http://localhost:8882',GwPracticeService: {ApiKey: '',EnvPath: '',Path: '',},GwDDCService: {ApiKey: '',EnvPath: '',Path: '',}};"
+    }
+  }
+]

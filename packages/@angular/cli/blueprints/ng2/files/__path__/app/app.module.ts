@@ -1,22 +1,36 @@
+import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';<% if (routing) { %>
-import { AppRoutingModule } from './app-routing.module';<% } %>
-
+import {
+    NgModule,
+    Renderer
+} from '@angular/core';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 import { AppComponent } from './app.component';
+import { AMP_DDC_MODULES } from './app.modules';
+import { AMP_DDC_PROVIDERS } from './app.providers';
+import { DYNAMIC_BLOCKS } from './app.dynamic-blocks';
+import { DECLARATIONS } from './app.declarations';
+import { AppRoutingModule } from './app.routes';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule<% if (routing) { %>,
-    AppRoutingModule<% } %>
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+@NgModule( {
+    declarations: DECLARATIONS,
+    imports: [
+        ...AMP_DDC_MODULES,
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        ReactiveFormsModule,
+        AppRoutingModule
+    ],
+    entryComponents: DYNAMIC_BLOCKS,
+    providers: [
+        ...AMP_DDC_PROVIDERS,
+        <any> Renderer,
+        BrowserDomAdapter
+    ],
+    bootstrap: [ AppComponent ]
+} )
+export class AppModule {
+}

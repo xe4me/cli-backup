@@ -5,8 +5,9 @@
   },
   "apps": [
     {
+      "deployUrl": "/ddc/secure/ui/<%= appId %>",
       "root": "<%= sourceDir %>",
-      "outDir": "dist",
+      "outDir": "dist/ddc/secure/ui/<%= appId %>",
       "assets": [
         "assets",
         "favicon.ico"

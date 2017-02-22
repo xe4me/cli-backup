@@ -4,6 +4,7 @@ import * as chalk from 'chalk';
 import * as rimraf from 'rimraf';
 import * as webpack from 'webpack';
 import * as url from 'url';
+import * as _ from 'lodash';
 import { oneLine, stripIndents } from 'common-tags';
 import { getWebpackStatsConfig } from '../models/webpack-configs/utils';
 import { NgCliWebpackConfig } from '../models/webpack-config';
@@ -18,7 +19,6 @@ const opn = require('opn');
 export default Task.extend({
   run: function (serveTaskOptions: ServeTaskOptions, rebuildDoneCb: any) {
     const ui = this.ui;
-
     let webpackCompiler: any;
     const projectConfig = CliConfig.fromProject().config;
     const appConfig = projectConfig.apps[0];
@@ -33,8 +33,8 @@ export default Task.extend({
     rimraf.sync(path.resolve(this.project.root, outputPath));
 
     const serveDefaults = {
-      // default deployUrl to '' on serve to prevent the default from .angular-cli.json
-      deployUrl: ''
+      // default deployUrl to '' on serve to prevent the default from .amp-angular-cli.json
+      deployUrl: outputPath.replace('dist','')
     };
 
     serveTaskOptions = Object.assign({}, serveDefaults, serveTaskOptions);
@@ -109,16 +109,39 @@ export default Task.extend({
     const statsConfig = getWebpackStatsConfig(serveTaskOptions.verbose);
 
     let proxyConfig = {};
+    let defaultProxySetting = {
+      [`${serveDefaults.deployUrl}/*`]: {
+        // rewrite all the local asset request to remove the relative path from them, this is not needed in the environments and is only for local
+        target: 'http://localhost:3000',
+        pathRewrite: function (path:string, req:any) {
+          if (req.url) {
+            let to = req.url.replace(serveDefaults.deployUrl, '');
+            if (to !== req.url) {
+              req.url = to;
+            }
+          } else {
+          }
+        }
+      }
+    };
     if (serveTaskOptions.proxyConfig) {
       const proxyPath = path.resolve(this.project.root, serveTaskOptions.proxyConfig);
       if (fs.existsSync(proxyPath)) {
-        proxyConfig = require(proxyPath);
+        proxyConfig = _.merge(require(proxyPath),defaultProxySetting);
       } else {
-        const message = 'Proxy config file ' + proxyPath + ' does not exist.';
-        return Promise.reject(new SilentError(message));
+//        const message = 'Proxy config file ' + proxyPath + ' does not exist.';
+//        return Promise.reject(new SilentError(message));
+        proxyConfig = defaultProxySetting;
       }
     }
-
+    ui.writeLine(chalk.magenta(stripIndents`
+   
+    ****************************************************************************************
+    All the calls to the ${serveDefaults.deployUrl} will be redirected to /
+    This is only for develop , for prod build the baseUrl will still be ${serveDefaults.deployUrl} 
+    ****************************************************************************************
+    
+  `));
     let sslKey: string = null;
     let sslCert: string = null;
     if (serveTaskOptions.ssl) {
@@ -137,6 +160,7 @@ export default Task.extend({
       historyApiFallback: {
         index: `/${appConfig.index}`,
         disableDotRule: true,
+        verbose : true,
         htmlAcceptHeaders: ['text/html', 'application/xhtml+xml']
       },
       stats: statsConfig,
@@ -170,7 +194,8 @@ export default Task.extend({
 
     ui.writeLine(chalk.green(oneLine`
       **
-      NG Live Development Server is running on ${serverAddress}
+      NG Live Development Server is running on
+      http${serveTaskOptions.ssl ? 's' : ''}://${serveTaskOptions.host}:${serveTaskOptions.port}${serveDefaults.deployUrl}.
       **
     `));
 

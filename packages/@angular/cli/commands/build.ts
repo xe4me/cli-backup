@@ -17,7 +17,7 @@ export const baseBuildCommandOptions: any = [
   },
   { name: 'environment', type: String, aliases: ['e'] },
   { name: 'output-path', type: 'Path', aliases: ['op'] },
-  { name: 'aot', type: Boolean },
+  { name: 'aot', type: Boolean , default : false },
   { name: 'sourcemap', type: Boolean, aliases: ['sm', 'sourcemaps'] },
   { name: 'vendor-chunk', type: Boolean, default: true, aliases: ['vc'] },
   { name: 'base-href', type: String, aliases: ['bh'] },

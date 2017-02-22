@@ -405,7 +405,7 @@
             "port": {
               "description": "The port the application will be served on",
               "type": "number",
-              "default": 4200
+              "default": 3000
             },
             "host": {
               "description": "The host the application will be served on",

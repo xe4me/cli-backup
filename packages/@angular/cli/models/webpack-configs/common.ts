@@ -87,8 +87,11 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
       extensions: ['.ts', '.js'],
       modules: [nodeModules],
     },
-    resolveLoader: {
-      modules: [nodeModules]
+    resolveLoader : {
+      alias   : {
+        'fdn-loader' : require.resolve( './fdn-loader.js' )
+      },
+      modules : [ nodeModules ]
     },
     context: projectRoot,
     entry: entryPoints,
@@ -101,7 +104,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     module: {
       rules: [
         { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader', exclude: [nodeModules] },
-        { test: /\.json$/, loader: 'json-loader' },
+        { test: /\.json$/, loader: ['json-loader', 'fdn-loader'] },
         { test: /\.html$/, loader: 'raw-loader' },
         { test: /\.(eot|svg)$/, loader: `file-loader?name=[name]${hashFormat.file}.[ext]` },
         {

@@ -1,0 +1,11 @@
+{
+    "allow-access-control-origin": "*",
+    "preMiddlewares": [
+         "./interceptors"
+    ],
+    "modules": [
+        "./apps"
+    ],
+    "postMiddlewares": [
+    ]
+}
