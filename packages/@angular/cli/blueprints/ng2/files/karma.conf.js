@@ -6,16 +6,18 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+        require('karma-jasmine'),
+        require('karma-chrome-launcher'),
+        require('karma-phantomjs-launcher'),
+        require('karma-jasmine-html-reporter'),
+        require('karma-coverage-istanbul-reporter'),
+        require('@angular/cli/plugins/karma')
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
+      {pattern: './testProcessEnv.js', watched: false},
       { pattern: './<%= sourceDir %>/test.ts', watched: false }
     ],
     preprocessors: {
@@ -39,7 +41,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+      browsers: ['PhantomJS'],
+      singleRun: true
   });
 };

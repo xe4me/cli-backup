@@ -38,27 +38,33 @@
     "zone.js": "0.7.4"
   },
   "devDependencies": {
-    "@angular/cli": "/Users/xe4me/dev/AMP/angular-cli/dist/@angular/cli",
     "@angular/compiler-cli": "2.4.3",
-    "@types/lodash": "4.14.45",
     "@types/jasmine": "2.5.38",
+    "@types/lodash": "4.14.45",
     "@types/node": "6.0.60",
-    "jasmine-core": "~2.5.2",
-    "jasmine-spec-reporter": "~3.2.0",
+    "amp-angular-cli": "/Users/xe4me/dev/AMP/angular-cli/dist/@angular/cli",
+    "bundle-loader": "0.5.4",
+    "codelyzer": "1.0.0-beta.3",
+    "concurrently": "2.0.0",
+    "husky": "0.12.0",
+    "jasmine-core": "2.5.2",
+    "jasmine-spec-reporter": "3.2.0",
+    "jscpd": "0.6.10",
     "karma": "1.4.1",
     "karma-chrome-launcher": "2.0.0",
     "karma-cli": "1.0.1",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "0.2.2",
     "karma-coverage-istanbul-reporter": "0.2.0",
-    "bundle-loader": "0.5.4",
-    "codelyzer": "1.0.0-beta.3",
-    "concurrently": "2.0.0",
-    "husky": "0.12.0",
+    "karma-phantomjs-launcher": "1.0.0",
+    "phantomjs-prebuilt": "2.1.14",
     "protractor": "5.1.0",
-    "stubby": "^0.3.1",
+    "stubby": "0.3.1",
     "ts-node": "2.0.0",
     "tslint": "4.3.1",
     "typescript": "2.0.3"
+  },
+  "publishConfig": {
+    "registry": "http://npm-registry-ddc.digital-pilot.ampaws.com.au/"
   }
 }

@@ -2,24 +2,20 @@ FROM registry-ddc.digital-pilot.ampaws.com.au/amp-nodejs-with-angularcli:latest-
 
 MAINTAINER "Francis Naoum" <francis_naoum@amp.com.au>
 
-# Create code directory and remove anything just in case
-RUN mkdir -p /code && \
-    rm -rf /code/*
+CMD [ "npm", "run", "server:express" ]
 
-# Copy app source
-COPY . /code/
+# Create code directory and remove anything just in case
+RUN mkdir -p /code && rm -rf /code/*
+
+# Set permissions for node and set timezone
+RUN rm /etc/localtime && ln -s /usr/share/zoneinfo/Australia/Sydney /etc/localtime
 
 # Set /code as workdir
 WORKDIR /code
 
-# Set permissions for node and set timezone
-RUN chown -R node:node /code && \
-    rm /etc/localtime && \
-    ln -s /usr/share/zoneinfo/Australia/Sydney /etc/localtime
-
 # Set user to node
 USER node
 
-RUN ddc build --prod
+# Copy app source
+COPY . /code/
 
-CMD [ "npm", "run", "server:express" ]

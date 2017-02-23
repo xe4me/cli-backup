@@ -7,6 +7,7 @@ export interface BuildOptions {
   vendorChunk?: boolean;
   baseHref?: string;
   deployUrl?: string;
+  baseURI?: string;
   verbose?: boolean;
   progress?: boolean;
   i18nFile?: string;

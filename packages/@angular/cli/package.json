@@ -1,11 +1,11 @@
 {
-  "name": "@angular/cli",
-  "version": "1.0.0-beta.32.3",
+  "name": "amp-angular-cli",
+  "version": "3.0.0",
   "description": "CLI tool for Angular",
   "main": "lib/cli/index.js",
   "trackingCode": "UA-8594346-19",
   "bin": {
-    "ng": "./bin/ng"
+    "ddc": "./bin/ng"
   },
   "keywords": [
     "angular",
@@ -27,9 +27,9 @@
   },
   "homepage": "https://github.com/angular/angular-cli",
   "dependencies": {
-    "@angular/compiler": ">=2.3.1 <5.0.0",
-    "@angular/compiler-cli": ">=2.3.1 <5.0.0",
-    "@angular/core": ">=2.3.1 <5.0.0",
+    "@angular/compiler": "2.4.3",
+    "@angular/compiler-cli": "2.4.3",
+    "@angular/core": "2.4.3",
     "@angular/tsc-wrapped": ">=0.5.0 <5.0.0",
     "@ngtools/json-schema": "1.0.3",
     "@ngtools/webpack": "1.2.10",
@@ -58,10 +58,10 @@
     "karma-webpack": "^2.0.0",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
-    "lodash": "^4.11.1",
+    "lodash": "4.17.4",
     "minimatch": "^3.0.3",
     "node-modules-path": "^1.0.0",
-    "node-sass": "^4.3.0",
+    "node-sass": "4.3.0",
     "nopt": "^4.0.1",
     "opn": "4.0.2",
     "portfinder": "~1.0.12",
@@ -71,7 +71,7 @@
     "resolve": "^1.1.7",
     "rimraf": "^2.5.3",
     "rsvp": "^3.0.17",
-    "rxjs": "^5.0.1",
+    "rxjs": "5.0.2",
     "sass-loader": "^4.1.1",
     "script-loader": "^0.7.0",
     "semver": "^5.1.0",
@@ -82,7 +82,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.4.0",
     "temp": "0.8.3",
-    "typescript": ">=2.0.0 <2.2.0",
+    "typescript": "2.0.3",
     "url-loader": "^0.5.7",
     "walk-sync": "^0.3.1",
     "webpack": "~2.2.0",

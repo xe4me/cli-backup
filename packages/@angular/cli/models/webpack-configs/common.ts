@@ -97,7 +97,7 @@ export function getCommonConfig(wco: WebpackConfigOptions) {
     entry: entryPoints,
     output: {
       path: path.resolve(projectRoot, buildOptions.outputPath),
-      publicPath: buildOptions.deployUrl,
+      publicPath: buildOptions.deployUrl || buildOptions.baseURI,
       filename: `[name]${hashFormat.chunk}.bundle.js`,
       chunkFilename: `[id]${hashFormat.chunk}.chunk.js`
     },
