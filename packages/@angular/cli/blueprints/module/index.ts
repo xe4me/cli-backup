@@ -1,3 +1,6 @@
+import {CliConfig} from '../../models/config';
+import {getAppFromConfig} from '../../utilities/app-utils';
+
 const path = require('path');
 const Blueprint   = require('../../ember-cli/lib/models/blueprint');
 const dynamicPathParser = require('../../utilities/dynamic-path-parser');
@@ -22,25 +25,35 @@ export default Blueprint.extend({
       type: Boolean,
       default: false,
       description: 'Specifies if a routing module file should be generated.'
+    },
+    {
+      name: 'app',
+      type: String,
+      aliases: ['a'],
+      description: 'Specifies app name to use.'
     }
   ],
 
   normalizeEntityName: function (entityName: string) {
     this.entityName = entityName;
-    const parsedPath = dynamicPathParser(this.project, entityName);
+    const cliConfig = CliConfig.fromProject();
+    const ngConfig = cliConfig && cliConfig.config;
+    const appConfig = getAppFromConfig(ngConfig.apps, this.options.app);
+    const parsedPath = dynamicPathParser(this.project, entityName, appConfig);
 
     this.dynamicPath = parsedPath;
     return parsedPath.name;
   },
 
   locals: function (options: any) {
+    const cliConfig = CliConfig.fromProject();
     options.flat = options.flat !== undefined ?
       options.flat :
-      this.project.ngConfigObj.get('defaults.module.flat');
+      cliConfig && cliConfig.get('defaults.module.flat');
 
     options.spec = options.spec !== undefined ?
       options.spec :
-      this.project.ngConfigObj.get('defaults.module.spec');
+      cliConfig && cliConfig.get('defaults.module.spec');
 
     return {
       dynamicPath: this.dynamicPath.dir,

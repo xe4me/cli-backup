@@ -17,4 +17,6 @@ export interface BuildOptions {
   watch?: boolean;
   outputHashing?: string;
   poll?: number;
+  app?: string;
+
 }
