@@ -1,5 +1,5 @@
 {
-  "name": "amp-angular-cli",
+  "name": "angular-cli",
   "version": "3.0.0",
   "description": "CLI tool for Angular",
   "main": "packages/@angular/cli/lib/cli/index.js",
