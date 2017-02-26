@@ -1,4 +1,3 @@
-import { AmpBlockLoaderDirective } from 'amp-ddc-components/src/app/amp-block-loader.directive';
 import { BrowserModule } from '@angular/platform-browser';
 import {
     NgModule,
