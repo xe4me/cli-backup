@@ -4,50 +4,38 @@
 module.exports = function (config) {
     config.set({
         basePath: '',
-        frameworks: ['jasmine', 'angular-cli'],
+        frameworks: ['jasmine', '@angular/cli'],
         plugins: [
             require('karma-jasmine'),
-     // require('karma-chrome-launcher'),
+            require('karma-chrome-launcher'),
             require('karma-phantomjs-launcher'),
-            require('karma-remap-istanbul'),
-            require('amp-angular-cli/plugins/karma'),
-            require('karma-coverage'),
-            require('karma-junit-reporter')
+            require('karma-jasmine-html-reporter'),
+            require('karma-coverage-istanbul-reporter'),
+            require('amp-angular-cli/plugins/karma')
         ],
+        client:{
+            clearContext: false // leave Jasmine Spec Runner output visible in browser
+        },
         files: [
-            { pattern: './testProcessEnv.js', watched: false },
-            {pattern: './src/test.ts', watched: false}
+            {pattern: './testProcessEnv.js', watched: false},
+            { pattern: './src/test.ts', watched: false }
         ],
         preprocessors: {
-            './src/test.ts': ['angular-cli']
+            './src/test.ts': ['@angular/cli']
         },
         mime: {
-            'text/x-typescript': ['ts', 'tsx']
+            'text/x-typescript': ['ts','tsx']
         },
-        remapIstanbulReporter: {
-            reports: {
-                html: 'coverage',
-                lcovonly: './coverage/coverage.lcov'
-            }
+        coverageIstanbulReporter: {
+            reports: [ 'html', 'lcovonly' ],
+            fixWebpackSourcePaths: true
         },
         angularCli: {
-            config: './angular-cli.json',
             environment: 'dev'
         },
-        reporters: ['progress', 'karma-remap-istanbul', 'coverage', 'junit'],
-        coverageReporter: {
-            dir: 'reports/',
-            reporters: [
-                {type: 'text-summary', subdir: '.'},
-                {type: 'json', subdir: '.'},
-                {type: 'html', subdir: '.'},
-                {type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml'}
-            ]
-        },
-        //junit reporting
-        junitReporter: {
-            outputFile: '../reports/mocha-report.xml'
-        },
+        reporters: config.angularCli && config.angularCli.codeCoverage
+            ? ['progress', 'coverage-istanbul']
+            : ['progress', 'kjhtml'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
