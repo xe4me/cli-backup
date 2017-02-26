@@ -41,6 +41,12 @@ const NewCommand = Command.extend({
       description: 'Automatically link the `@angular/cli` package.'
     },
     {
+      name: 'secure',
+      type: Boolean,
+      default: false,
+      description: 'Define if the base url is secure or public for DDC'
+    },
+    {
       name: 'ng4',
       type: Boolean,
       default: false,

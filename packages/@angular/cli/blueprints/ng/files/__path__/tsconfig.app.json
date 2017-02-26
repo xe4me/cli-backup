@@ -12,14 +12,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es2016",
+      "es7",
       "dom"
     ],<% } %>
     "outDir": "<%= relativeRootPath %>/out-tsc/app",
     "target": "es5",
-    "module": "es2015",
+    "module": "es6",
     "baseUrl": "",
-    "types": []
+    "types": [],
+    "typeRoots": [
+    "../node_modules/@types"
+    ]
   },
   "exclude": [
     "test.ts",

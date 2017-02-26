@@ -37,8 +37,8 @@ export default Blueprint.extend({
     const fullAppName = (stringUtils.dasherize(options.entity.name) as string)
       .replace(/-(.)/g, (_, l) => ' ' + l.toUpperCase())
       .replace(/^./, (l) => l.toUpperCase());
-
     return {
+      secure :options.secure?'secdure':'public',
       appId :options.entity.name.split('-').pop(),
       htmlComponentName: stringUtils.dasherize(options.entity.name),
       jsComponentName: stringUtils.classify(options.entity.name),

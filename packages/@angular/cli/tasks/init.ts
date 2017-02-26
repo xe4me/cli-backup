@@ -63,6 +63,7 @@ export default Task.extend({
     }
 
     const blueprintOpts = {
+      secure: commandOptions.secure,
       dryRun: commandOptions.dryRun,
       blueprint: 'ng',
       rawName: packageName,
@@ -79,7 +80,6 @@ export default Task.extend({
       skipGit: commandOptions.skipGit,
       skipTests: commandOptions.skipTests
     };
-
     validateProjectName(packageName);
 
     blueprintOpts.blueprint = normalizeBlueprint(blueprintOpts.blueprint);
