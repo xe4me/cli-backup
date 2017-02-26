@@ -403,7 +403,7 @@ export abstract class AmpBlockLoader {
 
         if ( !options.allowMultiple ) {
             if ( this.isBlockAlreadyLoaded( _def ) ) {
-                return Promise.resolve();
+                return Promise.resolve(null);
             }
         }
 

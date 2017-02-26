@@ -1,4 +1,4 @@
-import { isArray } from 'util';
+import { isArray } from 'lodash';
 import { Component } from '@angular/core';
 import { makeDecorator } from '@angular/core/src/util/decorators';
 export function AmpComponent( annotation : any ) {

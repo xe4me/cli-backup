@@ -14,7 +14,6 @@ import {
 import { SaveAndSubmitService } from '../../../../services/save-and-submit/save-and-submit.service';
 import { FormModelService } from '../../../../services/form-model/form-model.service';
 import { Request } from '@angular/http';
-import Timer = NodeJS.Timer;
 
 @Pipe( {
     name : 'messageMatchesUrl'
